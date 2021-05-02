@@ -1,0 +1,420 @@
+
+# Data Dx {#DataDx}
+
+ [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=43dbe818-8186-498d-8e84-acf7000acb5b) 
+
+The focus of this chapter engage in *data diagnostics*, that is, to evaluate the appropriateness of the data for the *specific research model we are going to evaluate*. We are asking the question, "Does the data have the appropriate characteristics for the analysis we want to perform?" Some statistics are more robust than others to violations of the assumptions about the characteristics of the data. None-the-less, we must report these characteristics when we disseminate the results.
+
+## Navigating this Lesson
+
+There is about 45 minutes of lecture.  If you work through the materials with me it would be plan for an additional hour.
+
+While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivariateModeling) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+
+### Learning Objectives
+
+Learning objectives from this lecture include the following:
+
+* Conduct and interpret critical data diagnostics, including
+  * alpha coefficients
+  * skew
+  * kurtosis
+* Assess univariate and multivariate normality
+* Identify options for managing outliers and skewed data
+* Articulate a workflow for data preparation, including scrubbing, scoring, and data diagnostics
+
+
+### Planning for Practice
+
+The suggestions from practice are a continuation from the two prior chapters. If you have completed one or more of those assignments, you should have started with a raw dataset and then scrubbed and scored it. This chapter will involve running basic data diagnostics. Options of graded complexity could incude:
+
+* Repeating the steps in the chapter with the most recent data from the Rate-A-Recent-Course survey; differences will be in the number of people who have completed the survey since the chapter was written.
+* Use the dataset that is the source of the chapter, but score a different set of items that you choose.
+* Begin with raw data to which you have access. 
+
+### Readings & Resources
+
+In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
+
+* Parent, M. C. (2013). Handling item-level missing data: Simpler is just as good. The Counseling Psychologist, 41(4), 568–600. https://doi.org/10.1177/0011000012445176
+
+* Kline, R. B. (2015). Data preparation and psychometrics review. In Principles and Practice of Structural Equation Modeling, Fourth Edition. Guilford Publications. http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663
+
+
+### Packages
+
+The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
+
+<!-- TODO: Build out this section. -->
+```{r initial packages for Data Dx, eval=FALSE}
+if(!require(tidyverse)){install.packages("tidyverse")} #this includes dplyr
+if(!require(psych)){install.packages("psych")}
+if(!require(apaTables)){install.packages("apaTables")}
+if(!require(formattable)){install.packages("formattable")}
+```
+
+
+## Workflow for Scrubbing and Scoring
+
+<!-- TODO: When finalized, save as PDF so it can open in its own window) -->
+
+The same workflow guides us through the Scrubbing, Scoring, and Data Dx chapters.  At this stage we have 
+
+* imported our raw data from Qualtrics, 
+* scrubbed the data by applying our inclusion and exclusion criteria, and
+* used Parent's available information approach [AIA; -@parent_handling_2013] for determining the acceptable amount of missingness for each scale, and
+* prepared variables and scored them.
+
+We are now ready to engage in data diagnostics for the statistical model we will test.
+
+![An image of our stage in the workflow for scrubbing and scoring data.](images/Ch04/wrkflow_dx.jpg)
+
+## Research Vignette
+
+The research vignette comes from the survey titled, [Rate-a-Recent-Course:  A ReCentering Psych Stats Exercise](https://spupsych.az1.qualtrics.com/jfe/form/SV_b2cClqAlLGQ6nLU) and is explained in the [scrubbing chapter](#scrub). In the [scoring chapter](#score) we prepared four variables for analysis. Details for these are in our [codebook](./Rate-a-Course_Codebook.pdf).
+
+Variable recap:
+
+* Perceived Campus Climate for Black Students includes 6 items, one of which was reverse scored. This scale was adapted from Szymanski et al.'s [-@szymanski_perceptions_2020] Campus Climate for LGBTQ students. It has not been evaluated for use with other groups.  The Szymanski et al. analysis suggested that it could be used as a total scale score, or divided into three items each that assess
+  * College response to LGBTQ students (items 6, 4, 1)
+  * LGBTQ stigma (items 3, 2, 5)
+* Sense of Belonging includes 3 items. This is a subscale from Bollen and Hoyle's [-@bollen_perceived_1990] Perceived Cohesion Scale. There are no items on this scale that require reversing.
+* Percent of Black classmates is a single item that asked respondents to estimate the proportion of students in various racial categories
+* Percent of BIPOC instructional staff, similarly, asked respondents to identify the racial category of each member of their instructional staff
+
+As we noted in the [scrubbing chapter](#scrub), our design has notable limitations. Briefly, (a) owing to the open source aspect of the data we do not ask about the demographic characteristics of the respondent; (b) the items that ask respondents to *guess* the identities of the instructional staff and to place them in broad categories, (c) we do not provide a "write-in" a response. We made these decisions after extensive conversation with stakeholders. The primary reason for these decisions was to prevent potential harm (a) to respondents who could be identified if/when the revealed private information in this open-source survey, and (b) trolls who would write inappropriate or harmful comments. 
+  
+As I think about "how these variables go together" (which is often where I start in planning a study), imagine a parallel mediation.  That is the perception of campus climate for Black students would be predicted by the respondent's sense of belonging, mediated in separate paths through the proportion of classmates who are Black and the proportion of BIPOC instructional staff.  
+
+*I would like to assess the model by having the instructional staff variable to be the %Black instructional staff.  At the time that this lecture is being prepared, there is not sufficient Black representation in the staff to model this.* 
+
+![An image of the statistical model for which we are preparing data.](images/Ch04/BlStuMed.jpg)
+
+I will finish up this chapter by conducting a regression. Because parallel mediation can be complicated (I teach it in a later chapter), I will demonstrate use of our prepared variables with a simple multiple regression.
+
+![An image of the statistical model for which we are preparing data.](images/Ch04/BlStuRegression.jpg)
+
+
+First, though, let's take a more conceptual look at issues regarding missing data.  We'll come back to details of the survey as we work with it.
+
+## Internal Consistency of Scales/Subscales
+
+Alpha coefficients are *reliability coefficients* that assess the *internal consistency* of an instrument. It asks, "For each person, are responses *consistently* high, or medium, or low?"  To the degree that they are (meaning there are high inter-item correlations), the internal consistency coefficient will be high.  We want values >.80.  There are numerous problems with alpha coefficients.  The biggest one is that they are influenced by sample size -- longer scales have higher alpha coefficients [@cortina_what_1993].  Fourteen seems to be a magic number where we begin to not trust the high alpha coefficient. I address this more thoroughly -- offering an alternative -- in psychometrics. While there is much criticism about the usefulness of the alpha coefficient [@sijtsma_use_2009], researchers continue to use the alpha coefficient as an indicator of the internal consistency of scales that consist of multiple items and contain several variables.  
+
+We need item level data to compute an alpha coefficient. The easiest way to get an alpha coefficient is to feed the *alpha()* function (*psych* package) a contatonated list of items (with any items already reverse-scored). There should be no extra items. In the [scoring chapter](#score) we already reverse-coded the single item in the campus climate scale, so we are ready to calculate alphas. 
+
+The df from which I am pulling data was created and written as an outfile in the [scoring chapter](#score). This particular df has item-level data.
+
+```{r import item level data for alpha coefficients}
+item_scores_df <- read.csv ("BlStItmsScrs210320.csv", head = TRUE, sep = ",")
+```
+
+From this, we create tiny dfs, one for each of the alpha coefficients we need to create. A priori, we are planning to use all six items of the campus climate scale. We'll go ahead and also calculate the subscales because (a) it's good practice and (b) if the alpha is low, a *reason* might show up in one of the subscales.
+
+
+```{r Belonging alpha}
+library(psych)
+library(formattable)
+Bel_alpha <- psych::alpha(item_scores_df[c("Belong_1", "Belong_2", "Belong_3")])
+Bel_alpha
+```
+CAPTURE FOR THE APA STYLE WRITE-UP(since these are generally placed in the description of each measure in the Method section, I am not doing a cumulative capture):  Cronbach's alpha for the belonging scale was `r digits(Bel_alpha$total$raw_alpha, 3)`.
+
+
+```{r Campus Climate alpha}
+CClim_alpha <- psych::alpha(item_scores_df[c("rBlst_1", "Blst_2", "Blst_3", "Blst_4", "Blst_5", "Blst_6")])
+CClim_alpha
+
+```
+CAPTURE FOR THE APA STYLE WRITE-UP (since these are generally placed in the description of each measure in the Method section, I am not doing a cumulative capture):  Cronbach's alpha for the campus climate scale was `r digits(CClim_alpha$total$raw_alpha, 3)`. Since this value is $\geq$ .80, it is within the realm of acceptability. Let's go ahead, though, and look at its subscales.
+
+
+```{r Stigma alpha}
+Stigma_alpha <- psych::alpha(item_scores_df[c("Blst_3", "Blst_2", "Blst_5")])
+Stigma_alpha
+
+```
+ Cronbach's alpha for the campus climate stigma subscale was `r digits(Stigma_alpha$total$raw_alpha, 3)`. 
+
+```{r Responsive alpha}
+Resp_alpha <- psych::alpha(item_scores_df[c("rBlst_1", "Blst_4", "Blst_6")])
+Resp_alpha
+```
+
+Cronbach's alpha for the campus climate responsiveness subscale was `r digits(Resp_alpha$total$raw_alpha, 3)`.  Between the two subscales, it looks as if the responsivenes subscale is more internally consistent. 
+
+## Distributional Characteristics of the Variables
+
+### Evaluating Univariate Normality
+
+Statistics like ANOVA and regression each have a set of assumptions about the distributional characteristics of the data. In most of the chapters in this OER we review those assumptions and how to evaluate them.  Common across many statistics is the requirement of univariate and multivariate normality.  Let's take a look at the variables we will use in our analysis and assess those.
+
+We can continue to work from the df we uploaded at the beginning of the chapter to do this work.  Let's take a quick peek.  This df has the item-level data (we used it for the alpha coefficients); the scale and subscale scores; and the two items that assess proportion of instructional staff that are BIPOC and proportion of classmates that are BIPOC.
+
+The *str()* function let's us look at the variable format/measurement level of each variable. 
+```{r}
+str(item_scores_df)
+```
+The difference between "int" (integer) and "num" (numerical) is that integers are limited to whole numbers. In the functions used in this chapter, both are acceptable formats for the variables.
+
+```{r}
+# the script may look a little complicated; I could have simply written
+# describe(item_scores_df) #it would have given me descriptives for all the items in the df
+# because I only wanted a few variables, I provided them in a concatenated: list [c("iBIPOC_pr", "cmBlack", "Belonging", "ClimateBL")]
+# I also added "psych::" in front of the command to make sure that R is using the describe function from the psych package
+# I popped the output into an object; objects are not required, but can be helpful to write as outfiles, to pipe elements of inline text, and to use with packages like apaTables
+# When we use an object, we need to write it below so the results will display
+descriptives <- (psych::describe(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging", "ClimateBL")]))
+descriptives
+write.csv (descriptives, file="DataDx_descripts.csv") #this can be useful if you wish to manually format the data for an APA style table
+```
+
+To understand whether our data are normally distributed, we can look at skew and kurtosis.  The skew and kurtosis indices in the psych package are reported as *z* scores.  Regarding skew, values > 3.0 are generally considered "severely skewed."  Regarding kurtosis, "severely kurtotic" is argued anywhere > 8 to 20 [@kline_principles_2016].  At the time I am writing this chapter, our skew and kurtosis values fall below the thresholds that Kline identified as concerning.
+
+We can also apply the Shapiro-Wilk test of normality to each of our variables. When the $p$ value is < .05, the variable's distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.
+
+```{r Shapiro Wilk tests of univariate normality}
+#The shapiro-test is in base R; it's specification is simple:  shapiro.test(df$variable)
+#I added the object (and had to list it below) so I can use the inline text function
+SWt_i <- shapiro.test(item_scores_df$iBIPOC_pr)
+SWt_cm <- shapiro.test(item_scores_df$cmBlack)
+SWt_Bel <-shapiro.test(item_scores_df$Belonging)
+SWt_Cl <-shapiro.test(item_scores_df$ClimateBL)
+SWt_i
+SWt_cm
+SWt_Bel
+SWt_Cl
+```
+
+```{r extracting Shapiro Wilks objects, echo = FALSE, results='hide'}
+
+iSW <- digits(SWt_i$statistic, 3)
+iSWp <- digits(SWt_i$p.value, 4)
+iSW
+iSWp
+
+cmSW <- digits(SWt_cm$statistic, 3)
+cmSWp <- digits(SWt_cm$p.value, 4)
+cmSW
+cmSWp
+
+belSW <- digits(SWt_Bel$statistic, 3)
+belSWp <- digits(SWt_Bel$p.value, 4)
+belSW
+belSWp
+
+clSW <- digits(SWt_Cl$statistic, 3)
+clSWp <- digits(SWt_Cl$p.value, 4)
+clSW
+clSWp
+```
+
+CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:  Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning [-@kline_principles_2016]. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black ($W$ = `r cmSW`, $p$ = `r cmSWp`) and the proportion of BIPOC instructional staff($W$ = `r iSW`, $p$ = `r iSWp`)  are statistically significantly different than a normal distribution. The scales assessing the respondent's belonging ($W$ = `r belSW`, $p$ = `r belSWp`) and the respondent's perception of campus climate for Black students ($W$ = `r clSW`, $p$ = `r clSWp`) did not differ differently from a normal distribution.
+
+*Note.  Owing to the open nature of the dataset, these values will change.  While I have used inline text to update the values of the Shapiro Wilks' and associated significance test, the text narration is not automatically updated and may be inconsistent with the results.*
+
+What would we do in the case of a univariate outlier? I find Kline's [-@kline_principles_2016] chapter on data preparation and management to be extremely useful. He provides ideas for more complex analysis of both univariate and multivariate normality and provides suggestions that range from recoding an extreme value to the next most extreme that is within three standard deviations of the mean to more complicated transformations. First, though we need to further examine the relationships between variables.  We do that, next.
+
+### Pairs Panels
+
+As we work our way from univariate to multivariate inspection of our data, let's take a look at the bivariate relations.
+
+The *pairs.panels()* function from the *psych* package is useful for showing the relationship between variables (probably no more than 10) in a model.
+
+* The lower half is a scatterplot between the two variables with a regression line (red) and mean (dot).  
+* The diagonal is a histogram of each variable.  
+* The upper half of is the correlation coefficient between the two variables.
+
+```{r pairs panels}
+psych::pairs.panels(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging", "ClimateBL")], stars = TRUE, lm = TRUE)
+```
+
+The histograms displayed in the diagonal graph for us what we learned from the Shapiro Wilk's test of normality.  We can clearly see the non-normal distribution in the iBIPOC_pr and cmBlack variables.
+
+
+## Evaluating Multivariate Normality
+
+**Multivariate outliers** have extreme scores on two or more variables, or a pattern of scores that is atypical.  For example, a case may have scores between two and three standard deviations above the mean on all variables, even though no case would be extreme.  A common method of multivariate outlier detection is the  **Mahalanobis distance** ($D_{M}^{2}$).  This indicates the  distance in variance units between the profile of scores for that case and the vector of sample means, or **centroid**, correcting for intercorrelations.
+
+The *outlier()* function from the *psych* package tells us how far each datapoint is from the multivariate centroid of the data.  That is, find the squared Mahalanobis distance for each data point and compare it to the expected values of $\chi^2$.  The *outlier()* protocol also produces a Q-Q (quantile-quantile) plot with the *n* most extreme data points labeled. 
+
+The code below appends the Mahalanobis values to the dataframe.  It is easy, then, to identify, sort, and examine the most extreme values (relative to the rest of the data in their case/row) to make decisions about their retention or adjustment.
+
+Numeric variables are required in the for the calculation of the Mahalanobis.
+
+```{r Detect multivariate outliers}
+item_scores_df$Mahal <- psych::outlier(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging", "ClimateBL")]) 
+```
+
+Q-Q plots take your sample data, sort it in ascending order, and then plot them versus quantiles (the number varies; you can see it on the X axis) calculated from a theoretical distribution. The number of quantiles is selected to match the size of your sample data. While Normal Q-Q Plots are the ones most often used in practice due to so many statistical methods assuming normality, Q-Q Plots can actually be created for any distribution. To the degree that the plotted line stays on the straight line (representing the theoretical normal distribution), the data is multivariate normally distributed.
+
+It is possible, then to analyze the Mahalanobis distance values.
+
+```{r Mahalanobis descriptives}
+psych::describe(item_scores_df$Mahal)
+```
+
+Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median.  In fact, we can have these noted in a column in the dataframe.
+
+```{r warning=FALSE }
+library(dplyr)
+#str(item_scores_df$Mahal)
+item_scores_df$MOutlier <- if_else(item_scores_df$Mahal > (median(item_scores_df$Mahal) + (3*sd(item_scores_df$Mahal))), TRUE, FALSE)
+
+library(dplyr)
+OutlierCount <- item_scores_df%>%
+  count(MOutlier)
+OutlierCount
+
+NumOutliers <- nrow(item_scores_df) - OutlierCount #calculating how many outliers
+NumOutliers #this object is used for the inline text for the reesults
+NumOutliers
+
+head(item_scores_df) #shows us the first 6 rows of the data so we can see the new variables (Mahal, MOutlier)
+
+```
+
+CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:  We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the *outlier()* function in the *psych* package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased.  Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that `r NumOutliers$n` exceed three standard deviations beyond the median. *Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis* AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.
+
+## A Few Words on Transformations
+
+To quote from Kline [-@kline_principles_2016], "Before applying a normalizing transformation, you should think about the variables of interest and whether the expectation of normality is reasonable." (p. 77)  
+
+At this point in history, the non-normal distribution of the proportions of classmates who are Black and instructional staff who are BIPOC are accurate representations in higher education. Kline [-@kline_principles_2016] has noted that transforming an inherently non-normal variable to force a normal distribution may fundamentally alter it such that the variable of interest is not actually studied. Kline's chapter reviews some options for applying corrections to outliers.  Additionally, the chapter describes a variety of normalizing transformations.
+
+On a personal note, while I will use stadardized scores (a linear transformation) if it improves interpretation and center variables around a meaningful intercept, I tend to resist the transformation of data without a really compelling reason. Why?  It's complicated and can make interpretation difficult.
+
+
+## The APA Style Write-Up
+
+Since the focus of this chapter was on data diagnostics, the APA style writeup will focus on on this element of the Method section:
+
+### Data Diagnostics
+
+Data screening suggested that `r attempts` individuals opened the survey link. Of those, `r consented_attempts` granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; `r US_inclusion` met this criteria.
+
+Available item analysis (AIA; [@parent_handling_2013]) is a strategy for managing missing data that uses available data for analysis and excludes cases with missing data points only for analyses in which the data points would be directly involved. Parent (2013) suggested that AIA is equivalent to more complex methods (e.g., multiple imputation) across a number of variations of sample size, magnitude of associations among items, and degree of missingness. Thus, we utilized Parent’s recommendations to guide our approach to managing missing data. Missing data analyses were conducted with tools in base R as well as the R packages, *psych* (v. 1.0.12) and *mice* (v. 3.13.0). 
+
+Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from `r missMin`% to `r missMax`%.  Across the dataset, `r CellsMiss` of cells had missing data and `r CaseComplete` of cases had nonmissing data. At this stage in the analysis, we allowed all cases with less than 90% missing to continue to the scoring stage. Guided by Parent's [-@parent_handling_2013] AIA approach, scales with three items were scored if at least two items were non-missing; the scale with four items was scored if it at least three non-missing items; and the scale with six items was scored if it had at least five non-missing items. 
+
+Across the `r ScoredCaseMiss` cases for which the scoring protocol was applied, missingness ranged from `r ScrdMissMin`% to `r ScrdMissMax`%. After eliminating cases with greater than 20% missing, the dataset analyzed included `r ScoredCasesIncluded` cases. In this dataset we had `r PrScoredCellsMissing` missing across the df; `r PrScoredRowsMissing` of the rows had nonmissing data.
+
+Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning [-@kline_principles_2016]. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black ($W$ = `r cmSW`, $p$ = `r cmSWp`) and the proportion of BIPOC instructional staff($W$ = `r iSW`, $p$ = `r iSWp`)  are statistically significantly different than a normal distribution. The scales assessing the respondent's belonging ($W$ = `r belSW`, $p$ = `r belSWp`) and the respondent's perception of campus climate for Black students ($W$ = `r clSW`, $p$ = `r clSWp`) did not differ differently from a normal distribution.
+
+We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the *outlier()* function in the *psych* package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased.  Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that `r NumOutliers$n` exceed three standard deviations beyond the median. *Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis* AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.
+
+Given that our sample sizes were reasonable for the planned analyses and the degree of missingness was low, we used pairwise deletion in our multiple regression analysis.
+
+## A Quick Regression of our Research Vignette
+
+With some confidence that our scrubbed-and-scored variables are appropriate for analysis, let me conduct the super quick regression that is our research vignette.
+
+![An image of the statistical model for which we are preparing data.](images/Ch04/BlStuRegression.jpg)
+
+```{r Predicting perceptions of campus climate for Black students}
+Climate_fit <- lm(ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)
+summary(Climate_fit)
+```
+
+```{r Coefficients and p values for inline text, echo = FALSE, results ='hide'}
+library(formattable)
+#Here I am creating objects to feed into the inline text as I write up the results
+Bel_B <- digits(Climate_fit$coefficients[2],3) #this is the beta weight for Belonging
+Bel_p <- digits(summary(Climate_fit)$coefficients[2,4],3) #this is the p value for Belonging
+Bel_B #listing the object lets me check to see that I obtained the correct value
+Bel_p
+
+cm_B <- digits(Climate_fit$coefficients[3],3) #beta weight for proportion of classmates who are Black
+cm_p <- digits(summary(Climate_fit)$coefficients[3,4],3)#p value for proportion of classmates who are Black
+cm_B
+cm_p
+
+i_B <- digits(Climate_fit$coefficients[4],3) #beta weight for proportion of instructional staff who are Black
+i_p <- digits(summary(Climate_fit)$coefficients[4,4],3) #p value for for proportion of instructional staff who are Black
+i_B
+i_p
+
+modR2 <- percent(summary(Climate_fit)$r.squared)
+modR2
+
+#this section doesn't appear in the built/knitted products because I used "echo=False, results='hide'" in the chunk label
+```
+
+```{r}
+names(Climate_fit)
+```
+
+
+Results of a multiple regression predicting the respondents' perceptions of campus climate for Black students indicated that neither contributions of the respondents' personal belonging ($B$ = `r Bel_B`, $p$ = `r Bel_p`) nor the proportion of BIPOC instructional staff ($B$ = `r i_B`, $p$ = `r i_p`), nor the proportion of Black classmates ($B$ = `r cm_B`, $p$ = `r cm_p`) led to statistically significant changes in perceptions of campus climate for Black students.  Although it accounted for `r modR2` of the variance, the overall model was not statistically significant. Results are presented in Table 2.
+
+```{r}
+library(apaTables)
+apa.cor.table(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging", "ClimateBL")], table.number = 1, show.sig.stars = TRUE, filename = "Table1_M_SDs_r_DataDx.doc")
+```
+
+```{r}
+library(apaTables)
+apaTables::apa.reg.table(Climate_fit, table.number = 2, filename = "Climate_table.doc")
+```
+
+## Practice Problems
+
+The three problems described below are designed to be continuations from the previous chapter (Scrubbing). You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.
+
+### Problem #1: Reworking the Chapter Problem
+
+If you chose this option in the prior chapters, you imported the data from Qualtrics, applied inclusion/exclusion criteria, renamed variables, downsized the df to the variables of interest, properly formatted the variables, interpreted item-level missingness, scored the scales/subscales, interpreted scale-level missingness, and wrote up the results.
+
+If you continue with this option, please continue working with the data to:
+
+Continue working with this data to:
+
+|Assignment Component  
+|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
+|1. Calculate alpha coefficients for scales/subscales.                                         |      5         |    _____     |      
+|2. Evaluate univariate normality (skew, kurtosis, Shapiro-Wilks).                             |      5         |    _____     |
+|3. Evaluate multivarite normality (Mahalanobis test)                                          |      5         |    _____     |
+|4. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)|      5         |    _____     |  
+|5. For fun, run a quick analysis (e.g., regression, ANOVA) including at least three variables |      5         |    _____     |          
+|6. Explanation to grader                                                                      |      5         |    _____     |   
+|**Totals**                                                                                    |      30        |    _____     |               
+
+
+### Problem #2:  Use the *Rate-a-Recent-Course* Survey, Choosing Different Variables
+
+If you chose this option in the prior chapter, you chose a minimum of three variables from the *Rate-a-Recent-Course* survey to include in a simple statistical model. You imported the data from Qualtrics, applied inclusion/exclusion criteria, renamed variables, downsized the df to the variables of interest, properly formatted the variables, interpreted item-level missingness, scored the scales/subscales, interpreted scale-level missingness, and wrote up the results.
+
+Continue working with this data to:
+
+|Assignment Component  
+|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
+|1. Calculate alpha coefficients for scales/subscales.                                         |      5         |    _____     |           
+|2. Evaluate univariate normality (skew, kurtosis, Shapiro-Wilks).                             |      5         |    _____     |
+|3. Evaluate multivarite normality (Mahalanobis test)                                          |      5         |    _____     |
+|4. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)|      5         |    _____     |  
+|5. For fun, run a quick analysis (e.g., regression, ANOVA) including at least three variables |      5         |    _____     |          
+|6. Explanation to grader                                                                      |      5         |    _____     |   
+|**Totals**                                                                                    |      30        |    _____     |               
+                                                                 
+
+### Problem #3:  Other data
+
+If you chose this option in the prior chapter, you used raw data that was available to you. You imported it into R, applied inclusion/exclusion criteria, renamed variables, downsized the df to the variables of interest, properly formatted the variables, interpreted item-level missingness, scored the scales/subscales, interpreted scale-level missingness, and wrote up the results.
+
+Continue working with this data to:
+
+|Assignment Component  
+|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
+|1. Calculate alpha coefficients for scales/subscales.                                         |      5         |    _____     |       
+|2. Evaluate univariate normality (skew, kurtosis, Shapiro-Wilks).                             |      5         |    _____     |
+|3. Evaluate multivarite normality (Mahalanobis test)                                          |      5         |    _____     |
+|4. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)|      5         |    _____     |  
+|5. For fun, run a quick analysis (e.g., regression, ANOVA) including at least three variables |      5         |    _____     |          
+|6. Explanation to grader                                                                      |      5         |    _____     |   
+|**Totals**                                                                                    |      30        |    _____     |               
+                                                                                                                                         
+
+```{r sessionInfo 04}
+sessionInfo()
+```
+

@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Simple Mediation | ReCentering Psych Stats: Multivariate Modeling</title>
+  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Simple Mediation | ReCentering Psych Stats: Multivariate Modeling" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Simple Mediation | ReCentering Psych Stats: Multivariate Modeling" />
+  
+  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="CPA.html"/>
+<link rel="next" href="CompMed.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><strong>ReCentering Psych Stats: Multivariate Modeling</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>PREFACE</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
+<li class="chapter" data-level="1" data-path="ReCintro.html"><a href="ReCintro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
+<li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
+<ul>
+<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
+<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
+<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
+<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
+<li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dataprep.html"><a href="dataprep.html"><i class="fa fa-check"></i>DATA PREP</a></li>
+<li class="chapter" data-level="2" data-path="scrub.html"><a href="scrub.html"><i class="fa fa-check"></i><b>2</b> Scrubbing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="scrub.html"><a href="scrub.html#navigating-this-lesson"><i class="fa fa-check"></i><b>2.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="scrub.html"><a href="scrub.html#learning-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.1.2" data-path="scrub.html"><a href="scrub.html#planning-for-practice"><i class="fa fa-check"></i><b>2.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="2.1.3" data-path="scrub.html"><a href="scrub.html#readings-resources"><i class="fa fa-check"></i><b>2.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="2.1.4" data-path="scrub.html"><a href="scrub.html#packages-1"><i class="fa fa-check"></i><b>2.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="scrub.html"><a href="scrub.html#workflow-for-scrubbing-and-scoring"><i class="fa fa-check"></i><b>2.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="2.3" data-path="scrub.html"><a href="scrub.html#research-vignette"><i class="fa fa-check"></i><b>2.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="2.4" data-path="scrub.html"><a href="scrub.html#working-the-problem"><i class="fa fa-check"></i><b>2.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="scrub.html"><a href="scrub.html#intravenous-qualtrics"><i class="fa fa-check"></i><b>2.4.1</b> intRavenous Qualtrics</a></li>
+<li class="chapter" data-level="2.4.2" data-path="scrub.html"><a href="scrub.html#about-the-rate-a-recent-course-survey"><i class="fa fa-check"></i><b>2.4.2</b> About the <em>Rate-a-Recent-Course</em> Survey</a></li>
+<li class="chapter" data-level="2.4.3" data-path="scrub.html"><a href="scrub.html#the-codebook"><i class="fa fa-check"></i><b>2.4.3</b> The Codebook</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="scrub.html"><a href="scrub.html#scrubbing"><i class="fa fa-check"></i><b>2.5</b> Scrubbing</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="scrub.html"><a href="scrub.html#tools-for-data-manipulations"><i class="fa fa-check"></i><b>2.5.1</b> Tools for Data Manipulations</a></li>
+<li class="chapter" data-level="2.5.2" data-path="scrub.html"><a href="scrub.html#inclusion-and-exclusion-criteria"><i class="fa fa-check"></i><b>2.5.2</b> Inclusion and Exclusion Criteria</a></li>
+<li class="chapter" data-level="2.5.3" data-path="scrub.html"><a href="scrub.html#renaming-variables"><i class="fa fa-check"></i><b>2.5.3</b> Renaming Variables</a></li>
+<li class="chapter" data-level="2.5.4" data-path="scrub.html"><a href="scrub.html#downsizing-the-dataframe"><i class="fa fa-check"></i><b>2.5.4</b> Downsizing the Dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="scrub.html"><a href="scrub.html#toward-the-apa-style-write-up"><i class="fa fa-check"></i><b>2.6</b> Toward the APA Style Write-up</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="scrub.html"><a href="scrub.html#methodprocedure"><i class="fa fa-check"></i><b>2.6.1</b> Method/Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="scrub.html"><a href="scrub.html#practice-problems"><i class="fa fa-check"></i><b>2.7</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="scrub.html"><a href="scrub.html#problem-1-rework-the-chapter-problem"><i class="fa fa-check"></i><b>2.7.1</b> Problem #1: Rework the Chapter Problem</a></li>
+<li class="chapter" data-level="2.7.2" data-path="scrub.html"><a href="scrub.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables"><i class="fa fa-check"></i><b>2.7.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="2.7.3" data-path="scrub.html"><a href="scrub.html#problem-3-other-data"><i class="fa fa-check"></i><b>2.7.3</b> Problem #3: Other data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="scrub.html"><a href="scrub.html#bonus-track"><i class="fa fa-check"></i><b>2.8</b> Bonus Track:</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="scrub.html"><a href="scrub.html#importing-data-from-an-exported-qualtrics-.csv-file"><i class="fa fa-check"></i><b>2.8.1</b> Importing data from an exported Qualtrics .csv file</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="score.html"><a href="score.html"><i class="fa fa-check"></i><b>3</b> Scoring</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="score.html"><a href="score.html#navigating-this-lesson-1"><i class="fa fa-check"></i><b>3.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="score.html"><a href="score.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="score.html"><a href="score.html#planning-for-practice-1"><i class="fa fa-check"></i><b>3.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="3.1.3" data-path="score.html"><a href="score.html#readings-resources-1"><i class="fa fa-check"></i><b>3.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="3.1.4" data-path="score.html"><a href="score.html#packages-2"><i class="fa fa-check"></i><b>3.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="score.html"><a href="score.html#workflow-for-scrubbing-and-scoring-1"><i class="fa fa-check"></i><b>3.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="3.3" data-path="score.html"><a href="score.html#research-vignette-1"><i class="fa fa-check"></i><b>3.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="3.4" data-path="score.html"><a href="score.html#on-missing-data"><i class="fa fa-check"></i><b>3.4</b> On Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="score.html"><a href="score.html#data-loss-mechanisms"><i class="fa fa-check"></i><b>3.4.1</b> Data Loss Mechanisms</a></li>
+<li class="chapter" data-level="3.4.2" data-path="score.html"><a href="score.html#diagnosing-missing-data-mechanisms"><i class="fa fa-check"></i><b>3.4.2</b> Diagnosing Missing Data Mechanisms</a></li>
+<li class="chapter" data-level="3.4.3" data-path="score.html"><a href="score.html#managing-missing-data"><i class="fa fa-check"></i><b>3.4.3</b> Managing Missing Data</a></li>
+<li class="chapter" data-level="3.4.4" data-path="score.html"><a href="score.html#available-information-analysis-aia"><i class="fa fa-check"></i><b>3.4.4</b> Available Information Analysis (AIA)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="score.html"><a href="score.html#working-the-problem-1"><i class="fa fa-check"></i><b>3.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="score.html"><a href="score.html#missing-data-analysis-whole-df-and-item-level"><i class="fa fa-check"></i><b>3.5.1</b> Missing Data Analysis: Whole df and Item level</a></li>
+<li class="chapter" data-level="3.5.2" data-path="score.html"><a href="score.html#analyzing-missing-data-patterns"><i class="fa fa-check"></i><b>3.5.2</b> Analyzing Missing Data Patterns</a></li>
+<li class="chapter" data-level="3.5.3" data-path="score.html"><a href="score.html#missing-mechanisms"><i class="fa fa-check"></i><b>3.5.3</b> Missing Mechanisms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="score.html"><a href="score.html#scoring"><i class="fa fa-check"></i><b>3.6</b> Scoring</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="score.html"><a href="score.html#reverse-scoring"><i class="fa fa-check"></i><b>3.6.1</b> Reverse scoring</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="score.html"><a href="score.html#missing-analysis-scale-level"><i class="fa fa-check"></i><b>3.7</b> Missing Analysis: Scale level</a></li>
+<li class="chapter" data-level="3.8" data-path="score.html"><a href="score.html#revisiting-missing-analysis-at-the-scale-level"><i class="fa fa-check"></i><b>3.8</b> Revisiting Missing Analysis at the Scale Level</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="score.html"><a href="score.html#scale-level-patterns-of-missing-data"><i class="fa fa-check"></i><b>3.8.1</b> Scale Level: Patterns of Missing Data</a></li>
+<li class="chapter" data-level="3.8.2" data-path="score.html"><a href="score.html#is-it-mcar"><i class="fa fa-check"></i><b>3.8.2</b> Is it MCAR?</a></li>
+<li class="chapter" data-level="3.8.3" data-path="score.html"><a href="score.html#r-eady-for-analysis"><i class="fa fa-check"></i><b>3.8.3</b> R-eady for Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="score.html"><a href="score.html#the-apa-style-write-up"><i class="fa fa-check"></i><b>3.9</b> The APA Style Write-Up</a></li>
+<li class="chapter" data-level="3.10" data-path="score.html"><a href="score.html#results"><i class="fa fa-check"></i><b>3.10</b> Results</a></li>
+<li class="chapter" data-level="3.11" data-path="score.html"><a href="score.html#practice-problems-1"><i class="fa fa-check"></i><b>3.11</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="score.html"><a href="score.html#problem-1-reworking-the-chapter-problem"><i class="fa fa-check"></i><b>3.11.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="3.11.2" data-path="score.html"><a href="score.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-1"><i class="fa fa-check"></i><b>3.11.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="3.11.3" data-path="score.html"><a href="score.html#problem-3-other-data-1"><i class="fa fa-check"></i><b>3.11.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="DataDx.html"><a href="DataDx.html"><i class="fa fa-check"></i><b>4</b> Data Dx</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DataDx.html"><a href="DataDx.html#navigating-this-lesson-2"><i class="fa fa-check"></i><b>4.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DataDx.html"><a href="DataDx.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DataDx.html"><a href="DataDx.html#planning-for-practice-2"><i class="fa fa-check"></i><b>4.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DataDx.html"><a href="DataDx.html#readings-resources-2"><i class="fa fa-check"></i><b>4.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DataDx.html"><a href="DataDx.html#packages-3"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DataDx.html"><a href="DataDx.html#workflow-for-scrubbing-and-scoring-2"><i class="fa fa-check"></i><b>4.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="4.3" data-path="DataDx.html"><a href="DataDx.html#research-vignette-2"><i class="fa fa-check"></i><b>4.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="4.4" data-path="DataDx.html"><a href="DataDx.html#internal-consistency-of-scalessubscales"><i class="fa fa-check"></i><b>4.4</b> Internal Consistency of Scales/Subscales</a></li>
+<li class="chapter" data-level="4.5" data-path="DataDx.html"><a href="DataDx.html#distributional-characteristics-of-the-variables"><i class="fa fa-check"></i><b>4.5</b> Distributional Characteristics of the Variables</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="DataDx.html"><a href="DataDx.html#evaluating-univariate-normality"><i class="fa fa-check"></i><b>4.5.1</b> Evaluating Univariate Normality</a></li>
+<li class="chapter" data-level="4.5.2" data-path="DataDx.html"><a href="DataDx.html#pairs-panels"><i class="fa fa-check"></i><b>4.5.2</b> Pairs Panels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="DataDx.html"><a href="DataDx.html#evaluating-multivariate-normality"><i class="fa fa-check"></i><b>4.6</b> Evaluating Multivariate Normality</a></li>
+<li class="chapter" data-level="4.7" data-path="DataDx.html"><a href="DataDx.html#a-few-words-on-transformations"><i class="fa fa-check"></i><b>4.7</b> A Few Words on Transformations</a></li>
+<li class="chapter" data-level="4.8" data-path="DataDx.html"><a href="DataDx.html#the-apa-style-write-up-1"><i class="fa fa-check"></i><b>4.8</b> The APA Style Write-Up</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="DataDx.html"><a href="DataDx.html#data-diagnostics"><i class="fa fa-check"></i><b>4.8.1</b> Data Diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="DataDx.html"><a href="DataDx.html#a-quick-regression-of-our-research-vignette"><i class="fa fa-check"></i><b>4.9</b> A Quick Regression of our Research Vignette</a></li>
+<li class="chapter" data-level="4.10" data-path="DataDx.html"><a href="DataDx.html#practice-problems-2"><i class="fa fa-check"></i><b>4.10</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="DataDx.html"><a href="DataDx.html#problem-1-reworking-the-chapter-problem-1"><i class="fa fa-check"></i><b>4.10.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="4.10.2" data-path="DataDx.html"><a href="DataDx.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-2"><i class="fa fa-check"></i><b>4.10.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="4.10.3" data-path="DataDx.html"><a href="DataDx.html#problem-3-other-data-2"><i class="fa fa-check"></i><b>4.10.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="multimp.html"><a href="multimp.html"><i class="fa fa-check"></i><b>5</b> Multiple Imputation (A Brief Demo)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="multimp.html"><a href="multimp.html#navigating-this-lesson-3"><i class="fa fa-check"></i><b>5.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="multimp.html"><a href="multimp.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="multimp.html"><a href="multimp.html#planning-for-practice-3"><i class="fa fa-check"></i><b>5.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="5.1.3" data-path="multimp.html"><a href="multimp.html#readings-resources-3"><i class="fa fa-check"></i><b>5.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="5.1.4" data-path="multimp.html"><a href="multimp.html#packages-4"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="multimp.html"><a href="multimp.html#workflow-for-multiple-imputation"><i class="fa fa-check"></i><b>5.2</b> Workflow for Multiple Imputation</a></li>
+<li class="chapter" data-level="5.3" data-path="multimp.html"><a href="multimp.html#research-vignette-3"><i class="fa fa-check"></i><b>5.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="5.4" data-path="multimp.html"><a href="multimp.html#multiple-imputation-a-super-brief-review"><i class="fa fa-check"></i><b>5.4</b> Multiple Imputation – a Super Brief Review</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="multimp.html"><a href="multimp.html#steps-in-multiple-imputation"><i class="fa fa-check"></i><b>5.4.1</b> Steps in Multiple Imputation</a></li>
+<li class="chapter" data-level="5.4.2" data-path="multimp.html"><a href="multimp.html#statistical-approaches-to-multiple-imputation"><i class="fa fa-check"></i><b>5.4.2</b> Statistical Approaches to Multiple Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="multimp.html"><a href="multimp.html#working-the-problem-2"><i class="fa fa-check"></i><b>5.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="multimp.html"><a href="multimp.html#selecting-and-formatting-variables"><i class="fa fa-check"></i><b>5.5.1</b> Selecting and Formatting Variables</a></li>
+<li class="chapter" data-level="5.5.2" data-path="multimp.html"><a href="multimp.html#creating-composite-variables"><i class="fa fa-check"></i><b>5.5.2</b> Creating Composite Variables</a></li>
+<li class="chapter" data-level="5.5.3" data-path="multimp.html"><a href="multimp.html#the-multiple-imputation"><i class="fa fa-check"></i><b>5.5.3</b> The Multiple Imputation</a></li>
+<li class="chapter" data-level="5.5.4" data-path="multimp.html"><a href="multimp.html#creating-scale-scores"><i class="fa fa-check"></i><b>5.5.4</b> Creating Scale Scores</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="multimp.html"><a href="multimp.html#multiple-regression-with-multiply-imputed-data"><i class="fa fa-check"></i><b>5.6</b> Multiple Regression with Multiply Imputed Data</a></li>
+<li class="chapter" data-level="5.7" data-path="multimp.html"><a href="multimp.html#toward-the-apa-style-write-up-1"><i class="fa fa-check"></i><b>5.7</b> Toward the APA Style Write-up</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="multimp.html"><a href="multimp.html#methoddata-diagnostics"><i class="fa fa-check"></i><b>5.7.1</b> Method/Data Diagnostics</a></li>
+<li class="chapter" data-level="5.7.2" data-path="multimp.html"><a href="multimp.html#results-1"><i class="fa fa-check"></i><b>5.7.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="multimp.html"><a href="multimp.html#multiple-imputation-considerations"><i class="fa fa-check"></i><b>5.8</b> Multiple imputation considerations</a></li>
+<li class="chapter" data-level="5.9" data-path="multimp.html"><a href="multimp.html#practice-problems-3"><i class="fa fa-check"></i><b>5.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="multimp.html"><a href="multimp.html#problem-1-reworking-the-chapter-problem-2"><i class="fa fa-check"></i><b>5.9.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="5.9.2" data-path="multimp.html"><a href="multimp.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-3"><i class="fa fa-check"></i><b>5.9.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="5.9.3" data-path="multimp.html"><a href="multimp.html#problem-3-other-data-3"><i class="fa fa-check"></i><b>5.9.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CPA.html"><a href="CPA.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
+<li class="chapter" data-level="6" data-path="SimpleMed.html"><a href="SimpleMed.html"><i class="fa fa-check"></i><b>6</b> Simple Mediation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="SimpleMed.html"><a href="SimpleMed.html#navigating-this-lesson-4"><i class="fa fa-check"></i><b>6.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="SimpleMed.html"><a href="SimpleMed.html#learning-objectives-4"><i class="fa fa-check"></i><b>6.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.1.2" data-path="SimpleMed.html"><a href="SimpleMed.html#planning-for-practice-4"><i class="fa fa-check"></i><b>6.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="6.1.3" data-path="SimpleMed.html"><a href="SimpleMed.html#readings-resources-4"><i class="fa fa-check"></i><b>6.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="SimpleMed.html"><a href="SimpleMed.html#packages-5"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="SimpleMed.html"><a href="SimpleMed.html#estimating-indirect-effects-the-analytic-approach-often-termed-mediation"><i class="fa fa-check"></i><b>6.2</b> Estimating Indirect Effects (the analytic approach often termed <em>mediation</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="SimpleMed.html"><a href="SimpleMed.html#the-definitional-and-conceptual"><i class="fa fa-check"></i><b>6.2.1</b> The definitional and conceptual</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="SimpleMed.html"><a href="SimpleMed.html#workflow-for-simple-mediation"><i class="fa fa-check"></i><b>6.3</b> Workflow for Simple Mediation</a></li>
+<li class="chapter" data-level="6.4" data-path="SimpleMed.html"><a href="SimpleMed.html#simple-mediation-in-lavaan-a-focus-on-the-mechanics"><i class="fa fa-check"></i><b>6.4</b> Simple Mediation in <em>lavaan</em>: A focus on the mechanics</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="SimpleMed.html"><a href="SimpleMed.html#simulate-fake-data"><i class="fa fa-check"></i><b>6.4.1</b> Simulate Fake Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="SimpleMed.html"><a href="SimpleMed.html#specify-mediation-model"><i class="fa fa-check"></i><b>6.4.2</b> Specify Mediation Model</a></li>
+<li class="chapter" data-level="6.4.3" data-path="SimpleMed.html"><a href="SimpleMed.html#interpret-the-output"><i class="fa fa-check"></i><b>6.4.3</b> Interpret the Output</a></li>
+<li class="chapter" data-level="6.4.4" data-path="SimpleMed.html"><a href="SimpleMed.html#a-table-and-a-figure"><i class="fa fa-check"></i><b>6.4.4</b> A Table and a Figure</a></li>
+<li class="chapter" data-level="6.4.5" data-path="SimpleMed.html"><a href="SimpleMed.html#results-2"><i class="fa fa-check"></i><b>6.4.5</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="SimpleMed.html"><a href="SimpleMed.html#research-vignette-4"><i class="fa fa-check"></i><b>6.5</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="SimpleMed.html"><a href="SimpleMed.html#simulate-data-from-the-journal-article"><i class="fa fa-check"></i><b>6.5.1</b> Simulate Data from the Journal Article</a></li>
+<li class="chapter" data-level="6.5.2" data-path="SimpleMed.html"><a href="SimpleMed.html#specify-the-model-in-lavaan"><i class="fa fa-check"></i><b>6.5.2</b> Specify the Model in <em>lavaan</em></a></li>
+<li class="chapter" data-level="6.5.3" data-path="SimpleMed.html"><a href="SimpleMed.html#interpret-the-output-1"><i class="fa fa-check"></i><b>6.5.3</b> Interpret the Output</a></li>
+<li class="chapter" data-level="6.5.4" data-path="SimpleMed.html"><a href="SimpleMed.html#a-figure-and-a-table"><i class="fa fa-check"></i><b>6.5.4</b> A Figure and a Table</a></li>
+<li class="chapter" data-level="6.5.5" data-path="SimpleMed.html"><a href="SimpleMed.html#results-3"><i class="fa fa-check"></i><b>6.5.5</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="SimpleMed.html"><a href="SimpleMed.html#considering-covariates"><i class="fa fa-check"></i><b>6.6</b> Considering Covariates</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="SimpleMed.html"><a href="SimpleMed.html#a-figure-and-a-table-1"><i class="fa fa-check"></i><b>6.6.1</b> A Figure and a Table</a></li>
+<li class="chapter" data-level="6.6.2" data-path="SimpleMed.html"><a href="SimpleMed.html#apa-style-write-up"><i class="fa fa-check"></i><b>6.6.2</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="SimpleMed.html"><a href="SimpleMed.html#residual-and-related-questions"><i class="fa fa-check"></i><b>6.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="6.8" data-path="SimpleMed.html"><a href="SimpleMed.html#practice-problems-4"><i class="fa fa-check"></i><b>6.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed"><i class="fa fa-check"></i><b>6.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="6.8.2" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables"><i class="fa fa-check"></i><b>6.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="6.8.3" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-3-use-other-data-that-is-available-to-you"><i class="fa fa-check"></i><b>6.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="CompMed.html"><a href="CompMed.html"><i class="fa fa-check"></i><b>7</b> Complex Mediation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="CompMed.html"><a href="CompMed.html#navigating-this-lesson-5"><i class="fa fa-check"></i><b>7.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="CompMed.html"><a href="CompMed.html#learning-objectives-5"><i class="fa fa-check"></i><b>7.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.1.2" data-path="CompMed.html"><a href="CompMed.html#planning-for-practice-5"><i class="fa fa-check"></i><b>7.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="7.1.3" data-path="CompMed.html"><a href="CompMed.html#readings-resources-5"><i class="fa fa-check"></i><b>7.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="7.1.4" data-path="CompMed.html"><a href="CompMed.html#packages-6"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="CompMed.html"><a href="CompMed.html#complex-mediation"><i class="fa fa-check"></i><b>7.2</b> Complex Mediation</a></li>
+<li class="chapter" data-level="7.3" data-path="CompMed.html"><a href="CompMed.html#parallel-mediation"><i class="fa fa-check"></i><b>7.3</b> Parallel Mediation</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a>
+<ul>
+<li class="chapter" data-level="7.3.1.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation"><i class="fa fa-check"></i><b>7.3.1.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="7.3.1.2" data-path="CompMed.html"><a href="CompMed.html#specifying-lavaan-code"><i class="fa fa-check"></i><b>7.3.1.2</b> Specifying <em>lavaan</em> code</a></li>
+<li class="chapter" data-level="7.3.1.3" data-path="CompMed.html"><a href="CompMed.html#a-note-on-indirect-effects-and-confidence-intervals"><i class="fa fa-check"></i><b>7.3.1.3</b> A note on indirect effects and confidence intervals</a></li>
+<li class="chapter" data-level="7.3.1.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables"><i class="fa fa-check"></i><b>7.3.1.4</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.3.1.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup"><i class="fa fa-check"></i><b>7.3.1.5</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="7.3.2.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation-1"><i class="fa fa-check"></i><b>7.3.2.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="7.3.2.2" data-path="CompMed.html"><a href="CompMed.html#quick-descriptives"><i class="fa fa-check"></i><b>7.3.2.2</b> Quick Descriptives</a></li>
+<li class="chapter" data-level="7.3.2.3" data-path="CompMed.html"><a href="CompMed.html#specifying-the-lavaan-model"><i class="fa fa-check"></i><b>7.3.2.3</b> Specifying the <em>lavaan</em> model</a></li>
+<li class="chapter" data-level="7.3.2.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-1"><i class="fa fa-check"></i><b>7.3.2.4</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.3.2.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-1"><i class="fa fa-check"></i><b>7.3.2.5</b> APA Style Writeup</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="CompMed.html"><a href="CompMed.html#serial-multiple-mediator-model"><i class="fa fa-check"></i><b>7.4</b> Serial Multiple Mediator Model</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="CompMed.html"><a href="CompMed.html#we-stick-with-the-lewis-et-al.--lewis_applying_2017-example-but-modify-it."><i class="fa fa-check"></i><b>7.4.1</b> We stick with the Lewis et al. <span class="citation">(<span>2017</span>)</span> example, but modify it.</a></li>
+<li class="chapter" data-level="7.4.2" data-path="CompMed.html"><a href="CompMed.html#specify-the-lavaan-model"><i class="fa fa-check"></i><b>7.4.2</b> Specify the <em>lavaan</em> model</a></li>
+<li class="chapter" data-level="7.4.3" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-2"><i class="fa fa-check"></i><b>7.4.3</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.4.4" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-2"><i class="fa fa-check"></i><b>7.4.4</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="CompMed.html"><a href="CompMed.html#troubleshooting-and-faqs"><i class="fa fa-check"></i><b>7.5</b> Troubleshooting and FAQs</a></li>
+<li class="chapter" data-level="7.6" data-path="CompMed.html"><a href="CompMed.html#practice-problems-5"><i class="fa fa-check"></i><b>7.6</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="CompMed.html"><a href="CompMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1"><i class="fa fa-check"></i><b>7.6.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="7.6.2" data-path="CompMed.html"><a href="CompMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-1"><i class="fa fa-check"></i><b>7.6.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="7.6.3" data-path="CompMed.html"><a href="CompMed.html#problem-3-use-other-data-that-is-available-to-you-1"><i class="fa fa-check"></i><b>7.6.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>8</b> Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ModMed.html"><a href="ModMed.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="ModMed.html"><a href="ModMed.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ModMed.html"><a href="ModMed.html#planning-for-practice-6"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ModMed.html"><a href="ModMed.html#readings-resources-6"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="8.1.4" data-path="ModMed.html"><a href="ModMed.html#packages-7"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="ModMed.html"><a href="ModMed.html#conditional-process-analysis"><i class="fa fa-check"></i><b>8.2</b> Conditional Process Analysis</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="ModMed.html"><a href="ModMed.html#the-definitional-and-conceptual-1"><i class="fa fa-check"></i><b>8.2.1</b> The definitional and conceptual</a></li>
+<li class="chapter" data-level="8.2.2" data-path="ModMed.html"><a href="ModMed.html#hayes--hayes_introduction_2018-piecewise-approach-to-building-models"><i class="fa fa-check"></i><b>8.2.2</b> Hayes’ <span class="citation">(<span>2018</span>)</span> Piecewise Approach to Building Models</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="ModMed.html"><a href="ModMed.html#workflow-for-moderated-mediation"><i class="fa fa-check"></i><b>8.3</b> Workflow for Moderated Mediation</a></li>
+<li class="chapter" data-level="8.4" data-path="ModMed.html"><a href="ModMed.html#research-vignette-6"><i class="fa fa-check"></i><b>8.4</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="ModMed.html"><a href="ModMed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>8.4.1</b> Simulating the data from the journal article</a></li>
+<li class="chapter" data-level="8.4.2" data-path="ModMed.html"><a href="ModMed.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>8.4.2</b> Quick peek at the data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5</b> Working the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.1</b> Analysis #1: A simple moderation</a></li>
+<li class="chapter" data-level="8.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.2</b> Analysis #2: Another simple moderation</a></li>
+<li class="chapter" data-level="8.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>8.5.1.3</b> Analysis #3: A simple mediation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>8.6</b> The Moderated Mediation: A Combined analysis</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>8.6.1</b> Specification in <em>lavaan</em></a></li>
+<li class="chapter" data-level="8.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>8.6.2</b> A quick plot</a></li>
+<li class="chapter" data-level="8.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>8.6.3</b> Beginning the interpretation</a></li>
+<li class="chapter" data-level="8.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data"><i class="fa fa-check"></i><b>8.6.4</b> Tabling the data</a>
+<ul>
+<li class="chapter" data-level="8.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>8.6.4.1</b> Conditional Indirect effects</a></li>
+<li class="chapter" data-level="8.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>8.6.4.2</b> Conditional Direct effect</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>8.6.5</b> Model trimming</a></li>
+<li class="chapter" data-level="8.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>8.6.6</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="ModMed.html"><a href="ModMed.html#residual-and-related-questions-1"><i class="fa fa-check"></i><b>8.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="8.8" data-path="ModMed.html"><a href="ModMed.html#practice-problems-6"><i class="fa fa-check"></i><b>8.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="ModMed.html"><a href="ModMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2"><i class="fa fa-check"></i><b>8.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="8.8.2" data-path="ModMed.html"><a href="ModMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-2"><i class="fa fa-check"></i><b>8.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="8.8.3" data-path="ModMed.html"><a href="ModMed.html#problem-3-use-other-data-that-is-available-to-you-2"><i class="fa fa-check"></i><b>8.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-1"><i class="fa fa-check"></i><b>8.9</b> Bonus Track:</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
+  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ReCentering Psych Stats: Multivariate Modeling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="SimpleMed" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Simple Mediation</h1>
+<p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=7ffb03e6-b34b-4e0b-8f10-ad080180b069">Screencasted Lecture Link</a></p>
+<p>The focus of this lecture is to estimate indirect effects (aka “mediation”). We examine the logic/design required to support the argument that <em>mediation</em> is the <em>mechanism</em> that explains the X –&gt; Y relationship. We also work three examples (one with covariates).</p>
+<p>At the outset, please note that although I rely heavily on Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> text and materials, I am using the R package <em>lavaan</em> in these chapters. Very recently, Hayes has introduced a <a href="https://www.processmacro.org/index.html">PROCESS macro for R</a>. Because I am not yet up-to-speed on using this macro (it is not a typical R package) and because we will use <em>lavaan</em> for confirmatory factor analysis and structural equation modeling, I have chosen to utilize the <em>lavaan</em> package. A substantial difference is that the PROCESS macros use ordinary least squares and <em>lavaan</em> uses maximum likelihood estimators.</p>
+<div id="navigating-this-lesson-4" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Navigating this Lesson</h2>
+<p>There is about 1 hour and 10 minutes of lecture. If you work through the materials with me it would be plan for an additional 1.5 hours.</p>
+<p>While the majority of R objects and data you will need are created within the R script that sources the chapter, ocasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the <a href="https://github.com/lhbikos/ReC_MultivariateModeling">Github site</a> that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER’s <a href="ReCintro.html#ReCintro">introduction</a></p>
+<div id="learning-objectives-4" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Learning Objectives</h3>
+<p>Learning objectives from this lecture include the following:</p>
+<ul>
+<li>Define mediation and indirect effect.</li>
+<li>Distinguish the role of a mediating variable from independent variables, covariates, and moderators.</li>
+<li>Identify the conditions upon which there can be justification to support the presence of a mediated effect.</li>
+<li>Articulate the arguments for and against using the term, “mediation.”</li>
+<li>Using the R package <em>lavaan</em>,
+<ul>
+<li>specify a model with indirect effects,</li>
+<li>identify and interpret B weights, <em>p</em> values, and <em>CIs</em> for total, direct, and indirect effects,</li>
+<li>calculate the total effects of X and M on Y,</li>
+<li>identify the proportion of variance accounted for in predicting M and Y.</li>
+</ul></li>
+<li>Hand calculate the values of an indirect, direct, and total effects from statistical output or a figure (just the <span class="math inline">\(B\)</span> or <span class="math inline">\(\beta\)</span>, not the significance level)</li>
+</ul>
+</div>
+<div id="planning-for-practice-4" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Planning for Practice</h3>
+<p>The following suggestions for practice will involve specifying, testing, and interpreting a model with a single indirect effect (mediator).</p>
+<ul>
+<li>Rework the problem in the chapter by changing the random seed in the code that simulates the data. This should provide minor changes to the data, but the results will likely be very similar.</li>
+<li>There are a number of variables in the dataset and there were a handful of simple mediations conducted in the journal article that sources the research vignette. Swap out one or more variables in the model of simple mediation and compare your solution to the one in the chapter and/or the research article.</li>
+<li>Conduct a simple mediation with data to which you have access. This could include data you simulate on your own or from a published article.</li>
+</ul>
+</div>
+<div id="readings-resources-4" class="section level3" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Readings &amp; Resources</h3>
+<p>In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.</p>
+<ul>
+<li>Hayes, A. F. (2018). <em>Introduction to mediation, moderation, and conditional process anlaysis: A regression-based approach</em>. New York, NY: Guilford Press. Available as an ebook from the SPU library: <a href="https://ebookcentral-proquest-com.ezproxy.spu.edu/lib/spu/detail.action?docID=5109647" class="uri">https://ebookcentral-proquest-com.ezproxy.spu.edu/lib/spu/detail.action?docID=5109647</a>
+<ul>
+<li><strong>Chapter 3, Simple mediation</strong>: Hayes’ text is another great example of a teaching tool that is accessible at both procedural and conceptual levels. I especially appreciate his attention to the controversies (even those directed toward his work). We deviate from his text in that we are not using the PROCESS macro…and I’ll address those concerns in the lecture.</li>
+<li><strong>Chapter 4, Causality and confounds</strong>: A great chapter that addresses “What happened to Baron &amp; Kenny”; partial v complete mediation; and conditions required for claims of causality. Procedurally, our focus in this chapter is on the role of covariates.</li>
+<li><strong>Appendix A: Using Process</strong>: An essential tool for PROCESS users because, even when we are in the R environment, this is the “idea book.” That is, the place where all the path models are presented in figures.</li>
+</ul></li>
+<li>Kim, P. Y., Kendall, D. L., &amp; Cheon, H.-S. (2017). Racial microaggressions, cultural mistrust, and mental health outcomes among Asian American college students. <em>American Journal of Orthopsychiatry, 87</em>(6), 663–670. <a href="https://doi-org.ezproxy.spu.edu/10.1037/ort0000203" class="uri">https://doi-org.ezproxy.spu.edu/10.1037/ort0000203</a></li>
+</ul>
+</div>
+<div id="packages-5" class="section level3" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> Packages</h3>
+<p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
+<!-- TODO: Build out this section. -->
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="SimpleMed.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb156-2"><a href="SimpleMed.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(lavaan)){<span class="fu">install.packages</span>(<span class="st">&quot;lavaan&quot;</span>)}</span>
+<span id="cb156-3"><a href="SimpleMed.html#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semPlot)){<span class="fu">install.packages</span>(<span class="st">&quot;semPlot&quot;</span>)}</span>
+<span id="cb156-4"><a href="SimpleMed.html#cb156-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
+<span id="cb156-5"><a href="SimpleMed.html#cb156-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
+<span id="cb156-6"><a href="SimpleMed.html#cb156-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(formattable)){<span class="fu">install.packages</span>(<span class="st">&quot;formattable&quot;</span>)}</span>
+<span id="cb156-7"><a href="SimpleMed.html#cb156-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semTable)){<span class="fu">install.packages</span>(<span class="st">&quot;semTable&quot;</span>)}</span></code></pre></div>
+</div>
+</div>
+<div id="estimating-indirect-effects-the-analytic-approach-often-termed-mediation" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Estimating Indirect Effects (the analytic approach often termed <em>mediation</em>)</h2>
+<div id="the-definitional-and-conceptual" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> The definitional and conceptual</h3>
+<p>As in Hayes text <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span>, we will differentiate between <em>moderation</em> and <em>mediation</em>. <em>Conditional process analysis</em> involves both! With each of these, we are seeking to understand the <em>mechanism</em> at work that leads to the relationship (be it correlational, predictive, or causal)</p>
+<p>Even though this process has sometimes been termed <em>causal modeling</em>, Hayes argues that his <em>statistical approach</em> is not claiming to determine <em>cause</em>; that is really left to the argument of the research design.</p>
+<p><strong>Moderation</strong> (a review):</p>
+<ul>
+<li>Answers questions of <em>when</em> or <em>for whom</em> and is often the source of the answer, <em>it depends</em>.</li>
+<li>Think of our <em>interaction</em> effects in ANOVA and regression</li>
+<li>The effect of X on some variable Y is moderated by W if its size, sign, or strength depends on, or can be predicted, by W. Then we can say, “W is a <em>moderator</em> of X’s effect on Y” or “W and X <em>interact</em> in their influence on Y.”</li>
+<li>The image below illustrates moderation with <em>conceptual</em> and <em>statistical</em> diagrams. Note that three predictors (IV, DV, their interaction) point to the DV.</li>
+</ul>
+<div class="figure">
+<img src="images/SimpleMed/ModConcStat.jpg" alt="" />
+<p class="caption">Image of Hayes’style conceptual and statistical diagrams of a simple moderation</p>
+</div>
+<p>The classic plot of moderation results is often the best way to detect that an interaction was included in the analysis and helps understand the <em>conditional</em> (e.g., for whom, under what conditions) nature of the analysis.</p>
+<div class="figure">
+<img src="images/SimpleMed/SimpleInteraction.jpg" alt="" />
+<p class="caption">Image of classic interaction graph that illustrates a moderated effect. The IV is on the X axis, DV on the Y axis, and two intersecting lines represent the differential/moderated effect of the IV on the DV by the moderator</p>
+</div>
+<p><strong>Mediation</strong>:</p>
+<ul>
+<li>Answers questions of <em>how</em> (I also think <em>through</em> and <em>via</em> to describe the proposed mediating mechanism)</li>
+<li>Paths in a mediation model are <em>direct</em> (X does not pass through M on its way to Y) and <em>indirect</em> (X passes through M on its way to Y). Once we get into the statistics, we will also be focused on <em>total</em> effects.</li>
+<li>Hayes thinks in terms of <em>antecedent</em> and <em>consequent</em> variables. In a 3-variable, simple mediation, X and M are the antecedent variables; X and M are the consequent variables.<br />
+</li>
+<li>There is substantial debate and controversy about whether we can say “the effect of X on Y is <em>mediated</em> through M” or whether we should say, “There is a statistically significant indirect effect of X on Y thru M.” Hayes comes down on the “use mediation language” side of the debate.<br />
+</li>
+<li>In sum, a simple mediation model is any causal system in which at least one causal antecedent X variable is proposed as influencing an outcome Y through a single intervening variable, M. In such a model there are two pathways by which X can influence Y.</li>
+<li>The figure below doubles as both the conceptual and statistical diagram of evaluating a simple mediation – a simple indirect effect.</li>
+</ul>
+<div class="figure">
+<img src="images/SimpleMed/SimpleMed.jpg" alt="" />
+<p class="caption">Image of Hayes’style conceptual diagram of a simple moderation</p>
+</div>
+<p><strong>Conditional process analysis</strong>:</p>
+<ul>
+<li>Used when the research goal is to understand the boundary conditions of the mechanism(s) by which a variable transmits its effect on another.<br />
+</li>
+<li>Typically, simultaneously, assesses the influence of mediating (indirect effects) and moderating (interactional effects) in a model-building fashion.</li>
+<li>In a conditional process model, the moderator(s) may be hypothesized to influence one or more of the paths.</li>
+</ul>
+<p>We will work toward building a conditional process model, a moderated mediation, over the next several chapters.</p>
+<div class="figure">
+<img src="images/SimpleMed/CPAmodel.jpg" id="id" class="class" width="250" height="180" alt="" />
+<p class="caption">Image of conditional process analysis model where the moderator is hypothesized to change the a path; the path between the IV and mediator</p>
+</div>
+</div>
+</div>
+<div id="workflow-for-simple-mediation" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Workflow for Simple Mediation</h2>
+<p>The workflow for a simple mediation is straightforward, however the figure below (i.e., the very traditional figure used to represent mediation) is very helpful in understanding the logic beneath mediation as the explanatory mechanism.</p>
+<div class="figure">
+<img src="images/SimpleMed/MedRationale.jpg" alt="" />
+<p class="caption">Image of conditional process analysis model where the mediator is hypothesized to change the a path; the path between the IV and mediator</p>
+</div>
+<p>The top figure represents the bivariate relationship between the independent and dependent variable. The result of a simple linear regression (one predictor) represent the <em>total</em> effect of the IV on the DV. We can calculate this by simply regressing the DV onto the IV. The resulting <span class="math inline">\(B\)</span> weight is known as the <em>c</em> path. A bivariate correlation coefficient results in the same value – only it is standardized (so would be the same as the <span class="math inline">\(\beta\)</span> weight).</p>
+<p>The lower figure represents that the relationship between the IV and DV is <em>mediated</em> by a third variable. We assign three labels to the paths: <em>a</em>, between the IV and mediator; <em>b</em>, between the mediator and DV; and <em>c’</em> (c prime) between the IV and DV.</p>
+<p>Statistically speaking, a mediated relationship is supported when the value of <em>c’</em> is statistically significantly lower than <em>c</em>. If this occurs, then we can say that the mediator is sharing some of the variance in the prediction of the DV.</p>
+<p>You might already be imagining potential challenges to this model. For example, which variable should be the IV and which one should be the mediator? Can we switch them? You can – and you will likely have very similar (if not identical) results. Good research design is what provides support for suggesting that mediation is the proper, casual, mechanism regarding the relationship between the IV and DV. An excellent review of the challenges of establishing a robust mediation model is provided by Kline <span class="citation">(<a href="refs.html#ref-kline_mediation_2015" role="doc-biblioref">2015</a>)</span>, where he suggests the following as the minimally required elements of a mediation design:</p>
+<ul>
+<li>the IV is an experimental variable with random assignment to conditions;</li>
+<li>the mediator is an individual difference variable that is not manipulated and is measured at a later time;and</li>
+<li>the DV is measured at a third occasion</li>
+</ul>
+<p>These criteria are in addition to the rather standard criteria for establishing causality <span class="citation">(see <a href="refs.html#ref-stone-romero_research_2010" role="doc-biblioref">Stone-Romero &amp; Rosopa, 2010</a> for a review)</span>:</p>
+<ul>
+<li>temporal precedence,</li>
+<li>statistical covariation, and</li>
+<li>ruling out plausible rival hypotheses.</li>
+</ul>
+<p>Some journals take this very seriously. In fact <a href="https://www.journals.elsevier.com/journal-of-vocational-behavior/news/frequently-asked-questions-about-submitting-a-manuscript">FAQs</a> in the Journal of Vocational Behavior make it clear that they will very rarely publish a “mediation manuscript” unless it has a minimum of three waves.</p>
+<p>Working through a mediation will help operationalize these concepts.</p>
+</div>
+<div id="simple-mediation-in-lavaan-a-focus-on-the-mechanics" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Simple Mediation in <em>lavaan</em>: A focus on the mechanics</h2>
+<p>The lavaan tutorial <span class="citation">(<a href="refs.html#ref-rosseel_lavaan_2020" role="doc-biblioref">Rosseel, 2020</a>)</span> provides a helpful model of how writing code to estimate an indirect effect. Using the lavaan tutorial as our guide, let’s start with just a set of fake data with variable names that represent X (predictor, IV, antecedent), M (mediator, atencedent, consequent), and Y (outcome, DV, consequent).</p>
+<div id="simulate-fake-data" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Simulate Fake Data</h3>
+<p>The code below is asking to create a dataset with a sample size of 100. The dataset has 3 variables, conveniently named X (predictor, antecedent, IV), M (mediator), and Y (outome, consequent, DV). The R code asks for random selection of numbers with a normal distribution. You can see that the M variable will be related to the X variable by + .5; and the Y variable will be related to the M variable by + .7. This rather ensures a statistically significant indirect effect.</p>
+<!-- TODO: Return and replace with data from our mediation) -->
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="SimpleMed.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>)</span>
+<span id="cb157-2"><a href="SimpleMed.html#cb157-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb157-3"><a href="SimpleMed.html#cb157-3" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>X <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb157-4"><a href="SimpleMed.html#cb157-4" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fl">0.7</span><span class="sc">*</span>M <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb157-5"><a href="SimpleMed.html#cb157-5" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> X, <span class="at">Y =</span> Y, <span class="at">M =</span> M)</span></code></pre></div>
+</div>
+<div id="specify-mediation-model" class="section level3" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Specify Mediation Model</h3>
+<p>The package we are using is <em>lavaan</em>. Hayes’ model is <em>path analysis</em>, which can be a form of structural equation modeling. As a quick reminder, in SPSS, PROCESS is limited to ordinary least squares regression. We will use maximum likliehood estimators for the Hayes/PROCESS examples, but <em>lavaan</em> can take us further than PROCESS because</p>
+<ul>
+<li>We can (and, in later chapters, will) do latent variable modeling.</li>
+<li>We can have more specificity and flexibility than the prescribed PROCESS models allow. I say this with all due respect to Hayes – there is also a good deal of flexibility to be able to add multiple mediators and covariates within most of the Hayes’ prescribed models.</li>
+</ul>
+<p>Hayes text is still a great place to start because the conceptual and procedural information is clear and transferable to the R environment.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="SimpleMed.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span></code></pre></div>
+<pre><code>## This is lavaan 0.6-7</code></pre>
+<pre><code>## lavaan is BETA software! Please report any bugs.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lavaan&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:psych&#39;:
+## 
+##     cor2cov</code></pre>
+<p>Our atheoretical dataset makes it easy to identify which variable belongs in each role (X,Y,M). When specifying the paths in lavaan, here’s what to keep in mind:</p>
+<ul>
+<li>Name your model/object (below is X, “&lt;-” means “is defined by”)</li>
+<li>The model exists between 2 single quotation marks (the odd looking ’ and ’ at the beginning and end).</li>
+<li>The # of regression equations you need depends on the # of variables that have arrows pointing to them. In a simple mediation, there are 3 variables with 2 variables having arrows pointing to them – need 2 regression equations:
+<ul>
+<li>one for the Mediator</li>
+<li>one for the DV (Y)</li>
+</ul></li>
+<li>Operator for a regression analysis is the (tilde, ~)</li>
+<li>DV goes on left
+<ul>
+<li>In first equation we regress both the X and M onto Y</li>
+<li>In second equation we regress M onto X</li>
+</ul></li>
+<li>The asterisk (*) is a handy tool to label variables (don’t confuse it as defining an interaction); this labeling as a, b, and c_p (in traditional mediation, the total effect is labeled with a and the direct effect is c’[c prime], but the script won’t allow and extra single quotation mark, hence c_p) is super helpful in interpreting the ouput</li>
+<li>The indirect effect is created by multiplying the a and b paths.<br />
+</li>
+<li>The “:=” sign is used when creating a new variable that is a function of variables in the model, but not in the dataset (i.e., the a and b path).</li>
+</ul>
+<p>After specifying the model, we create an object that holds our results from the SEM. To obtain all the results from our of indirect effects, we also need to print a summary of the fit statistics, standardized estimates, r-squared, and confidence intervals.</p>
+<p><em>Other authors will write the model code more sensibly, predicting the mediator first, and then the Y variable. However, I found that by doing it this way, the semPlot produces a more sensible figure.</em></p>
+<p>Also, because we set a random seed, you should get the same results, but if it differs a little, don’t panic.
+Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as c is reserved for the total effect of X on Y).</p>
+<p>Let’s run the whole model.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="SimpleMed.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>) <span class="co">#reset in case you choose to separate these sections</span></span>
+<span id="cb163-2"><a href="SimpleMed.html#cb163-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb163-3"><a href="SimpleMed.html#cb163-3" aria-hidden="true" tabindex="-1"></a><span class="st">          Y ~ b*M + c_p*X </span></span>
+<span id="cb163-4"><a href="SimpleMed.html#cb163-4" aria-hidden="true" tabindex="-1"></a><span class="st">          M ~ a*X</span></span>
+<span id="cb163-5"><a href="SimpleMed.html#cb163-5" aria-hidden="true" tabindex="-1"></a><span class="st">          </span></span>
+<span id="cb163-6"><a href="SimpleMed.html#cb163-6" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
+<span id="cb163-7"><a href="SimpleMed.html#cb163-7" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
+<span id="cb163-8"><a href="SimpleMed.html#cb163-8" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
+<span id="cb163-9"><a href="SimpleMed.html#cb163-9" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span>
+<span id="cb163-10"><a href="SimpleMed.html#cb163-10" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(model, <span class="at">data =</span> Data, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing=</span> <span class="st">&#39;fiml&#39;</span>)</span>
+<span id="cb163-11"><a href="SimpleMed.html#cb163-11" aria-hidden="true" tabindex="-1"></a>FDsummary <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6-7 ended normally after 14 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of free parameters                          7
+##                                                       
+##   Number of observations                           100
+##   Number of missing patterns                         1
+##                                                       
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Model Test Baseline Model:
+## 
+##   Test statistic                                92.701
+##   Degrees of freedom                                 3
+##   P-value                                        0.000
+## 
+## User Model versus Baseline Model:
+## 
+##   Comparative Fit Index (CFI)                    1.000
+##   Tucker-Lewis Index (TLI)                       1.000
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)               -287.127
+##   Loglikelihood unrestricted model (H1)       -287.127
+##                                                       
+##   Akaike (AIC)                                 588.253
+##   Bayesian (BIC)                               606.489
+##   Sample-size adjusted Bayesian (BIC)          584.382
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.000
+##   90 Percent confidence interval - lower         0.000
+##   90 Percent confidence interval - upper         0.000
+##   P-value RMSEA &lt;= 0.05                             NA
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                            Bootstrap
+##   Number of requested bootstrap draws             1000
+##   Number of successful bootstrap draws            1000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##   Y ~                                                                   
+##     M          (b)    0.764    0.097    7.918    0.000    0.577    0.955
+##     X        (c_p)   -0.209    0.112   -1.867    0.062   -0.446   -0.001
+##   M ~                                                                   
+##     X          (a)    0.693    0.104    6.665    0.000    0.485    0.900
+##    Std.lv  Std.all
+##                   
+##     0.764    0.719
+##    -0.209   -0.163
+##                   
+##     0.693    0.574
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##    .Y                -0.044    0.107   -0.413    0.680   -0.260    0.161
+##    .M                 0.106    0.105    1.010    0.313   -0.100    0.310
+##    Std.lv  Std.all
+##    -0.044   -0.034
+##     0.106    0.086
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##    .Y                 1.031    0.148    6.950    0.000    0.734    1.301
+##    .M                 1.037    0.144    7.220    0.000    0.754    1.327
+##    Std.lv  Std.all
+##     1.031    0.590
+##     1.037    0.670
+## 
+## R-Square:
+##                    Estimate
+##     Y                 0.410
+##     M                 0.330
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##     indirect          0.529    0.089    5.954    0.000    0.355    0.708
+##     direct           -0.209    0.112   -1.866    0.062   -0.446   -0.001
+##     total_c           0.321    0.125    2.568    0.010    0.054    0.567
+##    Std.lv  Std.all
+##     0.529    0.413
+##    -0.209   -0.163
+##     0.321    0.250</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="SimpleMed.html#cb165-1" aria-hidden="true" tabindex="-1"></a>FD_ParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb165-2"><a href="SimpleMed.html#cb165-2" aria-hidden="true" tabindex="-1"></a>FDsummary</span></code></pre></div>
+<pre><code>## $FIT
+##              npar              fmin             chisq                df 
+##             7.000             0.000             0.000             0.000 
+##            pvalue    baseline.chisq       baseline.df   baseline.pvalue 
+##                NA            92.701             3.000             0.000 
+##               cfi               tli              logl unrestricted.logl 
+##             1.000             1.000          -287.127          -287.127 
+##               aic               bic            ntotal              bic2 
+##           588.253           606.489           100.000           584.382 
+##             rmsea    rmsea.ci.lower    rmsea.ci.upper      rmsea.pvalue 
+##             0.000             0.000             0.000                NA 
+##              srmr 
+##             0.000 
+## 
+## $PE
+##         lhs op       rhs    label exo         est         se          z
+## 1         Y  ~         M        b   0  0.76435996 0.09652859  7.9184825
+## 2         Y  ~         X      c_p   0 -0.20861348 0.11173871 -1.8669759
+## 3         M  ~         X        a   0  0.69268167 0.10392556  6.6651713
+## 4         Y ~~         Y            0  1.03100570 0.14834106  6.9502383
+## 5         M ~~         M            0  1.03690713 0.14360623  7.2204883
+## 6         X ~~         X            1  1.06310942 0.00000000         NA
+## 7         Y ~1                      0 -0.04434521 0.10738844 -0.4129421
+## 8         M ~1                      0  0.10642551 0.10539643  1.0097639
+## 9         X ~1                      1 -0.19457819 0.00000000         NA
+## 10 indirect :=       a*b indirect   0  0.52945814 0.08892327  5.9541009
+## 11   direct :=       c_p   direct   0 -0.20861348 0.11179462 -1.8660422
+## 12  total_c := c_p+(a*b)  total_c   0  0.32084465 0.12495930  2.5675932
+## 13        Y r2         Y            0  0.40958958         NA         NA
+## 14        M r2         M            0  0.32972838         NA         NA
+##          pvalue    ci.lower      ci.upper      std.lv     std.all     std.nox
+## 1  2.442491e-15  0.57657158  0.9554829338  0.76435996  0.71943062  0.71943062
+## 2  6.190495e-02 -0.44637206 -0.0009074259 -0.20861348 -0.16277130 -0.15786609
+## 3  2.643574e-11  0.48516770  0.8996769257  0.69268167  0.57421980  0.55691534
+## 4  3.646639e-12  0.73428101  1.3014220066  1.03100570  0.59041042  0.59041042
+## 5  5.180301e-13  0.75440642  1.3272578298  1.03690713  0.67027162  0.67027162
+## 6            NA  1.06310942  1.0631094199  1.06310942  1.00000000  1.06310942
+## 7  6.796490e-01 -0.26018823  0.1613575388 -0.04434521 -0.03355778 -0.03355778
+## 8  3.126084e-01 -0.10043004  0.3095687447  0.10642551  0.08556600  0.08556600
+## 9            NA -0.19457819 -0.1945781883 -0.19457819 -0.18871446 -0.19457819
+## 10 2.615055e-09  0.35537200  0.7084867508  0.52945814  0.41311131  0.40066195
+## 11 6.203546e-02 -0.44637206 -0.0009074259 -0.20861348 -0.16277130 -0.15786609
+## 12 1.024073e-02  0.05415297  0.5670554787  0.32084465  0.25034001  0.24279586
+## 13           NA          NA            NA          NA          NA          NA
+## 14           NA          NA            NA          NA          NA          NA</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="SimpleMed.html#cb167-1" aria-hidden="true" tabindex="-1"></a>FD_ParamEsts</span></code></pre></div>
+<pre><code>##         lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper
+## 1         Y  ~         M        b  0.764 0.097  7.918  0.000    0.575    0.955
+## 2         Y  ~         X      c_p -0.209 0.112 -1.867  0.062   -0.451   -0.001
+## 3         M  ~         X        a  0.693 0.104  6.665  0.000    0.485    0.900
+## 4         Y ~~         Y           1.031 0.148  6.950  0.000    0.803    1.372
+## 5         M ~~         M           1.037 0.144  7.220  0.000    0.795    1.373
+## 6         X ~~         X           1.063 0.000     NA     NA    1.063    1.063
+## 7         Y ~1                    -0.044 0.107 -0.413  0.680   -0.259    0.161
+## 8         M ~1                     0.106 0.105  1.010  0.313   -0.096    0.317
+## 9         X ~1                    -0.195 0.000     NA     NA   -0.195   -0.195
+## 10 indirect :=       a*b indirect  0.529 0.089  5.954  0.000    0.358    0.710
+## 11   direct :=       c_p   direct -0.209 0.112 -1.866  0.062   -0.451   -0.001
+## 12  total_c := c_p+(a*b)  total_c  0.321 0.125  2.568  0.010    0.055    0.568
+##    std.lv std.all std.nox
+## 1   0.764   0.719   0.719
+## 2  -0.209  -0.163  -0.158
+## 3   0.693   0.574   0.557
+## 4   1.031   0.590   0.590
+## 5   1.037   0.670   0.670
+## 6   1.063   1.000   1.063
+## 7  -0.044  -0.034  -0.034
+## 8   0.106   0.086   0.086
+## 9  -0.195  -0.189  -0.195
+## 10  0.529   0.413   0.401
+## 11 -0.209  -0.163  -0.158
+## 12  0.321   0.250   0.243</code></pre>
+</div>
+<div id="interpret-the-output" class="section level3" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Interpret the Output</h3>
+<p>Note that in the script we ask (and get) two sets of parameter estimates. The second set (in the really nice dataframe) includes bootstrapped, bias-corrected confidence intervals. Bias-corrected confidence interals have the advantage of being more powerful and bias-free. Note, though, that when the CI crosses 0, the effect is NS.</p>
+<p>So let’s look at this step-by-step.</p>
+<ul>
+<li>Overall, our model accounted for 40.96% of the variance in the IV and 32.97% of the variance in the mediator.</li>
+<li>a path = 0.693, <span class="math inline">\(p\)</span> = 0.000</li>
+<li>b path = 0.764, <span class="math inline">\(p\)</span> = 0.000</li>
+<li>the indirect effect is a product of the a and b paths (0.693 * 0.764 = 0.529); while we don’t hand calculate it’s significance, we see that it is <span class="math inline">\(p\)</span> = 0.000</li>
+<li>the direct effect (c’, c prime, or c_p) is the isolated effect of X on Y when including M. We hope this value is LOWER than the total effect because this means that including M shared some of the variance in predicting Y: c’ = -0.209, <span class="math inline">\(p\)</span> = 0.062, and it is no longer signifcant.</li>
+<li>we also see the total effect; this value is
+<ul>
+<li>identical to the value of simply predicting Y on X (with no M it the model)</li>
+<li>the value of a(b) + c_p: 0.693(0.764) + -0.209 = 0.321 (<span class="math inline">\(p\)</span> = 0.010)</li>
+</ul></li>
+</ul>
+<p>Here’s a demonstration that the total effect is, simply, predicting Y from X (also, the correlation between X and Y:</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="SimpleMed.html#cb169-1" aria-hidden="true" tabindex="-1"></a>fitXY <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> Data)</span>
+<span id="cb169-2"><a href="SimpleMed.html#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fitXY)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Y ~ X, data = Data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.2631 -0.8288  0.0902  0.9637  3.5891 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)   0.0370     0.1315   0.281    0.779  
+## X             0.3208     0.1253   2.560    0.012 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.292 on 98 degrees of freedom
+## Multiple R-squared:  0.06267,    Adjusted R-squared:  0.05311 
+## F-statistic: 6.552 on 1 and 98 DF,  p-value: 0.012</code></pre>
+<p>Which is the same as the bivariate correlation. The only trick is that the bivariate correlation produces a standardized result; so it would be the <span class="math inline">\(\beta\)</span>.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="SimpleMed.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb171-2"><a href="SimpleMed.html#cb171-2" aria-hidden="true" tabindex="-1"></a>XY_r <span class="ot">&lt;-</span> <span class="fu">corr.test</span>(Data[<span class="fu">c</span>(<span class="st">&quot;Y&quot;</span>, <span class="st">&quot;X&quot;</span>)])</span>
+<span id="cb171-3"><a href="SimpleMed.html#cb171-3" aria-hidden="true" tabindex="-1"></a>XY_r</span></code></pre></div>
+<pre><code>## Call:corr.test(x = Data[c(&quot;Y&quot;, &quot;X&quot;)])
+## Correlation matrix 
+##      Y    X
+## Y 1.00 0.25
+## X 0.25 1.00
+## Sample Size 
+## [1] 100
+## Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+##      Y    X
+## Y 0.00 0.01
+## X 0.01 0.00
+## 
+##  To see confidence intervals of the correlations, print with the short=FALSE option</code></pre>
+</div>
+<div id="a-table-and-a-figure" class="section level3" number="6.4.4">
+<h3><span class="header-section-number">6.4.4</span> A Table and a Figure</h3>
+<p>We can use the package <a href="https://rdrr.io/cran/semPlot/man/semPaths.html">semPlot</a> to create a figure that includes the values on the path.</p>
+<p>Here’s what the base package gets us</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="SimpleMed.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span></code></pre></div>
+<pre><code>## Registered S3 methods overwritten by &#39;huge&#39;:
+##   method    from   
+##   plot.sim  BDgraph
+##   print.sim BDgraph</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="SimpleMed.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(fit, <span class="co">#must identify the model you want to map</span></span>
+<span id="cb175-2"><a href="SimpleMed.html#cb175-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb175-3"><a href="SimpleMed.html#cb175-3" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb175-4"><a href="SimpleMed.html#cb175-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
+<span id="cb175-5"><a href="SimpleMed.html#cb175-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb175-6"><a href="SimpleMed.html#cb175-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb175-7"><a href="SimpleMed.html#cb175-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb175-8"><a href="SimpleMed.html#cb175-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb175-9"><a href="SimpleMed.html#cb175-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb175-10"><a href="SimpleMed.html#cb175-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb175-11"><a href="SimpleMed.html#cb175-11" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb175-12"><a href="SimpleMed.html#cb175-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb175-13"><a href="SimpleMed.html#cb175-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb175-14"><a href="SimpleMed.html#cb175-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb175-15"><a href="SimpleMed.html#cb175-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb175-16"><a href="SimpleMed.html#cb175-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb175-17"><a href="SimpleMed.html#cb175-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb175-18"><a href="SimpleMed.html#cb175-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb175-19"><a href="SimpleMed.html#cb175-19" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Fake Data:  Simple Mediation&quot;</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/FakyDaty%20Simple%20Plot-1.svg" width="672" /></p>
+<p>Hayes has great examples of APA style tables. I haven’t yet found a package that will turn this output into a journal-ready table, however the <em>semTable</em> package can at least write the output to a .csv file and you can further manipulate it into a table.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="SimpleMed.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
+<span id="cb176-2"><a href="SimpleMed.html#cb176-2" aria-hidden="true" tabindex="-1"></a>fitTab1 <span class="ot">&lt;-</span> <span class="fu">semTable</span>(fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="results-2" class="section level3" number="6.4.5">
+<h3><span class="header-section-number">6.4.5</span> Results</h3>
+<p>A simple mediation model examined the degree to which M mediated the relation of X on Y. Using the <em>lavaan</em> package (v 0.6-7) in R, coefficients for each path, the indirect effect, and total effects were calculated. These values are presented in Table 1 and illustrated in Figure 1. Results suggested that 32.97% of the variance in M and 40.96% of the variance in Y were accounted for in the model. The indirect effect (<span class="math inline">\(B\)</span> = 0.529, <span class="math inline">\(p\)</span> = 0.000) was statistically significant; the direct effect (<span class="math inline">\(B\)</span> = -0.209, <span class="math inline">\(p\)</span> = 0.062) was not. Comparing the nonsignificant direct effect to the statistically significant total effect (<span class="math inline">\(B\)</span> = 0.321, <span class="math inline">\(p\)</span> = 0.010) is consistent with the notion that the effect of X on Y is explained through M.</p>
+</div>
+</div>
+<div id="research-vignette-4" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Research Vignette</h2>
+<p>The research vignette comes from the Kim, Kendall, and Cheon’s <span class="citation">(<a href="refs.html#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span>, “Racial Microaggressions, Cultural Mistrust, and Mental Health Outcomes Among Asian American College Students.” Participants were 156 Asian American undergraduate students in the Pacific Northwest. The researchers posited the a priori hypothesis that cultural mistrust would mediate the relationship between racial microaggressions and two sets of outcomes: mental health (e.g., depression, anxiety, well-being) and help-seeking.</p>
+<p>Variables used in the study included:</p>
+<ul>
+<li><strong>REMS</strong>: Racial and Ethnic Microaggressions Scale (Nadal, 2011). The scale includes 45 items on a 2-point scale where 0 indicates no experience of a microaggressive event and 1 indicates it was experienced at least once within the past six months. Higher scores indicate more experience of microaggressions.</li>
+<li><strong>CMI</strong>: Cultural Mistrust Inventory (Terrell &amp; Terrell, 1981). This scale was adapted to assess cultural mistrust harbored among Asian Americans toward individuals from the mainstream U.S. culture (e.g., Whites). The CMI includes 47 items on a 7-point scale where higher scores indicate a higher degree of cultural mistrust.</li>
+<li><strong>ANX</strong>, <strong>DEP</strong>, <strong>PWB</strong>: Subscales of the Mental Health Inventory (Veit &amp; Ware, 1983) that assess the mental health outcomes of anxiety (9 items), depression (4 items), and psychological well-being (14 items). Higher scores (on a 6 point scale) indicate stronger endorsement of the mental health outcome being assessed.</li>
+<li><strong>HlpSkg</strong>: The Attiudes Toward Seeking Professional Psychological Help – Short Form (Fischer &amp; Farina, 1995) includes 10 items on a 4-point scale (0 = disagree, 3 = agree) where higher scores indicate more favorable attitudes toward help seeking.</li>
+</ul>
+<div id="simulate-data-from-the-journal-article" class="section level3" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Simulate Data from the Journal Article</h3>
+<p>First, we simulate the data from the means, standard deviations, and correlation matrix from the journal article.</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="SimpleMed.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
+<span id="cb177-2"><a href="SimpleMed.html#cb177-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">34</span>, <span class="fl">3.00</span>, <span class="fl">2.98</span>, <span class="fl">2.36</span>, <span class="fl">3.50</span>, <span class="fl">1.64</span>)</span>
+<span id="cb177-3"><a href="SimpleMed.html#cb177-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">16</span>, .<span class="dv">83</span>, .<span class="dv">99</span>, .<span class="dv">90</span>, .<span class="dv">90</span>, .<span class="dv">53</span>)</span>
+<span id="cb177-4"><a href="SimpleMed.html#cb177-4" aria-hidden="true" tabindex="-1"></a>r_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">1</span>,   .<span class="dv">59</span>, .<span class="dv">26</span>,   .<span class="dv">34</span>,  <span class="sc">-</span>.<span class="dv">25</span>, <span class="sc">-</span>.<span class="dv">02</span>,</span>
+<span id="cb177-5"><a href="SimpleMed.html#cb177-5" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">59</span>, <span class="fl">1.00</span>, .<span class="dv">12</span>,   .<span class="dv">19</span>,  <span class="sc">-</span>.<span class="dv">28</span>, .<span class="dv">00</span>, </span>
+<span id="cb177-6"><a href="SimpleMed.html#cb177-6" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">26</span>,  .<span class="dv">12</span>, <span class="fl">1.00</span>, .<span class="dv">66</span>,  <span class="sc">-</span>.<span class="dv">55</span>, .<span class="dv">07</span>,</span>
+<span id="cb177-7"><a href="SimpleMed.html#cb177-7" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">34</span>,  .<span class="dv">19</span>, .<span class="dv">66</span>,  <span class="fl">1.00</span>, <span class="sc">-</span>.<span class="dv">66</span>, .<span class="dv">05</span>,</span>
+<span id="cb177-8"><a href="SimpleMed.html#cb177-8" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>.<span class="dv">25</span>, <span class="sc">-</span>.<span class="dv">28</span>, <span class="sc">-</span>.<span class="dv">55</span>,<span class="sc">-</span>.<span class="dv">66</span>,  <span class="fl">1.00</span>, .<span class="dv">08</span>, </span>
+<span id="cb177-9"><a href="SimpleMed.html#cb177-9" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>.<span class="dv">02</span>,  .<span class="dv">00</span>,  .<span class="dv">07</span>, .<span class="dv">05</span>, .<span class="dv">08</span>,  <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">6</span>)</span>
+<span id="cb177-10"><a href="SimpleMed.html#cb177-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a covariance matrix</span></span>
+<span id="cb177-11"><a href="SimpleMed.html#cb177-11" aria-hidden="true" tabindex="-1"></a>cov_mat <span class="ot">&lt;-</span> sd <span class="sc">%*%</span> <span class="fu">t</span>(sd) <span class="sc">*</span> r_mat</span>
+<span id="cb177-12"><a href="SimpleMed.html#cb177-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb177-13"><a href="SimpleMed.html#cb177-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Set random seed so that the following matrix always gets the same results.</span></span>
+<span id="cb177-14"><a href="SimpleMed.html#cb177-14" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210409</span>)</span>
+<span id="cb177-15"><a href="SimpleMed.html#cb177-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:formattable&#39;:
+## 
+##     area</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="SimpleMed.html#cb181-1" aria-hidden="true" tabindex="-1"></a>Kim_df <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">156</span>, <span class="at">mu=</span>mu, <span class="at">Sigma =</span> cov_mat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb181-2"><a href="SimpleMed.html#cb181-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(Kim_df)</span></code></pre></div>
+<pre><code>## [1] 0.34 3.00 2.98 2.36 3.50 1.64</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="SimpleMed.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
+<span id="cb183-2"><a href="SimpleMed.html#cb183-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(Kim_df),<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]
+## [1,]  1.00  0.59  0.26  0.34 -0.25 -0.02
+## [2,]  0.59  1.00  0.12  0.19 -0.28  0.00
+## [3,]  0.26  0.12  1.00  0.66 -0.55  0.07
+## [4,]  0.34  0.19  0.66  1.00 -0.66  0.05
+## [5,] -0.25 -0.28 -0.55 -0.66  1.00  0.08
+## [6,] -0.02  0.00  0.07  0.05  0.08  1.00</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="SimpleMed.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="co">#look at the first 6 rows of the new df</span></span>
+<span id="cb185-2"><a href="SimpleMed.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Kim_df)</span></code></pre></div>
+<pre><code>##        REMS      CMI      ANX      DEP      PWB    HlpSk
+## 1 0.5632213 3.659748 4.104905 1.955481 3.287428 1.918057
+## 2 0.4164574 2.405398 3.189049 1.574824 4.250802 1.701437
+## 3 0.2823777 1.822439 3.820871 2.515103 3.272359 1.342201
+## 4 0.3301192 4.877980 3.298069 2.219149 3.310993 1.450270
+## 5 0.2119648 2.110152 3.068806 2.145528 3.429861 1.909203
+## 6 0.5961068 4.087986 3.420916 3.129796 2.914344 1.900283</code></pre>
+<p>Let’s check the descriptives to see if they align with those in the article.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="SimpleMed.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb187-2"><a href="SimpleMed.html#cb187-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(Kim_df)</span></code></pre></div>
+<pre><code>##       vars   n mean   sd median trimmed  mad   min  max range  skew kurtosis
+## REMS     1 156 0.34 0.16   0.32    0.34 0.16 -0.12 0.77  0.89 -0.02    -0.01
+## CMI      2 156 3.00 0.83   3.01    3.00 0.73  0.90 5.42  4.51 -0.01     0.07
+## ANX      3 156 2.98 0.99   2.98    2.98 0.88  0.32 5.53  5.21 -0.04     0.17
+## DEP      4 156 2.36 0.90   2.41    2.37 0.90 -0.24 4.73  4.96 -0.11    -0.17
+## PWB      5 156 3.50 0.90   3.52    3.50 0.85  1.16 6.48  5.32  0.01     0.22
+## HlpSk    6 156 1.64 0.53   1.69    1.66 0.53 -0.07 2.90  2.97 -0.36     0.28
+##         se
+## REMS  0.01
+## CMI   0.07
+## ANX   0.08
+## DEP   0.07
+## PWB   0.07
+## HlpSk 0.04</code></pre>
+<p>There are a number of reasons I love the Kim et al. <span class="citation">(<a href="refs.html#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span> manuscript. One is that their approach was openly one that tested <em>alternate models</em>. Byrne <span class="citation">(<a href="refs.html#ref-byrne_structural_2016" role="doc-biblioref">2016</a>)</span> credits Joreskog <span class="citation">(<a href="refs.html#ref-bollen_testing_1993" role="doc-biblioref">Joreskog, 1993</a>)</span> with classifying the researcher’s model testing approach in three ways. If someone is <em>strictly confirmatory</em>, they only test the model they proposed and then accept or reject it without further alteration. While this is the tradition of null hypothesis significance testing, it contributes to the “file drawer problem” of unpublished, non-significant, findings. Additionally, the data are them discarded – potentially losing valuable resource. The <em>alternative models</em> approach is to propose a handful of competing models before beginning the analysis and then evaluating to see if one model is superior to the other. The third option is <em>model generating</em>. In this case the researcher begins with a theoretically proposed model. In the presence of poor fit, the researcher seeks to identify the source of misfit – respecifying it to best represent the sample data. The researcher must use caution to produce a model that fits well and is meaningful.</p>
+<p>Several of the Kim et al. <span class="citation">(<a href="refs.html#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span> models were non-significant. To demonstrate a model that is statistically significant, I will test the hypothesis that racial microaggressions (REMS, the X variable) influence depression (DEP, the Y variable) through cultural mistrust (CMI, the M variable).</p>
+<div class="figure">
+<img src="images/SimpleMed/Kim_SimpMed.jpg" alt="" />
+<p class="caption">Image of the simple mediation model from Kim et al.</p>
+</div>
+</div>
+<div id="specify-the-model-in-lavaan" class="section level3" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Specify the Model in <em>lavaan</em></h3>
+<p>I am a big fan of “copying the model.” In specifying my model I used our simple mediation template above</p>
+<ul>
+<li>replaced the Y, X, and M with variables names</li>
+<li>replacing the name of the df</li>
+<li>updated the object names (so I could use them in the same .rmd file)</li>
+</ul>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="SimpleMed.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb189-2"><a href="SimpleMed.html#cb189-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>) <span class="co">#reset in case you choose to separate these sections</span></span>
+<span id="cb189-3"><a href="SimpleMed.html#cb189-3" aria-hidden="true" tabindex="-1"></a>Kim_model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb189-4"><a href="SimpleMed.html#cb189-4" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ b*CMI + c_p*REMS </span></span>
+<span id="cb189-5"><a href="SimpleMed.html#cb189-5" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~a*REMS</span></span>
+<span id="cb189-6"><a href="SimpleMed.html#cb189-6" aria-hidden="true" tabindex="-1"></a><span class="st">          </span></span>
+<span id="cb189-7"><a href="SimpleMed.html#cb189-7" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
+<span id="cb189-8"><a href="SimpleMed.html#cb189-8" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
+<span id="cb189-9"><a href="SimpleMed.html#cb189-9" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
+<span id="cb189-10"><a href="SimpleMed.html#cb189-10" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="SimpleMed.html#cb190-1" aria-hidden="true" tabindex="-1"></a>Kim_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(Kim_model, <span class="at">data =</span> Kim_df, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing=</span> <span class="st">&#39;fiml&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="SimpleMed.html#cb191-1" aria-hidden="true" tabindex="-1"></a>Kim_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(Kim_fit, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6-7 ended normally after 23 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of free parameters                          7
+##                                                       
+##   Number of observations                           156
+##   Number of missing patterns                         1
+##                                                       
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Model Test Baseline Model:
+## 
+##   Test statistic                                81.362
+##   Degrees of freedom                                 3
+##   P-value                                        0.000
+## 
+## User Model versus Baseline Model:
+## 
+##   Comparative Fit Index (CFI)                    1.000
+##   Tucker-Lewis Index (TLI)                       1.000
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)               -355.521
+##   Loglikelihood unrestricted model (H1)       -355.521
+##                                                       
+##   Akaike (AIC)                                 725.042
+##   Bayesian (BIC)                               746.391
+##   Sample-size adjusted Bayesian (BIC)          724.234
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.000
+##   90 Percent confidence interval - lower         0.000
+##   90 Percent confidence interval - upper         0.000
+##   P-value RMSEA &lt;= 0.05                             NA
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                            Bootstrap
+##   Number of requested bootstrap draws             1000
+##   Number of successful bootstrap draws            1000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##   PWB ~                                                                 
+##     CMI        (b)   -0.220    0.118   -1.873    0.061   -0.452    0.015
+##     REMS     (c_p)   -0.732    0.509   -1.437    0.151   -1.718    0.266
+##   CMI ~                                                                 
+##     REMS       (a)    3.061    0.292   10.494    0.000    2.469    3.616
+##    Std.lv  Std.all
+##                   
+##    -0.220   -0.203
+##    -0.732   -0.130
+##                   
+##     3.061    0.590
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##    .PWB               4.410    0.275   16.009    0.000    3.912    4.958
+##    .CMI               1.959    0.113   17.351    0.000    1.754    2.194
+##    Std.lv  Std.all
+##     4.410    4.916
+##     1.959    2.368
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##    .PWB               0.733    0.085    8.601    0.000    0.567    0.901
+##    .CMI               0.446    0.053    8.465    0.000    0.339    0.553
+##    Std.lv  Std.all
+##     0.733    0.911
+##     0.446    0.652
+## 
+## R-Square:
+##                    Estimate
+##     PWB               0.089
+##     CMI               0.348
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##     indirect         -0.675    0.367   -1.839    0.066   -1.433    0.053
+##     direct           -0.732    0.510   -1.436    0.151   -1.718    0.266
+##     total_c          -1.406    0.365   -3.856    0.000   -2.122   -0.713
+##    Std.lv  Std.all
+##    -0.675   -0.120
+##    -0.732   -0.130
+##    -1.406   -0.250</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="SimpleMed.html#cb193-1" aria-hidden="true" tabindex="-1"></a>Kim_ParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(Kim_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb193-2"><a href="SimpleMed.html#cb193-2" aria-hidden="true" tabindex="-1"></a>Kim_summary</span></code></pre></div>
+<pre><code>## $FIT
+##              npar              fmin             chisq                df 
+##             7.000             0.000             0.000             0.000 
+##            pvalue    baseline.chisq       baseline.df   baseline.pvalue 
+##                NA            81.362             3.000             0.000 
+##               cfi               tli              logl unrestricted.logl 
+##             1.000             1.000          -355.521          -355.521 
+##               aic               bic            ntotal              bic2 
+##           725.042           746.391           156.000           724.234 
+##             rmsea    rmsea.ci.lower    rmsea.ci.upper      rmsea.pvalue 
+##             0.000             0.000             0.000                NA 
+##              srmr 
+##             0.000 
+## 
+## $PE
+##         lhs op       rhs    label exo        est         se         z
+## 1       PWB  ~       CMI        b   0 -0.2203938 0.11768579 -1.872731
+## 2       PWB  ~      REMS      c_p   0 -0.7317072 0.50927052 -1.436775
+## 3       CMI  ~      REMS        a   0  3.0606250 0.29164729 10.494269
+## 4       PWB ~~       PWB            0  0.7328330 0.08520156  8.601169
+## 5       CMI ~~       CMI            0  0.4462151 0.05271274  8.465033
+## 6      REMS ~~      REMS            1  0.0254359 0.00000000        NA
+## 7       PWB ~1                      0  4.4099618 0.27546349 16.009242
+## 8       CMI ~1                      0  1.9593875 0.11292431 17.351335
+## 9      REMS ~1                      1  0.3400000 0.00000000        NA
+## 10 indirect :=       a*b indirect   0 -0.6745428 0.36683075 -1.838839
+## 11   direct :=       c_p   direct   0 -0.7317072 0.50952535 -1.436057
+## 12  total_c := c_p+(a*b)  total_c   0 -1.4062500 0.36467949 -3.856126
+## 13      PWB r2       PWB            0  0.0894309         NA        NA
+## 14      CMI r2       CMI            0  0.3481000         NA        NA
+##          pvalue   ci.lower    ci.upper     std.lv    std.all    std.nox
+## 1  0.0611055748 -0.4520943  0.01517990 -0.2203938 -0.2032521 -0.2032521
+## 2  0.1507819099 -1.7176138  0.26594569 -0.7317072 -0.1300813 -0.8156264
+## 3  0.0000000000  2.4693608  3.61560824  3.0606250  0.5900000  3.6993761
+## 4  0.0000000000  0.5671305  0.90093387  0.7328330  0.9105691  0.9105691
+## 5  0.0000000000  0.3389408  0.55289361  0.4462151  0.6519000  0.6519000
+## 6            NA  0.0254359  0.02543590  0.0254359  1.0000000  0.0254359
+## 7  0.0000000000  3.9116153  4.95818727  4.4099618  4.9157385  4.9157385
+## 8  0.0000000000  1.7537845  2.19372375  1.9593875  2.3683108  2.3683108
+## 9            NA  0.3400000  0.34000000  0.3400000  2.1318438  0.3400000
+## 10 0.0659388362 -1.4331562  0.05265107 -0.6745428 -0.1199187 -0.7519058
+## 11 0.1509862575 -1.7176138  0.26594569 -0.7317072 -0.1300813 -0.8156264
+## 12 0.0001151982 -2.1222575 -0.71330366 -1.4062500 -0.2500000 -1.5675322
+## 13           NA         NA          NA         NA         NA         NA
+## 14           NA         NA          NA         NA         NA         NA</code></pre>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="SimpleMed.html#cb195-1" aria-hidden="true" tabindex="-1"></a>Kim_ParamEsts</span></code></pre></div>
+<pre><code>##         lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper
+## 1       PWB  ~       CMI        b -0.220 0.118 -1.873  0.061   -0.456    0.012
+## 2       PWB  ~      REMS      c_p -0.732 0.509 -1.437  0.151   -1.697    0.293
+## 3       CMI  ~      REMS        a  3.061 0.292 10.494  0.000    2.458    3.598
+## 4       PWB ~~       PWB           0.733 0.085  8.601  0.000    0.589    0.923
+## 5       CMI ~~       CMI           0.446 0.053  8.465  0.000    0.355    0.569
+## 6      REMS ~~      REMS           0.025 0.000     NA     NA    0.025    0.025
+## 7       PWB ~1                     4.410 0.275 16.009  0.000    3.915    4.959
+## 8       CMI ~1                     1.959 0.113 17.351  0.000    1.753    2.193
+## 9      REMS ~1                     0.340 0.000     NA     NA    0.340    0.340
+## 10 indirect :=       a*b indirect -0.675 0.367 -1.839  0.066   -1.443    0.032
+## 11   direct :=       c_p   direct -0.732 0.510 -1.436  0.151   -1.697    0.293
+## 12  total_c := c_p+(a*b)  total_c -1.406 0.365 -3.856  0.000   -2.133   -0.722
+##    std.lv std.all std.nox
+## 1  -0.220  -0.203  -0.203
+## 2  -0.732  -0.130  -0.816
+## 3   3.061   0.590   3.699
+## 4   0.733   0.911   0.911
+## 5   0.446   0.652   0.652
+## 6   0.025   1.000   0.025
+## 7   4.410   4.916   4.916
+## 8   1.959   2.368   2.368
+## 9   0.340   2.132   0.340
+## 10 -0.675  -0.120  -0.752
+## 11 -0.732  -0.130  -0.816
+## 12 -1.406  -0.250  -1.568</code></pre>
+</div>
+<div id="interpret-the-output-1" class="section level3" number="6.5.3">
+<h3><span class="header-section-number">6.5.3</span> Interpret the Output</h3>
+<ul>
+<li>Overall, our model accounted for 8.94% of the variance in the IV and 34.81% of the variance in the mediator.</li>
+<li>a path = 3.061, <span class="math inline">\(p\)</span> = 0.000</li>
+<li>b path = -0.220, <span class="math inline">\(p\)</span> = 0.061</li>
+<li>the indirect effect is a product of the a and b paths (-0.675); while we don’t hand calculate it’s significance, we see that it is <span class="math inline">\(p\)</span> = 0.066; the bias-corrected bootstrapped confidence intervals can sometimes be more lenient than <span class="math inline">\(p\)</span> values; it is important they don’t cross zero. They don’t: CI95 -1.443 to 0.032<br />
+</li>
+<li>the direct effect (c’, c prime, or c_p) is the isolated effect of X on Y when including M. We hope this value is LOWER than the total effect because this means that including M shared some of the variance in predicting Y: c’ = -0.732, <span class="math inline">\(p\)</span> = 0.151, and it is no longer signifcant.</li>
+<li>we also see the total effect; this value is</li>
+<li>identical to the value of simply predicting Y on X (with no M it the model)</li>
+<li>the value of a(b) + c_p: 3.061(-0.220) + -0.732 = -1.406 (<span class="math inline">\(p\)</span> = 0.000)</li>
+</ul>
+</div>
+<div id="a-figure-and-a-table" class="section level3" number="6.5.4">
+<h3><span class="header-section-number">6.5.4</span> A Figure and a Table</h3>
+<p>I make it a practice to immediately plot what I did. Because the plotting packages use our models, this can be a helpful self-check of our work.</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="SimpleMed.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb197-2"><a href="SimpleMed.html#cb197-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(Kim_fit, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb197-3"><a href="SimpleMed.html#cb197-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb197-4"><a href="SimpleMed.html#cb197-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb197-5"><a href="SimpleMed.html#cb197-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
+<span id="cb197-6"><a href="SimpleMed.html#cb197-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb197-7"><a href="SimpleMed.html#cb197-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb197-8"><a href="SimpleMed.html#cb197-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb197-9"><a href="SimpleMed.html#cb197-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb197-10"><a href="SimpleMed.html#cb197-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb197-11"><a href="SimpleMed.html#cb197-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb197-12"><a href="SimpleMed.html#cb197-12" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb197-13"><a href="SimpleMed.html#cb197-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb197-14"><a href="SimpleMed.html#cb197-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb197-15"><a href="SimpleMed.html#cb197-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb197-16"><a href="SimpleMed.html#cb197-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb197-17"><a href="SimpleMed.html#cb197-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb197-18"><a href="SimpleMed.html#cb197-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb197-19"><a href="SimpleMed.html#cb197-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb197-20"><a href="SimpleMed.html#cb197-20" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Depression by Racial Microaggressions via Cultural Mistrust&quot;</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/semPLOT%20of%20PMI-1.svg" width="672" /></p>
+<p>The semTable package can be used to write results to an outfile.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="SimpleMed.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
+<span id="cb198-2"><a href="SimpleMed.html#cb198-2" aria-hidden="true" tabindex="-1"></a>fitTab1 <span class="ot">&lt;-</span> <span class="fu">semTable</span>(Kim_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;pmi_fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>For the purpose of the OER, and because it’s good trainng, I also think it can be useful to make our own table. For me, it facilitates my conceptual understanding of (a) what the statistic is doing and (b) the results of our specific data.</p>
+<p>Table 1</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Model Coefficients Assessing Cultural Mistrust as a Mediator Between Racial Microaggressions and Well-Being</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">Cultural Mistrust (M)</td>
+<td align="center"></td>
+<td align="center">Well-Being (Y)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Antecedent</td>
+<td align="center">path</td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td align="center"><span class="math inline">\(SE\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td align="center">path</td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td align="center"><span class="math inline">\(SE\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">constant</td>
+<td align="center"><span class="math inline">\(i_{M}\)</span></td>
+<td align="center">1.959</td>
+<td align="center">0.113</td>
+<td align="center">0.000</td>
+<td align="center"><span class="math inline">\(i_{Y}\)</span></td>
+<td align="center">4.410</td>
+<td align="center">0.275</td>
+<td align="center">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">REMS (X)</td>
+<td align="center"><span class="math inline">\(a\)</span></td>
+<td align="center">3.061</td>
+<td align="center">0.292</td>
+<td align="center">0.000</td>
+<td align="center"><span class="math inline">\(c&#39;\)</span></td>
+<td align="center">-0.732</td>
+<td align="center">0.509</td>
+<td align="center">0.151</td>
+</tr>
+<tr class="even">
+<td align="left">CMI (M)</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(b\)</span></td>
+<td align="center">-0.220</td>
+<td align="center">0.118</td>
+<td align="center">0.061</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"><span class="math inline">\(R^2\)</span> = 34.81%</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(R^2\)</span> = 8.94%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="results-3" class="section level3" number="6.5.5">
+<h3><span class="header-section-number">6.5.5</span> Results</h3>
+<p>A simple mediation model examined the degree to which cultural mistrust mediated the relation of racial microaggressions on depressive symptoms Using the <em>lavaan</em> package (v 0.6-7) in R, coefficients for each path, the indirect effect, and total effects were calculated. These values are presented in Table 1 and illustrated in Figure 1. Results suggested that 34.81% of the variance in cultural mistrust and 8.94%of the variance in depression were accounted for by the model. When the mediator was included in the model, bias-corrected confidence intervals surrounding the indirect effect (<span class="math inline">\(B\)</span> = -0.675, <span class="math inline">\(p\)</span> = 0.066, CI95 -1.443 to 0.032) were not quite statistically significant. Consistent with mediation, the value of the total effect was larger in magnitude and statistically significant (<span class="math inline">\(B\)</span> = -1.406, <span class="math inline">\(p\)</span> = 0.000, CI95 -2.133 to -0.722) than the smaller and non-significant direct effect (<span class="math inline">\(B\)</span> = -0.732, <span class="math inline">\(p\)</span> = 0.151, CI95 -1.697 to 0.293).</p>
+</div>
+</div>
+<div id="considering-covariates" class="section level2" number="6.6">
+<h2><span class="header-section-number">6.6</span> Considering Covariates</h2>
+<p>Hayes Chapter 4 <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> considers the role of covariates (e.g., other variables that could account for some of the variance in the model). When previous research (or commonsense, or detractors) suggest you should include them…its worth a try. If they are non-significant and/or your variables continue to explain variance over-and-above their contribution, then you have gained ground in ruling out plausible rival hypotheses and are adding to causal evidence.</p>
+<p>They are relatively easy to specify in <em>lavaan</em>. Just look at to where the arrows point and then write the path!</p>
+<p>Let’s say we are concerned that anxiety covaries with cultural mistrust and PWB We’ll add it as a covariate to both.</p>
+<div class="figure">
+<img src="images/SimpleMed/Kim_wCovs.jpg" alt="" />
+<p class="caption">Image of the simple mediation model from Kim et al.</p>
+</div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="SimpleMed.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>)</span>
+<span id="cb199-2"><a href="SimpleMed.html#cb199-2" aria-hidden="true" tabindex="-1"></a>Kim_fit_covs <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb199-3"><a href="SimpleMed.html#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ b*CMI + c_p*REMS </span></span>
+<span id="cb199-4"><a href="SimpleMed.html#cb199-4" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~a*REMS</span></span>
+<span id="cb199-5"><a href="SimpleMed.html#cb199-5" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~ covM*ANX</span></span>
+<span id="cb199-6"><a href="SimpleMed.html#cb199-6" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ covY*ANX</span></span>
+<span id="cb199-7"><a href="SimpleMed.html#cb199-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-8"><a href="SimpleMed.html#cb199-8" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
+<span id="cb199-9"><a href="SimpleMed.html#cb199-9" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
+<span id="cb199-10"><a href="SimpleMed.html#cb199-10" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
+<span id="cb199-11"><a href="SimpleMed.html#cb199-11" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span>
+<span id="cb199-12"><a href="SimpleMed.html#cb199-12" aria-hidden="true" tabindex="-1"></a>Kim_fit_covs <span class="ot">&lt;-</span> <span class="fu">sem</span>(Kim_fit_covs, <span class="at">data =</span> Kim_df, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>)</span>
+<span id="cb199-13"><a href="SimpleMed.html#cb199-13" aria-hidden="true" tabindex="-1"></a>Kcov_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(Kim_fit_covs, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6-7 ended normally after 25 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of free parameters                          9
+##                                                       
+##   Number of observations                           156
+##   Number of missing patterns                         1
+##                                                       
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Model Test Baseline Model:
+## 
+##   Test statistic                               134.067
+##   Degrees of freedom                                 5
+##   P-value                                        0.000
+## 
+## User Model versus Baseline Model:
+## 
+##   Comparative Fit Index (CFI)                    1.000
+##   Tucker-Lewis Index (TLI)                       1.000
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)               -329.168
+##   Loglikelihood unrestricted model (H1)       -329.168
+##                                                       
+##   Akaike (AIC)                                 676.337
+##   Bayesian (BIC)                               703.785
+##   Sample-size adjusted Bayesian (BIC)          675.297
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.000
+##   90 Percent confidence interval - lower         0.000
+##   90 Percent confidence interval - upper         0.000
+##   P-value RMSEA &lt;= 0.05                             NA
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                            Bootstrap
+##   Number of requested bootstrap draws             1000
+##   Number of successful bootstrap draws            1000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##   PWB ~                                                                 
+##     CMI        (b)   -0.250    0.100   -2.509    0.012   -0.447   -0.066
+##     REMS     (c_p)    0.131    0.511    0.256    0.798   -0.863    1.153
+##   CMI ~                                                                 
+##     REMS       (a)    3.109    0.312    9.972    0.000    2.486    3.718
+##     ANX     (covM)   -0.030    0.052   -0.578    0.563   -0.129    0.073
+##   PWB ~                                                                 
+##     ANX     (covY)   -0.480    0.063   -7.596    0.000   -0.598   -0.356
+##    Std.lv  Std.all
+##                   
+##    -0.250   -0.230
+##     0.131    0.023
+##                   
+##     3.109    0.599
+##    -0.030   -0.036
+##                   
+##    -0.480   -0.528
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##    .PWB               5.636    0.285   19.766    0.000    5.100    6.200
+##    .CMI               2.032    0.164   12.388    0.000    1.701    2.355
+##    Std.lv  Std.all
+##     5.636    6.283
+##     2.032    2.457
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##    .PWB               0.524    0.064    8.206    0.000    0.388    0.643
+##    .CMI               0.445    0.053    8.457    0.000    0.335    0.550
+##    Std.lv  Std.all
+##     0.524    0.651
+##     0.445    0.651
+## 
+## R-Square:
+##                    Estimate
+##     PWB               0.349
+##     CMI               0.349
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##     indirect         -0.776    0.321   -2.417    0.016   -1.455   -0.214
+##     direct            0.131    0.511    0.256    0.798   -0.863    1.153
+##     total_c          -0.646    0.373   -1.731    0.083   -1.398    0.079
+##    Std.lv  Std.all
+##    -0.776   -0.138
+##     0.131    0.023
+##    -0.646   -0.115</code></pre>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="SimpleMed.html#cb201-1" aria-hidden="true" tabindex="-1"></a>Kcov_ParEsts<span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(Kim_fit_covs, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb201-2"><a href="SimpleMed.html#cb201-2" aria-hidden="true" tabindex="-1"></a>Kcov_sum</span></code></pre></div>
+<pre><code>## $FIT
+##              npar              fmin             chisq                df 
+##             9.000             0.000             0.000             0.000 
+##            pvalue    baseline.chisq       baseline.df   baseline.pvalue 
+##                NA           134.067             5.000             0.000 
+##               cfi               tli              logl unrestricted.logl 
+##             1.000             1.000          -329.168          -329.168 
+##               aic               bic            ntotal              bic2 
+##           676.337           703.785           156.000           675.297 
+##             rmsea    rmsea.ci.lower    rmsea.ci.upper      rmsea.pvalue 
+##             0.000             0.000             0.000                NA 
+##              srmr 
+##             0.000 
+## 
+## $PE
+##         lhs op       rhs    label exo        est         se          z
+## 1       PWB  ~       CMI        b   0 -0.2497502 0.09956147 -2.5085030
+## 2       PWB  ~      REMS      c_p   0  0.1309468 0.51068059  0.2564162
+## 3       CMI  ~      REMS        a   0  3.1089393 0.31175531  9.9723701
+## 4       CMI  ~       ANX     covM   0 -0.0300322 0.05198649 -0.5776923
+## 5       PWB  ~       ANX     covY   0 -0.4803760 0.06323940 -7.5961503
+## 6       PWB ~~       PWB            0  0.5236894 0.06381737  8.2060640
+## 7       CMI ~~       CMI            0  0.4453962 0.05266753  8.4567510
+## 8      REMS ~~      REMS            1  0.0254359 0.00000000         NA
+## 9      REMS ~~       ANX            1  0.0409200 0.00000000         NA
+## 10      ANX ~~       ANX            1  0.9738173 0.00000000         NA
+## 11      PWB ~1                      0  5.6362494 0.28514695 19.7661218
+## 12      CMI ~1                      0  2.0324566 0.16407293 12.3875193
+## 13     REMS ~1                      1  0.3400000 0.00000000         NA
+## 14      ANX ~1                      1  2.9800000 0.00000000         NA
+## 15 indirect :=       a*b indirect   0 -0.7764583 0.32118731 -2.4174627
+## 16   direct :=       c_p   direct   0  0.1309468 0.51093612  0.2562879
+## 17  total_c := c_p+(a*b)  total_c   0 -0.6455116 0.37291311 -1.7309973
+## 18      PWB r2       PWB            0  0.3492987         NA         NA
+## 19      CMI r2       CMI            0  0.3492964         NA         NA
+##          pvalue   ci.lower    ci.upper     std.lv     std.all    std.nox
+## 1  1.212439e-02 -0.4474766 -0.06635469 -0.2497502 -0.23032523 -0.2303252
+## 2  7.976295e-01 -0.8627072  1.15281186  0.1309468  0.02327942  0.1459650
+## 3  0.000000e+00  2.4857344  3.71801761  3.1089393  0.59931360  3.7577735
+## 4  5.634719e-01 -0.1292826  0.07255185 -0.0300322 -0.03582154 -0.0362999
+## 5  3.042011e-14 -0.5982298 -0.35643425 -0.4803760 -0.52841362 -0.5354701
+## 6  2.220446e-16  0.3884796  0.64286913  0.5236894  0.65070130  0.6507013
+## 7  0.000000e+00  0.3352469  0.54995342  0.4453962  0.65070356  0.6507036
+## 8            NA  0.0254359  0.02543590  0.0254359  1.00000000  0.0254359
+## 9            NA  0.0409200  0.04092000  0.0409200  0.26000000  0.0409200
+## 10           NA  0.9738173  0.97381731  0.9738173  1.00000000  0.9738173
+## 11 0.000000e+00  5.0996172  6.20009556  5.6362494  6.28266844  6.2826684
+## 12 0.000000e+00  1.7013065  2.35450817  2.0324566  2.45662936  2.4566294
+## 13           NA  0.3400000  0.34000000  0.3400000  2.13184382  0.3400000
+## 14           NA  2.9800000  2.98000000  2.9800000  3.01979540  2.9800000
+## 15 1.562914e-02 -1.4547978 -0.21398042 -0.7764583 -0.13803704 -0.8655100
+## 16 7.977285e-01 -0.8627072  1.15281186  0.1309468  0.02327942  0.1459650
+## 17 8.345224e-02 -1.3981671  0.07871598 -0.6455116 -0.11475762 -0.7195450
+## 18           NA         NA          NA         NA          NA         NA
+## 19           NA         NA          NA         NA          NA         NA</code></pre>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="SimpleMed.html#cb203-1" aria-hidden="true" tabindex="-1"></a>Kcov_ParEsts</span></code></pre></div>
+<pre><code>##         lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper
+## 1       PWB  ~       CMI        b -0.250 0.100 -2.509  0.012   -0.447   -0.066
+## 2       PWB  ~      REMS      c_p  0.131 0.511  0.256  0.798   -0.854    1.158
+## 3       CMI  ~      REMS        a  3.109 0.312  9.972  0.000    2.480    3.717
+## 4       CMI  ~       ANX     covM -0.030 0.052 -0.578  0.563   -0.129    0.074
+## 5       PWB  ~       ANX     covY -0.480 0.063 -7.596  0.000   -0.594   -0.348
+## 6       PWB ~~       PWB           0.524 0.064  8.206  0.000    0.424    0.681
+## 7       CMI ~~       CMI           0.445 0.053  8.457  0.000    0.358    0.568
+## 8      REMS ~~      REMS           0.025 0.000     NA     NA    0.025    0.025
+## 9      REMS ~~       ANX           0.041 0.000     NA     NA    0.041    0.041
+## 10      ANX ~~       ANX           0.974 0.000     NA     NA    0.974    0.974
+## 11      PWB ~1                     5.636 0.285 19.766  0.000    5.091    6.192
+## 12      CMI ~1                     2.032 0.164 12.388  0.000    1.709    2.368
+## 13     REMS ~1                     0.340 0.000     NA     NA    0.340    0.340
+## 14      ANX ~1                     2.980 0.000     NA     NA    2.980    2.980
+## 15 indirect :=       a*b indirect -0.776 0.321 -2.417  0.016   -1.486   -0.229
+## 16   direct :=       c_p   direct  0.131 0.511  0.256  0.798   -0.854    1.158
+## 17  total_c := c_p+(a*b)  total_c -0.646 0.373 -1.731  0.083   -1.392    0.079
+##    std.lv std.all std.nox
+## 1  -0.250  -0.230  -0.230
+## 2   0.131   0.023   0.146
+## 3   3.109   0.599   3.758
+## 4  -0.030  -0.036  -0.036
+## 5  -0.480  -0.528  -0.535
+## 6   0.524   0.651   0.651
+## 7   0.445   0.651   0.651
+## 8   0.025   1.000   0.025
+## 9   0.041   0.260   0.041
+## 10  0.974   1.000   0.974
+## 11  5.636   6.283   6.283
+## 12  2.032   2.457   2.457
+## 13  0.340   2.132   0.340
+## 14  2.980   3.020   2.980
+## 15 -0.776  -0.138  -0.866
+## 16  0.131   0.023   0.146
+## 17 -0.646  -0.115  -0.720</code></pre>
+<div id="a-figure-and-a-table-1" class="section level3" number="6.6.1">
+<h3><span class="header-section-number">6.6.1</span> A Figure and a Table</h3>
+<p>Let’s look at a figure to see see if we did what we think we did. And to also get a graphic representation of our results. The semplot package does this easily, but the figure is more statistical than conceptual and would require more tinkering for a journal article.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="SimpleMed.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(Kim_fit_covs, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb205-2"><a href="SimpleMed.html#cb205-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb205-3"><a href="SimpleMed.html#cb205-3" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb205-4"><a href="SimpleMed.html#cb205-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
+<span id="cb205-5"><a href="SimpleMed.html#cb205-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb205-6"><a href="SimpleMed.html#cb205-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb205-7"><a href="SimpleMed.html#cb205-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb205-8"><a href="SimpleMed.html#cb205-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb205-9"><a href="SimpleMed.html#cb205-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb205-10"><a href="SimpleMed.html#cb205-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb205-11"><a href="SimpleMed.html#cb205-11" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb205-12"><a href="SimpleMed.html#cb205-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb205-13"><a href="SimpleMed.html#cb205-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb205-14"><a href="SimpleMed.html#cb205-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb205-15"><a href="SimpleMed.html#cb205-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb205-16"><a href="SimpleMed.html#cb205-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb205-17"><a href="SimpleMed.html#cb205-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb205-18"><a href="SimpleMed.html#cb205-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb205-19"><a href="SimpleMed.html#cb205-19" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Entrepreneurial Withdrawal by eDistress via Negative Affect (&amp; some covariates(&quot;</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/semPLOT%20for%20model%20w%20covs-1.svg" width="672" /></p>
+<p>The path coefficients appear to be correct, but this is really a statistical map and doesn’t relay the concept of mediation well.</p>
+<p>Below is code to create an outfile that could help with creating a table in a word document or spreadsheet. There will be output that is produced with SEM models that won’t be relevant for this project.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="SimpleMed.html#cb206-1" aria-hidden="true" tabindex="-1"></a>KimCOVTab <span class="ot">&lt;-</span> <span class="fu">semTable</span>(Kim_fit_covs, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;ESTRESScov_fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Table 2</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Model Coefficients Assessing Cultural Mistrust as a Mediator Between Racial Microaggressions and Well-Being</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">Cultural Mistrust (M)</td>
+<td align="center"></td>
+<td align="center">Well-Being (Y)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Antecedent</td>
+<td align="center">path</td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td align="center"><span class="math inline">\(SE\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td align="center">path</td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td align="center"><span class="math inline">\(SE\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">constant</td>
+<td align="center"><span class="math inline">\(i_{M}\)</span></td>
+<td align="center">2.032</td>
+<td align="center">0.164</td>
+<td align="center">0.000</td>
+<td align="center"><span class="math inline">\(i_{Y}\)</span></td>
+<td align="center">5.636</td>
+<td align="center">0.285</td>
+<td align="center">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">REMS (X)</td>
+<td align="center"><span class="math inline">\(a\)</span></td>
+<td align="center">3.109</td>
+<td align="center">0.312</td>
+<td align="center">0.000</td>
+<td align="center"><span class="math inline">\(c&#39;\)</span></td>
+<td align="center">0.131</td>
+<td align="center">0.511</td>
+<td align="center">0.798</td>
+</tr>
+<tr class="even">
+<td align="left">CMI (M)</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(b\)</span></td>
+<td align="center">-0.250</td>
+<td align="center">0.100</td>
+<td align="center">0.012</td>
+</tr>
+<tr class="odd">
+<td align="left">ANX (Cov)</td>
+<td align="center"></td>
+<td align="center">-0.030</td>
+<td align="center">0.052</td>
+<td align="center">0.563</td>
+<td align="center"></td>
+<td align="center">-0.480</td>
+<td align="center">0.063</td>
+<td align="center">0.000</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"><span class="math inline">\(R^2\)</span> = 34.93%</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(R^2\)</span> = 34.93%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="apa-style-write-up" class="section level3" number="6.6.2">
+<h3><span class="header-section-number">6.6.2</span> APA Style Write-up</h3>
+<p>There are varying models for reporting the results of mediation. The Kim et al. <span class="citation">(<a href="refs.html#ref-kim_racial_2017" role="doc-biblioref">Paul Youngbin Kim et al., 2017</a>)</span> writeup is a great example. Rather than copying it directly, I have modeled my table after the ones in Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> text. You’ll notice that information in the table and text are minimally overlapping. APA style cautions us against redundancy in text and table.</p>
+<p><strong>Results</strong></p>
+<p>A simple mediation model examined the degree to which cultural mistrust mediated the effect of racial microaggressions on psychological well-being. Using the <em>lavaan</em> package (v 0.6-7) in R, coefficients for the each path, the indirect effect, and total effects were calculated. The effect of covariate, anxiety, was mapped onto both the mediator and dependent variable. These values are presented in Table 3 and illustrated in Figure 3. Results suggested that 34.93% of the variance in cultural mistrust and 34.93% of the variance in well-being were accounted for by the model. Supporting the notion of a mediated model, there was a statistically significant indirect effect (<span class="math inline">\(B\)</span> = -0.776, <span class="math inline">\(p\)</span> = 0.016, CI95 -1.486 to -0.229) in combination with a non-significant direct effect (<span class="math inline">\(B\)</span> = 0.131, <span class="math inline">\(p\)</span> = 0.798, CI95 -0.854 to 1.158). Curiously, though, the total effect (<span class="math inline">\(B\)</span> = -0.646, <span class="math inline">\(p\)</span> = 0.083, CI95 -1.392 to 0.079) was also non-significant.</p>
+</div>
+</div>
+<div id="residual-and-related-questions" class="section level2" number="6.7">
+<h2><span class="header-section-number">6.7</span> Residual and Related Questions…</h2>
+<p>..that you might have; or at least I had, but if had answered them earlier it would have disrupt the flow.</p>
+<ol style="list-style-type: decimal">
+<li>Are you sure you can claim a significant indirect effect in the presence of a non-significant total effect? Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> is.
+<ul>
+<li>In the section subtitled, “What about Baron &amp; Kenny” (chapter 4), Hayes argues from both logical/philosophical and statistical perspectives that the size of the total effect does not constrain or determine the size of the indirect effect. That is, an indirect effect can be different from zero even when the total effect is not (pp. 117-119).<br />
+</li>
+</ul></li>
+<li>The output we get is different from the output in the journal article being used as the research vignette. Why? And should we worry about it?
+<ul>
+<li>We are simulating data. This gives us some advantages in that (unless we specify it), we never have missingness and our variables should be normally distributed. Because we are working from means, standard deviations, and correlations, our data will never be the same as the original researcher. That said, we can compare our results to the journal to <em>check out work.</em> In fact, in this very chapter, I got turned around (e.g., first accidentally swapping the mediator and IV; then using the wrong DV) and was able to compare my work against the journal article to correct my errors.</li>
+</ul></li>
+<li>Some of the statistics you are reporting are different than the ones in Hayes and the ones that use the PROCESS macro (e.g., what happened to the <em>F</em> test)?
+<ul>
+<li>The default estimator for <em>lavaan</em> is maximum likelihood (ML) and Hayes uses ordinary least squares (OLS). This affects both the values of coefficients, standard errors, AND the type of statistics that are reported.</li>
+<li>You can ask for OLS regression by adding the statement “estimator =”GLS". Even with this option, I have not discovered a way to obtain the <em>F</em> tests for the overall model. Researchers seem to be comfortable with this, even asking for less than we did (e.g., many do not request R square).</li>
+<li>Best I can tell, researchers who do want this might use a combination of packages, using GLS estimators in <em>lavaan</em> (this easily gets them the bootstrapped CIs) and the move to a different regression package to get the intercepts and <em>F</em> tests. If I did this I would triple check to make sure that all the output really lined up.</li>
+</ul></li>
+<li>Why did we ignore the traditional fit statistics associated with structural equation modeling (e.g., CFI, RMSEA).
+<ul>
+<li>I hesitate to do this with models that do not include latent variables. Therefore, we asked for an “in-between” amount of info that should be sufficient for publication submission (any editor may have their own preferences and ask for more).</li>
+</ul></li>
+<li>What if I have missing data?
+<ul>
+<li>When we enter the <em>lavaan</em> world we do get options other than multiple imputation. In today’s example we used the “sem” fitting function. Unless otherwise specified, listwise deletion (deleting the entire case when one of its variables is used to estimate the model) is the default in <em>lavaan</em>. If data are MCAR or MAR, you can add the argument <em>missing = “ml”</em> (or its alias <em>missing = “fiml”</em>). More here <a href="https://users.ugent.be/~yrosseel/lavaan/lavaan2.pdf" class="uri">https://users.ugent.be/~yrosseel/lavaan/lavaan2.pdf</a> on the 1.7/Missing data in lavaan slide.</li>
+<li>That said, the type of estimator matters. If you estimate your data with GLS (generalized least squares) or WLS (weighted least squares), you are required to have complete data (however you got it). We used maximum likelihood and, even though we had non-missing data, I used the <em>missing = “fiml”</em> code.</li>
+</ul></li>
+</ol>
+</div>
+<div id="practice-problems-4" class="section level2" number="6.8">
+<h2><span class="header-section-number">6.8</span> Practice Problems</h2>
+<p>The three problems described below are designed to grow with the subsequent chapters on complex mediation and conditional process analysis (i.e,. moderated mediation). Therefore, I recommend that you select a dataset that includes at least four variables. If you are new to this topic, you may wish to select variables that are all continuously scaled. The IV and moderator (subsequent chapters) could be categorical (if they are dichotomous, please use 0/1 coding; if they have more than one category it is best if they are ordered). You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.</p>
+<p>The suggested practice problem for this chapter is to conduct a simple mediation.</p>
+<div id="problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed" class="section level3" number="6.8.1">
+<h3><span class="header-section-number">6.8.1</span> Problem #1: Rework the research vignette as demonstrated, but change the random seed</h3>
+<p>If this topic feels a bit overwhelming, simply change the random seed in the data simulation, then rework the problem. This should provide minor changes to the data (maybe in the second or third decimal point), but the results will likely be very similar.</p>
+<table>
+<colgroup>
+<col width="76%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Assign each variable to the X, Y, or M roles (ok but not required to include a cov)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Specify and run the lavaan model</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Use semPlot to create a figure</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Create a table that includes regression output for the M and Y variables</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Represent your work in an APA-style write-up</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, &amp; c’ paths</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">35</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-2-rework-the-research-vignette-but-swap-one-or-more-variables" class="section level3" number="6.8.2">
+<h3><span class="header-section-number">6.8.2</span> Problem #2: Rework the research vignette, but swap one or more variables</h3>
+<p>Use the simulated data, but select one of the other models that was evaluated in the Kim et al. <span class="citation">(<a href="refs.html#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span> study. Compare your results to those reported in the mansucript.</p>
+<table>
+<colgroup>
+<col width="76%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Assign each variable to the X, Y, or M roles (ok but not required to include a cov)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Specify and run the lavaan model</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Use semPlot to create a figure</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Create a table that includes regression output for the M and Y variables</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Represent your work in an APA-style write-up</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, &amp; c’ paths</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">35</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-3-use-other-data-that-is-available-to-you" class="section level3" number="6.8.3">
+<h3><span class="header-section-number">6.8.3</span> Problem #3: Use other data that is available to you</h3>
+<p>Using data for which you have permission and access (e.g., IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete a simple mediation.</p>
+<table>
+<colgroup>
+<col width="76%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Assign each variable to the X, Y, or M roles (ok but not required to include a cov)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Specify and run the lavaan model</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Use semPlot to create a figure</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Create a table that includes regression output for the M and Y variables</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Represent your work in an APA-style write-up</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, &amp; c’ paths</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">35</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="SimpleMed.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.0.4 (2021-02-15)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18362)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] MASS_7.3-53       semTable_1.8      semPlot_1.1.2     lavaan_0.6-7     
+##  [5] apaTables_2.0.8   gdtools_0.2.2     mice_3.13.0       sjstats_0.18.0   
+##  [9] formattable_0.2.1 qualtRics_3.1.4   forcats_0.5.0     stringr_1.4.0    
+## [13] dplyr_1.0.2       purrr_0.3.4       readr_1.4.0       tidyr_1.1.2      
+## [17] tibble_3.0.4      ggplot2_3.3.3     tidyverse_1.3.0   psych_2.0.12     
+## 
+## loaded via a namespace (and not attached):
+##   [1] readxl_1.3.1        backports_1.2.0     BDgraph_2.63       
+##   [4] Hmisc_4.4-2         systemfonts_0.3.2   igraph_1.2.6       
+##   [7] plyr_1.8.6          splines_4.0.4       TH.data_1.0-10     
+##  [10] digest_0.6.27       htmltools_0.5.0     matrixcalc_1.0-3   
+##  [13] fansi_0.4.1         magrittr_2.0.1      Rsolnp_1.16        
+##  [16] checkmate_2.0.0     lisrelToR_0.1.4     cluster_2.1.0      
+##  [19] openxlsx_4.2.3      modelr_0.1.8        sandwich_3.0-0     
+##  [22] svglite_1.2.3.2     jpeg_0.1-8.1        sem_3.1-11         
+##  [25] MBESS_4.8.0         colorspace_2.0-0    rvest_0.3.6        
+##  [28] haven_2.3.1         xfun_0.19           crayon_1.3.4       
+##  [31] jsonlite_1.7.2      lme4_1.1-26         regsem_1.6.2       
+##  [34] survival_3.2-7      zoo_1.8-8           glue_1.4.2         
+##  [37] gtable_0.3.0        emmeans_1.5.3       mi_1.0             
+##  [40] sjmisc_2.8.5        abind_1.4-5         scales_1.1.1       
+##  [43] mvtnorm_1.1-1       DBI_1.1.0           Rcpp_1.0.5         
+##  [46] xtable_1.8-4        performance_0.6.1   htmlTable_2.1.0    
+##  [49] tmvnsim_1.0-2       foreign_0.8-81      Formula_1.2-4      
+##  [52] stats4_4.0.4        truncnorm_1.0-8     htmlwidgets_1.5.3  
+##  [55] httr_1.4.2          RColorBrewer_1.1-2  ellipsis_0.3.1     
+##  [58] pkgconfig_2.0.3     XML_3.99-0.5        nnet_7.3-15        
+##  [61] kutils_1.70         dbplyr_2.0.0        utf8_1.1.4         
+##  [64] reshape2_1.4.4      tidyselect_1.1.0    rlang_0.4.9        
+##  [67] effectsize_0.4.1    munsell_0.5.0       cellranger_1.1.0   
+##  [70] tools_4.0.4         cli_2.2.0           generics_0.1.0     
+##  [73] sjlabelled_1.1.7    broom_0.7.3         fdrtool_1.2.15     
+##  [76] evaluate_0.14       arm_1.11-2          yaml_2.2.1         
+##  [79] knitr_1.30          fs_1.5.0            stationery_0.98.30 
+##  [82] zip_2.1.1           glasso_1.11         pbapply_1.4-3      
+##  [85] nlme_3.1-151        whisker_0.4         xml2_1.3.2         
+##  [88] compiler_4.0.4      rstudioapi_0.13     curl_4.3           
+##  [91] png_0.1-7           huge_1.3.4.1        reprex_0.3.0       
+##  [94] statmod_1.4.35      pbivnorm_0.6.0      stringi_1.5.3      
+##  [97] parameters_0.10.1   qgraph_1.6.5        rockchalk_1.8.144  
+## [100] lattice_0.20-41     Matrix_1.2-18       nloptr_1.2.2.2     
+## [103] vctrs_0.3.6         pillar_1.4.7        lifecycle_0.2.0    
+## [106] OpenMx_2.18.1       estimability_1.3    corpcor_1.6.9      
+## [109] data.table_1.13.4   insight_0.11.1      R6_2.5.0           
+## [112] latticeExtra_0.6-29 bookdown_0.21       gridExtra_2.3      
+## [115] codetools_0.2-18    gtools_3.8.2        boot_1.3-25        
+## [118] assertthat_0.2.1    rjson_0.2.20        withr_2.3.0        
+## [121] mnormt_2.0.2        multcomp_1.4-15     bayestestR_0.8.0   
+## [124] parallel_4.0.4      hms_0.5.3           grid_4.0.4         
+## [127] rpart_4.1-15        coda_0.19-4         minqa_1.2.4        
+## [130] rmarkdown_2.6       carData_3.0-4       d3Network_0.5.2.1  
+## [133] lubridate_1.7.9.2   base64enc_0.1-3</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="CPA.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="CompMed.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ontheline/otl-bookdown/blob/master/06-SimpleMed.Rmd",
+"text": null
+},
+"download": ["ReC_MultMod.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

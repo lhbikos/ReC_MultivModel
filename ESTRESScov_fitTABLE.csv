@@ -1,0 +1,53 @@
+,Model,
+ 
+,Estimate,Std. Err.,p,R Square,
+
+,Regression Slopes,
+ PWB,
+
+CMI,-0.25,0.10,.012,,
+
+REMS,0.13,0.51,.798,,
+
+ANX,-0.48,0.06,.000,,
+
+ CMI,
+
+REMS,3.11,0.31,.000,,
+
+ANX,-0.03,0.05,.563,,
+
+,Intercepts,
+
+PWB,5.64,0.29,.000,,
+
+CMI,2.03,0.16,.000,,
+
+REMS,0.34+,,,,
+
+ANX,2.98+,,,,
+
+,Residual Variances,
+
+PWB,0.52,0.06,.000,,
+
+CMI,0.45,0.05,.000,,
+
+REMS,0.03+,,,,
+
+ANX,0.97+,,,,
+
+,Fit Indices,
+
+chi^2,0.00(0),,,,
+
+CFI,1.00,,,,
+
+TLI,1.00,,,,
+
+RMSEA,0.00,,,,
+
++Fixed parameter,
+
+
+

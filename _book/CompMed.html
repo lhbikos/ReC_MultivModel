@@ -1,0 +1,2250 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Complex Mediation | ReCentering Psych Stats: Multivariate Modeling</title>
+  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Complex Mediation | ReCentering Psych Stats: Multivariate Modeling" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Complex Mediation | ReCentering Psych Stats: Multivariate Modeling" />
+  
+  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="SimpleMed.html"/>
+<link rel="next" href="ModMed.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><strong>ReCentering Psych Stats: Multivariate Modeling</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>PREFACE</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
+<li class="chapter" data-level="1" data-path="ReCintro.html"><a href="ReCintro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
+<li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
+<ul>
+<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
+<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
+<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
+<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
+<li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dataprep.html"><a href="dataprep.html"><i class="fa fa-check"></i>DATA PREP</a></li>
+<li class="chapter" data-level="2" data-path="scrub.html"><a href="scrub.html"><i class="fa fa-check"></i><b>2</b> Scrubbing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="scrub.html"><a href="scrub.html#navigating-this-lesson"><i class="fa fa-check"></i><b>2.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="scrub.html"><a href="scrub.html#learning-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.1.2" data-path="scrub.html"><a href="scrub.html#planning-for-practice"><i class="fa fa-check"></i><b>2.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="2.1.3" data-path="scrub.html"><a href="scrub.html#readings-resources"><i class="fa fa-check"></i><b>2.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="2.1.4" data-path="scrub.html"><a href="scrub.html#packages-1"><i class="fa fa-check"></i><b>2.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="scrub.html"><a href="scrub.html#workflow-for-scrubbing-and-scoring"><i class="fa fa-check"></i><b>2.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="2.3" data-path="scrub.html"><a href="scrub.html#research-vignette"><i class="fa fa-check"></i><b>2.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="2.4" data-path="scrub.html"><a href="scrub.html#working-the-problem"><i class="fa fa-check"></i><b>2.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="scrub.html"><a href="scrub.html#intravenous-qualtrics"><i class="fa fa-check"></i><b>2.4.1</b> intRavenous Qualtrics</a></li>
+<li class="chapter" data-level="2.4.2" data-path="scrub.html"><a href="scrub.html#about-the-rate-a-recent-course-survey"><i class="fa fa-check"></i><b>2.4.2</b> About the <em>Rate-a-Recent-Course</em> Survey</a></li>
+<li class="chapter" data-level="2.4.3" data-path="scrub.html"><a href="scrub.html#the-codebook"><i class="fa fa-check"></i><b>2.4.3</b> The Codebook</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="scrub.html"><a href="scrub.html#scrubbing"><i class="fa fa-check"></i><b>2.5</b> Scrubbing</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="scrub.html"><a href="scrub.html#tools-for-data-manipulations"><i class="fa fa-check"></i><b>2.5.1</b> Tools for Data Manipulations</a></li>
+<li class="chapter" data-level="2.5.2" data-path="scrub.html"><a href="scrub.html#inclusion-and-exclusion-criteria"><i class="fa fa-check"></i><b>2.5.2</b> Inclusion and Exclusion Criteria</a></li>
+<li class="chapter" data-level="2.5.3" data-path="scrub.html"><a href="scrub.html#renaming-variables"><i class="fa fa-check"></i><b>2.5.3</b> Renaming Variables</a></li>
+<li class="chapter" data-level="2.5.4" data-path="scrub.html"><a href="scrub.html#downsizing-the-dataframe"><i class="fa fa-check"></i><b>2.5.4</b> Downsizing the Dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="scrub.html"><a href="scrub.html#toward-the-apa-style-write-up"><i class="fa fa-check"></i><b>2.6</b> Toward the APA Style Write-up</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="scrub.html"><a href="scrub.html#methodprocedure"><i class="fa fa-check"></i><b>2.6.1</b> Method/Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="scrub.html"><a href="scrub.html#practice-problems"><i class="fa fa-check"></i><b>2.7</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="scrub.html"><a href="scrub.html#problem-1-rework-the-chapter-problem"><i class="fa fa-check"></i><b>2.7.1</b> Problem #1: Rework the Chapter Problem</a></li>
+<li class="chapter" data-level="2.7.2" data-path="scrub.html"><a href="scrub.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables"><i class="fa fa-check"></i><b>2.7.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="2.7.3" data-path="scrub.html"><a href="scrub.html#problem-3-other-data"><i class="fa fa-check"></i><b>2.7.3</b> Problem #3: Other data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="scrub.html"><a href="scrub.html#bonus-track"><i class="fa fa-check"></i><b>2.8</b> Bonus Track:</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="scrub.html"><a href="scrub.html#importing-data-from-an-exported-qualtrics-.csv-file"><i class="fa fa-check"></i><b>2.8.1</b> Importing data from an exported Qualtrics .csv file</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="score.html"><a href="score.html"><i class="fa fa-check"></i><b>3</b> Scoring</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="score.html"><a href="score.html#navigating-this-lesson-1"><i class="fa fa-check"></i><b>3.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="score.html"><a href="score.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="score.html"><a href="score.html#planning-for-practice-1"><i class="fa fa-check"></i><b>3.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="3.1.3" data-path="score.html"><a href="score.html#readings-resources-1"><i class="fa fa-check"></i><b>3.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="3.1.4" data-path="score.html"><a href="score.html#packages-2"><i class="fa fa-check"></i><b>3.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="score.html"><a href="score.html#workflow-for-scrubbing-and-scoring-1"><i class="fa fa-check"></i><b>3.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="3.3" data-path="score.html"><a href="score.html#research-vignette-1"><i class="fa fa-check"></i><b>3.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="3.4" data-path="score.html"><a href="score.html#on-missing-data"><i class="fa fa-check"></i><b>3.4</b> On Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="score.html"><a href="score.html#data-loss-mechanisms"><i class="fa fa-check"></i><b>3.4.1</b> Data Loss Mechanisms</a></li>
+<li class="chapter" data-level="3.4.2" data-path="score.html"><a href="score.html#diagnosing-missing-data-mechanisms"><i class="fa fa-check"></i><b>3.4.2</b> Diagnosing Missing Data Mechanisms</a></li>
+<li class="chapter" data-level="3.4.3" data-path="score.html"><a href="score.html#managing-missing-data"><i class="fa fa-check"></i><b>3.4.3</b> Managing Missing Data</a></li>
+<li class="chapter" data-level="3.4.4" data-path="score.html"><a href="score.html#available-information-analysis-aia"><i class="fa fa-check"></i><b>3.4.4</b> Available Information Analysis (AIA)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="score.html"><a href="score.html#working-the-problem-1"><i class="fa fa-check"></i><b>3.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="score.html"><a href="score.html#missing-data-analysis-whole-df-and-item-level"><i class="fa fa-check"></i><b>3.5.1</b> Missing Data Analysis: Whole df and Item level</a></li>
+<li class="chapter" data-level="3.5.2" data-path="score.html"><a href="score.html#analyzing-missing-data-patterns"><i class="fa fa-check"></i><b>3.5.2</b> Analyzing Missing Data Patterns</a></li>
+<li class="chapter" data-level="3.5.3" data-path="score.html"><a href="score.html#missing-mechanisms"><i class="fa fa-check"></i><b>3.5.3</b> Missing Mechanisms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="score.html"><a href="score.html#scoring"><i class="fa fa-check"></i><b>3.6</b> Scoring</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="score.html"><a href="score.html#reverse-scoring"><i class="fa fa-check"></i><b>3.6.1</b> Reverse scoring</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="score.html"><a href="score.html#missing-analysis-scale-level"><i class="fa fa-check"></i><b>3.7</b> Missing Analysis: Scale level</a></li>
+<li class="chapter" data-level="3.8" data-path="score.html"><a href="score.html#revisiting-missing-analysis-at-the-scale-level"><i class="fa fa-check"></i><b>3.8</b> Revisiting Missing Analysis at the Scale Level</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="score.html"><a href="score.html#scale-level-patterns-of-missing-data"><i class="fa fa-check"></i><b>3.8.1</b> Scale Level: Patterns of Missing Data</a></li>
+<li class="chapter" data-level="3.8.2" data-path="score.html"><a href="score.html#is-it-mcar"><i class="fa fa-check"></i><b>3.8.2</b> Is it MCAR?</a></li>
+<li class="chapter" data-level="3.8.3" data-path="score.html"><a href="score.html#r-eady-for-analysis"><i class="fa fa-check"></i><b>3.8.3</b> R-eady for Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="score.html"><a href="score.html#the-apa-style-write-up"><i class="fa fa-check"></i><b>3.9</b> The APA Style Write-Up</a></li>
+<li class="chapter" data-level="3.10" data-path="score.html"><a href="score.html#results"><i class="fa fa-check"></i><b>3.10</b> Results</a></li>
+<li class="chapter" data-level="3.11" data-path="score.html"><a href="score.html#practice-problems-1"><i class="fa fa-check"></i><b>3.11</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="score.html"><a href="score.html#problem-1-reworking-the-chapter-problem"><i class="fa fa-check"></i><b>3.11.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="3.11.2" data-path="score.html"><a href="score.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-1"><i class="fa fa-check"></i><b>3.11.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="3.11.3" data-path="score.html"><a href="score.html#problem-3-other-data-1"><i class="fa fa-check"></i><b>3.11.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="DataDx.html"><a href="DataDx.html"><i class="fa fa-check"></i><b>4</b> Data Dx</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DataDx.html"><a href="DataDx.html#navigating-this-lesson-2"><i class="fa fa-check"></i><b>4.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DataDx.html"><a href="DataDx.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DataDx.html"><a href="DataDx.html#planning-for-practice-2"><i class="fa fa-check"></i><b>4.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DataDx.html"><a href="DataDx.html#readings-resources-2"><i class="fa fa-check"></i><b>4.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DataDx.html"><a href="DataDx.html#packages-3"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DataDx.html"><a href="DataDx.html#workflow-for-scrubbing-and-scoring-2"><i class="fa fa-check"></i><b>4.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="4.3" data-path="DataDx.html"><a href="DataDx.html#research-vignette-2"><i class="fa fa-check"></i><b>4.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="4.4" data-path="DataDx.html"><a href="DataDx.html#internal-consistency-of-scalessubscales"><i class="fa fa-check"></i><b>4.4</b> Internal Consistency of Scales/Subscales</a></li>
+<li class="chapter" data-level="4.5" data-path="DataDx.html"><a href="DataDx.html#distributional-characteristics-of-the-variables"><i class="fa fa-check"></i><b>4.5</b> Distributional Characteristics of the Variables</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="DataDx.html"><a href="DataDx.html#evaluating-univariate-normality"><i class="fa fa-check"></i><b>4.5.1</b> Evaluating Univariate Normality</a></li>
+<li class="chapter" data-level="4.5.2" data-path="DataDx.html"><a href="DataDx.html#pairs-panels"><i class="fa fa-check"></i><b>4.5.2</b> Pairs Panels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="DataDx.html"><a href="DataDx.html#evaluating-multivariate-normality"><i class="fa fa-check"></i><b>4.6</b> Evaluating Multivariate Normality</a></li>
+<li class="chapter" data-level="4.7" data-path="DataDx.html"><a href="DataDx.html#a-few-words-on-transformations"><i class="fa fa-check"></i><b>4.7</b> A Few Words on Transformations</a></li>
+<li class="chapter" data-level="4.8" data-path="DataDx.html"><a href="DataDx.html#the-apa-style-write-up-1"><i class="fa fa-check"></i><b>4.8</b> The APA Style Write-Up</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="DataDx.html"><a href="DataDx.html#data-diagnostics"><i class="fa fa-check"></i><b>4.8.1</b> Data Diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="DataDx.html"><a href="DataDx.html#a-quick-regression-of-our-research-vignette"><i class="fa fa-check"></i><b>4.9</b> A Quick Regression of our Research Vignette</a></li>
+<li class="chapter" data-level="4.10" data-path="DataDx.html"><a href="DataDx.html#practice-problems-2"><i class="fa fa-check"></i><b>4.10</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="DataDx.html"><a href="DataDx.html#problem-1-reworking-the-chapter-problem-1"><i class="fa fa-check"></i><b>4.10.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="4.10.2" data-path="DataDx.html"><a href="DataDx.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-2"><i class="fa fa-check"></i><b>4.10.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="4.10.3" data-path="DataDx.html"><a href="DataDx.html#problem-3-other-data-2"><i class="fa fa-check"></i><b>4.10.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="multimp.html"><a href="multimp.html"><i class="fa fa-check"></i><b>5</b> Multiple Imputation (A Brief Demo)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="multimp.html"><a href="multimp.html#navigating-this-lesson-3"><i class="fa fa-check"></i><b>5.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="multimp.html"><a href="multimp.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="multimp.html"><a href="multimp.html#planning-for-practice-3"><i class="fa fa-check"></i><b>5.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="5.1.3" data-path="multimp.html"><a href="multimp.html#readings-resources-3"><i class="fa fa-check"></i><b>5.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="5.1.4" data-path="multimp.html"><a href="multimp.html#packages-4"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="multimp.html"><a href="multimp.html#workflow-for-multiple-imputation"><i class="fa fa-check"></i><b>5.2</b> Workflow for Multiple Imputation</a></li>
+<li class="chapter" data-level="5.3" data-path="multimp.html"><a href="multimp.html#research-vignette-3"><i class="fa fa-check"></i><b>5.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="5.4" data-path="multimp.html"><a href="multimp.html#multiple-imputation-a-super-brief-review"><i class="fa fa-check"></i><b>5.4</b> Multiple Imputation – a Super Brief Review</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="multimp.html"><a href="multimp.html#steps-in-multiple-imputation"><i class="fa fa-check"></i><b>5.4.1</b> Steps in Multiple Imputation</a></li>
+<li class="chapter" data-level="5.4.2" data-path="multimp.html"><a href="multimp.html#statistical-approaches-to-multiple-imputation"><i class="fa fa-check"></i><b>5.4.2</b> Statistical Approaches to Multiple Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="multimp.html"><a href="multimp.html#working-the-problem-2"><i class="fa fa-check"></i><b>5.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="multimp.html"><a href="multimp.html#selecting-and-formatting-variables"><i class="fa fa-check"></i><b>5.5.1</b> Selecting and Formatting Variables</a></li>
+<li class="chapter" data-level="5.5.2" data-path="multimp.html"><a href="multimp.html#creating-composite-variables"><i class="fa fa-check"></i><b>5.5.2</b> Creating Composite Variables</a></li>
+<li class="chapter" data-level="5.5.3" data-path="multimp.html"><a href="multimp.html#the-multiple-imputation"><i class="fa fa-check"></i><b>5.5.3</b> The Multiple Imputation</a></li>
+<li class="chapter" data-level="5.5.4" data-path="multimp.html"><a href="multimp.html#creating-scale-scores"><i class="fa fa-check"></i><b>5.5.4</b> Creating Scale Scores</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="multimp.html"><a href="multimp.html#multiple-regression-with-multiply-imputed-data"><i class="fa fa-check"></i><b>5.6</b> Multiple Regression with Multiply Imputed Data</a></li>
+<li class="chapter" data-level="5.7" data-path="multimp.html"><a href="multimp.html#toward-the-apa-style-write-up-1"><i class="fa fa-check"></i><b>5.7</b> Toward the APA Style Write-up</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="multimp.html"><a href="multimp.html#methoddata-diagnostics"><i class="fa fa-check"></i><b>5.7.1</b> Method/Data Diagnostics</a></li>
+<li class="chapter" data-level="5.7.2" data-path="multimp.html"><a href="multimp.html#results-1"><i class="fa fa-check"></i><b>5.7.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="multimp.html"><a href="multimp.html#multiple-imputation-considerations"><i class="fa fa-check"></i><b>5.8</b> Multiple imputation considerations</a></li>
+<li class="chapter" data-level="5.9" data-path="multimp.html"><a href="multimp.html#practice-problems-3"><i class="fa fa-check"></i><b>5.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="multimp.html"><a href="multimp.html#problem-1-reworking-the-chapter-problem-2"><i class="fa fa-check"></i><b>5.9.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="5.9.2" data-path="multimp.html"><a href="multimp.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-3"><i class="fa fa-check"></i><b>5.9.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="5.9.3" data-path="multimp.html"><a href="multimp.html#problem-3-other-data-3"><i class="fa fa-check"></i><b>5.9.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CPA.html"><a href="CPA.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
+<li class="chapter" data-level="6" data-path="SimpleMed.html"><a href="SimpleMed.html"><i class="fa fa-check"></i><b>6</b> Simple Mediation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="SimpleMed.html"><a href="SimpleMed.html#navigating-this-lesson-4"><i class="fa fa-check"></i><b>6.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="SimpleMed.html"><a href="SimpleMed.html#learning-objectives-4"><i class="fa fa-check"></i><b>6.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.1.2" data-path="SimpleMed.html"><a href="SimpleMed.html#planning-for-practice-4"><i class="fa fa-check"></i><b>6.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="6.1.3" data-path="SimpleMed.html"><a href="SimpleMed.html#readings-resources-4"><i class="fa fa-check"></i><b>6.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="SimpleMed.html"><a href="SimpleMed.html#packages-5"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="SimpleMed.html"><a href="SimpleMed.html#estimating-indirect-effects-the-analytic-approach-often-termed-mediation"><i class="fa fa-check"></i><b>6.2</b> Estimating Indirect Effects (the analytic approach often termed <em>mediation</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="SimpleMed.html"><a href="SimpleMed.html#the-definitional-and-conceptual"><i class="fa fa-check"></i><b>6.2.1</b> The definitional and conceptual</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="SimpleMed.html"><a href="SimpleMed.html#workflow-for-simple-mediation"><i class="fa fa-check"></i><b>6.3</b> Workflow for Simple Mediation</a></li>
+<li class="chapter" data-level="6.4" data-path="SimpleMed.html"><a href="SimpleMed.html#simple-mediation-in-lavaan-a-focus-on-the-mechanics"><i class="fa fa-check"></i><b>6.4</b> Simple Mediation in <em>lavaan</em>: A focus on the mechanics</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="SimpleMed.html"><a href="SimpleMed.html#simulate-fake-data"><i class="fa fa-check"></i><b>6.4.1</b> Simulate Fake Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="SimpleMed.html"><a href="SimpleMed.html#specify-mediation-model"><i class="fa fa-check"></i><b>6.4.2</b> Specify Mediation Model</a></li>
+<li class="chapter" data-level="6.4.3" data-path="SimpleMed.html"><a href="SimpleMed.html#interpret-the-output"><i class="fa fa-check"></i><b>6.4.3</b> Interpret the Output</a></li>
+<li class="chapter" data-level="6.4.4" data-path="SimpleMed.html"><a href="SimpleMed.html#a-table-and-a-figure"><i class="fa fa-check"></i><b>6.4.4</b> A Table and a Figure</a></li>
+<li class="chapter" data-level="6.4.5" data-path="SimpleMed.html"><a href="SimpleMed.html#results-2"><i class="fa fa-check"></i><b>6.4.5</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="SimpleMed.html"><a href="SimpleMed.html#research-vignette-4"><i class="fa fa-check"></i><b>6.5</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="SimpleMed.html"><a href="SimpleMed.html#simulate-data-from-the-journal-article"><i class="fa fa-check"></i><b>6.5.1</b> Simulate Data from the Journal Article</a></li>
+<li class="chapter" data-level="6.5.2" data-path="SimpleMed.html"><a href="SimpleMed.html#specify-the-model-in-lavaan"><i class="fa fa-check"></i><b>6.5.2</b> Specify the Model in <em>lavaan</em></a></li>
+<li class="chapter" data-level="6.5.3" data-path="SimpleMed.html"><a href="SimpleMed.html#interpret-the-output-1"><i class="fa fa-check"></i><b>6.5.3</b> Interpret the Output</a></li>
+<li class="chapter" data-level="6.5.4" data-path="SimpleMed.html"><a href="SimpleMed.html#a-figure-and-a-table"><i class="fa fa-check"></i><b>6.5.4</b> A Figure and a Table</a></li>
+<li class="chapter" data-level="6.5.5" data-path="SimpleMed.html"><a href="SimpleMed.html#results-3"><i class="fa fa-check"></i><b>6.5.5</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="SimpleMed.html"><a href="SimpleMed.html#considering-covariates"><i class="fa fa-check"></i><b>6.6</b> Considering Covariates</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="SimpleMed.html"><a href="SimpleMed.html#a-figure-and-a-table-1"><i class="fa fa-check"></i><b>6.6.1</b> A Figure and a Table</a></li>
+<li class="chapter" data-level="6.6.2" data-path="SimpleMed.html"><a href="SimpleMed.html#apa-style-write-up"><i class="fa fa-check"></i><b>6.6.2</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="SimpleMed.html"><a href="SimpleMed.html#residual-and-related-questions"><i class="fa fa-check"></i><b>6.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="6.8" data-path="SimpleMed.html"><a href="SimpleMed.html#practice-problems-4"><i class="fa fa-check"></i><b>6.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed"><i class="fa fa-check"></i><b>6.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="6.8.2" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables"><i class="fa fa-check"></i><b>6.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="6.8.3" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-3-use-other-data-that-is-available-to-you"><i class="fa fa-check"></i><b>6.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="CompMed.html"><a href="CompMed.html"><i class="fa fa-check"></i><b>7</b> Complex Mediation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="CompMed.html"><a href="CompMed.html#navigating-this-lesson-5"><i class="fa fa-check"></i><b>7.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="CompMed.html"><a href="CompMed.html#learning-objectives-5"><i class="fa fa-check"></i><b>7.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.1.2" data-path="CompMed.html"><a href="CompMed.html#planning-for-practice-5"><i class="fa fa-check"></i><b>7.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="7.1.3" data-path="CompMed.html"><a href="CompMed.html#readings-resources-5"><i class="fa fa-check"></i><b>7.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="7.1.4" data-path="CompMed.html"><a href="CompMed.html#packages-6"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="CompMed.html"><a href="CompMed.html#complex-mediation"><i class="fa fa-check"></i><b>7.2</b> Complex Mediation</a></li>
+<li class="chapter" data-level="7.3" data-path="CompMed.html"><a href="CompMed.html#parallel-mediation"><i class="fa fa-check"></i><b>7.3</b> Parallel Mediation</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a>
+<ul>
+<li class="chapter" data-level="7.3.1.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation"><i class="fa fa-check"></i><b>7.3.1.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="7.3.1.2" data-path="CompMed.html"><a href="CompMed.html#specifying-lavaan-code"><i class="fa fa-check"></i><b>7.3.1.2</b> Specifying <em>lavaan</em> code</a></li>
+<li class="chapter" data-level="7.3.1.3" data-path="CompMed.html"><a href="CompMed.html#a-note-on-indirect-effects-and-confidence-intervals"><i class="fa fa-check"></i><b>7.3.1.3</b> A note on indirect effects and confidence intervals</a></li>
+<li class="chapter" data-level="7.3.1.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables"><i class="fa fa-check"></i><b>7.3.1.4</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.3.1.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup"><i class="fa fa-check"></i><b>7.3.1.5</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="7.3.2.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation-1"><i class="fa fa-check"></i><b>7.3.2.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="7.3.2.2" data-path="CompMed.html"><a href="CompMed.html#quick-descriptives"><i class="fa fa-check"></i><b>7.3.2.2</b> Quick Descriptives</a></li>
+<li class="chapter" data-level="7.3.2.3" data-path="CompMed.html"><a href="CompMed.html#specifying-the-lavaan-model"><i class="fa fa-check"></i><b>7.3.2.3</b> Specifying the <em>lavaan</em> model</a></li>
+<li class="chapter" data-level="7.3.2.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-1"><i class="fa fa-check"></i><b>7.3.2.4</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.3.2.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-1"><i class="fa fa-check"></i><b>7.3.2.5</b> APA Style Writeup</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="CompMed.html"><a href="CompMed.html#serial-multiple-mediator-model"><i class="fa fa-check"></i><b>7.4</b> Serial Multiple Mediator Model</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="CompMed.html"><a href="CompMed.html#we-stick-with-the-lewis-et-al.--lewis_applying_2017-example-but-modify-it."><i class="fa fa-check"></i><b>7.4.1</b> We stick with the Lewis et al. <span class="citation">(<span>2017</span>)</span> example, but modify it.</a></li>
+<li class="chapter" data-level="7.4.2" data-path="CompMed.html"><a href="CompMed.html#specify-the-lavaan-model"><i class="fa fa-check"></i><b>7.4.2</b> Specify the <em>lavaan</em> model</a></li>
+<li class="chapter" data-level="7.4.3" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-2"><i class="fa fa-check"></i><b>7.4.3</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.4.4" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-2"><i class="fa fa-check"></i><b>7.4.4</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="CompMed.html"><a href="CompMed.html#troubleshooting-and-faqs"><i class="fa fa-check"></i><b>7.5</b> Troubleshooting and FAQs</a></li>
+<li class="chapter" data-level="7.6" data-path="CompMed.html"><a href="CompMed.html#practice-problems-5"><i class="fa fa-check"></i><b>7.6</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="CompMed.html"><a href="CompMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1"><i class="fa fa-check"></i><b>7.6.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="7.6.2" data-path="CompMed.html"><a href="CompMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-1"><i class="fa fa-check"></i><b>7.6.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="7.6.3" data-path="CompMed.html"><a href="CompMed.html#problem-3-use-other-data-that-is-available-to-you-1"><i class="fa fa-check"></i><b>7.6.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>8</b> Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ModMed.html"><a href="ModMed.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="ModMed.html"><a href="ModMed.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ModMed.html"><a href="ModMed.html#planning-for-practice-6"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ModMed.html"><a href="ModMed.html#readings-resources-6"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="8.1.4" data-path="ModMed.html"><a href="ModMed.html#packages-7"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="ModMed.html"><a href="ModMed.html#conditional-process-analysis"><i class="fa fa-check"></i><b>8.2</b> Conditional Process Analysis</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="ModMed.html"><a href="ModMed.html#the-definitional-and-conceptual-1"><i class="fa fa-check"></i><b>8.2.1</b> The definitional and conceptual</a></li>
+<li class="chapter" data-level="8.2.2" data-path="ModMed.html"><a href="ModMed.html#hayes--hayes_introduction_2018-piecewise-approach-to-building-models"><i class="fa fa-check"></i><b>8.2.2</b> Hayes’ <span class="citation">(<span>2018</span>)</span> Piecewise Approach to Building Models</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="ModMed.html"><a href="ModMed.html#workflow-for-moderated-mediation"><i class="fa fa-check"></i><b>8.3</b> Workflow for Moderated Mediation</a></li>
+<li class="chapter" data-level="8.4" data-path="ModMed.html"><a href="ModMed.html#research-vignette-6"><i class="fa fa-check"></i><b>8.4</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="ModMed.html"><a href="ModMed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>8.4.1</b> Simulating the data from the journal article</a></li>
+<li class="chapter" data-level="8.4.2" data-path="ModMed.html"><a href="ModMed.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>8.4.2</b> Quick peek at the data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5</b> Working the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.1</b> Analysis #1: A simple moderation</a></li>
+<li class="chapter" data-level="8.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.2</b> Analysis #2: Another simple moderation</a></li>
+<li class="chapter" data-level="8.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>8.5.1.3</b> Analysis #3: A simple mediation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>8.6</b> The Moderated Mediation: A Combined analysis</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>8.6.1</b> Specification in <em>lavaan</em></a></li>
+<li class="chapter" data-level="8.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>8.6.2</b> A quick plot</a></li>
+<li class="chapter" data-level="8.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>8.6.3</b> Beginning the interpretation</a></li>
+<li class="chapter" data-level="8.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data"><i class="fa fa-check"></i><b>8.6.4</b> Tabling the data</a>
+<ul>
+<li class="chapter" data-level="8.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>8.6.4.1</b> Conditional Indirect effects</a></li>
+<li class="chapter" data-level="8.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>8.6.4.2</b> Conditional Direct effect</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>8.6.5</b> Model trimming</a></li>
+<li class="chapter" data-level="8.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>8.6.6</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="ModMed.html"><a href="ModMed.html#residual-and-related-questions-1"><i class="fa fa-check"></i><b>8.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="8.8" data-path="ModMed.html"><a href="ModMed.html#practice-problems-6"><i class="fa fa-check"></i><b>8.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="ModMed.html"><a href="ModMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2"><i class="fa fa-check"></i><b>8.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="8.8.2" data-path="ModMed.html"><a href="ModMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-2"><i class="fa fa-check"></i><b>8.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="8.8.3" data-path="ModMed.html"><a href="ModMed.html#problem-3-use-other-data-that-is-available-to-you-2"><i class="fa fa-check"></i><b>8.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-1"><i class="fa fa-check"></i><b>8.9</b> Bonus Track:</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
+  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ReCentering Psych Stats: Multivariate Modeling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="CompMed" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Complex Mediation</h1>
+<p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=6991fd3d-22b6-44f5-ab5b-ad1000314b7f">Screencasted Lecture Link</a></p>
+<p>The focus of this chapter is the extension of simple mediation to models with multiple mediatrs. In these models with greater complexity we look at both parallel and serial mediation. There is also more elaboration on some of the conceptual issues related to the estimation of indirect effects.</p>
+<div id="navigating-this-lesson-5" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Navigating this Lesson</h2>
+<p>There is about 1 hour and 20 minutes of lecture. If you work through the materials with me it would be plan for an additional two hours.</p>
+<p>While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the <a href="https://github.com/lhbikos/ReC_MultivariateModeling">Github site</a> that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER’s <a href="ReCintro.html#ReCintro">introduction</a></p>
+<div id="learning-objectives-5" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Learning Objectives</h3>
+<p>Learning objectives from this lecture include the following:</p>
+<ul>
+<li>Define <em>epiphenomality</em> and explain how it is related to (and supports the notion of) multiple mediation.</li>
+<li>Distinguish between parallel and serial mediation models.</li>
+<li>Locate and interpret <em>lavaan</em> output from multiply mediated models including</li>
+<li>identifying coefficients,</li>
+<li>percentage of variance accounted for,<br />
+</li>
+<li>all the effects (total, direct, indirec. total indirect),</li>
+<li>contrasts.</li>
+<li>Explain the limitations of the classic approach <span class="citation">(<a href="refs.html#ref-baron_moderator-mediator_1986" role="doc-biblioref">Baron &amp; Kenny, 1986</a>)</span> to mediation.</li>
+</ul>
+</div>
+<div id="planning-for-practice-5" class="section level3" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Planning for Practice</h3>
+<p>The suggestions for practice in this chapter include conducting parallel, serial, and/or mediation models. Options of graded complexity could incude:</p>
+<ul>
+<li>Rework the problem in the chapter by changing the random seed in the code that simulates the data. This should provide minor changes to the data, but the results will likely be very similar.</li>
+<li>There are a number of variables in the dataset that sourced the research vignettes for this and the prior chapter on <a href="SimpleMed.html#SimpleMed">simple mediation</a>. Swap out one or more variables in a parallel or serial (or both) model.</li>
+<li>Conduct a parallel or serial (or both) mediation with data to which you have access. This could include data you simulate on your own or from a published article.</li>
+</ul>
+</div>
+<div id="readings-resources-5" class="section level3" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Readings &amp; Resources</h3>
+<p>In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.</p>
+<ul>
+<li>Hayes, A. F. (2018). <em>Introduction to mediation, moderation, and conditional process anlaysis: A regression-based approach</em>. New York, NY: Guilford Press. Available as an ebook from the SPU library: <a href="https://ebookcentral-proquest-com.ezproxy.spu.edu/lib/spu/detail.action?docID=5109647" class="uri">https://ebookcentral-proquest-com.ezproxy.spu.edu/lib/spu/detail.action?docID=5109647</a>
+<ul>
+<li><strong>Chapter 5: More than One Mediator</strong>: This chapter walks the reader through parallel and serial mediation models. We will do both!</li>
+<li><strong>Appendix A: Using Process</strong>: An essential tool for PROCESS users because, even when we are in the R environment, this is the “idea book.” That is, the place where all the path models are presented in figures.</li>
+</ul></li>
+<li>Lewis, J. A., Williams, M. G., Peppers, E. J., &amp; Gadson, C. A. (2017). Applying intersectionality to explore the relations between gendered racism and health among Black women. <em>Journal of Counseling Psychology</em>, <em>64</em>(5), 475–486. <a href="https://doi-org.ezproxy.spu.edu/10.1037/cou0000231" class="uri">https://doi-org.ezproxy.spu.edu/10.1037/cou0000231</a></li>
+</ul>
+</div>
+<div id="packages-6" class="section level3" number="7.1.4">
+<h3><span class="header-section-number">7.1.4</span> Packages</h3>
+<p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
+<!-- TODO: Build out this section. -->
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="CompMed.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb209-2"><a href="CompMed.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(lavaan)){<span class="fu">install.packages</span>(<span class="st">&quot;lavaan&quot;</span>)}</span>
+<span id="cb209-3"><a href="CompMed.html#cb209-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semPlot)){<span class="fu">install.packages</span>(<span class="st">&quot;semPlot&quot;</span>)}</span>
+<span id="cb209-4"><a href="CompMed.html#cb209-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
+<span id="cb209-5"><a href="CompMed.html#cb209-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
+<span id="cb209-6"><a href="CompMed.html#cb209-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(apaTables)){<span class="fu">install.packages</span>(<span class="st">&quot;apaTables&quot;</span>)}</span>
+<span id="cb209-7"><a href="CompMed.html#cb209-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(formattable)){<span class="fu">install.packages</span>(<span class="st">&quot;formattable&quot;</span>)}</span></code></pre></div>
+</div>
+</div>
+<div id="complex-mediation" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Complex Mediation</h2>
+<p>The simple mediation model is quite popular, but also limiting in that it:</p>
+<ul>
+<li>frequently oversimplifies the processes we want to study, and</li>
+<li>is likely mis-specified, in that there are unmodeled mechanisms.</li>
+</ul>
+<p>Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> identified four reasons to consider multiply mediated models:</p>
+<ul>
+<li>We are generally interested in MULTIPLE mechanisms</li>
+<li>A mechanism (such as a mediator) in the model, might, itself be mediated (i.e., mediated mediation)</li>
+<li><em>Epiphenomenality</em> (“unknown confounds”): a proposed mediator could be related to an outcome not because it causes the outcome, but because it is correlated with another variable that is causally influencing the outcome. This is a noncausal alternative explanation for an association.</li>
+<li>Including multiple mediators allows formal comparison of the strength of the mediating mechanisms.</li>
+</ul>
+<p>There are two multiple mediator models that we will consider: parallel, serial.</p>
+</div>
+<div id="parallel-mediation" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Parallel Mediation</h2>
+<p><strong>Parallel multiple mediation</strong>: An antecedent variable X is modeled as influencing consequent Y directly as well as indirectly through two or more mediators, with the condition that no mediator causally influences another <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">Hayes, 2018, p. 149</a>)</span></p>
+<p>With multiple mediation we introduce additional effects:</p>
+<ul>
+<li><em>Direct effect</em>, <span class="math inline">\(c&#39;\)</span> (this is not new) quantifies how much two cases that differ by a unit on X are estimated to differ on Y – independent of all mediators.</li>
+<li><em>Specific indirect effect</em>, <span class="math inline">\(a_{i}b_{i}\)</span>, the individual mediated effects</li>
+<li><em>Total indirect effects </em>, <span class="math inline">\(\sum_{i=1}^{k}a_{i}b_{i}\)</span> the sum of the values of the specific indirect effects. The total indirect effect can also be calculated by subtracting the direct effects from the total effects: <span class="math inline">\(c - c&#39;\)</span></li>
+<li><em>Total effect of X on Y</em>, <span class="math inline">\(c = c&#39; + \sum_{i=1}^{k}a_{i}b_{i}\)</span> (also not new) the sum of the direct and indirect effects. The total effect can also be estimated by regressing Y on X alone.</li>
+<li><em>Contrasts</em> allow us to directly compare separate mediating effects to see if one indirect effect is stronger than the other.</li>
+</ul>
+<p><img src="images/CompMed/ParaMed.jpg" alt="An image of the conceptual and statistical models of parallel mediation" />
+In this parallel model, we can describe these effects this way:</p>
+<ul>
+<li><em>Direct effect</em>: The effect of IV on the DV, accounting for two mediators (indirect effects) in the model.</li>
+<li><em>Specific indirect effects</em>: There are indirect (or mediating) paths from the IV to the DV; through M1 and M2, respectively.</li>
+<li><em>Total indirect effect of X on Y</em>: A sum of the value of indirect effects through the specific indirect effects (M1 and M2).</li>
+<li><em>Total effect</em>: The sum of the direct and indirect effects. Also calculated by regressing Y (dependent variable) on X (independent variable) alone, without any other variables in the model.</li>
+</ul>
+<p>Recall that for a complex mediation to be parallel, there can be no causal links between mediators. This is true in this example.</p>
+<p>As before, let’s work a mechanical example with simulated data that assures a statistically significant outcome. Credit to this example is from the PAULOTOFFANIN website <span class="citation">(<a href="refs.html#ref-toffanin_multiple-mediator_2017" role="doc-biblioref">Toffanin, 2017</a>)</span>.</p>
+<div id="a-mechanical-example" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> A Mechanical Example</h3>
+<p>We can bake our own data by updating the script we used in simple mediation to add a second mediator.</p>
+<div id="data-simulation" class="section level4" number="7.3.1.1">
+<h4><span class="header-section-number">7.3.1.1</span> Data Simulation</h4>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="CompMed.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concerned that identical variable names across book chapters may be problematic, I&#39;m adding &quot;p&quot; in front the &quot;Data&quot; variable.</span></span>
+<span id="cb210-2"><a href="CompMed.html#cb210-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210417</span>)</span>
+<span id="cb210-3"><a href="CompMed.html#cb210-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb210-4"><a href="CompMed.html#cb210-4" aria-hidden="true" tabindex="-1"></a>M1 <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>X <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb210-5"><a href="CompMed.html#cb210-5" aria-hidden="true" tabindex="-1"></a>M2 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.35</span><span class="sc">*</span>X <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb210-6"><a href="CompMed.html#cb210-6" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fl">0.7</span><span class="sc">*</span>M2 <span class="sc">+</span> <span class="fl">0.48</span><span class="sc">*</span>M1 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb210-7"><a href="CompMed.html#cb210-7" aria-hidden="true" tabindex="-1"></a>pData <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> X, <span class="at">Y =</span> Y, <span class="at">M1 =</span> M1, <span class="at">M2 =</span> M2)</span></code></pre></div>
+<p>Using what we learned in conducting a simple mediation in <em>lavaan</em>, we can look at the figure of our proposed model and <em>backwardstrace</em> the paths to write the code.</p>
+<p>Remember…</p>
+<ul>
+<li><p>The model exists between 2 single quotation marks (the odd looking ’ and ’ at the beginning and end).</p></li>
+<li><p>You can write the Y as I have done in the R chunk below, or you can write the Y separately from each arrow, such as</p>
+<ul>
+<li>Y ~ b1*M1</li>
+<li>Y ~ b2*M2</li>
+<li>Y ~ c_p*X</li>
+</ul></li>
+<li><p>Everything else transfers from our simple mediation, remember that</p>
+<ul>
+<li>the asterisk ("*") allows us to assign labels (a1, a2, b1, b2, etc.) to the paths; these are helpful for intuitive interpretation</li>
+<li>that eyes/nose notation (:=) is used when creating a new variable that is a function of variables in the model, but not in the dataset (i.e., the a and b path).</li>
+<li>in traditional mediation speak, the direct path from X to Y is c’ (c prime) and the total effect of X to Y (with nothing else in the model) is just c. Hence the c_p label for c prime.</li>
+</ul></li>
+<li><p>Something new: the <em>contrast</em> statement (only one in this example, but you could have more) allows us to compare the indirect effects to each other. We specify it in the lavaan model, but then need to test it in a subsequent set of script.</p></li>
+<li><p><em>Note</em>: In the online example, the writer adds code to correlate M1 and M2. This didn’t/doesn’t seem right to me and then, later, when we amend it to be a serial model, it made even less sense to have them be correlated.</p></li>
+</ul>
+</div>
+<div id="specifying-lavaan-code" class="section level4" number="7.3.1.2">
+<h4><span class="header-section-number">7.3.1.2</span> Specifying <em>lavaan</em> code</h4>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="CompMed.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb211-2"><a href="CompMed.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210418</span>)</span>
+<span id="cb211-3"><a href="CompMed.html#cb211-3" aria-hidden="true" tabindex="-1"></a>parallel_med <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb211-4"><a href="CompMed.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="st">    Y ~ b1*M1 + b2*M2 + c_p*X</span></span>
+<span id="cb211-5"><a href="CompMed.html#cb211-5" aria-hidden="true" tabindex="-1"></a><span class="st">    M1 ~ a1*X</span></span>
+<span id="cb211-6"><a href="CompMed.html#cb211-6" aria-hidden="true" tabindex="-1"></a><span class="st">    M2 ~ a2*X</span></span>
+<span id="cb211-7"><a href="CompMed.html#cb211-7" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
+<span id="cb211-8"><a href="CompMed.html#cb211-8" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
+<span id="cb211-9"><a href="CompMed.html#cb211-9" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast := indirect1 - indirect2</span></span>
+<span id="cb211-10"><a href="CompMed.html#cb211-10" aria-hidden="true" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2</span></span>
+<span id="cb211-11"><a href="CompMed.html#cb211-11" aria-hidden="true" tabindex="-1"></a><span class="st">    total_c    := c_p + (indirect1) + (indirect2)</span></span>
+<span id="cb211-12"><a href="CompMed.html#cb211-12" aria-hidden="true" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
+<span id="cb211-13"><a href="CompMed.html#cb211-13" aria-hidden="true" tabindex="-1"></a><span class="st"> &#39;</span></span>
+<span id="cb211-14"><a href="CompMed.html#cb211-14" aria-hidden="true" tabindex="-1"></a>parallel_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(parallel_med, <span class="at">data =</span> pData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb211-15"><a href="CompMed.html#cb211-15" aria-hidden="true" tabindex="-1"></a>pfit_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(parallel_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span></code></pre></div>
+<pre><code>## lavaan 0.6-7 ended normally after 16 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of free parameters                         11
+##                                                       
+##   Number of observations                           100
+##   Number of missing patterns                         1
+##                                                       
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.095
+##   Degrees of freedom                                 1
+##   P-value (Chi-square)                           0.757
+## 
+## Model Test Baseline Model:
+## 
+##   Test statistic                                91.109
+##   Degrees of freedom                                 6
+##   P-value                                        0.000
+## 
+## User Model versus Baseline Model:
+## 
+##   Comparative Fit Index (CFI)                    1.000
+##   Tucker-Lewis Index (TLI)                       1.064
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)               -425.933
+##   Loglikelihood unrestricted model (H1)       -425.885
+##                                                       
+##   Akaike (AIC)                                 873.866
+##   Bayesian (BIC)                               902.522
+##   Sample-size adjusted Bayesian (BIC)          867.782
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.000
+##   90 Percent confidence interval - lower         0.000
+##   90 Percent confidence interval - upper         0.181
+##   P-value RMSEA &lt;= 0.05                          0.785
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.009
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                            Bootstrap
+##   Number of requested bootstrap draws             1000
+##   Number of successful bootstrap draws            1000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##   Y ~                                                                   
+##     M1        (b1)    0.540    0.113    4.787    0.000    0.314    0.769
+##     M2        (b2)    0.690    0.111    6.204    0.000    0.470    0.889
+##     X        (c_p)    0.105    0.137    0.771    0.441   -0.164    0.373
+##   M1 ~                                                                  
+##     X         (a1)    0.528    0.111    4.745    0.000    0.315    0.756
+##   M2 ~                                                                  
+##     X         (a2)   -0.324    0.105   -3.093    0.002   -0.540   -0.116
+##    Std.lv  Std.all
+##                   
+##     0.540    0.478
+##     0.690    0.529
+##     0.105    0.074
+##                   
+##     0.528    0.419
+##                   
+##    -0.324   -0.297
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##    .Y                -0.187    0.102   -1.843    0.065   -0.394   -0.000
+##    .M1                0.010    0.109    0.094    0.925   -0.212    0.216
+##    .M2               -0.043    0.101   -0.428    0.668   -0.244    0.150
+##    Std.lv  Std.all
+##    -0.187   -0.142
+##     0.010    0.009
+##    -0.043   -0.043
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##    .Y                 0.948    0.151    6.275    0.000    0.644    1.242
+##    .M1                1.131    0.120    9.398    0.000    0.889    1.360
+##    .M2                0.938    0.125    7.475    0.000    0.676    1.166
+##    Std.lv  Std.all
+##     0.948    0.542
+##     1.131    0.825
+##     0.938    0.912
+## 
+## R-Square:
+##                    Estimate
+##     Y                 0.458
+##     M1                0.175
+##     M2                0.088
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
+##     indirect1         0.285    0.085    3.355    0.001    0.129    0.465
+##     indirect2        -0.224    0.079   -2.828    0.005   -0.394   -0.080
+##     contrast          0.509    0.117    4.339    0.000    0.289    0.756
+##     total_indircts    0.061    0.115    0.533    0.594   -0.158    0.291
+##     total_c           0.167    0.158    1.052    0.293   -0.151    0.483
+##     direct            0.105    0.137    0.771    0.441   -0.164    0.373
+##    Std.lv  Std.all
+##     0.285    0.200
+##    -0.224   -0.157
+##     0.509    0.357
+##     0.061    0.043
+##     0.167    0.117
+##     0.105    0.074</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="CompMed.html#cb213-1" aria-hidden="true" tabindex="-1"></a>pfit_ParEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(parallel_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb213-2"><a href="CompMed.html#cb213-2" aria-hidden="true" tabindex="-1"></a>pfit_sum</span></code></pre></div>
+<pre><code>## $FIT
+##              npar              fmin             chisq                df 
+##            11.000             0.000             0.095             1.000 
+##            pvalue    baseline.chisq       baseline.df   baseline.pvalue 
+##             0.757            91.109             6.000             0.000 
+##               cfi               tli              logl unrestricted.logl 
+##             1.000             1.064          -425.933          -425.885 
+##               aic               bic            ntotal              bic2 
+##           873.866           902.522           100.000           867.782 
+##             rmsea    rmsea.ci.lower    rmsea.ci.upper      rmsea.pvalue 
+##             0.000             0.000             0.181             0.785 
+##              srmr 
+##             0.009 
+## 
+## $PE
+##                lhs op                         rhs           label exo
+## 1                Y  ~                          M1              b1   0
+## 2                Y  ~                          M2              b2   0
+## 3                Y  ~                           X             c_p   0
+## 4               M1  ~                           X              a1   0
+## 5               M2  ~                           X              a2   0
+## 6                Y ~~                           Y                   0
+## 7               M1 ~~                          M1                   0
+## 8               M2 ~~                          M2                   0
+## 9                X ~~                           X                   1
+## 10               Y ~1                                               0
+## 11              M1 ~1                                               0
+## 12              M2 ~1                                               0
+## 13               X ~1                                               1
+## 14       indirect1 :=                       a1*b1       indirect1   0
+## 15       indirect2 :=                       a2*b2       indirect2   0
+## 16        contrast :=         indirect1-indirect2        contrast   0
+## 17 total_indirects :=         indirect1+indirect2 total_indirects   0
+## 18         total_c := c_p+(indirect1)+(indirect2)         total_c   0
+## 19          direct :=                         c_p          direct   0
+## 20               Y r2                           Y                   0
+## 21              M1 r2                          M1                   0
+## 22              M2 r2                          M2                   0
+##             est         se           z       pvalue     ci.lower      ci.upper
+## 1   0.539767993 0.11274814  4.78737823 1.689742e-06  0.313843559  0.7689409032
+## 2   0.689953781 0.11121140  6.20398416 5.505132e-10  0.470226008  0.8889490507
+## 3   0.105290636 0.13651696  0.77126415 4.405504e-01 -0.164108640  0.3729922725
+## 4   0.527902465 0.11124423  4.74543702 2.080566e-06  0.315477913  0.7556891595
+## 5  -0.324244632 0.10484432 -3.09262959 1.983916e-03 -0.539732116 -0.1162331922
+## 6   0.947724641 0.15103546  6.27484860 3.499747e-10  0.644485452  1.2418345927
+## 7   1.130774696 0.12032086  9.39799366 0.000000e+00  0.889499232  1.3599755402
+## 8   0.937829247 0.12546927  7.47457301 7.749357e-14  0.675554155  1.1664102455
+## 9   0.861707097 0.00000000          NA           NA  0.861707097  0.8617070970
+## 10 -0.187153801 0.10152756 -1.84337931 6.527365e-02 -0.393783206 -0.0003186578
+## 11  0.010201774 0.10903660  0.09356284 9.254564e-01 -0.211921383  0.2157226430
+## 12 -0.043300480 0.10110370 -0.42827788 6.684488e-01 -0.243658750  0.1499584876
+## 13  0.009968596 0.00000000          NA           NA  0.009968596  0.0099685964
+## 14  0.284944854 0.08493462  3.35487276 7.940150e-04  0.128745673  0.4653026012
+## 15 -0.223713810 0.07910773 -2.82796394 4.684508e-03 -0.394065828 -0.0796967852
+## 16  0.508658664 0.11721760  4.33943942 1.428466e-05  0.288663004  0.7559242433
+## 17  0.061231044 0.11490814  0.53286949 5.941239e-01 -0.158441194  0.2912145292
+## 18  0.166521681 0.15830894  1.05187793 2.928556e-01 -0.150959419  0.4832956301
+## 19  0.105290636 0.13658527  0.77087842 4.407790e-01 -0.164108640  0.3729922725
+## 20  0.457671604         NA          NA           NA           NA            NA
+## 21  0.175168565         NA          NA           NA           NA            NA
+## 22  0.088091268         NA          NA           NA           NA            NA
+##          std.lv      std.all      std.nox
+## 1   0.539767993  0.478082287  0.478082287
+## 2   0.689953781  0.529293162  0.529293162
+## 3   0.105290636  0.073936633  0.079648910
+## 4   0.527902465  0.418531438  0.450866794
+## 5  -0.324244632 -0.296801732 -0.319732362
+## 6   0.947724641  0.542328396  0.542328396
+## 7   1.130774696  0.824831435  0.824831435
+## 8   0.937829247  0.911908732  0.911908732
+## 9   0.861707097  1.000000000  0.861707097
+## 10 -0.187153801 -0.141575707 -0.141575707
+## 11  0.010201774  0.008713051  0.008713051
+## 12 -0.043300480 -0.042697900 -0.042697900
+## 13  0.009968596  0.010738761  0.009968596
+## 14  0.284944854  0.200092467  0.215551428
+## 15 -0.223713810 -0.157095127 -0.169232153
+## 16  0.508658664  0.357187594  0.384783581
+## 17  0.061231044  0.042997340  0.046319275
+## 18  0.166521681  0.116933973  0.125968185
+## 19  0.105290636  0.073936633  0.079648910
+## 20           NA           NA           NA
+## 21           NA           NA           NA
+## 22           NA           NA           NA</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="CompMed.html#cb215-1" aria-hidden="true" tabindex="-1"></a>pfit_ParEsts</span></code></pre></div>
+<pre><code>##                lhs op                         rhs           label    est    se
+## 1                Y  ~                          M1              b1  0.540 0.113
+## 2                Y  ~                          M2              b2  0.690 0.111
+## 3                Y  ~                           X             c_p  0.105 0.137
+## 4               M1  ~                           X              a1  0.528 0.111
+## 5               M2  ~                           X              a2 -0.324 0.105
+## 6                Y ~~                           Y                  0.948 0.151
+## 7               M1 ~~                          M1                  1.131 0.120
+## 8               M2 ~~                          M2                  0.938 0.125
+## 9                X ~~                           X                  0.862 0.000
+## 10               Y ~1                                             -0.187 0.102
+## 11              M1 ~1                                              0.010 0.109
+## 12              M2 ~1                                             -0.043 0.101
+## 13               X ~1                                              0.010 0.000
+## 14       indirect1 :=                       a1*b1       indirect1  0.285 0.085
+## 15       indirect2 :=                       a2*b2       indirect2 -0.224 0.079
+## 16        contrast :=         indirect1-indirect2        contrast  0.509 0.117
+## 17 total_indirects :=         indirect1+indirect2 total_indirects  0.061 0.115
+## 18         total_c := c_p+(indirect1)+(indirect2)         total_c  0.167 0.158
+## 19          direct :=                         c_p          direct  0.105 0.137
+##         z pvalue ci.lower ci.upper std.lv std.all std.nox
+## 1   4.787  0.000    0.331    0.791  0.540   0.478   0.478
+## 2   6.204  0.000    0.467    0.888  0.690   0.529   0.529
+## 3   0.771  0.441   -0.177    0.362  0.105   0.074   0.080
+## 4   4.745  0.000    0.317    0.758  0.528   0.419   0.451
+## 5  -3.093  0.002   -0.558   -0.120 -0.324  -0.297  -0.320
+## 6   6.275  0.000    0.697    1.322  0.948   0.542   0.542
+## 7   9.398  0.000    0.923    1.394  1.131   0.825   0.825
+## 8   7.475  0.000    0.703    1.201  0.938   0.912   0.912
+## 9      NA     NA    0.862    0.862  0.862   1.000   0.862
+## 10 -1.843  0.065   -0.388    0.003 -0.187  -0.142  -0.142
+## 11  0.094  0.925   -0.219    0.212  0.010   0.009   0.009
+## 12 -0.428  0.668   -0.249    0.144 -0.043  -0.043  -0.043
+## 13     NA     NA    0.010    0.010  0.010   0.011   0.010
+## 14  3.355  0.001    0.143    0.489  0.285   0.200   0.216
+## 15 -2.828  0.005   -0.399   -0.088 -0.224  -0.157  -0.169
+## 16  4.339  0.000    0.295    0.785  0.509   0.357   0.385
+## 17  0.533  0.594   -0.151    0.306  0.061   0.043   0.046
+## 18  1.052  0.293   -0.162    0.463  0.167   0.117   0.126
+## 19  0.771  0.441   -0.177    0.362  0.105   0.074   0.080</code></pre>
+</div>
+<div id="a-note-on-indirect-effects-and-confidence-intervals" class="section level4" number="7.3.1.3">
+<h4><span class="header-section-number">7.3.1.3</span> A note on indirect effects and confidence intervals</h4>
+<p>Before we move onto interpretation, I want to stop and look at both <span class="math inline">\(p\)</span> values and confidence intervals. Especially with Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> PROCESS macro, there is a great deal of emphasis on the use of bootstrapped confidence intervals to determine the statistical significance of the indirect effects. In fact, PROCESS output has (at least historically) not provided <span class="math inline">\(p\)</span> values with the indirect effects. This is because, especially in the ordinary least squares context, bias-corrected bootstrapped confidence intervals are more powerful (i.e., they are more likely to support a statistically significant result) than <span class="math inline">\(p\)</span> values.</p>
+<p>An excellent demonstration of this phenomena was provided by Mallinckrodt et al. <span class="citation">(<a href="refs.html#ref-mallinckrodt_advances_2006" role="doc-biblioref">2006</a>)</span> where they compared confidence intervals produced by the normal theory method to those that are bias corrected. The bias corrected intervals were more powerful to determining if there were statistically significant indirect effects.</p>
+<p>The method we have specified in <em>lavaan</em> produced bias-corrected confidence intervals. The <span class="math inline">\(p\)</span> values and corresponding confidence intervals should be consistent with each other. That is, if <span class="math inline">\(p\)</span> &lt; .05, then the CI95s should not pass through zero. Of course we can always check to be certain this is true. For this reason, I will report <span class="math inline">\(p\)</span> values in my results. There are reviewers, though, who may prefer that you report CI95s (or both).</p>
+</div>
+<div id="figures-and-tables" class="section level4" number="7.3.1.4">
+<h4><span class="header-section-number">7.3.1.4</span> Figures and Tables</h4>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="CompMed.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
+<span id="cb217-2"><a href="CompMed.html#cb217-2" aria-hidden="true" tabindex="-1"></a>Tb1FDataparallel <span class="ot">&lt;-</span> <span class="fu">semTable</span>(parallel_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;Tb1FakyDataparallel&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="CompMed.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb218-2"><a href="CompMed.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="co">#note change in layout </span></span>
+<span id="cb218-3"><a href="CompMed.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(parallel_fit, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb218-4"><a href="CompMed.html#cb218-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb218-5"><a href="CompMed.html#cb218-5" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb218-6"><a href="CompMed.html#cb218-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;tree&#39;, rotation = 2, #together, puts predictors on left, IVs on right </span></span>
+<span id="cb218-7"><a href="CompMed.html#cb218-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;spring&#39;</span>, </span>
+<span id="cb218-8"><a href="CompMed.html#cb218-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb218-9"><a href="CompMed.html#cb218-9" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb218-10"><a href="CompMed.html#cb218-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb218-11"><a href="CompMed.html#cb218-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb218-12"><a href="CompMed.html#cb218-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb218-13"><a href="CompMed.html#cb218-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb218-14"><a href="CompMed.html#cb218-14" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb218-15"><a href="CompMed.html#cb218-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb218-16"><a href="CompMed.html#cb218-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb218-17"><a href="CompMed.html#cb218-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb218-18"><a href="CompMed.html#cb218-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb218-19"><a href="CompMed.html#cb218-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb218-20"><a href="CompMed.html#cb218-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb218-21"><a href="CompMed.html#cb218-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb218-22"><a href="CompMed.html#cb218-22" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Baked Data:  Parallel Mediation&quot;</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/Fake%20Data%20Simple%20Plot-1.svg" width="672" /></p>
+<p>There are a number of ways to tabalize the data. You might be surprised to learn that a number of articles that analyze mediating effects focus their presentation on those values and not the traditional intercepts and B weights. This is the approach I have taken in this chapter.</p>
+<p><strong>Table 1 </strong></p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Model Coefficients Assessing M1 and M2 as Parallel Mediators Between X and Y</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">IV</td>
+<td align="center"></td>
+<td align="center">M</td>
+<td align="center"></td>
+<td align="center">DV</td>
+<td align="center"><span class="math inline">\(B\)</span> for <em>a</em> and <em>b</em> paths</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td align="center"><span class="math inline">\(SE\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">X</td>
+<td align="center">–&gt;</td>
+<td align="center">M1</td>
+<td align="center">–&gt;</td>
+<td align="center">DV</td>
+<td align="center">(0.528) X (0.540)</td>
+<td align="center">=</td>
+<td align="center">0.285</td>
+<td align="center">0.085</td>
+<td align="center">0.001</td>
+</tr>
+<tr class="odd">
+<td align="center">X</td>
+<td align="center">–&gt;</td>
+<td align="center">M2</td>
+<td align="center">–&gt;</td>
+<td align="center">DV</td>
+<td align="center">(-0.324) X (0.690)</td>
+<td align="center">=</td>
+<td align="center">-0.224</td>
+<td align="center">0.079</td>
+<td align="center">0.005</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td align="center"><span class="math inline">\(SE\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Total indirect effect</td>
+<td align="center">0.061</td>
+<td align="center">0.115</td>
+<td align="center">0.594</td>
+</tr>
+<tr class="odd">
+<td align="center">Total effect of X on Y (c path)</td>
+<td align="center">0.167</td>
+<td align="center">0.158</td>
+<td align="center">0.293</td>
+</tr>
+<tr class="even">
+<td align="center">Direct effect of X on Y (c’)</td>
+<td align="center">0.105</td>
+<td align="center">0.137</td>
+<td align="center">0.137</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+</tbody>
+</table>
+<p><em>Note</em>. X =definition; M1 = definition; M2 = definition; Y = definition. The significance of the indirect effects was calculated with bias-corrected confidence intervals (.95) bootstrap analysis.</p>
+</div>
+<div id="apa-style-writeup" class="section level4" number="7.3.1.5">
+<h4><span class="header-section-number">7.3.1.5</span> APA Style Writeup</h4>
+<p>A model of parallel multiple mediation was analyzed examining the degree to which importance of M1 and M2 mediated the relation of X on Y. Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously. The resultant direct and indirect values for each path account for other mediation paths. Using the <em>lavaan (v. 0.6-7)</em> package in R, coefficients for specific indirect, total indirect, direct, and total were computed. Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.</p>
+<p>Results (depicted in Figure 1 and presented in Table 2) suggest that 45.77% of the variance in Y is accounted for by the model. While each of the specific indirect effects (X through M1 and M2, respectively) were statistically significant, the total indirect effect (i.e., the sum of the specific indirect effects was not. This is likely because the indirect effect passing through M1 was positive in valence and the indirect effect passing through M2 was negative; hence, they “cancelled each other out.” A pairwise comparison of the specific indirect effects indicated that the strength of the effects were statistically significantly different from each other (<span class="math inline">\(B\)</span> = 0.509, <span class="math inline">\(p\)</span> = 0.000). This means that the indirect effect passing through M1 was statistically stronger than the indirect effect passing through M2.</p>
+<p>Let’s turn now to the research vignette and work an example with simulated data from that example. Because the research vignette use an entirely new set of output I will either restart R or clear my environment so that there are a few less objects “in the way.”</p>
+</div>
+</div>
+<div id="research-vignette-5" class="section level3" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Research Vignette</h3>
+<p>The research vignette comes from the Lewis, Williams, Peppers, and Gadson’s <span class="citation">(<a href="refs.html#ref-lewis_applying_2017" role="doc-biblioref">2017</a>)</span> study titled, “Applying Intersectionality to Explore the Relations Between Gendered Racism and Health Among Black Women.” The study was published in the Journal of Counseling Psychology. Participants were 231 Black women who completed an online survey.</p>
+<p>Variables used in the study included:</p>
+<ul>
+<li><p><strong>GRMS</strong>: Gendered Racial Microaggressions Scale <span class="citation">(<a href="refs.html#ref-lewis_construction_2015" role="doc-biblioref">J. A. Lewis &amp; Neville, 2015</a>)</span> is a 26-item scale that assesses the frequency of nonverbal, verbal, and behavioral negative racial and gender slights experienced by Black women. Scaling is along six points ranging from 0 (never) to 5 (once a week or more). Higher scores indicate a greater frequency of gendered racial microaggressions. An example item is, “Someone has made a sexually inappropriate comment about my butt, hips, or thighs.”</p></li>
+<li><p><strong>MntlHlth</strong> and <strong>PhysHlth</strong>: Short Form Health Survey - Version 2 <span class="citation">(<a href="refs.html#ref-ware_comparison_1995" role="doc-biblioref">Ware et al., 1995</a>)</span> is a 12-item scale used to report self-reported mental (six items) and physical health (six items).
+Higher scores indicate higher mental health (e.g., little or no psychological ldistress) and physical health (e.g., little or no reported symptoms in physical functioning). An example of an item assessing mental health was, “How much of the time during the last 4 weeks have you felt calm and peaceful?”; an example of a physical health item was, “During the past 4 weeks, how much did pain interfere with your normal work?”</p></li>
+<li><p><strong>Sprtlty</strong>, <strong>SocSup</strong>, <strong>Engmgt</strong>, and <strong>DisEngmt</strong> are four subscales from the Brief Coping with Problems Experienced Inventory <span class="citation">(<a href="refs.html#ref-carver_you_1997" role="doc-biblioref">Carver, 1997</a>)</span>. The 28 items on this scale are presented on a 4-point scale ranging from 1 (<em>I usually do not do this at all</em>) to 4(<em>I usually do this a lot</em>). Higher scores indicate a respondents’ tendency to engage in a particular strategy. Instructions were modified to ask how the female participants responded to recent experiences of racism and sexism as Black women. The four subscales included spirituality (religion, acceptance, planning), interconnectedness/social support (vent emotions, emotional support,instrumental social support), problem-oriented/engagement coping (active coping, humor, positive reinterpretation/positive reframing), and disengagement coping (behavioral disengagement, substance abuse, denial, self-blame, self-distraction).</p></li>
+<li><p><strong>GRIcntlty</strong>: The Multidimensional Inventory of Black Identity Centrality subscale <span class="citation">(<a href="refs.html#ref-sellers_multidimensional_nodate" role="doc-biblioref">Sellers et al., n.d.</a>)</span> was modified to measure the intersection of racial and gender identity centrality. The scale included 10 items scaled from 1 (<em>strongly disagree</em>) to 7 (<em>strongly agree</em>). An example item was, “Being a <em>Black woman</em> is important to my self-image.” Higher scores indicated higher levels of gendered racial identity centrality.</p></li>
+</ul>
+<div id="data-simulation-1" class="section level4" number="7.3.2.1">
+<h4><span class="header-section-number">7.3.2.1</span> Data Simulation</h4>
+<p>Simulating the data:</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="CompMed.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
+<span id="cb219-2"><a href="CompMed.html#cb219-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.99</span>, <span class="fl">2.82</span>, <span class="fl">2.48</span>, <span class="fl">2.32</span>, <span class="fl">1.75</span>, <span class="fl">5.71</span>, <span class="fl">21.37</span>, <span class="fl">21.07</span>)</span>
+<span id="cb219-3"><a href="CompMed.html#cb219-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">90</span>, .<span class="dv">70</span>, .<span class="dv">81</span>, .<span class="dv">61</span>, .<span class="dv">53</span>, <span class="fl">1.03</span>, <span class="fl">3.83</span>, <span class="fl">4.66</span>)</span>
+<span id="cb219-4"><a href="CompMed.html#cb219-4" aria-hidden="true" tabindex="-1"></a>r_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">1</span>, .<span class="dv">20</span>, .<span class="dv">28</span>, .<span class="dv">30</span>, .<span class="dv">41</span>, .<span class="dv">19</span>, <span class="sc">-</span>.<span class="dv">32</span>, <span class="sc">-</span>.<span class="dv">18</span>,</span>
+<span id="cb219-5"><a href="CompMed.html#cb219-5" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">20</span>, <span class="dv">1</span>, .<span class="dv">49</span>, .<span class="dv">57</span>, .<span class="dv">22</span>, .<span class="dv">13</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">13</span>,</span>
+<span id="cb219-6"><a href="CompMed.html#cb219-6" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">28</span>, .<span class="dv">49</span>, <span class="dv">1</span>, .<span class="dv">46</span>, .<span class="dv">26</span>, .<span class="dv">38</span>, <span class="sc">-</span>.<span class="dv">18</span>,<span class="sc">-</span>.<span class="dv">08</span>, </span>
+<span id="cb219-7"><a href="CompMed.html#cb219-7" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">30</span>, .<span class="dv">57</span>, .<span class="dv">46</span>,  <span class="dv">1</span>, .<span class="dv">37</span>, .<span class="dv">08</span>, <span class="sc">-</span>.<span class="dv">14</span>, <span class="sc">-</span>.<span class="dv">06</span>,</span>
+<span id="cb219-8"><a href="CompMed.html#cb219-8" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">41</span>, .<span class="dv">22</span>, .<span class="dv">26</span>, .<span class="dv">37</span>, <span class="dv">1</span>, .<span class="dv">05</span>, <span class="sc">-</span>.<span class="dv">54</span>, <span class="sc">-</span>.<span class="dv">28</span>, </span>
+<span id="cb219-9"><a href="CompMed.html#cb219-9" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">19</span>, .<span class="dv">13</span>, .<span class="dv">38</span>, .<span class="dv">08</span>, .<span class="dv">05</span>, <span class="dv">1</span>, <span class="sc">-</span>.<span class="dv">10</span>, .<span class="dv">14</span>, </span>
+<span id="cb219-10"><a href="CompMed.html#cb219-10" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span>.<span class="dv">32</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">18</span>, <span class="sc">-</span>.<span class="dv">14</span>, <span class="sc">-</span>.<span class="dv">54</span>, <span class="sc">-</span>.<span class="dv">10</span>, <span class="dv">1</span>, .<span class="dv">47</span>,</span>
+<span id="cb219-11"><a href="CompMed.html#cb219-11" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span>.<span class="dv">18</span>, <span class="sc">-</span>.<span class="dv">13</span>, <span class="sc">-</span>.<span class="dv">08</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">28</span>, .<span class="dv">14</span>, .<span class="dv">47</span>, <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">8</span>)</span>
+<span id="cb219-12"><a href="CompMed.html#cb219-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a covariance matrix</span></span>
+<span id="cb219-13"><a href="CompMed.html#cb219-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb219-14"><a href="CompMed.html#cb219-14" aria-hidden="true" tabindex="-1"></a>cov_mat <span class="ot">&lt;-</span> sd <span class="sc">%*%</span> <span class="fu">t</span>(sd) <span class="sc">*</span> r_mat</span>
+<span id="cb219-15"><a href="CompMed.html#cb219-15" aria-hidden="true" tabindex="-1"></a>cov_mat</span></code></pre></div>
+<pre><code>##          [,1]     [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
+## [1,]  0.81000  0.12600  0.204120  0.164700  0.195570  0.176130 -1.103040
+## [2,]  0.12600  0.49000  0.277830  0.243390  0.081620  0.093730 -0.160860
+## [3,]  0.20412  0.27783  0.656100  0.227286  0.111618  0.317034 -0.558414
+## [4,]  0.16470  0.24339  0.227286  0.372100  0.119621  0.050264 -0.327082
+## [5,]  0.19557  0.08162  0.111618  0.119621  0.280900  0.027295 -1.096146
+## [6,]  0.17613  0.09373  0.317034  0.050264  0.027295  1.060900 -0.394490
+## [7,] -1.10304 -0.16086 -0.558414 -0.327082 -1.096146 -0.394490 14.668900
+## [8,] -0.75492 -0.42406 -0.301968 -0.170556 -0.691544  0.671972  8.388466
+##           [,8]
+## [1,] -0.754920
+## [2,] -0.424060
+## [3,] -0.301968
+## [4,] -0.170556
+## [5,] -0.691544
+## [6,]  0.671972
+## [7,]  8.388466
+## [8,] 21.715600</code></pre>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="CompMed.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set random seed so that the following matrix always gets the same results.</span></span>
+<span id="cb221-2"><a href="CompMed.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210403</span>)</span>
+<span id="cb221-3"><a href="CompMed.html#cb221-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb221-4"><a href="CompMed.html#cb221-4" aria-hidden="true" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">212</span>, <span class="at">mu=</span>mu, <span class="at">Sigma =</span> cov_mat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb221-5"><a href="CompMed.html#cb221-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(Lewis_df)</span></code></pre></div>
+<pre><code>## [1]  1.99  2.82  2.48  2.32  1.75  5.71 21.37 21.07</code></pre>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="CompMed.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
+<span id="cb223-2"><a href="CompMed.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Lewis_df)</span></code></pre></div>
+<pre><code>##       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]
+## [1,]  1.00  0.20  0.28  0.30  0.41  0.19 -0.32 -0.18
+## [2,]  0.20  1.00  0.49  0.57  0.22  0.13 -0.06 -0.13
+## [3,]  0.28  0.49  1.00  0.46  0.26  0.38 -0.18 -0.08
+## [4,]  0.30  0.57  0.46  1.00  0.37  0.08 -0.14 -0.06
+## [5,]  0.41  0.22  0.26  0.37  1.00  0.05 -0.54 -0.28
+## [6,]  0.19  0.13  0.38  0.08  0.05  1.00 -0.10  0.14
+## [7,] -0.32 -0.06 -0.18 -0.14 -0.54 -0.10  1.00  0.47
+## [8,] -0.18 -0.13 -0.08 -0.06 -0.28  0.14  0.47  1.00</code></pre>
+<p>Rename the variables</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="CompMed.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(Lewis_df, <span class="at">row.names =</span> <span class="cn">NULL</span>, <span class="at">optional =</span> <span class="cn">FALSE</span>, <span class="at">make.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb225-2"><a href="CompMed.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb225-3"><a href="CompMed.html#cb225-3" aria-hidden="true" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> Lewis_df<span class="sc">%&gt;%</span></span>
+<span id="cb225-4"><a href="CompMed.html#cb225-4" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span></span>
+<span id="cb225-5"><a href="CompMed.html#cb225-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">GRMS =</span> V1, <span class="at">Sprtlty =</span> V2, <span class="at">SocSup =</span> V3, <span class="at">Engmt =</span> V4, <span class="at">DisEngmt =</span> V5, <span class="at">GRIcntlty =</span> V6, <span class="at">MtnlHlth =</span> V7, <span class="at">PhysHlth =</span> V8)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="CompMed.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Lewis_df)</span></code></pre></div>
+<pre><code>##        GRMS  Sprtlty   SocSup    Engmt  DisEngmt GRIcntlty MtnlHlth PhysHlth
+## 1 1.6527393 2.022990 1.705523 1.360615 1.0830779  5.517213 22.75649 19.41684
+## 2 0.7640948 1.644033 2.505362 2.242470 1.7132075  5.413544 22.62540 22.26355
+## 3 2.0107291 2.321768 2.660635 2.004928 1.5158907  4.842883 19.07803 23.23430
+## 4 1.2409552 1.920184 1.470588 1.096715 1.4677302  4.124888 23.94831 18.74295
+## 5 1.4613106 3.775331 2.939616 1.825157 0.9183584  5.558731 22.77763 18.81243
+## 6 3.3326679 2.432105 2.709137 2.427134 1.7561275  8.816758 19.26199 24.46558</code></pre>
+</div>
+<div id="quick-descriptives" class="section level4" number="7.3.2.2">
+<h4><span class="header-section-number">7.3.2.2</span> Quick Descriptives</h4>
+<p>Of course it is is a good idea to examine our data ahead of time. While we won’t take time to do a thorough analysis, we can at least take a peek.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="CompMed.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb228-2"><a href="CompMed.html#cb228-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(Lewis_df)</span></code></pre></div>
+<pre><code>##           vars   n  mean   sd median trimmed  mad   min   max range  skew
+## GRMS         1 212  1.99 0.90   1.97    1.99 0.80 -1.07  3.97  5.05 -0.12
+## Sprtlty      2 212  2.82 0.70   2.80    2.83 0.75  1.08  4.57  3.49 -0.10
+## SocSup       3 212  2.48 0.81   2.44    2.47 0.80  0.62  4.78  4.17  0.11
+## Engmt        4 212  2.32 0.61   2.32    2.33 0.60  0.75  3.93  3.18 -0.14
+## DisEngmt     5 212  1.75 0.53   1.76    1.75 0.56  0.47  3.00  2.53 -0.05
+## GRIcntlty    6 212  5.71 1.03   5.64    5.68 0.95  2.72  9.56  6.84  0.37
+## MtnlHlth     7 212 21.37 3.83  21.59   21.46 4.23 11.79 31.77 19.98 -0.14
+## PhysHlth     8 212 21.07 4.66  20.79   21.03 4.68  8.43 33.73 25.30  0.07
+##           kurtosis   se
+## GRMS          0.25 0.06
+## Sprtlty      -0.41 0.05
+## SocSup       -0.16 0.06
+## Engmt        -0.22 0.04
+## DisEngmt     -0.56 0.04
+## GRIcntlty     0.76 0.07
+## MtnlHlth     -0.56 0.26
+## PhysHlth     -0.18 0.32</code></pre>
+<p>We note that our means and standard deviations map exactly onto those in the article. Because we asked for a normal distribution, we do not violate any of the assumptions related to univariate normality; our skew and kurtosis are well within the limits.</p>
+<p>The pairs panel from the <em>psych</em> package is an efficient way to see</p>
+<ul>
+<li>the distribution of each variable with a normal curve superimposed (on the diagonal)</li>
+<li>the value of the bivariate correlation (upper diagonal)</li>
+<li>a scatterplot with a regression line between each pair of variables (lower diagonal)</li>
+</ul>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="CompMed.html#cb230-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(Lewis_df)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/unnamed-chunk-15-1.svg" width="672" /></p>
+<p>The Lewis et al. article <span class="citation">(<a href="refs.html#ref-lewis_applying_2017" role="doc-biblioref">2017</a>)</span> reports four mediation analyses, each repeated for mental and physical outcomes. Thus, their write-up reports eight simple mediation models. Graphically, this is efficiently represented in a figure that looks like parallel mediation. Note that the figure is reporting standardized estimates. In Hayes’ <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> we have been using raw, <span class="math inline">\(B\)</span> weights. However, the standardized weights are reported in the output.</p>
+<p><img src="images/CompMed/LewisMedFig.jpg" alt="An image of Figure 1 from the Lewis article illustrating the mediated models that were tested" />
+Because the figure looked like a parallel mediation, it made sense to me that we could try this in our research vignette. In the chapter on conditional process analysis, we will work the moderated mediation as they have done. Below is the model we will work. Specifically, we will evaluate whether gendered racial microaggressions impact mental health separately, thorough mediated paths of engagement and disengagement. We will also be able to see if the strength of those mediated paths are statistically, significantly, different from each other.</p>
+<div class="figure">
+<img src="images/CompMed/LewisParaMed.jpg" alt="" />
+<p class="caption">An image of the parallel mediation we will work</p>
+</div>
+</div>
+<div id="specifying-the-lavaan-model" class="section level4" number="7.3.2.3">
+<h4><span class="header-section-number">7.3.2.3</span> Specifying the <em>lavaan</em> model</h4>
+<p>We can use the guidelines above to specify our model and then request summaries of the fit indices and parameter estimates.</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="CompMed.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210403</span>)</span>
+<span id="cb231-2"><a href="CompMed.html#cb231-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb231-3"><a href="CompMed.html#cb231-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-4"><a href="CompMed.html#cb231-4" aria-hidden="true" tabindex="-1"></a>parallel_Lewis <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb231-5"><a href="CompMed.html#cb231-5" aria-hidden="true" tabindex="-1"></a><span class="st">    MtnlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS</span></span>
+<span id="cb231-6"><a href="CompMed.html#cb231-6" aria-hidden="true" tabindex="-1"></a><span class="st">    Engmt ~ a1*GRMS    </span></span>
+<span id="cb231-7"><a href="CompMed.html#cb231-7" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ a2*GRMS</span></span>
+<span id="cb231-8"><a href="CompMed.html#cb231-8" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
+<span id="cb231-9"><a href="CompMed.html#cb231-9" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
+<span id="cb231-10"><a href="CompMed.html#cb231-10" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast := indirect1 - indirect2</span></span>
+<span id="cb231-11"><a href="CompMed.html#cb231-11" aria-hidden="true" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2</span></span>
+<span id="cb231-12"><a href="CompMed.html#cb231-12" aria-hidden="true" tabindex="-1"></a><span class="st">    total_c := c_p + (indirect1) + (indirect2)</span></span>
+<span id="cb231-13"><a href="CompMed.html#cb231-13" aria-hidden="true" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
+<span id="cb231-14"><a href="CompMed.html#cb231-14" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb231-15"><a href="CompMed.html#cb231-15" aria-hidden="true" tabindex="-1"></a>para_Lewis_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(parallel_Lewis, <span class="at">data =</span> Lewis_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>) <span class="co">#holds the &quot;whole&quot; result</span></span>
+<span id="cb231-16"><a href="CompMed.html#cb231-16" aria-hidden="true" tabindex="-1"></a>pLewis_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(para_Lewis_fit , <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>) <span class="co">#today, we really only need the R-squared from here    </span></span>
+<span id="cb231-17"><a href="CompMed.html#cb231-17" aria-hidden="true" tabindex="-1"></a>pLewis_ParEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(para_Lewis_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>) <span class="co">#provides our estimates, se, p values for all the elements we specified</span></span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="CompMed.html#cb232-1" aria-hidden="true" tabindex="-1"></a>pLewis_sum</span></code></pre></div>
+<pre><code>## $FIT
+##              npar              fmin             chisq                df 
+##            11.000             0.042            17.813             1.000 
+##            pvalue    baseline.chisq       baseline.df   baseline.pvalue 
+##             0.000           155.625             6.000             0.000 
+##               cfi               tli              logl unrestricted.logl 
+##             0.888             0.326          -877.337          -868.431 
+##               aic               bic            ntotal              bic2 
+##          1776.675          1813.597           212.000          1778.742 
+##             rmsea    rmsea.ci.lower    rmsea.ci.upper      rmsea.pvalue 
+##             0.282             0.177             0.403             0.000 
+##              srmr 
+##             0.075 
+## 
+## $PE
+##                lhs op                         rhs           label exo
+## 1         MtnlHlth  ~                       Engmt              b1   0
+## 2         MtnlHlth  ~                    DisEngmt              b2   0
+## 3         MtnlHlth  ~                        GRMS             c_p   0
+## 4            Engmt  ~                        GRMS              a1   0
+## 5         DisEngmt  ~                        GRMS              a2   0
+## 6         MtnlHlth ~~                    MtnlHlth                   0
+## 7            Engmt ~~                       Engmt                   0
+## 8         DisEngmt ~~                    DisEngmt                   0
+## 9             GRMS ~~                        GRMS                   1
+## 10        MtnlHlth ~1                                               0
+## 11           Engmt ~1                                               0
+## 12        DisEngmt ~1                                               0
+## 13            GRMS ~1                                               1
+## 14       indirect1 :=                       a1*b1       indirect1   0
+## 15       indirect2 :=                       a2*b2       indirect2   0
+## 16        contrast :=         indirect1-indirect2        contrast   0
+## 17 total_indirects :=         indirect1+indirect2 total_indirects   0
+## 18         total_c := c_p+(indirect1)+(indirect2)         total_c   0
+## 19          direct :=                         c_p          direct   0
+## 20        MtnlHlth r2                    MtnlHlth                   0
+## 21           Engmt r2                       Engmt                   0
+## 22        DisEngmt r2                    DisEngmt                   0
+##            est         se         z       pvalue    ci.lower    ci.upper
+## 1   0.58067170 0.45080355  1.288081 1.977176e-01 -0.25535127  1.55057232
+## 2  -3.74952953 0.44764668 -8.376091 0.000000e+00 -4.58391877 -2.86769099
+## 3  -0.57454463 0.26922168 -2.134095 3.283501e-02 -1.09766058 -0.06462847
+## 4   0.20333329 0.04468537  4.550333 5.356116e-06  0.11504500  0.29007149
+## 5   0.24144446 0.03518030  6.863059 6.740164e-12  0.16777845  0.30968363
+## 6  10.06733737 0.83862778 12.004536 0.000000e+00  8.24746315 11.66410471
+## 7   0.33701378 0.03116807 10.812790 0.000000e+00  0.27585878  0.40038675
+## 8   0.23257844 0.01865156 12.469649 0.000000e+00  0.19335369  0.26815157
+## 9   0.80617925 0.00000000        NA           NA  0.80617925  0.80617925
+## 10 27.72786217 0.94560927 29.322748 0.000000e+00 25.80236594 29.38520327
+## 11  1.91536675 0.10610584 18.051474 0.000000e+00  1.70846228  2.11781441
+## 12  1.26952551 0.07569600 16.771368 0.000000e+00  1.12123049  1.41811477
+## 13  1.99000000 0.00000000        NA           NA  1.99000000  1.99000000
+## 14  0.11806989 0.09943864  1.187364 2.350839e-01 -0.05775972  0.33448712
+## 15 -0.90530315 0.16781382 -5.394688 6.864280e-08 -1.23706667 -0.60499559
+## 16  1.02337304 0.21918552  4.668981 3.026974e-06  0.62841479  1.48950107
+## 17 -0.78723326 0.16750148 -4.699859 2.603418e-06 -1.11075150 -0.47350426
+## 18 -1.36177790 0.29278899 -4.651056 3.302401e-06 -1.95099520 -0.77628755
+## 19 -0.57454463 0.26935639 -2.133028 3.292246e-02 -1.09766058 -0.06462847
+## 20  0.32641007         NA        NA           NA          NA          NA
+## 21  0.08999997         NA        NA           NA          NA          NA
+## 22  0.16810002         NA        NA           NA          NA          NA
+##        std.lv     std.all     std.nox
+## 1   0.5806717  0.09140591  0.09140591
+## 2  -3.7495295 -0.51282175 -0.51282175
+## 3  -0.5745446 -0.13343817 -0.14861555
+## 4   0.2033333  0.29999995  0.33412223
+## 5   0.2414445  0.41000003  0.45663383
+## 6  10.0673374  0.67358993  0.67358993
+## 7   0.3370138  0.91000003  0.91000003
+## 8   0.2325784  0.83189998  0.83189998
+## 9   0.8061792  1.00000000  0.80617925
+## 10 27.7278622  7.17227393  7.17227393
+## 11  1.9153668  3.14737739  3.14737739
+## 12  1.2695255  2.40100054  2.40100054
+## 13  1.9900000  2.21634452  1.99000000
+## 14  0.1180699  0.02742177  0.03054075
+## 15 -0.9053032 -0.21025693 -0.23417176
+## 16  1.0233730  0.23767870  0.26471250
+## 17 -0.7872333 -0.18283516 -0.20363101
+## 18 -1.3617779 -0.31627333 -0.35224656
+## 19 -0.5745446 -0.13343817 -0.14861555
+## 20         NA          NA          NA
+## 21         NA          NA          NA
+## 22         NA          NA          NA</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="CompMed.html#cb234-1" aria-hidden="true" tabindex="-1"></a>pLewis_ParEsts</span></code></pre></div>
+<pre><code>##                lhs op                         rhs           label    est    se
+## 1         MtnlHlth  ~                       Engmt              b1  0.581 0.451
+## 2         MtnlHlth  ~                    DisEngmt              b2 -3.750 0.448
+## 3         MtnlHlth  ~                        GRMS             c_p -0.575 0.269
+## 4            Engmt  ~                        GRMS              a1  0.203 0.045
+## 5         DisEngmt  ~                        GRMS              a2  0.241 0.035
+## 6         MtnlHlth ~~                    MtnlHlth                 10.067 0.839
+## 7            Engmt ~~                       Engmt                  0.337 0.031
+## 8         DisEngmt ~~                    DisEngmt                  0.233 0.019
+## 9             GRMS ~~                        GRMS                  0.806 0.000
+## 10        MtnlHlth ~1                                             27.728 0.946
+## 11           Engmt ~1                                              1.915 0.106
+## 12        DisEngmt ~1                                              1.270 0.076
+## 13            GRMS ~1                                              1.990 0.000
+## 14       indirect1 :=                       a1*b1       indirect1  0.118 0.099
+## 15       indirect2 :=                       a2*b2       indirect2 -0.905 0.168
+## 16        contrast :=         indirect1-indirect2        contrast  1.023 0.219
+## 17 total_indirects :=         indirect1+indirect2 total_indirects -0.787 0.168
+## 18         total_c := c_p+(indirect1)+(indirect2)         total_c -1.362 0.293
+## 19          direct :=                         c_p          direct -0.575 0.269
+##         z pvalue ci.lower ci.upper std.lv std.all std.nox
+## 1   1.288  0.198   -0.230    1.576  0.581   0.091   0.091
+## 2  -8.376  0.000   -4.596   -2.873 -3.750  -0.513  -0.513
+## 3  -2.134  0.033   -1.094   -0.047 -0.575  -0.133  -0.149
+## 4   4.550  0.000    0.115    0.289  0.203   0.300   0.334
+## 5   6.863  0.000    0.167    0.309  0.241   0.410   0.457
+## 6  12.005  0.000    8.509   11.926 10.067   0.674   0.674
+## 7  10.813  0.000    0.284    0.405  0.337   0.910   0.910
+## 8  12.470  0.000    0.203    0.277  0.233   0.832   0.832
+## 9      NA     NA    0.806    0.806  0.806   1.000   0.806
+## 10 29.323  0.000   25.795   29.374 27.728   7.172   7.172
+## 11 18.051  0.000    1.715    2.129  1.915   3.147   3.147
+## 12 16.771  0.000    1.128    1.436  1.270   2.401   2.401
+## 13     NA     NA    1.990    1.990  1.990   2.216   1.990
+## 14  1.187  0.235   -0.035    0.375  0.118   0.027   0.031
+## 15 -5.395  0.000   -1.240   -0.616 -0.905  -0.210  -0.234
+## 16  4.669  0.000    0.646    1.494  1.023   0.238   0.265
+## 17 -4.700  0.000   -1.114   -0.475 -0.787  -0.183  -0.204
+## 18 -4.651  0.000   -1.933   -0.774 -1.362  -0.316  -0.352
+## 19 -2.133  0.033   -1.094   -0.047 -0.575  -0.133  -0.149</code></pre>
+</div>
+<div id="figures-and-tables-1" class="section level4" number="7.3.2.4">
+<h4><span class="header-section-number">7.3.2.4</span> Figures and Tables</h4>
+<p>When I interpret the data I first plot it and then create the table. Both processes force me to slow down and work conceptually through and deeply in the data.</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="CompMed.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb236-2"><a href="CompMed.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="co">#note change in layout </span></span>
+<span id="cb236-3"><a href="CompMed.html#cb236-3" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(para_Lewis_fit, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb236-4"><a href="CompMed.html#cb236-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb236-5"><a href="CompMed.html#cb236-5" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb236-6"><a href="CompMed.html#cb236-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;tree&#39;, rotation = 2, #together, puts predictors on left, IVs on right </span></span>
+<span id="cb236-7"><a href="CompMed.html#cb236-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;spring&#39;</span>, </span>
+<span id="cb236-8"><a href="CompMed.html#cb236-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb236-9"><a href="CompMed.html#cb236-9" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb236-10"><a href="CompMed.html#cb236-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb236-11"><a href="CompMed.html#cb236-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb236-12"><a href="CompMed.html#cb236-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb236-13"><a href="CompMed.html#cb236-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb236-14"><a href="CompMed.html#cb236-14" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb236-15"><a href="CompMed.html#cb236-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb236-16"><a href="CompMed.html#cb236-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb236-17"><a href="CompMed.html#cb236-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb236-18"><a href="CompMed.html#cb236-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb236-19"><a href="CompMed.html#cb236-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb236-20"><a href="CompMed.html#cb236-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb236-21"><a href="CompMed.html#cb236-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb236-22"><a href="CompMed.html#cb236-22" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Mental Health from Gendered Racial Microaggressions, Mediated by Engagement and Disengagement Coping&quot;</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/Lewis%20Parallel%20model%20plot-1.svg" width="672" /></p>
+<p>Now let’s make a table.</p>
+<p><strong>Table 2 </strong></p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Model Coefficients Assessing Engagement and Disengagement Coping as Parallel Mediators Between Predicting Mental Health from Gendered Racial Microaggressions</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">IV</td>
+<td align="center"></td>
+<td align="center">M</td>
+<td align="center"></td>
+<td align="center">DV</td>
+<td align="center"><span class="math inline">\(B\)</span> for <em>a</em> and <em>b</em> paths</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td align="center"><span class="math inline">\(SE\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">GRMS</td>
+<td align="center">–&gt;</td>
+<td align="center">Engmt</td>
+<td align="center">–&gt;</td>
+<td align="center">MntlHlth</td>
+<td align="center">(0.203) X (0.581)</td>
+<td align="center">=</td>
+<td align="center">0.118</td>
+<td align="center">0.099</td>
+<td align="center">0.235</td>
+</tr>
+<tr class="odd">
+<td align="center">GRMS</td>
+<td align="center">–&gt;</td>
+<td align="center">DisEngmt</td>
+<td align="center">–&gt;</td>
+<td align="center">MntlHlth</td>
+<td align="center">(0.241) X (-3.750)</td>
+<td align="center">=</td>
+<td align="center">-0.905</td>
+<td align="center">0.168</td>
+<td align="center">0.000</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td align="center"><span class="math inline">\(SE\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Total indirect effect</td>
+<td align="center">-0.787</td>
+<td align="center">0.168</td>
+<td align="center">0.000</td>
+</tr>
+<tr class="odd">
+<td align="center">Total effect of X on Y (c path)</td>
+<td align="center">-1.362</td>
+<td align="center">0.293</td>
+<td align="center">0.000</td>
+</tr>
+<tr class="even">
+<td align="center">Direct effect of X on Y (c’)</td>
+<td align="center">-0.575</td>
+<td align="center">0.269</td>
+<td align="center">0.269</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+</tbody>
+</table>
+<p><em>Note</em>. IV = gendered racial microaggressions; M1 = engagement coping; M2 = disengagement coping; Y = mental health. The significance of the indirect effects was calculated with bias-corrected confidence intervals (.95) bootstrap analysis.</p>
+<ul>
+<li>The model accounts for 32.64% of the variance in predicting mental health outcomes.</li>
+<li>The total effect of GRMS on mental health is -1.362 (<span class="math inline">\(p\)</span> = 0.000) is negative and statistically significant. That is, gendered racial microaggressions have a statistically significant negative effect on mental health.</li>
+<li>The direct effect of GRMS on mental health is -0.575 (<em>p</em> = 0.269) is still negative but not statistically significant.
+<ul>
+<li>Using Baron and Kenny’s <span class="citation">(<a href="refs.html#ref-baron_moderator-mediator_1986" role="doc-biblioref">1986</a>)</span> causal steps logic, the smaller and non-significant direct effect (compared to the total effect) provides helpful, logical support for mediation. According to Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> this difference is not necessary. However it is logically helpful.</li>
+</ul></li>
+<li>Indirect effect #1 (a1 x b1 or GRMS through engagement coping) is 0.118 (<span class="math inline">\(p\)</span> = 0.000) and not statistically significant. Looking at the paths we see that <em>a1</em> is positive and statistically significant (GRMS leds to increased engagement coping), but the next link, <em>b1</em> (engagement to mental health) is not statistically significant.</li>
+<li>Indirect effect #2 (a2 x b2, or GRMS through disengagement to coping) is -0.905(<span class="math inline">\(p\)</span> = 0.000). Gendered racial microaggressions lead to greater disengagement (<em>a1</em>). In turn, disengagement has negative effects on mental health (<em>b2</em>)</li>
+<li>The total indirect effect (i.e., sum of M1 and M2) -0.787 (<span class="math inline">\(p\)</span> = 0.000 ) The sum of all specific indirect effects; statistically significant.</li>
+<li>We look at the contrast to see if the indirect effects statistically significantly different from each other? <span class="math inline">\(B\)</span> = 1.023, <span class="math inline">\(p\)</span> = 0.000. They are. This is not surprising since the path mediated by engagement was not statistically significant but the path mediated by disengagement was statistically significant.</li>
+</ul>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="CompMed.html#cb237-1" aria-hidden="true" tabindex="-1"></a>LewisparaTable <span class="ot">&lt;-</span> <span class="fu">semTable</span>(para_Lewis_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;LewisParaTable&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## ,Model,
+##  
+## ,Estimate,Std. Err.,p,R Square,
+## 
+## ,Regression Slopes,
+##  MtnlHlth,
+## 
+## Engmt,0.58,0.45,.198,,
+## 
+## DisEngmt,-3.75,0.45,.000,,
+## 
+## GRMS,-0.57,0.27,.033,,
+## 
+##  Engmt,
+## 
+## GRMS,0.20,0.04,.000,,
+## 
+##  DisEngmt,
+## 
+## GRMS,0.24,0.04,.000,,
+## 
+## ,Intercepts,
+## 
+## MtnlHlth,27.73,0.95,.000,,
+## 
+## Engmt,1.92,0.11,.000,,
+## 
+## DisEngmt,1.27,0.08,.000,,
+## 
+## GRMS,1.99+,,,,
+## 
+## ,Residual Variances,
+## 
+## MtnlHlth,10.07,0.84,.000,,
+## 
+## Engmt,0.34,0.03,.000,,
+## 
+## DisEngmt,0.23,0.02,.000,,
+## 
+## GRMS,0.81+,,,,
+## 
+## ,Fit Indices,
+## 
+## chi^2,17.81(1),,.000,,
+## 
+## CFI,0.89,,,,
+## 
+## TLI,0.33,,,,
+## 
+## RMSEA,0.28,,,,
+## 
+## +Fixed parameter,
+## 
+## 
+## 
+## </code></pre>
+</div>
+<div id="apa-style-writeup-1" class="section level4" number="7.3.2.5">
+<h4><span class="header-section-number">7.3.2.5</span> APA Style Writeup</h4>
+<p>Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> provides helpful guidelines for presenting statistical results. Here is a summary of his recommendations.</p>
+<ul>
+<li>Pack as much statistical info as possible into a table(s) or figure (s).</li>
+<li>Use statistics in the text as punctuation; avoid redundancy in text and table.</li>
+<li>Avoid using abbreviations for variables in the text itself; rather focus on the construct names rather than their shorthand</li>
+<li>Avoid focusing on what you hypothesized (e.g., avoid, “Results supported/did not support hypothesis A1”) and instead focus on what you found. The reader is more interested in the results, not your forecasts.</li>
+<li>Hayes uses unstandardized metrics. He prefers reporting unstandardized metrics because they map onto the measurement scales used in the study. He believes this is especially important when dichotomous variables are used.</li>
+<li>There is “no harm” in reporting hypothesis tests and CIs for the a and b paths, but whether/not these paths are statistically significant does not determine the significance of the indirect effect.</li>
+<li>Be precise with language:</li>
+<li>OK: X exerts an effect on Y directly and/or indirectly through M.</li>
+<li>Not OK: the indirect effect of M<br />
+</li>
+<li>Report direct and indirect effects and their corresponding inferential tests</li>
+<li>Hayes argues that a statistically significant indirect effect is, in fact statistic. He dislikes narration of the Baron and Kenny <span class="citation">(<a href="refs.html#ref-baron_moderator-mediator_1986" role="doc-biblioref">1986</a>)</span> process and steps.</li>
+</ul>
+<p>Here’s my attempt to write up the simulated data from the Lewis et al. <span class="citation">(<a href="refs.html#ref-lewis_applying_2017" role="doc-biblioref">2017</a>)</span> article.</p>
+<p><strong>Method</strong></p>
+<p>Data Analysis</p>
+<p>Parallel multiple mediation is appropriate when testing the influence of an independent variable (X) on the dependent variable (Y) directly, as well as indirectly through two or more mediators. A condition of parallel multiple mediation is that no mediator causally influences another <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">Hayes, 2018</a>)</span>. Using data simulated from Lewis et al. <span class="citation">(<a href="refs.html#ref-lewis_applying_2017" role="doc-biblioref">2017</a>)</span> we utilized parallel multiple mediation analysis to test the influence of gendered racial microaggressions (X, GRMS) on mental health outcomes (Y, MntlHlth) directly as well as indirectly through the mediators engagement coping (M1, Engmt) and disengaged coping (M2, DisEngmt). Using the <em>lavaan</em> (v. 0.6-7) package in R we followed the procedures outlined in Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> by analyzing the strength and significance of four sets of effects: specific indirect, the total indirect, the direct, and total.</p>
+<p><strong>Results</strong></p>
+<p><strong>Preliminary Analyses</strong>
+Descriptive statistics were computed, and all variables were assessed for skewness and kurtosis. <em>More narration,here.</em> A summary of descriptive statistics and a correlation matrix for the study is provided in Table #. These bivariate relations provide evidence to support the test of mediation analysis.</p>
+<p><strong>Parallel Multiple Mediation Analysis</strong>
+A model of parallel multiple mediation was analyzed examining the degree to which engagement and disengagement coping strategies mediated the relation of gendered racial microaggressions on mental health outcomes in Black women. Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously. The resultant direct and indirect values for each path account for other mediation paths. Using the <em>lavaan</em> (v. 0.6-7) package in R, coefficients for specific indirect, total indirect, direct, and total were computed. Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.</p>
+<p>Results (depicted in Figure # and presented in Table #) suggest that 32.64% of the variance in mental health outcomes is accounted for by the three variables in the model. The indirect effect predicting mental health from gendered racial microaggressions via engagement coping was not statistically significant (<span class="math inline">\(B\)</span> = 0.118, <span class="math inline">\(p\)</span> = 0.000). Looking at the individual paths we see that <span class="math inline">\(a_{1}\)</span> was positive and statistically significant (GRMS leds to increased engagement coping), but the subsequent link, <span class="math inline">\(b_{1}\)</span> (engagement to mental health) was not. The indirect effect predicting mental health from gendered racial microaggressions through disengagement to coping was statistically significant (<span class="math inline">\(B\)</span> = -0.905, <span class="math inline">\(p\)</span> = 0.000). In this case, gendered racial microaggressions led to greater disengagement coping (<span class="math inline">\(a_{2}\)</span>). In turn, disengagement coping had negative effects on mental health (<span class="math inline">\(b_{2}\)</span>). Correspondingly, the total indirect effect (i.e., the sum of the specific indirect effects was statistically significant. A pairwise comparison of the specific indirect effects indicated that the strength of the effects were statistically significantly different from each other (<span class="math inline">\(B\)</span> = 1.023, <span class="math inline">\(p\)</span> = 0.000). Given that the path through engagement coping was not significant, but the path through disengagement coping was, this statistically signifciant difference is not surprising. Further support for understanding mediation as the mechanism of change is found in the drop in statistical significance from the total effect (<em>c</em>) to the direct effect (<em>c’</em>).</p>
+<p><strong>Hints for Writing Method/Results Sections</strong></p>
+<ul>
+<li>When you find an article you like, make note of it and put it in a very special folder. In recent years, I have learned to rely on full-text versions stored in my Zotero app.</li>
+<li>Once you know your method (measure, statistic, etc.) begin collecting others articles that are similar to it. To write results sections I will often reference multiple articles.<br />
+</li>
+<li>When it iss time to write have all these resources handy and use them as guides/models.</li>
+<li>Put as much info as possible in the table. Become a table-pro. That is, learn how to merge/split cells, use borders/shading, the decimal tab, and so forth. Don’t make the borders disappear until the last thing you do before submitting. This is because you ALWAYS have to update your tables and seeing the borders makes it easier.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="serial-multiple-mediator-model" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Serial Multiple Mediator Model</h2>
+<p>Recall that one of the conditions of the <em>parallel mediator model</em> was that “no mediator causally influences another.”</p>
+<p>Regarding these correlated mediators <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span>:</p>
+<ul>
+<li>Typically, two or more mediators that are causally located between X and Y will be correlated - if for no other reason than that they share a common cause (X).</li>
+<li>Estimating the partial correlation between two mediators after controlling for X is one way to examine whether all of their association is accounted for by this common cause.</li>
+<li><em>Partial correlation</em> is the Pearson correlation between the residuals from a model estimating Y from a set of covariates, and the residuals from a model estimating X from the same set of covariates.</li>
+<li>Partial correlations allow the assessment of their association, independent of what they have in common with the covariates that were regressed onto Y and X, separately.</li>
+<li>If two (or more) mediators remain correlated after adjusting for X, then</li>
+<li>the correlation is <em>spurious,</em> they share another (unmodeled) common cause.</li>
+<li>the remaining association is <em>epiphenomenal</em>. That is, a proposed mediator could be related to an outcome not because it causes the outcome, but because it is correlated with another variable that is causally influencing the outcome. This is a noncausal alternative explanation for an association. Also, many things correlated with the cause of Y will also tend to be correlated with X, but it doesn’t make all those things cause Y</li>
+<li><em>or one mediator causally affects another</em></li>
+</ul>
+<p>The goal of a serial multiple mediator model is to investigate the direct and indirect effects of X on Y while modeling a process in which X causes M1, which in turn causes M2, and so forth, concluding with Y as the final consequent.</p>
+<p>As before, we will calculate:</p>
+<ul>
+<li><em>Direct effect, c’:</em> the estimated difference in Y between two cases that differ by one unit on X but who are equal on all mediators in the model.</li>
+<li><em>Specific indirect effects, a1b1, a2b2, a3b3, etc.:</em> constructed by multiplying the regression weights corresponding to each step in an indirect pathway; interpreted as the estimated difference in Y between two cases that differ by one unit on X through the causal sequence from X to mediator(s) to Y.</li>
+<li><em>Total indirect effect of X:</em> sum of all specific indirect effects</li>
+<li><em>Total effect of X:</em> the total indirect effect of X plus the direct effect of X; can also be estimated by regressing Y from X only.</li>
+<li><em>Pairwise comparisons (contrasts) between indirect effects</em> (i.e., is one indirect effect stronger than another)</li>
+</ul>
+<div id="we-stick-with-the-lewis-et-al.--lewis_applying_2017-example-but-modify-it." class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> We stick with the Lewis et al. <span class="citation">(<a href="refs.html#ref-lewis_applying_2017" role="doc-biblioref">2017</a>)</span> example, but modify it.</h3>
+<div class="figure">
+<img src="images/CompMed/LewisSerialMed.jpg" alt="" />
+<p class="caption">An image of the serial mediation we will work</p>
+</div>
+<p>Our parallel multiple mediator model of gendered racial microaggressions on mental health through engagement and disengagement coping strategies assumed no causal association between the mediators. Noting the statistically significant correlation between engagement and disengagement, what if engagement influenced disengagement, which, in turn influenced mental health.</p>
+<p>If this is our goal (image), how many direct and indirect effects are contained in this model? Using the same processes as before, let’s plan our model:</p>
+<ul>
+<li>We add a path predicting disengagement from engagement, and label it with a <span class="math inline">\(d_{21}\)</span>
+<ul>
+<li>Regarding the notation, it makes sense that we use a <em>d</em> to designate a new type of path; I don’t know why we use a subscript of 21</li>
+</ul></li>
+<li>We specify a third indirect path that multiplies those 3 paths (a1, d21, b2) together</li>
+<li>We add a third contrast so that we get all the combinations of indirect comparisons: 1-2, 1-3 2-3</li>
+<li>We update our total_indirects calculation to include indirect#3</li>
+<li>We update our total_c calculation to include indirect#3</li>
+</ul>
+</div>
+<div id="specify-the-lavaan-model" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Specify the <em>lavaan</em> model</h3>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="CompMed.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210403</span>)</span>
+<span id="cb239-2"><a href="CompMed.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb239-3"><a href="CompMed.html#cb239-3" aria-hidden="true" tabindex="-1"></a>serial_Lewis <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb239-4"><a href="CompMed.html#cb239-4" aria-hidden="true" tabindex="-1"></a><span class="st">    MtnlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS</span></span>
+<span id="cb239-5"><a href="CompMed.html#cb239-5" aria-hidden="true" tabindex="-1"></a><span class="st">    Engmt ~ a1*GRMS    </span></span>
+<span id="cb239-6"><a href="CompMed.html#cb239-6" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ a2*GRMS</span></span>
+<span id="cb239-7"><a href="CompMed.html#cb239-7" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ d21*Engmt</span></span>
+<span id="cb239-8"><a href="CompMed.html#cb239-8" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
+<span id="cb239-9"><a href="CompMed.html#cb239-9" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
+<span id="cb239-10"><a href="CompMed.html#cb239-10" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect3 := a1 * d21 * b2</span></span>
+<span id="cb239-11"><a href="CompMed.html#cb239-11" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast1 := indirect1 - indirect2</span></span>
+<span id="cb239-12"><a href="CompMed.html#cb239-12" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast2 := indirect1 - indirect3</span></span>
+<span id="cb239-13"><a href="CompMed.html#cb239-13" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast3 := indirect2 - indirect3</span></span>
+<span id="cb239-14"><a href="CompMed.html#cb239-14" aria-hidden="true" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2 + indirect3</span></span>
+<span id="cb239-15"><a href="CompMed.html#cb239-15" aria-hidden="true" tabindex="-1"></a><span class="st">    total_c := c_p + indirect1 + indirect2 + indirect3</span></span>
+<span id="cb239-16"><a href="CompMed.html#cb239-16" aria-hidden="true" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
+<span id="cb239-17"><a href="CompMed.html#cb239-17" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb239-18"><a href="CompMed.html#cb239-18" aria-hidden="true" tabindex="-1"></a>serial_Lewis_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(serial_Lewis, <span class="at">data =</span> Lewis_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb239-19"><a href="CompMed.html#cb239-19" aria-hidden="true" tabindex="-1"></a>sLewis_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(serial_Lewis_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span>
+<span id="cb239-20"><a href="CompMed.html#cb239-20" aria-hidden="true" tabindex="-1"></a>sLewis_ParEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(serial_Lewis_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="CompMed.html#cb240-1" aria-hidden="true" tabindex="-1"></a>sLewis_sum</span></code></pre></div>
+<pre><code>## $FIT
+##              npar              fmin             chisq                df 
+##            12.000             0.000             0.000             0.000 
+##            pvalue    baseline.chisq       baseline.df   baseline.pvalue 
+##                NA           155.625             6.000             0.000 
+##               cfi               tli              logl unrestricted.logl 
+##             1.000             1.000          -868.431          -868.431 
+##               aic               bic            ntotal              bic2 
+##          1760.862          1801.141           212.000          1763.117 
+##             rmsea    rmsea.ci.lower    rmsea.ci.upper      rmsea.pvalue 
+##             0.000             0.000             0.000                NA 
+##              srmr 
+##             0.000 
+## 
+## $PE
+##                lhs op                               rhs           label exo
+## 1         MtnlHlth  ~                             Engmt              b1   0
+## 2         MtnlHlth  ~                          DisEngmt              b2   0
+## 3         MtnlHlth  ~                              GRMS             c_p   0
+## 4            Engmt  ~                              GRMS              a1   0
+## 5         DisEngmt  ~                              GRMS              a2   0
+## 6         DisEngmt  ~                             Engmt             d21   0
+## 7         MtnlHlth ~~                          MtnlHlth                   0
+## 8            Engmt ~~                             Engmt                   0
+## 9         DisEngmt ~~                          DisEngmt                   0
+## 10            GRMS ~~                              GRMS                   1
+## 11        MtnlHlth ~1                                                     0
+## 12           Engmt ~1                                                     0
+## 13        DisEngmt ~1                                                     0
+## 14            GRMS ~1                                                     1
+## 15       indirect1 :=                             a1*b1       indirect1   0
+## 16       indirect2 :=                             a2*b2       indirect2   0
+## 17       indirect3 :=                         a1*d21*b2       indirect3   0
+## 18       contrast1 :=               indirect1-indirect2       contrast1   0
+## 19       contrast2 :=               indirect1-indirect3       contrast2   0
+## 20       contrast3 :=               indirect2-indirect3       contrast3   0
+## 21 total_indirects :=     indirect1+indirect2+indirect3 total_indirects   0
+## 22         total_c := c_p+indirect1+indirect2+indirect3         total_c   0
+## 23          direct :=                               c_p          direct   0
+## 24        MtnlHlth r2                          MtnlHlth                   0
+## 25           Engmt r2                             Engmt                   0
+## 26        DisEngmt r2                          DisEngmt                   0
+##           est         se         z       pvalue    ci.lower    ci.upper
+## 1   0.5806718 0.45080370  1.288081 1.977177e-01 -0.25535128  1.55057238
+## 2  -3.7495295 0.44764672 -8.376091 0.000000e+00 -4.58391895 -2.86769103
+## 3  -0.5745446 0.26922160 -2.134096 3.283495e-02 -1.09766028 -0.06462864
+## 4   0.2033333 0.04468537  4.550334 5.356091e-06  0.11504500  0.29007149
+## 5   0.1934921 0.03654478  5.294657 1.192400e-07  0.11799538  0.26328150
+## 6   0.2358314 0.05038989  4.680133 2.866887e-06  0.13355108  0.33598329
+## 7  10.0673374 0.83862789 12.004534 0.000000e+00  8.24746418 11.66410467
+## 8   0.3370138 0.03116807 10.812790 0.000000e+00  0.27585878  0.40038675
+## 9   0.2138349 0.01793862 11.920365 0.000000e+00  0.17704981  0.24794098
+## 10  0.8061792 0.00000000        NA           NA  0.80617925  0.80617925
+## 11 27.7278621 0.94560942 29.322743 0.000000e+00 25.80236540 29.38520563
+## 12  1.9153667 0.10610583 18.051474 0.000000e+00  1.70846228  2.11781443
+## 13  0.8178220 0.12758575  6.409979 1.455398e-10  0.54356422  1.06554992
+## 14  1.9900000 0.00000000        NA           NA  1.99000000  1.99000000
+## 15  0.1180699 0.09943867  1.187364 2.350839e-01 -0.05775972  0.33448715
+## 16 -0.7255042 0.16091508 -4.508615 6.525210e-06 -1.05030410 -0.42154627
+## 17 -0.1797989 0.05906713 -3.043975 2.334747e-03 -0.31175956 -0.08071553
+## 18  0.8435741 0.20532268  4.108529 3.981878e-05  0.46848070  1.25685324
+## 19  0.2978688 0.13036128  2.284948 2.231585e-02  0.08708742  0.60218767
+## 20 -0.5457053 0.17493913 -3.119401 1.812190e-03 -0.89612134 -0.18981627
+## 21 -0.7872332 0.16750149 -4.699858 2.603430e-06 -1.11075160 -0.47350422
+## 22 -1.3617778 0.29278893 -4.651056 3.302391e-06 -1.95099481 -0.77628758
+## 23 -0.5745446 0.26935631 -2.133028 3.292240e-02 -1.09766028 -0.06462864
+## 24  0.3104425         NA        NA           NA          NA          NA
+## 25  0.0900000         NA        NA           NA          NA          NA
+## 26  0.2351429         NA        NA           NA          NA          NA
+##        std.lv     std.all     std.nox
+## 1   0.5806718  0.09248297  0.09248297
+## 2  -3.7495295 -0.51886440 -0.51886440
+## 3  -0.5745446 -0.13501049 -0.15036671
+## 4   0.2033333  0.30000000  0.33412229
+## 5   0.1934921  0.32857143  0.36594346
+## 6   0.2358314  0.27142857  0.27142857
+## 7  10.0673374  0.68955748  0.68955748
+## 8   0.3370138  0.91000000  0.91000000
+## 9   0.2138349  0.76485714  0.76485714
+## 10  0.8061792  1.00000000  0.80617925
+## 11 27.7278621  7.25678592  7.25678592
+## 12  1.9153667  3.14737717  3.14737717
+## 13  0.8178220  1.54671257  1.54671257
+## 14  1.9900000  2.21634452  1.99000000
+## 15  0.1180699  0.02774489  0.03090062
+## 16 -0.7255042 -0.17048402 -0.18987503
+## 17 -0.1797989 -0.04225039 -0.04705599
+## 18  0.8435741  0.19822891  0.22077566
+## 19  0.2978688  0.06999528  0.07795661
+## 20 -0.5457053 -0.12823363 -0.14281905
+## 21 -0.7872332 -0.18498951 -0.20603040
+## 22 -1.3617778 -0.32000000 -0.35639711
+## 23 -0.5745446 -0.13501049 -0.15036671
+## 24         NA          NA          NA
+## 25         NA          NA          NA
+## 26         NA          NA          NA</code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="CompMed.html#cb242-1" aria-hidden="true" tabindex="-1"></a>sLewis_ParEsts</span></code></pre></div>
+<pre><code>##                lhs op                               rhs           label    est
+## 1         MtnlHlth  ~                             Engmt              b1  0.581
+## 2         MtnlHlth  ~                          DisEngmt              b2 -3.750
+## 3         MtnlHlth  ~                              GRMS             c_p -0.575
+## 4            Engmt  ~                              GRMS              a1  0.203
+## 5         DisEngmt  ~                              GRMS              a2  0.193
+## 6         DisEngmt  ~                             Engmt             d21  0.236
+## 7         MtnlHlth ~~                          MtnlHlth                 10.067
+## 8            Engmt ~~                             Engmt                  0.337
+## 9         DisEngmt ~~                          DisEngmt                  0.214
+## 10            GRMS ~~                              GRMS                  0.806
+## 11        MtnlHlth ~1                                                   27.728
+## 12           Engmt ~1                                                    1.915
+## 13        DisEngmt ~1                                                    0.818
+## 14            GRMS ~1                                                    1.990
+## 15       indirect1 :=                             a1*b1       indirect1  0.118
+## 16       indirect2 :=                             a2*b2       indirect2 -0.726
+## 17       indirect3 :=                         a1*d21*b2       indirect3 -0.180
+## 18       contrast1 :=               indirect1-indirect2       contrast1  0.844
+## 19       contrast2 :=               indirect1-indirect3       contrast2  0.298
+## 20       contrast3 :=               indirect2-indirect3       contrast3 -0.546
+## 21 total_indirects :=     indirect1+indirect2+indirect3 total_indirects -0.787
+## 22         total_c := c_p+indirect1+indirect2+indirect3         total_c -1.362
+## 23          direct :=                               c_p          direct -0.575
+##       se      z pvalue ci.lower ci.upper std.lv std.all std.nox
+## 1  0.451  1.288  0.198   -0.230    1.576  0.581   0.092   0.092
+## 2  0.448 -8.376  0.000   -4.596   -2.873 -3.750  -0.519  -0.519
+## 3  0.269 -2.134  0.033   -1.094   -0.047 -0.575  -0.135  -0.150
+## 4  0.045  4.550  0.000    0.115    0.289  0.203   0.300   0.334
+## 5  0.037  5.295  0.000    0.119    0.264  0.193   0.329   0.366
+## 6  0.050  4.680  0.000    0.134    0.336  0.236   0.271   0.271
+## 7  0.839 12.005  0.000    8.509   11.926 10.067   0.690   0.690
+## 8  0.031 10.813  0.000    0.284    0.405  0.337   0.910   0.910
+## 9  0.018 11.920  0.000    0.184    0.258  0.214   0.765   0.765
+## 10 0.000     NA     NA    0.806    0.806  0.806   1.000   0.806
+## 11 0.946 29.323  0.000   25.795   29.374 27.728   7.257   7.257
+## 12 0.106 18.051  0.000    1.715    2.129  1.915   3.147   3.147
+## 13 0.128  6.410  0.000    0.567    1.073  0.818   1.547   1.547
+## 14 0.000     NA     NA    1.990    1.990  1.990   2.216   1.990
+## 15 0.099  1.187  0.235   -0.035    0.375  0.118   0.028   0.031
+## 16 0.161 -4.509  0.000   -1.046   -0.416 -0.726  -0.170  -0.190
+## 17 0.059 -3.044  0.002   -0.328   -0.089 -0.180  -0.042  -0.047
+## 18 0.205  4.109  0.000    0.485    1.264  0.844   0.198   0.221
+## 19 0.130  2.285  0.022    0.101    0.621  0.298   0.070   0.078
+## 20 0.175 -3.119  0.002   -0.898   -0.201 -0.546  -0.128  -0.143
+## 21 0.168 -4.700  0.000   -1.114   -0.475 -0.787  -0.185  -0.206
+## 22 0.293 -4.651  0.000   -1.933   -0.774 -1.362  -0.320  -0.356
+## 23 0.269 -2.133  0.033   -1.094   -0.047 -0.575  -0.135  -0.150</code></pre>
+</div>
+<div id="figures-and-tables-2" class="section level3" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Figures and Tables</h3>
+<p><strong>Table 2 </strong></p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Model Coefficients Assessing Engagement and Disengagement Coping as Serial Mediators Between Predicting Mental Health from Gendered Racial Microaggressions</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="2%" />
+<col width="6%" />
+<col width="2%" />
+<col width="6%" />
+<col width="2%" />
+<col width="8%" />
+<col width="30%" />
+<col width="2%" />
+<col width="9%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">IV</td>
+<td align="center"></td>
+<td align="center">M1</td>
+<td align="center"></td>
+<td align="center">M2</td>
+<td align="center"></td>
+<td align="center">DV</td>
+<td align="center"><span class="math inline">\(B\)</span> for <em>a</em>, <em>b</em>, and <span class="math inline">\(d_{21}\)</span> paths</td>
+<td align="center"></td>
+<td align="right"><span class="math inline">\(B\)</span></td>
+<td align="center"><span class="math inline">\(SE\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">GRMS</td>
+<td align="center">–&gt;</td>
+<td align="center">Engmt</td>
+<td align="center">–&gt;</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">MntlHlth</td>
+<td align="center">(0.203) X (0.581)</td>
+<td align="center">=</td>
+<td align="right">0.118</td>
+<td align="center">0.099</td>
+<td align="center">0.235</td>
+</tr>
+<tr class="odd">
+<td align="center">GRMS</td>
+<td align="center">–&gt;</td>
+<td align="center">DisEngmt</td>
+<td align="center">–&gt;</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">MntlHlth</td>
+<td align="center">(0.193) X (-3.750)</td>
+<td align="center">=</td>
+<td align="right">-0.726</td>
+<td align="center">0.161</td>
+<td align="center">0.000</td>
+</tr>
+<tr class="even">
+<td align="center">GRMS</td>
+<td align="center">–&gt;</td>
+<td align="center">Engmt</td>
+<td align="center">–&gt;</td>
+<td align="center">DisEngmt</td>
+<td align="center">–&gt;</td>
+<td align="center">MntlHlth</td>
+<td align="center">(0.203) X (0.236) X (-3.750)</td>
+<td align="center">=</td>
+<td align="right">-0.180</td>
+<td align="center">0.059</td>
+<td align="center">0.000</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="68%" />
+<col width="9%" />
+<col width="11%" />
+<col width="10%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td align="center"><span class="math inline">\(SE\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Total indirect effect</td>
+<td align="center">-0.787</td>
+<td align="center">0.168</td>
+<td align="center">0.000</td>
+</tr>
+<tr class="odd">
+<td align="center">Total effect of GRMS (X) on mental health (Y; c path)</td>
+<td align="center">-1.362</td>
+<td align="center">0.293</td>
+<td align="center">0.000</td>
+</tr>
+<tr class="even">
+<td align="center">Direct effect of GRMS (X) on mental health (Y; c’ path)</td>
+<td align="center">-0.575</td>
+<td align="center">0.269</td>
+<td align="center">0.033</td>
+</tr>
+<tr class="odd">
+<td align="center">Contrast comparing indirects 1 (via engagement) and 2 (via disengagement)</td>
+<td align="center">0.844</td>
+<td align="center">0.205</td>
+<td align="center">0.000</td>
+</tr>
+<tr class="even">
+<td align="center">Contrast comparing indirects 1 (via engagement) and 3 (serially via disengagement)</td>
+<td align="center">0.298</td>
+<td align="center">0.130</td>
+<td align="center">0.022</td>
+</tr>
+<tr class="odd">
+<td align="center">Contrast comparing indirects 2 (via disengagement) and 3 (serially via disengagement)</td>
+<td align="center">-0.546</td>
+<td align="center">0.175</td>
+<td align="center">0.002</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+</tbody>
+</table>
+<p><em>Note</em>. IV = gendered racial microaggressions; M1 = engagement coping; M2 = disengagement coping; Y = mental health. The significance of the indirect effects was calculated with bias-corrected confidence intervals (.95) bootstrap analysis.</p>
+<p>Working through the data, we should be able to find these items:</p>
+<ul>
+<li>The model accounts for 31.04% of the variance in predicting mental health outcomes.</li>
+<li>The total effect of GRMS (X) on mental health (Y) is -1.362 (<span class="math inline">\(p\)</span> = 0.000) is negative and statistically significant.</li>
+<li>The direct effect of GRMS (X) on mental health (Y) (-0.575, <span class="math inline">\(p\)</span> = 0.033) is still negative, but weaker in magnitude (relative to the total effect). While the <span class="math inline">\(p\)</span> value is statistically significant, it is closer to being not significant (than the total effect). This reduction in magnitude and strength of significance is consistent with the Baron and Kenny <span class="citation">(<a href="refs.html#ref-baron_moderator-mediator_1986" role="doc-biblioref">1986</a>)</span> logic of mediation.</li>
+<li>Indirect effect #1 (<span class="math inline">\(a_{1}\)</span> x <span class="math inline">\(b_{1}\)</span> or GRMS through engagement coping to mental health) is 0.118 (<span class="math inline">\(p\)</span> = 0.235). Again, <span class="math inline">\(p\)</span> is &gt; .05. Examining the individual paths, there is a statistically significant relationship from GRMS to engagement, but not from engagement to mental health.</li>
+<li>Indirect effect #2 (<span class="math inline">\(a_{2}\)</span> x <span class="math inline">\(b_{2}\)</span>, or GRMS through disengagement coping to mental health, is -0.726 (<span class="math inline">\(p\)</span> = 0.000). Each of the paths is statistically significant from zero and so is the indirect effect.</li>
+<li>Indirect effect #3 (<span class="math inline">\(a_{2}\)</span> x <span class="math inline">\(d_{21}\)</span> x <span class="math inline">\(b_{2}\)</span>; GRMS through engagement coping through disengagement coping to mental health) is -0.180 (<span class="math inline">\(p\)</span> = 0.000). This indirect effect involves <span class="math inline">\(a_{1}\)</span> (GRMS to engagement) which is not significant. However, the remaining paths were significant. That is engagement coping led to increased disengagement coping, which led to poorer mental health outcomes.</li>
+<li>Total indirect: -0.787 (<span class="math inline">\(p\)</span> = 0.000) is the sum of all specific indirect effects and is statistically significant.</li>
+<li>With <strong>contrasts</strong> we ask: Are the indirect effects statistically significantly different from each other?
+<ul>
+<li>Contrast 1 (indirect 1 v 2) = 0.844 (<span class="math inline">\(p\)</span> = 0.000), yes</li>
+<li>Contrast 2 (indirect 1 v 3) = 0.844 (<span class="math inline">\(p\)</span> = 0.022), yes</li>
+<li>Contrast 3 (indirect 2 v 3) = 0.844 (<span class="math inline">\(p\)</span> = -0.546), yes</li>
+<li>This formal test of contrasts is an important one. It is not ok to infer that effects are statistically significantly different than each other on the basis of their estimates or <span class="math inline">\(p\)</span> values. The formal test allows us to claim (with justification) that the strongest indirect effect is #2 – GRMS through disengagement coping to mental health.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="CompMed.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
+<span id="cb244-2"><a href="CompMed.html#cb244-2" aria-hidden="true" tabindex="-1"></a>LewisserialTbl <span class="ot">&lt;-</span> <span class="fu">semTable</span>(serial_Lewis_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;LewisSerialTbl&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>This is not the greatest figure. There is much to learn in <em>semPlot</em>.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="CompMed.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(serial_Lewis_fit, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb245-2"><a href="CompMed.html#cb245-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb245-3"><a href="CompMed.html#cb245-3" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb245-4"><a href="CompMed.html#cb245-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;tree&#39;, rotation = 2, #together, puts predictors on left, IVs on right </span></span>
+<span id="cb245-5"><a href="CompMed.html#cb245-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;circle&#39;</span>,</span>
+<span id="cb245-6"><a href="CompMed.html#cb245-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb245-7"><a href="CompMed.html#cb245-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb245-8"><a href="CompMed.html#cb245-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb245-9"><a href="CompMed.html#cb245-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb245-10"><a href="CompMed.html#cb245-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb245-11"><a href="CompMed.html#cb245-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb245-12"><a href="CompMed.html#cb245-12" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb245-13"><a href="CompMed.html#cb245-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb245-14"><a href="CompMed.html#cb245-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb245-15"><a href="CompMed.html#cb245-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb245-16"><a href="CompMed.html#cb245-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb245-17"><a href="CompMed.html#cb245-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb245-18"><a href="CompMed.html#cb245-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb245-19"><a href="CompMed.html#cb245-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb245-20"><a href="CompMed.html#cb245-20" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;The Effect of Gendered Racial Microaggressions on Mental Health through Engaged and Disengaged Coping Styles&quot;</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/semPlot%20of%20serial%20PMI%20model-1.svg" width="672" /></p>
+</div>
+<div id="apa-style-writeup-2" class="section level3" number="7.4.4">
+<h3><span class="header-section-number">7.4.4</span> APA Style Writeup</h3>
+<p><strong>Method</strong>
+<strong>Data Analysis</strong>
+Serial multiple mediation is appropriate when testing the influence of an independent variable (X) on the dependent variable (Y) directly, as well as indirectly through two or more mediators (M) and there is reason to hypothesize that variables that are causally prior in the model affect all variables later in the causal sequence <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">Hayes, 2018</a>)</span>. We utilized serial multiple mediation analysis to test the influence of gendered racial microaggressions (X, GRMS) on mental health (Y, MntlHlth) directly as well as indirectly through the mediators engagement coping (M1, Engmt) and disengagement coping (M2, DisEngmt). Moreover, we hypothesized a causal linkage between from the engagement coping mediator to the disengagement coping mediator such that a third specific indirect effect began with GRMS (X) through engagement coping (M1) through disengagement coping (M2) to mental health (Y). Using the <em>lavaan</em> (v. 0.6-7) package in R we followed the procedures outlined in Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> by analyzing the strength and significance of four sets of effects: specific indirect, the total indirect, the direct, and total. Bootstrap analysis, a nonparametric sampling procedure, was used to test the significance of the indirect effects.</p>
+<p><em>Hayes would likely recommend that we say this with fewer acronyms and more words/story.</em></p>
+<p><strong>Results</strong>
+<strong>Preliminary Analyses</strong>
+Descriptive statistics were computed, and all variables were assessed univariate normality. <em>You would give your results regarding skew, kurtosis, Shapiro Wilks’, here. If relevant, you could also describe multivariate normality.</em> A summary of descriptive statistics and a correlation matrix for the study is provided in Table 1. These bivariate relations provide evidence to support the test of mediation analysis.</p>
+<p><strong>Serial Multiple Mediation Analysis</strong>
+A model of serial multiple mediation was analyzed examining the degree to which engagement and disengagement coping mediated the relationship between gendered racial microaggressions and mental health outcomes. Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously and allows the testing of the seriated effect of prior mediators onto subsequent ones. Using the <em>lavaan</em> (v. 0.6-7) package in R, coefficients for specific indirect, total indirect, direct, and total were computed. Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.</p>
+<p>Results (depicted in Figure # and presented in Table #) suggest that 31.04% of the variance in behavioral intentions is accounted for by the three variables in the model. Two of the specific indirect effects were significant and were statistically significantly different from each other. Specifically, the effect of gendered racial microaggressions through disengagement coping to mental health (<span class="math inline">\(B\)</span> = 0.118, <span class="math inline">\(p\)</span> = 0.235) was stronger than the indirect effect from gendered racial microaggressions through engagement coping through disengagement coping to mental health (<span class="math inline">\(B\)</span> = -0.180, <span class="math inline">\(p\)</span> = 0.000). Interpreting the results suggests that, mental health outcomes are negatively impacted by gendered racial microaggressions direct and indirectly through disengagement coping. It is this latter path that has the greatest impact.</p>
+<p><em>Note</em>: In a manner consistent with the Lewis et al. <span class="citation">(<a href="refs.html#ref-lewis_applying_2017" role="doc-biblioref">2017</a>)</span> article, the APA Results section can be fairly short. This is especially true when a well-organized table presents the results. In fact, I oculd have left all the numbers out of this except for the <span class="math inline">\(R^2\)</span> (because it was not reported in the table).</p>
+</div>
+</div>
+<div id="troubleshooting-and-faqs" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Troubleshooting and FAQs</h2>
+<p>An indirect effect that was (seemingly) significant in a simple (single) mediation disappears when additional mediators are added.</p>
+<ul>
+<li>Correlated mediators (e.g., multicollinearity) is a likely possibility.</li>
+<li>Which is correct? Maybe both…</li>
+</ul>
+<p>A total effect was not significant, but there is one or more statistically significant specific indirect effect</p>
+<ul>
+<li>Recall that a total effect equals the sum of direct and indirect effects. If one specific indirect effect is positive and another is negative, this could account for the NS total effect.</li>
+<li>If the direct effect is NS, but the indirect effects are significant, this might render the total effect NS.</li>
+<li>The indirect effects might operate differently in subpopulations (males, females).</li>
+</ul>
+<p>Your editor/peer reviewer/dissertation chair-or-committee member may insist that you do this the Baron &amp; Kenny way (aka “the causal steps approach”).</p>
+<ul>
+<li>Hayes 4.1 <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> provides fabulous narration and justification for how to justify your (I believe correct) decision to just use the PROCESS (aka, bootstrapped, bias corrected, CIs )approach.</li>
+<li>My favorite line in his text reads, " (the B&amp;K way).is still being taught and recommended by researchers who don’t follow the methodology literature."</li>
+</ul>
+<p>How can I extend a mediation (only) model to include multiple Xs, Ys, or COVs?</p>
+<ul>
+<li>There is fabulous, fabulous narration and syntax for doing all of this in Hayes text. Of course his mechanics are in PROCESS, but <em>lavaan</em> is easy to use by just “drawing more paths” via the syntax. We’ll get more practice as we go along.</li>
+</ul>
+<p>What about effect sizes? Shouldn’t we be including/reporting them?</p>
+<ul>
+<li>Yes! The closest thing we have reported to an effect size is <span class="math inline">\(R^2\)</span>, which assess proportion of variance accounted for in the M and Y variables.<br />
+</li>
+<li>In PROCESS and path analysis this is still emerging. Hayes chapter 4 presents a handful of options for effect sizes beyond <span class="math inline">\(R^2\)</span>.</li>
+</ul>
+</div>
+<div id="practice-problems-5" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Practice Problems</h2>
+<p>The three problems described below are designed to be grow in this series of chapters that begins with simple mediation and progresses through complex mediation, moderated moderation, and conditional process analysis. I recommend that you select a dataset that includes at least four variables. If you are new to this topic, you may wish to select variables that are all continuously scaled. The IV and moderator (in subsequent chapters) could be categorical (if they are dichotomous, please use 0/1 coding; if they have more than one category it is best if they are ordered). You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.</p>
+<p>The suggested practice problem for this chapter is to conduct a parallel or serial mediation (or both).</p>
+<div id="problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1" class="section level3" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> Problem #1: Rework the research vignette as demonstrated, but change the random seed</h3>
+<p>If this topic feels a bit overwhelming, simply change the random seed in the data simulation, then rework the problem. This should provide minor changes to the data (maybe in the second or third decimal point), but the results will likely be very similar.</p>
+<table>
+<colgroup>
+<col width="76%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Assign each variable to the X, Y, M1, and M2 roles (ok but not required to include a cov)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Specify and run the lavaan model</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Use semPlot to create a figure</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Create a table that includes a summary of the effects (indirect, direct, total, total indirect) as well as contrasts (if you chose a serially mediated model)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Represent your work in an APA-style write-up</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, &amp; c’ paths</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">35</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-1" class="section level3" number="7.6.2">
+<h3><span class="header-section-number">7.6.2</span> Problem #2: Rework the research vignette, but swap one or more variables</h3>
+<p>Use the simulated data provided in this chapter, but swap out one or more of the variables. This could mean changing roles for the variables that were the focus of the chapter, or substituting one or more variables for those in the simulated data but not modeled in the chapter.</p>
+<table>
+<colgroup>
+<col width="76%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Assign each variable to the X, Y, M1, and M2 roles (ok but not required to include a cov)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Specify and run the lavaan model</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Use semPlot to create a figure</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Create a table that includes a summary of the effects (indirect, direct, total, total indirect) as well as contrasts (if you chose a serially mediated model)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Represent your work in an APA-style write-up</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, &amp; c’ paths</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">35</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-3-use-other-data-that-is-available-to-you-1" class="section level3" number="7.6.3">
+<h3><span class="header-section-number">7.6.3</span> Problem #3: Use other data that is available to you</h3>
+<p>Use data for which you have permission and access. This could be IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; or data from other chapters in this OER.</p>
+<table>
+<colgroup>
+<col width="76%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Assign each variable to the X, Y, M1, and M2 roles (ok but not required to include a cov)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Specify and run the lavaan model</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Use semPlot to create a figure</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Create a table that includes a summary of the effects (indirect, direct, total, total indirect) as well as contrasts (if you chose a serially mediated model)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Represent your work in an APA-style write-up</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, &amp; c’ paths</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">35</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="CompMed.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.0.4 (2021-02-15)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18362)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] MASS_7.3-53       semTable_1.8      semPlot_1.1.2     lavaan_0.6-7     
+##  [5] apaTables_2.0.8   gdtools_0.2.2     mice_3.13.0       sjstats_0.18.0   
+##  [9] formattable_0.2.1 qualtRics_3.1.4   forcats_0.5.0     stringr_1.4.0    
+## [13] dplyr_1.0.2       purrr_0.3.4       readr_1.4.0       tidyr_1.1.2      
+## [17] tibble_3.0.4      ggplot2_3.3.3     tidyverse_1.3.0   psych_2.0.12     
+## 
+## loaded via a namespace (and not attached):
+##   [1] readxl_1.3.1        backports_1.2.0     BDgraph_2.63       
+##   [4] Hmisc_4.4-2         systemfonts_0.3.2   igraph_1.2.6       
+##   [7] plyr_1.8.6          splines_4.0.4       TH.data_1.0-10     
+##  [10] digest_0.6.27       htmltools_0.5.0     matrixcalc_1.0-3   
+##  [13] fansi_0.4.1         magrittr_2.0.1      Rsolnp_1.16        
+##  [16] checkmate_2.0.0     lisrelToR_0.1.4     cluster_2.1.0      
+##  [19] openxlsx_4.2.3      modelr_0.1.8        sandwich_3.0-0     
+##  [22] svglite_1.2.3.2     jpeg_0.1-8.1        sem_3.1-11         
+##  [25] MBESS_4.8.0         colorspace_2.0-0    rvest_0.3.6        
+##  [28] haven_2.3.1         xfun_0.19           crayon_1.3.4       
+##  [31] jsonlite_1.7.2      lme4_1.1-26         regsem_1.6.2       
+##  [34] survival_3.2-7      zoo_1.8-8           glue_1.4.2         
+##  [37] gtable_0.3.0        emmeans_1.5.3       mi_1.0             
+##  [40] sjmisc_2.8.5        abind_1.4-5         scales_1.1.1       
+##  [43] mvtnorm_1.1-1       DBI_1.1.0           Rcpp_1.0.5         
+##  [46] xtable_1.8-4        performance_0.6.1   htmlTable_2.1.0    
+##  [49] tmvnsim_1.0-2       foreign_0.8-81      Formula_1.2-4      
+##  [52] stats4_4.0.4        truncnorm_1.0-8     htmlwidgets_1.5.3  
+##  [55] httr_1.4.2          RColorBrewer_1.1-2  ellipsis_0.3.1     
+##  [58] pkgconfig_2.0.3     XML_3.99-0.5        nnet_7.3-15        
+##  [61] kutils_1.70         dbplyr_2.0.0        utf8_1.1.4         
+##  [64] reshape2_1.4.4      tidyselect_1.1.0    rlang_0.4.9        
+##  [67] effectsize_0.4.1    munsell_0.5.0       cellranger_1.1.0   
+##  [70] tools_4.0.4         cli_2.2.0           generics_0.1.0     
+##  [73] sjlabelled_1.1.7    broom_0.7.3         fdrtool_1.2.15     
+##  [76] evaluate_0.14       arm_1.11-2          yaml_2.2.1         
+##  [79] knitr_1.30          fs_1.5.0            stationery_0.98.30 
+##  [82] zip_2.1.1           glasso_1.11         pbapply_1.4-3      
+##  [85] nlme_3.1-151        whisker_0.4         xml2_1.3.2         
+##  [88] compiler_4.0.4      rstudioapi_0.13     curl_4.3           
+##  [91] png_0.1-7           huge_1.3.4.1        reprex_0.3.0       
+##  [94] statmod_1.4.35      pbivnorm_0.6.0      stringi_1.5.3      
+##  [97] parameters_0.10.1   qgraph_1.6.5        rockchalk_1.8.144  
+## [100] lattice_0.20-41     Matrix_1.2-18       nloptr_1.2.2.2     
+## [103] vctrs_0.3.6         pillar_1.4.7        lifecycle_0.2.0    
+## [106] OpenMx_2.18.1       estimability_1.3    corpcor_1.6.9      
+## [109] data.table_1.13.4   insight_0.11.1      R6_2.5.0           
+## [112] latticeExtra_0.6-29 bookdown_0.21       gridExtra_2.3      
+## [115] codetools_0.2-18    gtools_3.8.2        boot_1.3-25        
+## [118] assertthat_0.2.1    rjson_0.2.20        withr_2.3.0        
+## [121] mnormt_2.0.2        multcomp_1.4-15     bayestestR_0.8.0   
+## [124] parallel_4.0.4      hms_0.5.3           grid_4.0.4         
+## [127] rpart_4.1-15        coda_0.19-4         minqa_1.2.4        
+## [130] rmarkdown_2.6       carData_3.0-4       d3Network_0.5.2.1  
+## [133] lubridate_1.7.9.2   base64enc_0.1-3</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="SimpleMed.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ModMed.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ontheline/otl-bookdown/blob/master/07-ComplexMed.Rmd",
+"text": null
+},
+"download": ["ReC_MultMod.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

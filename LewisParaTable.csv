@@ -1,0 +1,55 @@
+,Model,
+ 
+,Estimate,Std. Err.,p,R Square,
+
+,Regression Slopes,
+ MtnlHlth,
+
+Engmt,0.58,0.45,.198,,
+
+DisEngmt,-3.75,0.45,.000,,
+
+GRMS,-0.57,0.27,.033,,
+
+ Engmt,
+
+GRMS,0.20,0.04,.000,,
+
+ DisEngmt,
+
+GRMS,0.24,0.04,.000,,
+
+,Intercepts,
+
+MtnlHlth,27.73,0.95,.000,,
+
+Engmt,1.92,0.11,.000,,
+
+DisEngmt,1.27,0.08,.000,,
+
+GRMS,1.99+,,,,
+
+,Residual Variances,
+
+MtnlHlth,10.07,0.84,.000,,
+
+Engmt,0.34,0.03,.000,,
+
+DisEngmt,0.23,0.02,.000,,
+
+GRMS,0.81+,,,,
+
+,Fit Indices,
+
+chi^2,17.81(1),,.000,,
+
+CFI,0.89,,,,
+
+TLI,0.33,,,,
+
+RMSEA,0.28,,,,
+
++Fixed parameter,
+
+
+

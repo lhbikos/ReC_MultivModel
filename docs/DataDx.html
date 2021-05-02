@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Data Dx | ReCentering Psych Stats: Multivariate Modeling</title>
+  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Data Dx | ReCentering Psych Stats: Multivariate Modeling" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Data Dx | ReCentering Psych Stats: Multivariate Modeling" />
+  
+  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="score.html"/>
+<link rel="next" href="multimp.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><strong>ReCentering Psych Stats: Multivariate Modeling</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>PREFACE</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
+<li class="chapter" data-level="1" data-path="ReCintro.html"><a href="ReCintro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
+<li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
+<ul>
+<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
+<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
+<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
+<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
+<li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dataprep.html"><a href="dataprep.html"><i class="fa fa-check"></i>DATA PREP</a></li>
+<li class="chapter" data-level="2" data-path="scrub.html"><a href="scrub.html"><i class="fa fa-check"></i><b>2</b> Scrubbing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="scrub.html"><a href="scrub.html#navigating-this-lesson"><i class="fa fa-check"></i><b>2.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="scrub.html"><a href="scrub.html#learning-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.1.2" data-path="scrub.html"><a href="scrub.html#planning-for-practice"><i class="fa fa-check"></i><b>2.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="2.1.3" data-path="scrub.html"><a href="scrub.html#readings-resources"><i class="fa fa-check"></i><b>2.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="2.1.4" data-path="scrub.html"><a href="scrub.html#packages-1"><i class="fa fa-check"></i><b>2.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="scrub.html"><a href="scrub.html#workflow-for-scrubbing-and-scoring"><i class="fa fa-check"></i><b>2.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="2.3" data-path="scrub.html"><a href="scrub.html#research-vignette"><i class="fa fa-check"></i><b>2.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="2.4" data-path="scrub.html"><a href="scrub.html#working-the-problem"><i class="fa fa-check"></i><b>2.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="scrub.html"><a href="scrub.html#intravenous-qualtrics"><i class="fa fa-check"></i><b>2.4.1</b> intRavenous Qualtrics</a></li>
+<li class="chapter" data-level="2.4.2" data-path="scrub.html"><a href="scrub.html#about-the-rate-a-recent-course-survey"><i class="fa fa-check"></i><b>2.4.2</b> About the <em>Rate-a-Recent-Course</em> Survey</a></li>
+<li class="chapter" data-level="2.4.3" data-path="scrub.html"><a href="scrub.html#the-codebook"><i class="fa fa-check"></i><b>2.4.3</b> The Codebook</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="scrub.html"><a href="scrub.html#scrubbing"><i class="fa fa-check"></i><b>2.5</b> Scrubbing</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="scrub.html"><a href="scrub.html#tools-for-data-manipulations"><i class="fa fa-check"></i><b>2.5.1</b> Tools for Data Manipulations</a></li>
+<li class="chapter" data-level="2.5.2" data-path="scrub.html"><a href="scrub.html#inclusion-and-exclusion-criteria"><i class="fa fa-check"></i><b>2.5.2</b> Inclusion and Exclusion Criteria</a></li>
+<li class="chapter" data-level="2.5.3" data-path="scrub.html"><a href="scrub.html#renaming-variables"><i class="fa fa-check"></i><b>2.5.3</b> Renaming Variables</a></li>
+<li class="chapter" data-level="2.5.4" data-path="scrub.html"><a href="scrub.html#downsizing-the-dataframe"><i class="fa fa-check"></i><b>2.5.4</b> Downsizing the Dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="scrub.html"><a href="scrub.html#toward-the-apa-style-write-up"><i class="fa fa-check"></i><b>2.6</b> Toward the APA Style Write-up</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="scrub.html"><a href="scrub.html#methodprocedure"><i class="fa fa-check"></i><b>2.6.1</b> Method/Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="scrub.html"><a href="scrub.html#practice-problems"><i class="fa fa-check"></i><b>2.7</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="scrub.html"><a href="scrub.html#problem-1-rework-the-chapter-problem"><i class="fa fa-check"></i><b>2.7.1</b> Problem #1: Rework the Chapter Problem</a></li>
+<li class="chapter" data-level="2.7.2" data-path="scrub.html"><a href="scrub.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables"><i class="fa fa-check"></i><b>2.7.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="2.7.3" data-path="scrub.html"><a href="scrub.html#problem-3-other-data"><i class="fa fa-check"></i><b>2.7.3</b> Problem #3: Other data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="scrub.html"><a href="scrub.html#bonus-track"><i class="fa fa-check"></i><b>2.8</b> Bonus Track:</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="scrub.html"><a href="scrub.html#importing-data-from-an-exported-qualtrics-.csv-file"><i class="fa fa-check"></i><b>2.8.1</b> Importing data from an exported Qualtrics .csv file</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="score.html"><a href="score.html"><i class="fa fa-check"></i><b>3</b> Scoring</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="score.html"><a href="score.html#navigating-this-lesson-1"><i class="fa fa-check"></i><b>3.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="score.html"><a href="score.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="score.html"><a href="score.html#planning-for-practice-1"><i class="fa fa-check"></i><b>3.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="3.1.3" data-path="score.html"><a href="score.html#readings-resources-1"><i class="fa fa-check"></i><b>3.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="3.1.4" data-path="score.html"><a href="score.html#packages-2"><i class="fa fa-check"></i><b>3.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="score.html"><a href="score.html#workflow-for-scrubbing-and-scoring-1"><i class="fa fa-check"></i><b>3.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="3.3" data-path="score.html"><a href="score.html#research-vignette-1"><i class="fa fa-check"></i><b>3.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="3.4" data-path="score.html"><a href="score.html#on-missing-data"><i class="fa fa-check"></i><b>3.4</b> On Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="score.html"><a href="score.html#data-loss-mechanisms"><i class="fa fa-check"></i><b>3.4.1</b> Data Loss Mechanisms</a></li>
+<li class="chapter" data-level="3.4.2" data-path="score.html"><a href="score.html#diagnosing-missing-data-mechanisms"><i class="fa fa-check"></i><b>3.4.2</b> Diagnosing Missing Data Mechanisms</a></li>
+<li class="chapter" data-level="3.4.3" data-path="score.html"><a href="score.html#managing-missing-data"><i class="fa fa-check"></i><b>3.4.3</b> Managing Missing Data</a></li>
+<li class="chapter" data-level="3.4.4" data-path="score.html"><a href="score.html#available-information-analysis-aia"><i class="fa fa-check"></i><b>3.4.4</b> Available Information Analysis (AIA)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="score.html"><a href="score.html#working-the-problem-1"><i class="fa fa-check"></i><b>3.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="score.html"><a href="score.html#missing-data-analysis-whole-df-and-item-level"><i class="fa fa-check"></i><b>3.5.1</b> Missing Data Analysis: Whole df and Item level</a></li>
+<li class="chapter" data-level="3.5.2" data-path="score.html"><a href="score.html#analyzing-missing-data-patterns"><i class="fa fa-check"></i><b>3.5.2</b> Analyzing Missing Data Patterns</a></li>
+<li class="chapter" data-level="3.5.3" data-path="score.html"><a href="score.html#missing-mechanisms"><i class="fa fa-check"></i><b>3.5.3</b> Missing Mechanisms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="score.html"><a href="score.html#scoring"><i class="fa fa-check"></i><b>3.6</b> Scoring</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="score.html"><a href="score.html#reverse-scoring"><i class="fa fa-check"></i><b>3.6.1</b> Reverse scoring</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="score.html"><a href="score.html#missing-analysis-scale-level"><i class="fa fa-check"></i><b>3.7</b> Missing Analysis: Scale level</a></li>
+<li class="chapter" data-level="3.8" data-path="score.html"><a href="score.html#revisiting-missing-analysis-at-the-scale-level"><i class="fa fa-check"></i><b>3.8</b> Revisiting Missing Analysis at the Scale Level</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="score.html"><a href="score.html#scale-level-patterns-of-missing-data"><i class="fa fa-check"></i><b>3.8.1</b> Scale Level: Patterns of Missing Data</a></li>
+<li class="chapter" data-level="3.8.2" data-path="score.html"><a href="score.html#is-it-mcar"><i class="fa fa-check"></i><b>3.8.2</b> Is it MCAR?</a></li>
+<li class="chapter" data-level="3.8.3" data-path="score.html"><a href="score.html#r-eady-for-analysis"><i class="fa fa-check"></i><b>3.8.3</b> R-eady for Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="score.html"><a href="score.html#the-apa-style-write-up"><i class="fa fa-check"></i><b>3.9</b> The APA Style Write-Up</a></li>
+<li class="chapter" data-level="3.10" data-path="score.html"><a href="score.html#results"><i class="fa fa-check"></i><b>3.10</b> Results</a></li>
+<li class="chapter" data-level="3.11" data-path="score.html"><a href="score.html#practice-problems-1"><i class="fa fa-check"></i><b>3.11</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="score.html"><a href="score.html#problem-1-reworking-the-chapter-problem"><i class="fa fa-check"></i><b>3.11.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="3.11.2" data-path="score.html"><a href="score.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-1"><i class="fa fa-check"></i><b>3.11.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="3.11.3" data-path="score.html"><a href="score.html#problem-3-other-data-1"><i class="fa fa-check"></i><b>3.11.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="DataDx.html"><a href="DataDx.html"><i class="fa fa-check"></i><b>4</b> Data Dx</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DataDx.html"><a href="DataDx.html#navigating-this-lesson-2"><i class="fa fa-check"></i><b>4.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DataDx.html"><a href="DataDx.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DataDx.html"><a href="DataDx.html#planning-for-practice-2"><i class="fa fa-check"></i><b>4.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DataDx.html"><a href="DataDx.html#readings-resources-2"><i class="fa fa-check"></i><b>4.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DataDx.html"><a href="DataDx.html#packages-3"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DataDx.html"><a href="DataDx.html#workflow-for-scrubbing-and-scoring-2"><i class="fa fa-check"></i><b>4.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="4.3" data-path="DataDx.html"><a href="DataDx.html#research-vignette-2"><i class="fa fa-check"></i><b>4.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="4.4" data-path="DataDx.html"><a href="DataDx.html#internal-consistency-of-scalessubscales"><i class="fa fa-check"></i><b>4.4</b> Internal Consistency of Scales/Subscales</a></li>
+<li class="chapter" data-level="4.5" data-path="DataDx.html"><a href="DataDx.html#distributional-characteristics-of-the-variables"><i class="fa fa-check"></i><b>4.5</b> Distributional Characteristics of the Variables</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="DataDx.html"><a href="DataDx.html#evaluating-univariate-normality"><i class="fa fa-check"></i><b>4.5.1</b> Evaluating Univariate Normality</a></li>
+<li class="chapter" data-level="4.5.2" data-path="DataDx.html"><a href="DataDx.html#pairs-panels"><i class="fa fa-check"></i><b>4.5.2</b> Pairs Panels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="DataDx.html"><a href="DataDx.html#evaluating-multivariate-normality"><i class="fa fa-check"></i><b>4.6</b> Evaluating Multivariate Normality</a></li>
+<li class="chapter" data-level="4.7" data-path="DataDx.html"><a href="DataDx.html#a-few-words-on-transformations"><i class="fa fa-check"></i><b>4.7</b> A Few Words on Transformations</a></li>
+<li class="chapter" data-level="4.8" data-path="DataDx.html"><a href="DataDx.html#the-apa-style-write-up-1"><i class="fa fa-check"></i><b>4.8</b> The APA Style Write-Up</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="DataDx.html"><a href="DataDx.html#data-diagnostics"><i class="fa fa-check"></i><b>4.8.1</b> Data Diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="DataDx.html"><a href="DataDx.html#a-quick-regression-of-our-research-vignette"><i class="fa fa-check"></i><b>4.9</b> A Quick Regression of our Research Vignette</a></li>
+<li class="chapter" data-level="4.10" data-path="DataDx.html"><a href="DataDx.html#practice-problems-2"><i class="fa fa-check"></i><b>4.10</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="DataDx.html"><a href="DataDx.html#problem-1-reworking-the-chapter-problem-1"><i class="fa fa-check"></i><b>4.10.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="4.10.2" data-path="DataDx.html"><a href="DataDx.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-2"><i class="fa fa-check"></i><b>4.10.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="4.10.3" data-path="DataDx.html"><a href="DataDx.html#problem-3-other-data-2"><i class="fa fa-check"></i><b>4.10.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="multimp.html"><a href="multimp.html"><i class="fa fa-check"></i><b>5</b> Multiple Imputation (A Brief Demo)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="multimp.html"><a href="multimp.html#navigating-this-lesson-3"><i class="fa fa-check"></i><b>5.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="multimp.html"><a href="multimp.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="multimp.html"><a href="multimp.html#planning-for-practice-3"><i class="fa fa-check"></i><b>5.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="5.1.3" data-path="multimp.html"><a href="multimp.html#readings-resources-3"><i class="fa fa-check"></i><b>5.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="5.1.4" data-path="multimp.html"><a href="multimp.html#packages-4"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="multimp.html"><a href="multimp.html#workflow-for-multiple-imputation"><i class="fa fa-check"></i><b>5.2</b> Workflow for Multiple Imputation</a></li>
+<li class="chapter" data-level="5.3" data-path="multimp.html"><a href="multimp.html#research-vignette-3"><i class="fa fa-check"></i><b>5.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="5.4" data-path="multimp.html"><a href="multimp.html#multiple-imputation-a-super-brief-review"><i class="fa fa-check"></i><b>5.4</b> Multiple Imputation – a Super Brief Review</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="multimp.html"><a href="multimp.html#steps-in-multiple-imputation"><i class="fa fa-check"></i><b>5.4.1</b> Steps in Multiple Imputation</a></li>
+<li class="chapter" data-level="5.4.2" data-path="multimp.html"><a href="multimp.html#statistical-approaches-to-multiple-imputation"><i class="fa fa-check"></i><b>5.4.2</b> Statistical Approaches to Multiple Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="multimp.html"><a href="multimp.html#working-the-problem-2"><i class="fa fa-check"></i><b>5.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="multimp.html"><a href="multimp.html#selecting-and-formatting-variables"><i class="fa fa-check"></i><b>5.5.1</b> Selecting and Formatting Variables</a></li>
+<li class="chapter" data-level="5.5.2" data-path="multimp.html"><a href="multimp.html#creating-composite-variables"><i class="fa fa-check"></i><b>5.5.2</b> Creating Composite Variables</a></li>
+<li class="chapter" data-level="5.5.3" data-path="multimp.html"><a href="multimp.html#the-multiple-imputation"><i class="fa fa-check"></i><b>5.5.3</b> The Multiple Imputation</a></li>
+<li class="chapter" data-level="5.5.4" data-path="multimp.html"><a href="multimp.html#creating-scale-scores"><i class="fa fa-check"></i><b>5.5.4</b> Creating Scale Scores</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="multimp.html"><a href="multimp.html#multiple-regression-with-multiply-imputed-data"><i class="fa fa-check"></i><b>5.6</b> Multiple Regression with Multiply Imputed Data</a></li>
+<li class="chapter" data-level="5.7" data-path="multimp.html"><a href="multimp.html#toward-the-apa-style-write-up-1"><i class="fa fa-check"></i><b>5.7</b> Toward the APA Style Write-up</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="multimp.html"><a href="multimp.html#methoddata-diagnostics"><i class="fa fa-check"></i><b>5.7.1</b> Method/Data Diagnostics</a></li>
+<li class="chapter" data-level="5.7.2" data-path="multimp.html"><a href="multimp.html#results-1"><i class="fa fa-check"></i><b>5.7.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="multimp.html"><a href="multimp.html#multiple-imputation-considerations"><i class="fa fa-check"></i><b>5.8</b> Multiple imputation considerations</a></li>
+<li class="chapter" data-level="5.9" data-path="multimp.html"><a href="multimp.html#practice-problems-3"><i class="fa fa-check"></i><b>5.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="multimp.html"><a href="multimp.html#problem-1-reworking-the-chapter-problem-2"><i class="fa fa-check"></i><b>5.9.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="5.9.2" data-path="multimp.html"><a href="multimp.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-3"><i class="fa fa-check"></i><b>5.9.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="5.9.3" data-path="multimp.html"><a href="multimp.html#problem-3-other-data-3"><i class="fa fa-check"></i><b>5.9.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CPA.html"><a href="CPA.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
+<li class="chapter" data-level="6" data-path="SimpleMed.html"><a href="SimpleMed.html"><i class="fa fa-check"></i><b>6</b> Simple Mediation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="SimpleMed.html"><a href="SimpleMed.html#navigating-this-lesson-4"><i class="fa fa-check"></i><b>6.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="SimpleMed.html"><a href="SimpleMed.html#learning-objectives-4"><i class="fa fa-check"></i><b>6.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.1.2" data-path="SimpleMed.html"><a href="SimpleMed.html#planning-for-practice-4"><i class="fa fa-check"></i><b>6.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="6.1.3" data-path="SimpleMed.html"><a href="SimpleMed.html#readings-resources-4"><i class="fa fa-check"></i><b>6.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="SimpleMed.html"><a href="SimpleMed.html#packages-5"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="SimpleMed.html"><a href="SimpleMed.html#estimating-indirect-effects-the-analytic-approach-often-termed-mediation"><i class="fa fa-check"></i><b>6.2</b> Estimating Indirect Effects (the analytic approach often termed <em>mediation</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="SimpleMed.html"><a href="SimpleMed.html#the-definitional-and-conceptual"><i class="fa fa-check"></i><b>6.2.1</b> The definitional and conceptual</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="SimpleMed.html"><a href="SimpleMed.html#workflow-for-simple-mediation"><i class="fa fa-check"></i><b>6.3</b> Workflow for Simple Mediation</a></li>
+<li class="chapter" data-level="6.4" data-path="SimpleMed.html"><a href="SimpleMed.html#simple-mediation-in-lavaan-a-focus-on-the-mechanics"><i class="fa fa-check"></i><b>6.4</b> Simple Mediation in <em>lavaan</em>: A focus on the mechanics</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="SimpleMed.html"><a href="SimpleMed.html#simulate-fake-data"><i class="fa fa-check"></i><b>6.4.1</b> Simulate Fake Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="SimpleMed.html"><a href="SimpleMed.html#specify-mediation-model"><i class="fa fa-check"></i><b>6.4.2</b> Specify Mediation Model</a></li>
+<li class="chapter" data-level="6.4.3" data-path="SimpleMed.html"><a href="SimpleMed.html#interpret-the-output"><i class="fa fa-check"></i><b>6.4.3</b> Interpret the Output</a></li>
+<li class="chapter" data-level="6.4.4" data-path="SimpleMed.html"><a href="SimpleMed.html#a-table-and-a-figure"><i class="fa fa-check"></i><b>6.4.4</b> A Table and a Figure</a></li>
+<li class="chapter" data-level="6.4.5" data-path="SimpleMed.html"><a href="SimpleMed.html#results-2"><i class="fa fa-check"></i><b>6.4.5</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="SimpleMed.html"><a href="SimpleMed.html#research-vignette-4"><i class="fa fa-check"></i><b>6.5</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="SimpleMed.html"><a href="SimpleMed.html#simulate-data-from-the-journal-article"><i class="fa fa-check"></i><b>6.5.1</b> Simulate Data from the Journal Article</a></li>
+<li class="chapter" data-level="6.5.2" data-path="SimpleMed.html"><a href="SimpleMed.html#specify-the-model-in-lavaan"><i class="fa fa-check"></i><b>6.5.2</b> Specify the Model in <em>lavaan</em></a></li>
+<li class="chapter" data-level="6.5.3" data-path="SimpleMed.html"><a href="SimpleMed.html#interpret-the-output-1"><i class="fa fa-check"></i><b>6.5.3</b> Interpret the Output</a></li>
+<li class="chapter" data-level="6.5.4" data-path="SimpleMed.html"><a href="SimpleMed.html#a-figure-and-a-table"><i class="fa fa-check"></i><b>6.5.4</b> A Figure and a Table</a></li>
+<li class="chapter" data-level="6.5.5" data-path="SimpleMed.html"><a href="SimpleMed.html#results-3"><i class="fa fa-check"></i><b>6.5.5</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="SimpleMed.html"><a href="SimpleMed.html#considering-covariates"><i class="fa fa-check"></i><b>6.6</b> Considering Covariates</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="SimpleMed.html"><a href="SimpleMed.html#a-figure-and-a-table-1"><i class="fa fa-check"></i><b>6.6.1</b> A Figure and a Table</a></li>
+<li class="chapter" data-level="6.6.2" data-path="SimpleMed.html"><a href="SimpleMed.html#apa-style-write-up"><i class="fa fa-check"></i><b>6.6.2</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="SimpleMed.html"><a href="SimpleMed.html#residual-and-related-questions"><i class="fa fa-check"></i><b>6.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="6.8" data-path="SimpleMed.html"><a href="SimpleMed.html#practice-problems-4"><i class="fa fa-check"></i><b>6.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed"><i class="fa fa-check"></i><b>6.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="6.8.2" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables"><i class="fa fa-check"></i><b>6.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="6.8.3" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-3-use-other-data-that-is-available-to-you"><i class="fa fa-check"></i><b>6.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="CompMed.html"><a href="CompMed.html"><i class="fa fa-check"></i><b>7</b> Complex Mediation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="CompMed.html"><a href="CompMed.html#navigating-this-lesson-5"><i class="fa fa-check"></i><b>7.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="CompMed.html"><a href="CompMed.html#learning-objectives-5"><i class="fa fa-check"></i><b>7.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.1.2" data-path="CompMed.html"><a href="CompMed.html#planning-for-practice-5"><i class="fa fa-check"></i><b>7.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="7.1.3" data-path="CompMed.html"><a href="CompMed.html#readings-resources-5"><i class="fa fa-check"></i><b>7.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="7.1.4" data-path="CompMed.html"><a href="CompMed.html#packages-6"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="CompMed.html"><a href="CompMed.html#complex-mediation"><i class="fa fa-check"></i><b>7.2</b> Complex Mediation</a></li>
+<li class="chapter" data-level="7.3" data-path="CompMed.html"><a href="CompMed.html#parallel-mediation"><i class="fa fa-check"></i><b>7.3</b> Parallel Mediation</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a>
+<ul>
+<li class="chapter" data-level="7.3.1.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation"><i class="fa fa-check"></i><b>7.3.1.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="7.3.1.2" data-path="CompMed.html"><a href="CompMed.html#specifying-lavaan-code"><i class="fa fa-check"></i><b>7.3.1.2</b> Specifying <em>lavaan</em> code</a></li>
+<li class="chapter" data-level="7.3.1.3" data-path="CompMed.html"><a href="CompMed.html#a-note-on-indirect-effects-and-confidence-intervals"><i class="fa fa-check"></i><b>7.3.1.3</b> A note on indirect effects and confidence intervals</a></li>
+<li class="chapter" data-level="7.3.1.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables"><i class="fa fa-check"></i><b>7.3.1.4</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.3.1.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup"><i class="fa fa-check"></i><b>7.3.1.5</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="7.3.2.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation-1"><i class="fa fa-check"></i><b>7.3.2.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="7.3.2.2" data-path="CompMed.html"><a href="CompMed.html#quick-descriptives"><i class="fa fa-check"></i><b>7.3.2.2</b> Quick Descriptives</a></li>
+<li class="chapter" data-level="7.3.2.3" data-path="CompMed.html"><a href="CompMed.html#specifying-the-lavaan-model"><i class="fa fa-check"></i><b>7.3.2.3</b> Specifying the <em>lavaan</em> model</a></li>
+<li class="chapter" data-level="7.3.2.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-1"><i class="fa fa-check"></i><b>7.3.2.4</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.3.2.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-1"><i class="fa fa-check"></i><b>7.3.2.5</b> APA Style Writeup</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="CompMed.html"><a href="CompMed.html#serial-multiple-mediator-model"><i class="fa fa-check"></i><b>7.4</b> Serial Multiple Mediator Model</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="CompMed.html"><a href="CompMed.html#we-stick-with-the-lewis-et-al.--lewis_applying_2017-example-but-modify-it."><i class="fa fa-check"></i><b>7.4.1</b> We stick with the Lewis et al. <span class="citation">(<span>2017</span>)</span> example, but modify it.</a></li>
+<li class="chapter" data-level="7.4.2" data-path="CompMed.html"><a href="CompMed.html#specify-the-lavaan-model"><i class="fa fa-check"></i><b>7.4.2</b> Specify the <em>lavaan</em> model</a></li>
+<li class="chapter" data-level="7.4.3" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-2"><i class="fa fa-check"></i><b>7.4.3</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.4.4" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-2"><i class="fa fa-check"></i><b>7.4.4</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="CompMed.html"><a href="CompMed.html#troubleshooting-and-faqs"><i class="fa fa-check"></i><b>7.5</b> Troubleshooting and FAQs</a></li>
+<li class="chapter" data-level="7.6" data-path="CompMed.html"><a href="CompMed.html#practice-problems-5"><i class="fa fa-check"></i><b>7.6</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="CompMed.html"><a href="CompMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1"><i class="fa fa-check"></i><b>7.6.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="7.6.2" data-path="CompMed.html"><a href="CompMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-1"><i class="fa fa-check"></i><b>7.6.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="7.6.3" data-path="CompMed.html"><a href="CompMed.html#problem-3-use-other-data-that-is-available-to-you-1"><i class="fa fa-check"></i><b>7.6.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>8</b> Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ModMed.html"><a href="ModMed.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="ModMed.html"><a href="ModMed.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ModMed.html"><a href="ModMed.html#planning-for-practice-6"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ModMed.html"><a href="ModMed.html#readings-resources-6"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="8.1.4" data-path="ModMed.html"><a href="ModMed.html#packages-7"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="ModMed.html"><a href="ModMed.html#conditional-process-analysis"><i class="fa fa-check"></i><b>8.2</b> Conditional Process Analysis</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="ModMed.html"><a href="ModMed.html#the-definitional-and-conceptual-1"><i class="fa fa-check"></i><b>8.2.1</b> The definitional and conceptual</a></li>
+<li class="chapter" data-level="8.2.2" data-path="ModMed.html"><a href="ModMed.html#hayes--hayes_introduction_2018-piecewise-approach-to-building-models"><i class="fa fa-check"></i><b>8.2.2</b> Hayes’ <span class="citation">(<span>2018</span>)</span> Piecewise Approach to Building Models</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="ModMed.html"><a href="ModMed.html#workflow-for-moderated-mediation"><i class="fa fa-check"></i><b>8.3</b> Workflow for Moderated Mediation</a></li>
+<li class="chapter" data-level="8.4" data-path="ModMed.html"><a href="ModMed.html#research-vignette-6"><i class="fa fa-check"></i><b>8.4</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="ModMed.html"><a href="ModMed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>8.4.1</b> Simulating the data from the journal article</a></li>
+<li class="chapter" data-level="8.4.2" data-path="ModMed.html"><a href="ModMed.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>8.4.2</b> Quick peek at the data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5</b> Working the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.1</b> Analysis #1: A simple moderation</a></li>
+<li class="chapter" data-level="8.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.2</b> Analysis #2: Another simple moderation</a></li>
+<li class="chapter" data-level="8.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>8.5.1.3</b> Analysis #3: A simple mediation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>8.6</b> The Moderated Mediation: A Combined analysis</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>8.6.1</b> Specification in <em>lavaan</em></a></li>
+<li class="chapter" data-level="8.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>8.6.2</b> A quick plot</a></li>
+<li class="chapter" data-level="8.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>8.6.3</b> Beginning the interpretation</a></li>
+<li class="chapter" data-level="8.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data"><i class="fa fa-check"></i><b>8.6.4</b> Tabling the data</a>
+<ul>
+<li class="chapter" data-level="8.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>8.6.4.1</b> Conditional Indirect effects</a></li>
+<li class="chapter" data-level="8.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>8.6.4.2</b> Conditional Direct effect</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>8.6.5</b> Model trimming</a></li>
+<li class="chapter" data-level="8.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>8.6.6</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="ModMed.html"><a href="ModMed.html#residual-and-related-questions-1"><i class="fa fa-check"></i><b>8.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="8.8" data-path="ModMed.html"><a href="ModMed.html#practice-problems-6"><i class="fa fa-check"></i><b>8.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="ModMed.html"><a href="ModMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2"><i class="fa fa-check"></i><b>8.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="8.8.2" data-path="ModMed.html"><a href="ModMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-2"><i class="fa fa-check"></i><b>8.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="8.8.3" data-path="ModMed.html"><a href="ModMed.html#problem-3-use-other-data-that-is-available-to-you-2"><i class="fa fa-check"></i><b>8.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-1"><i class="fa fa-check"></i><b>8.9</b> Bonus Track:</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
+  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ReCentering Psych Stats: Multivariate Modeling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="DataDx" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Data Dx</h1>
+<p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=43dbe818-8186-498d-8e84-acf7000acb5b">Screencasted Lecture Link</a></p>
+<p>The focus of this chapter engage in <em>data diagnostics</em>, that is, to evaluate the appropriateness of the data for the <em>specific research model we are going to evaluate</em>. We are asking the question, “Does the data have the appropriate characteristics for the analysis we want to perform?” Some statistics are more robust than others to violations of the assumptions about the characteristics of the data. None-the-less, we must report these characteristics when we disseminate the results.</p>
+<div id="navigating-this-lesson-2" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Navigating this Lesson</h2>
+<p>There is about 45 minutes of lecture. If you work through the materials with me it would be plan for an additional hour.</p>
+<p>While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the <a href="https://github.com/lhbikos/ReC_MultivariateModeling">Github site</a> that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER’s <a href="ReCintro.html#ReCintro">introduction</a></p>
+<div id="learning-objectives-2" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Learning Objectives</h3>
+<p>Learning objectives from this lecture include the following:</p>
+<ul>
+<li>Conduct and interpret critical data diagnostics, including
+<ul>
+<li>alpha coefficients</li>
+<li>skew</li>
+<li>kurtosis</li>
+</ul></li>
+<li>Assess univariate and multivariate normality</li>
+<li>Identify options for managing outliers and skewed data</li>
+<li>Articulate a workflow for data preparation, including scrubbing, scoring, and data diagnostics</li>
+</ul>
+</div>
+<div id="planning-for-practice-2" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Planning for Practice</h3>
+<p>The suggestions from practice are a continuation from the two prior chapters. If you have completed one or more of those assignments, you should have started with a raw dataset and then scrubbed and scored it. This chapter will involve running basic data diagnostics. Options of graded complexity could incude:</p>
+<ul>
+<li>Repeating the steps in the chapter with the most recent data from the Rate-A-Recent-Course survey; differences will be in the number of people who have completed the survey since the chapter was written.</li>
+<li>Use the dataset that is the source of the chapter, but score a different set of items that you choose.</li>
+<li>Begin with raw data to which you have access.</li>
+</ul>
+</div>
+<div id="readings-resources-2" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Readings &amp; Resources</h3>
+<p>In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.</p>
+<ul>
+<li><p>Parent, M. C. (2013). Handling item-level missing data: Simpler is just as good. The Counseling Psychologist, 41(4), 568–600. <a href="https://doi.org/10.1177/0011000012445176" class="uri">https://doi.org/10.1177/0011000012445176</a></p></li>
+<li><p>Kline, R. B. (2015). Data preparation and psychometrics review. In Principles and Practice of Structural Equation Modeling, Fourth Edition. Guilford Publications. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663" class="uri">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663</a></p></li>
+</ul>
+</div>
+<div id="packages-3" class="section level3" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Packages</h3>
+<p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
+<!-- TODO: Build out this section. -->
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="DataDx.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)} <span class="co">#this includes dplyr</span></span>
+<span id="cb72-2"><a href="DataDx.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
+<span id="cb72-3"><a href="DataDx.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(apaTables)){<span class="fu">install.packages</span>(<span class="st">&quot;apaTables&quot;</span>)}</span>
+<span id="cb72-4"><a href="DataDx.html#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(formattable)){<span class="fu">install.packages</span>(<span class="st">&quot;formattable&quot;</span>)}</span></code></pre></div>
+</div>
+</div>
+<div id="workflow-for-scrubbing-and-scoring-2" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Workflow for Scrubbing and Scoring</h2>
+<!-- TODO: When finalized, save as PDF so it can open in its own window) -->
+<p>The same workflow guides us through the Scrubbing, Scoring, and Data Dx chapters. At this stage we have</p>
+<ul>
+<li>imported our raw data from Qualtrics,</li>
+<li>scrubbed the data by applying our inclusion and exclusion criteria, and</li>
+<li>used Parent’s available information approach [AIA; <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span>] for determining the acceptable amount of missingness for each scale, and</li>
+<li>prepared variables and scored them.</li>
+</ul>
+<p>We are now ready to engage in data diagnostics for the statistical model we will test.</p>
+<div class="figure">
+<img src="images/Ch04/wrkflow_dx.jpg" alt="" />
+<p class="caption">An image of our stage in the workflow for scrubbing and scoring data.</p>
+</div>
+</div>
+<div id="research-vignette-2" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Research Vignette</h2>
+<p>The research vignette comes from the survey titled, <a href="https://spupsych.az1.qualtrics.com/jfe/form/SV_b2cClqAlLGQ6nLU">Rate-a-Recent-Course: A ReCentering Psych Stats Exercise</a> and is explained in the <a href="scrub.html#scrub">scrubbing chapter</a>. In the <a href="score.html#score">scoring chapter</a> we prepared four variables for analysis. Details for these are in our <a href="./Rate-a-Course_Codebook.pdf">codebook</a>.</p>
+<p>Variable recap:</p>
+<ul>
+<li>Perceived Campus Climate for Black Students includes 6 items, one of which was reverse scored. This scale was adapted from Szymanski et al.’s <span class="citation">(<a href="refs.html#ref-szymanski_perceptions_2020" role="doc-biblioref">2020</a>)</span> Campus Climate for LGBTQ students. It has not been evaluated for use with other groups. The Szymanski et al. analysis suggested that it could be used as a total scale score, or divided into three items each that assess
+<ul>
+<li>College response to LGBTQ students (items 6, 4, 1)</li>
+<li>LGBTQ stigma (items 3, 2, 5)</li>
+</ul></li>
+<li>Sense of Belonging includes 3 items. This is a subscale from Bollen and Hoyle’s <span class="citation">(<a href="refs.html#ref-bollen_perceived_1990" role="doc-biblioref">1990</a>)</span> Perceived Cohesion Scale. There are no items on this scale that require reversing.</li>
+<li>Percent of Black classmates is a single item that asked respondents to estimate the proportion of students in various racial categories</li>
+<li>Percent of BIPOC instructional staff, similarly, asked respondents to identify the racial category of each member of their instructional staff</li>
+</ul>
+<p>As we noted in the <a href="scrub.html#scrub">scrubbing chapter</a>, our design has notable limitations. Briefly, (a) owing to the open source aspect of the data we do not ask about the demographic characteristics of the respondent; (b) the items that ask respondents to <em>guess</em> the identities of the instructional staff and to place them in broad categories, (c) we do not provide a “write-in” a response. We made these decisions after extensive conversation with stakeholders. The primary reason for these decisions was to prevent potential harm (a) to respondents who could be identified if/when the revealed private information in this open-source survey, and (b) trolls who would write inappropriate or harmful comments.</p>
+<p>As I think about “how these variables go together” (which is often where I start in planning a study), imagine a parallel mediation. That is the perception of campus climate for Black students would be predicted by the respondent’s sense of belonging, mediated in separate paths through the proportion of classmates who are Black and the proportion of BIPOC instructional staff.</p>
+<p><em>I would like to assess the model by having the instructional staff variable to be the %Black instructional staff. At the time that this lecture is being prepared, there is not sufficient Black representation in the staff to model this.</em></p>
+<div class="figure">
+<img src="images/Ch04/BlStuMed.jpg" alt="" />
+<p class="caption">An image of the statistical model for which we are preparing data.</p>
+</div>
+<p>I will finish up this chapter by conducting a regression. Because parallel mediation can be complicated (I teach it in a later chapter), I will demonstrate use of our prepared variables with a simple multiple regression.</p>
+<div class="figure">
+<img src="images/Ch04/BlStuRegression.jpg" alt="" />
+<p class="caption">An image of the statistical model for which we are preparing data.</p>
+</div>
+<p>First, though, let’s take a more conceptual look at issues regarding missing data. We’ll come back to details of the survey as we work with it.</p>
+</div>
+<div id="internal-consistency-of-scalessubscales" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Internal Consistency of Scales/Subscales</h2>
+<p>Alpha coefficients are <em>reliability coefficients</em> that assess the <em>internal consistency</em> of an instrument. It asks, “For each person, are responses <em>consistently</em> high, or medium, or low?” To the degree that they are (meaning there are high inter-item correlations), the internal consistency coefficient will be high. We want values &gt;.80. There are numerous problems with alpha coefficients. The biggest one is that they are influenced by sample size – longer scales have higher alpha coefficients <span class="citation">(<a href="refs.html#ref-cortina_what_1993" role="doc-biblioref">Cortina, 1993</a>)</span>. Fourteen seems to be a magic number where we begin to not trust the high alpha coefficient. I address this more thoroughly – offering an alternative – in psychometrics. While there is much criticism about the usefulness of the alpha coefficient <span class="citation">(<a href="refs.html#ref-sijtsma_use_2009" role="doc-biblioref">Sijtsma, 2009</a>)</span>, researchers continue to use the alpha coefficient as an indicator of the internal consistency of scales that consist of multiple items and contain several variables.</p>
+<p>We need item level data to compute an alpha coefficient. The easiest way to get an alpha coefficient is to feed the <em>alpha()</em> function (<em>psych</em> package) a contatonated list of items (with any items already reverse-scored). There should be no extra items. In the <a href="score.html#score">scoring chapter</a> we already reverse-coded the single item in the campus climate scale, so we are ready to calculate alphas.</p>
+<p>The df from which I am pulling data was created and written as an outfile in the <a href="score.html#score">scoring chapter</a>. This particular df has item-level data.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="DataDx.html#cb73-1" aria-hidden="true" tabindex="-1"></a>item_scores_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span> (<span class="st">&quot;BlStItmsScrs210320.csv&quot;</span>, <span class="at">head =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<p>From this, we create tiny dfs, one for each of the alpha coefficients we need to create. A priori, we are planning to use all six items of the campus climate scale. We’ll go ahead and also calculate the subscales because (a) it’s good practice and (b) if the alpha is low, a <em>reason</em> might show up in one of the subscales.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="DataDx.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb74-2"><a href="DataDx.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(formattable)</span>
+<span id="cb74-3"><a href="DataDx.html#cb74-3" aria-hidden="true" tabindex="-1"></a>Bel_alpha <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;Belong_1&quot;</span>, <span class="st">&quot;Belong_2&quot;</span>, <span class="st">&quot;Belong_3&quot;</span>)])</span>
+<span id="cb74-4"><a href="DataDx.html#cb74-4" aria-hidden="true" tabindex="-1"></a>Bel_alpha</span></code></pre></div>
+<pre><code>## 
+## Reliability analysis   
+## Call: psych::alpha(x = item_scores_df[c(&quot;Belong_1&quot;, &quot;Belong_2&quot;, &quot;Belong_3&quot;)])
+## 
+##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
+##       0.96      0.96    0.95      0.89  23 0.012  4.2 1.5     0.89
+## 
+##  lower alpha upper     95% confidence boundaries
+## 0.93 0.96 0.98 
+## 
+##  Reliability if an item is dropped:
+##          raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
+## Belong_1      0.94      0.94    0.89      0.89  16    0.020    NA  0.89
+## Belong_2      0.91      0.91    0.84      0.84  10    0.029    NA  0.84
+## Belong_3      0.97      0.97    0.93      0.93  29    0.011    NA  0.93
+## 
+##  Item statistics 
+##           n raw.r std.r r.cor r.drop mean  sd
+## Belong_1 37  0.96  0.96  0.94   0.91  4.2 1.5
+## Belong_2 38  0.98  0.98  0.97   0.95  4.3 1.5
+## Belong_3 37  0.94  0.94  0.89   0.88  4.0 1.6
+## 
+## Non missing response frequency for each item
+##             1    2    3    4    5    6    7 miss
+## Belong_1 0.03 0.11 0.22 0.19 0.22 0.19 0.05 0.03
+## Belong_2 0.03 0.08 0.24 0.21 0.16 0.24 0.05 0.00
+## Belong_3 0.05 0.16 0.14 0.24 0.24 0.11 0.05 0.03</code></pre>
+<p>CAPTURE FOR THE APA STYLE WRITE-UP(since these are generally placed in the description of each measure in the Method section, I am not doing a cumulative capture): Cronbach’s alpha for the belonging scale was 0.958.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="DataDx.html#cb76-1" aria-hidden="true" tabindex="-1"></a>CClim_alpha <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;rBlst_1&quot;</span>, <span class="st">&quot;Blst_2&quot;</span>, <span class="st">&quot;Blst_3&quot;</span>, <span class="st">&quot;Blst_4&quot;</span>, <span class="st">&quot;Blst_5&quot;</span>, <span class="st">&quot;Blst_6&quot;</span>)])</span>
+<span id="cb76-2"><a href="DataDx.html#cb76-2" aria-hidden="true" tabindex="-1"></a>CClim_alpha</span></code></pre></div>
+<pre><code>## 
+## Reliability analysis   
+## Call: psych::alpha(x = item_scores_df[c(&quot;rBlst_1&quot;, &quot;Blst_2&quot;, &quot;Blst_3&quot;, 
+##     &quot;Blst_4&quot;, &quot;Blst_5&quot;, &quot;Blst_6&quot;)])
+## 
+##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean sd median_r
+##       0.86      0.88     0.9      0.55 7.3 0.035  2.3  1     0.57
+## 
+##  lower alpha upper     95% confidence boundaries
+## 0.79 0.86 0.93 
+## 
+##  Reliability if an item is dropped:
+##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
+## rBlst_1      0.85      0.88    0.90      0.58 7.0    0.039 0.027  0.61
+## Blst_2       0.87      0.88    0.88      0.59 7.1    0.036 0.023  0.63
+## Blst_3       0.87      0.88    0.90      0.61 7.7    0.035 0.019  0.63
+## Blst_4       0.82      0.84    0.86      0.52 5.3    0.047 0.027  0.50
+## Blst_5       0.82      0.84    0.85      0.52 5.3    0.048 0.029  0.52
+## Blst_6       0.82      0.83    0.83      0.49 4.9    0.047 0.021  0.50
+## 
+##  Item statistics 
+##          n raw.r std.r r.cor r.drop mean   sd
+## rBlst_1 34  0.72  0.72  0.63   0.58  3.1 1.30
+## Blst_2  37  0.76  0.71  0.65   0.58  2.7 1.67
+## Blst_3  37  0.67  0.67  0.59   0.51  2.1 1.29
+## Blst_4  36  0.86  0.86  0.85   0.78  2.2 1.18
+## Blst_5  37  0.88  0.86  0.85   0.80  1.9 1.18
+## Blst_6  37  0.87  0.91  0.92   0.85  2.0 0.96
+## 
+## Non missing response frequency for each item
+##            1    2    3    4    5    6 miss
+## rBlst_1 0.09 0.29 0.26 0.24 0.06 0.06 0.11
+## Blst_2  0.38 0.16 0.11 0.14 0.19 0.03 0.03
+## Blst_3  0.43 0.32 0.08 0.11 0.03 0.03 0.03
+## Blst_4  0.31 0.36 0.17 0.11 0.06 0.00 0.05
+## Blst_5  0.49 0.27 0.08 0.14 0.03 0.00 0.03
+## Blst_6  0.32 0.43 0.14 0.11 0.00 0.00 0.03</code></pre>
+<p>CAPTURE FOR THE APA STYLE WRITE-UP (since these are generally placed in the description of each measure in the Method section, I am not doing a cumulative capture): Cronbach’s alpha for the campus climate scale was 0.863. Since this value is <span class="math inline">\(\geq\)</span> .80, it is within the realm of acceptability. Let’s go ahead, though, and look at its subscales.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="DataDx.html#cb78-1" aria-hidden="true" tabindex="-1"></a>Stigma_alpha <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;Blst_3&quot;</span>, <span class="st">&quot;Blst_2&quot;</span>, <span class="st">&quot;Blst_5&quot;</span>)])</span>
+<span id="cb78-2"><a href="DataDx.html#cb78-2" aria-hidden="true" tabindex="-1"></a>Stigma_alpha</span></code></pre></div>
+<pre><code>## 
+## Reliability analysis   
+## Call: psych::alpha(x = item_scores_df[c(&quot;Blst_3&quot;, &quot;Blst_2&quot;, &quot;Blst_5&quot;)])
+## 
+##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
+##       0.73      0.75    0.73       0.5   3 0.078  2.3 1.2     0.53
+## 
+##  lower alpha upper     95% confidence boundaries
+## 0.58 0.73 0.88 
+## 
+##  Reliability if an item is dropped:
+##        raw_alpha std.alpha G6(smc) average_r  S/N alpha se var.r med.r
+## Blst_3      0.79      0.81    0.69      0.69 4.40    0.062    NA  0.69
+## Blst_2      0.69      0.69    0.53      0.53 2.27    0.099    NA  0.53
+## Blst_5      0.42      0.43    0.28      0.28 0.76    0.181    NA  0.28
+## 
+##  Item statistics 
+##         n raw.r std.r r.cor r.drop mean  sd
+## Blst_3 37  0.72  0.74  0.53   0.41  2.1 1.3
+## Blst_2 37  0.84  0.80  0.69   0.54  2.7 1.7
+## Blst_5 37  0.91  0.91  0.87   0.77  1.9 1.2
+## 
+## Non missing response frequency for each item
+##           1    2    3    4    5    6 miss
+## Blst_3 0.43 0.32 0.08 0.11 0.03 0.03 0.03
+## Blst_2 0.38 0.16 0.11 0.14 0.19 0.03 0.03
+## Blst_5 0.49 0.27 0.08 0.14 0.03 0.00 0.03</code></pre>
+<p>Cronbach’s alpha for the campus climate stigma subscale was 0.728.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="DataDx.html#cb80-1" aria-hidden="true" tabindex="-1"></a>Resp_alpha <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;rBlst_1&quot;</span>, <span class="st">&quot;Blst_4&quot;</span>, <span class="st">&quot;Blst_6&quot;</span>)])</span>
+<span id="cb80-2"><a href="DataDx.html#cb80-2" aria-hidden="true" tabindex="-1"></a>Resp_alpha</span></code></pre></div>
+<pre><code>## 
+## Reliability analysis   
+## Call: psych::alpha(x = item_scores_df[c(&quot;rBlst_1&quot;, &quot;Blst_4&quot;, &quot;Blst_6&quot;)])
+## 
+##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean sd median_r
+##       0.85      0.87    0.83      0.69 6.6 0.041  2.4  1     0.63
+## 
+##  lower alpha upper     95% confidence boundaries
+## 0.77 0.85 0.94 
+## 
+##  Reliability if an item is dropped:
+##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
+## rBlst_1      0.88      0.89    0.81      0.81 8.5    0.035    NA  0.81
+## Blst_4       0.75      0.77    0.63      0.63 3.4    0.075    NA  0.63
+## Blst_6       0.76      0.77    0.62      0.62 3.3    0.076    NA  0.62
+## 
+##  Item statistics 
+##          n raw.r std.r r.cor r.drop mean   sd
+## rBlst_1 34  0.86  0.84  0.69   0.66  3.1 1.30
+## Blst_4  36  0.91  0.91  0.87   0.77  2.2 1.18
+## Blst_6  37  0.89  0.91  0.87   0.80  2.0 0.96
+## 
+## Non missing response frequency for each item
+##            1    2    3    4    5    6 miss
+## rBlst_1 0.09 0.29 0.26 0.24 0.06 0.06 0.11
+## Blst_4  0.31 0.36 0.17 0.11 0.06 0.00 0.05
+## Blst_6  0.32 0.43 0.14 0.11 0.00 0.00 0.03</code></pre>
+<p>Cronbach’s alpha for the campus climate responsiveness subscale was 0.855. Between the two subscales, it looks as if the responsivenes subscale is more internally consistent.</p>
+</div>
+<div id="distributional-characteristics-of-the-variables" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Distributional Characteristics of the Variables</h2>
+<div id="evaluating-univariate-normality" class="section level3" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Evaluating Univariate Normality</h3>
+<p>Statistics like ANOVA and regression each have a set of assumptions about the distributional characteristics of the data. In most of the chapters in this OER we review those assumptions and how to evaluate them. Common across many statistics is the requirement of univariate and multivariate normality. Let’s take a look at the variables we will use in our analysis and assess those.</p>
+<p>We can continue to work from the df we uploaded at the beginning of the chapter to do this work. Let’s take a quick peek. This df has the item-level data (we used it for the alpha coefficients); the scale and subscale scores; and the two items that assess proportion of instructional staff that are BIPOC and proportion of classmates that are BIPOC.</p>
+<p>The <em>str()</em> function let’s us look at the variable format/measurement level of each variable.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="DataDx.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(item_scores_df)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    38 obs. of  17 variables:
+##  $ ID        : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ iBIPOC_pr : num  0.333 0 0.5 0.333 1 ...
+##  $ cmBlack   : int  0 5 10 6 5 20 0 0 0 4 ...
+##  $ Belong_1  : int  6 4 NA 5 4 5 6 7 6 3 ...
+##  $ Belong_2  : int  6 4 3 3 4 6 6 7 6 3 ...
+##  $ Belong_3  : int  7 6 NA 2 4 5 5 7 6 3 ...
+##  $ Blst_1    : int  5 6 NA 2 6 5 5 5 5 3 ...
+##  $ Blst_2    : int  3 6 5 2 1 1 4 4 3 5 ...
+##  $ Blst_3    : int  5 2 2 2 1 1 4 3 1 2 ...
+##  $ Blst_4    : int  2 2 2 2 1 2 4 3 2 3 ...
+##  $ Blst_5    : int  2 4 NA 2 1 1 4 4 1 3 ...
+##  $ Blst_6    : int  2 1 2 2 1 2 4 3 2 3 ...
+##  $ rBlst_1   : int  3 2 NA 6 2 3 3 3 3 5 ...
+##  $ Belonging : num  6.33 4.67 NA 3.33 4 5.33 5.67 7 6 3 ...
+##  $ ResponseBL: num  2.33 1.67 2 3.33 1.33 2.33 3.67 3 2.33 3.67 ...
+##  $ StigmaBL  : num  3.33 4 3.5 2 1 1 4 3.67 1.67 3.33 ...
+##  $ ClimateBL : num  2.83 2.83 NA 2.67 1.17 1.67 3.83 3.33 2 3.5 ...</code></pre>
+<p>The difference between “int” (integer) and “num” (numerical) is that integers are limited to whole numbers. In the functions used in this chapter, both are acceptable formats for the variables.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="DataDx.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the script may look a little complicated; I could have simply written</span></span>
+<span id="cb84-2"><a href="DataDx.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="co"># describe(item_scores_df) #it would have given me descriptives for all the items in the df</span></span>
+<span id="cb84-3"><a href="DataDx.html#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="co"># because I only wanted a few variables, I provided them in a concatenated: list [c(&quot;iBIPOC_pr&quot;, &quot;cmBlack&quot;, &quot;Belonging&quot;, &quot;ClimateBL&quot;)]</span></span>
+<span id="cb84-4"><a href="DataDx.html#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="co"># I also added &quot;psych::&quot; in front of the command to make sure that R is using the describe function from the psych package</span></span>
+<span id="cb84-5"><a href="DataDx.html#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="co"># I popped the output into an object; objects are not required, but can be helpful to write as outfiles, to pipe elements of inline text, and to use with packages like apaTables</span></span>
+<span id="cb84-6"><a href="DataDx.html#cb84-6" aria-hidden="true" tabindex="-1"></a><span class="co"># When we use an object, we need to write it below so the results will display</span></span>
+<span id="cb84-7"><a href="DataDx.html#cb84-7" aria-hidden="true" tabindex="-1"></a>descriptives <span class="ot">&lt;-</span> (psych<span class="sc">::</span><span class="fu">describe</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)]))</span>
+<span id="cb84-8"><a href="DataDx.html#cb84-8" aria-hidden="true" tabindex="-1"></a>descriptives</span></code></pre></div>
+<pre><code>##           vars  n mean   sd median trimmed  mad min   max range  skew kurtosis
+## iBIPOC_pr    1 36 0.44 0.40   0.33    0.42 0.49   0  1.00  1.00  0.37    -1.42
+## cmBlack      2 38 7.00 8.12   5.00    5.84 7.41   0 29.00 29.00  1.25     0.46
+## Belonging    3 37 4.20 1.49   4.00    4.23 1.48   1  7.00  6.00 -0.15    -0.91
+## ClimateBL    4 35 2.29 0.99   2.33    2.23 0.99   1  4.17  3.17  0.32    -1.07
+##             se
+## iBIPOC_pr 0.07
+## cmBlack   1.32
+## Belonging 0.24
+## ClimateBL 0.17</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="DataDx.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span> (descriptives, <span class="at">file=</span><span class="st">&quot;DataDx_descripts.csv&quot;</span>) <span class="co">#this can be useful if you wish to manually format the data for an APA style table</span></span></code></pre></div>
+<p>To understand whether our data are normally distributed, we can look at skew and kurtosis. The skew and kurtosis indices in the psych package are reported as <em>z</em> scores. Regarding skew, values &gt; 3.0 are generally considered “severely skewed.” Regarding kurtosis, “severely kurtotic” is argued anywhere &gt; 8 to 20 <span class="citation">(<a href="refs.html#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>)</span>. At the time I am writing this chapter, our skew and kurtosis values fall below the thresholds that Kline identified as concerning.</p>
+<p>We can also apply the Shapiro-Wilk test of normality to each of our variables. When the <span class="math inline">\(p\)</span> value is &lt; .05, the variable’s distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="DataDx.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The shapiro-test is in base R; it&#39;s specification is simple:  shapiro.test(df$variable)</span></span>
+<span id="cb87-2"><a href="DataDx.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="co">#I added the object (and had to list it below) so I can use the inline text function</span></span>
+<span id="cb87-3"><a href="DataDx.html#cb87-3" aria-hidden="true" tabindex="-1"></a>SWt_i <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(item_scores_df<span class="sc">$</span>iBIPOC_pr)</span>
+<span id="cb87-4"><a href="DataDx.html#cb87-4" aria-hidden="true" tabindex="-1"></a>SWt_cm <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(item_scores_df<span class="sc">$</span>cmBlack)</span>
+<span id="cb87-5"><a href="DataDx.html#cb87-5" aria-hidden="true" tabindex="-1"></a>SWt_Bel <span class="ot">&lt;-</span><span class="fu">shapiro.test</span>(item_scores_df<span class="sc">$</span>Belonging)</span>
+<span id="cb87-6"><a href="DataDx.html#cb87-6" aria-hidden="true" tabindex="-1"></a>SWt_Cl <span class="ot">&lt;-</span><span class="fu">shapiro.test</span>(item_scores_df<span class="sc">$</span>ClimateBL)</span>
+<span id="cb87-7"><a href="DataDx.html#cb87-7" aria-hidden="true" tabindex="-1"></a>SWt_i</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  item_scores_df$iBIPOC_pr
+## W = 0.82348, p-value = 4.939e-05</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="DataDx.html#cb89-1" aria-hidden="true" tabindex="-1"></a>SWt_cm</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  item_scores_df$cmBlack
+## W = 0.80586, p-value = 1.379e-05</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="DataDx.html#cb91-1" aria-hidden="true" tabindex="-1"></a>SWt_Bel</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  item_scores_df$Belonging
+## W = 0.97551, p-value = 0.5767</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="DataDx.html#cb93-1" aria-hidden="true" tabindex="-1"></a>SWt_Cl</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  item_scores_df$ClimateBL
+## W = 0.93431, p-value = 0.03763</code></pre>
+<p>CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP: Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning <span class="citation">(<a href="refs.html#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (<span class="math inline">\(W\)</span> = 0.806, <span class="math inline">\(p\)</span> = 0.0000) and the proportion of BIPOC instructional staff(<span class="math inline">\(W\)</span> = 0.823, <span class="math inline">\(p\)</span> = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent’s belonging (<span class="math inline">\(W\)</span> = 0.976, <span class="math inline">\(p\)</span> = 0.5767) and the respondent’s perception of campus climate for Black students (<span class="math inline">\(W\)</span> = 0.934, <span class="math inline">\(p\)</span> = 0.0376) did not differ differently from a normal distribution.</p>
+<p><em>Note. Owing to the open nature of the dataset, these values will change. While I have used inline text to update the values of the Shapiro Wilks’ and associated significance test, the text narration is not automatically updated and may be inconsistent with the results.</em></p>
+<p>What would we do in the case of a univariate outlier? I find Kline’s <span class="citation">(<a href="refs.html#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span> chapter on data preparation and management to be extremely useful. He provides ideas for more complex analysis of both univariate and multivariate normality and provides suggestions that range from recoding an extreme value to the next most extreme that is within three standard deviations of the mean to more complicated transformations. First, though we need to further examine the relationships between variables. We do that, next.</p>
+</div>
+<div id="pairs-panels" class="section level3" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Pairs Panels</h3>
+<p>As we work our way from univariate to multivariate inspection of our data, let’s take a look at the bivariate relations.</p>
+<p>The <em>pairs.panels()</em> function from the <em>psych</em> package is useful for showing the relationship between variables (probably no more than 10) in a model.</p>
+<ul>
+<li>The lower half is a scatterplot between the two variables with a regression line (red) and mean (dot).<br />
+</li>
+<li>The diagonal is a histogram of each variable.<br />
+</li>
+<li>The upper half of is the correlation coefficient between the two variables.</li>
+</ul>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="DataDx.html#cb95-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)], <span class="at">stars =</span> <span class="cn">TRUE</span>, <span class="at">lm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/pairs%20panels-1.svg" width="672" /></p>
+<p>The histograms displayed in the diagonal graph for us what we learned from the Shapiro Wilk’s test of normality. We can clearly see the non-normal distribution in the iBIPOC_pr and cmBlack variables.</p>
+</div>
+</div>
+<div id="evaluating-multivariate-normality" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Evaluating Multivariate Normality</h2>
+<p><strong>Multivariate outliers</strong> have extreme scores on two or more variables, or a pattern of scores that is atypical. For example, a case may have scores between two and three standard deviations above the mean on all variables, even though no case would be extreme. A common method of multivariate outlier detection is the <strong>Mahalanobis distance</strong> (<span class="math inline">\(D_{M}^{2}\)</span>). This indicates the distance in variance units between the profile of scores for that case and the vector of sample means, or <strong>centroid</strong>, correcting for intercorrelations.</p>
+<p>The <em>outlier()</em> function from the <em>psych</em> package tells us how far each datapoint is from the multivariate centroid of the data. That is, find the squared Mahalanobis distance for each data point and compare it to the expected values of <span class="math inline">\(\chi^2\)</span>. The <em>outlier()</em> protocol also produces a Q-Q (quantile-quantile) plot with the <em>n</em> most extreme data points labeled.</p>
+<p>The code below appends the Mahalanobis values to the dataframe. It is easy, then, to identify, sort, and examine the most extreme values (relative to the rest of the data in their case/row) to make decisions about their retention or adjustment.</p>
+<p>Numeric variables are required in the for the calculation of the Mahalanobis.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="DataDx.html#cb96-1" aria-hidden="true" tabindex="-1"></a>item_scores_df<span class="sc">$</span>Mahal <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">outlier</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)]) </span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/Detect%20multivariate%20outliers-1.svg" width="672" /></p>
+<p>Q-Q plots take your sample data, sort it in ascending order, and then plot them versus quantiles (the number varies; you can see it on the X axis) calculated from a theoretical distribution. The number of quantiles is selected to match the size of your sample data. While Normal Q-Q Plots are the ones most often used in practice due to so many statistical methods assuming normality, Q-Q Plots can actually be created for any distribution. To the degree that the plotted line stays on the straight line (representing the theoretical normal distribution), the data is multivariate normally distributed.</p>
+<p>It is possible, then to analyze the Mahalanobis distance values.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="DataDx.html#cb97-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(item_scores_df<span class="sc">$</span>Mahal)</span></code></pre></div>
+<pre><code>##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+## X1    1 38 3.75 2.21   3.15    3.62 2.25 0.19 9.27  9.08 0.61     -0.4 0.36</code></pre>
+<p>Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median. In fact, we can have these noted in a column in the dataframe.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="DataDx.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb99-2"><a href="DataDx.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="co">#str(item_scores_df$Mahal)</span></span>
+<span id="cb99-3"><a href="DataDx.html#cb99-3" aria-hidden="true" tabindex="-1"></a>item_scores_df<span class="sc">$</span>MOutlier <span class="ot">&lt;-</span> <span class="fu">if_else</span>(item_scores_df<span class="sc">$</span>Mahal <span class="sc">&gt;</span> (<span class="fu">median</span>(item_scores_df<span class="sc">$</span>Mahal) <span class="sc">+</span> (<span class="dv">3</span><span class="sc">*</span><span class="fu">sd</span>(item_scores_df<span class="sc">$</span>Mahal))), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb99-4"><a href="DataDx.html#cb99-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-5"><a href="DataDx.html#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb99-6"><a href="DataDx.html#cb99-6" aria-hidden="true" tabindex="-1"></a>OutlierCount <span class="ot">&lt;-</span> item_scores_df<span class="sc">%&gt;%</span></span>
+<span id="cb99-7"><a href="DataDx.html#cb99-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(MOutlier)</span>
+<span id="cb99-8"><a href="DataDx.html#cb99-8" aria-hidden="true" tabindex="-1"></a>OutlierCount</span></code></pre></div>
+<pre><code>##   MOutlier  n
+## 1    FALSE 38</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="DataDx.html#cb101-1" aria-hidden="true" tabindex="-1"></a>NumOutliers <span class="ot">&lt;-</span> <span class="fu">nrow</span>(item_scores_df) <span class="sc">-</span> OutlierCount <span class="co">#calculating how many outliers</span></span>
+<span id="cb101-2"><a href="DataDx.html#cb101-2" aria-hidden="true" tabindex="-1"></a>NumOutliers <span class="co">#this object is used for the inline text for the reesults</span></span></code></pre></div>
+<pre><code>##   MOutlier n
+## 1       38 0</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="DataDx.html#cb103-1" aria-hidden="true" tabindex="-1"></a>NumOutliers</span></code></pre></div>
+<pre><code>##   MOutlier n
+## 1       38 0</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="DataDx.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(item_scores_df) <span class="co">#shows us the first 6 rows of the data so we can see the new variables (Mahal, MOutlier)</span></span></code></pre></div>
+<pre><code>##   ID iBIPOC_pr cmBlack Belong_1 Belong_2 Belong_3 Blst_1 Blst_2 Blst_3 Blst_4
+## 1  1 0.3333333       0        6        6        7      5      3      5      2
+## 2  2 0.0000000       5        4        4        6      6      6      2      2
+## 3  3 0.5000000      10       NA        3       NA     NA      5      2      2
+## 4  4 0.3333333       6        5        3        2      2      2      2      2
+## 5  5 1.0000000       5        4        4        4      6      1      1      1
+## 6  6 0.0000000      20        5        6        5      5      1      1      2
+##   Blst_5 Blst_6 rBlst_1 Belonging ResponseBL StigmaBL ClimateBL     Mahal
+## 1      2      2       3      6.33       2.33     3.33      2.83 3.0887370
+## 2      4      1       2      4.67       1.67     4.00      2.83 1.7791058
+## 3     NA      2      NA        NA       2.00     3.50        NA 0.1863186
+## 4      2      2       6      3.33       3.33     2.00      2.67 0.5130016
+## 5      1      1       2      4.00       1.33     1.00      1.17 3.1774793
+## 6      1      2       3      5.33       2.33     1.00      1.67 5.3309540
+##   MOutlier
+## 1    FALSE
+## 2    FALSE
+## 3    FALSE
+## 4    FALSE
+## 5    FALSE
+## 6    FALSE</code></pre>
+<p>CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP: We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the <em>outlier()</em> function in the <em>psych</em> package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 0 exceed three standard deviations beyond the median. <em>Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis</em> AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.</p>
+</div>
+<div id="a-few-words-on-transformations" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> A Few Words on Transformations</h2>
+<p>To quote from Kline <span class="citation">(<a href="refs.html#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>, “Before applying a normalizing transformation, you should think about the variables of interest and whether the expectation of normality is reasonable.” (p. 77)</p>
+<p>At this point in history, the non-normal distribution of the proportions of classmates who are Black and instructional staff who are BIPOC are accurate representations in higher education. Kline <span class="citation">(<a href="refs.html#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span> has noted that transforming an inherently non-normal variable to force a normal distribution may fundamentally alter it such that the variable of interest is not actually studied. Kline’s chapter reviews some options for applying corrections to outliers. Additionally, the chapter describes a variety of normalizing transformations.</p>
+<p>On a personal note, while I will use stadardized scores (a linear transformation) if it improves interpretation and center variables around a meaningful intercept, I tend to resist the transformation of data without a really compelling reason. Why? It’s complicated and can make interpretation difficult.</p>
+</div>
+<div id="the-apa-style-write-up-1" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> The APA Style Write-Up</h2>
+<p>Since the focus of this chapter was on data diagnostics, the APA style writeup will focus on on this element of the Method section:</p>
+<div id="data-diagnostics" class="section level3" number="4.8.1">
+<h3><span class="header-section-number">4.8.1</span> Data Diagnostics</h3>
+<p>Data screening suggested that 52 individuals opened the survey link. Of those, 44 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 38 met this criteria.</p>
+<p>Available item analysis (AIA; <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">Parent, 2013</a>)</span>) is a strategy for managing missing data that uses available data for analysis and excludes cases with missing data points only for analyses in which the data points would be directly involved. Parent (2013) suggested that AIA is equivalent to more complex methods (e.g., multiple imputation) across a number of variations of sample size, magnitude of associations among items, and degree of missingness. Thus, we utilized Parent’s recommendations to guide our approach to managing missing data. Missing data analyses were conducted with tools in base R as well as the R packages, <em>psych</em> (v. 1.0.12) and <em>mice</em> (v. 3.13.0).</p>
+<p>Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 36%. Across the dataset, 3.35% of cells had missing data and 84.21% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with less than 90% missing to continue to the scoring stage. Guided by Parent’s <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> AIA approach, scales with three items were scored if at least two items were non-missing; the scale with four items was scored if it at least three non-missing items; and the scale with six items was scored if it had at least five non-missing items.</p>
+<p>Across the 38 cases for which the scoring protocol was applied, missingness ranged from 0% to 33%. After eliminating cases with greater than 20% missing, the dataset analyzed included 35 cases. In this dataset we had 0.95% missing across the df; 94.29% of the rows had nonmissing data.</p>
+<p>Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning <span class="citation">(<a href="refs.html#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (<span class="math inline">\(W\)</span> = 0.806, <span class="math inline">\(p\)</span> = 0.0000) and the proportion of BIPOC instructional staff(<span class="math inline">\(W\)</span> = 0.823, <span class="math inline">\(p\)</span> = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent’s belonging (<span class="math inline">\(W\)</span> = 0.976, <span class="math inline">\(p\)</span> = 0.5767) and the respondent’s perception of campus climate for Black students (<span class="math inline">\(W\)</span> = 0.934, <span class="math inline">\(p\)</span> = 0.0376) did not differ differently from a normal distribution.</p>
+<p>We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the <em>outlier()</em> function in the <em>psych</em> package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 0 exceed three standard deviations beyond the median. <em>Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis</em> AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.</p>
+<p>Given that our sample sizes were reasonable for the planned analyses and the degree of missingness was low, we used pairwise deletion in our multiple regression analysis.</p>
+</div>
+</div>
+<div id="a-quick-regression-of-our-research-vignette" class="section level2" number="4.9">
+<h2><span class="header-section-number">4.9</span> A Quick Regression of our Research Vignette</h2>
+<p>With some confidence that our scrubbed-and-scored variables are appropriate for analysis, let me conduct the super quick regression that is our research vignette.</p>
+<div class="figure">
+<img src="images/Ch04/BlStuRegression.jpg" alt="" />
+<p class="caption">An image of the statistical model for which we are preparing data.</p>
+</div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="DataDx.html#cb107-1" aria-hidden="true" tabindex="-1"></a>Climate_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(ClimateBL <span class="sc">~</span> Belonging <span class="sc">+</span> cmBlack <span class="sc">+</span> iBIPOC_pr, <span class="at">data =</span> item_scores_df)</span>
+<span id="cb107-2"><a href="DataDx.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Climate_fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.52062 -0.73534 -0.01292  0.61904  1.90366 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.31588    0.57674   4.015 0.000384 ***
+## Belonging    0.05035    0.12260   0.411 0.684342    
+## cmBlack     -0.01550    0.02056  -0.754 0.456936    
+## iBIPOC_pr   -0.45576    0.44324  -1.028 0.312328    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.9806 on 29 degrees of freedom
+##   (5 observations deleted due to missingness)
+## Multiple R-squared:  0.05276,    Adjusted R-squared:  -0.04523 
+## F-statistic: 0.5384 on 3 and 29 DF,  p-value: 0.6597</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="DataDx.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Climate_fit)</span></code></pre></div>
+<pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
+##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
+##  [9] &quot;na.action&quot;     &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;        
+## [13] &quot;model&quot;</code></pre>
+<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = 0.050, <span class="math inline">\(p\)</span> = 0.684) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.456, <span class="math inline">\(p\)</span> = 0.312), nor the proportion of Black classmates (<span class="math inline">\(B\)</span> = -0.015, <span class="math inline">\(p\)</span> = 0.457) led to statistically significant changes in perceptions of campus climate for Black students. Although it accounted for 5.28% of the variance, the overall model was not statistically significant. Results are presented in Table 2.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="DataDx.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(apaTables)</span>
+<span id="cb111-2"><a href="DataDx.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.cor.table</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)], <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.sig.stars =</span> <span class="cn">TRUE</span>, <span class="at">filename =</span> <span class="st">&quot;Table1_M_SDs_r_DataDx.doc&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## 
+## Table 1 
+## 
+## Means, standard deviations, and correlations with confidence intervals
+##  
+## 
+##   Variable     M    SD   1           2           3          
+##   1. iBIPOC_pr 0.44 0.40                                    
+##                                                             
+##   2. cmBlack   7.00 8.12 -.12                               
+##                          [-.43, .22]                        
+##                                                             
+##   3. Belonging 4.20 1.49 .24         -.16                   
+##                          [-.10, .53] [-.46, .17]            
+##                                                             
+##   4. ClimateBL 2.29 0.99 -.16        -.13        -.04       
+##                          [-.48, .19] [-.45, .21] [-.37, .30]
+##                                                             
+## 
+## Note. M and SD are used to represent mean and standard deviation, respectively.
+## Values in square brackets indicate the 95% confidence interval.
+## The confidence interval is a plausible range of population correlations 
+## that could have caused the sample correlation (Cumming, 2014).
+##  * indicates p &lt; .05. ** indicates p &lt; .01.
+## </code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="DataDx.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(apaTables)</span>
+<span id="cb113-2"><a href="DataDx.html#cb113-2" aria-hidden="true" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.reg.table</span>(Climate_fit, <span class="at">table.number =</span> <span class="dv">2</span>, <span class="at">filename =</span> <span class="st">&quot;Climate_table.doc&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## 
+## Table 2 
+## 
+## Regression results using ClimateBL as the criterion
+##  
+## 
+##    Predictor      b      b_95%_CI  beta   beta_95%_CI sr2  sr2_95%_CI    r
+##  (Intercept) 2.32**  [1.14, 3.50]                                         
+##    Belonging   0.05 [-0.20, 0.30]  0.08 [-0.30, 0.46] .01 [-.04, .05]  .05
+##      cmBlack  -0.02 [-0.06, 0.03] -0.14 [-0.51, 0.24] .02 [-.07, .11] -.13
+##    iBIPOC_pr  -0.46 [-1.36, 0.45] -0.19 [-0.57, 0.19] .03 [-.09, .16] -.16
+##                                                                           
+##                                                                           
+##                                                                           
+##              Fit
+##                 
+##                 
+##                 
+##                 
+##        R2 = .053
+##  95% CI[.00,.18]
+##                 
+## 
+## Note. A significant b-weight indicates the beta-weight and semi-partial correlation are also significant.
+## b represents unstandardized regression weights. beta indicates the standardized regression weights. 
+## sr2 represents the semi-partial correlation squared. r represents the zero-order correlation.
+## Square brackets are used to enclose the lower and upper limits of a confidence interval.
+## * indicates p &lt; .05. ** indicates p &lt; .01.
+## </code></pre>
+</div>
+<div id="practice-problems-2" class="section level2" number="4.10">
+<h2><span class="header-section-number">4.10</span> Practice Problems</h2>
+<p>The three problems described below are designed to be continuations from the previous chapter (Scrubbing). You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.</p>
+<div id="problem-1-reworking-the-chapter-problem-1" class="section level3" number="4.10.1">
+<h3><span class="header-section-number">4.10.1</span> Problem #1: Reworking the Chapter Problem</h3>
+<p>If you chose this option in the prior chapters, you imported the data from Qualtrics, applied inclusion/exclusion criteria, renamed variables, downsized the df to the variables of interest, properly formatted the variables, interpreted item-level missingness, scored the scales/subscales, interpreted scale-level missingness, and wrote up the results.</p>
+<p>If you continue with this option, please continue working with the data to:</p>
+<p>Continue working with this data to:</p>
+<table>
+<colgroup>
+<col width="76%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Calculate alpha coefficients for scales/subscales.</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Evaluate univariate normality (skew, kurtosis, Shapiro-Wilks).</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Evaluate multivarite normality (Mahalanobis test)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. For fun, run a quick analysis (e.g., regression, ANOVA) including at least three variables</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">30</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-2" class="section level3" number="4.10.2">
+<h3><span class="header-section-number">4.10.2</span> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</h3>
+<p>If you chose this option in the prior chapter, you chose a minimum of three variables from the <em>Rate-a-Recent-Course</em> survey to include in a simple statistical model. You imported the data from Qualtrics, applied inclusion/exclusion criteria, renamed variables, downsized the df to the variables of interest, properly formatted the variables, interpreted item-level missingness, scored the scales/subscales, interpreted scale-level missingness, and wrote up the results.</p>
+<p>Continue working with this data to:</p>
+<table>
+<colgroup>
+<col width="76%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Calculate alpha coefficients for scales/subscales.</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Evaluate univariate normality (skew, kurtosis, Shapiro-Wilks).</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Evaluate multivarite normality (Mahalanobis test)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. For fun, run a quick analysis (e.g., regression, ANOVA) including at least three variables</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">30</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-3-other-data-2" class="section level3" number="4.10.3">
+<h3><span class="header-section-number">4.10.3</span> Problem #3: Other data</h3>
+<p>If you chose this option in the prior chapter, you used raw data that was available to you. You imported it into R, applied inclusion/exclusion criteria, renamed variables, downsized the df to the variables of interest, properly formatted the variables, interpreted item-level missingness, scored the scales/subscales, interpreted scale-level missingness, and wrote up the results.</p>
+<p>Continue working with this data to:</p>
+<table>
+<colgroup>
+<col width="76%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Calculate alpha coefficients for scales/subscales.</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Evaluate univariate normality (skew, kurtosis, Shapiro-Wilks).</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Evaluate multivarite normality (Mahalanobis test)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. For fun, run a quick analysis (e.g., regression, ANOVA) including at least three variables</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">30</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="DataDx.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.0.4 (2021-02-15)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18362)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] apaTables_2.0.8   gdtools_0.2.2     mice_3.13.0       sjstats_0.18.0   
+##  [5] formattable_0.2.1 qualtRics_3.1.4   forcats_0.5.0     stringr_1.4.0    
+##  [9] dplyr_1.0.2       purrr_0.3.4       readr_1.4.0       tidyr_1.1.2      
+## [13] tibble_3.0.4      ggplot2_3.3.3     tidyverse_1.3.0   psych_2.0.12     
+## 
+## loaded via a namespace (and not attached):
+##  [1] nlme_3.1-151      fs_1.5.0          lubridate_1.7.9.2 MBESS_4.8.0      
+##  [5] insight_0.11.1    httr_1.4.2        tools_4.0.4       backports_1.2.0  
+##  [9] utf8_1.1.4        R6_2.5.0          sjlabelled_1.1.7  DBI_1.1.0        
+## [13] colorspace_2.0-0  withr_2.3.0       tidyselect_1.1.0  mnormt_2.0.2     
+## [17] emmeans_1.5.3     curl_4.3          compiler_4.0.4    performance_0.6.1
+## [21] cli_2.2.0         rvest_0.3.6       xml2_1.3.2        sandwich_3.0-0   
+## [25] bookdown_0.21     bayestestR_0.8.0  scales_1.1.1      mvtnorm_1.1-1    
+## [29] systemfonts_0.3.2 digest_0.6.27     minqa_1.2.4       svglite_1.2.3.2  
+## [33] rmarkdown_2.6     pkgconfig_2.0.3   htmltools_0.5.0   lme4_1.1-26      
+## [37] dbplyr_2.0.0      htmlwidgets_1.5.3 rlang_0.4.9       readxl_1.3.1     
+## [41] rstudioapi_0.13   generics_0.1.0    zoo_1.8-8         jsonlite_1.7.2   
+## [45] magrittr_2.0.1    parameters_0.10.1 Matrix_1.2-18     Rcpp_1.0.5       
+## [49] munsell_0.5.0     fansi_0.4.1       lifecycle_0.2.0   stringi_1.5.3    
+## [53] multcomp_1.4-15   yaml_2.2.1        MASS_7.3-53       grid_4.0.4       
+## [57] parallel_4.0.4    sjmisc_2.8.5      crayon_1.3.4      lattice_0.20-41  
+## [61] haven_2.3.1       splines_4.0.4     hms_0.5.3         tmvnsim_1.0-2    
+## [65] knitr_1.30        pillar_1.4.7      boot_1.3-25       estimability_1.3 
+## [69] effectsize_0.4.1  codetools_0.2-18  reprex_0.3.0      glue_1.4.2       
+## [73] evaluate_0.14     modelr_0.1.8      nloptr_1.2.2.2    vctrs_0.3.6      
+## [77] cellranger_1.1.0  gtable_0.3.0      assertthat_0.2.1  xfun_0.19        
+## [81] xtable_1.8-4      broom_0.7.3       coda_0.19-4       survival_3.2-7   
+## [85] statmod_1.4.35    TH.data_1.0-10    ellipsis_0.3.1</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="score.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multimp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ontheline/otl-bookdown/blob/master/04-DataDx.Rmd",
+"text": null
+},
+"download": ["ReC_MultMod.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

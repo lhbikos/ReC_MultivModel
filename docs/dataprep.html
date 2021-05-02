@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>DATA PREP | ReCentering Psych Stats: Multivariate Modeling</title>
+  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="DATA PREP | ReCentering Psych Stats: Multivariate Modeling" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="DATA PREP | ReCentering Psych Stats: Multivariate Modeling" />
+  
+  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ReCintro.html"/>
+<link rel="next" href="scrub.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><strong>ReCentering Psych Stats: Multivariate Modeling</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>PREFACE</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
+<li class="chapter" data-level="1" data-path="ReCintro.html"><a href="ReCintro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
+<li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
+<ul>
+<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
+<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
+<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
+<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
+<li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dataprep.html"><a href="dataprep.html"><i class="fa fa-check"></i>DATA PREP</a></li>
+<li class="chapter" data-level="2" data-path="scrub.html"><a href="scrub.html"><i class="fa fa-check"></i><b>2</b> Scrubbing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="scrub.html"><a href="scrub.html#navigating-this-lesson"><i class="fa fa-check"></i><b>2.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="scrub.html"><a href="scrub.html#learning-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.1.2" data-path="scrub.html"><a href="scrub.html#planning-for-practice"><i class="fa fa-check"></i><b>2.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="2.1.3" data-path="scrub.html"><a href="scrub.html#readings-resources"><i class="fa fa-check"></i><b>2.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="2.1.4" data-path="scrub.html"><a href="scrub.html#packages-1"><i class="fa fa-check"></i><b>2.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="scrub.html"><a href="scrub.html#workflow-for-scrubbing-and-scoring"><i class="fa fa-check"></i><b>2.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="2.3" data-path="scrub.html"><a href="scrub.html#research-vignette"><i class="fa fa-check"></i><b>2.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="2.4" data-path="scrub.html"><a href="scrub.html#working-the-problem"><i class="fa fa-check"></i><b>2.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="scrub.html"><a href="scrub.html#intravenous-qualtrics"><i class="fa fa-check"></i><b>2.4.1</b> intRavenous Qualtrics</a></li>
+<li class="chapter" data-level="2.4.2" data-path="scrub.html"><a href="scrub.html#about-the-rate-a-recent-course-survey"><i class="fa fa-check"></i><b>2.4.2</b> About the <em>Rate-a-Recent-Course</em> Survey</a></li>
+<li class="chapter" data-level="2.4.3" data-path="scrub.html"><a href="scrub.html#the-codebook"><i class="fa fa-check"></i><b>2.4.3</b> The Codebook</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="scrub.html"><a href="scrub.html#scrubbing"><i class="fa fa-check"></i><b>2.5</b> Scrubbing</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="scrub.html"><a href="scrub.html#tools-for-data-manipulations"><i class="fa fa-check"></i><b>2.5.1</b> Tools for Data Manipulations</a></li>
+<li class="chapter" data-level="2.5.2" data-path="scrub.html"><a href="scrub.html#inclusion-and-exclusion-criteria"><i class="fa fa-check"></i><b>2.5.2</b> Inclusion and Exclusion Criteria</a></li>
+<li class="chapter" data-level="2.5.3" data-path="scrub.html"><a href="scrub.html#renaming-variables"><i class="fa fa-check"></i><b>2.5.3</b> Renaming Variables</a></li>
+<li class="chapter" data-level="2.5.4" data-path="scrub.html"><a href="scrub.html#downsizing-the-dataframe"><i class="fa fa-check"></i><b>2.5.4</b> Downsizing the Dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="scrub.html"><a href="scrub.html#toward-the-apa-style-write-up"><i class="fa fa-check"></i><b>2.6</b> Toward the APA Style Write-up</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="scrub.html"><a href="scrub.html#methodprocedure"><i class="fa fa-check"></i><b>2.6.1</b> Method/Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="scrub.html"><a href="scrub.html#practice-problems"><i class="fa fa-check"></i><b>2.7</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="scrub.html"><a href="scrub.html#problem-1-rework-the-chapter-problem"><i class="fa fa-check"></i><b>2.7.1</b> Problem #1: Rework the Chapter Problem</a></li>
+<li class="chapter" data-level="2.7.2" data-path="scrub.html"><a href="scrub.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables"><i class="fa fa-check"></i><b>2.7.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="2.7.3" data-path="scrub.html"><a href="scrub.html#problem-3-other-data"><i class="fa fa-check"></i><b>2.7.3</b> Problem #3: Other data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="scrub.html"><a href="scrub.html#bonus-track"><i class="fa fa-check"></i><b>2.8</b> Bonus Track:</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="scrub.html"><a href="scrub.html#importing-data-from-an-exported-qualtrics-.csv-file"><i class="fa fa-check"></i><b>2.8.1</b> Importing data from an exported Qualtrics .csv file</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="score.html"><a href="score.html"><i class="fa fa-check"></i><b>3</b> Scoring</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="score.html"><a href="score.html#navigating-this-lesson-1"><i class="fa fa-check"></i><b>3.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="score.html"><a href="score.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="score.html"><a href="score.html#planning-for-practice-1"><i class="fa fa-check"></i><b>3.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="3.1.3" data-path="score.html"><a href="score.html#readings-resources-1"><i class="fa fa-check"></i><b>3.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="3.1.4" data-path="score.html"><a href="score.html#packages-2"><i class="fa fa-check"></i><b>3.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="score.html"><a href="score.html#workflow-for-scrubbing-and-scoring-1"><i class="fa fa-check"></i><b>3.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="3.3" data-path="score.html"><a href="score.html#research-vignette-1"><i class="fa fa-check"></i><b>3.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="3.4" data-path="score.html"><a href="score.html#on-missing-data"><i class="fa fa-check"></i><b>3.4</b> On Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="score.html"><a href="score.html#data-loss-mechanisms"><i class="fa fa-check"></i><b>3.4.1</b> Data Loss Mechanisms</a></li>
+<li class="chapter" data-level="3.4.2" data-path="score.html"><a href="score.html#diagnosing-missing-data-mechanisms"><i class="fa fa-check"></i><b>3.4.2</b> Diagnosing Missing Data Mechanisms</a></li>
+<li class="chapter" data-level="3.4.3" data-path="score.html"><a href="score.html#managing-missing-data"><i class="fa fa-check"></i><b>3.4.3</b> Managing Missing Data</a></li>
+<li class="chapter" data-level="3.4.4" data-path="score.html"><a href="score.html#available-information-analysis-aia"><i class="fa fa-check"></i><b>3.4.4</b> Available Information Analysis (AIA)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="score.html"><a href="score.html#working-the-problem-1"><i class="fa fa-check"></i><b>3.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="score.html"><a href="score.html#missing-data-analysis-whole-df-and-item-level"><i class="fa fa-check"></i><b>3.5.1</b> Missing Data Analysis: Whole df and Item level</a></li>
+<li class="chapter" data-level="3.5.2" data-path="score.html"><a href="score.html#analyzing-missing-data-patterns"><i class="fa fa-check"></i><b>3.5.2</b> Analyzing Missing Data Patterns</a></li>
+<li class="chapter" data-level="3.5.3" data-path="score.html"><a href="score.html#missing-mechanisms"><i class="fa fa-check"></i><b>3.5.3</b> Missing Mechanisms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="score.html"><a href="score.html#scoring"><i class="fa fa-check"></i><b>3.6</b> Scoring</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="score.html"><a href="score.html#reverse-scoring"><i class="fa fa-check"></i><b>3.6.1</b> Reverse scoring</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="score.html"><a href="score.html#missing-analysis-scale-level"><i class="fa fa-check"></i><b>3.7</b> Missing Analysis: Scale level</a></li>
+<li class="chapter" data-level="3.8" data-path="score.html"><a href="score.html#revisiting-missing-analysis-at-the-scale-level"><i class="fa fa-check"></i><b>3.8</b> Revisiting Missing Analysis at the Scale Level</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="score.html"><a href="score.html#scale-level-patterns-of-missing-data"><i class="fa fa-check"></i><b>3.8.1</b> Scale Level: Patterns of Missing Data</a></li>
+<li class="chapter" data-level="3.8.2" data-path="score.html"><a href="score.html#is-it-mcar"><i class="fa fa-check"></i><b>3.8.2</b> Is it MCAR?</a></li>
+<li class="chapter" data-level="3.8.3" data-path="score.html"><a href="score.html#r-eady-for-analysis"><i class="fa fa-check"></i><b>3.8.3</b> R-eady for Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="score.html"><a href="score.html#the-apa-style-write-up"><i class="fa fa-check"></i><b>3.9</b> The APA Style Write-Up</a></li>
+<li class="chapter" data-level="3.10" data-path="score.html"><a href="score.html#results"><i class="fa fa-check"></i><b>3.10</b> Results</a></li>
+<li class="chapter" data-level="3.11" data-path="score.html"><a href="score.html#practice-problems-1"><i class="fa fa-check"></i><b>3.11</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="score.html"><a href="score.html#problem-1-reworking-the-chapter-problem"><i class="fa fa-check"></i><b>3.11.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="3.11.2" data-path="score.html"><a href="score.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-1"><i class="fa fa-check"></i><b>3.11.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="3.11.3" data-path="score.html"><a href="score.html#problem-3-other-data-1"><i class="fa fa-check"></i><b>3.11.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="DataDx.html"><a href="DataDx.html"><i class="fa fa-check"></i><b>4</b> Data Dx</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DataDx.html"><a href="DataDx.html#navigating-this-lesson-2"><i class="fa fa-check"></i><b>4.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DataDx.html"><a href="DataDx.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DataDx.html"><a href="DataDx.html#planning-for-practice-2"><i class="fa fa-check"></i><b>4.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DataDx.html"><a href="DataDx.html#readings-resources-2"><i class="fa fa-check"></i><b>4.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DataDx.html"><a href="DataDx.html#packages-3"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DataDx.html"><a href="DataDx.html#workflow-for-scrubbing-and-scoring-2"><i class="fa fa-check"></i><b>4.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="4.3" data-path="DataDx.html"><a href="DataDx.html#research-vignette-2"><i class="fa fa-check"></i><b>4.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="4.4" data-path="DataDx.html"><a href="DataDx.html#internal-consistency-of-scalessubscales"><i class="fa fa-check"></i><b>4.4</b> Internal Consistency of Scales/Subscales</a></li>
+<li class="chapter" data-level="4.5" data-path="DataDx.html"><a href="DataDx.html#distributional-characteristics-of-the-variables"><i class="fa fa-check"></i><b>4.5</b> Distributional Characteristics of the Variables</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="DataDx.html"><a href="DataDx.html#evaluating-univariate-normality"><i class="fa fa-check"></i><b>4.5.1</b> Evaluating Univariate Normality</a></li>
+<li class="chapter" data-level="4.5.2" data-path="DataDx.html"><a href="DataDx.html#pairs-panels"><i class="fa fa-check"></i><b>4.5.2</b> Pairs Panels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="DataDx.html"><a href="DataDx.html#evaluating-multivariate-normality"><i class="fa fa-check"></i><b>4.6</b> Evaluating Multivariate Normality</a></li>
+<li class="chapter" data-level="4.7" data-path="DataDx.html"><a href="DataDx.html#a-few-words-on-transformations"><i class="fa fa-check"></i><b>4.7</b> A Few Words on Transformations</a></li>
+<li class="chapter" data-level="4.8" data-path="DataDx.html"><a href="DataDx.html#the-apa-style-write-up-1"><i class="fa fa-check"></i><b>4.8</b> The APA Style Write-Up</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="DataDx.html"><a href="DataDx.html#data-diagnostics"><i class="fa fa-check"></i><b>4.8.1</b> Data Diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="DataDx.html"><a href="DataDx.html#a-quick-regression-of-our-research-vignette"><i class="fa fa-check"></i><b>4.9</b> A Quick Regression of our Research Vignette</a></li>
+<li class="chapter" data-level="4.10" data-path="DataDx.html"><a href="DataDx.html#practice-problems-2"><i class="fa fa-check"></i><b>4.10</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="DataDx.html"><a href="DataDx.html#problem-1-reworking-the-chapter-problem-1"><i class="fa fa-check"></i><b>4.10.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="4.10.2" data-path="DataDx.html"><a href="DataDx.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-2"><i class="fa fa-check"></i><b>4.10.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="4.10.3" data-path="DataDx.html"><a href="DataDx.html#problem-3-other-data-2"><i class="fa fa-check"></i><b>4.10.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="multimp.html"><a href="multimp.html"><i class="fa fa-check"></i><b>5</b> Multiple Imputation (A Brief Demo)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="multimp.html"><a href="multimp.html#navigating-this-lesson-3"><i class="fa fa-check"></i><b>5.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="multimp.html"><a href="multimp.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="multimp.html"><a href="multimp.html#planning-for-practice-3"><i class="fa fa-check"></i><b>5.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="5.1.3" data-path="multimp.html"><a href="multimp.html#readings-resources-3"><i class="fa fa-check"></i><b>5.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="5.1.4" data-path="multimp.html"><a href="multimp.html#packages-4"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="multimp.html"><a href="multimp.html#workflow-for-multiple-imputation"><i class="fa fa-check"></i><b>5.2</b> Workflow for Multiple Imputation</a></li>
+<li class="chapter" data-level="5.3" data-path="multimp.html"><a href="multimp.html#research-vignette-3"><i class="fa fa-check"></i><b>5.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="5.4" data-path="multimp.html"><a href="multimp.html#multiple-imputation-a-super-brief-review"><i class="fa fa-check"></i><b>5.4</b> Multiple Imputation – a Super Brief Review</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="multimp.html"><a href="multimp.html#steps-in-multiple-imputation"><i class="fa fa-check"></i><b>5.4.1</b> Steps in Multiple Imputation</a></li>
+<li class="chapter" data-level="5.4.2" data-path="multimp.html"><a href="multimp.html#statistical-approaches-to-multiple-imputation"><i class="fa fa-check"></i><b>5.4.2</b> Statistical Approaches to Multiple Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="multimp.html"><a href="multimp.html#working-the-problem-2"><i class="fa fa-check"></i><b>5.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="multimp.html"><a href="multimp.html#selecting-and-formatting-variables"><i class="fa fa-check"></i><b>5.5.1</b> Selecting and Formatting Variables</a></li>
+<li class="chapter" data-level="5.5.2" data-path="multimp.html"><a href="multimp.html#creating-composite-variables"><i class="fa fa-check"></i><b>5.5.2</b> Creating Composite Variables</a></li>
+<li class="chapter" data-level="5.5.3" data-path="multimp.html"><a href="multimp.html#the-multiple-imputation"><i class="fa fa-check"></i><b>5.5.3</b> The Multiple Imputation</a></li>
+<li class="chapter" data-level="5.5.4" data-path="multimp.html"><a href="multimp.html#creating-scale-scores"><i class="fa fa-check"></i><b>5.5.4</b> Creating Scale Scores</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="multimp.html"><a href="multimp.html#multiple-regression-with-multiply-imputed-data"><i class="fa fa-check"></i><b>5.6</b> Multiple Regression with Multiply Imputed Data</a></li>
+<li class="chapter" data-level="5.7" data-path="multimp.html"><a href="multimp.html#toward-the-apa-style-write-up-1"><i class="fa fa-check"></i><b>5.7</b> Toward the APA Style Write-up</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="multimp.html"><a href="multimp.html#methoddata-diagnostics"><i class="fa fa-check"></i><b>5.7.1</b> Method/Data Diagnostics</a></li>
+<li class="chapter" data-level="5.7.2" data-path="multimp.html"><a href="multimp.html#results-1"><i class="fa fa-check"></i><b>5.7.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="multimp.html"><a href="multimp.html#multiple-imputation-considerations"><i class="fa fa-check"></i><b>5.8</b> Multiple imputation considerations</a></li>
+<li class="chapter" data-level="5.9" data-path="multimp.html"><a href="multimp.html#practice-problems-3"><i class="fa fa-check"></i><b>5.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="multimp.html"><a href="multimp.html#problem-1-reworking-the-chapter-problem-2"><i class="fa fa-check"></i><b>5.9.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="5.9.2" data-path="multimp.html"><a href="multimp.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-3"><i class="fa fa-check"></i><b>5.9.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="5.9.3" data-path="multimp.html"><a href="multimp.html#problem-3-other-data-3"><i class="fa fa-check"></i><b>5.9.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CPA.html"><a href="CPA.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
+<li class="chapter" data-level="6" data-path="SimpleMed.html"><a href="SimpleMed.html"><i class="fa fa-check"></i><b>6</b> Simple Mediation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="SimpleMed.html"><a href="SimpleMed.html#navigating-this-lesson-4"><i class="fa fa-check"></i><b>6.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="SimpleMed.html"><a href="SimpleMed.html#learning-objectives-4"><i class="fa fa-check"></i><b>6.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.1.2" data-path="SimpleMed.html"><a href="SimpleMed.html#planning-for-practice-4"><i class="fa fa-check"></i><b>6.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="6.1.3" data-path="SimpleMed.html"><a href="SimpleMed.html#readings-resources-4"><i class="fa fa-check"></i><b>6.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="SimpleMed.html"><a href="SimpleMed.html#packages-5"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="SimpleMed.html"><a href="SimpleMed.html#estimating-indirect-effects-the-analytic-approach-often-termed-mediation"><i class="fa fa-check"></i><b>6.2</b> Estimating Indirect Effects (the analytic approach often termed <em>mediation</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="SimpleMed.html"><a href="SimpleMed.html#the-definitional-and-conceptual"><i class="fa fa-check"></i><b>6.2.1</b> The definitional and conceptual</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="SimpleMed.html"><a href="SimpleMed.html#workflow-for-simple-mediation"><i class="fa fa-check"></i><b>6.3</b> Workflow for Simple Mediation</a></li>
+<li class="chapter" data-level="6.4" data-path="SimpleMed.html"><a href="SimpleMed.html#simple-mediation-in-lavaan-a-focus-on-the-mechanics"><i class="fa fa-check"></i><b>6.4</b> Simple Mediation in <em>lavaan</em>: A focus on the mechanics</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="SimpleMed.html"><a href="SimpleMed.html#simulate-fake-data"><i class="fa fa-check"></i><b>6.4.1</b> Simulate Fake Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="SimpleMed.html"><a href="SimpleMed.html#specify-mediation-model"><i class="fa fa-check"></i><b>6.4.2</b> Specify Mediation Model</a></li>
+<li class="chapter" data-level="6.4.3" data-path="SimpleMed.html"><a href="SimpleMed.html#interpret-the-output"><i class="fa fa-check"></i><b>6.4.3</b> Interpret the Output</a></li>
+<li class="chapter" data-level="6.4.4" data-path="SimpleMed.html"><a href="SimpleMed.html#a-table-and-a-figure"><i class="fa fa-check"></i><b>6.4.4</b> A Table and a Figure</a></li>
+<li class="chapter" data-level="6.4.5" data-path="SimpleMed.html"><a href="SimpleMed.html#results-2"><i class="fa fa-check"></i><b>6.4.5</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="SimpleMed.html"><a href="SimpleMed.html#research-vignette-4"><i class="fa fa-check"></i><b>6.5</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="SimpleMed.html"><a href="SimpleMed.html#simulate-data-from-the-journal-article"><i class="fa fa-check"></i><b>6.5.1</b> Simulate Data from the Journal Article</a></li>
+<li class="chapter" data-level="6.5.2" data-path="SimpleMed.html"><a href="SimpleMed.html#specify-the-model-in-lavaan"><i class="fa fa-check"></i><b>6.5.2</b> Specify the Model in <em>lavaan</em></a></li>
+<li class="chapter" data-level="6.5.3" data-path="SimpleMed.html"><a href="SimpleMed.html#interpret-the-output-1"><i class="fa fa-check"></i><b>6.5.3</b> Interpret the Output</a></li>
+<li class="chapter" data-level="6.5.4" data-path="SimpleMed.html"><a href="SimpleMed.html#a-figure-and-a-table"><i class="fa fa-check"></i><b>6.5.4</b> A Figure and a Table</a></li>
+<li class="chapter" data-level="6.5.5" data-path="SimpleMed.html"><a href="SimpleMed.html#results-3"><i class="fa fa-check"></i><b>6.5.5</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="SimpleMed.html"><a href="SimpleMed.html#considering-covariates"><i class="fa fa-check"></i><b>6.6</b> Considering Covariates</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="SimpleMed.html"><a href="SimpleMed.html#a-figure-and-a-table-1"><i class="fa fa-check"></i><b>6.6.1</b> A Figure and a Table</a></li>
+<li class="chapter" data-level="6.6.2" data-path="SimpleMed.html"><a href="SimpleMed.html#apa-style-write-up"><i class="fa fa-check"></i><b>6.6.2</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="SimpleMed.html"><a href="SimpleMed.html#residual-and-related-questions"><i class="fa fa-check"></i><b>6.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="6.8" data-path="SimpleMed.html"><a href="SimpleMed.html#practice-problems-4"><i class="fa fa-check"></i><b>6.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed"><i class="fa fa-check"></i><b>6.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="6.8.2" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables"><i class="fa fa-check"></i><b>6.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="6.8.3" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-3-use-other-data-that-is-available-to-you"><i class="fa fa-check"></i><b>6.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="CompMed.html"><a href="CompMed.html"><i class="fa fa-check"></i><b>7</b> Complex Mediation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="CompMed.html"><a href="CompMed.html#navigating-this-lesson-5"><i class="fa fa-check"></i><b>7.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="CompMed.html"><a href="CompMed.html#learning-objectives-5"><i class="fa fa-check"></i><b>7.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.1.2" data-path="CompMed.html"><a href="CompMed.html#planning-for-practice-5"><i class="fa fa-check"></i><b>7.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="7.1.3" data-path="CompMed.html"><a href="CompMed.html#readings-resources-5"><i class="fa fa-check"></i><b>7.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="7.1.4" data-path="CompMed.html"><a href="CompMed.html#packages-6"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="CompMed.html"><a href="CompMed.html#complex-mediation"><i class="fa fa-check"></i><b>7.2</b> Complex Mediation</a></li>
+<li class="chapter" data-level="7.3" data-path="CompMed.html"><a href="CompMed.html#parallel-mediation"><i class="fa fa-check"></i><b>7.3</b> Parallel Mediation</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a>
+<ul>
+<li class="chapter" data-level="7.3.1.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation"><i class="fa fa-check"></i><b>7.3.1.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="7.3.1.2" data-path="CompMed.html"><a href="CompMed.html#specifying-lavaan-code"><i class="fa fa-check"></i><b>7.3.1.2</b> Specifying <em>lavaan</em> code</a></li>
+<li class="chapter" data-level="7.3.1.3" data-path="CompMed.html"><a href="CompMed.html#a-note-on-indirect-effects-and-confidence-intervals"><i class="fa fa-check"></i><b>7.3.1.3</b> A note on indirect effects and confidence intervals</a></li>
+<li class="chapter" data-level="7.3.1.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables"><i class="fa fa-check"></i><b>7.3.1.4</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.3.1.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup"><i class="fa fa-check"></i><b>7.3.1.5</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="7.3.2.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation-1"><i class="fa fa-check"></i><b>7.3.2.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="7.3.2.2" data-path="CompMed.html"><a href="CompMed.html#quick-descriptives"><i class="fa fa-check"></i><b>7.3.2.2</b> Quick Descriptives</a></li>
+<li class="chapter" data-level="7.3.2.3" data-path="CompMed.html"><a href="CompMed.html#specifying-the-lavaan-model"><i class="fa fa-check"></i><b>7.3.2.3</b> Specifying the <em>lavaan</em> model</a></li>
+<li class="chapter" data-level="7.3.2.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-1"><i class="fa fa-check"></i><b>7.3.2.4</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.3.2.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-1"><i class="fa fa-check"></i><b>7.3.2.5</b> APA Style Writeup</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="CompMed.html"><a href="CompMed.html#serial-multiple-mediator-model"><i class="fa fa-check"></i><b>7.4</b> Serial Multiple Mediator Model</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="CompMed.html"><a href="CompMed.html#we-stick-with-the-lewis-et-al.--lewis_applying_2017-example-but-modify-it."><i class="fa fa-check"></i><b>7.4.1</b> We stick with the Lewis et al. <span class="citation">(<span>2017</span>)</span> example, but modify it.</a></li>
+<li class="chapter" data-level="7.4.2" data-path="CompMed.html"><a href="CompMed.html#specify-the-lavaan-model"><i class="fa fa-check"></i><b>7.4.2</b> Specify the <em>lavaan</em> model</a></li>
+<li class="chapter" data-level="7.4.3" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-2"><i class="fa fa-check"></i><b>7.4.3</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.4.4" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-2"><i class="fa fa-check"></i><b>7.4.4</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="CompMed.html"><a href="CompMed.html#troubleshooting-and-faqs"><i class="fa fa-check"></i><b>7.5</b> Troubleshooting and FAQs</a></li>
+<li class="chapter" data-level="7.6" data-path="CompMed.html"><a href="CompMed.html#practice-problems-5"><i class="fa fa-check"></i><b>7.6</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="CompMed.html"><a href="CompMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1"><i class="fa fa-check"></i><b>7.6.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="7.6.2" data-path="CompMed.html"><a href="CompMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-1"><i class="fa fa-check"></i><b>7.6.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="7.6.3" data-path="CompMed.html"><a href="CompMed.html#problem-3-use-other-data-that-is-available-to-you-1"><i class="fa fa-check"></i><b>7.6.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>8</b> Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ModMed.html"><a href="ModMed.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="ModMed.html"><a href="ModMed.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ModMed.html"><a href="ModMed.html#planning-for-practice-6"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ModMed.html"><a href="ModMed.html#readings-resources-6"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="8.1.4" data-path="ModMed.html"><a href="ModMed.html#packages-7"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="ModMed.html"><a href="ModMed.html#conditional-process-analysis"><i class="fa fa-check"></i><b>8.2</b> Conditional Process Analysis</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="ModMed.html"><a href="ModMed.html#the-definitional-and-conceptual-1"><i class="fa fa-check"></i><b>8.2.1</b> The definitional and conceptual</a></li>
+<li class="chapter" data-level="8.2.2" data-path="ModMed.html"><a href="ModMed.html#hayes--hayes_introduction_2018-piecewise-approach-to-building-models"><i class="fa fa-check"></i><b>8.2.2</b> Hayes’ <span class="citation">(<span>2018</span>)</span> Piecewise Approach to Building Models</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="ModMed.html"><a href="ModMed.html#workflow-for-moderated-mediation"><i class="fa fa-check"></i><b>8.3</b> Workflow for Moderated Mediation</a></li>
+<li class="chapter" data-level="8.4" data-path="ModMed.html"><a href="ModMed.html#research-vignette-6"><i class="fa fa-check"></i><b>8.4</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="ModMed.html"><a href="ModMed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>8.4.1</b> Simulating the data from the journal article</a></li>
+<li class="chapter" data-level="8.4.2" data-path="ModMed.html"><a href="ModMed.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>8.4.2</b> Quick peek at the data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5</b> Working the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.1</b> Analysis #1: A simple moderation</a></li>
+<li class="chapter" data-level="8.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.2</b> Analysis #2: Another simple moderation</a></li>
+<li class="chapter" data-level="8.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>8.5.1.3</b> Analysis #3: A simple mediation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>8.6</b> The Moderated Mediation: A Combined analysis</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>8.6.1</b> Specification in <em>lavaan</em></a></li>
+<li class="chapter" data-level="8.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>8.6.2</b> A quick plot</a></li>
+<li class="chapter" data-level="8.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>8.6.3</b> Beginning the interpretation</a></li>
+<li class="chapter" data-level="8.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data"><i class="fa fa-check"></i><b>8.6.4</b> Tabling the data</a>
+<ul>
+<li class="chapter" data-level="8.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>8.6.4.1</b> Conditional Indirect effects</a></li>
+<li class="chapter" data-level="8.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>8.6.4.2</b> Conditional Direct effect</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>8.6.5</b> Model trimming</a></li>
+<li class="chapter" data-level="8.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>8.6.6</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="ModMed.html"><a href="ModMed.html#residual-and-related-questions-1"><i class="fa fa-check"></i><b>8.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="8.8" data-path="ModMed.html"><a href="ModMed.html#practice-problems-6"><i class="fa fa-check"></i><b>8.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="ModMed.html"><a href="ModMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2"><i class="fa fa-check"></i><b>8.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="8.8.2" data-path="ModMed.html"><a href="ModMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-2"><i class="fa fa-check"></i><b>8.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="8.8.3" data-path="ModMed.html"><a href="ModMed.html#problem-3-use-other-data-that-is-available-to-you-2"><i class="fa fa-check"></i><b>8.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-1"><i class="fa fa-check"></i><b>8.9</b> Bonus Track:</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
+  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ReCentering Psych Stats: Multivariate Modeling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dataprep" class="section level1 unnumbered">
+<h1>DATA PREP</h1>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ReCintro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="scrub.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ontheline/otl-bookdown/blob/master/02-Scrubbing.Rmd",
+"text": null
+},
+"download": ["ReC_MultMod.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Multiple Imputation (A Brief Demo) | ReCentering Psych Stats: Multivariate Modeling</title>
+  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Multiple Imputation (A Brief Demo) | ReCentering Psych Stats: Multivariate Modeling" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Multiple Imputation (A Brief Demo) | ReCentering Psych Stats: Multivariate Modeling" />
+  
+  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="DataDx.html"/>
+<link rel="next" href="CPA.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><strong>ReCentering Psych Stats: Multivariate Modeling</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>PREFACE</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
+<li class="chapter" data-level="1" data-path="ReCintro.html"><a href="ReCintro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
+<li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
+<ul>
+<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
+<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
+<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
+<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
+<li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dataprep.html"><a href="dataprep.html"><i class="fa fa-check"></i>DATA PREP</a></li>
+<li class="chapter" data-level="2" data-path="scrub.html"><a href="scrub.html"><i class="fa fa-check"></i><b>2</b> Scrubbing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="scrub.html"><a href="scrub.html#navigating-this-lesson"><i class="fa fa-check"></i><b>2.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="scrub.html"><a href="scrub.html#learning-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.1.2" data-path="scrub.html"><a href="scrub.html#planning-for-practice"><i class="fa fa-check"></i><b>2.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="2.1.3" data-path="scrub.html"><a href="scrub.html#readings-resources"><i class="fa fa-check"></i><b>2.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="2.1.4" data-path="scrub.html"><a href="scrub.html#packages-1"><i class="fa fa-check"></i><b>2.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="scrub.html"><a href="scrub.html#workflow-for-scrubbing-and-scoring"><i class="fa fa-check"></i><b>2.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="2.3" data-path="scrub.html"><a href="scrub.html#research-vignette"><i class="fa fa-check"></i><b>2.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="2.4" data-path="scrub.html"><a href="scrub.html#working-the-problem"><i class="fa fa-check"></i><b>2.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="scrub.html"><a href="scrub.html#intravenous-qualtrics"><i class="fa fa-check"></i><b>2.4.1</b> intRavenous Qualtrics</a></li>
+<li class="chapter" data-level="2.4.2" data-path="scrub.html"><a href="scrub.html#about-the-rate-a-recent-course-survey"><i class="fa fa-check"></i><b>2.4.2</b> About the <em>Rate-a-Recent-Course</em> Survey</a></li>
+<li class="chapter" data-level="2.4.3" data-path="scrub.html"><a href="scrub.html#the-codebook"><i class="fa fa-check"></i><b>2.4.3</b> The Codebook</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="scrub.html"><a href="scrub.html#scrubbing"><i class="fa fa-check"></i><b>2.5</b> Scrubbing</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="scrub.html"><a href="scrub.html#tools-for-data-manipulations"><i class="fa fa-check"></i><b>2.5.1</b> Tools for Data Manipulations</a></li>
+<li class="chapter" data-level="2.5.2" data-path="scrub.html"><a href="scrub.html#inclusion-and-exclusion-criteria"><i class="fa fa-check"></i><b>2.5.2</b> Inclusion and Exclusion Criteria</a></li>
+<li class="chapter" data-level="2.5.3" data-path="scrub.html"><a href="scrub.html#renaming-variables"><i class="fa fa-check"></i><b>2.5.3</b> Renaming Variables</a></li>
+<li class="chapter" data-level="2.5.4" data-path="scrub.html"><a href="scrub.html#downsizing-the-dataframe"><i class="fa fa-check"></i><b>2.5.4</b> Downsizing the Dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="scrub.html"><a href="scrub.html#toward-the-apa-style-write-up"><i class="fa fa-check"></i><b>2.6</b> Toward the APA Style Write-up</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="scrub.html"><a href="scrub.html#methodprocedure"><i class="fa fa-check"></i><b>2.6.1</b> Method/Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="scrub.html"><a href="scrub.html#practice-problems"><i class="fa fa-check"></i><b>2.7</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="scrub.html"><a href="scrub.html#problem-1-rework-the-chapter-problem"><i class="fa fa-check"></i><b>2.7.1</b> Problem #1: Rework the Chapter Problem</a></li>
+<li class="chapter" data-level="2.7.2" data-path="scrub.html"><a href="scrub.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables"><i class="fa fa-check"></i><b>2.7.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="2.7.3" data-path="scrub.html"><a href="scrub.html#problem-3-other-data"><i class="fa fa-check"></i><b>2.7.3</b> Problem #3: Other data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="scrub.html"><a href="scrub.html#bonus-track"><i class="fa fa-check"></i><b>2.8</b> Bonus Track:</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="scrub.html"><a href="scrub.html#importing-data-from-an-exported-qualtrics-.csv-file"><i class="fa fa-check"></i><b>2.8.1</b> Importing data from an exported Qualtrics .csv file</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="score.html"><a href="score.html"><i class="fa fa-check"></i><b>3</b> Scoring</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="score.html"><a href="score.html#navigating-this-lesson-1"><i class="fa fa-check"></i><b>3.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="score.html"><a href="score.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="score.html"><a href="score.html#planning-for-practice-1"><i class="fa fa-check"></i><b>3.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="3.1.3" data-path="score.html"><a href="score.html#readings-resources-1"><i class="fa fa-check"></i><b>3.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="3.1.4" data-path="score.html"><a href="score.html#packages-2"><i class="fa fa-check"></i><b>3.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="score.html"><a href="score.html#workflow-for-scrubbing-and-scoring-1"><i class="fa fa-check"></i><b>3.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="3.3" data-path="score.html"><a href="score.html#research-vignette-1"><i class="fa fa-check"></i><b>3.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="3.4" data-path="score.html"><a href="score.html#on-missing-data"><i class="fa fa-check"></i><b>3.4</b> On Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="score.html"><a href="score.html#data-loss-mechanisms"><i class="fa fa-check"></i><b>3.4.1</b> Data Loss Mechanisms</a></li>
+<li class="chapter" data-level="3.4.2" data-path="score.html"><a href="score.html#diagnosing-missing-data-mechanisms"><i class="fa fa-check"></i><b>3.4.2</b> Diagnosing Missing Data Mechanisms</a></li>
+<li class="chapter" data-level="3.4.3" data-path="score.html"><a href="score.html#managing-missing-data"><i class="fa fa-check"></i><b>3.4.3</b> Managing Missing Data</a></li>
+<li class="chapter" data-level="3.4.4" data-path="score.html"><a href="score.html#available-information-analysis-aia"><i class="fa fa-check"></i><b>3.4.4</b> Available Information Analysis (AIA)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="score.html"><a href="score.html#working-the-problem-1"><i class="fa fa-check"></i><b>3.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="score.html"><a href="score.html#missing-data-analysis-whole-df-and-item-level"><i class="fa fa-check"></i><b>3.5.1</b> Missing Data Analysis: Whole df and Item level</a></li>
+<li class="chapter" data-level="3.5.2" data-path="score.html"><a href="score.html#analyzing-missing-data-patterns"><i class="fa fa-check"></i><b>3.5.2</b> Analyzing Missing Data Patterns</a></li>
+<li class="chapter" data-level="3.5.3" data-path="score.html"><a href="score.html#missing-mechanisms"><i class="fa fa-check"></i><b>3.5.3</b> Missing Mechanisms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="score.html"><a href="score.html#scoring"><i class="fa fa-check"></i><b>3.6</b> Scoring</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="score.html"><a href="score.html#reverse-scoring"><i class="fa fa-check"></i><b>3.6.1</b> Reverse scoring</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="score.html"><a href="score.html#missing-analysis-scale-level"><i class="fa fa-check"></i><b>3.7</b> Missing Analysis: Scale level</a></li>
+<li class="chapter" data-level="3.8" data-path="score.html"><a href="score.html#revisiting-missing-analysis-at-the-scale-level"><i class="fa fa-check"></i><b>3.8</b> Revisiting Missing Analysis at the Scale Level</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="score.html"><a href="score.html#scale-level-patterns-of-missing-data"><i class="fa fa-check"></i><b>3.8.1</b> Scale Level: Patterns of Missing Data</a></li>
+<li class="chapter" data-level="3.8.2" data-path="score.html"><a href="score.html#is-it-mcar"><i class="fa fa-check"></i><b>3.8.2</b> Is it MCAR?</a></li>
+<li class="chapter" data-level="3.8.3" data-path="score.html"><a href="score.html#r-eady-for-analysis"><i class="fa fa-check"></i><b>3.8.3</b> R-eady for Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="score.html"><a href="score.html#the-apa-style-write-up"><i class="fa fa-check"></i><b>3.9</b> The APA Style Write-Up</a></li>
+<li class="chapter" data-level="3.10" data-path="score.html"><a href="score.html#results"><i class="fa fa-check"></i><b>3.10</b> Results</a></li>
+<li class="chapter" data-level="3.11" data-path="score.html"><a href="score.html#practice-problems-1"><i class="fa fa-check"></i><b>3.11</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="score.html"><a href="score.html#problem-1-reworking-the-chapter-problem"><i class="fa fa-check"></i><b>3.11.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="3.11.2" data-path="score.html"><a href="score.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-1"><i class="fa fa-check"></i><b>3.11.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="3.11.3" data-path="score.html"><a href="score.html#problem-3-other-data-1"><i class="fa fa-check"></i><b>3.11.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="DataDx.html"><a href="DataDx.html"><i class="fa fa-check"></i><b>4</b> Data Dx</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DataDx.html"><a href="DataDx.html#navigating-this-lesson-2"><i class="fa fa-check"></i><b>4.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DataDx.html"><a href="DataDx.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DataDx.html"><a href="DataDx.html#planning-for-practice-2"><i class="fa fa-check"></i><b>4.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DataDx.html"><a href="DataDx.html#readings-resources-2"><i class="fa fa-check"></i><b>4.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DataDx.html"><a href="DataDx.html#packages-3"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DataDx.html"><a href="DataDx.html#workflow-for-scrubbing-and-scoring-2"><i class="fa fa-check"></i><b>4.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="4.3" data-path="DataDx.html"><a href="DataDx.html#research-vignette-2"><i class="fa fa-check"></i><b>4.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="4.4" data-path="DataDx.html"><a href="DataDx.html#internal-consistency-of-scalessubscales"><i class="fa fa-check"></i><b>4.4</b> Internal Consistency of Scales/Subscales</a></li>
+<li class="chapter" data-level="4.5" data-path="DataDx.html"><a href="DataDx.html#distributional-characteristics-of-the-variables"><i class="fa fa-check"></i><b>4.5</b> Distributional Characteristics of the Variables</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="DataDx.html"><a href="DataDx.html#evaluating-univariate-normality"><i class="fa fa-check"></i><b>4.5.1</b> Evaluating Univariate Normality</a></li>
+<li class="chapter" data-level="4.5.2" data-path="DataDx.html"><a href="DataDx.html#pairs-panels"><i class="fa fa-check"></i><b>4.5.2</b> Pairs Panels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="DataDx.html"><a href="DataDx.html#evaluating-multivariate-normality"><i class="fa fa-check"></i><b>4.6</b> Evaluating Multivariate Normality</a></li>
+<li class="chapter" data-level="4.7" data-path="DataDx.html"><a href="DataDx.html#a-few-words-on-transformations"><i class="fa fa-check"></i><b>4.7</b> A Few Words on Transformations</a></li>
+<li class="chapter" data-level="4.8" data-path="DataDx.html"><a href="DataDx.html#the-apa-style-write-up-1"><i class="fa fa-check"></i><b>4.8</b> The APA Style Write-Up</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="DataDx.html"><a href="DataDx.html#data-diagnostics"><i class="fa fa-check"></i><b>4.8.1</b> Data Diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="DataDx.html"><a href="DataDx.html#a-quick-regression-of-our-research-vignette"><i class="fa fa-check"></i><b>4.9</b> A Quick Regression of our Research Vignette</a></li>
+<li class="chapter" data-level="4.10" data-path="DataDx.html"><a href="DataDx.html#practice-problems-2"><i class="fa fa-check"></i><b>4.10</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="DataDx.html"><a href="DataDx.html#problem-1-reworking-the-chapter-problem-1"><i class="fa fa-check"></i><b>4.10.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="4.10.2" data-path="DataDx.html"><a href="DataDx.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-2"><i class="fa fa-check"></i><b>4.10.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="4.10.3" data-path="DataDx.html"><a href="DataDx.html#problem-3-other-data-2"><i class="fa fa-check"></i><b>4.10.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="multimp.html"><a href="multimp.html"><i class="fa fa-check"></i><b>5</b> Multiple Imputation (A Brief Demo)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="multimp.html"><a href="multimp.html#navigating-this-lesson-3"><i class="fa fa-check"></i><b>5.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="multimp.html"><a href="multimp.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="multimp.html"><a href="multimp.html#planning-for-practice-3"><i class="fa fa-check"></i><b>5.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="5.1.3" data-path="multimp.html"><a href="multimp.html#readings-resources-3"><i class="fa fa-check"></i><b>5.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="5.1.4" data-path="multimp.html"><a href="multimp.html#packages-4"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="multimp.html"><a href="multimp.html#workflow-for-multiple-imputation"><i class="fa fa-check"></i><b>5.2</b> Workflow for Multiple Imputation</a></li>
+<li class="chapter" data-level="5.3" data-path="multimp.html"><a href="multimp.html#research-vignette-3"><i class="fa fa-check"></i><b>5.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="5.4" data-path="multimp.html"><a href="multimp.html#multiple-imputation-a-super-brief-review"><i class="fa fa-check"></i><b>5.4</b> Multiple Imputation – a Super Brief Review</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="multimp.html"><a href="multimp.html#steps-in-multiple-imputation"><i class="fa fa-check"></i><b>5.4.1</b> Steps in Multiple Imputation</a></li>
+<li class="chapter" data-level="5.4.2" data-path="multimp.html"><a href="multimp.html#statistical-approaches-to-multiple-imputation"><i class="fa fa-check"></i><b>5.4.2</b> Statistical Approaches to Multiple Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="multimp.html"><a href="multimp.html#working-the-problem-2"><i class="fa fa-check"></i><b>5.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="multimp.html"><a href="multimp.html#selecting-and-formatting-variables"><i class="fa fa-check"></i><b>5.5.1</b> Selecting and Formatting Variables</a></li>
+<li class="chapter" data-level="5.5.2" data-path="multimp.html"><a href="multimp.html#creating-composite-variables"><i class="fa fa-check"></i><b>5.5.2</b> Creating Composite Variables</a></li>
+<li class="chapter" data-level="5.5.3" data-path="multimp.html"><a href="multimp.html#the-multiple-imputation"><i class="fa fa-check"></i><b>5.5.3</b> The Multiple Imputation</a></li>
+<li class="chapter" data-level="5.5.4" data-path="multimp.html"><a href="multimp.html#creating-scale-scores"><i class="fa fa-check"></i><b>5.5.4</b> Creating Scale Scores</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="multimp.html"><a href="multimp.html#multiple-regression-with-multiply-imputed-data"><i class="fa fa-check"></i><b>5.6</b> Multiple Regression with Multiply Imputed Data</a></li>
+<li class="chapter" data-level="5.7" data-path="multimp.html"><a href="multimp.html#toward-the-apa-style-write-up-1"><i class="fa fa-check"></i><b>5.7</b> Toward the APA Style Write-up</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="multimp.html"><a href="multimp.html#methoddata-diagnostics"><i class="fa fa-check"></i><b>5.7.1</b> Method/Data Diagnostics</a></li>
+<li class="chapter" data-level="5.7.2" data-path="multimp.html"><a href="multimp.html#results-1"><i class="fa fa-check"></i><b>5.7.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="multimp.html"><a href="multimp.html#multiple-imputation-considerations"><i class="fa fa-check"></i><b>5.8</b> Multiple imputation considerations</a></li>
+<li class="chapter" data-level="5.9" data-path="multimp.html"><a href="multimp.html#practice-problems-3"><i class="fa fa-check"></i><b>5.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="multimp.html"><a href="multimp.html#problem-1-reworking-the-chapter-problem-2"><i class="fa fa-check"></i><b>5.9.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="5.9.2" data-path="multimp.html"><a href="multimp.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-3"><i class="fa fa-check"></i><b>5.9.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="5.9.3" data-path="multimp.html"><a href="multimp.html#problem-3-other-data-3"><i class="fa fa-check"></i><b>5.9.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CPA.html"><a href="CPA.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
+<li class="chapter" data-level="6" data-path="SimpleMed.html"><a href="SimpleMed.html"><i class="fa fa-check"></i><b>6</b> Simple Mediation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="SimpleMed.html"><a href="SimpleMed.html#navigating-this-lesson-4"><i class="fa fa-check"></i><b>6.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="SimpleMed.html"><a href="SimpleMed.html#learning-objectives-4"><i class="fa fa-check"></i><b>6.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.1.2" data-path="SimpleMed.html"><a href="SimpleMed.html#planning-for-practice-4"><i class="fa fa-check"></i><b>6.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="6.1.3" data-path="SimpleMed.html"><a href="SimpleMed.html#readings-resources-4"><i class="fa fa-check"></i><b>6.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="SimpleMed.html"><a href="SimpleMed.html#packages-5"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="SimpleMed.html"><a href="SimpleMed.html#estimating-indirect-effects-the-analytic-approach-often-termed-mediation"><i class="fa fa-check"></i><b>6.2</b> Estimating Indirect Effects (the analytic approach often termed <em>mediation</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="SimpleMed.html"><a href="SimpleMed.html#the-definitional-and-conceptual"><i class="fa fa-check"></i><b>6.2.1</b> The definitional and conceptual</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="SimpleMed.html"><a href="SimpleMed.html#workflow-for-simple-mediation"><i class="fa fa-check"></i><b>6.3</b> Workflow for Simple Mediation</a></li>
+<li class="chapter" data-level="6.4" data-path="SimpleMed.html"><a href="SimpleMed.html#simple-mediation-in-lavaan-a-focus-on-the-mechanics"><i class="fa fa-check"></i><b>6.4</b> Simple Mediation in <em>lavaan</em>: A focus on the mechanics</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="SimpleMed.html"><a href="SimpleMed.html#simulate-fake-data"><i class="fa fa-check"></i><b>6.4.1</b> Simulate Fake Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="SimpleMed.html"><a href="SimpleMed.html#specify-mediation-model"><i class="fa fa-check"></i><b>6.4.2</b> Specify Mediation Model</a></li>
+<li class="chapter" data-level="6.4.3" data-path="SimpleMed.html"><a href="SimpleMed.html#interpret-the-output"><i class="fa fa-check"></i><b>6.4.3</b> Interpret the Output</a></li>
+<li class="chapter" data-level="6.4.4" data-path="SimpleMed.html"><a href="SimpleMed.html#a-table-and-a-figure"><i class="fa fa-check"></i><b>6.4.4</b> A Table and a Figure</a></li>
+<li class="chapter" data-level="6.4.5" data-path="SimpleMed.html"><a href="SimpleMed.html#results-2"><i class="fa fa-check"></i><b>6.4.5</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="SimpleMed.html"><a href="SimpleMed.html#research-vignette-4"><i class="fa fa-check"></i><b>6.5</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="SimpleMed.html"><a href="SimpleMed.html#simulate-data-from-the-journal-article"><i class="fa fa-check"></i><b>6.5.1</b> Simulate Data from the Journal Article</a></li>
+<li class="chapter" data-level="6.5.2" data-path="SimpleMed.html"><a href="SimpleMed.html#specify-the-model-in-lavaan"><i class="fa fa-check"></i><b>6.5.2</b> Specify the Model in <em>lavaan</em></a></li>
+<li class="chapter" data-level="6.5.3" data-path="SimpleMed.html"><a href="SimpleMed.html#interpret-the-output-1"><i class="fa fa-check"></i><b>6.5.3</b> Interpret the Output</a></li>
+<li class="chapter" data-level="6.5.4" data-path="SimpleMed.html"><a href="SimpleMed.html#a-figure-and-a-table"><i class="fa fa-check"></i><b>6.5.4</b> A Figure and a Table</a></li>
+<li class="chapter" data-level="6.5.5" data-path="SimpleMed.html"><a href="SimpleMed.html#results-3"><i class="fa fa-check"></i><b>6.5.5</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="SimpleMed.html"><a href="SimpleMed.html#considering-covariates"><i class="fa fa-check"></i><b>6.6</b> Considering Covariates</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="SimpleMed.html"><a href="SimpleMed.html#a-figure-and-a-table-1"><i class="fa fa-check"></i><b>6.6.1</b> A Figure and a Table</a></li>
+<li class="chapter" data-level="6.6.2" data-path="SimpleMed.html"><a href="SimpleMed.html#apa-style-write-up"><i class="fa fa-check"></i><b>6.6.2</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="SimpleMed.html"><a href="SimpleMed.html#residual-and-related-questions"><i class="fa fa-check"></i><b>6.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="6.8" data-path="SimpleMed.html"><a href="SimpleMed.html#practice-problems-4"><i class="fa fa-check"></i><b>6.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed"><i class="fa fa-check"></i><b>6.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="6.8.2" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables"><i class="fa fa-check"></i><b>6.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="6.8.3" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-3-use-other-data-that-is-available-to-you"><i class="fa fa-check"></i><b>6.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="CompMed.html"><a href="CompMed.html"><i class="fa fa-check"></i><b>7</b> Complex Mediation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="CompMed.html"><a href="CompMed.html#navigating-this-lesson-5"><i class="fa fa-check"></i><b>7.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="CompMed.html"><a href="CompMed.html#learning-objectives-5"><i class="fa fa-check"></i><b>7.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.1.2" data-path="CompMed.html"><a href="CompMed.html#planning-for-practice-5"><i class="fa fa-check"></i><b>7.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="7.1.3" data-path="CompMed.html"><a href="CompMed.html#readings-resources-5"><i class="fa fa-check"></i><b>7.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="7.1.4" data-path="CompMed.html"><a href="CompMed.html#packages-6"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="CompMed.html"><a href="CompMed.html#complex-mediation"><i class="fa fa-check"></i><b>7.2</b> Complex Mediation</a></li>
+<li class="chapter" data-level="7.3" data-path="CompMed.html"><a href="CompMed.html#parallel-mediation"><i class="fa fa-check"></i><b>7.3</b> Parallel Mediation</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a>
+<ul>
+<li class="chapter" data-level="7.3.1.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation"><i class="fa fa-check"></i><b>7.3.1.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="7.3.1.2" data-path="CompMed.html"><a href="CompMed.html#specifying-lavaan-code"><i class="fa fa-check"></i><b>7.3.1.2</b> Specifying <em>lavaan</em> code</a></li>
+<li class="chapter" data-level="7.3.1.3" data-path="CompMed.html"><a href="CompMed.html#a-note-on-indirect-effects-and-confidence-intervals"><i class="fa fa-check"></i><b>7.3.1.3</b> A note on indirect effects and confidence intervals</a></li>
+<li class="chapter" data-level="7.3.1.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables"><i class="fa fa-check"></i><b>7.3.1.4</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.3.1.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup"><i class="fa fa-check"></i><b>7.3.1.5</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="7.3.2.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation-1"><i class="fa fa-check"></i><b>7.3.2.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="7.3.2.2" data-path="CompMed.html"><a href="CompMed.html#quick-descriptives"><i class="fa fa-check"></i><b>7.3.2.2</b> Quick Descriptives</a></li>
+<li class="chapter" data-level="7.3.2.3" data-path="CompMed.html"><a href="CompMed.html#specifying-the-lavaan-model"><i class="fa fa-check"></i><b>7.3.2.3</b> Specifying the <em>lavaan</em> model</a></li>
+<li class="chapter" data-level="7.3.2.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-1"><i class="fa fa-check"></i><b>7.3.2.4</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.3.2.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-1"><i class="fa fa-check"></i><b>7.3.2.5</b> APA Style Writeup</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="CompMed.html"><a href="CompMed.html#serial-multiple-mediator-model"><i class="fa fa-check"></i><b>7.4</b> Serial Multiple Mediator Model</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="CompMed.html"><a href="CompMed.html#we-stick-with-the-lewis-et-al.--lewis_applying_2017-example-but-modify-it."><i class="fa fa-check"></i><b>7.4.1</b> We stick with the Lewis et al. <span class="citation">(<span>2017</span>)</span> example, but modify it.</a></li>
+<li class="chapter" data-level="7.4.2" data-path="CompMed.html"><a href="CompMed.html#specify-the-lavaan-model"><i class="fa fa-check"></i><b>7.4.2</b> Specify the <em>lavaan</em> model</a></li>
+<li class="chapter" data-level="7.4.3" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-2"><i class="fa fa-check"></i><b>7.4.3</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.4.4" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-2"><i class="fa fa-check"></i><b>7.4.4</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="CompMed.html"><a href="CompMed.html#troubleshooting-and-faqs"><i class="fa fa-check"></i><b>7.5</b> Troubleshooting and FAQs</a></li>
+<li class="chapter" data-level="7.6" data-path="CompMed.html"><a href="CompMed.html#practice-problems-5"><i class="fa fa-check"></i><b>7.6</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="CompMed.html"><a href="CompMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1"><i class="fa fa-check"></i><b>7.6.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="7.6.2" data-path="CompMed.html"><a href="CompMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-1"><i class="fa fa-check"></i><b>7.6.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="7.6.3" data-path="CompMed.html"><a href="CompMed.html#problem-3-use-other-data-that-is-available-to-you-1"><i class="fa fa-check"></i><b>7.6.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>8</b> Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ModMed.html"><a href="ModMed.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="ModMed.html"><a href="ModMed.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ModMed.html"><a href="ModMed.html#planning-for-practice-6"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ModMed.html"><a href="ModMed.html#readings-resources-6"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="8.1.4" data-path="ModMed.html"><a href="ModMed.html#packages-7"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="ModMed.html"><a href="ModMed.html#conditional-process-analysis"><i class="fa fa-check"></i><b>8.2</b> Conditional Process Analysis</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="ModMed.html"><a href="ModMed.html#the-definitional-and-conceptual-1"><i class="fa fa-check"></i><b>8.2.1</b> The definitional and conceptual</a></li>
+<li class="chapter" data-level="8.2.2" data-path="ModMed.html"><a href="ModMed.html#hayes--hayes_introduction_2018-piecewise-approach-to-building-models"><i class="fa fa-check"></i><b>8.2.2</b> Hayes’ <span class="citation">(<span>2018</span>)</span> Piecewise Approach to Building Models</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="ModMed.html"><a href="ModMed.html#workflow-for-moderated-mediation"><i class="fa fa-check"></i><b>8.3</b> Workflow for Moderated Mediation</a></li>
+<li class="chapter" data-level="8.4" data-path="ModMed.html"><a href="ModMed.html#research-vignette-6"><i class="fa fa-check"></i><b>8.4</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="ModMed.html"><a href="ModMed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>8.4.1</b> Simulating the data from the journal article</a></li>
+<li class="chapter" data-level="8.4.2" data-path="ModMed.html"><a href="ModMed.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>8.4.2</b> Quick peek at the data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5</b> Working the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.1</b> Analysis #1: A simple moderation</a></li>
+<li class="chapter" data-level="8.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.2</b> Analysis #2: Another simple moderation</a></li>
+<li class="chapter" data-level="8.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>8.5.1.3</b> Analysis #3: A simple mediation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>8.6</b> The Moderated Mediation: A Combined analysis</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>8.6.1</b> Specification in <em>lavaan</em></a></li>
+<li class="chapter" data-level="8.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>8.6.2</b> A quick plot</a></li>
+<li class="chapter" data-level="8.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>8.6.3</b> Beginning the interpretation</a></li>
+<li class="chapter" data-level="8.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data"><i class="fa fa-check"></i><b>8.6.4</b> Tabling the data</a>
+<ul>
+<li class="chapter" data-level="8.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>8.6.4.1</b> Conditional Indirect effects</a></li>
+<li class="chapter" data-level="8.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>8.6.4.2</b> Conditional Direct effect</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>8.6.5</b> Model trimming</a></li>
+<li class="chapter" data-level="8.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>8.6.6</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="ModMed.html"><a href="ModMed.html#residual-and-related-questions-1"><i class="fa fa-check"></i><b>8.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="8.8" data-path="ModMed.html"><a href="ModMed.html#practice-problems-6"><i class="fa fa-check"></i><b>8.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="ModMed.html"><a href="ModMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2"><i class="fa fa-check"></i><b>8.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="8.8.2" data-path="ModMed.html"><a href="ModMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-2"><i class="fa fa-check"></i><b>8.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="8.8.3" data-path="ModMed.html"><a href="ModMed.html#problem-3-use-other-data-that-is-available-to-you-2"><i class="fa fa-check"></i><b>8.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-1"><i class="fa fa-check"></i><b>8.9</b> Bonus Track:</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
+  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ReCentering Psych Stats: Multivariate Modeling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multimp" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Multiple Imputation (A Brief Demo)</h1>
+<p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=94d59efe-3f02-4c65-b068-ad01003e09a9">Screencasted Lecture Link</a></p>
+<p>Multiple imputation is a tool for managing missing data that works with the whole raw data file to impute values for missing data for <em>multiple sets</em> (e.g., 5-20) of the raw data. Those multiple sets are considered together in analyses (such as regression) and interpretation is made on the pooled results. Much has been written about multiple imputation and, if used, should be done with many considerations. This chapter is intended as a brief introduction. In this chapter, I demonstrate the use of multiple imputation with the data from the <a href="https://spupsych.az1.qualtrics.com/jfe/form/SV_b2cClqAlLGQ6nLU">Rate-a-Recent-Course: A ReCentering Psych Stats Exercise</a> that has served as the research vignette for the first few chapters of this OER.</p>
+<div id="navigating-this-lesson-3" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Navigating this Lesson</h2>
+<p>There is about one hour of lecture. If you work through the materials with me it would be good to add another hour (to an hour-and-a-half).</p>
+<p>While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the <a href="https://github.com/lhbikos/ReC_MultivariateModeling">Github site</a> that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER’s <a href="ReCintro.html#ReCintro">introduction</a></p>
+<div id="learning-objectives-3" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Learning Objectives</h3>
+<p>Learning objectives from this lecture include the following:</p>
+<ul>
+<li>Describe circumstances under which multiple imputation would be appropriate</li>
+<li>List and define the stages in multiple imputation.</li>
+<li>Apply multiple imputation to a dataset that has missingness</li>
+<li>Interpret results from a simple regression that uses multiple imputation</li>
+<li>Articulate how multiple imputation fits into the workflow for scrubbing and scoring data.</li>
+<li>Write up the results of an the process of imputation from raw data through analyzing a simple regression (or similar) analysis.</li>
+</ul>
+</div>
+<div id="planning-for-practice-3" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Planning for Practice</h3>
+<p>The suggestions for practice are a continuation from the three prior chapters. If you have completed one or more of those assignments, you should have worked through the steps in preparing a data set and evaluating its appropriateness for the planned, statistical, analysis. This chapter takes a deviation from the AIA <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">Parent, 2013</a>)</span> approach that was the focus of the first few chapters in that we used multiple imputation as the approach for managing missingness. Options, of graded complexity, for practice include:</p>
+<ul>
+<li>Repeating the steps in the chapter with the most recent data from the Rate-A-Recent-Course survey; differences will be in the number of people who have completed the survey since the chapter was written.</li>
+<li>Use the dataset that is the source of the chapter, but score a different set of items that you choose.</li>
+<li>Begin with raw data to which you have access.</li>
+</ul>
+</div>
+<div id="readings-resources-3" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Readings &amp; Resources</h3>
+<p>In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.</p>
+<p>Enders, C. K. (2017). Multiple imputation as a flexible tool for missing data handling in clinical research. <em>Behaviour Research and Therapy</em>, 98, 4–18.</p>
+<p>Katitas, A. (2019). Getting Started with Multiple Imputation in R. University of Virginia Library: Research Data Services + Sciences. <a href="https://uvastatlab.github.io/2019/05/01/getting-started-with-multiple-imputation-in-r/" class="uri">https://uvastatlab.github.io/2019/05/01/getting-started-with-multiple-imputation-in-r/</a></p>
+<p>Kline Ch4, Data Preparation &amp; Psychometrics Review (pp. 72/Outliers - 88/Modern Methods)</p>
+<p>Little, T. D., Howard, W. J., McConnell, E. K., &amp; Stump, K. N. (2008). Missing data in large data projects: Two methods of missing data imputation when working with large data projects. KUant Guides, 011.3, 10.</p>
+</div>
+<div id="packages-4" class="section level3" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Packages</h3>
+<p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
+<!-- TODO: Build out this section. -->
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="multimp.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb117-2"><a href="multimp.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(qualtRics)){<span class="fu">install.packages</span>(<span class="st">&quot;qualtRics&quot;</span>)}</span>
+<span id="cb117-3"><a href="multimp.html#cb117-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
+<span id="cb117-4"><a href="multimp.html#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(dplyr)){<span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)}</span>
+<span id="cb117-5"><a href="multimp.html#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(mice)){<span class="fu">install.packages</span>(<span class="st">&quot;mice&quot;</span>)}</span>
+<span id="cb117-6"><a href="multimp.html#cb117-6" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(foreign)){install.packages(&quot;foreign&quot;)}</span></span>
+<span id="cb117-7"><a href="multimp.html#cb117-7" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(car)){install.packages(&quot;car&quot;)}</span></span></code></pre></div>
+</div>
+</div>
+<div id="workflow-for-multiple-imputation" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Workflow for Multiple Imputation</h2>
+<p>The following is a proposed workflow for preparing data for analysis.</p>
+<div class="figure">
+<img src="images/Ch05/scrubscore_mimp_itemlvl.jpg" alt="" />
+<p class="caption">An image of a workflow for scrubbing and scoring data.</p>
+</div>
+<p>In this lecture we are working on the right side of the flowchart in the multiple imputation (blue) section. Within it, there are two options, each with a slightly different set of options.</p>
+<ul>
+<li>imputing at the item level
+<ul>
+<li>in this case, scales/subscales are scored after the item-level imputation</li>
+</ul></li>
+<li>imputating at the scale level
+<ul>
+<li>in this case, scales/subscales are scored prior to the imputation; likely using some of the same criteria as identified in the scoring chapter (i.e., scoring if 75-80% of data are non-missing). Multiple imputation, then, is used to estimate the remaining, missing values.</li>
+</ul></li>
+</ul>
+<p>Whichever approach is used, the imputed variables (multiple sets) are used in a <em>pooled analysis</em> and results are interpreted from that analysis.</p>
+</div>
+<div id="research-vignette-3" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Research Vignette</h2>
+<p>The research vignette comes from the survey titled, <a href="https://spupsych.az1.qualtrics.com/jfe/form/SV_b2cClqAlLGQ6nLU">Rate-a-Recent-Course: A ReCentering Psych Stats Exercise</a> and is explained in the <a href="scrub.html#scrub">scrubbing chapter</a>. In the <a href="score.html#score">scoring chapter</a> we prepared four variables for analysis. In the <a href="DataDx.html#DataDx">data diagnostics chapter</a> we assessed the quality of the variables and conducted the multiple regression described below. Details for these are in our <a href="./Rate-a-Course_Codebook.pdf">codebook</a>.</p>
+<p>Let’s quickly review the variables in our model:</p>
+<ul>
+<li>Perceived Campus Climate for Black Students includes 6 items, one of which was reverse scored. This scale was adapted from Szymanski et al.’s <span class="citation">(<a href="refs.html#ref-szymanski_perceptions_2020" role="doc-biblioref">2020</a>)</span> Campus Climate for LGBTQ students. It has not been evaluated for use with other groups. The Szymanski et al. analysis suggested that it could be used as a total scale score, or divided into three items each that assess
+<ul>
+<li>College response to LGBTQ students (items 6, 4, 1)</li>
+<li>LGBTQ stigma (items 3, 2, 5)</li>
+</ul></li>
+<li>Sense of Belonging includes 3 items. This is a subscale from Bollen and Hoyle’s <span class="citation">(<a href="refs.html#ref-bollen_perceived_1990" role="doc-biblioref">1990</a>)</span> Perceived Cohesion Scale. There are no items on this scale that require reversing.</li>
+<li>Percent of Black classmates is a single item that asked respondents to estimate the proportion of students in various racial categories</li>
+<li>Percent of BIPOC instructional staff, similarly, asked respondents to identify the racial category of each member of their instructional staff</li>
+</ul>
+<p>As we noted in the <a href="scrub.html#scrub">scrubbing chapter</a>, our design has notable limitations. Briefly, (a) owing to the open source aspect of the data we do not ask about the demographic characteristics of the respondent; (b) the items that ask respondents to <em>guess</em> the identities of the instructional staff and to place them in broad categories, (c) we do not provide a “write-in” a response. We made these decisions after extensive conversation with stakeholders. The primary reason for these decisions was to prevent potential harm (a) to respondents who could be identified if/when the revealed private information in this open-source survey, and (b) trolls who would write inappropriate or harmful comments.</p>
+<p>As I think about “how these variables go together” (which is often where I start in planning a study), I suspect parallel mediation. That is the perception of campus climate for Black students would be predicted by the respondent’s sense of belonging, mediated in separate paths through the proportion of classmates who are Black and the proportion of BIPOC instructional staff.</p>
+<p><em>I would like to assess the model by having the instructional staff variable to be the %Black instructional staff. At the time that this lecture is being prepared, there is not sufficient Black representation in the instructional staff to model this.</em></p>
+<div class="figure">
+<img src="images/Ch04/BlStuMed.jpg" alt="" />
+<p class="caption">An image of the statistical model for which we are preparing data.</p>
+</div>
+<p>As in the <a href="DataDx.html#DataDx">data diagnostic chapter</a>, I will conclude this chapter by conducting a statistical analysis with the multiply imputed data. Because parallel mediation can be complicated (I teach it in a later chapter), I will demonstrate use of our prepared variables with a simple multiple regression.</p>
+<div class="figure">
+<img src="images/Ch04/BlStuRegression.jpg" alt="" />
+<p class="caption">An image of the statistical model for which we are preparing data.</p>
+</div>
+</div>
+<div id="multiple-imputation-a-super-brief-review" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Multiple Imputation – a Super Brief Review</h2>
+<p>Multiple imputation is complex. Numerous quantitative psychologists had critiqued it and provided numerous cautions and guidelines for its use <span class="citation">(<a href="refs.html#ref-enders_multiple_2017" role="doc-biblioref">Enders, 2017</a>, <a href="refs.html#ref-enders_applied_2010" role="doc-biblioref">2010</a>; <a href="refs.html#ref-little_statistical_2002" role="doc-biblioref">R. J. A. Little &amp; Rubin, 2002</a>; <a href="refs.html#ref-little_missing_2008" role="doc-biblioref">T. D. Little et al., 2008</a>)</span>. In brief,</p>
+<div id="steps-in-multiple-imputation" class="section level3" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Steps in Multiple Imputation</h3>
+<ul>
+<li>Multiple imputation starts with a raw data file.
+<ul>
+<li>Multiple imputation assumes that data are MAR (remember, MCAR is the more prestigious one). This means that researchers assume that missing values can be replaced by predictions derived from the observable portion of the dataset.<br />
+</li>
+</ul></li>
+<li>Multiple datasets (often 5 to 20) are created where missing values are replaced via a randomized process (so the same missing value [item 4 for person A] will likely have different values for each dataset).</li>
+<li>The desired analysis is conducted simultaneously/separately for each of the imputed sets (so if you imputed 5 sets and wanted a linear regression, you get 5 linear regressions).<br />
+</li>
+<li>A <em>pooled analysis</em> uses the point estimates and the standard errors to provide a single result that represents the analysis.</li>
+</ul>
+<p>In a web-hosted guide from the University of Virginia Library, Katitas <span class="citation">(<a href="refs.html#ref-katitas_getting_2019" role="doc-biblioref">2019</a>)</span> provided a user-friendly review and example of using tools in R in a multiple imputation. Katitas’ figure is a useful conceptual tool in understanding how multiple imputation works. <em>This figure is my recreation of Katitas’ original.</em></p>
+<div class="figure">
+<img src="images/Ch05/KatitasMimpFig.jpg" alt="" />
+<p class="caption">An image adapted from the Katitas multiple imputation guide showing the four stages of multiple imputation.</p>
+</div>
+<ul>
+<li>the dataframe with missing data is the single place we start</li>
+<li>we intervene with a package like <em>mice()</em> to</li>
+<li>impute multiple sets of data (filling in the missing variables with different values that are a product of their conditional distribution and an element of “random”);
+<ul>
+<li>“mids” (“multiply imputed dataset”) is an object class where the completed datasets are stored.</li>
+</ul></li>
+<li>the “with_mids” command allows OLS regression to be run, as many times as we have imputed datasets (in this figure, 3X). It produces different regression coefficients for each datset</li>
+<li>the “pool” command pools together the multiple coefficients taking into consideration the value of the coefficients,the standard errors, and the variance of the missing value parameter across the samples.</li>
+</ul>
+</div>
+<div id="statistical-approaches-to-multiple-imputation" class="section level3" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Statistical Approaches to Multiple Imputation</h3>
+<p><strong>Joint multivariate normal distribution multiple imputation</strong> assumes that the observed data follow a multivariate normal distribution. The algorithm used draws from this assumed distribution. A drawback is that if the data do not follow a multivariate normal distribution, the imputed values are incorrect. <em>Amelia</em> and <em>norm</em> packages use this approach.</p>
+<p><strong>Conditional multiple imputation</strong> is an iterative procedure, modeling the conditional distribution of a certain variable given the other variables. In this way the distribution is assumed for each variable, rather than or the entire dataset. <em>mice</em> uses this approach.</p>
+<p><em>mice</em>: multivariate imputation by chained equations</p>
+</div>
+</div>
+<div id="working-the-problem-2" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Working the Problem</h2>
+<p>Katitas <span class="citation">(<a href="refs.html#ref-katitas_getting_2019" role="doc-biblioref">2019</a>)</span> claims that it is best to impute the data in its rawest form possible because any change would be taking it away from its original distribution. There are debates about how many variables to include in an imputation. Some authors would suggest that researchers include everything that was collected. Others (like me) will trim the dataset to include (a) the variables included in the model, plus (b) auxiliary variables (i.e., variables not in the model, but that are sufficiently non-missing and will provide additional information to the data).</p>
+<p>In our case we will want:</p>
+<p>Item for the variables represented in our model</p>
+<ul>
+<li>the item level responses to the scales/subscales
+<ul>
+<li>respondents’ sense of belonging to campus (3 items)</li>
+<li>respondents’ rating of campus climate for Black students (6 items)</li>
+</ul></li>
+<li>proportion of BIPOC instructional staff</li>
+<li>proportion of classmates who are Black</li>
+</ul>
+<p>Auxiliary variables – let’s choose four. One will be the format of the course. Three items will be from the course evaluation.</p>
+<ul>
+<li>format, whether the course was taught in-person, a blend, or virtual</li>
+<li>cEval_1, “Course material was presented clearly”</li>
+<li>cEval_13, “Where applicable, issues were considered from multiple perspectives”</li>
+<li>cEval_19, “My understanding of the subject matter increased over the span of the course”</li>
+</ul>
+<div id="selecting-and-formatting-variables" class="section level3" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Selecting and Formatting Variables</h3>
+<p>There are some guidelines for selecting and formatting variables for imputation.</p>
+<ul>
+<li>Variables should be in their <em>most natural</em> state</li>
+<li>Redundant or too highly correlated variables should not be included
+<ul>
+<li>If you reverse coded a variable (we haven’t yet), that’s ok, but if you have already reverse-coded, then exclude the original variable</li>
+<li>Redundant variables (or multicollinear variables) may cause the multiple imputation process to cease</li>
+<li>Violation of this also provides clues for troubleshooting</li>
+</ul></li>
+<li>Exclude variables with more than 25% missing</li>
+</ul>
+<p>To make this as realistic as possible. Let’s start with our very raw data. The <a href="scrub.html#scrub">Scrubbing chapter</a> provides greater detail on importing data directly from Qualtrics. Therefore, I will repeat our protocol that imports the data and then scrubs it for our purposes. As described in the prior chapter, I named variables in Qualtrics to facilitate a more intuitive use in R.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="multimp.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qualtRics)</span>
+<span id="cb118-2"><a href="multimp.html#cb118-2" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> qualtRics<span class="sc">::</span><span class="fu">fetch_survey</span>(<span class="at">surveyID =</span> <span class="st">&quot;SV_b2cClqAlLGQ6nLU&quot;</span>,<span class="at">useLocalTime =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb118-3"><a href="multimp.html#cb118-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">label=</span><span class="cn">FALSE</span>, <span class="at">convert=</span><span class="cn">FALSE</span>, <span class="at">force_request =</span> <span class="cn">TRUE</span>, <span class="at">import_id =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Next, I apply inclusion/exclusion criteria. As described in the <a href="scrub.html#scrub">Scrubbing chapter</a> this includes:</p>
+<ul>
+<li>excluding all <em>previews</em></li>
+<li>including only those who consented</li>
+<li>including only those whose rated course was offered by a U.S. institution</li>
+</ul>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="multimp.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb119-2"><a href="multimp.html#cb119-2" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> <span class="fu">filter</span> (QTRX_df2, DistributionChannel <span class="sc">!=</span> <span class="st">&quot;preview&quot;</span>)</span>
+<span id="cb119-3"><a href="multimp.html#cb119-3" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span><span class="fu">filter</span> (QTRX_df2, Consent <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb119-4"><a href="multimp.html#cb119-4" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span><span class="fu">filter</span> (QTRX_df2, USinst <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
+<p>Preparing the data also meant renaming some variables that started with numbers (a hassle in R). I also renamed variables on the Campus Climate scale so that we know to which subscale they belong.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="multimp.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb120-2"><a href="multimp.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="co">#renaming variables that started with numbers</span></span>
+<span id="cb120-3"><a href="multimp.html#cb120-3" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(QTRX_df2, <span class="at">iRace1 =</span> <span class="st">&#39;1_iRace&#39;</span>, <span class="at">iRace2 =</span> <span class="st">&#39;2_iRace&#39;</span>, <span class="at">iRace3 =</span> <span class="st">&#39;3_iRace&#39;</span>, <span class="at">iRace4 =</span> <span class="st">&#39;4_iRace&#39;</span>, <span class="at">iRace5 =</span> <span class="st">&#39;5_iRace&#39;</span>, <span class="at">iRace6 =</span> <span class="st">&#39;6_iRace&#39;</span>, <span class="at">iRace7 =</span> <span class="st">&#39;7_iRace&#39;</span>, <span class="at">iRace8 =</span> <span class="st">&#39;8_iRace&#39;</span>, <span class="at">iRace9 =</span> <span class="st">&#39;9_iRace&#39;</span>, <span class="at">iRace10 =</span> <span class="st">&#39;10_iRace&#39;</span>)</span>
+<span id="cb120-4"><a href="multimp.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co">#renaming variables from the identification of classmates</span></span>
+<span id="cb120-5"><a href="multimp.html#cb120-5" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(QTRX_df2, <span class="at">cmBiMulti =</span> Race_10, <span class="at">cmBlack =</span> Race_1, <span class="at">cmNBPoC =</span> Race_7, <span class="at">cmWhite =</span> Race_8, <span class="at">cmUnsure =</span> Race_2)</span></code></pre></div>
+<p>The Qualtrics download does not include an ID number. Because new variables are always appended to the end of the df, we also include code to make this the first column.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="multimp.html#cb121-1" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> QTRX_df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>())</span>
+<span id="cb121-2"><a href="multimp.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="co">#moving the ID number to the first column; requires </span></span>
+<span id="cb121-3"><a href="multimp.html#cb121-3" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> QTRX_df2<span class="sc">%&gt;%</span><span class="fu">select</span>(ID, <span class="fu">everything</span>())</span></code></pre></div>
+<p>Because this huge df is cumbersome to work with, let’s downsize it to be closer to the size we will work with in the imputation</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="multimp.html#cb122-1" aria-hidden="true" tabindex="-1"></a>mimp_df <span class="ot">&lt;-</span>  <span class="fu">select</span> (QTRX_df2, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6, cEval_1, cEval_13, cEval_19, format)</span>
+<span id="cb122-2"><a href="multimp.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="co">#glimpse(mimp_df)</span></span>
+<span id="cb122-3"><a href="multimp.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mimp_df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 29
+##      ID iRace1 iRace2 iRace3 iRace4 iRace5 iRace6 iRace7 iRace8 iRace9 iRace10
+##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt;  &lt;lgl&gt;  &lt;lgl&gt;  &lt;lgl&gt;  &lt;lgl&gt;  
+## 1     1      3      1      3     NA NA     NA     NA     NA     NA     NA     
+## 2     2      3     NA     NA     NA NA     NA     NA     NA     NA     NA     
+## 3     3      3      1     NA     NA NA     NA     NA     NA     NA     NA     
+## 4     4      3      1      3     NA NA     NA     NA     NA     NA     NA     
+## 5     5      1     NA     NA     NA NA     NA     NA     NA     NA     NA     
+## 6     6      3     NA     NA     NA NA     NA     NA     NA     NA     NA     
+## # ... with 18 more variables: cmBiMulti &lt;dbl&gt;, cmBlack &lt;dbl&gt;, cmNBPoC &lt;dbl&gt;,
+## #   cmWhite &lt;dbl&gt;, cmUnsure &lt;dbl&gt;, Belong_1 &lt;dbl&gt;, Belong_2 &lt;dbl&gt;,
+## #   Belong_3 &lt;dbl&gt;, Blst_1 &lt;dbl&gt;, Blst_2 &lt;dbl&gt;, Blst_3 &lt;dbl&gt;, Blst_4 &lt;dbl&gt;,
+## #   Blst_5 &lt;dbl&gt;, Blst_6 &lt;dbl&gt;, cEval_1 &lt;dbl&gt;, cEval_13 &lt;dbl&gt;, cEval_19 &lt;dbl&gt;,
+## #   format &lt;dbl&gt;</code></pre>
+</div>
+<div id="creating-composite-variables" class="section level3" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Creating Composite Variables</h3>
+<p>Qualtrics imports many of the categorical variables as numbers. R often reads them numerically (integers or numbers). If they are directly converted to factors, R will sometimes collapse. In this example, if there is a race that is not represented (e.g., 2 for BiMulti), when the numbers are changed to factors, R will assume it’s ordered and will change up the numbers. Therefore, it is ESSENTIAL to check (again and again ad nauseum) to ensure that your variables are recoding in a manner you understand.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="multimp.html#cb124-1" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace1 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace1,</span>
+<span id="cb124-2"><a href="multimp.html#cb124-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb124-3"><a href="multimp.html#cb124-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb124-4"><a href="multimp.html#cb124-4" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace2 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace2,</span>
+<span id="cb124-5"><a href="multimp.html#cb124-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb124-6"><a href="multimp.html#cb124-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb124-7"><a href="multimp.html#cb124-7" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace3 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace3,</span>
+<span id="cb124-8"><a href="multimp.html#cb124-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb124-9"><a href="multimp.html#cb124-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb124-10"><a href="multimp.html#cb124-10" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace4 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace4,</span>
+<span id="cb124-11"><a href="multimp.html#cb124-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb124-12"><a href="multimp.html#cb124-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb124-13"><a href="multimp.html#cb124-13" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace5 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace5,</span>
+<span id="cb124-14"><a href="multimp.html#cb124-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb124-15"><a href="multimp.html#cb124-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb124-16"><a href="multimp.html#cb124-16" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace6 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace6,</span>
+<span id="cb124-17"><a href="multimp.html#cb124-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb124-18"><a href="multimp.html#cb124-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb124-19"><a href="multimp.html#cb124-19" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace7 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace7,</span>
+<span id="cb124-20"><a href="multimp.html#cb124-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb124-21"><a href="multimp.html#cb124-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb124-22"><a href="multimp.html#cb124-22" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace8 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace8,</span>
+<span id="cb124-23"><a href="multimp.html#cb124-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb124-24"><a href="multimp.html#cb124-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb124-25"><a href="multimp.html#cb124-25" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace9 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace9,</span>
+<span id="cb124-26"><a href="multimp.html#cb124-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb124-27"><a href="multimp.html#cb124-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb124-28"><a href="multimp.html#cb124-28" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace10 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace10,</span>
+<span id="cb124-29"><a href="multimp.html#cb124-29" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb124-30"><a href="multimp.html#cb124-30" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="multimp.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mimp_df)</span></code></pre></div>
+<p>This is a quick recap of how we calculated the proportion of instructional staff who are BIPOC.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="multimp.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a count of BIPOC faculty identified by each respondent</span></span>
+<span id="cb126-2"><a href="multimp.html#cb126-2" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>count.BIPOC <span class="ot">&lt;-</span> <span class="fu">apply</span>(mimp_df[<span class="fu">c</span>(<span class="st">&quot;iRace1&quot;</span>, <span class="st">&quot;iRace2&quot;</span>, <span class="st">&quot;iRace3&quot;</span>, <span class="st">&quot;iRace4&quot;</span>, <span class="st">&quot;iRace5&quot;</span>, <span class="st">&quot;iRace6&quot;</span>, <span class="st">&quot;iRace7&quot;</span>, <span class="st">&quot;iRace8&quot;</span>, <span class="st">&quot;iRace9&quot;</span>, <span class="st">&quot;iRace10&quot;</span>)], <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>)))</span>
+<span id="cb126-3"><a href="multimp.html#cb126-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-4"><a href="multimp.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a count of all instructional  faculty identified by each respondent</span></span>
+<span id="cb126-5"><a href="multimp.html#cb126-5" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>count.nMiss <span class="ot">&lt;-</span> <span class="fu">apply</span>(mimp_df[<span class="fu">c</span>(<span class="st">&quot;iRace1&quot;</span>, <span class="st">&quot;iRace2&quot;</span>, <span class="st">&quot;iRace3&quot;</span>, <span class="st">&quot;iRace4&quot;</span>, <span class="st">&quot;iRace5&quot;</span>, <span class="st">&quot;iRace6&quot;</span>, <span class="st">&quot;iRace7&quot;</span>, <span class="st">&quot;iRace8&quot;</span>, <span class="st">&quot;iRace9&quot;</span>, <span class="st">&quot;iRace10&quot;</span>)], <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)))</span>
+<span id="cb126-6"><a href="multimp.html#cb126-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-7"><a href="multimp.html#cb126-7" aria-hidden="true" tabindex="-1"></a><span class="co">#calculating the proportion of BIPOC faculty with the counts above</span></span>
+<span id="cb126-8"><a href="multimp.html#cb126-8" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iBIPOC_pr <span class="ot">=</span> mimp_df<span class="sc">$</span>count.BIPOC<span class="sc">/</span>mimp_df<span class="sc">$</span>count.nMiss</span></code></pre></div>
+<p>I have included another variable, <em>format</em> that we will use as auxiliary variable. As written, these are the following meanings:</p>
+<ol style="list-style-type: decimal">
+<li>In-person (all persons are attending in person)</li>
+<li>In person (some students are attending remotely)</li>
+<li>Blended: some sessions in person and some sessions online/virtual</li>
+<li>Online or virtual</li>
+<li>Other</li>
+</ol>
+<p>Let’s recoded it to have three categories:</p>
+<ol start="0" style="list-style-type: decimal">
+<li>100% in-person (1)</li>
+<li>Some sort of blend/mix (2, 3)</li>
+<li>100% online/virtual (4)
+NA. Other (5)</li>
+</ol>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="multimp.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co">#we can assign more than one value to the same factor by repeating the label</span></span>
+<span id="cb127-2"><a href="multimp.html#cb127-2" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>format <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>format,</span>
+<span id="cb127-3"><a href="multimp.html#cb127-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),</span>
+<span id="cb127-4"><a href="multimp.html#cb127-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;InPerson&quot;</span>, <span class="st">&quot;Blend&quot;</span>, <span class="st">&quot;Blend&quot;</span>, <span class="st">&quot;Online&quot;</span>, <span class="fu">is.na</span>(<span class="dv">5</span>)))</span></code></pre></div>
+<p>Let’s trim the df again to just include the variables we need in the imputation.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="multimp.html#cb128-1" aria-hidden="true" tabindex="-1"></a>mimp_df <span class="ot">&lt;-</span>  <span class="fu">select</span> (mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6, cEval_1, cEval_13, cEval_19, format)</span></code></pre></div>
+<p>Recall one of the guidelines was to remove variables with more than 25% missing. This code calculates the proportion missing from our variables and places them in rank order.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="multimp.html#cb129-1" aria-hidden="true" tabindex="-1"></a>p_missing <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(mimp_df, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x))))<span class="sc">/</span><span class="fu">nrow</span>(mimp_df)</span>
+<span id="cb129-2"><a href="multimp.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(p_missing[p_missing <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##     Blst_1  iBIPOC_pr     Blst_4   Belong_1   Belong_3     Blst_2     Blst_3 
+## 0.10526316 0.05263158 0.05263158 0.02631579 0.02631579 0.02631579 0.02631579 
+##     Blst_5     Blst_6    cEval_1   cEval_19 
+## 0.02631579 0.02631579 0.02631579 0.02631579</code></pre>
+<p>Luckily, none of our variables have more than 25% missing (<em>or at least they didn’t when I wrote this; the open nature of the survey and how it sources this chapter could change this</em>). If we did have a variable with more than 25% missing, we would have to consider what to do about it.</p>
+<p>Later we learn that we should eliminate case with greater than 50% missingness. Let’s write code for that, now.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="multimp.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculating number and proportion of item-level missingness</span></span>
+<span id="cb131-2"><a href="multimp.html#cb131-2" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>nmiss <span class="ot">&lt;-</span> mimp_df<span class="sc">%&gt;%</span></span>
+<span id="cb131-3"><a href="multimp.html#cb131-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>format) <span class="sc">%&gt;%</span> <span class="co">#the colon allows us to include all variables between the two listed (the variables need to be in order)</span></span>
+<span id="cb131-4"><a href="multimp.html#cb131-4" aria-hidden="true" tabindex="-1"></a>    is.na <span class="sc">%&gt;%</span> </span>
+<span id="cb131-5"><a href="multimp.html#cb131-5" aria-hidden="true" tabindex="-1"></a>    rowSums</span>
+<span id="cb131-6"><a href="multimp.html#cb131-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-7"><a href="multimp.html#cb131-7" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="ot">&lt;-</span> mimp_df<span class="sc">%&gt;%</span></span>
+<span id="cb131-8"><a href="multimp.html#cb131-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_miss =</span> (nmiss<span class="sc">/</span><span class="dv">15</span>)<span class="sc">*</span><span class="dv">100</span>) <span class="co">#11 is the number of variables included in calculating the proportion</span></span>
+<span id="cb131-9"><a href="multimp.html#cb131-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-10"><a href="multimp.html#cb131-10" aria-hidden="true" tabindex="-1"></a>mimp_df <span class="ot">&lt;-</span> <span class="fu">filter</span>(mimp_df, prop_miss <span class="sc">&lt;=</span> <span class="dv">50</span>)  <span class="co">#update df to have only those with at least 50% of complete data</span></span></code></pre></div>
+<p>Once again, trim the df to include only the data to be included in the imputation</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="multimp.html#cb132-1" aria-hidden="true" tabindex="-1"></a>mimp_df <span class="ot">&lt;-</span>  <span class="fu">select</span> (mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6, cEval_1, cEval_13, cEval_19, format)</span></code></pre></div>
+</div>
+<div id="the-multiple-imputation" class="section level3" number="5.5.3">
+<h3><span class="header-section-number">5.5.3</span> The Multiple Imputation</h3>
+<p>Because multiple imputation is a <em>random</em> process, if we all want the same answers we need to set a <em>random seed.</em></p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="multimp.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210404</span>) <span class="co">#you can pick any number you want, today I&#39;m using today&#39;s datestamp</span></span></code></pre></div>
+<p>The program we will use is <em>mice</em>. <em>mice</em> assumes that each variable has a distribution and it imputes missing variables according to that distribution.</p>
+<p>This means we need to correctly specify each variable’s format/role. <em>mice</em> will automatically choose a distribution (think “format”) for each variable; we can override this by changing the methods’ characteristics.</p>
+<p>The following code sets up the structure for the imputation. I’m not an expert at this – just following the Katitas example.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="multimp.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb134-2"><a href="multimp.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="co"># runs the mice code with 0 iterations</span></span>
+<span id="cb134-3"><a href="multimp.html#cb134-3" aria-hidden="true" tabindex="-1"></a>imp <span class="ot">&lt;-</span> <span class="fu">mice</span>(mimp_df, <span class="at">maxit =</span> <span class="dv">0</span>)</span>
+<span id="cb134-4"><a href="multimp.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract predictor Matrix and methods of imputation </span></span>
+<span id="cb134-5"><a href="multimp.html#cb134-5" aria-hidden="true" tabindex="-1"></a>predM <span class="ot">=</span> imp<span class="sc">$</span>predictorMatrix</span>
+<span id="cb134-6"><a href="multimp.html#cb134-6" aria-hidden="true" tabindex="-1"></a>meth <span class="ot">=</span> imp<span class="sc">$</span>method</span></code></pre></div>
+<p>Here we code what format/role each variable should be.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="multimp.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co">#These variables are left in the dataset, but setting them = 0 means they are not used as predictors.  </span></span>
+<span id="cb135-2"><a href="multimp.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="co">#We want our ID to be retained in the df.  There&#39;s nothing missing from it, and we don&#39;t want it used as a predictor, so it will just hang out.</span></span>
+<span id="cb135-3"><a href="multimp.html#cb135-3" aria-hidden="true" tabindex="-1"></a>predM[, <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>)]<span class="ot">=</span><span class="dv">0</span></span>
+<span id="cb135-4"><a href="multimp.html#cb135-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-5"><a href="multimp.html#cb135-5" aria-hidden="true" tabindex="-1"></a><span class="co">#If you like, view the first few rows of the predictor matrix</span></span>
+<span id="cb135-6"><a href="multimp.html#cb135-6" aria-hidden="true" tabindex="-1"></a><span class="co">#head(predM)</span></span>
+<span id="cb135-7"><a href="multimp.html#cb135-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-8"><a href="multimp.html#cb135-8" aria-hidden="true" tabindex="-1"></a><span class="co">#We don&#39;t have any ordered categorical variables, but if we did we would follow this format</span></span>
+<span id="cb135-9"><a href="multimp.html#cb135-9" aria-hidden="true" tabindex="-1"></a><span class="co">#poly &lt;- c(&quot;Var1&quot;, &quot;Var2&quot;)</span></span>
+<span id="cb135-10"><a href="multimp.html#cb135-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-11"><a href="multimp.html#cb135-11" aria-hidden="true" tabindex="-1"></a><span class="co">#We don&#39;t have any dichotomous variables, but if we did we would follow this format</span></span>
+<span id="cb135-12"><a href="multimp.html#cb135-12" aria-hidden="true" tabindex="-1"></a><span class="co">#log &lt;- c(&quot;Var3&quot;, &quot;Var4&quot;)</span></span>
+<span id="cb135-13"><a href="multimp.html#cb135-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-14"><a href="multimp.html#cb135-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Unordered categorical variables (nominal variables), but if we did we would follow this format</span></span>
+<span id="cb135-15"><a href="multimp.html#cb135-15" aria-hidden="true" tabindex="-1"></a>poly2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;format&quot;</span>)</span>
+<span id="cb135-16"><a href="multimp.html#cb135-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-17"><a href="multimp.html#cb135-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Turn their methods matrix into the specified imputation models</span></span>
+<span id="cb135-18"><a href="multimp.html#cb135-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove the hashtag if you have any of these variables</span></span>
+<span id="cb135-19"><a href="multimp.html#cb135-19" aria-hidden="true" tabindex="-1"></a><span class="co">#meth[poly] = &quot;polr&quot; </span></span>
+<span id="cb135-20"><a href="multimp.html#cb135-20" aria-hidden="true" tabindex="-1"></a><span class="co">#meth[log] = &quot;logreg&quot;</span></span>
+<span id="cb135-21"><a href="multimp.html#cb135-21" aria-hidden="true" tabindex="-1"></a>meth[poly2] <span class="ot">=</span> <span class="st">&quot;polyreg&quot;</span></span>
+<span id="cb135-22"><a href="multimp.html#cb135-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-23"><a href="multimp.html#cb135-23" aria-hidden="true" tabindex="-1"></a>meth</span></code></pre></div>
+<pre><code>##        ID iBIPOC_pr   cmBlack  Belong_1  Belong_2  Belong_3    Blst_1    Blst_2 
+##        &quot;&quot;     &quot;pmm&quot;        &quot;&quot;     &quot;pmm&quot;        &quot;&quot;     &quot;pmm&quot;     &quot;pmm&quot;     &quot;pmm&quot; 
+##    Blst_3    Blst_4    Blst_5    Blst_6   cEval_1  cEval_13  cEval_19    format 
+##     &quot;pmm&quot;     &quot;pmm&quot;     &quot;pmm&quot;     &quot;pmm&quot;     &quot;pmm&quot;        &quot;&quot;     &quot;pmm&quot; &quot;polyreg&quot;</code></pre>
+<p>This list (meth) contains all our variables; “pmm” is the default and is the “predictive mean matching” process used. We see that format (an unordered categorical variable) is noted as “polyreg.” If we had used other categorical variables (ordered/poly, dichotomous/log), we would have seen those designations, instead. If there is "" underneath it means the data is complete.</p>
+<p>Our variables of interest are now configured to be imputed with the imputation method we specified. Empty cells in the method matrix mean that those variables aren’t going to be imputed.</p>
+<p>If a variable has no missing values, it is automatically set to be empty. We can also manually set variables to not be imputed with the <em>meth[variable]=""</em> command.</p>
+<p>The code below begins the imputation process. We are asking for 5 datasets. If you have many cases and many variables, this can take awhile. How many imputations? Recommendations have ranged as low as five to several hundred.</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="multimp.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With this command, we tell mice to impute the anesimpor2 data, create 5vvdatasets, use predM as the predictor matrix and don&#39;t print the imputation process. </span></span>
+<span id="cb137-2"><a href="multimp.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="co">#If you would like to see the process (or if the process is failing to execute) set print as TRUE; seeing where the execution halts can point to problematic variables (more notes at end of lecture)</span></span>
+<span id="cb137-3"><a href="multimp.html#cb137-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-4"><a href="multimp.html#cb137-4" aria-hidden="true" tabindex="-1"></a>imp2 <span class="ot">&lt;-</span> <span class="fu">mice</span>(mimp_df, <span class="at">maxit =</span> <span class="dv">5</span>, </span>
+<span id="cb137-5"><a href="multimp.html#cb137-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">predictorMatrix =</span> predM, </span>
+<span id="cb137-6"><a href="multimp.html#cb137-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> meth, <span class="at">print =</span>  <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Warning: Number of logged events: 275</code></pre>
+<p>We need to create a “long file” that stacks all the imputed data. Looking at the df in R Studio shows us that when imp = 0 (the pe-imputed data), there is still missingness. As we scroll through the remaining imputations, there are no NA cells.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="multimp.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, turn the datasets into long format</span></span>
+<span id="cb139-2"><a href="multimp.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This procedure is, best I can tell, unique to mice and wouldn&#39;t work for repeated measures designs</span></span>
+<span id="cb139-3"><a href="multimp.html#cb139-3" aria-hidden="true" tabindex="-1"></a>mimp_long <span class="ot">&lt;-</span> mice<span class="sc">::</span><span class="fu">complete</span>(imp2, <span class="at">action=</span><span class="st">&quot;long&quot;</span>, <span class="at">include =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>If we look at it, we can see 6 sets of data. Playing with it…</p>
+<ul>
+<li>.imp = 0 is the unimputed set; there are still missing values</li>
+<li>.imp = 1, 2, 3, or 5 has no missing values for the variables we included in the imputation</li>
+</ul>
+<p>Sort on the ID number to see how this works…6 sets of data.</p>
+<p>With this fully imputed file, let’s recode the data as we had done for the OLS regression with the raw, unimputed, data.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="multimp.html#cb140-1" aria-hidden="true" tabindex="-1"></a>p_missing_mimp_long <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(mimp_long, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x))))<span class="sc">/</span><span class="fu">nrow</span>(mimp_long)</span>
+<span id="cb140-2"><a href="multimp.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(p_missing_mimp_long[p_missing_mimp_long <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)<span class="co">#check to see if this works</span></span></code></pre></div>
+</div>
+<div id="creating-scale-scores" class="section level3" number="5.5.4">
+<h3><span class="header-section-number">5.5.4</span> Creating Scale Scores</h3>
+<p>Because our imputation was item-level, we need to score the variables with scales/subscales. As demonstrated more completely in the <a href="score.html#score">Scoring chapter</a>, this required reversing one item in the campus climate scale:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="multimp.html#cb141-1" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="ot">&lt;-</span> mimp_long <span class="sc">%&gt;%</span></span>
+<span id="cb141-2"><a href="multimp.html#cb141-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rBlst_1 =</span> <span class="dv">8</span> <span class="sc">-</span> Blst_1) <span class="co">#if you had multiple items, you could add a pipe (%&gt;%) at the end of the line and add more until the last one</span></span></code></pre></div>
+<p>Below is the scoring protocol we used in the AIA protocol for scoring. Although the protocol below functionally says, "Create a mean score if (65-80)% is non-missing, for the imputed version, it doesn’t harm anything to leave this because there is no missing data.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="multimp.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjstats)</span>
+<span id="cb142-2"><a href="multimp.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Making the list of variables</span></span>
+<span id="cb142-3"><a href="multimp.html#cb142-3" aria-hidden="true" tabindex="-1"></a>Belonging_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Belong_1&#39;</span>,<span class="st">&#39;Belong_2&#39;</span>,<span class="st">&#39;Belong_3&#39;</span>)</span>
+<span id="cb142-4"><a href="multimp.html#cb142-4" aria-hidden="true" tabindex="-1"></a>ResponseBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;rBlst_1&#39;</span>, <span class="st">&#39;Blst_4&#39;</span>,<span class="st">&#39;Blst_6&#39;</span>)</span>
+<span id="cb142-5"><a href="multimp.html#cb142-5" aria-hidden="true" tabindex="-1"></a>StigmaBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Blst_2&#39;</span>, <span class="st">&#39;Blst_3&#39;</span>,<span class="st">&#39;Blst_5&#39;</span>)</span>
+<span id="cb142-6"><a href="multimp.html#cb142-6" aria-hidden="true" tabindex="-1"></a>ClimateBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;rBlst_1&#39;</span>, <span class="st">&#39;Blst_4&#39;</span>,<span class="st">&#39;Blst_6&#39;</span>,<span class="st">&#39;Blst_2&#39;</span>, <span class="st">&#39;Blst_3&#39;</span>,<span class="st">&#39;Blst_5&#39;</span> )</span>
+<span id="cb142-7"><a href="multimp.html#cb142-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-8"><a href="multimp.html#cb142-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating the new variables</span></span>
+<span id="cb142-9"><a href="multimp.html#cb142-9" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="sc">$</span>Belonging <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(mimp_long[,Belonging_vars], .<span class="dv">65</span>)</span>
+<span id="cb142-10"><a href="multimp.html#cb142-10" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="sc">$</span>ResponseBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(mimp_long[,ResponseBL_vars], .<span class="dv">80</span>)</span>
+<span id="cb142-11"><a href="multimp.html#cb142-11" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="sc">$</span>StigmaBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(mimp_long[,StigmaBL_vars], .<span class="dv">80</span>)</span>
+<span id="cb142-12"><a href="multimp.html#cb142-12" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="sc">$</span>ClimateBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(mimp_long[,ClimateBL_vars], .<span class="dv">80</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="multiple-regression-with-multiply-imputed-data" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> Multiple Regression with Multiply Imputed Data</h2>
+<p>For a refresher, here was the script when we used the AIA approach for managing missingness:</p>
+<pre><code>Climate_fit &lt;- lm(ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)
+summary(Climate_fit)</code></pre>
+<p>In order for the regression to use multiply imputed data, it must be a “mids” (multiply imputed data sets) type</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="multimp.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to mids type - mice can work with this type</span></span>
+<span id="cb144-2"><a href="multimp.html#cb144-2" aria-hidden="true" tabindex="-1"></a>mimp_mids<span class="ot">&lt;-</span><span class="fu">as.mids</span>(mimp_long)</span></code></pre></div>
+<p>Here’s what we do with imputed data:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="multimp.html#cb145-1" aria-hidden="true" tabindex="-1"></a>fitimp <span class="ot">&lt;-</span> <span class="fu">with</span>(mimp_mids,</span>
+<span id="cb145-2"><a href="multimp.html#cb145-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">lm</span>(ClimateBL <span class="sc">~</span> Belonging <span class="sc">+</span> cmBlack <span class="sc">+</span> iBIPOC_pr))</span></code></pre></div>
+<p>In this process, 5 individual, OLS, regressions are being conducted and the results being pooled into this single set.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="multimp.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to get the 5, individual imputations</span></span>
+<span id="cb146-2"><a href="multimp.html#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fitimp)</span></code></pre></div>
+<pre><code>## # A tibble: 20 x 6
+##    term         estimate std.error statistic   p.value  nobs
+##    &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
+##  1 (Intercept)  2.58        0.577    4.48    0.0000805    38
+##  2 Belonging   -0.000893    0.118   -0.00757 0.994        38
+##  3 cmBlack     -0.0172      0.0212  -0.808   0.425        38
+##  4 iBIPOC_pr   -0.240       0.435   -0.553   0.584        38
+##  5 (Intercept)  2.60        0.572    4.54    0.0000669    38
+##  6 Belonging   -0.00414     0.118   -0.0349  0.972        38
+##  7 cmBlack     -0.0172      0.0213  -0.808   0.425        38
+##  8 iBIPOC_pr   -0.254       0.431   -0.590   0.559        38
+##  9 (Intercept)  2.60        0.543    4.78    0.0000330    38
+## 10 Belonging    0.0202      0.116    0.175   0.862        38
+## 11 cmBlack     -0.0189      0.0204  -0.926   0.361        38
+## 12 iBIPOC_pr   -0.505       0.436   -1.16    0.256        38
+## 13 (Intercept)  2.60        0.544    4.77    0.0000338    38
+## 14 Belonging   -0.0103      0.112   -0.0922  0.927        38
+## 15 cmBlack     -0.0180      0.0207  -0.867   0.392        38
+## 16 iBIPOC_pr   -0.233       0.418   -0.556   0.582        38
+## 17 (Intercept)  2.52        0.578    4.36    0.000113     38
+## 18 Belonging    0.0163      0.120    0.136   0.893        38
+## 19 cmBlack     -0.0190      0.0214  -0.884   0.383        38
+## 20 iBIPOC_pr   -0.201       0.434   -0.463   0.646        38</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="multimp.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the pooled result</span></span>
+<span id="cb148-2"><a href="multimp.html#cb148-2" aria-hidden="true" tabindex="-1"></a>pooledests <span class="ot">&lt;-</span> <span class="fu">pool</span>(fitimp)</span>
+<span id="cb148-3"><a href="multimp.html#cb148-3" aria-hidden="true" tabindex="-1"></a>pooledests</span></code></pre></div>
+<pre><code>## Class: mipo    m = 5 
+##          term m     estimate         ubar            b            t dfcom
+## 1 (Intercept) 5  2.578918801 0.3168579493 1.069500e-03 0.3181413496    34
+## 2   Belonging 5  0.004230366 0.0136383176 1.774196e-04 0.0138512211    34
+## 3     cmBlack 5 -0.018047803 0.0004426305 7.621488e-07 0.0004435451    34
+## 4   iBIPOC_pr 5 -0.286610867 0.1857887593 1.524495e-02 0.2040827000    34
+##         df         riv      lambda        fmi
+## 1 32.02824 0.004050396 0.004034057 0.06090051
+## 2 31.60868 0.015610688 0.015370740 0.07227145
+## 3 32.09475 0.002066235 0.002061974 0.05893305
+## 4 27.65271 0.098466348 0.089639841 0.14903819</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="multimp.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co">#str(pooledests)</span></span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="multimp.html#cb151-1" aria-hidden="true" tabindex="-1"></a>sumpooled <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">pool</span>(fitimp))</span>
+<span id="cb151-2"><a href="multimp.html#cb151-2" aria-hidden="true" tabindex="-1"></a>sumpooled</span></code></pre></div>
+<pre><code>##          term     estimate  std.error   statistic       df      p.value
+## 1 (Intercept)  2.578918801 0.56404020  4.57222516 32.02824 6.846407e-05
+## 2   Belonging  0.004230366 0.11769121  0.03594462 31.60868 9.715526e-01
+## 3     cmBlack -0.018047803 0.02106051 -0.85694994 32.09475 3.978263e-01
+## 4   iBIPOC_pr -0.286610867 0.45175513 -0.63443854 27.65271 5.310089e-01</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="multimp.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co">#str(sumpooled)</span></span></code></pre></div>
+<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = 0.004, <span class="math inline">\(p\)</span> = 0.972) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.287, <span class="math inline">\(p\)</span> = 0.531) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (<span class="math inline">\(B\)</span> = -0.018, <span class="math inline">\(p\)</span> = 0.398). Results are presented in Table X.</p>
+</div>
+<div id="toward-the-apa-style-write-up-1" class="section level2" number="5.7">
+<h2><span class="header-section-number">5.7</span> Toward the APA Style Write-up</h2>
+<div id="methoddata-diagnostics" class="section level3" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> Method/Data Diagnostics</h3>
+<p>Data screening suggested that 52 individuals opened the survey link. Of those, 44 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 38 met this criteria. Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 36%. Across the dataset, 3.35% of cells had missing data and 84.21% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with fewer than 50% missing to be included the multiple imputation <span class="citation">(<a href="refs.html#ref-katitas_getting_2019" role="doc-biblioref">Katitas, 2019</a>)</span>.</p>
+<p>Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning <span class="citation">(<a href="refs.html#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (<span class="math inline">\(W\)</span> = 0.806, <span class="math inline">\(p\)</span> = 0.0000) and the proportion of BIPOC instructional staff(<span class="math inline">\(W\)</span> = 0.823, <span class="math inline">\(p\)</span> = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent’s belonging (<span class="math inline">\(W\)</span> = 0.976, <span class="math inline">\(p\)</span> = 0.5767) and the respondent’s perception of campus climate for Black students (<span class="math inline">\(W\)</span> = 0.934, <span class="math inline">\(p\)</span> = 0.0376) did not differ differently from a normal distribution.</p>
+<p>We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the <em>outlier()</em> function in the <em>psych</em> package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 0 exceed three standard deviations beyond the median. <em>Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis</em> AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.*</p>
+<p>We managed missing data with multiple imputation <span class="citation">(<a href="refs.html#ref-enders_multiple_2017" role="doc-biblioref">Enders, 2017</a>; <a href="refs.html#ref-katitas_getting_2019" role="doc-biblioref">Katitas, 2019</a>)</span>. We imputed five sets of data with the R package, <em>mice</em> (v. 3.13) – a program that utilizes conditional multiple imputation. The imputation included the item-level variables that comprised our scales, the variables that represented proportion of BIPOC instructional staff and proportion of Black classmates, as well as four auxiliary variables (three variables from the course evaluation and the format [in-person/blended/virtual] of the class).</p>
+</div>
+<div id="results-1" class="section level3" number="5.7.2">
+<h3><span class="header-section-number">5.7.2</span> Results</h3>
+<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = 0.050, <span class="math inline">\(p\)</span> = 0.684) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.456, <span class="math inline">\(p\)</span> = 0.312) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (<span class="math inline">\(B\)</span> = -0.015, <span class="math inline">\(p\)</span> = 0.457). Although it accounted for 5.28% of the variance, the overall model was not statistically significant. Results are presented in Table 2.</p>
+<p><strong>Some notes about this write-up</strong></p>
+<ul>
+<li>I went ahead and used the data diagnostics that we did in the AIA method. It feels to me like these should be calculated with the multiply imputed data (i.e., 5 sets, with pooled estimates and standard errors), but I do not see that modeled – anywhere in R.</li>
+<li>Note the similarities with the AIA write-up.</li>
+</ul>
+</div>
+</div>
+<div id="multiple-imputation-considerations" class="section level2" number="5.8">
+<h2><span class="header-section-number">5.8</span> Multiple imputation considerations</h2>
+<ul>
+<li>Character vectors (i.e., values that are represented with words) can be problematic. If they are causing trouble, consider
+<ul>
+<li>recode into factors,</li>
+<li>keep it in the df, but exclude it from the imputation protocol,</li>
+<li>our “format” variable was an ordered factor (i.e., each term was associated with a value), so I think that helped us avoid problems</li>
+</ul></li>
+<li>Variables with really high (like 50% or more) proportions of missingness should be excluded.</li>
+<li>Variables that are highly correlated or redundant (even if inverse) will halt the execution. If you set print=TRUE you will see where the algorithm is having difficulty because it will halt at that variable.</li>
+<li>Variables with non-missing values can be problematic. If they are problematic, just exclude them from the process.
+*Width (columns/variables) versus length (rows/cases). You must have more rows/cases than columns/variables. It is difficult to say how many. If this is a problem:
+<ul>
+<li>Consider scoring scales first with AIA, then impute with whole scales.</li>
+<li>Divide the df in halves or thirds, impute separately, then join with the ID numbers.</li>
+<li>There should be auxiliary variables in each.
+*Item-level imputation is its “whole big thing” with multiple, complex considerations. There are tremendous resources</li>
+<li>Enders <a href="http://www.appliedmissingdata.com/multilevel-imputation.html">BLIMP</a> app is free and works with R</li>
+<li>Little’s <span class="citation">(<a href="refs.html#ref-little_statistical_2002" role="doc-biblioref">2002</a>)</span> article</li>
+</ul></li>
+<li>How many imputations? Controversial and has changed over the years.
+<ul>
+<li>Practical concern: the more you request, the longer it will take in R, this demo was 5</li>
+<li>For a number of years there was a push for 20, but I’ve also seen recommendations for 100s.</li>
+<li>Check examples of imputed studies in your disciplinary specialty/journals.</li>
+</ul></li>
+<li>There are lots of discussions and debates about
+<ul>
+<li>allowing for fractional/decimal responses (a 3.5 on 1 to 4 scaling; or a 0.75 on a dichotomous variable such as male/female)</li>
+<li>out-of-bounds estimates (what if you get a 7 on 1 to 4 scaling?)</li>
+</ul></li>
+</ul>
+</div>
+<div id="practice-problems-3" class="section level2" number="5.9">
+<h2><span class="header-section-number">5.9</span> Practice Problems</h2>
+<p>The three problems described below are designed to be continuations from the previous chapters. You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.</p>
+<div id="problem-1-reworking-the-chapter-problem-2" class="section level3" number="5.9.1">
+<h3><span class="header-section-number">5.9.1</span> Problem #1: Reworking the Chapter Problem</h3>
+<p>If you chose this option in the prior chapters, you imported the data from Qualtrics, applied inclusion/exclusion criteria, renamed variables, downsized the df to the variables of interest, properly formatted the variables, interpreted item-level missingness, scored the scales/subscales, interpreted scale-level missingness, and wrote up the results.</p>
+<p>Continue working with this data to:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="72%" />
+<col width="14%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center">Points Possible</th>
+<th align="center">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Import the raw data from Qualtrics</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Apply inclusionary/exclusionary criteria</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Format any variables that shouldn’t be imputed in their raw form</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Multiply impute a minimum of 5 sets of data</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Run a regression with at least three variables</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. APA style write-up of the multiple imputation section of data diagnostics</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. APA style write-up regression results</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">8. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">40</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-3" class="section level3" number="5.9.2">
+<h3><span class="header-section-number">5.9.2</span> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</h3>
+<p>If you chose this option in the prior chapter, you chose a minimum of three variables from the <em>Rate-a-Recent-Course</em> survey to include in a simple statistical model. You imported the data from Qualtrics, applied inclusion/exclusion criteria, renamed variables, downsized the df to the variables of interest, properly formatted the variables, interpreted item-level missingness, scored the scales/subscales, interpreted scale-level missingness, and wrote up the results.</p>
+<p>Continue working with this data to:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="72%" />
+<col width="14%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center">Points Possible</th>
+<th align="center">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Import the raw data from Qualtrics</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Apply inclusionary/exclusionary criteria</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Format any variables that shouldn’t be imputed in their raw form</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Multiply impute a minimum of 5 sets of data</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Run a regression with at least three variables</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. APA style write-up of the multiple imputation section of data diagnostics</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. APA style write-up regression results</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">8. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">40</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-3-other-data-3" class="section level3" number="5.9.3">
+<h3><span class="header-section-number">5.9.3</span> Problem #3: Other data</h3>
+<p>If you chose this option in the prior chapter, you used raw data that was available to you. You imported it into R, applied inclusion/exclusion criteria, renamed variables, downsized the df to the variables of interest, properly formatted the variables, interpreted item-level missingness, scored the scales/subscales, interpreted scale-level missingness, and wrote up the results.</p>
+<p>Continue working with this data to:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="72%" />
+<col width="14%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center">Points Possible</th>
+<th align="center">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Import the raw data from Qualtrics (or elsewhere)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Apply inclusionary/exclusionary criteria</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Format any variables that shouldn’t be imputed in their raw form</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Multiply impute a minimum of 5 sets of data</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Run a regression with at least three variables</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. APA style write-up of the multiple imputation section of data diagnostics</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. APA style write-up regression results</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">8. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">40</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="multimp.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.0.4 (2021-02-15)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18362)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] apaTables_2.0.8   gdtools_0.2.2     mice_3.13.0       sjstats_0.18.0   
+##  [5] formattable_0.2.1 qualtRics_3.1.4   forcats_0.5.0     stringr_1.4.0    
+##  [9] dplyr_1.0.2       purrr_0.3.4       readr_1.4.0       tidyr_1.1.2      
+## [13] tibble_3.0.4      ggplot2_3.3.3     tidyverse_1.3.0   psych_2.0.12     
+## 
+## loaded via a namespace (and not attached):
+##  [1] nlme_3.1-151      fs_1.5.0          lubridate_1.7.9.2 MBESS_4.8.0      
+##  [5] insight_0.11.1    httr_1.4.2        tools_4.0.4       backports_1.2.0  
+##  [9] utf8_1.1.4        R6_2.5.0          sjlabelled_1.1.7  DBI_1.1.0        
+## [13] colorspace_2.0-0  withr_2.3.0       tidyselect_1.1.0  mnormt_2.0.2     
+## [17] emmeans_1.5.3     curl_4.3          compiler_4.0.4    performance_0.6.1
+## [21] cli_2.2.0         rvest_0.3.6       xml2_1.3.2        sandwich_3.0-0   
+## [25] bookdown_0.21     bayestestR_0.8.0  scales_1.1.1      mvtnorm_1.1-1    
+## [29] systemfonts_0.3.2 digest_0.6.27     minqa_1.2.4       svglite_1.2.3.2  
+## [33] rmarkdown_2.6     pkgconfig_2.0.3   htmltools_0.5.0   lme4_1.1-26      
+## [37] dbplyr_2.0.0      htmlwidgets_1.5.3 rlang_0.4.9       readxl_1.3.1     
+## [41] rstudioapi_0.13   generics_0.1.0    zoo_1.8-8         jsonlite_1.7.2   
+## [45] magrittr_2.0.1    parameters_0.10.1 Matrix_1.2-18     Rcpp_1.0.5       
+## [49] munsell_0.5.0     fansi_0.4.1       lifecycle_0.2.0   stringi_1.5.3    
+## [53] multcomp_1.4-15   yaml_2.2.1        MASS_7.3-53       grid_4.0.4       
+## [57] parallel_4.0.4    sjmisc_2.8.5      crayon_1.3.4      lattice_0.20-41  
+## [61] haven_2.3.1       splines_4.0.4     hms_0.5.3         tmvnsim_1.0-2    
+## [65] knitr_1.30        pillar_1.4.7      boot_1.3-25       estimability_1.3 
+## [69] effectsize_0.4.1  codetools_0.2-18  reprex_0.3.0      glue_1.4.2       
+## [73] evaluate_0.14     modelr_0.1.8      nloptr_1.2.2.2    vctrs_0.3.6      
+## [77] cellranger_1.1.0  gtable_0.3.0      assertthat_0.2.1  xfun_0.19        
+## [81] xtable_1.8-4      broom_0.7.3       coda_0.19-4       survival_3.2-7   
+## [85] statmod_1.4.35    TH.data_1.0-10    ellipsis_0.3.1</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="DataDx.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="CPA.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ontheline/otl-bookdown/blob/master/05-MultipleImputation.Rmd",
+"text": null
+},
+"download": ["ReC_MultMod.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

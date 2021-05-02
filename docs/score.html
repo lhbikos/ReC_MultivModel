@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Scoring | ReCentering Psych Stats: Multivariate Modeling</title>
+  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Scoring | ReCentering Psych Stats: Multivariate Modeling" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Scoring | ReCentering Psych Stats: Multivariate Modeling" />
+  
+  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  
+
+<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="scrub.html"/>
+<link rel="next" href="DataDx.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><strong>ReCentering Psych Stats: Multivariate Modeling</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>PREFACE</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
+<li class="chapter" data-level="1" data-path="ReCintro.html"><a href="ReCintro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ReCintro.html"><a href="ReCintro.html#what-to-expect-in-each-chapter"><i class="fa fa-check"></i><b>1.1</b> What to expect in each chapter</a></li>
+<li class="chapter" data-level="1.2" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-accessing-and-using-this-oer"><i class="fa fa-check"></i><b>1.2</b> Strategies for Accessing and Using this OER</a></li>
+<li class="chapter" data-level="1.3" data-path="ReCintro.html"><a href="ReCintro.html#if-you-are-new-to-r"><i class="fa fa-check"></i><b>1.3</b> If You are New to R</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
+<ul>
+<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
+<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
+<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
+<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
+<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
+<li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
+<li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dataprep.html"><a href="dataprep.html"><i class="fa fa-check"></i>DATA PREP</a></li>
+<li class="chapter" data-level="2" data-path="scrub.html"><a href="scrub.html"><i class="fa fa-check"></i><b>2</b> Scrubbing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="scrub.html"><a href="scrub.html#navigating-this-lesson"><i class="fa fa-check"></i><b>2.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="scrub.html"><a href="scrub.html#learning-objectives"><i class="fa fa-check"></i><b>2.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.1.2" data-path="scrub.html"><a href="scrub.html#planning-for-practice"><i class="fa fa-check"></i><b>2.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="2.1.3" data-path="scrub.html"><a href="scrub.html#readings-resources"><i class="fa fa-check"></i><b>2.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="2.1.4" data-path="scrub.html"><a href="scrub.html#packages-1"><i class="fa fa-check"></i><b>2.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="scrub.html"><a href="scrub.html#workflow-for-scrubbing-and-scoring"><i class="fa fa-check"></i><b>2.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="2.3" data-path="scrub.html"><a href="scrub.html#research-vignette"><i class="fa fa-check"></i><b>2.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="2.4" data-path="scrub.html"><a href="scrub.html#working-the-problem"><i class="fa fa-check"></i><b>2.4</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="scrub.html"><a href="scrub.html#intravenous-qualtrics"><i class="fa fa-check"></i><b>2.4.1</b> intRavenous Qualtrics</a></li>
+<li class="chapter" data-level="2.4.2" data-path="scrub.html"><a href="scrub.html#about-the-rate-a-recent-course-survey"><i class="fa fa-check"></i><b>2.4.2</b> About the <em>Rate-a-Recent-Course</em> Survey</a></li>
+<li class="chapter" data-level="2.4.3" data-path="scrub.html"><a href="scrub.html#the-codebook"><i class="fa fa-check"></i><b>2.4.3</b> The Codebook</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="scrub.html"><a href="scrub.html#scrubbing"><i class="fa fa-check"></i><b>2.5</b> Scrubbing</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="scrub.html"><a href="scrub.html#tools-for-data-manipulations"><i class="fa fa-check"></i><b>2.5.1</b> Tools for Data Manipulations</a></li>
+<li class="chapter" data-level="2.5.2" data-path="scrub.html"><a href="scrub.html#inclusion-and-exclusion-criteria"><i class="fa fa-check"></i><b>2.5.2</b> Inclusion and Exclusion Criteria</a></li>
+<li class="chapter" data-level="2.5.3" data-path="scrub.html"><a href="scrub.html#renaming-variables"><i class="fa fa-check"></i><b>2.5.3</b> Renaming Variables</a></li>
+<li class="chapter" data-level="2.5.4" data-path="scrub.html"><a href="scrub.html#downsizing-the-dataframe"><i class="fa fa-check"></i><b>2.5.4</b> Downsizing the Dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="scrub.html"><a href="scrub.html#toward-the-apa-style-write-up"><i class="fa fa-check"></i><b>2.6</b> Toward the APA Style Write-up</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="scrub.html"><a href="scrub.html#methodprocedure"><i class="fa fa-check"></i><b>2.6.1</b> Method/Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="scrub.html"><a href="scrub.html#practice-problems"><i class="fa fa-check"></i><b>2.7</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="scrub.html"><a href="scrub.html#problem-1-rework-the-chapter-problem"><i class="fa fa-check"></i><b>2.7.1</b> Problem #1: Rework the Chapter Problem</a></li>
+<li class="chapter" data-level="2.7.2" data-path="scrub.html"><a href="scrub.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables"><i class="fa fa-check"></i><b>2.7.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="2.7.3" data-path="scrub.html"><a href="scrub.html#problem-3-other-data"><i class="fa fa-check"></i><b>2.7.3</b> Problem #3: Other data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="scrub.html"><a href="scrub.html#bonus-track"><i class="fa fa-check"></i><b>2.8</b> Bonus Track:</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="scrub.html"><a href="scrub.html#importing-data-from-an-exported-qualtrics-.csv-file"><i class="fa fa-check"></i><b>2.8.1</b> Importing data from an exported Qualtrics .csv file</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="score.html"><a href="score.html"><i class="fa fa-check"></i><b>3</b> Scoring</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="score.html"><a href="score.html#navigating-this-lesson-1"><i class="fa fa-check"></i><b>3.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="score.html"><a href="score.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="score.html"><a href="score.html#planning-for-practice-1"><i class="fa fa-check"></i><b>3.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="3.1.3" data-path="score.html"><a href="score.html#readings-resources-1"><i class="fa fa-check"></i><b>3.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="3.1.4" data-path="score.html"><a href="score.html#packages-2"><i class="fa fa-check"></i><b>3.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="score.html"><a href="score.html#workflow-for-scrubbing-and-scoring-1"><i class="fa fa-check"></i><b>3.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="3.3" data-path="score.html"><a href="score.html#research-vignette-1"><i class="fa fa-check"></i><b>3.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="3.4" data-path="score.html"><a href="score.html#on-missing-data"><i class="fa fa-check"></i><b>3.4</b> On Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="score.html"><a href="score.html#data-loss-mechanisms"><i class="fa fa-check"></i><b>3.4.1</b> Data Loss Mechanisms</a></li>
+<li class="chapter" data-level="3.4.2" data-path="score.html"><a href="score.html#diagnosing-missing-data-mechanisms"><i class="fa fa-check"></i><b>3.4.2</b> Diagnosing Missing Data Mechanisms</a></li>
+<li class="chapter" data-level="3.4.3" data-path="score.html"><a href="score.html#managing-missing-data"><i class="fa fa-check"></i><b>3.4.3</b> Managing Missing Data</a></li>
+<li class="chapter" data-level="3.4.4" data-path="score.html"><a href="score.html#available-information-analysis-aia"><i class="fa fa-check"></i><b>3.4.4</b> Available Information Analysis (AIA)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="score.html"><a href="score.html#working-the-problem-1"><i class="fa fa-check"></i><b>3.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="score.html"><a href="score.html#missing-data-analysis-whole-df-and-item-level"><i class="fa fa-check"></i><b>3.5.1</b> Missing Data Analysis: Whole df and Item level</a></li>
+<li class="chapter" data-level="3.5.2" data-path="score.html"><a href="score.html#analyzing-missing-data-patterns"><i class="fa fa-check"></i><b>3.5.2</b> Analyzing Missing Data Patterns</a></li>
+<li class="chapter" data-level="3.5.3" data-path="score.html"><a href="score.html#missing-mechanisms"><i class="fa fa-check"></i><b>3.5.3</b> Missing Mechanisms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="score.html"><a href="score.html#scoring"><i class="fa fa-check"></i><b>3.6</b> Scoring</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="score.html"><a href="score.html#reverse-scoring"><i class="fa fa-check"></i><b>3.6.1</b> Reverse scoring</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="score.html"><a href="score.html#missing-analysis-scale-level"><i class="fa fa-check"></i><b>3.7</b> Missing Analysis: Scale level</a></li>
+<li class="chapter" data-level="3.8" data-path="score.html"><a href="score.html#revisiting-missing-analysis-at-the-scale-level"><i class="fa fa-check"></i><b>3.8</b> Revisiting Missing Analysis at the Scale Level</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="score.html"><a href="score.html#scale-level-patterns-of-missing-data"><i class="fa fa-check"></i><b>3.8.1</b> Scale Level: Patterns of Missing Data</a></li>
+<li class="chapter" data-level="3.8.2" data-path="score.html"><a href="score.html#is-it-mcar"><i class="fa fa-check"></i><b>3.8.2</b> Is it MCAR?</a></li>
+<li class="chapter" data-level="3.8.3" data-path="score.html"><a href="score.html#r-eady-for-analysis"><i class="fa fa-check"></i><b>3.8.3</b> R-eady for Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="score.html"><a href="score.html#the-apa-style-write-up"><i class="fa fa-check"></i><b>3.9</b> The APA Style Write-Up</a></li>
+<li class="chapter" data-level="3.10" data-path="score.html"><a href="score.html#results"><i class="fa fa-check"></i><b>3.10</b> Results</a></li>
+<li class="chapter" data-level="3.11" data-path="score.html"><a href="score.html#practice-problems-1"><i class="fa fa-check"></i><b>3.11</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="score.html"><a href="score.html#problem-1-reworking-the-chapter-problem"><i class="fa fa-check"></i><b>3.11.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="3.11.2" data-path="score.html"><a href="score.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-1"><i class="fa fa-check"></i><b>3.11.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="3.11.3" data-path="score.html"><a href="score.html#problem-3-other-data-1"><i class="fa fa-check"></i><b>3.11.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="DataDx.html"><a href="DataDx.html"><i class="fa fa-check"></i><b>4</b> Data Dx</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="DataDx.html"><a href="DataDx.html#navigating-this-lesson-2"><i class="fa fa-check"></i><b>4.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="DataDx.html"><a href="DataDx.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="DataDx.html"><a href="DataDx.html#planning-for-practice-2"><i class="fa fa-check"></i><b>4.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="4.1.3" data-path="DataDx.html"><a href="DataDx.html#readings-resources-2"><i class="fa fa-check"></i><b>4.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="4.1.4" data-path="DataDx.html"><a href="DataDx.html#packages-3"><i class="fa fa-check"></i><b>4.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="DataDx.html"><a href="DataDx.html#workflow-for-scrubbing-and-scoring-2"><i class="fa fa-check"></i><b>4.2</b> Workflow for Scrubbing and Scoring</a></li>
+<li class="chapter" data-level="4.3" data-path="DataDx.html"><a href="DataDx.html#research-vignette-2"><i class="fa fa-check"></i><b>4.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="4.4" data-path="DataDx.html"><a href="DataDx.html#internal-consistency-of-scalessubscales"><i class="fa fa-check"></i><b>4.4</b> Internal Consistency of Scales/Subscales</a></li>
+<li class="chapter" data-level="4.5" data-path="DataDx.html"><a href="DataDx.html#distributional-characteristics-of-the-variables"><i class="fa fa-check"></i><b>4.5</b> Distributional Characteristics of the Variables</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="DataDx.html"><a href="DataDx.html#evaluating-univariate-normality"><i class="fa fa-check"></i><b>4.5.1</b> Evaluating Univariate Normality</a></li>
+<li class="chapter" data-level="4.5.2" data-path="DataDx.html"><a href="DataDx.html#pairs-panels"><i class="fa fa-check"></i><b>4.5.2</b> Pairs Panels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="DataDx.html"><a href="DataDx.html#evaluating-multivariate-normality"><i class="fa fa-check"></i><b>4.6</b> Evaluating Multivariate Normality</a></li>
+<li class="chapter" data-level="4.7" data-path="DataDx.html"><a href="DataDx.html#a-few-words-on-transformations"><i class="fa fa-check"></i><b>4.7</b> A Few Words on Transformations</a></li>
+<li class="chapter" data-level="4.8" data-path="DataDx.html"><a href="DataDx.html#the-apa-style-write-up-1"><i class="fa fa-check"></i><b>4.8</b> The APA Style Write-Up</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="DataDx.html"><a href="DataDx.html#data-diagnostics"><i class="fa fa-check"></i><b>4.8.1</b> Data Diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="DataDx.html"><a href="DataDx.html#a-quick-regression-of-our-research-vignette"><i class="fa fa-check"></i><b>4.9</b> A Quick Regression of our Research Vignette</a></li>
+<li class="chapter" data-level="4.10" data-path="DataDx.html"><a href="DataDx.html#practice-problems-2"><i class="fa fa-check"></i><b>4.10</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="DataDx.html"><a href="DataDx.html#problem-1-reworking-the-chapter-problem-1"><i class="fa fa-check"></i><b>4.10.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="4.10.2" data-path="DataDx.html"><a href="DataDx.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-2"><i class="fa fa-check"></i><b>4.10.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="4.10.3" data-path="DataDx.html"><a href="DataDx.html#problem-3-other-data-2"><i class="fa fa-check"></i><b>4.10.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="multimp.html"><a href="multimp.html"><i class="fa fa-check"></i><b>5</b> Multiple Imputation (A Brief Demo)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="multimp.html"><a href="multimp.html#navigating-this-lesson-3"><i class="fa fa-check"></i><b>5.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="multimp.html"><a href="multimp.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="multimp.html"><a href="multimp.html#planning-for-practice-3"><i class="fa fa-check"></i><b>5.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="5.1.3" data-path="multimp.html"><a href="multimp.html#readings-resources-3"><i class="fa fa-check"></i><b>5.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="5.1.4" data-path="multimp.html"><a href="multimp.html#packages-4"><i class="fa fa-check"></i><b>5.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="multimp.html"><a href="multimp.html#workflow-for-multiple-imputation"><i class="fa fa-check"></i><b>5.2</b> Workflow for Multiple Imputation</a></li>
+<li class="chapter" data-level="5.3" data-path="multimp.html"><a href="multimp.html#research-vignette-3"><i class="fa fa-check"></i><b>5.3</b> Research Vignette</a></li>
+<li class="chapter" data-level="5.4" data-path="multimp.html"><a href="multimp.html#multiple-imputation-a-super-brief-review"><i class="fa fa-check"></i><b>5.4</b> Multiple Imputation – a Super Brief Review</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="multimp.html"><a href="multimp.html#steps-in-multiple-imputation"><i class="fa fa-check"></i><b>5.4.1</b> Steps in Multiple Imputation</a></li>
+<li class="chapter" data-level="5.4.2" data-path="multimp.html"><a href="multimp.html#statistical-approaches-to-multiple-imputation"><i class="fa fa-check"></i><b>5.4.2</b> Statistical Approaches to Multiple Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="multimp.html"><a href="multimp.html#working-the-problem-2"><i class="fa fa-check"></i><b>5.5</b> Working the Problem</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="multimp.html"><a href="multimp.html#selecting-and-formatting-variables"><i class="fa fa-check"></i><b>5.5.1</b> Selecting and Formatting Variables</a></li>
+<li class="chapter" data-level="5.5.2" data-path="multimp.html"><a href="multimp.html#creating-composite-variables"><i class="fa fa-check"></i><b>5.5.2</b> Creating Composite Variables</a></li>
+<li class="chapter" data-level="5.5.3" data-path="multimp.html"><a href="multimp.html#the-multiple-imputation"><i class="fa fa-check"></i><b>5.5.3</b> The Multiple Imputation</a></li>
+<li class="chapter" data-level="5.5.4" data-path="multimp.html"><a href="multimp.html#creating-scale-scores"><i class="fa fa-check"></i><b>5.5.4</b> Creating Scale Scores</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="multimp.html"><a href="multimp.html#multiple-regression-with-multiply-imputed-data"><i class="fa fa-check"></i><b>5.6</b> Multiple Regression with Multiply Imputed Data</a></li>
+<li class="chapter" data-level="5.7" data-path="multimp.html"><a href="multimp.html#toward-the-apa-style-write-up-1"><i class="fa fa-check"></i><b>5.7</b> Toward the APA Style Write-up</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="multimp.html"><a href="multimp.html#methoddata-diagnostics"><i class="fa fa-check"></i><b>5.7.1</b> Method/Data Diagnostics</a></li>
+<li class="chapter" data-level="5.7.2" data-path="multimp.html"><a href="multimp.html#results-1"><i class="fa fa-check"></i><b>5.7.2</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="multimp.html"><a href="multimp.html#multiple-imputation-considerations"><i class="fa fa-check"></i><b>5.8</b> Multiple imputation considerations</a></li>
+<li class="chapter" data-level="5.9" data-path="multimp.html"><a href="multimp.html#practice-problems-3"><i class="fa fa-check"></i><b>5.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="multimp.html"><a href="multimp.html#problem-1-reworking-the-chapter-problem-2"><i class="fa fa-check"></i><b>5.9.1</b> Problem #1: Reworking the Chapter Problem</a></li>
+<li class="chapter" data-level="5.9.2" data-path="multimp.html"><a href="multimp.html#problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-3"><i class="fa fa-check"></i><b>5.9.2</b> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</a></li>
+<li class="chapter" data-level="5.9.3" data-path="multimp.html"><a href="multimp.html#problem-3-other-data-3"><i class="fa fa-check"></i><b>5.9.3</b> Problem #3: Other data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="CPA.html"><a href="CPA.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
+<li class="chapter" data-level="6" data-path="SimpleMed.html"><a href="SimpleMed.html"><i class="fa fa-check"></i><b>6</b> Simple Mediation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="SimpleMed.html"><a href="SimpleMed.html#navigating-this-lesson-4"><i class="fa fa-check"></i><b>6.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="SimpleMed.html"><a href="SimpleMed.html#learning-objectives-4"><i class="fa fa-check"></i><b>6.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.1.2" data-path="SimpleMed.html"><a href="SimpleMed.html#planning-for-practice-4"><i class="fa fa-check"></i><b>6.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="6.1.3" data-path="SimpleMed.html"><a href="SimpleMed.html#readings-resources-4"><i class="fa fa-check"></i><b>6.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="6.1.4" data-path="SimpleMed.html"><a href="SimpleMed.html#packages-5"><i class="fa fa-check"></i><b>6.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="SimpleMed.html"><a href="SimpleMed.html#estimating-indirect-effects-the-analytic-approach-often-termed-mediation"><i class="fa fa-check"></i><b>6.2</b> Estimating Indirect Effects (the analytic approach often termed <em>mediation</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="SimpleMed.html"><a href="SimpleMed.html#the-definitional-and-conceptual"><i class="fa fa-check"></i><b>6.2.1</b> The definitional and conceptual</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="SimpleMed.html"><a href="SimpleMed.html#workflow-for-simple-mediation"><i class="fa fa-check"></i><b>6.3</b> Workflow for Simple Mediation</a></li>
+<li class="chapter" data-level="6.4" data-path="SimpleMed.html"><a href="SimpleMed.html#simple-mediation-in-lavaan-a-focus-on-the-mechanics"><i class="fa fa-check"></i><b>6.4</b> Simple Mediation in <em>lavaan</em>: A focus on the mechanics</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="SimpleMed.html"><a href="SimpleMed.html#simulate-fake-data"><i class="fa fa-check"></i><b>6.4.1</b> Simulate Fake Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="SimpleMed.html"><a href="SimpleMed.html#specify-mediation-model"><i class="fa fa-check"></i><b>6.4.2</b> Specify Mediation Model</a></li>
+<li class="chapter" data-level="6.4.3" data-path="SimpleMed.html"><a href="SimpleMed.html#interpret-the-output"><i class="fa fa-check"></i><b>6.4.3</b> Interpret the Output</a></li>
+<li class="chapter" data-level="6.4.4" data-path="SimpleMed.html"><a href="SimpleMed.html#a-table-and-a-figure"><i class="fa fa-check"></i><b>6.4.4</b> A Table and a Figure</a></li>
+<li class="chapter" data-level="6.4.5" data-path="SimpleMed.html"><a href="SimpleMed.html#results-2"><i class="fa fa-check"></i><b>6.4.5</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="SimpleMed.html"><a href="SimpleMed.html#research-vignette-4"><i class="fa fa-check"></i><b>6.5</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="SimpleMed.html"><a href="SimpleMed.html#simulate-data-from-the-journal-article"><i class="fa fa-check"></i><b>6.5.1</b> Simulate Data from the Journal Article</a></li>
+<li class="chapter" data-level="6.5.2" data-path="SimpleMed.html"><a href="SimpleMed.html#specify-the-model-in-lavaan"><i class="fa fa-check"></i><b>6.5.2</b> Specify the Model in <em>lavaan</em></a></li>
+<li class="chapter" data-level="6.5.3" data-path="SimpleMed.html"><a href="SimpleMed.html#interpret-the-output-1"><i class="fa fa-check"></i><b>6.5.3</b> Interpret the Output</a></li>
+<li class="chapter" data-level="6.5.4" data-path="SimpleMed.html"><a href="SimpleMed.html#a-figure-and-a-table"><i class="fa fa-check"></i><b>6.5.4</b> A Figure and a Table</a></li>
+<li class="chapter" data-level="6.5.5" data-path="SimpleMed.html"><a href="SimpleMed.html#results-3"><i class="fa fa-check"></i><b>6.5.5</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="SimpleMed.html"><a href="SimpleMed.html#considering-covariates"><i class="fa fa-check"></i><b>6.6</b> Considering Covariates</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="SimpleMed.html"><a href="SimpleMed.html#a-figure-and-a-table-1"><i class="fa fa-check"></i><b>6.6.1</b> A Figure and a Table</a></li>
+<li class="chapter" data-level="6.6.2" data-path="SimpleMed.html"><a href="SimpleMed.html#apa-style-write-up"><i class="fa fa-check"></i><b>6.6.2</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="SimpleMed.html"><a href="SimpleMed.html#residual-and-related-questions"><i class="fa fa-check"></i><b>6.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="6.8" data-path="SimpleMed.html"><a href="SimpleMed.html#practice-problems-4"><i class="fa fa-check"></i><b>6.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed"><i class="fa fa-check"></i><b>6.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="6.8.2" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables"><i class="fa fa-check"></i><b>6.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="6.8.3" data-path="SimpleMed.html"><a href="SimpleMed.html#problem-3-use-other-data-that-is-available-to-you"><i class="fa fa-check"></i><b>6.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="CompMed.html"><a href="CompMed.html"><i class="fa fa-check"></i><b>7</b> Complex Mediation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="CompMed.html"><a href="CompMed.html#navigating-this-lesson-5"><i class="fa fa-check"></i><b>7.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="CompMed.html"><a href="CompMed.html#learning-objectives-5"><i class="fa fa-check"></i><b>7.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.1.2" data-path="CompMed.html"><a href="CompMed.html#planning-for-practice-5"><i class="fa fa-check"></i><b>7.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="7.1.3" data-path="CompMed.html"><a href="CompMed.html#readings-resources-5"><i class="fa fa-check"></i><b>7.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="7.1.4" data-path="CompMed.html"><a href="CompMed.html#packages-6"><i class="fa fa-check"></i><b>7.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="CompMed.html"><a href="CompMed.html#complex-mediation"><i class="fa fa-check"></i><b>7.2</b> Complex Mediation</a></li>
+<li class="chapter" data-level="7.3" data-path="CompMed.html"><a href="CompMed.html#parallel-mediation"><i class="fa fa-check"></i><b>7.3</b> Parallel Mediation</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a>
+<ul>
+<li class="chapter" data-level="7.3.1.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation"><i class="fa fa-check"></i><b>7.3.1.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="7.3.1.2" data-path="CompMed.html"><a href="CompMed.html#specifying-lavaan-code"><i class="fa fa-check"></i><b>7.3.1.2</b> Specifying <em>lavaan</em> code</a></li>
+<li class="chapter" data-level="7.3.1.3" data-path="CompMed.html"><a href="CompMed.html#a-note-on-indirect-effects-and-confidence-intervals"><i class="fa fa-check"></i><b>7.3.1.3</b> A note on indirect effects and confidence intervals</a></li>
+<li class="chapter" data-level="7.3.1.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables"><i class="fa fa-check"></i><b>7.3.1.4</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.3.1.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup"><i class="fa fa-check"></i><b>7.3.1.5</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="7.3.2.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation-1"><i class="fa fa-check"></i><b>7.3.2.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="7.3.2.2" data-path="CompMed.html"><a href="CompMed.html#quick-descriptives"><i class="fa fa-check"></i><b>7.3.2.2</b> Quick Descriptives</a></li>
+<li class="chapter" data-level="7.3.2.3" data-path="CompMed.html"><a href="CompMed.html#specifying-the-lavaan-model"><i class="fa fa-check"></i><b>7.3.2.3</b> Specifying the <em>lavaan</em> model</a></li>
+<li class="chapter" data-level="7.3.2.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-1"><i class="fa fa-check"></i><b>7.3.2.4</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.3.2.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-1"><i class="fa fa-check"></i><b>7.3.2.5</b> APA Style Writeup</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="CompMed.html"><a href="CompMed.html#serial-multiple-mediator-model"><i class="fa fa-check"></i><b>7.4</b> Serial Multiple Mediator Model</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="CompMed.html"><a href="CompMed.html#we-stick-with-the-lewis-et-al.--lewis_applying_2017-example-but-modify-it."><i class="fa fa-check"></i><b>7.4.1</b> We stick with the Lewis et al. <span class="citation">(<span>2017</span>)</span> example, but modify it.</a></li>
+<li class="chapter" data-level="7.4.2" data-path="CompMed.html"><a href="CompMed.html#specify-the-lavaan-model"><i class="fa fa-check"></i><b>7.4.2</b> Specify the <em>lavaan</em> model</a></li>
+<li class="chapter" data-level="7.4.3" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-2"><i class="fa fa-check"></i><b>7.4.3</b> Figures and Tables</a></li>
+<li class="chapter" data-level="7.4.4" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-2"><i class="fa fa-check"></i><b>7.4.4</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="CompMed.html"><a href="CompMed.html#troubleshooting-and-faqs"><i class="fa fa-check"></i><b>7.5</b> Troubleshooting and FAQs</a></li>
+<li class="chapter" data-level="7.6" data-path="CompMed.html"><a href="CompMed.html#practice-problems-5"><i class="fa fa-check"></i><b>7.6</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="CompMed.html"><a href="CompMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-1"><i class="fa fa-check"></i><b>7.6.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="7.6.2" data-path="CompMed.html"><a href="CompMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-1"><i class="fa fa-check"></i><b>7.6.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="7.6.3" data-path="CompMed.html"><a href="CompMed.html#problem-3-use-other-data-that-is-available-to-you-1"><i class="fa fa-check"></i><b>7.6.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>8</b> Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ModMed.html"><a href="ModMed.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="ModMed.html"><a href="ModMed.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ModMed.html"><a href="ModMed.html#planning-for-practice-6"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ModMed.html"><a href="ModMed.html#readings-resources-6"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="8.1.4" data-path="ModMed.html"><a href="ModMed.html#packages-7"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="ModMed.html"><a href="ModMed.html#conditional-process-analysis"><i class="fa fa-check"></i><b>8.2</b> Conditional Process Analysis</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="ModMed.html"><a href="ModMed.html#the-definitional-and-conceptual-1"><i class="fa fa-check"></i><b>8.2.1</b> The definitional and conceptual</a></li>
+<li class="chapter" data-level="8.2.2" data-path="ModMed.html"><a href="ModMed.html#hayes--hayes_introduction_2018-piecewise-approach-to-building-models"><i class="fa fa-check"></i><b>8.2.2</b> Hayes’ <span class="citation">(<span>2018</span>)</span> Piecewise Approach to Building Models</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="ModMed.html"><a href="ModMed.html#workflow-for-moderated-mediation"><i class="fa fa-check"></i><b>8.3</b> Workflow for Moderated Mediation</a></li>
+<li class="chapter" data-level="8.4" data-path="ModMed.html"><a href="ModMed.html#research-vignette-6"><i class="fa fa-check"></i><b>8.4</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="ModMed.html"><a href="ModMed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>8.4.1</b> Simulating the data from the journal article</a></li>
+<li class="chapter" data-level="8.4.2" data-path="ModMed.html"><a href="ModMed.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>8.4.2</b> Quick peek at the data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5</b> Working the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="8.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.1</b> Analysis #1: A simple moderation</a></li>
+<li class="chapter" data-level="8.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.2</b> Analysis #2: Another simple moderation</a></li>
+<li class="chapter" data-level="8.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>8.5.1.3</b> Analysis #3: A simple mediation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>8.6</b> The Moderated Mediation: A Combined analysis</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>8.6.1</b> Specification in <em>lavaan</em></a></li>
+<li class="chapter" data-level="8.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>8.6.2</b> A quick plot</a></li>
+<li class="chapter" data-level="8.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>8.6.3</b> Beginning the interpretation</a></li>
+<li class="chapter" data-level="8.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data"><i class="fa fa-check"></i><b>8.6.4</b> Tabling the data</a>
+<ul>
+<li class="chapter" data-level="8.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>8.6.4.1</b> Conditional Indirect effects</a></li>
+<li class="chapter" data-level="8.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>8.6.4.2</b> Conditional Direct effect</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>8.6.5</b> Model trimming</a></li>
+<li class="chapter" data-level="8.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>8.6.6</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="ModMed.html"><a href="ModMed.html#residual-and-related-questions-1"><i class="fa fa-check"></i><b>8.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="8.8" data-path="ModMed.html"><a href="ModMed.html#practice-problems-6"><i class="fa fa-check"></i><b>8.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="ModMed.html"><a href="ModMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2"><i class="fa fa-check"></i><b>8.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="8.8.2" data-path="ModMed.html"><a href="ModMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-2"><i class="fa fa-check"></i><b>8.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="8.8.3" data-path="ModMed.html"><a href="ModMed.html#problem-3-use-other-data-that-is-available-to-you-2"><i class="fa fa-check"></i><b>8.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-1"><i class="fa fa-check"></i><b>8.9</b> Bonus Track:</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
+  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ReCentering Psych Stats: Multivariate Modeling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="score" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Scoring</h1>
+<p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=18a6be07-5bdc-404d-bc95-acf601830887">Screencasted Lecture Link</a></p>
+<p>The focus of this chapter is to continue the process of scrubbing-and-scoring. We continue with the raw data we downloaded and prepared in the prior chapter. In this chapter we analyze and manage missingness, score scales/subscales, and represent our work with an APA-style write-up. To that end, we will address the conceptual considerations and practical steps in this process.</p>
+<div id="navigating-this-lesson-1" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Navigating this Lesson</h2>
+<p>There is about 1 hour and 20 minutes of lecture. If you work through the materials with me it would be good to add another hour.</p>
+<p>While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the <a href="https://github.com/lhbikos/ReC_MultivariateModeling">Github site</a> that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER’s <a href="ReCintro.html#ReCintro">introduction</a></p>
+<div id="learning-objectives-1" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Learning Objectives</h3>
+<p>Learning objectives from this lecture include the following:</p>
+<ul>
+<li>Recognize the key components of data loss mechanisms (MCAR, MAR, MNAR), including how to diagnose MCAR.</li>
+<li>Interpret missingness figures produced by packages such as <em>mice</em>.</li>
+<li>Articulate a workflow for scrubbing and scoring data.</li>
+<li>Use critical data manipulation functions from <em>dplyr</em> including <em>filter()</em>, <em>select()</em>, and <em>mutate()</em> to prepare variables.</li>
+<li>Interpret code related to missingness (i.e., “is.na,” “!is.na”) and the pipe (%&gt;%)</li>
+</ul>
+</div>
+<div id="planning-for-practice-1" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Planning for Practice</h3>
+<!-- TODO: Specify set of items to score for homework. -->
+<p>The suggestions for practice continue from the prior chapter. The assignment in the prior chapter involved downloading a dataset from Qualtrics and the “scrubbing” it on the basis of inclusion and exclusion criteria. Using that same data, the practice suggestions in this chapter will continue to use Parent’s <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> AIA approach to managing missing data, to score the variables of interest. Options of graded complexity could incude:</p>
+<ul>
+<li>Repeating the steps in the chapter with the most recent data from the Rate-A-Recent-Course survey; differences will be in the number of people who have completed the survey since the chapter was written.</li>
+<li>Use the dataset that is the source of the chapter, but score a different set of items that you choose.</li>
+<li>Begin with raw data to which you have access.</li>
+</ul>
+</div>
+<div id="readings-resources-1" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Readings &amp; Resources</h3>
+<p>In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.</p>
+<ul>
+<li><p>Parent, M. C. (2013). Handling item-level missing data: Simpler is just as good. The Counseling Psychologist, 41(4), 568–600. <a href="https://doi.org/10.1177/0011000012445176" class="uri">https://doi.org/10.1177/0011000012445176</a></p></li>
+<li><p>Kline, R. B. (2015). Data preparation and psychometrics review. In Principles and Practice of Structural Equation Modeling, Fourth Edition. Guilford Publications. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663" class="uri">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663</a></p></li>
+<li><p>Grolemund, G., &amp; Wickham, H. (n.d.). 5 Data transformation | R for Data Science. Retrieved March 12, 2020, from <a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a></p></li>
+</ul>
+</div>
+<div id="packages-2" class="section level3" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Packages</h3>
+<p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
+<!-- TODO: Build out this section. -->
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="score.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
+<span id="cb26-2"><a href="score.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
+<span id="cb26-3"><a href="score.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(formattable)){<span class="fu">install.packages</span>(<span class="st">&quot;formattable&quot;</span>)}</span>
+<span id="cb26-4"><a href="score.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(mice)){<span class="fu">install.packages</span>(<span class="st">&quot;mice&quot;</span>)}</span>
+<span id="cb26-5"><a href="score.html#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(sjstats)){<span class="fu">install.packages</span>(<span class="st">&quot;sjstats&quot;</span>)}</span></code></pre></div>
+</div>
+</div>
+<div id="workflow-for-scrubbing-and-scoring-1" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Workflow for Scrubbing and Scoring</h2>
+<p>The following is a proposed workflow for preparing data for analysis.</p>
+<!-- TODO: When finalized, save as PDF so it can open in its own window) -->
+<p>The same workflow guides us through the Scrubbing, Scoring, and Data dx chapters. At this stage in the chapter we are still scrubbing as we work through the item-level and whole-level portions of the AIA (left side) of the chart.</p>
+<div class="figure">
+<img src="images/Ch02/wrkflow_prelim.jpg" alt="" />
+<p class="caption">An image of our stage in the workflow for scrubbing and scoring data.</p>
+</div>
+</div>
+<div id="research-vignette-1" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Research Vignette</h2>
+<p>The research vignette comes from the survey titled, <a href="https://spupsych.az1.qualtrics.com/jfe/form/SV_b2cClqAlLGQ6nLU">Rate-a-Recent-Course: A ReCentering Psych Stats Exercise</a> and is explained in the prior chapter. In the prior chapter we conducted super-preliminary scrubbing of variables that will allow us to examine the respondent’s perceived campus climate for students who are Black, predicted by the the respondent’s own campus belonging, and also the <em>structural diversity</em> proportions of Black students in the classroom and the BIPOC instructional staff. At present, I see this as a parallel mediation. That is, the perceived campus climate for Black students will be predicted by the respondent’s sense of belonging, through the proportion of Black classmates and BIPOC (Black, Indigenous, and people of color)instructional staff.</p>
+<p><em>I would like to assess the model by having the instructional staff variable to be the %Black instructional staff. At the time that this lecture is being prepared, there is not sufficient Black representation in the staff to model this.</em></p>
+<div class="figure">
+<img src="images/Ch03/BlStuMed.jpg" alt="" />
+<p class="caption">An image of the statistical model for which we are preparing data.</p>
+</div>
+<p>First, though, let’s take a more conceptual look at issues regarding missing data. We’ll come back to details of the survey as we work with it.</p>
+</div>
+<div id="on-missing-data" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> On Missing Data</h2>
+<p>On the topic of missing data, we follow the traditions in most textbooks. We start by considering <em>data loss mechanisms</em> and options for <em>managing missingness.</em></p>
+<p>Although the workflow I recommend is fairly straightforward, the topic is not. Quantitative psychologist have produced volumes of research that supports and refutes all of these issues in detail. An in-deth review of this is found in Enders’ <span class="citation">(<a href="refs.html#ref-enders_applied_2010" role="doc-biblioref">2010</a>)</span> text.</p>
+<div id="data-loss-mechanisms" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Data Loss Mechanisms</h3>
+<p>We generally classify missingess in data in three different ways <span class="citation">(<a href="refs.html#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>; <a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">Parent, 2013</a>)</span>:</p>
+<p><strong>Missing completely at random (MCAR)</strong> is the ideal case (and often unrealistic in actual data). For variable <em>Y</em> this mean that</p>
+<ul>
+<li>Missingness is due to a factor(s) completely unrelated to the missing data. Stated another way:
+<ul>
+<li>Missing observations differ from the observed scores only by chance; that is, whether scores on Y are missing or not missing is unrelated to <em>Y</em> itself</li>
+</ul></li>
+<li>The presence versus absence of data on <em>Y</em> is unrelated to all other variables in the dataset. That is, the nonmissing data are just a random sample of scores that the researcher would have analyzed had the data been complete. We might think of it as <em>haphazard</em> missing.
+<ul>
+<li>A respondent is interrupted, looks up, looks down, and skips an item.</li>
+<li>A computer glitch causes spotty missingness – unrelated to any particular variable.</li>
+</ul></li>
+</ul>
+<p>MCAR is the ideal state because results from it should not be biased as a function of the missingness.</p>
+<p><strong>Missing at random (MAR)</strong> missing data arise from a process that is both measured and predictable in a particular sample. <em>Admittedly the use of “random” in this term is odd, because, by definition, the missingness is not random.</em></p>
+<p>Restated:</p>
+<ol style="list-style-type: decimal">
+<li>Missingness on Y is unrelated to Y itself, but</li>
+<li>Missingness is on Y is correlated with other variables in the data set.</li>
+</ol>
+<p>Example: Men are less likely to respond to questions about mental health than women, but among men, the probability of responding is unrelated to their true mental health status.</p>
+<p>Kline <span class="citation">(<a href="refs.html#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span> indicated that information loss due to MAR is potentially recoverable through imputation where missing scores are replaced by predicted scores. The predicted scores are generated from other variables in the data set that predict missingness on Y. If the strength of that prediction is reasonably strong, then results on Y after imputation may be relatively unbiased. In this sense, the MAR pattern is described as <em>ignorable</em> with regard to potential bias. Two types of variables can be used to predict the missing data</p>
+<ol style="list-style-type: decimal">
+<li>variables that are in the prediction equation, and</li>
+<li><em>auxiliary</em> variables (i.e., variables in the dataset that are not in the prediction equation).</li>
+</ol>
+<p>Parent <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> noted that multiple imputation and expectation maximization have frequently been used to manage missingness in MAR circumstances.</p>
+<p><strong>Missing not at random (MNAR)</strong> is when the presence versus absence of scores on <em>Y</em> depend on <em>Y</em> itself. This is <em>non-ignorable</em>.</p>
+<p>For example, if a patient drops out of a medical RCT because there are unpleasant side effects from the treatment, this discomfort is not measured, but the data is missing due to a process that is unknown in a particular data set. Results based on <em>complete cases only</em> can be severely biased when the data loss pattern is MNAR. That is, a treatment may look more beneficial than it really is if data from patients who were unable to tolerate the treatment are lost.</p>
+<p>Parent <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> described MNAR a little differently – but emphasized that the systematic missingness would be related to a variable outside the datset. Parent provided the example of items written in a manner that may be inappropriate for some participants (e.g., asking women about a relationship with their boyfriend/husband, when the woman might be in same gender relationship). If there were not demographic items that could identify the bias, this would be MNAR. Parent strongly advises researchers to carefully proofread and pilot surveys to avoid MNAR circumstances.</p>
+<p>Kline <span class="citation">(<a href="refs.html#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span> noted that the choice of the method to deal with the incomplete records can make a difference in the results, and should be made carefully.</p>
+</div>
+<div id="diagnosing-missing-data-mechanisms" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Diagnosing Missing Data Mechanisms</h3>
+<p>The bad news is that we never really know (with certainty) the type of missing data mechanism in our data. The following tools can help understand the mechanisms that contribute to missingness.</p>
+<ul>
+<li>Missing data analyses often includes correlations that could predict missingness.</li>
+<li>Little and Rubin <span class="citation">(<a href="refs.html#ref-little_statistical_2002" role="doc-biblioref">2002</a>)</span> proposed a multivariate statistical test of the MCAR assumption that simultaneously compares complete versus incomplete cases on <em>Y</em> across all other variables. If this comparison is significant, then the MCAR hypothesis is rejected.
+<ul>
+<li>To restate: we want a non-significant result; and we use the sometimes-backwards-sounding NHST (null hypothesis significance testing) language, “MCAR cannot be rejected.”</li>
+</ul></li>
+<li>MCAR can also be examined through a series of <em>t</em> tests of the cases that have missing scores on Y with cases that have complete records on other variables. Unfortunately, sample sizes contribute to problems with interpretation. With low samples, they are underpowered; in large samples they can flag trivial differences.</li>
+</ul>
+<p>If MCAR is rejected, we are never sure whether the data loss mechanism is MAR or MNAR. There is no magical statistical “fix.” Kline <span class="citation">(<a href="refs.html#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span> wrote, “About the best that can be done is to understand the nature of the underlying data loss pattern and accordingly modify your interpretation of the results” (p. 85).</p>
+</div>
+<div id="managing-missing-data" class="section level3" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Managing Missing Data</h3>
+<p>There are a number of approaches to managing missing data. Here is a summary of the ones most commonly used.</p>
+<ul>
+<li><p><strong>Listwise deletion</strong> (aka, Complete Case Analysis) If there is a missing score on any variable, that case is excluded from <strong>all</strong>
+analyses.</p></li>
+<li><p><strong>Pairwise deletion</strong> Cases are excluded only if they have missing data on variables involved in a particular analysis. AIA is a variant of pair-wise deletion, but it preserves as much data as possible with person-mean imputation at the scale level.</p></li>
+<li><p><strong>Mean/median substitution</strong> Mean/median substitution replaces missing values with the mean/median of that particular variable. While this preserves the mean of the dataset, it can cause bias by decreasing variance. For example, if you have a column that has substantial of missingness and you replace each value with the same, fixed, mean, the variability of that variable has just been reduced. A variation on this is a <strong>group-mean substitution</strong> where the missing score in a particular group (e.g., women) is replaced by the group mean.</p></li>
+<li><p><strong>Full information maximum likelihood (FIML)</strong> A <em>model-based method</em> that takes the researcher’s model as the starting point. The procedure partitions the cases in a raw data file into subsets, each with the same pattern of missing observations, including none (complete cases). Statistical information (e.g., means, variances) is extracted from each subset so all case are retained in the analysis. Parameters for the researcher’s model are estimated after combining all available information over the subsets of cases.</p></li>
+<li><p><strong>Multiple imputation</strong> A <em>data based method</em> that works with the whole raw data file (not just with the observed variables that comprise the researcher’s model). Multiple imputation assumes that data are MAR (remember, MCAR is the more prestigious one). This means that researchers assume that missing values can be replaced by predictions derived from the observable portion fo the dataset.</p>
+<ul>
+<li>Multiple datasets (often 5 to 20) are created where missing values are replaced via a randomized process (so the same missing value [item 4 for person A] will likely have different values for each dataset).</li>
+<li>The desired anlayis(es) is conducted simultaneously/separately for each of the imputed sets (so if you imputed 5 sets and wanted a linear regression, you get 5 linear regressions).</li>
+<li>A <em>pooled analysis</em> uses the point estimates and the standard errors to provide a single result that represents the analysis.</li>
+</ul></li>
+</ul>
+</div>
+<div id="available-information-analysis-aia" class="section level3" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> Available Information Analysis (AIA)</h3>
+<p>Parent <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> has created a set of recommendations that help us create a streamlined workflow for managing missing data. After evaluating three approaches to managing missingness (AIA, mean substitution, and multiple imputation) Parent concluded that in datasets with (a) low levels of missingness, (b) a reasonable sample size, and (c) adequate internal reliability of measures, these approaches had similar results.</p>
+<p>Further, in simulation studies where there was (a) low sample size (<em>n</em> = 50), (b) weak associations among items, and (c) a small number of missing items, AIA was equivalent to multiple imputation. Even in cases where the data conditions were the “best” (i.e., <em>N</em> = 200, moderate correlations, at least 10 items), even 10% missingness (overall) did not produce notable difference among the methods. That is, means, standard errors, and alphas were similar across the methods (AIA, mean substitution, multiple imputation).</p>
+<p>AIA is an older method of handling missing data that, as its name suggests, uses the <em>available data</em> for analysis and excludes missing data points only for analyses in which the missing data point would be directly involved. This means</p>
+<ul>
+<li>In the case of research that uses multiple item scales, and analysis takes place at the scale level
+<ul>
+<li>AIA is used to generate <strong>mean</strong> scores for the scale using the available data without substituting or imputing values;</li>
+<li>This method generally produces a fairly complete set of scale-level data where
+<ul>
+<li>pairwise deletion (the whole row/case/person is skipped) can be used where there will be multiple analyses using statistics (e.g., correlations, t-tests, ANOVA) were missingness is not permitted</li>
+<li>FIML can be specified in path analysisand CFA/SEM (where item-level data is required), and</li>
+<li>some statistics, such as principal components analysis and principal axis factoring (item-level analyses) permit missing data,</li>
+</ul></li>
+<li>Of course, the researcher could still impute data, but why…</li>
+</ul></li>
+</ul>
+<p>Parent’s <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> recommendations:</p>
+<ul>
+<li>Scale scores should be first calculated as a <em>mean</em> (average) not a sum. Why?
+<ul>
+<li>Calculating a “sum” from available data will result in automatically lower scores in cases where there is missingness.</li>
+<li>If a sum is required (i.e., because you want to interpret some clinical level of something), calculate the mean first, do the analyses, then transform the results back into the whole-scale equivalent (multiply the mean by the number of items) for any interpretation.</li>
+<li>For R script, do not write the script ([item1 + item2 + item3]/3) because this will return an empty entry for participants missing data (same problem as if you were to use sum). There are several functions for properly computing a mean; I will demo the <em>mean_n()</em> function from <em>sjstats</em> package because it allows us to simultaneously specify the tolerance level (next item).</li>
+</ul></li>
+<li>Determine your <em>tolerance</em> for missingness (20% seems to be common, although you could also look for guidance in the test manual/article). Then
+<ul>
+<li>Run a “percent missingness” check on the level of analysis (i.e., total score, scale, or subscale) you are using. If you are using a total scale score, then check to see what percent is missing across all the items in the whole scale. In contrast, if you are looking at subscales, run the percent missing at that level.</li>
+<li>Parent <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> advised that the tolerance levels should be made mindfully. A four-item scale with one item missing, won’t meet the 80% threshold, so it may make sense to set a 75% threshold for this scale.</li>
+</ul></li>
+<li>“Clearly and concisely detail the level of missingness” in papers <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">Parent, 2013, p. 595</a>)</span>. This includes
+<ul>
+<li>tolerance level for missing data by scale or subscale (e.g., 80% or 75%)</li>
+<li>the number of missing values out of all data points on that scale for all participants and the maximum by participant (e.g., “For Scale X, a total of # missing data points out of ### were observed with no participant missing more than a single point.”)</li>
+<li>verify a manual inspection of missing data for obvious patterns (e.g., abnormally high missing rates for only one or two items). This can be accomplished by requesting frequency output for the items and checking the nonmissing data points for each scale, ensuring there are no abnormal spikes in missingness (looking for MNAR).</li>
+</ul></li>
+<li>Curiously, Parent <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> does not recommend that we run all the diagnostic tests. However, because recent reviewers have required them of me, I will demonstrate a series of them.</li>
+<li>Reducing missingness starts at the survey design – make sure that all people can answer all items (i.e,. relationship-related items may contain heterosexist assumptions…which would result in an MNAR circumstance)</li>
+</ul>
+<p>Very practically speaking, Parent’s <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> recommendations follow us through the entire data analysis process.</p>
+</div>
+</div>
+<div id="working-the-problem-1" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Working the Problem</h2>
+<p>In the prior chapter we imported the data from Qualtrics and applied the broadest levels of inclusion (e.g., the course rated was offered from an institution in the U.S., the respondent consented to participation) and exclusion (e.g., the survey was not a preview). We then downsized the survey to include the variables we will use in our statistical model. We then saved the data in a .csv file.</p>
+<p>Presuming that you are working along with me in an .rmd file, if you have placed that file in the same folder as this .rmd file, the following code should read the data into your environment.</p>
+<p>I use <em>different</em> names for the object/df in my R environment than I use for the filename that holds the data on my computer. Why? I don’t want to accidentally overwrite this precious “source” of data.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="score.html#cb27-1" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span> (<span class="st">&quot;BlackStntsModel210318.csv&quot;</span>, <span class="at">head =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb27-2"><a href="score.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(scrub_df)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    38 obs. of  25 variables:
+##  $ ID       : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ iRace1   : int  3 3 3 3 1 3 3 3 1 0 ...
+##  $ iRace2   : int  1 NA 1 1 NA NA 3 NA NA 0 ...
+##  $ iRace3   : int  3 NA NA 3 NA NA NA NA NA 3 ...
+##  $ iRace4   : int  NA NA NA NA NA NA NA NA NA 3 ...
+##  $ iRace5   : logi  NA NA NA NA NA NA ...
+##  $ iRace6   : logi  NA NA NA NA NA NA ...
+##  $ iRace7   : logi  NA NA NA NA NA NA ...
+##  $ iRace8   : logi  NA NA NA NA NA NA ...
+##  $ iRace9   : logi  NA NA NA NA NA NA ...
+##  $ iRace10  : logi  NA NA NA NA NA NA ...
+##  $ cmBiMulti: int  0 0 0 2 5 15 0 0 0 7 ...
+##  $ cmBlack  : int  0 5 10 6 5 20 0 0 0 4 ...
+##  $ cmNBPoC  : int  39 10 30 19 10 30 40 5 30 13 ...
+##  $ cmWhite  : int  61 85 60 73 80 35 60 90 70 73 ...
+##  $ cmUnsure : int  0 0 0 0 0 0 0 5 0 3 ...
+##  $ Belong_1 : int  6 4 NA 5 4 5 6 7 6 3 ...
+##  $ Belong_2 : int  6 4 3 3 4 6 6 7 6 3 ...
+##  $ Belong_3 : int  7 6 NA 2 4 5 5 7 6 3 ...
+##  $ Blst_1   : int  5 6 NA 2 6 5 5 5 5 3 ...
+##  $ Blst_2   : int  3 6 5 2 1 1 4 4 3 5 ...
+##  $ Blst_3   : int  5 2 2 2 1 1 4 3 1 2 ...
+##  $ Blst_4   : int  2 2 2 2 1 2 4 3 2 3 ...
+##  $ Blst_5   : int  2 4 NA 2 1 1 4 4 1 3 ...
+##  $ Blst_6   : int  2 1 2 2 1 2 4 3 2 3 ...</code></pre>
+<p>Let’s think about how the variables in our model should be measured:</p>
+<ul>
+<li>DV: Campus Climate for Black Students (as perceived by the respondent)
+<ul>
+<li>mean score of the 6 items on that scale (higher scores indicate a climate characterized by hostility, nonresponsiveness, and stigma)</li>
+<li>1 item needs to be reverse-coded</li>
+<li>this scale was adapted from the LGBT Campus Climate Scale <span class="citation">(<a href="refs.html#ref-szymanski_perceptions_2020" role="doc-biblioref">Szymanski &amp; Bissonette, 2020</a>)</span></li>
+</ul></li>
+<li>IV: Belonging
+<ul>
+<li>mean score for the 3 items on that scale (higher scores indicate a greater sense of belonging)</li>
+<li>this scale is taken from the Sense of Belonging subscale from the Perceived Cohesion Scale <span class="citation">(<a href="refs.html#ref-bollen_perceived_1990" role="doc-biblioref">Bollen &amp; Hoyle, 1990</a>)</span></li>
+</ul></li>
+<li>Proportion of classmates who are Black
+<ul>
+<li>a single item</li>
+</ul></li>
+<li>Proportion of instructional staff who are BIPOC
+<ul>
+<li>must be calculated from each of the single items for each instructor</li>
+</ul></li>
+</ul>
+<p>Our next step is to conduct a preliminary missing data analysis at the item level, across the dataset we are using. The Campus Climate and Belonging scales are traditional in the sense that they have items that we sum. The variable representing proportion of classmates who are Black is a single item. The variable representing the proportion of instructional staff who are BIPOC must be calculated in a manner that takes into consideration the there may be multiple instructors. The survey allowed a respondent to name up to 10 instructors.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="score.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(scrub_df<span class="sc">$</span>iRace1)</span></code></pre></div>
+<pre><code>##  int [1:38] 3 3 3 3 1 3 3 3 1 0 ...</code></pre>
+<p>Looking at the structure of our data, the iRace(1 thru 10) variables are in “int” or integer format. This means that they are represented as whole numbers. We need them to be represented as factors. R handles factors represented as words well. Therefore, let’s use our codebook to reformat this variable as a an ordered factor, with words instead of numbers.</p>
+<p>Qualtrics imports many of the categorical variables as numbers. R often reads them numerically (integers or numbers). If they are directly converted to factors, R will sometimes collapse across missing numbers. In this example, if there is a race that is not represented (e.g., 2 for BiMulti), when the numbers are changed to factors, R will assume they are ordered and there is a consecutive series of numbers (0,1,2,3,4). If a number in the sequence is missing (0,1,3,4) and labels are applied, it will collapse across the numbers and the labels you think are attached to each number are not. Therefore, it is ESSENTIAL to check (again and again ad nauseum) to ensure that your variables are recoding in a manner you understand.</p>
+<p>One way to avoid this is to use the code below to identify the levels and the labels. When they are in order, they align and don’t “skip” numbers. To quadruple check our work, we will recode into a new variable “tRace#” for “teacher” Race.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="score.html#cb31-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace1 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace1,</span>
+<span id="cb31-2"><a href="score.html#cb31-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-3"><a href="score.html#cb31-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-4"><a href="score.html#cb31-4" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace2 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace2,</span>
+<span id="cb31-5"><a href="score.html#cb31-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-6"><a href="score.html#cb31-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-7"><a href="score.html#cb31-7" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace3 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace3,</span>
+<span id="cb31-8"><a href="score.html#cb31-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-9"><a href="score.html#cb31-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-10"><a href="score.html#cb31-10" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace4 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace4,</span>
+<span id="cb31-11"><a href="score.html#cb31-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-12"><a href="score.html#cb31-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-13"><a href="score.html#cb31-13" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace5 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace5,</span>
+<span id="cb31-14"><a href="score.html#cb31-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-15"><a href="score.html#cb31-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-16"><a href="score.html#cb31-16" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace6 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace6,</span>
+<span id="cb31-17"><a href="score.html#cb31-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-18"><a href="score.html#cb31-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-19"><a href="score.html#cb31-19" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace7 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace7,</span>
+<span id="cb31-20"><a href="score.html#cb31-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-21"><a href="score.html#cb31-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-22"><a href="score.html#cb31-22" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace8 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace8,</span>
+<span id="cb31-23"><a href="score.html#cb31-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-24"><a href="score.html#cb31-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-25"><a href="score.html#cb31-25" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace9 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace9,</span>
+<span id="cb31-26"><a href="score.html#cb31-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-27"><a href="score.html#cb31-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-28"><a href="score.html#cb31-28" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace10 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace10,</span>
+<span id="cb31-29"><a href="score.html#cb31-29" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-30"><a href="score.html#cb31-30" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span></code></pre></div>
+<p>Let’s check the structure to see if they are factors.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="score.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb32-2"><a href="score.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(scrub_df)</span></code></pre></div>
+<pre><code>## Rows: 38
+## Columns: 35
+## $ ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17...
+## $ iRace1    &lt;int&gt; 3, 3, 3, 3, 1, 3, 3, 3, 1, 0, 2, 1, 1, 1, 3, 3, 3, 1, 3, ...
+## $ iRace2    &lt;int&gt; 1, NA, 1, 1, NA, NA, 3, NA, NA, 0, NA, NA, 3, NA, 3, 3, N...
+## $ iRace3    &lt;int&gt; 3, NA, NA, 3, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, 3, 1...
+## $ iRace4    &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, NA...
+## $ iRace5    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ iRace6    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ iRace7    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ iRace8    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ iRace9    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ iRace10   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ cmBiMulti &lt;int&gt; 0, 0, 0, 2, 5, 15, 0, 0, 0, 7, 0, 0, 20, 0, 9, 12, 0, 6, ...
+## $ cmBlack   &lt;int&gt; 0, 5, 10, 6, 5, 20, 0, 0, 0, 4, 0, 7, 0, 6, 9, 1, 21, 5, ...
+## $ cmNBPoC   &lt;int&gt; 39, 10, 30, 19, 10, 30, 40, 5, 30, 13, 80, 19, 0, 19, 15,...
+## $ cmWhite   &lt;int&gt; 61, 85, 60, 73, 80, 35, 60, 90, 70, 73, 10, 74, 80, 0, 67...
+## $ cmUnsure  &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 5, 0, 3, 10, 0, 0, 75, 0, 14, 0, 5, ...
+## $ Belong_1  &lt;int&gt; 6, 4, NA, 5, 4, 5, 6, 7, 6, 3, 6, 6, 3, 4, 3, 3, 4, 5, 1,...
+## $ Belong_2  &lt;int&gt; 6, 4, 3, 3, 4, 6, 6, 7, 6, 3, 6, 6, 5, 4, 3, 3, 4, 6, 1, ...
+## $ Belong_3  &lt;int&gt; 7, 6, NA, 2, 4, 5, 5, 7, 6, 3, 5, 6, 4, 4, 3, 2, 4, 5, 1,...
+## $ Blst_1    &lt;int&gt; 5, 6, NA, 2, 6, 5, 5, 5, 5, 3, NA, 4, 5, 6, 3, 4, 6, 4, 4...
+## $ Blst_2    &lt;int&gt; 3, 6, 5, 2, 1, 1, 4, 4, 3, 5, NA, 5, 1, 1, 3, 2, 1, 2, 5,...
+## $ Blst_3    &lt;int&gt; 5, 2, 2, 2, 1, 1, 4, 3, 1, 2, 2, 1, 1, 1, 3, 2, 6, 2, 2, ...
+## $ Blst_4    &lt;int&gt; 2, 2, 2, 2, 1, 2, 4, 3, 2, 3, NA, 4, 3, 1, 3, 2, 1, 3, 2,...
+## $ Blst_5    &lt;int&gt; 2, 4, NA, 2, 1, 1, 4, 4, 1, 3, 2, 2, 1, 1, 3, 2, 1, 2, 2,...
+## $ Blst_6    &lt;int&gt; 2, 1, 2, 2, 1, 2, 4, 3, 2, 3, NA, 2, 1, 1, 3, 2, 2, 3, 2,...
+## $ tRace1    &lt;fct&gt; White, White, White, White, nBpoc, White, White, White, n...
+## $ tRace2    &lt;fct&gt; nBpoc, NA, nBpoc, nBpoc, NA, NA, White, NA, NA, Black, NA...
+## $ tRace3    &lt;fct&gt; White, NA, NA, White, NA, NA, NA, NA, NA, White, NA, NA, ...
+## $ tRace4    &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, White, NA, NA, NA, NA...
+## $ tRace5    &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ tRace6    &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ tRace7    &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ tRace8    &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ tRace9    &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ tRace10   &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...</code></pre>
+<p>Calculating the proportion of the BIPOC instructional staff could likely be accomplished a number of ways. My searching for solutions resulted in this. Hopefully it’s a fair balance between intuitive and elegant coding. First, I created code that</p>
+<ul>
+<li>created a new variable (count.BIPOC) by
+<ul>
+<li>summing across the tRace1 through tRace10 variables,</li>
+<li>assigning a count of “1” each time the factor value was Black, nBpoc, or BiMulti</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="score.html#cb34-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>count.BIPOC <span class="ot">&lt;-</span> <span class="fu">apply</span>(scrub_df[<span class="fu">c</span>(<span class="st">&quot;tRace1&quot;</span>, <span class="st">&quot;tRace2&quot;</span>, <span class="st">&quot;tRace3&quot;</span>, <span class="st">&quot;tRace4&quot;</span>, <span class="st">&quot;tRace5&quot;</span>, <span class="st">&quot;tRace6&quot;</span>, <span class="st">&quot;tRace7&quot;</span>, <span class="st">&quot;tRace8&quot;</span>, <span class="st">&quot;tRace9&quot;</span>, <span class="st">&quot;tRace10&quot;</span>)], <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>)))</span></code></pre></div>
+<p>Next, I created a variable that counted the number of non-missing values across the tRace1 through tRace10 variables.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="score.html#cb35-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>count.nMiss <span class="ot">&lt;-</span> <span class="fu">apply</span>(scrub_df[<span class="fu">c</span>(<span class="st">&quot;tRace1&quot;</span>, <span class="st">&quot;tRace2&quot;</span>, <span class="st">&quot;tRace3&quot;</span>, <span class="st">&quot;tRace4&quot;</span>, <span class="st">&quot;tRace5&quot;</span>, <span class="st">&quot;tRace6&quot;</span>, <span class="st">&quot;tRace7&quot;</span>, <span class="st">&quot;tRace8&quot;</span>, <span class="st">&quot;tRace9&quot;</span>, <span class="st">&quot;tRace10&quot;</span>)], <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)))</span></code></pre></div>
+<p>Now to calculate the proportion of BIPOC instructional faculty for each case.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="score.html#cb36-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>iBIPOC_pr <span class="ot">=</span> scrub_df<span class="sc">$</span>count.BIPOC<span class="sc">/</span>scrub_df<span class="sc">$</span>count.nMiss</span></code></pre></div>
+<div id="missing-data-analysis-whole-df-and-item-level" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Missing Data Analysis: Whole df and Item level</h3>
+<p>In understanding missingness across the dataset, I think it is important to analyze and manage it, iteratively. We will start with a view of the whole df-level missingness. Subsequently, and consistent with the available information analysis [AIA; <span class="citation"><a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">Parent</a> (<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span>] approach, we will score the scales and then look again at missingness, using the new information to update our decisions about how to manage it.</p>
+<div class="figure">
+<img src="images/Ch02/wrkflow_item_lvl.jpg" alt="" />
+<p class="caption">An image of our stage in the workflow for scrubbing and scoring data.</p>
+</div>
+<p>Because we just created a host of new variables in creating the <em>prop_BIPOC</em> variable, let’s downsize the df so that the calculations are sensible.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="score.html#cb37-1" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span>(<span class="fu">select</span> (scrub_df, ID, iBIPOC_pr, cmBlack, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6))</span></code></pre></div>
+<p>With a couple of calculations, we create a proportion of item-level missingness.</p>
+<p>In this chunk I first calculate the number of missing (nmiss)</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="score.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculating number and proportion of item-level missingness</span></span>
+<span id="cb38-2"><a href="score.html#cb38-2" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>nmiss <span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="score.html#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>Blst_6) <span class="sc">%&gt;%</span> <span class="co">#the colon allows us to include all variables between the two listed (the variables need to be in order)</span></span>
+<span id="cb38-4"><a href="score.html#cb38-4" aria-hidden="true" tabindex="-1"></a>    is.na <span class="sc">%&gt;%</span> </span>
+<span id="cb38-5"><a href="score.html#cb38-5" aria-hidden="true" tabindex="-1"></a>    rowSums</span>
+<span id="cb38-6"><a href="score.html#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="score.html#cb38-7" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span></span>
+<span id="cb38-8"><a href="score.html#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_miss =</span> (nmiss<span class="sc">/</span><span class="dv">11</span>)<span class="sc">*</span><span class="dv">100</span>) <span class="co">#11 is the number of variables included in calculating the proportion</span></span></code></pre></div>
+<p>We can grab the descriptives for the <em>prop_miss</em> variable to begin to understand our data. I will create an object from it so I can use it with inline</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="score.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(formattable)</span>
+<span id="cb39-2"><a href="score.html#cb39-2" aria-hidden="true" tabindex="-1"></a>CaseMiss<span class="ot">&lt;-</span>psych<span class="sc">::</span><span class="fu">describe</span>(scrub_df<span class="sc">$</span>prop_miss)</span>
+<span id="cb39-3"><a href="score.html#cb39-3" aria-hidden="true" tabindex="-1"></a>CaseMiss</span></code></pre></div>
+<pre><code>##    vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
+## X1    1 38 3.35 9.31      0    0.85   0   0 36.36 36.36 2.77     6.48 1.51</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="score.html#cb41-1" aria-hidden="true" tabindex="-1"></a>missMin <span class="ot">&lt;-</span> <span class="fu">digits</span>(CaseMiss<span class="sc">$</span>min, <span class="dv">0</span>)</span>
+<span id="cb41-2"><a href="score.html#cb41-2" aria-hidden="true" tabindex="-1"></a>missMax <span class="ot">&lt;-</span> <span class="fu">digits</span>(CaseMiss<span class="sc">$</span>max, <span class="dv">0</span>)</span></code></pre></div>
+<p>CUMULATIVE CAPTURE FOR WRITING IT UP: Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 36%.</p>
+<p>At the time that I am lecturing this, the the amount of missing is not so egregious that I want to eliminate any cases. That is, I’m willing to wait until after I score the items to make further decisions, then.</p>
+<p>Because (a) I want to teach it and (b) it is quite likely that we will receive responses with high levels of missingness, I will write code to eliminate cases with <span class="math inline">\(\geq\)</span> 90%.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="score.html#cb42-1" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> <span class="fu">filter</span>(scrub_df, prop_miss <span class="sc">&lt;=</span> <span class="dv">90</span>)  <span class="co">#update df to have only those with at least 90% of complete data</span></span></code></pre></div>
+<p>To analyze missingness at this level, we need a df that has only the variables of interest. That is, variables like <em>ID</em> and the <em>prop_miss</em> and <em>nmiss</em> variables we created will interfere with an accurate assessment of missingness. I will update our df to eliminate these.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="score.html#cb43-1" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> scrub_df <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="score.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span> (<span class="sc">-</span><span class="fu">c</span>(ID, nmiss, prop_miss))<span class="co">#further update to exclude the n_miss and prop_miss variables</span></span></code></pre></div>
+<p>Missing data analysis commonly looks at proportions by:</p>
+<ul>
+<li>the entire df</li>
+<li>rows/cases/people</li>
+</ul>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="score.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;formattable&quot;)</span></span>
+<span id="cb44-2"><a href="score.html#cb44-2" aria-hidden="true" tabindex="-1"></a>CellsMiss <span class="ot">&lt;-</span> <span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">is.na</span>(scrub_df)))<span class="co">#what proportion of cells missing across entire dataset</span></span>
+<span id="cb44-3"><a href="score.html#cb44-3" aria-hidden="true" tabindex="-1"></a>CaseComplete <span class="ot">&lt;-</span> <span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">complete.cases</span>(scrub_df)))<span class="co">#what proportion of cases (rows) are complete (nonmissing)</span></span>
+<span id="cb44-4"><a href="score.html#cb44-4" aria-hidden="true" tabindex="-1"></a>CellsMiss</span></code></pre></div>
+<pre><code>## [1] 3.35%</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="score.html#cb46-1" aria-hidden="true" tabindex="-1"></a>CaseComplete</span></code></pre></div>
+<pre><code>## [1] 84.21%</code></pre>
+<p>CUMULATIVE CAPTURE FOR WRITING IT UP: Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 36%. Across the dataset, 3.35% of cells had missing data and 84.21% of cases had nonmissing data.</p>
+</div>
+<div id="analyzing-missing-data-patterns" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Analyzing Missing Data Patterns</h3>
+<p>One approach to analyzing missing data is to assess patterns of missingness.</p>
+<p>Several R packages are popularly used for conducting such analyses. In the <em>mice</em> package, <em>md.pattern()</em> function provides a matrix with the number of columns + 1, in which each row corresponds to a missing data pattern (1 = observed, 0 = missing).</p>
+<p>Rows and columns are sorted in increasing amounts of missing information.</p>
+<p>The last column and row contain row and column counts, respectively.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="score.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the package: mice</span></span>
+<span id="cb48-2"><a href="score.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb48-3"><a href="score.html#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="score.html#cb48-4" aria-hidden="true" tabindex="-1"></a>mice_out <span class="ot">&lt;-</span> <span class="fu">md.pattern</span>(scrub_df, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">rotate.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb48-5"><a href="score.html#cb48-5" aria-hidden="true" tabindex="-1"></a>mice_out</span>
+<span id="cb48-6"><a href="score.html#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span> (mice_out, <span class="at">file=</span><span class="st">&quot;mice_out.csv&quot;</span>) <span class="co">#optional to write it to a .csv file</span></span></code></pre></div>
+<p>The table lets you look at each missing pattern and see which variable(s) is/are missing. The output is in the form of a table that indicates the frequency of each pattern of missingness. Because I haven’t (yet) figured out how to pipe objects from this table into the chapter, this text may dier from the patterns in the current data frame.</p>
+<p>Each row in the table represents a different pattern of missingness. At the time of writing, there are <em>6</em> patterns of missing data. The patterns are listed in descending order of the least amount of missingness. The most common pattern (<em>23</em> cases, top row) is one with no missing data. One cases (is missing three cells – three of the items assessing the campus climate for Black students, and so forth. <em>These numbers are not piped and subject to change.</em></p>
+<p>In general, the data patterns represented a haphazard patterns of responding <span class="citation">(<a href="refs.html#ref-enders_applied_2010" role="doc-biblioref">Enders, 2010</a>)</span>.</p>
+</div>
+<div id="missing-mechanisms" class="section level3" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> Missing Mechanisms</h3>
+<p>Remember Little’s MCAR test. Recently it has a history of appearing, working with glitches, disappearing, and so forth. At the present time I cannot find a package that is working well. When I do, I will add this section.</p>
+</div>
+</div>
+<div id="scoring" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Scoring</h2>
+<p>So let’s get to work to score up the measures for our analysis. Each step of this should involve careful cross-checking with the <a href="./Rate-a-Course_Codebook.pdf">codebook</a>.</p>
+<div id="reverse-scoring" class="section level3" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Reverse scoring</h3>
+<p>As we discovered previously, in the scale that assesses campus climate (higher scores reflect a more negative climate) one of our items (Blst_1, “My <em>institution</em> provides a supportive environment for Black students.”) requires reverse-coding.</p>
+<p>To rescore:</p>
+<ul>
+<li>Create a <em>new</em> variable (this is essential) that is designated as the reversed item. We might put a the letter “r” (for reverse scoring) at the beginning or end: rBlst_1 or Blst_1r. It does not matter; just be consistent.
+<ul>
+<li>We don’t reverse score into the same variable because when you rerun the script, it just re-reverses the reversed score…into infinity. It’s very easy to lose your place.</li>
+</ul></li>
+<li>The reversal is an <em>equation</em> where you subtract the value in the item from the range/scaling + 1. For the our three items we subtract each item’s value from 8.</li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="score.html#cb49-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="ot">&lt;-</span> scrub_df <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="score.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rBlst_1 =</span> <span class="dv">8</span> <span class="sc">-</span> Blst_1) <span class="co">#if you had multiple items, you could add a pipe (%&gt;%) at the end of the line and add more until the last one</span></span></code></pre></div>
+<p>Per Parent <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> we will analyze missingness for each scale, separately.</p>
+<ul>
+<li>We will calculate scale scores on each scale separately when 80% (roughly) of the data is present.
+<ul>
+<li>this is somewhat arbitrary, on 4 item scales, I would choose 75% (to allow one to be missing)</li>
+<li>on the 3 item scale, I will allow one item to be missing (65%)</li>
+</ul></li>
+<li>After calculating the scale scores, we will return to analyzing the missingness, looking at the whole df</li>
+</ul>
+<p>The <em>mean_n()</em> function of <em>sjstats</em> package has allows you to specify how many items (whole number) or what percentage of items should be present in order to get the mean. First, though, we should identify the variables (properly formatted, if rescoring was needed) that should be included in the calculation of each scale and subscale.</p>
+<p>In our case, the scale assessing belonging <span class="citation">(<a href="refs.html#ref-bollen_perceived_1990" role="doc-biblioref">Bollen &amp; Hoyle, 1990</a>; <a href="refs.html#ref-hurtado_effects_1997" role="doc-biblioref">Hurtado &amp; Carter, 1997</a>)</span> involves three items with no reversals. Our campus climate scale was adapted from Szymanski et al.’s LGBTQ College Campus Climate Scale <span class="citation">(<a href="refs.html#ref-szymanski_perceptions_2020" role="doc-biblioref">Szymanski &amp; Bissonette, 2020</a>)</span>. While it has not been psychometrically evaluated for the purpose for which I am using it, I will follow the scoring structure in the journal article that introduces the measure. Specifically, the factor structure permits a total scale score and two subscales representing the college response and stigma.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="score.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjstats)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;sjstats&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:psych&#39;:
+## 
+##     phi</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="score.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making the list of variables</span></span>
+<span id="cb53-2"><a href="score.html#cb53-2" aria-hidden="true" tabindex="-1"></a>Belonging_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Belong_1&#39;</span>,<span class="st">&#39;Belong_2&#39;</span>,<span class="st">&#39;Belong_3&#39;</span>)</span>
+<span id="cb53-3"><a href="score.html#cb53-3" aria-hidden="true" tabindex="-1"></a>ResponseBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;rBlst_1&#39;</span>, <span class="st">&#39;Blst_4&#39;</span>,<span class="st">&#39;Blst_6&#39;</span>)</span>
+<span id="cb53-4"><a href="score.html#cb53-4" aria-hidden="true" tabindex="-1"></a>StigmaBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Blst_2&#39;</span>, <span class="st">&#39;Blst_3&#39;</span>,<span class="st">&#39;Blst_5&#39;</span>)</span>
+<span id="cb53-5"><a href="score.html#cb53-5" aria-hidden="true" tabindex="-1"></a>ClimateBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;rBlst_1&#39;</span>, <span class="st">&#39;Blst_4&#39;</span>,<span class="st">&#39;Blst_6&#39;</span>,<span class="st">&#39;Blst_2&#39;</span>, <span class="st">&#39;Blst_3&#39;</span>,<span class="st">&#39;Blst_5&#39;</span> )</span>
+<span id="cb53-6"><a href="score.html#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="score.html#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating the new variables</span></span>
+<span id="cb53-8"><a href="score.html#cb53-8" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>Belonging <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(scrub_df[,Belonging_vars], .<span class="dv">65</span>)</span>
+<span id="cb53-9"><a href="score.html#cb53-9" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>ResponseBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(scrub_df[,ResponseBL_vars], .<span class="dv">80</span>)</span>
+<span id="cb53-10"><a href="score.html#cb53-10" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>StigmaBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(scrub_df[,StigmaBL_vars], .<span class="dv">80</span>)</span>
+<span id="cb53-11"><a href="score.html#cb53-11" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>ClimateBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(scrub_df[,ClimateBL_vars], .<span class="dv">80</span>)</span></code></pre></div>
+<p>Later it will be helpful to have a df with the item and scale-level variables. It will also be helpful if there is an ID for each case.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="score.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb54-2"><a href="score.html#cb54-2" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> scrub_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>())</span>
+<span id="cb54-3"><a href="score.html#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="score.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co">#moving the ID number to the first column; requires </span></span>
+<span id="cb54-5"><a href="score.html#cb54-5" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span><span class="fu">select</span>(ID, <span class="fu">everything</span>())</span></code></pre></div>
+<p>Let’s save our <em>scrub_df</em> data for this and write it as an outfile.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="score.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(scrub_df, <span class="at">file=</span><span class="st">&quot;BlStItmsScrs210320.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>, <span class="at">col.names=</span><span class="cn">TRUE</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="missing-analysis-scale-level" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Missing Analysis: Scale level</h2>
+<p>Let’s return to analyzing the missingness, this time including the <em>scale level</em> variables (without the individual items) that will be in our statistical model(s).</p>
+<div class="figure">
+<img src="images/Ch02/wrkflow_scale_lvl.jpg" alt="" />
+<p class="caption">An image of our stage in the workflow for scrubbing and scoring data.</p>
+</div>
+<p>First let’s get the df down to the variables we want to retain:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="score.html#cb56-1" aria-hidden="true" tabindex="-1"></a>scored <span class="ot">&lt;-</span>(<span class="fu">select</span> (scrub_df, iBIPOC_pr, cmBlack, Belonging, ResponseBL, StigmaBL, ClimateBL))</span>
+<span id="cb56-2"><a href="score.html#cb56-2" aria-hidden="true" tabindex="-1"></a>ScoredCaseMiss <span class="ot">&lt;-</span> <span class="fu">nrow</span>(scored) <span class="co">#I produced this object for the sole purpose of feeding the number of cases into the inline text, below</span></span></code></pre></div>
+<p>Before we start our formal analysis of missingness at the scale level, let’s continue to scrub by eliminating cases that clearly won’t remain. In the script below we create a variable that counts the number of missing variables and then creates a proportion by dividing it by the number of total variables.</p>
+<p>Using the <em>describe()</em> function from the <em>psych</em> package, we can investigate this variable.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="score.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb57-2"><a href="score.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a variable (n_miss) that counts the number missing</span></span>
+<span id="cb57-3"><a href="score.html#cb57-3" aria-hidden="true" tabindex="-1"></a>scored<span class="sc">$</span>n_miss <span class="ot">&lt;-</span> scored<span class="sc">%&gt;%</span></span>
+<span id="cb57-4"><a href="score.html#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>ClimateBL) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-5"><a href="score.html#cb57-5" aria-hidden="true" tabindex="-1"></a>is.na <span class="sc">%&gt;%</span> </span>
+<span id="cb57-6"><a href="score.html#cb57-6" aria-hidden="true" tabindex="-1"></a>rowSums</span>
+<span id="cb57-7"><a href="score.html#cb57-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-8"><a href="score.html#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a proportion missing by dividing n_miss by the total number of variables (6)</span></span>
+<span id="cb57-9"><a href="score.html#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Pipe to sort in order of descending frequency to get a sense of the missingness</span></span>
+<span id="cb57-10"><a href="score.html#cb57-10" aria-hidden="true" tabindex="-1"></a>scored<span class="ot">&lt;-</span> scored<span class="sc">%&gt;%</span></span>
+<span id="cb57-11"><a href="score.html#cb57-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">prop_miss =</span> (n_miss<span class="sc">/</span><span class="dv">6</span>)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb57-12"><a href="score.html#cb57-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_miss))</span>
+<span id="cb57-13"><a href="score.html#cb57-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-14"><a href="score.html#cb57-14" aria-hidden="true" tabindex="-1"></a>ScoredPrMiss <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describe</span>(scored<span class="sc">$</span>prop_miss)</span>
+<span id="cb57-15"><a href="score.html#cb57-15" aria-hidden="true" tabindex="-1"></a>ScoredPrMiss</span></code></pre></div>
+<pre><code>##    vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
+## X1    1 38 3.51 9.62      0    1.04   0   0 33.33 33.33 2.45     4.51 1.56</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="score.html#cb59-1" aria-hidden="true" tabindex="-1"></a>ScrdMissMin <span class="ot">&lt;-</span> <span class="fu">digits</span>(ScoredPrMiss<span class="sc">$</span>min, <span class="dv">0</span>)<span class="co">#this object is displayed below and I use input from  it for the inline text used in the write-up</span></span>
+<span id="cb59-2"><a href="score.html#cb59-2" aria-hidden="true" tabindex="-1"></a>ScrdMissMax <span class="ot">&lt;-</span> <span class="fu">digits</span>(ScoredPrMiss<span class="sc">$</span>max, <span class="dv">0</span>)</span>
+<span id="cb59-3"><a href="score.html#cb59-3" aria-hidden="true" tabindex="-1"></a>ScrdMissMin</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="score.html#cb61-1" aria-hidden="true" tabindex="-1"></a>ScrdMissMax</span></code></pre></div>
+<pre><code>## [1] 33</code></pre>
+<p>CUMULATIVE CAPTURE FOR WRITING IT UP: Across the 38 cases for which the scoring protocol was applied, missingness ranged from 0% to 33%.</p>
+<p>We need to decide what is our retention threshhold. Twenty percent seems to be a general rule of thumb. Let’s delete all cases with missingness at 20% or greater.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="score.html#cb63-1" aria-hidden="true" tabindex="-1"></a>scored <span class="ot">&lt;-</span> <span class="fu">filter</span>(scored, prop_miss <span class="sc">&lt;=</span> <span class="dv">20</span>)  <span class="co">#update df to have only those with at least 20% of complete data (this is an arbitrary decision)</span></span>
+<span id="cb63-2"><a href="score.html#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="score.html#cb63-3" aria-hidden="true" tabindex="-1"></a>scored <span class="ot">&lt;-</span>(<span class="fu">select</span> (scored, iBIPOC_pr<span class="sc">:</span>ClimateBL)) <span class="co">#the variable selection just lops off the proportion missing</span></span>
+<span id="cb63-4"><a href="score.html#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="score.html#cb63-5" aria-hidden="true" tabindex="-1"></a>ScoredCasesIncluded <span class="ot">&lt;-</span> <span class="fu">nrow</span>(scored)</span>
+<span id="cb63-6"><a href="score.html#cb63-6" aria-hidden="true" tabindex="-1"></a>ScoredCasesIncluded <span class="co">#this object is displayed below and I use input from  it for the inline text used in the write-up</span></span></code></pre></div>
+<pre><code>## [1] 35</code></pre>
+<p>CUMULATIVE CAPTURE FOR WRITING IT UP: Across the 38 cases for which the scoring protocol was applied, missingness ranged from 0% to 33%. After eliminating cases with greater than 20% missing, the dataset analyzed included 35 cases.</p>
+<p>With a decision about the number of cases we are going to include, we can continue to analyze missingness.</p>
+</div>
+<div id="revisiting-missing-analysis-at-the-scale-level" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Revisiting Missing Analysis at the Scale Level</h2>
+<p>We work with a df that includes only the variables in our model. In our case this is easy. In other cases (i.e., maybe there is an ID number) it might be good to create a subset just for this analysis.</p>
+<p>Again, we look at missingness as the proportion of</p>
+<ul>
+<li>individual cells across the dataset, and</li>
+<li>rows/cases with nonmissing data</li>
+</ul>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="score.html#cb65-1" aria-hidden="true" tabindex="-1"></a>PrScoredCellsMissing <span class="ot">&lt;-</span><span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">is.na</span>(scored))) <span class="co">#percent missing across df</span></span>
+<span id="cb65-2"><a href="score.html#cb65-2" aria-hidden="true" tabindex="-1"></a>PrScoredRowsMissing <span class="ot">&lt;-</span> <span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">complete.cases</span>(scored))) <span class="co">#percent of rows with nonmissing data</span></span>
+<span id="cb65-3"><a href="score.html#cb65-3" aria-hidden="true" tabindex="-1"></a>PrScoredCellsMissing</span></code></pre></div>
+<pre><code>## [1] 0.95%</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="score.html#cb67-1" aria-hidden="true" tabindex="-1"></a>PrScoredRowsMissing</span></code></pre></div>
+<pre><code>## [1] 94.29%</code></pre>
+<p>CUMULATIVE CAPTURE FOR WRITING IT UP: Across the 38 cases for which the scoring protocol was applied, missingness ranged from 0% to 33%. After eliminating cases with greater than 20% missing, the dataset analyzed included 35 cases. In this dataset we had 0.95% missing across the df; 94.29% of the rows had nonmissing data.</p>
+<p>Let’s look again at missing patterns and mechanisms.</p>
+<div id="scale-level-patterns-of-missing-data" class="section level3" number="3.8.1">
+<h3><span class="header-section-number">3.8.1</span> Scale Level: Patterns of Missing Data</h3>
+<p>Returning to the <em>mice</em> package, we can use the <em>md.pattern()</em> function to examine a matrix with the number of columns + 1 in which each row corresponds to a missing data pattern (1 = observed, 0 = missing). The rows and columns are sorted in increasing amounts of missing information. The last column and row contain row and column counts, respectively.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="score.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the package: mice</span></span>
+<span id="cb69-2"><a href="score.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb69-3"><a href="score.html#cb69-3" aria-hidden="true" tabindex="-1"></a>mice_ScaleLvl <span class="ot">&lt;-</span> <span class="fu">md.pattern</span>(scored, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">rotate.names=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/scale%20level%20missingness%20w%20mice-1.svg" width="672" /></p>
+<p>At the scale-level, this is much easier to interpret. As I am lecturing the results today (the numbers will change) there are <em>2</em> rows of data because there are only <em>2</em> patterns of missingness. The most common pattern is non-missing data (<em>n</em> = 26).</p>
+</div>
+<div id="is-it-mcar" class="section level3" number="3.8.2">
+<h3><span class="header-section-number">3.8.2</span> Is it MCAR?</h3>
+<p>As noted earlier, I cannot find an MCAR package. This is a placeholder for updating this portion of the lecture when one becomes readily available (and I learn about it)</p>
+</div>
+<div id="r-eady-for-analysis" class="section level3" number="3.8.3">
+<h3><span class="header-section-number">3.8.3</span> R-eady for Analysis</h3>
+<p>At this stage the data is ready for analysis (data diagnostics). With the AIA approach <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">Parent, 2013</a>)</span> the following preliminary analyses would involve pairwise deletion (i.e., the row/case is dropped for that analysis, but included for all others):</p>
+<div class="figure">
+<img src="images/Ch02/wrkflow_AIAready.jpg" alt="" />
+<p class="caption">An image of our stage in the workflow for scrubbing and scoring data.</p>
+</div>
+<ul>
+<li>data diagnostics
+<ul>
+<li>psychometric properties of scales, such as alpha coefficients</li>
+<li>assessing assumptions such as univariate and multivariate normality, outliers, etc.</li>
+</ul></li>
+<li>preliminary analyses
+<ul>
+<li>descriptives (means/standard deviations, frequencies)</li>
+<li>correlation matrices</li>
+</ul></li>
+</ul>
+<p>AIA can also be used with primary analyses. Examples of how to manage missingness include:</p>
+<ul>
+<li>ANOVA/regression models
+<ul>
+<li>if completed with ordinary least squares, pairwise deletion would be utilized</li>
+</ul></li>
+<li>SEM/CFA models with observed, latent, or hybrid models
+<ul>
+<li>if FIML (we’ll discuss later) is specified, all cases are used, even when there is missingness</li>
+</ul></li>
+<li>EFA models
+<ul>
+<li>these can handle item-level missingness</li>
+</ul></li>
+<li>Hierarchical linear modeling/multilevel modeling/mixed effects modeling
+<ul>
+<li>While all data needs to be present for a given cluster/wave, it is permissible to have varying numbers of clusters/waves per case</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="the-apa-style-write-up" class="section level2" number="3.9">
+<h2><span class="header-section-number">3.9</span> The APA Style Write-Up</h2>
+</div>
+<div id="results" class="section level2" number="3.10">
+<h2><span class="header-section-number">3.10</span> Results</h2>
+<p>All analyses were completed in R Studio (v. 1.4.1106) with R (v. 4.0.4).</p>
+<p><strong>Missing Data Analysis and Treatment of Missing Data</strong></p>
+<p>Available item analysis (AIA; <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">Parent, 2013</a>)</span>) is a strategy for managing missing data that uses available data for analysis and excludes cases with missing data points only for analyses in which the data points would be directly involved. Parent (2013) suggested that AIA is equivalent to more complex methods (e.g., multiple imputation) across a number of variations of sample size, magnitude of associations among items, and degree of missingness. Thus, we utilized Parent’s recommendations to guide our approach to managing missing data. Missing data analyses were conducted with tools in base R as well as the R packages, <em>psych</em> (v. 1.0.12) and <em>mice</em> (v. 3.13.0).</p>
+<p>Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 36%. Across the dataset, 3.35% of cells had missing data and 84.21% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with less than 90% missing to continue to the scoring stage. Guided by Parent’s <span class="citation">(<a href="refs.html#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> AIA approach, scales with three items were scored if at least two items were non-missing; the scale with four items was scored if it at least three non-missing items; and the scale with six items was scored if it had at least five non-missing items.</p>
+<p>Across the 38 cases for which the scoring protocol was applied, missingness ranged from 0% to 33%. After eliminating cases with greater than 20% missing, the dataset analyzed included 35 cases. In this dataset we had 0.95% missing across the df; 94.29% of the rows had nonmissing data.</p>
+</div>
+<div id="practice-problems-1" class="section level2" number="3.11">
+<h2><span class="header-section-number">3.11</span> Practice Problems</h2>
+<p>The three problems described below are designed to be continuations from the previous chapter (Scrubbing). You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.</p>
+<div id="problem-1-reworking-the-chapter-problem" class="section level3" number="3.11.1">
+<h3><span class="header-section-number">3.11.1</span> Problem #1: Reworking the Chapter Problem</h3>
+<p>If you chose this option in the prior chapter, you imported the data from Qualtrics, applied inclusion/exclusion criteria, renamed variables, downsized the df to the variables of interest, and wrote up the preliminary results.</p>
+<p>Continue working with this data to:</p>
+<table>
+<colgroup>
+<col width="76%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Proper formatting of your the variable representing the proportion of BIPOC instructor</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Proper formatting of your the variable representing the proportion of Black students in the classroom</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Proper formatting of variables that will be used in the scales/subscales</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Evaluate and interpret item-level missingness</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Score any scales/subscales</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. Evaluate and interpret scale-level missingness</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">8. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">40</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-2-use-the-rate-a-recent-course-survey-choosing-different-variables-1" class="section level3" number="3.11.2">
+<h3><span class="header-section-number">3.11.2</span> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</h3>
+<p>If you chose this option in the prior chapter, you chose a minimum of three variables from the <em>Rate-a-Recent-Course</em> survey to include in a simple statistical model. You imported the dat from Qualtrics, applied inclusion/exclusion criteria, renamed variables, downsized the df to the variables of interest and wrote up the preliminary results.</p>
+<p>Continue working with this data to:</p>
+<table>
+<colgroup>
+<col width="76%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center">Points Possible</th>
+<th align="center">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Proper formatting of your first variable</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Proper formatting of your second variable</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Proper formatting of your third variable</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Evaluate and interpret item-level missingness</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Score any scales/subscales</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. Evaluate and interpret scale-level missingness</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">7. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">8. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">40</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="problem-3-other-data-1" class="section level3" number="3.11.3">
+<h3><span class="header-section-number">3.11.3</span> Problem #3: Other data</h3>
+<p>If you chose this option in the prior chapter, you used raw data that was available to you. You imported it into R, applied inclusion/exclusion criteria, renamed variables, downsized the df to the variables of interest, and wrote up the preliminary results.</p>
+<p>Continue working with this data to:</p>
+<table>
+<colgroup>
+<col width="76%" />
+<col width="12%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Assignment Component</th>
+<th align="center">Points Possible</th>
+<th align="center">Points Earned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Proper formatting of variables of interest (at least three)</td>
+<td align="center">15</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">2. Evaluate and interpret item-level missingness</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Score any scales/subscales</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">4. Evaluate and interpret scale-level missingness</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="even">
+<td align="left">6. Explanation to grader</td>
+<td align="center">5</td>
+<td align="center">_____</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totals</strong></td>
+<td align="center">40</td>
+<td align="center">_____</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="score.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.0.4 (2021-02-15)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18362)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] gdtools_0.2.2     mice_3.13.0       sjstats_0.18.0    formattable_0.2.1
+##  [5] qualtRics_3.1.4   forcats_0.5.0     stringr_1.4.0     dplyr_1.0.2      
+##  [9] purrr_0.3.4       readr_1.4.0       tidyr_1.1.2       tibble_3.0.4     
+## [13] ggplot2_3.3.3     tidyverse_1.3.0   psych_2.0.12     
+## 
+## loaded via a namespace (and not attached):
+##  [1] nlme_3.1-151      fs_1.5.0          lubridate_1.7.9.2 insight_0.11.1   
+##  [5] httr_1.4.2        tools_4.0.4       backports_1.2.0   utf8_1.1.4       
+##  [9] R6_2.5.0          sjlabelled_1.1.7  DBI_1.1.0         colorspace_2.0-0 
+## [13] withr_2.3.0       tidyselect_1.1.0  mnormt_2.0.2      emmeans_1.5.3    
+## [17] curl_4.3          compiler_4.0.4    performance_0.6.1 cli_2.2.0        
+## [21] rvest_0.3.6       xml2_1.3.2        sandwich_3.0-0    bookdown_0.21    
+## [25] bayestestR_0.8.0  scales_1.1.1      mvtnorm_1.1-1     systemfonts_0.3.2
+## [29] digest_0.6.27     minqa_1.2.4       svglite_1.2.3.2   rmarkdown_2.6    
+## [33] pkgconfig_2.0.3   htmltools_0.5.0   lme4_1.1-26       dbplyr_2.0.0     
+## [37] htmlwidgets_1.5.3 rlang_0.4.9       readxl_1.3.1      rstudioapi_0.13  
+## [41] generics_0.1.0    zoo_1.8-8         jsonlite_1.7.2    magrittr_2.0.1   
+## [45] parameters_0.10.1 Matrix_1.2-18     Rcpp_1.0.5        munsell_0.5.0    
+## [49] fansi_0.4.1       lifecycle_0.2.0   stringi_1.5.3     multcomp_1.4-15  
+## [53] yaml_2.2.1        MASS_7.3-53       grid_4.0.4        parallel_4.0.4   
+## [57] sjmisc_2.8.5      crayon_1.3.4      lattice_0.20-41   haven_2.3.1      
+## [61] splines_4.0.4     hms_0.5.3         tmvnsim_1.0-2     knitr_1.30       
+## [65] pillar_1.4.7      boot_1.3-25       estimability_1.3  effectsize_0.4.1 
+## [69] codetools_0.2-18  reprex_0.3.0      glue_1.4.2        evaluate_0.14    
+## [73] modelr_0.1.8      nloptr_1.2.2.2    vctrs_0.3.6       cellranger_1.1.0 
+## [77] gtable_0.3.0      assertthat_0.2.1  xfun_0.19         xtable_1.8-4     
+## [81] broom_0.7.3       coda_0.19-4       survival_3.2-7    statmod_1.4.35   
+## [85] TH.data_1.0-10    ellipsis_0.3.1</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="scrub.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="DataDx.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ontheline/otl-bookdown/blob/master/03-Scoring.Rmd",
+"text": null
+},
+"download": ["ReC_MultMod.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

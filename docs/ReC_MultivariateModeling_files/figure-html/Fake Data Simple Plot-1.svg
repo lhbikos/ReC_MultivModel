@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 504.00 360.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    line, polyline, polygon, path, rect, circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<polyline points='107.17,170.57 390.81,177.08 ' style='stroke-width: 0.75; stroke: #009900;' />
+<polygon points='390.73,180.55 396.83,177.21 390.89,173.60 ' style='stroke-width: 0.75; stroke: none; fill: #009900;' />
+<polyline points='107.17,182.69 293.71,284.47 ' style='stroke-width: 0.96; stroke: #BF0000;' />
+<polygon points='292.04,287.52 298.99,287.36 295.37,281.42 ' style='stroke-width: 0.75; stroke: none; fill: #BF0000;' />
+<polyline points='107.17,155.22 227.85,78.06 ' style='stroke-width: 1.15; stroke: #009900;' />
+<polygon points='229.72,80.99 232.92,74.82 225.97,75.13 ' style='stroke-width: 0.75; stroke: none; fill: #009900;' />
+<polyline points='279.26,76.65 391.94,157.59 ' style='stroke-width: 1.16; stroke: #009900;' />
+<polygon points='389.91,160.41 396.83,161.10 393.97,154.76 ' style='stroke-width: 0.75; stroke: none; fill: #009900;' />
+<polyline points='340.71,276.83 397.69,205.62 ' style='stroke-width: 1.30; stroke: #009900;' />
+<polygon points='400.41,207.79 401.46,200.92 394.98,203.45 ' style='stroke-width: 0.75; stroke: none; fill: #009900;' />
+<polygon points='239.49,177.48 264.51,177.48 264.51,170.30 239.49,170.30 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
+<polygon points='187.65,238.61 218.51,238.61 218.51,231.43 187.65,231.43 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
+<polygon points='157.54,118.61 182.56,118.61 182.56,111.43 157.54,111.43 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
+<polygon points='325.54,122.46 350.56,122.46 350.56,115.28 325.54,115.28 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
+<polygon points='358.57,242.46 383.59,242.46 383.59,235.28 358.57,235.28 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
+<text x='238.95' y='177.63' style='font-size: 10.43px; fill: #009900; font-family: Arial;' textLength='26.09px' lengthAdjust='spacingAndGlyphs'>0.105</text>
+<text x='188.30' y='238.75' style='font-size: 10.43px; fill: #BF0000; font-family: Arial;' textLength='29.57px' lengthAdjust='spacingAndGlyphs'>-0.324</text>
+<text x='157.00' y='118.75' style='font-size: 10.43px; fill: #009900; font-family: Arial;' textLength='26.09px' lengthAdjust='spacingAndGlyphs'>0.528</text>
+<text x='325.00' y='122.60' style='font-size: 10.43px; fill: #009900; font-family: Arial;' textLength='26.09px' lengthAdjust='spacingAndGlyphs'>0.540</text>
+<text x='358.03' y='242.60' style='font-size: 10.43px; fill: #009900; font-family: Arial;' textLength='26.09px' lengthAdjust='spacingAndGlyphs'>0.690</text>
+<polygon points='396.83,200.92 443.17,200.92 443.17,154.57 396.83,154.57 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
+<polyline points='396.83,200.92 443.17,200.92 443.17,154.57 396.83,154.57 396.83,200.92 ' style='stroke-width: 0.75; stroke: none;' />
+<rect x='396.83' y='154.57' width='46.34' height='46.34' style='stroke-width: 0.65;' />
+<polygon points='232.92,83.17 279.26,83.17 279.26,36.83 232.92,36.83 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
+<polyline points='232.92,83.17 279.26,83.17 279.26,36.83 232.92,36.83 232.92,83.17 ' style='stroke-width: 0.75; stroke: none;' />
+<rect x='232.92' y='36.83' width='46.34' height='46.34' style='stroke-width: 0.65;' />
+<polygon points='298.99,323.17 345.34,323.17 345.34,276.83 298.99,276.83 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
+<polyline points='298.99,323.17 345.34,323.17 345.34,276.83 298.99,276.83 298.99,323.17 ' style='stroke-width: 0.75; stroke: none;' />
+<rect x='298.99' y='276.83' width='46.34' height='46.34' style='stroke-width: 0.65;' />
+<polygon points='60.83,193.21 107.17,193.21 107.17,146.87 60.83,146.87 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
+<polyline points='60.83,193.21 107.17,193.21 107.17,146.87 60.83,146.87 60.83,193.21 ' style='stroke-width: 0.75; stroke: none;' />
+<rect x='60.83' y='146.87' width='46.34' height='46.34' style='stroke-width: 0.65;' />
+<text x='415.85' y='183.18' style='font-size: 15.19px; font-weight: bold; font-family: Arial;' textLength='8.31px' lengthAdjust='spacingAndGlyphs'>Y</text>
+<text x='247.44' y='65.44' style='font-size: 15.19px; font-weight: bold; font-family: Arial;' textLength='17.30px' lengthAdjust='spacingAndGlyphs'>M1</text>
+<text x='313.51' y='305.44' style='font-size: 15.19px; font-weight: bold; font-family: Arial;' textLength='17.30px' lengthAdjust='spacingAndGlyphs'>M2</text>
+<text x='79.85' y='175.48' style='font-size: 15.19px; font-weight: bold; font-family: Arial;' textLength='8.31px' lengthAdjust='spacingAndGlyphs'>X</text>
+<text x='178.79' y='34.67' style='font-size: 14.40px; font-weight: bold; font-family: Arial;' textLength='175.22px' lengthAdjust='spacingAndGlyphs'>Baked Data:  Parallel Mediation</text>
+</svg>
