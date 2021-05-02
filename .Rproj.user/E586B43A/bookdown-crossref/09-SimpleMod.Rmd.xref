@@ -1,0 +1,35 @@
+h1:MOD MODERATION
+h1:SimpMod Simple Moderation in OLS and MLE
+h2:navigating-this-lesson Navigating this Lesson
+h3:learning-objectives Learning Objectives
+h3:planning-for-practice Planning for Practice
+h3:readings-resources Readings & Resources
+h3:packages Packages
+h2:on-modeling-introductory-comments-on-the-simultaneously-invisible-and-paradigm-shifting-transition-we-are-making On : Introductory Comments on the simultaneously invisible and paradigm-shifting transition we are making
+h3:nhst-versus-modeling NHST versus modeling
+h3:introducing-the-model Introducing: 
+h2:ols-to-ml-for-estimation OLS to ML for Estimation
+h3:ordinary-least-squares-ols Ordinary least squares (OLS)
+h3:maximum-likelihood-estimation-mle-a-brief-orientation Maximum likelihood estimation (MLE): A brief orientation
+h3:ols-and-mle-comparison OLS and MLE Comparison
+h3:hayes-and-process-aka-conditional-process-analysis Hayes and PROCESS (aka conditional process analysis)
+h2:introducing-the-lavaan-package Introducing the  package
+h3:the-fiml-magic-for-which-we-have-been-waiting The FIML magic for which we have been waiting
+h2:picking-up-with-moderation Picking up with Moderation
+h2:workflow-for-name-of-statistic Workflow for NAME OF STATISTIC
+h2:research-vignette Research Vignette
+h3:simulate-data-from-the-journal-article Simulate Data from the Journal Article
+h2:working-the-simple-moderation-with-ols-and-mle Working the Simple Moderation with OLS and MLE
+h3:ols-with-lm OLS with 
+h4:an-apa-style-write-up-of-ols-results An APA Style Write-up of OLS results
+h3:mle-with-lavaansem MLE with 
+h3:tabling-the-data Tabling the data
+h3:apa-style-writeup APA Style Writeup
+h2:residual-and-related-questions Residual and Related Questions…
+h2:practice-problems Practice Problems
+h3:problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed Problem #1: Rework the research vignette as demonstrated, but change the random seed
+h3:problem-2-rework-the-research-vignette-but-swap-one-or-more-variables Problem #2: Rework the research vignette, but swap one or more variables
+h3:problem-3-use-other-data-that-is-available-to-you Problem #3: Use other data that is available to you
+h2:bonus-track Bonus Track:
+h1:refs References
+

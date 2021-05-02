@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 504.00 360.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='504.00pt' height='360.00pt' viewBox='0 0 504.00 360.00'>
 <defs>
   <style type='text/css'><![CDATA[
-    line, polyline, polygon, path, rect, circle {
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
       fill: none;
       stroke: #000000;
       stroke-linecap: round;
@@ -12,6 +12,12 @@
   ]]></style>
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA='>
+    <rect x='0.00' y='0.00' width='504.00' height='360.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
 <polyline points='228.83,148.67 112.31,77.33 ' style='stroke-width: 0.69; stroke: #009900;' />
 <polygon points='114.12,74.37 107.17,74.19 110.49,80.30 ' style='stroke-width: 0.75; stroke: none; fill: #009900;' />
 <polyline points='252.00,186.03 252.00,270.81 ' style='stroke-width: 0.69; stroke: #009900;' />
@@ -30,12 +36,12 @@
 <polygon points='320.57,115.02 351.43,115.02 351.43,107.84 320.57,107.84 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
 <polygon points='323.49,183.59 348.51,183.59 348.51,176.41 323.49,176.41 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
 <polygon points='236.57,63.59 267.43,63.59 267.43,56.41 236.57,56.41 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
-<text x='154.95' y='115.16' style='font-size: 10.43px; fill: #009900; font-family: Arial;' textLength='26.09px' lengthAdjust='spacingAndGlyphs'>0.193</text>
-<text x='238.95' y='235.16' style='font-size: 10.43px; fill: #009900; font-family: Arial;' textLength='26.09px' lengthAdjust='spacingAndGlyphs'>0.203</text>
-<text x='154.95' y='183.73' style='font-size: 10.43px; fill: #009900; font-family: Arial;' textLength='26.09px' lengthAdjust='spacingAndGlyphs'>0.236</text>
-<text x='321.22' y='115.16' style='font-size: 10.43px; fill: #BF0000; font-family: Arial;' textLength='29.57px' lengthAdjust='spacingAndGlyphs'>-0.575</text>
-<text x='322.95' y='183.73' style='font-size: 10.43px; fill: #009900; font-family: Arial;' textLength='26.09px' lengthAdjust='spacingAndGlyphs'>0.581</text>
-<text x='237.22' y='63.73' style='font-size: 10.43px; fill: #BF0000; font-family: Arial;' textLength='29.57px' lengthAdjust='spacingAndGlyphs'>-3.750</text>
+<text x='168.00' y='115.16' text-anchor='middle' style='font-size: 10.43px; fill: #009900; font-family: Arial;' textLength='26.08px' lengthAdjust='spacingAndGlyphs'>0.193</text>
+<text x='252.00' y='235.16' text-anchor='middle' style='font-size: 10.43px; fill: #009900; font-family: Arial;' textLength='26.08px' lengthAdjust='spacingAndGlyphs'>0.203</text>
+<text x='168.00' y='183.73' text-anchor='middle' style='font-size: 10.43px; fill: #009900; font-family: Arial;' textLength='26.08px' lengthAdjust='spacingAndGlyphs'>0.236</text>
+<text x='336.00' y='115.16' text-anchor='middle' style='font-size: 10.43px; fill: #BF0000; font-family: Arial;' textLength='29.55px' lengthAdjust='spacingAndGlyphs'>-0.575</text>
+<text x='336.00' y='183.73' text-anchor='middle' style='font-size: 10.43px; fill: #009900; font-family: Arial;' textLength='26.08px' lengthAdjust='spacingAndGlyphs'>0.581</text>
+<text x='252.00' y='63.73' text-anchor='middle' style='font-size: 10.43px; fill: #BF0000; font-family: Arial;' textLength='29.55px' lengthAdjust='spacingAndGlyphs'>-3.750</text>
 <polygon points='396.83,83.17 443.17,83.17 443.17,36.83 396.83,36.83 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
 <polyline points='396.83,83.17 443.17,83.17 443.17,36.83 396.83,36.83 396.83,83.17 ' style='stroke-width: 0.75; stroke: none;' />
 <rect x='396.83' y='36.83' width='46.34' height='46.34' style='stroke-width: 0.65;' />
@@ -48,9 +54,10 @@
 <polygon points='228.83,186.03 275.17,186.03 275.17,139.68 228.83,139.68 ' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
 <polyline points='228.83,186.03 275.17,186.03 275.17,139.68 228.83,139.68 228.83,186.03 ' style='stroke-width: 0.75; stroke: none;' />
 <rect x='228.83' y='139.68' width='46.34' height='46.34' style='stroke-width: 0.65;' />
-<text x='404.15' y='63.46' style='font-size: 9.67px; font-weight: bold; font-family: Arial;' textLength='31.70px' lengthAdjust='spacingAndGlyphs'>MtnlHlth</text>
-<text x='236.35' y='304.39' style='font-size: 12.27px; font-weight: bold; font-family: Arial;' textLength='31.29px' lengthAdjust='spacingAndGlyphs'>Engmt</text>
-<text x='68.35' y='62.93' style='font-size: 8.18px; font-weight: bold; font-family: Arial;' textLength='31.30px' lengthAdjust='spacingAndGlyphs'>DisEngmt</text>
-<text x='237.46' y='167.09' style='font-size: 11.82px; font-weight: bold; font-family: Arial;' textLength='29.07px' lengthAdjust='spacingAndGlyphs'>GRMS</text>
-<text x='-57.42' y='34.67' style='font-size: 14.40px; font-weight: bold; font-family: Arial;' textLength='647.63px' lengthAdjust='spacingAndGlyphs'>The Effect of Gendered Racial Microaggressions on Mental Health through Engaged and Disengaged Coping Styles</text>
+<text x='420.00' y='63.46' text-anchor='middle' style='font-size: 9.67px; font-weight: bold; font-family: Arial;' textLength='31.67px' lengthAdjust='spacingAndGlyphs'>MtnlHlth</text>
+<text x='252.00' y='304.39' text-anchor='middle' style='font-size: 12.27px; font-weight: bold; font-family: Arial;' textLength='31.30px' lengthAdjust='spacingAndGlyphs'>Engmt</text>
+<text x='84.00' y='62.92' text-anchor='middle' style='font-size: 8.18px; font-weight: bold; font-family: Arial;' textLength='31.28px' lengthAdjust='spacingAndGlyphs'>DisEngmt</text>
+<text x='252.00' y='167.09' text-anchor='middle' style='font-size: 11.82px; font-weight: bold; font-family: Arial;' textLength='29.06px' lengthAdjust='spacingAndGlyphs'>GRMS</text>
+<text x='266.40' y='34.67' text-anchor='middle' style='font-size: 14.40px; font-weight: bold; font-family: Arial;' textLength='647.32px' lengthAdjust='spacingAndGlyphs'>The Effect of Gendered Racial Microaggressions on Mental Health through Engaged and Disengaged Coping Styles</text>
+</g>
 </svg>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Simple Mediation | ReCentering Psych Stats: Multivariate Modeling</title>
   <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Simple Mediation | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="CPA.html"/>
 <link rel="next" href="CompMed.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -115,6 +117,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -400,6 +425,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6.3" data-path="CompMed.html"><a href="CompMed.html#problem-3-use-other-data-that-is-available-to-you-1"><i class="fa fa-check"></i><b>7.6.3</b> Problem #3: Use other data that is available to you</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="CPAnal.html"><a href="CPAnal.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANLAYSIS</a></li>
 <li class="chapter" data-level="8" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>8</b> Moderated Mediation</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="ModMed.html"><a href="ModMed.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
@@ -451,6 +477,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-1"><i class="fa fa-check"></i><b>8.9</b> Bonus Track:</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="MOD.html"><a href="MOD.html"><i class="fa fa-check"></i>MODERATION</a></li>
+<li class="chapter" data-level="9" data-path="SimpMod.html"><a href="SimpMod.html"><i class="fa fa-check"></i><b>9</b> Simple Moderation in OLS and MLE</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="SimpMod.html"><a href="SimpMod.html#navigating-this-lesson-7"><i class="fa fa-check"></i><b>9.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="SimpMod.html"><a href="SimpMod.html#learning-objectives-7"><i class="fa fa-check"></i><b>9.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="SimpMod.html"><a href="SimpMod.html#planning-for-practice-7"><i class="fa fa-check"></i><b>9.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="9.1.3" data-path="SimpMod.html"><a href="SimpMod.html#readings-resources-7"><i class="fa fa-check"></i><b>9.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="9.1.4" data-path="SimpMod.html"><a href="SimpMod.html#packages-8"><i class="fa fa-check"></i><b>9.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="SimpMod.html"><a href="SimpMod.html#on-modeling-introductory-comments-on-the-simultaneously-invisible-and-paradigm-shifting-transition-we-are-making"><i class="fa fa-check"></i><b>9.2</b> On <em>Modeling</em>: Introductory Comments on the simultaneously invisible and paradigm-shifting transition we are making</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="SimpMod.html"><a href="SimpMod.html#nhst-versus-modeling"><i class="fa fa-check"></i><b>9.2.1</b> NHST versus modeling</a></li>
+<li class="chapter" data-level="9.2.2" data-path="SimpMod.html"><a href="SimpMod.html#introducing-the-model"><i class="fa fa-check"></i><b>9.2.2</b> Introducing: <em>The Model</em></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="SimpMod.html"><a href="SimpMod.html#ols-to-ml-for-estimation"><i class="fa fa-check"></i><b>9.3</b> OLS to ML for Estimation</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="SimpMod.html"><a href="SimpMod.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>9.3.1</b> Ordinary least squares (OLS)</a></li>
+<li class="chapter" data-level="9.3.2" data-path="SimpMod.html"><a href="SimpMod.html#maximum-likelihood-estimation-mle-a-brief-orientation"><i class="fa fa-check"></i><b>9.3.2</b> Maximum likelihood estimation (MLE): A brief orientation</a></li>
+<li class="chapter" data-level="9.3.3" data-path="SimpMod.html"><a href="SimpMod.html#ols-and-mle-comparison"><i class="fa fa-check"></i><b>9.3.3</b> OLS and MLE Comparison</a></li>
+<li class="chapter" data-level="9.3.4" data-path="SimpMod.html"><a href="SimpMod.html#hayes-and-process-aka-conditional-process-analysis"><i class="fa fa-check"></i><b>9.3.4</b> Hayes and PROCESS (aka conditional process analysis)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="SimpMod.html"><a href="SimpMod.html#introducing-the-lavaan-package"><i class="fa fa-check"></i><b>9.4</b> Introducing the <em>lavaan</em> package</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="SimpMod.html"><a href="SimpMod.html#the-fiml-magic-for-which-we-have-been-waiting"><i class="fa fa-check"></i><b>9.4.1</b> The FIML magic for which we have been waiting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="SimpMod.html"><a href="SimpMod.html#picking-up-with-moderation"><i class="fa fa-check"></i><b>9.5</b> Picking up with Moderation</a></li>
+<li class="chapter" data-level="9.6" data-path="SimpMod.html"><a href="SimpMod.html#workflow-for-name-of-statistic"><i class="fa fa-check"></i><b>9.6</b> Workflow for NAME OF STATISTIC</a></li>
+<li class="chapter" data-level="9.7" data-path="SimpMod.html"><a href="SimpMod.html#research-vignette-7"><i class="fa fa-check"></i><b>9.7</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="SimpMod.html"><a href="SimpMod.html#simulate-data-from-the-journal-article-1"><i class="fa fa-check"></i><b>9.7.1</b> Simulate Data from the Journal Article</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="SimpMod.html"><a href="SimpMod.html#working-the-simple-moderation-with-ols-and-mle"><i class="fa fa-check"></i><b>9.8</b> Working the Simple Moderation with OLS and MLE</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>9.8.1</b> OLS with <em>lm()</em></a>
+<ul>
+<li class="chapter" data-level="9.8.1.1" data-path="SimpMod.html"><a href="SimpMod.html#an-apa-style-write-up-of-ols-results"><i class="fa fa-check"></i><b>9.8.1.1</b> An APA Style Write-up of OLS results</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8.2" data-path="SimpMod.html"><a href="SimpMod.html#mle-with-lavaansem"><i class="fa fa-check"></i><b>9.8.2</b> MLE with <em>lavaan::sem()</em></a></li>
+<li class="chapter" data-level="9.8.3" data-path="SimpMod.html"><a href="SimpMod.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.8.3</b> Tabling the data</a></li>
+<li class="chapter" data-level="9.8.4" data-path="SimpMod.html"><a href="SimpMod.html#apa-style-writeup-3"><i class="fa fa-check"></i><b>9.8.4</b> APA Style Writeup</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="SimpMod.html"><a href="SimpMod.html#residual-and-related-questions-2"><i class="fa fa-check"></i><b>9.9</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="9.10" data-path="SimpMod.html"><a href="SimpMod.html#practice-problems-7"><i class="fa fa-check"></i><b>9.10</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="9.10.1" data-path="SimpMod.html"><a href="SimpMod.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-3"><i class="fa fa-check"></i><b>9.10.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="9.10.2" data-path="SimpMod.html"><a href="SimpMod.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-3"><i class="fa fa-check"></i><b>9.10.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="9.10.3" data-path="SimpMod.html"><a href="SimpMod.html#problem-3-use-other-data-that-is-available-to-you-3"><i class="fa fa-check"></i><b>9.10.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="9.11" data-path="SimpMod.html"><a href="SimpMod.html#bonus-track-2"><i class="fa fa-check"></i><b>9.11</b> Bonus Track:</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 #<li><a href="https:link" target="_blank">Open access book-in-progress</br>
@@ -478,7 +555,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 6</span> Simple Mediation</h1>
 <p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=7ffb03e6-b34b-4e0b-8f10-ad080180b069">Screencasted Lecture Link</a></p>
 <p>The focus of this lecture is to estimate indirect effects (aka “mediation”). We examine the logic/design required to support the argument that <em>mediation</em> is the <em>mechanism</em> that explains the X –&gt; Y relationship. We also work three examples (one with covariates).</p>
-<p>At the outset, please note that although I rely heavily on Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> text and materials, I am using the R package <em>lavaan</em> in these chapters. Very recently, Hayes has introduced a <a href="https://www.processmacro.org/index.html">PROCESS macro for R</a>. Because I am not yet up-to-speed on using this macro (it is not a typical R package) and because we will use <em>lavaan</em> for confirmatory factor analysis and structural equation modeling, I have chosen to utilize the <em>lavaan</em> package. A substantial difference is that the PROCESS macros use ordinary least squares and <em>lavaan</em> uses maximum likelihood estimators.</p>
+<p>At the outset, please note that although I rely heavily on Hayes <span class="citation">(<a href="#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> text and materials, I am using the R package <em>lavaan</em> in these chapters. Very recently, Hayes has introduced a <a href="https://www.processmacro.org/index.html">PROCESS macro for R</a>. Because I am not yet up-to-speed on using this macro (it is not a typical R package) and because we will use <em>lavaan</em> for confirmatory factor analysis and structural equation modeling, I have chosen to utilize the <em>lavaan</em> package. A substantial difference is that the PROCESS macros use ordinary least squares and <em>lavaan</em> uses maximum likelihood estimators.</p>
 <div id="navigating-this-lesson-4" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Navigating this Lesson</h2>
 <p>There is about 1 hour and 10 minutes of lecture. If you work through the materials with me it would be plan for an additional 1.5 hours.</p>
@@ -527,20 +604,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.1.4</span> Packages</h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
 <!-- TODO: Build out this section. -->
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="SimpleMed.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
-<span id="cb156-2"><a href="SimpleMed.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(lavaan)){<span class="fu">install.packages</span>(<span class="st">&quot;lavaan&quot;</span>)}</span>
-<span id="cb156-3"><a href="SimpleMed.html#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semPlot)){<span class="fu">install.packages</span>(<span class="st">&quot;semPlot&quot;</span>)}</span>
-<span id="cb156-4"><a href="SimpleMed.html#cb156-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
-<span id="cb156-5"><a href="SimpleMed.html#cb156-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
-<span id="cb156-6"><a href="SimpleMed.html#cb156-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(formattable)){<span class="fu">install.packages</span>(<span class="st">&quot;formattable&quot;</span>)}</span>
-<span id="cb156-7"><a href="SimpleMed.html#cb156-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semTable)){<span class="fu">install.packages</span>(<span class="st">&quot;semTable&quot;</span>)}</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="SimpleMed.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb164-2"><a href="SimpleMed.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(lavaan)){<span class="fu">install.packages</span>(<span class="st">&quot;lavaan&quot;</span>)}</span>
+<span id="cb164-3"><a href="SimpleMed.html#cb164-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semPlot)){<span class="fu">install.packages</span>(<span class="st">&quot;semPlot&quot;</span>)}</span>
+<span id="cb164-4"><a href="SimpleMed.html#cb164-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
+<span id="cb164-5"><a href="SimpleMed.html#cb164-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
+<span id="cb164-6"><a href="SimpleMed.html#cb164-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(formattable)){<span class="fu">install.packages</span>(<span class="st">&quot;formattable&quot;</span>)}</span>
+<span id="cb164-7"><a href="SimpleMed.html#cb164-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semTable)){<span class="fu">install.packages</span>(<span class="st">&quot;semTable&quot;</span>)}</span></code></pre></div>
 </div>
 </div>
 <div id="estimating-indirect-effects-the-analytic-approach-often-termed-mediation" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Estimating Indirect Effects (the analytic approach often termed <em>mediation</em>)</h2>
 <div id="the-definitional-and-conceptual" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> The definitional and conceptual</h3>
-<p>As in Hayes text <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span>, we will differentiate between <em>moderation</em> and <em>mediation</em>. <em>Conditional process analysis</em> involves both! With each of these, we are seeking to understand the <em>mechanism</em> at work that leads to the relationship (be it correlational, predictive, or causal)</p>
+<p>As in Hayes text <span class="citation">(<a href="#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span>, we will differentiate between <em>moderation</em> and <em>mediation</em>. <em>Conditional process analysis</em> involves both! With each of these, we are seeking to understand the <em>mechanism</em> at work that leads to the relationship (be it correlational, predictive, or causal)</p>
 <p>Even though this process has sometimes been termed <em>causal modeling</em>, Hayes argues that his <em>statistical approach</em> is not claiming to determine <em>cause</em>; that is really left to the argument of the research design.</p>
 <p><strong>Moderation</strong> (a review):</p>
 <ul>
@@ -597,13 +674,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The top figure represents the bivariate relationship between the independent and dependent variable. The result of a simple linear regression (one predictor) represent the <em>total</em> effect of the IV on the DV. We can calculate this by simply regressing the DV onto the IV. The resulting <span class="math inline">\(B\)</span> weight is known as the <em>c</em> path. A bivariate correlation coefficient results in the same value – only it is standardized (so would be the same as the <span class="math inline">\(\beta\)</span> weight).</p>
 <p>The lower figure represents that the relationship between the IV and DV is <em>mediated</em> by a third variable. We assign three labels to the paths: <em>a</em>, between the IV and mediator; <em>b</em>, between the mediator and DV; and <em>c’</em> (c prime) between the IV and DV.</p>
 <p>Statistically speaking, a mediated relationship is supported when the value of <em>c’</em> is statistically significantly lower than <em>c</em>. If this occurs, then we can say that the mediator is sharing some of the variance in the prediction of the DV.</p>
-<p>You might already be imagining potential challenges to this model. For example, which variable should be the IV and which one should be the mediator? Can we switch them? You can – and you will likely have very similar (if not identical) results. Good research design is what provides support for suggesting that mediation is the proper, casual, mechanism regarding the relationship between the IV and DV. An excellent review of the challenges of establishing a robust mediation model is provided by Kline <span class="citation">(<a href="refs.html#ref-kline_mediation_2015" role="doc-biblioref">2015</a>)</span>, where he suggests the following as the minimally required elements of a mediation design:</p>
+<p>You might already be imagining potential challenges to this model. For example, which variable should be the IV and which one should be the mediator? Can we switch them? You can – and you will likely have very similar (if not identical) results. Good research design is what provides support for suggesting that mediation is the proper, casual, mechanism regarding the relationship between the IV and DV. An excellent review of the challenges of establishing a robust mediation model is provided by Kline <span class="citation">(<a href="#ref-kline_mediation_2015" role="doc-biblioref">2015</a>)</span>, where he suggests the following as the minimally required elements of a mediation design:</p>
 <ul>
 <li>the IV is an experimental variable with random assignment to conditions;</li>
 <li>the mediator is an individual difference variable that is not manipulated and is measured at a later time;and</li>
 <li>the DV is measured at a third occasion</li>
 </ul>
-<p>These criteria are in addition to the rather standard criteria for establishing causality <span class="citation">(see <a href="refs.html#ref-stone-romero_research_2010" role="doc-biblioref">Stone-Romero &amp; Rosopa, 2010</a> for a review)</span>:</p>
+<p>These criteria are in addition to the rather standard criteria for establishing causality <span class="citation">(see <a href="#ref-stone-romero_research_2010" role="doc-biblioref">Stone-Romero &amp; Rosopa, 2010</a> for a review)</span>:</p>
 <ul>
 <li>temporal precedence,</li>
 <li>statistical covariation, and</li>
@@ -614,16 +691,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="simple-mediation-in-lavaan-a-focus-on-the-mechanics" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Simple Mediation in <em>lavaan</em>: A focus on the mechanics</h2>
-<p>The lavaan tutorial <span class="citation">(<a href="refs.html#ref-rosseel_lavaan_2020" role="doc-biblioref">Rosseel, 2020</a>)</span> provides a helpful model of how writing code to estimate an indirect effect. Using the lavaan tutorial as our guide, let’s start with just a set of fake data with variable names that represent X (predictor, IV, antecedent), M (mediator, atencedent, consequent), and Y (outcome, DV, consequent).</p>
+<p>The lavaan tutorial <span class="citation">(<a href="#ref-rosseel_lavaan_2020" role="doc-biblioref">Rosseel, 2020</a>)</span> provides a helpful model of how writing code to estimate an indirect effect. Using the lavaan tutorial as our guide, let’s start with just a set of fake data with variable names that represent X (predictor, IV, antecedent), M (mediator, atencedent, consequent), and Y (outcome, DV, consequent).</p>
 <div id="simulate-fake-data" class="section level3" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Simulate Fake Data</h3>
 <p>The code below is asking to create a dataset with a sample size of 100. The dataset has 3 variables, conveniently named X (predictor, antecedent, IV), M (mediator), and Y (outome, consequent, DV). The R code asks for random selection of numbers with a normal distribution. You can see that the M variable will be related to the X variable by + .5; and the Y variable will be related to the M variable by + .7. This rather ensures a statistically significant indirect effect.</p>
 <!-- TODO: Return and replace with data from our mediation) -->
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="SimpleMed.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>)</span>
-<span id="cb157-2"><a href="SimpleMed.html#cb157-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb157-3"><a href="SimpleMed.html#cb157-3" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>X <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb157-4"><a href="SimpleMed.html#cb157-4" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fl">0.7</span><span class="sc">*</span>M <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb157-5"><a href="SimpleMed.html#cb157-5" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> X, <span class="at">Y =</span> Y, <span class="at">M =</span> M)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="SimpleMed.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>)</span>
+<span id="cb165-2"><a href="SimpleMed.html#cb165-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb165-3"><a href="SimpleMed.html#cb165-3" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>X <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb165-4"><a href="SimpleMed.html#cb165-4" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fl">0.7</span><span class="sc">*</span>M <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb165-5"><a href="SimpleMed.html#cb165-5" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> X, <span class="at">Y =</span> Y, <span class="at">M =</span> M)</span></code></pre></div>
 </div>
 <div id="specify-mediation-model" class="section level3" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Specify Mediation Model</h3>
@@ -633,9 +710,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>We can have more specificity and flexibility than the prescribed PROCESS models allow. I say this with all due respect to Hayes – there is also a good deal of flexibility to be able to add multiple mediators and covariates within most of the Hayes’ prescribed models.</li>
 </ul>
 <p>Hayes text is still a great place to start because the conceptual and procedural information is clear and transferable to the R environment.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="SimpleMed.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span></code></pre></div>
-<pre><code>## This is lavaan 0.6-7</code></pre>
-<pre><code>## lavaan is BETA software! Please report any bugs.</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="SimpleMed.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span></code></pre></div>
+<pre><code>## Warning: package &#39;lavaan&#39; was built under R version 4.0.5</code></pre>
+<pre><code>## This is lavaan 0.6-8
+## lavaan is FREE software! Please report any bugs.</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;lavaan&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:psych&#39;:
@@ -666,22 +744,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Also, because we set a random seed, you should get the same results, but if it differs a little, don’t panic.
 Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as c is reserved for the total effect of X on Y).</p>
 <p>Let’s run the whole model.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="SimpleMed.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>) <span class="co">#reset in case you choose to separate these sections</span></span>
-<span id="cb163-2"><a href="SimpleMed.html#cb163-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb163-3"><a href="SimpleMed.html#cb163-3" aria-hidden="true" tabindex="-1"></a><span class="st">          Y ~ b*M + c_p*X </span></span>
-<span id="cb163-4"><a href="SimpleMed.html#cb163-4" aria-hidden="true" tabindex="-1"></a><span class="st">          M ~ a*X</span></span>
-<span id="cb163-5"><a href="SimpleMed.html#cb163-5" aria-hidden="true" tabindex="-1"></a><span class="st">          </span></span>
-<span id="cb163-6"><a href="SimpleMed.html#cb163-6" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
-<span id="cb163-7"><a href="SimpleMed.html#cb163-7" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
-<span id="cb163-8"><a href="SimpleMed.html#cb163-8" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
-<span id="cb163-9"><a href="SimpleMed.html#cb163-9" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span>
-<span id="cb163-10"><a href="SimpleMed.html#cb163-10" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(model, <span class="at">data =</span> Data, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing=</span> <span class="st">&#39;fiml&#39;</span>)</span>
-<span id="cb163-11"><a href="SimpleMed.html#cb163-11" aria-hidden="true" tabindex="-1"></a>FDsummary <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## lavaan 0.6-7 ended normally after 14 iterations
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="SimpleMed.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>) <span class="co">#reset in case you choose to separate these sections</span></span>
+<span id="cb171-2"><a href="SimpleMed.html#cb171-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb171-3"><a href="SimpleMed.html#cb171-3" aria-hidden="true" tabindex="-1"></a><span class="st">          Y ~ b*M + c_p*X </span></span>
+<span id="cb171-4"><a href="SimpleMed.html#cb171-4" aria-hidden="true" tabindex="-1"></a><span class="st">          M ~ a*X</span></span>
+<span id="cb171-5"><a href="SimpleMed.html#cb171-5" aria-hidden="true" tabindex="-1"></a><span class="st">          </span></span>
+<span id="cb171-6"><a href="SimpleMed.html#cb171-6" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
+<span id="cb171-7"><a href="SimpleMed.html#cb171-7" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
+<span id="cb171-8"><a href="SimpleMed.html#cb171-8" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
+<span id="cb171-9"><a href="SimpleMed.html#cb171-9" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span>
+<span id="cb171-10"><a href="SimpleMed.html#cb171-10" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(model, <span class="at">data =</span> Data, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing=</span> <span class="st">&#39;fiml&#39;</span>)</span>
+<span id="cb171-11"><a href="SimpleMed.html#cb171-11" aria-hidden="true" tabindex="-1"></a>FDsummary <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6-8 ended normally after 14 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
-##   Number of free parameters                          7
+##   Number of model parameters                         7
 ##                                                       
 ##   Number of observations                           100
 ##   Number of missing patterns                         1
@@ -772,8 +850,8 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ##     0.529    0.413
 ##    -0.209   -0.163
 ##     0.321    0.250</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="SimpleMed.html#cb165-1" aria-hidden="true" tabindex="-1"></a>FD_ParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
-<span id="cb165-2"><a href="SimpleMed.html#cb165-2" aria-hidden="true" tabindex="-1"></a>FDsummary</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="SimpleMed.html#cb173-1" aria-hidden="true" tabindex="-1"></a>FD_ParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb173-2"><a href="SimpleMed.html#cb173-2" aria-hidden="true" tabindex="-1"></a>FDsummary</span></code></pre></div>
 <pre><code>## $FIT
 ##              npar              fmin             chisq                df 
 ##             7.000             0.000             0.000             0.000 
@@ -819,7 +897,7 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ## 12 1.024073e-02  0.05415297  0.5670554787  0.32084465  0.25034001  0.24279586
 ## 13           NA          NA            NA          NA          NA          NA
 ## 14           NA          NA            NA          NA          NA          NA</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="SimpleMed.html#cb167-1" aria-hidden="true" tabindex="-1"></a>FD_ParamEsts</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="SimpleMed.html#cb175-1" aria-hidden="true" tabindex="-1"></a>FD_ParamEsts</span></code></pre></div>
 <pre><code>##         lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper
 ## 1         Y  ~         M        b  0.764 0.097  7.918  0.000    0.575    0.955
 ## 2         Y  ~         X      c_p -0.209 0.112 -1.867  0.062   -0.451   -0.001
@@ -864,8 +942,8 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 </ul></li>
 </ul>
 <p>Here’s a demonstration that the total effect is, simply, predicting Y from X (also, the correlation between X and Y:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="SimpleMed.html#cb169-1" aria-hidden="true" tabindex="-1"></a>fitXY <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> Data)</span>
-<span id="cb169-2"><a href="SimpleMed.html#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fitXY)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="SimpleMed.html#cb177-1" aria-hidden="true" tabindex="-1"></a>fitXY <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> Data)</span>
+<span id="cb177-2"><a href="SimpleMed.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fitXY)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Y ~ X, data = Data)
@@ -885,9 +963,9 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ## Multiple R-squared:  0.06267,    Adjusted R-squared:  0.05311 
 ## F-statistic: 6.552 on 1 and 98 DF,  p-value: 0.012</code></pre>
 <p>Which is the same as the bivariate correlation. The only trick is that the bivariate correlation produces a standardized result; so it would be the <span class="math inline">\(\beta\)</span>.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="SimpleMed.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb171-2"><a href="SimpleMed.html#cb171-2" aria-hidden="true" tabindex="-1"></a>XY_r <span class="ot">&lt;-</span> <span class="fu">corr.test</span>(Data[<span class="fu">c</span>(<span class="st">&quot;Y&quot;</span>, <span class="st">&quot;X&quot;</span>)])</span>
-<span id="cb171-3"><a href="SimpleMed.html#cb171-3" aria-hidden="true" tabindex="-1"></a>XY_r</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="SimpleMed.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb179-2"><a href="SimpleMed.html#cb179-2" aria-hidden="true" tabindex="-1"></a>XY_r <span class="ot">&lt;-</span> <span class="fu">corr.test</span>(Data[<span class="fu">c</span>(<span class="st">&quot;Y&quot;</span>, <span class="st">&quot;X&quot;</span>)])</span>
+<span id="cb179-3"><a href="SimpleMed.html#cb179-3" aria-hidden="true" tabindex="-1"></a>XY_r</span></code></pre></div>
 <pre><code>## Call:corr.test(x = Data[c(&quot;Y&quot;, &quot;X&quot;)])
 ## Correlation matrix 
 ##      Y    X
@@ -906,34 +984,30 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 <h3><span class="header-section-number">6.4.4</span> A Table and a Figure</h3>
 <p>We can use the package <a href="https://rdrr.io/cran/semPlot/man/semPaths.html">semPlot</a> to create a figure that includes the values on the path.</p>
 <p>Here’s what the base package gets us</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="SimpleMed.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span></code></pre></div>
-<pre><code>## Registered S3 methods overwritten by &#39;huge&#39;:
-##   method    from   
-##   plot.sim  BDgraph
-##   print.sim BDgraph</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="SimpleMed.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(fit, <span class="co">#must identify the model you want to map</span></span>
-<span id="cb175-2"><a href="SimpleMed.html#cb175-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
-<span id="cb175-3"><a href="SimpleMed.html#cb175-3" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
-<span id="cb175-4"><a href="SimpleMed.html#cb175-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
-<span id="cb175-5"><a href="SimpleMed.html#cb175-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
-<span id="cb175-6"><a href="SimpleMed.html#cb175-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
-<span id="cb175-7"><a href="SimpleMed.html#cb175-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
-<span id="cb175-8"><a href="SimpleMed.html#cb175-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
-<span id="cb175-9"><a href="SimpleMed.html#cb175-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
-<span id="cb175-10"><a href="SimpleMed.html#cb175-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
-<span id="cb175-11"><a href="SimpleMed.html#cb175-11" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
-<span id="cb175-12"><a href="SimpleMed.html#cb175-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
-<span id="cb175-13"><a href="SimpleMed.html#cb175-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
-<span id="cb175-14"><a href="SimpleMed.html#cb175-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
-<span id="cb175-15"><a href="SimpleMed.html#cb175-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
-<span id="cb175-16"><a href="SimpleMed.html#cb175-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
-<span id="cb175-17"><a href="SimpleMed.html#cb175-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
-<span id="cb175-18"><a href="SimpleMed.html#cb175-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb175-19"><a href="SimpleMed.html#cb175-19" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Fake Data:  Simple Mediation&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="SimpleMed.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb181-2"><a href="SimpleMed.html#cb181-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(fit, <span class="co">#must identify the model you want to map</span></span>
+<span id="cb181-3"><a href="SimpleMed.html#cb181-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb181-4"><a href="SimpleMed.html#cb181-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb181-5"><a href="SimpleMed.html#cb181-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
+<span id="cb181-6"><a href="SimpleMed.html#cb181-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb181-7"><a href="SimpleMed.html#cb181-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb181-8"><a href="SimpleMed.html#cb181-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb181-9"><a href="SimpleMed.html#cb181-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb181-10"><a href="SimpleMed.html#cb181-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb181-11"><a href="SimpleMed.html#cb181-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb181-12"><a href="SimpleMed.html#cb181-12" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb181-13"><a href="SimpleMed.html#cb181-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb181-14"><a href="SimpleMed.html#cb181-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb181-15"><a href="SimpleMed.html#cb181-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb181-16"><a href="SimpleMed.html#cb181-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb181-17"><a href="SimpleMed.html#cb181-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb181-18"><a href="SimpleMed.html#cb181-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb181-19"><a href="SimpleMed.html#cb181-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb181-20"><a href="SimpleMed.html#cb181-20" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Fake Data:  Simple Mediation&quot;</span>)</span></code></pre></div>
 <p><img src="ReC_MultMod_files/figure-html/FakyDaty%20Simple%20Plot-1.svg" width="672" /></p>
 <p>Hayes has great examples of APA style tables. I haven’t yet found a package that will turn this output into a journal-ready table, however the <em>semTable</em> package can at least write the output to a .csv file and you can further manipulate it into a table.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="SimpleMed.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
-<span id="cb176-2"><a href="SimpleMed.html#cb176-2" aria-hidden="true" tabindex="-1"></a>fitTab1 <span class="ot">&lt;-</span> <span class="fu">semTable</span>(fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="SimpleMed.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
+<span id="cb182-2"><a href="SimpleMed.html#cb182-2" aria-hidden="true" tabindex="-1"></a>fitTab1 <span class="ot">&lt;-</span> <span class="fu">semTable</span>(fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="results-2" class="section level3" number="6.4.5">
 <h3><span class="header-section-number">6.4.5</span> Results</h3>
@@ -942,7 +1016,7 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 </div>
 <div id="research-vignette-4" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Research Vignette</h2>
-<p>The research vignette comes from the Kim, Kendall, and Cheon’s <span class="citation">(<a href="refs.html#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span>, “Racial Microaggressions, Cultural Mistrust, and Mental Health Outcomes Among Asian American College Students.” Participants were 156 Asian American undergraduate students in the Pacific Northwest. The researchers posited the a priori hypothesis that cultural mistrust would mediate the relationship between racial microaggressions and two sets of outcomes: mental health (e.g., depression, anxiety, well-being) and help-seeking.</p>
+<p>The research vignette comes from the Kim, Kendall, and Cheon’s <span class="citation">(<a href="#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span>, “Racial Microaggressions, Cultural Mistrust, and Mental Health Outcomes Among Asian American College Students.” Participants were 156 Asian American undergraduate students in the Pacific Northwest. The researchers posited the a priori hypothesis that cultural mistrust would mediate the relationship between racial microaggressions and two sets of outcomes: mental health (e.g., depression, anxiety, well-being) and help-seeking.</p>
 <p>Variables used in the study included:</p>
 <ul>
 <li><strong>REMS</strong>: Racial and Ethnic Microaggressions Scale (Nadal, 2011). The scale includes 45 items on a 2-point scale where 0 indicates no experience of a microaggressive event and 1 indicates it was experienced at least once within the past six months. Higher scores indicate more experience of microaggressions.</li>
@@ -953,21 +1027,22 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 <div id="simulate-data-from-the-journal-article" class="section level3" number="6.5.1">
 <h3><span class="header-section-number">6.5.1</span> Simulate Data from the Journal Article</h3>
 <p>First, we simulate the data from the means, standard deviations, and correlation matrix from the journal article.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="SimpleMed.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
-<span id="cb177-2"><a href="SimpleMed.html#cb177-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">34</span>, <span class="fl">3.00</span>, <span class="fl">2.98</span>, <span class="fl">2.36</span>, <span class="fl">3.50</span>, <span class="fl">1.64</span>)</span>
-<span id="cb177-3"><a href="SimpleMed.html#cb177-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">16</span>, .<span class="dv">83</span>, .<span class="dv">99</span>, .<span class="dv">90</span>, .<span class="dv">90</span>, .<span class="dv">53</span>)</span>
-<span id="cb177-4"><a href="SimpleMed.html#cb177-4" aria-hidden="true" tabindex="-1"></a>r_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">1</span>,   .<span class="dv">59</span>, .<span class="dv">26</span>,   .<span class="dv">34</span>,  <span class="sc">-</span>.<span class="dv">25</span>, <span class="sc">-</span>.<span class="dv">02</span>,</span>
-<span id="cb177-5"><a href="SimpleMed.html#cb177-5" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">59</span>, <span class="fl">1.00</span>, .<span class="dv">12</span>,   .<span class="dv">19</span>,  <span class="sc">-</span>.<span class="dv">28</span>, .<span class="dv">00</span>, </span>
-<span id="cb177-6"><a href="SimpleMed.html#cb177-6" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">26</span>,  .<span class="dv">12</span>, <span class="fl">1.00</span>, .<span class="dv">66</span>,  <span class="sc">-</span>.<span class="dv">55</span>, .<span class="dv">07</span>,</span>
-<span id="cb177-7"><a href="SimpleMed.html#cb177-7" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">34</span>,  .<span class="dv">19</span>, .<span class="dv">66</span>,  <span class="fl">1.00</span>, <span class="sc">-</span>.<span class="dv">66</span>, .<span class="dv">05</span>,</span>
-<span id="cb177-8"><a href="SimpleMed.html#cb177-8" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>.<span class="dv">25</span>, <span class="sc">-</span>.<span class="dv">28</span>, <span class="sc">-</span>.<span class="dv">55</span>,<span class="sc">-</span>.<span class="dv">66</span>,  <span class="fl">1.00</span>, .<span class="dv">08</span>, </span>
-<span id="cb177-9"><a href="SimpleMed.html#cb177-9" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>.<span class="dv">02</span>,  .<span class="dv">00</span>,  .<span class="dv">07</span>, .<span class="dv">05</span>, .<span class="dv">08</span>,  <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">6</span>)</span>
-<span id="cb177-10"><a href="SimpleMed.html#cb177-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a covariance matrix</span></span>
-<span id="cb177-11"><a href="SimpleMed.html#cb177-11" aria-hidden="true" tabindex="-1"></a>cov_mat <span class="ot">&lt;-</span> sd <span class="sc">%*%</span> <span class="fu">t</span>(sd) <span class="sc">*</span> r_mat</span>
-<span id="cb177-12"><a href="SimpleMed.html#cb177-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-13"><a href="SimpleMed.html#cb177-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Set random seed so that the following matrix always gets the same results.</span></span>
-<span id="cb177-14"><a href="SimpleMed.html#cb177-14" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210409</span>)</span>
-<span id="cb177-15"><a href="SimpleMed.html#cb177-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="SimpleMed.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
+<span id="cb183-2"><a href="SimpleMed.html#cb183-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">34</span>, <span class="fl">3.00</span>, <span class="fl">2.98</span>, <span class="fl">2.36</span>, <span class="fl">3.50</span>, <span class="fl">1.64</span>)</span>
+<span id="cb183-3"><a href="SimpleMed.html#cb183-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">16</span>, .<span class="dv">83</span>, .<span class="dv">99</span>, .<span class="dv">90</span>, .<span class="dv">90</span>, .<span class="dv">53</span>)</span>
+<span id="cb183-4"><a href="SimpleMed.html#cb183-4" aria-hidden="true" tabindex="-1"></a>r_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">1</span>,   .<span class="dv">59</span>, .<span class="dv">26</span>,   .<span class="dv">34</span>,  <span class="sc">-</span>.<span class="dv">25</span>, <span class="sc">-</span>.<span class="dv">02</span>,</span>
+<span id="cb183-5"><a href="SimpleMed.html#cb183-5" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">59</span>, <span class="fl">1.00</span>, .<span class="dv">12</span>,   .<span class="dv">19</span>,  <span class="sc">-</span>.<span class="dv">28</span>, .<span class="dv">00</span>, </span>
+<span id="cb183-6"><a href="SimpleMed.html#cb183-6" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">26</span>,  .<span class="dv">12</span>, <span class="fl">1.00</span>, .<span class="dv">66</span>,  <span class="sc">-</span>.<span class="dv">55</span>, .<span class="dv">07</span>,</span>
+<span id="cb183-7"><a href="SimpleMed.html#cb183-7" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">34</span>,  .<span class="dv">19</span>, .<span class="dv">66</span>,  <span class="fl">1.00</span>, <span class="sc">-</span>.<span class="dv">66</span>, .<span class="dv">05</span>,</span>
+<span id="cb183-8"><a href="SimpleMed.html#cb183-8" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>.<span class="dv">25</span>, <span class="sc">-</span>.<span class="dv">28</span>, <span class="sc">-</span>.<span class="dv">55</span>,<span class="sc">-</span>.<span class="dv">66</span>,  <span class="fl">1.00</span>, .<span class="dv">08</span>, </span>
+<span id="cb183-9"><a href="SimpleMed.html#cb183-9" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>.<span class="dv">02</span>,  .<span class="dv">00</span>,  .<span class="dv">07</span>, .<span class="dv">05</span>, .<span class="dv">08</span>,  <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">6</span>)</span>
+<span id="cb183-10"><a href="SimpleMed.html#cb183-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a covariance matrix</span></span>
+<span id="cb183-11"><a href="SimpleMed.html#cb183-11" aria-hidden="true" tabindex="-1"></a>cov_mat <span class="ot">&lt;-</span> sd <span class="sc">%*%</span> <span class="fu">t</span>(sd) <span class="sc">*</span> r_mat</span>
+<span id="cb183-12"><a href="SimpleMed.html#cb183-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-13"><a href="SimpleMed.html#cb183-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Set random seed so that the following matrix always gets the same results.</span></span>
+<span id="cb183-14"><a href="SimpleMed.html#cb183-14" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210409</span>)</span>
+<span id="cb183-15"><a href="SimpleMed.html#cb183-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<pre><code>## Warning: package &#39;MASS&#39; was built under R version 4.0.5</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;MASS&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:formattable&#39;:
@@ -976,11 +1051,11 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
 ## 
 ##     select</code></pre>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="SimpleMed.html#cb181-1" aria-hidden="true" tabindex="-1"></a>Kim_df <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">156</span>, <span class="at">mu=</span>mu, <span class="at">Sigma =</span> cov_mat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb181-2"><a href="SimpleMed.html#cb181-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(Kim_df)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="SimpleMed.html#cb188-1" aria-hidden="true" tabindex="-1"></a>Kim_df <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">156</span>, <span class="at">mu=</span>mu, <span class="at">Sigma =</span> cov_mat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb188-2"><a href="SimpleMed.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(Kim_df)</span></code></pre></div>
 <pre><code>## [1] 0.34 3.00 2.98 2.36 3.50 1.64</code></pre>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="SimpleMed.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
-<span id="cb183-2"><a href="SimpleMed.html#cb183-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(Kim_df),<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="SimpleMed.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
+<span id="cb190-2"><a href="SimpleMed.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(Kim_df),<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]
 ## [1,]  1.00  0.59  0.26  0.34 -0.25 -0.02
 ## [2,]  0.59  1.00  0.12  0.19 -0.28  0.00
@@ -988,8 +1063,8 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ## [4,]  0.34  0.19  0.66  1.00 -0.66  0.05
 ## [5,] -0.25 -0.28 -0.55 -0.66  1.00  0.08
 ## [6,] -0.02  0.00  0.07  0.05  0.08  1.00</code></pre>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="SimpleMed.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="co">#look at the first 6 rows of the new df</span></span>
-<span id="cb185-2"><a href="SimpleMed.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Kim_df)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="SimpleMed.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co">#look at the first 6 rows of the new df</span></span>
+<span id="cb192-2"><a href="SimpleMed.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Kim_df)</span></code></pre></div>
 <pre><code>##        REMS      CMI      ANX      DEP      PWB    HlpSk
 ## 1 0.5632213 3.659748 4.104905 1.955481 3.287428 1.918057
 ## 2 0.4164574 2.405398 3.189049 1.574824 4.250802 1.701437
@@ -998,8 +1073,8 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ## 5 0.2119648 2.110152 3.068806 2.145528 3.429861 1.909203
 ## 6 0.5961068 4.087986 3.420916 3.129796 2.914344 1.900283</code></pre>
 <p>Let’s check the descriptives to see if they align with those in the article.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="SimpleMed.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb187-2"><a href="SimpleMed.html#cb187-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(Kim_df)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="SimpleMed.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb194-2"><a href="SimpleMed.html#cb194-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(Kim_df)</span></code></pre></div>
 <pre><code>##       vars   n mean   sd median trimmed  mad   min  max range  skew kurtosis
 ## REMS     1 156 0.34 0.16   0.32    0.34 0.16 -0.12 0.77  0.89 -0.02    -0.01
 ## CMI      2 156 3.00 0.83   3.01    3.00 0.73  0.90 5.42  4.51 -0.01     0.07
@@ -1014,8 +1089,8 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ## DEP   0.07
 ## PWB   0.07
 ## HlpSk 0.04</code></pre>
-<p>There are a number of reasons I love the Kim et al. <span class="citation">(<a href="refs.html#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span> manuscript. One is that their approach was openly one that tested <em>alternate models</em>. Byrne <span class="citation">(<a href="refs.html#ref-byrne_structural_2016" role="doc-biblioref">2016</a>)</span> credits Joreskog <span class="citation">(<a href="refs.html#ref-bollen_testing_1993" role="doc-biblioref">Joreskog, 1993</a>)</span> with classifying the researcher’s model testing approach in three ways. If someone is <em>strictly confirmatory</em>, they only test the model they proposed and then accept or reject it without further alteration. While this is the tradition of null hypothesis significance testing, it contributes to the “file drawer problem” of unpublished, non-significant, findings. Additionally, the data are them discarded – potentially losing valuable resource. The <em>alternative models</em> approach is to propose a handful of competing models before beginning the analysis and then evaluating to see if one model is superior to the other. The third option is <em>model generating</em>. In this case the researcher begins with a theoretically proposed model. In the presence of poor fit, the researcher seeks to identify the source of misfit – respecifying it to best represent the sample data. The researcher must use caution to produce a model that fits well and is meaningful.</p>
-<p>Several of the Kim et al. <span class="citation">(<a href="refs.html#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span> models were non-significant. To demonstrate a model that is statistically significant, I will test the hypothesis that racial microaggressions (REMS, the X variable) influence depression (DEP, the Y variable) through cultural mistrust (CMI, the M variable).</p>
+<p>There are a number of reasons I love the Kim et al. <span class="citation">(<a href="#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span> manuscript. One is that their approach was openly one that tested <em>alternate models</em>. Byrne <span class="citation">(<a href="#ref-byrne_structural_2016" role="doc-biblioref">2016</a>)</span> credits Joreskog <span class="citation">(<a href="#ref-bollen_testing_1993" role="doc-biblioref">Joreskog, 1993</a>)</span> with classifying the researcher’s model testing approach in three ways. If someone is <em>strictly confirmatory</em>, they only test the model they proposed and then accept or reject it without further alteration. While this is the tradition of null hypothesis significance testing, it contributes to the “file drawer problem” of unpublished, non-significant, findings. Additionally, the data are them discarded – potentially losing valuable resource. The <em>alternative models</em> approach is to propose a handful of competing models before beginning the analysis and then evaluating to see if one model is superior to the other. The third option is <em>model generating</em>. In this case the researcher begins with a theoretically proposed model. In the presence of poor fit, the researcher seeks to identify the source of misfit – respecifying it to best represent the sample data. The researcher must use caution to produce a model that fits well and is meaningful.</p>
+<p>Several of the Kim et al. <span class="citation">(<a href="#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span> models were non-significant. To demonstrate a model that is statistically significant, I will test the hypothesis that racial microaggressions (REMS, the X variable) influence depression (DEP, the Y variable) through cultural mistrust (CMI, the M variable).</p>
 <div class="figure">
 <img src="images/SimpleMed/Kim_SimpMed.jpg" alt="" />
 <p class="caption">Image of the simple mediation model from Kim et al.</p>
@@ -1029,23 +1104,23 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 <li>replacing the name of the df</li>
 <li>updated the object names (so I could use them in the same .rmd file)</li>
 </ul>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="SimpleMed.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb189-2"><a href="SimpleMed.html#cb189-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>) <span class="co">#reset in case you choose to separate these sections</span></span>
-<span id="cb189-3"><a href="SimpleMed.html#cb189-3" aria-hidden="true" tabindex="-1"></a>Kim_model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb189-4"><a href="SimpleMed.html#cb189-4" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ b*CMI + c_p*REMS </span></span>
-<span id="cb189-5"><a href="SimpleMed.html#cb189-5" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~a*REMS</span></span>
-<span id="cb189-6"><a href="SimpleMed.html#cb189-6" aria-hidden="true" tabindex="-1"></a><span class="st">          </span></span>
-<span id="cb189-7"><a href="SimpleMed.html#cb189-7" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
-<span id="cb189-8"><a href="SimpleMed.html#cb189-8" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
-<span id="cb189-9"><a href="SimpleMed.html#cb189-9" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
-<span id="cb189-10"><a href="SimpleMed.html#cb189-10" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span></code></pre></div>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="SimpleMed.html#cb190-1" aria-hidden="true" tabindex="-1"></a>Kim_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(Kim_model, <span class="at">data =</span> Kim_df, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing=</span> <span class="st">&#39;fiml&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="SimpleMed.html#cb191-1" aria-hidden="true" tabindex="-1"></a>Kim_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(Kim_fit, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## lavaan 0.6-7 ended normally after 23 iterations
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="SimpleMed.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb196-2"><a href="SimpleMed.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>) <span class="co">#reset in case you choose to separate these sections</span></span>
+<span id="cb196-3"><a href="SimpleMed.html#cb196-3" aria-hidden="true" tabindex="-1"></a>Kim_model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb196-4"><a href="SimpleMed.html#cb196-4" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ b*CMI + c_p*REMS </span></span>
+<span id="cb196-5"><a href="SimpleMed.html#cb196-5" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~a*REMS</span></span>
+<span id="cb196-6"><a href="SimpleMed.html#cb196-6" aria-hidden="true" tabindex="-1"></a><span class="st">          </span></span>
+<span id="cb196-7"><a href="SimpleMed.html#cb196-7" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
+<span id="cb196-8"><a href="SimpleMed.html#cb196-8" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
+<span id="cb196-9"><a href="SimpleMed.html#cb196-9" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
+<span id="cb196-10"><a href="SimpleMed.html#cb196-10" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="SimpleMed.html#cb197-1" aria-hidden="true" tabindex="-1"></a>Kim_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(Kim_model, <span class="at">data =</span> Kim_df, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing=</span> <span class="st">&#39;fiml&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="SimpleMed.html#cb198-1" aria-hidden="true" tabindex="-1"></a>Kim_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(Kim_fit, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6-8 ended normally after 23 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
-##   Number of free parameters                          7
+##   Number of model parameters                         7
 ##                                                       
 ##   Number of observations                           156
 ##   Number of missing patterns                         1
@@ -1136,8 +1211,8 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ##    -0.675   -0.120
 ##    -0.732   -0.130
 ##    -1.406   -0.250</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="SimpleMed.html#cb193-1" aria-hidden="true" tabindex="-1"></a>Kim_ParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(Kim_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
-<span id="cb193-2"><a href="SimpleMed.html#cb193-2" aria-hidden="true" tabindex="-1"></a>Kim_summary</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="SimpleMed.html#cb200-1" aria-hidden="true" tabindex="-1"></a>Kim_ParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(Kim_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb200-2"><a href="SimpleMed.html#cb200-2" aria-hidden="true" tabindex="-1"></a>Kim_summary</span></code></pre></div>
 <pre><code>## $FIT
 ##              npar              fmin             chisq                df 
 ##             7.000             0.000             0.000             0.000 
@@ -1183,7 +1258,7 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ## 12 0.0001151982 -2.1222575 -0.71330366 -1.4062500 -0.2500000 -1.5675322
 ## 13           NA         NA          NA         NA         NA         NA
 ## 14           NA         NA          NA         NA         NA         NA</code></pre>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="SimpleMed.html#cb195-1" aria-hidden="true" tabindex="-1"></a>Kim_ParamEsts</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="SimpleMed.html#cb202-1" aria-hidden="true" tabindex="-1"></a>Kim_ParamEsts</span></code></pre></div>
 <pre><code>##         lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper
 ## 1       PWB  ~       CMI        b -0.220 0.118 -1.873  0.061   -0.456    0.012
 ## 2       PWB  ~      REMS      c_p -0.732 0.509 -1.437  0.151   -1.697    0.293
@@ -1228,30 +1303,30 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 <div id="a-figure-and-a-table" class="section level3" number="6.5.4">
 <h3><span class="header-section-number">6.5.4</span> A Figure and a Table</h3>
 <p>I make it a practice to immediately plot what I did. Because the plotting packages use our models, this can be a helpful self-check of our work.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="SimpleMed.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
-<span id="cb197-2"><a href="SimpleMed.html#cb197-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(Kim_fit, <span class="co">#must identiy the model you want to map</span></span>
-<span id="cb197-3"><a href="SimpleMed.html#cb197-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
-<span id="cb197-4"><a href="SimpleMed.html#cb197-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
-<span id="cb197-5"><a href="SimpleMed.html#cb197-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
-<span id="cb197-6"><a href="SimpleMed.html#cb197-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
-<span id="cb197-7"><a href="SimpleMed.html#cb197-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
-<span id="cb197-8"><a href="SimpleMed.html#cb197-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
-<span id="cb197-9"><a href="SimpleMed.html#cb197-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
-<span id="cb197-10"><a href="SimpleMed.html#cb197-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
-<span id="cb197-11"><a href="SimpleMed.html#cb197-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
-<span id="cb197-12"><a href="SimpleMed.html#cb197-12" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
-<span id="cb197-13"><a href="SimpleMed.html#cb197-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
-<span id="cb197-14"><a href="SimpleMed.html#cb197-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
-<span id="cb197-15"><a href="SimpleMed.html#cb197-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
-<span id="cb197-16"><a href="SimpleMed.html#cb197-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
-<span id="cb197-17"><a href="SimpleMed.html#cb197-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
-<span id="cb197-18"><a href="SimpleMed.html#cb197-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
-<span id="cb197-19"><a href="SimpleMed.html#cb197-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb197-20"><a href="SimpleMed.html#cb197-20" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Depression by Racial Microaggressions via Cultural Mistrust&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="SimpleMed.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb204-2"><a href="SimpleMed.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(Kim_fit, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb204-3"><a href="SimpleMed.html#cb204-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb204-4"><a href="SimpleMed.html#cb204-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb204-5"><a href="SimpleMed.html#cb204-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
+<span id="cb204-6"><a href="SimpleMed.html#cb204-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb204-7"><a href="SimpleMed.html#cb204-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb204-8"><a href="SimpleMed.html#cb204-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb204-9"><a href="SimpleMed.html#cb204-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb204-10"><a href="SimpleMed.html#cb204-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb204-11"><a href="SimpleMed.html#cb204-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb204-12"><a href="SimpleMed.html#cb204-12" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb204-13"><a href="SimpleMed.html#cb204-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb204-14"><a href="SimpleMed.html#cb204-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb204-15"><a href="SimpleMed.html#cb204-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb204-16"><a href="SimpleMed.html#cb204-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb204-17"><a href="SimpleMed.html#cb204-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb204-18"><a href="SimpleMed.html#cb204-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb204-19"><a href="SimpleMed.html#cb204-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb204-20"><a href="SimpleMed.html#cb204-20" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Depression by Racial Microaggressions via Cultural Mistrust&quot;</span>)</span></code></pre></div>
 <p><img src="ReC_MultMod_files/figure-html/semPLOT%20of%20PMI-1.svg" width="672" /></p>
 <p>The semTable package can be used to write results to an outfile.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="SimpleMed.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
-<span id="cb198-2"><a href="SimpleMed.html#cb198-2" aria-hidden="true" tabindex="-1"></a>fitTab1 <span class="ot">&lt;-</span> <span class="fu">semTable</span>(Kim_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;pmi_fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="SimpleMed.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
+<span id="cb205-2"><a href="SimpleMed.html#cb205-2" aria-hidden="true" tabindex="-1"></a>fitTab1 <span class="ot">&lt;-</span> <span class="fu">semTable</span>(Kim_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;pmi_fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>For the purpose of the OER, and because it’s good trainng, I also think it can be useful to make our own table. For me, it facilitates my conceptual understanding of (a) what the statistic is doing and (b) the results of our specific data.</p>
 <p>Table 1</p>
 <table>
@@ -1342,31 +1417,31 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 </div>
 <div id="considering-covariates" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Considering Covariates</h2>
-<p>Hayes Chapter 4 <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> considers the role of covariates (e.g., other variables that could account for some of the variance in the model). When previous research (or commonsense, or detractors) suggest you should include them…its worth a try. If they are non-significant and/or your variables continue to explain variance over-and-above their contribution, then you have gained ground in ruling out plausible rival hypotheses and are adding to causal evidence.</p>
+<p>Hayes Chapter 4 <span class="citation">(<a href="#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> considers the role of covariates (e.g., other variables that could account for some of the variance in the model). When previous research (or commonsense, or detractors) suggest you should include them…its worth a try. If they are non-significant and/or your variables continue to explain variance over-and-above their contribution, then you have gained ground in ruling out plausible rival hypotheses and are adding to causal evidence.</p>
 <p>They are relatively easy to specify in <em>lavaan</em>. Just look at to where the arrows point and then write the path!</p>
 <p>Let’s say we are concerned that anxiety covaries with cultural mistrust and PWB We’ll add it as a covariate to both.</p>
 <div class="figure">
 <img src="images/SimpleMed/Kim_wCovs.jpg" alt="" />
 <p class="caption">Image of the simple mediation model from Kim et al.</p>
 </div>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="SimpleMed.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>)</span>
-<span id="cb199-2"><a href="SimpleMed.html#cb199-2" aria-hidden="true" tabindex="-1"></a>Kim_fit_covs <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb199-3"><a href="SimpleMed.html#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ b*CMI + c_p*REMS </span></span>
-<span id="cb199-4"><a href="SimpleMed.html#cb199-4" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~a*REMS</span></span>
-<span id="cb199-5"><a href="SimpleMed.html#cb199-5" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~ covM*ANX</span></span>
-<span id="cb199-6"><a href="SimpleMed.html#cb199-6" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ covY*ANX</span></span>
-<span id="cb199-7"><a href="SimpleMed.html#cb199-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-8"><a href="SimpleMed.html#cb199-8" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
-<span id="cb199-9"><a href="SimpleMed.html#cb199-9" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
-<span id="cb199-10"><a href="SimpleMed.html#cb199-10" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
-<span id="cb199-11"><a href="SimpleMed.html#cb199-11" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span>
-<span id="cb199-12"><a href="SimpleMed.html#cb199-12" aria-hidden="true" tabindex="-1"></a>Kim_fit_covs <span class="ot">&lt;-</span> <span class="fu">sem</span>(Kim_fit_covs, <span class="at">data =</span> Kim_df, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>)</span>
-<span id="cb199-13"><a href="SimpleMed.html#cb199-13" aria-hidden="true" tabindex="-1"></a>Kcov_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(Kim_fit_covs, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## lavaan 0.6-7 ended normally after 25 iterations
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="SimpleMed.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>)</span>
+<span id="cb206-2"><a href="SimpleMed.html#cb206-2" aria-hidden="true" tabindex="-1"></a>Kim_fit_covs <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb206-3"><a href="SimpleMed.html#cb206-3" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ b*CMI + c_p*REMS </span></span>
+<span id="cb206-4"><a href="SimpleMed.html#cb206-4" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~a*REMS</span></span>
+<span id="cb206-5"><a href="SimpleMed.html#cb206-5" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~ covM*ANX</span></span>
+<span id="cb206-6"><a href="SimpleMed.html#cb206-6" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ covY*ANX</span></span>
+<span id="cb206-7"><a href="SimpleMed.html#cb206-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-8"><a href="SimpleMed.html#cb206-8" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
+<span id="cb206-9"><a href="SimpleMed.html#cb206-9" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
+<span id="cb206-10"><a href="SimpleMed.html#cb206-10" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
+<span id="cb206-11"><a href="SimpleMed.html#cb206-11" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span>
+<span id="cb206-12"><a href="SimpleMed.html#cb206-12" aria-hidden="true" tabindex="-1"></a>Kim_fit_covs <span class="ot">&lt;-</span> <span class="fu">sem</span>(Kim_fit_covs, <span class="at">data =</span> Kim_df, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>)</span>
+<span id="cb206-13"><a href="SimpleMed.html#cb206-13" aria-hidden="true" tabindex="-1"></a>Kcov_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(Kim_fit_covs, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## lavaan 0.6-8 ended normally after 25 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
-##   Number of free parameters                          9
+##   Number of model parameters                         9
 ##                                                       
 ##   Number of observations                           156
 ##   Number of missing patterns                         1
@@ -1463,8 +1538,8 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ##    -0.776   -0.138
 ##     0.131    0.023
 ##    -0.646   -0.115</code></pre>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="SimpleMed.html#cb201-1" aria-hidden="true" tabindex="-1"></a>Kcov_ParEsts<span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(Kim_fit_covs, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
-<span id="cb201-2"><a href="SimpleMed.html#cb201-2" aria-hidden="true" tabindex="-1"></a>Kcov_sum</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="SimpleMed.html#cb208-1" aria-hidden="true" tabindex="-1"></a>Kcov_ParEsts<span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(Kim_fit_covs, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb208-2"><a href="SimpleMed.html#cb208-2" aria-hidden="true" tabindex="-1"></a>Kcov_sum</span></code></pre></div>
 <pre><code>## $FIT
 ##              npar              fmin             chisq                df 
 ##             9.000             0.000             0.000             0.000 
@@ -1520,7 +1595,7 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ## 17 8.345224e-02 -1.3981671  0.07871598 -0.6455116 -0.11475762 -0.7195450
 ## 18           NA         NA          NA         NA          NA         NA
 ## 19           NA         NA          NA         NA          NA         NA</code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="SimpleMed.html#cb203-1" aria-hidden="true" tabindex="-1"></a>Kcov_ParEsts</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="SimpleMed.html#cb210-1" aria-hidden="true" tabindex="-1"></a>Kcov_ParEsts</span></code></pre></div>
 <pre><code>##         lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper
 ## 1       PWB  ~       CMI        b -0.250 0.100 -2.509  0.012   -0.447   -0.066
 ## 2       PWB  ~      REMS      c_p  0.131 0.511  0.256  0.798   -0.854    1.158
@@ -1560,29 +1635,29 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 <div id="a-figure-and-a-table-1" class="section level3" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> A Figure and a Table</h3>
 <p>Let’s look at a figure to see see if we did what we think we did. And to also get a graphic representation of our results. The semplot package does this easily, but the figure is more statistical than conceptual and would require more tinkering for a journal article.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="SimpleMed.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(Kim_fit_covs, <span class="co">#must identiy the model you want to map</span></span>
-<span id="cb205-2"><a href="SimpleMed.html#cb205-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
-<span id="cb205-3"><a href="SimpleMed.html#cb205-3" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
-<span id="cb205-4"><a href="SimpleMed.html#cb205-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
-<span id="cb205-5"><a href="SimpleMed.html#cb205-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
-<span id="cb205-6"><a href="SimpleMed.html#cb205-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
-<span id="cb205-7"><a href="SimpleMed.html#cb205-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
-<span id="cb205-8"><a href="SimpleMed.html#cb205-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
-<span id="cb205-9"><a href="SimpleMed.html#cb205-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
-<span id="cb205-10"><a href="SimpleMed.html#cb205-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
-<span id="cb205-11"><a href="SimpleMed.html#cb205-11" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
-<span id="cb205-12"><a href="SimpleMed.html#cb205-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
-<span id="cb205-13"><a href="SimpleMed.html#cb205-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
-<span id="cb205-14"><a href="SimpleMed.html#cb205-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
-<span id="cb205-15"><a href="SimpleMed.html#cb205-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
-<span id="cb205-16"><a href="SimpleMed.html#cb205-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
-<span id="cb205-17"><a href="SimpleMed.html#cb205-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
-<span id="cb205-18"><a href="SimpleMed.html#cb205-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb205-19"><a href="SimpleMed.html#cb205-19" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Entrepreneurial Withdrawal by eDistress via Negative Affect (&amp; some covariates(&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="SimpleMed.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(Kim_fit_covs, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb212-2"><a href="SimpleMed.html#cb212-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb212-3"><a href="SimpleMed.html#cb212-3" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb212-4"><a href="SimpleMed.html#cb212-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
+<span id="cb212-5"><a href="SimpleMed.html#cb212-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb212-6"><a href="SimpleMed.html#cb212-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb212-7"><a href="SimpleMed.html#cb212-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb212-8"><a href="SimpleMed.html#cb212-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb212-9"><a href="SimpleMed.html#cb212-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb212-10"><a href="SimpleMed.html#cb212-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb212-11"><a href="SimpleMed.html#cb212-11" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb212-12"><a href="SimpleMed.html#cb212-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb212-13"><a href="SimpleMed.html#cb212-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb212-14"><a href="SimpleMed.html#cb212-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb212-15"><a href="SimpleMed.html#cb212-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb212-16"><a href="SimpleMed.html#cb212-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb212-17"><a href="SimpleMed.html#cb212-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb212-18"><a href="SimpleMed.html#cb212-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb212-19"><a href="SimpleMed.html#cb212-19" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Entrepreneurial Withdrawal by eDistress via Negative Affect (&amp; some covariates(&quot;</span>)</span></code></pre></div>
 <p><img src="ReC_MultMod_files/figure-html/semPLOT%20for%20model%20w%20covs-1.svg" width="672" /></p>
 <p>The path coefficients appear to be correct, but this is really a statistical map and doesn’t relay the concept of mediation well.</p>
 <p>Below is code to create an outfile that could help with creating a table in a word document or spreadsheet. There will be output that is produced with SEM models that won’t be relevant for this project.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="SimpleMed.html#cb206-1" aria-hidden="true" tabindex="-1"></a>KimCOVTab <span class="ot">&lt;-</span> <span class="fu">semTable</span>(Kim_fit_covs, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;ESTRESScov_fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="SimpleMed.html#cb213-1" aria-hidden="true" tabindex="-1"></a>KimCOVTab <span class="ot">&lt;-</span> <span class="fu">semTable</span>(Kim_fit_covs, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;ESTRESScov_fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Table 2</p>
 <table>
 <colgroup>
@@ -1678,7 +1753,7 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 </div>
 <div id="apa-style-write-up" class="section level3" number="6.6.2">
 <h3><span class="header-section-number">6.6.2</span> APA Style Write-up</h3>
-<p>There are varying models for reporting the results of mediation. The Kim et al. <span class="citation">(<a href="refs.html#ref-kim_racial_2017" role="doc-biblioref">Paul Youngbin Kim et al., 2017</a>)</span> writeup is a great example. Rather than copying it directly, I have modeled my table after the ones in Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> text. You’ll notice that information in the table and text are minimally overlapping. APA style cautions us against redundancy in text and table.</p>
+<p>There are varying models for reporting the results of mediation. The Kim et al. <span class="citation">(<a href="#ref-kim_racial_2017" role="doc-biblioref">Paul Youngbin Kim et al., 2017</a>)</span> writeup is a great example. Rather than copying it directly, I have modeled my table after the ones in Hayes <span class="citation">(<a href="#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> text. You’ll notice that information in the table and text are minimally overlapping. APA style cautions us against redundancy in text and table.</p>
 <p><strong>Results</strong></p>
 <p>A simple mediation model examined the degree to which cultural mistrust mediated the effect of racial microaggressions on psychological well-being. Using the <em>lavaan</em> package (v 0.6-7) in R, coefficients for the each path, the indirect effect, and total effects were calculated. The effect of covariate, anxiety, was mapped onto both the mediator and dependent variable. These values are presented in Table 3 and illustrated in Figure 3. Results suggested that 34.93% of the variance in cultural mistrust and 34.93% of the variance in well-being were accounted for by the model. Supporting the notion of a mediated model, there was a statistically significant indirect effect (<span class="math inline">\(B\)</span> = -0.776, <span class="math inline">\(p\)</span> = 0.016, CI95 -1.486 to -0.229) in combination with a non-significant direct effect (<span class="math inline">\(B\)</span> = 0.131, <span class="math inline">\(p\)</span> = 0.798, CI95 -0.854 to 1.158). Curiously, though, the total effect (<span class="math inline">\(B\)</span> = -0.646, <span class="math inline">\(p\)</span> = 0.083, CI95 -1.392 to 0.079) was also non-significant.</p>
 </div>
@@ -1687,7 +1762,7 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 <h2><span class="header-section-number">6.7</span> Residual and Related Questions…</h2>
 <p>..that you might have; or at least I had, but if had answered them earlier it would have disrupt the flow.</p>
 <ol style="list-style-type: decimal">
-<li>Are you sure you can claim a significant indirect effect in the presence of a non-significant total effect? Hayes <span class="citation">(<a href="refs.html#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> is.
+<li>Are you sure you can claim a significant indirect effect in the presence of a non-significant total effect? Hayes <span class="citation">(<a href="#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> is.
 <ul>
 <li>In the section subtitled, “What about Baron &amp; Kenny” (chapter 4), Hayes argues from both logical/philosophical and statistical perspectives that the size of the total effect does not constrain or determine the size of the indirect effect. That is, an indirect effect can be different from zero even when the total effect is not (pp. 117-119).<br />
 </li>
@@ -1779,7 +1854,7 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 </div>
 <div id="problem-2-rework-the-research-vignette-but-swap-one-or-more-variables" class="section level3" number="6.8.2">
 <h3><span class="header-section-number">6.8.2</span> Problem #2: Rework the research vignette, but swap one or more variables</h3>
-<p>Use the simulated data, but select one of the other models that was evaluated in the Kim et al. <span class="citation">(<a href="refs.html#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span> study. Compare your results to those reported in the mansucript.</p>
+<p>Use the simulated data, but select one of the other models that was evaluated in the Kim et al. <span class="citation">(<a href="#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span> study. Compare your results to those reported in the mansucript.</p>
 <table>
 <colgroup>
 <col width="76%" />
@@ -1896,7 +1971,7 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="SimpleMed.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="SimpleMed.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.0.4 (2021-02-15)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 18362)
@@ -1914,60 +1989,84 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] MASS_7.3-53       semTable_1.8      semPlot_1.1.2     lavaan_0.6-7     
-##  [5] apaTables_2.0.8   gdtools_0.2.2     mice_3.13.0       sjstats_0.18.0   
-##  [9] formattable_0.2.1 qualtRics_3.1.4   forcats_0.5.0     stringr_1.4.0    
-## [13] dplyr_1.0.2       purrr_0.3.4       readr_1.4.0       tidyr_1.1.2      
-## [17] tibble_3.0.4      ggplot2_3.3.3     tidyverse_1.3.0   psych_2.0.12     
+##  [1] MASS_7.3-53.1     semTable_1.8      semPlot_1.1.2     lavaan_0.6-8     
+##  [5] apaTables_2.0.8   mice_3.13.0       sjstats_0.18.1    formattable_0.2.1
+##  [9] qualtRics_3.1.4   forcats_0.5.1     stringr_1.4.0     dplyr_1.0.5      
+## [13] purrr_0.3.4       readr_1.4.0       tidyr_1.1.3       tibble_3.1.1     
+## [17] ggplot2_3.3.3     tidyverse_1.3.1   psych_2.1.3      
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] readxl_1.3.1        backports_1.2.0     BDgraph_2.63       
-##   [4] Hmisc_4.4-2         systemfonts_0.3.2   igraph_1.2.6       
-##   [7] plyr_1.8.6          splines_4.0.4       TH.data_1.0-10     
-##  [10] digest_0.6.27       htmltools_0.5.0     matrixcalc_1.0-3   
-##  [13] fansi_0.4.1         magrittr_2.0.1      Rsolnp_1.16        
-##  [16] checkmate_2.0.0     lisrelToR_0.1.4     cluster_2.1.0      
-##  [19] openxlsx_4.2.3      modelr_0.1.8        sandwich_3.0-0     
-##  [22] svglite_1.2.3.2     jpeg_0.1-8.1        sem_3.1-11         
-##  [25] MBESS_4.8.0         colorspace_2.0-0    rvest_0.3.6        
-##  [28] haven_2.3.1         xfun_0.19           crayon_1.3.4       
-##  [31] jsonlite_1.7.2      lme4_1.1-26         regsem_1.6.2       
-##  [34] survival_3.2-7      zoo_1.8-8           glue_1.4.2         
-##  [37] gtable_0.3.0        emmeans_1.5.3       mi_1.0             
-##  [40] sjmisc_2.8.5        abind_1.4-5         scales_1.1.1       
-##  [43] mvtnorm_1.1-1       DBI_1.1.0           Rcpp_1.0.5         
-##  [46] xtable_1.8-4        performance_0.6.1   htmlTable_2.1.0    
-##  [49] tmvnsim_1.0-2       foreign_0.8-81      Formula_1.2-4      
-##  [52] stats4_4.0.4        truncnorm_1.0-8     htmlwidgets_1.5.3  
-##  [55] httr_1.4.2          RColorBrewer_1.1-2  ellipsis_0.3.1     
-##  [58] pkgconfig_2.0.3     XML_3.99-0.5        nnet_7.3-15        
-##  [61] kutils_1.70         dbplyr_2.0.0        utf8_1.1.4         
-##  [64] reshape2_1.4.4      tidyselect_1.1.0    rlang_0.4.9        
-##  [67] effectsize_0.4.1    munsell_0.5.0       cellranger_1.1.0   
-##  [70] tools_4.0.4         cli_2.2.0           generics_0.1.0     
-##  [73] sjlabelled_1.1.7    broom_0.7.3         fdrtool_1.2.15     
+##   [1] readxl_1.3.1        backports_1.2.1     Hmisc_4.5-0        
+##   [4] systemfonts_1.0.1   igraph_1.2.6        plyr_1.8.6         
+##   [7] splines_4.0.4       TH.data_1.0-10      digest_0.6.27      
+##  [10] htmltools_0.5.1.1   matrixcalc_1.0-3    fansi_0.4.2        
+##  [13] magrittr_2.0.1      Rsolnp_1.16         checkmate_2.0.0    
+##  [16] lisrelToR_0.1.4     cluster_2.1.2       openxlsx_4.2.3     
+##  [19] modelr_0.1.8        sandwich_3.0-0      svglite_2.0.0      
+##  [22] jpeg_0.1-8.1        sem_3.1-11          MBESS_4.8.0        
+##  [25] colorspace_2.0-0    rvest_1.0.0         haven_2.4.1        
+##  [28] xfun_0.22           crayon_1.4.1        jsonlite_1.7.2     
+##  [31] lme4_1.1-26         regsem_1.6.2        survival_3.2-11    
+##  [34] zoo_1.8-9           glue_1.4.2          gtable_0.3.0       
+##  [37] emmeans_1.6.0       mi_1.0              sjmisc_2.8.6       
+##  [40] abind_1.4-5         scales_1.1.1        mvtnorm_1.1-1      
+##  [43] DBI_1.1.1           Rcpp_1.0.6          xtable_1.8-4       
+##  [46] performance_0.7.1   htmlTable_2.1.0     tmvnsim_1.0-2      
+##  [49] foreign_0.8-81      Formula_1.2-4       stats4_4.0.4       
+##  [52] truncnorm_1.0-8     htmlwidgets_1.5.3   httr_1.4.2         
+##  [55] RColorBrewer_1.1-2  ellipsis_0.3.1      XML_3.99-0.6       
+##  [58] pkgconfig_2.0.3     nnet_7.3-15         sass_0.3.1         
+##  [61] kutils_1.70         dbplyr_2.1.1        utf8_1.2.1         
+##  [64] reshape2_1.4.4      tidyselect_1.1.1    rlang_0.4.11       
+##  [67] effectsize_0.4.4-1  munsell_0.5.0       cellranger_1.1.0   
+##  [70] tools_4.0.4         cli_2.5.0           generics_0.1.0     
+##  [73] sjlabelled_1.1.7    broom_0.7.6         fdrtool_1.2.16     
 ##  [76] evaluate_0.14       arm_1.11-2          yaml_2.2.1         
-##  [79] knitr_1.30          fs_1.5.0            stationery_0.98.30 
+##  [79] knitr_1.33          fs_1.5.0            stationery_0.98.30 
 ##  [82] zip_2.1.1           glasso_1.11         pbapply_1.4-3      
-##  [85] nlme_3.1-151        whisker_0.4         xml2_1.3.2         
-##  [88] compiler_4.0.4      rstudioapi_0.13     curl_4.3           
-##  [91] png_0.1-7           huge_1.3.4.1        reprex_0.3.0       
-##  [94] statmod_1.4.35      pbivnorm_0.6.0      stringi_1.5.3      
-##  [97] parameters_0.10.1   qgraph_1.6.5        rockchalk_1.8.144  
+##  [85] nlme_3.1-151        xml2_1.3.2          compiler_4.0.4     
+##  [88] rstudioapi_0.13     curl_4.3.1          png_0.1-7          
+##  [91] reprex_2.0.0        statmod_1.4.35      bslib_0.2.4        
+##  [94] pbivnorm_0.6.0      stringi_1.5.3       highr_0.9          
+##  [97] parameters_0.13.0   qgraph_1.6.9        rockchalk_1.8.144  
 ## [100] lattice_0.20-41     Matrix_1.2-18       nloptr_1.2.2.2     
-## [103] vctrs_0.3.6         pillar_1.4.7        lifecycle_0.2.0    
-## [106] OpenMx_2.18.1       estimability_1.3    corpcor_1.6.9      
-## [109] data.table_1.13.4   insight_0.11.1      R6_2.5.0           
-## [112] latticeExtra_0.6-29 bookdown_0.21       gridExtra_2.3      
-## [115] codetools_0.2-18    gtools_3.8.2        boot_1.3-25        
-## [118] assertthat_0.2.1    rjson_0.2.20        withr_2.3.0        
-## [121] mnormt_2.0.2        multcomp_1.4-15     bayestestR_0.8.0   
-## [124] parallel_4.0.4      hms_0.5.3           grid_4.0.4         
+## [103] vctrs_0.3.7         pillar_1.6.0        lifecycle_1.0.0    
+## [106] jquerylib_0.1.4     OpenMx_2.19.5       estimability_1.3   
+## [109] corpcor_1.6.9       data.table_1.14.0   insight_0.13.2     
+## [112] R6_2.5.0            latticeExtra_0.6-29 bookdown_0.22      
+## [115] gridExtra_2.3       codetools_0.2-18    gtools_3.8.2       
+## [118] boot_1.3-27         assertthat_0.2.1    withr_2.4.2        
+## [121] mnormt_2.0.2        multcomp_1.4-17     bayestestR_0.9.0   
+## [124] parallel_4.0.4      hms_1.0.0           grid_4.0.4         
 ## [127] rpart_4.1-15        coda_0.19-4         minqa_1.2.4        
-## [130] rmarkdown_2.6       carData_3.0-4       d3Network_0.5.2.1  
-## [133] lubridate_1.7.9.2   base64enc_0.1-3</code></pre>
+## [130] rmarkdown_2.7       carData_3.0-4       lubridate_1.7.10   
+## [133] base64enc_0.1-3</code></pre>
 
 </div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-byrne_structural_2016" class="csl-entry">
+Byrne, B. M. (2016). <em>Structural equation modeling with <span>AMOS</span>: <span>Basic</span> concepts, applications, and programming</em> (3rd ed.). Routledge. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523</a>
+</div>
+<div id="ref-hayes_introduction_2018" class="csl-entry">
+Hayes, A. F. (2018). <em>Introduction to <span>Mediation</span>, <span>Moderation</span>, and <span>Conditional</span> <span>Process</span> <span>Analysis</span>, <span>Second</span> <span>Edition</span>: <span>A</span> <span>Regression</span>-<span>Based</span> <span>Approach</span></em>. Guilford Publications. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=5109647">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=5109647</a>
+</div>
+<div id="ref-bollen_testing_1993" class="csl-entry">
+Joreskog, K. G. (1993). Testing structural equation models. In K. A. Bollen &amp; J. S. Long (Eds.), <em>Testing <span>Structural</span> <span>Equation</span> <span>Models</span></em>. SAGE.
+</div>
+<div id="ref-kim_racial_2017" class="csl-entry">
+Kim, Paul Youngbin, Kendall, D. L., &amp; Cheon, H.-S. (2017). Racial microaggressions, cultural mistrust, and mental health outcomes among asian american college students. <em>American Journal of Orthopsychiatry</em>, <em>87</em>(6), 663–670. <a href="https://doi.org/10.1037/ort0000203">https://doi.org/10.1037/ort0000203</a>
+</div>
+<div id="ref-kline_mediation_2015" class="csl-entry">
+Kline, R. B. (2015). The mediation myth. <em>Basic and Applied Social Psychology</em>, <em>37</em>(4), 202–213. <a href="https://doi.org/10.1080/01973533.2015.1049349">https://doi.org/10.1080/01973533.2015.1049349</a>
+</div>
+<div id="ref-rosseel_lavaan_2020" class="csl-entry">
+Rosseel, Y. (2020). <em>The lavaan tutorial</em>. <a href="http://lavaan.ugent.be/tutorial/tutorial.pdf">http://lavaan.ugent.be/tutorial/tutorial.pdf</a>
+</div>
+<div id="ref-stone-romero_research_2010" class="csl-entry">
+Stone-Romero, E., &amp; Rosopa, P. (2010). Research design options for testing mediation models and their implications for facets of validity. <em>Journal of Managerial Psychology</em>, <em>25</em>, 697–712. <a href="https://doi.org/10.1108/02683941011075256">https://doi.org/10.1108/02683941011075256</a>
 </div>
 </div>
             </section>
@@ -1999,6 +2098,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
