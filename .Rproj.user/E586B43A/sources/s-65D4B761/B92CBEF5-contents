@@ -1,0 +1,551 @@
+---
+title: "Stacking OFG RCT"
+author: "Lynette H. Bikos, PhD, ABPP"
+date: "2/1/2020"
+output: word_document
+csl: apa-single-spaced.csl
+bibliography: ["DataCleaning.bib", "OFG_RCT.bib"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# GOAL:  Creating a stacked, scored dataset with all four OFG years
+
+This process involves
+
+* importing the de-identified, scrubbed, datasets for each year
+* rename all variables of the separtae datasets to be the same
+* binding them together
+* use the *available information approach* [AIA; @parent_handling_2013] to managing missing data to score the instruments (all scale and subscale variations/options)
+
+## Import data
+```{r Import data}
+Y1_raw <- read.csv ("Y1_raw.csv", head = TRUE, sep = ",")
+Y2_raw <- read.csv ("Y2_raw.csv", head = TRUE, sep = ",")
+Y3_raw <- read.csv ("Y3_raw.csv", head = TRUE, sep = ",")
+Y4_raw <- read.csv ("Y4_raw.csv", head = TRUE, sep = ",")
+```
+
+In each of the separate datasets, ID numbers start at 1 and continue to the total observations.  Before binding, I updated them so that each starts with 1000 (freshman/year1), 2000 (sophomores/year2), 3000 (juniors/year3), 4000 (seniors/year4).
+```{r Update ID numbers}
+library(tidyverse)
+Y1_raw <- Y1_raw %>%
+  mutate(ID = ID + 1000)
+Y2_raw <- Y2_raw %>%
+  mutate(ID = ID + 2000)
+Y3_raw <- Y3_raw %>%
+  mutate(ID = ID + 3000)
+Y4_raw <- Y4_raw %>%
+  mutate(ID = ID + 4000)
+```
+
+
+## Give all variables common names
+
+```{r Names of Y1_raw}
+#needed when variable names weren't matching in rbind
+#names(Y1_raw)
+```
+
+```{r Delete extra var on Y1_raw}
+#Y1_raw had an extra variable
+Y1_raw <- Y1_raw %>%
+  select (-Module.y)
+```
+
+```{r Rename Y1 variables}
+Y1rn <- rename(Y1_raw, ID=ID, DatePr=DatePr, OFGConsPr=OFGConsY1Pr, IRDConsPr=IRDConsY1Pr,     SC1pr=SC1Y1pr, SC2pr=SC2Y1pr,SC3pr=SC3Y1pr, SC4pr=SC4Y1pr, SC5pr=SC5Y1pr,SC6pr=SC6Y1pr, SC7pr=SC7Y1pr, SC8pr=SC8Y1pr,   SC9pr=SC9Y1pr, SC10pr=SC10Y1pr, SC11pr=SC11Y1pr, SC12pr=SC12Y1pr, Pur1pr=Pur1Y1pr, Pur2pr=Pur2Y1pr, Pur3pr=Pur3Y1pr, Pur4pr=Pur4Y1pr, Pur5pr=Pur5Y1pr, Pur6pr=Pur6Y1pr, Pur7pr=Pur7Y1pr, CDSME1pr=CDMSE1Y1pr, CDSME2pr=CDMSE2Y1pr, CDSME3pr=CDMSE3Y1pr, CDSME4pr=CDMSE4Y1pr, CDSME5pr=CDMSE5Y1pr, CDSME6pr=CDMSE6Y1pr, CDSME7pr=CDMSE7Y1pr, CDSME8pr=CDMSE8Y1pr, CDSME9pr=CDMSE9Y1pr, CDSME10pr=CDMSE10Y1pr, CDSME11pr=CDMSE11Y1pr, CDSME12pr=CDMSE12Y1pr, CDSME13pr=CDMSE13Y1pr, CDSME14pr=CDMSE14Y1pr, CDSME15pr=CDMSE15Y1pr, CDSME16pr=CDMSE16Y1pr, CDSME17pr=CDMSE17Y1pr, CDSME18pr=CDMSE18Y1pr, CDSME19pr=CDMSE19Y1pr, CDSME20pr=CDMSE20Y1pr, CDSME21pr=CDMSE21Y1pr, CDSME22pr=CDMSE22Y1pr, CDSME23pr=CDMSE23Y1pr, CDSME24pr=CDMSE24Y1pr, CDSME25pr=CDMSE25Y1pr,  SRF1pr=SRF1Y1pr,   SRF2pr=SRF2Y1pr, SRF3pr=SRF3Y1pr, SRF4pr=SRF4Y1pr, SRF5pr=SRF5Y1pr, VI1pr=VI1Y1pr,   VI2pr=VI2Y1pr,  VI3pr=VI3Y1pr,  VI4pr=VI4Y1pr,  VI5pr=VI5Y1pr,  VI6pr=VI6Y1pr,  VI7pr=VI7Y1pr,  VI8pr=VI8Y1pr,  VI9pr=VI9Y1pr,  VI10pr=VI10Y1pr,  VI11pr=VI11Y1pr,  VI12pr=VI12Y1pr,  VI13pr=VI13Y1pr,  VI14pr=VI14Y1pr,  VI15pr=VI15Y1pr,  VI16pr=VI16Y1pr,  VI17pr=VI17Y1pr,  VI18pr=VI18Y1pr, VIobst1pr=VIobst1Y1pr,  VIobst2pr=VIobst2Y1pr, VIobst3pr=VIobst3Y1pr, VIobst4pr=VIobst4Y1pr, VIbar1pr=VIbar1Y1pr,  VIbar2pr=VIbar2Y1pr, VIbar3pr=VIbar3Y1pr, VIbar4pr=VIbar4Y1pr,  CVQ1pr=CVQ1Y1pr,   CVQ2pr=CVQ2Y1pr,  CVQ3pr=CVQ3Y1pr,  CVQ4pr=CVQ4Y1pr,  CVQ5pr=CVQ5Y1pr,  CVQ6pr=CVQ6Y1pr,  CVQ7pr=CVQ7Y1pr,  CVQ8pr=CVQ8Y1pr,  CVQ9pr=CVQ9Y1pr,  CVQ10pr=CVQ10Y1pr,  CVQ11pr=CVQ11Y1pr,  CVQ12pr=CVQ12Y1pr,  CVQ13pr=CVQ13Y1pr,  CVQ14pr=CVQ14Y1pr,  CVQ15pr=CVQ15Y1pr,  CVQ16pr=CVQ16Y1pr,  CVQ17pr=CVQ17Y1pr,  CVQ18pr=CVQ18Y1pr,  CVQ19pr=CVQ19Y1pr,  CVQ20pr=CVQ20Y1pr,  CVQ21pr=CVQ21Y1pr,  CVQ22pr=CVQ22Y1pr,  CVQ23pr=CVQ23Y1pr,  CVQ24pr=CVQ24Y1pr,  LS1pr=LS1Y1pr,  LS2pr=LS2Y1pr, LS3pr=LS3Y1pr, LS4pr=LS4Y1pr, LS5pr=LS5Y1pr,    Fl1pr=Fl1Y1pr,  Fl2pr=Fl2Y1pr, Fl3pr=Fl3Y1pr, Fl4pr=Fl4Y1pr, Fl5pr=Fl5Y1pr, Fl6pr=Fl6Y1pr, Fl7pr=Fl7Y1pr, Fl8pr=Fl8Y1pr, Hrs1pr=Hrs1Y1pr,  Hrs2pr=Hrs2Y1pr, Hrs3pr=Hrs3Y1pr, Hrs4pr=Hrs4Y1pr, Hrs5pr=Hrs5Y1pr, Hrs6pr=Hrs6Y1pr, Hrs7pr=Hrs7Y1pr, Hrs8pr=Hrs8Y1pr, Hrs9pr=Hrs9Y1pr, Hrs10pr=Hrs10Y1pr, Hrs11pr=Hrs11Y1pr, Hrs12pr=Hrs12Y1pr, Hrs13pr=Hrs13Y1pr, Hrs14pr=Hrs14Y1pr, Hrs15pr=Hrs15Y1pr, Hrs16pr=Hrs16Y1pr, Hrs17pr=Hrs17Y1pr, Hrs18pr=Hrs18Y1pr, Hrs19pr=Hrs19Y1pr, Hrs20pr=Hrs20Y1pr, Hrs21pr=Hrs21Y1pr, Hrs22pr=Hrs22Y1pr, Hrs23pr=Hrs23Y1pr, Work1Pr=WorkY1Pr,        
+Agepr=AgeY1pr, AcadClPr=AcadClY1Pr, GenderPr=GenderY1pr, GendTxtPr=GndTxtY1Pr, LGBTQIApr=LGBTQIAY1pr, RaceEthpr=RaceEthY1pr, EthnTxtPr=EthnTxtY1Pr, IntlStuPr=IntlStuY1pr, IntTxtPr=IntTxtY1pr, LaptopPr=LaptopY1Pr, DesktopPr=DesktopY1Pr, AndroidPr=AndroidY1Pr, iPhonePr=iPhoneY1Pr, iPadPr=iPadY1Pr, tabletPr=tabletY1Pr, OthrPr=OthrY1Pr,
+
+DatePo=DatePo, OFGConsPo=OFGConsY1Po, IRDConsPo=IRDConsY1Po,SC1po=SC1Y1po, SC2po=SC2Y1po,SC3po=SC3Y1po, SC4po=SC4Y1po, SC5po=SC5Y1po,SC6po=SC6Y1po, SC7po=SC7Y1po, SC8po=SC8Y1po,   SC9po=SC9Y1po, SC10po=SC10Y1po, SC11po=SC11Y1po, SC12po=SC12Y1po, Pur1po=Pur1Y1po, Pur2po=Pur2Y1po, Pur3po=Pur3Y1po, Pur4po=Pur4Y1po, Pur5po=Pur5Y1po, Pur6po=Pur6Y1po, Pur7po=Pur7Y1po, CDSME1po=CDMSE1Y1po, CDSME2po=CDMSE2Y1po, CDSME3po=CDMSE3Y1po, CDSME4po=CDMSE4Y1po, CDSME5po=CDMSE5Y1po, CDSME6po=CDMSE6Y1po, CDSME7po=CDMSE7Y1po, CDSME8po=CDMSE8Y1po, CDSME9po=CDMSE9Y1po, CDSME10po=CDMSE10Y1po, CDSME11po=CDMSE11Y1po, CDSME12po=CDMSE12Y1po, CDSME13po=CDMSE13Y1po, CDSME14po=CDMSE14Y1po, CDSME15po=CDMSE15Y1po, CDSME16po=CDMSE16Y1po, CDSME17po=CDMSE17Y1po, CDSME18po=CDMSE18Y1po, CDSME19po=CDMSE19Y1po, CDSME20po=CDMSE20Y1po, CDSME21po=CDMSE21Y1po, CDSME22po=CDMSE22Y1po, CDSME23po=CDMSE23Y1po, CDSME24po=CDMSE24Y1po, CDSME25po=CDMSE25Y1po,  SRF1po=SRF1Y1po,   SRF2po=SRF2Y1po, SRF3po=SRF3Y1po, SRF4po=SRF4Y1po, SRF5po=SRF5Y1po, VI1po=VI1Y1po,   VI2po=VI2Y1po,  VI3po=VI3Y1po,  VI4po=VI4Y1po,  VI5po=VI5Y1po,  VI6po=VI6Y1po,  VI7po=VI7Y1po,  VI8po=VI8Y1po,  VI9po=VI9Y1po,  VI10po=VI10Y1po,  VI11po=VI11Y1po,  VI12po=VI12Y1po,  VI13po=VI13Y1po,  VI14po=VI14Y1po,  VI15po=VI15Y1po,  VI16po=VI16Y1po,  VI17po=VI17Y1po,  VI18po=VI18Y1po, VIobst1po=VIobst1Y1po,  VIobst2po=VIobst2Y1po, VIobst3po=VIobst3Y1po, VIobst4po=VIobst4Y1po, VIbar1po=VIbar1Y1po,  VIbar2po=VIbar2Y1po, VIbar3po=VIbar3Y1po, VIbar4po=VIbar4Y1po,  CVQ1po=CVQ1Y1po,   CVQ2po=CVQ2Y1po,  CVQ3po=CVQ3Y1po,  CVQ4po=CVQ4Y1po,  CVQ5po=CVQ5Y1po,  CVQ6po=CVQ6Y1po,  CVQ7po=CVQ7Y1po,  CVQ8po=CVQ8Y1po,  CVQ9po=CVQ9Y1po,  CVQ10po=CVQ10Y1po,  CVQ11po=CVQ11Y1po,  CVQ12po=CVQ12Y1po,  CVQ13po=CVQ13Y1po,  CVQ14po=CVQ14Y1po,  CVQ15po=CVQ15Y1po,  CVQ16po=CVQ16Y1po,  CVQ17po=CVQ17Y1po,  CVQ18po=CVQ18Y1po,  CVQ19po=CVQ19Y1po,  CVQ20po=CVQ20Y1po,  CVQ21po=CVQ21Y1po,  CVQ22po=CVQ22Y1po,  CVQ23po=CVQ23Y1po,  CVQ24po=CVQ24Y1po,  LS1po=LS1Y1po,  LS2po=LS2Y1po, LS3po=LS3Y1po, LS4po=LS4Y1po, LS5po=LS5Y1po,    Fl1po=Fl1Y1po,  Fl2po=Fl2Y1po, Fl3po=Fl3Y1po, Fl4po=Fl4Y1po, Fl5po=Fl5Y1po, Fl6po=Fl6Y1po, Fl7po=Fl7Y1po, Fl8po=Fl8Y1po, Hrs1po=Hrs1Y1po,  Hrs2po=Hrs2Y1po, Hrs3po=Hrs3Y1po, Hrs4po=Hrs4Y1po, Hrs5po=Hrs5Y1po, Hrs6po=Hrs6Y1po, Hrs7po=Hrs7Y1po, Hrs8po=Hrs8Y1po, Hrs9po=Hrs9Y1po, Hrs10po=Hrs10Y1po, Hrs11po=Hrs11Y1po, Hrs12po=Hrs12Y1po, Hrs13po=Hrs13Y1po, Hrs14po=Hrs14Y1po, Hrs15po=Hrs15Y1po, Hrs16po=Hrs16Y1po, Hrs17po=Hrs17Y1po, Hrs18po=Hrs18Y1po, Hrs19po=Hrs19Y1po, Hrs20po=Hrs20Y1po, Hrs21po=Hrs21Y1po, Hrs22po=Hrs22Y1po, Hrs23po=Hrs23Y1po, Work1Po=WorkY1Po,        
+Agepo=AgeY1po, AcadClPo=AcadClY1Po, GenderPo=GenderY1po, GendTxtPo=GndTxtY1Po, LGBTQIApo=LGBTQIAY1po, RaceEthpo=RaceEthY1po, EthnTxtPo=EthnTxtY1Po, IntlStuPo=IntlStuY1po, IntTxtPo=IntTxtY1po, LaptopPo=LaptopY1Po, DesktopPo=DesktopY1Po, AndroidPo=AndroidY1Po, iPhonePo=iPhoneY1Po, iPadPo=iPadY1Po, tabletPo=tabletY1Po, OthrPo=OthrY1Po,
+
+DateFu=Datefu, OFGConsFu=OFGConsY1fu, IRDConsFu=IRDConsY1fu, SC1fu=SC1Y1fu, SC2fu=SC2Y1fu, SC3fu=SC3Y1fu, SC4fu=SC4Y1fu, SC5fu=SC5Y1fu,SC6fu=SC6Y1fu, SC7fu=SC7Y1fu, SC8fu=SC8Y1fu,   SC9fu=SC9Y1fu, SC10fu=SC10Y1fu, SC11fu=SC11Y1fu, SC12fu=SC12Y1fu, Pur1fu=Pur1Y1fu, Pur2fu=Pur2Y1fu, Pur3fu=Pur3Y1fu, Pur4fu=Pur4Y1fu, Pur5fu=Pur5Y1fu, Pur6fu=Pur6Y1fu, Pur7fu=Pur7Y1fu, CDSME1fu=CDMSE1Y1fu, CDSME2fu=CDMSE2Y1fu, CDSME3fu=CDMSE3Y1fu, CDSME4fu=CDMSE4Y1fu, CDSME5fu=CDMSE5Y1fu, CDSME6fu=CDMSE6Y1fu, CDSME7fu=CDMSE7Y1fu, CDSME8fu=CDMSE8Y1fu, CDSME9fu=CDMSE9Y1fu, CDSME10fu=CDMSE10Y1fu, CDSME11fu=CDMSE11Y1fu, CDSME12fu=CDMSE12Y1fu, CDSME13fu=CDMSE13Y1fu, CDSME14fu=CDMSE14Y1fu, CDSME15fu=CDMSE15Y1fu, CDSME16fu=CDMSE16Y1fu, CDSME17fu=CDMSE17Y1fu, CDSME18fu=CDMSE18Y1fu, CDSME19fu=CDMSE19Y1fu, CDSME20fu=CDMSE20Y1fu, CDSME21fu=CDMSE21Y1fu, CDSME22fu=CDMSE22Y1fu, CDSME23fu=CDMSE23Y1fu, CDSME24fu=CDMSE24Y1fu, CDSME25fu=CDMSE25Y1fu,  SRF1fu=SRF1Y1fu,   SRF2fu=SRF2Y1fu, SRF3fu=SRF3Y1fu, SRF4fu=SRF4Y1fu, SRF5fu=SRF5Y1fu, VI1fu=VI1Y1fu,   VI2fu=VI2Y1fu,  VI3fu=VI3Y1fu,  VI4fu=VI4Y1fu,  VI5fu=VI5Y1fu,  VI6fu=VI6Y1fu,  VI7fu=VI7Y1fu,  VI8fu=VI8Y1fu,  VI9fu=VI9Y1fu,  VI10fu=VI10Y1fu,  VI11fu=VI11Y1fu,  VI12fu=VI12Y1fu,  VI13fu=VI13Y1fu,  VI14fu=VI14Y1fu,  VI15fu=VI15Y1fu,  VI16fu=VI16Y1fu,  VI17fu=VI17Y1fu,  VI18fu=VI18Y1fu, VIobst1fu=VIobst1Y1fu,  VIobst2fu=VIobst2Y1fu, VIobst3fu=VIobst3Y1fu, VIobst4fu=VIobst4Y1fu, VIbar1fu=VIbar1Y1fu,  VIbar2fu=VIbar2Y1fu, VIbar3fu=VIbar3Y1fu, VIbar4fu=VIbar4Y1fu,  CVQ1fu=CVQ1Y1fu,   CVQ2fu=CVQ2Y1fu,  CVQ3fu=CVQ3Y1fu,  CVQ4fu=CVQ4Y1fu,  CVQ5fu=CVQ5Y1fu,  CVQ6fu=CVQ6Y1fu,  CVQ7fu=CVQ7Y1fu,  CVQ8fu=CVQ8Y1fu,  CVQ9fu=CVQ9Y1fu,  CVQ10fu=CVQ10Y1fu,  CVQ11fu=CVQ11Y1fu,  CVQ12fu=CVQ12Y1fu,  CVQ13fu=CVQ13Y1fu,  CVQ14fu=CVQ14Y1fu,  CVQ15fu=CVQ15Y1fu,  CVQ16fu=CVQ16Y1fu,  CVQ17fu=CVQ17Y1fu,  CVQ18fu=CVQ18Y1fu,  CVQ19fu=CVQ19Y1fu,  CVQ20fu=CVQ20Y1fu,  CVQ21fu=CVQ21Y1fu,  CVQ22fu=CVQ22Y1fu,  CVQ23fu=CVQ23Y1fu,  CVQ24fu=CVQ24Y1fu,  LS1fu=LS1Y1fu,  LS2fu=LS2Y1fu, LS3fu=LS3Y1fu, LS4fu=LS4Y1fu, LS5fu=LS5Y1fu,    Fl1fu=Fl1Y1fu,  Fl2fu=Fl2Y1fu, Fl3fu=Fl3Y1fu, Fl4fu=Fl4Y1fu, Fl5fu=Fl5Y1fu, Fl6fu=Fl6Y1fu, Fl7fu=Fl7Y1fu, Fl8fu=Fl8Y1fu, Hrs1fu=Hrs1Y1fu,  Hrs2fu=Hrs2Y1fu, Hrs3fu=Hrs3Y1fu, Hrs4fu=Hrs4Y1fu, Hrs5fu=Hrs5Y1fu, Hrs6fu=Hrs6Y1fu, Hrs7fu=Hrs7Y1fu, Hrs8fu=Hrs8Y1fu, Hrs9fu=Hrs9Y1fu, Hrs10fu=Hrs10Y1fu, Hrs11fu=Hrs11Y1fu, Hrs12fu=Hrs12Y1fu, Hrs13fu=Hrs13Y1fu, Hrs14fu=Hrs14Y1fu, Hrs15fu=Hrs15Y1fu, Hrs16fu=Hrs16Y1fu, Hrs17fu=Hrs17Y1fu, Hrs18fu=Hrs18Y1fu, Hrs19fu=Hrs19Y1fu, Hrs20fu=Hrs20Y1fu, Hrs21fu=Hrs21Y1fu, Hrs22fu=Hrs22Y1fu, Hrs23fu=Hrs23Y1fu, Work1Fu=WorkY1fu,        
+Agefu=AgeY1fu, AcadClFu=AcadClY1fu, GenderFu=GenderY1fu, GendTxtFu=GndTxtY1fu, LGBTQIAfu=LGBTQIAY1fu, RaceEthfu=RaceEthY1fu, EthnTxtFu=EthnTxtY1fu, IntlStuFu=IntlStuY1fu, IntTxtFu=IntTxtY1fu, LaptopFu=LaptopY1fu, DesktopFu=DesktopY1fu, AndroidFu=AndroidY1fu, iPhoneFu=iPhoneY1fu, iPadFu=iPadY1fu, tabletFu=tabletY1fu, OthrFu=OthrY1fu, RO.BR.FL_15=RO.BR.FL_15, include_updated=include_updated, MOD=MOD, TERM=TERM, COND=COND, Submissions=Submissions, PgViews=PgViews)   
+```
+
+```{r Names of Y2_raw variables}
+#needed when variable names weren't matching in rbind
+#names(Y2_raw)
+```
+
+```{r Deleting extra Y2_raw variables}
+#Y2_raw had 2 extra variables
+Y2_raw <- Y2_raw %>%
+  select (-c(SPUID, Module))
+```
+
+
+```{r Rename Y2_raw vars}
+Y2rn <- rename(Y2_raw, ID=ID, DatePr=DatePr, OFGConsPr=OFGConsY2Pr, IRDConsPr=IRDConsY2Pr,     SC1pr=SC1Y2pr, SC2pr=SC2Y2pr,SC3pr=SC3Y2pr, SC4pr=SC4Y2pr, SC5pr=SC5Y2pr,SC6pr=SC6Y2pr, SC7pr=SC7Y2pr, SC8pr=SC8Y2pr,   SC9pr=SC9Y2pr, SC10pr=SC10Y2pr, SC11pr=SC11Y2pr, SC12pr=SC12Y2pr, Pur1pr=Pur1Y2pr, Pur2pr=Pur2Y2pr, Pur3pr=Pur3Y2pr, Pur4pr=Pur4Y2pr, Pur5pr=Pur5Y2pr, Pur6pr=Pur6Y2pr, Pur7pr=Pur7Y2pr, CDSME1pr=CDMSE1Y2pr, CDSME2pr=CDMSE2Y2pr, CDSME3pr=CDMSE3Y2pr, CDSME4pr=CDMSE4Y2pr, CDSME5pr=CDMSE5Y2pr, CDSME6pr=CDMSE6Y2pr, CDSME7pr=CDMSE7Y2pr, CDSME8pr=CDMSE8Y2pr, CDSME9pr=CDMSE9Y2pr, CDSME10pr=CDMSE10Y2pr, CDSME11pr=CDMSE11Y2pr, CDSME12pr=CDMSE12Y2pr, CDSME13pr=CDMSE13Y2pr, CDSME14pr=CDMSE14Y2pr, CDSME15pr=CDMSE15Y2pr, CDSME16pr=CDMSE16Y2pr, CDSME17pr=CDMSE17Y2pr, CDSME18pr=CDMSE18Y2pr, CDSME19pr=CDMSE19Y2pr, CDSME20pr=CDMSE20Y2pr, CDSME21pr=CDMSE21Y2pr, CDSME22pr=CDMSE22Y2pr, CDSME23pr=CDMSE23Y2pr, CDSME24pr=CDMSE24Y2pr, CDSME25pr=CDMSE25Y2pr,  SRF1pr=SRF1Y2pr,   SRF2pr=SRF2Y2pr, SRF3pr=SRF3Y2pr, SRF4pr=SRF4Y2pr, SRF5pr=SRF5Y2pr, VI1pr=VI1Y2pr,   VI2pr=VI2Y2pr,  VI3pr=VI3Y2pr,  VI4pr=VI4Y2pr,  VI5pr=VI5Y2pr,  VI6pr=VI6Y2pr,  VI7pr=VI7Y2pr,  VI8pr=VI8Y2pr,  VI9pr=VI9Y2pr,  VI10pr=VI10Y2pr,  VI11pr=VI11Y2pr,  VI12pr=VI12Y2pr,  VI13pr=VI13Y2pr,  VI14pr=VI14Y2pr,  VI15pr=VI15Y2pr,  VI16pr=VI16Y2pr,  VI17pr=VI17Y2pr,  VI18pr=VI18Y2pr, VIobst1pr=VIobst1Y2pr,  VIobst2pr=VIobst2Y2pr, VIobst3pr=VIobst3Y2pr, VIobst4pr=VIobst4Y2pr, VIbar1pr=VIbar1Y2pr,  VIbar2pr=VIbar2Y2pr, VIbar3pr=VIbar3Y2pr, VIbar4pr=VIbar4Y2pr,  CVQ1pr=CVQ1Y2pr,   CVQ2pr=CVQ2Y2pr,  CVQ3pr=CVQ3Y2pr,  CVQ4pr=CVQ4Y2pr,  CVQ5pr=CVQ5Y2pr,  CVQ6pr=CVQ6Y2pr,  CVQ7pr=CVQ7Y2pr,  CVQ8pr=CVQ8Y2pr,  CVQ9pr=CVQ9Y2pr,  CVQ10pr=CVQ10Y2pr,  CVQ11pr=CVQ11Y2pr,  CVQ12pr=CVQ12Y2pr,  CVQ13pr=CVQ13Y2pr,  CVQ14pr=CVQ14Y2pr,  CVQ15pr=CVQ15Y2pr,  CVQ16pr=CVQ16Y2pr,  CVQ17pr=CVQ17Y2pr,  CVQ18pr=CVQ18Y2pr,  CVQ19pr=CVQ19Y2pr,  CVQ20pr=CVQ20Y2pr,  CVQ21pr=CVQ21Y2pr,  CVQ22pr=CVQ22Y2pr,  CVQ23pr=CVQ23Y2pr,  CVQ24pr=CVQ24Y2pr,  LS1pr=LS1Y2pr,  LS2pr=LS2Y2pr, LS3pr=LS3Y2pr, LS4pr=LS4Y2pr, LS5pr=LS5Y2pr,    Fl1pr=Fl1Y2pr,  Fl2pr=Fl2Y2pr, Fl3pr=Fl3Y2pr, Fl4pr=Fl4Y2pr, Fl5pr=Fl5Y2pr, Fl6pr=Fl6Y2pr, Fl7pr=Fl7Y2pr, Fl8pr=Fl8Y2pr, Hrs1pr=Hrs1Y2pr,  Hrs2pr=Hrs2Y2pr, Hrs3pr=Hrs3Y2pr, Hrs4pr=Hrs4Y2pr, Hrs5pr=Hrs5Y2pr, Hrs6pr=Hrs6Y2pr, Hrs7pr=Hrs7Y2pr, Hrs8pr=Hrs8Y2pr, Hrs9pr=Hrs9Y2pr, Hrs10pr=Hrs10Y2pr, Hrs11pr=Hrs11Y2pr, Hrs12pr=Hrs12Y2pr, Hrs13pr=Hrs13Y2pr, Hrs14pr=Hrs14Y2pr, Hrs15pr=Hrs15Y2pr, Hrs16pr=Hrs16Y2pr, Hrs17pr=Hrs17Y2pr, Hrs18pr=Hrs18Y2pr, Hrs19pr=Hrs19Y2pr, Hrs20pr=Hrs20Y2pr, Hrs21pr=Hrs21Y2pr, Hrs22pr=Hrs22Y2pr, Hrs23pr=Hrs23Y2pr, Work1Pr=WorkY2Pr,        
+Agepr=AgeY2pr, AcadClPr=AcadClY2Pr, GenderPr=GenderY2pr, GendTxtPr=GndTxtY2Pr, LGBTQIApr=LGBTQIAY2pr, RaceEthpr=RaceEthY2pr, EthnTxtPr=EthnTxtY2Pr, IntlStuPr=IntlStuY2pr, IntTxtPr=IntTxtY2pr, LaptopPr=LaptopY2Pr, DesktopPr=DesktopY2Pr, AndroidPr=AndroidY2Pr, iPhonePr=iPhoneY2Pr, iPadPr=iPadY2Pr, tabletPr=tabletY2Pr, OthrPr=OthrY2Pr,
+
+DatePo=DatePo, OFGConsPo=OFGConsY2Po, IRDConsPo=IRDConsY2Po,SC1po=SC1Y2po, SC2po=SC2Y2po,SC3po=SC3Y2po, SC4po=SC4Y2po, SC5po=SC5Y2po,SC6po=SC6Y2po, SC7po=SC7Y2po, SC8po=SC8Y2po,   SC9po=SC9Y2po, SC10po=SC10Y2po, SC11po=SC11Y2po, SC12po=SC12Y2po, Pur1po=Pur1Y2po, Pur2po=Pur2Y2po, Pur3po=Pur3Y2po, Pur4po=Pur4Y2po, Pur5po=Pur5Y2po, Pur6po=Pur6Y2po, Pur7po=Pur7Y2po, CDSME1po=CDMSE1Y2po, CDSME2po=CDMSE2Y2po, CDSME3po=CDMSE3Y2po, CDSME4po=CDMSE4Y2po, CDSME5po=CDMSE5Y2po, CDSME6po=CDMSE6Y2po, CDSME7po=CDMSE7Y2po, CDSME8po=CDMSE8Y2po, CDSME9po=CDMSE9Y2po, CDSME10po=CDMSE10Y2po, CDSME11po=CDMSE11Y2po, CDSME12po=CDMSE12Y2po, CDSME13po=CDMSE13Y2po, CDSME14po=CDMSE14Y2po, CDSME15po=CDMSE15Y2po, CDSME16po=CDMSE16Y2po, CDSME17po=CDMSE17Y2po, CDSME18po=CDMSE18Y2po, CDSME19po=CDMSE19Y2po, CDSME20po=CDMSE20Y2po, CDSME21po=CDMSE21Y2po, CDSME22po=CDMSE22Y2po, CDSME23po=CDMSE23Y2po, CDSME24po=CDMSE24Y2po, CDSME25po=CDMSE25Y2po,  SRF1po=SRF1Y2po,   SRF2po=SRF2Y2po, SRF3po=SRF3Y2po, SRF4po=SRF4Y2po, SRF5po=SRF5Y2po, VI1po=VI1Y2po,   VI2po=VI2Y2po,  VI3po=VI3Y2po,  VI4po=VI4Y2po,  VI5po=VI5Y2po,  VI6po=VI6Y2po,  VI7po=VI7Y2po,  VI8po=VI8Y2po,  VI9po=VI9Y2po,  VI10po=VI10Y2po,  VI11po=VI11Y2po,  VI12po=VI12Y2po,  VI13po=VI13Y2po,  VI14po=VI14Y2po,  VI15po=VI15Y2po,  VI16po=VI16Y2po,  VI17po=VI17Y2po,  VI18po=VI18Y2po, VIobst1po=VIobst1Y2po,  VIobst2po=VIobst2Y2po, VIobst3po=VIobst3Y2po, VIobst4po=VIobst4Y2po, VIbar1po=VIbar1Y2po,  VIbar2po=VIbar2Y2po, VIbar3po=VIbar3Y2po, VIbar4po=VIbar4Y2po,  CVQ1po=CVQ1Y2po,   CVQ2po=CVQ2Y2po,  CVQ3po=CVQ3Y2po,  CVQ4po=CVQ4Y2po,  CVQ5po=CVQ5Y2po,  CVQ6po=CVQ6Y2po,  CVQ7po=CVQ7Y2po,  CVQ8po=CVQ8Y2po,  CVQ9po=CVQ9Y2po,  CVQ10po=CVQ10Y2po,  CVQ11po=CVQ11Y2po,  CVQ12po=CVQ12Y2po,  CVQ13po=CVQ13Y2po,  CVQ14po=CVQ14Y2po,  CVQ15po=CVQ15Y2po,  CVQ16po=CVQ16Y2po,  CVQ17po=CVQ17Y2po,  CVQ18po=CVQ18Y2po,  CVQ19po=CVQ19Y2po,  CVQ20po=CVQ20Y2po,  CVQ21po=CVQ21Y2po,  CVQ22po=CVQ22Y2po,  CVQ23po=CVQ23Y2po,  CVQ24po=CVQ24Y2po,  LS1po=LS1Y2po,  LS2po=LS2Y2po, LS3po=LS3Y2po, LS4po=LS4Y2po, LS5po=LS5Y2po,    Fl1po=Fl1Y2po,  Fl2po=Fl2Y2po, Fl3po=Fl3Y2po, Fl4po=Fl4Y2po, Fl5po=Fl5Y2po, Fl6po=Fl6Y2po, Fl7po=Fl7Y2po, Fl8po=Fl8Y2po, Hrs1po=Hrs1Y2po,  Hrs2po=Hrs2Y2po, Hrs3po=Hrs3Y2po, Hrs4po=Hrs4Y2po, Hrs5po=Hrs5Y2po, Hrs6po=Hrs6Y2po, Hrs7po=Hrs7Y2po, Hrs8po=Hrs8Y2po, Hrs9po=Hrs9Y2po, Hrs10po=Hrs10Y2po, Hrs11po=Hrs11Y2po, Hrs12po=Hrs12Y2po, Hrs13po=Hrs13Y2po, Hrs14po=Hrs14Y2po, Hrs15po=Hrs15Y2po, Hrs16po=Hrs16Y2po, Hrs17po=Hrs17Y2po, Hrs18po=Hrs18Y2po, Hrs19po=Hrs19Y2po, Hrs20po=Hrs20Y2po, Hrs21po=Hrs21Y2po, Hrs22po=Hrs22Y2po, Hrs23po=Hrs23Y2po, Work1Po=WorkY2Po,        
+Agepo=AgeY2po, AcadClPo=AcadClY2Po, GenderPo=GenderY2po, GendTxtPo=GndTxtY2Po, LGBTQIApo=LGBTQIAY2po, RaceEthpo=RaceEthY2po, EthnTxtPo=EthnTxtY2Po, IntlStuPo=IntlStuY2po, IntTxtPo=IntTxtY2po, LaptopPo=LaptopY2Po, DesktopPo=DesktopY2Po, AndroidPo=AndroidY2Po, iPhonePo=iPhoneY2Po, iPadPo=iPadY2Po, tabletPo=tabletY2Po, OthrPo=OthrY2Po,
+
+DateFu=Datefu, OFGConsFu=OFGConsY2fu, IRDConsFu=IRDConsY2fu, SC1fu=SC1Y2fu, SC2fu=SC2Y2fu, SC3fu=SC3Y2fu, SC4fu=SC4Y2fu, SC5fu=SC5Y2fu,SC6fu=SC6Y2fu, SC7fu=SC7Y2fu, SC8fu=SC8Y2fu,   SC9fu=SC9Y2fu, SC10fu=SC10Y2fu, SC11fu=SC11Y2fu, SC12fu=SC12Y2fu, Pur1fu=Pur1Y2fu, Pur2fu=Pur2Y2fu, Pur3fu=Pur3Y2fu, Pur4fu=Pur4Y2fu, Pur5fu=Pur5Y2fu, Pur6fu=Pur6Y2fu, Pur7fu=Pur7Y2fu, CDSME1fu=CDMSE1Y2fu, CDSME2fu=CDMSE2Y2fu, CDSME3fu=CDMSE3Y2fu, CDSME4fu=CDMSE4Y2fu, CDSME5fu=CDMSE5Y2fu, CDSME6fu=CDMSE6Y2fu, CDSME7fu=CDMSE7Y2fu, CDSME8fu=CDMSE8Y2fu, CDSME9fu=CDMSE9Y2fu, CDSME10fu=CDMSE10Y2fu, CDSME11fu=CDMSE11Y2fu, CDSME12fu=CDMSE12Y2fu, CDSME13fu=CDMSE13Y2fu, CDSME14fu=CDMSE14Y2fu, CDSME15fu=CDMSE15Y2fu, CDSME16fu=CDMSE16Y2fu, CDSME17fu=CDMSE17Y2fu, CDSME18fu=CDMSE18Y2fu, CDSME19fu=CDMSE19Y2fu, CDSME20fu=CDMSE20Y2fu, CDSME21fu=CDMSE21Y2fu, CDSME22fu=CDMSE22Y2fu, CDSME23fu=CDMSE23Y2fu, CDSME24fu=CDMSE24Y2fu, CDSME25fu=CDMSE25Y2fu,  SRF1fu=SRF1Y2fu,   SRF2fu=SRF2Y2fu, SRF3fu=SRF3Y2fu, SRF4fu=SRF4Y2fu, SRF5fu=SRF5Y2fu, VI1fu=VI1Y2fu,   VI2fu=VI2Y2fu,  VI3fu=VI3Y2fu,  VI4fu=VI4Y2fu,  VI5fu=VI5Y2fu,  VI6fu=VI6Y2fu,  VI7fu=VI7Y2fu,  VI8fu=VI8Y2fu,  VI9fu=VI9Y2fu,  VI10fu=VI10Y2fu,  VI11fu=VI11Y2fu,  VI12fu=VI12Y2fu,  VI13fu=VI13Y2fu,  VI14fu=VI14Y2fu,  VI15fu=VI15Y2fu,  VI16fu=VI16Y2fu,  VI17fu=VI17Y2fu,  VI18fu=VI18Y2fu, VIobst1fu=VIobst1Y2fu,  VIobst2fu=VIobst2Y2fu, VIobst3fu=VIobst3Y2fu, VIobst4fu=VIobst4Y2fu, VIbar1fu=VIbar1Y2fu,  VIbar2fu=VIbar2Y2fu, VIbar3fu=VIbar3Y2fu, VIbar4fu=VIbar4Y2fu,  CVQ1fu=CVQ1Y2fu,   CVQ2fu=CVQ2Y2fu,  CVQ3fu=CVQ3Y2fu,  CVQ4fu=CVQ4Y2fu,  CVQ5fu=CVQ5Y2fu,  CVQ6fu=CVQ6Y2fu,  CVQ7fu=CVQ7Y2fu,  CVQ8fu=CVQ8Y2fu,  CVQ9fu=CVQ9Y2fu,  CVQ10fu=CVQ10Y2fu,  CVQ11fu=CVQ11Y2fu,  CVQ12fu=CVQ12Y2fu,  CVQ13fu=CVQ13Y2fu,  CVQ14fu=CVQ14Y2fu,  CVQ15fu=CVQ15Y2fu,  CVQ16fu=CVQ16Y2fu,  CVQ17fu=CVQ17Y2fu,  CVQ18fu=CVQ18Y2fu,  CVQ19fu=CVQ19Y2fu,  CVQ20fu=CVQ20Y2fu,  CVQ21fu=CVQ21Y2fu,  CVQ22fu=CVQ22Y2fu,  CVQ23fu=CVQ23Y2fu,  CVQ24fu=CVQ24Y2fu,  LS1fu=LS1Y2fu,  LS2fu=LS2Y2fu, LS3fu=LS3Y2fu, LS4fu=LS4Y2fu, LS5fu=LS5Y2fu,    Fl1fu=Fl1Y2fu,  Fl2fu=Fl2Y2fu, Fl3fu=Fl3Y2fu, Fl4fu=Fl4Y2fu, Fl5fu=Fl5Y2fu, Fl6fu=Fl6Y2fu, Fl7fu=Fl7Y2fu, Fl8fu=Fl8Y2fu, Hrs1fu=Hrs1Y2fu,  Hrs2fu=Hrs2Y2fu, Hrs3fu=Hrs3Y2fu, Hrs4fu=Hrs4Y2fu, Hrs5fu=Hrs5Y2fu, Hrs6fu=Hrs6Y2fu, Hrs7fu=Hrs7Y2fu, Hrs8fu=Hrs8Y2fu, Hrs9fu=Hrs9Y2fu, Hrs10fu=Hrs10Y2fu, Hrs11fu=Hrs11Y2fu, Hrs12fu=Hrs12Y2fu, Hrs13fu=Hrs13Y2fu, Hrs14fu=Hrs14Y2fu, Hrs15fu=Hrs15Y2fu, Hrs16fu=Hrs16Y2fu, Hrs17fu=Hrs17Y2fu, Hrs18fu=Hrs18Y2fu, Hrs19fu=Hrs19Y2fu, Hrs20fu=Hrs20Y2fu, Hrs21fu=Hrs21Y2fu, Hrs22fu=Hrs22Y2fu, Hrs23fu=Hrs23Y2fu, Work1Fu=WorkY2fu,        
+Agefu=AgeY2fu, AcadClFu=AcadClY2fu, GenderFu=GenderY2fu, GendTxtFu=GndTxtY2fu, LGBTQIAfu=LGBTQIAY2fu, RaceEthfu=RaceEthY2fu, EthnTxtFu=EthnTxtY2fu, IntlStuFu=IntlStuY2fu, IntTxtFu=IntTxtY2fu, LaptopFu=LaptopY2fu, DesktopFu=DesktopY2fu, AndroidFu=AndroidY2fu, iPhoneFu=iPhoneY2fu, iPadFu=iPadY2fu, tabletFu=tabletY2fu, OthrFu=OthrY2fu, RO.BR.FL_15=RO.BR.FL_15, include_updated=include_updated, MOD=MOD, TERM=TERM, COND=COND, Submissions=Submissions, PgViews=PgViews)   
+```
+
+```{r rbind Y1rn with Y2rn}
+#as.data.frame(Y1rn)#needed because the two wouldn't bind
+#as.data.frame(Y2rn)#needed because the two wouldn't bind
+RCT_raw_stack <- rbind(Y1rn, Y2rn, stringsAsFactors = FALSE)
+
+#no need to worry about the warning that says, "NA generated invalid factor level" 
+#it works fine
+```
+
+```{r Comparing variable names}
+#names are not matching, sleuthing to figure out mismatch
+#Y1rn_names <- names(Y1rn)
+#write.table(Y1rn_names, file="Y1rn_names.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#Y2rn_names <- names(Y2rn)
+#write.table(Y2rn_names, file="Y2rn_names.csv", sep=",", col.names=TRUE, row.names=FALSE)
+
+#After writing these to .csv files, I made two columns and wrote an excel formula to compare the two columns, I made it case sensitive with:  =IF(EXACT(A1,C1),"Match","Mismatch")
+ 
+```
+
+```{r Delete extra vars from Y3_raw}
+Y3_raw <- Y3_raw %>%
+  select (-c(Module.y, SPUID.x.x))
+```
+
+
+```{r Rename Y3 variables}
+Y3rn <- rename(Y3_raw, ID=ID, DatePr=DatePr, OFGConsPr=OFGConsY3Pr, IRDConsPr=IRDConsY3Pr,     SC1pr=SC1Y3pr, SC2pr=SC2Y3pr,SC3pr=SC3Y3pr, SC4pr=SC4Y3pr, SC5pr=SC5Y3pr,SC6pr=SC6Y3pr, SC7pr=SC7Y3pr, SC8pr=SC8Y3pr,   SC9pr=SC9Y3pr, SC10pr=SC10Y3pr, SC11pr=SC11Y3pr, SC12pr=SC12Y3pr, Pur1pr=Pur1Y3pr, Pur2pr=Pur2Y3pr, Pur3pr=Pur3Y3pr, Pur4pr=Pur4Y3pr, Pur5pr=Pur5Y3pr, Pur6pr=Pur6Y3pr, Pur7pr=Pur7Y3pr, CDSME1pr=CDMSE1Y3pr, CDSME2pr=CDMSE2Y3pr, CDSME3pr=CDMSE3Y3pr, CDSME4pr=CDMSE4Y3pr, CDSME5pr=CDMSE5Y3pr, CDSME6pr=CDMSE6Y3pr, CDSME7pr=CDMSE7Y3pr, CDSME8pr=CDMSE8Y3pr, CDSME9pr=CDMSE9Y3pr, CDSME10pr=CDMSE10Y3pr, CDSME11pr=CDMSE11Y3pr, CDSME12pr=CDMSE12Y3pr, CDSME13pr=CDMSE13Y3pr, CDSME14pr=CDMSE14Y3pr, CDSME15pr=CDMSE15Y3pr, CDSME16pr=CDMSE16Y3pr, CDSME17pr=CDMSE17Y3pr, CDSME18pr=CDMSE18Y3pr, CDSME19pr=CDMSE19Y3pr, CDSME20pr=CDMSE20Y3pr, CDSME21pr=CDMSE21Y3pr, CDSME22pr=CDMSE22Y3pr, CDSME23pr=CDMSE23Y3pr, CDSME24pr=CDMSE24Y3pr, CDSME25pr=CDMSE25Y3pr,  SRF1pr=SRF1Y3pr,   SRF2pr=SRF2Y3pr, SRF3pr=SRF3Y3pr, SRF4pr=SRF4Y3pr, SRF5pr=SRF5Y3pr, VI1pr=VI1Y3pr,   VI2pr=VI2Y3pr,  VI3pr=VI3Y3pr,  VI4pr=VI4Y3pr,  VI5pr=VI5Y3pr,  VI6pr=VI6Y3pr,  VI7pr=VI7Y3pr,  VI8pr=VI8Y3pr,  VI9pr=VI9Y3pr,  VI10pr=VI10Y3pr,  VI11pr=VI11Y3pr,  VI12pr=VI12Y3pr,  VI13pr=VI13Y3pr,  VI14pr=VI14Y3pr,  VI15pr=VI15Y3pr,  VI16pr=VI16Y3pr,  VI17pr=VI17Y3pr,  VI18pr=VI18Y3pr, VIobst1pr=VIobst1Y3pr,  VIobst2pr=VIobst2Y3pr, VIobst3pr=VIobst3Y3pr, VIobst4pr=VIobst4Y3pr, VIbar1pr=VIbar1Y3pr,  VIbar2pr=VIbar2Y3pr, VIbar3pr=VIbar3Y3pr, VIbar4pr=VIbar4Y3pr,  CVQ1pr=CVQ1Y3pr,   CVQ2pr=CVQ2Y3pr,  CVQ3pr=CVQ3Y3pr,  CVQ4pr=CVQ4Y3pr,  CVQ5pr=CVQ5Y3pr,  CVQ6pr=CVQ6Y3pr,  CVQ7pr=CVQ7Y3pr,  CVQ8pr=CVQ8Y3pr,  CVQ9pr=CVQ9Y3pr,  CVQ10pr=CVQ10Y3pr,  CVQ11pr=CVQ11Y3pr,  CVQ12pr=CVQ12Y3pr,  CVQ13pr=CVQ13Y3pr,  CVQ14pr=CVQ14Y3pr,  CVQ15pr=CVQ15Y3pr,  CVQ16pr=CVQ16Y3pr,  CVQ17pr=CVQ17Y3pr,  CVQ18pr=CVQ18Y3pr,  CVQ19pr=CVQ19Y3pr,  CVQ20pr=CVQ20Y3pr,  CVQ21pr=CVQ21Y3pr,  CVQ22pr=CVQ22Y3pr,  CVQ23pr=CVQ23Y3pr,  CVQ24pr=CVQ24Y3pr,  LS1pr=LS1Y3pr,  LS2pr=LS2Y3pr, LS3pr=LS3Y3pr, LS4pr=LS4Y3pr, LS5pr=LS5Y3pr,    Fl1pr=Fl1Y3pr,  Fl2pr=Fl2Y3pr, Fl3pr=Fl3Y3pr, Fl4pr=Fl4Y3pr, Fl5pr=Fl5Y3pr, Fl6pr=Fl6Y3pr, Fl7pr=Fl7Y3pr, Fl8pr=Fl8Y3pr, Hrs1pr=Hrs1Y3pr,  Hrs2pr=Hrs2Y3pr, Hrs3pr=Hrs3Y3pr, Hrs4pr=Hrs4Y3pr, Hrs5pr=Hrs5Y3pr, Hrs6pr=Hrs6Y3pr, Hrs7pr=Hrs7Y3pr, Hrs8pr=Hrs8Y3pr, Hrs9pr=Hrs9Y3pr, Hrs10pr=Hrs10Y3pr, Hrs11pr=Hrs11Y3pr, Hrs12pr=Hrs12Y3pr, Hrs13pr=Hrs13Y3pr, Hrs14pr=Hrs14Y3pr, Hrs15pr=Hrs15Y3pr, Hrs16pr=Hrs16Y3pr, Hrs17pr=Hrs17Y3pr, Hrs18pr=Hrs18Y3pr, Hrs19pr=Hrs19Y3pr, Hrs20pr=Hrs20Y3pr, Hrs21pr=Hrs21Y3pr, Hrs22pr=Hrs22Y3pr, Hrs23pr=Hrs23Y3pr, Work1Pr=WorkY3Pr,        
+Agepr=AgeY3pr, AcadClPr=AcadClY3Pr, GenderPr=GenderY3pr, GendTxtPr=GndTxtY3Pr, LGBTQIApr=LGBTQIAY3pr, RaceEthpr=RaceEthY3pr, EthnTxtPr=EthnTxtY3Pr, IntlStuPr=IntlStuY3pr, IntTxtPr=IntTxtY3pr, LaptopPr=LaptopY3Pr, DesktopPr=DesktopY3Pr, AndroidPr=AndroidY3Pr, iPhonePr=iPhoneY3Pr, iPadPr=iPadY3Pr, tabletPr=tabletY3Pr, OthrPr=OthrY3Pr,
+
+DatePo=DatePo, OFGConsPo=OFGConsY3Po, IRDConsPo=IRDConsY3Po,SC1po=SC1Y3po, SC2po=SC2Y3po,SC3po=SC3Y3po, SC4po=SC4Y3po, SC5po=SC5Y3po,SC6po=SC6Y3po, SC7po=SC7Y3po, SC8po=SC8Y3po,   SC9po=SC9Y3po, SC10po=SC10Y3po, SC11po=SC11Y3po, SC12po=SC12Y3po, Pur1po=Pur1Y3po, Pur2po=Pur2Y3po, Pur3po=Pur3Y3po, Pur4po=Pur4Y3po, Pur5po=Pur5Y3po, Pur6po=Pur6Y3po, Pur7po=Pur7Y3po, CDSME1po=CDMSE1Y3po, CDSME2po=CDMSE2Y3po, CDSME3po=CDMSE3Y3po, CDSME4po=CDMSE4Y3po, CDSME5po=CDMSE5Y3po, CDSME6po=CDMSE6Y3po, CDSME7po=CDMSE7Y3po, CDSME8po=CDMSE8Y3po, CDSME9po=CDMSE9Y3po, CDSME10po=CDMSE10Y3po, CDSME11po=CDMSE11Y3po, CDSME12po=CDMSE12Y3po, CDSME13po=CDMSE13Y3po, CDSME14po=CDMSE14Y3po, CDSME15po=CDMSE15Y3po, CDSME16po=CDMSE16Y3po, CDSME17po=CDMSE17Y3po, CDSME18po=CDMSE18Y3po, CDSME19po=CDMSE19Y3po, CDSME20po=CDMSE20Y3po, CDSME21po=CDMSE21Y3po, CDSME22po=CDMSE22Y3po, CDSME23po=CDMSE23Y3po, CDSME24po=CDMSE24Y3po, CDSME25po=CDMSE25Y3po,  SRF1po=SRF1Y3po,   SRF2po=SRF2Y3po, SRF3po=SRF3Y3po, SRF4po=SRF4Y3po, SRF5po=SRF5Y3po, VI1po=VI1Y3po,   VI2po=VI2Y3po,  VI3po=VI3Y3po,  VI4po=VI4Y3po,  VI5po=VI5Y3po,  VI6po=VI6Y3po,  VI7po=VI7Y3po,  VI8po=VI8Y3po,  VI9po=VI9Y3po,  VI10po=VI10Y3po,  VI11po=VI11Y3po,  VI12po=VI12Y3po,  VI13po=VI13Y3po,  VI14po=VI14Y3po,  VI15po=VI15Y3po,  VI16po=VI16Y3po,  VI17po=VI17Y3po,  VI18po=VI18Y3po, VIobst1po=VIobst1Y3po,  VIobst2po=VIobst2Y3po, VIobst3po=VIobst3Y3po, VIobst4po=VIobst4Y3po, VIbar1po=VIbar1Y3po,  VIbar2po=VIbar2Y3po, VIbar3po=VIbar3Y3po, VIbar4po=VIbar4Y3po,  CVQ1po=CVQ1Y3po,   CVQ2po=CVQ2Y3po,  CVQ3po=CVQ3Y3po,  CVQ4po=CVQ4Y3po,  CVQ5po=CVQ5Y3po,  CVQ6po=CVQ6Y3po,  CVQ7po=CVQ7Y3po,  CVQ8po=CVQ8Y3po,  CVQ9po=CVQ9Y3po,  CVQ10po=CVQ10Y3po,  CVQ11po=CVQ11Y3po,  CVQ12po=CVQ12Y3po,  CVQ13po=CVQ13Y3po,  CVQ14po=CVQ14Y3po,  CVQ15po=CVQ15Y3po,  CVQ16po=CVQ16Y3po,  CVQ17po=CVQ17Y3po,  CVQ18po=CVQ18Y3po,  CVQ19po=CVQ19Y3po,  CVQ20po=CVQ20Y3po,  CVQ21po=CVQ21Y3po,  CVQ22po=CVQ22Y3po,  CVQ23po=CVQ23Y3po,  CVQ24po=CVQ24Y3po,  LS1po=LS1Y3po,  LS2po=LS2Y3po, LS3po=LS3Y3po, LS4po=LS4Y3po, LS5po=LS5Y3po,    Fl1po=Fl1Y3po,  Fl2po=Fl2Y3po, Fl3po=Fl3Y3po, Fl4po=Fl4Y3po, Fl5po=Fl5Y3po, Fl6po=Fl6Y3po, Fl7po=Fl7Y3po, Fl8po=Fl8Y3po, Hrs1po=Hrs1Y3po,  Hrs2po=Hrs2Y3po, Hrs3po=Hrs3Y3po, Hrs4po=Hrs4Y3po, Hrs5po=Hrs5Y3po, Hrs6po=Hrs6Y3po, Hrs7po=Hrs7Y3po, Hrs8po=Hrs8Y3po, Hrs9po=Hrs9Y3po, Hrs10po=Hrs10Y3po, Hrs11po=Hrs11Y3po, Hrs12po=Hrs12Y3po, Hrs13po=Hrs13Y3po, Hrs14po=Hrs14Y3po, Hrs15po=Hrs15Y3po, Hrs16po=Hrs16Y3po, Hrs17po=Hrs17Y3po, Hrs18po=Hrs18Y3po, Hrs19po=Hrs19Y3po, Hrs20po=Hrs20Y3po, Hrs21po=Hrs21Y3po, Hrs22po=Hrs22Y3po, Hrs23po=Hrs23Y3po, Work1Po=WorkY3Po,        
+Agepo=AgeY3po, AcadClPo=AcadClY3Po, GenderPo=GenderY3po, GendTxtPo=GndTxtY3Po, LGBTQIApo=LGBTQIAY3po, RaceEthpo=RaceEthY3po, EthnTxtPo=EthnTxtY3Po, IntlStuPo=IntlStuY3po, IntTxtPo=IntTxtY3po, LaptopPo=LaptopY3Po, DesktopPo=DesktopY3Po, AndroidPo=AndroidY3Po, iPhonePo=iPhoneY3Po, iPadPo=iPadY3Po, tabletPo=tabletY3Po, OthrPo=OthrY3Po,
+
+DateFu=Datefu, OFGConsFu=OFGConsY3fu, IRDConsFu=IRDConsY3fu, SC1fu=SC1Y3fu, SC2fu=SC2Y3fu, SC3fu=SC3Y3fu, SC4fu=SC4Y3fu, SC5fu=SC5Y3fu,SC6fu=SC6Y3fu, SC7fu=SC7Y3fu, SC8fu=SC8Y3fu,   SC9fu=SC9Y3fu, SC10fu=SC10Y3fu, SC11fu=SC11Y3fu, SC12fu=SC12Y3fu, Pur1fu=Pur1Y3fu, Pur2fu=Pur2Y3fu, Pur3fu=Pur3Y3fu, Pur4fu=Pur4Y3fu, Pur5fu=Pur5Y3fu, Pur6fu=Pur6Y3fu, Pur7fu=Pur7Y3fu, CDSME1fu=CDMSE1Y3fu, CDSME2fu=CDMSE2Y3fu, CDSME3fu=CDMSE3Y3fu, CDSME4fu=CDMSE4Y3fu, CDSME5fu=CDMSE5Y3fu, CDSME6fu=CDMSE6Y3fu, CDSME7fu=CDMSE7Y3fu, CDSME8fu=CDMSE8Y3fu, CDSME9fu=CDMSE9Y3fu, CDSME10fu=CDMSE10Y3fu, CDSME11fu=CDMSE11Y3fu, CDSME12fu=CDMSE12Y3fu, CDSME13fu=CDMSE13Y3fu, CDSME14fu=CDMSE14Y3fu, CDSME15fu=CDMSE15Y3fu, CDSME16fu=CDMSE16Y3fu, CDSME17fu=CDMSE17Y3fu, CDSME18fu=CDMSE18Y3fu, CDSME19fu=CDMSE19Y3fu, CDSME20fu=CDMSE20Y3fu, CDSME21fu=CDMSE21Y3fu, CDSME22fu=CDMSE22Y3fu, CDSME23fu=CDMSE23Y3fu, CDSME24fu=CDMSE24Y3fu, CDSME25fu=CDMSE25Y3fu,  SRF1fu=SRF1Y3fu,   SRF2fu=SRF2Y3fu, SRF3fu=SRF3Y3fu, SRF4fu=SRF4Y3fu, SRF5fu=SRF5Y3fu, VI1fu=VI1Y3fu,   VI2fu=VI2Y3fu,  VI3fu=VI3Y3fu,  VI4fu=VI4Y3fu,  VI5fu=VI5Y3fu,  VI6fu=VI6Y3fu,  VI7fu=VI7Y3fu,  VI8fu=VI8Y3fu,  VI9fu=VI9Y3fu,  VI10fu=VI10Y3fu,  VI11fu=VI11Y3fu,  VI12fu=VI12Y3fu,  VI13fu=VI13Y3fu,  VI14fu=VI14Y3fu,  VI15fu=VI15Y3fu,  VI16fu=VI16Y3fu,  VI17fu=VI17Y3fu,  VI18fu=VI18Y3fu, VIobst1fu=VIobst1Y3fu,  VIobst2fu=VIobst2Y3fu, VIobst3fu=VIobst3Y3fu, VIobst4fu=VIobst4Y3fu, VIbar1fu=VIbar1Y3fu,  VIbar2fu=VIbar2Y3fu, VIbar3fu=VIbar3Y3fu, VIbar4fu=VIbar4Y3fu,  CVQ1fu=CVQ1Y3fu,   CVQ2fu=CVQ2Y3fu,  CVQ3fu=CVQ3Y3fu,  CVQ4fu=CVQ4Y3fu,  CVQ5fu=CVQ5Y3fu,  CVQ6fu=CVQ6Y3fu,  CVQ7fu=CVQ7Y3fu,  CVQ8fu=CVQ8Y3fu,  CVQ9fu=CVQ9Y3fu,  CVQ10fu=CVQ10Y3fu,  CVQ11fu=CVQ11Y3fu,  CVQ12fu=CVQ12Y3fu,  CVQ13fu=CVQ13Y3fu,  CVQ14fu=CVQ14Y3fu,  CVQ15fu=CVQ15Y3fu,  CVQ16fu=CVQ16Y3fu,  CVQ17fu=CVQ17Y3fu,  CVQ18fu=CVQ18Y3fu,  CVQ19fu=CVQ19Y3fu,  CVQ20fu=CVQ20Y3fu,  CVQ21fu=CVQ21Y3fu,  CVQ22fu=CVQ22Y3fu,  CVQ23fu=CVQ23Y3fu,  CVQ24fu=CVQ24Y3fu,  LS1fu=LS1Y3fu,  LS2fu=LS2Y3fu, LS3fu=LS3Y3fu, LS4fu=LS4Y3fu, LS5fu=LS5Y3fu,    Fl1fu=Fl1Y3fu,  Fl2fu=Fl2Y3fu, Fl3fu=Fl3Y3fu, Fl4fu=Fl4Y3fu, Fl5fu=Fl5Y3fu, Fl6fu=Fl6Y3fu, Fl7fu=Fl7Y3fu, Fl8fu=Fl8Y3fu, Hrs1fu=Hrs1Y3fu,  Hrs2fu=Hrs2Y3fu, Hrs3fu=Hrs3Y3fu, Hrs4fu=Hrs4Y3fu, Hrs5fu=Hrs5Y3fu, Hrs6fu=Hrs6Y3fu, Hrs7fu=Hrs7Y3fu, Hrs8fu=Hrs8Y3fu, Hrs9fu=Hrs9Y3fu, Hrs10fu=Hrs10Y3fu, Hrs11fu=Hrs11Y3fu, Hrs12fu=Hrs12Y3fu, Hrs13fu=Hrs13Y3fu, Hrs14fu=Hrs14Y3fu, Hrs15fu=Hrs15Y3fu, Hrs16fu=Hrs16Y3fu, Hrs17fu=Hrs17Y3fu, Hrs18fu=Hrs18Y3fu, Hrs19fu=Hrs19Y3fu, Hrs20fu=Hrs20Y3fu, Hrs21fu=Hrs21Y3fu, Hrs22fu=Hrs22Y3fu, Hrs23fu=Hrs23Y3fu, Work1Fu=WorkY3fu,        
+Agefu=AgeY3fu, AcadClFu=AcadClY3fu, GenderFu=GenderY3fu, GendTxtFu=GndTxtY3fu, LGBTQIAfu=LGBTQIAY3fu, RaceEthfu=RaceEthY3fu, EthnTxtFu=EthnTxtY3fu, IntlStuFu=IntlStuY3fu, IntTxtFu=IntTxtY3fu, LaptopFu=LaptopY3fu, DesktopFu=DesktopY3fu, AndroidFu=AndroidY3fu, iPhoneFu=iPhoneY3fu, iPadFu=iPadY3fu, tabletFu=tabletY3fu, OthrFu=OthrY3fu, RO.BR.FL_15=RO.BR.FL_15, include_updated=include_updated, MOD=MOD, TERM=TERM, COND=COND, Submissions=Submissions, PgViews=PgViews)   
+```
+
+```{r rbind RCT_raw_stac with Y3rn}
+as.data.frame(Y1rn)#needed because the two wouldn't bind
+as.data.frame(Y2rn)#needed because the two wouldn't bind
+RCT_raw_stack <- rbind(RCT_raw_stack, Y3rn, stringsAsFactors = FALSE)
+
+#again, no need to wory about the warning -- invalid factor level, NA generated
+```
+```{r Comparing variable names}
+#RCTstack_names <- names(RCT_raw_stack)
+#write.table(RCTstack_names, file="RCTstack_names.csv", sep=",", col.names=TRUE, row.names=FALSE)
+
+#Y3rn_names <- names(Y3rn)
+#write.table(Y3rn_names, file="Y3rn_names.csv", sep=",", col.names=TRUE, row.names=FALSE)
+
+#After writing these to .csv files, I made two columns and wrote an excel formula to compare the two columns, I made it case sensitive with:  =IF(EXACT(A1,C1),"Match","Mismatch")
+```
+
+```{r Deleting extra Y42_raw variables}
+#Y2_raw had 2 extra variables
+Y4_raw <- Y4_raw %>%
+  select (-c(Module.y))
+```
+
+```{r Rename Y4_raw variables}
+Y4rn <- rename(Y4_raw, ID=ID, DatePr=DatePr, OFGConsPr=OFGConsY4Pr, IRDConsPr=IRDConsY4Pr,     SC1pr=SC1Y4pr, SC2pr=SC2Y4pr,SC3pr=SC3Y4pr, SC4pr=SC4Y4pr, SC5pr=SC5Y4pr,SC6pr=SC6Y4pr, SC7pr=SC7Y4pr, SC8pr=SC8Y4pr,   SC9pr=SC9Y4pr, SC10pr=SC10Y4pr, SC11pr=SC11Y4pr, SC12pr=SC12Y4pr, Pur1pr=Pur1Y4pr, Pur2pr=Pur2Y4pr, Pur3pr=Pur3Y4pr, Pur4pr=Pur4Y4pr, Pur5pr=Pur5Y4pr, Pur6pr=Pur6Y4pr, Pur7pr=Pur7Y4pr, CDSME1pr=CDMSE1Y4pr, CDSME2pr=CDMSE2Y4pr, CDSME3pr=CDMSE3Y4pr, CDSME4pr=CDMSE4Y4pr, CDSME5pr=CDMSE5Y4pr, CDSME6pr=CDMSE6Y4pr, CDSME7pr=CDMSE7Y4pr, CDSME8pr=CDMSE8Y4pr, CDSME9pr=CDMSE9Y4pr, CDSME10pr=CDMSE10Y4pr, CDSME11pr=CDMSE11Y4pr, CDSME12pr=CDMSE12Y4pr, CDSME13pr=CDMSE13Y4pr, CDSME14pr=CDMSE14Y4pr, CDSME15pr=CDMSE15Y4pr, CDSME16pr=CDMSE16Y4pr, CDSME17pr=CDMSE17Y4pr, CDSME18pr=CDMSE18Y4pr, CDSME19pr=CDMSE19Y4pr, CDSME20pr=CDMSE20Y4pr, CDSME21pr=CDMSE21Y4pr, CDSME22pr=CDMSE22Y4pr, CDSME23pr=CDMSE23Y4pr, CDSME24pr=CDMSE24Y4pr, CDSME25pr=CDMSE25Y4pr,  SRF1pr=SRF1Y4pr,   SRF2pr=SRF2Y4pr, SRF3pr=SRF3Y4pr, SRF4pr=SRF4Y4pr, SRF5pr=SRF5Y4pr, VI1pr=VI1Y4pr,   VI2pr=VI2Y4pr,  VI3pr=VI3Y4pr,  VI4pr=VI4Y4pr,  VI5pr=VI5Y4pr,  VI6pr=VI6Y4pr,  VI7pr=VI7Y4pr,  VI8pr=VI8Y4pr,  VI9pr=VI9Y4pr,  VI10pr=VI10Y4pr,  VI11pr=VI11Y4pr,  VI12pr=VI12Y4pr,  VI13pr=VI13Y4pr,  VI14pr=VI14Y4pr,  VI15pr=VI15Y4pr,  VI16pr=VI16Y4pr,  VI17pr=VI17Y4pr,  VI18pr=VI18Y4pr, VIobst1pr=VIobst1Y4pr,  VIobst2pr=VIobst2Y4pr, VIobst3pr=VIobst3Y4pr, VIobst4pr=VIobst4Y4pr, VIbar1pr=VIbar1Y4pr,  VIbar2pr=VIbar2Y4pr, VIbar3pr=VIbar3Y4pr, VIbar4pr=VIbar4Y4pr,  CVQ1pr=CVQ1Y4pr,   CVQ2pr=CVQ2Y4pr,  CVQ3pr=CVQ3Y4pr,  CVQ4pr=CVQ4Y4pr,  CVQ5pr=CVQ5Y4pr,  CVQ6pr=CVQ6Y4pr,  CVQ7pr=CVQ7Y4pr,  CVQ8pr=CVQ8Y4pr,  CVQ9pr=CVQ9Y4pr,  CVQ10pr=CVQ10Y4pr,  CVQ11pr=CVQ11Y4pr,  CVQ12pr=CVQ12Y4pr,  CVQ13pr=CVQ13Y4pr,  CVQ14pr=CVQ14Y4pr,  CVQ15pr=CVQ15Y4pr,  CVQ16pr=CVQ16Y4pr,  CVQ17pr=CVQ17Y4pr,  CVQ18pr=CVQ18Y4pr,  CVQ19pr=CVQ19Y4pr,  CVQ20pr=CVQ20Y4pr,  CVQ21pr=CVQ21Y4pr,  CVQ22pr=CVQ22Y4pr,  CVQ23pr=CVQ23Y4pr,  CVQ24pr=CVQ24Y4pr,  LS1pr=LS1Y4pr,  LS2pr=LS2Y4pr, LS3pr=LS3Y4pr, LS4pr=LS4Y4pr, LS5pr=LS5Y4pr,    Fl1pr=Fl1Y4pr,  Fl2pr=Fl2Y4pr, Fl3pr=Fl3Y4pr, Fl4pr=Fl4Y4pr, Fl5pr=Fl5Y4pr, Fl6pr=Fl6Y4pr, Fl7pr=Fl7Y4pr, Fl8pr=Fl8Y4pr, Hrs1pr=Hrs1Y4pr,  Hrs2pr=Hrs2Y4pr, Hrs3pr=Hrs3Y4pr, Hrs4pr=Hrs4Y4pr, Hrs5pr=Hrs5Y4pr, Hrs6pr=Hrs6Y4pr, Hrs7pr=Hrs7Y4pr, Hrs8pr=Hrs8Y4pr, Hrs9pr=Hrs9Y4pr, Hrs10pr=Hrs10Y4pr, Hrs11pr=Hrs11Y4pr, Hrs12pr=Hrs12Y4pr, Hrs13pr=Hrs13Y4pr, Hrs14pr=Hrs14Y4pr, Hrs15pr=Hrs15Y4pr, Hrs16pr=Hrs16Y4pr, Hrs17pr=Hrs17Y4pr, Hrs18pr=Hrs18Y4pr, Hrs19pr=Hrs19Y4pr, Hrs20pr=Hrs20Y4pr, Hrs21pr=Hrs21Y4pr, Hrs22pr=Hrs22Y4pr, Hrs23pr=Hrs23Y4pr, Work1Pr=WorkY4Pr,        
+Agepr=AgeY4pr, AcadClPr=AcadClY4Pr, GenderPr=GenderY4pr, GendTxtPr=GndTxtY4Pr, LGBTQIApr=LGBTQIAY4pr, RaceEthpr=RaceEthY4pr, EthnTxtPr=EthnTxtY4Pr, IntlStuPr=IntlStuY4pr, IntTxtPr=IntTxtY4pr, LaptopPr=LaptopY4Pr, DesktopPr=DesktopY4Pr, AndroidPr=AndroidY4Pr, iPhonePr=iPhoneY4Pr, iPadPr=iPadY4Pr, tabletPr=tabletY4Pr, OthrPr=OthrY4Pr,
+
+DatePo=DatePo, OFGConsPo=OFGConsY4Po, IRDConsPo=IRDConsY4Po,SC1po=SC1Y4po, SC2po=SC2Y4po,SC3po=SC3Y4po, SC4po=SC4Y4po, SC5po=SC5Y4po,SC6po=SC6Y4po, SC7po=SC7Y4po, SC8po=SC8Y4po,   SC9po=SC9Y4po, SC10po=SC10Y4po, SC11po=SC11Y4po, SC12po=SC12Y4po, Pur1po=Pur1Y4po, Pur2po=Pur2Y4po, Pur3po=Pur3Y4po, Pur4po=Pur4Y4po, Pur5po=Pur5Y4po, Pur6po=Pur6Y4po, Pur7po=Pur7Y4po, CDSME1po=CDMSE1Y4po, CDSME2po=CDMSE2Y4po, CDSME3po=CDMSE3Y4po, CDSME4po=CDMSE4Y4po, CDSME5po=CDMSE5Y4po, CDSME6po=CDMSE6Y4po, CDSME7po=CDMSE7Y4po, CDSME8po=CDMSE8Y4po, CDSME9po=CDMSE9Y4po, CDSME10po=CDMSE10Y4po, CDSME11po=CDMSE11Y4po, CDSME12po=CDMSE12Y4po, CDSME13po=CDMSE13Y4po, CDSME14po=CDMSE14Y4po, CDSME15po=CDMSE15Y4po, CDSME16po=CDMSE16Y4po, CDSME17po=CDMSE17Y4po, CDSME18po=CDMSE18Y4po, CDSME19po=CDMSE19Y4po, CDSME20po=CDMSE20Y4po, CDSME21po=CDMSE21Y4po, CDSME22po=CDMSE22Y4po, CDSME23po=CDMSE23Y4po, CDSME24po=CDMSE24Y4po, CDSME25po=CDMSE25Y4po,  SRF1po=SRF1Y4po,   SRF2po=SRF2Y4po, SRF3po=SRF3Y4po, SRF4po=SRF4Y4po, SRF5po=SRF5Y4po, VI1po=VI1Y4po,   VI2po=VI2Y4po,  VI3po=VI3Y4po,  VI4po=VI4Y4po,  VI5po=VI5Y4po,  VI6po=VI6Y4po,  VI7po=VI7Y4po,  VI8po=VI8Y4po,  VI9po=VI9Y4po,  VI10po=VI10Y4po,  VI11po=VI11Y4po,  VI12po=VI12Y4po,  VI13po=VI13Y4po,  VI14po=VI14Y4po,  VI15po=VI15Y4po,  VI16po=VI16Y4po,  VI17po=VI17Y4po,  VI18po=VI18Y4po, VIobst1po=VIobst1Y4po,  VIobst2po=VIobst2Y4po, VIobst3po=VIobst3Y4po, VIobst4po=VIobst4Y4po, VIbar1po=VIbar1Y4po,  VIbar2po=VIbar2Y4po, VIbar3po=VIbar3Y4po, VIbar4po=VIbar4Y4po,  CVQ1po=CVQ1Y4po,   CVQ2po=CVQ2Y4po,  CVQ3po=CVQ3Y4po,  CVQ4po=CVQ4Y4po,  CVQ5po=CVQ5Y4po,  CVQ6po=CVQ6Y4po,  CVQ7po=CVQ7Y4po,  CVQ8po=CVQ8Y4po,  CVQ9po=CVQ9Y4po,  CVQ10po=CVQ10Y4po,  CVQ11po=CVQ11Y4po,  CVQ12po=CVQ12Y4po,  CVQ13po=CVQ13Y4po,  CVQ14po=CVQ14Y4po,  CVQ15po=CVQ15Y4po,  CVQ16po=CVQ16Y4po,  CVQ17po=CVQ17Y4po,  CVQ18po=CVQ18Y4po,  CVQ19po=CVQ19Y4po,  CVQ20po=CVQ20Y4po,  CVQ21po=CVQ21Y4po,  CVQ22po=CVQ22Y4po,  CVQ23po=CVQ23Y4po,  CVQ24po=CVQ24Y4po,  LS1po=LS1Y4po,  LS2po=LS2Y4po, LS3po=LS3Y4po, LS4po=LS4Y4po, LS5po=LS5Y4po,    Fl1po=Fl1Y4po,  Fl2po=Fl2Y4po, Fl3po=Fl3Y4po, Fl4po=Fl4Y4po, Fl5po=Fl5Y4po, Fl6po=Fl6Y4po, Fl7po=Fl7Y4po, Fl8po=Fl8Y4po, Hrs1po=Hrs1Y4po,  Hrs2po=Hrs2Y4po, Hrs3po=Hrs3Y4po, Hrs4po=Hrs4Y4po, Hrs5po=Hrs5Y4po, Hrs6po=Hrs6Y4po, Hrs7po=Hrs7Y4po, Hrs8po=Hrs8Y4po, Hrs9po=Hrs9Y4po, Hrs10po=Hrs10Y4po, Hrs11po=Hrs11Y4po, Hrs12po=Hrs12Y4po, Hrs13po=Hrs13Y4po, Hrs14po=Hrs14Y4po, Hrs15po=Hrs15Y4po, Hrs16po=Hrs16Y4po, Hrs17po=Hrs17Y4po, Hrs18po=Hrs18Y4po, Hrs19po=Hrs19Y4po, Hrs20po=Hrs20Y4po, Hrs21po=Hrs21Y4po, Hrs22po=Hrs22Y4po, Hrs23po=Hrs23Y4po, Work1Po=WorkY4Po,        
+Agepo=AgeY4po, AcadClPo=AcadClY4Po, GenderPo=GenderY4po, GendTxtPo=GndTxtY4Po, LGBTQIApo=LGBTQIAY4po, RaceEthpo=RaceEthY4po, EthnTxtPo=EthnTxtY4Po, IntlStuPo=IntlStuY4po, IntTxtPo=IntTxtY4po, LaptopPo=LaptopY4Po, DesktopPo=DesktopY4Po, AndroidPo=AndroidY4Po, iPhonePo=iPhoneY4Po, iPadPo=iPadY4Po, tabletPo=tabletY4Po, OthrPo=OthrY4Po,
+
+DateFu=Datefu, OFGConsFu=OFGConsY4fu, IRDConsFu=IRDConsY4fu, SC1fu=SC1Y4fu, SC2fu=SC2Y4fu, SC3fu=SC3Y4fu, SC4fu=SC4Y4fu, SC5fu=SC5Y4fu,SC6fu=SC6Y4fu, SC7fu=SC7Y4fu, SC8fu=SC8Y4fu,   SC9fu=SC9Y4fu, SC10fu=SC10Y4fu, SC11fu=SC11Y4fu, SC12fu=SC12Y4fu, Pur1fu=Pur1Y4fu, Pur2fu=Pur2Y4fu, Pur3fu=Pur3Y4fu, Pur4fu=Pur4Y4fu, Pur5fu=Pur5Y4fu, Pur6fu=Pur6Y4fu, Pur7fu=Pur7Y4fu, CDSME1fu=CDMSE1Y4fu, CDSME2fu=CDMSE2Y4fu, CDSME3fu=CDMSE3Y4fu, CDSME4fu=CDMSE4Y4fu, CDSME5fu=CDMSE5Y4fu, CDSME6fu=CDMSE6Y4fu, CDSME7fu=CDMSE7Y4fu, CDSME8fu=CDMSE8Y4fu, CDSME9fu=CDMSE9Y4fu, CDSME10fu=CDMSE10Y4fu, CDSME11fu=CDMSE11Y4fu, CDSME12fu=CDMSE12Y4fu, CDSME13fu=CDMSE13Y4fu, CDSME14fu=CDMSE14Y4fu, CDSME15fu=CDMSE15Y4fu, CDSME16fu=CDMSE16Y4fu, CDSME17fu=CDMSE17Y4fu, CDSME18fu=CDMSE18Y4fu, CDSME19fu=CDMSE19Y4fu, CDSME20fu=CDMSE20Y4fu, CDSME21fu=CDMSE21Y4fu, CDSME22fu=CDMSE22Y4fu, CDSME23fu=CDMSE23Y4fu, CDSME24fu=CDMSE24Y4fu, CDSME25fu=CDMSE25Y4fu,  SRF1fu=SRF1Y4fu,   SRF2fu=SRF2Y4fu, SRF3fu=SRF3Y4fu, SRF4fu=SRF4Y4fu, SRF5fu=SRF5Y4fu, VI1fu=VI1Y4fu,   VI2fu=VI2Y4fu,  VI3fu=VI3Y4fu,  VI4fu=VI4Y4fu,  VI5fu=VI5Y4fu,  VI6fu=VI6Y4fu,  VI7fu=VI7Y4fu,  VI8fu=VI8Y4fu,  VI9fu=VI9Y4fu,  VI10fu=VI10Y4fu,  VI11fu=VI11Y4fu,  VI12fu=VI12Y4fu,  VI13fu=VI13Y4fu,  VI14fu=VI14Y4fu,  VI15fu=VI15Y4fu,  VI16fu=VI16Y4fu,  VI17fu=VI17Y4fu,  VI18fu=VI18Y4fu, VIobst1fu=VIobst1Y4fu,  VIobst2fu=VIobst2Y4fu, VIobst3fu=VIobst3Y4fu, VIobst4fu=VIobst4Y4fu, VIbar1fu=VIbar1Y4fu,  VIbar2fu=VIbar2Y4fu, VIbar3fu=VIbar3Y4fu, VIbar4fu=VIbar4Y4fu,  CVQ1fu=CVQ1Y4fu,   CVQ2fu=CVQ2Y4fu,  CVQ3fu=CVQ3Y4fu,  CVQ4fu=CVQ4Y4fu,  CVQ5fu=CVQ5Y4fu,  CVQ6fu=CVQ6Y4fu,  CVQ7fu=CVQ7Y4fu,  CVQ8fu=CVQ8Y4fu,  CVQ9fu=CVQ9Y4fu,  CVQ10fu=CVQ10Y4fu,  CVQ11fu=CVQ11Y4fu,  CVQ12fu=CVQ12Y4fu,  CVQ13fu=CVQ13Y4fu,  CVQ14fu=CVQ14Y4fu,  CVQ15fu=CVQ15Y4fu,  CVQ16fu=CVQ16Y4fu,  CVQ17fu=CVQ17Y4fu,  CVQ18fu=CVQ18Y4fu,  CVQ19fu=CVQ19Y4fu,  CVQ20fu=CVQ20Y4fu,  CVQ21fu=CVQ21Y4fu,  CVQ22fu=CVQ22Y4fu,  CVQ23fu=CVQ23Y4fu,  CVQ24fu=CVQ24Y4fu,  LS1fu=LS1Y4fu,  LS2fu=LS2Y4fu, LS3fu=LS3Y4fu, LS4fu=LS4Y4fu, LS5fu=LS5Y4fu,    Fl1fu=Fl1Y4fu,  Fl2fu=Fl2Y4fu, Fl3fu=Fl3Y4fu, Fl4fu=Fl4Y4fu, Fl5fu=Fl5Y4fu, Fl6fu=Fl6Y4fu, Fl7fu=Fl7Y4fu, Fl8fu=Fl8Y4fu, Hrs1fu=Hrs1Y4fu,  Hrs2fu=Hrs2Y4fu, Hrs3fu=Hrs3Y4fu, Hrs4fu=Hrs4Y4fu, Hrs5fu=Hrs5Y4fu, Hrs6fu=Hrs6Y4fu, Hrs7fu=Hrs7Y4fu, Hrs8fu=Hrs8Y4fu, Hrs9fu=Hrs9Y4fu, Hrs10fu=Hrs10Y4fu, Hrs11fu=Hrs11Y4fu, Hrs12fu=Hrs12Y4fu, Hrs13fu=Hrs13Y4fu, Hrs14fu=Hrs14Y4fu, Hrs15fu=Hrs15Y4fu, Hrs16fu=Hrs16Y4fu, Hrs17fu=Hrs17Y4fu, Hrs18fu=Hrs18Y4fu, Hrs19fu=Hrs19Y4fu, Hrs20fu=Hrs20Y4fu, Hrs21fu=Hrs21Y4fu, Hrs22fu=Hrs22Y4fu, Hrs23fu=Hrs23Y4fu, Work1Fu=WorkY4fu,        
+Agefu=AgeY4fu, AcadClFu=AcadClY4fu, GenderFu=GenderY4fu, GendTxtFu=GndTxtY4fu, LGBTQIAfu=LGBTQIAY4fu, RaceEthfu=RaceEthY4fu, EthnTxtFu=EthnTxtY4fu, IntlStuFu=IntlStuY4fu, IntTxtFu=IntTxtY4fu, LaptopFu=LaptopY4fu, DesktopFu=DesktopY4fu, AndroidFu=AndroidY4fu, iPhoneFu=iPhoneY4fu, iPadFu=iPadY4fu, tabletFu=tabletY4fu, OthrFu=OthrY4fu, RO.BR.FL_15=RO.BR.FL_15, include_updated=include_updated, MOD=MOD, TERM=TERM, COND=COND, Submissions=Submissions, PgViews=PgViews)   
+```
+
+```{r rbind RCT_raw_stac with Y4rn}
+#as.data.frame(Y1rn)#needed because the two wouldn't bind
+#as.data.frame(Y2rn)#needed because the two wouldn't bind
+RCT_raw_stack <- rbind(RCT_raw_stack, Y4rn, stringsAsFactors = FALSE)
+```
+
+```{r Comparing variable names}
+#RCTstack_names <- names(RCT_raw_stack)
+#write.table(RCTstack_names, file="RCTstack_names.csv", sep=",", col.names=TRUE, row.names=FALSE)
+
+#Y4rn_names <- names(Y4rn)
+#write.table(Y4rn_names, file="Y4rn_names.csv", sep=",", col.names=TRUE, row.names=FALSE)
+
+#After writing these to .csv files, I made two columns and wrote an excel formula to compare the two columns, I made it case sensitive with:  =IF(EXACT(A1,C1),"Match","Mismatch")
+```
+
+## Write stacked as outfile
+
+```{r Write RCT_stacked_raw as csv}
+write.table(RCT_raw_stack, file="RCT_raw_stack.csv", sep=",", col.names=TRUE, row.names=FALSE)
+```
+
+**START HERE** for the RCT_raw_stacked df
+```{r START HERE for the RCT_raw_stacked df}
+library(tidyverse)
+library(sjstats)
+RCT_raw_stack <- read.csv ("RCT_raw_stack.csv", head = TRUE, sep = ",")
+```
+
+# SCORING SCALES & SUBSCALES
+
+We'll score each scale/subscale using Parent's [@parent_handling_2013] recommendations of ~20% nonmissing.
+
+## Self-Concept Clarity
+
+Scoring the self-concept clarity scale [@campbell_self-concept_1996-1] involves reverse coding a majority of items: 1, 2, 3, 4, 5, 7, 8, 9, 10, 12
+
+```{r Reverse coding SCC items}
+RCT_raw_stack<- RCT_raw_stack %>%
+  mutate(SC1prR = 6 - SC1pr)%>%
+  mutate(SC2prR = 6 - SC2pr)%>%
+  mutate(SC3prR = 6 - SC3pr)%>%
+  mutate(SC4prR = 6 - SC4pr)%>%
+  mutate(SC5prR = 6 - SC5pr)%>%
+  mutate(SC7prR = 6 - SC7pr)%>%
+  mutate(SC8prR = 6 - SC8pr)%>%
+  mutate(SC9prR = 6 - SC9pr)%>%
+  mutate(SC10prR = 6 - SC10pr)%>%
+  mutate(SC12prR = 6 - SC12pr)
+
+RCT_raw_stack<- RCT_raw_stack %>%
+  mutate(SC1poR = 6 - SC1po)%>%
+  mutate(SC2poR = 6 - SC2po)%>%
+  mutate(SC3poR = 6 - SC3po)%>%
+  mutate(SC4poR = 6 - SC4po)%>%
+  mutate(SC5poR = 6 - SC5po)%>%
+  mutate(SC7poR = 6 - SC7po)%>%
+  mutate(SC8poR = 6 - SC8po)%>%
+  mutate(SC9poR = 6 - SC9po)%>%
+  mutate(SC10poR = 6 - SC10po)%>%
+  mutate(SC12poR = 6 - SC12po)
+
+RCT_raw_stack<- RCT_raw_stack %>%
+  mutate(SC1fuR = 6 - SC1fu)%>%
+  mutate(SC2fuR = 6 - SC2fu)%>%
+  mutate(SC3fuR = 6 - SC3fu)%>%
+  mutate(SC4fuR = 6 - SC4fu)%>%
+  mutate(SC5fuR = 6 - SC5fu)%>%
+  mutate(SC7fuR = 6 - SC7fu)%>%
+  mutate(SC8fuR = 6 - SC8fu)%>%
+  mutate(SC9fuR = 6 - SC9fu)%>%
+  mutate(SC10fuR = 6 - SC10fu)%>%
+  mutate(SC12fuR = 6 - SC12fu)
+```
+
+```{r Scoring SCC}
+#Making the list of variables
+SCCpr_vars <- c('SC1prR','SC2prR', 'SC3prR', 'SC4prR', 'SC5prR', 'SC6pr', 'SC7prR', 'SC8prR', 'SC9prR', 'SC10prR', 'SC11pr', 'SC12prR')
+SCCpo_vars <- c('SC1poR','SC2poR', 'SC3poR', 'SC4poR', 'SC5poR', 'SC6po', 'SC7poR', 'SC8poR', 'SC9poR', 'SC10poR', 'SC11po', 'SC12poR')
+SCCfu_vars <- c('SC1fuR','SC2fuR', 'SC3fuR', 'SC4fuR', 'SC5fuR', 'SC6fu', 'SC7fuR', 'SC8fuR', 'SC9fuR', 'SC10fuR', 'SC11fu', 'SC12fuR')
+
+#Specifying the creation of a new variable, using the mean_n function, specifying the df and the list of variables, then the tolerance
+#the bracket with the column tells R where to find the data; it requires two pieces of information the rows (before the comma) and the columns (after the comma)
+#if there had been a period before the comma, it would have meant calculate the rowmean for all rows, but since we only want it for those with 80% present, there is no period and we leave it blank
+RCT_raw_stack$SCCpr <- mean_n(RCT_raw_stack[,SCCpr_vars], .80)
+RCT_raw_stack$SCCpo <- mean_n(RCT_raw_stack[,SCCpo_vars], .80)
+RCT_raw_stack$SCCfu <- mean_n(RCT_raw_stack[,SCCfu_vars], .80)
+```
+
+
+## Purpose in Life
+
+The purpose scale also has a number of reverse-coded items: 1, 2, 3, 4, 6 [@abbott_evaluation_2010] 
+
+```{r Reverse coding Purpose items}
+RCT_raw_stack<- RCT_raw_stack %>%
+  mutate(Pur1prR = 7 - Pur1pr)%>%
+  mutate(Pur2prR = 7 - Pur2pr)%>%
+  mutate(Pur3prR = 7 - Pur3pr)%>%
+  mutate(Pur4prR = 7 - Pur4pr)%>%
+  mutate(Pur6prR = 7 - Pur6pr)
+
+RCT_raw_stack<- RCT_raw_stack %>%
+  mutate(Pur1poR = 7 - Pur1po)%>%
+  mutate(Pur2poR = 7 - Pur2po)%>%
+  mutate(Pur3poR = 7 - Pur3po)%>%
+  mutate(Pur4poR = 7 - Pur4po)%>%
+  mutate(Pur6poR = 7 - Pur6po)
+
+RCT_raw_stack<- RCT_raw_stack %>%
+  mutate(Pur1fuR = 7 - Pur1fu)%>%
+  mutate(Pur2fuR = 7 - Pur2fu)%>%
+  mutate(Pur3fuR = 7 - Pur3fu)%>%
+  mutate(Pur4fuR = 7 - Pur4fu)%>%
+  mutate(Pur6fuR = 7 - Pur6fu)
+```
+
+```{r Scoring the Purpose scale}
+#Making the list of variables
+PURpr_vars <- c('Pur1prR','Pur2prR', 'Pur3prR', 'Pur4prR', 'Pur5pr', 'Pur6prR', 'Pur7pr')
+PURpo_vars <- c('Pur1poR','Pur2poR', 'Pur3poR', 'Pur4poR', 'Pur5po', 'Pur6poR', 'Pur7po')
+PURfu_vars <- c('Pur1fuR','Pur2fuR', 'Pur3fuR', 'Pur4fuR', 'Pur5fu', 'Pur6fuR', 'Pur7fu')
+
+#Specifying the creation of a new variable, using the mean_n function, specifying the df and the list of variables, then the tolerance
+#the bracket with the column tells R where to find the data; it requires two pieces of information the rows (before the comma) and the columns (after the comma)
+#if there had been a period before the comma, it would have meant calculate the rowmean for all rows, but since we only want it for those with 80% present, there is no period and we leave it blank
+RCT_raw_stack$PURpr <- mean_n(RCT_raw_stack[,PURpr_vars], .80)
+RCT_raw_stack$PURpo <- mean_n(RCT_raw_stack[,PURpo_vars], .80)
+RCT_raw_stack$PURfu <- mean_n(RCT_raw_stack[,PURfu_vars], .80)
+```
+
+## Career Decision Self-Efficacy 
+
+According to the key in the scoring manual [@betz_manual_2006]:
+
+The 25 items are distributed among five subscales, as indicated on the scoring key. Each subscale score is the sum of the responses given to the five items on that subscale; this sum is divided by 5 to return the score to the units of the response continuum. 
+
+Scale 1	Self Appraisal    Items 5, 9, 14, 18, 22
+Scale 2	Occupational Information    Items 1, 10, 15, 19, 23
+Scale 3	Goal Selection    Items 2, 6, 11, 16, 20
+Scale 4	Planning    Items 3, 7, 12, 21, 24
+Scale 5	Problem Solving    Items 4, 8, 13, 17, 25
+
+Total Score = Sum of all 25 items/25
+
+CDSME1fu
+
+```{r Scoring the CDSE}
+#Making the list of variables
+CDSEpr_SlfAprsl_vars <- c('CDSME5pr', 'CDSME9pr', 'CDSME14pr', 'CDSME18pr', 'CDSME22pr')
+CDSEpr_OccInf_vars <- c('CDSME1pr', 'CDSME10pr', 'CDSME15pr', 'CDSME19pr', 'CDSME23pr')
+CDSEpr_GoalSel_vars <- c('CDSME2pr', 'CDSME6pr', 'CDSME11pr', 'CDSME16pr', 'CDSME20pr')
+CDSEpr_Plan_vars <- c('CDSME3pr', 'CDSME7pr', 'CDSME12pr', 'CDSME21pr', 'CDSME24pr')
+CDSEpr_PrbSlv_vars <- c('CDSME4pr', 'CDSME8pr', 'CDSME13pr', 'CDSME17pr', 'CDSME25pr')
+CDSEpr_Tot_vars <- c('CDSME5pr', 'CDSME9pr', 'CDSME14pr', 'CDSME18pr', 'CDSME22pr', 'CDSME1pr', 'CDSME10pr', 'CDSME15pr', 'CDSME19pr', 'CDSME23pr','CDSME2pr', 'CDSME6pr', 'CDSME11pr', 'CDSME16pr', 'CDSME20pr', 'CDSME3pr', 'CDSME7pr', 'CDSME12pr', 'CDSME21pr', 'CDSME24pr','CDSME4pr', 'CDSME8pr', 'CDSME13pr', 'CDSME17pr', 'CDSME25pr' )
+
+CDSEpo_SlfAprsl_vars <- c('CDSME5po', 'CDSME9po', 'CDSME14po', 'CDSME18po', 'CDSME22po')
+CDSEpo_OccInf_vars <- c('CDSME1po', 'CDSME10po', 'CDSME15po', 'CDSME19po', 'CDSME23po')
+CDSEpo_GoalSel_vars <- c('CDSME2po', 'CDSME6po', 'CDSME11po', 'CDSME16po', 'CDSME20po')
+CDSEpo_Plan_vars <- c('CDSME3po', 'CDSME7po', 'CDSME12po', 'CDSME21po', 'CDSME24po')
+CDSEpo_PrbSlv_vars <- c('CDSME4po', 'CDSME8po', 'CDSME13po', 'CDSME17po', 'CDSME25po')
+CDSEpo_Tot_vars <- c('CDSME5po', 'CDSME9po', 'CDSME14po', 'CDSME18po', 'CDSME22po', 'CDSME1po', 'CDSME10po', 'CDSME15po', 'CDSME19po', 'CDSME23po','CDSME2po', 'CDSME6po', 'CDSME11po', 'CDSME16po', 'CDSME20po', 'CDSME3po', 'CDSME7po', 'CDSME12po', 'CDSME21po', 'CDSME24po','CDSME4po', 'CDSME8po', 'CDSME13po', 'CDSME17po', 'CDSME25po' )
+
+CDSEfu_SlfAprsl_vars <- c('CDSME5fu', 'CDSME9fu', 'CDSME14fu', 'CDSME18fu', 'CDSME22fu')
+CDSEfu_OccInf_vars <- c('CDSME1fu', 'CDSME10fu', 'CDSME15fu', 'CDSME19fu', 'CDSME23fu')
+CDSEfu_GoalSel_vars <- c('CDSME2fu', 'CDSME6fu', 'CDSME11fu', 'CDSME16fu', 'CDSME20fu')
+CDSEfu_Plan_vars <- c('CDSME3fu', 'CDSME7fu', 'CDSME12fu', 'CDSME21fu', 'CDSME24fu')
+CDSEfu_PrbSlv_vars <- c('CDSME4fu', 'CDSME8fu', 'CDSME13fu', 'CDSME17fu', 'CDSME25fu')
+CDSEfu_Tot_vars <- c('CDSME5fu', 'CDSME9fu', 'CDSME14fu', 'CDSME18fu', 'CDSME22fu', 'CDSME1fu', 'CDSME10fu', 'CDSME15fu', 'CDSME19fu', 'CDSME23fu','CDSME2fu', 'CDSME6fu', 'CDSME11fu', 'CDSME16fu', 'CDSME20fu', 'CDSME3fu', 'CDSME7fu', 'CDSME12fu', 'CDSME21fu', 'CDSME24fu','CDSME4fu', 'CDSME8fu', 'CDSME13fu', 'CDSME17fu', 'CDSME25fu' )
+
+
+RCT_raw_stack$CDSE_SlfApr_pr <-      mean_n(RCT_raw_stack[,CDSEpr_SlfAprsl_vars], .80)
+RCT_raw_stack$CDSE_OccInf_pr <-  mean_n(RCT_raw_stack[,CDSEpr_OccInf_vars], .80)
+RCT_raw_stack$CDSE_Goal_pr <-  mean_n(RCT_raw_stack[,CDSEpr_GoalSel_vars], .80)
+RCT_raw_stack$CDSE_Plan_pr <- mean_n(RCT_raw_stack[,CDSEpr_Plan_vars], .80)
+RCT_raw_stack$CDSE_PrbSlv_pr <- mean_n(RCT_raw_stack[,CDSEpr_PrbSlv_vars], .80)
+RCT_raw_stack$CDSE_Tot_pr <- mean_n(RCT_raw_stack[,CDSEpr_Tot_vars], .80)
+
+RCT_raw_stack$CDSE_SlfApr_po <-      mean_n(RCT_raw_stack[,CDSEpo_SlfAprsl_vars], .80)
+RCT_raw_stack$CDSE_OccInf_po <-  mean_n(RCT_raw_stack[,CDSEpo_OccInf_vars], .80)
+RCT_raw_stack$CDSE_Goal_po <-  mean_n(RCT_raw_stack[,CDSEpo_GoalSel_vars], .80)
+RCT_raw_stack$CDSE_Plan_po <- mean_n(RCT_raw_stack[,CDSEpo_Plan_vars], .80)
+RCT_raw_stack$CDSE_PrbSlv_po <- mean_n(RCT_raw_stack[,CDSEpo_PrbSlv_vars], .80)
+RCT_raw_stack$CDSE_Tot_po <- mean_n(RCT_raw_stack[,CDSEpo_Tot_vars], .80)
+
+RCT_raw_stack$CDSE_SlfApr_fu <-      mean_n(RCT_raw_stack[,CDSEfu_SlfAprsl_vars], .80)
+RCT_raw_stack$CDSE_OccInf_fu <-  mean_n(RCT_raw_stack[,CDSEfu_OccInf_vars], .80)
+RCT_raw_stack$CDSE_Goal_fu <-  mean_n(RCT_raw_stack[,CDSEfu_GoalSel_vars], .80)
+RCT_raw_stack$CDSE_Plan_fu <- mean_n(RCT_raw_stack[,CDSEfu_Plan_vars], .80)
+RCT_raw_stack$CDSE_PrbSlv_fu <- mean_n(RCT_raw_stack[,CDSEfu_PrbSlv_vars], .80)
+RCT_raw_stack$CDSE_Tot_fu <- mean_n(RCT_raw_stack[,CDSEfu_Tot_vars], .80)
+```
+
+
+## Strenth of Religious Faith
+
+The Santa Clara Strength of Religious Faith Scale has an abundance of psychometric evaluation [@plante_reliability_1997; @sherman_measuring_2001].  It appears that no items are reverse-scored. 
+```{r Scoring the SRF}
+SRFpr_vars <- c('SRF1pr', 'SRF2pr', 'SRF3pr', 'SRF4pr', 'SRF5pr')
+SRFpo_vars <- c('SRF1po', 'SRF2po', 'SRF3po', 'SRF4po', 'SRF5po')
+SRFfu_vars <- c('SRF1fu', 'SRF2fu', 'SRF3fu', 'SRF4fu', 'SRF5fu')
+
+RCT_raw_stack$SRFpr <- mean_n(RCT_raw_stack[,SRFpr_vars], .80)
+RCT_raw_stack$SRFpo <- mean_n(RCT_raw_stack[,SRFpo_vars], .80)
+RCT_raw_stack$SRFfu <- mean_n(RCT_raw_stack[,SRFfu_vars], .80)
+```
+
+## Vocational Identity
+
+My Vocational Identity has three scales, the primary 18-item vocational identity scale plus the information and obstacles subscales.
+
+All the items are reverse-scored, so it made sense to me to do the reverse-coding *after* creating the scale scores.
+
+```{r Scoring vocational identity}
+VItot_pr_vars <- c('VI1pr', 'VI2pr', 'VI3pr', 'VI4pr', 'VI5pr', 'VI6pr', 'VI7pr', 'VI8pr', 'VI9pr', 'VI10pr', 'VI11pr', 'VI12pr', 'VI13pr', 'VI14pr', 'VI15pr', 'VI16pr', 'VI17pr', 'VI18pr')
+VIobst_pr_vars <- c('VIobst1pr', 'VIobst2pr', 'VIobst3pr', 'VIobst4pr')
+VIinfo_pr_vars <- c('VIbar1pr', 'VIbar2pr', 'VIbar3pr', 'VIbar4pr')
+
+VItot_po_vars <- c('VI1po', 'VI2po', 'VI3po', 'VI4po', 'VI5po', 'VI6po', 'VI7po', 'VI8po', 'VI9po', 'VI10po', 'VI11po', 'VI12po', 'VI13po', 'VI14po', 'VI15po', 'VI16po', 'VI17po', 'VI18po')
+VIobst_po_vars <- c('VIobst1po', 'VIobst2po', 'VIobst3po', 'VIobst4po')
+VIinfo_po_vars <- c('VIbar1po', 'VIbar2po', 'VIbar3po', 'VIbar4po')
+
+VItot_fu_vars <- c('VI1fu', 'VI2fu', 'VI3fu', 'VI4fu', 'VI5fu', 'VI6fu', 'VI7fu', 'VI8fu', 'VI9fu', 'VI10fu', 'VI11fu', 'VI12fu', 'VI13fu', 'VI14fu', 'VI15fu', 'VI16fu', 'VI17fu', 'VI18fu')
+VIobst_fu_vars <- c('VIobst1fu', 'VIobst2fu', 'VIobst3fu', 'VIobst4fu')
+VIinfo_fu_vars <- c('VIbar1fu', 'VIbar2fu', 'VIbar3fu', 'VIbar4fu')
+
+RCT_raw_stack$VItot_pr <- mean_n(RCT_raw_stack[,VItot_pr_vars], .80)
+RCT_raw_stack$VIobst_pr <- mean_n(RCT_raw_stack[,VIobst_pr_vars], .75)
+RCT_raw_stack$VIinfo_pr <- mean_n(RCT_raw_stack[,VIinfo_pr_vars], .75)
+
+RCT_raw_stack$VItot_po <- mean_n(RCT_raw_stack[,VItot_po_vars], .80)
+RCT_raw_stack$VIobst_po <- mean_n(RCT_raw_stack[,VIobst_po_vars], .75)
+RCT_raw_stack$VIinfo_po <- mean_n(RCT_raw_stack[,VIinfo_po_vars], .75)
+
+RCT_raw_stack$VItot_fu <- mean_n(RCT_raw_stack[,VItot_fu_vars], .80)
+RCT_raw_stack$VIobst_fu <- mean_n(RCT_raw_stack[,VIobst_fu_vars], .75)
+RCT_raw_stack$VIinfo_fu <- mean_n(RCT_raw_stack[,VIinfo_fu_vars], .75)
+
+RCT_raw_stack <- RCT_raw_stack %>%
+  mutate(VItot_prR = 6 - VItot_pr)%>%
+  mutate(VIobst_prR = 6 - VIobst_pr)%>%
+  mutate(VIinfo_prR = 6 - VIinfo_pr)%>%
+  
+  mutate(VItot_poR = 6 - VItot_po)%>%
+  mutate(VIobst_poR = 6 - VIobst_po)%>%
+  mutate(VIinfo_poR = 6 - VIinfo_po)%>%
+  
+  mutate(VItot_fuR = 6 - VItot_fu)%>%
+  mutate(VIobst_fuR = 6 - VIobst_fu)%>%
+  mutate(VIinfo_fuR = 6 - VIinfo_fu)
+
+```
+
+
+## Calling & Vocation Questionnaire (12 scales/subscales)
+
+The Calling & Vocation Questionnaire [@dik_development_2012] is a multidimensional instrument that can be used as a total scale score, a two-factor (search-for and presence-of) scale, a three-factor scale (prosocial orientation, transcedent summons, purposeful work), or a six-factor scale representing the 2x3 combinations.
+
+One item (#8) is reverse coded.
+
+Scoring key:
+
+CVQ-Presence-Transcendent Summons 1, 8-reverse coded, 11, 23
+CVQ-Search-Transcendent Summons 2, 13, 18, 19
+CVQ-Presence-Purposeful Work  3, 15, 20, 24
+CVQ-Search-Purposeful Work 4, 6, 14, 21
+CVQ-Presence-Prosocial Orientation  9, 12, 17, 22
+CVQ-Search-Prosocial Orientation 5, 7, 10, 16
+CVQ-Presence total  1, 3, 8-reverse coded, 9, 11, 12, 15, 17, 20, 22, 23, 24
+CVQ-Search total 2, 4, 5, 6, 7, 10, 13, 14, 16, 18, 19, 21
+Appendix
+
+```{r Scoring CVQ item 8}
+RCT_raw_stack<- RCT_raw_stack %>%
+  mutate(CVQ8prR = 5 - CVQ8pr)%>%
+  mutate(CVQ8poR = 5 - CVQ8po)%>%
+  mutate(CVQ8fuR = 5 - CVQ8fu)
+
+CVQ_PrTS_pr_vars <- c('CVQ1pr', 'CVQ8prR', 'CVQ11pr', 'CVQ23pr')
+CVQ_SrTS_pr_vars <- c('CVQ2pr', 'CVQ13pr', 'CVQ18pr', 'CVQ19pr')
+CVQ_PrPW_pr_vars <- c('CVQ3pr', 'CVQ15pr', 'CVQ20pr', 'CVQ24pr')
+CVQ_SrPW_pr_vars <- c('CVQ4pr', 'CVQ6pr', 'CVQ14pr', 'CVQ21pr')
+CVQ_PrPO_pr_vars <- c('CVQ9pr', 'CVQ12pr', 'CVQ17pr', 'CVQ22pr')
+CVQ_SrPO_pr_vars <- c('CVQ5pr', 'CVQ7pr', 'CVQ10pr', 'CVQ16pr')
+CVQ_Pres_pr_vars <- c('CVQ1pr', 'CVQ8prR', 'CVQ11pr', 'CVQ23pr', 'CVQ3pr', 'CVQ15pr', 'CVQ20pr', 'CVQ24pr','CVQ9pr', 'CVQ12pr', 'CVQ17pr', 'CVQ22pr') 
+CVQ_Srch_pr_vars <- c('CVQ2pr', 'CVQ13pr', 'CVQ18pr', 'CVQ19pr', 'CVQ4pr', 'CVQ6pr', 'CVQ14pr', 'CVQ21pr', 'CVQ5pr', 'CVQ7pr', 'CVQ10pr', 'CVQ16pr')
+CVQ_TOT_pr_vars <- c('CVQ1pr', 'CVQ8prR', 'CVQ11pr', 'CVQ23pr', 'CVQ3pr', 'CVQ15pr', 'CVQ20pr', 'CVQ24pr','CVQ9pr', 'CVQ12pr', 'CVQ17pr', 'CVQ22pr','CVQ2pr', 'CVQ13pr', 'CVQ18pr', 'CVQ19pr', 'CVQ4pr', 'CVQ6pr', 'CVQ14pr', 'CVQ21pr', 'CVQ5pr', 'CVQ7pr', 'CVQ10pr', 'CVQ16pr') 
+
+RCT_raw_stack$CVQ_PrTS_pr <- mean_n(RCT_raw_stack[,CVQ_PrTS_pr_vars], .75)
+RCT_raw_stack$CVQ_SrTS_pr <- mean_n(RCT_raw_stack[,CVQ_SrTS_pr_vars], .75)
+RCT_raw_stack$CVQ_PrPW_pr <- mean_n(RCT_raw_stack[,CVQ_PrPW_pr_vars], .75)
+RCT_raw_stack$CVQ_SrPW_pr <- mean_n(RCT_raw_stack[,CVQ_SrPW_pr_vars], .75)
+RCT_raw_stack$CVQ_PrPO_pr <- mean_n(RCT_raw_stack[,CVQ_PrPO_pr_vars], .75)
+RCT_raw_stack$CVQ_SrPO_pr <- mean_n(RCT_raw_stack[,CVQ_SrPO_pr_vars], .75)
+RCT_raw_stack$CVQ_Pres_pr <- mean_n(RCT_raw_stack[,CVQ_Pres_pr_vars], .75)
+RCT_raw_stack$CVQ_Srch_pr <- mean_n(RCT_raw_stack[,CVQ_Srch_pr_vars], .75)
+RCT_raw_stack$CVQ_TOT_pr <- mean_n(RCT_raw_stack[,CVQ_TOT_pr_vars], .75)
+
+
+CVQ_PrTS_po_vars <- c('CVQ1po', 'CVQ8poR', 'CVQ11po', 'CVQ23po')
+CVQ_SrTS_po_vars <- c('CVQ2po', 'CVQ13po', 'CVQ18po', 'CVQ19po')
+CVQ_PrPW_po_vars <- c('CVQ3po', 'CVQ15po', 'CVQ20po', 'CVQ24po')
+CVQ_SrPW_po_vars <- c('CVQ4po', 'CVQ6po', 'CVQ14po', 'CVQ21po')
+CVQ_PrPO_po_vars <- c('CVQ9po', 'CVQ12po', 'CVQ17po', 'CVQ22po')
+CVQ_SrPO_po_vars <- c('CVQ5po', 'CVQ7po', 'CVQ10po', 'CVQ16po')
+CVQ_Pres_po_vars <- c('CVQ1po', 'CVQ8poR', 'CVQ11po', 'CVQ23po', 'CVQ3po', 'CVQ15po', 'CVQ20po', 'CVQ24po','CVQ9po', 'CVQ12po', 'CVQ17po', 'CVQ22po') 
+CVQ_Srch_po_vars <- c('CVQ2po', 'CVQ13po', 'CVQ18po', 'CVQ19po', 'CVQ4po', 'CVQ6po', 'CVQ14po', 'CVQ21po', 'CVQ5po', 'CVQ7po', 'CVQ10po', 'CVQ16po')
+CVQ_TOT_po_vars <- c('CVQ1po', 'CVQ8poR', 'CVQ11po', 'CVQ23po', 'CVQ3po', 'CVQ15po', 'CVQ20po', 'CVQ24po','CVQ9po', 'CVQ12po', 'CVQ17po', 'CVQ22po','CVQ2po', 'CVQ13po', 'CVQ18po', 'CVQ19po', 'CVQ4po', 'CVQ6po', 'CVQ14po', 'CVQ21po', 'CVQ5po', 'CVQ7po', 'CVQ10po', 'CVQ16po') 
+
+RCT_raw_stack$CVQ_PrTS_po <- mean_n(RCT_raw_stack[,CVQ_PrTS_po_vars], .75)
+RCT_raw_stack$CVQ_SrTS_po <- mean_n(RCT_raw_stack[,CVQ_SrTS_po_vars], .75)
+RCT_raw_stack$CVQ_PrPW_po <- mean_n(RCT_raw_stack[,CVQ_PrPW_po_vars], .75)
+RCT_raw_stack$CVQ_SrPW_po <- mean_n(RCT_raw_stack[,CVQ_SrPW_po_vars], .75)
+RCT_raw_stack$CVQ_PrPO_po <- mean_n(RCT_raw_stack[,CVQ_PrPO_po_vars], .75)
+RCT_raw_stack$CVQ_SrPO_po <- mean_n(RCT_raw_stack[,CVQ_SrPO_po_vars], .75)
+RCT_raw_stack$CVQ_Pres_po <- mean_n(RCT_raw_stack[,CVQ_Pres_po_vars], .75)
+RCT_raw_stack$CVQ_Srch_po <- mean_n(RCT_raw_stack[,CVQ_Srch_po_vars], .75)
+RCT_raw_stack$CVQ_TOT_po <- mean_n(RCT_raw_stack[,CVQ_TOT_po_vars], .75)
+
+CVQ_PrTS_fu_vars <- c('CVQ1fu', 'CVQ8fuR', 'CVQ11fu', 'CVQ23fu')
+CVQ_SrTS_fu_vars <- c('CVQ2fu', 'CVQ13fu', 'CVQ18fu', 'CVQ19fu')
+CVQ_PrPW_fu_vars <- c('CVQ3fu', 'CVQ15fu', 'CVQ20fu', 'CVQ24fu')
+CVQ_SrPW_fu_vars <- c('CVQ4fu', 'CVQ6fu', 'CVQ14fu', 'CVQ21fu')
+CVQ_PrPO_fu_vars <- c('CVQ9fu', 'CVQ12fu', 'CVQ17fu', 'CVQ22fu')
+CVQ_SrPO_fu_vars <- c('CVQ5fu', 'CVQ7fu', 'CVQ10fu', 'CVQ16fu')
+CVQ_Pres_fu_vars <- c('CVQ1fu', 'CVQ8fuR', 'CVQ11fu', 'CVQ23fu', 'CVQ3fu', 'CVQ15fu', 'CVQ20fu', 'CVQ24fu','CVQ9fu', 'CVQ12fu', 'CVQ17fu', 'CVQ22fu') 
+CVQ_Srch_fu_vars <- c('CVQ2fu', 'CVQ13fu', 'CVQ18fu', 'CVQ19fu', 'CVQ4fu', 'CVQ6fu', 'CVQ14fu', 'CVQ21fu', 'CVQ5fu', 'CVQ7fu', 'CVQ10fu', 'CVQ16fu')
+CVQ_TOT_fu_vars <- c('CVQ1fu', 'CVQ8fuR', 'CVQ11fu', 'CVQ23fu', 'CVQ3fu', 'CVQ15fu', 'CVQ20fu', 'CVQ24fu','CVQ9fu', 'CVQ12fu', 'CVQ17fu', 'CVQ22fu','CVQ2fu', 'CVQ13fu', 'CVQ18fu', 'CVQ19fu', 'CVQ4fu', 'CVQ6fu', 'CVQ14fu', 'CVQ21fu', 'CVQ5fu', 'CVQ7fu', 'CVQ10fu', 'CVQ16fu') 
+
+RCT_raw_stack$CVQ_PrTS_fu <- mean_n(RCT_raw_stack[,CVQ_PrTS_fu_vars], .75)
+RCT_raw_stack$CVQ_SrTS_fu <- mean_n(RCT_raw_stack[,CVQ_SrTS_fu_vars], .75)
+RCT_raw_stack$CVQ_PrPW_fu <- mean_n(RCT_raw_stack[,CVQ_PrPW_fu_vars], .75)
+RCT_raw_stack$CVQ_SrPW_fu <- mean_n(RCT_raw_stack[,CVQ_SrPW_fu_vars], .75)
+RCT_raw_stack$CVQ_PrPO_fu <- mean_n(RCT_raw_stack[,CVQ_PrPO_fu_vars], .75)
+RCT_raw_stack$CVQ_SrPO_fu <- mean_n(RCT_raw_stack[,CVQ_SrPO_fu_vars], .75)
+RCT_raw_stack$CVQ_Pres_fu <- mean_n(RCT_raw_stack[,CVQ_Pres_fu_vars], .75)
+RCT_raw_stack$CVQ_Srch_fu <- mean_n(RCT_raw_stack[,CVQ_Srch_fu_vars], .75)
+RCT_raw_stack$CVQ_TOT_fu <- mean_n(RCT_raw_stack[,CVQ_TOT_fu_vars], .75)
+
+```
+
+## Flourishing
+
+The 8-item Floushing Scale [@diener_new_2010] is unidimensional and has no reverse-scored items.
+
+```{r Scoring Flourishing}
+Flpr_vars <- c('Fl1pr','Fl2pr','Fl3pr','Fl4pr','Fl5pr','Fl6pr','Fl7pr','Fl8pr')
+Flpo_vars <- c('Fl1po', 'Fl2po','Fl3po','Fl4po','Fl5po','Fl6po','Fl7po','Fl8po')
+Flfu_vars <- c('Fl1fu', 'Fl2fu','Fl3fu','Fl4fu','Fl5fu','Fl6fu','Fl7fu','Fl8fu')
+
+RCT_raw_stack$FLpr <- mean_n(RCT_raw_stack[,Flpr_vars], .80)
+RCT_raw_stack$FLpo <- mean_n(RCT_raw_stack[,Flpo_vars], .80)
+RCT_raw_stack$FLfu <- mean_n(RCT_raw_stack[,Flfu_vars], .80)
+```
+
+
+## Life Satisfaction
+
+The 5-item Life Satisfaction Scale [@diener_satisfaction_1985] is unidimensional and has no reverse-scored items
+
+```{r Scoring Life Satisfaction}
+
+LSpr_vars <- c('LS1pr','LS2pr','LS3pr','LS4pr','LS5pr')
+LSpo_vars <- c('LS1po','LS2po','LS3po','LS4po','LS5po')
+LSfu_vars <- c('LS1fu','LS2fu','LS3fu','LS4fu','LS5fu')
+
+RCT_raw_stack$LSpr <- mean_n(RCT_raw_stack[,LSpr_vars], .80)
+RCT_raw_stack$LSpo <- mean_n(RCT_raw_stack[,LSpo_vars], .80)
+RCT_raw_stack$LSfu <- mean_n(RCT_raw_stack[,LSfu_vars], .80)
+
+```
+
+```{r Checking names of RCT_raw_stack df}
+#names(RCT_raw_stack)
+```
+
+
+# Streamlining Dataset to Eliminate Item-Level Variables
+
+```{r Selecting variables}
+#w represents the wide file
+RCTw <-(select (RCT_raw_stack, Agepr, GenderPr, LGBTQIApr, RaceEthpr, IntlStuPr, Work1Pr,Work1Po, DatePr, DatePo, DateFu, Hrs1pr, Hrs2pr, Hrs3pr, Hrs4pr, Hrs5pr, Hrs6pr, Hrs7pr, Hrs8pr, Hrs9pr, Hrs10pr, Hrs11pr, Hrs12pr, Hrs13pr, Hrs14pr, Hrs15pr, Hrs16pr, Hrs17pr, Hrs18pr, Hrs19pr, Hrs20pr, Hrs21pr, Hrs22pr, Hrs23pr, Hrs1po, Hrs2po, Hrs3po, Hrs4po, Hrs5po, Hrs6po, Hrs7po, Hrs8po, Hrs9po, Hrs10po, Hrs11po, Hrs12po, Hrs13po, Hrs14po, Hrs15po, Hrs16po, Hrs17po, Hrs18po, Hrs19po, Hrs20po, Hrs21po, Hrs22po, Hrs23po, Hrs1fu, Hrs2fu, Hrs3fu, Hrs4fu, Hrs5fu, Hrs6fu, Hrs7fu, Hrs8fu, Hrs9fu, Hrs10fu, Hrs11fu, Hrs12fu, Hrs13fu, Hrs14fu, Hrs15fu, Hrs16fu, Hrs17fu, Hrs18fu, Hrs19fu, Hrs20fu, Hrs21fu, Hrs22fu, Hrs23fu, SCCpr, SCCpo, SCCfu, PURpr, PURpo, PURfu, CDSE_SlfApr_pr, CDSE_OccInf_pr, CDSE_Goal_pr, CDSE_Plan_pr, CDSE_PrbSlv_pr, CDSE_Tot_pr, CDSE_SlfApr_po, CDSE_OccInf_po, CDSE_Goal_po, CDSE_Plan_po, CDSE_PrbSlv_po, CDSE_Tot_po, CDSE_SlfApr_fu, CDSE_OccInf_fu, CDSE_Goal_fu, CDSE_Plan_fu, CDSE_PrbSlv_fu, CDSE_Tot_fu, SRFpr, SRFpo, SRFfu, VItot_prR, VIobst_prR, VIinfo_prR, VItot_poR, VIobst_poR, VIinfo_poR, VItot_fuR, VIobst_fuR, VIinfo_fuR,   CVQ_PrTS_pr, CVQ_SrTS_pr, CVQ_PrPW_pr, CVQ_SrPW_pr, CVQ_PrPO_pr, CVQ_SrPO_pr, CVQ_Pres_pr, CVQ_Srch_pr, CVQ_TOT_pr, CVQ_PrTS_po, CVQ_SrTS_po, CVQ_PrPW_po, CVQ_SrPW_po, CVQ_PrPO_po, CVQ_SrPO_po, CVQ_Pres_po, CVQ_Srch_po, CVQ_TOT_po, CVQ_PrTS_fu, CVQ_SrTS_fu, CVQ_PrPW_fu, CVQ_SrPW_fu, CVQ_PrPO_fu, CVQ_SrPO_fu, CVQ_Pres_fu, CVQ_Srch_fu, CVQ_TOT_fu, FLpr, FLpo, FLfu, LSpr, LSpo, LSfu, LaptopPo, DesktopPo, AndroidPo, iPhonePo, iPadPo, tabletPo, OthrPo, MOD, TERM, COND, Submissions, PgViews))
+```
+
+# Writing the outfile!
+```{r Saving as a CSV}
+write.table(RCTw, file="RCTw.csv", sep=",", col.names=TRUE, row.names=FALSE)
+```
+

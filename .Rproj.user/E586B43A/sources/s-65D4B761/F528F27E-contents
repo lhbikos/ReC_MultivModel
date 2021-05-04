@@ -1,0 +1,245 @@
+---
+title: "Y2FL_FilePrep200422"
+author: "Lynette H. Bikos, PhD, ABPP"
+date: "4/20/2022"
+output: word_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#will install the package if not already installed
+if(!require(lubridate)){install.packages("lubridate")}
+if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(psych)){install.packages("psych")}
+if(!require(data.table)){install.packages("data.table")}
+```
+
+We are using multi-level modeling (MLM; aka hierchical linear modeling [HLM], linear mixed effects [LME], and half-dozen other names) to analyze our data.
+
+Why?  The data are *nested* and this *dependency* violates statistical assumptions of approaches like ANOVA and regression.  In longitudinal studies, the nesting occurs within the person. This means that our repeated observations will likely share variance just because each observation emerges from the same source.
+
+Although longitudinal MLM models do not always *count/clock time*, ours does. We can do so in one of three ways:  categorically (pre/post/follow-up) or by clock times (the number of weeks between each observation).  This means that in preparing the dataframe, we must do some *datemath*.  This has to be done in the wide form before (and we could have done it while we were scoring the data).
+
+Longitudinal data in MLM also means that we need to *restructure* the data from its *wide* to *long* form.
+
+Thus:  we have two tasks:
+
+1. Date math:  specifying the number of *months* between the pr/po/fu observations.
+2. Restructure the data from wide-to-long.
+
+# TASK#1:  Do you wanna be a *timelord*?
+
+Mood music:  https://www.youtube.com/watch?v=SpTJL1fkN0o 
+![Image of The Doctor working her magic](sonicscrewdriver.jpg){#id .class width=500 height=300px}
+
+Extremely helpful resource:  https://data.library.virginia.edu/working-with-dates-and-time-in-r-using-the-lubridate-package/
+Also helpful:  https://rawgit.com/rstudio/cheatsheets/master/lubridate.pdf
+
+If we look at the structure of our dataset, we see that our date variables are formatted as:
+```{r reading in a Y2w}
+Y2w <- read.csv ("Y2FL_wide.csv", head = TRUE, sep = ",")
+str(Y2w)
+```
+
+We first need to convert the Qualtrics formatted date (i.e., 4/5/2018 10:49) to something that R and *lubridate()* recognize. 
+
+The code below changes the DatePr variable.  Because we want to use the dates to get  numerical representation of time between them (i.e., we need to do calculations), they need to be in the POSIXct format.
+
+This requires that we specify the time zone.  A complete and very long code can be found here (so I hashtagged it out; US time zones are at the very very bottom).
+
+```{r}
+#OlsonNames()
+```
+
+Qualtrics appears to use Mountain Time.  
+```{r}
+library(tidyverse)
+library(lubridate)
+library(psych)
+
+#In the code below we need to let lubridate know what form the Qualtrics date is in
+#2018-01-03 10:05:46 is year/month/day_hour/minute/second
+#so I ask for the function ymd_hms
+#lubridate then puts it in this in POSIXct format, necessary for datemath
+Y2w$DatePR <- ymd_hms(Y2w$DatePr, tz = "US/Mountain")
+Y2w$DatePO <- ymd_hms(Y2w$DatePo, tz = "US/Mountain")
+Y2w$DateFU <- ymd_hms(Y2w$Datefu, tz = "US/Mountain")
+
+```
+
+```{r}
+str(Y2w)
+```
+
+Apparently dates store as a number counting from 1970.  This code shows that number.
+
+I want tidy data, so let's delete the dates that were downloaded from Qualtrics
+
+```{r}
+#deleting multiple variables at a time
+Y2w <- Y2w %>%
+  select (-c(DatePr, DatePo, Datefu))
+```
+
+
+## *lubridate()* has functions that operate differently depending on the time you want.
+
+Even though I want months, I will demonstrate the process for obtaining seconds.  
+
+First, let's define an interval using the %--% operator; this results in a data column that lists the two dates being compared.
+
+To count time forward, list the start (earlier) date  before the %--% and the end (later) date  after.  Think "How much time is between the *earlier* time and the *later* time?"
+
+```{r}
+Y2w <- Y2w%>%
+  mutate (PrPoInterval = Y2w$DatePR %--% DatePO)
+
+#Below I'm asking for just the first variable to be displayed.
+Y2w$PrPoInterval[1]
+```
+
+I want the number of months between pre and po.  To get the MonthsPO, I use apply lubridate's *as.duration()* function to the durationPrPo variable.  I can divide by ddays with 30.41.  And get a "close-enough" months variable.
+
+Why 30.41?  I divided 365/12 (it wasn't a leap year, so we're good).
+
+```{r}
+Y2w <- Y2w%>%
+  mutate (MonthsPO = as.duration(Y2w$PrPoInterval)/ddays(30.41))
+
+Y2w$MonthsPO[1]
+str(Y2w$MonthsPO)
+```
+
+Assembling all that we have learned, I can make the next time variable: post (Po) to follow-up (Fu) without all those intervening columns.
+
+```{r}
+Y2w <- Y2w %>%
+  mutate (MonthsFU = DatePR %--% DateFU)%>%
+  mutate (MonthsFU = as.duration(MonthsFU)/ddays(30.41))
+str(Y2w$MonthsFU)
+```
+
+We're kind of doing this backwards, but we also need a time marker for the pre-test. In our particular design, the study occurred on the date they took the pre-test. I could just give everyone a 0, but that makes a mess if there are NA variables.
+
+```{r}
+Y2w <- Y2w %>%
+  mutate (MonthsPR = DatePR %--% DatePR)%>%
+  mutate (MonthsPR = as.duration(MonthsPR)/ddays(30.41))
+str(Y2w$MonthsPR)
+
+```
+
+Let's clean up our dataset
+
+* give AGE and GENDER sensible names
+  - It is no longer useful (confusing, even) to have the clunky variable names for age and gender.  In fact, they make it difficult to combine with other datasets.  This row of data lets us know that it is Y2 (MOD = 2). And this data was retained from the pre-test so "pr" is assumed.  So let's rename
+* remove all that extraneous date clutter and reorder the vars) so we know what we're doing when we get restructure from wide-to-long.
+* COND needs to be an *ordered* factor (ADJ, TRAD, CALL).  Without a specific script to order, it will order itself alphabetically (ADJ, CALL, TRAD) and the proper order is ADJ, TRAD, CALL.
+  - admittedly, I'm not sure if R can "remember" this when it uploads the data from a .csv file in the new .rmd file for the HLM, so you might have to to it again.
+
+```{r}
+library(tidyverse)
+Y2w <- rename(Y2w, AGE = AgeY2pr, GENDER = GenderY2pr)
+Y2w <-(select (Y2w, ID, AGE, GENDER, FLpr, FLpo, FLfu, TERM, COND, MOD, PgViews, Submissions, MonthsPR, MonthsPO, MonthsFU))
+Y2w$COND <- factor(Y2w$COND, levels = c("ADJ", "TRAD", "CALL"))
+```
+
+```{r writing the Y2w file}
+write.table(Y2w, file="Y2w.csv", sep=",", col.names=TRUE, row.names=FALSE)
+```
+
+**Well done, Dr. YOU!**
+*admittedly, that was worse than a Dad-joke*
+![Image of The Doctor in regalia](timelord_grad.jpg){#id .class width=500 height=300px}
+
+
+# TASK#2:  Restructuring the df from wide-to-long
+
+**START HERE** if you just want to restructure data
+
+Oversimplifying things:
+
+* in the wide format, each row represents a case with all repeated-measures observations (i.e., pre, post, follow-up) on a single row.
+* we need each observation from each person to be represented in a row.
+  - so if a person took pr, po, and fu they would have 3 rows
+  - if a person took pr and po, they would have two rows
+
+Each of these rows will represent a constellation of 
+
+* level 1 (L1) variables that *change over time* (e.g., FL scores that differ [at least a little] each time it's taken; months variables), and 
+* level 2 (L2) variables that are *constant* -- they belong to the *whole person*.  In this df these are: age, gender, term, module, condition, page views, submission, term.
+
+There is much more about this in the multivariate class and (I hope) the conceptualization/justification for this should become more clear as we work with the data.
+
+```{r reading in the Y2w file}
+#Y2r <- read.csv ("Y2r.csv", head = TRUE, sep = ",")
+Y2w <- read.csv ("Y2w.csv", head = TRUE, sep = ",")
+```
+
+I found the code that worked here:  https://github.com/Rdatatable/data.table/issues/828
+
+This was also helpful, but the code that should have worked, didn't likely because R had been updated.  https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reshape.html 
+
+Using package *data.table()*.
+
+```{r}
+library(tidyverse)
+#The numbers variables being melted in each set being restructured need to be on the same scale 
+str(Y2w)
+
+#bleh, it didn't remember the factor order of COND, so that command will need to be repeated in the MLM script.
+```
+ 
+ RE, FLpr, FLpo, FLfu are all *num*.  That's good.
+ 
+```{r}
+#MonthsPr wasn't, so it had to be fixed. 
+#Then we checked again.
+Y2w$MonthsPR<- as.numeric(Y2w$MonthsPR)
+str(Y2w)
+```
+
+
+```{r}
+library(data.table)
+
+Y2L <- (data.table::melt(setDT(Y2w), id.vars = c("ID", "AGE", "GENDER", "MOD", "TERM", "COND", "PgViews", "Submissions"), measure.vars =list(c("FLpr", "FLpo", "FLfu"), c("MonthsPR", "MonthsPO", "MonthsFU"))))
+
+#Because this results in 4 new variables -- the indexing variable ("Variable") and the values associated with each of the three sets of variables we converted ("value1," "value2", "value3") we need to rename them.
+```
+
+Take a peek at Y2L:
+
+* FLpr, FLpo, and FLfu are gone
+* MonthsPR, MonthsPO, MonthsFU are gone
+* Three new variables have appeared:  Wave, value1, value 2
+  - we need to figure out that they are Wave, FL, and Months, respectively
+
+```{r}
+Y2L <- rename(Y2L, Wave=variable, FL=value1, Months=value2)
+```
+
+Take another peek at Y2L.
+Sort on ID...whoaaaaaaa (that's cool).
+
+
+MLM can accomodate missing waves (i.e., if a person skipped an entire wave).  However, if there is cell-level missingness in the row, we need to eliminate it from the df. 
+```{r}
+#eliminate the row if both FL and Months are missing.
+Y2L <- na.omit(Y2L)
+#WY2L <- Y2L %>% filter_at(vars(FL, Months),all_vars(!is.na(.)))
+```
+
+Writing an outfile
+```{r}
+write.table(Y2L, file="Y2L.csv", sep=",", col.names=TRUE, row.names=FALSE)
+```
+
+**All the power of the universe in an ittybitty box.** 
+*admittedly, a quote from Aladdin's Genie...but works for the Tardis, too.**
+
+![Image of The Doctor and her Tardis](tardis.jpg){#id .class width=300 height=300px}
+
+

@@ -1,0 +1,52 @@
+"0","sim_slopes(KimSimpMod, pred = REMS, modx = HlpSk)"
+"1","[1m[4mJOHNSON-NEYMAN INTERVAL[24m[22m"
+"1"," "
+"1","
+
+"
+"1","When HlpSk is [7mOUTSIDE[27m the interval [-139.08, 1.34], the slope of REMS is p < .05."
+"1",""
+"1","
+
+"
+"1","[3mNote: The range of observed values of HlpSk is [23m[-0.07, 2.90]"
+"1",""
+"1","
+
+"
+"1","[1m[4mSIMPLE SLOPES ANALYSIS[24m[22m"
+"1"," "
+"1","
+
+"
+"1","[3mSlope of REMS when HlpSk = 1.11 (- 1 SD): 
+
+[23m"
+"1","  Est.   S.E.   t val.      p
+------ ------ -------- ------
+  0.63   0.69     0.91   0.36"
+"1","
+"
+"1","
+"
+"1","[3mSlope of REMS when HlpSk = 1.64 (Mean): 
+
+[23m"
+"1","  Est.   S.E.   t val.      p
+------ ------ -------- ------
+  1.68   0.48     3.51   0.00"
+"1","
+"
+"1","
+"
+"1","[3mSlope of REMS when HlpSk = 2.17 (+ 1 SD): 
+
+[23m"
+"1","  Est.   S.E.   t val.      p
+------ ------ -------- ------
+  2.73   0.73     3.71   0.00"
+"1","
+"
+"1","
+"
+"0","#sim_slopes(KimSimpMod, pred=GRIcntlty, modx = GRMS) #sometimes I like to look at it in reverse -- like in the plots"

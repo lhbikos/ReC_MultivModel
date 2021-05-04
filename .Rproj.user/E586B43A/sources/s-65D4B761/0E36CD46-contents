@@ -1,0 +1,229 @@
+---
+title: "MOD2:  Additive Moderation"
+author: "Lynette H. Bikos, PhD, ABPP"
+date: "04/15/2020"
+output: word_document
+always_allow_html: yes
+csl: apa-single-spaced.csl
+bibliography: StatsnMethods.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+```
+
+```{r Clear global environment, include=FALSE}
+# Clear your Global Environment
+rm(list=ls())
+options(scipen=999)#eliminates scientific notation
+```
+
+![PhD comic about how much screentime we all get (sigh)](screentime.jpg){#id .class width=1000 height=400px}
+
+**Screencast Playlist link:**  https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=b7929f57-53e8-4552-89cc-aba0018a1d2f 
+
+# Bonus Reel
+![Image of a filmstrip](film-strip-1.jpg){#id .class width=620 height=211}
+
+## navigating this lectuRette
+
+About #1 hour and ## minutes.  
+
+This is a "bonus reel."  This means it is **NOT** required.  The focus of this lecture is simply to work the additive moderation model in Hayes Chapter 9.
+
+
+### Readings & ResouRces
+
+* Hayes, A. F. (2017). *Introduction to Mediation, Moderation, and Conditional Process Analysis, Second Edition: A Regression-Based Approach*. Guilford Publications.
+  - **Chapter 9: Some Myths and Additional Extensions of Moderation Analysis**. From this chapter we work the additive multiple moderation problem and the moderated moderation problem. Additionally, Hayes identifies "truths and myths" about mean centering and standardization. For sure these are important topics and his take on them is clear and compelling.  Our focus, though starts in section 9.4:  More than One Moderator.
+  - Appendix A:  Using PROCESS. An essential tool for PROCESS users because, even when we are in the R environment, this is the "idea book." That is, the place where all the path models are presented in figures.
+*Chapman, D. A., & Lickel, B. (2016). Climate change and disasters: How framing affects justifications for giving or withholding aid to disaster victims. Social Psychological and Personality Science, 7(1), 13–20. https://doi-org.ezproxy.spu.edu/10.1177/1948550615590448
+  -Data and analyse are based on this "motivating example."  Pay closest attention to Method/Results.
+
+# Multiple Moderators
+Hayes Chapter 9 provides two examples where there are two moderators involved.  
+
+**Additive moderation** allows the assessment of the partial association between X and Y controlling for W and Z.  The model is limited in that the effect of X is constrained to be unconditional on both W and Z.  That is, X's effect is quantified holding constand W and Z, such that regardless of which values of W and Z are chosen, X's effect on Y is $b_{1}$.
+
+Suppose that X is negative emotional responses to climate change, W is sex, Z is age, and Y is support for government actions.  Influence of negative emotions on support for government action is constrained to be the same for men and women and people of all ages.  Regardless of which values of W and Z you substitute into the regression equation, two hypothetical cases that differ by one unit on X are estimated to differ by $b_{1}$ units on Y.
+
+$$Y = i_{Y}+ b_{1}X+ b_{2}W + b_{3}Z + b_{4}XW+b_{5}XZ+e_{Y}$$
+
+A peek at the conceptual and statistical diagrams of additive moderation may facilitate this understanding.
+
+![image](addmod.JPG){#id .class width=800 height=1200px}
+
+**Moderated moderation** includes a 3-way interaction term (XWZ), allowing the moderation of X's effect on Y to M to depend on W.  
+
+$$Y = i_{Y}+ b_{1}X+ b_{2}W + b_{3}Z + b_{4}XW+b_{5}XZ+ b_{6}WZ+ b_{7}XWZ+ e_{Y}$$
+
+The conceptual and statistical diagrams are helpful in making the distinction between additive and moderated moderation models.
+
+![image](ModMod.JPG){#id .class width=800 height=1200px}
+
+### A note on language:
+
+*  In these multiply moderated models, most of the regression equations represent *conditional effects* and should not be interpreted as main effects and interactions as they are in factorial ANOVA.
+
+
+## Additive Multiple Moderation
+
+![image](addmod.JPG){#id .class width=800 height=1200px}
+*The textbook example, though, adds posemot and ideology as covariates.*
+
+Using the glbwarm dataset we have used previously, we now test an additive multiple moderation, separately examining the moderating effects of sex (W) and age(Z) on the relationship between negative emotions toward climate change (X) and support for government action (Y).
+
+*  govact (Y): index of support for government action that could help mitigate the causes of climate change
+*  posemot (Cov1):
+*  negemot (X): index of negative emotions about climate change
+*  ideology (Cov2):
+*  age (Z):  quantitative variable, ranging from 17 to 87
+*  sex (M): 0 = female, 1 = male
+*  partyid (not in this example): 1 = democrat, 2 = independent, 3 = republican
+
+$$Y = i_{Y}+ b_{1}X+ b_{2}W + b_{3}Z + b_{4}XW+b_{5}XZ+ b_{6}C_{1}+b_{7}C_{2}+e_{Y}$$
+
+Let's also take a look at both the structure of our data and descriptive statistics of the variables.
+```{r upload packages, include=FALSE}
+#will install the package if not already installed
+if(!require(lavaan)){install.packages("lavaan")}
+if(!require(semPlot)){install.packages("semPlot")}
+if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(psych)){install.packages("psych")}
+if(!require(psych)){install.packages("jtools")}
+
+library(tidyverse)
+GLBdat <- read.csv ("glbwarm.csv", header = TRUE)
+
+```
+
+```{r Quick peek at data}
+str(GLBdat)
+summary(GLBdat)
+```
+
+
+Note the ranges of some of these variables:
+
+*  the scales are pretty typical, 1 to 7 (govact, ideology);  1 to 6 (posemot, negemot).  Note that *none* start at 0.
+*  age 17 to 87
+*  sex is 0, 1 (with proportions of each)
+*  partyid has 3 levels, but is being read as an integer.  It would need to be changed to a factor in analyses that use it.
+
+We will limit our interest in *lavaan* to simply writing the code and making a statistical model from *semPlot*.
+
+```{r lavaan package, include = FALSE}
+library(lavaan)
+```
+
+```{r lavaan code for additive moderation}
+set.seed(1234)
+addmod <- '
+    govact ~ X*negemot + Z*age + W*sex + XZ*negemot:age + XW*negemot:sex + Cov1*posemot + Cov2*ideology + Cov3*sex
+    #intercept (constant) of govact
+    govact ~ govact.mean*1
+    #mean of W (age, in this case) for use in simple slopes
+    age ~ age.mean*1
+    #variance of W (age, in nthis case) for use in simple slopes
+    age ~~ age.var*age
+    
+    #simple slopes
+    SD.below := Z + XZ*(age.mean - sqrt(age.var))
+    mean := Z + XZ*(age.mean)
+    SD.above := Z + XZ*(age.mean + sqrt(age.var))
+  '
+addmod_fit <- sem(addmod, data = GLBdat, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
+summary(addmod_fit, standardized = TRUE, rsq=T, ci=TRUE)    
+parameterEstimates(addmod_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+```
+Looking at our data here's what we've learned:
+$$\hat{Y} = 5.272 + 0.093X - 0.742W - 0.018Z + 0.204XW + 0.005XZ - 0.023C_{1} - 0.207C_{2}$$
+```{r semPLot for additive moderation}
+library(semPlot)
+semPaths(addmod_fit, #must identiy the model you want to map
+         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         #whatLabels = "stand", #"stand" changes to standardized values
+         layout = 'tree', rotation = 2, #together, puts predictors on left, IVs on right 
+         edge.label.cex = 1.00, #font size of parameter values
+         #edge.color = "black", #overwrites the green/black coloring
+         sizeMan=10, #size of squares/observed/"manifest" variables
+         fade=FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals
+         esize=2, 
+         asize=3,
+         #label.prop = .5,
+         label.font = 2.5, #controls size (I think) of font for labels
+         label.scale = TRUE, #if false, the labels will not scale to fit inside the nodes
+         nDigits = 3, #decimal places (default is 2)
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram)
+)
+title("Global Warming Moderation Model:  Additive Moderation")
+```
+
+*  The intercept/constant is 5.272.  This is the value of the index of support for government action when all other variables in the model are at 0.
+*  We note that both XW (sex, *B* = 0.204, *p* < .001) and XZ (age, *B* = 0.005*p* = .002) are statistically significant from zero.  This means that sex and age function as moderators of the effect of negative emotions on support for government action.
+
+
+**Redux in OLS**
+
+First, the regression
+
+```{r OLS additive moderation}
+addmod_OLS <- lm(govact~negemot*sex + negemot*age + posemot + ideology, data=GLBdat)
+summary(addmod_OLS)
+```
+
+We'll use this $R^{2}$.  That is, 41% of the variance in support for government action is accounted for by the predictive model.
+
+###Probing the interaction effect
+
+Super helpful is the package *interactions*
+https://interactions.jacob-long.com/
+https://cran.r-project.org/web/packages/interactions/interactions.pdf
+
+```{r packages for probing, include = FALSE}
+#install.packages("interactions")
+library(interactions)
+library(probemod)
+```
+
+
+```{r JN probing age}
+jn_addmod_age<- jn(addmod_OLS, dv = 'govact', iv = 'negemot', mod = 'age')
+plot(jn_addmod_age)
+jn_addmod_age
+```
+
+The Johnson Neyman shows us a ridiculous range of age.  The range in our sample is 17 to 87,so it is clearly estimating out of the bounds, but we can look to see that the relationship between negemot and govact is significant throughout the range.
+
+```{r JN probing sex}
+johnson_neyman(model = addmod_OLS, pred = negemot, modx = sex, plot = TRUE)
+probe_interaction(model = addmod_OLS, pred = negemot, modx = sex)
+```
+
+
+```{r more JN}
+johnson_neyman(model = addmod_OLS, pred = negemot, modx = age, plot = TRUE)
+probe_interaction (model = addmod_OLS, pred = negemot, modx = age)
+```
+
+
+Recall that the pick-a-point approach (the spotlight approach) selects a value or values of the moderator (W), calculating the *conditional effect* of X on Y $(\theta _{X\rightarrow Y})$ at that value or values, and then conducting an inferential test or generating a confidence interval.  
+
+I like more spotlights, so we'll go with the *percentile* specification.
+
+```{r pap probing sex}
+pap_sexmod_OLS <- pickapoint(addmod_OLS, dv = 'govact', iv = 'negemot', mod = 'sex')
+plot(pap_sexmod_OLS)
+pap_sexmod_OLS
+```
+
+```{r sessionInfo}
+sessionInfo()
+```
+
+# References
+
+

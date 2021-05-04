@@ -131,7 +131,7 @@ There are a number of ways you can access this resource. You may wish to try sev
 
 1. Simply follow along in the .html formatted document that is available on via GitHub Pages, and then
    * open a fresh .rmd file of your own, copying (or retyping) the script  and running it 
-2. Locate the original documents at the [GitHub repository](https://github.com/lhbikos/ReC_MultivariateModeling) . You can
+2. Locate the original documents at the [GitHub repository](https://github.com/lhbikos/ReC_MultivModel) . You can
    * open them to simply take note of the "behind the scenes" script
    * copy/download individual documents that are of interest to you
    * fork a copy of the entire project to your own GitHub site and further download it (in its entirety) to your personal workspace. The [GitHub Desktop app](https://desktop.github.com/) makes this easy!
@@ -305,7 +305,7 @@ A twist in this lesson is that I am asking you to contribute to the dataset that
 
 There is about 90 minutes of lecture.  If you work through the materials with me it would be good to add another hour.
 
-While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivariateModeling) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivModel) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
 
 ### Learning Objectives
 
@@ -718,7 +718,7 @@ The focus of this chapter is to continue the process of scrubbing-and-scoring.  
 
 There is about 1 hour and 20 minutes of lecture.  If you work through the materials with me it would be good to add another hour.
 
-While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivariateModeling) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivModel) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
 
 ### Learning Objectives
 
@@ -1364,7 +1364,7 @@ The focus of this chapter engage in *data diagnostics*, that is, to evaluate the
 
 There is about 45 minutes of lecture.  If you work through the materials with me it would be plan for an additional hour.
 
-While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivariateModeling) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivModel) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
 
 ### Learning Objectives
 
@@ -1791,7 +1791,7 @@ Multiple imputation is a tool for managing missing data that works with the whol
 
 There is about one hour of lecture.  If you work through the materials with me it would be good to add another hour (to an hour-and-a-half).
 
-While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivariateModeling) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivModel) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
 
 ### Learning Objectives
 
@@ -2387,7 +2387,7 @@ sessionInfo()
 
 <!--chapter:end:05-MultipleImputation.Rmd-->
 
-# CONDITIONAL PROCESS ANALYSIS  {-#CPA}
+# MEDIATION  {-#MED}
 
 # Simple Mediation {#SimpleMed}
 
@@ -2401,7 +2401,7 @@ At the outset, please note that although I rely heavily on Hayes [-@hayes_introd
 
 There is about 1 hour and 10 minutes of lecture.  If you work through the materials with me it would be plan for an additional 1.5 hours.
 
-While the majority of R objects and data you will need are created within the R script that sources the chapter, ocasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivariateModeling) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+While the majority of R objects and data you will need are created within the R script that sources the chapter, ocasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivModel) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
 
 ### Learning Objectives
 
@@ -3236,7 +3236,7 @@ The focus of this chapter is the extension of simple mediation to models with mu
 
 There is about 1 hour and 20 minutes of lecture.  If you work through the materials with me it would be plan for an additional two hours.
 
-While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivariateModeling) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://https://github.com/lhbikos/ReC_MultivModel) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
 
 ### Learning Objectives
 
@@ -4201,13 +4201,13 @@ sessionInfo()
 <!--chapter:end:07-ComplexMed.Rmd-->
 
 
-# CONDITIONAL PROCESS ANLAYSIS {-#CPAnal}
+# CONDITIONAL PROCESS ANALYSIS {-#CPAnal}
 
 # Moderated Mediation {#ModMed}
 
  [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=1d28d076-efad-4471-b52d-ad1601826f92) 
 
-```{r eliminates scientific notation}
+```{r eliminates scientific notation in CPA}
 options(scipen=999)#eliminates scientific notation
 ```
 
@@ -4219,7 +4219,7 @@ At the outset, please note that although I rely heavily on Hayes [-@hayes_introd
 
 There is about 1 hour and 15 minutes of lecture.  If you work through the materials with me it would be plan for an additional hour and a half.
 
-While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivariateModeling) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://https://github.com/lhbikos/ReC_MultivModel) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
 
 ### Learning Objectives
 
@@ -5171,29 +5171,29 @@ sessionInfo()
 
 # Simple Moderation in OLS and MLE {#SimpMod}
 
- [Screencasted Lecture Link](link here) 
+ [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=cc098142-3693-4366-bb55-ad1d0175414e) 
 
 ```{r setup for simple mod, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
 ```
 
-```{r eliminates scientific notation in simple mod}
+```{r eliminates scientific notation in simple mod, echo=FALSE}
 options(scipen=999)#eliminates scientific notation
 ```
 
 The focus of this lecture is an overview of simple moderation.  Sounds simple?  Wait, there's more!  The focus of this lecture is the transition:
 
-* from null hypothesis significance testing (NHST) to moderling
+* from null hypothesis significance testing (NHST) to modeling
 * from *ordinary least squares* (OLS) to *maximum likelihood estimation* (MLE)
 
-In making the transition we will work a moderation/interaction problem from Hayes' text with both *lm()* and *lavvan/sem()* functions.  Subsequent chapters will involve Hayes' [@hayes_introduction_2018] style demonstrations in *additive* and *moderated* moderation.
+In making the transition we will work a moderation/interaction problem from Hayes' text with both *lm()* and *lavvan/sem()* functions. 
 
 ## Navigating this Lesson
 
-There is about # hour and ## minutes of lecture.  If you work through the materials with me it would be plan for an additional TIME.
+There is about 1 hour and 10 minutes of lecture.  If you work through the materials with me it would be plan for an additional hour
 
-While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_CPA) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://github.com/lhbikos/ReC_MultivModel) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
 
 ### Learning Objectives
 
@@ -5201,9 +5201,6 @@ Learning objectives from this lecture include the following:
 
 * Distinguish between NHST and model building approaches
 * Name the primary characteristics that distinguish ordinary least squares from maximum likelihood approaches to regression.
-* Articulate Hayes' general opinions about 
-  - centering
-  - standardizing regression coefficients
 * Interpret "the usual" things we find in regression:  B/beta weights, R, $R^{2}$.
 * Define and interpret simple slopes and probing an interaction, this includes
   - pick-a-point and Johnson-Neyman approaches
@@ -5224,16 +5221,16 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 Regarding ordinary least squares (OLS) versus maximum likelihood estimation (MLE), these articles are extremely helpful:
 
-* Cohen, J. (2003). **Maximum likelihood estimation. Section 13.2.9 (pp. 498-499) only**.  *Applied multiple regression/correlation analysis for the behavioral sciences* (3rd ed.). Erlbaum Associates.
+* Cohen, J. (2003). Maximum likelihood estimation. Section 13.2.9 (pp. 498-499).  *Applied multiple regression/correlation analysis for the behavioral sciences* (3rd ed.). Erlbaum Associates.
 * Cumming, G. (2014). The New Statistics: Why and How. Psychological Science, 25(1), 7–29. https://doi.org/10.1177/0956797613504966
 * Myung, I. J. (2003). Tutorial on maximum likelihood estimation. *Journal of Mathematical Psychology, 47*(1), 90–100. https://doi.org/10.1016/S0022-2496(02)00028-7 (skim for big ideas)
 * Rodgers, J. L. (2010). The epistemology of mathematical and statistical modeling: A quiet methodological revolution. *American Psychologist, 65*(1), 1–12. https://doi.org/10.1037/a0018326
 
 Regarding the topic of moderation, I drew heavily from these resources.  
 
-* Hayes, A. F. (2017). *Introduction to Mediation, Moderation, and Conditional Process Analysis, Second Edition: A Regression-Based Approach*. Guilford Publications. http://ebookcentral.proquest.com/lib/spu/detail.action?docID=5109647
+* Hayes, A. F. (2018). *Introduction to Mediation, Moderation, and Conditional Process Analysis, Second Edition: A Regression-Based Approach*. Guilford Publications. http://ebookcentral.proquest.com/lib/spu/detail.action?docID=5109647
   - Chapter 7: Fundamentals of Moderation Analysis: This chapter focuses on the basics of moderation analysis.  Our goal is to transfer and apply the knowledge to models we run in lavaan.  An excellent review of centering, visualizations, and probing moderations.
-  - Chapter 8:  Extending the Fundamental Principles of Moderation Analysis (pp. 267-301):  Hayes addresses common regression concerns such as (a) hierarchival vs. simultanous entry and (b) comparison of moderated regression with 2x2 factorial ANOVA.
+  - Chapter 8:  Extending the Fundamental Principles of Moderation Analysis (pp. 267-301):  Hayes addresses common regression concerns such as (a) hierarchical vs. simultaneous entry and (b) comparison of moderated regression with 2x2 factorial ANOVA.
   - Chapter 9:  Some Myths and Additional Extensions of Moderation Analysis (pp. 303-347). Hayes identifies "truths and myths" about mean centering and standardization. For sure these are important topics and his take on them is clear and compelling.
   - Appendix A:  An essential tool for PROCESS users because, even when we are in the R environment, this is the "idea book." That is, the place where all the path models are presented in figures.
 
@@ -5244,14 +5241,14 @@ The research vignette for this chapter:
 ### Packages
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
-```{r Install Packages for the Simple Mod chapter, include=FALSE}
+```{r Install Packages for the Simple Mod chapter}
 #will install the package if not already installed
-#if(!require(apaTables)){install.packages("apaTables")}
-#if(!require(lavaan)){install.packages("lavaan")}
-#if(!require(semPlot)){install.packages("semPlot")}
-#if(!require(tidyverse)){install.packages("tidyverse")}
-#if(!require(psych)){install.packages("psych")}
-#if(!require(jtools)){install.packages("jtools")}
+if(!require(apaTables)){install.packages("apaTables")}
+if(!require(lavaan)){install.packages("lavaan")}
+if(!require(semPlot)){install.packages("semPlot")}
+if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(psych)){install.packages("psych")}
+if(!require(jtools)){install.packages("jtools")}
 ```
 
 ## On *Modeling*:  Introductory Comments on the simultaneously invisible and paradigm-shifting transition we are making
@@ -5276,7 +5273,7 @@ At least a decade old now, Rogers' [-@rodgers_epistemology_2010] article in the 
 |Never used the terms, "alternative hypothesis" or "alpha level." Rather, Fisher used the distribution of the null model to examine "whether the data look weird or not."|Designed their approach to detect an "alternative hypothesis."|
 |Gave us the null hypothesis and *p* value. |Gave us the alternative hypothesis, alpha level, and power.|
 
-Overtime, these overlapping, but inconsistent, approaches became intertwined. Many students of statistics do not recognize the incompatibilities. Undoubtedly, it makes statistics more difficult to learn (and teach). Below are some of the challenges that Rodgers [-@rodgers_epistemology_2010] outlined.
+Over time, these overlapping, but inconsistent, approaches became intertwined. Many students of statistics do not recognize the incompatibilities. Undoubtedly, it makes statistics more difficult to learn (and teach). Below are some of the challenges that Rodgers [-@rodgers_epistemology_2010] outlined.
 
 * Rejecting the null does not provide logical or strong support for the alternative
 * Failing to rejct the null does not provide logical or strong support for the null.
@@ -5288,7 +5285,7 @@ Consequently, we have ongoing discussion/debates about power, effect sizes, samp
 
 ### Introducing:  *The Model*
 
-Understanding modeling in our *scientist-practitioner* context probably needs to start with understanding the *mathematical model*.  Niemark and Este [-@niemark_stimulus_1967] defined a mathematical model as a set of assumptions together with implications drawn from them by mathematical reasoning. Luce [luce_four_1995] suggested that mathematical equations capture model-specific features by highlighting some aspects while ignoring others. The use of mathematics helps us uncover the "structure." For example, the *mean* is a mathematical model. *I always like to stop and think about that notion...about what the mean represents and what it doesn't.*  Pearl [-@pearl_causality_2000] defined the model as an idealized representation of reality that highlights some aspects and ignores others by suggesting that a model:
+Understanding modeling in our *scientist-practitioner* context probably needs to start with understanding the *mathematical model*.  Niemark and Este [-@niemark_stimulus_1967] defined a mathematical model as a set of assumptions together with implications drawn from them by mathematical reasoning. Luce [@luce_four_1995] suggested that mathematical equations capture model-specific features by highlighting some aspects while ignoring others. The use of mathematics helps us uncover the "structure." For example, the *mean* is a mathematical model. *I always like to stop and think about that notion...about what the mean represents and what it doesn't.*  Pearl [-@pearl_causality_2000] defined the model as an idealized representation of reality that highlights some aspects and ignores others by suggesting that a model:
 
 * matches the reality it describes in some important ways.
 * is simpler than that reality.
@@ -5310,7 +5307,7 @@ Further, statistical models [@rodgers_epistemology_2010]:
 * include assumptions that are more readily evaluated
 * offer more practical application
 
-Circling back around to Fisher and Neyman-Pearson, Rogers [-@rodgers_epistemology_2010] contended that Fisher's work provided a framework for modeling because of the model process of specifications, estimation, and goodness of fit. As we move into more complex modeling, we will spend a great deal of time understanding parameters and their relationship to degrees of freedom.  Fisher viewed degrees of freedom as *statistical currency* that could be used in exchange for the estimation of parameters.
+Circling back around to Fisher and Neyman-Pearson, Rogers [-@rodgers_epistemology_2010] contended that Fisher's work provided a framework for modeling because of the model process of specification, estimation, and goodness of fit. As we move into more complex modeling, we will spend a great deal of time understanding parameters and their relationship to degrees of freedom.  Fisher viewed degrees of freedom as *statistical currency* that could be used in exchange for the estimation of parameters.
 
 If this topic is exciting to you, let me refer you to Cumming's [@cumming_new_2014] article, "The New Statistics:  Why and How," in the Journal, *Psychological Science"
 
@@ -5321,9 +5318,9 @@ If this topic is exciting to you, let me refer you to Cumming's [@cumming_new_20
 
 Known by a variety of names, the estimation algorithm typically used in regression models (linear, hierarchical, multiple, sequential) is *ordinary least squares* (OLS; also termed least squares criterion, general least squares, etc.). As we move into multivariate (and then psychometrics) we are going to transition our estimation method from OLS to MLE.  Consequently, it is essential to understand some underlying differences [@cohen_applied_2003; @myung_tutorial_2003]
 
-OLS regression:
+In OLS regression:
 
-* Estimated values of regression coefficients are chosen so that the sum of squared errors is minimized (aka, the *least squares criteria*). Consequently, 
+* The estimated values of regression coefficients are chosen so that the sum of squared errors is minimized (aka, the *least squares criteria*). Consequently, 
   - the mean of errors is zero, and
   - the errors correlate *zero* with each predictor
 * The solution to OLS regression is *analytic*
@@ -5380,13 +5377,13 @@ colour <- TRUE
 
 ### Maximum likelihood estimation (MLE):  A brief orientation
 
-Although I started this chapter with a critique of NHST, Fisher is credited [@myung_tutorial_2003] with the original development of the central principal of *maximum likelihood estimation* which is that the desired probability distribution is the one that makes the observed data *most likely*. As such, the *MLE estimate* is a resulting parameter vector that maximizes the likelihood function. Myung's [@myung_tutorial_2003] tutorial provides an excellent review. My summary is derived from Dr. Myung article.  A *likelihood* is a measure of how *typical* a person (or sample) is of that population. 
+Although I started this chapter with a critique of NHST, Fisher is credited [@myung_tutorial_2003] with the original development of the central principal of *maximum likelihood estimation* which is that the desired probability distribution is the one that makes the observed data *most likely*. As such, the *MLE estimate* is a resulting parameter vector that maximizes the likelihood function. Myung's [-@myung_tutorial_2003] tutorial provides an excellent review. My summary is derived from Dr. Myung article.  A *likelihood* is a measure of how *typical* a person (or sample) is of that population. 
 
   * When there is one IV the MLE distribution behaves like a chi-square distribution (which also tests observed versus expected data).
   * There is a point in the MLE curve that represents where the maximum likelihood exists that the data is likely given the model.
   * When there are multiple IVs, this simple curve takes the shape of a *k* dimensional geometrical surface.
 
-Extended to regression, we are interested in the *likelihoods* of individuals having particular scores on Y, given values on predictors x_{1} to x_{k} (and the specific values of regression coefficients chosen as the parameter estimates)
+Extended to regression, we are interested in the *likelihoods* of individuals having particular scores on Y, given values on predictors $x_{1}$ to $x_{k}$ (and the specific values of regression coefficients chosen as the parameter estimates)
 
 * MLE provides *maximum likelihood estimates* of the regression coefficients (and SEs) that is, estimates that make a sample as likely or typical as possible
 * *L* is a symbol for *maximum likelihood of a sample*
@@ -5424,20 +5421,20 @@ In this table we can compare OLS and MLE in a side-by-side manner.
 |:---------------:|:----------------------------------------:|:----------------------------------------:|
 |Parameter values chosen to...|minimize the distance between the predictions from regression line and the observations; considered to be those that are *most accurate*|be those that are *most likely* to have produced the data|
 |Parameter values are obtained by|equations that are known and linear (you can find them in the "back of the book")|a non-linear optimization algorithm|
-|Preferred when...|sample size is small|for complex models, non-linear models, and when OLS and MLE results differ|
+|Preferred when...|sample size is small|sample size is large, for complex models, non-linear models, and when OLS and MLE results differ|
 |In R...|the *lm()* function in base R|*lavaan* and other packages*; specifying the FIML option allows for missing data (without imputation)|
 
 ### Hayes and PROCESS (aka conditional process analysis)
 
-In the early 2000s, the bias-corrected, bootstrapped, confidence interval (CI) was identifed as a more powerful approach to assessing indirect effects than the classic Sobel test. Because programs did not produce them,  no one was using them. Preacher, Edwards, Lambert, Hayes (and colleagues) created Excel worksheets that would create such (they were so painful).  Hayes turned this process into a *series* of macros (to do a variety of things for SPSS and other programs.  Because of his clear, instructional, text, PROCESS probably has the most popularity. In 2021, Hayes released the PROCESS macro for R. It can be downloaded at the [ProcessMacro website](https://www.processmacro.org/download.html). Documention for it is newly emerging. Although PROCESS produces bias-corrected, bootstrapped confidence intervals, for models with indirect effects, PROCESS utilizes OLS as the estimator.
+In the early 2000s, the bias-corrected, bootstrapped, confidence interval (CI) was identifed as a more powerful approach to assessing indirect effects than the classic Sobel test. Because programs did not produce them,  no one was using them. Preacher, Edwards, Lambert, Hayes, and colleagues created Excel worksheets that would calculate these (they were so painful).  Hayes turned this process into a *series* of macros to do a variety of things for SPSS and other programs.  Because of his clear, instructional, text, PROCESS is popular. In 2021, Hayes released the PROCESS macro for R. It can be downloaded at the [ProcessMacro website](https://www.processmacro.org/download.html). Documention for it is newly emerging. Although PROCESS produces bias-corrected, bootstrapped confidence intervals, for models with indirect effects, PROCESS utilizes OLS as the estimator.
 
 Although most regression models can be completed with the *lm()* function in base R, it can be instructive to run a handful of these familiar models with *lavaan* (or even PROCESS) as a precurser to more complicated models.
 
 ## Introducing the *lavaan* package
 
-In the regression classes (as well as in research designs that are cross-sectional, non-linear, and can be parsimoniously and adequately measured with OLS regression) we typically use the base R function, *lm()* ("linear model") which relies on an OLS algorithm.  The *lm()* function is part of base R.  You can learn about it with this simple code:
+In the regression classes (as well as in research designs that are cross-sectional, non-linear, and can be parsimoniously and adequately measured with OLS regression) we typically use the base R function, *lm()* ("linear model") which relies on an OLS algorithm. You can learn about it with this simple code:
 
-```{r what is lm, echo=FALSE}
+```{r what is lm}
 #?lm
 ```
 
@@ -5455,7 +5452,7 @@ There are different types of maximum likelihood.  In this chapter we'll utilize 
 
 The FIML approach works by estimating a likelihood function for each individual based on the variables that are present so that all available data are used.  Model fit is calculated from (or informed by) the fit functions for all individual cases. Hence, "FIML" is *full information* maximum likelihood. 
 
-When I am able to use *lavaan*, my approach is to use Parent's [- @parent_handling_2013] AIA (available information analysis) approach to scoring data, then specify a FIML approach (i.e., adding *missing = 'fiml'*) in my lavaan code. Even though the text-book examples we work have complete data, I will try to include this code so that it will be readily available for you, should you use the as templates for your own data.
+When I am able to use *lavaan*, my approach is to use Parent's AIA (available information analysis, -@parent_handling_2013) approach to scoring data, then specify a FIML approach (i.e., adding *missing = 'fiml'*) in my lavaan code. Even though the text-book examples we work have complete data, I will try to include this code so that it will be readily available for you, should you use the as templates for your own data.
 
 In this portion of the ReCentering Psych Stats series we are headed toward more complex models that include both mediation and moderation. Hayes [@hayes_introduction_2018] would call this "conditional process analysis."  Others would simply refer to it as "path analysis."  Although all these terms are sometimes overlapping, *path analysis* is a distinction from *structural equation modeling* (SEM) where latent variables are composed of the observed variables. Let's take a look at some of the nuances of the whole SEM world and how it relates to PROCESS.
 
@@ -5494,11 +5491,12 @@ $$\hat{Y} = i_{y}+b_{1}X + b_{2}W + b_{3}XW+ e_{y}$$
 The first equation constrains X's effect to be unconditional on W, meaning that it is invariant across all values of W.  By introducting the interaction term ($b_{3}XW$), we can evaluate a model where X's effect can be dependent on W.  That is, for different values of W, X's effect on Y is different.  The resulting equation (#2) is the *simple linear moderation model.*  In it, X's effect on Y is *conditional*.
 
 
-## Workflow for NAME OF STATISTIC
+## Workflow for a Simple Moderation
 
-The workflow for running the analysis is straightforward. Below is a workflow comparing the approaches to analyzing a regression model (moderators only) with OLS and MLE.
+Below is a workflow comparing the approaches to analyzing a regression model (moderators only) with OLS and MLE.
 
 ![Image of a simple mediation in path analysis](images/SimpleMod/OLS_MLEwrkflow.jpg)
+
 The Bonus Track at the end of the chapter includes script templates with just X and Y variables.
 
 ## Research Vignette
@@ -5516,7 +5514,7 @@ Variables used in the study included:
 
 First, we simulate the data from the means, standard deviations, and correlation matrix from the journal article.
 
-```{r Simulate data from Kim et al article, results ='hide'}
+```{r Simulate data from Kim et al article, results ='hide', warning=FALSE, message=FALSE}
 #Entering the intercorrelations, means, and standard deviations from the journal article
 mu <- c(.34, 3.00, 2.98, 2.36, 3.50, 1.64)
 sd <- c(.16, .83, .99, .90, .90, .53)
@@ -5550,12 +5548,12 @@ library(apaTables)
 apa.cor.table(Kim_df)
 # to write it to a word file, add this to the script:  filename = "ex.CorTable1.doc"
 ```
-```{r pairs panels for Kim et al}
+```{r pairs panels for Kim et al, warning=FALSE, message=FALSE}
 library(psych)
 psych::pairs.panels(Kim_df)
 ```
 
-Kim et al. [-@kim_racial_2017] did not conduct any moderation analyses in their article. Core to their analysis was predicting mental health outcomes (e.g., anxiety, depression, psychological well-being).  Their predictors were racial/ethnic microaggressions, cultural mistrust, and help-seeking behaviors. In the majority of their models, REMS was the independent variable, predicting one of the mental health outcomes, mediated by cultural mistrust. Given the strong correlation with REMS (*r* = 0.59) the choice of CMI as a mediator is sensible.
+Kim et al. [-@kim_racial_2017] did not conduct any moderation analyses in their article. Core to their analysis was predicting mental health outcomes (e.g., anxiety, depression, psychological well-being).  Their predictors were racial/ethnic microaggressions, cultural mistrust, and help-seeking behaviors. In the majority of their models, REMS was the independent variable, predicting one of the mental health outcomes, mediated by cultural mistrust. Given the strong correlation with REMS (*r* = 0.59) the choice of CMI as a mediator is sound.
 
 In looking at the data, I will ask the question, "Does help-seeking (HlpSk) moderate the relationship between REMS and ANX?"
 
@@ -5570,11 +5568,11 @@ $$Y = i_{Y}+ b_{1}X+ b_{2}W + b_{3}XW +e_{Y}$$
 
 ### OLS with *lm()*
 
-In this demonstration we will use the *lm()* function in base R to evaluate help seeking behaviors (HlpSK) as a moderator to the relationship between racial/ethnic microaggressions (REMS) on psychological well-being (PWB). Ordinary least squares is the estimator used in *lm()*. We will probe the moderating effect with both pick-a-point and Johnson-Neyman approaches.
+In this demonstration we will use the *lm()* function in base R to evaluate help seeking behaviors (HlpSK) as a moderator to the relationship between racial/ethnic microaggressions (REMS) on anxiety (ANX). Ordinary least squares is the estimator used in *lm()*. We will probe the moderating effect with both pick-a-point and Johnson-Neyman approaches.
 
 Let's specify this simple moderation model with base R's *lm()* function. We'll use the *jtools* package so we get that great summ function and *interactions* for an awesome plot.
 
-```{r simple moderation}
+```{r simple moderation, message=FALSE, warning=FALSE}
 library(jtools) #the summ function creates a terrific regression table
 library(interactions)
 library(ggplot2)
@@ -5599,6 +5597,7 @@ Looking at these results we can see that the predictors account for about 10% of
 interact_plot(KimSimpMod, pred = HlpSk, modx = REMS)
 interact_plot(KimSimpMod, pred = REMS, modx = HlpSk)
 ``` 
+
 The first figure (where REMS is the moderator) illustrates that for those with the highest experience of racial/ethnic microaggression, the relationship between help-seeking and anxiety is strong ad positive. Anxiety is the highest for those who are +1SD above the mean on REMS and who have sought help. This slope is far less strong for those at the mean on REMS and the slope trends negative for those at the lowest REMS.
  
 The second figure places HlpSg as the moderator. The results are the same, merely presented differently. Here we see that at all levels of help seeking, there is a positive relationship between REMS and anxiety. The relationship is the sharpest for those who are at +1SD above the mean on help-seeking. That is, the highest levels of anxiety are among those who experience the most racial and ethnic microaggressions and have the most favorable attitudes toward help-seeking.
@@ -5648,7 +5647,7 @@ Things to note:
   - bootstraping is an MLE tool that gives us greater power (more later in mediation)
   - the *summary()* and *parameterEstimates()* functions get us the desired output
 
-```{r lavaan script with b labels}
+```{r lavaan script with b labels, warning=FALSE, message=FALSE}
 library(lavaan)
 set.seed(210501)
 KimSimpModMLE <- '
@@ -5829,12 +5828,22 @@ Data were analyzed with a maximum likelihood approach the package, *lavaan* (v. 
 *  Address limitations and concerns
 
 **Primary Analyses**
-A multiple regression analysis was conducted to predict anxiety from racial and ethnic microaggressions and attitudes toward help-seeking. Results supported a statistically significant interaction effect that accounted for `r k1Rsq_Y` of the variance. Probing the interaction effect with the pick-a-point approache indicated that the relationship between REMS and anxiety is non-significant when help-seeking is 1SD below the mean, but is significant when help-seeking is at and above the mean. Results are listed in Table 4.  As illustrated in Figure 1, the relationship between REMS and anxiety is the sharpest for those who are at +1SD above the mean on help-seeking. That is, the highest levels of anxiety are among those who experience the most racial and ethnic microaggressions and have the most favorable attitudes toward help-seeking.
+A multiple regression analysis was conducted to predict anxiety from racial and ethnic microaggressions and attitudes toward help-seeking. Results supported a statistically significant interaction effect that accounted for `r k1Rsq_Y` of the variance. Probing the interaction effect with the pick-a-point approaches indicated that the relationship between REMS and anxiety is non-significant when help-seeking is 1SD below the mean, but is significant when help-seeking is at and above the mean. Results are listed in Table 4.  As illustrated in Figure 1, the relationship between REMS and anxiety is the sharpest for those who are at +1SD above the mean on help-seeking. That is, the highest levels of anxiety are among those who experience the most racial and ethnic microaggressions and have the most favorable attitudes toward help-seeking.
 
 
 ## Residual and Related Questions...
 
+Wait.  Why did we do this?  And which would you use when?
 
+* As we transition from NHST to statistical modeling we also (generally) transition between OLS and MLE.
+* I would use OLS with
+  * smaller sample sizes
+  * straightforward regression models (linear, multiple, simultaneous, hierarchical)
+* I would use MLE with
+  * nonlinear models
+  * models involving latent variables
+  * models with indirect effects
+  * (larger sample sizes is prerequisite)
 
    
 ## Practice Problems

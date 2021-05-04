@@ -1,0 +1,28 @@
+"0","library(semPlot)"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
+"2","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
+"
+"0","semPaths(kMLE_fit, #must identify the model you want to map"
+"0","         what = ""est"", #""est"" plots the estimates, but keeps it greyscale with no fading"
+"0","         #whatLabels = ""stand"", #""stand"" changes to standardized values"
+"0","         layout = 'tree', rotation = 2, #together, puts predictors on left, IVs on right "
+"0","         #layout = 'circle',"
+"0","         edge.label.cex = 1.00, #font size of parameter values"
+"0","         #edge.color = ""black"", #overwrites the green/black coloring"
+"0","         sizeMan=10, #size of squares/observed/""manifest"" variables"
+"0","         fade=FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals"
+"0","         esize=2, "
+"0","         asize=3,"
+"0","         #label.prop = .5,"
+"0","         label.font = 2.5, #controls size (I think) of font for labels"
+"0","         label.scale = TRUE, #if false, the labels will not scale to fit inside the nodes"
+"0","         nDigits = 3, #decimal places (default is 2)"
+"0","         residuals = FALSE,#excludes residuals (and variances) from the path diagram"
+"0","         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)"
+"0","         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram)"
+"0",")"

@@ -1,0 +1,768 @@
+---
+title: "Y1FL_HLM200718"
+author: "Lynette H. Bikos, PhD, ABPP"
+date: "7/20/2020"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r package installation, eval=FALSE}
+#will install the package if not already installed
+if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(psych)){install.packages("psych")}
+if(!require(foreign)){install.packages("foreign")}
+if(!require(lattice)){install.packages("lattice")}
+if(!require(ggplot2)){install.packages("ggplot2")}
+if(!require(nlme)){install.packages("nlme")}
+if(!require(lmerTest)){install.packages("lmerTest")}
+if(!require(lme4)){install.packages("lme4")}
+if(!require(sjPlot)){install.packages("sjPlot")}
+if(!require(broom)){install.packages("broom")}
+if(!require(TMB)){install.packages("TMB")}
+```
+
+**SCREENCAST LINK**  https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=8baf7607-897a-4922-a50a-ac000027ece9
+(about 1 hr, 15 minutes)
+
+To run your variables:
+
+* Organize your files by year (Y1, Y2, Y3, Y4); each year should have a separate folder.
+* Save this document to each of those folders, renaming it according to the year/module.
+* Search for the DV in this file (FL) and replace it with your variable name.
+* Depending on which year you are analyzing, you may need to search/replace the df:  (Y1L as the df name for this .rmd file, for whatever year you are working on; and Y1L.csv as the source name, for whatever year you are working on)
+* Fingers crossed, everything will work.  You do need to interpret your results (updating the interpretive text after each run)
+* The last step is to save an .xls outfile with the 6 models, side-by-side.
+* Please repeat this process for all four years for your variable(s).  Keep me posted -- especially when something looks promising (and when you have hiccups).
+* This is the first step, we will rerun these models 
+  - with quadratic (2nd order) time; and 
+  - possibly 2x again with "orthogonal time" (both linear and quadratic)
+  - and then maybe repeating the entire process with months instead of waves
+
+# OUR RESEARCH QUESTION
+
+Does my DV (in this case, *flourishing*) change over time (pre/post/follow-up) and as a function of COND (ADJ, TRAD, CALL) and degree of OFG engagement.
+
+We hypothesize that our DV will have the greatest improvement for those in the CALL condition (followed by those in the TRAD and then ADJ conditions) as a function of engagement.  That is, the greatest improvement will be seen by those in the CALL condition who are the most engaged; those with the least improvement will be in the ADJ COND and least engaged.
+
+We will run models separately for first year (Y1), second year (Y2), third year (Y3), and fourth year (Y4) students.
+
+# (YES, EVEN MORE) DATA PREP
+
+Taking a peek at the data.
+
+```{r import df}
+library(psych)
+Y1L <- read.csv ("Y1L.csv", header = TRUE)
+str(Y1L)
+round(describe(Y1L),3)
+```
+
+## Formatting variables
+
+The lmer models run fine with all the variables as numeric, but the plots struggle, so I changed GENDER and MOD to be factors (because they really are).  I'm not actually sure we're going to use them, but we'll be ready if we do.
+
+```{r cats to factors}
+library(tidyverse)
+Y1L <- Y1L %>%
+    mutate(
+        GENDER = as.factor(GENDER),
+        MOD = as.factor(MOD),
+    )
+str(Y1L)
+```
+
+COND is an ordinal, categorical variable and should be:  ADJ, TRAD, CALL.
+
+R's default is alphabetical.  Let's specify a different order and then check it via the structure command.
+```{r ordered factors}
+#reorder COND to ADJ, TRAD, CALL
+Y1L$COND <- factor(Y1L$COND, levels = c("ADJ", "TRAD", "CALL"))
+str(Y1L)
+```
+
+We want a simple assessment of engagement with the OFG.  Dividing *Submissions* by *PgViews* will give us a rough metric of how many Canvas pageviews there were per assignment.  But there are a few wrinkles in getting this calculation:
+
+```{r Creating engagement variable}
+# in order to do the math the variables must be numeric (they are presently integers)
+Y1L$Submissions <- as.numeric(Y1L$Submissions)
+Y1L$PgViews <- as.numeric(Y1L$PgViews)
+
+# The ID variable needs to be a factor
+Y1L$ID <- as.factor(Y1L$ID)
+
+# There are some people who have a number of PgViews but no submissions.  We want them to have credit for some engagement.  This code says that if Submissions is 0, but PgViews is not 0, then recode Submissions with 0.5.
+# R was having difficulty executing the later command if there was NA on PgViews and Submissions, trying this
+Y1L <- Y1L %>% filter_at(vars(PgViews, Submissions),all_vars(!is.na(.)))
+# now the code
+Y1L[Y1L$Submissions == 0 & Y1L$PgViews !=0, "Submissions"]<- 0.5
+
+# Calculate ENG variable.
+Y1L <- Y1L %>% 
+  mutate(ENG = PgViews/Submissions)
+
+# Dividing 0 by a value results in something impossible.
+# R automatically coded these as NaN.  This code replaces those values with 0.0
+Y1L[Y1L$ENG == "NaN" , "ENG"]<- 0.0
+
+# Quick check of structure
+str(Y1L)
+
+# Quick check of descriptives
+describe(Y1L)
+```
+
+## Format of time
+
+If we use structured time and the Wave variable, we need it to start with 0, not 1.
+```{r Center Wave at 0}
+Y1L <- Y1L %>% 
+  mutate(Wave0 = Wave-1)
+```
+
+If we suspect curvilinearity (e.g., students increase from pre-to-post, but decline from post-to-followup) we need a quadratic term for both structured and unstructured time.
+```{r Quadratic terms for time}
+Y1L <- Y1L %>% 
+  mutate(WaveSQ = Wave0*Wave0)%>%
+  mutate(MonthsSQ = Months*Months)
+```
+
+
+# Abbreviated OLS exploration
+
+We start with a couple of line plots of alcohol use over time, identified first by the dichotomous variable, gender, then coa status.
+
+```{r}
+ggplot(Y1L, aes(x = Wave0, y = FL, color=as.factor(COND)))+
+    geom_point() + geom_line()
+```
+*something is wrong with this plot...why aren't the lines of the COND factor connected?*
+
+
+```{r OLS plot}
+library(ggplot2)
+ggplot(Y1L, aes(x = Wave0, y = FL, group=ID, color = as.factor(ENG))) +
+  geom_line(alpha=.3) + labs(title="Flourishing by Engagement") +
+  theme(legend.position = "none")
+
+ggplot(Y1L, aes(x = Wave0, y = FL, group=ID, color = as.factor(COND))) +
+  geom_line(alpha=.3) + labs(title="Flourishing by COND") +
+  theme(legend.position = "none")
+```
+
+And the individual plots of a random sampling of students.
+
+```{r indiv plots}
+set.seed (1984)
+rando <- round(runif(16,1,123),0) #creates object of 16 random numbers from 1 to 123
+indplot <- subset(Y1L, ID %in% rando) #uses the "rando" object to create a subset based on ID number
+ggplot(indplot, aes(x=Wave0, y=FL)) + geom_line(color="tomato") + 
+  facet_wrap(~ID) + 
+  labs(x="Wave0", y="Flourishing", title="Flourishing Trajectories for a Random Sample of Students") + 
+  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())
+```
+
+And now a quick peek at the empirical change plots with superimposed OLS-estimated linear trajectories for 8 students (that the researchers randomly or strategically) selected from the larger sample.
+
+```{r indiv plots w linear trajectories superimposed}
+library(lattice)
+
+xyplot(FL~Wave0 | ID,
+  data=Y1L[Y1L$ID %in% c(4, 14, 23, 32, 41, 56, 65, 82), ],
+  panel=function(x,y){
+    panel.xyplot(x, y)
+    panel.lmline(x,y)
+}, ylim=c(1, 7), as.table=T)
+```
+
+# MODELING
+
+This is the formula predicting our DV from Wave0
+
+$$Y_{ij}=\beta _{0i}+\beta _{1i}(Wave0_{ij})+\varepsilon _{ij}$$
+$\beta _{0i}$ is the individual $i$'s *true* initial status (intercept), the value of the outcome when $Months_{ij}$ is zero (or at pre-test).
+
+$\beta _{1i}$ is the individual $i$'s *true* rate of change during the period under study. In the OFG study, we measure in Wave (pre, po, fu) or Months.  There is also an orthogonal time calculation we might try.  And for all three of those options...we'll fit linear and quadratic models.
+
+$\varepsilon _{ij}$ represents that portion of the individual $i$'s outcome that is unpredicted on occasion $j$.
+
+We *assume* that the $\varepsilon _{ij}$'s are independently drawn from a normal distribution with a mean of 0 and a variance of $\sigma _{\varepsilon }^{2}$.
+
+
+Thinking ahead to our L2 specification, we will fit OLS trajectories displayed separately by engagement (ENG) and condition (COND:  ADJ, TRAD, CALL).
+
+## Empty Model:  The unconditional means model
+
+ALWAYS fit this first.
+
+With ZERO predictors at every level, is the way to DESCRIBE and PARTITION the outcome *variation*.  We do this by calculating it and then comparing it to subsequent models to understand how much between and within-subjects variation we have explained.
+
+Thinking of the words *unconditional means model* it means we are calculating *means* (individual and grand) with no *conditions* (predictors).  It's nickname is *empty* because it only has the DV (no predictors).
+
+$$Y_{ij}=\beta _{0i}+\varepsilon _{ij}$$
+
+$$\beta _{0i}=\gamma _{00}+\zeta _{0i}$$
+The unconditional means model (with no slope/time parameter) stipulates that at L1, the true individual change trajectory for person *i* is flat, sitting at elevation $\beta _{0i}$. Plus, the single part of the L2 model means that while these flat trajectories may differ in elevation, their average elevation across everyone in the population is $\gamma _{00}$. There is no link to interindividual variation and predictors. 
+
+In sum:  this model is not about change.  It really just gives you a *mean*.  However, it is a necessary first step because it partitions the total variation in the outcome. Harkening back to ANOVA:
+
+$Y_{ij}$  is the person-specific mean
+$\beta _{0i}$ is the grand mean
+
+The unconditional means model postulates that the observed value of *Y* for individual *i* on occasion *j* is composed of deviations about these means. On occasion *j*, $Y_{ij}$ deviates from individual *i*'s true mean ($\beta _{0i}$) by $\varepsilon _{ij}$.  Thus, the L1 residual is a "within-person" deviation that assesses the distance between $Y_{ij}$ and$\beta _{0i}$.
+
+THEN, for person *i*, his or her true mean ($\beta _{0i}$) deviates from the population average true mean $\gamma _{00}$ by $\zeta _{0i}$.  This L2 residual is a "between person" deviation that assesses distance between $\beta _{0i}$ and $\gamma _{00}$.
+
+Empty model output (the unconditional means model) will provide us with two variance components:
+
+$\sigma _{\varepsilon }^{2}$ is the within-person variance -- the pooled scatter of each person's data around his/her own mean
+$\sigma _{0}^{2}$ is the between-person variance -- the pooled scatter of the person-specific means around the grand mean.
+
+The purpose of fitting the unconditioned means model is to get these two variance components so we can estimate the amount of variation that exists at each level.  We can  employ associated hypothesis tests to help determine whether there is sufficient variation at that level to continue modeling. If a variation component is...
+
+* ZERO, there is no point in trying to predict outcome variation *at that level*
+* NON-ZERO, there is some variation *at that level* that could potentially be explained 
+
+With *lme4*.
+
+RML is the default for *lme4*, we switch to FML with the statement, "REML = FALSE".
+
+### A moment on *lmer()* syntax
+
+Helpful resource:  https://datascienceplus.com/analysing-longitudinal-data-multilevel-growth-models-i/ 
+
+*lmer()* script is not so different from the *lm()* function; it just has the additional random effect portion added in.
+
+We can think of random effects as those things that are outside our control. For example, assignment to a treatment or control condition is in our control; it's a *fixed effect*.  However, FL pre-test score (intercept) is going to vary from individual to individual -- a *random effect*.  We can model this random effect.  We can also have models with random slopes.
+
+To model a random intercept, we use this basic formula:  DV ~ IV + (1 | rand.int)
+
+* DV is the dependent variable
+* IV represents independent variables
+* 1 represents the coefficients (or slope) of the independent variables
+* rand.int is the variable acting as a random intercept (usually this is the column of participant IDs)
+
+To model a random slope we use:  DV ~ IV + (rand.slope | rand.int).
+
+SO!  In the model below (the goal of which is really to just get a mean and understand our within/between variance), we put a "1" in front of the "|" because we are fixing slope to a single value -- it will not vary.  But we are interested in knowing how our intercepts are different as a function of person (ID).
+
+```{r Empty specification}
+library(lme4)
+Empty <- lmer(FL ~1 +(1 | ID), Y1L, REML = FALSE)
+summary(Empty)
+```
+
+the *tab_model()* function from sjPlot is an easy way to see our results in the Viewer. Later we can export it to form the basis of an APA Style table.
+
+```{r Empty table, eval=FALSE}
+library(sjPlot)
+tab_model(Empty, p.style = "asterisk", show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, dv.labels = c("Empty"), use.viewer = TRUE)
+```
+
+**What did we find?**
+
+The intercept = 5.62.  This should be the same as the overall mean.
+
+The *intraclass correlation coeffient (ICC)*, $\rho $, describes the proportion of variance that lies *between* people.  It is the essential piece of data we need from this model.  Because the total variation in *Y* is just the sum of the within and between-person variance components, the population intraclass correlation is:  
+
+$$\rho =\frac{\tau _{00}}{\tau _{00}+\sigma^{2}}$$
+In our case this translates:  
+```{r}
+.71/(.71 + .19)
+```
+
+ICC = 0.79; this means that 79% of the variance is between subjects (differences between students); the balance (21%) is within-subjects.
+
+Within the context of the unconditional means model, the ICC also summarizes the size of the *residual (or error) autocorrelation*.  Practically speaking, this means that we estimate that for each person, the average correlation between any pair of composite residuals (e.g., between occasions 1 and 2, 2 and 3, or 1 and 3) is 0.79.  This is considered to be large and far away from the zero residual autocorrelation that an OLS analysis would assume (require).
+ 
+In addition to hand-calculating the ICC we spot it in the tab_model/Viewer pane when we ask for a table from the *lme4* model.
+
+## Wv:  Unconditional Growth Model
+
+The *unconditional growth model* is going to model time (which could be counted a variety of ways) with no other *conditions* (predictors).
+
+Because we have 3 waves, we have two choices:  a linear model or a quadratic model (1 turn in a curvilinear specification).  We will start with linear model; later we will repeat these with a quadratic (time-squared) model.
+
+Unpacking lmer syntax
+
+* ~:  the *tilde*  operator can be read, "is a function of"
+* 1 + Wave0:  the first set of predictors are the *fixed effects*
+* (1 + Wave0 | ID):  the second set of predictors are the *random effects* which specify
+  - participant (ID)-level random variability in baseline DV/outcome (intercept:1) and 
+  - rate of recovery (slope:ID)
+  - the "|" pipe in the random effects specification
+* the second part of the argument identifies the dataframe and tells it to use maximum likelihood
+
+Once we get beyond the Empty model, unbalanced designs and patchy/mangy datasets (missing data) often fail to converge.  The remainder of my lmer script does 4 things:
+
+* includes the statement for missing data:  na.action = "na.exclude"
+* two elements in the control statement
+  - forces the algorithm to override the warnings and run anyway:  check.nobs.vs.nRE = "warning"
+  - changes the optimizer:  optimizer="Nelder_Mead"
+
+I don't have a good explanation of why the Nelder-Mead converges more readily, but here is a concise review:  http://svmiller.com/blog/2018/06/mixed-effects-models-optimizer-checks/ 
+
+As before, we are speciying a correlated random slope and intercept for each level of `g`:  
+
+**For comparison**:
+Empty <- lmer(FL ~1 +(1 | id), Y1L, REML = FALSE)
+
+`ourmodel <- lmer(dv ~ x1 + (x1 | g), data=df)`
+```{r}
+library(lme4)
+Wv <- lmer(FL ~ 1 + Wave0 + (1 + Wave0 | ID), data=Y1L, REML=FALSE, na.action = "na.exclude", control = lmerControl(check.nobs.vs.nRE = "warning", optimizer="Nelder_Mead"))
+summary(Wv)
+```
+
+```{r Tables for Wv, eval=FALSE}
+library(sjPlot)
+tab_model(Empty, Wv, p.style = "asterisk", show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, dv.labels = c("Empty", "Wv"), use.viewer = TRUE)
+```
+
+```{r Plot Wv}
+plot_model (Wv, type="pred", vars="Wave0")
+```
+for later, change y axis  https://stackoverflow.com/questions/56347191/defining-y-axis-range-and-breaks-in-package-sjplot-plot-model
+
+Comparing models
+```{r}
+anova(Empty, Wv)
+```
+
+**What did we find?**
+Looking at the *tab_model()* in the viewer, we can see that 
+
+The average student at pre-test has a score of 5.64 (*p* < 0.001; $\hat{\gamma }_{00}$).
+
+First year students also have an average, non-signifciant, non-zero slope of-.05 (*p* > .05, $\hat{\gamma }_{10}$).
+
+Using these values together, at post-test, the average student would have score score of 5.59 (5.64 - .05); at follow-up it would be even lower (5.64 - (.05*2) = 5.54.  This change is NS.
+
+The Chi-square test in the ANOVA comparison table evaluates the fit of two models at a time to see if they are statistically significant.  The non-significant *p* value of 0.681 suggests that they are not different.  Additionally we can look at AIC and BIC -- the lower values indicate better fit.  Unfortuately, the empty model (just the mean) is showing better fit.
+
+**Interpreting Variance Components**
+
+Focusing on what this change means to the L1 residuals:   
+
+In the Empty model, we postulated that individual $i$'s observed score on occasion $j$ (i.e,. $Y_{ij}$) deviates by $\varepsilon _{ij}$ from his or her *person-specific mean*
+
+In the Empty, we postulate that $Y_{ij}$ deviates by $\varepsilon _{ij}$ from his or her *true change trajectory*.
+
+Comparing the Wv Model's addition means that we also have a second part to the L2 submodel that depicts interindividual variation in the rates of change ($\beta _{1i}$).
+
+The L1 residual variance, $\sigma_{\varepsilon }^{2}$, (shown as $\sigma ^{2}$ in the Viewer) now summarizes the scatter of each person's data *around his or her own linear change trajectory* (not around his/her own specific mean).  Our value is 0.19.  This the same as it was in the Empty model.  While we don't get *p* values to let us know whether/not within-person variation remains, the value is non-zero. Explaining more within-person variance would require another, *substantive* time-covarying predictor. Our RCT analysis only includes *time-invariant* predictors; but we have the capacity to try time-co-varying predictors.
+
+The L2 residual variances (shown as $\tau _{00}$ in the Viewer) is 0.69; this is variance  remaining around the intercept (pre-test). Stated another way, it is the scatter of $\beta _{_{0i}}$ around $\hat{\gamma }_{00}$.
+
+The value  $\tau _{11}$ is 0.00; this is variance around the slope (rate of growth). Stated another way, it is the scatter of $\beta _{_{1i}}$ around $\hat{\gamma }_{10}$. 
+
+Because the introduction of TIME changes the meaning of the L2 variance components, we do not compare the  $\tau _{00}$) values between the Empty and Wv models.  As we move forward (keeping TIME in the model) we will use the Wv estimates as benchmarks for comparing and estimatin the variance we are accounting for..
+
+Together, these 3 allow us to distinguish L1 variation from two different kinds of L2 variation and determine whether interindividual differences in change are due to interindividual differences in true initial status or true rate of change.
+
+$\rho_{01}$ is the population correlation of the L2 residuals that quantifies the relationship between true initial status and true change.  The value of 1.00 is unusual, for sure.  It seems to mean that the value at the intercept is perfectly correlated with their subsequent values; i.e., the value of the DV is constant (which is consistent with our graph).  
+
+**Proportion of Variance Explained**
+
+In OLS regression, a simple way of computing a summary $R^2$ statistic is to square the sample correlation between observed and predicted values of the outcome.
+
+A similar approach can be used in the multilevel model for change.  We need to
+
+1.  Compute a predicted outcome value for each person on each occasion of measurement; and 
+2.  Square the sample correlation between observed and predicted values.
+
+The result is the $pseudo-R^2$ statistic -- an assessment of the proportion of total outcome variation *explained* by the multilevel model's specific combination of predictors.
+
+In *lme4* output, $pseudo-R^2$ is labeled as "Marginal$R^2$" and is shown to be 0.002.  That is, .2% of the total variability in the DV is associated with linear time.  As we add substantive predictors to this model, we examine whether, and by how much, this $pseudo-R^2$ statistic increases.
+
+We can also compute $pseudo-R^2$ statistics for the variance components.  
+
+**Residual variation** is the portion of the outcome variation *unexplained* by the model's predictors.  We can use these to further explain the model.  When we compare a series of models we hope that adding predictors further explains unexplained outcome variation.  Thus, residual variation should decline. The magnitude of the decline quantifies improvement in fit.  If the decline is relatively large -- we've made a large difference.  To assess these declines on a common scale we compute the *proportional reduction in residual variance* as we add the predictors.
+
+*Unconditional models* provide a baseline for comparison:  the unconditional means model provides a baseline estimate of $\sigma_{\varepsilon }^{2}$ (shown as $\sigma ^{2}$ in the Viewer); the unconditional growth model provides baseline estimates of both $\sigma_{0 }^{2}$ (shown as $\tau _{00}$ in the Viewer) and $\sigma_{1 }^{2}$ (shown as $\tau _{11}$ in the Viewer).
+
+We'll start by examining the decrease in within-person residual variance between the unconditional means model and unconditional growth model.  We are comparing $\sigma_{\varepsilon }^{2}$ (shown as $\sigma ^{2}$ in the Viewer).  We have to do this by hand, here's the formula:
+
+In *lme4* notation:
+
+$$Pseudo R_{\varepsilon }^{2} = \frac{\sigma^{2}(unconditional. means. model) - \sigma^{2}(unconditional. growth. model)}{\sigma^{2}(unconditional. means. model)}$$
+
+We calculate it by hand:
+
+```{r Wv pseudo Rsq}
+(.19 - .19)/.19
+```
+
+I didn't have to do that math (intent was to provide a placeholder for it)...this stinks.  We've accounted for no within-person variance.
+
+Similarly, we can quantify the proportional reduction in L2 residual variance.  Each L2 residual variance component has its own $pseudo-R^2$ statistic.  An L1 linear change model with two L2 variance components has two $pseudo-R^2$s.  The base statistic is this:
+
+$$Pseudo R_{\zeta }^{2} = \frac{\hat{\sigma}_{\zeta }^{2} (unconditional. growth. model) - \sigma^{2}(subsequent. model)}{\sigma^{2}(unconditional. growth. model)}$$
+
+
+Note that this requires a GROWTH model and a SUBSEQUENT model.  We don't start comparing these (and there can be many) until we have a growth model...and then a model that follows it.  
+ 
+S&W warn us about the flaws of $pseudo-R^2$.  Specifically, these stats can go wonky!  In the multilevel model for change, additional predictors *generally* reduce variance components and increase $pseudo-R^2$ statistics.
+ 
+But, because of explicit links among the model's several parts, there are times when the addition of predictors *increases* the variance components' magnitude.  This is most likely to happen when all, or most, of the outcome variation is exclusively within- or between-.  Then, a predictor added at one level reduces the residual variance at that level, but potentially increases the residual at the other level.  This results in a *negative* $pseudo-R^2$.  So.  Be cautious in interpreting these.
+
+## S&W's Taxonomy of Statistical Models
+
+The S&W version of Jorsekog's (1993) "model generating" and Hayes' "piecemeal" approach might be their taxonomical approach to model building.  Specifically:
+
+* "Each model in the taxonomy extends a prior model in some sensible way; inspection and comparison of its elements tell the story of predictors' individual and joint effects.  Most data analysis iterate toward a meaningful path; good analysis does not proceed in a rigidly predetermined order" (p. 105).
+
+How do you approach model specification:  logic, theory, prior research...supplemented by hypothesis testing and comparison of model fit.
+
+A possible order:
+
+1.  Examine the effect of each predictor, individually.
+2.  Focus on predictors of primary interest (while including others whose effects you want to control).
+    * You can add predictors individually, or in groups
+    * You can address issues of functional form with interactions and transformations
+3.  Progression toward a "final model" whose interpretation will address your research questions
+    * the marks mean that no statistical model is ever *final*; it's merely a placeholder until a better model is found
+4.  Longitudinal modeling brings complexities
+    * Multiple L2 outcomes can each be related to predictors
+    * Multiple kinds of effects (fixed effects and variance components)
+5.  The simplest strategy is to initially include each L2 predictor (simultaneously) in all L2 submodels, but as demonstrated in later examples, they may be trimmed.
+    * Each individual growth parameter can have its own predictors and one goal of model building is to identify which predictors are important for which L1 parameters.
+    * Although each L2 submodel can contain fixed and random effects, both are not necessarily required; sometimes a model with fewer random effects will provide a more parsimonious representation and clearer substantive insights.
+    
+    
+Using the possible order identified above, we would will systematically:
+
+* Continue with the linear Wv, adding
+  - WvCnd (COND, condition) as a moderator,
+  - WvEng (ENG, engagement) as a moderator,
+  - WvCndEng both COND and ENG as moderators (can't decide if a three-way interaction or just two moderations)
+* Evaluate curvilinearity in time:  Wv2, repeating the moderators
+  - Wv2Cnd (COND, condition) as a moderator,
+  - Wv2Eng (ENG, engagement) as a moderator,
+  - Wv2CndEng both COND and ENG as moderators (can't decide if a three-way
+
+## WvCnd:  Adding COND to our linear model as a single moderator
+
+For comparison:
+Empty <- lmer(FL ~1 +(1 | id), Y1L, REML = FALSE)
+Wv <- lmer(FL ~ Wave0 +(Wave0 | id), Y1L, REML = FALSE)
+```{r}
+# This model is "long-hand" and specifies all the things, a shorthand could be
+WvCnd <- lmer(FL ~Wave0*COND + (1 + Wave0 | ID), data=Y1L, REML=FALSE, na.action = "na.exclude", control = lmerControl(check.nobs.vs.nRE = "warning", optimizer="Nelder_Mead"))
+summary(WvCnd)
+
+#WvCnd <- lmer(FL ~1 + Wave0 + COND + Wave0*COND + (1 + Wave0 | ID), data=Y1L, REML=FALSE, na.action = "na.exclude", control = lmerControl(check.nobs.vs.nRE = "warning", optimizer="Nelder_Mead"))
+summary(WvCnd)
+```
+
+```{r Empty table, eval=FALSE}
+library(sjPlot)
+tab_model(Empty, Wv, WvCnd,  p.style = "asterisk", show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, dv.labels = c("Empty", "Wv", "WvCnd"), use.viewer = TRUE)
+```
+
+```{r}
+plot_model (WvCnd, type="int", terms=c("Wave0", "COND"))
+```
+
+
+```{r}
+anova(Empty, Wv, WvCnd)
+```
+
+**Interpreting Fixed Effects**
+The score for the average student in the ADJ condition at pre-test is 5.47 (*p* < .05). The DV for the student in ADJ declines by .13 at each wave.  
+
+By default, lmer treats the reference level of a factor as the baseline and estimates parameters for the other levels.
+
+This means that the TRAD group's pre-test is .19 higher than the ADJ pre-test.  Further, the TRAD group's slope is .14 sharper than the ADJ group's slope.  The CALL group's pre-test is .32 higher than the ADJ pre-test and its slope is .12 sharper than the ADJ group's slope.  The values for each condition at each wave are calculated below.
+
+No effects are statistically signifciant.  
+
+```{r}
+# ADJ post-test
+5.47 - .13
+# ADJ follow-up
+5.68 - (.13*2)
+  
+# TRAD pre-test
+5.47 + .19
+# TRAD post-test
+5.66 + (-.13 + .14) 
+# TRAD follow-up
+5.66 + ((-.13 + .14)*2 )
+
+# CALL pre-test
+5.47 + .12
+# CALL post-test
+5.59 + (-.13 + .12) 
+# CALL follow-up
+5.59 + ((-.13 + .12)*2)
+``` 
+
+**Interpreting Variance Components**
+
+The $\sigma ^{2}$  value (0.19) stayed the same from Empty to Wv to WvCnd  This is because we didn't add a within-subjects (time covarying) predictor (and we don't have any in this research question).
+
+$\tau _{00}$ decreases from 0.69(Wv) to 0.68 (WvCnd. We can apply the formula to determine the proportion of L2 intercept variance accounted for by the COA addition.
+
+$$Pseudo R_{\zeta }^{2} = \frac{\tau _{00} (unconditional. growth. model) - \tau _{00}(subsequent. model)}{\tau _{00}(unconditional. growth. model)}$$
+
+```{r WvCnd pseudo Rsq}
+(.69-.68)/.69
+```
+
+The $\tau _{00}$ variance component decreases by 1% from Wv.
+
+$\tau _{11}$  is unchanged.  Both Wv and WvCnd are 0.00.  So, adding COND did not change between-subjects' slopes.
+
+These variance components are now considered *partial* or *conditional* variances because they quantify the interindividual differences in change that remain unexplained by the model's predictors.  
+
+*Thinking the thoughts*. 
+
+1.  It appears there is residual remaining to be explained, so exploring the contribution of ENG seems a good idea.
+2.  Because COND is a focal predictor, we will resist trimming it; it is worth investigating the full spectrum of its effects.
+
+When we compare models, the *best* have the lowest AIC and BIC.  At this point, those are the empty model (mean only).  This is bad news.
+
+The ANOVA comparisons compare each subsequent model to the one immediately before it.  The idea is that if a change is good, the next change might be better.  So far, we don't have any good changes.  All comparisons are NS and the AIC and BIC remain lowest for the empty (unconditional means) model -- that is, the lone mean is the best model of our data.
+
+## WvEng:  Adding ENG to our linear model as a single moderator
+
+For comparison:
+Empty <- lmer(FL ~1 +(1 | id), Y1L, REML = FALSE)
+Wv <- lmer(FL ~ Wave0 +(Wave0 | id), Y1L, REML = FALSE)
+WvCnd <- lmer(FL ~Wave0*COND + (1 + Wave0 | ID)
+```{r}
+#shorter hand
+WvEng <- lmer(FL ~Wave0*ENG + (1 + Wave0 | ID), data=Y1L, REML=FALSE, na.action = "na.exclude", control = lmerControl(check.nobs.vs.nRE = "warning", optimizer="Nelder_Mead"))
+summary(WvEng)
+
+# This model is "long-hand" and specifies all the things,
+#WvCnd <- lmer(FL ~1 + Wave0 + COND + Wave0*COND + (1 + Wave0 | ID), data=Y1L, REML=FALSE, na.action = "na.exclude", control = lmerControl(check.nobs.vs.nRE = "warning", optimizer="Nelder_Mead"))
+#summary(WvEng)
+```
+
+```{r Empty table, eval=FALSE}
+library(sjPlot)
+tab_model(Empty, Wv, WvCnd, WvEng,  p.style = "asterisk", show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, dv.labels = c("Empty", "Wv", "WvCnd", "WvEng"), use.viewer = TRUE)
+```
+
+```{r}
+plot_model (WvEng, type="int", terms=c("Wave0", "ENG [0, 21, 44"))
+```
+Ugh.  This model won't plot correctly.  Can't figure out how to get it to display the +/-1SD values (0, 21, 44) I specified.
+
+```{r}
+anova(Empty, Wv, WvCnd, WvEng)
+```
+
+**Interpreting Fixed Effects**
+The estimated score on the DV for the student with zero engaement at pre-test 5.54 (*p* < .05). For each additional point of ENG, the DV at pre-test is .004 higher. The DV for zero-engagement students declines by .09 points at each wave. For every additional ENG point, that slope is attenuated by .004 points.
+
+The math below predicts DV scores at each of the waves for students at the mean and +/- 1SD (grabbed from the descriptives, above)
+
+```{r}
+#Mean ENG = 21; SD = 21
+
+# ENG pre-test for those -1SD ENG (0)
+5.54
+# ENG post-test for those -1SD ENG (0)
+5.54 - .09
+# ENG follow-up for those -1SD ENG (0)
+5.54 + (-.09*2)
+
+# ENG pre-test for those at the mean ENG (21)
+5.54 + (.004*21) #values for ENG grabbed in coefficients above
+# ENG post-test for those at the mean ENG (21)
+5.624 + (.14 + (.004*21))
+# ENG follow-up for those at the mean ENG (21)
+5.624 + (.14 + (.004*21)*2)
+
+# ENG post-test for those +1SD ENG (42)
+5.54 + (-.004*42) 
+# ENG follow-up for those +1SD ENG (42)
+5.372 + (.14  + (.004*42))
+# ENG pre-test for those +1SD ENG (42)
+5.372 + (.14  + (.004*42)*2)
+```
+
+**Interpreting Variance Components**
+
+The $\sigma ^{2}$  value (0.19) has stayed the same through Empty, Wv, WvCnd, and WvEng.  This is because we didn't add a within-subjects (time covarying) predictor (and we don't have any in this research question).
+
+$\tau _{00}$ decreases from 0.69(Wv) to 0.68 (WvCnd); and stayed the same from WvCnd to WvEng. We can apply the formula to determine the proportion of L2 intercept variance accounted for by the COA addition.
+
+$$Pseudo R_{\zeta }^{2} = \frac{\tau _{00} (unconditional. growth. model) - \tau _{00}(subsequent. model)}{\tau _{00}(unconditional. growth. model)}$$
+
+```{r WvEng pseudo Rsq}
+(.69-.68)/.69 #Wv to WvEng
+(.68 -.68)/.69 #WvCnd to WvEng
+```
+
+The $\tau _{00}$ variance component decreases by 1% from Wv.
+
+$\tau _{11}$  is unchanged: Wv, WvCnd, and WvEng are 0.00.  So, swapping ENG for COND did not change between-subjects' slopes.
+
+These variance components are now considered *partial* or *conditional* variances because they quantify the interindividual differences in change that remain unexplained by the model's predictors.  
+
+The ANOVA comparisons compare each subsequent model to the one immediately before it.  The idea is that if a change is good, the next change might be better.  So far, we don't have any good changes.  All comparisons are NS and the AIC and BIC remain lowest for the empty (unconditional means) model -- that is, the lone mean is the best model of our data.
+
+*Thinking the thoughts. *
+
+1.  Because COND and ENG are focal predictors, we will resist trimming them; it is worth investigating the full spectrum of its effects.
+
+
+## WvCndEng: Additive moderation of COND and ENG
+
+WvCndEng evaluates the effects of COND on initial status and rates of change in the DV, controlling for the effects of ENG on initial status and rate of change.
+
+We expect cross-level interactions of COND and ENG with WAVE0, so they are listed separately. The parentheses specify the random effects on slope (Wave0) and intercept (ID), respectively, before and after the | symbol.
+
+**For comparison**:
+Empty <- lmer(FL ~1 +(1 | id), Y1L, REML = FALSE)
+Wv <- lmer(FL ~ 1 + Wave0 +(Wave0 | id), Y1L, REML = FALSE)
+WvCnd <- lmer(FL ~1 + Wave0*COND + (1 + Wave0 | ID)
+WvEng <- lmer(FL ~1 + Wave0*ENG + (1 + Wave0 | ID)
+```{r}
+WvCndEng <- lmer(FL ~1 + Wave0*COND  + Wave0*ENG + (1 + Wave0 | ID), data=Y1L, REML=FALSE, na.action = "na.exclude", control = lmerControl(check.nobs.vs.nRE = "warning", optimizer="Nelder_Mead"))
+summary(WvCndEng)
+```
+
+```{r Additive moderation table, eval=FALSE}
+#just to save space, I'm leaving out the WvEng column
+library(sjPlot)
+tab_model(Empty, Wv, WvCnd, WvCndEng,  p.style = "asterisk", show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, dv.labels = c("Empty", "Wv", "WvCnd", "WvCndEng"), use.viewer = TRUE)
+```
+
+```{r additive moderation plot}
+#plot_model "knows" that htis is additive moderation, so it will only give us the two moderations in separate plots; to see a faceted plot we need to do a double moderation
+
+plot_model (WvCndEng, type="int", terms=c("Wave0", "ENG[0, 21, 44]", "COND [ADJ,TRAD, CALL]" ))
+```
+
+```{r ANOVA comps additive moderation}
+anova(Empty,Wv, WvCnd, WvCndEng)
+```
+**Interpreting Fixed Effects**
+The estimated score for the student in the ADJ condition at pre-test is 5.36 (*p* < .05) for students with 0 ENG and in the ADJ condition. The score for this group declines by .20 at each wave. Students in the TRAD condition have a score of 5.56 at pretest, post-test, and follow-up. Students in the CALL condition have a score of 5.69 at pre-test, 5.62 at post-test, and 5.55 at follow-up.
+
+ENG appears to have no influence (0.00).
+
+```{r}
+#ADJ at post-test
+5.36 - .20
+#ADJ at follow-up
+5.36 - (.20 * 2)
+
+# TRAD at pre-test
+5.36 + .20
+# TRAD at post-test
+5.56 + (-.20 + .20)
+# TRAD at follow-up
+5.56 + (-.20 + .20)*2
+
+# CALL at pre-test
+5.36 + .33
+# CALL at post-test
+5.69 + (-.20 + .13)
+# CALL at follow-up
+5.69 +(-.20 + .13)*2
+```
+
+**Interpreting Variance Components**
+
+The $\sigma ^{2}$  value (0.19) has stayed the same through Empty, Wv, WvCnd, WvEng, abd WvEngCnd.  This is because we didn't add a within-subjects (time covarying) predictor (and we don't have any in this research question).
+
+$\tau _{00}$ decreases from 0.69(Wv) to 0.66 (WvCndEng). We can apply the formula to determine the proportion of L2 intercept variance accounted for by the COA addition.
+
+$$Pseudo R_{\zeta }^{2} = \frac{\tau _{00} (unconditional. growth. model) - \tau _{00}(subsequent. model)}{\tau _{00}(unconditional. growth. model)}$$
+
+
+```{r WvEng pseudo Rsq}
+(.69-.66)/.69 #Wv to WvCndEng
+```
+
+The $\tau _{00}$ variance component decreases by 4% from Wv.
+
+$\tau _{11}$  is unchanged: Wv, WvCnd, WvEng, and WvCndEng are 0.00.  So, including CND and ENG as moderators, in an additive way, did not change between-subjects' slopes.
+
+These variance components are now considered *partial* or *conditional* variances because they quantify the interindividual differences in change that remain unexplained by the model's predictors.  
+
+The ANOVA comparisons compare each subsequent model to the one immediately before it.  The idea is that if a change is good, the next change might be better.  So far, we don't have any good changes.  All comparisons are NS and the AIC and BIC remain lowest for the empty (unconditional means) model -- that is, the lone mean is the best model of our data.  In fact all our model improvements are just making it worse.
+
+*Thinking the thoughts.* 
+
+1. One more thing to try -- a moderated moderation.
+2. I'm not hopeful that we will find any support for the interacting effects of COND and ENG to have a cross-level interaction over time to effect the outcome in a positive way...but we'll try.
+
+## WvCndEng: Moderated moderation of COND by ENG
+
+**For comparison**:
+mpty <- lmer(FL ~1 +(1 | id), Y1L, REML = FALSE)
+Wv <- lmer(FL ~ Wave0 +(Wave0 | id), Y1L, REML = FALSE)
+WvCnd <- lmer(FL ~1 + Wave0*COND + (1 + Wave0 | ID)
+WvEng: lmer(FL ~ 1 + Wave0*ENG + (1 + Wave0 | ID)
+WvCndEng <- lmer(FL ~1 + Wave0*COND  + Wave0*ENG + (1 + Wave0 | ID)
+```{r}
+WvCndEng3w <- lmer(FL ~1 + Wave0*ENG*COND + (1 + Wave0 | ID), data=Y1L, REML=FALSE, na.action = "na.exclude", control = lmerControl(check.nobs.vs.nRE = "warning", optimizer="Nelder_Mead"))
+summary(WvCndEng3w)
+```
+
+```{r Empty table, eval=FALSE}
+library(sjPlot)
+tab_model(Empty, Wv, WvCnd, WvCndEng, WvCndEng3w, p.style = "asterisk", show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, dv.labels = c("Empty", "Wv", "WvCnd", "WvCndEng", "WvCndEng3w"), use.viewer = TRUE)
+```
+
+```{r}
+plot_model (WvCndEng3w, type="int", terms=c("Wave0",  "COND", "ENG[0, 21, 44]", ))
+```
+
+Still not sure (but still annoyed) why it's not giving me the levels of engagement that I specified.
+
+```{r}
+anova(Empty,Wv, WvCnd, WvCndEng, WvCndEng3w)
+```
+
+**Interpreting Fixed Effects**
+The estimated score for the student in the ADJ condition at pre-test with 0 level of ENG is 5.42(*p* < .05). The score for this group declines by .24 at each wave.  Since ENG is a continuous variable, we see that there is 0.00 change in the DV as a function of a 1 point change in ENG no matter the COND.  Therefore, the interpretation remains much like it was on the additive moderation.
+
+**Interpreting Variance Components**
+
+The $\sigma ^{2}$  value (0.19) has stayed the same through Empty, Wv, WvCnd, and WvEng.  This is because we didn't add a within-subjects (time covarying) predictor (and we don't have any in this research question).
+
+$\tau _{00}$ decreases from 0.69(Wv) to 0.67 (WvCndEng3w); and stayed the same from WvCnd to WvEng. We can apply the formula to determine the proportion of L2 intercept variance accounted for by the COA addition.
+
+$$Pseudo R_{\zeta }^{2} = \frac{\tau _{00} (unconditional. growth. model) - \tau _{00}(subsequent. model)}{\tau _{00}(unconditional. growth. model)}$$
+
+
+```{r WvEng pseudo Rsq}
+(.69-.67)/.69 #Wv to WvCndEng3w
+```
+
+The $\tau _{00}$ variance component decreases by 4% from Wv.
+
+$\tau _{11}$  is unchanged: Wv, WvCnd, WvEng, and WvCndEng are 0.00.  So, including CND and ENG as moderators, in an additive way, did not change between-subjects' slopes.
+
+These variance components are now considered *partial* or *conditional* variances because they quantify the interindividual differences in change that remain unexplained by the model's predictors.  
+
+The ANOVA comparisons compare each subsequent model to the one immediately before it.  The idea is that if a change is good, the next change might be better.  So far, we don't have any good changes.  All comparisons are NS and the AIC and BIC remain lowest for the empty (unconditional means) model -- that is, the lone mean is the best model of our data.  In fact all our model improvements are just making it worse.
+
+*Thinking the thoughts.* 
+For the students, OFG had a non-signifciant effect on the DV across condition and time.
+
+Maybe flourishing is more a trait-variable; maybe other variables will be more conducive to change.
+
+If for no other reasons than pedagogical, we should try this in a quadratic way.  AND, try it across the other student levels/modules.
+
+**BEFORE YOU QUIT -- PRINT THE TAB_MODEL INTO A SPREADSHEET**
+
+Include all the models
+```{r}
+library(sjPlot)
+tab_model(Empty, Wv, WvCnd, WvEng, WvCndEng, WvCndEng3w, p.style = "asterisk", show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, dv.labels = c("Empty", "Wv", "WvCnd", "WvEng", "WvCndEng", "WvCndEng3w"), use.viewer = FALSE, file = "Y1FL_MLM.xls")
+```
+
+
+# Next step: a quadratic!
