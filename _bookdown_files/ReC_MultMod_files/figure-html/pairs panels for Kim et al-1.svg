@@ -27,7 +27,7 @@
 <g clip-path='url(#cpMzguMDJ8MTA5LjM0fDM4LjAyfDg1LjM0)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='42.77,80.59 104.59,80.59 104.59,42.77 42.77,42.77 42.77,80.59 ' style='stroke-width: 0.75;' />
+<polygon points='42.77,80.59 104.59,80.59 104.59,42.77 42.77,42.77 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <defs>
   <clipPath id='cpNDIuNzd8MTA0LjU5fDQyLjc3fDgwLjU5'>
@@ -223,7 +223,7 @@
 <g clip-path='url(#cpMzguMDJ8MTA5LjM0fDg1LjM0fDEzMi42Nw==)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='42.77,127.92 104.59,127.92 104.59,90.10 42.77,90.10 42.77,127.92 ' style='stroke-width: 0.75;' />
+<polygon points='42.77,127.92 104.59,127.92 104.59,90.10 42.77,90.10 ' style='stroke-width: 0.75; fill: none;' />
 <line x1='42.77' y1='125.75' x2='42.77' y2='94.72' style='stroke-width: 0.75;' />
 <line x1='42.77' y1='125.75' x2='38.02' y2='125.75' style='stroke-width: 0.75;' />
 <line x1='42.77' y1='117.99' x2='38.02' y2='117.99' style='stroke-width: 0.75;' />
@@ -410,7 +410,7 @@
 <g clip-path='url(#cpMzguMDJ8MTA5LjM0fDEzMi42N3wxODAuMDA=)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='42.77,175.25 104.59,175.25 104.59,137.42 42.77,137.42 42.77,175.25 ' style='stroke-width: 0.75;' />
+<polygon points='42.77,175.25 104.59,175.25 104.59,137.42 42.77,137.42 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpNDIuNzd8MTA0LjU5fDEzNy40MnwxNzUuMjU=)'>
 <circle cx='89.04' cy='148.42' r='1.19' style='stroke-width: 0.75; fill: #000000;' />
@@ -588,7 +588,7 @@
 <g clip-path='url(#cpMzguMDJ8MTA5LjM0fDE4MC4wMHwyMjcuMzM=)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='42.77,222.58 104.59,222.58 104.59,184.75 42.77,184.75 42.77,222.58 ' style='stroke-width: 0.75;' />
+<polygon points='42.77,222.58 104.59,222.58 104.59,184.75 42.77,184.75 ' style='stroke-width: 0.75; fill: none;' />
 <line x1='42.77' y1='219.50' x2='42.77' y2='191.28' style='stroke-width: 0.75;' />
 <line x1='42.77' y1='219.50' x2='38.02' y2='219.50' style='stroke-width: 0.75;' />
 <line x1='42.77' y1='212.44' x2='38.02' y2='212.44' style='stroke-width: 0.75;' />
@@ -775,7 +775,7 @@
 <g clip-path='url(#cpMzguMDJ8MTA5LjM0fDIyNy4zM3wyNzQuNjY=)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='42.77,269.90 104.59,269.90 104.59,232.08 42.77,232.08 42.77,269.90 ' style='stroke-width: 0.75;' />
+<polygon points='42.77,269.90 104.59,269.90 104.59,232.08 42.77,232.08 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpNDIuNzd8MTA0LjU5fDIzMi4wOHwyNjkuOTA=)'>
 <circle cx='89.04' cy='254.47' r='1.19' style='stroke-width: 0.75; fill: #000000;' />
@@ -953,7 +953,7 @@
 <g clip-path='url(#cpMzguMDJ8MTA5LjM0fDI3NC42NnwzMjEuOTg=)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='42.77,317.23 104.59,317.23 104.59,279.41 42.77,279.41 42.77,317.23 ' style='stroke-width: 0.75;' />
+<polygon points='42.77,317.23 104.59,317.23 104.59,279.41 42.77,279.41 ' style='stroke-width: 0.75; fill: none;' />
 <line x1='52.91' y1='317.23' x2='104.22' y2='317.23' style='stroke-width: 0.75;' />
 <line x1='52.91' y1='317.23' x2='52.91' y2='321.98' style='stroke-width: 0.75;' />
 <line x1='65.74' y1='317.23' x2='65.74' y2='321.98' style='stroke-width: 0.75;' />
@@ -1151,7 +1151,7 @@
 <g clip-path='url(#cpMTA5LjM0fDE4MC42N3wzOC4wMnw4NS4zNA==)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='114.10,80.59 175.92,80.59 175.92,42.77 114.10,42.77 114.10,80.59 ' style='stroke-width: 0.75;' />
+<polygon points='114.10,80.59 175.92,80.59 175.92,42.77 114.10,42.77 ' style='stroke-width: 0.75; fill: none;' />
 <line x1='117.65' y1='42.77' x2='168.37' y2='42.77' style='stroke-width: 0.75;' />
 <line x1='117.65' y1='42.77' x2='117.65' y2='38.02' style='stroke-width: 0.75;' />
 <line x1='130.33' y1='42.77' x2='130.33' y2='38.02' style='stroke-width: 0.75;' />
@@ -1182,7 +1182,7 @@
 <g clip-path='url(#cpMTA5LjM0fDE4MC42N3w4NS4zNHwxMzIuNjc=)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='114.10,127.92 175.92,127.92 175.92,90.10 114.10,90.10 114.10,127.92 ' style='stroke-width: 0.75;' />
+<polygon points='114.10,127.92 175.92,127.92 175.92,90.10 114.10,90.10 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMTE0LjEwfDE3NS45Mnw5MC4xMHwxMjcuOTI=)'>
 <rect x='111.31' y='127.30' width='6.34' height='0.62' style='stroke-width: 0.75; fill: #00FFFF;' />
@@ -1373,7 +1373,7 @@
 <g clip-path='url(#cpMTA5LjM0fDE4MC42N3wxMzIuNjd8MTgwLjAw)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='114.10,175.25 175.92,175.25 175.92,137.42 114.10,137.42 114.10,175.25 ' style='stroke-width: 0.75;' />
+<polygon points='114.10,175.25 175.92,175.25 175.92,137.42 114.10,137.42 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMTE0LjEwfDE3NS45MnwxMzcuNDJ8MTc1LjI1)'>
 <circle cx='151.37' cy='148.42' r='1.19' style='stroke-width: 0.75; fill: #000000;' />
@@ -1551,7 +1551,7 @@
 <g clip-path='url(#cpMTA5LjM0fDE4MC42N3wxODAuMDB8MjI3LjMz)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='114.10,222.58 175.92,222.58 175.92,184.75 114.10,184.75 114.10,222.58 ' style='stroke-width: 0.75;' />
+<polygon points='114.10,222.58 175.92,222.58 175.92,184.75 114.10,184.75 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMTE0LjEwfDE3NS45MnwxODQuNzV8MjIyLjU4)'>
 <circle cx='151.37' cy='205.70' r='1.19' style='stroke-width: 0.75; fill: #000000;' />
@@ -1729,7 +1729,7 @@
 <g clip-path='url(#cpMTA5LjM0fDE4MC42N3wyMjcuMzN8Mjc0LjY2)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='114.10,269.90 175.92,269.90 175.92,232.08 114.10,232.08 114.10,269.90 ' style='stroke-width: 0.75;' />
+<polygon points='114.10,269.90 175.92,269.90 175.92,232.08 114.10,232.08 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMTE0LjEwfDE3NS45MnwyMzIuMDh8MjY5Ljkw)'>
 <circle cx='151.37' cy='254.47' r='1.19' style='stroke-width: 0.75; fill: #000000;' />
@@ -1907,7 +1907,7 @@
 <g clip-path='url(#cpMTA5LjM0fDE4MC42N3wyNzQuNjZ8MzIxLjk4)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='114.10,317.23 175.92,317.23 175.92,279.41 114.10,279.41 114.10,317.23 ' style='stroke-width: 0.75;' />
+<polygon points='114.10,317.23 175.92,317.23 175.92,279.41 114.10,279.41 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMTE0LjEwfDE3NS45MnwyNzkuNDF8MzE3LjIz)'>
 <circle cx='151.37' cy='292.40' r='1.19' style='stroke-width: 0.75; fill: #000000;' />
@@ -2085,7 +2085,7 @@
 <g clip-path='url(#cpMTgwLjY3fDI1Mi4wMHwzOC4wMnw4NS4zNA==)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='185.42,80.59 247.25,80.59 247.25,42.77 185.42,42.77 185.42,80.59 ' style='stroke-width: 0.75;' />
+<polygon points='185.42,80.59 247.25,80.59 247.25,42.77 185.42,42.77 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMTg1LjQyfDI0Ny4yNXw0Mi43N3w4MC41OQ==)'>
 <text x='216.34' y='67.23' text-anchor='middle' style='font-size: 15.73px; font-family: Arial;' textLength='30.59px' lengthAdjust='spacingAndGlyphs'>0.26</text>
@@ -2105,7 +2105,7 @@
 <g clip-path='url(#cpMTgwLjY3fDI1Mi4wMHw4NS4zNHwxMzIuNjc=)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='185.42,127.92 247.25,127.92 247.25,90.10 185.42,90.10 185.42,127.92 ' style='stroke-width: 0.75;' />
+<polygon points='185.42,127.92 247.25,127.92 247.25,90.10 185.42,90.10 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMTg1LjQyfDI0Ny4yNXw5MC4xMHwxMjcuOTI=)'>
 <text x='216.34' y='114.56' text-anchor='middle' style='font-size: 15.73px; font-family: Arial;' textLength='30.59px' lengthAdjust='spacingAndGlyphs'>0.12</text>
@@ -2125,7 +2125,7 @@
 <g clip-path='url(#cpMTgwLjY3fDI1Mi4wMHwxMzIuNjd8MTgwLjAw)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='185.42,175.25 247.25,175.25 247.25,137.42 185.42,137.42 185.42,175.25 ' style='stroke-width: 0.75;' />
+<polygon points='185.42,175.25 247.25,175.25 247.25,137.42 185.42,137.42 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMTg1LjQyfDI0Ny4yNXwxMzcuNDJ8MTc1LjI1)'>
 <rect x='184.15' y='174.65' width='5.50' height='0.60' style='stroke-width: 0.75; fill: #00FFFF;' />
@@ -2318,7 +2318,7 @@
 <g clip-path='url(#cpMTgwLjY3fDI1Mi4wMHwxODAuMDB8MjI3LjMz)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='185.42,222.58 247.25,222.58 247.25,184.75 185.42,184.75 185.42,222.58 ' style='stroke-width: 0.75;' />
+<polygon points='185.42,222.58 247.25,222.58 247.25,184.75 185.42,184.75 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMTg1LjQyfDI0Ny4yNXwxODQuNzV8MjIyLjU4)'>
 <circle cx='229.27' cy='205.70' r='1.19' style='stroke-width: 0.75; fill: #000000;' />
@@ -2496,7 +2496,7 @@
 <g clip-path='url(#cpMTgwLjY3fDI1Mi4wMHwyMjcuMzN8Mjc0LjY2)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='185.42,269.90 247.25,269.90 247.25,232.08 185.42,232.08 185.42,269.90 ' style='stroke-width: 0.75;' />
+<polygon points='185.42,269.90 247.25,269.90 247.25,232.08 185.42,232.08 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMTg1LjQyfDI0Ny4yNXwyMzIuMDh8MjY5Ljkw)'>
 <circle cx='229.27' cy='254.47' r='1.19' style='stroke-width: 0.75; fill: #000000;' />
@@ -2674,7 +2674,7 @@
 <g clip-path='url(#cpMTgwLjY3fDI1Mi4wMHwyNzQuNjZ8MzIxLjk4)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='185.42,317.23 247.25,317.23 247.25,279.41 185.42,279.41 185.42,317.23 ' style='stroke-width: 0.75;' />
+<polygon points='185.42,317.23 247.25,317.23 247.25,279.41 185.42,279.41 ' style='stroke-width: 0.75; fill: none;' />
 <line x1='195.14' y1='317.23' x2='239.11' y2='317.23' style='stroke-width: 0.75;' />
 <line x1='195.14' y1='317.23' x2='195.14' y2='321.98' style='stroke-width: 0.75;' />
 <line x1='206.13' y1='317.23' x2='206.13' y2='321.98' style='stroke-width: 0.75;' />
@@ -2863,7 +2863,7 @@
 <g clip-path='url(#cpMjUyLjAwfDMyMy4zM3wzOC4wMnw4NS4zNA==)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='256.75,80.59 318.58,80.59 318.58,42.77 256.75,42.77 256.75,80.59 ' style='stroke-width: 0.75;' />
+<polygon points='256.75,80.59 318.58,80.59 318.58,42.77 256.75,42.77 ' style='stroke-width: 0.75; fill: none;' />
 <line x1='261.78' y1='42.77' x2='307.91' y2='42.77' style='stroke-width: 0.75;' />
 <line x1='261.78' y1='42.77' x2='261.78' y2='38.02' style='stroke-width: 0.75;' />
 <line x1='273.31' y1='42.77' x2='273.31' y2='38.02' style='stroke-width: 0.75;' />
@@ -2894,7 +2894,7 @@
 <g clip-path='url(#cpMjUyLjAwfDMyMy4zM3w4NS4zNHwxMzIuNjc=)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='256.75,127.92 318.58,127.92 318.58,90.10 256.75,90.10 256.75,127.92 ' style='stroke-width: 0.75;' />
+<polygon points='256.75,127.92 318.58,127.92 318.58,90.10 256.75,90.10 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMjU2Ljc1fDMxOC41OHw5MC4xMHwxMjcuOTI=)'>
 <text x='287.66' y='114.56' text-anchor='middle' style='font-size: 15.73px; font-family: Arial;' textLength='30.59px' lengthAdjust='spacingAndGlyphs'>0.19</text>
@@ -2914,7 +2914,7 @@
 <g clip-path='url(#cpMjUyLjAwfDMyMy4zM3wxMzIuNjd8MTgwLjAw)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='256.75,175.25 318.58,175.25 318.58,137.42 256.75,137.42 256.75,175.25 ' style='stroke-width: 0.75;' />
+<polygon points='256.75,175.25 318.58,175.25 318.58,137.42 256.75,137.42 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMjU2Ljc1fDMxOC41OHwxMzcuNDJ8MTc1LjI1)'>
 <text x='287.66' y='161.89' text-anchor='middle' style='font-size: 15.73px; font-family: Arial;' textLength='30.59px' lengthAdjust='spacingAndGlyphs'>0.66</text>
@@ -2934,7 +2934,7 @@
 <g clip-path='url(#cpMjUyLjAwfDMyMy4zM3wxODAuMDB8MjI3LjMz)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='256.75,222.58 318.58,222.58 318.58,184.75 256.75,184.75 256.75,222.58 ' style='stroke-width: 0.75;' />
+<polygon points='256.75,222.58 318.58,222.58 318.58,184.75 256.75,184.75 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMjU2Ljc1fDMxOC41OHwxODQuNzV8MjIyLjU4)'>
 <rect x='256.01' y='221.86' width='5.77' height='0.72' style='stroke-width: 0.75; fill: #00FFFF;' />
@@ -3126,7 +3126,7 @@
 <g clip-path='url(#cpMjUyLjAwfDMyMy4zM3wyMjcuMzN8Mjc0LjY2)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='256.75,269.90 318.58,269.90 318.58,232.08 256.75,232.08 256.75,269.90 ' style='stroke-width: 0.75;' />
+<polygon points='256.75,269.90 318.58,269.90 318.58,232.08 256.75,232.08 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMjU2Ljc1fDMxOC41OHwyMzIuMDh8MjY5Ljkw)'>
 <circle cx='284.33' cy='254.47' r='1.19' style='stroke-width: 0.75; fill: #000000;' />
@@ -3304,7 +3304,7 @@
 <g clip-path='url(#cpMjUyLjAwfDMyMy4zM3wyNzQuNjZ8MzIxLjk4)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='256.75,317.23 318.58,317.23 318.58,279.41 256.75,279.41 256.75,317.23 ' style='stroke-width: 0.75;' />
+<polygon points='256.75,317.23 318.58,317.23 318.58,279.41 256.75,279.41 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMjU2Ljc1fDMxOC41OHwyNzkuNDF8MzE3LjIz)'>
 <circle cx='284.33' cy='292.40' r='1.19' style='stroke-width: 0.75; fill: #000000;' />
@@ -3482,7 +3482,7 @@
 <g clip-path='url(#cpMzIzLjMzfDM5NC42NnwzOC4wMnw4NS4zNA==)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='328.08,80.59 389.90,80.59 389.90,42.77 328.08,42.77 328.08,80.59 ' style='stroke-width: 0.75;' />
+<polygon points='328.08,80.59 389.90,80.59 389.90,42.77 328.08,42.77 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMzI4LjA4fDM4OS45MHw0Mi43N3w4MC41OQ==)'>
 <text x='358.99' y='67.23' text-anchor='middle' style='font-size: 15.73px; font-family: Arial;' textLength='35.83px' lengthAdjust='spacingAndGlyphs'>-0.25</text>
@@ -3502,7 +3502,7 @@
 <g clip-path='url(#cpMzIzLjMzfDM5NC42Nnw4NS4zNHwxMzIuNjc=)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='328.08,127.92 389.90,127.92 389.90,90.10 328.08,90.10 328.08,127.92 ' style='stroke-width: 0.75;' />
+<polygon points='328.08,127.92 389.90,127.92 389.90,90.10 328.08,90.10 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMzI4LjA4fDM4OS45MHw5MC4xMHwxMjcuOTI=)'>
 <text x='358.99' y='114.56' text-anchor='middle' style='font-size: 15.73px; font-family: Arial;' textLength='35.83px' lengthAdjust='spacingAndGlyphs'>-0.28</text>
@@ -3522,7 +3522,7 @@
 <g clip-path='url(#cpMzIzLjMzfDM5NC42NnwxMzIuNjd8MTgwLjAw)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='328.08,175.25 389.90,175.25 389.90,137.42 328.08,137.42 328.08,175.25 ' style='stroke-width: 0.75;' />
+<polygon points='328.08,175.25 389.90,175.25 389.90,137.42 328.08,137.42 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMzI4LjA4fDM4OS45MHwxMzcuNDJ8MTc1LjI1)'>
 <text x='358.99' y='161.89' text-anchor='middle' style='font-size: 15.73px; font-family: Arial;' textLength='35.83px' lengthAdjust='spacingAndGlyphs'>-0.55</text>
@@ -3542,7 +3542,7 @@
 <g clip-path='url(#cpMzIzLjMzfDM5NC42NnwxODAuMDB8MjI3LjMz)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='328.08,222.58 389.90,222.58 389.90,184.75 328.08,184.75 328.08,222.58 ' style='stroke-width: 0.75;' />
+<polygon points='328.08,222.58 389.90,222.58 389.90,184.75 328.08,184.75 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMzI4LjA4fDM4OS45MHwxODQuNzV8MjIyLjU4)'>
 <text x='358.99' y='209.22' text-anchor='middle' style='font-size: 15.73px; font-family: Arial;' textLength='35.83px' lengthAdjust='spacingAndGlyphs'>-0.66</text>
@@ -3562,7 +3562,7 @@
 <g clip-path='url(#cpMzIzLjMzfDM5NC42NnwyMjcuMzN8Mjc0LjY2)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='328.08,269.90 389.90,269.90 389.90,232.08 328.08,232.08 328.08,269.90 ' style='stroke-width: 0.75;' />
+<polygon points='328.08,269.90 389.90,269.90 389.90,232.08 328.08,232.08 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMzI4LjA4fDM4OS45MHwyMzIuMDh8MjY5Ljkw)'>
 <rect x='328.69' y='267.80' width='5.38' height='2.10' style='stroke-width: 0.75; fill: #00FFFF;' />
@@ -3754,7 +3754,7 @@
 <g clip-path='url(#cpMzIzLjMzfDM5NC42NnwyNzQuNjZ8MzIxLjk4)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='328.08,317.23 389.90,317.23 389.90,279.41 328.08,279.41 328.08,317.23 ' style='stroke-width: 0.75;' />
+<polygon points='328.08,317.23 389.90,317.23 389.90,279.41 328.08,279.41 ' style='stroke-width: 0.75; fill: none;' />
 <line x1='328.69' y1='317.23' x2='382.50' y2='317.23' style='stroke-width: 0.75;' />
 <line x1='328.69' y1='317.23' x2='328.69' y2='321.98' style='stroke-width: 0.75;' />
 <line x1='339.45' y1='317.23' x2='339.45' y2='321.98' style='stroke-width: 0.75;' />
@@ -3942,7 +3942,7 @@
 <g clip-path='url(#cpMzk0LjY2fDQ2NS45OHwzOC4wMnw4NS4zNA==)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='399.41,80.59 461.23,80.59 461.23,42.77 399.41,42.77 399.41,80.59 ' style='stroke-width: 0.75;' />
+<polygon points='399.41,80.59 461.23,80.59 461.23,42.77 399.41,42.77 ' style='stroke-width: 0.75; fill: none;' />
 <line x1='403.03' y1='42.77' x2='460.85' y2='42.77' style='stroke-width: 0.75;' />
 <line x1='403.03' y1='42.77' x2='403.03' y2='38.02' style='stroke-width: 0.75;' />
 <line x1='412.67' y1='42.77' x2='412.67' y2='38.02' style='stroke-width: 0.75;' />
@@ -3982,7 +3982,7 @@
 <g clip-path='url(#cpMzk0LjY2fDQ2NS45OHw4NS4zNHwxMzIuNjc=)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='399.41,127.92 461.23,127.92 461.23,90.10 399.41,90.10 399.41,127.92 ' style='stroke-width: 0.75;' />
+<polygon points='399.41,127.92 461.23,127.92 461.23,90.10 399.41,90.10 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMzk5LjQxfDQ2MS4yM3w5MC4xMHwxMjcuOTI=)'>
 <text x='430.32' y='114.56' text-anchor='middle' style='font-size: 15.73px; font-family: Arial;' textLength='30.59px' lengthAdjust='spacingAndGlyphs'>0.00</text>
@@ -4002,7 +4002,7 @@
 <g clip-path='url(#cpMzk0LjY2fDQ2NS45OHwxMzIuNjd8MTgwLjAw)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='399.41,175.25 461.23,175.25 461.23,137.42 399.41,137.42 399.41,175.25 ' style='stroke-width: 0.75;' />
+<polygon points='399.41,175.25 461.23,175.25 461.23,137.42 399.41,137.42 ' style='stroke-width: 0.75; fill: none;' />
 <line x1='461.23' y1='169.30' x2='461.23' y2='142.40' style='stroke-width: 0.75;' />
 <line x1='461.23' y1='169.30' x2='465.98' y2='169.30' style='stroke-width: 0.75;' />
 <line x1='461.23' y1='162.58' x2='465.98' y2='162.58' style='stroke-width: 0.75;' />
@@ -4031,7 +4031,7 @@
 <g clip-path='url(#cpMzk0LjY2fDQ2NS45OHwxODAuMDB8MjI3LjMz)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='399.41,222.58 461.23,222.58 461.23,184.75 399.41,184.75 399.41,222.58 ' style='stroke-width: 0.75;' />
+<polygon points='399.41,222.58 461.23,222.58 461.23,184.75 399.41,184.75 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMzk5LjQxfDQ2MS4yM3wxODQuNzV8MjIyLjU4)'>
 <text x='430.32' y='209.22' text-anchor='middle' style='font-size: 15.73px; font-family: Arial;' textLength='30.59px' lengthAdjust='spacingAndGlyphs'>0.05</text>
@@ -4051,7 +4051,7 @@
 <g clip-path='url(#cpMzk0LjY2fDQ2NS45OHwyMjcuMzN8Mjc0LjY2)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='399.41,269.90 461.23,269.90 461.23,232.08 399.41,232.08 399.41,269.90 ' style='stroke-width: 0.75;' />
+<polygon points='399.41,269.90 461.23,269.90 461.23,232.08 399.41,232.08 ' style='stroke-width: 0.75; fill: none;' />
 <line x1='461.23' y1='269.53' x2='461.23' y2='236.61' style='stroke-width: 0.75;' />
 <line x1='461.23' y1='269.53' x2='465.98' y2='269.53' style='stroke-width: 0.75;' />
 <line x1='461.23' y1='262.95' x2='465.98' y2='262.95' style='stroke-width: 0.75;' />
@@ -4081,7 +4081,7 @@
 <g clip-path='url(#cpMzk0LjY2fDQ2NS45OHwyNzQuNjZ8MzIxLjk4)'>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<polyline points='399.41,317.23 461.23,317.23 461.23,279.41 399.41,279.41 399.41,317.23 ' style='stroke-width: 0.75;' />
+<polygon points='399.41,317.23 461.23,317.23 461.23,279.41 399.41,279.41 ' style='stroke-width: 0.75; fill: none;' />
 </g>
 <g clip-path='url(#cpMzk5LjQxfDQ2MS4yM3wyNzkuNDF8MzE3LjIz)'>
 <rect x='393.40' y='316.80' width='9.64' height='0.43' style='stroke-width: 0.75; fill: #00FFFF;' />

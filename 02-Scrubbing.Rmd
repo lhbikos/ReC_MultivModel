@@ -125,6 +125,7 @@ You do need to change the API key/token if you want to download data from a diff
 library(qualtRics)
 #qualtrics_api_credentials(api_key = "mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg",
               #base_url = "spupsych.az1.qualtrics.com", overwrite = TRUE, install = TRUE)
+readRenviron("~/.Renviron")
 ```
 
 *all_surveys()* generates a dataframe containing information about all the surveys stored on your Qualtrics account.

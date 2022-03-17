@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Multiple Imputation (A Brief Demo) | ReCentering Psych Stats: Multivariate Modeling</title>
   <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Multiple Imputation (A Brief Demo) | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="DataDx.html"/>
 <link rel="next" href="MED.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -425,110 +425,110 @@ div.csl-indent {
 <li class="chapter" data-level="7.6.3" data-path="CompMed.html"><a href="CompMed.html#problem-3-use-other-data-that-is-available-to-you-1"><i class="fa fa-check"></i><b>7.6.3</b> Problem #3: Use other data that is available to you</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="CPAnal.html"><a href="CPAnal.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
-<li class="chapter" data-level="8" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>8</b> Moderated Mediation</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="ModMed.html"><a href="ModMed.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
-<ul>
-<li class="chapter" data-level="8.1.1" data-path="ModMed.html"><a href="ModMed.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="8.1.2" data-path="ModMed.html"><a href="ModMed.html#planning-for-practice-6"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
-<li class="chapter" data-level="8.1.3" data-path="ModMed.html"><a href="ModMed.html#readings-resources-6"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="8.1.4" data-path="ModMed.html"><a href="ModMed.html#packages-7"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="ModMed.html"><a href="ModMed.html#conditional-process-analysis"><i class="fa fa-check"></i><b>8.2</b> Conditional Process Analysis</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="ModMed.html"><a href="ModMed.html#the-definitional-and-conceptual-1"><i class="fa fa-check"></i><b>8.2.1</b> The definitional and conceptual</a></li>
-<li class="chapter" data-level="8.2.2" data-path="ModMed.html"><a href="ModMed.html#hayes--hayes_introduction_2018-piecewise-approach-to-building-models"><i class="fa fa-check"></i><b>8.2.2</b> Hayes’ <span class="citation">(<span>2018</span>)</span> Piecewise Approach to Building Models</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="ModMed.html"><a href="ModMed.html#workflow-for-moderated-mediation"><i class="fa fa-check"></i><b>8.3</b> Workflow for Moderated Mediation</a></li>
-<li class="chapter" data-level="8.4" data-path="ModMed.html"><a href="ModMed.html#research-vignette-6"><i class="fa fa-check"></i><b>8.4</b> Research Vignette</a>
-<ul>
-<li class="chapter" data-level="8.4.1" data-path="ModMed.html"><a href="ModMed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>8.4.1</b> Simulating the data from the journal article</a></li>
-<li class="chapter" data-level="8.4.2" data-path="ModMed.html"><a href="ModMed.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>8.4.2</b> Quick peek at the data</a></li>
-</ul></li>
-<li class="chapter" data-level="8.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5</b> Working the Moderated Mediation</a>
-<ul>
-<li class="chapter" data-level="8.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
-<ul>
-<li class="chapter" data-level="8.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.1</b> Analysis #1: A simple moderation</a></li>
-<li class="chapter" data-level="8.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.2</b> Analysis #2: Another simple moderation</a></li>
-<li class="chapter" data-level="8.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>8.5.1.3</b> Analysis #3: A simple mediation</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>8.6</b> The Moderated Mediation: A Combined analysis</a>
-<ul>
-<li class="chapter" data-level="8.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>8.6.1</b> Specification in <em>lavaan</em></a></li>
-<li class="chapter" data-level="8.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>8.6.2</b> A quick plot</a></li>
-<li class="chapter" data-level="8.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>8.6.3</b> Beginning the interpretation</a></li>
-<li class="chapter" data-level="8.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data"><i class="fa fa-check"></i><b>8.6.4</b> Tabling the data</a>
-<ul>
-<li class="chapter" data-level="8.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>8.6.4.1</b> Conditional Indirect effects</a></li>
-<li class="chapter" data-level="8.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>8.6.4.2</b> Conditional Direct effect</a></li>
-</ul></li>
-<li class="chapter" data-level="8.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>8.6.5</b> Model trimming</a></li>
-<li class="chapter" data-level="8.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>8.6.6</b> APA Style Write-up</a></li>
-</ul></li>
-<li class="chapter" data-level="8.7" data-path="ModMed.html"><a href="ModMed.html#residual-and-related-questions-1"><i class="fa fa-check"></i><b>8.7</b> Residual and Related Questions…</a></li>
-<li class="chapter" data-level="8.8" data-path="ModMed.html"><a href="ModMed.html#practice-problems-6"><i class="fa fa-check"></i><b>8.8</b> Practice Problems</a>
-<ul>
-<li class="chapter" data-level="8.8.1" data-path="ModMed.html"><a href="ModMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2"><i class="fa fa-check"></i><b>8.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
-<li class="chapter" data-level="8.8.2" data-path="ModMed.html"><a href="ModMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-2"><i class="fa fa-check"></i><b>8.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
-<li class="chapter" data-level="8.8.3" data-path="ModMed.html"><a href="ModMed.html#problem-3-use-other-data-that-is-available-to-you-2"><i class="fa fa-check"></i><b>8.8.3</b> Problem #3: Use other data that is available to you</a></li>
-</ul></li>
-<li class="chapter" data-level="8.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-1"><i class="fa fa-check"></i><b>8.9</b> Bonus Track:</a></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="MOD.html"><a href="MOD.html"><i class="fa fa-check"></i>MODERATION</a></li>
-<li class="chapter" data-level="9" data-path="SimpMod.html"><a href="SimpMod.html"><i class="fa fa-check"></i><b>9</b> Simple Moderation in OLS and MLE</a>
+<li class="chapter" data-level="8" data-path="SimpMod.html"><a href="SimpMod.html"><i class="fa fa-check"></i><b>8</b> Simple Moderation in OLS and MLE</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="SimpMod.html"><a href="SimpMod.html#navigating-this-lesson-7"><i class="fa fa-check"></i><b>9.1</b> Navigating this Lesson</a>
+<li class="chapter" data-level="8.1" data-path="SimpMod.html"><a href="SimpMod.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="SimpMod.html"><a href="SimpMod.html#learning-objectives-7"><i class="fa fa-check"></i><b>9.1.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="9.1.2" data-path="SimpMod.html"><a href="SimpMod.html#planning-for-practice-7"><i class="fa fa-check"></i><b>9.1.2</b> Planning for Practice</a></li>
-<li class="chapter" data-level="9.1.3" data-path="SimpMod.html"><a href="SimpMod.html#readings-resources-7"><i class="fa fa-check"></i><b>9.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="9.1.4" data-path="SimpMod.html"><a href="SimpMod.html#packages-8"><i class="fa fa-check"></i><b>9.1.4</b> Packages</a></li>
+<li class="chapter" data-level="8.1.1" data-path="SimpMod.html"><a href="SimpMod.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="SimpMod.html"><a href="SimpMod.html#planning-for-practice-6"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="8.1.3" data-path="SimpMod.html"><a href="SimpMod.html#readings-resources-6"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="8.1.4" data-path="SimpMod.html"><a href="SimpMod.html#packages-7"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="SimpMod.html"><a href="SimpMod.html#on-modeling-introductory-comments-on-the-simultaneously-invisible-and-paradigm-shifting-transition-we-are-making"><i class="fa fa-check"></i><b>9.2</b> On <em>Modeling</em>: Introductory Comments on the simultaneously invisible and paradigm-shifting transition we are making</a>
+<li class="chapter" data-level="8.2" data-path="SimpMod.html"><a href="SimpMod.html#on-modeling-introductory-comments-on-the-simultaneously-invisible-and-paradigm-shifting-transition-we-are-making"><i class="fa fa-check"></i><b>8.2</b> On <em>Modeling</em>: Introductory Comments on the simultaneously invisible and paradigm-shifting transition we are making</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="SimpMod.html"><a href="SimpMod.html#nhst-versus-modeling"><i class="fa fa-check"></i><b>9.2.1</b> NHST versus modeling</a></li>
-<li class="chapter" data-level="9.2.2" data-path="SimpMod.html"><a href="SimpMod.html#introducing-the-model"><i class="fa fa-check"></i><b>9.2.2</b> Introducing: <em>The Model</em></a></li>
+<li class="chapter" data-level="8.2.1" data-path="SimpMod.html"><a href="SimpMod.html#nhst-versus-modeling"><i class="fa fa-check"></i><b>8.2.1</b> NHST versus modeling</a></li>
+<li class="chapter" data-level="8.2.2" data-path="SimpMod.html"><a href="SimpMod.html#introducing-the-model"><i class="fa fa-check"></i><b>8.2.2</b> Introducing: <em>The Model</em></a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="SimpMod.html"><a href="SimpMod.html#ols-to-ml-for-estimation"><i class="fa fa-check"></i><b>9.3</b> OLS to ML for Estimation</a>
+<li class="chapter" data-level="8.3" data-path="SimpMod.html"><a href="SimpMod.html#ols-to-ml-for-estimation"><i class="fa fa-check"></i><b>8.3</b> OLS to ML for Estimation</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="SimpMod.html"><a href="SimpMod.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>9.3.1</b> Ordinary least squares (OLS)</a></li>
-<li class="chapter" data-level="9.3.2" data-path="SimpMod.html"><a href="SimpMod.html#maximum-likelihood-estimation-mle-a-brief-orientation"><i class="fa fa-check"></i><b>9.3.2</b> Maximum likelihood estimation (MLE): A brief orientation</a></li>
-<li class="chapter" data-level="9.3.3" data-path="SimpMod.html"><a href="SimpMod.html#ols-and-mle-comparison"><i class="fa fa-check"></i><b>9.3.3</b> OLS and MLE Comparison</a></li>
-<li class="chapter" data-level="9.3.4" data-path="SimpMod.html"><a href="SimpMod.html#hayes-and-process-aka-conditional-process-analysis"><i class="fa fa-check"></i><b>9.3.4</b> Hayes and PROCESS (aka conditional process analysis)</a></li>
+<li class="chapter" data-level="8.3.1" data-path="SimpMod.html"><a href="SimpMod.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>8.3.1</b> Ordinary least squares (OLS)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="SimpMod.html"><a href="SimpMod.html#maximum-likelihood-estimation-mle-a-brief-orientation"><i class="fa fa-check"></i><b>8.3.2</b> Maximum likelihood estimation (MLE): A brief orientation</a></li>
+<li class="chapter" data-level="8.3.3" data-path="SimpMod.html"><a href="SimpMod.html#ols-and-mle-comparison"><i class="fa fa-check"></i><b>8.3.3</b> OLS and MLE Comparison</a></li>
+<li class="chapter" data-level="8.3.4" data-path="SimpMod.html"><a href="SimpMod.html#hayes-and-process-aka-conditional-process-analysis"><i class="fa fa-check"></i><b>8.3.4</b> Hayes and PROCESS (aka conditional process analysis)</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="SimpMod.html"><a href="SimpMod.html#introducing-the-lavaan-package"><i class="fa fa-check"></i><b>9.4</b> Introducing the <em>lavaan</em> package</a>
+<li class="chapter" data-level="8.4" data-path="SimpMod.html"><a href="SimpMod.html#introducing-the-lavaan-package"><i class="fa fa-check"></i><b>8.4</b> Introducing the <em>lavaan</em> package</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="SimpMod.html"><a href="SimpMod.html#the-fiml-magic-for-which-we-have-been-waiting"><i class="fa fa-check"></i><b>9.4.1</b> The FIML magic for which we have been waiting</a></li>
+<li class="chapter" data-level="8.4.1" data-path="SimpMod.html"><a href="SimpMod.html#the-fiml-magic-for-which-we-have-been-waiting"><i class="fa fa-check"></i><b>8.4.1</b> The FIML magic for which we have been waiting</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="SimpMod.html"><a href="SimpMod.html#picking-up-with-moderation"><i class="fa fa-check"></i><b>9.5</b> Picking up with Moderation</a></li>
-<li class="chapter" data-level="9.6" data-path="SimpMod.html"><a href="SimpMod.html#workflow-for-a-simple-moderation"><i class="fa fa-check"></i><b>9.6</b> Workflow for a Simple Moderation</a></li>
-<li class="chapter" data-level="9.7" data-path="SimpMod.html"><a href="SimpMod.html#research-vignette-7"><i class="fa fa-check"></i><b>9.7</b> Research Vignette</a>
+<li class="chapter" data-level="8.5" data-path="SimpMod.html"><a href="SimpMod.html#picking-up-with-moderation"><i class="fa fa-check"></i><b>8.5</b> Picking up with Moderation</a></li>
+<li class="chapter" data-level="8.6" data-path="SimpMod.html"><a href="SimpMod.html#workflow-for-a-simple-moderation"><i class="fa fa-check"></i><b>8.6</b> Workflow for a Simple Moderation</a></li>
+<li class="chapter" data-level="8.7" data-path="SimpMod.html"><a href="SimpMod.html#research-vignette-6"><i class="fa fa-check"></i><b>8.7</b> Research Vignette</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="SimpMod.html"><a href="SimpMod.html#simulate-data-from-the-journal-article-1"><i class="fa fa-check"></i><b>9.7.1</b> Simulate Data from the Journal Article</a></li>
+<li class="chapter" data-level="8.7.1" data-path="SimpMod.html"><a href="SimpMod.html#simulate-data-from-the-journal-article-1"><i class="fa fa-check"></i><b>8.7.1</b> Simulate Data from the Journal Article</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8" data-path="SimpMod.html"><a href="SimpMod.html#working-the-simple-moderation-with-ols-and-mle"><i class="fa fa-check"></i><b>9.8</b> Working the Simple Moderation with OLS and MLE</a>
+<li class="chapter" data-level="8.8" data-path="SimpMod.html"><a href="SimpMod.html#working-the-simple-moderation-with-ols-and-mle"><i class="fa fa-check"></i><b>8.8</b> Working the Simple Moderation with OLS and MLE</a>
 <ul>
-<li class="chapter" data-level="9.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>9.8.1</b> OLS with <em>lm()</em></a>
+<li class="chapter" data-level="8.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>8.8.1</b> OLS with <em>lm()</em></a>
 <ul>
-<li class="chapter" data-level="9.8.1.1" data-path="SimpMod.html"><a href="SimpMod.html#an-apa-style-write-up-of-ols-results"><i class="fa fa-check"></i><b>9.8.1.1</b> An APA Style Write-up of OLS results</a></li>
+<li class="chapter" data-level="8.8.1.1" data-path="SimpMod.html"><a href="SimpMod.html#an-apa-style-write-up-of-ols-results"><i class="fa fa-check"></i><b>8.8.1.1</b> An APA Style Write-up of OLS results</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8.2" data-path="SimpMod.html"><a href="SimpMod.html#mle-with-lavaansem"><i class="fa fa-check"></i><b>9.8.2</b> MLE with <em>lavaan::sem()</em></a></li>
-<li class="chapter" data-level="9.8.3" data-path="SimpMod.html"><a href="SimpMod.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.8.3</b> Tabling the data</a></li>
-<li class="chapter" data-level="9.8.4" data-path="SimpMod.html"><a href="SimpMod.html#apa-style-writeup-3"><i class="fa fa-check"></i><b>9.8.4</b> APA Style Writeup</a></li>
+<li class="chapter" data-level="8.8.2" data-path="SimpMod.html"><a href="SimpMod.html#mle-with-lavaansem"><i class="fa fa-check"></i><b>8.8.2</b> MLE with <em>lavaan::sem()</em></a></li>
+<li class="chapter" data-level="8.8.3" data-path="SimpMod.html"><a href="SimpMod.html#tabling-the-data"><i class="fa fa-check"></i><b>8.8.3</b> Tabling the data</a></li>
+<li class="chapter" data-level="8.8.4" data-path="SimpMod.html"><a href="SimpMod.html#apa-style-writeup-3"><i class="fa fa-check"></i><b>8.8.4</b> APA Style Writeup</a></li>
 </ul></li>
-<li class="chapter" data-level="9.9" data-path="SimpMod.html"><a href="SimpMod.html#residual-and-related-questions-2"><i class="fa fa-check"></i><b>9.9</b> Residual and Related Questions…</a></li>
-<li class="chapter" data-level="9.10" data-path="SimpMod.html"><a href="SimpMod.html#practice-problems-7"><i class="fa fa-check"></i><b>9.10</b> Practice Problems</a>
+<li class="chapter" data-level="8.9" data-path="SimpMod.html"><a href="SimpMod.html#residual-and-related-questions-1"><i class="fa fa-check"></i><b>8.9</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="8.10" data-path="SimpMod.html"><a href="SimpMod.html#practice-problems-6"><i class="fa fa-check"></i><b>8.10</b> Practice Problems</a>
 <ul>
-<li class="chapter" data-level="9.10.1" data-path="SimpMod.html"><a href="SimpMod.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-3"><i class="fa fa-check"></i><b>9.10.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
-<li class="chapter" data-level="9.10.2" data-path="SimpMod.html"><a href="SimpMod.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-3"><i class="fa fa-check"></i><b>9.10.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
-<li class="chapter" data-level="9.10.3" data-path="SimpMod.html"><a href="SimpMod.html#problem-3-use-other-data-that-is-available-to-you-3"><i class="fa fa-check"></i><b>9.10.3</b> Problem #3: Use other data that is available to you</a></li>
+<li class="chapter" data-level="8.10.1" data-path="SimpMod.html"><a href="SimpMod.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2"><i class="fa fa-check"></i><b>8.10.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="8.10.2" data-path="SimpMod.html"><a href="SimpMod.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-2"><i class="fa fa-check"></i><b>8.10.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="8.10.3" data-path="SimpMod.html"><a href="SimpMod.html#problem-3-use-other-data-that-is-available-to-you-2"><i class="fa fa-check"></i><b>8.10.3</b> Problem #3: Use other data that is available to you</a></li>
 </ul></li>
-<li class="chapter" data-level="9.11" data-path="SimpMod.html"><a href="SimpMod.html#bonus-track-2"><i class="fa fa-check"></i><b>9.11</b> Bonus Track:</a></li>
+<li class="chapter" data-level="8.11" data-path="SimpMod.html"><a href="SimpMod.html#bonus-track-1"><i class="fa fa-check"></i><b>8.11</b> Bonus Track:</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="CPAnal.html"><a href="CPAnal.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
+<li class="chapter" data-level="9" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>9</b> Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="ModMed.html"><a href="ModMed.html#navigating-this-lesson-7"><i class="fa fa-check"></i><b>9.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="ModMed.html"><a href="ModMed.html#learning-objectives-7"><i class="fa fa-check"></i><b>9.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="ModMed.html"><a href="ModMed.html#planning-for-practice-7"><i class="fa fa-check"></i><b>9.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="9.1.3" data-path="ModMed.html"><a href="ModMed.html#readings-resources-7"><i class="fa fa-check"></i><b>9.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="9.1.4" data-path="ModMed.html"><a href="ModMed.html#packages-8"><i class="fa fa-check"></i><b>9.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="ModMed.html"><a href="ModMed.html#conditional-process-analysis"><i class="fa fa-check"></i><b>9.2</b> Conditional Process Analysis</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="ModMed.html"><a href="ModMed.html#the-definitional-and-conceptual-1"><i class="fa fa-check"></i><b>9.2.1</b> The definitional and conceptual</a></li>
+<li class="chapter" data-level="9.2.2" data-path="ModMed.html"><a href="ModMed.html#hayes--hayes_introduction_2018-piecewise-approach-to-building-models"><i class="fa fa-check"></i><b>9.2.2</b> Hayes’ <span class="citation">(<span>2018</span>)</span> Piecewise Approach to Building Models</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="ModMed.html"><a href="ModMed.html#workflow-for-moderated-mediation"><i class="fa fa-check"></i><b>9.3</b> Workflow for Moderated Mediation</a></li>
+<li class="chapter" data-level="9.4" data-path="ModMed.html"><a href="ModMed.html#research-vignette-7"><i class="fa fa-check"></i><b>9.4</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="ModMed.html"><a href="ModMed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>9.4.1</b> Simulating the data from the journal article</a></li>
+<li class="chapter" data-level="9.4.2" data-path="ModMed.html"><a href="ModMed.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>9.4.2</b> Quick peek at the data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5</b> Working the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="9.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.1</b> Analysis #1: A simple moderation</a></li>
+<li class="chapter" data-level="9.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.2</b> Analysis #2: Another simple moderation</a></li>
+<li class="chapter" data-level="9.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>9.5.1.3</b> Analysis #3: A simple mediation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>9.6</b> The Moderated Mediation: A Combined analysis</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>9.6.1</b> Specification in <em>lavaan</em></a></li>
+<li class="chapter" data-level="9.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>9.6.2</b> A quick plot</a></li>
+<li class="chapter" data-level="9.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>9.6.3</b> Beginning the interpretation</a></li>
+<li class="chapter" data-level="9.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.6.4</b> Tabling the data</a>
+<ul>
+<li class="chapter" data-level="9.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>9.6.4.1</b> Conditional Indirect effects</a></li>
+<li class="chapter" data-level="9.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>9.6.4.2</b> Conditional Direct effect</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>9.6.5</b> Model trimming</a></li>
+<li class="chapter" data-level="9.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>9.6.6</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="ModMed.html"><a href="ModMed.html#residual-and-related-questions-2"><i class="fa fa-check"></i><b>9.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="9.8" data-path="ModMed.html"><a href="ModMed.html#practice-problems-7"><i class="fa fa-check"></i><b>9.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="ModMed.html"><a href="ModMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-3"><i class="fa fa-check"></i><b>9.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="9.8.2" data-path="ModMed.html"><a href="ModMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-3"><i class="fa fa-check"></i><b>9.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="9.8.3" data-path="ModMed.html"><a href="ModMed.html#problem-3-use-other-data-that-is-available-to-you-3"><i class="fa fa-check"></i><b>9.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-2"><i class="fa fa-check"></i><b>9.9</b> Bonus Track:</a></li>
+</ul></li>
 <li class="divider"></li>
 #<li><a href="https:link" target="_blank">Open access book-in-progress</br>
 <li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
@@ -592,13 +592,13 @@ div.csl-indent {
 <h3><span class="header-section-number">5.1.4</span> Packages</h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
 <!-- TODO: Build out this section. -->
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="multimp.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
-<span id="cb125-2"><a href="multimp.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(qualtRics)){<span class="fu">install.packages</span>(<span class="st">&quot;qualtRics&quot;</span>)}</span>
-<span id="cb125-3"><a href="multimp.html#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
-<span id="cb125-4"><a href="multimp.html#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(dplyr)){<span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)}</span>
-<span id="cb125-5"><a href="multimp.html#cb125-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(mice)){<span class="fu">install.packages</span>(<span class="st">&quot;mice&quot;</span>)}</span>
-<span id="cb125-6"><a href="multimp.html#cb125-6" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(foreign)){install.packages(&quot;foreign&quot;)}</span></span>
-<span id="cb125-7"><a href="multimp.html#cb125-7" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(car)){install.packages(&quot;car&quot;)}</span></span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="multimp.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb120-2"><a href="multimp.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(qualtRics)){<span class="fu">install.packages</span>(<span class="st">&quot;qualtRics&quot;</span>)}</span>
+<span id="cb120-3"><a href="multimp.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
+<span id="cb120-4"><a href="multimp.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(dplyr)){<span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)}</span>
+<span id="cb120-5"><a href="multimp.html#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(mice)){<span class="fu">install.packages</span>(<span class="st">&quot;mice&quot;</span>)}</span>
+<span id="cb120-6"><a href="multimp.html#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(foreign)){install.packages(&quot;foreign&quot;)}</span></span>
+<span id="cb120-7"><a href="multimp.html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(car)){install.packages(&quot;car&quot;)}</span></span></code></pre></div>
 </div>
 </div>
 <div id="workflow-for-multiple-imputation" class="section level2" number="5.2">
@@ -722,33 +722,33 @@ div.csl-indent {
 <li>Exclude variables with more than 25% missing</li>
 </ul>
 <p>To make this as realistic as possible. Let’s start with our very raw data. The <a href="scrub.html#scrub">Scrubbing chapter</a> provides greater detail on importing data directly from Qualtrics. Therefore, I will repeat our protocol that imports the data and then scrubs it for our purposes. As described in the prior chapter, I named variables in Qualtrics to facilitate a more intuitive use in R.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="multimp.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qualtRics)</span>
-<span id="cb126-2"><a href="multimp.html#cb126-2" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> qualtRics<span class="sc">::</span><span class="fu">fetch_survey</span>(<span class="at">surveyID =</span> <span class="st">&quot;SV_b2cClqAlLGQ6nLU&quot;</span>,<span class="at">useLocalTime =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb126-3"><a href="multimp.html#cb126-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">label=</span><span class="cn">FALSE</span>, <span class="at">convert=</span><span class="cn">FALSE</span>, <span class="at">force_request =</span> <span class="cn">TRUE</span>, <span class="at">import_id =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="multimp.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qualtRics)</span>
+<span id="cb121-2"><a href="multimp.html#cb121-2" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> qualtRics<span class="sc">::</span><span class="fu">fetch_survey</span>(<span class="at">surveyID =</span> <span class="st">&quot;SV_b2cClqAlLGQ6nLU&quot;</span>,<span class="at">useLocalTime =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb121-3"><a href="multimp.html#cb121-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">label=</span><span class="cn">FALSE</span>, <span class="at">convert=</span><span class="cn">FALSE</span>, <span class="at">force_request =</span> <span class="cn">TRUE</span>, <span class="at">import_id =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Next, I apply inclusion/exclusion criteria. As described in the <a href="scrub.html#scrub">Scrubbing chapter</a> this includes:</p>
 <ul>
 <li>excluding all <em>previews</em></li>
 <li>including only those who consented</li>
 <li>including only those whose rated course was offered by a U.S. institution</li>
 </ul>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="multimp.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb127-2"><a href="multimp.html#cb127-2" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> <span class="fu">filter</span> (QTRX_df2, DistributionChannel <span class="sc">!=</span> <span class="st">&quot;preview&quot;</span>)</span>
-<span id="cb127-3"><a href="multimp.html#cb127-3" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span><span class="fu">filter</span> (QTRX_df2, Consent <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb127-4"><a href="multimp.html#cb127-4" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span><span class="fu">filter</span> (QTRX_df2, USinst <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="multimp.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb122-2"><a href="multimp.html#cb122-2" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> <span class="fu">filter</span> (QTRX_df2, DistributionChannel <span class="sc">!=</span> <span class="st">&quot;preview&quot;</span>)</span>
+<span id="cb122-3"><a href="multimp.html#cb122-3" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span><span class="fu">filter</span> (QTRX_df2, Consent <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb122-4"><a href="multimp.html#cb122-4" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span><span class="fu">filter</span> (QTRX_df2, USinst <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
 <p>Preparing the data also meant renaming some variables that started with numbers (a hassle in R). I also renamed variables on the Campus Climate scale so that we know to which subscale they belong.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="multimp.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb128-2"><a href="multimp.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="co">#renaming variables that started with numbers</span></span>
-<span id="cb128-3"><a href="multimp.html#cb128-3" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(QTRX_df2, <span class="at">iRace1 =</span> <span class="st">&#39;1_iRace&#39;</span>, <span class="at">iRace2 =</span> <span class="st">&#39;2_iRace&#39;</span>, <span class="at">iRace3 =</span> <span class="st">&#39;3_iRace&#39;</span>, <span class="at">iRace4 =</span> <span class="st">&#39;4_iRace&#39;</span>, <span class="at">iRace5 =</span> <span class="st">&#39;5_iRace&#39;</span>, <span class="at">iRace6 =</span> <span class="st">&#39;6_iRace&#39;</span>, <span class="at">iRace7 =</span> <span class="st">&#39;7_iRace&#39;</span>, <span class="at">iRace8 =</span> <span class="st">&#39;8_iRace&#39;</span>, <span class="at">iRace9 =</span> <span class="st">&#39;9_iRace&#39;</span>, <span class="at">iRace10 =</span> <span class="st">&#39;10_iRace&#39;</span>)</span>
-<span id="cb128-4"><a href="multimp.html#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="co">#renaming variables from the identification of classmates</span></span>
-<span id="cb128-5"><a href="multimp.html#cb128-5" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(QTRX_df2, <span class="at">cmBiMulti =</span> Race_10, <span class="at">cmBlack =</span> Race_1, <span class="at">cmNBPoC =</span> Race_7, <span class="at">cmWhite =</span> Race_8, <span class="at">cmUnsure =</span> Race_2)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="multimp.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb123-2"><a href="multimp.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="co">#renaming variables that started with numbers</span></span>
+<span id="cb123-3"><a href="multimp.html#cb123-3" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(QTRX_df2, <span class="at">iRace1 =</span> <span class="st">&#39;1_iRace&#39;</span>, <span class="at">iRace2 =</span> <span class="st">&#39;2_iRace&#39;</span>, <span class="at">iRace3 =</span> <span class="st">&#39;3_iRace&#39;</span>, <span class="at">iRace4 =</span> <span class="st">&#39;4_iRace&#39;</span>, <span class="at">iRace5 =</span> <span class="st">&#39;5_iRace&#39;</span>, <span class="at">iRace6 =</span> <span class="st">&#39;6_iRace&#39;</span>, <span class="at">iRace7 =</span> <span class="st">&#39;7_iRace&#39;</span>, <span class="at">iRace8 =</span> <span class="st">&#39;8_iRace&#39;</span>, <span class="at">iRace9 =</span> <span class="st">&#39;9_iRace&#39;</span>, <span class="at">iRace10 =</span> <span class="st">&#39;10_iRace&#39;</span>)</span>
+<span id="cb123-4"><a href="multimp.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="co">#renaming variables from the identification of classmates</span></span>
+<span id="cb123-5"><a href="multimp.html#cb123-5" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(QTRX_df2, <span class="at">cmBiMulti =</span> Race_10, <span class="at">cmBlack =</span> Race_1, <span class="at">cmNBPoC =</span> Race_7, <span class="at">cmWhite =</span> Race_8, <span class="at">cmUnsure =</span> Race_2)</span></code></pre></div>
 <p>The Qualtrics download does not include an ID number. Because new variables are always appended to the end of the df, we also include code to make this the first column.</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="multimp.html#cb129-1" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> QTRX_df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>())</span>
-<span id="cb129-2"><a href="multimp.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="co">#moving the ID number to the first column; requires </span></span>
-<span id="cb129-3"><a href="multimp.html#cb129-3" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> QTRX_df2<span class="sc">%&gt;%</span><span class="fu">select</span>(ID, <span class="fu">everything</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="multimp.html#cb124-1" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> QTRX_df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>())</span>
+<span id="cb124-2"><a href="multimp.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="co">#moving the ID number to the first column; requires </span></span>
+<span id="cb124-3"><a href="multimp.html#cb124-3" aria-hidden="true" tabindex="-1"></a>QTRX_df2 <span class="ot">&lt;-</span> QTRX_df2<span class="sc">%&gt;%</span><span class="fu">select</span>(ID, <span class="fu">everything</span>())</span></code></pre></div>
 <p>Because this huge df is cumbersome to work with, let’s downsize it to be closer to the size we will work with in the imputation</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="multimp.html#cb130-1" aria-hidden="true" tabindex="-1"></a>mimp_df <span class="ot">&lt;-</span>  <span class="fu">select</span> (QTRX_df2, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6, cEval_1, cEval_13, cEval_19, format)</span>
-<span id="cb130-2"><a href="multimp.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="co">#glimpse(mimp_df)</span></span>
-<span id="cb130-3"><a href="multimp.html#cb130-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mimp_df)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="multimp.html#cb125-1" aria-hidden="true" tabindex="-1"></a>mimp_df <span class="ot">&lt;-</span>  <span class="fu">select</span> (QTRX_df2, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6, cEval_1, cEval_13, cEval_19, format)</span>
+<span id="cb125-2"><a href="multimp.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="co">#glimpse(mimp_df)</span></span>
+<span id="cb125-3"><a href="multimp.html#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mimp_df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 29
 ##      ID iRace1 iRace2 iRace3 iRace4 iRace5 iRace6 iRace7 iRace8 iRace9 iRace10
 ##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt;  &lt;lgl&gt;  &lt;lgl&gt;  &lt;lgl&gt;  &lt;lgl&gt;  
@@ -767,46 +767,46 @@ div.csl-indent {
 <div id="creating-composite-variables" class="section level3" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> Creating Composite Variables</h3>
 <p>Qualtrics imports many of the categorical variables as numbers. R often reads them numerically (integers or numbers). If they are directly converted to factors, R will sometimes collapse. In this example, if there is a race that is not represented (e.g., 2 for BiMulti), when the numbers are changed to factors, R will assume it’s ordered and will change up the numbers. Therefore, it is ESSENTIAL to check (again and again ad nauseum) to ensure that your variables are recoding in a manner you understand.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="multimp.html#cb132-1" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace1 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace1,</span>
-<span id="cb132-2"><a href="multimp.html#cb132-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb132-3"><a href="multimp.html#cb132-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb132-4"><a href="multimp.html#cb132-4" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace2 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace2,</span>
-<span id="cb132-5"><a href="multimp.html#cb132-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb132-6"><a href="multimp.html#cb132-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb132-7"><a href="multimp.html#cb132-7" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace3 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace3,</span>
-<span id="cb132-8"><a href="multimp.html#cb132-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb132-9"><a href="multimp.html#cb132-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb132-10"><a href="multimp.html#cb132-10" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace4 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace4,</span>
-<span id="cb132-11"><a href="multimp.html#cb132-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb132-12"><a href="multimp.html#cb132-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb132-13"><a href="multimp.html#cb132-13" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace5 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace5,</span>
-<span id="cb132-14"><a href="multimp.html#cb132-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb132-15"><a href="multimp.html#cb132-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb132-16"><a href="multimp.html#cb132-16" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace6 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace6,</span>
-<span id="cb132-17"><a href="multimp.html#cb132-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb132-18"><a href="multimp.html#cb132-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb132-19"><a href="multimp.html#cb132-19" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace7 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace7,</span>
-<span id="cb132-20"><a href="multimp.html#cb132-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb132-21"><a href="multimp.html#cb132-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb132-22"><a href="multimp.html#cb132-22" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace8 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace8,</span>
-<span id="cb132-23"><a href="multimp.html#cb132-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb132-24"><a href="multimp.html#cb132-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb132-25"><a href="multimp.html#cb132-25" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace9 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace9,</span>
-<span id="cb132-26"><a href="multimp.html#cb132-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb132-27"><a href="multimp.html#cb132-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb132-28"><a href="multimp.html#cb132-28" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace10 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace10,</span>
-<span id="cb132-29"><a href="multimp.html#cb132-29" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb132-30"><a href="multimp.html#cb132-30" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="multimp.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mimp_df)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="multimp.html#cb127-1" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace1 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace1,</span>
+<span id="cb127-2"><a href="multimp.html#cb127-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb127-3"><a href="multimp.html#cb127-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb127-4"><a href="multimp.html#cb127-4" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace2 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace2,</span>
+<span id="cb127-5"><a href="multimp.html#cb127-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb127-6"><a href="multimp.html#cb127-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb127-7"><a href="multimp.html#cb127-7" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace3 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace3,</span>
+<span id="cb127-8"><a href="multimp.html#cb127-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb127-9"><a href="multimp.html#cb127-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb127-10"><a href="multimp.html#cb127-10" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace4 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace4,</span>
+<span id="cb127-11"><a href="multimp.html#cb127-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb127-12"><a href="multimp.html#cb127-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb127-13"><a href="multimp.html#cb127-13" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace5 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace5,</span>
+<span id="cb127-14"><a href="multimp.html#cb127-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb127-15"><a href="multimp.html#cb127-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb127-16"><a href="multimp.html#cb127-16" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace6 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace6,</span>
+<span id="cb127-17"><a href="multimp.html#cb127-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb127-18"><a href="multimp.html#cb127-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb127-19"><a href="multimp.html#cb127-19" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace7 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace7,</span>
+<span id="cb127-20"><a href="multimp.html#cb127-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb127-21"><a href="multimp.html#cb127-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb127-22"><a href="multimp.html#cb127-22" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace8 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace8,</span>
+<span id="cb127-23"><a href="multimp.html#cb127-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb127-24"><a href="multimp.html#cb127-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb127-25"><a href="multimp.html#cb127-25" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace9 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace9,</span>
+<span id="cb127-26"><a href="multimp.html#cb127-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb127-27"><a href="multimp.html#cb127-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb127-28"><a href="multimp.html#cb127-28" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iRace10 <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>iRace10,</span>
+<span id="cb127-29"><a href="multimp.html#cb127-29" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb127-30"><a href="multimp.html#cb127-30" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="multimp.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mimp_df)</span></code></pre></div>
 <p>This is a quick recap of how we calculated the proportion of instructional staff who are BIPOC.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="multimp.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a count of BIPOC faculty identified by each respondent</span></span>
-<span id="cb134-2"><a href="multimp.html#cb134-2" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>count.BIPOC <span class="ot">&lt;-</span> <span class="fu">apply</span>(mimp_df[<span class="fu">c</span>(<span class="st">&quot;iRace1&quot;</span>, <span class="st">&quot;iRace2&quot;</span>, <span class="st">&quot;iRace3&quot;</span>, <span class="st">&quot;iRace4&quot;</span>, <span class="st">&quot;iRace5&quot;</span>, <span class="st">&quot;iRace6&quot;</span>, <span class="st">&quot;iRace7&quot;</span>, <span class="st">&quot;iRace8&quot;</span>, <span class="st">&quot;iRace9&quot;</span>, <span class="st">&quot;iRace10&quot;</span>)], <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>)))</span>
-<span id="cb134-3"><a href="multimp.html#cb134-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-4"><a href="multimp.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a count of all instructional  faculty identified by each respondent</span></span>
-<span id="cb134-5"><a href="multimp.html#cb134-5" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>count.nMiss <span class="ot">&lt;-</span> <span class="fu">apply</span>(mimp_df[<span class="fu">c</span>(<span class="st">&quot;iRace1&quot;</span>, <span class="st">&quot;iRace2&quot;</span>, <span class="st">&quot;iRace3&quot;</span>, <span class="st">&quot;iRace4&quot;</span>, <span class="st">&quot;iRace5&quot;</span>, <span class="st">&quot;iRace6&quot;</span>, <span class="st">&quot;iRace7&quot;</span>, <span class="st">&quot;iRace8&quot;</span>, <span class="st">&quot;iRace9&quot;</span>, <span class="st">&quot;iRace10&quot;</span>)], <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)))</span>
-<span id="cb134-6"><a href="multimp.html#cb134-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-7"><a href="multimp.html#cb134-7" aria-hidden="true" tabindex="-1"></a><span class="co">#calculating the proportion of BIPOC faculty with the counts above</span></span>
-<span id="cb134-8"><a href="multimp.html#cb134-8" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iBIPOC_pr <span class="ot">=</span> mimp_df<span class="sc">$</span>count.BIPOC<span class="sc">/</span>mimp_df<span class="sc">$</span>count.nMiss</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="multimp.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a count of BIPOC faculty identified by each respondent</span></span>
+<span id="cb129-2"><a href="multimp.html#cb129-2" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>count.BIPOC <span class="ot">&lt;-</span> <span class="fu">apply</span>(mimp_df[<span class="fu">c</span>(<span class="st">&quot;iRace1&quot;</span>, <span class="st">&quot;iRace2&quot;</span>, <span class="st">&quot;iRace3&quot;</span>, <span class="st">&quot;iRace4&quot;</span>, <span class="st">&quot;iRace5&quot;</span>, <span class="st">&quot;iRace6&quot;</span>, <span class="st">&quot;iRace7&quot;</span>, <span class="st">&quot;iRace8&quot;</span>, <span class="st">&quot;iRace9&quot;</span>, <span class="st">&quot;iRace10&quot;</span>)], <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>)))</span>
+<span id="cb129-3"><a href="multimp.html#cb129-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-4"><a href="multimp.html#cb129-4" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a count of all instructional  faculty identified by each respondent</span></span>
+<span id="cb129-5"><a href="multimp.html#cb129-5" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>count.nMiss <span class="ot">&lt;-</span> <span class="fu">apply</span>(mimp_df[<span class="fu">c</span>(<span class="st">&quot;iRace1&quot;</span>, <span class="st">&quot;iRace2&quot;</span>, <span class="st">&quot;iRace3&quot;</span>, <span class="st">&quot;iRace4&quot;</span>, <span class="st">&quot;iRace5&quot;</span>, <span class="st">&quot;iRace6&quot;</span>, <span class="st">&quot;iRace7&quot;</span>, <span class="st">&quot;iRace8&quot;</span>, <span class="st">&quot;iRace9&quot;</span>, <span class="st">&quot;iRace10&quot;</span>)], <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)))</span>
+<span id="cb129-6"><a href="multimp.html#cb129-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-7"><a href="multimp.html#cb129-7" aria-hidden="true" tabindex="-1"></a><span class="co">#calculating the proportion of BIPOC faculty with the counts above</span></span>
+<span id="cb129-8"><a href="multimp.html#cb129-8" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>iBIPOC_pr <span class="ot">=</span> mimp_df<span class="sc">$</span>count.BIPOC<span class="sc">/</span>mimp_df<span class="sc">$</span>count.nMiss</span></code></pre></div>
 <p>I have included another variable, <em>format</em> that we will use as auxiliary variable. As written, these are the following meanings:</p>
 <ol style="list-style-type: decimal">
 <li>In-person (all persons are attending in person)</li>
@@ -822,90 +822,90 @@ div.csl-indent {
 <li>100% online/virtual (4)
 NA. Other (5)</li>
 </ol>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="multimp.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co">#we can assign more than one value to the same factor by repeating the label</span></span>
-<span id="cb135-2"><a href="multimp.html#cb135-2" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>format <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>format,</span>
-<span id="cb135-3"><a href="multimp.html#cb135-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),</span>
-<span id="cb135-4"><a href="multimp.html#cb135-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;InPerson&quot;</span>, <span class="st">&quot;Blend&quot;</span>, <span class="st">&quot;Blend&quot;</span>, <span class="st">&quot;Online&quot;</span>, <span class="fu">is.na</span>(<span class="dv">5</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="multimp.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co">#we can assign more than one value to the same factor by repeating the label</span></span>
+<span id="cb130-2"><a href="multimp.html#cb130-2" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>format <span class="ot">=</span> <span class="fu">factor</span>(mimp_df<span class="sc">$</span>format,</span>
+<span id="cb130-3"><a href="multimp.html#cb130-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),</span>
+<span id="cb130-4"><a href="multimp.html#cb130-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;InPerson&quot;</span>, <span class="st">&quot;Blend&quot;</span>, <span class="st">&quot;Blend&quot;</span>, <span class="st">&quot;Online&quot;</span>, <span class="fu">is.na</span>(<span class="dv">5</span>)))</span></code></pre></div>
 <p>Let’s trim the df again to just include the variables we need in the imputation.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="multimp.html#cb136-1" aria-hidden="true" tabindex="-1"></a>mimp_df <span class="ot">&lt;-</span>  <span class="fu">select</span> (mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6, cEval_1, cEval_13, cEval_19, format)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="multimp.html#cb131-1" aria-hidden="true" tabindex="-1"></a>mimp_df <span class="ot">&lt;-</span>  <span class="fu">select</span> (mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6, cEval_1, cEval_13, cEval_19, format)</span></code></pre></div>
 <p>Recall one of the guidelines was to remove variables with more than 25% missing. This code calculates the proportion missing from our variables and places them in rank order.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="multimp.html#cb137-1" aria-hidden="true" tabindex="-1"></a>p_missing <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(mimp_df, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x))))<span class="sc">/</span><span class="fu">nrow</span>(mimp_df)</span>
-<span id="cb137-2"><a href="multimp.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(p_missing[p_missing <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>##     Blst_1  iBIPOC_pr     Blst_4   Belong_1   Belong_3     Blst_2     Blst_3 
-## 0.10526316 0.05263158 0.05263158 0.02631579 0.02631579 0.02631579 0.02631579 
-##     Blst_5     Blst_6    cEval_1   cEval_19 
-## 0.02631579 0.02631579 0.02631579 0.02631579</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="multimp.html#cb132-1" aria-hidden="true" tabindex="-1"></a>p_missing <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(mimp_df, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x))))<span class="sc">/</span><span class="fu">nrow</span>(mimp_df)</span>
+<span id="cb132-2"><a href="multimp.html#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(p_missing[p_missing <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##     Blst_1     Blst_4   Belong_1   Belong_3     Blst_2     Blst_3     Blst_5 
+## 0.13461538 0.09615385 0.07692308 0.07692308 0.07692308 0.07692308 0.07692308 
+##     Blst_6   Belong_2    cEval_1   cEval_19  iBIPOC_pr    cmBlack   cEval_13 
+## 0.07692308 0.05769231 0.05769231 0.05769231 0.03846154 0.03846154 0.03846154</code></pre>
 <p>Luckily, none of our variables have more than 25% missing (<em>or at least they didn’t when I wrote this; the open nature of the survey and how it sources this chapter could change this</em>). If we did have a variable with more than 25% missing, we would have to consider what to do about it.</p>
 <p>Later we learn that we should eliminate case with greater than 50% missingness. Let’s write code for that, now.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="multimp.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculating number and proportion of item-level missingness</span></span>
-<span id="cb139-2"><a href="multimp.html#cb139-2" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>nmiss <span class="ot">&lt;-</span> mimp_df<span class="sc">%&gt;%</span></span>
-<span id="cb139-3"><a href="multimp.html#cb139-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>format) <span class="sc">%&gt;%</span> <span class="co">#the colon allows us to include all variables between the two listed (the variables need to be in order)</span></span>
-<span id="cb139-4"><a href="multimp.html#cb139-4" aria-hidden="true" tabindex="-1"></a>    is.na <span class="sc">%&gt;%</span> </span>
-<span id="cb139-5"><a href="multimp.html#cb139-5" aria-hidden="true" tabindex="-1"></a>    rowSums</span>
-<span id="cb139-6"><a href="multimp.html#cb139-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-7"><a href="multimp.html#cb139-7" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="ot">&lt;-</span> mimp_df<span class="sc">%&gt;%</span></span>
-<span id="cb139-8"><a href="multimp.html#cb139-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_miss =</span> (nmiss<span class="sc">/</span><span class="dv">15</span>)<span class="sc">*</span><span class="dv">100</span>) <span class="co">#11 is the number of variables included in calculating the proportion</span></span>
-<span id="cb139-9"><a href="multimp.html#cb139-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-10"><a href="multimp.html#cb139-10" aria-hidden="true" tabindex="-1"></a>mimp_df <span class="ot">&lt;-</span> <span class="fu">filter</span>(mimp_df, prop_miss <span class="sc">&lt;=</span> <span class="dv">50</span>)  <span class="co">#update df to have only those with at least 50% of complete data</span></span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="multimp.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculating number and proportion of item-level missingness</span></span>
+<span id="cb134-2"><a href="multimp.html#cb134-2" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="sc">$</span>nmiss <span class="ot">&lt;-</span> mimp_df<span class="sc">%&gt;%</span></span>
+<span id="cb134-3"><a href="multimp.html#cb134-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>format) <span class="sc">%&gt;%</span> <span class="co">#the colon allows us to include all variables between the two listed (the variables need to be in order)</span></span>
+<span id="cb134-4"><a href="multimp.html#cb134-4" aria-hidden="true" tabindex="-1"></a>    is.na <span class="sc">%&gt;%</span> </span>
+<span id="cb134-5"><a href="multimp.html#cb134-5" aria-hidden="true" tabindex="-1"></a>    rowSums</span>
+<span id="cb134-6"><a href="multimp.html#cb134-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-7"><a href="multimp.html#cb134-7" aria-hidden="true" tabindex="-1"></a>mimp_df<span class="ot">&lt;-</span> mimp_df<span class="sc">%&gt;%</span></span>
+<span id="cb134-8"><a href="multimp.html#cb134-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_miss =</span> (nmiss<span class="sc">/</span><span class="dv">15</span>)<span class="sc">*</span><span class="dv">100</span>) <span class="co">#11 is the number of variables included in calculating the proportion</span></span>
+<span id="cb134-9"><a href="multimp.html#cb134-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-10"><a href="multimp.html#cb134-10" aria-hidden="true" tabindex="-1"></a>mimp_df <span class="ot">&lt;-</span> <span class="fu">filter</span>(mimp_df, prop_miss <span class="sc">&lt;=</span> <span class="dv">50</span>)  <span class="co">#update df to have only those with at least 50% of complete data</span></span></code></pre></div>
 <p>Once again, trim the df to include only the data to be included in the imputation</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="multimp.html#cb140-1" aria-hidden="true" tabindex="-1"></a>mimp_df <span class="ot">&lt;-</span>  <span class="fu">select</span> (mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6, cEval_1, cEval_13, cEval_19, format)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="multimp.html#cb135-1" aria-hidden="true" tabindex="-1"></a>mimp_df <span class="ot">&lt;-</span>  <span class="fu">select</span> (mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6, cEval_1, cEval_13, cEval_19, format)</span></code></pre></div>
 </div>
 <div id="the-multiple-imputation" class="section level3" number="5.5.3">
 <h3><span class="header-section-number">5.5.3</span> The Multiple Imputation</h3>
 <p>Because multiple imputation is a <em>random</em> process, if we all want the same answers we need to set a <em>random seed.</em></p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="multimp.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210404</span>) <span class="co">#you can pick any number you want, today I&#39;m using today&#39;s datestamp</span></span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="multimp.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210404</span>) <span class="co">#you can pick any number you want, today I&#39;m using today&#39;s datestamp</span></span></code></pre></div>
 <p>The program we will use is <em>mice</em>. <em>mice</em> assumes that each variable has a distribution and it imputes missing variables according to that distribution.</p>
 <p>This means we need to correctly specify each variable’s format/role. <em>mice</em> will automatically choose a distribution (think “format”) for each variable; we can override this by changing the methods’ characteristics.</p>
 <p>The following code sets up the structure for the imputation. I’m not an expert at this – just following the Katitas example.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="multimp.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
-<span id="cb142-2"><a href="multimp.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="co"># runs the mice code with 0 iterations</span></span>
-<span id="cb142-3"><a href="multimp.html#cb142-3" aria-hidden="true" tabindex="-1"></a>imp <span class="ot">&lt;-</span> <span class="fu">mice</span>(mimp_df, <span class="at">maxit =</span> <span class="dv">0</span>)</span>
-<span id="cb142-4"><a href="multimp.html#cb142-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract predictor Matrix and methods of imputation </span></span>
-<span id="cb142-5"><a href="multimp.html#cb142-5" aria-hidden="true" tabindex="-1"></a>predM <span class="ot">=</span> imp<span class="sc">$</span>predictorMatrix</span>
-<span id="cb142-6"><a href="multimp.html#cb142-6" aria-hidden="true" tabindex="-1"></a>meth <span class="ot">=</span> imp<span class="sc">$</span>method</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="multimp.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb137-2"><a href="multimp.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="co"># runs the mice code with 0 iterations</span></span>
+<span id="cb137-3"><a href="multimp.html#cb137-3" aria-hidden="true" tabindex="-1"></a>imp <span class="ot">&lt;-</span> <span class="fu">mice</span>(mimp_df, <span class="at">maxit =</span> <span class="dv">0</span>)</span>
+<span id="cb137-4"><a href="multimp.html#cb137-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract predictor Matrix and methods of imputation </span></span>
+<span id="cb137-5"><a href="multimp.html#cb137-5" aria-hidden="true" tabindex="-1"></a>predM <span class="ot">=</span> imp<span class="sc">$</span>predictorMatrix</span>
+<span id="cb137-6"><a href="multimp.html#cb137-6" aria-hidden="true" tabindex="-1"></a>meth <span class="ot">=</span> imp<span class="sc">$</span>method</span></code></pre></div>
 <p>Here we code what format/role each variable should be.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="multimp.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co">#These variables are left in the dataset, but setting them = 0 means they are not used as predictors.  </span></span>
-<span id="cb143-2"><a href="multimp.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="co">#We want our ID to be retained in the df.  There&#39;s nothing missing from it, and we don&#39;t want it used as a predictor, so it will just hang out.</span></span>
-<span id="cb143-3"><a href="multimp.html#cb143-3" aria-hidden="true" tabindex="-1"></a>predM[, <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>)]<span class="ot">=</span><span class="dv">0</span></span>
-<span id="cb143-4"><a href="multimp.html#cb143-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-5"><a href="multimp.html#cb143-5" aria-hidden="true" tabindex="-1"></a><span class="co">#If you like, view the first few rows of the predictor matrix</span></span>
-<span id="cb143-6"><a href="multimp.html#cb143-6" aria-hidden="true" tabindex="-1"></a><span class="co">#head(predM)</span></span>
-<span id="cb143-7"><a href="multimp.html#cb143-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-8"><a href="multimp.html#cb143-8" aria-hidden="true" tabindex="-1"></a><span class="co">#We don&#39;t have any ordered categorical variables, but if we did we would follow this format</span></span>
-<span id="cb143-9"><a href="multimp.html#cb143-9" aria-hidden="true" tabindex="-1"></a><span class="co">#poly &lt;- c(&quot;Var1&quot;, &quot;Var2&quot;)</span></span>
-<span id="cb143-10"><a href="multimp.html#cb143-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-11"><a href="multimp.html#cb143-11" aria-hidden="true" tabindex="-1"></a><span class="co">#We don&#39;t have any dichotomous variables, but if we did we would follow this format</span></span>
-<span id="cb143-12"><a href="multimp.html#cb143-12" aria-hidden="true" tabindex="-1"></a><span class="co">#log &lt;- c(&quot;Var3&quot;, &quot;Var4&quot;)</span></span>
-<span id="cb143-13"><a href="multimp.html#cb143-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-14"><a href="multimp.html#cb143-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Unordered categorical variables (nominal variables), but if we did we would follow this format</span></span>
-<span id="cb143-15"><a href="multimp.html#cb143-15" aria-hidden="true" tabindex="-1"></a>poly2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;format&quot;</span>)</span>
-<span id="cb143-16"><a href="multimp.html#cb143-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-17"><a href="multimp.html#cb143-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Turn their methods matrix into the specified imputation models</span></span>
-<span id="cb143-18"><a href="multimp.html#cb143-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove the hashtag if you have any of these variables</span></span>
-<span id="cb143-19"><a href="multimp.html#cb143-19" aria-hidden="true" tabindex="-1"></a><span class="co">#meth[poly] = &quot;polr&quot; </span></span>
-<span id="cb143-20"><a href="multimp.html#cb143-20" aria-hidden="true" tabindex="-1"></a><span class="co">#meth[log] = &quot;logreg&quot;</span></span>
-<span id="cb143-21"><a href="multimp.html#cb143-21" aria-hidden="true" tabindex="-1"></a>meth[poly2] <span class="ot">=</span> <span class="st">&quot;polyreg&quot;</span></span>
-<span id="cb143-22"><a href="multimp.html#cb143-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-23"><a href="multimp.html#cb143-23" aria-hidden="true" tabindex="-1"></a>meth</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="multimp.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co">#These variables are left in the dataset, but setting them = 0 means they are not used as predictors.  </span></span>
+<span id="cb138-2"><a href="multimp.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="co">#We want our ID to be retained in the df.  There&#39;s nothing missing from it, and we don&#39;t want it used as a predictor, so it will just hang out.</span></span>
+<span id="cb138-3"><a href="multimp.html#cb138-3" aria-hidden="true" tabindex="-1"></a>predM[, <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>)]<span class="ot">=</span><span class="dv">0</span></span>
+<span id="cb138-4"><a href="multimp.html#cb138-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-5"><a href="multimp.html#cb138-5" aria-hidden="true" tabindex="-1"></a><span class="co">#If you like, view the first few rows of the predictor matrix</span></span>
+<span id="cb138-6"><a href="multimp.html#cb138-6" aria-hidden="true" tabindex="-1"></a><span class="co">#head(predM)</span></span>
+<span id="cb138-7"><a href="multimp.html#cb138-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-8"><a href="multimp.html#cb138-8" aria-hidden="true" tabindex="-1"></a><span class="co">#We don&#39;t have any ordered categorical variables, but if we did we would follow this format</span></span>
+<span id="cb138-9"><a href="multimp.html#cb138-9" aria-hidden="true" tabindex="-1"></a><span class="co">#poly &lt;- c(&quot;Var1&quot;, &quot;Var2&quot;)</span></span>
+<span id="cb138-10"><a href="multimp.html#cb138-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-11"><a href="multimp.html#cb138-11" aria-hidden="true" tabindex="-1"></a><span class="co">#We don&#39;t have any dichotomous variables, but if we did we would follow this format</span></span>
+<span id="cb138-12"><a href="multimp.html#cb138-12" aria-hidden="true" tabindex="-1"></a><span class="co">#log &lt;- c(&quot;Var3&quot;, &quot;Var4&quot;)</span></span>
+<span id="cb138-13"><a href="multimp.html#cb138-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-14"><a href="multimp.html#cb138-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Unordered categorical variables (nominal variables), but if we did we would follow this format</span></span>
+<span id="cb138-15"><a href="multimp.html#cb138-15" aria-hidden="true" tabindex="-1"></a>poly2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;format&quot;</span>)</span>
+<span id="cb138-16"><a href="multimp.html#cb138-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-17"><a href="multimp.html#cb138-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Turn their methods matrix into the specified imputation models</span></span>
+<span id="cb138-18"><a href="multimp.html#cb138-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove the hashtag if you have any of these variables</span></span>
+<span id="cb138-19"><a href="multimp.html#cb138-19" aria-hidden="true" tabindex="-1"></a><span class="co">#meth[poly] = &quot;polr&quot; </span></span>
+<span id="cb138-20"><a href="multimp.html#cb138-20" aria-hidden="true" tabindex="-1"></a><span class="co">#meth[log] = &quot;logreg&quot;</span></span>
+<span id="cb138-21"><a href="multimp.html#cb138-21" aria-hidden="true" tabindex="-1"></a>meth[poly2] <span class="ot">=</span> <span class="st">&quot;polyreg&quot;</span></span>
+<span id="cb138-22"><a href="multimp.html#cb138-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-23"><a href="multimp.html#cb138-23" aria-hidden="true" tabindex="-1"></a>meth</span></code></pre></div>
 <pre><code>##        ID iBIPOC_pr   cmBlack  Belong_1  Belong_2  Belong_3    Blst_1    Blst_2 
 ##        &quot;&quot;     &quot;pmm&quot;        &quot;&quot;     &quot;pmm&quot;        &quot;&quot;     &quot;pmm&quot;     &quot;pmm&quot;     &quot;pmm&quot; 
 ##    Blst_3    Blst_4    Blst_5    Blst_6   cEval_1  cEval_13  cEval_19    format 
 ##     &quot;pmm&quot;     &quot;pmm&quot;     &quot;pmm&quot;     &quot;pmm&quot;     &quot;pmm&quot;        &quot;&quot;     &quot;pmm&quot; &quot;polyreg&quot;</code></pre>
-<p>This list (meth) contains all our variables; “pmm” is the default and is the “predictive mean matching” process used. We see that format (an unordered categorical variable) is noted as “polyreg.” If we had used other categorical variables (ordered/poly, dichotomous/log), we would have seen those designations, instead. If there is "" underneath it means the data is complete.</p>
+<p>This list (meth) contains all our variables; “pmm” is the default and is the “predictive mean matching” process used. We see that format (an unordered categorical variable) is noted as “polyreg.” If we had used other categorical variables (ordered/poly, dichotomous/log), we would have seen those designations, instead. If there is “” underneath it means the data is complete.</p>
 <p>Our variables of interest are now configured to be imputed with the imputation method we specified. Empty cells in the method matrix mean that those variables aren’t going to be imputed.</p>
-<p>If a variable has no missing values, it is automatically set to be empty. We can also manually set variables to not be imputed with the <em>meth[variable]=""</em> command.</p>
+<p>If a variable has no missing values, it is automatically set to be empty. We can also manually set variables to not be imputed with the <em>meth[variable]=““</em> command.</p>
 <p>The code below begins the imputation process. We are asking for 5 datasets. If you have many cases and many variables, this can take awhile. How many imputations? Recommendations have ranged as low as five to several hundred.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="multimp.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With this command, we tell mice to impute the anesimpor2 data, create 5vvdatasets, use predM as the predictor matrix and don&#39;t print the imputation process. </span></span>
-<span id="cb145-2"><a href="multimp.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="co">#If you would like to see the process (or if the process is failing to execute) set print as TRUE; seeing where the execution halts can point to problematic variables (more notes at end of lecture)</span></span>
-<span id="cb145-3"><a href="multimp.html#cb145-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb145-4"><a href="multimp.html#cb145-4" aria-hidden="true" tabindex="-1"></a>imp2 <span class="ot">&lt;-</span> <span class="fu">mice</span>(mimp_df, <span class="at">maxit =</span> <span class="dv">5</span>, </span>
-<span id="cb145-5"><a href="multimp.html#cb145-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">predictorMatrix =</span> predM, </span>
-<span id="cb145-6"><a href="multimp.html#cb145-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> meth, <span class="at">print =</span>  <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="multimp.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With this command, we tell mice to impute the anesimpor2 data, create 5vvdatasets, use predM as the predictor matrix and don&#39;t print the imputation process. </span></span>
+<span id="cb140-2"><a href="multimp.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="co">#If you would like to see the process (or if the process is failing to execute) set print as TRUE; seeing where the execution halts can point to problematic variables (more notes at end of lecture)</span></span>
+<span id="cb140-3"><a href="multimp.html#cb140-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-4"><a href="multimp.html#cb140-4" aria-hidden="true" tabindex="-1"></a>imp2 <span class="ot">&lt;-</span> <span class="fu">mice</span>(mimp_df, <span class="at">maxit =</span> <span class="dv">5</span>, </span>
+<span id="cb140-5"><a href="multimp.html#cb140-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">predictorMatrix =</span> predM, </span>
+<span id="cb140-6"><a href="multimp.html#cb140-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> meth, <span class="at">print =</span>  <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Warning: Number of logged events: 275</code></pre>
 <p>We need to create a “long file” that stacks all the imputed data. Looking at the df in R Studio shows us that when imp = 0 (the pe-imputed data), there is still missingness. As we scroll through the remaining imputations, there are no NA cells.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="multimp.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, turn the datasets into long format</span></span>
-<span id="cb147-2"><a href="multimp.html#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This procedure is, best I can tell, unique to mice and wouldn&#39;t work for repeated measures designs</span></span>
-<span id="cb147-3"><a href="multimp.html#cb147-3" aria-hidden="true" tabindex="-1"></a>mimp_long <span class="ot">&lt;-</span> mice<span class="sc">::</span><span class="fu">complete</span>(imp2, <span class="at">action=</span><span class="st">&quot;long&quot;</span>, <span class="at">include =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="multimp.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, turn the datasets into long format</span></span>
+<span id="cb142-2"><a href="multimp.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This procedure is, best I can tell, unique to mice and wouldn&#39;t work for repeated measures designs</span></span>
+<span id="cb142-3"><a href="multimp.html#cb142-3" aria-hidden="true" tabindex="-1"></a>mimp_long <span class="ot">&lt;-</span> mice<span class="sc">::</span><span class="fu">complete</span>(imp2, <span class="at">action=</span><span class="st">&quot;long&quot;</span>, <span class="at">include =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>If we look at it, we can see 6 sets of data. Playing with it…</p>
 <ul>
 <li>.imp = 0 is the unimputed set; there are still missing values</li>
@@ -913,27 +913,27 @@ NA. Other (5)</li>
 </ul>
 <p>Sort on the ID number to see how this works…6 sets of data.</p>
 <p>With this fully imputed file, let’s recode the data as we had done for the OLS regression with the raw, unimputed, data.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="multimp.html#cb148-1" aria-hidden="true" tabindex="-1"></a>p_missing_mimp_long <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(mimp_long, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x))))<span class="sc">/</span><span class="fu">nrow</span>(mimp_long)</span>
-<span id="cb148-2"><a href="multimp.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(p_missing_mimp_long[p_missing_mimp_long <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)<span class="co">#check to see if this works</span></span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="multimp.html#cb143-1" aria-hidden="true" tabindex="-1"></a>p_missing_mimp_long <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(mimp_long, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x))))<span class="sc">/</span><span class="fu">nrow</span>(mimp_long)</span>
+<span id="cb143-2"><a href="multimp.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(p_missing_mimp_long[p_missing_mimp_long <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)<span class="co">#check to see if this works</span></span></code></pre></div>
 </div>
 <div id="creating-scale-scores" class="section level3" number="5.5.4">
 <h3><span class="header-section-number">5.5.4</span> Creating Scale Scores</h3>
 <p>Because our imputation was item-level, we need to score the variables with scales/subscales. As demonstrated more completely in the <a href="score.html#score">Scoring chapter</a>, this required reversing one item in the campus climate scale:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="multimp.html#cb149-1" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="ot">&lt;-</span> mimp_long <span class="sc">%&gt;%</span></span>
-<span id="cb149-2"><a href="multimp.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rBlst_1 =</span> <span class="dv">8</span> <span class="sc">-</span> Blst_1) <span class="co">#if you had multiple items, you could add a pipe (%&gt;%) at the end of the line and add more until the last one</span></span></code></pre></div>
-<p>Below is the scoring protocol we used in the AIA protocol for scoring. Although the protocol below functionally says, "Create a mean score if (65-80)% is non-missing, for the imputed version, it doesn’t harm anything to leave this because there is no missing data.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="multimp.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjstats)</span>
-<span id="cb150-2"><a href="multimp.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Making the list of variables</span></span>
-<span id="cb150-3"><a href="multimp.html#cb150-3" aria-hidden="true" tabindex="-1"></a>Belonging_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Belong_1&#39;</span>,<span class="st">&#39;Belong_2&#39;</span>,<span class="st">&#39;Belong_3&#39;</span>)</span>
-<span id="cb150-4"><a href="multimp.html#cb150-4" aria-hidden="true" tabindex="-1"></a>ResponseBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;rBlst_1&#39;</span>, <span class="st">&#39;Blst_4&#39;</span>,<span class="st">&#39;Blst_6&#39;</span>)</span>
-<span id="cb150-5"><a href="multimp.html#cb150-5" aria-hidden="true" tabindex="-1"></a>StigmaBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Blst_2&#39;</span>, <span class="st">&#39;Blst_3&#39;</span>,<span class="st">&#39;Blst_5&#39;</span>)</span>
-<span id="cb150-6"><a href="multimp.html#cb150-6" aria-hidden="true" tabindex="-1"></a>ClimateBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;rBlst_1&#39;</span>, <span class="st">&#39;Blst_4&#39;</span>,<span class="st">&#39;Blst_6&#39;</span>,<span class="st">&#39;Blst_2&#39;</span>, <span class="st">&#39;Blst_3&#39;</span>,<span class="st">&#39;Blst_5&#39;</span> )</span>
-<span id="cb150-7"><a href="multimp.html#cb150-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb150-8"><a href="multimp.html#cb150-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating the new variables</span></span>
-<span id="cb150-9"><a href="multimp.html#cb150-9" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="sc">$</span>Belonging <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(mimp_long[,Belonging_vars], .<span class="dv">65</span>)</span>
-<span id="cb150-10"><a href="multimp.html#cb150-10" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="sc">$</span>ResponseBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(mimp_long[,ResponseBL_vars], .<span class="dv">80</span>)</span>
-<span id="cb150-11"><a href="multimp.html#cb150-11" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="sc">$</span>StigmaBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(mimp_long[,StigmaBL_vars], .<span class="dv">80</span>)</span>
-<span id="cb150-12"><a href="multimp.html#cb150-12" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="sc">$</span>ClimateBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(mimp_long[,ClimateBL_vars], .<span class="dv">80</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="multimp.html#cb144-1" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="ot">&lt;-</span> mimp_long <span class="sc">%&gt;%</span></span>
+<span id="cb144-2"><a href="multimp.html#cb144-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rBlst_1 =</span> <span class="dv">8</span> <span class="sc">-</span> Blst_1) <span class="co">#if you had multiple items, you could add a pipe (%&gt;%) at the end of the line and add more until the last one</span></span></code></pre></div>
+<p>Below is the scoring protocol we used in the AIA protocol for scoring. Although the protocol below functionally says, “Create a mean score if (65-80)% is non-missing, for the imputed version, it doesn’t harm anything to leave this because there is no missing data.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="multimp.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjstats)</span>
+<span id="cb145-2"><a href="multimp.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Making the list of variables</span></span>
+<span id="cb145-3"><a href="multimp.html#cb145-3" aria-hidden="true" tabindex="-1"></a>Belonging_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Belong_1&#39;</span>,<span class="st">&#39;Belong_2&#39;</span>,<span class="st">&#39;Belong_3&#39;</span>)</span>
+<span id="cb145-4"><a href="multimp.html#cb145-4" aria-hidden="true" tabindex="-1"></a>ResponseBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;rBlst_1&#39;</span>, <span class="st">&#39;Blst_4&#39;</span>,<span class="st">&#39;Blst_6&#39;</span>)</span>
+<span id="cb145-5"><a href="multimp.html#cb145-5" aria-hidden="true" tabindex="-1"></a>StigmaBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Blst_2&#39;</span>, <span class="st">&#39;Blst_3&#39;</span>,<span class="st">&#39;Blst_5&#39;</span>)</span>
+<span id="cb145-6"><a href="multimp.html#cb145-6" aria-hidden="true" tabindex="-1"></a>ClimateBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;rBlst_1&#39;</span>, <span class="st">&#39;Blst_4&#39;</span>,<span class="st">&#39;Blst_6&#39;</span>,<span class="st">&#39;Blst_2&#39;</span>, <span class="st">&#39;Blst_3&#39;</span>,<span class="st">&#39;Blst_5&#39;</span> )</span>
+<span id="cb145-7"><a href="multimp.html#cb145-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-8"><a href="multimp.html#cb145-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating the new variables</span></span>
+<span id="cb145-9"><a href="multimp.html#cb145-9" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="sc">$</span>Belonging <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(mimp_long[,Belonging_vars], .<span class="dv">65</span>)</span>
+<span id="cb145-10"><a href="multimp.html#cb145-10" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="sc">$</span>ResponseBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(mimp_long[,ResponseBL_vars], .<span class="dv">80</span>)</span>
+<span id="cb145-11"><a href="multimp.html#cb145-11" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="sc">$</span>StigmaBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(mimp_long[,StigmaBL_vars], .<span class="dv">80</span>)</span>
+<span id="cb145-12"><a href="multimp.html#cb145-12" aria-hidden="true" tabindex="-1"></a>mimp_long<span class="sc">$</span>ClimateBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(mimp_long[,ClimateBL_vars], .<span class="dv">80</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="multiple-regression-with-multiply-imputed-data" class="section level2" number="5.6">
@@ -942,74 +942,74 @@ NA. Other (5)</li>
 <pre><code>Climate_fit &lt;- lm(ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)
 summary(Climate_fit)</code></pre>
 <p>In order for the regression to use multiply imputed data, it must be a “mids” (multiply imputed data sets) type</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="multimp.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to mids type - mice can work with this type</span></span>
-<span id="cb152-2"><a href="multimp.html#cb152-2" aria-hidden="true" tabindex="-1"></a>mimp_mids<span class="ot">&lt;-</span><span class="fu">as.mids</span>(mimp_long)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="multimp.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to mids type - mice can work with this type</span></span>
+<span id="cb147-2"><a href="multimp.html#cb147-2" aria-hidden="true" tabindex="-1"></a>mimp_mids<span class="ot">&lt;-</span><span class="fu">as.mids</span>(mimp_long)</span></code></pre></div>
 <p>Here’s what we do with imputed data:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="multimp.html#cb153-1" aria-hidden="true" tabindex="-1"></a>fitimp <span class="ot">&lt;-</span> <span class="fu">with</span>(mimp_mids,</span>
-<span id="cb153-2"><a href="multimp.html#cb153-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">lm</span>(ClimateBL <span class="sc">~</span> Belonging <span class="sc">+</span> cmBlack <span class="sc">+</span> iBIPOC_pr))</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="multimp.html#cb148-1" aria-hidden="true" tabindex="-1"></a>fitimp <span class="ot">&lt;-</span> <span class="fu">with</span>(mimp_mids,</span>
+<span id="cb148-2"><a href="multimp.html#cb148-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">lm</span>(ClimateBL <span class="sc">~</span> Belonging <span class="sc">+</span> cmBlack <span class="sc">+</span> iBIPOC_pr))</span></code></pre></div>
 <p>In this process, 5 individual, OLS, regressions are being conducted and the results being pooled into this single set.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="multimp.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to get the 5, individual imputations</span></span>
-<span id="cb154-2"><a href="multimp.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fitimp)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="multimp.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to get the 5, individual imputations</span></span>
+<span id="cb149-2"><a href="multimp.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fitimp)</span></code></pre></div>
 <pre><code>## # A tibble: 20 x 6
-##    term         estimate std.error statistic   p.value  nobs
-##    &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
-##  1 (Intercept)  2.58        0.577    4.48    0.0000805    38
-##  2 Belonging   -0.000893    0.118   -0.00757 0.994        38
-##  3 cmBlack     -0.0172      0.0212  -0.808   0.425        38
-##  4 iBIPOC_pr   -0.240       0.435   -0.553   0.584        38
-##  5 (Intercept)  2.60        0.572    4.54    0.0000669    38
-##  6 Belonging   -0.00414     0.118   -0.0349  0.972        38
-##  7 cmBlack     -0.0172      0.0213  -0.808   0.425        38
-##  8 iBIPOC_pr   -0.254       0.431   -0.590   0.559        38
-##  9 (Intercept)  2.60        0.543    4.78    0.0000330    38
-## 10 Belonging    0.0202      0.116    0.175   0.862        38
-## 11 cmBlack     -0.0189      0.0204  -0.926   0.361        38
-## 12 iBIPOC_pr   -0.505       0.436   -1.16    0.256        38
-## 13 (Intercept)  2.60        0.544    4.77    0.0000338    38
-## 14 Belonging   -0.0103      0.112   -0.0922  0.927        38
-## 15 cmBlack     -0.0180      0.0207  -0.867   0.392        38
-## 16 iBIPOC_pr   -0.233       0.418   -0.556   0.582        38
-## 17 (Intercept)  2.52        0.578    4.36    0.000113     38
-## 18 Belonging    0.0163      0.120    0.136   0.893        38
-## 19 cmBlack     -0.0190      0.0214  -0.884   0.383        38
-## 20 iBIPOC_pr   -0.201       0.434   -0.463   0.646        38</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="multimp.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the pooled result</span></span>
-<span id="cb156-2"><a href="multimp.html#cb156-2" aria-hidden="true" tabindex="-1"></a>pooledests <span class="ot">&lt;-</span> <span class="fu">pool</span>(fitimp)</span>
-<span id="cb156-3"><a href="multimp.html#cb156-3" aria-hidden="true" tabindex="-1"></a>pooledests</span></code></pre></div>
+##    term        estimate std.error statistic      p.value  nobs
+##    &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
+##  1 (Intercept)   3.10      0.510      6.09  0.000000233     49
+##  2 Belonging    -0.0365    0.111     -0.329 0.744           49
+##  3 cmBlack      -0.0329    0.0210    -1.56  0.125           49
+##  4 iBIPOC_pr    -0.603     0.417     -1.45  0.155           49
+##  5 (Intercept)   3.22      0.510      6.32  0.000000106     49
+##  6 Belonging    -0.0865    0.108     -0.802 0.426           49
+##  7 cmBlack      -0.0286    0.0208    -1.37  0.177           49
+##  8 iBIPOC_pr    -0.523     0.395     -1.32  0.193           49
+##  9 (Intercept)   3.18      0.488      6.51  0.0000000542    49
+## 10 Belonging    -0.0689    0.105     -0.656 0.515           49
+## 11 cmBlack      -0.0302    0.0204    -1.48  0.147           49
+## 12 iBIPOC_pr    -0.651     0.400     -1.63  0.110           49
+## 13 (Intercept)   3.18      0.514      6.18  0.000000169     49
+## 14 Belonging    -0.0753    0.108     -0.697 0.489           49
+## 15 cmBlack      -0.0305    0.0210    -1.46  0.152           49
+## 16 iBIPOC_pr    -0.415     0.387     -1.07  0.289           49
+## 17 (Intercept)   3.27      0.520      6.29  0.000000114     49
+## 18 Belonging    -0.0978    0.109     -0.896 0.375           49
+## 19 cmBlack      -0.0271    0.0213    -1.27  0.210           49
+## 20 iBIPOC_pr    -0.482     0.392     -1.23  0.225           49</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="multimp.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the pooled result</span></span>
+<span id="cb151-2"><a href="multimp.html#cb151-2" aria-hidden="true" tabindex="-1"></a>pooledests <span class="ot">&lt;-</span> <span class="fu">pool</span>(fitimp)</span>
+<span id="cb151-3"><a href="multimp.html#cb151-3" aria-hidden="true" tabindex="-1"></a>pooledests</span></code></pre></div>
 <pre><code>## Class: mipo    m = 5 
-##          term m     estimate         ubar            b            t dfcom
-## 1 (Intercept) 5  2.578918801 0.3168579493 1.069500e-03 0.3181413496    34
-## 2   Belonging 5  0.004230366 0.0136383176 1.774196e-04 0.0138512211    34
-## 3     cmBlack 5 -0.018047803 0.0004426305 7.621488e-07 0.0004435451    34
-## 4   iBIPOC_pr 5 -0.286610867 0.1857887593 1.524495e-02 0.2040827000    34
-##         df         riv      lambda        fmi
-## 1 32.02824 0.004050396 0.004034057 0.06090051
-## 2 31.60868 0.015610688 0.015370740 0.07227145
-## 3 32.09475 0.002066235 0.002061974 0.05893305
-## 4 27.65271 0.098466348 0.089639841 0.14903819</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="multimp.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co">#str(pooledests)</span></span></code></pre></div>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="multimp.html#cb159-1" aria-hidden="true" tabindex="-1"></a>sumpooled <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">pool</span>(fitimp))</span>
-<span id="cb159-2"><a href="multimp.html#cb159-2" aria-hidden="true" tabindex="-1"></a>sumpooled</span></code></pre></div>
-<pre><code>##          term     estimate  std.error   statistic       df      p.value
-## 1 (Intercept)  2.578918801 0.56404020  4.57222516 32.02824 6.846407e-05
-## 2   Belonging  0.004230366 0.11769121  0.03594462 31.60868 9.715526e-01
-## 3     cmBlack -0.018047803 0.02106051 -0.85694994 32.09475 3.978263e-01
-## 4   iBIPOC_pr -0.286610867 0.45175513 -0.63443854 27.65271 5.310089e-01</code></pre>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="multimp.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co">#str(sumpooled)</span></span></code></pre></div>
-<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = 0.004, <span class="math inline">\(p\)</span> = 0.972) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.287, <span class="math inline">\(p\)</span> = 0.531) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (<span class="math inline">\(B\)</span> = -0.018, <span class="math inline">\(p\)</span> = 0.398). Results are presented in Table X.</p>
+##          term m    estimate         ubar            b            t dfcom
+## 1 (Intercept) 5  3.18956660 0.2584650301 3.983493e-03 0.2632452218    45
+## 2   Belonging 5 -0.07300792 0.0117174337 5.380533e-04 0.0123630977    45
+## 3     cmBlack 5 -0.02985330 0.0004371653 4.890076e-06 0.0004430334    45
+## 4   iBIPOC_pr 5 -0.53476392 0.1587727506 8.875746e-03 0.1694236457    45
+##         df        riv     lambda        fmi
+## 1 42.19463 0.01849454 0.01815870 0.06160817
+## 2 39.76456 0.05510285 0.05222510 0.09655034
+## 3 42.47452 0.01342305 0.01324526 0.05664339
+## 4 38.86218 0.06708264 0.06286546 0.10763784</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="multimp.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co">#str(pooledests)</span></span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="multimp.html#cb154-1" aria-hidden="true" tabindex="-1"></a>sumpooled <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">pool</span>(fitimp))</span>
+<span id="cb154-2"><a href="multimp.html#cb154-2" aria-hidden="true" tabindex="-1"></a>sumpooled</span></code></pre></div>
+<pre><code>##          term    estimate  std.error  statistic       df      p.value
+## 1 (Intercept)  3.18956660 0.51307428  6.2165786 42.19463 1.903512e-07
+## 2   Belonging -0.07300792 0.11118947 -0.6566083 39.76456 5.152150e-01
+## 3     cmBlack -0.02985330 0.02104836 -1.4183198 42.47452 1.633933e-01
+## 4   iBIPOC_pr -0.53476392 0.41161104 -1.2991972 38.86218 2.015315e-01</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="multimp.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co">#str(sumpooled)</span></span></code></pre></div>
+<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = -0.073, <span class="math inline">\(p\)</span> = 0.515) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.535, <span class="math inline">\(p\)</span> = 0.202) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (<span class="math inline">\(B\)</span> = -0.030, <span class="math inline">\(p\)</span> = 0.163). Results are presented in Table X.</p>
 </div>
 <div id="toward-the-apa-style-write-up-1" class="section level2" number="5.7">
 <h2><span class="header-section-number">5.7</span> Toward the APA Style Write-up</h2>
 <div id="methoddata-diagnostics" class="section level3" number="5.7.1">
 <h3><span class="header-section-number">5.7.1</span> Method/Data Diagnostics</h3>
-<p>Data screening suggested that 52 individuals opened the survey link. Of those, 44 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 38 met this criteria. Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 36%. Across the dataset, 3.35% of cells had missing data and 84.21% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with fewer than 50% missing to be included the multiple imputation <span class="citation">(<a href="#ref-katitas_getting_2019" role="doc-biblioref">Katitas, 2019</a>)</span>.</p>
-<p>Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (<span class="math inline">\(W\)</span> = 0.806, <span class="math inline">\(p\)</span> = 0.0000) and the proportion of BIPOC instructional staff(<span class="math inline">\(W\)</span> = 0.823, <span class="math inline">\(p\)</span> = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent’s belonging (<span class="math inline">\(W\)</span> = 0.976, <span class="math inline">\(p\)</span> = 0.5767) and the respondent’s perception of campus climate for Black students (<span class="math inline">\(W\)</span> = 0.934, <span class="math inline">\(p\)</span> = 0.0376) did not differ differently from a normal distribution.</p>
-<p>We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the <em>outlier()</em> function in the <em>psych</em> package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 0 exceed three standard deviations beyond the median. <em>Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis</em> AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.*</p>
+<p>Data screening suggested that 75 individuals opened the survey link. Of those, 60 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 52 met this criteria. Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 91%. Across the dataset, 4.18% of cells had missing data and 86.00% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with fewer than 50% missing to be included the multiple imputation <span class="citation">(<a href="#ref-katitas_getting_2019" role="doc-biblioref">Katitas, 2019</a>)</span>.</p>
+<p>Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (<span class="math inline">\(W\)</span> = 0.816, <span class="math inline">\(p\)</span> = 0.0000) and the proportion of BIPOC instructional staff(<span class="math inline">\(W\)</span> = 0.757, <span class="math inline">\(p\)</span> = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent’s belonging (<span class="math inline">\(W\)</span> = 0.978, <span class="math inline">\(p\)</span> = 0.4901) and the respondent’s perception of campus climate for Black students (<span class="math inline">\(W\)</span> = 0.933, <span class="math inline">\(p\)</span> = 0.0104) did not differ differently from a normal distribution.</p>
+<p>We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the <em>outlier()</em> function in the <em>psych</em> package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 49 exceed three standard deviations beyond the median. <em>Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis</em> AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.*</p>
 <p>We managed missing data with multiple imputation <span class="citation">(<a href="#ref-enders_multiple_2017" role="doc-biblioref">Enders, 2017</a>; <a href="#ref-katitas_getting_2019" role="doc-biblioref">Katitas, 2019</a>)</span>. We imputed five sets of data with the R package, <em>mice</em> (v. 3.13) – a program that utilizes conditional multiple imputation. The imputation included the item-level variables that comprised our scales, the variables that represented proportion of BIPOC instructional staff and proportion of Black classmates, as well as four auxiliary variables (three variables from the course evaluation and the format [in-person/blended/virtual] of the class).</p>
 </div>
 <div id="results-1" class="section level3" number="5.7.2">
 <h3><span class="header-section-number">5.7.2</span> Results</h3>
-<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = 0.050, <span class="math inline">\(p\)</span> = 0.684) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.456, <span class="math inline">\(p\)</span> = 0.312) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (<span class="math inline">\(B\)</span> = -0.015, <span class="math inline">\(p\)</span> = 0.457). Although it accounted for 5.28% of the variance, the overall model was not statistically significant. Results are presented in Table 2.</p>
+<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = -0.056, <span class="math inline">\(p\)</span> = 0.623) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.697, <span class="math inline">\(p\)</span> = 0.105) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (<span class="math inline">\(B\)</span> = -0.028, <span class="math inline">\(p\)</span> = 0.195). Although it accounted for 10.97% of the variance, the overall model was not statistically significant. Results are presented in Table 2.</p>
 <p><strong>Some notes about this write-up</strong></p>
 <ul>
 <li>I went ahead and used the data diagnostics that we did in the AIA method. It feels to me like these should be calculated with the multiply imputed data (i.e., 5 sets, with pooled estimates and standard errors), but I do not see that modeled – anywhere in R.</li>
@@ -1251,10 +1251,10 @@ summary(Climate_fit)</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="multimp.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.0.4 (2021-02-15)
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="multimp.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.1.3 (2022-03-10)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18362)
+## Running under: Windows 10 x64 (build 18363)
 ## 
 ## Matrix products: default
 ## 
@@ -1270,34 +1270,35 @@ summary(Climate_fit)</code></pre>
 ## 
 ## other attached packages:
 ##  [1] apaTables_2.0.8   mice_3.13.0       sjstats_0.18.1    formattable_0.2.1
-##  [5] qualtRics_3.1.4   forcats_0.5.1     stringr_1.4.0     dplyr_1.0.5      
-##  [9] purrr_0.3.4       readr_1.4.0       tidyr_1.1.3       tibble_3.1.1     
-## [13] ggplot2_3.3.3     tidyverse_1.3.1   psych_2.1.3      
+##  [5] qualtRics_3.1.4   forcats_0.5.1     stringr_1.4.0     dplyr_1.0.7      
+##  [9] purrr_0.3.4       readr_2.0.1       tidyr_1.1.3       tibble_3.1.4     
+## [13] ggplot2_3.3.5     tidyverse_1.3.1   psych_2.1.6      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] nlme_3.1-151       fs_1.5.0           lubridate_1.7.10   MBESS_4.8.0       
-##  [5] insight_0.13.2     httr_1.4.2         tools_4.0.4        backports_1.2.1   
-##  [9] bslib_0.2.4        utf8_1.2.1         R6_2.5.0           sjlabelled_1.1.7  
-## [13] DBI_1.1.1          colorspace_2.0-0   withr_2.4.2        tidyselect_1.1.1  
-## [17] mnormt_2.0.2       emmeans_1.6.0      curl_4.3.1         compiler_4.0.4    
-## [21] performance_0.7.1  cli_2.5.0          rvest_1.0.0        xml2_1.3.2        
-## [25] sandwich_3.0-0     bookdown_0.22      bayestestR_0.9.0   sass_0.3.1        
-## [29] scales_1.1.1       mvtnorm_1.1-1      systemfonts_1.0.1  digest_0.6.27     
-## [33] minqa_1.2.4        svglite_2.0.0      rmarkdown_2.7      pkgconfig_2.0.3   
-## [37] htmltools_0.5.1.1  lme4_1.1-26        highr_0.9          dbplyr_2.1.1      
-## [41] htmlwidgets_1.5.3  rlang_0.4.11       readxl_1.3.1       rstudioapi_0.13   
-## [45] jquerylib_0.1.4    generics_0.1.0     zoo_1.8-9          jsonlite_1.7.2    
-## [49] magrittr_2.0.1     parameters_0.13.0  Matrix_1.2-18      Rcpp_1.0.6        
-## [53] munsell_0.5.0      fansi_0.4.2        lifecycle_1.0.0    stringi_1.5.3     
-## [57] multcomp_1.4-17    yaml_2.2.1         MASS_7.3-53.1      grid_4.0.4        
-## [61] parallel_4.0.4     sjmisc_2.8.6       crayon_1.4.1       lattice_0.20-41   
-## [65] haven_2.4.1        splines_4.0.4      hms_1.0.0          tmvnsim_1.0-2     
-## [69] knitr_1.33         pillar_1.6.0       boot_1.3-27        estimability_1.3  
-## [73] effectsize_0.4.4-1 codetools_0.2-18   reprex_2.0.0       glue_1.4.2        
-## [77] evaluate_0.14      modelr_0.1.8       nloptr_1.2.2.2     vctrs_0.3.7       
-## [81] cellranger_1.1.0   gtable_0.3.0       assertthat_0.2.1   xfun_0.22         
-## [85] xtable_1.8-4       broom_0.7.6        coda_0.19-4        survival_3.2-11   
-## [89] statmod_1.4.35     TH.data_1.0-10     ellipsis_0.3.1</code></pre>
+##  [1] nlme_3.1-155       fs_1.5.0           lubridate_1.7.10   bit64_4.0.5       
+##  [5] MBESS_4.8.0        insight_0.14.4     httr_1.4.2         tools_4.1.3       
+##  [9] backports_1.2.1    bslib_0.3.0        utf8_1.2.2         R6_2.5.1          
+## [13] sjlabelled_1.1.8   DBI_1.1.1          colorspace_2.0-2   withr_2.4.2       
+## [17] tidyselect_1.1.1   mnormt_2.0.2       emmeans_1.6.3      bit_4.0.4         
+## [21] curl_4.3.2         compiler_4.1.3     performance_0.7.3  cli_3.0.1         
+## [25] rvest_1.0.1        xml2_1.3.2         sandwich_3.0-1     bookdown_0.24     
+## [29] bayestestR_0.11.0  sass_0.4.0         scales_1.1.1       mvtnorm_1.1-2     
+## [33] systemfonts_1.0.2  digest_0.6.27      minqa_1.2.4        svglite_2.0.0     
+## [37] rmarkdown_2.10     pkgconfig_2.0.3    htmltools_0.5.2    lme4_1.1-27.1     
+## [41] highr_0.9          dbplyr_2.1.1       fastmap_1.1.0      htmlwidgets_1.5.4 
+## [45] rlang_0.4.11       readxl_1.3.1       rstudioapi_0.13    jquerylib_0.1.4   
+## [49] generics_0.1.0     zoo_1.8-9          jsonlite_1.7.2     vroom_1.5.4       
+## [53] magrittr_2.0.1     Matrix_1.4-0       parameters_0.14.0  Rcpp_1.0.7        
+## [57] munsell_0.5.0      fansi_0.5.0        lifecycle_1.0.0    stringi_1.7.4     
+## [61] multcomp_1.4-17    yaml_2.2.1         MASS_7.3-55        grid_4.1.3        
+## [65] parallel_4.1.3     sjmisc_2.8.7       crayon_1.4.1       lattice_0.20-45   
+## [69] splines_4.1.3      haven_2.4.3        hms_1.1.0          tmvnsim_1.0-2     
+## [73] knitr_1.34         pillar_1.6.2       boot_1.3-28        estimability_1.3  
+## [77] effectsize_0.4.5   codetools_0.2-18   reprex_2.0.1       glue_1.4.2        
+## [81] evaluate_0.14      modelr_0.1.8       nloptr_1.2.2.2     vctrs_0.3.8       
+## [85] tzdb_0.1.2         cellranger_1.1.0   gtable_0.3.0       assertthat_0.2.1  
+## [89] datawizard_0.2.0.1 xfun_0.25          xtable_1.8-4       broom_0.7.9       
+## [93] coda_0.19-4        survival_3.2-13    TH.data_1.1-0      ellipsis_0.3.2</code></pre>
 
 </div>
 </div>
@@ -1342,7 +1343,6 @@ Szymanski, D. M., &amp; Bissonette, D. (2020). Perceptions of the <span>LGBTQ</s
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1382,11 +1382,14 @@ gitbook.start({
 "text": null
 },
 "download": ["ReC_MultMod.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
-},
-"search": true
+}
 });
 });
 </script>

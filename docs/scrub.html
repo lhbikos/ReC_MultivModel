@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Scrubbing | ReCentering Psych Stats: Multivariate Modeling</title>
   <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Scrubbing | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="dataprep.html"/>
 <link rel="next" href="score.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -425,110 +425,110 @@ div.csl-indent {
 <li class="chapter" data-level="7.6.3" data-path="CompMed.html"><a href="CompMed.html#problem-3-use-other-data-that-is-available-to-you-1"><i class="fa fa-check"></i><b>7.6.3</b> Problem #3: Use other data that is available to you</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="CPAnal.html"><a href="CPAnal.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
-<li class="chapter" data-level="8" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>8</b> Moderated Mediation</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="ModMed.html"><a href="ModMed.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
-<ul>
-<li class="chapter" data-level="8.1.1" data-path="ModMed.html"><a href="ModMed.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="8.1.2" data-path="ModMed.html"><a href="ModMed.html#planning-for-practice-6"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
-<li class="chapter" data-level="8.1.3" data-path="ModMed.html"><a href="ModMed.html#readings-resources-6"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="8.1.4" data-path="ModMed.html"><a href="ModMed.html#packages-7"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="ModMed.html"><a href="ModMed.html#conditional-process-analysis"><i class="fa fa-check"></i><b>8.2</b> Conditional Process Analysis</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="ModMed.html"><a href="ModMed.html#the-definitional-and-conceptual-1"><i class="fa fa-check"></i><b>8.2.1</b> The definitional and conceptual</a></li>
-<li class="chapter" data-level="8.2.2" data-path="ModMed.html"><a href="ModMed.html#hayes--hayes_introduction_2018-piecewise-approach-to-building-models"><i class="fa fa-check"></i><b>8.2.2</b> Hayes’ <span class="citation">(<span>2018</span>)</span> Piecewise Approach to Building Models</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="ModMed.html"><a href="ModMed.html#workflow-for-moderated-mediation"><i class="fa fa-check"></i><b>8.3</b> Workflow for Moderated Mediation</a></li>
-<li class="chapter" data-level="8.4" data-path="ModMed.html"><a href="ModMed.html#research-vignette-6"><i class="fa fa-check"></i><b>8.4</b> Research Vignette</a>
-<ul>
-<li class="chapter" data-level="8.4.1" data-path="ModMed.html"><a href="ModMed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>8.4.1</b> Simulating the data from the journal article</a></li>
-<li class="chapter" data-level="8.4.2" data-path="ModMed.html"><a href="ModMed.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>8.4.2</b> Quick peek at the data</a></li>
-</ul></li>
-<li class="chapter" data-level="8.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5</b> Working the Moderated Mediation</a>
-<ul>
-<li class="chapter" data-level="8.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>8.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
-<ul>
-<li class="chapter" data-level="8.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.1</b> Analysis #1: A simple moderation</a></li>
-<li class="chapter" data-level="8.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>8.5.1.2</b> Analysis #2: Another simple moderation</a></li>
-<li class="chapter" data-level="8.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>8.5.1.3</b> Analysis #3: A simple mediation</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>8.6</b> The Moderated Mediation: A Combined analysis</a>
-<ul>
-<li class="chapter" data-level="8.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>8.6.1</b> Specification in <em>lavaan</em></a></li>
-<li class="chapter" data-level="8.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>8.6.2</b> A quick plot</a></li>
-<li class="chapter" data-level="8.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>8.6.3</b> Beginning the interpretation</a></li>
-<li class="chapter" data-level="8.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data"><i class="fa fa-check"></i><b>8.6.4</b> Tabling the data</a>
-<ul>
-<li class="chapter" data-level="8.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>8.6.4.1</b> Conditional Indirect effects</a></li>
-<li class="chapter" data-level="8.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>8.6.4.2</b> Conditional Direct effect</a></li>
-</ul></li>
-<li class="chapter" data-level="8.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>8.6.5</b> Model trimming</a></li>
-<li class="chapter" data-level="8.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>8.6.6</b> APA Style Write-up</a></li>
-</ul></li>
-<li class="chapter" data-level="8.7" data-path="ModMed.html"><a href="ModMed.html#residual-and-related-questions-1"><i class="fa fa-check"></i><b>8.7</b> Residual and Related Questions…</a></li>
-<li class="chapter" data-level="8.8" data-path="ModMed.html"><a href="ModMed.html#practice-problems-6"><i class="fa fa-check"></i><b>8.8</b> Practice Problems</a>
-<ul>
-<li class="chapter" data-level="8.8.1" data-path="ModMed.html"><a href="ModMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2"><i class="fa fa-check"></i><b>8.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
-<li class="chapter" data-level="8.8.2" data-path="ModMed.html"><a href="ModMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-2"><i class="fa fa-check"></i><b>8.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
-<li class="chapter" data-level="8.8.3" data-path="ModMed.html"><a href="ModMed.html#problem-3-use-other-data-that-is-available-to-you-2"><i class="fa fa-check"></i><b>8.8.3</b> Problem #3: Use other data that is available to you</a></li>
-</ul></li>
-<li class="chapter" data-level="8.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-1"><i class="fa fa-check"></i><b>8.9</b> Bonus Track:</a></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="MOD.html"><a href="MOD.html"><i class="fa fa-check"></i>MODERATION</a></li>
-<li class="chapter" data-level="9" data-path="SimpMod.html"><a href="SimpMod.html"><i class="fa fa-check"></i><b>9</b> Simple Moderation in OLS and MLE</a>
+<li class="chapter" data-level="8" data-path="SimpMod.html"><a href="SimpMod.html"><i class="fa fa-check"></i><b>8</b> Simple Moderation in OLS and MLE</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="SimpMod.html"><a href="SimpMod.html#navigating-this-lesson-7"><i class="fa fa-check"></i><b>9.1</b> Navigating this Lesson</a>
+<li class="chapter" data-level="8.1" data-path="SimpMod.html"><a href="SimpMod.html#navigating-this-lesson-6"><i class="fa fa-check"></i><b>8.1</b> Navigating this Lesson</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="SimpMod.html"><a href="SimpMod.html#learning-objectives-7"><i class="fa fa-check"></i><b>9.1.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="9.1.2" data-path="SimpMod.html"><a href="SimpMod.html#planning-for-practice-7"><i class="fa fa-check"></i><b>9.1.2</b> Planning for Practice</a></li>
-<li class="chapter" data-level="9.1.3" data-path="SimpMod.html"><a href="SimpMod.html#readings-resources-7"><i class="fa fa-check"></i><b>9.1.3</b> Readings &amp; Resources</a></li>
-<li class="chapter" data-level="9.1.4" data-path="SimpMod.html"><a href="SimpMod.html#packages-8"><i class="fa fa-check"></i><b>9.1.4</b> Packages</a></li>
+<li class="chapter" data-level="8.1.1" data-path="SimpMod.html"><a href="SimpMod.html#learning-objectives-6"><i class="fa fa-check"></i><b>8.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="SimpMod.html"><a href="SimpMod.html#planning-for-practice-6"><i class="fa fa-check"></i><b>8.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="8.1.3" data-path="SimpMod.html"><a href="SimpMod.html#readings-resources-6"><i class="fa fa-check"></i><b>8.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="8.1.4" data-path="SimpMod.html"><a href="SimpMod.html#packages-7"><i class="fa fa-check"></i><b>8.1.4</b> Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="SimpMod.html"><a href="SimpMod.html#on-modeling-introductory-comments-on-the-simultaneously-invisible-and-paradigm-shifting-transition-we-are-making"><i class="fa fa-check"></i><b>9.2</b> On <em>Modeling</em>: Introductory Comments on the simultaneously invisible and paradigm-shifting transition we are making</a>
+<li class="chapter" data-level="8.2" data-path="SimpMod.html"><a href="SimpMod.html#on-modeling-introductory-comments-on-the-simultaneously-invisible-and-paradigm-shifting-transition-we-are-making"><i class="fa fa-check"></i><b>8.2</b> On <em>Modeling</em>: Introductory Comments on the simultaneously invisible and paradigm-shifting transition we are making</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="SimpMod.html"><a href="SimpMod.html#nhst-versus-modeling"><i class="fa fa-check"></i><b>9.2.1</b> NHST versus modeling</a></li>
-<li class="chapter" data-level="9.2.2" data-path="SimpMod.html"><a href="SimpMod.html#introducing-the-model"><i class="fa fa-check"></i><b>9.2.2</b> Introducing: <em>The Model</em></a></li>
+<li class="chapter" data-level="8.2.1" data-path="SimpMod.html"><a href="SimpMod.html#nhst-versus-modeling"><i class="fa fa-check"></i><b>8.2.1</b> NHST versus modeling</a></li>
+<li class="chapter" data-level="8.2.2" data-path="SimpMod.html"><a href="SimpMod.html#introducing-the-model"><i class="fa fa-check"></i><b>8.2.2</b> Introducing: <em>The Model</em></a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="SimpMod.html"><a href="SimpMod.html#ols-to-ml-for-estimation"><i class="fa fa-check"></i><b>9.3</b> OLS to ML for Estimation</a>
+<li class="chapter" data-level="8.3" data-path="SimpMod.html"><a href="SimpMod.html#ols-to-ml-for-estimation"><i class="fa fa-check"></i><b>8.3</b> OLS to ML for Estimation</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="SimpMod.html"><a href="SimpMod.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>9.3.1</b> Ordinary least squares (OLS)</a></li>
-<li class="chapter" data-level="9.3.2" data-path="SimpMod.html"><a href="SimpMod.html#maximum-likelihood-estimation-mle-a-brief-orientation"><i class="fa fa-check"></i><b>9.3.2</b> Maximum likelihood estimation (MLE): A brief orientation</a></li>
-<li class="chapter" data-level="9.3.3" data-path="SimpMod.html"><a href="SimpMod.html#ols-and-mle-comparison"><i class="fa fa-check"></i><b>9.3.3</b> OLS and MLE Comparison</a></li>
-<li class="chapter" data-level="9.3.4" data-path="SimpMod.html"><a href="SimpMod.html#hayes-and-process-aka-conditional-process-analysis"><i class="fa fa-check"></i><b>9.3.4</b> Hayes and PROCESS (aka conditional process analysis)</a></li>
+<li class="chapter" data-level="8.3.1" data-path="SimpMod.html"><a href="SimpMod.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>8.3.1</b> Ordinary least squares (OLS)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="SimpMod.html"><a href="SimpMod.html#maximum-likelihood-estimation-mle-a-brief-orientation"><i class="fa fa-check"></i><b>8.3.2</b> Maximum likelihood estimation (MLE): A brief orientation</a></li>
+<li class="chapter" data-level="8.3.3" data-path="SimpMod.html"><a href="SimpMod.html#ols-and-mle-comparison"><i class="fa fa-check"></i><b>8.3.3</b> OLS and MLE Comparison</a></li>
+<li class="chapter" data-level="8.3.4" data-path="SimpMod.html"><a href="SimpMod.html#hayes-and-process-aka-conditional-process-analysis"><i class="fa fa-check"></i><b>8.3.4</b> Hayes and PROCESS (aka conditional process analysis)</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="SimpMod.html"><a href="SimpMod.html#introducing-the-lavaan-package"><i class="fa fa-check"></i><b>9.4</b> Introducing the <em>lavaan</em> package</a>
+<li class="chapter" data-level="8.4" data-path="SimpMod.html"><a href="SimpMod.html#introducing-the-lavaan-package"><i class="fa fa-check"></i><b>8.4</b> Introducing the <em>lavaan</em> package</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="SimpMod.html"><a href="SimpMod.html#the-fiml-magic-for-which-we-have-been-waiting"><i class="fa fa-check"></i><b>9.4.1</b> The FIML magic for which we have been waiting</a></li>
+<li class="chapter" data-level="8.4.1" data-path="SimpMod.html"><a href="SimpMod.html#the-fiml-magic-for-which-we-have-been-waiting"><i class="fa fa-check"></i><b>8.4.1</b> The FIML magic for which we have been waiting</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="SimpMod.html"><a href="SimpMod.html#picking-up-with-moderation"><i class="fa fa-check"></i><b>9.5</b> Picking up with Moderation</a></li>
-<li class="chapter" data-level="9.6" data-path="SimpMod.html"><a href="SimpMod.html#workflow-for-a-simple-moderation"><i class="fa fa-check"></i><b>9.6</b> Workflow for a Simple Moderation</a></li>
-<li class="chapter" data-level="9.7" data-path="SimpMod.html"><a href="SimpMod.html#research-vignette-7"><i class="fa fa-check"></i><b>9.7</b> Research Vignette</a>
+<li class="chapter" data-level="8.5" data-path="SimpMod.html"><a href="SimpMod.html#picking-up-with-moderation"><i class="fa fa-check"></i><b>8.5</b> Picking up with Moderation</a></li>
+<li class="chapter" data-level="8.6" data-path="SimpMod.html"><a href="SimpMod.html#workflow-for-a-simple-moderation"><i class="fa fa-check"></i><b>8.6</b> Workflow for a Simple Moderation</a></li>
+<li class="chapter" data-level="8.7" data-path="SimpMod.html"><a href="SimpMod.html#research-vignette-6"><i class="fa fa-check"></i><b>8.7</b> Research Vignette</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="SimpMod.html"><a href="SimpMod.html#simulate-data-from-the-journal-article-1"><i class="fa fa-check"></i><b>9.7.1</b> Simulate Data from the Journal Article</a></li>
+<li class="chapter" data-level="8.7.1" data-path="SimpMod.html"><a href="SimpMod.html#simulate-data-from-the-journal-article-1"><i class="fa fa-check"></i><b>8.7.1</b> Simulate Data from the Journal Article</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8" data-path="SimpMod.html"><a href="SimpMod.html#working-the-simple-moderation-with-ols-and-mle"><i class="fa fa-check"></i><b>9.8</b> Working the Simple Moderation with OLS and MLE</a>
+<li class="chapter" data-level="8.8" data-path="SimpMod.html"><a href="SimpMod.html#working-the-simple-moderation-with-ols-and-mle"><i class="fa fa-check"></i><b>8.8</b> Working the Simple Moderation with OLS and MLE</a>
 <ul>
-<li class="chapter" data-level="9.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>9.8.1</b> OLS with <em>lm()</em></a>
+<li class="chapter" data-level="8.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>8.8.1</b> OLS with <em>lm()</em></a>
 <ul>
-<li class="chapter" data-level="9.8.1.1" data-path="SimpMod.html"><a href="SimpMod.html#an-apa-style-write-up-of-ols-results"><i class="fa fa-check"></i><b>9.8.1.1</b> An APA Style Write-up of OLS results</a></li>
+<li class="chapter" data-level="8.8.1.1" data-path="SimpMod.html"><a href="SimpMod.html#an-apa-style-write-up-of-ols-results"><i class="fa fa-check"></i><b>8.8.1.1</b> An APA Style Write-up of OLS results</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8.2" data-path="SimpMod.html"><a href="SimpMod.html#mle-with-lavaansem"><i class="fa fa-check"></i><b>9.8.2</b> MLE with <em>lavaan::sem()</em></a></li>
-<li class="chapter" data-level="9.8.3" data-path="SimpMod.html"><a href="SimpMod.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.8.3</b> Tabling the data</a></li>
-<li class="chapter" data-level="9.8.4" data-path="SimpMod.html"><a href="SimpMod.html#apa-style-writeup-3"><i class="fa fa-check"></i><b>9.8.4</b> APA Style Writeup</a></li>
+<li class="chapter" data-level="8.8.2" data-path="SimpMod.html"><a href="SimpMod.html#mle-with-lavaansem"><i class="fa fa-check"></i><b>8.8.2</b> MLE with <em>lavaan::sem()</em></a></li>
+<li class="chapter" data-level="8.8.3" data-path="SimpMod.html"><a href="SimpMod.html#tabling-the-data"><i class="fa fa-check"></i><b>8.8.3</b> Tabling the data</a></li>
+<li class="chapter" data-level="8.8.4" data-path="SimpMod.html"><a href="SimpMod.html#apa-style-writeup-3"><i class="fa fa-check"></i><b>8.8.4</b> APA Style Writeup</a></li>
 </ul></li>
-<li class="chapter" data-level="9.9" data-path="SimpMod.html"><a href="SimpMod.html#residual-and-related-questions-2"><i class="fa fa-check"></i><b>9.9</b> Residual and Related Questions…</a></li>
-<li class="chapter" data-level="9.10" data-path="SimpMod.html"><a href="SimpMod.html#practice-problems-7"><i class="fa fa-check"></i><b>9.10</b> Practice Problems</a>
+<li class="chapter" data-level="8.9" data-path="SimpMod.html"><a href="SimpMod.html#residual-and-related-questions-1"><i class="fa fa-check"></i><b>8.9</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="8.10" data-path="SimpMod.html"><a href="SimpMod.html#practice-problems-6"><i class="fa fa-check"></i><b>8.10</b> Practice Problems</a>
 <ul>
-<li class="chapter" data-level="9.10.1" data-path="SimpMod.html"><a href="SimpMod.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-3"><i class="fa fa-check"></i><b>9.10.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
-<li class="chapter" data-level="9.10.2" data-path="SimpMod.html"><a href="SimpMod.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-3"><i class="fa fa-check"></i><b>9.10.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
-<li class="chapter" data-level="9.10.3" data-path="SimpMod.html"><a href="SimpMod.html#problem-3-use-other-data-that-is-available-to-you-3"><i class="fa fa-check"></i><b>9.10.3</b> Problem #3: Use other data that is available to you</a></li>
+<li class="chapter" data-level="8.10.1" data-path="SimpMod.html"><a href="SimpMod.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-2"><i class="fa fa-check"></i><b>8.10.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="8.10.2" data-path="SimpMod.html"><a href="SimpMod.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-2"><i class="fa fa-check"></i><b>8.10.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="8.10.3" data-path="SimpMod.html"><a href="SimpMod.html#problem-3-use-other-data-that-is-available-to-you-2"><i class="fa fa-check"></i><b>8.10.3</b> Problem #3: Use other data that is available to you</a></li>
 </ul></li>
-<li class="chapter" data-level="9.11" data-path="SimpMod.html"><a href="SimpMod.html#bonus-track-2"><i class="fa fa-check"></i><b>9.11</b> Bonus Track:</a></li>
+<li class="chapter" data-level="8.11" data-path="SimpMod.html"><a href="SimpMod.html#bonus-track-1"><i class="fa fa-check"></i><b>8.11</b> Bonus Track:</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="CPAnal.html"><a href="CPAnal.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
+<li class="chapter" data-level="9" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>9</b> Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="ModMed.html"><a href="ModMed.html#navigating-this-lesson-7"><i class="fa fa-check"></i><b>9.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="ModMed.html"><a href="ModMed.html#learning-objectives-7"><i class="fa fa-check"></i><b>9.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="ModMed.html"><a href="ModMed.html#planning-for-practice-7"><i class="fa fa-check"></i><b>9.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="9.1.3" data-path="ModMed.html"><a href="ModMed.html#readings-resources-7"><i class="fa fa-check"></i><b>9.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="9.1.4" data-path="ModMed.html"><a href="ModMed.html#packages-8"><i class="fa fa-check"></i><b>9.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="ModMed.html"><a href="ModMed.html#conditional-process-analysis"><i class="fa fa-check"></i><b>9.2</b> Conditional Process Analysis</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="ModMed.html"><a href="ModMed.html#the-definitional-and-conceptual-1"><i class="fa fa-check"></i><b>9.2.1</b> The definitional and conceptual</a></li>
+<li class="chapter" data-level="9.2.2" data-path="ModMed.html"><a href="ModMed.html#hayes--hayes_introduction_2018-piecewise-approach-to-building-models"><i class="fa fa-check"></i><b>9.2.2</b> Hayes’ <span class="citation">(<span>2018</span>)</span> Piecewise Approach to Building Models</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="ModMed.html"><a href="ModMed.html#workflow-for-moderated-mediation"><i class="fa fa-check"></i><b>9.3</b> Workflow for Moderated Mediation</a></li>
+<li class="chapter" data-level="9.4" data-path="ModMed.html"><a href="ModMed.html#research-vignette-7"><i class="fa fa-check"></i><b>9.4</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="ModMed.html"><a href="ModMed.html#simulating-the-data-from-the-journal-article"><i class="fa fa-check"></i><b>9.4.1</b> Simulating the data from the journal article</a></li>
+<li class="chapter" data-level="9.4.2" data-path="ModMed.html"><a href="ModMed.html#quick-peek-at-the-data"><i class="fa fa-check"></i><b>9.4.2</b> Quick peek at the data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5</b> Working the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
+<ul>
+<li class="chapter" data-level="9.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.1</b> Analysis #1: A simple moderation</a></li>
+<li class="chapter" data-level="9.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.2</b> Analysis #2: Another simple moderation</a></li>
+<li class="chapter" data-level="9.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>9.5.1.3</b> Analysis #3: A simple mediation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>9.6</b> The Moderated Mediation: A Combined analysis</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>9.6.1</b> Specification in <em>lavaan</em></a></li>
+<li class="chapter" data-level="9.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>9.6.2</b> A quick plot</a></li>
+<li class="chapter" data-level="9.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>9.6.3</b> Beginning the interpretation</a></li>
+<li class="chapter" data-level="9.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.6.4</b> Tabling the data</a>
+<ul>
+<li class="chapter" data-level="9.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>9.6.4.1</b> Conditional Indirect effects</a></li>
+<li class="chapter" data-level="9.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>9.6.4.2</b> Conditional Direct effect</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>9.6.5</b> Model trimming</a></li>
+<li class="chapter" data-level="9.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>9.6.6</b> APA Style Write-up</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="ModMed.html"><a href="ModMed.html#residual-and-related-questions-2"><i class="fa fa-check"></i><b>9.7</b> Residual and Related Questions…</a></li>
+<li class="chapter" data-level="9.8" data-path="ModMed.html"><a href="ModMed.html#practice-problems-7"><i class="fa fa-check"></i><b>9.8</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="ModMed.html"><a href="ModMed.html#problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed-3"><i class="fa fa-check"></i><b>9.8.1</b> Problem #1: Rework the research vignette as demonstrated, but change the random seed</a></li>
+<li class="chapter" data-level="9.8.2" data-path="ModMed.html"><a href="ModMed.html#problem-2-rework-the-research-vignette-but-swap-one-or-more-variables-3"><i class="fa fa-check"></i><b>9.8.2</b> Problem #2: Rework the research vignette, but swap one or more variables</a></li>
+<li class="chapter" data-level="9.8.3" data-path="ModMed.html"><a href="ModMed.html#problem-3-use-other-data-that-is-available-to-you-3"><i class="fa fa-check"></i><b>9.8.3</b> Problem #3: Use other data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-2"><i class="fa fa-check"></i><b>9.9</b> Bonus Track:</a></li>
+</ul></li>
 <li class="divider"></li>
 #<li><a href="https:link" target="_blank">Open access book-in-progress</br>
 <li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
@@ -595,9 +595,9 @@ div.csl-indent {
 <h3><span class="header-section-number">2.1.4</span> Packages</h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
 <!-- TODO: Build out this section. -->
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="scrub.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
-<span id="cb7-2"><a href="scrub.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(qualtRics)){<span class="fu">install.packages</span>(<span class="st">&quot;qualtRics&quot;</span>)}</span>
-<span id="cb7-3"><a href="scrub.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="scrub.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb6-2"><a href="scrub.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(qualtRics)){<span class="fu">install.packages</span>(<span class="st">&quot;qualtRics&quot;</span>)}</span>
+<span id="cb6-3"><a href="scrub.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span></code></pre></div>
 </div>
 </div>
 <div id="workflow-for-scrubbing-and-scoring" class="section level2" number="2.2">
@@ -658,29 +658,32 @@ div.csl-indent {
 <p><em>BE CAREFUL WITH THE API TOKEN</em> This is the key to your Qualtrics accounts. If you leave it in an .rmd file that you forward to someone else, this key and the base URL gives access to every survey in your account. If you share it, you could be releasing survey data to others that would violate confidentiality promises in an IRB application.</p>
 <p>If you mistakenly give out your API token you can generate a new one within your Qualtrics account and re-protect all its contents.</p>
 <p>You do need to change the API key/token if you want to download data from a different Qualtrics account. If your list of surveys generates the wrong set of surveys, restart R, make sure you have the correct API token and try again.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="scrub.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#only have to run this ONCE to draw from the same Qualtrics account...but will need to get different token if you are changing between accounts </span></span>
-<span id="cb8-2"><a href="scrub.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qualtRics)</span>
-<span id="cb8-3"><a href="scrub.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#qualtrics_api_credentials(api_key = &quot;mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg&quot;,</span></span>
-<span id="cb8-4"><a href="scrub.html#cb8-4" aria-hidden="true" tabindex="-1"></a>              <span class="co">#base_url = &quot;spupsych.az1.qualtrics.com&quot;, overwrite = TRUE, install = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="scrub.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#only have to run this ONCE to draw from the same Qualtrics account...but will need to get different token if you are changing between accounts </span></span>
+<span id="cb7-2"><a href="scrub.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qualtRics)</span>
+<span id="cb7-3"><a href="scrub.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#qualtrics_api_credentials(api_key = &quot;mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg&quot;,</span></span>
+<span id="cb7-4"><a href="scrub.html#cb7-4" aria-hidden="true" tabindex="-1"></a>              <span class="co">#base_url = &quot;spupsych.az1.qualtrics.com&quot;, overwrite = TRUE, install = TRUE)</span></span>
+<span id="cb7-5"><a href="scrub.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">readRenviron</span>(<span class="st">&quot;~/.Renviron&quot;</span>)</span></code></pre></div>
 <p><em>all_surveys()</em> generates a dataframe containing information about all the surveys stored on your Qualtrics account.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="scrub.html#cb9-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">all_surveys</span>() </span>
-<span id="cb9-2"><a href="scrub.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#View this as an object (found in the right: Environment).  </span></span>
-<span id="cb9-3"><a href="scrub.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Get survey id # for the next command</span></span>
-<span id="cb9-4"><a href="scrub.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#If this is showing you the WRONG list of surveys, you are pulling from the wrong Qualtrics account (i.e., maybe this one instead of your own). Go back and change your API token (it saves your old one). Changing the API likely requires a restart of R.</span></span>
-<span id="cb9-5"><a href="scrub.html#cb9-5" aria-hidden="true" tabindex="-1"></a>surveys</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="scrub.html#cb8-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">all_surveys</span>() </span>
+<span id="cb8-2"><a href="scrub.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#View this as an object (found in the right: Environment).  </span></span>
+<span id="cb8-3"><a href="scrub.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Get survey id # for the next command</span></span>
+<span id="cb8-4"><a href="scrub.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#If this is showing you the WRONG list of surveys, you are pulling from the wrong Qualtrics account (i.e., maybe this one instead of your own). Go back and change your API token (it saves your old one). Changing the API likely requires a restart of R.</span></span>
+<span id="cb8-5"><a href="scrub.html#cb8-5" aria-hidden="true" tabindex="-1"></a>surveys</span></code></pre></div>
 <p>To retrieve the survey, use the <em>fetch_survey()</em> function.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="scrub.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#obtained with the survey ID </span></span>
-<span id="cb10-2"><a href="scrub.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;surveyID&quot; should be the ID from above</span></span>
-<span id="cb10-3"><a href="scrub.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;verbose&quot; prints messages to the R console</span></span>
-<span id="cb10-4"><a href="scrub.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;label&quot;, when TRUE, imports data as text responses; if FALSE prints the data as numerical responses</span></span>
-<span id="cb10-5"><a href="scrub.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;convert&quot;, when TRUE, attempts to convert certain question types to the &quot;proper&quot; data type in R; because I don&#39;t like guessing, I want to set up my own factors.</span></span>
-<span id="cb10-6"><a href="scrub.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;force_request&quot;, when TRUE, always downloads the survey from the API instead of from a temporary directory (i.e., it always goes to the primary source)</span></span>
-<span id="cb10-7"><a href="scrub.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;import_id&quot;, when TRUE includes the unique Qualtrics-assigned ID; since I have provided labels, I want false</span></span>
-<span id="cb10-8"><a href="scrub.html#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="scrub.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Out of the blue, I started getting an error, that R couldn&#39;t find function &quot;fetch_survey.&quot;  After trying a million things, adding qualtRics:: to the front of it solved the problem</span></span>
-<span id="cb10-10"><a href="scrub.html#cb10-10" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>qualtRics<span class="sc">::</span><span class="fu">fetch_survey</span>(<span class="at">surveyID =</span> <span class="st">&quot;SV_b2cClqAlLGQ6nLU&quot;</span>, <span class="at">time_zone =</span> <span class="cn">NULL</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">label=</span><span class="cn">FALSE</span>, <span class="at">convert=</span><span class="cn">FALSE</span>, <span class="at">force_request =</span> <span class="cn">TRUE</span>, <span class="at">import_id =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb10-11"><a href="scrub.html#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="scrub.html#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#useLocalTime = TRUE,</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="scrub.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#obtained with the survey ID </span></span>
+<span id="cb9-2"><a href="scrub.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;surveyID&quot; should be the ID from above</span></span>
+<span id="cb9-3"><a href="scrub.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;verbose&quot; prints messages to the R console</span></span>
+<span id="cb9-4"><a href="scrub.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;label&quot;, when TRUE, imports data as text responses; if FALSE prints the data as numerical responses</span></span>
+<span id="cb9-5"><a href="scrub.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;convert&quot;, when TRUE, attempts to convert certain question types to the &quot;proper&quot; data type in R; because I don&#39;t like guessing, I want to set up my own factors.</span></span>
+<span id="cb9-6"><a href="scrub.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&quot;force_request&quot;, when TRUE, always downloads the survey from the API instead of from a temporary directory (i.e., it always goes to the primary source)</span></span>
+<span id="cb9-7"><a href="scrub.html#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;import_id&quot;, when TRUE includes the unique Qualtrics-assigned ID; since I have provided labels, I want false</span></span>
+<span id="cb9-8"><a href="scrub.html#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="scrub.html#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Out of the blue, I started getting an error, that R couldn&#39;t find function &quot;fetch_survey.&quot;  After trying a million things, adding qualtRics:: to the front of it solved the problem</span></span>
+<span id="cb9-10"><a href="scrub.html#cb9-10" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>qualtRics<span class="sc">::</span><span class="fu">fetch_survey</span>(<span class="at">surveyID =</span> <span class="st">&quot;SV_b2cClqAlLGQ6nLU&quot;</span>, <span class="at">time_zone =</span> <span class="cn">NULL</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">label=</span><span class="cn">FALSE</span>, <span class="at">convert=</span><span class="cn">FALSE</span>, <span class="at">force_request =</span> <span class="cn">TRUE</span>, <span class="at">import_id =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Warning in file.remove(survey.fpath): cannot remove file &#39;C:/Users/lhbikos/
+## AppData/Local/Temp/RtmpWguMSS/Recent Course Eval.csv&#39;, reason &#39;Permission
+## denied&#39;</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="scrub.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#useLocalTime = TRUE,</span></span></code></pre></div>
 <!-- TODO: Link to the Bonus Reel -->
 <p><em>It is possible (and helpful, even) to import Qualtrics data that has been downloaded from Qualtrics as a .csv. I demo this in the Bonus Reel.</em></p>
 </div>
@@ -754,53 +757,48 @@ div.csl-indent {
 </div>
 <p>We can either update the existing df (by using the same object), or creating a new df from the old. Either works. In my early years, I tended to create lots of new objects. As I have gained confidence in myself and in R, I’m inclined to update the existing df. Why? Because unless you write the object as an outfile (using the same name for the object as for the filename – which I do not recommend), the object used in R does not change the source of the dat. Therefore, it is easy to correct early code and it keeps the global environment less cluttered.</p>
 <p>In this particular survey, the majority of respondents will take the survey because they clicked an <em>anonymous</em> link provided by Qualtrics. Another Qualtrics distribution method is e-mail. At the time of this writing, we have not recruited by e-mail, but it is is possible we could do so in the future. What we should not include, though, are <em>previews</em>. These are the times when the researcher is self-piloting the survey to look for errors and to troubleshoot.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="scrub.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the filter command is used when we are making inclusion/exclusion decisions about rows</span></span>
-<span id="cb11-2"><a href="scrub.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># != means do not include cases with &quot;preview&quot;</span></span>
-<span id="cb11-3"><a href="scrub.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.0.5</code></pre>
-<pre><code>## Warning: package &#39;tibble&#39; was built under R version 4.0.5</code></pre>
-<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.0.5</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.5</code></pre>
-<pre><code>## Warning: package &#39;forcats&#39; was built under R version 4.0.5</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="scrub.html#cb17-1" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> <span class="fu">filter</span> (QTRX_df, DistributionChannel <span class="sc">!=</span> <span class="st">&quot;preview&quot;</span>)</span>
-<span id="cb17-2"><a href="scrub.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="scrub.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#FYI, another way that doesn&#39;t use tidyverse, but gets the same result</span></span>
-<span id="cb17-4"><a href="scrub.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#QTRX_df &lt;- QTRX_df[!QTRX_df$DistributionChannel == &quot;preview&quot;,]</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="scrub.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the filter command is used when we are making inclusion/exclusion decisions about rows</span></span>
+<span id="cb12-2"><a href="scrub.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># != means do not include cases with &quot;preview&quot;</span></span>
+<span id="cb12-3"><a href="scrub.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-4"><a href="scrub.html#cb12-4" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> <span class="fu">filter</span> (QTRX_df, DistributionChannel <span class="sc">!=</span> <span class="st">&quot;preview&quot;</span>)</span>
+<span id="cb12-5"><a href="scrub.html#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="scrub.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#FYI, another way that doesn&#39;t use tidyverse, but gets the same result</span></span>
+<span id="cb12-7"><a href="scrub.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#QTRX_df &lt;- QTRX_df[!QTRX_df$DistributionChannel == &quot;preview&quot;,]</span></span></code></pre></div>
 <p>APA Style, and in particular the Journal Article Reporting Standards (JARS) for quantitative research specify that we should report the frequency or percentages of missing data. We would start our counting <em>after</em> eliminating the previews.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="scrub.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I created an object that lists how many rows/cases remain.</span></span>
-<span id="cb18-2"><a href="scrub.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># I used inline text below to update the text with the new number</span></span>
-<span id="cb18-3"><a href="scrub.html#cb18-3" aria-hidden="true" tabindex="-1"></a>attempts <span class="ot">&lt;-</span> <span class="fu">nrow</span>(QTRX_df)</span>
-<span id="cb18-4"><a href="scrub.html#cb18-4" aria-hidden="true" tabindex="-1"></a>attempts</span></code></pre></div>
-<pre><code>## [1] 52</code></pre>
-<p>CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 52 individuals opened the survey link.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="scrub.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I created an object that lists how many rows/cases remain.</span></span>
+<span id="cb13-2"><a href="scrub.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># I used inline text below to update the text with the new number</span></span>
+<span id="cb13-3"><a href="scrub.html#cb13-3" aria-hidden="true" tabindex="-1"></a>attempts <span class="ot">&lt;-</span> <span class="fu">nrow</span>(QTRX_df)</span>
+<span id="cb13-4"><a href="scrub.html#cb13-4" aria-hidden="true" tabindex="-1"></a>attempts</span></code></pre></div>
+<pre><code>## [1] 75</code></pre>
+<p>CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 75 individuals opened the survey link.</p>
 <p>Next let’s filter in only those who consented to take the survey. Because Qualtrics discontinued the survey for everyone who did not consent, we do not have to worry that their data is unintentionally included, but it can be useful to mention the number of non-consenters in the summary of missing data.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="scrub.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># == are used </span></span>
-<span id="cb20-2"><a href="scrub.html#cb20-2" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>(<span class="fu">filter</span> (QTRX_df, Consent <span class="sc">==</span> <span class="dv">1</span>))</span>
-<span id="cb20-3"><a href="scrub.html#cb20-3" aria-hidden="true" tabindex="-1"></a>consented_attempts <span class="ot">&lt;-</span> <span class="fu">nrow</span>(QTRX_df)</span>
-<span id="cb20-4"><a href="scrub.html#cb20-4" aria-hidden="true" tabindex="-1"></a>consented_attempts</span></code></pre></div>
-<pre><code>## [1] 44</code></pre>
-<p>CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 52 individuals opened the survey link. Of those, 44, granted consent and proceeded into the survey items.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="scrub.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># == are used </span></span>
+<span id="cb15-2"><a href="scrub.html#cb15-2" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>(<span class="fu">filter</span> (QTRX_df, Consent <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb15-3"><a href="scrub.html#cb15-3" aria-hidden="true" tabindex="-1"></a>consented_attempts <span class="ot">&lt;-</span> <span class="fu">nrow</span>(QTRX_df)</span>
+<span id="cb15-4"><a href="scrub.html#cb15-4" aria-hidden="true" tabindex="-1"></a>consented_attempts</span></code></pre></div>
+<pre><code>## [1] 60</code></pre>
+<p>CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 75 individuals opened the survey link. Of those, 60, granted consent and proceeded into the survey items.</p>
 <p>In this particular study, the categories used to collect race were U.S.-centric. Thus, they were only shown if the respondent indicated that the course being rated was taught by an institution in the U.S. Therefore, an an additional inclusion criteria for this specific research model should be that the course was taught in the U.S.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="scrub.html#cb22-1" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>(<span class="fu">filter</span> (QTRX_df, USinst <span class="sc">==</span> <span class="dv">0</span>))</span>
-<span id="cb22-2"><a href="scrub.html#cb22-2" aria-hidden="true" tabindex="-1"></a>US_inclusion <span class="ot">&lt;-</span> <span class="fu">nrow</span>(QTRX_df)</span>
-<span id="cb22-3"><a href="scrub.html#cb22-3" aria-hidden="true" tabindex="-1"></a>US_inclusion</span></code></pre></div>
-<pre><code>## [1] 38</code></pre>
-<p>CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 52 individuals opened the survey link. Of those, 44, granted consent and proceeded into the survey items. A further inclusion criteria was that the course was taught in the U.S; 38 met this criteria.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="scrub.html#cb17-1" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>(<span class="fu">filter</span> (QTRX_df, USinst <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb17-2"><a href="scrub.html#cb17-2" aria-hidden="true" tabindex="-1"></a>US_inclusion <span class="ot">&lt;-</span> <span class="fu">nrow</span>(QTRX_df)</span>
+<span id="cb17-3"><a href="scrub.html#cb17-3" aria-hidden="true" tabindex="-1"></a>US_inclusion</span></code></pre></div>
+<pre><code>## [1] 52</code></pre>
+<p>CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 75 individuals opened the survey link. Of those, 60, granted consent and proceeded into the survey items. A further inclusion criteria was that the course was taught in the U.S; 52 met this criteria.</p>
 </div>
 <div id="renaming-variables" class="section level3" number="2.5.3">
 <h3><span class="header-section-number">2.5.3</span> Renaming Variables</h3>
 <p>Even though we renamed the variables in Qualtrics, the loop-and-merge variables were auto-renamed such that they each started with a number. I cannot see how to rename these from inside Qualtrics. A potential problem is that, in R, when variable names start with numbers, they need to be surrounded with single quotation marks. I find it easier to rename them now. I used “i” to start the variable name to represent “instructor.”</p>
 <p>The form of the <em>rename()</em> function is this:
 df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="scrub.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb24-2"><a href="scrub.html#cb24-2" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> <span class="fu">rename</span>(QTRX_df, <span class="at">iRace1 =</span> <span class="st">&#39;1_iRace&#39;</span>, <span class="at">iRace2 =</span> <span class="st">&#39;2_iRace&#39;</span>, <span class="at">iRace3 =</span> <span class="st">&#39;3_iRace&#39;</span>, <span class="at">iRace4 =</span> <span class="st">&#39;4_iRace&#39;</span>, <span class="at">iRace5 =</span> <span class="st">&#39;5_iRace&#39;</span>, <span class="at">iRace6 =</span> <span class="st">&#39;6_iRace&#39;</span>, <span class="at">iRace7 =</span> <span class="st">&#39;7_iRace&#39;</span>, <span class="at">iRace8 =</span> <span class="st">&#39;8_iRace&#39;</span>, <span class="at">iRace9 =</span> <span class="st">&#39;9_iRace&#39;</span>, <span class="at">iRace10 =</span> <span class="st">&#39;10_iRace&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="scrub.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb19-2"><a href="scrub.html#cb19-2" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> <span class="fu">rename</span>(QTRX_df, <span class="at">iRace1 =</span> <span class="st">&#39;1_iRace&#39;</span>, <span class="at">iRace2 =</span> <span class="st">&#39;2_iRace&#39;</span>, <span class="at">iRace3 =</span> <span class="st">&#39;3_iRace&#39;</span>, <span class="at">iRace4 =</span> <span class="st">&#39;4_iRace&#39;</span>, <span class="at">iRace5 =</span> <span class="st">&#39;5_iRace&#39;</span>, <span class="at">iRace6 =</span> <span class="st">&#39;6_iRace&#39;</span>, <span class="at">iRace7 =</span> <span class="st">&#39;7_iRace&#39;</span>, <span class="at">iRace8 =</span> <span class="st">&#39;8_iRace&#39;</span>, <span class="at">iRace9 =</span> <span class="st">&#39;9_iRace&#39;</span>, <span class="at">iRace10 =</span> <span class="st">&#39;10_iRace&#39;</span>)</span></code></pre></div>
 <p>Also in Qualtrics, it was not possible to rename the variable (formatted with sliders) that asked respondents to estimate the proportion of classmates in each race-based category. Using the codebook, we can do this now. I will use “cm” to precede each variable name to represent “classmates.”</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="scrub.html#cb25-1" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> <span class="fu">rename</span>(QTRX_df, <span class="at">cmBiMulti =</span> Race_10, <span class="at">cmBlack =</span> Race_1, <span class="at">cmNBPoC =</span> Race_7, <span class="at">cmWhite =</span> Race_8, <span class="at">cmUnsure =</span> Race_2)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="scrub.html#cb20-1" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> <span class="fu">rename</span>(QTRX_df, <span class="at">cmBiMulti =</span> Race_10, <span class="at">cmBlack =</span> Race_1, <span class="at">cmNBPoC =</span> Race_7, <span class="at">cmWhite =</span> Race_8, <span class="at">cmUnsure =</span> Race_2)</span></code></pre></div>
 <p>Let’s also create an ID variable (different from the lengthy Qualtrics-issued ID) and then move it to the front of the distribution.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="scrub.html#cb26-1" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> QTRX_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>())</span>
-<span id="cb26-2"><a href="scrub.html#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="scrub.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#moving the ID number to the first column; requires </span></span>
-<span id="cb26-4"><a href="scrub.html#cb26-4" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> QTRX_df<span class="sc">%&gt;%</span><span class="fu">select</span>(ID, <span class="fu">everything</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="scrub.html#cb21-1" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> QTRX_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>())</span>
+<span id="cb21-2"><a href="scrub.html#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="scrub.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#moving the ID number to the first column; requires </span></span>
+<span id="cb21-4"><a href="scrub.html#cb21-4" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> QTRX_df<span class="sc">%&gt;%</span><span class="fu">select</span>(ID, <span class="fu">everything</span>())</span></code></pre></div>
 </div>
 <div id="downsizing-the-dataframe" class="section level3" number="2.5.4">
 <h3><span class="header-section-number">2.5.4</span> Downsizing the Dataframe</h3>
@@ -808,18 +806,18 @@ df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
 <p>This particular survey did not collect demographic information, so that will not be used. The model that I will demonstrate in this research vignette examines the the respondent’s perceived campus climate for students who are Black, predicted by the the respondent’s own campus belonging, and also the <em>structural diversity</em> <span class="citation">(<a href="#ref-lewis_black_2019" role="doc-biblioref">K. R. Lewis &amp; Shah, 2019</a>)</span> proportions of Black students in the classroom and BIPOC (Black, Indigenous, and people of color) instructional staff.</p>
 <p><em>I would like to assess the model by having the instructional staff variable to be the %Black instructional staff. At the time that this lecture is being prepared, there is not sufficient Black representation in the staff to model this.</em></p>
 <p>The <em>select()</em> function can let us list the variables we want to retain.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="scrub.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can use the &quot;:&quot; to include all variables from the first to last variable in any sequence; I could have written this more efficiently.  I just like to &quot;see&quot; my scales and clusters of variables.</span></span>
-<span id="cb27-2"><a href="scrub.html#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="scrub.html#cb27-3" aria-hidden="true" tabindex="-1"></a>Model_df <span class="ot">&lt;-</span>(<span class="fu">select</span> (QTRX_df, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6))</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="scrub.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can use the &quot;:&quot; to include all variables from the first to last variable in any sequence; I could have written this more efficiently.  I just like to &quot;see&quot; my scales and clusters of variables.</span></span>
+<span id="cb22-2"><a href="scrub.html#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="scrub.html#cb22-3" aria-hidden="true" tabindex="-1"></a>Model_df <span class="ot">&lt;-</span>(<span class="fu">select</span> (QTRX_df, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6))</span></code></pre></div>
 <p>It can be helpful to save outfile of progress as we go along. Here I save this raw file.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="scrub.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(Model_df, <span class="at">file=</span><span class="st">&quot;BlackStntsModel210318.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>, <span class="at">col.names=</span><span class="cn">TRUE</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="scrub.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(Model_df, <span class="at">file=</span><span class="st">&quot;BlackStntsModel210318.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>, <span class="at">col.names=</span><span class="cn">TRUE</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="toward-the-apa-style-write-up" class="section level2" number="2.6">
 <h2><span class="header-section-number">2.6</span> Toward the APA Style Write-up</h2>
 <div id="methodprocedure" class="section level3" number="2.6.1">
 <h3><span class="header-section-number">2.6.1</span> Method/Procedure</h3>
-<p>Data screening suggested that 52 individuals opened the survey link. Of those, 44 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 38 met this criteria.</p>
+<p>Data screening suggested that 75 individuals opened the survey link. Of those, 60 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 52 met this criteria.</p>
 </div>
 </div>
 <div id="practice-problems" class="section level2" number="2.7">
@@ -830,6 +828,11 @@ df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
 <h3><span class="header-section-number">2.7.1</span> Problem #1: Rework the Chapter Problem</h3>
 <p>Because the <em>Rate-a-Recent-Course</em> survey remains open, it is quite likely that there will be more participants who have taken the survey since this chapter was last updated. If not – please encourage a peer to take it. Even one additional response will change the results. This practice problem encourages you to rework the chapter, as written, with the updated data from the survey.</p>
 <table>
+<colgroup>
+<col width="65%" />
+<col width="17%" />
+<col width="16%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Assignment Component</th>
@@ -890,6 +893,11 @@ df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
 <h3><span class="header-section-number">2.7.2</span> Problem #2: Use the <em>Rate-a-Recent-Course</em> Survey, Choosing Different Variables</h3>
 <p>Before starting this option, choose a minimum of three variables from the <em>Rate-a-Recent-Course</em> survey to include in a simple statistical model. Work through the chapter making decisions that are consistent with the research model you have proposed. There will likely be differences at several points in the process. For example, you may wish to include (not exclude) data where the rated-course was offered by an institution outside the U.S. Different decisions may involve an internet search for the R script you will need as you decide on inclusion and exclusion criteria.</p>
 <table>
+<colgroup>
+<col width="65%" />
+<col width="17%" />
+<col width="16%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Assignment Component</th>
@@ -950,6 +958,11 @@ df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
 <h3><span class="header-section-number">2.7.3</span> Problem #3: Other data</h3>
 <p>Using raw data for which you have access, use the chapter as a rough guide. Your data will likely have unique characteristics that may involved searching for solutions beyond this chapter/OER.</p>
 <table>
+<colgroup>
+<col width="65%" />
+<col width="17%" />
+<col width="16%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Assignment Component</th>
@@ -1018,9 +1031,9 @@ df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
 <p>The lecture focused on the “intRavenous” import. It is is also possible to download the Qualtrics data in a variety of formats (e.g., CSV, Excel, SPSS). Since I got started using files with the CSV extension (think “Excel” lite), that is my preference.</p>
 <p>In Qualtrics, these are the steps to download the data: Projects/YOURsurvey/Data &amp; Analysis/Export &amp; Import/Export data/CSV/Use numeric values</p>
 <p>I think that it is critical that to save this file in the same folder as the .rmd file that you will use with the data.</p>
-<p>R is sensitive to characters used filenames As downloaded, my Qualtrics .csv file had a long name with spaces and symbols that are not allowed. Therore, I gave it a simple, sensible, filename, “ReC_Download210319.csv.” An idiosyncracy of mine is to datestamp filenames. I use two-digit representations of the year, month, and date so that if the letters preceding the date are the same, the files would alphabetize automatically.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="scrub.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qualtRics)</span>
-<span id="cb29-2"><a href="scrub.html#cb29-2" aria-hidden="true" tabindex="-1"></a>QTRX_csv <span class="ot">&lt;-</span> <span class="fu">read_survey</span>(<span class="st">&quot;ReC_Download210319.csv&quot;</span>, <span class="at">strip_html =</span> <span class="cn">TRUE</span>, <span class="at">import_id =</span> <span class="cn">FALSE</span>, <span class="at">time_zone=</span><span class="cn">NULL</span>, <span class="at">legacy =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>R is sensitive to characters used filenames As downloaded, my Qualtrics .csv file had a long name with spaces and symbols that are not allowed. Therore, I gave it a simple, sensible, filename, “ReC_Download210319.csv”. An idiosyncracy of mine is to datestamp filenames. I use two-digit representations of the year, month, and date so that if the letters preceding the date are the same, the files would alphabetize automatically.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="scrub.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qualtRics)</span>
+<span id="cb24-2"><a href="scrub.html#cb24-2" aria-hidden="true" tabindex="-1"></a>QTRX_csv <span class="ot">&lt;-</span> <span class="fu">read_survey</span>(<span class="st">&quot;ReC_Download210319.csv&quot;</span>, <span class="at">strip_html =</span> <span class="cn">TRUE</span>, <span class="at">import_id =</span> <span class="cn">FALSE</span>, <span class="at">time_zone=</span><span class="cn">NULL</span>, <span class="at">legacy =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ## -- Column specification --------------------------------------------------------
 ## cols(
@@ -1049,10 +1062,10 @@ df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
 ## )
 ## i Use `spec()` for the full column specifications.</code></pre>
 <p>Although minor tweaking may be required, the same script above should be applicable to this version of the data.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="scrub.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.0.4 (2021-02-15)
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="scrub.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.1.3 (2022-03-10)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18362)
+## Running under: Windows 10 x64 (build 18363)
 ## 
 ## Matrix products: default
 ## 
@@ -1067,27 +1080,28 @@ df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] qualtRics_3.1.4 forcats_0.5.1   stringr_1.4.0   dplyr_1.0.5    
-##  [5] purrr_0.3.4     readr_1.4.0     tidyr_1.1.3     tibble_3.1.1   
-##  [9] ggplot2_3.3.3   tidyverse_1.3.1 psych_2.1.3    
+##  [1] qualtRics_3.1.4 forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7    
+##  [5] purrr_0.3.4     readr_2.0.1     tidyr_1.1.3     tibble_3.1.4   
+##  [9] ggplot2_3.3.5   tidyverse_1.3.1 psych_2.1.6    
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.6        lubridate_1.7.10  lattice_0.20-41   assertthat_0.2.1 
-##  [5] digest_0.6.27     utf8_1.2.1        R6_2.5.0          cellranger_1.1.0 
-##  [9] backports_1.2.1   reprex_2.0.0      evaluate_0.14     httr_1.4.2       
-## [13] pillar_1.6.0      rlang_0.4.11      curl_4.3.1        readxl_1.3.1     
-## [17] rstudioapi_0.13   jquerylib_0.1.4   rmarkdown_2.7     munsell_0.5.0    
-## [21] broom_0.7.6       compiler_4.0.4    modelr_0.1.8      xfun_0.22        
-## [25] pkgconfig_2.0.3   mnormt_2.0.2      tmvnsim_1.0-2     htmltools_0.5.1.1
-## [29] insight_0.13.2    tidyselect_1.1.1  bookdown_0.22     fansi_0.4.2      
-## [33] withr_2.4.2       crayon_1.4.1      dbplyr_2.1.1      grid_4.0.4       
-## [37] nlme_3.1-151      jsonlite_1.7.2    gtable_0.3.0      lifecycle_1.0.0  
-## [41] DBI_1.1.1         magrittr_2.0.1    scales_1.1.1      cli_2.5.0        
-## [45] stringi_1.5.3     fs_1.5.0          xml2_1.3.2        bslib_0.2.4      
-## [49] ellipsis_0.3.1    generics_0.1.0    vctrs_0.3.7       sjlabelled_1.1.7 
-## [53] tools_4.0.4       glue_1.4.2        hms_1.0.0         parallel_4.0.4   
-## [57] yaml_2.2.1        colorspace_2.0-0  rvest_1.0.0       knitr_1.33       
-## [61] haven_2.4.1       sass_0.3.1</code></pre>
+##  [1] Rcpp_1.0.7       lubridate_1.7.10 lattice_0.20-45  assertthat_0.2.1
+##  [5] digest_0.6.27    utf8_1.2.2       cellranger_1.1.0 R6_2.5.1        
+##  [9] backports_1.2.1  reprex_2.0.1     evaluate_0.14    httr_1.4.2      
+## [13] pillar_1.6.2     rlang_0.4.11     readxl_1.3.1     curl_4.3.2      
+## [17] rstudioapi_0.13  jquerylib_0.1.4  rmarkdown_2.10   bit_4.0.4       
+## [21] munsell_0.5.0    broom_0.7.9      modelr_0.1.8     compiler_4.1.3  
+## [25] xfun_0.25        pkgconfig_2.0.3  mnormt_2.0.2     tmvnsim_1.0-2   
+## [29] htmltools_0.5.2  insight_0.14.4   tidyselect_1.1.1 bookdown_0.24   
+## [33] fansi_0.5.0      withr_2.4.2      crayon_1.4.1     tzdb_0.1.2      
+## [37] dbplyr_2.1.1     grid_4.1.3       nlme_3.1-155     jsonlite_1.7.2  
+## [41] gtable_0.3.0     lifecycle_1.0.0  DBI_1.1.1        magrittr_2.0.1  
+## [45] scales_1.1.1     cli_3.0.1        stringi_1.7.4    vroom_1.5.4     
+## [49] fs_1.5.0         xml2_1.3.2       bslib_0.3.0      ellipsis_0.3.2  
+## [53] generics_0.1.0   vctrs_0.3.8      sjlabelled_1.1.8 tools_4.1.3     
+## [57] bit64_4.0.5      glue_1.4.2       hms_1.1.0        parallel_4.1.3  
+## [61] fastmap_1.1.0    yaml_2.2.1       colorspace_2.0-2 rvest_1.0.1     
+## [65] knitr_1.34       haven_2.4.3      sass_0.4.0</code></pre>
 
 </div>
 </div>
@@ -1144,7 +1158,6 @@ Singh, A. (2020). Building a <span>Counseling</span> <span>Psychology</span> of 
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1184,11 +1197,14 @@ gitbook.start({
 "text": null
 },
 "download": ["ReC_MultMod.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
-},
-"search": true
+}
 });
 });
 </script>
