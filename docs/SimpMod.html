@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Simple Moderation in OLS and MLE | ReCentering Psych Stats: Multivariate Modeling</title>
-  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Simple Moderation in OLS and MLE | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  
+  <meta property="og:url" content="https://lhbikos.github.io/ReC_MultivModel/" />
+  <meta property="og:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
+  <meta property="og:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
+  <meta name="github-repo" content="lhbikos/extRas" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 8 Simple Moderation in OLS and MLE | ReCentering Psych Stats: Multivariate Modeling" />
   
-  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  
+  <meta name="twitter:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
+  <meta name="twitter:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
 
-<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+<meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
+<meta name="date" content="2022-03-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +32,7 @@
   
   
 <link rel="prev" href="MOD.html"/>
-<link rel="next" href="refs.html"/>
+<link rel="next" href="CPAnal.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -142,7 +143,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -155,7 +156,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"><strong>ReCentering Psych Stats: Multivariate Modeling</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+<li><a href="./">ReCetering Psych Stats</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
@@ -172,14 +173,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
 <li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
-<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
-<ul>
-<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
-<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
-<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
-<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
-<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
-</ul></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a></li>
 <li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
 <li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
 <li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
@@ -393,22 +387,8 @@ div.csl-indent {
 <li class="chapter" data-level="7.2" data-path="CompMed.html"><a href="CompMed.html#complex-mediation"><i class="fa fa-check"></i><b>7.2</b> Complex Mediation</a></li>
 <li class="chapter" data-level="7.3" data-path="CompMed.html"><a href="CompMed.html#parallel-mediation"><i class="fa fa-check"></i><b>7.3</b> Parallel Mediation</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a>
-<ul>
-<li class="chapter" data-level="7.3.1.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation"><i class="fa fa-check"></i><b>7.3.1.1</b> Data Simulation</a></li>
-<li class="chapter" data-level="7.3.1.2" data-path="CompMed.html"><a href="CompMed.html#specifying-lavaan-code"><i class="fa fa-check"></i><b>7.3.1.2</b> Specifying <em>lavaan</em> code</a></li>
-<li class="chapter" data-level="7.3.1.3" data-path="CompMed.html"><a href="CompMed.html#a-note-on-indirect-effects-and-confidence-intervals"><i class="fa fa-check"></i><b>7.3.1.3</b> A note on indirect effects and confidence intervals</a></li>
-<li class="chapter" data-level="7.3.1.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables"><i class="fa fa-check"></i><b>7.3.1.4</b> Figures and Tables</a></li>
-<li class="chapter" data-level="7.3.1.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup"><i class="fa fa-check"></i><b>7.3.1.5</b> APA Style Writeup</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a>
-<ul>
-<li class="chapter" data-level="7.3.2.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation-1"><i class="fa fa-check"></i><b>7.3.2.1</b> Data Simulation</a></li>
-<li class="chapter" data-level="7.3.2.2" data-path="CompMed.html"><a href="CompMed.html#quick-descriptives"><i class="fa fa-check"></i><b>7.3.2.2</b> Quick Descriptives</a></li>
-<li class="chapter" data-level="7.3.2.3" data-path="CompMed.html"><a href="CompMed.html#specifying-the-lavaan-model"><i class="fa fa-check"></i><b>7.3.2.3</b> Specifying the <em>lavaan</em> model</a></li>
-<li class="chapter" data-level="7.3.2.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-1"><i class="fa fa-check"></i><b>7.3.2.4</b> Figures and Tables</a></li>
-<li class="chapter" data-level="7.3.2.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-1"><i class="fa fa-check"></i><b>7.3.2.5</b> APA Style Writeup</a></li>
-</ul></li>
+<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a></li>
+<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="CompMed.html"><a href="CompMed.html#serial-multiple-mediator-model"><i class="fa fa-check"></i><b>7.4</b> Serial Multiple Mediator Model</a>
 <ul>
@@ -459,10 +439,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.8" data-path="SimpMod.html"><a href="SimpMod.html#working-the-simple-moderation-with-ols-and-mle"><i class="fa fa-check"></i><b>8.8</b> Working the Simple Moderation with OLS and MLE</a>
 <ul>
-<li class="chapter" data-level="8.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>8.8.1</b> OLS with <em>lm()</em></a>
-<ul>
-<li class="chapter" data-level="8.8.1.1" data-path="SimpMod.html"><a href="SimpMod.html#an-apa-style-write-up-of-ols-results"><i class="fa fa-check"></i><b>8.8.1.1</b> An APA Style Write-up of OLS results</a></li>
-</ul></li>
+<li class="chapter" data-level="8.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>8.8.1</b> OLS with <em>lm()</em></a></li>
 <li class="chapter" data-level="8.8.2" data-path="SimpMod.html"><a href="SimpMod.html#mle-with-lavaansem"><i class="fa fa-check"></i><b>8.8.2</b> MLE with <em>lavaan::sem()</em></a></li>
 <li class="chapter" data-level="8.8.3" data-path="SimpMod.html"><a href="SimpMod.html#tabling-the-data"><i class="fa fa-check"></i><b>8.8.3</b> Tabling the data</a></li>
 <li class="chapter" data-level="8.8.4" data-path="SimpMod.html"><a href="SimpMod.html#apa-style-writeup-3"><i class="fa fa-check"></i><b>8.8.4</b> APA Style Writeup</a></li>
@@ -476,7 +453,6 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.11" data-path="SimpMod.html"><a href="SimpMod.html#bonus-track-1"><i class="fa fa-check"></i><b>8.11</b> Bonus Track:</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="" data-path="CPAnal.html"><a href="CPAnal.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
 <li class="chapter" data-level="9" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>9</b> Moderated Mediation</a>
 <ul>
@@ -500,23 +476,14 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5</b> Working the Moderated Mediation</a>
 <ul>
-<li class="chapter" data-level="9.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
-<ul>
-<li class="chapter" data-level="9.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.1</b> Analysis #1: A simple moderation</a></li>
-<li class="chapter" data-level="9.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.2</b> Analysis #2: Another simple moderation</a></li>
-<li class="chapter" data-level="9.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>9.5.1.3</b> Analysis #3: A simple mediation</a></li>
-</ul></li>
+<li class="chapter" data-level="9.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5.1</b> Piecewise Assembly of the Moderated Mediation</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>9.6</b> The Moderated Mediation: A Combined analysis</a>
 <ul>
 <li class="chapter" data-level="9.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>9.6.1</b> Specification in <em>lavaan</em></a></li>
 <li class="chapter" data-level="9.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>9.6.2</b> A quick plot</a></li>
 <li class="chapter" data-level="9.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>9.6.3</b> Beginning the interpretation</a></li>
-<li class="chapter" data-level="9.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.6.4</b> Tabling the data</a>
-<ul>
-<li class="chapter" data-level="9.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>9.6.4.1</b> Conditional Indirect effects</a></li>
-<li class="chapter" data-level="9.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>9.6.4.2</b> Conditional Direct effect</a></li>
-</ul></li>
+<li class="chapter" data-level="9.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.6.4</b> Tabling the data</a></li>
 <li class="chapter" data-level="9.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>9.6.5</b> Model trimming</a></li>
 <li class="chapter" data-level="9.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>9.6.6</b> APA Style Write-up</a></li>
 </ul></li>
@@ -529,10 +496,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-2"><i class="fa fa-check"></i><b>9.9</b> Bonus Track:</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
-#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
-<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
-  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
 </ul>
 
@@ -616,13 +582,13 @@ div.csl-indent {
 <div id="packages-7" class="section level3" number="8.1.4">
 <h3><span class="header-section-number">8.1.4</span> Packages</h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="SimpMod.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
-<span id="cb248-2"><a href="SimpMod.html#cb248-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(apaTables)){<span class="fu">install.packages</span>(<span class="st">&quot;apaTables&quot;</span>)}</span>
-<span id="cb248-3"><a href="SimpMod.html#cb248-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(lavaan)){<span class="fu">install.packages</span>(<span class="st">&quot;lavaan&quot;</span>)}</span>
-<span id="cb248-4"><a href="SimpMod.html#cb248-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semPlot)){<span class="fu">install.packages</span>(<span class="st">&quot;semPlot&quot;</span>)}</span>
-<span id="cb248-5"><a href="SimpMod.html#cb248-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
-<span id="cb248-6"><a href="SimpMod.html#cb248-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
-<span id="cb248-7"><a href="SimpMod.html#cb248-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(jtools)){<span class="fu">install.packages</span>(<span class="st">&quot;jtools&quot;</span>)}</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="SimpMod.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb236-2"><a href="SimpMod.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(apaTables)){<span class="fu">install.packages</span>(<span class="st">&quot;apaTables&quot;</span>)}</span>
+<span id="cb236-3"><a href="SimpMod.html#cb236-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(lavaan)){<span class="fu">install.packages</span>(<span class="st">&quot;lavaan&quot;</span>)}</span>
+<span id="cb236-4"><a href="SimpMod.html#cb236-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semPlot)){<span class="fu">install.packages</span>(<span class="st">&quot;semPlot&quot;</span>)}</span>
+<span id="cb236-5"><a href="SimpMod.html#cb236-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
+<span id="cb236-6"><a href="SimpMod.html#cb236-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
+<span id="cb236-7"><a href="SimpMod.html#cb236-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(jtools)){<span class="fu">install.packages</span>(<span class="st">&quot;jtools&quot;</span>)}</span></code></pre></div>
 <pre><code>Loading required package: jtools</code></pre>
 </div>
 </div>
@@ -739,7 +705,7 @@ div.csl-indent {
 <li>the equations from which the coefficients are created are <em>known normal equations</em>. Among other places, you can look them up in CCW&amp;A <span class="citation">(<a href="#ref-cohen_introduction_1934" role="doc-biblioref">M. R. Cohen &amp; Nagel, 1934</a>)</span> Appendix 1)</li>
 </ul></li>
 </ul>
-<p><img src="ReC_MultMod_files/figure-html/drawing%20a%20line%20of%20best%20fit-1.svg" width="672" /></p>
+<p><img src="ReC_MultMod_files/figure-html/drawing%20a%20line%20of%20best%20fit-1.png" width="672" /></p>
 </div>
 <div id="maximum-likelihood-estimation-mle-a-brief-orientation" class="section level3" number="8.3.2">
 <h3><span class="header-section-number">8.3.2</span> Maximum likelihood estimation (MLE): A brief orientation</h3>
@@ -849,7 +815,7 @@ div.csl-indent {
 <div id="introducing-the-lavaan-package" class="section level2" number="8.4">
 <h2><span class="header-section-number">8.4</span> Introducing the <em>lavaan</em> package</h2>
 <p>In the regression classes (as well as in research designs that are cross-sectional, non-linear, and can be parsimoniously and adequately measured with OLS regression) we typically use the base R function, <em>lm()</em> (“linear model”) which relies on an OLS algorithm. You can learn about it with this simple code:</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="SimpMod.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="co">#?lm</span></span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="SimpMod.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="co">#?lm</span></span></code></pre></div>
 <p>Rosseel’s <span class="citation">(<a href="#ref-rosseel_lavaan_2020" role="doc-biblioref">2020</a>)</span> <em>lavaan</em> package was developed for SEM, but is readily adaptable to most multiple regression models. Which do we use and when?</p>
 <ul>
 <li>For relatively simple models that involve only predictors, covariates, and moderators, <em>lm()</em> is adequate.</li>
@@ -915,34 +881,34 @@ div.csl-indent {
 <div id="simulate-data-from-the-journal-article-1" class="section level3" number="8.7.1">
 <h3><span class="header-section-number">8.7.1</span> Simulate Data from the Journal Article</h3>
 <p>First, we simulate the data from the means, standard deviations, and correlation matrix from the journal article.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="SimpMod.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
-<span id="cb251-2"><a href="SimpMod.html#cb251-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">34</span>, <span class="fl">3.00</span>, <span class="fl">2.98</span>, <span class="fl">2.36</span>, <span class="fl">3.50</span>, <span class="fl">1.64</span>)</span>
-<span id="cb251-3"><a href="SimpMod.html#cb251-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">16</span>, .<span class="dv">83</span>, .<span class="dv">99</span>, .<span class="dv">90</span>, .<span class="dv">90</span>, .<span class="dv">53</span>)</span>
-<span id="cb251-4"><a href="SimpMod.html#cb251-4" aria-hidden="true" tabindex="-1"></a>r_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">1</span>,   .<span class="dv">59</span>, .<span class="dv">26</span>,   .<span class="dv">34</span>,  <span class="sc">-</span>.<span class="dv">25</span>, <span class="sc">-</span>.<span class="dv">02</span>,</span>
-<span id="cb251-5"><a href="SimpMod.html#cb251-5" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">59</span>, <span class="fl">1.00</span>, .<span class="dv">12</span>,   .<span class="dv">19</span>,  <span class="sc">-</span>.<span class="dv">28</span>, .<span class="dv">00</span>, </span>
-<span id="cb251-6"><a href="SimpMod.html#cb251-6" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">26</span>,  .<span class="dv">12</span>, <span class="fl">1.00</span>, .<span class="dv">66</span>,  <span class="sc">-</span>.<span class="dv">55</span>, .<span class="dv">07</span>,</span>
-<span id="cb251-7"><a href="SimpMod.html#cb251-7" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">34</span>,  .<span class="dv">19</span>, .<span class="dv">66</span>,  <span class="fl">1.00</span>, <span class="sc">-</span>.<span class="dv">66</span>, .<span class="dv">05</span>,</span>
-<span id="cb251-8"><a href="SimpMod.html#cb251-8" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>.<span class="dv">25</span>, <span class="sc">-</span>.<span class="dv">28</span>, <span class="sc">-</span>.<span class="dv">55</span>,<span class="sc">-</span>.<span class="dv">66</span>,  <span class="fl">1.00</span>, .<span class="dv">08</span>, </span>
-<span id="cb251-9"><a href="SimpMod.html#cb251-9" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>.<span class="dv">02</span>,  .<span class="dv">00</span>,  .<span class="dv">07</span>, .<span class="dv">05</span>, .<span class="dv">08</span>,  <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">6</span>)</span>
-<span id="cb251-10"><a href="SimpMod.html#cb251-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a covariance matrix</span></span>
-<span id="cb251-11"><a href="SimpMod.html#cb251-11" aria-hidden="true" tabindex="-1"></a>cov_mat <span class="ot">&lt;-</span> sd <span class="sc">%*%</span> <span class="fu">t</span>(sd) <span class="sc">*</span> r_mat</span>
-<span id="cb251-12"><a href="SimpMod.html#cb251-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb251-13"><a href="SimpMod.html#cb251-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Set random seed so that the following matrix always gets the same results.</span></span>
-<span id="cb251-14"><a href="SimpMod.html#cb251-14" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210409</span>)</span>
-<span id="cb251-15"><a href="SimpMod.html#cb251-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb251-16"><a href="SimpMod.html#cb251-16" aria-hidden="true" tabindex="-1"></a>Kim_df <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">156</span>, <span class="at">mu=</span>mu, <span class="at">Sigma =</span> cov_mat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb251-17"><a href="SimpMod.html#cb251-17" aria-hidden="true" tabindex="-1"></a><span class="co">#renaming the variables</span></span>
-<span id="cb251-18"><a href="SimpMod.html#cb251-18" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(Kim_df, <span class="at">row.names =</span> <span class="cn">NULL</span>, <span class="at">optional =</span> <span class="cn">FALSE</span>, <span class="at">make.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb251-19"><a href="SimpMod.html#cb251-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb251-20"><a href="SimpMod.html#cb251-20" aria-hidden="true" tabindex="-1"></a>Kim_df <span class="ot">&lt;-</span> Kim_df<span class="sc">%&gt;%</span></span>
-<span id="cb251-21"><a href="SimpMod.html#cb251-21" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span></span>
-<span id="cb251-22"><a href="SimpMod.html#cb251-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">REMS =</span> V1, <span class="at">CMI =</span> V2, <span class="at">ANX =</span> V3, <span class="at">DEP =</span> V4, <span class="at">PWB =</span> V5, <span class="at">HlpSk =</span> V6)</span>
-<span id="cb251-23"><a href="SimpMod.html#cb251-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
-<span id="cb251-24"><a href="SimpMod.html#cb251-24" aria-hidden="true" tabindex="-1"></a><span class="co">#round(cor(Kim_df),3)</span></span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="SimpMod.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
+<span id="cb239-2"><a href="SimpMod.html#cb239-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">34</span>, <span class="fl">3.00</span>, <span class="fl">2.98</span>, <span class="fl">2.36</span>, <span class="fl">3.50</span>, <span class="fl">1.64</span>)</span>
+<span id="cb239-3"><a href="SimpMod.html#cb239-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">16</span>, .<span class="dv">83</span>, .<span class="dv">99</span>, .<span class="dv">90</span>, .<span class="dv">90</span>, .<span class="dv">53</span>)</span>
+<span id="cb239-4"><a href="SimpMod.html#cb239-4" aria-hidden="true" tabindex="-1"></a>r_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">1</span>,   .<span class="dv">59</span>, .<span class="dv">26</span>,   .<span class="dv">34</span>,  <span class="sc">-</span>.<span class="dv">25</span>, <span class="sc">-</span>.<span class="dv">02</span>,</span>
+<span id="cb239-5"><a href="SimpMod.html#cb239-5" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">59</span>, <span class="fl">1.00</span>, .<span class="dv">12</span>,   .<span class="dv">19</span>,  <span class="sc">-</span>.<span class="dv">28</span>, .<span class="dv">00</span>, </span>
+<span id="cb239-6"><a href="SimpMod.html#cb239-6" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">26</span>,  .<span class="dv">12</span>, <span class="fl">1.00</span>, .<span class="dv">66</span>,  <span class="sc">-</span>.<span class="dv">55</span>, .<span class="dv">07</span>,</span>
+<span id="cb239-7"><a href="SimpMod.html#cb239-7" aria-hidden="true" tabindex="-1"></a>                  .<span class="dv">34</span>,  .<span class="dv">19</span>, .<span class="dv">66</span>,  <span class="fl">1.00</span>, <span class="sc">-</span>.<span class="dv">66</span>, .<span class="dv">05</span>,</span>
+<span id="cb239-8"><a href="SimpMod.html#cb239-8" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>.<span class="dv">25</span>, <span class="sc">-</span>.<span class="dv">28</span>, <span class="sc">-</span>.<span class="dv">55</span>,<span class="sc">-</span>.<span class="dv">66</span>,  <span class="fl">1.00</span>, .<span class="dv">08</span>, </span>
+<span id="cb239-9"><a href="SimpMod.html#cb239-9" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">-</span>.<span class="dv">02</span>,  .<span class="dv">00</span>,  .<span class="dv">07</span>, .<span class="dv">05</span>, .<span class="dv">08</span>,  <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">6</span>)</span>
+<span id="cb239-10"><a href="SimpMod.html#cb239-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a covariance matrix</span></span>
+<span id="cb239-11"><a href="SimpMod.html#cb239-11" aria-hidden="true" tabindex="-1"></a>cov_mat <span class="ot">&lt;-</span> sd <span class="sc">%*%</span> <span class="fu">t</span>(sd) <span class="sc">*</span> r_mat</span>
+<span id="cb239-12"><a href="SimpMod.html#cb239-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb239-13"><a href="SimpMod.html#cb239-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Set random seed so that the following matrix always gets the same results.</span></span>
+<span id="cb239-14"><a href="SimpMod.html#cb239-14" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210409</span>)</span>
+<span id="cb239-15"><a href="SimpMod.html#cb239-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb239-16"><a href="SimpMod.html#cb239-16" aria-hidden="true" tabindex="-1"></a>Kim_df <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">156</span>, <span class="at">mu=</span>mu, <span class="at">Sigma =</span> cov_mat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb239-17"><a href="SimpMod.html#cb239-17" aria-hidden="true" tabindex="-1"></a><span class="co">#renaming the variables</span></span>
+<span id="cb239-18"><a href="SimpMod.html#cb239-18" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(Kim_df, <span class="at">row.names =</span> <span class="cn">NULL</span>, <span class="at">optional =</span> <span class="cn">FALSE</span>, <span class="at">make.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb239-19"><a href="SimpMod.html#cb239-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb239-20"><a href="SimpMod.html#cb239-20" aria-hidden="true" tabindex="-1"></a>Kim_df <span class="ot">&lt;-</span> Kim_df<span class="sc">%&gt;%</span></span>
+<span id="cb239-21"><a href="SimpMod.html#cb239-21" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span></span>
+<span id="cb239-22"><a href="SimpMod.html#cb239-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">REMS =</span> V1, <span class="at">CMI =</span> V2, <span class="at">ANX =</span> V3, <span class="at">DEP =</span> V4, <span class="at">PWB =</span> V5, <span class="at">HlpSk =</span> V6)</span>
+<span id="cb239-23"><a href="SimpMod.html#cb239-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
+<span id="cb239-24"><a href="SimpMod.html#cb239-24" aria-hidden="true" tabindex="-1"></a><span class="co">#round(cor(Kim_df),3)</span></span></code></pre></div>
 <p>We can perform a quick check of our data to check its alignment with the journal article, and also get a sense of the bivariate relations with a couple of useful tools. The package <em>apaTables</em> produces a journal-ready table with means, standard deviations, and the correlation matrix.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="SimpMod.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb252-2"><a href="SimpMod.html#cb252-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(Kim_df)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/pairs%20panels%20for%20Kim%20et%20al-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="SimpMod.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb240-2"><a href="SimpMod.html#cb240-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(Kim_df)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/pairs%20panels%20for%20Kim%20et%20al-1.png" width="672" /></p>
 <p>Kim et al. <span class="citation">(<a href="#ref-kim_racial_2017" role="doc-biblioref">2017</a>)</span> did not conduct any moderation analyses in their article. Core to their analysis was predicting mental health outcomes (e.g., anxiety, depression, psychological well-being). Their predictors were racial/ethnic microaggressions, cultural mistrust, and help-seeking behaviors. In the majority of their models, REMS was the independent variable, predicting one of the mental health outcomes, mediated by cultural mistrust. Given the strong correlation with REMS (<em>r</em> = 0.59) the choice of CMI as a mediator is sound.</p>
 <p>In looking at the data, I will ask the question, “Does help-seeking (HlpSk) moderate the relationship between REMS and ANX?”</p>
 <div class="figure">
@@ -963,15 +929,15 @@ div.csl-indent {
 <h3><span class="header-section-number">8.8.1</span> OLS with <em>lm()</em></h3>
 <p>In this demonstration we will use the <em>lm()</em> function in base R to evaluate help seeking behaviors (HlpSK) as a moderator to the relationship between racial/ethnic microaggressions (REMS) on anxiety (ANX). Ordinary least squares is the estimator used in <em>lm()</em>. We will probe the moderating effect with both pick-a-point and Johnson-Neyman approaches.</p>
 <p>Let’s specify this simple moderation model with base R’s <em>lm()</em> function. We’ll use the <em>jtools</em> package so we get that great summ function and <em>interactions</em> for an awesome plot.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="SimpMod.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools) <span class="co">#the summ function creates a terrific regression table</span></span>
-<span id="cb253-2"><a href="SimpMod.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
-<span id="cb253-3"><a href="SimpMod.html#cb253-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb253-4"><a href="SimpMod.html#cb253-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb253-5"><a href="SimpMod.html#cb253-5" aria-hidden="true" tabindex="-1"></a>KimSimpMod <span class="ot">&lt;-</span> <span class="fu">lm</span>(ANX<span class="sc">~</span>REMS<span class="sc">*</span>HlpSk, <span class="at">data=</span>Kim_df)</span>
-<span id="cb253-6"><a href="SimpMod.html#cb253-6" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(KimSimpMod)</span></span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="SimpMod.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools) <span class="co">#the summ function creates a terrific regression table</span></span>
+<span id="cb241-2"><a href="SimpMod.html#cb241-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
+<span id="cb241-3"><a href="SimpMod.html#cb241-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb241-4"><a href="SimpMod.html#cb241-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb241-5"><a href="SimpMod.html#cb241-5" aria-hidden="true" tabindex="-1"></a>KimSimpMod <span class="ot">&lt;-</span> <span class="fu">lm</span>(ANX<span class="sc">~</span>REMS<span class="sc">*</span>HlpSk, <span class="at">data=</span>Kim_df)</span>
+<span id="cb241-6"><a href="SimpMod.html#cb241-6" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(KimSimpMod)</span></span></code></pre></div>
 <p><strong>Table 3</strong></p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="SimpMod.html#cb254-1" aria-hidden="true" tabindex="-1"></a>KimSimpMod_summ <span class="ot">&lt;-</span> <span class="fu">summ</span>(KimSimpMod, <span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb254-2"><a href="SimpMod.html#cb254-2" aria-hidden="true" tabindex="-1"></a>KimSimpMod_summ</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="SimpMod.html#cb242-1" aria-hidden="true" tabindex="-1"></a>KimSimpMod_summ <span class="ot">&lt;-</span> <span class="fu">summ</span>(KimSimpMod, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb242-2"><a href="SimpMod.html#cb242-2" aria-hidden="true" tabindex="-1"></a>KimSimpMod_summ</span></code></pre></div>
 <pre><code>MODEL INFO:
 Observations: 156
 Dependent Variable: ANX
@@ -992,15 +958,15 @@ HlpSk               -0.518   0.361   -1.433   0.154
 REMS:HlpSk           1.978   0.995    1.987   0.049
 ---------------------------------------------------</code></pre>
 <p>Looking at these results we can see that the predictors account for about 10% of variance in anxiety. It appears that there is a statistically significant interaction of REMS and HlpSk on Anxiety. The <em>interaction_plot()</em> function from the package, <em>interactions</em> can make helpful illustrations. In the case of interactions/moderations, I like to run them “both ways” to see which makes more sense.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="SimpMod.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(KimSimpMod, <span class="at">pred =</span> HlpSk, <span class="at">modx =</span> REMS)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/Plot%20Kim%20SimpMod-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="SimpMod.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(KimSimpMod, <span class="at">pred =</span> REMS, <span class="at">modx =</span> HlpSk)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/Plot%20Kim%20SimpMod-2.svg" width="672" /></p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="SimpMod.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(KimSimpMod, <span class="at">pred =</span> HlpSk, <span class="at">modx =</span> REMS)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/Plot%20Kim%20SimpMod-1.png" width="672" /></p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="SimpMod.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(KimSimpMod, <span class="at">pred =</span> REMS, <span class="at">modx =</span> HlpSk)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/Plot%20Kim%20SimpMod-2.png" width="672" /></p>
 <p>The first figure (where REMS is the moderator) illustrates that for those with the highest experience of racial/ethnic microaggression, the relationship between help-seeking and anxiety is strong ad positive. Anxiety is the highest for those who are +1SD above the mean on REMS and who have sought help. This slope is far less strong for those at the mean on REMS and the slope trends negative for those at the lowest REMS.</p>
 <p>The second figure places HlpSg as the moderator. The results are the same, merely presented differently. Here we see that at all levels of help seeking, there is a positive relationship between REMS and anxiety. The relationship is the sharpest for those who are at +1SD above the mean on help-seeking. That is, the highest levels of anxiety are among those who experience the most racial and ethnic microaggressions and have the most favorable attitudes toward help-seeking.</p>
 <p>Next, let’s probe the interaction with simple slopes. With these additional inferential tests we can see where in the distribution of the moderator, X has an effect on Y that is different from zero (and where it does not). There are two common approaches.</p>
 <p>The Johnson-Neyman is a <em>floodlight</em> approach and provides an indication of the places in the distribution of W (moderator) that X has an effect on Y that is different than zero. The pick-a-point is sometimes called the <em>analysis of simple slopes</em> or a <em>spotlight</em> approach, probes the distribution at specific values (often the <em>M</em> +/- 1<em>SD</em>).</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="SimpMod.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(KimSimpMod, <span class="at">pred =</span> REMS, <span class="at">modx =</span> HlpSk)</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="SimpMod.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(KimSimpMod, <span class="at">pred =</span> REMS, <span class="at">modx =</span> HlpSk)</span></code></pre></div>
 <pre><code>JOHNSON-NEYMAN INTERVAL 
 
 When HlpSk is OUTSIDE the interval [-139.08, 1.34], the slope of REMS is p
@@ -1027,7 +993,7 @@ Slope of REMS when HlpSk = 2.17 (+ 1 SD):
   Est.   S.E.   t val.      p
 ------ ------ -------- ------
   2.73   0.73     3.71   0.00</code></pre>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="SimpMod.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sim_slopes(KimSimpMod, pred=GRIcntlty, modx = GRMS) #sometimes I like to look at it in reverse -- like in the plots</span></span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="SimpMod.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sim_slopes(KimSimpMod, pred=GRIcntlty, modx = GRMS) #sometimes I like to look at it in reverse -- like in the plots</span></span></code></pre></div>
 <p>The Johnson-Neyman suggests that the relationship between REMS and ANX is statistically significant when HlpSk is above 1.34 (the mean of help-seeking is 1.64). We see the same result in the pick-a-point approach where there is a non-significant relationship between REMS and anxiety when help-seeking is 1SD below the mean. However, there is a statistically significant relationship between help-seeking and REMS when help-seeking is at and above the mean.</p>
 <div id="an-apa-style-write-up-of-ols-results" class="section level4" number="8.8.1.1">
 <h4><span class="header-section-number">8.8.1.1</span> An APA Style Write-up of OLS results</h4>
@@ -1062,24 +1028,24 @@ A multiple regression analysis was conducted to predict anxiety from racial and 
 <li>the <em>summary()</em> and <em>parameterEstimates()</em> functions get us the desired output</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="SimpMod.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb261-2"><a href="SimpMod.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210501</span>)</span>
-<span id="cb261-3"><a href="SimpMod.html#cb261-3" aria-hidden="true" tabindex="-1"></a>KimSimpModMLE <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb261-4"><a href="SimpMod.html#cb261-4" aria-hidden="true" tabindex="-1"></a><span class="st">    ANX ~ b1*REMS + b2*HlpSk + b3*REMS:HlpSk</span></span>
-<span id="cb261-5"><a href="SimpMod.html#cb261-5" aria-hidden="true" tabindex="-1"></a><span class="st">    #intercept (constant) of ANX</span></span>
-<span id="cb261-6"><a href="SimpMod.html#cb261-6" aria-hidden="true" tabindex="-1"></a><span class="st">    ANX ~ ANX.mean*1</span></span>
-<span id="cb261-7"><a href="SimpMod.html#cb261-7" aria-hidden="true" tabindex="-1"></a><span class="st">    #mean of W (HlpSk, in this case) for use in simple slopes</span></span>
-<span id="cb261-8"><a href="SimpMod.html#cb261-8" aria-hidden="true" tabindex="-1"></a><span class="st">    HlpSk ~ HlpSk.mean*1</span></span>
-<span id="cb261-9"><a href="SimpMod.html#cb261-9" aria-hidden="true" tabindex="-1"></a><span class="st">    #variance of W (age, in this case) for use in simple slopes</span></span>
-<span id="cb261-10"><a href="SimpMod.html#cb261-10" aria-hidden="true" tabindex="-1"></a><span class="st">    HlpSk ~~HlpSk.var*HlpSk</span></span>
-<span id="cb261-11"><a href="SimpMod.html#cb261-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb261-12"><a href="SimpMod.html#cb261-12" aria-hidden="true" tabindex="-1"></a><span class="st">    #simple slopes</span></span>
-<span id="cb261-13"><a href="SimpMod.html#cb261-13" aria-hidden="true" tabindex="-1"></a><span class="st">    SD.below := b1 + b3*(HlpSk.mean - sqrt(HlpSk.var))</span></span>
-<span id="cb261-14"><a href="SimpMod.html#cb261-14" aria-hidden="true" tabindex="-1"></a><span class="st">    mean := b1 + b3*(HlpSk.mean)</span></span>
-<span id="cb261-15"><a href="SimpMod.html#cb261-15" aria-hidden="true" tabindex="-1"></a><span class="st">    SD.above := b1 + b3*(HlpSk.mean + sqrt(HlpSk.var))</span></span>
-<span id="cb261-16"><a href="SimpMod.html#cb261-16" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
-<span id="cb261-17"><a href="SimpMod.html#cb261-17" aria-hidden="true" tabindex="-1"></a>kMLE_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(KimSimpModMLE, <span class="at">data =</span> Kim_df, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
-<span id="cb261-18"><a href="SimpMod.html#cb261-18" aria-hidden="true" tabindex="-1"></a>k1summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(kMLE_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="SimpMod.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb249-2"><a href="SimpMod.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210501</span>)</span>
+<span id="cb249-3"><a href="SimpMod.html#cb249-3" aria-hidden="true" tabindex="-1"></a>KimSimpModMLE <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb249-4"><a href="SimpMod.html#cb249-4" aria-hidden="true" tabindex="-1"></a><span class="st">    ANX ~ b1*REMS + b2*HlpSk + b3*REMS:HlpSk</span></span>
+<span id="cb249-5"><a href="SimpMod.html#cb249-5" aria-hidden="true" tabindex="-1"></a><span class="st">    #intercept (constant) of ANX</span></span>
+<span id="cb249-6"><a href="SimpMod.html#cb249-6" aria-hidden="true" tabindex="-1"></a><span class="st">    ANX ~ ANX.mean*1</span></span>
+<span id="cb249-7"><a href="SimpMod.html#cb249-7" aria-hidden="true" tabindex="-1"></a><span class="st">    #mean of W (HlpSk, in this case) for use in simple slopes</span></span>
+<span id="cb249-8"><a href="SimpMod.html#cb249-8" aria-hidden="true" tabindex="-1"></a><span class="st">    HlpSk ~ HlpSk.mean*1</span></span>
+<span id="cb249-9"><a href="SimpMod.html#cb249-9" aria-hidden="true" tabindex="-1"></a><span class="st">    #variance of W (age, in this case) for use in simple slopes</span></span>
+<span id="cb249-10"><a href="SimpMod.html#cb249-10" aria-hidden="true" tabindex="-1"></a><span class="st">    HlpSk ~~HlpSk.var*HlpSk</span></span>
+<span id="cb249-11"><a href="SimpMod.html#cb249-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb249-12"><a href="SimpMod.html#cb249-12" aria-hidden="true" tabindex="-1"></a><span class="st">    #simple slopes</span></span>
+<span id="cb249-13"><a href="SimpMod.html#cb249-13" aria-hidden="true" tabindex="-1"></a><span class="st">    SD.below := b1 + b3*(HlpSk.mean - sqrt(HlpSk.var))</span></span>
+<span id="cb249-14"><a href="SimpMod.html#cb249-14" aria-hidden="true" tabindex="-1"></a><span class="st">    mean := b1 + b3*(HlpSk.mean)</span></span>
+<span id="cb249-15"><a href="SimpMod.html#cb249-15" aria-hidden="true" tabindex="-1"></a><span class="st">    SD.above := b1 + b3*(HlpSk.mean + sqrt(HlpSk.var))</span></span>
+<span id="cb249-16"><a href="SimpMod.html#cb249-16" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb249-17"><a href="SimpMod.html#cb249-17" aria-hidden="true" tabindex="-1"></a>kMLE_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(KimSimpModMLE, <span class="at">data =</span> Kim_df, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb249-18"><a href="SimpMod.html#cb249-18" aria-hidden="true" tabindex="-1"></a>k1summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(kMLE_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span></code></pre></div>
 <pre><code>lavaan 0.6-9 ended normally after 27 iterations
 
   Estimator                                         ML
@@ -1142,8 +1108,8 @@ Defined Parameters:
     0.633    0.995
     1.678    1.578
     2.723    2.161</code></pre>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="SimpMod.html#cb263-1" aria-hidden="true" tabindex="-1"></a>k1ParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(kMLE_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
-<span id="cb263-2"><a href="SimpMod.html#cb263-2" aria-hidden="true" tabindex="-1"></a>k1summary</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="SimpMod.html#cb251-1" aria-hidden="true" tabindex="-1"></a>k1ParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(kMLE_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb251-2"><a href="SimpMod.html#cb251-2" aria-hidden="true" tabindex="-1"></a>k1summary</span></code></pre></div>
 <pre><code>$PE
           lhs op                                rhs      label exo         est
 1         ANX  ~                               REMS         b1   0 -1.56544552
@@ -1196,7 +1162,7 @@ Defined Parameters:
 14  1.67839370  1.5777490  4.24516320
 15  2.72334213  2.1606268  6.08062579
 16          NA         NA          NA</code></pre>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="SimpMod.html#cb265-1" aria-hidden="true" tabindex="-1"></a>k1ParamEsts</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="SimpMod.html#cb253-1" aria-hidden="true" tabindex="-1"></a>k1ParamEsts</span></code></pre></div>
 <pre><code>          lhs op                                rhs      label    est    se
 1         ANX  ~                               REMS         b1 -1.565 1.651
 2         ANX  ~                              HlpSk         b2 -0.518 0.357
@@ -1234,28 +1200,28 @@ Defined Parameters:
 <span class="math display">\[Y = i_{Y}+ b_{1}X+ b_{2}W + b_{3}XW +e_{Y}\]</span></p>
 <p>Looking at our data here’s what we’ve learned:
 <span class="math display">\[\hat{Y} = 3.26 + (-1.57)X + (-0.52)W + 1.98XW\]</span></p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="SimpMod.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
-<span id="cb267-2"><a href="SimpMod.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(kMLE_fit, <span class="co">#must identify the model you want to map</span></span>
-<span id="cb267-3"><a href="SimpMod.html#cb267-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
-<span id="cb267-4"><a href="SimpMod.html#cb267-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
-<span id="cb267-5"><a href="SimpMod.html#cb267-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
-<span id="cb267-6"><a href="SimpMod.html#cb267-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;circle&#39;,</span></span>
-<span id="cb267-7"><a href="SimpMod.html#cb267-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
-<span id="cb267-8"><a href="SimpMod.html#cb267-8" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
-<span id="cb267-9"><a href="SimpMod.html#cb267-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
-<span id="cb267-10"><a href="SimpMod.html#cb267-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
-<span id="cb267-11"><a href="SimpMod.html#cb267-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
-<span id="cb267-12"><a href="SimpMod.html#cb267-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
-<span id="cb267-13"><a href="SimpMod.html#cb267-13" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
-<span id="cb267-14"><a href="SimpMod.html#cb267-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
-<span id="cb267-15"><a href="SimpMod.html#cb267-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
-<span id="cb267-16"><a href="SimpMod.html#cb267-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
-<span id="cb267-17"><a href="SimpMod.html#cb267-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
-<span id="cb267-18"><a href="SimpMod.html#cb267-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
-<span id="cb267-19"><a href="SimpMod.html#cb267-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
-<span id="cb267-20"><a href="SimpMod.html#cb267-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb267-21"><a href="SimpMod.html#cb267-21" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Help Seeking as a Moderator in the Relationship between REMS and ANX&quot;</span>)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/semPlot%20of%20simple%20mod-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="SimpMod.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb255-2"><a href="SimpMod.html#cb255-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(kMLE_fit, <span class="co">#must identify the model you want to map</span></span>
+<span id="cb255-3"><a href="SimpMod.html#cb255-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb255-4"><a href="SimpMod.html#cb255-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb255-5"><a href="SimpMod.html#cb255-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
+<span id="cb255-6"><a href="SimpMod.html#cb255-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;circle&#39;,</span></span>
+<span id="cb255-7"><a href="SimpMod.html#cb255-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb255-8"><a href="SimpMod.html#cb255-8" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb255-9"><a href="SimpMod.html#cb255-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb255-10"><a href="SimpMod.html#cb255-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb255-11"><a href="SimpMod.html#cb255-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb255-12"><a href="SimpMod.html#cb255-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb255-13"><a href="SimpMod.html#cb255-13" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb255-14"><a href="SimpMod.html#cb255-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb255-15"><a href="SimpMod.html#cb255-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb255-16"><a href="SimpMod.html#cb255-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb255-17"><a href="SimpMod.html#cb255-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb255-18"><a href="SimpMod.html#cb255-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb255-19"><a href="SimpMod.html#cb255-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb255-20"><a href="SimpMod.html#cb255-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb255-21"><a href="SimpMod.html#cb255-21" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Help Seeking as a Moderator in the Relationship between REMS and ANX&quot;</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/semPlot%20of%20simple%20mod-1.png" width="672" /></p>
 <p>If I had just run this with lavaan, I would want to plot the interaction and would do so with the OLS methods I demonstrated above.</p>
 </div>
 <div id="tabling-the-data" class="section level3" number="8.8.3">
@@ -1645,140 +1611,67 @@ A multiple regression analysis was conducted to predict anxiety from racial and 
 <p class="caption">Image of a filmstrip</p>
 </div>
 <p>Below is template for a simple moderation conducted with the OLS approach using the base R function, <em>lm()</em></p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="SimpMod.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools) <span class="co">#the summ function creates a terrific regression table</span></span>
-<span id="cb268-2"><a href="SimpMod.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
-<span id="cb268-3"><a href="SimpMod.html#cb268-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb268-4"><a href="SimpMod.html#cb268-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-5"><a href="SimpMod.html#cb268-5" aria-hidden="true" tabindex="-1"></a><span class="co">#The regression</span></span>
-<span id="cb268-6"><a href="SimpMod.html#cb268-6" aria-hidden="true" tabindex="-1"></a><span class="co">#OLSmodel &lt;- lm(Y~X*W, data=my_df)</span></span>
-<span id="cb268-7"><a href="SimpMod.html#cb268-7" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(KimSimpMod)</span></span>
-<span id="cb268-8"><a href="SimpMod.html#cb268-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-9"><a href="SimpMod.html#cb268-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Cool Table</span></span>
-<span id="cb268-10"><a href="SimpMod.html#cb268-10" aria-hidden="true" tabindex="-1"></a><span class="co">#summ(KimSimpMod, digits = 3)</span></span>
-<span id="cb268-11"><a href="SimpMod.html#cb268-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-12"><a href="SimpMod.html#cb268-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Probe Simple Slopes</span></span>
-<span id="cb268-13"><a href="SimpMod.html#cb268-13" aria-hidden="true" tabindex="-1"></a><span class="co">#sim_slopes(OLSmodel, pred = X, modx = W)</span></span>
-<span id="cb268-14"><a href="SimpMod.html#cb268-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-15"><a href="SimpMod.html#cb268-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Figures</span></span>
-<span id="cb268-16"><a href="SimpMod.html#cb268-16" aria-hidden="true" tabindex="-1"></a><span class="co">#interact_plot(OLSmodel, pred = W, modx = X)</span></span>
-<span id="cb268-17"><a href="SimpMod.html#cb268-17" aria-hidden="true" tabindex="-1"></a><span class="co">#interact_plot(OLSmodel, pred = X, modx = W)</span></span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="SimpMod.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools) <span class="co">#the summ function creates a terrific regression table</span></span>
+<span id="cb256-2"><a href="SimpMod.html#cb256-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
+<span id="cb256-3"><a href="SimpMod.html#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb256-4"><a href="SimpMod.html#cb256-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-5"><a href="SimpMod.html#cb256-5" aria-hidden="true" tabindex="-1"></a><span class="co">#The regression</span></span>
+<span id="cb256-6"><a href="SimpMod.html#cb256-6" aria-hidden="true" tabindex="-1"></a><span class="co">#OLSmodel &lt;- lm(Y~X*W, data=my_df)</span></span>
+<span id="cb256-7"><a href="SimpMod.html#cb256-7" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(KimSimpMod)</span></span>
+<span id="cb256-8"><a href="SimpMod.html#cb256-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-9"><a href="SimpMod.html#cb256-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Cool Table</span></span>
+<span id="cb256-10"><a href="SimpMod.html#cb256-10" aria-hidden="true" tabindex="-1"></a><span class="co">#summ(KimSimpMod, digits = 3)</span></span>
+<span id="cb256-11"><a href="SimpMod.html#cb256-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-12"><a href="SimpMod.html#cb256-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Probe Simple Slopes</span></span>
+<span id="cb256-13"><a href="SimpMod.html#cb256-13" aria-hidden="true" tabindex="-1"></a><span class="co">#sim_slopes(OLSmodel, pred = X, modx = W)</span></span>
+<span id="cb256-14"><a href="SimpMod.html#cb256-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-15"><a href="SimpMod.html#cb256-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Figures</span></span>
+<span id="cb256-16"><a href="SimpMod.html#cb256-16" aria-hidden="true" tabindex="-1"></a><span class="co">#interact_plot(OLSmodel, pred = W, modx = X)</span></span>
+<span id="cb256-17"><a href="SimpMod.html#cb256-17" aria-hidden="true" tabindex="-1"></a><span class="co">#interact_plot(OLSmodel, pred = X, modx = W)</span></span></code></pre></div>
 <p>Below is a template for a simple moderation conducted with the MLE approach using the package, <em>lavaan</em>.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="SimpMod.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb269-2"><a href="SimpMod.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="co">#set.seed(210501)</span></span>
-<span id="cb269-3"><a href="SimpMod.html#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="co">#MLEmodel &lt;- &#39;</span></span>
-<span id="cb269-4"><a href="SimpMod.html#cb269-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Y ~ b1*X + b2*W + b3*X:W</span></span>
-<span id="cb269-5"><a href="SimpMod.html#cb269-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#intercept (constant) of Y</span></span>
-<span id="cb269-6"><a href="SimpMod.html#cb269-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Y ~ Y.mean*1</span></span>
-<span id="cb269-7"><a href="SimpMod.html#cb269-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#mean of W  for use in simple slopes</span></span>
-<span id="cb269-8"><a href="SimpMod.html#cb269-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#W ~ W.mean*1</span></span>
-<span id="cb269-9"><a href="SimpMod.html#cb269-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#variance of W for use in simple slopes</span></span>
-<span id="cb269-10"><a href="SimpMod.html#cb269-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">#W ~~ W .var*W</span></span>
-<span id="cb269-11"><a href="SimpMod.html#cb269-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb269-12"><a href="SimpMod.html#cb269-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#simple slopes</span></span>
-<span id="cb269-13"><a href="SimpMod.html#cb269-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SD.below := b1 + b3*(W.mean - sqrt(W.var))</span></span>
-<span id="cb269-14"><a href="SimpMod.html#cb269-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">#mean := b1 + b3*(W.mean)</span></span>
-<span id="cb269-15"><a href="SimpMod.html#cb269-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SD.above := b1 + b3*(W.mean + sqrt(W.var))</span></span>
-<span id="cb269-16"><a href="SimpMod.html#cb269-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
-<span id="cb269-17"><a href="SimpMod.html#cb269-17" aria-hidden="true" tabindex="-1"></a><span class="co">#MLEmod_fit &lt;- sem(MLEmodel, data = my_df, missing = &#39;fiml&#39;, se = &quot;bootstrap&quot;, bootstrap = 1000)</span></span>
-<span id="cb269-18"><a href="SimpMod.html#cb269-18" aria-hidden="true" tabindex="-1"></a><span class="co">#MLEmod_fit_summary &lt;- summary(MLEmod_fit, standardized = TRUE, rsq=T, ci=TRUE)    </span></span>
-<span id="cb269-19"><a href="SimpMod.html#cb269-19" aria-hidden="true" tabindex="-1"></a><span class="co">#MLEmodParamEsts &lt;- parameterEstimates(MLEmod_fit, boot.ci.type = &quot;bca.simple&quot;, standardized=TRUE)</span></span>
-<span id="cb269-20"><a href="SimpMod.html#cb269-20" aria-hidden="true" tabindex="-1"></a><span class="co">#MLEmod_fit_summary</span></span>
-<span id="cb269-21"><a href="SimpMod.html#cb269-21" aria-hidden="true" tabindex="-1"></a><span class="co">#MLEmodParamEsts</span></span></code></pre></div>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="SimpMod.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(semPlot)</span></span>
-<span id="cb270-2"><a href="SimpMod.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="co">#semPaths(MLEmod_fit, #must identify the model you want to map</span></span>
-<span id="cb270-3"><a href="SimpMod.html#cb270-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">#what = &quot;est&quot;, #&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
-<span id="cb270-4"><a href="SimpMod.html#cb270-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
-<span id="cb270-5"><a href="SimpMod.html#cb270-5" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;tree&#39;, rotation = 2, #together, puts predictors on left, IVs on right </span></span>
-<span id="cb270-6"><a href="SimpMod.html#cb270-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;circle&#39;,</span></span>
-<span id="cb270-7"><a href="SimpMod.html#cb270-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.label.cex = 1.00, #font size of parameter values</span></span>
-<span id="cb270-8"><a href="SimpMod.html#cb270-8" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
-<span id="cb270-9"><a href="SimpMod.html#cb270-9" aria-hidden="true" tabindex="-1"></a>         <span class="co">#sizeMan=10, #size of squares/observed/&quot;manifest&quot; variables</span></span>
-<span id="cb270-10"><a href="SimpMod.html#cb270-10" aria-hidden="true" tabindex="-1"></a>         <span class="co">#fade=FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
-<span id="cb270-11"><a href="SimpMod.html#cb270-11" aria-hidden="true" tabindex="-1"></a>         <span class="co">#esize=2, </span></span>
-<span id="cb270-12"><a href="SimpMod.html#cb270-12" aria-hidden="true" tabindex="-1"></a>         <span class="co">#asize=3,</span></span>
-<span id="cb270-13"><a href="SimpMod.html#cb270-13" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
-<span id="cb270-14"><a href="SimpMod.html#cb270-14" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.font = 2.5, #controls size (I think) of font for labels</span></span>
-<span id="cb270-15"><a href="SimpMod.html#cb270-15" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.scale = TRUE, #if false, the labels will not scale to fit inside the nodes</span></span>
-<span id="cb270-16"><a href="SimpMod.html#cb270-16" aria-hidden="true" tabindex="-1"></a>         <span class="co">#nDigits = 3, #decimal places (default is 2)</span></span>
-<span id="cb270-17"><a href="SimpMod.html#cb270-17" aria-hidden="true" tabindex="-1"></a>         <span class="co">#residuals = FALSE,#excludes residuals (and variances) from the path diagram</span></span>
-<span id="cb270-18"><a href="SimpMod.html#cb270-18" aria-hidden="true" tabindex="-1"></a>         <span class="co">#nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
-<span id="cb270-19"><a href="SimpMod.html#cb270-19" aria-hidden="true" tabindex="-1"></a>         <span class="co">#intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
-<span id="cb270-20"><a href="SimpMod.html#cb270-20" aria-hidden="true" tabindex="-1"></a><span class="co">#)</span></span>
-<span id="cb270-21"><a href="SimpMod.html#cb270-21" aria-hidden="true" tabindex="-1"></a><span class="co">#title(&quot;Help Seeking as a Moderator in the Relationship between REMS and ANX&quot;)</span></span></code></pre></div>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="SimpMod.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>R version 4.1.3 (2022-03-10)
-Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 10 x64 (build 18363)
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="SimpMod.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb257-2"><a href="SimpMod.html#cb257-2" aria-hidden="true" tabindex="-1"></a><span class="co">#set.seed(210501)</span></span>
+<span id="cb257-3"><a href="SimpMod.html#cb257-3" aria-hidden="true" tabindex="-1"></a><span class="co">#MLEmodel &lt;- &#39;</span></span>
+<span id="cb257-4"><a href="SimpMod.html#cb257-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Y ~ b1*X + b2*W + b3*X:W</span></span>
+<span id="cb257-5"><a href="SimpMod.html#cb257-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#intercept (constant) of Y</span></span>
+<span id="cb257-6"><a href="SimpMod.html#cb257-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Y ~ Y.mean*1</span></span>
+<span id="cb257-7"><a href="SimpMod.html#cb257-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#mean of W  for use in simple slopes</span></span>
+<span id="cb257-8"><a href="SimpMod.html#cb257-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#W ~ W.mean*1</span></span>
+<span id="cb257-9"><a href="SimpMod.html#cb257-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#variance of W for use in simple slopes</span></span>
+<span id="cb257-10"><a href="SimpMod.html#cb257-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">#W ~~ W .var*W</span></span>
+<span id="cb257-11"><a href="SimpMod.html#cb257-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb257-12"><a href="SimpMod.html#cb257-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#simple slopes</span></span>
+<span id="cb257-13"><a href="SimpMod.html#cb257-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SD.below := b1 + b3*(W.mean - sqrt(W.var))</span></span>
+<span id="cb257-14"><a href="SimpMod.html#cb257-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">#mean := b1 + b3*(W.mean)</span></span>
+<span id="cb257-15"><a href="SimpMod.html#cb257-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SD.above := b1 + b3*(W.mean + sqrt(W.var))</span></span>
+<span id="cb257-16"><a href="SimpMod.html#cb257-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb257-17"><a href="SimpMod.html#cb257-17" aria-hidden="true" tabindex="-1"></a><span class="co">#MLEmod_fit &lt;- sem(MLEmodel, data = my_df, missing = &#39;fiml&#39;, se = &quot;bootstrap&quot;, bootstrap = 1000)</span></span>
+<span id="cb257-18"><a href="SimpMod.html#cb257-18" aria-hidden="true" tabindex="-1"></a><span class="co">#MLEmod_fit_summary &lt;- summary(MLEmod_fit, standardized = TRUE, rsq=T, ci=TRUE)    </span></span>
+<span id="cb257-19"><a href="SimpMod.html#cb257-19" aria-hidden="true" tabindex="-1"></a><span class="co">#MLEmodParamEsts &lt;- parameterEstimates(MLEmod_fit, boot.ci.type = &quot;bca.simple&quot;, standardized=TRUE)</span></span>
+<span id="cb257-20"><a href="SimpMod.html#cb257-20" aria-hidden="true" tabindex="-1"></a><span class="co">#MLEmod_fit_summary</span></span>
+<span id="cb257-21"><a href="SimpMod.html#cb257-21" aria-hidden="true" tabindex="-1"></a><span class="co">#MLEmodParamEsts</span></span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="SimpMod.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(semPlot)</span></span>
+<span id="cb258-2"><a href="SimpMod.html#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="co">#semPaths(MLEmod_fit, #must identify the model you want to map</span></span>
+<span id="cb258-3"><a href="SimpMod.html#cb258-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">#what = &quot;est&quot;, #&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb258-4"><a href="SimpMod.html#cb258-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb258-5"><a href="SimpMod.html#cb258-5" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;tree&#39;, rotation = 2, #together, puts predictors on left, IVs on right </span></span>
+<span id="cb258-6"><a href="SimpMod.html#cb258-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;circle&#39;,</span></span>
+<span id="cb258-7"><a href="SimpMod.html#cb258-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.label.cex = 1.00, #font size of parameter values</span></span>
+<span id="cb258-8"><a href="SimpMod.html#cb258-8" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb258-9"><a href="SimpMod.html#cb258-9" aria-hidden="true" tabindex="-1"></a>         <span class="co">#sizeMan=10, #size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb258-10"><a href="SimpMod.html#cb258-10" aria-hidden="true" tabindex="-1"></a>         <span class="co">#fade=FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb258-11"><a href="SimpMod.html#cb258-11" aria-hidden="true" tabindex="-1"></a>         <span class="co">#esize=2, </span></span>
+<span id="cb258-12"><a href="SimpMod.html#cb258-12" aria-hidden="true" tabindex="-1"></a>         <span class="co">#asize=3,</span></span>
+<span id="cb258-13"><a href="SimpMod.html#cb258-13" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb258-14"><a href="SimpMod.html#cb258-14" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.font = 2.5, #controls size (I think) of font for labels</span></span>
+<span id="cb258-15"><a href="SimpMod.html#cb258-15" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.scale = TRUE, #if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb258-16"><a href="SimpMod.html#cb258-16" aria-hidden="true" tabindex="-1"></a>         <span class="co">#nDigits = 3, #decimal places (default is 2)</span></span>
+<span id="cb258-17"><a href="SimpMod.html#cb258-17" aria-hidden="true" tabindex="-1"></a>         <span class="co">#residuals = FALSE,#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb258-18"><a href="SimpMod.html#cb258-18" aria-hidden="true" tabindex="-1"></a>         <span class="co">#nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb258-19"><a href="SimpMod.html#cb258-19" aria-hidden="true" tabindex="-1"></a>         <span class="co">#intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb258-20"><a href="SimpMod.html#cb258-20" aria-hidden="true" tabindex="-1"></a><span class="co">#)</span></span>
+<span id="cb258-21"><a href="SimpMod.html#cb258-21" aria-hidden="true" tabindex="-1"></a><span class="co">#title(&quot;Help Seeking as a Moderator in the Relationship between REMS and ANX&quot;)</span></span></code></pre></div>
 
-Matrix products: default
-
-locale:
-[1] LC_COLLATE=English_United States.1252 
-[2] LC_CTYPE=English_United States.1252   
-[3] LC_MONETARY=English_United States.1252
-[4] LC_NUMERIC=C                          
-[5] LC_TIME=English_United States.1252    
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
- [1] interactions_1.1.5 jtools_2.1.4       MASS_7.3-55        semTable_1.8      
- [5] semPlot_1.1.2      lavaan_0.6-9       apaTables_2.0.8    mice_3.13.0       
- [9] sjstats_0.18.1     formattable_0.2.1  qualtRics_3.1.4    forcats_0.5.1     
-[13] stringr_1.4.0      dplyr_1.0.7        purrr_0.3.4        readr_2.0.1       
-[17] tidyr_1.1.3        tibble_3.1.4       ggplot2_3.3.5      tidyverse_1.3.1   
-[21] psych_2.1.6       
-
-loaded via a namespace (and not attached):
-  [1] readxl_1.3.1        backports_1.2.1     Hmisc_4.5-0        
-  [4] systemfonts_1.0.2   igraph_1.2.6        plyr_1.8.6         
-  [7] splines_4.1.3       TH.data_1.1-0       digest_0.6.27      
- [10] htmltools_0.5.2     matrixcalc_1.0-5    fansi_0.5.0        
- [13] Rsolnp_1.16         magrittr_2.0.1      checkmate_2.0.0    
- [16] lisrelToR_0.1.4     cluster_2.1.2       tzdb_0.1.2         
- [19] openxlsx_4.2.4      modelr_0.1.8        RcppParallel_5.1.4 
- [22] vroom_1.5.4         sandwich_3.0-1      svglite_2.0.0      
- [25] jpeg_0.1-9          sem_3.1-11          MBESS_4.8.0        
- [28] colorspace_2.0-2    rvest_1.0.1         haven_2.4.3        
- [31] xfun_0.25           crayon_1.4.1        jsonlite_1.7.2     
- [34] regsem_1.8.0        lme4_1.1-27.1       survival_3.2-13    
- [37] zoo_1.8-9           glue_1.4.2          gtable_0.3.0       
- [40] emmeans_1.6.3       mi_1.0              sjmisc_2.8.7       
- [43] abind_1.4-5         scales_1.1.1        mvtnorm_1.1-2      
- [46] DBI_1.1.1           Rcpp_1.0.7          xtable_1.8-4       
- [49] performance_0.7.3   htmlTable_2.2.1     tmvnsim_1.0-2      
- [52] foreign_0.8-82      bit_4.0.4           Formula_1.2-4      
- [55] stats4_4.1.3        truncnorm_1.0-8     datawizard_0.2.0.1 
- [58] htmlwidgets_1.5.4   httr_1.4.2          RColorBrewer_1.1-2 
- [61] ellipsis_0.3.2      farver_2.1.0        XML_3.99-0.8       
- [64] pkgconfig_2.0.3     nnet_7.3-17         sass_0.4.0         
- [67] kutils_1.70         dbplyr_2.1.1        utf8_1.2.2         
- [70] labeling_0.4.2      reshape2_1.4.4      tidyselect_1.1.1   
- [73] rlang_0.4.11        effectsize_0.4.5    munsell_0.5.0      
- [76] cellranger_1.1.0    tools_4.1.3         cli_3.0.1          
- [79] generics_0.1.0      sjlabelled_1.1.8    broom_0.7.9        
- [82] fdrtool_1.2.16      evaluate_0.14       fastmap_1.1.0      
- [85] arm_1.11-2          yaml_2.2.1          knitr_1.34         
- [88] bit64_4.0.5         fs_1.5.0            stationery_0.98.30 
- [91] pander_0.6.4        zip_2.2.0           glasso_1.11        
- [94] pbapply_1.5-0       nlme_3.1-155        xml2_1.3.2         
- [97] compiler_4.1.3      rstudioapi_0.13     curl_4.3.2         
-[100] png_0.1-7           reprex_2.0.1        bslib_0.3.0        
-[103] pbivnorm_0.6.0      stringi_1.7.4       highr_0.9          
-[106] parameters_0.14.0   qgraph_1.6.9        rockchalk_1.8.144  
-[109] lattice_0.20-45     Matrix_1.4-0        nloptr_1.2.2.2     
-[112] vctrs_0.3.8         pillar_1.6.2        lifecycle_1.0.0    
-[115] jquerylib_0.1.4     OpenMx_2.19.8       estimability_1.3   
-[118] corpcor_1.6.10      data.table_1.14.0   insight_0.14.4     
-[121] R6_2.5.1            latticeExtra_0.6-29 bookdown_0.24      
-[124] gridExtra_2.3       codetools_0.2-18    gtools_3.9.2       
-[127] boot_1.3-28         assertthat_0.2.1    withr_2.4.2        
-[130] mnormt_2.0.2        multcomp_1.4-17     bayestestR_0.11.0  
-[133] parallel_4.1.3      hms_1.1.0           grid_4.1.3         
-[136] rpart_4.1.16        coda_0.19-4         minqa_1.2.4        
-[139] rmarkdown_2.10      carData_3.0-4       lubridate_1.7.10   
-[142] base64enc_0.1-3    </code></pre>
 </div>
 </div>
 <h3>References</h3>
@@ -1826,7 +1719,7 @@ Rosseel, Y. (2020). <em>The lavaan tutorial</em>. <a href="http://lavaan.ugent.b
         </div>
       </div>
 <a href="MOD.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="refs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="CPAnal.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1841,7 +1734,7 @@ Rosseel, Y. (2020). <em>The lavaan tutorial</em>. <a href="http://lavaan.ugent.b
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": true,
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -1865,17 +1758,16 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ontheline/otl-bookdown/blob/master/08-SimpleMod.Rmd",
+"link": null,
 "text": null
 },
-"download": ["ReC_MultMod.pdf"],
+"download": ["ReC_MultMod.pdf", "ReC_MultMod.epub"],
 "search": {
 "engine": "fuse",
 "options": null
 },
 "toc": {
-"collapse": "section",
-"scroll_highlight": true
+"collapse": "subsection"
 }
 });
 });

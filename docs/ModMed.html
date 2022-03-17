@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Moderated Mediation | ReCentering Psych Stats: Multivariate Modeling</title>
-  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Moderated Mediation | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  
+  <meta property="og:url" content="https://lhbikos.github.io/ReC_MultivModel/" />
+  <meta property="og:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
+  <meta property="og:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
+  <meta name="github-repo" content="lhbikos/extRas" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 9 Moderated Mediation | ReCentering Psych Stats: Multivariate Modeling" />
   
-  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  
+  <meta name="twitter:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
+  <meta name="twitter:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
 
-<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+<meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
+<meta name="date" content="2022-03-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +32,7 @@
   
   
 <link rel="prev" href="CPAnal.html"/>
-
+<link rel="next" href="refs.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -142,7 +143,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -155,7 +156,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"><strong>ReCentering Psych Stats: Multivariate Modeling</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+<li><a href="./">ReCetering Psych Stats</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
@@ -172,14 +173,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
 <li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
-<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
-<ul>
-<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
-<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
-<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
-<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
-<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
-</ul></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a></li>
 <li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
 <li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
 <li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
@@ -393,22 +387,8 @@ div.csl-indent {
 <li class="chapter" data-level="7.2" data-path="CompMed.html"><a href="CompMed.html#complex-mediation"><i class="fa fa-check"></i><b>7.2</b> Complex Mediation</a></li>
 <li class="chapter" data-level="7.3" data-path="CompMed.html"><a href="CompMed.html#parallel-mediation"><i class="fa fa-check"></i><b>7.3</b> Parallel Mediation</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a>
-<ul>
-<li class="chapter" data-level="7.3.1.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation"><i class="fa fa-check"></i><b>7.3.1.1</b> Data Simulation</a></li>
-<li class="chapter" data-level="7.3.1.2" data-path="CompMed.html"><a href="CompMed.html#specifying-lavaan-code"><i class="fa fa-check"></i><b>7.3.1.2</b> Specifying <em>lavaan</em> code</a></li>
-<li class="chapter" data-level="7.3.1.3" data-path="CompMed.html"><a href="CompMed.html#a-note-on-indirect-effects-and-confidence-intervals"><i class="fa fa-check"></i><b>7.3.1.3</b> A note on indirect effects and confidence intervals</a></li>
-<li class="chapter" data-level="7.3.1.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables"><i class="fa fa-check"></i><b>7.3.1.4</b> Figures and Tables</a></li>
-<li class="chapter" data-level="7.3.1.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup"><i class="fa fa-check"></i><b>7.3.1.5</b> APA Style Writeup</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a>
-<ul>
-<li class="chapter" data-level="7.3.2.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation-1"><i class="fa fa-check"></i><b>7.3.2.1</b> Data Simulation</a></li>
-<li class="chapter" data-level="7.3.2.2" data-path="CompMed.html"><a href="CompMed.html#quick-descriptives"><i class="fa fa-check"></i><b>7.3.2.2</b> Quick Descriptives</a></li>
-<li class="chapter" data-level="7.3.2.3" data-path="CompMed.html"><a href="CompMed.html#specifying-the-lavaan-model"><i class="fa fa-check"></i><b>7.3.2.3</b> Specifying the <em>lavaan</em> model</a></li>
-<li class="chapter" data-level="7.3.2.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-1"><i class="fa fa-check"></i><b>7.3.2.4</b> Figures and Tables</a></li>
-<li class="chapter" data-level="7.3.2.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-1"><i class="fa fa-check"></i><b>7.3.2.5</b> APA Style Writeup</a></li>
-</ul></li>
+<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a></li>
+<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="CompMed.html"><a href="CompMed.html#serial-multiple-mediator-model"><i class="fa fa-check"></i><b>7.4</b> Serial Multiple Mediator Model</a>
 <ul>
@@ -459,10 +439,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.8" data-path="SimpMod.html"><a href="SimpMod.html#working-the-simple-moderation-with-ols-and-mle"><i class="fa fa-check"></i><b>8.8</b> Working the Simple Moderation with OLS and MLE</a>
 <ul>
-<li class="chapter" data-level="8.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>8.8.1</b> OLS with <em>lm()</em></a>
-<ul>
-<li class="chapter" data-level="8.8.1.1" data-path="SimpMod.html"><a href="SimpMod.html#an-apa-style-write-up-of-ols-results"><i class="fa fa-check"></i><b>8.8.1.1</b> An APA Style Write-up of OLS results</a></li>
-</ul></li>
+<li class="chapter" data-level="8.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>8.8.1</b> OLS with <em>lm()</em></a></li>
 <li class="chapter" data-level="8.8.2" data-path="SimpMod.html"><a href="SimpMod.html#mle-with-lavaansem"><i class="fa fa-check"></i><b>8.8.2</b> MLE with <em>lavaan::sem()</em></a></li>
 <li class="chapter" data-level="8.8.3" data-path="SimpMod.html"><a href="SimpMod.html#tabling-the-data"><i class="fa fa-check"></i><b>8.8.3</b> Tabling the data</a></li>
 <li class="chapter" data-level="8.8.4" data-path="SimpMod.html"><a href="SimpMod.html#apa-style-writeup-3"><i class="fa fa-check"></i><b>8.8.4</b> APA Style Writeup</a></li>
@@ -476,7 +453,6 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.11" data-path="SimpMod.html"><a href="SimpMod.html#bonus-track-1"><i class="fa fa-check"></i><b>8.11</b> Bonus Track:</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="" data-path="CPAnal.html"><a href="CPAnal.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
 <li class="chapter" data-level="9" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>9</b> Moderated Mediation</a>
 <ul>
@@ -500,23 +476,14 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5</b> Working the Moderated Mediation</a>
 <ul>
-<li class="chapter" data-level="9.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
-<ul>
-<li class="chapter" data-level="9.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.1</b> Analysis #1: A simple moderation</a></li>
-<li class="chapter" data-level="9.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.2</b> Analysis #2: Another simple moderation</a></li>
-<li class="chapter" data-level="9.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>9.5.1.3</b> Analysis #3: A simple mediation</a></li>
-</ul></li>
+<li class="chapter" data-level="9.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5.1</b> Piecewise Assembly of the Moderated Mediation</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>9.6</b> The Moderated Mediation: A Combined analysis</a>
 <ul>
 <li class="chapter" data-level="9.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>9.6.1</b> Specification in <em>lavaan</em></a></li>
 <li class="chapter" data-level="9.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>9.6.2</b> A quick plot</a></li>
 <li class="chapter" data-level="9.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>9.6.3</b> Beginning the interpretation</a></li>
-<li class="chapter" data-level="9.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.6.4</b> Tabling the data</a>
-<ul>
-<li class="chapter" data-level="9.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>9.6.4.1</b> Conditional Indirect effects</a></li>
-<li class="chapter" data-level="9.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>9.6.4.2</b> Conditional Direct effect</a></li>
-</ul></li>
+<li class="chapter" data-level="9.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.6.4</b> Tabling the data</a></li>
 <li class="chapter" data-level="9.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>9.6.5</b> Model trimming</a></li>
 <li class="chapter" data-level="9.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>9.6.6</b> APA Style Write-up</a></li>
 </ul></li>
@@ -529,10 +496,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-2"><i class="fa fa-check"></i><b>9.9</b> Bonus Track:</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
-#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
-<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
-  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
 </ul>
 
@@ -554,7 +520,7 @@ div.csl-indent {
 <div id="ModMed" class="section level1" number="9">
 <h1><span class="header-section-number">Chapter 9</span> Moderated Mediation</h1>
 <p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=1d28d076-efad-4471-b52d-ad1601826f92">Screencasted Lecture Link</a></p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="ModMed.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen=</span><span class="dv">999</span>)<span class="co">#eliminates scientific notation</span></span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="ModMed.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen=</span><span class="dv">999</span>)<span class="co">#eliminates scientific notation</span></span></code></pre></div>
 <p>The focus of this lecture is the moderated mediation. That is, are the effects of the indirect effect (sign, significance, strength, presence/absence) <em>conditional</em> on the effects of the moderator.</p>
 <p>At the outset, please note that although I rely heavily on Hayes <span class="citation">(<a href="#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> text and materials, I am using the R package <em>lavaan</em> in these chapters. Very recently, Hayes has introduced a <a href="https://www.processmacro.org/index.html">PROCESS macro for R</a>. Because I am not yet up-to-speed on using this macro (it is not a typical R package) and because we will use <em>lavaan</em> for confirmatory factor analysis and structural equation modeling, I have chosen to utilize the <em>lavaan</em> package. A substantial difference is that the PROCESS macros use ordinary least squares and <em>lavaan</em> uses maximum likelihood estimators.</p>
 <div id="navigating-this-lesson-7" class="section level2" number="9.1">
@@ -610,12 +576,12 @@ div.csl-indent {
 <div id="packages-8" class="section level3" number="9.1.4">
 <h3><span class="header-section-number">9.1.4</span> Packages</h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="ModMed.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
-<span id="cb274-2"><a href="ModMed.html#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(lavaan)){<span class="fu">install.packages</span>(<span class="st">&quot;lavaan&quot;</span>)}</span>
-<span id="cb274-3"><a href="ModMed.html#cb274-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semPlot)){<span class="fu">install.packages</span>(<span class="st">&quot;semPlot&quot;</span>)}</span>
-<span id="cb274-4"><a href="ModMed.html#cb274-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
-<span id="cb274-5"><a href="ModMed.html#cb274-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
-<span id="cb274-6"><a href="ModMed.html#cb274-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(jtools)){<span class="fu">install.packages</span>(<span class="st">&quot;jtools&quot;</span>)}</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="ModMed.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb260-2"><a href="ModMed.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(lavaan)){<span class="fu">install.packages</span>(<span class="st">&quot;lavaan&quot;</span>)}</span>
+<span id="cb260-3"><a href="ModMed.html#cb260-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semPlot)){<span class="fu">install.packages</span>(<span class="st">&quot;semPlot&quot;</span>)}</span>
+<span id="cb260-4"><a href="ModMed.html#cb260-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
+<span id="cb260-5"><a href="ModMed.html#cb260-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
+<span id="cb260-6"><a href="ModMed.html#cb260-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(jtools)){<span class="fu">install.packages</span>(<span class="st">&quot;jtools&quot;</span>)}</span></code></pre></div>
 </div>
 </div>
 <div id="conditional-process-analysis" class="section level2" number="9.2">
@@ -701,21 +667,21 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 <div id="simulating-the-data-from-the-journal-article" class="section level3" number="9.4.1">
 <h3><span class="header-section-number">9.4.1</span> Simulating the data from the journal article</h3>
 <p>First, we simulate the data from the means, standard deviations, and correlation matrix from the journal article.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="ModMed.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
-<span id="cb275-2"><a href="ModMed.html#cb275-2" aria-hidden="true" tabindex="-1"></a>LEWmu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.99</span>, <span class="fl">2.82</span>, <span class="fl">2.48</span>, <span class="fl">2.32</span>, <span class="fl">1.75</span>, <span class="fl">5.71</span>, <span class="fl">21.37</span>, <span class="fl">21.07</span>)</span>
-<span id="cb275-3"><a href="ModMed.html#cb275-3" aria-hidden="true" tabindex="-1"></a>LEWsd <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">90</span>, .<span class="dv">70</span>, .<span class="dv">81</span>, .<span class="dv">61</span>, .<span class="dv">53</span>, <span class="fl">1.03</span>, <span class="fl">3.83</span>, <span class="fl">4.66</span>)</span>
-<span id="cb275-4"><a href="ModMed.html#cb275-4" aria-hidden="true" tabindex="-1"></a>LEWr_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">1</span>, .<span class="dv">20</span>, .<span class="dv">28</span>, .<span class="dv">30</span>, .<span class="dv">41</span>, .<span class="dv">19</span>, <span class="sc">-</span>.<span class="dv">32</span>, <span class="sc">-</span>.<span class="dv">18</span>,</span>
-<span id="cb275-5"><a href="ModMed.html#cb275-5" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">20</span>, <span class="dv">1</span>, .<span class="dv">49</span>, .<span class="dv">57</span>, .<span class="dv">22</span>, .<span class="dv">13</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">13</span>,</span>
-<span id="cb275-6"><a href="ModMed.html#cb275-6" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">28</span>, .<span class="dv">49</span>, <span class="dv">1</span>, .<span class="dv">46</span>, .<span class="dv">26</span>, .<span class="dv">38</span>, <span class="sc">-</span>.<span class="dv">18</span>,<span class="sc">-</span>.<span class="dv">08</span>, </span>
-<span id="cb275-7"><a href="ModMed.html#cb275-7" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">30</span>, .<span class="dv">57</span>, .<span class="dv">46</span>,  <span class="dv">1</span>, .<span class="dv">37</span>, .<span class="dv">08</span>, <span class="sc">-</span>.<span class="dv">14</span>, <span class="sc">-</span>.<span class="dv">06</span>,</span>
-<span id="cb275-8"><a href="ModMed.html#cb275-8" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">41</span>, .<span class="dv">22</span>, .<span class="dv">26</span>, .<span class="dv">37</span>, <span class="dv">1</span>, .<span class="dv">05</span>, <span class="sc">-</span>.<span class="dv">54</span>, <span class="sc">-</span>.<span class="dv">28</span>, </span>
-<span id="cb275-9"><a href="ModMed.html#cb275-9" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">19</span>, .<span class="dv">13</span>, .<span class="dv">38</span>, .<span class="dv">08</span>, .<span class="dv">05</span>, <span class="dv">1</span>, <span class="sc">-</span>.<span class="dv">10</span>, .<span class="dv">14</span>, </span>
-<span id="cb275-10"><a href="ModMed.html#cb275-10" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span>.<span class="dv">32</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">18</span>, <span class="sc">-</span>.<span class="dv">14</span>, <span class="sc">-</span>.<span class="dv">54</span>, <span class="sc">-</span>.<span class="dv">10</span>, <span class="dv">1</span>, .<span class="dv">47</span>,</span>
-<span id="cb275-11"><a href="ModMed.html#cb275-11" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span>.<span class="dv">18</span>, <span class="sc">-</span>.<span class="dv">13</span>, <span class="sc">-</span>.<span class="dv">08</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">28</span>, .<span class="dv">14</span>, .<span class="dv">47</span>, <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">8</span>)</span>
-<span id="cb275-12"><a href="ModMed.html#cb275-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a covariance matrix</span></span>
-<span id="cb275-13"><a href="ModMed.html#cb275-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb275-14"><a href="ModMed.html#cb275-14" aria-hidden="true" tabindex="-1"></a>LEWcov_mat <span class="ot">&lt;-</span> LEWsd <span class="sc">%*%</span> <span class="fu">t</span>(LEWsd) <span class="sc">*</span> LEWr_mat</span>
-<span id="cb275-15"><a href="ModMed.html#cb275-15" aria-hidden="true" tabindex="-1"></a>LEWcov_mat</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="ModMed.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
+<span id="cb261-2"><a href="ModMed.html#cb261-2" aria-hidden="true" tabindex="-1"></a>LEWmu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.99</span>, <span class="fl">2.82</span>, <span class="fl">2.48</span>, <span class="fl">2.32</span>, <span class="fl">1.75</span>, <span class="fl">5.71</span>, <span class="fl">21.37</span>, <span class="fl">21.07</span>)</span>
+<span id="cb261-3"><a href="ModMed.html#cb261-3" aria-hidden="true" tabindex="-1"></a>LEWsd <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">90</span>, .<span class="dv">70</span>, .<span class="dv">81</span>, .<span class="dv">61</span>, .<span class="dv">53</span>, <span class="fl">1.03</span>, <span class="fl">3.83</span>, <span class="fl">4.66</span>)</span>
+<span id="cb261-4"><a href="ModMed.html#cb261-4" aria-hidden="true" tabindex="-1"></a>LEWr_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">1</span>, .<span class="dv">20</span>, .<span class="dv">28</span>, .<span class="dv">30</span>, .<span class="dv">41</span>, .<span class="dv">19</span>, <span class="sc">-</span>.<span class="dv">32</span>, <span class="sc">-</span>.<span class="dv">18</span>,</span>
+<span id="cb261-5"><a href="ModMed.html#cb261-5" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">20</span>, <span class="dv">1</span>, .<span class="dv">49</span>, .<span class="dv">57</span>, .<span class="dv">22</span>, .<span class="dv">13</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">13</span>,</span>
+<span id="cb261-6"><a href="ModMed.html#cb261-6" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">28</span>, .<span class="dv">49</span>, <span class="dv">1</span>, .<span class="dv">46</span>, .<span class="dv">26</span>, .<span class="dv">38</span>, <span class="sc">-</span>.<span class="dv">18</span>,<span class="sc">-</span>.<span class="dv">08</span>, </span>
+<span id="cb261-7"><a href="ModMed.html#cb261-7" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">30</span>, .<span class="dv">57</span>, .<span class="dv">46</span>,  <span class="dv">1</span>, .<span class="dv">37</span>, .<span class="dv">08</span>, <span class="sc">-</span>.<span class="dv">14</span>, <span class="sc">-</span>.<span class="dv">06</span>,</span>
+<span id="cb261-8"><a href="ModMed.html#cb261-8" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">41</span>, .<span class="dv">22</span>, .<span class="dv">26</span>, .<span class="dv">37</span>, <span class="dv">1</span>, .<span class="dv">05</span>, <span class="sc">-</span>.<span class="dv">54</span>, <span class="sc">-</span>.<span class="dv">28</span>, </span>
+<span id="cb261-9"><a href="ModMed.html#cb261-9" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">19</span>, .<span class="dv">13</span>, .<span class="dv">38</span>, .<span class="dv">08</span>, .<span class="dv">05</span>, <span class="dv">1</span>, <span class="sc">-</span>.<span class="dv">10</span>, .<span class="dv">14</span>, </span>
+<span id="cb261-10"><a href="ModMed.html#cb261-10" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span>.<span class="dv">32</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">18</span>, <span class="sc">-</span>.<span class="dv">14</span>, <span class="sc">-</span>.<span class="dv">54</span>, <span class="sc">-</span>.<span class="dv">10</span>, <span class="dv">1</span>, .<span class="dv">47</span>,</span>
+<span id="cb261-11"><a href="ModMed.html#cb261-11" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span>.<span class="dv">18</span>, <span class="sc">-</span>.<span class="dv">13</span>, <span class="sc">-</span>.<span class="dv">08</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">28</span>, .<span class="dv">14</span>, .<span class="dv">47</span>, <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">8</span>)</span>
+<span id="cb261-12"><a href="ModMed.html#cb261-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a covariance matrix</span></span>
+<span id="cb261-13"><a href="ModMed.html#cb261-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb261-14"><a href="ModMed.html#cb261-14" aria-hidden="true" tabindex="-1"></a>LEWcov_mat <span class="ot">&lt;-</span> LEWsd <span class="sc">%*%</span> <span class="fu">t</span>(LEWsd) <span class="sc">*</span> LEWr_mat</span>
+<span id="cb261-15"><a href="ModMed.html#cb261-15" aria-hidden="true" tabindex="-1"></a>LEWcov_mat</span></code></pre></div>
 <pre><code>         [,1]     [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
 [1,]  0.81000  0.12600  0.204120  0.164700  0.195570  0.176130 -1.103040
 [2,]  0.12600  0.49000  0.277830  0.243390  0.081620  0.093730 -0.160860
@@ -734,14 +700,14 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 [6,]  0.671972
 [7,]  8.388466
 [8,] 21.715600</code></pre>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="ModMed.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set random seed so that the following matrix always gets the same results.</span></span>
-<span id="cb277-2"><a href="ModMed.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210403</span>)</span>
-<span id="cb277-3"><a href="ModMed.html#cb277-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb277-4"><a href="ModMed.html#cb277-4" aria-hidden="true" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">212</span>, <span class="at">mu=</span>LEWmu, <span class="at">Sigma =</span> LEWcov_mat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb277-5"><a href="ModMed.html#cb277-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(Lewis_df)</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="ModMed.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set random seed so that the following matrix always gets the same results.</span></span>
+<span id="cb263-2"><a href="ModMed.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210403</span>)</span>
+<span id="cb263-3"><a href="ModMed.html#cb263-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb263-4"><a href="ModMed.html#cb263-4" aria-hidden="true" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">212</span>, <span class="at">mu=</span>LEWmu, <span class="at">Sigma =</span> LEWcov_mat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb263-5"><a href="ModMed.html#cb263-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(Lewis_df)</span></code></pre></div>
 <pre><code>[1]  1.99  2.82  2.48  2.32  1.75  5.71 21.37 21.07</code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="ModMed.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
-<span id="cb279-2"><a href="ModMed.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Lewis_df)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="ModMed.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
+<span id="cb265-2"><a href="ModMed.html#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Lewis_df)</span></code></pre></div>
 <pre><code>      [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]
 [1,]  1.00  0.20  0.28  0.30  0.41  0.19 -0.32 -0.18
 [2,]  0.20  1.00  0.49  0.57  0.22  0.13 -0.06 -0.13
@@ -752,12 +718,12 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 [7,] -0.32 -0.06 -0.18 -0.14 -0.54 -0.10  1.00  0.47
 [8,] -0.18 -0.13 -0.08 -0.06 -0.28  0.14  0.47  1.00</code></pre>
 <p>Rename the variables</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="ModMed.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(Lewis_df, <span class="at">row.names =</span> <span class="cn">NULL</span>, <span class="at">optional =</span> <span class="cn">FALSE</span>, <span class="at">make.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb281-2"><a href="ModMed.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb281-3"><a href="ModMed.html#cb281-3" aria-hidden="true" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> Lewis_df<span class="sc">%&gt;%</span></span>
-<span id="cb281-4"><a href="ModMed.html#cb281-4" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span></span>
-<span id="cb281-5"><a href="ModMed.html#cb281-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">GRMS =</span> V1, <span class="at">Sprtlty =</span> V2, <span class="at">SocSup =</span> V3, <span class="at">Engmgt =</span> V4, <span class="at">DisEngmt =</span> V5, <span class="at">GRIcntlty =</span> V6, <span class="at">MntlHlth =</span> V7, <span class="at">PhysHlth =</span> V8)</span></code></pre></div>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="ModMed.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Lewis_df)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="ModMed.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(Lewis_df, <span class="at">row.names =</span> <span class="cn">NULL</span>, <span class="at">optional =</span> <span class="cn">FALSE</span>, <span class="at">make.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb267-2"><a href="ModMed.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb267-3"><a href="ModMed.html#cb267-3" aria-hidden="true" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> Lewis_df<span class="sc">%&gt;%</span></span>
+<span id="cb267-4"><a href="ModMed.html#cb267-4" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span></span>
+<span id="cb267-5"><a href="ModMed.html#cb267-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">GRMS =</span> V1, <span class="at">Sprtlty =</span> V2, <span class="at">SocSup =</span> V3, <span class="at">Engmgt =</span> V4, <span class="at">DisEngmt =</span> V5, <span class="at">GRIcntlty =</span> V6, <span class="at">MntlHlth =</span> V7, <span class="at">PhysHlth =</span> V8)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="ModMed.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Lewis_df)</span></code></pre></div>
 <pre><code>       GRMS  Sprtlty   SocSup   Engmgt  DisEngmt GRIcntlty MntlHlth PhysHlth
 1 1.6527393 2.022990 1.705523 1.360615 1.0830779  5.517213 22.75649 19.41684
 2 0.7640948 1.644033 2.505362 2.242470 1.7132075  5.413544 22.62540 22.26355
@@ -768,8 +734,8 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 </div>
 <div id="quick-peek-at-the-data" class="section level3" number="9.4.2">
 <h3><span class="header-section-number">9.4.2</span> Quick peek at the data</h3>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="ModMed.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb284-2"><a href="ModMed.html#cb284-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(Lewis_df)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="ModMed.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb270-2"><a href="ModMed.html#cb270-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(Lewis_df)</span></code></pre></div>
 <pre><code>          vars   n  mean   sd median trimmed  mad   min   max range  skew
 GRMS         1 212  1.99 0.90   1.97    1.99 0.80 -1.07  3.97  5.05 -0.12
 Sprtlty      2 212  2.82 0.70   2.80    2.83 0.75  1.08  4.57  3.49 -0.10
@@ -789,8 +755,8 @@ GRIcntlty     0.76 0.07
 MntlHlth     -0.56 0.26
 PhysHlth     -0.18 0.32</code></pre>
 <p>And a quick peek at a correlation matrix.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="ModMed.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(apaTables)</span>
-<span id="cb286-2"><a href="ModMed.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.cor.table</span> (Lewis_df, <span class="at">show.conf.interval =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="ModMed.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(apaTables)</span>
+<span id="cb272-2"><a href="ModMed.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.cor.table</span> (Lewis_df, <span class="at">show.conf.interval =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>The ability to suppress reporting of reporting confidence intervals has been deprecated in this version.
 The function argument show.conf.interval will be removed in a later version.</code></pre>
 <pre><code>
@@ -892,12 +858,12 @@ W = GRI centrality</p>
 <span class="math display">\[Y=b_{0}+b_{1}X+b_{2}W+b_{3}XW+e_{Y}\]</span></p>
 <p>Let’s specify this simple moderation model with base R’s <em>lm()</em> function. Let’s use the <em>jtools</em> package so we get that great summ function and <em>interactions</em> for the awesome plot.</p>
 <p>Since we are just working to understand our moderations, we can run them with “regular old” ordinary least squares.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="ModMed.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools) <span class="co">#the summ function creates a terrific regression table</span></span>
-<span id="cb289-2"><a href="ModMed.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
-<span id="cb289-3"><a href="ModMed.html#cb289-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb289-4"><a href="ModMed.html#cb289-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-5"><a href="ModMed.html#cb289-5" aria-hidden="true" tabindex="-1"></a>Mod_a_path <span class="ot">&lt;-</span> <span class="fu">lm</span>(DisEngmt<span class="sc">~</span>GRMS<span class="sc">*</span>GRIcntlty, <span class="at">data=</span>Lewis_df)</span>
-<span id="cb289-6"><a href="ModMed.html#cb289-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summ</span>(Mod_a_path, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="ModMed.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools) <span class="co">#the summ function creates a terrific regression table</span></span>
+<span id="cb275-2"><a href="ModMed.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
+<span id="cb275-3"><a href="ModMed.html#cb275-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb275-4"><a href="ModMed.html#cb275-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb275-5"><a href="ModMed.html#cb275-5" aria-hidden="true" tabindex="-1"></a>Mod_a_path <span class="ot">&lt;-</span> <span class="fu">lm</span>(DisEngmt<span class="sc">~</span>GRMS<span class="sc">*</span>GRIcntlty, <span class="at">data=</span>Lewis_df)</span>
+<span id="cb275-6"><a href="ModMed.html#cb275-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summ</span>(Mod_a_path, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>MODEL INFO:
 Observations: 212
 Dependent Variable: DisEngmt
@@ -919,14 +885,14 @@ GRMS:GRIcntlty          0.006   0.039    0.144   0.886
 ------------------------------------------------------</code></pre>
 <p>Looking at these results we can see that the predictors account for about 17% of variance in disengagement coping. However, there is no significance in the predictors. Neither the IV variable (GRMS, [X]), nor the moderator (GRIcntlty, [Y])), nor its interaction (GRMS:GRIcntlty, [XW]) are significant.</p>
 <p>It’s always helpful to graph the relationship. The <em>interaction_plot()</em> function from the package, <em>interactions</em> can make helpful illustrations. In the case of interactions/moderations, I like to run them “both ways” to see which makes more sense.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="ModMed.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(Mod_a_path, <span class="at">pred =</span> GRMS, <span class="at">modx =</span> GRIcntlty)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/MOD%20a%20path%20plot-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="ModMed.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(Mod_a_path, <span class="at">pred =</span> GRIcntlty, <span class="at">modx =</span> GRMS)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/MOD%20a%20path%20plot-2.svg" width="672" />
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="ModMed.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(Mod_a_path, <span class="at">pred =</span> GRMS, <span class="at">modx =</span> GRIcntlty)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/MOD%20a%20path%20plot-1.png" width="672" /></p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="ModMed.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(Mod_a_path, <span class="at">pred =</span> GRIcntlty, <span class="at">modx =</span> GRMS)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/MOD%20a%20path%20plot-2.png" width="672" />
 The figure with GRIcntrlty as the moderator, shows a very similar prediction of disengagement coping from gendered racial microaggressions. The figure that uses GRMS as the moderator, visually, looks like there are big differences as a function of GRMS. Looking at the Y axis (disengagement), though, shows that the scaling variables are not well-spaced.</p>
 <p>Next, let’s probe the interaction with simple slopes. Probing the interaction is a common follow-up. With these additional inferential tests we can see where in the distribution of the moderator, X has an effect on Y that is different from zero (and where it does not). There are two common approaches.</p>
 <p>The Johnson-Neyman is a <em>floodlight</em> approach and provides an indication of the places in the distribution of W (moderator) that X has an effect on Y that is different than zero. The pick-a-point is sometimes called the <em>analysis of simple slopes</em> or a <em>spotlight</em> approach, probes the distribution at specific values (often the <em>M</em> +/- 1<em>SD</em>).</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="ModMed.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(Mod_a_path, <span class="at">pred =</span> GRMS, <span class="at">modx =</span> GRIcntlty)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="ModMed.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(Mod_a_path, <span class="at">pred =</span> GRMS, <span class="at">modx =</span> GRIcntlty)</span></code></pre></div>
 <pre><code>JOHNSON-NEYMAN INTERVAL 
 
 When GRIcntlty is INSIDE the interval [3.02, 9.11], the slope of GRMS is p
@@ -953,7 +919,7 @@ Slope of GRMS when GRIcntlty = 6.74 (+ 1 SD):
   Est.   S.E.   t val.      p
 ------ ------ -------- ------
   0.25   0.05     4.81   0.00</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="ModMed.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sim_slopes(Mod_a_path, pred=GRIcntlty, modx = GRMS) #sometimes I like to look at it in reverse -- like in the plots</span></span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="ModMed.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sim_slopes(Mod_a_path, pred=GRIcntlty, modx = GRMS) #sometimes I like to look at it in reverse -- like in the plots</span></span></code></pre></div>
 <p>The Johnson-Neyman suggests that between the GRIcntlty values of 3.02 and 9.03, the relationship between GRMS is statistically significant. We see the same result in the pick-a-point approach where at the GRIcntlty values of 4.68, 5.71, and 6.74, X has a statistically significant effect on Y. Is this a contradiction to the non-significant interaction effect?</p>
 <p>No. The test of interaction is an interaction about the relationship between <em>W</em> and <em>X</em>’s effect on <em>Y</em>. Just showing that <em>X</em> is significantly related to <em>Y</em> for a specific value does not address any dependence upon the moderator (<em>W</em>). Hayes <span class="citation">(<a href="#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> covers this well in his Chapter 14, in the section “Reporting a Moderation Analysis.”</p>
 <p><strong>What have we learned in this simple moderation?</strong></p>
@@ -975,8 +941,8 @@ W = GRI centrality</p>
 </div>
 <p>As before, this is our formulaic rendering:<br />
 <span class="math display">\[Y=b_{0}+b_{1}X+b_{2}W+b_{3}XW+e_{Y}\]</span></p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="ModMed.html#cb296-1" aria-hidden="true" tabindex="-1"></a>Mod_c_path <span class="ot">&lt;-</span> <span class="fu">lm</span>(MntlHlth<span class="sc">~</span>GRMS<span class="sc">*</span>GRIcntlty, <span class="at">data=</span>Lewis_df)</span>
-<span id="cb296-2"><a href="ModMed.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summ</span>(Mod_c_path, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="ModMed.html#cb282-1" aria-hidden="true" tabindex="-1"></a>Mod_c_path <span class="ot">&lt;-</span> <span class="fu">lm</span>(MntlHlth<span class="sc">~</span>GRMS<span class="sc">*</span>GRIcntlty, <span class="at">data=</span>Lewis_df)</span>
+<span id="cb282-2"><a href="ModMed.html#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summ</span>(Mod_c_path, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>MODEL INFO:
 Observations: 212
 Dependent Variable: MntlHlth
@@ -998,14 +964,14 @@ GRMS:GRIcntlty          0.144   0.293    0.492   0.623
 ------------------------------------------------------</code></pre>
 <p>In this model that is, overall, statistically significant, we account for about 11% of variance in the DV. Looking at these results we can see that there is no significance in the predictors. Neither the IV (GRMS, [X]), nor the moderator (GRIcntlty, [Y])), nor its interaction (GRMS:GRIcntlty, [XW]) are significant.</p>
 <p>Let’s look at the plots.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="ModMed.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(Mod_c_path, <span class="at">pred =</span> GRMS, <span class="at">modx =</span> GRIcntlty)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/MOD%20c%20path%20plot-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="ModMed.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(Mod_c_path, <span class="at">pred =</span> GRIcntlty, <span class="at">modx =</span> GRMS)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/MOD%20c%20path%20plot-2.svg" width="672" />
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="ModMed.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(Mod_c_path, <span class="at">pred =</span> GRMS, <span class="at">modx =</span> GRIcntlty)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/MOD%20c%20path%20plot-1.png" width="672" /></p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="ModMed.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(Mod_c_path, <span class="at">pred =</span> GRIcntlty, <span class="at">modx =</span> GRMS)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/MOD%20c%20path%20plot-2.png" width="672" />
 The figure with GRIcntrlty as the moderator, shows fanning out when mental health is high and GRMS is low.</p>
 <p>Next, let’s probe the interaction with simple slopes. Probing the interaction is a common follow-up. With these additional inferential tests we can see where in the distribution of the moderator, X has an effect on Y that is different from zero (and where it does not). There are two common approaches.</p>
 <p>The Johnson-Neyman is a <em>floodlight</em> approach and provides an indication of the places in the distribution of W (moderator) that X has an effect on Y that is different than zero. The pick-a-point is sometimes called the <em>analysis of simple slopes</em> or a <em>spotlight</em> approach, probes the distribution at specific values (often the <em>M</em> +/- 1<em>SD</em>).</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="ModMed.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(Mod_c_path, <span class="at">pred =</span> GRMS, <span class="at">modx =</span> GRIcntlty)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="ModMed.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(Mod_c_path, <span class="at">pred =</span> GRMS, <span class="at">modx =</span> GRIcntlty)</span></code></pre></div>
 <pre><code>JOHNSON-NEYMAN INTERVAL 
 
 When GRIcntlty is INSIDE the interval [2.97, 7.46], the slope of GRMS is p
@@ -1032,7 +998,7 @@ Slope of GRMS when GRIcntlty = 6.74 (+ 1 SD):
    Est.   S.E.   t val.      p
 ------- ------ -------- ------
   -1.20   0.39    -3.08   0.00</code></pre>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="ModMed.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sim_slopes(Mod_c_path, pred=GRIcntlty, modx = GRMS) #sometimes I like to look at it in reverse -- like in the plots</span></span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="ModMed.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sim_slopes(Mod_c_path, pred=GRIcntlty, modx = GRMS) #sometimes I like to look at it in reverse -- like in the plots</span></span></code></pre></div>
 <p>The Johnson-Neyman suggests that between the GRIcntlty values of 2.972 and 7.46, the relationship between GRMS is statistically significant. We see the same result in the pick-a-point approach where at the GRIcntlty values of 4.68, 5.71, and 6.74, X has a statistically significant effect on Y. Is this a contradiction to the non-significant interaction effect?</p>
 <p>Again. No. The test of interaction is an interaction about the relationship between <em>W</em> and <em>X</em>’s effect on <em>Y</em>. Just showing that <em>X</em> is significantly related to <em>Y</em> for a specific value does not address any dependence upon the moderator (<em>W</em>). Hayes <span class="citation">(<a href="#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> covers this well in his Chapter 14, in the section “Reporting a Moderation Analysis.”</p>
 <p><strong>What have we learned in this simple moderation?</strong></p>
@@ -1053,22 +1019,22 @@ Looking at the diagram, with two consequent variables (i.e., those with arrows p
 <p><span class="math display">\[M = i_{M}+aX + e_{M}\]</span></p>
 <p><span class="math display">\[Y = i_{Y}+c&#39;X+ bM+e_{Y}\]</span></p>
 <p>To conduct this analysis, I am using the guidelines in the <a href="SimpleMed.html#SimpleMed">chapter on simple mediation</a>. We are switching to the <em>lavaan</em> package.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="ModMed.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb303-2"><a href="ModMed.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210421</span>) <span class="co">#reset in case you choose to separate these sections</span></span>
-<span id="cb303-3"><a href="ModMed.html#cb303-3" aria-hidden="true" tabindex="-1"></a>LMedModel <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb303-4"><a href="ModMed.html#cb303-4" aria-hidden="true" tabindex="-1"></a><span class="st">          MntlHlth ~ b*DisEngmt + c_p*GRMS </span></span>
-<span id="cb303-5"><a href="ModMed.html#cb303-5" aria-hidden="true" tabindex="-1"></a><span class="st">          DisEngmt ~a*GRMS</span></span>
-<span id="cb303-6"><a href="ModMed.html#cb303-6" aria-hidden="true" tabindex="-1"></a><span class="st">          </span></span>
-<span id="cb303-7"><a href="ModMed.html#cb303-7" aria-hidden="true" tabindex="-1"></a><span class="st">          #intercepts</span></span>
-<span id="cb303-8"><a href="ModMed.html#cb303-8" aria-hidden="true" tabindex="-1"></a><span class="st">          DisEngmt ~ DisEngmt.mean*1</span></span>
-<span id="cb303-9"><a href="ModMed.html#cb303-9" aria-hidden="true" tabindex="-1"></a><span class="st">          MntlHlth ~ MntlHlth.mean*1</span></span>
-<span id="cb303-10"><a href="ModMed.html#cb303-10" aria-hidden="true" tabindex="-1"></a><span class="st">          </span></span>
-<span id="cb303-11"><a href="ModMed.html#cb303-11" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
-<span id="cb303-12"><a href="ModMed.html#cb303-12" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
-<span id="cb303-13"><a href="ModMed.html#cb303-13" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
-<span id="cb303-14"><a href="ModMed.html#cb303-14" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span>
-<span id="cb303-15"><a href="ModMed.html#cb303-15" aria-hidden="true" tabindex="-1"></a>LMed_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(LMedModel, <span class="at">data =</span> Lewis_df, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>)</span>
-<span id="cb303-16"><a href="ModMed.html#cb303-16" aria-hidden="true" tabindex="-1"></a>LMed_Sum <span class="ot">&lt;-</span>  <span class="fu">summary</span>(LMed_fit, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="ModMed.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb289-2"><a href="ModMed.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210421</span>) <span class="co">#reset in case you choose to separate these sections</span></span>
+<span id="cb289-3"><a href="ModMed.html#cb289-3" aria-hidden="true" tabindex="-1"></a>LMedModel <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb289-4"><a href="ModMed.html#cb289-4" aria-hidden="true" tabindex="-1"></a><span class="st">          MntlHlth ~ b*DisEngmt + c_p*GRMS </span></span>
+<span id="cb289-5"><a href="ModMed.html#cb289-5" aria-hidden="true" tabindex="-1"></a><span class="st">          DisEngmt ~a*GRMS</span></span>
+<span id="cb289-6"><a href="ModMed.html#cb289-6" aria-hidden="true" tabindex="-1"></a><span class="st">          </span></span>
+<span id="cb289-7"><a href="ModMed.html#cb289-7" aria-hidden="true" tabindex="-1"></a><span class="st">          #intercepts</span></span>
+<span id="cb289-8"><a href="ModMed.html#cb289-8" aria-hidden="true" tabindex="-1"></a><span class="st">          DisEngmt ~ DisEngmt.mean*1</span></span>
+<span id="cb289-9"><a href="ModMed.html#cb289-9" aria-hidden="true" tabindex="-1"></a><span class="st">          MntlHlth ~ MntlHlth.mean*1</span></span>
+<span id="cb289-10"><a href="ModMed.html#cb289-10" aria-hidden="true" tabindex="-1"></a><span class="st">          </span></span>
+<span id="cb289-11"><a href="ModMed.html#cb289-11" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
+<span id="cb289-12"><a href="ModMed.html#cb289-12" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
+<span id="cb289-13"><a href="ModMed.html#cb289-13" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
+<span id="cb289-14"><a href="ModMed.html#cb289-14" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span>
+<span id="cb289-15"><a href="ModMed.html#cb289-15" aria-hidden="true" tabindex="-1"></a>LMed_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(LMedModel, <span class="at">data =</span> Lewis_df, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>)</span>
+<span id="cb289-16"><a href="ModMed.html#cb289-16" aria-hidden="true" tabindex="-1"></a>LMed_Sum <span class="ot">&lt;-</span>  <span class="fu">summary</span>(LMed_fit, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>lavaan 0.6-9 ended normally after 30 iterations
 
   Estimator                                         ML
@@ -1133,8 +1099,8 @@ Defined Parameters:
    -0.857   -0.201
    -0.504   -0.119
    -1.362   -0.320</code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="ModMed.html#cb305-1" aria-hidden="true" tabindex="-1"></a>LMed_ParEsts<span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(LMed_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
-<span id="cb305-2"><a href="ModMed.html#cb305-2" aria-hidden="true" tabindex="-1"></a>LMed_Sum</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="ModMed.html#cb291-1" aria-hidden="true" tabindex="-1"></a>LMed_ParEsts<span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(LMed_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb291-2"><a href="ModMed.html#cb291-2" aria-hidden="true" tabindex="-1"></a>LMed_Sum</span></code></pre></div>
 <pre><code>$PE
         lhs op       rhs         label exo        est         se         z
 1  MntlHlth  ~  DisEngmt             b   0 -3.5510981 0.39835676 -8.914366
@@ -1181,7 +1147,7 @@ Defined Parameters:
 12 -0.3563971
 13         NA
 14         NA</code></pre>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="ModMed.html#cb307-1" aria-hidden="true" tabindex="-1"></a>LMed_ParEsts</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="ModMed.html#cb293-1" aria-hidden="true" tabindex="-1"></a>LMed_ParEsts</span></code></pre></div>
 <pre><code>        lhs op       rhs         label    est    se      z pvalue ci.lower
 1  MntlHlth  ~  DisEngmt             b -3.551 0.398 -8.914  0.000   -4.328
 2  MntlHlth  ~      GRMS           c_p -0.504 0.274 -1.844  0.065   -1.069
@@ -1218,29 +1184,29 @@ Defined Parameters:
 <li>The model accounts for 30% of the variance in mental health (DV) and 17% of the variance in disengagement coping (M).</li>
 </ul>
 <p>Recall how the bootstrapped, bias-corrected confidence intervals can be different? It’s always good to check. In this case, CI95s and the <span class="math inline">\(p\)</span> values are congruent.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="ModMed.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210421</span>)</span>
-<span id="cb309-2"><a href="ModMed.html#cb309-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
-<span id="cb309-3"><a href="ModMed.html#cb309-3" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(LMed_fit, <span class="co">#must identiy the model you want to map</span></span>
-<span id="cb309-4"><a href="ModMed.html#cb309-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
-<span id="cb309-5"><a href="ModMed.html#cb309-5" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
-<span id="cb309-6"><a href="ModMed.html#cb309-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
-<span id="cb309-7"><a href="ModMed.html#cb309-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;circle&#39;,</span></span>
-<span id="cb309-8"><a href="ModMed.html#cb309-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
-<span id="cb309-9"><a href="ModMed.html#cb309-9" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
-<span id="cb309-10"><a href="ModMed.html#cb309-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
-<span id="cb309-11"><a href="ModMed.html#cb309-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
-<span id="cb309-12"><a href="ModMed.html#cb309-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
-<span id="cb309-13"><a href="ModMed.html#cb309-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
-<span id="cb309-14"><a href="ModMed.html#cb309-14" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
-<span id="cb309-15"><a href="ModMed.html#cb309-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
-<span id="cb309-16"><a href="ModMed.html#cb309-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
-<span id="cb309-17"><a href="ModMed.html#cb309-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
-<span id="cb309-18"><a href="ModMed.html#cb309-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
-<span id="cb309-19"><a href="ModMed.html#cb309-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
-<span id="cb309-20"><a href="ModMed.html#cb309-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
-<span id="cb309-21"><a href="ModMed.html#cb309-21" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb309-22"><a href="ModMed.html#cb309-22" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Disengagement Coping as Mediator between GRMS and Mental Health&quot;</span>)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/semPlot%20of%20simple%20med%20in%20the%20modmed-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="ModMed.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210421</span>)</span>
+<span id="cb295-2"><a href="ModMed.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb295-3"><a href="ModMed.html#cb295-3" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(LMed_fit, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb295-4"><a href="ModMed.html#cb295-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb295-5"><a href="ModMed.html#cb295-5" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb295-6"><a href="ModMed.html#cb295-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
+<span id="cb295-7"><a href="ModMed.html#cb295-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;circle&#39;,</span></span>
+<span id="cb295-8"><a href="ModMed.html#cb295-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb295-9"><a href="ModMed.html#cb295-9" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb295-10"><a href="ModMed.html#cb295-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb295-11"><a href="ModMed.html#cb295-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb295-12"><a href="ModMed.html#cb295-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb295-13"><a href="ModMed.html#cb295-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb295-14"><a href="ModMed.html#cb295-14" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb295-15"><a href="ModMed.html#cb295-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb295-16"><a href="ModMed.html#cb295-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb295-17"><a href="ModMed.html#cb295-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb295-18"><a href="ModMed.html#cb295-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb295-19"><a href="ModMed.html#cb295-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb295-20"><a href="ModMed.html#cb295-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb295-21"><a href="ModMed.html#cb295-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb295-22"><a href="ModMed.html#cb295-22" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Disengagement Coping as Mediator between GRMS and Mental Health&quot;</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/semPlot%20of%20simple%20med%20in%20the%20modmed-1.png" width="672" /></p>
 </div>
 </div>
 </div>
@@ -1293,40 +1259,40 @@ M = GRIcntlty</p>
 </ul></li>
 <li>Although they don’t tend to be reported, you can create total effects conditional on the (<em>M</em> +/- 1<em>SD</em>). These are simply the sum of the c_p and all indirect paths, specified individually, at their <em>M</em> +/- 1<em>SD</em> conditional values.</li>
 </ul>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="ModMed.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">190505</span>)</span>
-<span id="cb310-2"><a href="ModMed.html#cb310-2" aria-hidden="true" tabindex="-1"></a>Combined <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb310-3"><a href="ModMed.html#cb310-3" aria-hidden="true" tabindex="-1"></a><span class="st">    #equations</span></span>
-<span id="cb310-4"><a href="ModMed.html#cb310-4" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ a1*GRMS + a2*GRIcntlty + a3*GRMS:GRIcntlty</span></span>
-<span id="cb310-5"><a href="ModMed.html#cb310-5" aria-hidden="true" tabindex="-1"></a><span class="st">    MntlHlth ~ c_p1*GRMS + c_p2*GRIcntlty + c_p3*GRMS:GRIcntlty + b*DisEngmt</span></span>
-<span id="cb310-6"><a href="ModMed.html#cb310-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb310-7"><a href="ModMed.html#cb310-7" aria-hidden="true" tabindex="-1"></a><span class="st">    #intercepts</span></span>
-<span id="cb310-8"><a href="ModMed.html#cb310-8" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ DisEngmt.mean*1</span></span>
-<span id="cb310-9"><a href="ModMed.html#cb310-9" aria-hidden="true" tabindex="-1"></a><span class="st">    MntlHlth ~ MntlHlth.mean*1</span></span>
-<span id="cb310-10"><a href="ModMed.html#cb310-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb310-11"><a href="ModMed.html#cb310-11" aria-hidden="true" tabindex="-1"></a><span class="st">    #means, variances of W for simple slopes</span></span>
-<span id="cb310-12"><a href="ModMed.html#cb310-12" aria-hidden="true" tabindex="-1"></a><span class="st">    GRIcntlty ~ GRIcntlty.mean*1</span></span>
-<span id="cb310-13"><a href="ModMed.html#cb310-13" aria-hidden="true" tabindex="-1"></a><span class="st">    GRIcntlty ~~ GRIcntlty.var*GRIcntlty</span></span>
-<span id="cb310-14"><a href="ModMed.html#cb310-14" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb310-15"><a href="ModMed.html#cb310-15" aria-hidden="true" tabindex="-1"></a><span class="st">    #index of moderated mediation, there will be an a and b path in the product</span></span>
-<span id="cb310-16"><a href="ModMed.html#cb310-16" aria-hidden="true" tabindex="-1"></a><span class="st">    #if the a and/or b path is moderated, select the label that represents the moderation</span></span>
-<span id="cb310-17"><a href="ModMed.html#cb310-17" aria-hidden="true" tabindex="-1"></a><span class="st">    imm := a3*b</span></span>
-<span id="cb310-18"><a href="ModMed.html#cb310-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb310-19"><a href="ModMed.html#cb310-19" aria-hidden="true" tabindex="-1"></a><span class="st">    #Note that we first create the indirect product, then add to it the product of the imm and the W level</span></span>
-<span id="cb310-20"><a href="ModMed.html#cb310-20" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect.SDbelow := a1*b + imm*(GRIcntlty.mean - sqrt(GRIcntlty.var))</span></span>
-<span id="cb310-21"><a href="ModMed.html#cb310-21" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect.mean := a1*b + imm*(GRIcntlty.mean)</span></span>
-<span id="cb310-22"><a href="ModMed.html#cb310-22" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect.SDabove := a1*b + imm*(GRIcntlty.mean + sqrt(GRIcntlty.var))</span></span>
-<span id="cb310-23"><a href="ModMed.html#cb310-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb310-24"><a href="ModMed.html#cb310-24" aria-hidden="true" tabindex="-1"></a><span class="st">    #direct effect is also moderated so calculate with c_p1 + c_p3</span></span>
-<span id="cb310-25"><a href="ModMed.html#cb310-25" aria-hidden="true" tabindex="-1"></a><span class="st">    direct.SDbelow := c_p1 + c_p3*(GRIcntlty.mean - sqrt(GRIcntlty.var)) </span></span>
-<span id="cb310-26"><a href="ModMed.html#cb310-26" aria-hidden="true" tabindex="-1"></a><span class="st">    direct.Smean := c_p1 + c_p3*(GRIcntlty.mean)</span></span>
-<span id="cb310-27"><a href="ModMed.html#cb310-27" aria-hidden="true" tabindex="-1"></a><span class="st">    direct.SDabove := c_p1 + c_p3*(GRIcntlty.mean + sqrt(GRIcntlty.var))</span></span>
-<span id="cb310-28"><a href="ModMed.html#cb310-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb310-29"><a href="ModMed.html#cb310-29" aria-hidden="true" tabindex="-1"></a><span class="st">    #total effect</span></span>
-<span id="cb310-30"><a href="ModMed.html#cb310-30" aria-hidden="true" tabindex="-1"></a><span class="st">    total.SDbelow := direct.SDbelow + indirect.SDbelow</span></span>
-<span id="cb310-31"><a href="ModMed.html#cb310-31" aria-hidden="true" tabindex="-1"></a><span class="st">    total.mean := direct.Smean + indirect.mean</span></span>
-<span id="cb310-32"><a href="ModMed.html#cb310-32" aria-hidden="true" tabindex="-1"></a><span class="st">    total.SDabove := direct.SDabove + indirect.SDabove</span></span>
-<span id="cb310-33"><a href="ModMed.html#cb310-33" aria-hidden="true" tabindex="-1"></a><span class="st"> &#39;</span></span>
-<span id="cb310-34"><a href="ModMed.html#cb310-34" aria-hidden="true" tabindex="-1"></a>Combined_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(Combined, <span class="at">data =</span> Lewis_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="ModMed.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">190505</span>)</span>
+<span id="cb296-2"><a href="ModMed.html#cb296-2" aria-hidden="true" tabindex="-1"></a>Combined <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb296-3"><a href="ModMed.html#cb296-3" aria-hidden="true" tabindex="-1"></a><span class="st">    #equations</span></span>
+<span id="cb296-4"><a href="ModMed.html#cb296-4" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ a1*GRMS + a2*GRIcntlty + a3*GRMS:GRIcntlty</span></span>
+<span id="cb296-5"><a href="ModMed.html#cb296-5" aria-hidden="true" tabindex="-1"></a><span class="st">    MntlHlth ~ c_p1*GRMS + c_p2*GRIcntlty + c_p3*GRMS:GRIcntlty + b*DisEngmt</span></span>
+<span id="cb296-6"><a href="ModMed.html#cb296-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb296-7"><a href="ModMed.html#cb296-7" aria-hidden="true" tabindex="-1"></a><span class="st">    #intercepts</span></span>
+<span id="cb296-8"><a href="ModMed.html#cb296-8" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ DisEngmt.mean*1</span></span>
+<span id="cb296-9"><a href="ModMed.html#cb296-9" aria-hidden="true" tabindex="-1"></a><span class="st">    MntlHlth ~ MntlHlth.mean*1</span></span>
+<span id="cb296-10"><a href="ModMed.html#cb296-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb296-11"><a href="ModMed.html#cb296-11" aria-hidden="true" tabindex="-1"></a><span class="st">    #means, variances of W for simple slopes</span></span>
+<span id="cb296-12"><a href="ModMed.html#cb296-12" aria-hidden="true" tabindex="-1"></a><span class="st">    GRIcntlty ~ GRIcntlty.mean*1</span></span>
+<span id="cb296-13"><a href="ModMed.html#cb296-13" aria-hidden="true" tabindex="-1"></a><span class="st">    GRIcntlty ~~ GRIcntlty.var*GRIcntlty</span></span>
+<span id="cb296-14"><a href="ModMed.html#cb296-14" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb296-15"><a href="ModMed.html#cb296-15" aria-hidden="true" tabindex="-1"></a><span class="st">    #index of moderated mediation, there will be an a and b path in the product</span></span>
+<span id="cb296-16"><a href="ModMed.html#cb296-16" aria-hidden="true" tabindex="-1"></a><span class="st">    #if the a and/or b path is moderated, select the label that represents the moderation</span></span>
+<span id="cb296-17"><a href="ModMed.html#cb296-17" aria-hidden="true" tabindex="-1"></a><span class="st">    imm := a3*b</span></span>
+<span id="cb296-18"><a href="ModMed.html#cb296-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb296-19"><a href="ModMed.html#cb296-19" aria-hidden="true" tabindex="-1"></a><span class="st">    #Note that we first create the indirect product, then add to it the product of the imm and the W level</span></span>
+<span id="cb296-20"><a href="ModMed.html#cb296-20" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect.SDbelow := a1*b + imm*(GRIcntlty.mean - sqrt(GRIcntlty.var))</span></span>
+<span id="cb296-21"><a href="ModMed.html#cb296-21" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect.mean := a1*b + imm*(GRIcntlty.mean)</span></span>
+<span id="cb296-22"><a href="ModMed.html#cb296-22" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect.SDabove := a1*b + imm*(GRIcntlty.mean + sqrt(GRIcntlty.var))</span></span>
+<span id="cb296-23"><a href="ModMed.html#cb296-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb296-24"><a href="ModMed.html#cb296-24" aria-hidden="true" tabindex="-1"></a><span class="st">    #direct effect is also moderated so calculate with c_p1 + c_p3</span></span>
+<span id="cb296-25"><a href="ModMed.html#cb296-25" aria-hidden="true" tabindex="-1"></a><span class="st">    direct.SDbelow := c_p1 + c_p3*(GRIcntlty.mean - sqrt(GRIcntlty.var)) </span></span>
+<span id="cb296-26"><a href="ModMed.html#cb296-26" aria-hidden="true" tabindex="-1"></a><span class="st">    direct.Smean := c_p1 + c_p3*(GRIcntlty.mean)</span></span>
+<span id="cb296-27"><a href="ModMed.html#cb296-27" aria-hidden="true" tabindex="-1"></a><span class="st">    direct.SDabove := c_p1 + c_p3*(GRIcntlty.mean + sqrt(GRIcntlty.var))</span></span>
+<span id="cb296-28"><a href="ModMed.html#cb296-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb296-29"><a href="ModMed.html#cb296-29" aria-hidden="true" tabindex="-1"></a><span class="st">    #total effect</span></span>
+<span id="cb296-30"><a href="ModMed.html#cb296-30" aria-hidden="true" tabindex="-1"></a><span class="st">    total.SDbelow := direct.SDbelow + indirect.SDbelow</span></span>
+<span id="cb296-31"><a href="ModMed.html#cb296-31" aria-hidden="true" tabindex="-1"></a><span class="st">    total.mean := direct.Smean + indirect.mean</span></span>
+<span id="cb296-32"><a href="ModMed.html#cb296-32" aria-hidden="true" tabindex="-1"></a><span class="st">    total.SDabove := direct.SDabove + indirect.SDabove</span></span>
+<span id="cb296-33"><a href="ModMed.html#cb296-33" aria-hidden="true" tabindex="-1"></a><span class="st"> &#39;</span></span>
+<span id="cb296-34"><a href="ModMed.html#cb296-34" aria-hidden="true" tabindex="-1"></a>Combined_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(Combined, <span class="at">data =</span> Lewis_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span></code></pre></div>
 <pre><code>Warning in lav_partable_vnames(FLAT, &quot;ov.x&quot;, warn = TRUE): lavaan WARNING:
     model syntax contains variance/covariance/intercept formulas
     involving (an) exogenous variable(s): [GRIcntlty]; These variables
@@ -1334,7 +1300,7 @@ M = GRIcntlty</p>
     parameters. If you wish to treat those variables as fixed, remove
     these formulas from the model syntax. Otherwise, consider adding
     the fixed.x = FALSE option.</code></pre>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="ModMed.html#cb312-1" aria-hidden="true" tabindex="-1"></a>cFITsum <span class="ot">&lt;-</span> <span class="fu">summary</span>(Combined_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="ModMed.html#cb298-1" aria-hidden="true" tabindex="-1"></a>cFITsum <span class="ot">&lt;-</span> <span class="fu">summary</span>(Combined_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span></code></pre></div>
 <pre><code>lavaan 0.6-9 ended normally after 47 iterations
 
   Estimator                                         ML
@@ -1426,33 +1392,33 @@ Defined Parameters:
    -1.494    0.538
    -1.346    0.767
    -1.198    0.997</code></pre>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="ModMed.html#cb314-1" aria-hidden="true" tabindex="-1"></a>cParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(Combined_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="ModMed.html#cb300-1" aria-hidden="true" tabindex="-1"></a>cParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(Combined_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="a-quick-plot" class="section level3" number="9.6.2">
 <h3><span class="header-section-number">9.6.2</span> A quick plot</h3>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="ModMed.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
-<span id="cb315-2"><a href="ModMed.html#cb315-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(Combined_fit, <span class="co">#must identiy the model you want to map</span></span>
-<span id="cb315-3"><a href="ModMed.html#cb315-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
-<span id="cb315-4"><a href="ModMed.html#cb315-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
-<span id="cb315-5"><a href="ModMed.html#cb315-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
-<span id="cb315-6"><a href="ModMed.html#cb315-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;circle&#39;,</span></span>
-<span id="cb315-7"><a href="ModMed.html#cb315-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
-<span id="cb315-8"><a href="ModMed.html#cb315-8" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
-<span id="cb315-9"><a href="ModMed.html#cb315-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
-<span id="cb315-10"><a href="ModMed.html#cb315-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
-<span id="cb315-11"><a href="ModMed.html#cb315-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
-<span id="cb315-12"><a href="ModMed.html#cb315-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
-<span id="cb315-13"><a href="ModMed.html#cb315-13" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
-<span id="cb315-14"><a href="ModMed.html#cb315-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
-<span id="cb315-15"><a href="ModMed.html#cb315-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
-<span id="cb315-16"><a href="ModMed.html#cb315-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
-<span id="cb315-17"><a href="ModMed.html#cb315-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
-<span id="cb315-18"><a href="ModMed.html#cb315-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
-<span id="cb315-19"><a href="ModMed.html#cb315-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
-<span id="cb315-20"><a href="ModMed.html#cb315-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb315-21"><a href="ModMed.html#cb315-21" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Moderated Mediation&quot;</span>)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/semPlot%20of%20the%20modmed-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="ModMed.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span> (cParamEsts, <span class="at">file=</span><span class="st">&quot;Combined_fit.csv&quot;</span>) <span class="co">#optional to write it to a .csv file</span></span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="ModMed.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb301-2"><a href="ModMed.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(Combined_fit, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb301-3"><a href="ModMed.html#cb301-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb301-4"><a href="ModMed.html#cb301-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb301-5"><a href="ModMed.html#cb301-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
+<span id="cb301-6"><a href="ModMed.html#cb301-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;circle&#39;,</span></span>
+<span id="cb301-7"><a href="ModMed.html#cb301-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb301-8"><a href="ModMed.html#cb301-8" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb301-9"><a href="ModMed.html#cb301-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb301-10"><a href="ModMed.html#cb301-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb301-11"><a href="ModMed.html#cb301-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb301-12"><a href="ModMed.html#cb301-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb301-13"><a href="ModMed.html#cb301-13" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb301-14"><a href="ModMed.html#cb301-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb301-15"><a href="ModMed.html#cb301-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb301-16"><a href="ModMed.html#cb301-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb301-17"><a href="ModMed.html#cb301-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb301-18"><a href="ModMed.html#cb301-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb301-19"><a href="ModMed.html#cb301-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb301-20"><a href="ModMed.html#cb301-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb301-21"><a href="ModMed.html#cb301-21" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Moderated Mediation&quot;</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/semPlot%20of%20the%20modmed-1.png" width="672" /></p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="ModMed.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span> (cParamEsts, <span class="at">file=</span><span class="st">&quot;Combined_fit.csv&quot;</span>) <span class="co">#optional to write it to a .csv file</span></span></code></pre></div>
 </div>
 <div id="beginning-the-interpretation" class="section level3" number="9.6.3">
 <h3><span class="header-section-number">9.6.3</span> Beginning the interpretation</h3>
@@ -2001,43 +1967,43 @@ Our analysis evaluated a moderation mediation model predicting mental health (Y/
 <p class="caption">Image of a filmstrip</p>
 </div>
 <p>I find it useful to have script with the variables labeled merely by their role. Below, I quickly create an ModMeddemo_df from the Lewis et al. <span class="citation">(<a href="#ref-lewis_applying_2017" role="doc-biblioref">J. A. Lewis et al., 2017</a>)</span> simulated data and then run the analysis with the variables named in their roles.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="ModMed.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb317-2"><a href="ModMed.html#cb317-2" aria-hidden="true" tabindex="-1"></a>ModMedDemo_df <span class="ot">&lt;-</span> <span class="fu">rename</span>(Lewis_df, <span class="at">X =</span> GRMS, <span class="at">Y =</span> MntlHlth, <span class="at">W =</span> GRIcntlty, <span class="at">M =</span> DisEngmt )</span></code></pre></div>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="ModMed.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb318-2"><a href="ModMed.html#cb318-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">190505</span>)</span>
-<span id="cb318-3"><a href="ModMed.html#cb318-3" aria-hidden="true" tabindex="-1"></a>ModMedDemo <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb318-4"><a href="ModMed.html#cb318-4" aria-hidden="true" tabindex="-1"></a><span class="st">    #equations</span></span>
-<span id="cb318-5"><a href="ModMed.html#cb318-5" aria-hidden="true" tabindex="-1"></a><span class="st">    M ~ a1*X + a2*W + a3*X:W</span></span>
-<span id="cb318-6"><a href="ModMed.html#cb318-6" aria-hidden="true" tabindex="-1"></a><span class="st">    Y ~ c_p1*X + c_p2*W + c_p3*X:W + b*M</span></span>
-<span id="cb318-7"><a href="ModMed.html#cb318-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb318-8"><a href="ModMed.html#cb318-8" aria-hidden="true" tabindex="-1"></a><span class="st">    #intercepts</span></span>
-<span id="cb318-9"><a href="ModMed.html#cb318-9" aria-hidden="true" tabindex="-1"></a><span class="st">    M ~ M.mean*1</span></span>
-<span id="cb318-10"><a href="ModMed.html#cb318-10" aria-hidden="true" tabindex="-1"></a><span class="st">    Y ~ Y.mean*1</span></span>
-<span id="cb318-11"><a href="ModMed.html#cb318-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb318-12"><a href="ModMed.html#cb318-12" aria-hidden="true" tabindex="-1"></a><span class="st">    #means, variances of W for simple slopes</span></span>
-<span id="cb318-13"><a href="ModMed.html#cb318-13" aria-hidden="true" tabindex="-1"></a><span class="st">    W ~ W.mean*1</span></span>
-<span id="cb318-14"><a href="ModMed.html#cb318-14" aria-hidden="true" tabindex="-1"></a><span class="st">    W ~~ W.var*W</span></span>
-<span id="cb318-15"><a href="ModMed.html#cb318-15" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb318-16"><a href="ModMed.html#cb318-16" aria-hidden="true" tabindex="-1"></a><span class="st">    #index of moderated mediation, there will be an a and b path in the product</span></span>
-<span id="cb318-17"><a href="ModMed.html#cb318-17" aria-hidden="true" tabindex="-1"></a><span class="st">    #if the a and/or b path is moderated, select the label that represents the moderation</span></span>
-<span id="cb318-18"><a href="ModMed.html#cb318-18" aria-hidden="true" tabindex="-1"></a><span class="st">    imm := a3*b</span></span>
-<span id="cb318-19"><a href="ModMed.html#cb318-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb318-20"><a href="ModMed.html#cb318-20" aria-hidden="true" tabindex="-1"></a><span class="st">    #Note that we first create the indirect product, then add to it the product of the imm and the W level</span></span>
-<span id="cb318-21"><a href="ModMed.html#cb318-21" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect.SDbelow := a1*b + imm*(W.mean - sqrt(W.var))</span></span>
-<span id="cb318-22"><a href="ModMed.html#cb318-22" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect.mean := a1*b + imm*(W.mean)</span></span>
-<span id="cb318-23"><a href="ModMed.html#cb318-23" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect.SDabove := a1*b + imm*(W.mean + sqrt(W.var))</span></span>
-<span id="cb318-24"><a href="ModMed.html#cb318-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb318-25"><a href="ModMed.html#cb318-25" aria-hidden="true" tabindex="-1"></a><span class="st">    #direct effect is also moderated so calculate with c_p1 + c_p3</span></span>
-<span id="cb318-26"><a href="ModMed.html#cb318-26" aria-hidden="true" tabindex="-1"></a><span class="st">    direct.SDbelow := c_p1 + c_p3*(W.mean - sqrt(W.var)) </span></span>
-<span id="cb318-27"><a href="ModMed.html#cb318-27" aria-hidden="true" tabindex="-1"></a><span class="st">    direct.Smean := c_p1 + c_p3*(W.mean)</span></span>
-<span id="cb318-28"><a href="ModMed.html#cb318-28" aria-hidden="true" tabindex="-1"></a><span class="st">    direct.SDabove := c_p1 + c_p3*(W.mean + sqrt(W.var))</span></span>
-<span id="cb318-29"><a href="ModMed.html#cb318-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb318-30"><a href="ModMed.html#cb318-30" aria-hidden="true" tabindex="-1"></a><span class="st">    #total effect</span></span>
-<span id="cb318-31"><a href="ModMed.html#cb318-31" aria-hidden="true" tabindex="-1"></a><span class="st">    total.SDbelow := direct.SDbelow + indirect.SDbelow</span></span>
-<span id="cb318-32"><a href="ModMed.html#cb318-32" aria-hidden="true" tabindex="-1"></a><span class="st">    total.mean := direct.Smean + indirect.mean</span></span>
-<span id="cb318-33"><a href="ModMed.html#cb318-33" aria-hidden="true" tabindex="-1"></a><span class="st">    total.SDabove := direct.SDabove + indirect.SDabove</span></span>
-<span id="cb318-34"><a href="ModMed.html#cb318-34" aria-hidden="true" tabindex="-1"></a><span class="st"> &#39;</span></span>
-<span id="cb318-35"><a href="ModMed.html#cb318-35" aria-hidden="true" tabindex="-1"></a>ModMedDemo_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(ModMedDemo, <span class="at">data =</span> ModMedDemo_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="ModMed.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb303-2"><a href="ModMed.html#cb303-2" aria-hidden="true" tabindex="-1"></a>ModMedDemo_df <span class="ot">&lt;-</span> <span class="fu">rename</span>(Lewis_df, <span class="at">X =</span> GRMS, <span class="at">Y =</span> MntlHlth, <span class="at">W =</span> GRIcntlty, <span class="at">M =</span> DisEngmt )</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="ModMed.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb304-2"><a href="ModMed.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">190505</span>)</span>
+<span id="cb304-3"><a href="ModMed.html#cb304-3" aria-hidden="true" tabindex="-1"></a>ModMedDemo <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb304-4"><a href="ModMed.html#cb304-4" aria-hidden="true" tabindex="-1"></a><span class="st">    #equations</span></span>
+<span id="cb304-5"><a href="ModMed.html#cb304-5" aria-hidden="true" tabindex="-1"></a><span class="st">    M ~ a1*X + a2*W + a3*X:W</span></span>
+<span id="cb304-6"><a href="ModMed.html#cb304-6" aria-hidden="true" tabindex="-1"></a><span class="st">    Y ~ c_p1*X + c_p2*W + c_p3*X:W + b*M</span></span>
+<span id="cb304-7"><a href="ModMed.html#cb304-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb304-8"><a href="ModMed.html#cb304-8" aria-hidden="true" tabindex="-1"></a><span class="st">    #intercepts</span></span>
+<span id="cb304-9"><a href="ModMed.html#cb304-9" aria-hidden="true" tabindex="-1"></a><span class="st">    M ~ M.mean*1</span></span>
+<span id="cb304-10"><a href="ModMed.html#cb304-10" aria-hidden="true" tabindex="-1"></a><span class="st">    Y ~ Y.mean*1</span></span>
+<span id="cb304-11"><a href="ModMed.html#cb304-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb304-12"><a href="ModMed.html#cb304-12" aria-hidden="true" tabindex="-1"></a><span class="st">    #means, variances of W for simple slopes</span></span>
+<span id="cb304-13"><a href="ModMed.html#cb304-13" aria-hidden="true" tabindex="-1"></a><span class="st">    W ~ W.mean*1</span></span>
+<span id="cb304-14"><a href="ModMed.html#cb304-14" aria-hidden="true" tabindex="-1"></a><span class="st">    W ~~ W.var*W</span></span>
+<span id="cb304-15"><a href="ModMed.html#cb304-15" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb304-16"><a href="ModMed.html#cb304-16" aria-hidden="true" tabindex="-1"></a><span class="st">    #index of moderated mediation, there will be an a and b path in the product</span></span>
+<span id="cb304-17"><a href="ModMed.html#cb304-17" aria-hidden="true" tabindex="-1"></a><span class="st">    #if the a and/or b path is moderated, select the label that represents the moderation</span></span>
+<span id="cb304-18"><a href="ModMed.html#cb304-18" aria-hidden="true" tabindex="-1"></a><span class="st">    imm := a3*b</span></span>
+<span id="cb304-19"><a href="ModMed.html#cb304-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb304-20"><a href="ModMed.html#cb304-20" aria-hidden="true" tabindex="-1"></a><span class="st">    #Note that we first create the indirect product, then add to it the product of the imm and the W level</span></span>
+<span id="cb304-21"><a href="ModMed.html#cb304-21" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect.SDbelow := a1*b + imm*(W.mean - sqrt(W.var))</span></span>
+<span id="cb304-22"><a href="ModMed.html#cb304-22" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect.mean := a1*b + imm*(W.mean)</span></span>
+<span id="cb304-23"><a href="ModMed.html#cb304-23" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect.SDabove := a1*b + imm*(W.mean + sqrt(W.var))</span></span>
+<span id="cb304-24"><a href="ModMed.html#cb304-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb304-25"><a href="ModMed.html#cb304-25" aria-hidden="true" tabindex="-1"></a><span class="st">    #direct effect is also moderated so calculate with c_p1 + c_p3</span></span>
+<span id="cb304-26"><a href="ModMed.html#cb304-26" aria-hidden="true" tabindex="-1"></a><span class="st">    direct.SDbelow := c_p1 + c_p3*(W.mean - sqrt(W.var)) </span></span>
+<span id="cb304-27"><a href="ModMed.html#cb304-27" aria-hidden="true" tabindex="-1"></a><span class="st">    direct.Smean := c_p1 + c_p3*(W.mean)</span></span>
+<span id="cb304-28"><a href="ModMed.html#cb304-28" aria-hidden="true" tabindex="-1"></a><span class="st">    direct.SDabove := c_p1 + c_p3*(W.mean + sqrt(W.var))</span></span>
+<span id="cb304-29"><a href="ModMed.html#cb304-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb304-30"><a href="ModMed.html#cb304-30" aria-hidden="true" tabindex="-1"></a><span class="st">    #total effect</span></span>
+<span id="cb304-31"><a href="ModMed.html#cb304-31" aria-hidden="true" tabindex="-1"></a><span class="st">    total.SDbelow := direct.SDbelow + indirect.SDbelow</span></span>
+<span id="cb304-32"><a href="ModMed.html#cb304-32" aria-hidden="true" tabindex="-1"></a><span class="st">    total.mean := direct.Smean + indirect.mean</span></span>
+<span id="cb304-33"><a href="ModMed.html#cb304-33" aria-hidden="true" tabindex="-1"></a><span class="st">    total.SDabove := direct.SDabove + indirect.SDabove</span></span>
+<span id="cb304-34"><a href="ModMed.html#cb304-34" aria-hidden="true" tabindex="-1"></a><span class="st"> &#39;</span></span>
+<span id="cb304-35"><a href="ModMed.html#cb304-35" aria-hidden="true" tabindex="-1"></a>ModMedDemo_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(ModMedDemo, <span class="at">data =</span> ModMedDemo_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span></code></pre></div>
 <pre><code>Warning in lav_partable_vnames(FLAT, &quot;ov.x&quot;, warn = TRUE): lavaan WARNING:
     model syntax contains variance/covariance/intercept formulas
     involving (an) exogenous variable(s): [W]; These variables will
@@ -2045,7 +2011,7 @@ Our analysis evaluated a moderation mediation model predicting mental health (Y/
     If you wish to treat those variables as fixed, remove these
     formulas from the model syntax. Otherwise, consider adding the
     fixed.x = FALSE option.</code></pre>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="ModMed.html#cb320-1" aria-hidden="true" tabindex="-1"></a>ModMed_FitSum <span class="ot">&lt;-</span> <span class="fu">summary</span>(ModMedDemo_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="ModMed.html#cb306-1" aria-hidden="true" tabindex="-1"></a>ModMed_FitSum <span class="ot">&lt;-</span> <span class="fu">summary</span>(ModMedDemo_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span></code></pre></div>
 <pre><code>lavaan 0.6-9 ended normally after 47 iterations
 
   Estimator                                         ML
@@ -2137,240 +2103,7 @@ Defined Parameters:
    -1.494    0.538
    -1.346    0.767
    -1.198    0.997</code></pre>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="ModMed.html#cb322-1" aria-hidden="true" tabindex="-1"></a>ModMed_ParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(ModMedDemo_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="ModMed.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>R version 4.1.3 (2022-03-10)
-Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 10 x64 (build 18363)
-
-Matrix products: default
-
-locale:
-[1] LC_COLLATE=English_United States.1252 
-[2] LC_CTYPE=English_United States.1252   
-[3] LC_MONETARY=English_United States.1252
-[4] LC_NUMERIC=C                          
-[5] LC_TIME=English_United States.1252    
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
- [1] interactions_1.1.5 jtools_2.1.4       MASS_7.3-55        semTable_1.8      
- [5] semPlot_1.1.2      lavaan_0.6-9       apaTables_2.0.8    mice_3.13.0       
- [9] sjstats_0.18.1     formattable_0.2.1  qualtRics_3.1.4    forcats_0.5.1     
-[13] stringr_1.4.0      dplyr_1.0.7        purrr_0.3.4        readr_2.0.1       
-[17] tidyr_1.1.3        tibble_3.1.4       ggplot2_3.3.5      tidyverse_1.3.1   
-[21] psych_2.1.6       
-
-loaded via a namespace (and not attached):
-  [1] readxl_1.3.1        backports_1.2.1     Hmisc_4.5-0        
-  [4] systemfonts_1.0.2   igraph_1.2.6        plyr_1.8.6         
-  [7] splines_4.1.3       TH.data_1.1-0       digest_0.6.27      
- [10] htmltools_0.5.2     matrixcalc_1.0-5    fansi_0.5.0        
- [13] Rsolnp_1.16         magrittr_2.0.1      checkmate_2.0.0    
- [16] lisrelToR_0.1.4     cluster_2.1.2       tzdb_0.1.2         
- [19] openxlsx_4.2.4      modelr_0.1.8        RcppParallel_5.1.4 
- [22] vroom_1.5.4         sandwich_3.0-1      svglite_2.0.0      
- [25] jpeg_0.1-9          sem_3.1-11          MBESS_4.8.0        
- [28] colorspace_2.0-2    rvest_1.0.1         haven_2.4.3        
- [31] xfun_0.25           crayon_1.4.1        jsonlite_1.7.2     
- [34] regsem_1.8.0        lme4_1.1-27.1       survival_3.2-13    
- [37] zoo_1.8-9           glue_1.4.2          gtable_0.3.0       
- [40] emmeans_1.6.3       mi_1.0              sjmisc_2.8.7       
- [43] abind_1.4-5         scales_1.1.1        mvtnorm_1.1-2      
- [46] DBI_1.1.1           Rcpp_1.0.7          xtable_1.8-4       
- [49] performance_0.7.3   htmlTable_2.2.1     tmvnsim_1.0-2      
- [52] foreign_0.8-82      bit_4.0.4           Formula_1.2-4      
- [55] stats4_4.1.3        truncnorm_1.0-8     datawizard_0.2.0.1 
- [58] htmlwidgets_1.5.4   httr_1.4.2          RColorBrewer_1.1-2 
- [61] ellipsis_0.3.2      farver_2.1.0        XML_3.99-0.8       
- [64] pkgconfig_2.0.3     nnet_7.3-17         sass_0.4.0         
- [67] kutils_1.70         dbplyr_2.1.1        utf8_1.2.2         
- [70] labeling_0.4.2      reshape2_1.4.4      tidyselect_1.1.1   
- [73] rlang_0.4.11        effectsize_0.4.5    munsell_0.5.0      
- [76] cellranger_1.1.0    tools_4.1.3         cli_3.0.1          
- [79] generics_0.1.0      sjlabelled_1.1.8    broom_0.7.9        
- [82] fdrtool_1.2.16      evaluate_0.14       fastmap_1.1.0      
- [85] arm_1.11-2          yaml_2.2.1          knitr_1.34         
- [88] bit64_4.0.5         fs_1.5.0            stationery_0.98.30 
- [91] pander_0.6.4        zip_2.2.0           glasso_1.11        
- [94] pbapply_1.5-0       nlme_3.1-155        xml2_1.3.2         
- [97] compiler_4.1.3      rstudioapi_0.13     curl_4.3.2         
-[100] png_0.1-7           reprex_2.0.1        bslib_0.3.0        
-[103] pbivnorm_0.6.0      stringi_1.7.4       highr_0.9          
-[106] parameters_0.14.0   qgraph_1.6.9        rockchalk_1.8.144  
-[109] lattice_0.20-45     Matrix_1.4-0        nloptr_1.2.2.2     
-[112] vctrs_0.3.8         pillar_1.6.2        lifecycle_1.0.0    
-[115] jquerylib_0.1.4     OpenMx_2.19.8       estimability_1.3   
-[118] corpcor_1.6.10      data.table_1.14.0   insight_0.14.4     
-[121] R6_2.5.1            latticeExtra_0.6-29 bookdown_0.24      
-[124] gridExtra_2.3       codetools_0.2-18    gtools_3.9.2       
-[127] boot_1.3-28         assertthat_0.2.1    withr_2.4.2        
-[130] mnormt_2.0.2        multcomp_1.4-17     bayestestR_0.11.0  
-[133] parallel_4.1.3      hms_1.1.0           grid_4.1.3         
-[136] rpart_4.1.16        coda_0.19-4         minqa_1.2.4        
-[139] rmarkdown_2.10      carData_3.0-4       lubridate_1.7.10   
-[142] base64enc_0.1-3    </code></pre>
-
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-Adames, H. Y., Chavez-Dueñas, N. Y., &amp; Jernigan, M. M. (2021). The fallacy of a raceless <span>Latinidad</span>: <span>Action</span> guidelines for centering <span>Blackness</span> in <span>Latinx</span> psychology. <em>Journal of Latinx Psychology</em>, <em>9</em>(1), 26–44. <a href="https://doi.org/10.1037/lat0000179">https://doi.org/10.1037/lat0000179</a>
-</div>
-<div class="csl-entry">
-Baron, R. M., &amp; Kenny, D. A. (1986). The <span>Moderator</span>-<span>Mediator</span> <span>Variable</span> <span>Distinction</span> in <span>Social</span> <span>Psychological</span> <span>Research</span>: <span>Conceptual</span>, <span>Strategic</span>, and <span>Statistical</span> <span>Considerations</span>. <em>Journal of Personality and Social Psychology</em>, <em>51</em>(6), 1173–1182. <a href="https://doi.org/0022-3514/86">https://doi.org/0022-3514/86</a>
-</div>
-<div class="csl-entry">
-Bollen, K. A., &amp; Hoyle, R. H. (1990). Perceived cohesion: <span>A</span> conceptual and empirical examination. <em>Social Forces</em>, <em>69</em>(2), 479–504. <a href="https://doi.org/10.2307/2579670">https://doi.org/10.2307/2579670</a>
-</div>
-<div class="csl-entry">
-Byrne, B. M. (2016). <em>Structural equation modeling with <span>AMOS</span>: <span>Basic</span> concepts, applications, and programming</em> (3rd ed.). Routledge. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523</a>
-</div>
-<div class="csl-entry">
-Capielo Rosario, C., Adames, H. Y., Chavez-Dueñas, N. Y., &amp; Renteria, R. (2019). Acculturation <span>Profiles</span> of <span>Central</span> <span>Florida</span> <span>Puerto</span> <span>Ricans</span>: <span>Examining</span> the <span>Influence</span> of <span>Skin</span> <span>Color</span>, <span>Perceived</span> <span>Ethnic</span>-<span>Racial</span> <span>Discrimination</span>, and <span>Neighborhood</span> <span>Ethnic</span>-<span>Racial</span> <span>Composition</span>. <em>Journal of Cross-Cultural Psychology</em>, <em>50</em>(4), 556–576. <a href="https://doi.org/10.1177/0022022119835979">https://doi.org/10.1177/0022022119835979</a>
-</div>
-<div class="csl-entry">
-Carver, C. S. (1997). You want to measure coping but your protocol’s too long: <span>Consider</span> the <span>Brief</span> <span>COPE</span>. <em>International Journal of Behavioral Medicine</em>, <em>4</em>(1), 92–100. <a href="https://doi.org/10.1207/s15327558ijbm0401_6">https://doi.org/10.1207/s15327558ijbm0401_6</a>
-</div>
-<div class="csl-entry">
-Cohen, J., Cohen, P., West, S. G., &amp; Aiken, L. S. (2003). <em>Applied multiple regression/correlation analysis for the behavioral sciences</em> (3rd ed.). LErlbaum Associates.
-</div>
-<div class="csl-entry">
-Cohen, M. R., &amp; Nagel, E. (1934). <em>An introduction to logic and scientific method</em>. Harcourt Brace.
-</div>
-<div class="csl-entry">
-Cortina, J. M. (1993). What is coefficient alpha? <span>An</span> examination of theory and applications. <em>Journal of Applied Psychology</em>, <em>78</em>(1), 98–104. <a href="https://doi.org/10.1037/0021-9010.78.1.98">https://doi.org/10.1037/0021-9010.78.1.98</a>
-</div>
-<div class="csl-entry">
-Cumming, G. (2014). The <span>New</span> <span>Statistics</span>: <span>Why</span> and <span>How</span>. <em>Psychological Science</em>, <em>25</em>(1), 7–29. <a href="https://doi.org/10.1177/0956797613504966">https://doi.org/10.1177/0956797613504966</a>
-</div>
-<div class="csl-entry">
-Enders, C. K. (2017). Multiple imputation as a flexible tool for missing data handling in clinical research. <em>Behaviour Research and Therapy</em>, <em>98</em>, 4–18. <a href="https://doi.org/10.1016/j.brat.2016.11.008">https://doi.org/10.1016/j.brat.2016.11.008</a>
-</div>
-<div class="csl-entry">
-Enders, C. K. (2010). <em>Applied missing data analysis</em>. Guilford Press.
-</div>
-<div class="csl-entry">
-<em><span>FACT</span> <span>SHEET</span>: <span>Anti</span>-<span>Asian</span> <span>Prejudice</span> <span>March</span> 2020</em>. (n.d.). Center or the Study of Hate &amp; Extremism, California University System - Berkley. <a href="https://www.csusb.edu/sites/default/files/FACT%20SHEET-%20Anti-Asian%20Hate%202020%203.2.21.pdf">https://www.csusb.edu/sites/default/files/FACT%20SHEET-%20Anti-Asian%20Hate%202020%203.2.21.pdf</a>
-</div>
-<div class="csl-entry">
-Field, A. P. (2012). <em>Discovering statistics using <span>R</span></em>. Sage.
-</div>
-<div class="csl-entry">
-Gladwell, M. (2008). <em>Outliers: The story of success</em> (First edition.). Little, Brown; Company.
-</div>
-<div class="csl-entry">
-Green, S. B., &amp; Salkind, N. J. (2014). <em>Using <span>SPSS</span> for <span>Windows</span> and <span>Macintosh</span>: Analyzing and understanding data</em> (Seventh edition.). Pearson.
-</div>
-<div class="csl-entry">
-Hayes, A. F. (2018). <em>Introduction to <span>Mediation</span>, <span>Moderation</span>, and <span>Conditional</span> <span>Process</span> <span>Analysis</span>, <span>Second</span> <span>Edition</span>: <span>A</span> <span>Regression</span>-<span>Based</span> <span>Approach</span></em>. Guilford Publications. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=5109647">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=5109647</a>
-</div>
-<div class="csl-entry">
-Hurtado, S. (2007). Linking <span>Diversity</span> with the <span>Educational</span> and <span>Civic</span> <span>Missions</span> of <span>Higher</span> <span>Education</span>. <em>Review of Higher Education: Journal of the Association for the Study of Higher Education</em>, <em>30</em>(2), 185–196. <a href="https://doi.org/10.1353/rhe.2006.0070">https://doi.org/10.1353/rhe.2006.0070</a>
-</div>
-<div class="csl-entry">
-Hurtado, S., &amp; Carter, D. F. (1997). Effects of college transition and perceptions of the campus racial climate on <span>Latino</span> college students’ sense of belonging. <em>Sociology of Education</em>, <em>70</em>, 324–345. <a href="https://doi.org/10.2307/2673270">https://doi.org/10.2307/2673270</a>
-</div>
-<div class="csl-entry">
-Iacovino, J. M., &amp; James, S. A. (2016). Retaining <span>Students</span> of <span>Color</span> in <span>Higher</span> <span>Education</span>: <span>Expanding</span> <span>Our</span> <span>Focus</span> to <span>Psychosocial</span> <span>Adjustment</span> and <span>Mental</span> <span>Health</span>. In <em>The <span>Crisis</span> of <span>Race</span> in <span>Higher</span> <span>Education</span>: <span>A</span> <span>Day</span> of <span>Discovery</span> and <span>Dialogue</span></em> (Vol. 19, pp. 61–84). Emerald Group Publishing Limited. <a href="https://doi.org/10.1108/S1479-364420160000019004">https://doi.org/10.1108/S1479-364420160000019004</a>
-</div>
-<div class="csl-entry">
-Jhangiani, R. S., Chiang, I.-C. A., Cuttler, C., &amp; Leighton, D. C. (2019). <em>Research <span>Methods</span> in <span>Psychology</span></em>. <a href="https://doi.org/10.17605/OSF.IO/HF7DQ">https://doi.org/10.17605/OSF.IO/HF7DQ</a>
-</div>
-<div class="csl-entry">
-Joreskog, K. G. (1993). Testing structural equation models. In K. A. Bollen &amp; J. S. Long (Eds.), <em>Testing <span>Structural</span> <span>Equation</span> <span>Models</span></em>. SAGE.
-</div>
-<div class="csl-entry">
-Katitas, A. (2019). Getting <span>Started</span> with <span>Multiple</span> <span>Imputation</span> in <span>R</span>. In <em>University of Virginia Library: Research Data Services + Sciences</em>. <a href="https://uvastatlab.github.io/2019/05/01/getting-started-with-multiple-imputation-in-r/">https://uvastatlab.github.io/2019/05/01/getting-started-with-multiple-imputation-in-r/</a>
-</div>
-<div class="csl-entry">
-Kim, P. (2021). Yes, <span>Asians</span> and <span>Asian</span> <span>Americans</span> experience racism. In <em>The Seattle Times</em>. <a href="https://www.seattletimes.com/opinion/yes-asians-and-asian-americans-experience-racism/">https://www.seattletimes.com/opinion/yes-asians-and-asian-americans-experience-racism/</a>
-</div>
-<div class="csl-entry">
-Kim, Paul Y. (2021). Guest <span>Post</span>: <span>Anti</span>-<span>Asian</span> <span>Racism</span> during the <span>Pandemic</span>: <span>How</span> <span>Faculty</span> on <span>Christian</span> <span>Campuses</span> <span>Can</span> <span>Support</span> <span>Asian</span> and <span>Asian</span> <span>American</span> <span>Students</span>. In <em>Christian Scholar’s Review</em>. <a href="https://christianscholars.com/guest-post-anti-asian-racism-during-the-pandemic-how-faculty-on-christian-campuses-can-support-asian-and-asian-american-students/">https://christianscholars.com/guest-post-anti-asian-racism-during-the-pandemic-how-faculty-on-christian-campuses-can-support-asian-and-asian-american-students/</a>
-</div>
-<div class="csl-entry">
-Kim, Paul Youngbin, Kendall, D. L., &amp; Cheon, H.-S. (2017). Racial microaggressions, cultural mistrust, and mental health outcomes among asian american college students. <em>American Journal of Orthopsychiatry</em>, <em>87</em>(6), 663–670. <a href="https://doi.org/10.1037/ort0000203">https://doi.org/10.1037/ort0000203</a>
-</div>
-<div class="csl-entry">
-Kline, R. B. (2015). The mediation myth. <em>Basic and Applied Social Psychology</em>, <em>37</em>(4), 202–213. <a href="https://doi.org/10.1080/01973533.2015.1049349">https://doi.org/10.1080/01973533.2015.1049349</a>
-</div>
-<div class="csl-entry">
-Kline, R. B. (2016). <em>Principles and practice of structural equation modeling</em> (4th ed.). Guilford Publications. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663</a>
-</div>
-<div class="csl-entry">
-Lewis, J. A., &amp; Neville, H. A. (2015). Construction and initial validation of the <span>Gendered</span> <span>Racial</span> <span>Microaggressions</span> <span>Scale</span> for <span>Black</span> women. <em>Journal of Counseling Psychology</em>, <em>62</em>(2), 289–302. <a href="https://doi.org/10.1037/cou0000062">https://doi.org/10.1037/cou0000062</a>
-</div>
-<div class="csl-entry">
-Lewis, J. A., Williams, M. G., Peppers, E. J., &amp; Gadson, C. A. (2017). Applying intersectionality to explore the relations between gendered racism and health among <span>Black</span> women. <em>Journal of Counseling Psychology</em>, <em>64</em>(5), 475–486. <a href="https://doi.org/10.1037/cou0000231">https://doi.org/10.1037/cou0000231</a>
-</div>
-<div class="csl-entry">
-Lewis, K. R., &amp; Shah, P. P. (2019). Black students’ narratives of diversity and inclusion initiatives and the campus racial climate: <span>An</span> interest-convergence analysis. <em>Journal of Diversity in Higher Education</em>. <a href="https://doi.org/10.1037/dhe0000147">https://doi.org/10.1037/dhe0000147</a>
-</div>
-<div class="csl-entry">
-Little, R. J. A., &amp; Rubin, D. B. (2002). <em>Statistical analysis with missing data</em> (Second edition.). Wiley. <a href="http://site.ebrary.com/id/10921256">http://site.ebrary.com/id/10921256</a>
-</div>
-<div class="csl-entry">
-Little, T. D., Howard, W. J., McConnell, E. K., &amp; Stump, K. N. (2008). Missing data in large data projects: <span>Two</span> methods of missing data imputation when working with large data projects. <em>KUant Guides</em>, <em>011.3</em>, 10. <a href="https://crmda.dept.ku.edu/guides/11.ImputationWithLargeDataSets/11.ImputationWithLargeDataSets.pdf">https://crmda.dept.ku.edu/guides/11.ImputationWithLargeDataSets/11.ImputationWithLargeDataSets.pdf</a>
-</div>
-<div class="csl-entry">
-Luce, R. D. (1995). Four tensions concerning mathematical modeling in psychology. <em>Annual Review of Psychology</em>, <em>46</em>, 1–26. <a href="https://doi.org/10.1146/annurev.ps.46.020195.000245">https://doi.org/10.1146/annurev.ps.46.020195.000245</a>
-</div>
-<div class="csl-entry">
-Mallinckrodt, B., Abraham, W. T., Wei, M., &amp; Russell, D. W. (2006). Advances in testing the statistical significance of mediation effects. <em>Journal of Counseling Psychology</em>, <em>53</em>(3), 372–378. <a href="https://doi.org/10.1037/0022-0167.53.3.372">https://doi.org/10.1037/0022-0167.53.3.372</a>
-</div>
-<div class="csl-entry">
-Mallinckrodt, B., Miles, J. R., &amp; Levy, J. J. (2014). The scientist-practitioner-advocate model: <span>Addressing</span> contemporary training needs for social justice advocacy. <em>Training and Education in Professional Psychology</em>, <em>8</em>(4), 303–311. <a href="https://doi.org/10.1037/tep0000045">https://doi.org/10.1037/tep0000045</a>
-</div>
-<div class="csl-entry">
-Mosley, D. V., Hargons, C. N., Meiller, C., Angyal, B., Wheeler, P., Davis, C., &amp; Stevens-Watkins, D. (2021). Critical consciousness of anti-<span>Black</span> racism: <span>A</span> practical model to prevent and resist racial trauma. <em>Journal of Counseling Psychology</em>, <em>68</em>(1), 1–16. <a href="https://doi.org/10.1037/cou0000430">https://doi.org/10.1037/cou0000430</a>
-</div>
-<div class="csl-entry">
-Mosley, D. V., Neville, H. A., Chavez‐Dueñas, N. Y., Adames, H. Y., Lewis, J. A., &amp; French, B. H. (2020). Radical hope in revolting times: <span>Proposing</span> a culturally relevant psychological framework. <em>Social and Personality Psychology Compass</em>, <em>14</em>(1). <a href="https://doi.org/10.1111/spc3.12512">https://doi.org/10.1111/spc3.12512</a>
-</div>
-<div class="csl-entry">
-Myung, I. J. (2003). Tutorial on maximum likelihood estimation. <em>Journal of Mathematical Psychology</em>, <em>47</em>(1), 90–100. <a href="https://doi.org/10.1016/S0022-2496(02)00028-7">https://doi.org/10.1016/S0022-2496(02)00028-7</a>
-</div>
-<div class="csl-entry">
-Niemark, E. D., &amp; Estes, W. K. (1967). <em>Stimulus sampling theory</em>. Holden-Day.
-</div>
-<div class="csl-entry">
-Parent, M. C. (2013). Handling item-level missing data: <span>Simpler</span> is just as good. <em>The Counseling Psychologist</em>, <em>41</em>(4), 568–600. <a href="https://doi.org/10.1177/0011000012445176">https://doi.org/10.1177/0011000012445176</a>
-</div>
-<div class="csl-entry">
-Pearl, J. (2000). <em>Causality: Models, reasoning, and inference</em>. Cambridge University Press.
-</div>
-<div class="csl-entry">
-Rodgers, J. L. (2010). The epistemology of mathematical and statistical modeling: <span>A</span> quiet methodological revolution. <em>American Psychologist</em>, <em>65</em>(1), 1–12. <a href="https://doi.org/10.1037/a0018326">https://doi.org/10.1037/a0018326</a>
-</div>
-<div class="csl-entry">
-Rosseel, Y. (2020). <em>The lavaan tutorial</em>. <a href="http://lavaan.ugent.be/tutorial/tutorial.pdf">http://lavaan.ugent.be/tutorial/tutorial.pdf</a>
-</div>
-<div class="csl-entry">
-Sellers, R. M., Rowley, S. A. J., Chavous, T. M., Shelton, J. N., &amp; Smith, M. A. (n.d.). <em>Multidimensional <span>Inventory</span> of <span>Black</span> <span>Identity</span>: <span>A</span> <span>Preliminary</span> <span>Investigation</span> of <span>Reliability</span> and <span>Construct</span> <span>Validity</span></em>. 11.
-</div>
-<div class="csl-entry">
-Sijtsma, K. (2009). On the <span>Use</span>, the <span>Misuse</span>, and the <span>Very</span> <span>Limited</span> <span>Usefulness</span> of <span>Cronbach</span>’s <span>Alpha</span>. <em>Psychometrika</em>, <em>74</em>(1), 107–120. <a href="https://doi.org/10.1007/s11336-008-9101-0">https://doi.org/10.1007/s11336-008-9101-0</a>
-</div>
-<div class="csl-entry">
-Singh, A. (2020). Building a <span>Counseling</span> <span>Psychology</span> of <span>Liberation</span>: <span>The</span> <span>Path</span> <span>Behind</span> <span>Us</span>, <span>Under</span> <span>Us</span>, and <span>Before</span> <span>Us</span>. <em>The Counseling Psychologist</em>, <em>48</em>(8), 1109–1130. <a href="https://doi.org/10.1177/0011000020959007">https://doi.org/10.1177/0011000020959007</a>
-</div>
-<div class="csl-entry">
-Stone-Romero, E., &amp; Rosopa, P. (2010). Research design options for testing mediation models and their implications for facets of validity. <em>Journal of Managerial Psychology</em>, <em>25</em>, 697–712. <a href="https://doi.org/10.1108/02683941011075256">https://doi.org/10.1108/02683941011075256</a>
-</div>
-<div class="csl-entry">
-<em><span>STOP</span> <span>AAPI</span> <span>HATE</span></em>. (n.d.). Retrieved March 19, 2021, from <a href="https://stopaapihate.org/">https://stopaapihate.org/</a>
-</div>
-<div class="csl-entry">
-Szymanski, D. M., &amp; Bissonette, D. (2020). Perceptions of the <span>LGBTQ</span> <span>College</span> <span>Campus</span> <span>Climate</span> <span>Scale</span>: <span>Development</span> and <span>Psychometric</span> <span>Evaluation</span>. <em>Journal of Homosexuality</em>, <em>67</em>(10), 1412–1428. <a href="https://doi.org/10.1080/00918369.2019.1591788">https://doi.org/10.1080/00918369.2019.1591788</a>
-</div>
-<div class="csl-entry">
-Toffanin, P. (2017). Multiple-mediator analysis with lavaan. In <em>paolotoffanin</em>. <a href="https://paolotoffanin.wordpress.com/2017/05/06/multiple-mediator-analysis-with-lavaan/">https://paolotoffanin.wordpress.com/2017/05/06/multiple-mediator-analysis-with-lavaan/</a>
-</div>
-<div class="csl-entry">
-Ware, J. E., Kosinski, M., Bayliss, M. S., &amp; McHorney, C. A. (1995). Comparison of methods for the scoring and statistical analysis of <span>SF</span>-36 health profile and summary measures: <span>Summary</span> of results from the medical outcomes study. <em>Medical Care</em>, <em>33</em>(4, Suppl), 264–279. <a href="https://ezproxy.spu.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&amp;AuthType=ip&amp;db=psyh&amp;AN=1995-35535-001&amp;site=ehost-live">https://ezproxy.spu.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&amp;AuthType=ip&amp;db=psyh&amp;AN=1995-35535-001&amp;site=ehost-live</a>
-</div>
-</div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="ModMed.html#cb308-1" aria-hidden="true" tabindex="-1"></a>ModMed_ParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(ModMedDemo_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 </div>
 <h3>References</h3>
@@ -2405,8 +2138,8 @@ Ware, J. E., Kosinski, M., Bayliss, M. S., &amp; McHorney, C. A. (1995). Compari
           </div>
         </div>
       </div>
-<a href="CPAnal.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="CPAnal.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="refs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -2421,7 +2154,7 @@ Ware, J. E., Kosinski, M., Bayliss, M. S., &amp; McHorney, C. A. (1995). Compari
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": true,
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -2445,17 +2178,16 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ontheline/otl-bookdown/blob/master/09-CPA.Rmd",
+"link": null,
 "text": null
 },
-"download": ["ReC_MultMod.pdf"],
+"download": ["ReC_MultMod.pdf", "ReC_MultMod.epub"],
 "search": {
 "engine": "fuse",
 "options": null
 },
 "toc": {
-"collapse": "section",
-"scroll_highlight": true
+"collapse": "subsection"
 }
 });
 });

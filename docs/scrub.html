@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Scrubbing | ReCentering Psych Stats: Multivariate Modeling</title>
-  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Scrubbing | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  
+  <meta property="og:url" content="https://lhbikos.github.io/ReC_MultivModel/" />
+  <meta property="og:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
+  <meta property="og:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
+  <meta name="github-repo" content="lhbikos/extRas" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 2 Scrubbing | ReCentering Psych Stats: Multivariate Modeling" />
   
-  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  
+  <meta name="twitter:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
+  <meta name="twitter:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
 
-<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+<meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
+<meta name="date" content="2022-03-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -142,7 +143,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -155,7 +156,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"><strong>ReCentering Psych Stats: Multivariate Modeling</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+<li><a href="./">ReCetering Psych Stats</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
@@ -172,14 +173,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
 <li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
-<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
-<ul>
-<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
-<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
-<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
-<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
-<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
-</ul></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a></li>
 <li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
 <li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
 <li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
@@ -393,22 +387,8 @@ div.csl-indent {
 <li class="chapter" data-level="7.2" data-path="CompMed.html"><a href="CompMed.html#complex-mediation"><i class="fa fa-check"></i><b>7.2</b> Complex Mediation</a></li>
 <li class="chapter" data-level="7.3" data-path="CompMed.html"><a href="CompMed.html#parallel-mediation"><i class="fa fa-check"></i><b>7.3</b> Parallel Mediation</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a>
-<ul>
-<li class="chapter" data-level="7.3.1.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation"><i class="fa fa-check"></i><b>7.3.1.1</b> Data Simulation</a></li>
-<li class="chapter" data-level="7.3.1.2" data-path="CompMed.html"><a href="CompMed.html#specifying-lavaan-code"><i class="fa fa-check"></i><b>7.3.1.2</b> Specifying <em>lavaan</em> code</a></li>
-<li class="chapter" data-level="7.3.1.3" data-path="CompMed.html"><a href="CompMed.html#a-note-on-indirect-effects-and-confidence-intervals"><i class="fa fa-check"></i><b>7.3.1.3</b> A note on indirect effects and confidence intervals</a></li>
-<li class="chapter" data-level="7.3.1.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables"><i class="fa fa-check"></i><b>7.3.1.4</b> Figures and Tables</a></li>
-<li class="chapter" data-level="7.3.1.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup"><i class="fa fa-check"></i><b>7.3.1.5</b> APA Style Writeup</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a>
-<ul>
-<li class="chapter" data-level="7.3.2.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation-1"><i class="fa fa-check"></i><b>7.3.2.1</b> Data Simulation</a></li>
-<li class="chapter" data-level="7.3.2.2" data-path="CompMed.html"><a href="CompMed.html#quick-descriptives"><i class="fa fa-check"></i><b>7.3.2.2</b> Quick Descriptives</a></li>
-<li class="chapter" data-level="7.3.2.3" data-path="CompMed.html"><a href="CompMed.html#specifying-the-lavaan-model"><i class="fa fa-check"></i><b>7.3.2.3</b> Specifying the <em>lavaan</em> model</a></li>
-<li class="chapter" data-level="7.3.2.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-1"><i class="fa fa-check"></i><b>7.3.2.4</b> Figures and Tables</a></li>
-<li class="chapter" data-level="7.3.2.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-1"><i class="fa fa-check"></i><b>7.3.2.5</b> APA Style Writeup</a></li>
-</ul></li>
+<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a></li>
+<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="CompMed.html"><a href="CompMed.html#serial-multiple-mediator-model"><i class="fa fa-check"></i><b>7.4</b> Serial Multiple Mediator Model</a>
 <ul>
@@ -459,10 +439,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.8" data-path="SimpMod.html"><a href="SimpMod.html#working-the-simple-moderation-with-ols-and-mle"><i class="fa fa-check"></i><b>8.8</b> Working the Simple Moderation with OLS and MLE</a>
 <ul>
-<li class="chapter" data-level="8.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>8.8.1</b> OLS with <em>lm()</em></a>
-<ul>
-<li class="chapter" data-level="8.8.1.1" data-path="SimpMod.html"><a href="SimpMod.html#an-apa-style-write-up-of-ols-results"><i class="fa fa-check"></i><b>8.8.1.1</b> An APA Style Write-up of OLS results</a></li>
-</ul></li>
+<li class="chapter" data-level="8.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>8.8.1</b> OLS with <em>lm()</em></a></li>
 <li class="chapter" data-level="8.8.2" data-path="SimpMod.html"><a href="SimpMod.html#mle-with-lavaansem"><i class="fa fa-check"></i><b>8.8.2</b> MLE with <em>lavaan::sem()</em></a></li>
 <li class="chapter" data-level="8.8.3" data-path="SimpMod.html"><a href="SimpMod.html#tabling-the-data"><i class="fa fa-check"></i><b>8.8.3</b> Tabling the data</a></li>
 <li class="chapter" data-level="8.8.4" data-path="SimpMod.html"><a href="SimpMod.html#apa-style-writeup-3"><i class="fa fa-check"></i><b>8.8.4</b> APA Style Writeup</a></li>
@@ -476,7 +453,6 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.11" data-path="SimpMod.html"><a href="SimpMod.html#bonus-track-1"><i class="fa fa-check"></i><b>8.11</b> Bonus Track:</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="" data-path="CPAnal.html"><a href="CPAnal.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
 <li class="chapter" data-level="9" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>9</b> Moderated Mediation</a>
 <ul>
@@ -500,23 +476,14 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5</b> Working the Moderated Mediation</a>
 <ul>
-<li class="chapter" data-level="9.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
-<ul>
-<li class="chapter" data-level="9.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.1</b> Analysis #1: A simple moderation</a></li>
-<li class="chapter" data-level="9.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.2</b> Analysis #2: Another simple moderation</a></li>
-<li class="chapter" data-level="9.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>9.5.1.3</b> Analysis #3: A simple mediation</a></li>
-</ul></li>
+<li class="chapter" data-level="9.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5.1</b> Piecewise Assembly of the Moderated Mediation</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>9.6</b> The Moderated Mediation: A Combined analysis</a>
 <ul>
 <li class="chapter" data-level="9.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>9.6.1</b> Specification in <em>lavaan</em></a></li>
 <li class="chapter" data-level="9.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>9.6.2</b> A quick plot</a></li>
 <li class="chapter" data-level="9.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>9.6.3</b> Beginning the interpretation</a></li>
-<li class="chapter" data-level="9.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.6.4</b> Tabling the data</a>
-<ul>
-<li class="chapter" data-level="9.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>9.6.4.1</b> Conditional Indirect effects</a></li>
-<li class="chapter" data-level="9.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>9.6.4.2</b> Conditional Direct effect</a></li>
-</ul></li>
+<li class="chapter" data-level="9.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.6.4</b> Tabling the data</a></li>
 <li class="chapter" data-level="9.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>9.6.5</b> Model trimming</a></li>
 <li class="chapter" data-level="9.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>9.6.6</b> APA Style Write-up</a></li>
 </ul></li>
@@ -529,10 +496,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-2"><i class="fa fa-check"></i><b>9.9</b> Bonus Track:</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
-#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
-<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
-  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
 </ul>
 
@@ -681,7 +647,7 @@ div.csl-indent {
 <span id="cb9-9"><a href="scrub.html#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Out of the blue, I started getting an error, that R couldn&#39;t find function &quot;fetch_survey.&quot;  After trying a million things, adding qualtRics:: to the front of it solved the problem</span></span>
 <span id="cb9-10"><a href="scrub.html#cb9-10" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>qualtRics<span class="sc">::</span><span class="fu">fetch_survey</span>(<span class="at">surveyID =</span> <span class="st">&quot;SV_b2cClqAlLGQ6nLU&quot;</span>, <span class="at">time_zone =</span> <span class="cn">NULL</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">label=</span><span class="cn">FALSE</span>, <span class="at">convert=</span><span class="cn">FALSE</span>, <span class="at">force_request =</span> <span class="cn">TRUE</span>, <span class="at">import_id =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Warning in file.remove(survey.fpath): cannot remove file &#39;C:/Users/lhbikos/
-## AppData/Local/Temp/RtmpWguMSS/Recent Course Eval.csv&#39;, reason &#39;Permission
+## AppData/Local/Temp/Rtmp0AbZaV/Recent Course Eval.csv&#39;, reason &#39;Permission
 ## denied&#39;</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="scrub.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#useLocalTime = TRUE,</span></span></code></pre></div>
 <!-- TODO: Link to the Bonus Reel -->
@@ -1062,46 +1028,6 @@ df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
 ## )
 ## i Use `spec()` for the full column specifications.</code></pre>
 <p>Although minor tweaking may be required, the same script above should be applicable to this version of the data.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="scrub.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.1.3 (2022-03-10)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
-## 
-## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] qualtRics_3.1.4 forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7    
-##  [5] purrr_0.3.4     readr_2.0.1     tidyr_1.1.3     tibble_3.1.4   
-##  [9] ggplot2_3.3.5   tidyverse_1.3.1 psych_2.1.6    
-## 
-## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.7       lubridate_1.7.10 lattice_0.20-45  assertthat_0.2.1
-##  [5] digest_0.6.27    utf8_1.2.2       cellranger_1.1.0 R6_2.5.1        
-##  [9] backports_1.2.1  reprex_2.0.1     evaluate_0.14    httr_1.4.2      
-## [13] pillar_1.6.2     rlang_0.4.11     readxl_1.3.1     curl_4.3.2      
-## [17] rstudioapi_0.13  jquerylib_0.1.4  rmarkdown_2.10   bit_4.0.4       
-## [21] munsell_0.5.0    broom_0.7.9      modelr_0.1.8     compiler_4.1.3  
-## [25] xfun_0.25        pkgconfig_2.0.3  mnormt_2.0.2     tmvnsim_1.0-2   
-## [29] htmltools_0.5.2  insight_0.14.4   tidyselect_1.1.1 bookdown_0.24   
-## [33] fansi_0.5.0      withr_2.4.2      crayon_1.4.1     tzdb_0.1.2      
-## [37] dbplyr_2.1.1     grid_4.1.3       nlme_3.1-155     jsonlite_1.7.2  
-## [41] gtable_0.3.0     lifecycle_1.0.0  DBI_1.1.1        magrittr_2.0.1  
-## [45] scales_1.1.1     cli_3.0.1        stringi_1.7.4    vroom_1.5.4     
-## [49] fs_1.5.0         xml2_1.3.2       bslib_0.3.0      ellipsis_0.3.2  
-## [53] generics_0.1.0   vctrs_0.3.8      sjlabelled_1.1.8 tools_4.1.3     
-## [57] bit64_4.0.5      glue_1.4.2       hms_1.1.0        parallel_4.1.3  
-## [61] fastmap_1.1.0    yaml_2.2.1       colorspace_2.0-2 rvest_1.0.1     
-## [65] knitr_1.34       haven_2.4.3      sass_0.4.0</code></pre>
 
 </div>
 </div>
@@ -1169,7 +1095,7 @@ Singh, A. (2020). Building a <span>Counseling</span> <span>Psychology</span> of 
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": true,
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -1193,17 +1119,16 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ontheline/otl-bookdown/blob/master/02-Scrubbing.Rmd",
+"link": null,
 "text": null
 },
-"download": ["ReC_MultMod.pdf"],
+"download": ["ReC_MultMod.pdf", "ReC_MultMod.epub"],
 "search": {
 "engine": "fuse",
 "options": null
 },
 "toc": {
-"collapse": "section",
-"scroll_highlight": true
+"collapse": "subsection"
 }
 });
 });

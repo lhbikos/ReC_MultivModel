@@ -413,7 +413,6 @@ QTRX_csv <- read_survey("ReC_Download210319.csv", strip_html = TRUE, import_id =
 
 Although minor tweaking may be required, the same script above should be applicable to this version of the data.  
 
-```{r sessionInfo 02}
+```{r include=FALSE}
 sessionInfo()
 ```
-

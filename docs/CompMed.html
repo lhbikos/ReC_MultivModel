@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Complex Mediation | ReCentering Psych Stats: Multivariate Modeling</title>
-  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Complex Mediation | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  
+  <meta property="og:url" content="https://lhbikos.github.io/ReC_MultivModel/" />
+  <meta property="og:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
+  <meta property="og:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
+  <meta name="github-repo" content="lhbikos/extRas" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 7 Complex Mediation | ReCentering Psych Stats: Multivariate Modeling" />
   
-  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  
+  <meta name="twitter:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
+  <meta name="twitter:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
 
-<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+<meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
+<meta name="date" content="2022-03-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -142,7 +143,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -155,7 +156,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"><strong>ReCentering Psych Stats: Multivariate Modeling</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+<li><a href="./">ReCetering Psych Stats</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
@@ -172,14 +173,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
 <li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
-<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
-<ul>
-<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
-<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
-<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
-<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
-<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
-</ul></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a></li>
 <li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
 <li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
 <li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
@@ -393,22 +387,8 @@ div.csl-indent {
 <li class="chapter" data-level="7.2" data-path="CompMed.html"><a href="CompMed.html#complex-mediation"><i class="fa fa-check"></i><b>7.2</b> Complex Mediation</a></li>
 <li class="chapter" data-level="7.3" data-path="CompMed.html"><a href="CompMed.html#parallel-mediation"><i class="fa fa-check"></i><b>7.3</b> Parallel Mediation</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a>
-<ul>
-<li class="chapter" data-level="7.3.1.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation"><i class="fa fa-check"></i><b>7.3.1.1</b> Data Simulation</a></li>
-<li class="chapter" data-level="7.3.1.2" data-path="CompMed.html"><a href="CompMed.html#specifying-lavaan-code"><i class="fa fa-check"></i><b>7.3.1.2</b> Specifying <em>lavaan</em> code</a></li>
-<li class="chapter" data-level="7.3.1.3" data-path="CompMed.html"><a href="CompMed.html#a-note-on-indirect-effects-and-confidence-intervals"><i class="fa fa-check"></i><b>7.3.1.3</b> A note on indirect effects and confidence intervals</a></li>
-<li class="chapter" data-level="7.3.1.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables"><i class="fa fa-check"></i><b>7.3.1.4</b> Figures and Tables</a></li>
-<li class="chapter" data-level="7.3.1.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup"><i class="fa fa-check"></i><b>7.3.1.5</b> APA Style Writeup</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a>
-<ul>
-<li class="chapter" data-level="7.3.2.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation-1"><i class="fa fa-check"></i><b>7.3.2.1</b> Data Simulation</a></li>
-<li class="chapter" data-level="7.3.2.2" data-path="CompMed.html"><a href="CompMed.html#quick-descriptives"><i class="fa fa-check"></i><b>7.3.2.2</b> Quick Descriptives</a></li>
-<li class="chapter" data-level="7.3.2.3" data-path="CompMed.html"><a href="CompMed.html#specifying-the-lavaan-model"><i class="fa fa-check"></i><b>7.3.2.3</b> Specifying the <em>lavaan</em> model</a></li>
-<li class="chapter" data-level="7.3.2.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-1"><i class="fa fa-check"></i><b>7.3.2.4</b> Figures and Tables</a></li>
-<li class="chapter" data-level="7.3.2.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-1"><i class="fa fa-check"></i><b>7.3.2.5</b> APA Style Writeup</a></li>
-</ul></li>
+<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a></li>
+<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="CompMed.html"><a href="CompMed.html#serial-multiple-mediator-model"><i class="fa fa-check"></i><b>7.4</b> Serial Multiple Mediator Model</a>
 <ul>
@@ -459,10 +439,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.8" data-path="SimpMod.html"><a href="SimpMod.html#working-the-simple-moderation-with-ols-and-mle"><i class="fa fa-check"></i><b>8.8</b> Working the Simple Moderation with OLS and MLE</a>
 <ul>
-<li class="chapter" data-level="8.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>8.8.1</b> OLS with <em>lm()</em></a>
-<ul>
-<li class="chapter" data-level="8.8.1.1" data-path="SimpMod.html"><a href="SimpMod.html#an-apa-style-write-up-of-ols-results"><i class="fa fa-check"></i><b>8.8.1.1</b> An APA Style Write-up of OLS results</a></li>
-</ul></li>
+<li class="chapter" data-level="8.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>8.8.1</b> OLS with <em>lm()</em></a></li>
 <li class="chapter" data-level="8.8.2" data-path="SimpMod.html"><a href="SimpMod.html#mle-with-lavaansem"><i class="fa fa-check"></i><b>8.8.2</b> MLE with <em>lavaan::sem()</em></a></li>
 <li class="chapter" data-level="8.8.3" data-path="SimpMod.html"><a href="SimpMod.html#tabling-the-data"><i class="fa fa-check"></i><b>8.8.3</b> Tabling the data</a></li>
 <li class="chapter" data-level="8.8.4" data-path="SimpMod.html"><a href="SimpMod.html#apa-style-writeup-3"><i class="fa fa-check"></i><b>8.8.4</b> APA Style Writeup</a></li>
@@ -476,7 +453,6 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.11" data-path="SimpMod.html"><a href="SimpMod.html#bonus-track-1"><i class="fa fa-check"></i><b>8.11</b> Bonus Track:</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="" data-path="CPAnal.html"><a href="CPAnal.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
 <li class="chapter" data-level="9" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>9</b> Moderated Mediation</a>
 <ul>
@@ -500,23 +476,14 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5</b> Working the Moderated Mediation</a>
 <ul>
-<li class="chapter" data-level="9.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
-<ul>
-<li class="chapter" data-level="9.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.1</b> Analysis #1: A simple moderation</a></li>
-<li class="chapter" data-level="9.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.2</b> Analysis #2: Another simple moderation</a></li>
-<li class="chapter" data-level="9.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>9.5.1.3</b> Analysis #3: A simple mediation</a></li>
-</ul></li>
+<li class="chapter" data-level="9.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5.1</b> Piecewise Assembly of the Moderated Mediation</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>9.6</b> The Moderated Mediation: A Combined analysis</a>
 <ul>
 <li class="chapter" data-level="9.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>9.6.1</b> Specification in <em>lavaan</em></a></li>
 <li class="chapter" data-level="9.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>9.6.2</b> A quick plot</a></li>
 <li class="chapter" data-level="9.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>9.6.3</b> Beginning the interpretation</a></li>
-<li class="chapter" data-level="9.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.6.4</b> Tabling the data</a>
-<ul>
-<li class="chapter" data-level="9.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>9.6.4.1</b> Conditional Indirect effects</a></li>
-<li class="chapter" data-level="9.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>9.6.4.2</b> Conditional Direct effect</a></li>
-</ul></li>
+<li class="chapter" data-level="9.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.6.4</b> Tabling the data</a></li>
 <li class="chapter" data-level="9.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>9.6.5</b> Model trimming</a></li>
 <li class="chapter" data-level="9.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>9.6.6</b> APA Style Write-up</a></li>
 </ul></li>
@@ -529,10 +496,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-2"><i class="fa fa-check"></i><b>9.9</b> Bonus Track:</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
-#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
-<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
-  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
 </ul>
 
@@ -599,13 +565,13 @@ div.csl-indent {
 <h3><span class="header-section-number">7.1.4</span> Packages</h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
 <!-- TODO: Build out this section. -->
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="CompMed.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
-<span id="cb209-2"><a href="CompMed.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(lavaan)){<span class="fu">install.packages</span>(<span class="st">&quot;lavaan&quot;</span>)}</span>
-<span id="cb209-3"><a href="CompMed.html#cb209-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semPlot)){<span class="fu">install.packages</span>(<span class="st">&quot;semPlot&quot;</span>)}</span>
-<span id="cb209-4"><a href="CompMed.html#cb209-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
-<span id="cb209-5"><a href="CompMed.html#cb209-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
-<span id="cb209-6"><a href="CompMed.html#cb209-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(apaTables)){<span class="fu">install.packages</span>(<span class="st">&quot;apaTables&quot;</span>)}</span>
-<span id="cb209-7"><a href="CompMed.html#cb209-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(formattable)){<span class="fu">install.packages</span>(<span class="st">&quot;formattable&quot;</span>)}</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="CompMed.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb199-2"><a href="CompMed.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(lavaan)){<span class="fu">install.packages</span>(<span class="st">&quot;lavaan&quot;</span>)}</span>
+<span id="cb199-3"><a href="CompMed.html#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(semPlot)){<span class="fu">install.packages</span>(<span class="st">&quot;semPlot&quot;</span>)}</span>
+<span id="cb199-4"><a href="CompMed.html#cb199-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
+<span id="cb199-5"><a href="CompMed.html#cb199-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
+<span id="cb199-6"><a href="CompMed.html#cb199-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(apaTables)){<span class="fu">install.packages</span>(<span class="st">&quot;apaTables&quot;</span>)}</span>
+<span id="cb199-7"><a href="CompMed.html#cb199-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(formattable)){<span class="fu">install.packages</span>(<span class="st">&quot;formattable&quot;</span>)}</span></code></pre></div>
 </div>
 </div>
 <div id="complex-mediation" class="section level2" number="7.2">
@@ -650,13 +616,13 @@ In this parallel model, we can describe these effects this way:</p>
 <p>We can bake our own data by updating the script we used in simple mediation to add a second mediator.</p>
 <div id="data-simulation" class="section level4" number="7.3.1.1">
 <h4><span class="header-section-number">7.3.1.1</span> Data Simulation</h4>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="CompMed.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concerned that identical variable names across book chapters may be problematic, I&#39;m adding &quot;p&quot; in front the &quot;Data&quot; variable.</span></span>
-<span id="cb210-2"><a href="CompMed.html#cb210-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210417</span>)</span>
-<span id="cb210-3"><a href="CompMed.html#cb210-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb210-4"><a href="CompMed.html#cb210-4" aria-hidden="true" tabindex="-1"></a>M1 <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>X <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb210-5"><a href="CompMed.html#cb210-5" aria-hidden="true" tabindex="-1"></a>M2 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.35</span><span class="sc">*</span>X <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb210-6"><a href="CompMed.html#cb210-6" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fl">0.7</span><span class="sc">*</span>M2 <span class="sc">+</span> <span class="fl">0.48</span><span class="sc">*</span>M1 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb210-7"><a href="CompMed.html#cb210-7" aria-hidden="true" tabindex="-1"></a>pData <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> X, <span class="at">Y =</span> Y, <span class="at">M1 =</span> M1, <span class="at">M2 =</span> M2)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="CompMed.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concerned that identical variable names across book chapters may be problematic, I&#39;m adding &quot;p&quot; in front the &quot;Data&quot; variable.</span></span>
+<span id="cb200-2"><a href="CompMed.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210417</span>)</span>
+<span id="cb200-3"><a href="CompMed.html#cb200-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb200-4"><a href="CompMed.html#cb200-4" aria-hidden="true" tabindex="-1"></a>M1 <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>X <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb200-5"><a href="CompMed.html#cb200-5" aria-hidden="true" tabindex="-1"></a>M2 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.35</span><span class="sc">*</span>X <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb200-6"><a href="CompMed.html#cb200-6" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fl">0.7</span><span class="sc">*</span>M2 <span class="sc">+</span> <span class="fl">0.48</span><span class="sc">*</span>M1 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb200-7"><a href="CompMed.html#cb200-7" aria-hidden="true" tabindex="-1"></a>pData <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> X, <span class="at">Y =</span> Y, <span class="at">M1 =</span> M1, <span class="at">M2 =</span> M2)</span></code></pre></div>
 <p>Using what we learned in conducting a simple mediation in <em>lavaan</em>, we can look at the figure of our proposed model and <em>backwardstrace</em> the paths to write the code.</p>
 <p>Remember…</p>
 <ul>
@@ -679,21 +645,21 @@ In this parallel model, we can describe these effects this way:</p>
 </div>
 <div id="specifying-lavaan-code" class="section level4" number="7.3.1.2">
 <h4><span class="header-section-number">7.3.1.2</span> Specifying <em>lavaan</em> code</h4>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="CompMed.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb211-2"><a href="CompMed.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210418</span>)</span>
-<span id="cb211-3"><a href="CompMed.html#cb211-3" aria-hidden="true" tabindex="-1"></a>parallel_med <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb211-4"><a href="CompMed.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="st">    Y ~ b1*M1 + b2*M2 + c_p*X</span></span>
-<span id="cb211-5"><a href="CompMed.html#cb211-5" aria-hidden="true" tabindex="-1"></a><span class="st">    M1 ~ a1*X</span></span>
-<span id="cb211-6"><a href="CompMed.html#cb211-6" aria-hidden="true" tabindex="-1"></a><span class="st">    M2 ~ a2*X</span></span>
-<span id="cb211-7"><a href="CompMed.html#cb211-7" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
-<span id="cb211-8"><a href="CompMed.html#cb211-8" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
-<span id="cb211-9"><a href="CompMed.html#cb211-9" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast := indirect1 - indirect2</span></span>
-<span id="cb211-10"><a href="CompMed.html#cb211-10" aria-hidden="true" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2</span></span>
-<span id="cb211-11"><a href="CompMed.html#cb211-11" aria-hidden="true" tabindex="-1"></a><span class="st">    total_c    := c_p + (indirect1) + (indirect2)</span></span>
-<span id="cb211-12"><a href="CompMed.html#cb211-12" aria-hidden="true" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
-<span id="cb211-13"><a href="CompMed.html#cb211-13" aria-hidden="true" tabindex="-1"></a><span class="st"> &#39;</span></span>
-<span id="cb211-14"><a href="CompMed.html#cb211-14" aria-hidden="true" tabindex="-1"></a>parallel_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(parallel_med, <span class="at">data =</span> pData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
-<span id="cb211-15"><a href="CompMed.html#cb211-15" aria-hidden="true" tabindex="-1"></a>pfit_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(parallel_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="CompMed.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb201-2"><a href="CompMed.html#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210418</span>)</span>
+<span id="cb201-3"><a href="CompMed.html#cb201-3" aria-hidden="true" tabindex="-1"></a>parallel_med <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb201-4"><a href="CompMed.html#cb201-4" aria-hidden="true" tabindex="-1"></a><span class="st">    Y ~ b1*M1 + b2*M2 + c_p*X</span></span>
+<span id="cb201-5"><a href="CompMed.html#cb201-5" aria-hidden="true" tabindex="-1"></a><span class="st">    M1 ~ a1*X</span></span>
+<span id="cb201-6"><a href="CompMed.html#cb201-6" aria-hidden="true" tabindex="-1"></a><span class="st">    M2 ~ a2*X</span></span>
+<span id="cb201-7"><a href="CompMed.html#cb201-7" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
+<span id="cb201-8"><a href="CompMed.html#cb201-8" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
+<span id="cb201-9"><a href="CompMed.html#cb201-9" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast := indirect1 - indirect2</span></span>
+<span id="cb201-10"><a href="CompMed.html#cb201-10" aria-hidden="true" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2</span></span>
+<span id="cb201-11"><a href="CompMed.html#cb201-11" aria-hidden="true" tabindex="-1"></a><span class="st">    total_c    := c_p + (indirect1) + (indirect2)</span></span>
+<span id="cb201-12"><a href="CompMed.html#cb201-12" aria-hidden="true" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
+<span id="cb201-13"><a href="CompMed.html#cb201-13" aria-hidden="true" tabindex="-1"></a><span class="st"> &#39;</span></span>
+<span id="cb201-14"><a href="CompMed.html#cb201-14" aria-hidden="true" tabindex="-1"></a>parallel_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(parallel_med, <span class="at">data =</span> pData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb201-15"><a href="CompMed.html#cb201-15" aria-hidden="true" tabindex="-1"></a>pfit_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(parallel_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span></code></pre></div>
 <pre><code>## lavaan 0.6-9 ended normally after 16 iterations
 ## 
 ##   Estimator                                         ML
@@ -807,8 +773,8 @@ In this parallel model, we can describe these effects this way:</p>
 ##     0.061    0.043
 ##     0.167    0.117
 ##     0.105    0.074</code></pre>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="CompMed.html#cb213-1" aria-hidden="true" tabindex="-1"></a>pfit_ParEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(parallel_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
-<span id="cb213-2"><a href="CompMed.html#cb213-2" aria-hidden="true" tabindex="-1"></a>pfit_sum</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="CompMed.html#cb203-1" aria-hidden="true" tabindex="-1"></a>pfit_ParEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(parallel_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb203-2"><a href="CompMed.html#cb203-2" aria-hidden="true" tabindex="-1"></a>pfit_sum</span></code></pre></div>
 <pre><code>## $FIT
 ##              npar              fmin             chisq                df 
 ##            11.000             0.000             0.095             1.000 
@@ -893,7 +859,7 @@ In this parallel model, we can describe these effects this way:</p>
 ## 20           NA           NA           NA
 ## 21           NA           NA           NA
 ## 22           NA           NA           NA</code></pre>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="CompMed.html#cb215-1" aria-hidden="true" tabindex="-1"></a>pfit_ParEsts</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="CompMed.html#cb205-1" aria-hidden="true" tabindex="-1"></a>pfit_ParEsts</span></code></pre></div>
 <pre><code>##                lhs op                         rhs           label    est    se
 ## 1                Y  ~                          M1              b1  0.540 0.113
 ## 2                Y  ~                          M2              b2  0.690 0.111
@@ -943,31 +909,31 @@ In this parallel model, we can describe these effects this way:</p>
 </div>
 <div id="figures-and-tables" class="section level4" number="7.3.1.4">
 <h4><span class="header-section-number">7.3.1.4</span> Figures and Tables</h4>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="CompMed.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
-<span id="cb217-2"><a href="CompMed.html#cb217-2" aria-hidden="true" tabindex="-1"></a>Tb1FDataparallel <span class="ot">&lt;-</span> <span class="fu">semTable</span>(parallel_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;Tb1FakyDataparallel&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="CompMed.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
-<span id="cb218-2"><a href="CompMed.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="co">#note change in layout </span></span>
-<span id="cb218-3"><a href="CompMed.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(parallel_fit, <span class="co">#must identiy the model you want to map</span></span>
-<span id="cb218-4"><a href="CompMed.html#cb218-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
-<span id="cb218-5"><a href="CompMed.html#cb218-5" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
-<span id="cb218-6"><a href="CompMed.html#cb218-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;tree&#39;, rotation = 2, #together, puts predictors on left, IVs on right </span></span>
-<span id="cb218-7"><a href="CompMed.html#cb218-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;spring&#39;</span>, </span>
-<span id="cb218-8"><a href="CompMed.html#cb218-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
-<span id="cb218-9"><a href="CompMed.html#cb218-9" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
-<span id="cb218-10"><a href="CompMed.html#cb218-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
-<span id="cb218-11"><a href="CompMed.html#cb218-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
-<span id="cb218-12"><a href="CompMed.html#cb218-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
-<span id="cb218-13"><a href="CompMed.html#cb218-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
-<span id="cb218-14"><a href="CompMed.html#cb218-14" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
-<span id="cb218-15"><a href="CompMed.html#cb218-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
-<span id="cb218-16"><a href="CompMed.html#cb218-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
-<span id="cb218-17"><a href="CompMed.html#cb218-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
-<span id="cb218-18"><a href="CompMed.html#cb218-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
-<span id="cb218-19"><a href="CompMed.html#cb218-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
-<span id="cb218-20"><a href="CompMed.html#cb218-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
-<span id="cb218-21"><a href="CompMed.html#cb218-21" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb218-22"><a href="CompMed.html#cb218-22" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Baked Data:  Parallel Mediation&quot;</span>)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/Fake%20Data%20Simple%20Plot-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="CompMed.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
+<span id="cb207-2"><a href="CompMed.html#cb207-2" aria-hidden="true" tabindex="-1"></a>Tb1FDataparallel <span class="ot">&lt;-</span> <span class="fu">semTable</span>(parallel_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;Tb1FakyDataparallel&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="CompMed.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb208-2"><a href="CompMed.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="co">#note change in layout </span></span>
+<span id="cb208-3"><a href="CompMed.html#cb208-3" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(parallel_fit, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb208-4"><a href="CompMed.html#cb208-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb208-5"><a href="CompMed.html#cb208-5" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb208-6"><a href="CompMed.html#cb208-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;tree&#39;, rotation = 2, #together, puts predictors on left, IVs on right </span></span>
+<span id="cb208-7"><a href="CompMed.html#cb208-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;spring&#39;</span>, </span>
+<span id="cb208-8"><a href="CompMed.html#cb208-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb208-9"><a href="CompMed.html#cb208-9" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb208-10"><a href="CompMed.html#cb208-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb208-11"><a href="CompMed.html#cb208-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb208-12"><a href="CompMed.html#cb208-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb208-13"><a href="CompMed.html#cb208-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb208-14"><a href="CompMed.html#cb208-14" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb208-15"><a href="CompMed.html#cb208-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb208-16"><a href="CompMed.html#cb208-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb208-17"><a href="CompMed.html#cb208-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb208-18"><a href="CompMed.html#cb208-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb208-19"><a href="CompMed.html#cb208-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb208-20"><a href="CompMed.html#cb208-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb208-21"><a href="CompMed.html#cb208-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb208-22"><a href="CompMed.html#cb208-22" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Baked Data:  Parallel Mediation&quot;</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/Fake%20Data%20Simple%20Plot-1.png" width="672" /></p>
 <p>There are a number of ways to tabalize the data. You might be surprised to learn that a number of articles that analyze mediating effects focus their presentation on those values and not the traditional intercepts and B weights. This is the approach I have taken in this chapter.</p>
 <p><strong>Table 1 </strong></p>
 <table>
@@ -1098,21 +1064,21 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 <div id="data-simulation-1" class="section level4" number="7.3.2.1">
 <h4><span class="header-section-number">7.3.2.1</span> Data Simulation</h4>
 <p>Simulating the data:</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="CompMed.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
-<span id="cb219-2"><a href="CompMed.html#cb219-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.99</span>, <span class="fl">2.82</span>, <span class="fl">2.48</span>, <span class="fl">2.32</span>, <span class="fl">1.75</span>, <span class="fl">5.71</span>, <span class="fl">21.37</span>, <span class="fl">21.07</span>)</span>
-<span id="cb219-3"><a href="CompMed.html#cb219-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">90</span>, .<span class="dv">70</span>, .<span class="dv">81</span>, .<span class="dv">61</span>, .<span class="dv">53</span>, <span class="fl">1.03</span>, <span class="fl">3.83</span>, <span class="fl">4.66</span>)</span>
-<span id="cb219-4"><a href="CompMed.html#cb219-4" aria-hidden="true" tabindex="-1"></a>r_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">1</span>, .<span class="dv">20</span>, .<span class="dv">28</span>, .<span class="dv">30</span>, .<span class="dv">41</span>, .<span class="dv">19</span>, <span class="sc">-</span>.<span class="dv">32</span>, <span class="sc">-</span>.<span class="dv">18</span>,</span>
-<span id="cb219-5"><a href="CompMed.html#cb219-5" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">20</span>, <span class="dv">1</span>, .<span class="dv">49</span>, .<span class="dv">57</span>, .<span class="dv">22</span>, .<span class="dv">13</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">13</span>,</span>
-<span id="cb219-6"><a href="CompMed.html#cb219-6" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">28</span>, .<span class="dv">49</span>, <span class="dv">1</span>, .<span class="dv">46</span>, .<span class="dv">26</span>, .<span class="dv">38</span>, <span class="sc">-</span>.<span class="dv">18</span>,<span class="sc">-</span>.<span class="dv">08</span>, </span>
-<span id="cb219-7"><a href="CompMed.html#cb219-7" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">30</span>, .<span class="dv">57</span>, .<span class="dv">46</span>,  <span class="dv">1</span>, .<span class="dv">37</span>, .<span class="dv">08</span>, <span class="sc">-</span>.<span class="dv">14</span>, <span class="sc">-</span>.<span class="dv">06</span>,</span>
-<span id="cb219-8"><a href="CompMed.html#cb219-8" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">41</span>, .<span class="dv">22</span>, .<span class="dv">26</span>, .<span class="dv">37</span>, <span class="dv">1</span>, .<span class="dv">05</span>, <span class="sc">-</span>.<span class="dv">54</span>, <span class="sc">-</span>.<span class="dv">28</span>, </span>
-<span id="cb219-9"><a href="CompMed.html#cb219-9" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">19</span>, .<span class="dv">13</span>, .<span class="dv">38</span>, .<span class="dv">08</span>, .<span class="dv">05</span>, <span class="dv">1</span>, <span class="sc">-</span>.<span class="dv">10</span>, .<span class="dv">14</span>, </span>
-<span id="cb219-10"><a href="CompMed.html#cb219-10" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span>.<span class="dv">32</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">18</span>, <span class="sc">-</span>.<span class="dv">14</span>, <span class="sc">-</span>.<span class="dv">54</span>, <span class="sc">-</span>.<span class="dv">10</span>, <span class="dv">1</span>, .<span class="dv">47</span>,</span>
-<span id="cb219-11"><a href="CompMed.html#cb219-11" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span>.<span class="dv">18</span>, <span class="sc">-</span>.<span class="dv">13</span>, <span class="sc">-</span>.<span class="dv">08</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">28</span>, .<span class="dv">14</span>, .<span class="dv">47</span>, <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">8</span>)</span>
-<span id="cb219-12"><a href="CompMed.html#cb219-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a covariance matrix</span></span>
-<span id="cb219-13"><a href="CompMed.html#cb219-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb219-14"><a href="CompMed.html#cb219-14" aria-hidden="true" tabindex="-1"></a>cov_mat <span class="ot">&lt;-</span> sd <span class="sc">%*%</span> <span class="fu">t</span>(sd) <span class="sc">*</span> r_mat</span>
-<span id="cb219-15"><a href="CompMed.html#cb219-15" aria-hidden="true" tabindex="-1"></a>cov_mat</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="CompMed.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
+<span id="cb209-2"><a href="CompMed.html#cb209-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.99</span>, <span class="fl">2.82</span>, <span class="fl">2.48</span>, <span class="fl">2.32</span>, <span class="fl">1.75</span>, <span class="fl">5.71</span>, <span class="fl">21.37</span>, <span class="fl">21.07</span>)</span>
+<span id="cb209-3"><a href="CompMed.html#cb209-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">90</span>, .<span class="dv">70</span>, .<span class="dv">81</span>, .<span class="dv">61</span>, .<span class="dv">53</span>, <span class="fl">1.03</span>, <span class="fl">3.83</span>, <span class="fl">4.66</span>)</span>
+<span id="cb209-4"><a href="CompMed.html#cb209-4" aria-hidden="true" tabindex="-1"></a>r_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">1</span>, .<span class="dv">20</span>, .<span class="dv">28</span>, .<span class="dv">30</span>, .<span class="dv">41</span>, .<span class="dv">19</span>, <span class="sc">-</span>.<span class="dv">32</span>, <span class="sc">-</span>.<span class="dv">18</span>,</span>
+<span id="cb209-5"><a href="CompMed.html#cb209-5" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">20</span>, <span class="dv">1</span>, .<span class="dv">49</span>, .<span class="dv">57</span>, .<span class="dv">22</span>, .<span class="dv">13</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">13</span>,</span>
+<span id="cb209-6"><a href="CompMed.html#cb209-6" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">28</span>, .<span class="dv">49</span>, <span class="dv">1</span>, .<span class="dv">46</span>, .<span class="dv">26</span>, .<span class="dv">38</span>, <span class="sc">-</span>.<span class="dv">18</span>,<span class="sc">-</span>.<span class="dv">08</span>, </span>
+<span id="cb209-7"><a href="CompMed.html#cb209-7" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">30</span>, .<span class="dv">57</span>, .<span class="dv">46</span>,  <span class="dv">1</span>, .<span class="dv">37</span>, .<span class="dv">08</span>, <span class="sc">-</span>.<span class="dv">14</span>, <span class="sc">-</span>.<span class="dv">06</span>,</span>
+<span id="cb209-8"><a href="CompMed.html#cb209-8" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">41</span>, .<span class="dv">22</span>, .<span class="dv">26</span>, .<span class="dv">37</span>, <span class="dv">1</span>, .<span class="dv">05</span>, <span class="sc">-</span>.<span class="dv">54</span>, <span class="sc">-</span>.<span class="dv">28</span>, </span>
+<span id="cb209-9"><a href="CompMed.html#cb209-9" aria-hidden="true" tabindex="-1"></a>        .<span class="dv">19</span>, .<span class="dv">13</span>, .<span class="dv">38</span>, .<span class="dv">08</span>, .<span class="dv">05</span>, <span class="dv">1</span>, <span class="sc">-</span>.<span class="dv">10</span>, .<span class="dv">14</span>, </span>
+<span id="cb209-10"><a href="CompMed.html#cb209-10" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span>.<span class="dv">32</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">18</span>, <span class="sc">-</span>.<span class="dv">14</span>, <span class="sc">-</span>.<span class="dv">54</span>, <span class="sc">-</span>.<span class="dv">10</span>, <span class="dv">1</span>, .<span class="dv">47</span>,</span>
+<span id="cb209-11"><a href="CompMed.html#cb209-11" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span>.<span class="dv">18</span>, <span class="sc">-</span>.<span class="dv">13</span>, <span class="sc">-</span>.<span class="dv">08</span>, <span class="sc">-</span>.<span class="dv">06</span>, <span class="sc">-</span>.<span class="dv">28</span>, .<span class="dv">14</span>, .<span class="dv">47</span>, <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">8</span>)</span>
+<span id="cb209-12"><a href="CompMed.html#cb209-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a covariance matrix</span></span>
+<span id="cb209-13"><a href="CompMed.html#cb209-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-14"><a href="CompMed.html#cb209-14" aria-hidden="true" tabindex="-1"></a>cov_mat <span class="ot">&lt;-</span> sd <span class="sc">%*%</span> <span class="fu">t</span>(sd) <span class="sc">*</span> r_mat</span>
+<span id="cb209-15"><a href="CompMed.html#cb209-15" aria-hidden="true" tabindex="-1"></a>cov_mat</span></code></pre></div>
 <pre><code>##          [,1]     [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
 ## [1,]  0.81000  0.12600  0.204120  0.164700  0.195570  0.176130 -1.103040
 ## [2,]  0.12600  0.49000  0.277830  0.243390  0.081620  0.093730 -0.160860
@@ -1131,14 +1097,14 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 ## [6,]  0.671972
 ## [7,]  8.388466
 ## [8,] 21.715600</code></pre>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="CompMed.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set random seed so that the following matrix always gets the same results.</span></span>
-<span id="cb221-2"><a href="CompMed.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210403</span>)</span>
-<span id="cb221-3"><a href="CompMed.html#cb221-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb221-4"><a href="CompMed.html#cb221-4" aria-hidden="true" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">212</span>, <span class="at">mu=</span>mu, <span class="at">Sigma =</span> cov_mat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb221-5"><a href="CompMed.html#cb221-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(Lewis_df)</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="CompMed.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set random seed so that the following matrix always gets the same results.</span></span>
+<span id="cb211-2"><a href="CompMed.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210403</span>)</span>
+<span id="cb211-3"><a href="CompMed.html#cb211-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb211-4"><a href="CompMed.html#cb211-4" aria-hidden="true" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">212</span>, <span class="at">mu=</span>mu, <span class="at">Sigma =</span> cov_mat, <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb211-5"><a href="CompMed.html#cb211-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(Lewis_df)</span></code></pre></div>
 <pre><code>## [1]  1.99  2.82  2.48  2.32  1.75  5.71 21.37 21.07</code></pre>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="CompMed.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
-<span id="cb223-2"><a href="CompMed.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Lewis_df)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="CompMed.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
+<span id="cb213-2"><a href="CompMed.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Lewis_df)</span></code></pre></div>
 <pre><code>##       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]
 ## [1,]  1.00  0.20  0.28  0.30  0.41  0.19 -0.32 -0.18
 ## [2,]  0.20  1.00  0.49  0.57  0.22  0.13 -0.06 -0.13
@@ -1149,12 +1115,12 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 ## [7,] -0.32 -0.06 -0.18 -0.14 -0.54 -0.10  1.00  0.47
 ## [8,] -0.18 -0.13 -0.08 -0.06 -0.28  0.14  0.47  1.00</code></pre>
 <p>Rename the variables</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="CompMed.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(Lewis_df, <span class="at">row.names =</span> <span class="cn">NULL</span>, <span class="at">optional =</span> <span class="cn">FALSE</span>, <span class="at">make.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb225-2"><a href="CompMed.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb225-3"><a href="CompMed.html#cb225-3" aria-hidden="true" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> Lewis_df<span class="sc">%&gt;%</span></span>
-<span id="cb225-4"><a href="CompMed.html#cb225-4" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span></span>
-<span id="cb225-5"><a href="CompMed.html#cb225-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">GRMS =</span> V1, <span class="at">Sprtlty =</span> V2, <span class="at">SocSup =</span> V3, <span class="at">Engmt =</span> V4, <span class="at">DisEngmt =</span> V5, <span class="at">GRIcntlty =</span> V6, <span class="at">MtnlHlth =</span> V7, <span class="at">PhysHlth =</span> V8)</span></code></pre></div>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="CompMed.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Lewis_df)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="CompMed.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(Lewis_df, <span class="at">row.names =</span> <span class="cn">NULL</span>, <span class="at">optional =</span> <span class="cn">FALSE</span>, <span class="at">make.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb215-2"><a href="CompMed.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb215-3"><a href="CompMed.html#cb215-3" aria-hidden="true" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> Lewis_df<span class="sc">%&gt;%</span></span>
+<span id="cb215-4"><a href="CompMed.html#cb215-4" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span></span>
+<span id="cb215-5"><a href="CompMed.html#cb215-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">GRMS =</span> V1, <span class="at">Sprtlty =</span> V2, <span class="at">SocSup =</span> V3, <span class="at">Engmt =</span> V4, <span class="at">DisEngmt =</span> V5, <span class="at">GRIcntlty =</span> V6, <span class="at">MtnlHlth =</span> V7, <span class="at">PhysHlth =</span> V8)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="CompMed.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Lewis_df)</span></code></pre></div>
 <pre><code>##        GRMS  Sprtlty   SocSup    Engmt  DisEngmt GRIcntlty MtnlHlth PhysHlth
 ## 1 1.6527393 2.022990 1.705523 1.360615 1.0830779  5.517213 22.75649 19.41684
 ## 2 0.7640948 1.644033 2.505362 2.242470 1.7132075  5.413544 22.62540 22.26355
@@ -1166,8 +1132,8 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 <div id="quick-descriptives" class="section level4" number="7.3.2.2">
 <h4><span class="header-section-number">7.3.2.2</span> Quick Descriptives</h4>
 <p>Of course it is is a good idea to examine our data ahead of time. While we won’t take time to do a thorough analysis, we can at least take a peek.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="CompMed.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb228-2"><a href="CompMed.html#cb228-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(Lewis_df)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="CompMed.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb218-2"><a href="CompMed.html#cb218-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(Lewis_df)</span></code></pre></div>
 <pre><code>##           vars   n  mean   sd median trimmed  mad   min   max range  skew
 ## GRMS         1 212  1.99 0.90   1.97    1.99 0.80 -1.07  3.97  5.05 -0.12
 ## Sprtlty      2 212  2.82 0.70   2.80    2.83 0.75  1.08  4.57  3.49 -0.10
@@ -1193,8 +1159,8 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 <li>the value of the bivariate correlation (upper diagonal)</li>
 <li>a scatterplot with a regression line between each pair of variables (lower diagonal)</li>
 </ul>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="CompMed.html#cb230-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(Lewis_df)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/unnamed-chunk-15-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="CompMed.html#cb220-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(Lewis_df)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>The Lewis et al. article <span class="citation">(<a href="#ref-lewis_applying_2017" role="doc-biblioref">2017</a>)</span> reports four mediation analyses, each repeated for mental and physical outcomes. Thus, their write-up reports eight simple mediation models. Graphically, this is efficiently represented in a figure that looks like parallel mediation. Note that the figure is reporting standardized estimates. In Hayes’ <span class="citation">(<a href="#ref-hayes_introduction_2018" role="doc-biblioref">2018</a>)</span> we have been using raw, <span class="math inline">\(B\)</span> weights. However, the standardized weights are reported in the output.</p>
 <p><img src="images/CompMed/LewisMedFig.jpg" alt="An image of Figure 1 from the Lewis article illustrating the mediated models that were tested" />
 Because the figure looked like a parallel mediation, it made sense to me that we could try this in our research vignette. In the chapter on conditional process analysis, we will work the moderated mediation as they have done. Below is the model we will work. Specifically, we will evaluate whether gendered racial microaggressions impact mental health separately, thorough mediated paths of engagement and disengagement. We will also be able to see if the strength of those mediated paths are statistically, significantly, different from each other.</p>
@@ -1206,24 +1172,24 @@ Because the figure looked like a parallel mediation, it made sense to me that we
 <div id="specifying-the-lavaan-model" class="section level4" number="7.3.2.3">
 <h4><span class="header-section-number">7.3.2.3</span> Specifying the <em>lavaan</em> model</h4>
 <p>We can use the guidelines above to specify our model and then request summaries of the fit indices and parameter estimates.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="CompMed.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210403</span>)</span>
-<span id="cb231-2"><a href="CompMed.html#cb231-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb231-3"><a href="CompMed.html#cb231-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb231-4"><a href="CompMed.html#cb231-4" aria-hidden="true" tabindex="-1"></a>parallel_Lewis <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb231-5"><a href="CompMed.html#cb231-5" aria-hidden="true" tabindex="-1"></a><span class="st">    MtnlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS</span></span>
-<span id="cb231-6"><a href="CompMed.html#cb231-6" aria-hidden="true" tabindex="-1"></a><span class="st">    Engmt ~ a1*GRMS    </span></span>
-<span id="cb231-7"><a href="CompMed.html#cb231-7" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ a2*GRMS</span></span>
-<span id="cb231-8"><a href="CompMed.html#cb231-8" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
-<span id="cb231-9"><a href="CompMed.html#cb231-9" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
-<span id="cb231-10"><a href="CompMed.html#cb231-10" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast := indirect1 - indirect2</span></span>
-<span id="cb231-11"><a href="CompMed.html#cb231-11" aria-hidden="true" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2</span></span>
-<span id="cb231-12"><a href="CompMed.html#cb231-12" aria-hidden="true" tabindex="-1"></a><span class="st">    total_c := c_p + (indirect1) + (indirect2)</span></span>
-<span id="cb231-13"><a href="CompMed.html#cb231-13" aria-hidden="true" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
-<span id="cb231-14"><a href="CompMed.html#cb231-14" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
-<span id="cb231-15"><a href="CompMed.html#cb231-15" aria-hidden="true" tabindex="-1"></a>para_Lewis_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(parallel_Lewis, <span class="at">data =</span> Lewis_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>) <span class="co">#holds the &quot;whole&quot; result</span></span>
-<span id="cb231-16"><a href="CompMed.html#cb231-16" aria-hidden="true" tabindex="-1"></a>pLewis_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(para_Lewis_fit , <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>) <span class="co">#today, we really only need the R-squared from here    </span></span>
-<span id="cb231-17"><a href="CompMed.html#cb231-17" aria-hidden="true" tabindex="-1"></a>pLewis_ParEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(para_Lewis_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>) <span class="co">#provides our estimates, se, p values for all the elements we specified</span></span></code></pre></div>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="CompMed.html#cb232-1" aria-hidden="true" tabindex="-1"></a>pLewis_sum</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="CompMed.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210403</span>)</span>
+<span id="cb221-2"><a href="CompMed.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb221-3"><a href="CompMed.html#cb221-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-4"><a href="CompMed.html#cb221-4" aria-hidden="true" tabindex="-1"></a>parallel_Lewis <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb221-5"><a href="CompMed.html#cb221-5" aria-hidden="true" tabindex="-1"></a><span class="st">    MtnlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS</span></span>
+<span id="cb221-6"><a href="CompMed.html#cb221-6" aria-hidden="true" tabindex="-1"></a><span class="st">    Engmt ~ a1*GRMS    </span></span>
+<span id="cb221-7"><a href="CompMed.html#cb221-7" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ a2*GRMS</span></span>
+<span id="cb221-8"><a href="CompMed.html#cb221-8" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
+<span id="cb221-9"><a href="CompMed.html#cb221-9" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
+<span id="cb221-10"><a href="CompMed.html#cb221-10" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast := indirect1 - indirect2</span></span>
+<span id="cb221-11"><a href="CompMed.html#cb221-11" aria-hidden="true" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2</span></span>
+<span id="cb221-12"><a href="CompMed.html#cb221-12" aria-hidden="true" tabindex="-1"></a><span class="st">    total_c := c_p + (indirect1) + (indirect2)</span></span>
+<span id="cb221-13"><a href="CompMed.html#cb221-13" aria-hidden="true" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
+<span id="cb221-14"><a href="CompMed.html#cb221-14" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb221-15"><a href="CompMed.html#cb221-15" aria-hidden="true" tabindex="-1"></a>para_Lewis_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(parallel_Lewis, <span class="at">data =</span> Lewis_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>) <span class="co">#holds the &quot;whole&quot; result</span></span>
+<span id="cb221-16"><a href="CompMed.html#cb221-16" aria-hidden="true" tabindex="-1"></a>pLewis_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(para_Lewis_fit , <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>) <span class="co">#today, we really only need the R-squared from here    </span></span>
+<span id="cb221-17"><a href="CompMed.html#cb221-17" aria-hidden="true" tabindex="-1"></a>pLewis_ParEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(para_Lewis_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>) <span class="co">#provides our estimates, se, p values for all the elements we specified</span></span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="CompMed.html#cb222-1" aria-hidden="true" tabindex="-1"></a>pLewis_sum</span></code></pre></div>
 <pre><code>## $FIT
 ##              npar              fmin             chisq                df 
 ##            11.000             0.042            17.813             1.000 
@@ -1308,7 +1274,7 @@ Because the figure looked like a parallel mediation, it made sense to me that we
 ## 20         NA          NA          NA
 ## 21         NA          NA          NA
 ## 22         NA          NA          NA</code></pre>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="CompMed.html#cb234-1" aria-hidden="true" tabindex="-1"></a>pLewis_ParEsts</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="CompMed.html#cb224-1" aria-hidden="true" tabindex="-1"></a>pLewis_ParEsts</span></code></pre></div>
 <pre><code>##                lhs op                         rhs           label    est    se
 ## 1         MtnlHlth  ~                       Engmt              b1  0.581 0.451
 ## 2         MtnlHlth  ~                    DisEngmt              b2 -3.750 0.448
@@ -1353,29 +1319,29 @@ Because the figure looked like a parallel mediation, it made sense to me that we
 <div id="figures-and-tables-1" class="section level4" number="7.3.2.4">
 <h4><span class="header-section-number">7.3.2.4</span> Figures and Tables</h4>
 <p>When I interpret the data I first plot it and then create the table. Both processes force me to slow down and work conceptually through and deeply in the data.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="CompMed.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
-<span id="cb236-2"><a href="CompMed.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="co">#note change in layout </span></span>
-<span id="cb236-3"><a href="CompMed.html#cb236-3" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(para_Lewis_fit, <span class="co">#must identiy the model you want to map</span></span>
-<span id="cb236-4"><a href="CompMed.html#cb236-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
-<span id="cb236-5"><a href="CompMed.html#cb236-5" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
-<span id="cb236-6"><a href="CompMed.html#cb236-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;tree&#39;, rotation = 2, #together, puts predictors on left, IVs on right </span></span>
-<span id="cb236-7"><a href="CompMed.html#cb236-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;spring&#39;</span>, </span>
-<span id="cb236-8"><a href="CompMed.html#cb236-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
-<span id="cb236-9"><a href="CompMed.html#cb236-9" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
-<span id="cb236-10"><a href="CompMed.html#cb236-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
-<span id="cb236-11"><a href="CompMed.html#cb236-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
-<span id="cb236-12"><a href="CompMed.html#cb236-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
-<span id="cb236-13"><a href="CompMed.html#cb236-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
-<span id="cb236-14"><a href="CompMed.html#cb236-14" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
-<span id="cb236-15"><a href="CompMed.html#cb236-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
-<span id="cb236-16"><a href="CompMed.html#cb236-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
-<span id="cb236-17"><a href="CompMed.html#cb236-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
-<span id="cb236-18"><a href="CompMed.html#cb236-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
-<span id="cb236-19"><a href="CompMed.html#cb236-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
-<span id="cb236-20"><a href="CompMed.html#cb236-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
-<span id="cb236-21"><a href="CompMed.html#cb236-21" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb236-22"><a href="CompMed.html#cb236-22" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Mental Health from Gendered Racial Microaggressions, Mediated by Engagement and Disengagement Coping&quot;</span>)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/Lewis%20Parallel%20model%20plot-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="CompMed.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb226-2"><a href="CompMed.html#cb226-2" aria-hidden="true" tabindex="-1"></a><span class="co">#note change in layout </span></span>
+<span id="cb226-3"><a href="CompMed.html#cb226-3" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(para_Lewis_fit, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb226-4"><a href="CompMed.html#cb226-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb226-5"><a href="CompMed.html#cb226-5" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb226-6"><a href="CompMed.html#cb226-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;tree&#39;, rotation = 2, #together, puts predictors on left, IVs on right </span></span>
+<span id="cb226-7"><a href="CompMed.html#cb226-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;spring&#39;</span>, </span>
+<span id="cb226-8"><a href="CompMed.html#cb226-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb226-9"><a href="CompMed.html#cb226-9" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb226-10"><a href="CompMed.html#cb226-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb226-11"><a href="CompMed.html#cb226-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb226-12"><a href="CompMed.html#cb226-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb226-13"><a href="CompMed.html#cb226-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb226-14"><a href="CompMed.html#cb226-14" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb226-15"><a href="CompMed.html#cb226-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb226-16"><a href="CompMed.html#cb226-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb226-17"><a href="CompMed.html#cb226-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb226-18"><a href="CompMed.html#cb226-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb226-19"><a href="CompMed.html#cb226-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb226-20"><a href="CompMed.html#cb226-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb226-21"><a href="CompMed.html#cb226-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb226-22"><a href="CompMed.html#cb226-22" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Mental Health from Gendered Racial Microaggressions, Mediated by Engagement and Disengagement Coping&quot;</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/Lewis%20Parallel%20model%20plot-1.png" width="672" /></p>
 <p>Now let’s make a table.</p>
 <p><strong>Table 2 </strong></p>
 <table>
@@ -1496,7 +1462,7 @@ Because the figure looked like a parallel mediation, it made sense to me that we
 <li>The total indirect effect (i.e., sum of M1 and M2) -0.787 (<span class="math inline">\(p\)</span> = 0.000 ) The sum of all specific indirect effects; statistically significant.</li>
 <li>We look at the contrast to see if the indirect effects statistically significantly different from each other? <span class="math inline">\(B\)</span> = 1.023, <span class="math inline">\(p\)</span> = 0.000. They are. This is not surprising since the path mediated by engagement was not statistically significant but the path mediated by disengagement was statistically significant.</li>
 </ul>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="CompMed.html#cb237-1" aria-hidden="true" tabindex="-1"></a>LewisparaTable <span class="ot">&lt;-</span> <span class="fu">semTable</span>(para_Lewis_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;LewisParaTable&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="CompMed.html#cb227-1" aria-hidden="true" tabindex="-1"></a>LewisparaTable <span class="ot">&lt;-</span> <span class="fu">semTable</span>(para_Lewis_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;LewisParaTable&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## ,Model,
 ##  
 ## ,Estimate,Std. Err.,p,R Square,
@@ -1636,27 +1602,27 @@ A model of parallel multiple mediation was analyzed examining the degree to whic
 </div>
 <div id="specify-the-lavaan-model" class="section level3" number="7.4.2">
 <h3><span class="header-section-number">7.4.2</span> Specify the <em>lavaan</em> model</h3>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="CompMed.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210403</span>)</span>
-<span id="cb239-2"><a href="CompMed.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb239-3"><a href="CompMed.html#cb239-3" aria-hidden="true" tabindex="-1"></a>serial_Lewis <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb239-4"><a href="CompMed.html#cb239-4" aria-hidden="true" tabindex="-1"></a><span class="st">    MtnlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS</span></span>
-<span id="cb239-5"><a href="CompMed.html#cb239-5" aria-hidden="true" tabindex="-1"></a><span class="st">    Engmt ~ a1*GRMS    </span></span>
-<span id="cb239-6"><a href="CompMed.html#cb239-6" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ a2*GRMS</span></span>
-<span id="cb239-7"><a href="CompMed.html#cb239-7" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ d21*Engmt</span></span>
-<span id="cb239-8"><a href="CompMed.html#cb239-8" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
-<span id="cb239-9"><a href="CompMed.html#cb239-9" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
-<span id="cb239-10"><a href="CompMed.html#cb239-10" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect3 := a1 * d21 * b2</span></span>
-<span id="cb239-11"><a href="CompMed.html#cb239-11" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast1 := indirect1 - indirect2</span></span>
-<span id="cb239-12"><a href="CompMed.html#cb239-12" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast2 := indirect1 - indirect3</span></span>
-<span id="cb239-13"><a href="CompMed.html#cb239-13" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast3 := indirect2 - indirect3</span></span>
-<span id="cb239-14"><a href="CompMed.html#cb239-14" aria-hidden="true" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2 + indirect3</span></span>
-<span id="cb239-15"><a href="CompMed.html#cb239-15" aria-hidden="true" tabindex="-1"></a><span class="st">    total_c := c_p + indirect1 + indirect2 + indirect3</span></span>
-<span id="cb239-16"><a href="CompMed.html#cb239-16" aria-hidden="true" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
-<span id="cb239-17"><a href="CompMed.html#cb239-17" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
-<span id="cb239-18"><a href="CompMed.html#cb239-18" aria-hidden="true" tabindex="-1"></a>serial_Lewis_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(serial_Lewis, <span class="at">data =</span> Lewis_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
-<span id="cb239-19"><a href="CompMed.html#cb239-19" aria-hidden="true" tabindex="-1"></a>sLewis_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(serial_Lewis_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span>
-<span id="cb239-20"><a href="CompMed.html#cb239-20" aria-hidden="true" tabindex="-1"></a>sLewis_ParEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(serial_Lewis_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="CompMed.html#cb240-1" aria-hidden="true" tabindex="-1"></a>sLewis_sum</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="CompMed.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210403</span>)</span>
+<span id="cb229-2"><a href="CompMed.html#cb229-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb229-3"><a href="CompMed.html#cb229-3" aria-hidden="true" tabindex="-1"></a>serial_Lewis <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb229-4"><a href="CompMed.html#cb229-4" aria-hidden="true" tabindex="-1"></a><span class="st">    MtnlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS</span></span>
+<span id="cb229-5"><a href="CompMed.html#cb229-5" aria-hidden="true" tabindex="-1"></a><span class="st">    Engmt ~ a1*GRMS    </span></span>
+<span id="cb229-6"><a href="CompMed.html#cb229-6" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ a2*GRMS</span></span>
+<span id="cb229-7"><a href="CompMed.html#cb229-7" aria-hidden="true" tabindex="-1"></a><span class="st">    DisEngmt ~ d21*Engmt</span></span>
+<span id="cb229-8"><a href="CompMed.html#cb229-8" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
+<span id="cb229-9"><a href="CompMed.html#cb229-9" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
+<span id="cb229-10"><a href="CompMed.html#cb229-10" aria-hidden="true" tabindex="-1"></a><span class="st">    indirect3 := a1 * d21 * b2</span></span>
+<span id="cb229-11"><a href="CompMed.html#cb229-11" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast1 := indirect1 - indirect2</span></span>
+<span id="cb229-12"><a href="CompMed.html#cb229-12" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast2 := indirect1 - indirect3</span></span>
+<span id="cb229-13"><a href="CompMed.html#cb229-13" aria-hidden="true" tabindex="-1"></a><span class="st">    contrast3 := indirect2 - indirect3</span></span>
+<span id="cb229-14"><a href="CompMed.html#cb229-14" aria-hidden="true" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2 + indirect3</span></span>
+<span id="cb229-15"><a href="CompMed.html#cb229-15" aria-hidden="true" tabindex="-1"></a><span class="st">    total_c := c_p + indirect1 + indirect2 + indirect3</span></span>
+<span id="cb229-16"><a href="CompMed.html#cb229-16" aria-hidden="true" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
+<span id="cb229-17"><a href="CompMed.html#cb229-17" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb229-18"><a href="CompMed.html#cb229-18" aria-hidden="true" tabindex="-1"></a>serial_Lewis_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(serial_Lewis, <span class="at">data =</span> Lewis_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb229-19"><a href="CompMed.html#cb229-19" aria-hidden="true" tabindex="-1"></a>sLewis_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(serial_Lewis_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span>
+<span id="cb229-20"><a href="CompMed.html#cb229-20" aria-hidden="true" tabindex="-1"></a>sLewis_ParEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(serial_Lewis_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="CompMed.html#cb230-1" aria-hidden="true" tabindex="-1"></a>sLewis_sum</span></code></pre></div>
 <pre><code>## $FIT
 ##              npar              fmin             chisq                df 
 ##            12.000             0.000             0.000             0.000 
@@ -1753,7 +1719,7 @@ A model of parallel multiple mediation was analyzed examining the degree to whic
 ## 24         NA          NA          NA
 ## 25         NA          NA          NA
 ## 26         NA          NA          NA</code></pre>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="CompMed.html#cb242-1" aria-hidden="true" tabindex="-1"></a>sLewis_ParEsts</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="CompMed.html#cb232-1" aria-hidden="true" tabindex="-1"></a>sLewis_ParEsts</span></code></pre></div>
 <pre><code>##                lhs op                               rhs           label    est
 ## 1         MtnlHlth  ~                             Engmt              b1  0.581
 ## 2         MtnlHlth  ~                          DisEngmt              b2 -3.750
@@ -1969,30 +1935,30 @@ A model of parallel multiple mediation was analyzed examining the degree to whic
 <li>This formal test of contrasts is an important one. It is not ok to infer that effects are statistically significantly different than each other on the basis of their estimates or <span class="math inline">\(p\)</span> values. The formal test allows us to claim (with justification) that the strongest indirect effect is #2 – GRMS through disengagement coping to mental health.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="CompMed.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
-<span id="cb244-2"><a href="CompMed.html#cb244-2" aria-hidden="true" tabindex="-1"></a>LewisserialTbl <span class="ot">&lt;-</span> <span class="fu">semTable</span>(serial_Lewis_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;LewisSerialTbl&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="CompMed.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
+<span id="cb234-2"><a href="CompMed.html#cb234-2" aria-hidden="true" tabindex="-1"></a>LewisserialTbl <span class="ot">&lt;-</span> <span class="fu">semTable</span>(serial_Lewis_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;LewisSerialTbl&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>This is not the greatest figure. There is much to learn in <em>semPlot</em>.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="CompMed.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(serial_Lewis_fit, <span class="co">#must identiy the model you want to map</span></span>
-<span id="cb245-2"><a href="CompMed.html#cb245-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
-<span id="cb245-3"><a href="CompMed.html#cb245-3" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
-<span id="cb245-4"><a href="CompMed.html#cb245-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;tree&#39;, rotation = 2, #together, puts predictors on left, IVs on right </span></span>
-<span id="cb245-5"><a href="CompMed.html#cb245-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;circle&#39;</span>,</span>
-<span id="cb245-6"><a href="CompMed.html#cb245-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
-<span id="cb245-7"><a href="CompMed.html#cb245-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
-<span id="cb245-8"><a href="CompMed.html#cb245-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
-<span id="cb245-9"><a href="CompMed.html#cb245-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
-<span id="cb245-10"><a href="CompMed.html#cb245-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
-<span id="cb245-11"><a href="CompMed.html#cb245-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
-<span id="cb245-12"><a href="CompMed.html#cb245-12" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
-<span id="cb245-13"><a href="CompMed.html#cb245-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
-<span id="cb245-14"><a href="CompMed.html#cb245-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
-<span id="cb245-15"><a href="CompMed.html#cb245-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
-<span id="cb245-16"><a href="CompMed.html#cb245-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
-<span id="cb245-17"><a href="CompMed.html#cb245-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
-<span id="cb245-18"><a href="CompMed.html#cb245-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
-<span id="cb245-19"><a href="CompMed.html#cb245-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb245-20"><a href="CompMed.html#cb245-20" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;The Effect of Gendered Racial Microaggressions on Mental Health through Engaged and Disengaged Coping Styles&quot;</span>)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/semPlot%20of%20serial%20PMI%20model-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="CompMed.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(serial_Lewis_fit, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb235-2"><a href="CompMed.html#cb235-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb235-3"><a href="CompMed.html#cb235-3" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb235-4"><a href="CompMed.html#cb235-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#layout = &#39;tree&#39;, rotation = 2, #together, puts predictors on left, IVs on right </span></span>
+<span id="cb235-5"><a href="CompMed.html#cb235-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;circle&#39;</span>,</span>
+<span id="cb235-6"><a href="CompMed.html#cb235-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb235-7"><a href="CompMed.html#cb235-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb235-8"><a href="CompMed.html#cb235-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb235-9"><a href="CompMed.html#cb235-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb235-10"><a href="CompMed.html#cb235-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb235-11"><a href="CompMed.html#cb235-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb235-12"><a href="CompMed.html#cb235-12" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb235-13"><a href="CompMed.html#cb235-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb235-14"><a href="CompMed.html#cb235-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb235-15"><a href="CompMed.html#cb235-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb235-16"><a href="CompMed.html#cb235-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb235-17"><a href="CompMed.html#cb235-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb235-18"><a href="CompMed.html#cb235-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb235-19"><a href="CompMed.html#cb235-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb235-20"><a href="CompMed.html#cb235-20" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;The Effect of Gendered Racial Microaggressions on Mental Health through Engaged and Disengaged Coping Styles&quot;</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/semPlot%20of%20serial%20PMI%20model-1.png" width="672" /></p>
 </div>
 <div id="apa-style-writeup-2" class="section level3" number="7.4.4">
 <h3><span class="header-section-number">7.4.4</span> APA Style Writeup</h3>
@@ -2221,78 +2187,6 @@ A model of serial multiple mediation was analyzed examining the degree to which 
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="CompMed.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.1.3 (2022-03-10)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
-## 
-## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] MASS_7.3-55       semTable_1.8      semPlot_1.1.2     lavaan_0.6-9     
-##  [5] apaTables_2.0.8   mice_3.13.0       sjstats_0.18.1    formattable_0.2.1
-##  [9] qualtRics_3.1.4   forcats_0.5.1     stringr_1.4.0     dplyr_1.0.7      
-## [13] purrr_0.3.4       readr_2.0.1       tidyr_1.1.3       tibble_3.1.4     
-## [17] ggplot2_3.3.5     tidyverse_1.3.1   psych_2.1.6      
-## 
-## loaded via a namespace (and not attached):
-##   [1] readxl_1.3.1        backports_1.2.1     Hmisc_4.5-0        
-##   [4] systemfonts_1.0.2   igraph_1.2.6        plyr_1.8.6         
-##   [7] splines_4.1.3       TH.data_1.1-0       digest_0.6.27      
-##  [10] htmltools_0.5.2     matrixcalc_1.0-5    fansi_0.5.0        
-##  [13] Rsolnp_1.16         magrittr_2.0.1      checkmate_2.0.0    
-##  [16] lisrelToR_0.1.4     cluster_2.1.2       tzdb_0.1.2         
-##  [19] openxlsx_4.2.4      modelr_0.1.8        RcppParallel_5.1.4 
-##  [22] vroom_1.5.4         sandwich_3.0-1      svglite_2.0.0      
-##  [25] jpeg_0.1-9          sem_3.1-11          MBESS_4.8.0        
-##  [28] colorspace_2.0-2    rvest_1.0.1         haven_2.4.3        
-##  [31] xfun_0.25           crayon_1.4.1        jsonlite_1.7.2     
-##  [34] regsem_1.8.0        lme4_1.1-27.1       survival_3.2-13    
-##  [37] zoo_1.8-9           glue_1.4.2          gtable_0.3.0       
-##  [40] emmeans_1.6.3       mi_1.0              sjmisc_2.8.7       
-##  [43] abind_1.4-5         scales_1.1.1        mvtnorm_1.1-2      
-##  [46] DBI_1.1.1           Rcpp_1.0.7          xtable_1.8-4       
-##  [49] performance_0.7.3   htmlTable_2.2.1     tmvnsim_1.0-2      
-##  [52] foreign_0.8-82      bit_4.0.4           Formula_1.2-4      
-##  [55] stats4_4.1.3        truncnorm_1.0-8     datawizard_0.2.0.1 
-##  [58] htmlwidgets_1.5.4   httr_1.4.2          RColorBrewer_1.1-2 
-##  [61] ellipsis_0.3.2      XML_3.99-0.8        pkgconfig_2.0.3    
-##  [64] nnet_7.3-17         sass_0.4.0          kutils_1.70        
-##  [67] dbplyr_2.1.1        utf8_1.2.2          reshape2_1.4.4     
-##  [70] tidyselect_1.1.1    rlang_0.4.11        effectsize_0.4.5   
-##  [73] munsell_0.5.0       cellranger_1.1.0    tools_4.1.3        
-##  [76] cli_3.0.1           generics_0.1.0      sjlabelled_1.1.8   
-##  [79] broom_0.7.9         fdrtool_1.2.16      evaluate_0.14      
-##  [82] fastmap_1.1.0       arm_1.11-2          yaml_2.2.1         
-##  [85] knitr_1.34          bit64_4.0.5         fs_1.5.0           
-##  [88] stationery_0.98.30  zip_2.2.0           glasso_1.11        
-##  [91] pbapply_1.5-0       nlme_3.1-155        xml2_1.3.2         
-##  [94] compiler_4.1.3      rstudioapi_0.13     curl_4.3.2         
-##  [97] png_0.1-7           reprex_2.0.1        bslib_0.3.0        
-## [100] pbivnorm_0.6.0      stringi_1.7.4       highr_0.9          
-## [103] parameters_0.14.0   qgraph_1.6.9        rockchalk_1.8.144  
-## [106] lattice_0.20-45     Matrix_1.4-0        nloptr_1.2.2.2     
-## [109] vctrs_0.3.8         pillar_1.6.2        lifecycle_1.0.0    
-## [112] jquerylib_0.1.4     OpenMx_2.19.8       estimability_1.3   
-## [115] corpcor_1.6.10      data.table_1.14.0   insight_0.14.4     
-## [118] R6_2.5.1            latticeExtra_0.6-29 bookdown_0.24      
-## [121] gridExtra_2.3       codetools_0.2-18    gtools_3.9.2       
-## [124] boot_1.3-28         assertthat_0.2.1    withr_2.4.2        
-## [127] mnormt_2.0.2        multcomp_1.4-17     bayestestR_0.11.0  
-## [130] parallel_4.1.3      hms_1.1.0           grid_4.1.3         
-## [133] rpart_4.1.16        coda_0.19-4         minqa_1.2.4        
-## [136] rmarkdown_2.10      carData_3.0-4       lubridate_1.7.10   
-## [139] base64enc_0.1-3</code></pre>
 
 </div>
 </div>
@@ -2348,7 +2242,7 @@ Ware, J. E., Kosinski, M., Bayliss, M. S., &amp; McHorney, C. A. (1995). Compari
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": true,
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -2372,17 +2266,16 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ontheline/otl-bookdown/blob/master/07-ComplexMed.Rmd",
+"link": null,
 "text": null
 },
-"download": ["ReC_MultMod.pdf"],
+"download": ["ReC_MultMod.pdf", "ReC_MultMod.epub"],
 "search": {
 "engine": "fuse",
 "options": null
 },
 "toc": {
-"collapse": "section",
-"scroll_highlight": true
+"collapse": "subsection"
 }
 });
 });

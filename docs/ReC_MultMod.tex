@@ -1,8 +1,10 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
+  11pt,
 ]{book}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -37,11 +39,15 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   pdftitle={ReCentering Psych Stats: Multivariate Modeling},
-  pdfauthor={Lynette H Bikos, PhD, ABPP},
-  pdflang={en},
-  hidelinks,
+  pdfauthor={Lynette H. Bikos, PhD, ABPP},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -109,15 +115,6 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
-\ifLuaTeX
-\usepackage[bidi=basic]{babel}
-\else
-\usepackage[bidi=default]{babel}
-\fi
-\babelprovide[main,import]{english}
-% get rid of language-specific shorthands (see #6817):
-\let\LanguageShortHands\languageshorthands
-\def\languageshorthands#1{}
 \usepackage{booktabs}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
@@ -126,13 +123,14 @@
 \bibliographystyle{plainnat}
 
 \title{ReCentering Psych Stats: Multivariate Modeling}
-\author{Lynette H Bikos, PhD, ABPP}
-\date{}
+\author{Lynette H. Bikos, PhD, ABPP}
+\date{16 Mar 2022}
 
 \begin{document}
 \maketitle
 
 {
+\hypersetup{linkcolor=}
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
@@ -140,17 +138,28 @@
 \chapter*{BOOK COVER}\label{book-cover}}
 \addcontentsline{toc}{chapter}{BOOK COVER}
 
-\begin{figure}
-\centering
 \includegraphics{images/ReC_multivariate_bkcvr.png}
-\caption{An image of the book cover. It includes four quadrants of non-normal distributions representing gender, race/ethnicty, sustainability/global concerns, and journal articles}
-\end{figure}
+This open education resource is available in three formats:
+
+\begin{itemize}
+\tightlist
+\item
+  Formatted as an \href{https://lhbikos.github.io/ReC_MultivModel/}{html book} via GitHub Pages
+\item
+  As a \href{https://github.com/lhbikos/ReC_MultivModel/blob/main/docs/ReC_MultMod.pdf}{PDF} available in the \href{https://github.com/lhbikos/ReC_MultivModel/tree/main/docs}{docs} folder at the GitHub repository
+\item
+  As an \href{https://github.com/lhbikos/ReC_MultivModel/blob/main/docs/ReC_MultMod.epub}{ebook} available in the \href{https://github.com/lhbikos/ReC_MultivModel/tree/main/docs}{docs} folder at the GitHub repository
+\item
+  As a \href{https://github.com/lhbikos/ReC_MultivModel/blob/main/docs/ReC_MultMod.docx}{Word} document available in the \href{https://github.com/lhbikos/ReC_MultivModel/tree/main/docs}{docs} folder at the GitHub repository
+\end{itemize}
+
+All materials used in creating this OER are available at its \href{https://github.com/lhbikos/ReC_MultivModel}{GitHub repo}.
 
 \hypertarget{preface}{%
 \chapter*{PREFACE}\label{preface}}
 \addcontentsline{toc}{chapter}{PREFACE}
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 16 Mar 2022}
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 16 Mar 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -182,20 +191,29 @@ In training for multicultural competence, the saying, ``A fish doesn't know that
 
 This book is published under a a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. This means that this book can be reused, remixed, retained, revised and redistributed (including commercially) as long as appropriate credit is given to the authors. If you remix, or modify the original version of this open textbook, you must redistribute all versions of this open textbook under the same license - CC BY-SA.
 
-A \href{https://github.com/lhbikos/ReC_MultivariateModeling}{GitHub open-source repository} contains all of the text and source code for the book, including data and images.
+A \href{https://github.com/lhbikos/ReC_MultivModel}{GitHub open-source repository} contains all of the text and source code for the book, including data and images.
 
 \hypertarget{acknowledgements}{%
 \chapter*{ACKNOWLEDGEMENTS}\label{acknowledgements}}
 \addcontentsline{toc}{chapter}{ACKNOWLEDGEMENTS}
 
-As a doctoral student at the University of Kansas (1992-2005), I learned that ``a foreign language'' was required for graduation. \emph{Please note that as one who studies the intersections of global, vocational, and sustainable psychology, I regret that I do not have language skills beyond English.} This could have been met with credit from high school my rural, mid-Missouri high school did not offer such classes. This requirement would have typically been met with courses taken during an undergraduate program -- but my non-teaching degree in the University of Missouri's School of Education was exempt from this. The requirement could have also been met with a computer language (fortran, C++) -- I did not have any of those either. There was a tiny footnote on my doctoral degree plan that indicated that a 2-credit course, ``SPSS for Windows'' would substitute for the language requirement. Given that it was taught by my one of my favorite professors, I readily signed up. As it turns out, Samuel B. Green, PhD, was using the course to draft chapters in the textbook \citep{green_using_2014} that has been so helpful for so many. Unfortunately, Drs. Green (1947 - 2018) and Salkind (2947 - 2017) are no longer with us. I have worn out numerous versions of their text. Another favorite text of mine was Dr.~Barbara Byrne's \citeyearpar{byrne_structural_2016}, ``Structural Equation Modeling with AMOS.'' I loved the way she worked through each problem and paired it with a published journal article, so that the user could see how the statistical evaluation fit within the larger project/article. I took my tea-stained text with me to a workshop she taught at APA and was proud of the signature she added to it (a little catfur might have fallen out). Dr.~Byrne created SEM texts for a number of statistical programs (e.g., LISREL, EQS, MPlus). As I was learning R, I wrote Dr.~Byrne, asking if she had an edition teaching SEM/CFA with R. She promptly wrote back, saying that she did not have the bandwidth to learn a new statistics package. We lost Dr.~Byrne in December 2020. I am so grateful to these role models for their contributions to my statistical training. I am also grateful for the doctoral students who have taken my courses and are continuing to provide input for how to improve the materials.
+As a doctoral student at the University of Kansas (1992-2005), I learned that ``a foreign language'' was a graduation requirement. \emph{Please note that as one who studies the intersections of global, vocational, and sustainable psychology, I regret that I do not have language skills beyond English.} This could have been met with credit from high school my rural, mid-Missouri high school did not offer such classes. This requirement would have typically been met with courses taken during an undergraduate program -- but my non-teaching degree in the University of Missouri's School of Education was exempt from this. The requirement could have also been met with a computer language (fortran, C++) -- I did not have any of those either. There was a tiny footnote on my doctoral degree plan that indicated that a 2-credit course, ``SPSS for Windows'' would substitute for the language requirement. Given that it was taught by my one of my favorite professors, I readily signed up. As it turns out, Samuel B. Green, PhD, was using the course to draft chapters in the textbook \citep{green_using_2014} that has been so helpful for so many. Unfortunately, Drs. Green (1947 - 2018) and Salkind (2947 - 2017) are no longer with us. I have worn out numerous versions of their text. Another favorite text of mine was Dr.~Barbara Byrne's \citeyearpar{byrne_structural_2016}, ``Structural Equation Modeling with AMOS.'' I loved the way she worked through each problem and paired it with a published journal article, so that the user could see how the statistical evaluation fit within the larger project/article. I took my tea-stained text with me to a workshop she taught at APA and was proud of the signature she added to it (a little catfur might have fallen out). Dr.~Byrne created SEM texts for a number of statistical programs (e.g., LISREL, EQS, MPlus). As I was learning R, I wrote Dr.~Byrne, asking if she had an edition teaching SEM/CFA with R. She promptly wrote back, saying that she did not have the bandwidth to learn a new statistics package. We lost Dr.~Byrne in December 2020. I am so grateful to these role models for their contributions to my statistical training. I am also grateful for the doctoral students who have taken my courses and are continuing to provide input for how to improve the materials.
 
 The inspiration for training materials that re*center statistics and research methods came from the \href{https://www.academics4blacklives.com/}{Academics for Black Survival and Wellness Initiative}. This project, co-founded by Della V. Mosley, Ph.D., and Pearis L. Bellamy, M.S., made clear the necessity and urgency for change in higher education and the profession of psychology.
 
 At very practical levels, I am indebted to SPU's Library, and more specifically, SPU's Education, Technology, and Media Department. Assistant Dean for Instructional Design and Emerging Technologies, R. John Robertson, MSc, MCS, has offered unlimited consultation, support, and connection. Senior Instructional Designer in Graphics \& Illustrations, Dominic Wilkinson, designed the logo and bookcover. Psychology and Scholarly Communications Librarian, Kristin Hoffman, MLIS, has provided consultation on topics ranging from OERS to citations. I am alo indebted to Associate Vice President, Teaching and Learning at Kwantlen Polytechnic University, Rajiv Jhangiani, PhD. Dr.~Jhangiani's text \citeyearpar{jhangiani_research_2019} was the first OER I ever used and I was grateful for his encouraging conversation.
 
-Financial support for this text has been provided from the \emph{Call to Action on Equity, Inclusion, Diversity, Justice, and Social Responsivity
-Request for Proposals} grant from the Association of Psychology Postdoctoral and Internship Centers (2021-2022).
+Financial support for this project has been provided the following:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Call to Action on Equity, Inclusion, Diversity, Justice, and Social Responsivity Request for Proposals} grant from the Association of Psychology Postdoctoral and Internship Centers (2021-2022).
+\item
+  \emph{Diversity Seed Grant}, Office of Inclusive Excellence and Advisory Council for Diversity and Reconciliation (ACDR), Seattle Pacific University.
+\item
+  \emph{ETM Open Textbook \& OER Development Funding}, Office of Education, Technology, \& Media, Seattle Pacific University.
+\end{itemize}
 
 \hypertarget{ReCintro}{%
 \chapter{Introduction}\label{ReCintro}}
@@ -747,7 +765,7 @@ To retrieve the survey, use the \emph{fetch\_survey()} function.
 
 \begin{verbatim}
 ## Warning in file.remove(survey.fpath): cannot remove file 'C:/Users/lhbikos/
-## AppData/Local/Temp/RtmpqMB7SD/Recent Course Eval.csv', reason 'Permission
+## AppData/Local/Temp/RtmpYHJhEI/Recent Course Eval.csv', reason 'Permission
 ## denied'
 \end{verbatim}
 
@@ -1173,53 +1191,6 @@ R is sensitive to characters used filenames As downloaded, my Qualtrics .csv fil
 \end{verbatim}
 
 Although minor tweaking may be required, the same script above should be applicable to this version of the data.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sessionInfo}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## R version 4.1.3 (2022-03-10)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
-## 
-## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] qualtRics_3.1.4 forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7    
-##  [5] purrr_0.3.4     readr_2.0.1     tidyr_1.1.3     tibble_3.1.4   
-##  [9] ggplot2_3.3.5   tidyverse_1.3.1 psych_2.1.6    
-## 
-## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.7       lubridate_1.7.10 lattice_0.20-45  assertthat_0.2.1
-##  [5] digest_0.6.27    utf8_1.2.2       cellranger_1.1.0 R6_2.5.1        
-##  [9] backports_1.2.1  reprex_2.0.1     evaluate_0.14    httr_1.4.2      
-## [13] pillar_1.6.2     rlang_0.4.11     readxl_1.3.1     curl_4.3.2      
-## [17] rstudioapi_0.13  rmarkdown_2.10   bit_4.0.4        munsell_0.5.0   
-## [21] broom_0.7.9      compiler_4.1.3   modelr_0.1.8     xfun_0.25       
-## [25] pkgconfig_2.0.3  mnormt_2.0.2     tmvnsim_1.0-2    htmltools_0.5.2 
-## [29] insight_0.14.4   tidyselect_1.1.1 bookdown_0.24    fansi_0.5.0     
-## [33] withr_2.4.2      crayon_1.4.1     tzdb_0.1.2       dbplyr_2.1.1    
-## [37] grid_4.1.3       nlme_3.1-155     jsonlite_1.7.2   gtable_0.3.0    
-## [41] lifecycle_1.0.0  DBI_1.1.1        magrittr_2.0.1   scales_1.1.1    
-## [45] cli_3.0.1        stringi_1.7.4    vroom_1.5.4      fs_1.5.0        
-## [49] xml2_1.3.2       ellipsis_0.3.2   generics_0.1.0   vctrs_0.3.8     
-## [53] sjlabelled_1.1.8 tools_4.1.3      bit64_4.0.5      glue_1.4.2      
-## [57] hms_1.1.0        parallel_4.1.3   fastmap_1.1.0    yaml_2.2.1      
-## [61] colorspace_2.0-2 rvest_1.0.1      knitr_1.34       haven_2.4.3
-\end{verbatim}
 
 \hypertarget{score}{%
 \chapter{Scoring}\label{score}}
@@ -2379,61 +2350,6 @@ Points Earned
 \bottomrule
 \end{longtable}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sessionInfo}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## R version 4.1.3 (2022-03-10)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
-## 
-## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] mice_3.13.0       sjstats_0.18.1    formattable_0.2.1 qualtRics_3.1.4  
-##  [5] forcats_0.5.1     stringr_1.4.0     dplyr_1.0.7       purrr_0.3.4      
-##  [9] readr_2.0.1       tidyr_1.1.3       tibble_3.1.4      ggplot2_3.3.5    
-## [13] tidyverse_1.3.1   psych_2.1.6      
-## 
-## loaded via a namespace (and not attached):
-##  [1] nlme_3.1-155       fs_1.5.0           lubridate_1.7.10   bit64_4.0.5       
-##  [5] insight_0.14.4     httr_1.4.2         tools_4.1.3        backports_1.2.1   
-##  [9] utf8_1.2.2         R6_2.5.1           sjlabelled_1.1.8   DBI_1.1.1         
-## [13] colorspace_2.0-2   withr_2.4.2        tidyselect_1.1.1   mnormt_2.0.2      
-## [17] emmeans_1.6.3      bit_4.0.4          curl_4.3.2         compiler_4.1.3    
-## [21] performance_0.7.3  cli_3.0.1          rvest_1.0.1        xml2_1.3.2        
-## [25] sandwich_3.0-1     bookdown_0.24      bayestestR_0.11.0  scales_1.1.1      
-## [29] mvtnorm_1.1-2      digest_0.6.27      minqa_1.2.4        rmarkdown_2.10    
-## [33] pkgconfig_2.0.3    htmltools_0.5.2    lme4_1.1-27.1      highr_0.9         
-## [37] dbplyr_2.1.1       fastmap_1.1.0      htmlwidgets_1.5.4  rlang_0.4.11      
-## [41] readxl_1.3.1       rstudioapi_0.13    generics_0.1.0     zoo_1.8-9         
-## [45] jsonlite_1.7.2     vroom_1.5.4        magrittr_2.0.1     Matrix_1.4-0      
-## [49] parameters_0.14.0  Rcpp_1.0.7         munsell_0.5.0      fansi_0.5.0       
-## [53] lifecycle_1.0.0    stringi_1.7.4      multcomp_1.4-17    yaml_2.2.1        
-## [57] MASS_7.3-55        grid_4.1.3         parallel_4.1.3     sjmisc_2.8.7      
-## [61] crayon_1.4.1       lattice_0.20-45    haven_2.4.3        splines_4.1.3     
-## [65] hms_1.1.0          tmvnsim_1.0-2      knitr_1.34         pillar_1.6.2      
-## [69] boot_1.3-28        estimability_1.3   effectsize_0.4.5   codetools_0.2-18  
-## [73] reprex_2.0.1       glue_1.4.2         evaluate_0.14      modelr_0.1.8      
-## [77] nloptr_1.2.2.2     vctrs_0.3.8        tzdb_0.1.2         cellranger_1.1.0  
-## [81] gtable_0.3.0       assertthat_0.2.1   datawizard_0.2.0.1 xfun_0.25         
-## [85] xtable_1.8-4       broom_0.7.9        coda_0.19-4        survival_3.2-13   
-## [89] TH.data_1.1-0      ellipsis_0.3.2
-\end{verbatim}
-
 \hypertarget{DataDx}{%
 \chapter{Data Dx}\label{DataDx}}
 
@@ -3316,61 +3232,6 @@ Assignment Component
 \textbf{Totals} & 30 & \_\_\_\_\_ \\
 \bottomrule
 \end{longtable}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sessionInfo}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## R version 4.1.3 (2022-03-10)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
-## 
-## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] apaTables_2.0.8   mice_3.13.0       sjstats_0.18.1    formattable_0.2.1
-##  [5] qualtRics_3.1.4   forcats_0.5.1     stringr_1.4.0     dplyr_1.0.7      
-##  [9] purrr_0.3.4       readr_2.0.1       tidyr_1.1.3       tibble_3.1.4     
-## [13] ggplot2_3.3.5     tidyverse_1.3.1   psych_2.1.6      
-## 
-## loaded via a namespace (and not attached):
-##  [1] nlme_3.1-155       fs_1.5.0           lubridate_1.7.10   bit64_4.0.5       
-##  [5] MBESS_4.8.0        insight_0.14.4     httr_1.4.2         tools_4.1.3       
-##  [9] backports_1.2.1    utf8_1.2.2         R6_2.5.1           sjlabelled_1.1.8  
-## [13] DBI_1.1.1          colorspace_2.0-2   withr_2.4.2        tidyselect_1.1.1  
-## [17] mnormt_2.0.2       emmeans_1.6.3      bit_4.0.4          curl_4.3.2        
-## [21] compiler_4.1.3     performance_0.7.3  cli_3.0.1          rvest_1.0.1       
-## [25] xml2_1.3.2         sandwich_3.0-1     bookdown_0.24      bayestestR_0.11.0 
-## [29] scales_1.1.1       mvtnorm_1.1-2      digest_0.6.27      minqa_1.2.4       
-## [33] rmarkdown_2.10     pkgconfig_2.0.3    htmltools_0.5.2    lme4_1.1-27.1     
-## [37] highr_0.9          dbplyr_2.1.1       fastmap_1.1.0      htmlwidgets_1.5.4 
-## [41] rlang_0.4.11       readxl_1.3.1       rstudioapi_0.13    generics_0.1.0    
-## [45] zoo_1.8-9          jsonlite_1.7.2     vroom_1.5.4        magrittr_2.0.1    
-## [49] Matrix_1.4-0       parameters_0.14.0  Rcpp_1.0.7         munsell_0.5.0     
-## [53] fansi_0.5.0        lifecycle_1.0.0    stringi_1.7.4      multcomp_1.4-17   
-## [57] yaml_2.2.1         MASS_7.3-55        grid_4.1.3         parallel_4.1.3    
-## [61] sjmisc_2.8.7       crayon_1.4.1       lattice_0.20-45    haven_2.4.3       
-## [65] splines_4.1.3      hms_1.1.0          tmvnsim_1.0-2      knitr_1.34        
-## [69] pillar_1.6.2       boot_1.3-28        estimability_1.3   effectsize_0.4.5  
-## [73] codetools_0.2-18   reprex_2.0.1       glue_1.4.2         evaluate_0.14     
-## [77] modelr_0.1.8       nloptr_1.2.2.2     vctrs_0.3.8        tzdb_0.1.2        
-## [81] cellranger_1.1.0   gtable_0.3.0       assertthat_0.2.1   datawizard_0.2.0.1
-## [85] xfun_0.25          xtable_1.8-4       broom_0.7.9        coda_0.19-4       
-## [89] survival_3.2-13    TH.data_1.1-0      ellipsis_0.3.2
-\end{verbatim}
 
 \hypertarget{multimp}{%
 \chapter{Multiple Imputation (A Brief Demo)}\label{multimp}}
@@ -4355,61 +4216,6 @@ Points Earned
 \textbf{Totals} & 40 & \_\_\_\_\_ \\
 \bottomrule
 \end{longtable}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sessionInfo}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## R version 4.1.3 (2022-03-10)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
-## 
-## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] apaTables_2.0.8   mice_3.13.0       sjstats_0.18.1    formattable_0.2.1
-##  [5] qualtRics_3.1.4   forcats_0.5.1     stringr_1.4.0     dplyr_1.0.7      
-##  [9] purrr_0.3.4       readr_2.0.1       tidyr_1.1.3       tibble_3.1.4     
-## [13] ggplot2_3.3.5     tidyverse_1.3.1   psych_2.1.6      
-## 
-## loaded via a namespace (and not attached):
-##  [1] nlme_3.1-155       fs_1.5.0           lubridate_1.7.10   bit64_4.0.5       
-##  [5] MBESS_4.8.0        insight_0.14.4     httr_1.4.2         tools_4.1.3       
-##  [9] backports_1.2.1    utf8_1.2.2         R6_2.5.1           sjlabelled_1.1.8  
-## [13] DBI_1.1.1          colorspace_2.0-2   withr_2.4.2        tidyselect_1.1.1  
-## [17] mnormt_2.0.2       emmeans_1.6.3      bit_4.0.4          curl_4.3.2        
-## [21] compiler_4.1.3     performance_0.7.3  cli_3.0.1          rvest_1.0.1       
-## [25] xml2_1.3.2         sandwich_3.0-1     bookdown_0.24      bayestestR_0.11.0 
-## [29] scales_1.1.1       mvtnorm_1.1-2      digest_0.6.27      minqa_1.2.4       
-## [33] rmarkdown_2.10     pkgconfig_2.0.3    htmltools_0.5.2    lme4_1.1-27.1     
-## [37] highr_0.9          dbplyr_2.1.1       fastmap_1.1.0      htmlwidgets_1.5.4 
-## [41] rlang_0.4.11       readxl_1.3.1       rstudioapi_0.13    generics_0.1.0    
-## [45] zoo_1.8-9          jsonlite_1.7.2     vroom_1.5.4        magrittr_2.0.1    
-## [49] Matrix_1.4-0       parameters_0.14.0  Rcpp_1.0.7         munsell_0.5.0     
-## [53] fansi_0.5.0        lifecycle_1.0.0    stringi_1.7.4      multcomp_1.4-17   
-## [57] yaml_2.2.1         MASS_7.3-55        grid_4.1.3         parallel_4.1.3    
-## [61] sjmisc_2.8.7       crayon_1.4.1       lattice_0.20-45    haven_2.4.3       
-## [65] splines_4.1.3      hms_1.1.0          tmvnsim_1.0-2      knitr_1.34        
-## [69] pillar_1.6.2       boot_1.3-28        estimability_1.3   effectsize_0.4.5  
-## [73] codetools_0.2-18   reprex_2.0.1       glue_1.4.2         evaluate_0.14     
-## [77] modelr_0.1.8       nloptr_1.2.2.2     vctrs_0.3.8        tzdb_0.1.2        
-## [81] cellranger_1.1.0   gtable_0.3.0       assertthat_0.2.1   datawizard_0.2.0.1
-## [85] xfun_0.25          xtable_1.8-4       broom_0.7.9        coda_0.19-4       
-## [89] survival_3.2-13    TH.data_1.1-0      ellipsis_0.3.2
-\end{verbatim}
 
 \hypertarget{MED}{%
 \chapter*{MEDIATION}\label{MED}}
@@ -6087,84 +5893,6 @@ Assignment Component
 \bottomrule
 \end{longtable}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sessionInfo}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## R version 4.1.3 (2022-03-10)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
-## 
-## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] MASS_7.3-55       semTable_1.8      semPlot_1.1.2     lavaan_0.6-9     
-##  [5] apaTables_2.0.8   mice_3.13.0       sjstats_0.18.1    formattable_0.2.1
-##  [9] qualtRics_3.1.4   forcats_0.5.1     stringr_1.4.0     dplyr_1.0.7      
-## [13] purrr_0.3.4       readr_2.0.1       tidyr_1.1.3       tibble_3.1.4     
-## [17] ggplot2_3.3.5     tidyverse_1.3.1   psych_2.1.6      
-## 
-## loaded via a namespace (and not attached):
-##   [1] readxl_1.3.1        backports_1.2.1     Hmisc_4.5-0        
-##   [4] igraph_1.2.6        plyr_1.8.6          splines_4.1.3      
-##   [7] TH.data_1.1-0       digest_0.6.27       htmltools_0.5.2    
-##  [10] matrixcalc_1.0-5    fansi_0.5.0         magrittr_2.0.1     
-##  [13] Rsolnp_1.16         checkmate_2.0.0     lisrelToR_0.1.4    
-##  [16] cluster_2.1.2       tzdb_0.1.2          openxlsx_4.2.4     
-##  [19] modelr_0.1.8        RcppParallel_5.1.4  vroom_1.5.4        
-##  [22] sandwich_3.0-1      jpeg_0.1-9          sem_3.1-11         
-##  [25] MBESS_4.8.0         colorspace_2.0-2    rvest_1.0.1        
-##  [28] haven_2.4.3         xfun_0.25           crayon_1.4.1       
-##  [31] jsonlite_1.7.2      lme4_1.1-27.1       regsem_1.8.0       
-##  [34] survival_3.2-13     zoo_1.8-9           glue_1.4.2         
-##  [37] gtable_0.3.0        emmeans_1.6.3       mi_1.0             
-##  [40] sjmisc_2.8.7        abind_1.4-5         scales_1.1.1       
-##  [43] mvtnorm_1.1-2       DBI_1.1.1           Rcpp_1.0.7         
-##  [46] xtable_1.8-4        performance_0.7.3   htmlTable_2.2.1    
-##  [49] tmvnsim_1.0-2       foreign_0.8-82      bit_4.0.4          
-##  [52] Formula_1.2-4       stats4_4.1.3        truncnorm_1.0-8    
-##  [55] datawizard_0.2.0.1  htmlwidgets_1.5.4   httr_1.4.2         
-##  [58] RColorBrewer_1.1-2  ellipsis_0.3.2      XML_3.99-0.8       
-##  [61] pkgconfig_2.0.3     nnet_7.3-17         kutils_1.70        
-##  [64] dbplyr_2.1.1        utf8_1.2.2          reshape2_1.4.4     
-##  [67] tidyselect_1.1.1    rlang_0.4.11        effectsize_0.4.5   
-##  [70] munsell_0.5.0       cellranger_1.1.0    tools_4.1.3        
-##  [73] cli_3.0.1           generics_0.1.0      sjlabelled_1.1.8   
-##  [76] broom_0.7.9         fdrtool_1.2.16      evaluate_0.14      
-##  [79] fastmap_1.1.0       arm_1.11-2          yaml_2.2.1         
-##  [82] knitr_1.34          bit64_4.0.5         fs_1.5.0           
-##  [85] stationery_0.98.30  zip_2.2.0           glasso_1.11        
-##  [88] pbapply_1.5-0       nlme_3.1-155        xml2_1.3.2         
-##  [91] compiler_4.1.3      rstudioapi_0.13     curl_4.3.2         
-##  [94] png_0.1-7           reprex_2.0.1        pbivnorm_0.6.0     
-##  [97] stringi_1.7.4       highr_0.9           parameters_0.14.0  
-## [100] qgraph_1.6.9        rockchalk_1.8.144   lattice_0.20-45    
-## [103] Matrix_1.4-0        nloptr_1.2.2.2      vctrs_0.3.8        
-## [106] pillar_1.6.2        lifecycle_1.0.0     OpenMx_2.19.8      
-## [109] estimability_1.3    corpcor_1.6.10      data.table_1.14.0  
-## [112] insight_0.14.4      R6_2.5.1            latticeExtra_0.6-29
-## [115] bookdown_0.24       gridExtra_2.3       codetools_0.2-18   
-## [118] gtools_3.9.2        boot_1.3-28         assertthat_0.2.1   
-## [121] withr_2.4.2         mnormt_2.0.2        multcomp_1.4-17    
-## [124] bayestestR_0.11.0   parallel_4.1.3      hms_1.1.0          
-## [127] grid_4.1.3          rpart_4.1.16        coda_0.19-4        
-## [130] minqa_1.2.4         rmarkdown_2.10      carData_3.0-4      
-## [133] lubridate_1.7.10    base64enc_0.1-3
-\end{verbatim}
-
 \hypertarget{CompMed}{%
 \chapter{Complex Mediation}\label{CompMed}}
 
@@ -6958,7 +6686,7 @@ The pairs panel from the \emph{psych} package is an efficient way to see
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReC_MultMod_files/figure-latex/unnamed-chunk-15-1.pdf}
+\includegraphics{ReC_MultMod_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 The Lewis et al.~article \citeyearpar{lewis_applying_2017} reports four mediation analyses, each repeated for mental and physical outcomes. Thus, their write-up reports eight simple mediation models. Graphically, this is efficiently represented in a figure that looks like parallel mediation. Note that the figure is reporting standardized estimates. In Hayes' \citeyearpar{hayes_introduction_2018} we have been using raw, \(B\) weights. However, the standardized weights are reported in the output.
 
@@ -7948,84 +7676,6 @@ Assignment Component
 \textbf{Totals} & 35 & \_\_\_\_\_ \\
 \bottomrule
 \end{longtable}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sessionInfo}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## R version 4.1.3 (2022-03-10)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
-## 
-## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] MASS_7.3-55       semTable_1.8      semPlot_1.1.2     lavaan_0.6-9     
-##  [5] apaTables_2.0.8   mice_3.13.0       sjstats_0.18.1    formattable_0.2.1
-##  [9] qualtRics_3.1.4   forcats_0.5.1     stringr_1.4.0     dplyr_1.0.7      
-## [13] purrr_0.3.4       readr_2.0.1       tidyr_1.1.3       tibble_3.1.4     
-## [17] ggplot2_3.3.5     tidyverse_1.3.1   psych_2.1.6      
-## 
-## loaded via a namespace (and not attached):
-##   [1] readxl_1.3.1        backports_1.2.1     Hmisc_4.5-0        
-##   [4] igraph_1.2.6        plyr_1.8.6          splines_4.1.3      
-##   [7] TH.data_1.1-0       digest_0.6.27       htmltools_0.5.2    
-##  [10] matrixcalc_1.0-5    fansi_0.5.0         magrittr_2.0.1     
-##  [13] Rsolnp_1.16         checkmate_2.0.0     lisrelToR_0.1.4    
-##  [16] cluster_2.1.2       tzdb_0.1.2          openxlsx_4.2.4     
-##  [19] modelr_0.1.8        RcppParallel_5.1.4  vroom_1.5.4        
-##  [22] sandwich_3.0-1      jpeg_0.1-9          sem_3.1-11         
-##  [25] MBESS_4.8.0         colorspace_2.0-2    rvest_1.0.1        
-##  [28] haven_2.4.3         xfun_0.25           crayon_1.4.1       
-##  [31] jsonlite_1.7.2      lme4_1.1-27.1       regsem_1.8.0       
-##  [34] survival_3.2-13     zoo_1.8-9           glue_1.4.2         
-##  [37] gtable_0.3.0        emmeans_1.6.3       mi_1.0             
-##  [40] sjmisc_2.8.7        abind_1.4-5         scales_1.1.1       
-##  [43] mvtnorm_1.1-2       DBI_1.1.1           Rcpp_1.0.7         
-##  [46] xtable_1.8-4        performance_0.7.3   htmlTable_2.2.1    
-##  [49] tmvnsim_1.0-2       foreign_0.8-82      bit_4.0.4          
-##  [52] Formula_1.2-4       stats4_4.1.3        truncnorm_1.0-8    
-##  [55] datawizard_0.2.0.1  htmlwidgets_1.5.4   httr_1.4.2         
-##  [58] RColorBrewer_1.1-2  ellipsis_0.3.2      XML_3.99-0.8       
-##  [61] pkgconfig_2.0.3     nnet_7.3-17         kutils_1.70        
-##  [64] dbplyr_2.1.1        utf8_1.2.2          reshape2_1.4.4     
-##  [67] tidyselect_1.1.1    rlang_0.4.11        effectsize_0.4.5   
-##  [70] munsell_0.5.0       cellranger_1.1.0    tools_4.1.3        
-##  [73] cli_3.0.1           generics_0.1.0      sjlabelled_1.1.8   
-##  [76] broom_0.7.9         fdrtool_1.2.16      evaluate_0.14      
-##  [79] fastmap_1.1.0       arm_1.11-2          yaml_2.2.1         
-##  [82] knitr_1.34          bit64_4.0.5         fs_1.5.0           
-##  [85] stationery_0.98.30  zip_2.2.0           glasso_1.11        
-##  [88] pbapply_1.5-0       nlme_3.1-155        xml2_1.3.2         
-##  [91] compiler_4.1.3      rstudioapi_0.13     curl_4.3.2         
-##  [94] png_0.1-7           reprex_2.0.1        pbivnorm_0.6.0     
-##  [97] stringi_1.7.4       highr_0.9           parameters_0.14.0  
-## [100] qgraph_1.6.9        rockchalk_1.8.144   lattice_0.20-45    
-## [103] Matrix_1.4-0        nloptr_1.2.2.2      vctrs_0.3.8        
-## [106] pillar_1.6.2        lifecycle_1.0.0     OpenMx_2.19.8      
-## [109] estimability_1.3    corpcor_1.6.10      data.table_1.14.0  
-## [112] insight_0.14.4      R6_2.5.1            latticeExtra_0.6-29
-## [115] bookdown_0.24       gridExtra_2.3       codetools_0.2-18   
-## [118] gtools_3.9.2        boot_1.3-28         assertthat_0.2.1   
-## [121] withr_2.4.2         mnormt_2.0.2        multcomp_1.4-17    
-## [124] bayestestR_0.11.0   parallel_4.1.3      hms_1.1.0          
-## [127] grid_4.1.3          rpart_4.1.16        coda_0.19-4        
-## [130] minqa_1.2.4         rmarkdown_2.10      carData_3.0-4      
-## [133] lubridate_1.7.10    base64enc_0.1-3
-\end{verbatim}
 
 \hypertarget{MOD}{%
 \chapter*{MODERATION}\label{MOD}}
@@ -9341,90 +8991,6 @@ Below is a template for a simple moderation conducted with the MLE approach usin
 \CommentTok{\#title("Help Seeking as a Moderator in the Relationship between REMS and ANX")}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sessionInfo}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-R version 4.1.3 (2022-03-10)
-Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 10 x64 (build 18363)
-
-Matrix products: default
-
-locale:
-[1] LC_COLLATE=English_United States.1252 
-[2] LC_CTYPE=English_United States.1252   
-[3] LC_MONETARY=English_United States.1252
-[4] LC_NUMERIC=C                          
-[5] LC_TIME=English_United States.1252    
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
- [1] interactions_1.1.5 jtools_2.1.4       MASS_7.3-55        semTable_1.8      
- [5] semPlot_1.1.2      lavaan_0.6-9       apaTables_2.0.8    mice_3.13.0       
- [9] sjstats_0.18.1     formattable_0.2.1  qualtRics_3.1.4    forcats_0.5.1     
-[13] stringr_1.4.0      dplyr_1.0.7        purrr_0.3.4        readr_2.0.1       
-[17] tidyr_1.1.3        tibble_3.1.4       ggplot2_3.3.5      tidyverse_1.3.1   
-[21] psych_2.1.6       
-
-loaded via a namespace (and not attached):
-  [1] readxl_1.3.1        backports_1.2.1     Hmisc_4.5-0        
-  [4] igraph_1.2.6        plyr_1.8.6          splines_4.1.3      
-  [7] TH.data_1.1-0       digest_0.6.27       htmltools_0.5.2    
- [10] matrixcalc_1.0-5    fansi_0.5.0         magrittr_2.0.1     
- [13] Rsolnp_1.16         checkmate_2.0.0     lisrelToR_0.1.4    
- [16] cluster_2.1.2       tzdb_0.1.2          openxlsx_4.2.4     
- [19] modelr_0.1.8        RcppParallel_5.1.4  vroom_1.5.4        
- [22] sandwich_3.0-1      jpeg_0.1-9          sem_3.1-11         
- [25] MBESS_4.8.0         colorspace_2.0-2    rvest_1.0.1        
- [28] haven_2.4.3         xfun_0.25           crayon_1.4.1       
- [31] jsonlite_1.7.2      lme4_1.1-27.1       regsem_1.8.0       
- [34] survival_3.2-13     zoo_1.8-9           glue_1.4.2         
- [37] gtable_0.3.0        emmeans_1.6.3       mi_1.0             
- [40] sjmisc_2.8.7        abind_1.4-5         scales_1.1.1       
- [43] mvtnorm_1.1-2       DBI_1.1.1           Rcpp_1.0.7         
- [46] xtable_1.8-4        performance_0.7.3   htmlTable_2.2.1    
- [49] tmvnsim_1.0-2       foreign_0.8-82      bit_4.0.4          
- [52] Formula_1.2-4       stats4_4.1.3        truncnorm_1.0-8    
- [55] datawizard_0.2.0.1  htmlwidgets_1.5.4   httr_1.4.2         
- [58] RColorBrewer_1.1-2  ellipsis_0.3.2      farver_2.1.0       
- [61] XML_3.99-0.8        pkgconfig_2.0.3     nnet_7.3-17        
- [64] kutils_1.70         dbplyr_2.1.1        utf8_1.2.2         
- [67] labeling_0.4.2      reshape2_1.4.4      tidyselect_1.1.1   
- [70] rlang_0.4.11        effectsize_0.4.5    munsell_0.5.0      
- [73] cellranger_1.1.0    tools_4.1.3         cli_3.0.1          
- [76] generics_0.1.0      sjlabelled_1.1.8    broom_0.7.9        
- [79] fdrtool_1.2.16      evaluate_0.14       fastmap_1.1.0      
- [82] arm_1.11-2          yaml_2.2.1          knitr_1.34         
- [85] bit64_4.0.5         fs_1.5.0            stationery_0.98.30 
- [88] pander_0.6.4        zip_2.2.0           glasso_1.11        
- [91] pbapply_1.5-0       nlme_3.1-155        xml2_1.3.2         
- [94] compiler_4.1.3      rstudioapi_0.13     curl_4.3.2         
- [97] png_0.1-7           reprex_2.0.1        pbivnorm_0.6.0     
-[100] stringi_1.7.4       highr_0.9           parameters_0.14.0  
-[103] qgraph_1.6.9        rockchalk_1.8.144   lattice_0.20-45    
-[106] Matrix_1.4-0        nloptr_1.2.2.2      vctrs_0.3.8        
-[109] pillar_1.6.2        lifecycle_1.0.0     OpenMx_2.19.8      
-[112] estimability_1.3    corpcor_1.6.10      data.table_1.14.0  
-[115] insight_0.14.4      R6_2.5.1            latticeExtra_0.6-29
-[118] bookdown_0.24       gridExtra_2.3       codetools_0.2-18   
-[121] gtools_3.9.2        boot_1.3-28         assertthat_0.2.1   
-[124] withr_2.4.2         mnormt_2.0.2        multcomp_1.4-17    
-[127] bayestestR_0.11.0   parallel_4.1.3      hms_1.1.0          
-[130] grid_4.1.3          rpart_4.1.16        coda_0.19-4        
-[133] minqa_1.2.4         rmarkdown_2.10      carData_3.0-4      
-[136] lubridate_1.7.10    base64enc_0.1-3    
-\end{verbatim}
-
-\hypertarget{refs}{%
-\chapter*{References}\label{refs}}
-\addcontentsline{toc}{chapter}{References}
 
 \hypertarget{CPAnal}{%
 \chapter*{CONDITIONAL PROCESS ANALYSIS}\label{CPAnal}}
@@ -11278,85 +10844,9 @@ Defined Parameters:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sessionInfo}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-R version 4.1.3 (2022-03-10)
-Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 10 x64 (build 18363)
-
-Matrix products: default
-
-locale:
-[1] LC_COLLATE=English_United States.1252 
-[2] LC_CTYPE=English_United States.1252   
-[3] LC_MONETARY=English_United States.1252
-[4] LC_NUMERIC=C                          
-[5] LC_TIME=English_United States.1252    
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
- [1] interactions_1.1.5 jtools_2.1.4       MASS_7.3-55        semTable_1.8      
- [5] semPlot_1.1.2      lavaan_0.6-9       apaTables_2.0.8    mice_3.13.0       
- [9] sjstats_0.18.1     formattable_0.2.1  qualtRics_3.1.4    forcats_0.5.1     
-[13] stringr_1.4.0      dplyr_1.0.7        purrr_0.3.4        readr_2.0.1       
-[17] tidyr_1.1.3        tibble_3.1.4       ggplot2_3.3.5      tidyverse_1.3.1   
-[21] psych_2.1.6       
-
-loaded via a namespace (and not attached):
-  [1] readxl_1.3.1        backports_1.2.1     Hmisc_4.5-0        
-  [4] igraph_1.2.6        plyr_1.8.6          splines_4.1.3      
-  [7] TH.data_1.1-0       digest_0.6.27       htmltools_0.5.2    
- [10] matrixcalc_1.0-5    fansi_0.5.0         magrittr_2.0.1     
- [13] Rsolnp_1.16         checkmate_2.0.0     lisrelToR_0.1.4    
- [16] cluster_2.1.2       tzdb_0.1.2          openxlsx_4.2.4     
- [19] modelr_0.1.8        RcppParallel_5.1.4  vroom_1.5.4        
- [22] sandwich_3.0-1      jpeg_0.1-9          sem_3.1-11         
- [25] MBESS_4.8.0         colorspace_2.0-2    rvest_1.0.1        
- [28] haven_2.4.3         xfun_0.25           crayon_1.4.1       
- [31] jsonlite_1.7.2      lme4_1.1-27.1       regsem_1.8.0       
- [34] survival_3.2-13     zoo_1.8-9           glue_1.4.2         
- [37] gtable_0.3.0        emmeans_1.6.3       mi_1.0             
- [40] sjmisc_2.8.7        abind_1.4-5         scales_1.1.1       
- [43] mvtnorm_1.1-2       DBI_1.1.1           Rcpp_1.0.7         
- [46] xtable_1.8-4        performance_0.7.3   htmlTable_2.2.1    
- [49] tmvnsim_1.0-2       foreign_0.8-82      bit_4.0.4          
- [52] Formula_1.2-4       stats4_4.1.3        truncnorm_1.0-8    
- [55] datawizard_0.2.0.1  htmlwidgets_1.5.4   httr_1.4.2         
- [58] RColorBrewer_1.1-2  ellipsis_0.3.2      farver_2.1.0       
- [61] XML_3.99-0.8        pkgconfig_2.0.3     nnet_7.3-17        
- [64] kutils_1.70         dbplyr_2.1.1        utf8_1.2.2         
- [67] labeling_0.4.2      reshape2_1.4.4      tidyselect_1.1.1   
- [70] rlang_0.4.11        effectsize_0.4.5    munsell_0.5.0      
- [73] cellranger_1.1.0    tools_4.1.3         cli_3.0.1          
- [76] generics_0.1.0      sjlabelled_1.1.8    broom_0.7.9        
- [79] fdrtool_1.2.16      evaluate_0.14       fastmap_1.1.0      
- [82] arm_1.11-2          yaml_2.2.1          knitr_1.34         
- [85] bit64_4.0.5         fs_1.5.0            stationery_0.98.30 
- [88] pander_0.6.4        zip_2.2.0           glasso_1.11        
- [91] pbapply_1.5-0       nlme_3.1-155        xml2_1.3.2         
- [94] compiler_4.1.3      rstudioapi_0.13     curl_4.3.2         
- [97] png_0.1-7           reprex_2.0.1        pbivnorm_0.6.0     
-[100] stringi_1.7.4       highr_0.9           parameters_0.14.0  
-[103] qgraph_1.6.9        rockchalk_1.8.144   lattice_0.20-45    
-[106] Matrix_1.4-0        nloptr_1.2.2.2      vctrs_0.3.8        
-[109] pillar_1.6.2        lifecycle_1.0.0     OpenMx_2.19.8      
-[112] estimability_1.3    corpcor_1.6.10      data.table_1.14.0  
-[115] insight_0.14.4      R6_2.5.1            latticeExtra_0.6-29
-[118] bookdown_0.24       gridExtra_2.3       codetools_0.2-18   
-[121] gtools_3.9.2        boot_1.3-28         assertthat_0.2.1   
-[124] withr_2.4.2         mnormt_2.0.2        multcomp_1.4-17    
-[127] bayestestR_0.11.0   parallel_4.1.3      hms_1.1.0          
-[130] grid_4.1.3          rpart_4.1.16        coda_0.19-4        
-[133] minqa_1.2.4         rmarkdown_2.10      carData_3.0-4      
-[136] lubridate_1.7.10    base64enc_0.1-3    
-\end{verbatim}
+\hypertarget{refs}{%
+\chapter*{References}\label{refs}}
+\addcontentsline{toc}{chapter}{References}
 
   \bibliography{STATSnMETH.bib}
 

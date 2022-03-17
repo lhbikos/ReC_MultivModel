@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Scoring | ReCentering Psych Stats: Multivariate Modeling</title>
-  <meta name="description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
+  <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Scoring | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  
+  <meta property="og:url" content="https://lhbikos.github.io/ReC_MultivModel/" />
+  <meta property="og:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
+  <meta property="og:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
+  <meta name="github-repo" content="lhbikos/extRas" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 Scoring | ReCentering Psych Stats: Multivariate Modeling" />
   
-  <meta name="twitter:description" content="This is an open-access, book-in-progress. My goal in offering it is to re-center the materials used in training statistics and research methods in graduate and post-graduate psychology programs." />
-  
+  <meta name="twitter:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
+  <meta name="twitter:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
 
-<meta name="author" content="Lynette H Bikos, PhD, ABPP" />
+<meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
+<meta name="date" content="2022-03-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -142,7 +143,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -155,7 +156,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"><strong>ReCentering Psych Stats: Multivariate Modeling</strong><br>by Lynette H Bikos, PhD, ABPP</a></li>
+<li><a href="./">ReCetering Psych Stats</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
@@ -172,14 +173,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="ReCintro.html"><a href="ReCintro.html#base-r"><i class="fa fa-check"></i><b>1.3.1</b> Base R</a></li>
 <li class="chapter" data-level="1.3.2" data-path="ReCintro.html"><a href="ReCintro.html#r-studio"><i class="fa fa-check"></i><b>1.3.2</b> R Studio</a></li>
-<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a>
-<ul>
-<li class="chapter" data-level="1.3.3.1" data-path="ReCintro.html"><a href="ReCintro.html#everything-is-documented-in-the-.rmd-file"><i class="fa fa-check"></i><b>1.3.3.1</b> Everything is documented in the .rmd file</a></li>
-<li class="chapter" data-level="1.3.3.2" data-path="ReCintro.html"><a href="ReCintro.html#file-organization"><i class="fa fa-check"></i><b>1.3.3.2</b> File organization</a></li>
-<li class="chapter" data-level="1.3.3.3" data-path="ReCintro.html"><a href="ReCintro.html#chunks"><i class="fa fa-check"></i><b>1.3.3.3</b> Chunks</a></li>
-<li class="chapter" data-level="1.3.3.4" data-path="ReCintro.html"><a href="ReCintro.html#packages"><i class="fa fa-check"></i><b>1.3.3.4</b> Packages</a></li>
-<li class="chapter" data-level="1.3.3.5" data-path="ReCintro.html"><a href="ReCintro.html#knitting"><i class="fa fa-check"></i><b>1.3.3.5</b> Knitting</a></li>
-</ul></li>
+<li class="chapter" data-level="1.3.3" data-path="ReCintro.html"><a href="ReCintro.html#r-hygiene"><i class="fa fa-check"></i><b>1.3.3</b> R Hygiene</a></li>
 <li class="chapter" data-level="1.3.4" data-path="ReCintro.html"><a href="ReCintro.html#troubleshooting-in-r-markdown"><i class="fa fa-check"></i><b>1.3.4</b> tRoubleshooting in R maRkdown</a></li>
 <li class="chapter" data-level="1.3.5" data-path="ReCintro.html"><a href="ReCintro.html#strategies-for-success"><i class="fa fa-check"></i><b>1.3.5</b> stRategies for success</a></li>
 <li class="chapter" data-level="1.3.6" data-path="ReCintro.html"><a href="ReCintro.html#resources-for-getting-started"><i class="fa fa-check"></i><b>1.3.6</b> Resources for getting staRted</a></li>
@@ -393,22 +387,8 @@ div.csl-indent {
 <li class="chapter" data-level="7.2" data-path="CompMed.html"><a href="CompMed.html#complex-mediation"><i class="fa fa-check"></i><b>7.2</b> Complex Mediation</a></li>
 <li class="chapter" data-level="7.3" data-path="CompMed.html"><a href="CompMed.html#parallel-mediation"><i class="fa fa-check"></i><b>7.3</b> Parallel Mediation</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a>
-<ul>
-<li class="chapter" data-level="7.3.1.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation"><i class="fa fa-check"></i><b>7.3.1.1</b> Data Simulation</a></li>
-<li class="chapter" data-level="7.3.1.2" data-path="CompMed.html"><a href="CompMed.html#specifying-lavaan-code"><i class="fa fa-check"></i><b>7.3.1.2</b> Specifying <em>lavaan</em> code</a></li>
-<li class="chapter" data-level="7.3.1.3" data-path="CompMed.html"><a href="CompMed.html#a-note-on-indirect-effects-and-confidence-intervals"><i class="fa fa-check"></i><b>7.3.1.3</b> A note on indirect effects and confidence intervals</a></li>
-<li class="chapter" data-level="7.3.1.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables"><i class="fa fa-check"></i><b>7.3.1.4</b> Figures and Tables</a></li>
-<li class="chapter" data-level="7.3.1.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup"><i class="fa fa-check"></i><b>7.3.1.5</b> APA Style Writeup</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a>
-<ul>
-<li class="chapter" data-level="7.3.2.1" data-path="CompMed.html"><a href="CompMed.html#data-simulation-1"><i class="fa fa-check"></i><b>7.3.2.1</b> Data Simulation</a></li>
-<li class="chapter" data-level="7.3.2.2" data-path="CompMed.html"><a href="CompMed.html#quick-descriptives"><i class="fa fa-check"></i><b>7.3.2.2</b> Quick Descriptives</a></li>
-<li class="chapter" data-level="7.3.2.3" data-path="CompMed.html"><a href="CompMed.html#specifying-the-lavaan-model"><i class="fa fa-check"></i><b>7.3.2.3</b> Specifying the <em>lavaan</em> model</a></li>
-<li class="chapter" data-level="7.3.2.4" data-path="CompMed.html"><a href="CompMed.html#figures-and-tables-1"><i class="fa fa-check"></i><b>7.3.2.4</b> Figures and Tables</a></li>
-<li class="chapter" data-level="7.3.2.5" data-path="CompMed.html"><a href="CompMed.html#apa-style-writeup-1"><i class="fa fa-check"></i><b>7.3.2.5</b> APA Style Writeup</a></li>
-</ul></li>
+<li class="chapter" data-level="7.3.1" data-path="CompMed.html"><a href="CompMed.html#a-mechanical-example"><i class="fa fa-check"></i><b>7.3.1</b> A Mechanical Example</a></li>
+<li class="chapter" data-level="7.3.2" data-path="CompMed.html"><a href="CompMed.html#research-vignette-5"><i class="fa fa-check"></i><b>7.3.2</b> Research Vignette</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="CompMed.html"><a href="CompMed.html#serial-multiple-mediator-model"><i class="fa fa-check"></i><b>7.4</b> Serial Multiple Mediator Model</a>
 <ul>
@@ -459,10 +439,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.8" data-path="SimpMod.html"><a href="SimpMod.html#working-the-simple-moderation-with-ols-and-mle"><i class="fa fa-check"></i><b>8.8</b> Working the Simple Moderation with OLS and MLE</a>
 <ul>
-<li class="chapter" data-level="8.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>8.8.1</b> OLS with <em>lm()</em></a>
-<ul>
-<li class="chapter" data-level="8.8.1.1" data-path="SimpMod.html"><a href="SimpMod.html#an-apa-style-write-up-of-ols-results"><i class="fa fa-check"></i><b>8.8.1.1</b> An APA Style Write-up of OLS results</a></li>
-</ul></li>
+<li class="chapter" data-level="8.8.1" data-path="SimpMod.html"><a href="SimpMod.html#ols-with-lm"><i class="fa fa-check"></i><b>8.8.1</b> OLS with <em>lm()</em></a></li>
 <li class="chapter" data-level="8.8.2" data-path="SimpMod.html"><a href="SimpMod.html#mle-with-lavaansem"><i class="fa fa-check"></i><b>8.8.2</b> MLE with <em>lavaan::sem()</em></a></li>
 <li class="chapter" data-level="8.8.3" data-path="SimpMod.html"><a href="SimpMod.html#tabling-the-data"><i class="fa fa-check"></i><b>8.8.3</b> Tabling the data</a></li>
 <li class="chapter" data-level="8.8.4" data-path="SimpMod.html"><a href="SimpMod.html#apa-style-writeup-3"><i class="fa fa-check"></i><b>8.8.4</b> APA Style Writeup</a></li>
@@ -476,7 +453,6 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.11" data-path="SimpMod.html"><a href="SimpMod.html#bonus-track-1"><i class="fa fa-check"></i><b>8.11</b> Bonus Track:</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="" data-path="CPAnal.html"><a href="CPAnal.html"><i class="fa fa-check"></i>CONDITIONAL PROCESS ANALYSIS</a></li>
 <li class="chapter" data-level="9" data-path="ModMed.html"><a href="ModMed.html"><i class="fa fa-check"></i><b>9</b> Moderated Mediation</a>
 <ul>
@@ -500,23 +476,14 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="ModMed.html"><a href="ModMed.html#working-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5</b> Working the Moderated Mediation</a>
 <ul>
-<li class="chapter" data-level="9.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5.1</b> Piecewise Assembly of the Moderated Mediation</a>
-<ul>
-<li class="chapter" data-level="9.5.1.1" data-path="ModMed.html"><a href="ModMed.html#analysis-1-a-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.1</b> Analysis #1: A simple moderation</a></li>
-<li class="chapter" data-level="9.5.1.2" data-path="ModMed.html"><a href="ModMed.html#analysis-2-another-simple-moderation"><i class="fa fa-check"></i><b>9.5.1.2</b> Analysis #2: Another simple moderation</a></li>
-<li class="chapter" data-level="9.5.1.3" data-path="ModMed.html"><a href="ModMed.html#analysis-3-a-simple-mediation"><i class="fa fa-check"></i><b>9.5.1.3</b> Analysis #3: A simple mediation</a></li>
-</ul></li>
+<li class="chapter" data-level="9.5.1" data-path="ModMed.html"><a href="ModMed.html#piecewise-assembly-of-the-moderated-mediation"><i class="fa fa-check"></i><b>9.5.1</b> Piecewise Assembly of the Moderated Mediation</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="ModMed.html"><a href="ModMed.html#the-moderated-mediation-a-combined-analysis"><i class="fa fa-check"></i><b>9.6</b> The Moderated Mediation: A Combined analysis</a>
 <ul>
 <li class="chapter" data-level="9.6.1" data-path="ModMed.html"><a href="ModMed.html#specification-in-lavaan"><i class="fa fa-check"></i><b>9.6.1</b> Specification in <em>lavaan</em></a></li>
 <li class="chapter" data-level="9.6.2" data-path="ModMed.html"><a href="ModMed.html#a-quick-plot"><i class="fa fa-check"></i><b>9.6.2</b> A quick plot</a></li>
 <li class="chapter" data-level="9.6.3" data-path="ModMed.html"><a href="ModMed.html#beginning-the-interpretation"><i class="fa fa-check"></i><b>9.6.3</b> Beginning the interpretation</a></li>
-<li class="chapter" data-level="9.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.6.4</b> Tabling the data</a>
-<ul>
-<li class="chapter" data-level="9.6.4.1" data-path="ModMed.html"><a href="ModMed.html#conditional-indirect-effects"><i class="fa fa-check"></i><b>9.6.4.1</b> Conditional Indirect effects</a></li>
-<li class="chapter" data-level="9.6.4.2" data-path="ModMed.html"><a href="ModMed.html#conditional-direct-effect"><i class="fa fa-check"></i><b>9.6.4.2</b> Conditional Direct effect</a></li>
-</ul></li>
+<li class="chapter" data-level="9.6.4" data-path="ModMed.html"><a href="ModMed.html#tabling-the-data-1"><i class="fa fa-check"></i><b>9.6.4</b> Tabling the data</a></li>
 <li class="chapter" data-level="9.6.5" data-path="ModMed.html"><a href="ModMed.html#model-trimming"><i class="fa fa-check"></i><b>9.6.5</b> Model trimming</a></li>
 <li class="chapter" data-level="9.6.6" data-path="ModMed.html"><a href="ModMed.html#apa-style-write-up-1"><i class="fa fa-check"></i><b>9.6.6</b> APA Style Write-up</a></li>
 </ul></li>
@@ -529,10 +496,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.9" data-path="ModMed.html"><a href="ModMed.html#bonus-track-2"><i class="fa fa-check"></i><b>9.9</b> Bonus Track:</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="refs.html"><a href="refs.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
-#<li><a href="https:link" target="_blank">Open access book-in-progress</br>
-<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></li>
-  <li><a href="https://bookdown.org" target="_blank">Built with Bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
 </ul>
 
@@ -593,11 +559,11 @@ div.csl-indent {
 <h3><span class="header-section-number">3.1.4</span> Packages</h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
 <!-- TODO: Build out this section. -->
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="score.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
-<span id="cb28-2"><a href="score.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
-<span id="cb28-3"><a href="score.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(formattable)){<span class="fu">install.packages</span>(<span class="st">&quot;formattable&quot;</span>)}</span>
-<span id="cb28-4"><a href="score.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(mice)){<span class="fu">install.packages</span>(<span class="st">&quot;mice&quot;</span>)}</span>
-<span id="cb28-5"><a href="score.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(sjstats)){<span class="fu">install.packages</span>(<span class="st">&quot;sjstats&quot;</span>)}</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="score.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span>
+<span id="cb26-2"><a href="score.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(psych)){<span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)}</span>
+<span id="cb26-3"><a href="score.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(formattable)){<span class="fu">install.packages</span>(<span class="st">&quot;formattable&quot;</span>)}</span>
+<span id="cb26-4"><a href="score.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(mice)){<span class="fu">install.packages</span>(<span class="st">&quot;mice&quot;</span>)}</span>
+<span id="cb26-5"><a href="score.html#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(sjstats)){<span class="fu">install.packages</span>(<span class="st">&quot;sjstats&quot;</span>)}</span></code></pre></div>
 </div>
 </div>
 <div id="workflow-for-scrubbing-and-scoring-1" class="section level2" number="3.2">
@@ -736,8 +702,8 @@ analyses.</p></li>
 <p>In the prior chapter we imported the data from Qualtrics and applied the broadest levels of inclusion (e.g., the course rated was offered from an institution in the U.S., the respondent consented to participation) and exclusion (e.g., the survey was not a preview). We then downsized the survey to include the variables we will use in our statistical model. We then saved the data in a .csv file.</p>
 <p>Presuming that you are working along with me in an .rmd file, if you have placed that file in the same folder as this .rmd file, the following code should read the data into your environment.</p>
 <p>I use <em>different</em> names for the object/df in my R environment than I use for the filename that holds the data on my computer. Why? I don’t want to accidentally overwrite this precious “source” of data.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="score.html#cb29-1" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span> (<span class="st">&quot;BlackStntsModel210318.csv&quot;</span>, <span class="at">head =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
-<span id="cb29-2"><a href="score.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(scrub_df)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="score.html#cb27-1" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span> (<span class="st">&quot;BlackStntsModel210318.csv&quot;</span>, <span class="at">head =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb27-2"><a href="score.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(scrub_df)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    52 obs. of  25 variables:
 ##  $ ID       : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ iRace1   : int  3 3 3 3 1 3 3 3 1 0 ...
@@ -787,44 +753,44 @@ analyses.</p></li>
 </ul></li>
 </ul>
 <p>Our next step is to conduct a preliminary missing data analysis at the item level, across the dataset we are using. The Campus Climate and Belonging scales are traditional in the sense that they have items that we sum. The variable representing proportion of classmates who are Black is a single item. The variable representing the proportion of instructional staff who are BIPOC must be calculated in a manner that takes into consideration the there may be multiple instructors. The survey allowed a respondent to name up to 10 instructors.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="score.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(scrub_df<span class="sc">$</span>iRace1)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="score.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(scrub_df<span class="sc">$</span>iRace1)</span></code></pre></div>
 <pre><code>##  int [1:52] 3 3 3 3 1 3 3 3 1 0 ...</code></pre>
 <p>Looking at the structure of our data, the iRace(1 thru 10) variables are in “int” or integer format. This means that they are represented as whole numbers. We need them to be represented as factors. R handles factors represented as words well. Therefore, let’s use our codebook to reformat this variable as a an ordered factor, with words instead of numbers.</p>
 <p>Qualtrics imports many of the categorical variables as numbers. R often reads them numerically (integers or numbers). If they are directly converted to factors, R will sometimes collapse across missing numbers. In this example, if there is a race that is not represented (e.g., 2 for BiMulti), when the numbers are changed to factors, R will assume they are ordered and there is a consecutive series of numbers (0,1,2,3,4). If a number in the sequence is missing (0,1,3,4) and labels are applied, it will collapse across the numbers and the labels you think are attached to each number are not. Therefore, it is ESSENTIAL to check (again and again ad nauseum) to ensure that your variables are recoding in a manner you understand.</p>
 <p>One way to avoid this is to use the code below to identify the levels and the labels. When they are in order, they align and don’t “skip” numbers. To quadruple check our work, we will recode into a new variable “tRace#” for “teacher” Race.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="score.html#cb33-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace1 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace1,</span>
-<span id="cb33-2"><a href="score.html#cb33-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb33-3"><a href="score.html#cb33-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb33-4"><a href="score.html#cb33-4" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace2 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace2,</span>
-<span id="cb33-5"><a href="score.html#cb33-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb33-6"><a href="score.html#cb33-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb33-7"><a href="score.html#cb33-7" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace3 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace3,</span>
-<span id="cb33-8"><a href="score.html#cb33-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb33-9"><a href="score.html#cb33-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb33-10"><a href="score.html#cb33-10" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace4 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace4,</span>
-<span id="cb33-11"><a href="score.html#cb33-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb33-12"><a href="score.html#cb33-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb33-13"><a href="score.html#cb33-13" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace5 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace5,</span>
-<span id="cb33-14"><a href="score.html#cb33-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb33-15"><a href="score.html#cb33-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb33-16"><a href="score.html#cb33-16" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace6 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace6,</span>
-<span id="cb33-17"><a href="score.html#cb33-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb33-18"><a href="score.html#cb33-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb33-19"><a href="score.html#cb33-19" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace7 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace7,</span>
-<span id="cb33-20"><a href="score.html#cb33-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb33-21"><a href="score.html#cb33-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb33-22"><a href="score.html#cb33-22" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace8 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace8,</span>
-<span id="cb33-23"><a href="score.html#cb33-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb33-24"><a href="score.html#cb33-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb33-25"><a href="score.html#cb33-25" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace9 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace9,</span>
-<span id="cb33-26"><a href="score.html#cb33-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb33-27"><a href="score.html#cb33-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
-<span id="cb33-28"><a href="score.html#cb33-28" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace10 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace10,</span>
-<span id="cb33-29"><a href="score.html#cb33-29" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
-<span id="cb33-30"><a href="score.html#cb33-30" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="score.html#cb31-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace1 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace1,</span>
+<span id="cb31-2"><a href="score.html#cb31-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-3"><a href="score.html#cb31-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-4"><a href="score.html#cb31-4" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace2 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace2,</span>
+<span id="cb31-5"><a href="score.html#cb31-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-6"><a href="score.html#cb31-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-7"><a href="score.html#cb31-7" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace3 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace3,</span>
+<span id="cb31-8"><a href="score.html#cb31-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-9"><a href="score.html#cb31-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-10"><a href="score.html#cb31-10" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace4 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace4,</span>
+<span id="cb31-11"><a href="score.html#cb31-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-12"><a href="score.html#cb31-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-13"><a href="score.html#cb31-13" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace5 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace5,</span>
+<span id="cb31-14"><a href="score.html#cb31-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-15"><a href="score.html#cb31-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-16"><a href="score.html#cb31-16" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace6 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace6,</span>
+<span id="cb31-17"><a href="score.html#cb31-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-18"><a href="score.html#cb31-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-19"><a href="score.html#cb31-19" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace7 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace7,</span>
+<span id="cb31-20"><a href="score.html#cb31-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-21"><a href="score.html#cb31-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-22"><a href="score.html#cb31-22" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace8 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace8,</span>
+<span id="cb31-23"><a href="score.html#cb31-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-24"><a href="score.html#cb31-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-25"><a href="score.html#cb31-25" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace9 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace9,</span>
+<span id="cb31-26"><a href="score.html#cb31-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-27"><a href="score.html#cb31-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span>
+<span id="cb31-28"><a href="score.html#cb31-28" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>tRace10 <span class="ot">=</span> <span class="fu">factor</span>(scrub_df<span class="sc">$</span>iRace10,</span>
+<span id="cb31-29"><a href="score.html#cb31-29" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb31-30"><a href="score.html#cb31-30" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="st">&quot;NotNotice&quot;</span>))</span></code></pre></div>
 <p>Let’s check the structure to see if they are factors.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="score.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb34-2"><a href="score.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(scrub_df)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="score.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb32-2"><a href="score.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(scrub_df)</span></code></pre></div>
 <pre><code>## Rows: 52
 ## Columns: 35
 ## $ ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~
@@ -870,11 +836,11 @@ analyses.</p></li>
 <li>assigning a count of “1” each time the factor value was Black, nBpoc, or BiMulti</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="score.html#cb36-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>count.BIPOC <span class="ot">&lt;-</span> <span class="fu">apply</span>(scrub_df[<span class="fu">c</span>(<span class="st">&quot;tRace1&quot;</span>, <span class="st">&quot;tRace2&quot;</span>, <span class="st">&quot;tRace3&quot;</span>, <span class="st">&quot;tRace4&quot;</span>, <span class="st">&quot;tRace5&quot;</span>, <span class="st">&quot;tRace6&quot;</span>, <span class="st">&quot;tRace7&quot;</span>, <span class="st">&quot;tRace8&quot;</span>, <span class="st">&quot;tRace9&quot;</span>, <span class="st">&quot;tRace10&quot;</span>)], <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="score.html#cb34-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>count.BIPOC <span class="ot">&lt;-</span> <span class="fu">apply</span>(scrub_df[<span class="fu">c</span>(<span class="st">&quot;tRace1&quot;</span>, <span class="st">&quot;tRace2&quot;</span>, <span class="st">&quot;tRace3&quot;</span>, <span class="st">&quot;tRace4&quot;</span>, <span class="st">&quot;tRace5&quot;</span>, <span class="st">&quot;tRace6&quot;</span>, <span class="st">&quot;tRace7&quot;</span>, <span class="st">&quot;tRace8&quot;</span>, <span class="st">&quot;tRace9&quot;</span>, <span class="st">&quot;tRace10&quot;</span>)], <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;nBpoc&quot;</span>, <span class="st">&quot;BiMulti&quot;</span>)))</span></code></pre></div>
 <p>Next, I created a variable that counted the number of non-missing values across the tRace1 through tRace10 variables.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="score.html#cb37-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>count.nMiss <span class="ot">&lt;-</span> <span class="fu">apply</span>(scrub_df[<span class="fu">c</span>(<span class="st">&quot;tRace1&quot;</span>, <span class="st">&quot;tRace2&quot;</span>, <span class="st">&quot;tRace3&quot;</span>, <span class="st">&quot;tRace4&quot;</span>, <span class="st">&quot;tRace5&quot;</span>, <span class="st">&quot;tRace6&quot;</span>, <span class="st">&quot;tRace7&quot;</span>, <span class="st">&quot;tRace8&quot;</span>, <span class="st">&quot;tRace9&quot;</span>, <span class="st">&quot;tRace10&quot;</span>)], <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)))</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="score.html#cb35-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>count.nMiss <span class="ot">&lt;-</span> <span class="fu">apply</span>(scrub_df[<span class="fu">c</span>(<span class="st">&quot;tRace1&quot;</span>, <span class="st">&quot;tRace2&quot;</span>, <span class="st">&quot;tRace3&quot;</span>, <span class="st">&quot;tRace4&quot;</span>, <span class="st">&quot;tRace5&quot;</span>, <span class="st">&quot;tRace6&quot;</span>, <span class="st">&quot;tRace7&quot;</span>, <span class="st">&quot;tRace8&quot;</span>, <span class="st">&quot;tRace9&quot;</span>, <span class="st">&quot;tRace10&quot;</span>)], <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)))</span></code></pre></div>
 <p>Now to calculate the proportion of BIPOC instructional faculty for each case.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="score.html#cb38-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>iBIPOC_pr <span class="ot">=</span> scrub_df<span class="sc">$</span>count.BIPOC<span class="sc">/</span>scrub_df<span class="sc">$</span>count.nMiss</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="score.html#cb36-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>iBIPOC_pr <span class="ot">=</span> scrub_df<span class="sc">$</span>count.BIPOC<span class="sc">/</span>scrub_df<span class="sc">$</span>count.nMiss</span></code></pre></div>
 <div id="missing-data-analysis-whole-df-and-item-level" class="section level3" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Missing Data Analysis: Whole df and Item level</h3>
 <p>In understanding missingness across the dataset, I think it is important to analyze and manage it, iteratively. We will start with a view of the whole df-level missingness. Subsequently, and consistent with the available information analysis [AIA; <span class="citation">Parent (<a href="#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span>] approach, we will score the scales and then look again at missingness, using the new information to update our decisions about how to manage it.</p>
@@ -883,43 +849,43 @@ analyses.</p></li>
 <p class="caption">An image of our stage in the workflow for scrubbing and scoring data.</p>
 </div>
 <p>Because we just created a host of new variables in creating the <em>prop_BIPOC</em> variable, let’s downsize the df so that the calculations are sensible.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="score.html#cb39-1" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span>(<span class="fu">select</span> (scrub_df, ID, iBIPOC_pr, cmBlack, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6))</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="score.html#cb37-1" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span>(<span class="fu">select</span> (scrub_df, ID, iBIPOC_pr, cmBlack, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6))</span></code></pre></div>
 <p>With a couple of calculations, we create a proportion of item-level missingness.</p>
 <p>In this chunk I first calculate the number of missing (nmiss)</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="score.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculating number and proportion of item-level missingness</span></span>
-<span id="cb40-2"><a href="score.html#cb40-2" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>nmiss <span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span></span>
-<span id="cb40-3"><a href="score.html#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>Blst_6) <span class="sc">%&gt;%</span> <span class="co">#the colon allows us to include all variables between the two listed (the variables need to be in order)</span></span>
-<span id="cb40-4"><a href="score.html#cb40-4" aria-hidden="true" tabindex="-1"></a>    is.na <span class="sc">%&gt;%</span> </span>
-<span id="cb40-5"><a href="score.html#cb40-5" aria-hidden="true" tabindex="-1"></a>    rowSums</span>
-<span id="cb40-6"><a href="score.html#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-7"><a href="score.html#cb40-7" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span></span>
-<span id="cb40-8"><a href="score.html#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_miss =</span> (nmiss<span class="sc">/</span><span class="dv">11</span>)<span class="sc">*</span><span class="dv">100</span>) <span class="co">#11 is the number of variables included in calculating the proportion</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="score.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculating number and proportion of item-level missingness</span></span>
+<span id="cb38-2"><a href="score.html#cb38-2" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>nmiss <span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="score.html#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>Blst_6) <span class="sc">%&gt;%</span> <span class="co">#the colon allows us to include all variables between the two listed (the variables need to be in order)</span></span>
+<span id="cb38-4"><a href="score.html#cb38-4" aria-hidden="true" tabindex="-1"></a>    is.na <span class="sc">%&gt;%</span> </span>
+<span id="cb38-5"><a href="score.html#cb38-5" aria-hidden="true" tabindex="-1"></a>    rowSums</span>
+<span id="cb38-6"><a href="score.html#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="score.html#cb38-7" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span></span>
+<span id="cb38-8"><a href="score.html#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_miss =</span> (nmiss<span class="sc">/</span><span class="dv">11</span>)<span class="sc">*</span><span class="dv">100</span>) <span class="co">#11 is the number of variables included in calculating the proportion</span></span></code></pre></div>
 <p>We can grab the descriptives for the <em>prop_miss</em> variable to begin to understand our data. I will create an object from it so I can use it with inline</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="score.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(formattable)</span>
-<span id="cb41-2"><a href="score.html#cb41-2" aria-hidden="true" tabindex="-1"></a>CaseMiss<span class="ot">&lt;-</span>psych<span class="sc">::</span><span class="fu">describe</span>(scrub_df<span class="sc">$</span>prop_miss)</span>
-<span id="cb41-3"><a href="score.html#cb41-3" aria-hidden="true" tabindex="-1"></a>CaseMiss</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="score.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(formattable)</span>
+<span id="cb39-2"><a href="score.html#cb39-2" aria-hidden="true" tabindex="-1"></a>CaseMiss<span class="ot">&lt;-</span>psych<span class="sc">::</span><span class="fu">describe</span>(scrub_df<span class="sc">$</span>prop_miss)</span>
+<span id="cb39-3"><a href="score.html#cb39-3" aria-hidden="true" tabindex="-1"></a>CaseMiss</span></code></pre></div>
 <pre><code>##    vars  n mean    sd median trimmed mad min   max range skew kurtosis se
 ## X1    1 52 7.52 21.66      0     1.3   0   0 90.91 90.91 3.04     8.27  3</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="score.html#cb43-1" aria-hidden="true" tabindex="-1"></a>missMin <span class="ot">&lt;-</span> <span class="fu">digits</span>(CaseMiss<span class="sc">$</span>min, <span class="dv">0</span>)</span>
-<span id="cb43-2"><a href="score.html#cb43-2" aria-hidden="true" tabindex="-1"></a>missMax <span class="ot">&lt;-</span> <span class="fu">digits</span>(CaseMiss<span class="sc">$</span>max, <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="score.html#cb41-1" aria-hidden="true" tabindex="-1"></a>missMin <span class="ot">&lt;-</span> <span class="fu">digits</span>(CaseMiss<span class="sc">$</span>min, <span class="dv">0</span>)</span>
+<span id="cb41-2"><a href="score.html#cb41-2" aria-hidden="true" tabindex="-1"></a>missMax <span class="ot">&lt;-</span> <span class="fu">digits</span>(CaseMiss<span class="sc">$</span>max, <span class="dv">0</span>)</span></code></pre></div>
 <p>CUMULATIVE CAPTURE FOR WRITING IT UP: Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 91%.</p>
 <p>At the time that I am lecturing this, the the amount of missing is not so egregious that I want to eliminate any cases. That is, I’m willing to wait until after I score the items to make further decisions, then.</p>
 <p>Because (a) I want to teach it and (b) it is quite likely that we will receive responses with high levels of missingness, I will write code to eliminate cases with <span class="math inline">\(\geq\)</span> 90%.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="score.html#cb44-1" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> <span class="fu">filter</span>(scrub_df, prop_miss <span class="sc">&lt;=</span> <span class="dv">90</span>)  <span class="co">#update df to have only those with at least 90% of complete data</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="score.html#cb42-1" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> <span class="fu">filter</span>(scrub_df, prop_miss <span class="sc">&lt;=</span> <span class="dv">90</span>)  <span class="co">#update df to have only those with at least 90% of complete data</span></span></code></pre></div>
 <p>To analyze missingness at this level, we need a df that has only the variables of interest. That is, variables like <em>ID</em> and the <em>prop_miss</em> and <em>nmiss</em> variables we created will interfere with an accurate assessment of missingness. I will update our df to eliminate these.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="score.html#cb45-1" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> scrub_df <span class="sc">%&gt;%</span></span>
-<span id="cb45-2"><a href="score.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span> (<span class="sc">-</span><span class="fu">c</span>(ID, nmiss, prop_miss))<span class="co">#further update to exclude the n_miss and prop_miss variables</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="score.html#cb43-1" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> scrub_df <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="score.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span> (<span class="sc">-</span><span class="fu">c</span>(ID, nmiss, prop_miss))<span class="co">#further update to exclude the n_miss and prop_miss variables</span></span></code></pre></div>
 <p>Missing data analysis commonly looks at proportions by:</p>
 <ul>
 <li>the entire df</li>
 <li>rows/cases/people</li>
 </ul>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="score.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;formattable&quot;)</span></span>
-<span id="cb46-2"><a href="score.html#cb46-2" aria-hidden="true" tabindex="-1"></a>CellsMiss <span class="ot">&lt;-</span> <span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">is.na</span>(scrub_df)))<span class="co">#what proportion of cells missing across entire dataset</span></span>
-<span id="cb46-3"><a href="score.html#cb46-3" aria-hidden="true" tabindex="-1"></a>CaseComplete <span class="ot">&lt;-</span> <span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">complete.cases</span>(scrub_df)))<span class="co">#what proportion of cases (rows) are complete (nonmissing)</span></span>
-<span id="cb46-4"><a href="score.html#cb46-4" aria-hidden="true" tabindex="-1"></a>CellsMiss</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="score.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;formattable&quot;)</span></span>
+<span id="cb44-2"><a href="score.html#cb44-2" aria-hidden="true" tabindex="-1"></a>CellsMiss <span class="ot">&lt;-</span> <span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">is.na</span>(scrub_df)))<span class="co">#what proportion of cells missing across entire dataset</span></span>
+<span id="cb44-3"><a href="score.html#cb44-3" aria-hidden="true" tabindex="-1"></a>CaseComplete <span class="ot">&lt;-</span> <span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">complete.cases</span>(scrub_df)))<span class="co">#what proportion of cases (rows) are complete (nonmissing)</span></span>
+<span id="cb44-4"><a href="score.html#cb44-4" aria-hidden="true" tabindex="-1"></a>CellsMiss</span></code></pre></div>
 <pre><code>## [1] 4.18%</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="score.html#cb48-1" aria-hidden="true" tabindex="-1"></a>CaseComplete</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="score.html#cb46-1" aria-hidden="true" tabindex="-1"></a>CaseComplete</span></code></pre></div>
 <pre><code>## [1] 86.00%</code></pre>
 <p>CUMULATIVE CAPTURE FOR WRITING IT UP: Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 91%. Across the dataset, 4.18% of cells had missing data and 86.00% of cases had nonmissing data.</p>
 </div>
@@ -929,12 +895,12 @@ analyses.</p></li>
 <p>Several R packages are popularly used for conducting such analyses. In the <em>mice</em> package, <em>md.pattern()</em> function provides a matrix with the number of columns + 1, in which each row corresponds to a missing data pattern (1 = observed, 0 = missing).</p>
 <p>Rows and columns are sorted in increasing amounts of missing information.</p>
 <p>The last column and row contain row and column counts, respectively.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="score.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the package: mice</span></span>
-<span id="cb50-2"><a href="score.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
-<span id="cb50-3"><a href="score.html#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-4"><a href="score.html#cb50-4" aria-hidden="true" tabindex="-1"></a>mice_out <span class="ot">&lt;-</span> <span class="fu">md.pattern</span>(scrub_df, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">rotate.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb50-5"><a href="score.html#cb50-5" aria-hidden="true" tabindex="-1"></a>mice_out</span>
-<span id="cb50-6"><a href="score.html#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span> (mice_out, <span class="at">file=</span><span class="st">&quot;mice_out.csv&quot;</span>) <span class="co">#optional to write it to a .csv file</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="score.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the package: mice</span></span>
+<span id="cb48-2"><a href="score.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb48-3"><a href="score.html#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="score.html#cb48-4" aria-hidden="true" tabindex="-1"></a>mice_out <span class="ot">&lt;-</span> <span class="fu">md.pattern</span>(scrub_df, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">rotate.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb48-5"><a href="score.html#cb48-5" aria-hidden="true" tabindex="-1"></a>mice_out</span>
+<span id="cb48-6"><a href="score.html#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span> (mice_out, <span class="at">file=</span><span class="st">&quot;mice_out.csv&quot;</span>) <span class="co">#optional to write it to a .csv file</span></span></code></pre></div>
 <p>The table lets you look at each missing pattern and see which variable(s) is/are missing. The output is in the form of a table that indicates the frequency of each pattern of missingness. Because I haven’t (yet) figured out how to pipe objects from this table into the chapter, this text may dier from the patterns in the current data frame.</p>
 <p>Each row in the table represents a different pattern of missingness. At the time of writing, there are <em>6</em> patterns of missing data. The patterns are listed in descending order of the least amount of missingness. The most common pattern (<em>23</em> cases, top row) is one with no missing data. One cases (is missing three cells – three of the items assessing the campus climate for Black students, and so forth. <em>These numbers are not piped and subject to change.</em></p>
 <p>In general, the data patterns represented a haphazard patterns of responding <span class="citation">(<a href="#ref-enders_applied_2010" role="doc-biblioref">Enders, 2010</a>)</span>.</p>
@@ -958,8 +924,8 @@ analyses.</p></li>
 </ul></li>
 <li>The reversal is an <em>equation</em> where you subtract the value in the item from the range/scaling + 1. For the our three items we subtract each item’s value from 8.</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="score.html#cb51-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="ot">&lt;-</span> scrub_df <span class="sc">%&gt;%</span></span>
-<span id="cb51-2"><a href="score.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rBlst_1 =</span> <span class="dv">8</span> <span class="sc">-</span> Blst_1) <span class="co">#if you had multiple items, you could add a pipe (%&gt;%) at the end of the line and add more until the last one</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="score.html#cb49-1" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="ot">&lt;-</span> scrub_df <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="score.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rBlst_1 =</span> <span class="dv">8</span> <span class="sc">-</span> Blst_1) <span class="co">#if you had multiple items, you could add a pipe (%&gt;%) at the end of the line and add more until the last one</span></span></code></pre></div>
 <p>Per Parent <span class="citation">(<a href="#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> we will analyze missingness for each scale, separately.</p>
 <ul>
 <li>We will calculate scale scores on each scale separately when 80% (roughly) of the data is present.
@@ -971,7 +937,7 @@ analyses.</p></li>
 </ul>
 <p>The <em>mean_n()</em> function of <em>sjstats</em> package has allows you to specify how many items (whole number) or what percentage of items should be present in order to get the mean. First, though, we should identify the variables (properly formatted, if rescoring was needed) that should be included in the calculation of each scale and subscale.</p>
 <p>In our case, the scale assessing belonging <span class="citation">(<a href="#ref-bollen_perceived_1990" role="doc-biblioref">Bollen &amp; Hoyle, 1990</a>; <a href="#ref-hurtado_effects_1997" role="doc-biblioref">Hurtado &amp; Carter, 1997</a>)</span> involves three items with no reversals. Our campus climate scale was adapted from Szymanski et al.’s LGBTQ College Campus Climate Scale <span class="citation">(<a href="#ref-szymanski_perceptions_2020" role="doc-biblioref">Szymanski &amp; Bissonette, 2020</a>)</span>. While it has not been psychometrically evaluated for the purpose for which I am using it, I will follow the scoring structure in the journal article that introduces the measure. Specifically, the factor structure permits a total scale score and two subscales representing the college response and stigma.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="score.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjstats)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="score.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjstats)</span></code></pre></div>
 <pre><code>## Registered S3 methods overwritten by &#39;parameters&#39;:
 ##   method                           from      
 ##   as.double.parameters_kurtosis    datawizard
@@ -990,25 +956,25 @@ analyses.</p></li>
 <pre><code>## The following object is masked from &#39;package:psych&#39;:
 ## 
 ##     phi</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="score.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making the list of variables</span></span>
-<span id="cb56-2"><a href="score.html#cb56-2" aria-hidden="true" tabindex="-1"></a>Belonging_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Belong_1&#39;</span>,<span class="st">&#39;Belong_2&#39;</span>,<span class="st">&#39;Belong_3&#39;</span>)</span>
-<span id="cb56-3"><a href="score.html#cb56-3" aria-hidden="true" tabindex="-1"></a>ResponseBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;rBlst_1&#39;</span>, <span class="st">&#39;Blst_4&#39;</span>,<span class="st">&#39;Blst_6&#39;</span>)</span>
-<span id="cb56-4"><a href="score.html#cb56-4" aria-hidden="true" tabindex="-1"></a>StigmaBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Blst_2&#39;</span>, <span class="st">&#39;Blst_3&#39;</span>,<span class="st">&#39;Blst_5&#39;</span>)</span>
-<span id="cb56-5"><a href="score.html#cb56-5" aria-hidden="true" tabindex="-1"></a>ClimateBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;rBlst_1&#39;</span>, <span class="st">&#39;Blst_4&#39;</span>,<span class="st">&#39;Blst_6&#39;</span>,<span class="st">&#39;Blst_2&#39;</span>, <span class="st">&#39;Blst_3&#39;</span>,<span class="st">&#39;Blst_5&#39;</span> )</span>
-<span id="cb56-6"><a href="score.html#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-7"><a href="score.html#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating the new variables</span></span>
-<span id="cb56-8"><a href="score.html#cb56-8" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>Belonging <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(scrub_df[,Belonging_vars], .<span class="dv">65</span>)</span>
-<span id="cb56-9"><a href="score.html#cb56-9" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>ResponseBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(scrub_df[,ResponseBL_vars], .<span class="dv">80</span>)</span>
-<span id="cb56-10"><a href="score.html#cb56-10" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>StigmaBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(scrub_df[,StigmaBL_vars], .<span class="dv">80</span>)</span>
-<span id="cb56-11"><a href="score.html#cb56-11" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>ClimateBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(scrub_df[,ClimateBL_vars], .<span class="dv">80</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="score.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making the list of variables</span></span>
+<span id="cb54-2"><a href="score.html#cb54-2" aria-hidden="true" tabindex="-1"></a>Belonging_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Belong_1&#39;</span>,<span class="st">&#39;Belong_2&#39;</span>,<span class="st">&#39;Belong_3&#39;</span>)</span>
+<span id="cb54-3"><a href="score.html#cb54-3" aria-hidden="true" tabindex="-1"></a>ResponseBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;rBlst_1&#39;</span>, <span class="st">&#39;Blst_4&#39;</span>,<span class="st">&#39;Blst_6&#39;</span>)</span>
+<span id="cb54-4"><a href="score.html#cb54-4" aria-hidden="true" tabindex="-1"></a>StigmaBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Blst_2&#39;</span>, <span class="st">&#39;Blst_3&#39;</span>,<span class="st">&#39;Blst_5&#39;</span>)</span>
+<span id="cb54-5"><a href="score.html#cb54-5" aria-hidden="true" tabindex="-1"></a>ClimateBL_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;rBlst_1&#39;</span>, <span class="st">&#39;Blst_4&#39;</span>,<span class="st">&#39;Blst_6&#39;</span>,<span class="st">&#39;Blst_2&#39;</span>, <span class="st">&#39;Blst_3&#39;</span>,<span class="st">&#39;Blst_5&#39;</span> )</span>
+<span id="cb54-6"><a href="score.html#cb54-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="score.html#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating the new variables</span></span>
+<span id="cb54-8"><a href="score.html#cb54-8" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>Belonging <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(scrub_df[,Belonging_vars], .<span class="dv">65</span>)</span>
+<span id="cb54-9"><a href="score.html#cb54-9" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>ResponseBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(scrub_df[,ResponseBL_vars], .<span class="dv">80</span>)</span>
+<span id="cb54-10"><a href="score.html#cb54-10" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>StigmaBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(scrub_df[,StigmaBL_vars], .<span class="dv">80</span>)</span>
+<span id="cb54-11"><a href="score.html#cb54-11" aria-hidden="true" tabindex="-1"></a>scrub_df<span class="sc">$</span>ClimateBL <span class="ot">&lt;-</span> <span class="fu">mean_n</span>(scrub_df[,ClimateBL_vars], .<span class="dv">80</span>)</span></code></pre></div>
 <p>Later it will be helpful to have a df with the item and scale-level variables. It will also be helpful if there is an ID for each case.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="score.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb57-2"><a href="score.html#cb57-2" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> scrub_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>())</span>
-<span id="cb57-3"><a href="score.html#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-4"><a href="score.html#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="co">#moving the ID number to the first column; requires </span></span>
-<span id="cb57-5"><a href="score.html#cb57-5" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span><span class="fu">select</span>(ID, <span class="fu">everything</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="score.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb55-2"><a href="score.html#cb55-2" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> scrub_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>())</span>
+<span id="cb55-3"><a href="score.html#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="score.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co">#moving the ID number to the first column; requires </span></span>
+<span id="cb55-5"><a href="score.html#cb55-5" aria-hidden="true" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span><span class="fu">select</span>(ID, <span class="fu">everything</span>())</span></code></pre></div>
 <p>Let’s save our <em>scrub_df</em> data for this and write it as an outfile.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="score.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(scrub_df, <span class="at">file=</span><span class="st">&quot;BlStItmsScrs210320.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>, <span class="at">col.names=</span><span class="cn">TRUE</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="score.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(scrub_df, <span class="at">file=</span><span class="st">&quot;BlStItmsScrs210320.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>, <span class="at">col.names=</span><span class="cn">TRUE</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="missing-analysis-scale-level" class="section level2" number="3.7">
@@ -1019,41 +985,41 @@ analyses.</p></li>
 <p class="caption">An image of our stage in the workflow for scrubbing and scoring data.</p>
 </div>
 <p>First let’s get the df down to the variables we want to retain:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="score.html#cb59-1" aria-hidden="true" tabindex="-1"></a>scored <span class="ot">&lt;-</span>(<span class="fu">select</span> (scrub_df, iBIPOC_pr, cmBlack, Belonging, ResponseBL, StigmaBL, ClimateBL))</span>
-<span id="cb59-2"><a href="score.html#cb59-2" aria-hidden="true" tabindex="-1"></a>ScoredCaseMiss <span class="ot">&lt;-</span> <span class="fu">nrow</span>(scored) <span class="co">#I produced this object for the sole purpose of feeding the number of cases into the inline text, below</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="score.html#cb57-1" aria-hidden="true" tabindex="-1"></a>scored <span class="ot">&lt;-</span>(<span class="fu">select</span> (scrub_df, iBIPOC_pr, cmBlack, Belonging, ResponseBL, StigmaBL, ClimateBL))</span>
+<span id="cb57-2"><a href="score.html#cb57-2" aria-hidden="true" tabindex="-1"></a>ScoredCaseMiss <span class="ot">&lt;-</span> <span class="fu">nrow</span>(scored) <span class="co">#I produced this object for the sole purpose of feeding the number of cases into the inline text, below</span></span></code></pre></div>
 <p>Before we start our formal analysis of missingness at the scale level, let’s continue to scrub by eliminating cases that clearly won’t remain. In the script below we create a variable that counts the number of missing variables and then creates a proportion by dividing it by the number of total variables.</p>
 <p>Using the <em>describe()</em> function from the <em>psych</em> package, we can investigate this variable.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="score.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb60-2"><a href="score.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a variable (n_miss) that counts the number missing</span></span>
-<span id="cb60-3"><a href="score.html#cb60-3" aria-hidden="true" tabindex="-1"></a>scored<span class="sc">$</span>n_miss <span class="ot">&lt;-</span> scored<span class="sc">%&gt;%</span></span>
-<span id="cb60-4"><a href="score.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>ClimateBL) <span class="sc">%&gt;%</span> </span>
-<span id="cb60-5"><a href="score.html#cb60-5" aria-hidden="true" tabindex="-1"></a>is.na <span class="sc">%&gt;%</span> </span>
-<span id="cb60-6"><a href="score.html#cb60-6" aria-hidden="true" tabindex="-1"></a>rowSums</span>
-<span id="cb60-7"><a href="score.html#cb60-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-8"><a href="score.html#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a proportion missing by dividing n_miss by the total number of variables (6)</span></span>
-<span id="cb60-9"><a href="score.html#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Pipe to sort in order of descending frequency to get a sense of the missingness</span></span>
-<span id="cb60-10"><a href="score.html#cb60-10" aria-hidden="true" tabindex="-1"></a>scored<span class="ot">&lt;-</span> scored<span class="sc">%&gt;%</span></span>
-<span id="cb60-11"><a href="score.html#cb60-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">prop_miss =</span> (n_miss<span class="sc">/</span><span class="dv">6</span>)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb60-12"><a href="score.html#cb60-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_miss))</span>
-<span id="cb60-13"><a href="score.html#cb60-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-14"><a href="score.html#cb60-14" aria-hidden="true" tabindex="-1"></a>ScoredPrMiss <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describe</span>(scored<span class="sc">$</span>prop_miss)</span>
-<span id="cb60-15"><a href="score.html#cb60-15" aria-hidden="true" tabindex="-1"></a>ScoredPrMiss</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="score.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb58-2"><a href="score.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a variable (n_miss) that counts the number missing</span></span>
+<span id="cb58-3"><a href="score.html#cb58-3" aria-hidden="true" tabindex="-1"></a>scored<span class="sc">$</span>n_miss <span class="ot">&lt;-</span> scored<span class="sc">%&gt;%</span></span>
+<span id="cb58-4"><a href="score.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>ClimateBL) <span class="sc">%&gt;%</span> </span>
+<span id="cb58-5"><a href="score.html#cb58-5" aria-hidden="true" tabindex="-1"></a>is.na <span class="sc">%&gt;%</span> </span>
+<span id="cb58-6"><a href="score.html#cb58-6" aria-hidden="true" tabindex="-1"></a>rowSums</span>
+<span id="cb58-7"><a href="score.html#cb58-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-8"><a href="score.html#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a proportion missing by dividing n_miss by the total number of variables (6)</span></span>
+<span id="cb58-9"><a href="score.html#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Pipe to sort in order of descending frequency to get a sense of the missingness</span></span>
+<span id="cb58-10"><a href="score.html#cb58-10" aria-hidden="true" tabindex="-1"></a>scored<span class="ot">&lt;-</span> scored<span class="sc">%&gt;%</span></span>
+<span id="cb58-11"><a href="score.html#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">prop_miss =</span> (n_miss<span class="sc">/</span><span class="dv">6</span>)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb58-12"><a href="score.html#cb58-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_miss))</span>
+<span id="cb58-13"><a href="score.html#cb58-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-14"><a href="score.html#cb58-14" aria-hidden="true" tabindex="-1"></a>ScoredPrMiss <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describe</span>(scored<span class="sc">$</span>prop_miss)</span>
+<span id="cb58-15"><a href="score.html#cb58-15" aria-hidden="true" tabindex="-1"></a>ScoredPrMiss</span></code></pre></div>
 <pre><code>##    vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
 ## X1    1 50    4 12.4      0    0.42   0   0 66.67 66.67 3.39    11.98 1.75</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="score.html#cb62-1" aria-hidden="true" tabindex="-1"></a>ScrdMissMin <span class="ot">&lt;-</span> <span class="fu">digits</span>(ScoredPrMiss<span class="sc">$</span>min, <span class="dv">0</span>)<span class="co">#this object is displayed below and I use input from  it for the inline text used in the write-up</span></span>
-<span id="cb62-2"><a href="score.html#cb62-2" aria-hidden="true" tabindex="-1"></a>ScrdMissMax <span class="ot">&lt;-</span> <span class="fu">digits</span>(ScoredPrMiss<span class="sc">$</span>max, <span class="dv">0</span>)</span>
-<span id="cb62-3"><a href="score.html#cb62-3" aria-hidden="true" tabindex="-1"></a>ScrdMissMin</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="score.html#cb60-1" aria-hidden="true" tabindex="-1"></a>ScrdMissMin <span class="ot">&lt;-</span> <span class="fu">digits</span>(ScoredPrMiss<span class="sc">$</span>min, <span class="dv">0</span>)<span class="co">#this object is displayed below and I use input from  it for the inline text used in the write-up</span></span>
+<span id="cb60-2"><a href="score.html#cb60-2" aria-hidden="true" tabindex="-1"></a>ScrdMissMax <span class="ot">&lt;-</span> <span class="fu">digits</span>(ScoredPrMiss<span class="sc">$</span>max, <span class="dv">0</span>)</span>
+<span id="cb60-3"><a href="score.html#cb60-3" aria-hidden="true" tabindex="-1"></a>ScrdMissMin</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="score.html#cb64-1" aria-hidden="true" tabindex="-1"></a>ScrdMissMax</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="score.html#cb62-1" aria-hidden="true" tabindex="-1"></a>ScrdMissMax</span></code></pre></div>
 <pre><code>## [1] 67</code></pre>
 <p>CUMULATIVE CAPTURE FOR WRITING IT UP: Across the 50 cases for which the scoring protocol was applied, missingness ranged from 0% to 67%.</p>
 <p>We need to decide what is our retention threshhold. Twenty percent seems to be a general rule of thumb. Let’s delete all cases with missingness at 20% or greater.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="score.html#cb66-1" aria-hidden="true" tabindex="-1"></a>scored <span class="ot">&lt;-</span> <span class="fu">filter</span>(scored, prop_miss <span class="sc">&lt;=</span> <span class="dv">20</span>)  <span class="co">#update df to have only those with at least 20% of complete data (this is an arbitrary decision)</span></span>
-<span id="cb66-2"><a href="score.html#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-3"><a href="score.html#cb66-3" aria-hidden="true" tabindex="-1"></a>scored <span class="ot">&lt;-</span>(<span class="fu">select</span> (scored, iBIPOC_pr<span class="sc">:</span>ClimateBL)) <span class="co">#the variable selection just lops off the proportion missing</span></span>
-<span id="cb66-4"><a href="score.html#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-5"><a href="score.html#cb66-5" aria-hidden="true" tabindex="-1"></a>ScoredCasesIncluded <span class="ot">&lt;-</span> <span class="fu">nrow</span>(scored)</span>
-<span id="cb66-6"><a href="score.html#cb66-6" aria-hidden="true" tabindex="-1"></a>ScoredCasesIncluded <span class="co">#this object is displayed below and I use input from  it for the inline text used in the write-up</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="score.html#cb64-1" aria-hidden="true" tabindex="-1"></a>scored <span class="ot">&lt;-</span> <span class="fu">filter</span>(scored, prop_miss <span class="sc">&lt;=</span> <span class="dv">20</span>)  <span class="co">#update df to have only those with at least 20% of complete data (this is an arbitrary decision)</span></span>
+<span id="cb64-2"><a href="score.html#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="score.html#cb64-3" aria-hidden="true" tabindex="-1"></a>scored <span class="ot">&lt;-</span>(<span class="fu">select</span> (scored, iBIPOC_pr<span class="sc">:</span>ClimateBL)) <span class="co">#the variable selection just lops off the proportion missing</span></span>
+<span id="cb64-4"><a href="score.html#cb64-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-5"><a href="score.html#cb64-5" aria-hidden="true" tabindex="-1"></a>ScoredCasesIncluded <span class="ot">&lt;-</span> <span class="fu">nrow</span>(scored)</span>
+<span id="cb64-6"><a href="score.html#cb64-6" aria-hidden="true" tabindex="-1"></a>ScoredCasesIncluded <span class="co">#this object is displayed below and I use input from  it for the inline text used in the write-up</span></span></code></pre></div>
 <pre><code>## [1] 46</code></pre>
 <p>CUMULATIVE CAPTURE FOR WRITING IT UP: Across the 50 cases for which the scoring protocol was applied, missingness ranged from 0% to 67%. After eliminating cases with greater than 20% missing, the dataset analyzed included 46 cases.</p>
 <p>With a decision about the number of cases we are going to include, we can continue to analyze missingness.</p>
@@ -1066,21 +1032,21 @@ analyses.</p></li>
 <li>individual cells across the dataset, and</li>
 <li>rows/cases with nonmissing data</li>
 </ul>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="score.html#cb68-1" aria-hidden="true" tabindex="-1"></a>PrScoredCellsMissing <span class="ot">&lt;-</span><span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">is.na</span>(scored))) <span class="co">#percent missing across df</span></span>
-<span id="cb68-2"><a href="score.html#cb68-2" aria-hidden="true" tabindex="-1"></a>PrScoredRowsMissing <span class="ot">&lt;-</span> <span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">complete.cases</span>(scored))) <span class="co">#percent of rows with nonmissing data</span></span>
-<span id="cb68-3"><a href="score.html#cb68-3" aria-hidden="true" tabindex="-1"></a>PrScoredCellsMissing</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="score.html#cb66-1" aria-hidden="true" tabindex="-1"></a>PrScoredCellsMissing <span class="ot">&lt;-</span><span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">is.na</span>(scored))) <span class="co">#percent missing across df</span></span>
+<span id="cb66-2"><a href="score.html#cb66-2" aria-hidden="true" tabindex="-1"></a>PrScoredRowsMissing <span class="ot">&lt;-</span> <span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">complete.cases</span>(scored))) <span class="co">#percent of rows with nonmissing data</span></span>
+<span id="cb66-3"><a href="score.html#cb66-3" aria-hidden="true" tabindex="-1"></a>PrScoredCellsMissing</span></code></pre></div>
 <pre><code>## [1] 0.72%</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="score.html#cb70-1" aria-hidden="true" tabindex="-1"></a>PrScoredRowsMissing</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="score.html#cb68-1" aria-hidden="true" tabindex="-1"></a>PrScoredRowsMissing</span></code></pre></div>
 <pre><code>## [1] 95.65%</code></pre>
 <p>CUMULATIVE CAPTURE FOR WRITING IT UP: Across the 50 cases for which the scoring protocol was applied, missingness ranged from 0% to 67%. After eliminating cases with greater than 20% missing, the dataset analyzed included 46 cases. In this dataset we had 0.72% missing across the df; 95.65% of the rows had nonmissing data.</p>
 <p>Let’s look again at missing patterns and mechanisms.</p>
 <div id="scale-level-patterns-of-missing-data" class="section level3" number="3.8.1">
 <h3><span class="header-section-number">3.8.1</span> Scale Level: Patterns of Missing Data</h3>
 <p>Returning to the <em>mice</em> package, we can use the <em>md.pattern()</em> function to examine a matrix with the number of columns + 1 in which each row corresponds to a missing data pattern (1 = observed, 0 = missing). The rows and columns are sorted in increasing amounts of missing information. The last column and row contain row and column counts, respectively.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="score.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the package: mice</span></span>
-<span id="cb72-2"><a href="score.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
-<span id="cb72-3"><a href="score.html#cb72-3" aria-hidden="true" tabindex="-1"></a>mice_ScaleLvl <span class="ot">&lt;-</span> <span class="fu">md.pattern</span>(scored, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">rotate.names=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/scale%20level%20missingness%20w%20mice-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="score.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the package: mice</span></span>
+<span id="cb70-2"><a href="score.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb70-3"><a href="score.html#cb70-3" aria-hidden="true" tabindex="-1"></a>mice_ScaleLvl <span class="ot">&lt;-</span> <span class="fu">md.pattern</span>(scored, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">rotate.names=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="ReC_MultMod_files/figure-html/scale%20level%20missingness%20w%20mice-1.png" width="672" /></p>
 <p>At the scale-level, this is much easier to interpret. As I am lecturing the results today (the numbers will change) there are <em>2</em> rows of data because there are only <em>2</em> patterns of missingness. The most common pattern is non-missing data (<em>n</em> = 26).</p>
 </div>
 <div id="is-it-mcar" class="section level3" number="3.8.2">
@@ -1328,54 +1294,6 @@ analyses.</p></li>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="score.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.1.3 (2022-03-10)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
-## 
-## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] mice_3.13.0       sjstats_0.18.1    formattable_0.2.1 qualtRics_3.1.4  
-##  [5] forcats_0.5.1     stringr_1.4.0     dplyr_1.0.7       purrr_0.3.4      
-##  [9] readr_2.0.1       tidyr_1.1.3       tibble_3.1.4      ggplot2_3.3.5    
-## [13] tidyverse_1.3.1   psych_2.1.6      
-## 
-## loaded via a namespace (and not attached):
-##  [1] nlme_3.1-155       fs_1.5.0           lubridate_1.7.10   bit64_4.0.5       
-##  [5] insight_0.14.4     httr_1.4.2         tools_4.1.3        backports_1.2.1   
-##  [9] bslib_0.3.0        utf8_1.2.2         R6_2.5.1           sjlabelled_1.1.8  
-## [13] DBI_1.1.1          colorspace_2.0-2   withr_2.4.2        tidyselect_1.1.1  
-## [17] mnormt_2.0.2       emmeans_1.6.3      bit_4.0.4          curl_4.3.2        
-## [21] compiler_4.1.3     performance_0.7.3  cli_3.0.1          rvest_1.0.1       
-## [25] xml2_1.3.2         sandwich_3.0-1     bookdown_0.24      bayestestR_0.11.0 
-## [29] sass_0.4.0         scales_1.1.1       mvtnorm_1.1-2      systemfonts_1.0.2 
-## [33] digest_0.6.27      minqa_1.2.4        svglite_2.0.0      rmarkdown_2.10    
-## [37] pkgconfig_2.0.3    htmltools_0.5.2    lme4_1.1-27.1      highr_0.9         
-## [41] dbplyr_2.1.1       fastmap_1.1.0      htmlwidgets_1.5.4  rlang_0.4.11      
-## [45] readxl_1.3.1       rstudioapi_0.13    jquerylib_0.1.4    generics_0.1.0    
-## [49] zoo_1.8-9          jsonlite_1.7.2     vroom_1.5.4        magrittr_2.0.1    
-## [53] Matrix_1.4-0       parameters_0.14.0  Rcpp_1.0.7         munsell_0.5.0     
-## [57] fansi_0.5.0        lifecycle_1.0.0    stringi_1.7.4      multcomp_1.4-17   
-## [61] yaml_2.2.1         MASS_7.3-55        grid_4.1.3         parallel_4.1.3    
-## [65] sjmisc_2.8.7       crayon_1.4.1       lattice_0.20-45    splines_4.1.3     
-## [69] haven_2.4.3        hms_1.1.0          tmvnsim_1.0-2      knitr_1.34        
-## [73] pillar_1.6.2       boot_1.3-28        estimability_1.3   effectsize_0.4.5  
-## [77] codetools_0.2-18   reprex_2.0.1       glue_1.4.2         evaluate_0.14     
-## [81] modelr_0.1.8       nloptr_1.2.2.2     vctrs_0.3.8        tzdb_0.1.2        
-## [85] cellranger_1.1.0   gtable_0.3.0       assertthat_0.2.1   datawizard_0.2.0.1
-## [89] xfun_0.25          xtable_1.8-4       broom_0.7.9        coda_0.19-4       
-## [93] survival_3.2-13    TH.data_1.1-0      ellipsis_0.3.2</code></pre>
 
 </div>
 </div>
@@ -1425,7 +1343,7 @@ Szymanski, D. M., &amp; Bissonette, D. (2020). Perceptions of the <span>LGBTQ</s
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": true,
+"github": false,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
@@ -1449,17 +1367,16 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ontheline/otl-bookdown/blob/master/03-Scoring.Rmd",
+"link": null,
 "text": null
 },
-"download": ["ReC_MultMod.pdf"],
+"download": ["ReC_MultMod.pdf", "ReC_MultMod.epub"],
 "search": {
 "engine": "fuse",
 "options": null
 },
 "toc": {
-"collapse": "section",
-"scroll_highlight": true
+"collapse": "subsection"
 }
 });
 });
