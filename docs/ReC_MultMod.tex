@@ -124,7 +124,7 @@
 
 \title{ReCentering Psych Stats: Multivariate Modeling}
 \author{Lynette H. Bikos, PhD, ABPP}
-\date{16 Mar 2022}
+\date{21 Apr 2022}
 
 \begin{document}
 \maketitle
@@ -139,18 +139,18 @@
 \addcontentsline{toc}{chapter}{BOOK COVER}
 
 \includegraphics{images/ReC_multivariate_bkcvr.png}
-This open education resource is available in three formats:
+This open education resource is available in the following formats, all available in the \href{https://github.com/lhbikos/ReC_MultivModel/tree/main/docs}{docs} folder at the GitHub repository:
 
 \begin{itemize}
 \tightlist
 \item
-  Formatted as an \href{https://lhbikos.github.io/ReC_MultivModel/}{html book} via GitHub Pages
+  Formatted as an \href{https://lhbikos.github.io/ReC_MultivModel/}{html book} via GitHub Pages available
 \item
-  As a \href{https://github.com/lhbikos/ReC_MultivModel/blob/main/docs/ReC_MultMod.pdf}{PDF} available in the \href{https://github.com/lhbikos/ReC_MultivModel/tree/main/docs}{docs} folder at the GitHub repository
+  As a \href{https://github.com/lhbikos/ReC_MultivModel/blob/main/docs/ReC_MultMod.pdf}{PDF}
 \item
-  As an \href{https://github.com/lhbikos/ReC_MultivModel/blob/main/docs/ReC_MultMod.epub}{ebook} available in the \href{https://github.com/lhbikos/ReC_MultivModel/tree/main/docs}{docs} folder at the GitHub repository
+  As an \href{https://github.com/lhbikos/ReC_MultivModel/blob/main/docs/ReC_MultMod.epub}{ebook}
 \item
-  As a \href{https://github.com/lhbikos/ReC_MultivModel/blob/main/docs/ReC_MultMod.docx}{Word} document available in the \href{https://github.com/lhbikos/ReC_MultivModel/tree/main/docs}{docs} folder at the GitHub repository
+  As a \href{https://github.com/lhbikos/ReC_MultivModel/blob/main/docs/ReC_MultMod.docx}{Word}
 \end{itemize}
 
 All materials used in creating this OER are available at its \href{https://github.com/lhbikos/ReC_MultivModel}{GitHub repo}.
@@ -159,7 +159,7 @@ All materials used in creating this OER are available at its \href{https://githu
 \chapter*{PREFACE}\label{preface}}
 \addcontentsline{toc}{chapter}{PREFACE}
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 16 Mar 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 21 Apr 2022}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -587,7 +587,7 @@ The suggestions for practice will start with this chapter and continue in the ne
 \item
   Repeating the steps in the chapter with the most recent data from the Rate-A-Recent-Course survey; differences will be in the number of people who have completed the survey since the chapter was written.
 \item
-  Use the dataset that is the source of the chapter, but score a different set of items that you choose. Hey :)
+  Use the dataset that is the source of the chapter, but score a different set of items that you choose.
 \item
   Begin with raw data to which you have access.
 \end{itemize}
@@ -614,8 +614,8 @@ The script below will (a) check to see if the following packages are installed o
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#will install the package if not already installed}
-\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(qualtRics))\{}\FunctionTok{install.packages}\NormalTok{(}\StringTok{"qualtRics"}\NormalTok{)\}}
-\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(tidyverse))\{}\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)\}}
+\CommentTok{\#if(!require(qualtRics))\{install.packages("qualtRics")\}}
+\CommentTok{\#if(!require(tidyverse))\{install.packages("tidyverse")\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -645,7 +645,7 @@ Here is a narration of the figure:
   \item
     exported from programs such as Qualtrics to another program (e.g., .xlxs, .csv),
   \item
-    imported in other forms (e.g., .csv,.sps, .sav).
+    imported in other forms (e.g., .csv, .sps, .sav).
   \end{itemize}
 \item
   Scrubbing data by
@@ -657,7 +657,7 @@ Here is a narration of the figure:
   \item
     specifying variable characteristics such as factoring,
   \item
-    ensuring that included particpiants consented to participation,
+    ensuring that included participants consented to participation,
   \item
     determining and executing the inclusion and exclusion criteria.
   \end{itemize}
@@ -667,7 +667,7 @@ Here is a narration of the figure:
   \begin{itemize}
   \tightlist
   \item
-    outlier anlaysis
+    outlier analysis
   \item
     assessing for univariate and multivariate analysis
   \item
@@ -730,7 +730,7 @@ You do need to change the API key/token if you want to download data from a diff
 \FunctionTok{library}\NormalTok{(qualtRics)}
 \CommentTok{\#qualtrics\_api\_credentials(api\_key = "mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg",}
               \CommentTok{\#base\_url = "spupsych.az1.qualtrics.com", overwrite = TRUE, install = TRUE)}
-\FunctionTok{readRenviron}\NormalTok{(}\StringTok{"\textasciitilde{}/.Renviron"}\NormalTok{)}
+\CommentTok{\#readRenviron("\textasciitilde{}/.Renviron")}
 \end{Highlighting}
 \end{Shaded}
 
@@ -738,7 +738,7 @@ You do need to change the API key/token if you want to download data from a diff
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{surveys }\OtherTok{\textless{}{-}} \FunctionTok{all\_surveys}\NormalTok{() }
+\NormalTok{surveys }\OtherTok{\textless{}{-}}\NormalTok{ qualtRics}\SpecialCharTok{::}\FunctionTok{all\_surveys}\NormalTok{() }
 \CommentTok{\#View this as an object (found in the right: Environment).  }
 \CommentTok{\#Get survey id \# for the next command}
 \CommentTok{\#If this is showing you the WRONG list of surveys, you are pulling from the wrong Qualtrics account (i.e., maybe this one instead of your own). Go back and change your API token (it saves your old one). Changing the API likely requires a restart of R.}
@@ -765,7 +765,7 @@ To retrieve the survey, use the \emph{fetch\_survey()} function.
 
 \begin{verbatim}
 ## Warning in file.remove(survey.fpath): cannot remove file 'C:/Users/lhbikos/
-## AppData/Local/Temp/RtmpYHJhEI/Recent Course Eval.csv', reason 'Permission
+## AppData/Local/Temp/Rtmpon33FQ/Recent Course Eval.csv', reason 'Permission
 ## denied'
 \end{verbatim}
 
@@ -786,7 +786,7 @@ Although the dataset should provide the opportunity to test a number of statisti
 
 Our design has notable limitations You will likely notice that we ask about demographic characteristics of the instructional staff and classmates in the course rated, but we do not ask about the demographic characteristics of the respondent. In making this decision, we likely lose important information; Iacovino and James \citeyearpar{iacovino_retaining_2016} have noted that White students perceive campus more favorably than Black student counterparts. We made this decision to protect the identity of the respondent. As you will see when we download the data, if a faculty member asked an entire class to take the survey, the datestamp and a handful of demographic identifiers could very likely identify a student. In certain circumstances, this might be risky in that private information (i.e., gender nonconformity, disclosure of a disability) or course evaluation data could be related back to the student.
 
-Further, the items that ask respondents to \emph{guess} the identities of the instructional staff and classmates are limited, and contrary to best practices in survey construction that recommend providing the option of a ``write-in'' a response. After consulting with a diverse group of stakeholders and subject matter experts (and revising the response options numerous times) I have attempted to center anti-Black racism in the U.S. \citep{mosley_critical_2021, mosley_radical_2020, singh_building_2020}. In fact, the display logic does not present the race items when the course is offered outside the U.S. There are only five options for race: \emph{biracial/multiracial}, \emph{Black}, \emph{non-Black person(s) of color}, \emph{White}, and \emph{I did not notice} (intended to capture a color-blind response). One unintended negative consequence of this design is that the response options could contribute to \emph{colorism} \citep{adames_fallacy_2021, capielo_rosario_acculturation_2019}. Another possibility is that the limited options may erase, or make invisible, other identities. At the time that I am writing the first draft of this chapter, the murder of six Asian American women in Atlanta has just occurred. The Center for the Study of Hate and Extremeism has documented that while overall hate drimes dropped by 7\% in 2020, anti-Asian hate crimes reported to the police in America's largest cities increasedby 149\% \citep{noauthor_fact_nodate}. These incidents have occurred not only in cities, but in our neighborhoods and on our campusus \citep{kim_guest_2021, kim_yes_2021, noauthor_stop_nodate}. While this survey is intended to assess campus climate as a function of race, it unfortunately does not distinguish between many identities that experience marginalization.
+Further, the items that ask respondents to \emph{guess} the identities of the instructional staff and classmates are limited, and contrary to best practices in survey construction that recommend providing the option of a ``write-in'' a response. After consulting with a diverse group of stakeholders and subject matter experts (and revising the response options numerous times) I have attempted to center anti-Black racism in the U.S. \citep{mosley_critical_2021, mosley_radical_2020, singh_building_2020}. In fact, the display logic does not present the race items when the course is offered outside the U.S. There are only five options for race: \emph{biracial/multiracial}, \emph{Black}, \emph{non-Black person(s) of color}, \emph{White}, and \emph{I did not notice} (intended to capture a color-blind response). One unintended negative consequence of this design is that the response options could contribute to \emph{colorism} \citep{adames_fallacy_2021, capielo_rosario_acculturation_2019}. Another possibility is that the limited options may erase, or make invisible, other identities. At the time that I am writing the first draft of this chapter, the murder of six Asian American women in Atlanta has just occurred. The Center for the Study of Hate and Extremeism has documented that while overall hate crimes dropped by 7\% in 2020, anti-Asian hate crimes reported to the police in America's largest cities increasedby 149\% \citep{noauthor_fact_nodate}. These incidents have occurred not only in cities, but in our neighborhoods and on our campusus \citep{kim_guest_2021, kim_yes_2021, noauthor_stop_nodate}. While this survey is intended to assess campus climate as a function of race, it unfortunately does not distinguish between many identities that experience marginalization.
 
 In parallel, the items asking respondents to identity characteristics of the instructional staff along dimensions of gender, international status, and disability are ``large buckets'' and do not include ``write-in'' options. Similarly, there was no intent to cause harm by erasing or making invisible individuals whose identities are better defined by different descriptors. Further, no write-in items were allowed. This was also intentional to prevent potential harm caused by people who could leave inappropriate or harmful comments.
 
@@ -924,10 +924,10 @@ APA Style, and in particular the Journal Article Reporting Standards (JARS) for 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 75
+## [1] 92
 \end{verbatim}
 
-CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 75 individuals opened the survey link.
+CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 92 individuals opened the survey link.
 
 Next let's filter in only those who consented to take the survey. Because Qualtrics discontinued the survey for everyone who did not consent, we do not have to worry that their data is unintentionally included, but it can be useful to mention the number of non-consenters in the summary of missing data.
 
@@ -941,10 +941,10 @@ Next let's filter in only those who consented to take the survey. Because Qualtr
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 60
+## [1] 74
 \end{verbatim}
 
-CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 75 individuals opened the survey link. Of those, 60, granted consent and proceeded into the survey items.
+CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 92 individuals opened the survey link. Of those, 74, granted consent and proceeded into the survey items.
 
 In this particular study, the categories used to collect race were U.S.-centric. Thus, they were only shown if the respondent indicated that the course being rated was taught by an institution in the U.S. Therefore, an an additional inclusion criteria for this specific research model should be that the course was taught in the U.S.
 
@@ -957,10 +957,10 @@ In this particular study, the categories used to collect race were U.S.-centric.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 52
+## [1] 65
 \end{verbatim}
 
-CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 75 individuals opened the survey link. Of those, 60, granted consent and proceeded into the survey items. A further inclusion criteria was that the course was taught in the U.S; 52 met this criteria.
+CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 92 individuals opened the survey link. Of those, 74, granted consent and proceeded into the survey items. A further inclusion criteria was that the course was taught in the U.S; 65 met this criteria.
 
 \hypertarget{renaming-variables}{%
 \subsection{Renaming Variables}\label{renaming-variables}}
@@ -1029,7 +1029,7 @@ It can be helpful to save outfile of progress as we go along. Here I save this r
 \hypertarget{methodprocedure}{%
 \subsection{Method/Procedure}\label{methodprocedure}}
 
-Data screening suggested that 75 individuals opened the survey link. Of those, 60 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 52 met this criteria.
+Data screening suggested that 92 individuals opened the survey link. Of those, 74 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 65 met this criteria.
 
 \hypertarget{practice-problems}{%
 \section{Practice Problems}\label{practice-problems}}
@@ -1449,7 +1449,7 @@ AIA is an older method of handling missing data that, as its name suggests, uses
     \item
       pairwise deletion (the whole row/case/person is skipped) can be used where there will be multiple analyses using statistics (e.g., correlations, t-tests, ANOVA) were missingness is not permitted
     \item
-      FIML can be specified in path analysisand CFA/SEM (where item-level data is required), and
+      FIML can be specified in path analysis and CFA/SEM (where item-level data is required), and
     \item
       some statistics, such as principal components analysis and principal axis factoring (item-level analyses) permit missing data,
     \end{itemize}
@@ -1521,7 +1521,7 @@ I use \emph{different} names for the object/df in my R environment than I use fo
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':    52 obs. of  25 variables:
+## 'data.frame':    65 obs. of  25 variables:
 ##  $ ID       : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ iRace1   : int  3 3 3 3 1 3 3 3 1 0 ...
 ##  $ iRace2   : int  1 NA 1 1 NA NA 3 NA NA 0 ...
@@ -1602,7 +1602,7 @@ Our next step is to conduct a preliminary missing data analysis at the item leve
 \end{Shaded}
 
 \begin{verbatim}
-##  int [1:52] 3 3 3 3 1 3 3 3 1 0 ...
+##  int [1:65] 3 3 3 3 1 3 3 3 1 0 ...
 \end{verbatim}
 
 Looking at the structure of our data, the iRace(1 thru 10) variables are in ``int'' or integer format. This means that they are represented as whole numbers. We need them to be represented as factors. R handles factors represented as words well. Therefore, let's use our codebook to reformat this variable as a an ordered factor, with words instead of numbers.
@@ -1656,7 +1656,7 @@ Let's check the structure to see if they are factors.
 \end{Shaded}
 
 \begin{verbatim}
-## Rows: 52
+## Rows: 65
 ## Columns: 35
 ## $ ID        <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~
 ## $ iRace1    <int> 3, 3, 3, 3, 1, 3, 3, 3, 1, 0, 2, 1, 1, 1, 3, 3, 3, 1, 3, 3, ~
@@ -1780,8 +1780,8 @@ We can grab the descriptives for the \emph{prop\_miss} variable to begin to unde
 \end{Shaded}
 
 \begin{verbatim}
-##    vars  n mean    sd median trimmed mad min   max range skew kurtosis se
-## X1    1 52 7.52 21.66      0     1.3   0   0 90.91 90.91 3.04     8.27  3
+##    vars  n mean    sd median trimmed mad min max range skew kurtosis   se
+## X1    1 65 8.25 23.22      0    1.72   0   0 100   100 2.92     7.43 2.88
 \end{verbatim}
 
 \begin{Shaded}
@@ -1791,7 +1791,7 @@ We can grab the descriptives for the \emph{prop\_miss} variable to begin to unde
 \end{Highlighting}
 \end{Shaded}
 
-CUMULATIVE CAPTURE FOR WRITING IT UP: Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0\% to 91\%.
+CUMULATIVE CAPTURE FOR WRITING IT UP: Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0\% to 100\%.
 
 At the time that I am lecturing this, the the amount of missing is not so egregious that I want to eliminate any cases. That is, I'm willing to wait until after I score the items to make further decisions, then.
 
@@ -1832,7 +1832,7 @@ Missing data analysis commonly looks at proportions by:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.18%
+## [1] 4.11%
 \end{verbatim}
 
 \begin{Shaded}
@@ -1842,10 +1842,10 @@ Missing data analysis commonly looks at proportions by:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 86.00%
+## [1] 87.10%
 \end{verbatim}
 
-CUMULATIVE CAPTURE FOR WRITING IT UP: Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0\% to 91\%. Across the dataset, 4.18\% of cells had missing data and 86.00\% of cases had nonmissing data.
+CUMULATIVE CAPTURE FOR WRITING IT UP: Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0\% to 100\%. Across the dataset, 4.11\% of cells had missing data and 87.10\% of cases had nonmissing data.
 
 \hypertarget{analyzing-missing-data-patterns}{%
 \subsection{Analyzing Missing Data Patterns}\label{analyzing-missing-data-patterns}}
@@ -1942,19 +1942,9 @@ In our case, the scale assessing belonging \citep{bollen_perceived_1990, hurtado
 \end{Shaded}
 
 \begin{verbatim}
-## Registered S3 methods overwritten by 'parameters':
-##   method                           from      
-##   as.double.parameters_kurtosis    datawizard
-##   as.double.parameters_skewness    datawizard
-##   as.double.parameters_smoothness  datawizard
-##   as.numeric.parameters_kurtosis   datawizard
-##   as.numeric.parameters_skewness   datawizard
-##   as.numeric.parameters_smoothness datawizard
-##   print.parameters_distribution    datawizard
-##   print.parameters_kurtosis        datawizard
-##   print.parameters_skewness        datawizard
-##   summary.parameters_kurtosis      datawizard
-##   summary.parameters_skewness      datawizard
+## Registered S3 method overwritten by 'parameters':
+##   method                         from      
+##   format.parameters_distribution datawizard
 \end{verbatim}
 
 \begin{verbatim}
@@ -2049,8 +2039,8 @@ Using the \emph{describe()} function from the \emph{psych} package, we can inves
 \end{Shaded}
 
 \begin{verbatim}
-##    vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
-## X1    1 50    4 12.4      0    0.42   0   0 66.67 66.67 3.39    11.98 1.75
+##    vars  n mean    sd median trimmed mad min   max range skew kurtosis   se
+## X1    1 62 4.03 12.69      0    0.33   0   0 66.67 66.67  3.3    10.76 1.61
 \end{verbatim}
 
 \begin{Shaded}
@@ -2075,7 +2065,7 @@ Using the \emph{describe()} function from the \emph{psych} package, we can inves
 ## [1] 67
 \end{verbatim}
 
-CUMULATIVE CAPTURE FOR WRITING IT UP: Across the 50 cases for which the scoring protocol was applied, missingness ranged from 0\% to 67\%.
+CUMULATIVE CAPTURE FOR WRITING IT UP: Across the 62 cases for which the scoring protocol was applied, missingness ranged from 0\% to 67\%.
 
 We need to decide what is our retention threshhold. Twenty percent seems to be a general rule of thumb. Let's delete all cases with missingness at 20\% or greater.
 
@@ -2091,10 +2081,10 @@ We need to decide what is our retention threshhold. Twenty percent seems to be a
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 46
+## [1] 57
 \end{verbatim}
 
-CUMULATIVE CAPTURE FOR WRITING IT UP: Across the 50 cases for which the scoring protocol was applied, missingness ranged from 0\% to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 46 cases.
+CUMULATIVE CAPTURE FOR WRITING IT UP: Across the 62 cases for which the scoring protocol was applied, missingness ranged from 0\% to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 57 cases.
 
 With a decision about the number of cases we are going to include, we can continue to analyze missingness.
 
@@ -2122,7 +2112,7 @@ Again, we look at missingness as the proportion of
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.72%
+## [1] 0.58%
 \end{verbatim}
 
 \begin{Shaded}
@@ -2132,10 +2122,10 @@ Again, we look at missingness as the proportion of
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 95.65%
+## [1] 96.49%
 \end{verbatim}
 
-CUMULATIVE CAPTURE FOR WRITING IT UP: Across the 50 cases for which the scoring protocol was applied, missingness ranged from 0\% to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 46 cases. In this dataset we had 0.72\% missing across the df; 95.65\% of the rows had nonmissing data.
+CUMULATIVE CAPTURE FOR WRITING IT UP: Across the 62 cases for which the scoring protocol was applied, missingness ranged from 0\% to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 57 cases. In this dataset we had 0.58\% missing across the df; 96.49\% of the rows had nonmissing data.
 
 Let's look again at missing patterns and mechanisms.
 
@@ -2152,7 +2142,7 @@ Returning to the \emph{mice} package, we can use the \emph{md.pattern()} functio
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReC_MultMod_files/figure-latex/scale level missingness w mice-1.pdf}
+\includegraphics{ReC_MultMod_files/figure-latex/unnamed-chunk-43-1.pdf}
 
 At the scale-level, this is much easier to interpret. As I am lecturing the results today (the numbers will change) there are \emph{2} rows of data because there are only \emph{2} patterns of missingness. The most common pattern is non-missing data (\emph{n} = 26).
 
@@ -2246,9 +2236,9 @@ All analyses were completed in R Studio (v. 1.4.1106) with R (v. 4.0.4).
 
 Available item analysis (AIA; \citep{parent_handling_2013}) is a strategy for managing missing data that uses available data for analysis and excludes cases with missing data points only for analyses in which the data points would be directly involved. Parent (2013) suggested that AIA is equivalent to more complex methods (e.g., multiple imputation) across a number of variations of sample size, magnitude of associations among items, and degree of missingness. Thus, we utilized Parent's recommendations to guide our approach to managing missing data. Missing data analyses were conducted with tools in base R as well as the R packages, \emph{psych} (v. 1.0.12) and \emph{mice} (v. 3.13.0).
 
-Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0\% to 91\%. Across the dataset, 4.18\% of cells had missing data and 86.00\% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with less than 90\% missing to continue to the scoring stage. Guided by Parent's \citeyearpar{parent_handling_2013} AIA approach, scales with three items were scored if at least two items were non-missing; the scale with four items was scored if it at least three non-missing items; and the scale with six items was scored if it had at least five non-missing items.
+Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0\% to 100\%. Across the dataset, 4.11\% of cells had missing data and 87.10\% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with less than 90\% missing to continue to the scoring stage. Guided by Parent's \citeyearpar{parent_handling_2013} AIA approach, scales with three items were scored if at least two items were non-missing; the scale with four items was scored if it at least three non-missing items; and the scale with six items was scored if it had at least five non-missing items.
 
-Across the 50 cases for which the scoring protocol was applied, missingness ranged from 0\% to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 46 cases. In this dataset we had 0.72\% missing across the df; 95.65\% of the rows had nonmissing data.
+Across the 62 cases for which the scoring protocol was applied, missingness ranged from 0\% to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 57 cases. In this dataset we had 0.58\% missing across the df; 96.49\% of the rows had nonmissing data.
 
 \hypertarget{practice-problems-1}{%
 \section{Practice Problems}\label{practice-problems-1}}
@@ -2537,32 +2527,32 @@ From this, we create tiny dfs, one for each of the alpha coefficients we need to
 ## Reliability analysis   
 ## Call: psych::alpha(x = item_scores_df[c("Belong_1", "Belong_2", "Belong_3")])
 ## 
-##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-##       0.96      0.96    0.94      0.88  22 0.011  4.2 1.5     0.89
+##   raw_alpha std.alpha G6(smc) average_r S/N    ase mean  sd median_r
+##       0.96      0.96    0.94      0.89  24 0.0088    4 1.5     0.89
 ## 
 ##  lower alpha upper     95% confidence boundaries
 ## 0.94 0.96 0.98 
 ## 
 ##  Reliability if an item is dropped:
 ##          raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## Belong_1      0.94      0.94    0.89      0.89  16    0.017    NA  0.89
-## Belong_2      0.92      0.92    0.85      0.85  12    0.023    NA  0.85
-## Belong_3      0.95      0.95    0.90      0.90  18    0.015    NA  0.90
+## Belong_1      0.94      0.94    0.89      0.89  17    0.014    NA  0.89
+## Belong_2      0.93      0.93    0.88      0.88  14    0.017    NA  0.88
+## Belong_3      0.95      0.95    0.90      0.90  18    0.014    NA  0.90
 ## 
 ##  Item statistics 
 ##           n raw.r std.r r.cor r.drop mean  sd
-## Belong_1 48  0.96  0.96  0.93   0.90  4.2 1.5
-## Belong_2 49  0.97  0.97  0.95   0.93  4.3 1.5
-## Belong_3 48  0.95  0.95  0.91   0.89  4.0 1.6
+## Belong_1 60  0.96  0.96  0.93   0.91  4.1 1.5
+## Belong_2 61  0.97  0.97  0.95   0.93  4.1 1.6
+## Belong_3 60  0.96  0.96  0.93   0.91  3.8 1.6
 ## 
 ## Non missing response frequency for each item
 ##             1    2    3    4    5    6    7 miss
-## Belong_1 0.02 0.10 0.23 0.19 0.23 0.17 0.06 0.04
-## Belong_2 0.02 0.10 0.22 0.22 0.16 0.20 0.06 0.02
-## Belong_3 0.04 0.17 0.17 0.23 0.23 0.10 0.06 0.04
+## Belong_1 0.02 0.15 0.23 0.18 0.22 0.15 0.05 0.03
+## Belong_2 0.03 0.15 0.20 0.23 0.15 0.20 0.05 0.02
+## Belong_3 0.05 0.20 0.17 0.23 0.20 0.10 0.05 0.03
 \end{verbatim}
 
-CAPTURE FOR THE APA STYLE WRITE-UP(since these are generally placed in the description of each measure in the Method section, I am not doing a cumulative capture): Cronbach's alpha for the belonging scale was 0.957.
+CAPTURE FOR THE APA STYLE WRITE-UP(since these are generally placed in the description of each measure in the Method section, I am not doing a cumulative capture): Cronbach's alpha for the belonging scale was 0.960.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2578,40 +2568,40 @@ CAPTURE FOR THE APA STYLE WRITE-UP(since these are generally placed in the descr
 ##     "Blst_4", "Blst_5", "Blst_6")])
 ## 
 ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-##       0.87      0.88    0.88      0.55 7.2 0.029  2.5 1.1     0.52
+##       0.87      0.88    0.88      0.56 7.5 0.025  2.5 1.1     0.51
 ## 
 ##  lower alpha upper     95% confidence boundaries
-## 0.81 0.87 0.93 
+## 0.82 0.87 0.92 
 ## 
 ##  Reliability if an item is dropped:
 ##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## rBlst_1      0.88      0.89    0.88      0.61 7.8    0.027 0.017  0.59
-## Blst_2       0.86      0.86    0.86      0.56 6.4    0.033 0.025  0.52
-## Blst_3       0.86      0.88    0.87      0.59 7.1    0.031 0.021  0.55
-## Blst_4       0.83      0.84    0.83      0.51 5.3    0.038 0.019  0.49
-## Blst_5       0.82      0.83    0.82      0.50 5.0    0.040 0.018  0.48
-## Blst_6       0.83      0.84    0.82      0.51 5.2    0.039 0.018  0.48
+## rBlst_1      0.88      0.89    0.89      0.61 7.8    0.025 0.017  0.62
+## Blst_2       0.87      0.87    0.87      0.58 7.0    0.027 0.020  0.55
+## Blst_3       0.86      0.88    0.87      0.59 7.1    0.028 0.019  0.55
+## Blst_4       0.83      0.85    0.84      0.52 5.5    0.034 0.019  0.47
+## Blst_5       0.83      0.84    0.83      0.51 5.2    0.035 0.015  0.49
+## Blst_6       0.84      0.85    0.83      0.52 5.5    0.033 0.016  0.51
 ## 
 ##  Item statistics 
 ##          n raw.r std.r r.cor r.drop mean  sd
-## rBlst_1 45  0.68  0.66  0.53   0.51  3.4 1.6
-## Blst_2  48  0.78  0.76  0.70   0.64  2.8 1.6
-## Blst_3  48  0.69  0.70  0.61   0.56  2.1 1.3
-## Blst_4  47  0.85  0.86  0.84   0.78  2.3 1.2
-## Blst_5  48  0.89  0.89  0.88   0.82  2.1 1.3
-## Blst_6  48  0.85  0.87  0.87   0.79  2.3 1.3
+## rBlst_1 56  0.70  0.68  0.57   0.54  3.5 1.6
+## Blst_2  60  0.77  0.74  0.67   0.62  2.9 1.7
+## Blst_3  59  0.71  0.73  0.65   0.59  2.1 1.3
+## Blst_4  58  0.86  0.86  0.84   0.79  2.5 1.3
+## Blst_5  59  0.89  0.89  0.89   0.83  2.1 1.3
+## Blst_6  59  0.83  0.86  0.85   0.77  2.2 1.3
 ## 
 ## Non missing response frequency for each item
 ##            1    2    3    4    5    6    7 miss
-## rBlst_1 0.09 0.24 0.22 0.22 0.09 0.09 0.04 0.10
-## Blst_2  0.35 0.15 0.08 0.23 0.17 0.02 0.00 0.04
-## Blst_3  0.42 0.31 0.08 0.15 0.02 0.02 0.00 0.04
-## Blst_4  0.30 0.34 0.15 0.15 0.06 0.00 0.00 0.06
-## Blst_5  0.46 0.27 0.06 0.17 0.04 0.00 0.00 0.04
-## Blst_6  0.33 0.35 0.12 0.10 0.06 0.02 0.00 0.04
+## rBlst_1 0.09 0.23 0.21 0.23 0.09 0.11 0.04 0.10
+## Blst_2  0.35 0.15 0.08 0.18 0.17 0.07 0.00 0.03
+## Blst_3  0.42 0.34 0.07 0.12 0.03 0.02 0.00 0.05
+## Blst_4  0.26 0.34 0.16 0.17 0.05 0.00 0.02 0.06
+## Blst_5  0.44 0.31 0.05 0.15 0.05 0.00 0.00 0.05
+## Blst_6  0.36 0.36 0.12 0.08 0.07 0.02 0.00 0.05
 \end{verbatim}
 
-CAPTURE FOR THE APA STYLE WRITE-UP (since these are generally placed in the description of each measure in the Method section, I am not doing a cumulative capture): Cronbach's alpha for the campus climate scale was 0.869. Since this value is \(\geq\) .80, it is within the realm of acceptability. Let's go ahead, though, and look at its subscales.
+CAPTURE FOR THE APA STYLE WRITE-UP (since these are generally placed in the description of each measure in the Method section, I am not doing a cumulative capture): Cronbach's alpha for the campus climate scale was 0.872. Since this value is \(\geq\) .80, it is within the realm of acceptability. Let's go ahead, though, and look at its subscales.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2626,31 +2616,31 @@ CAPTURE FOR THE APA STYLE WRITE-UP (since these are generally placed in the desc
 ## Call: psych::alpha(x = item_scores_df[c("Blst_3", "Blst_2", "Blst_5")])
 ## 
 ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-##       0.77      0.78    0.74      0.54 3.6 0.056  2.3 1.2     0.55
+##       0.76      0.78    0.74      0.54 3.6 0.051  2.3 1.2     0.59
 ## 
 ##  lower alpha upper     95% confidence boundaries
-## 0.66 0.77 0.88 
+## 0.66 0.76 0.86 
 ## 
 ##  Reliability if an item is dropped:
 ##        raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## Blst_3      0.80      0.81    0.69      0.69 4.4    0.054    NA  0.69
-## Blst_2      0.71      0.71    0.55      0.55 2.5    0.081    NA  0.55
-## Blst_5      0.55      0.56    0.39      0.39 1.3    0.123    NA  0.39
+## Blst_3      0.78      0.80    0.67      0.67 4.0    0.052    NA  0.67
+## Blst_2      0.74      0.74    0.59      0.59 2.9    0.065    NA  0.59
+## Blst_5      0.52      0.54    0.37      0.37 1.2    0.114    NA  0.37
 ## 
 ##  Item statistics 
 ##         n raw.r std.r r.cor r.drop mean  sd
-## Blst_3 48  0.76  0.78  0.58   0.50  2.1 1.3
-## Blst_2 48  0.86  0.83  0.72   0.61  2.8 1.6
-## Blst_5 48  0.90  0.90  0.84   0.75  2.1 1.3
+## Blst_3 59  0.75  0.78  0.61   0.51  2.1 1.3
+## Blst_2 60  0.86  0.82  0.69   0.59  2.9 1.7
+## Blst_5 59  0.90  0.90  0.85   0.76  2.1 1.3
 ## 
 ## Non missing response frequency for each item
 ##           1    2    3    4    5    6 miss
-## Blst_3 0.42 0.31 0.08 0.15 0.02 0.02 0.04
-## Blst_2 0.35 0.15 0.08 0.23 0.17 0.02 0.04
-## Blst_5 0.46 0.27 0.06 0.17 0.04 0.00 0.04
+## Blst_3 0.42 0.34 0.07 0.12 0.03 0.02 0.05
+## Blst_2 0.35 0.15 0.08 0.18 0.17 0.07 0.03
+## Blst_5 0.44 0.31 0.05 0.15 0.05 0.00 0.05
 \end{verbatim}
 
-Cronbach's alpha for the campus climate stigma subscale was 0.772.
+Cronbach's alpha for the campus climate stigma subscale was 0.764.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2665,31 +2655,31 @@ Cronbach's alpha for the campus climate stigma subscale was 0.772.
 ## Call: psych::alpha(x = item_scores_df[c("rBlst_1", "Blst_4", "Blst_6")])
 ## 
 ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-##       0.78       0.8    0.77      0.57   4 0.055  2.7 1.2     0.47
+##       0.79      0.81    0.76      0.58 4.1 0.047  2.7 1.2     0.51
 ## 
 ##  lower alpha upper     95% confidence boundaries
-## 0.68 0.78 0.89 
+## 0.7 0.79 0.89 
 ## 
 ##  Reliability if an item is dropped:
 ##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## rBlst_1      0.88      0.88    0.79      0.79 7.3    0.034    NA  0.79
-## Blst_4       0.63      0.64    0.47      0.47 1.8    0.102    NA  0.47
-## Blst_6       0.62      0.64    0.47      0.47 1.8    0.102    NA  0.47
+## rBlst_1      0.86      0.86    0.75      0.75 6.1    0.036    NA  0.75
+## Blst_4       0.63      0.64    0.47      0.47 1.8    0.091    NA  0.47
+## Blst_6       0.67      0.68    0.51      0.51 2.1    0.081    NA  0.51
 ## 
 ##  Item statistics 
 ##          n raw.r std.r r.cor r.drop mean  sd
-## rBlst_1 45  0.80  0.76  0.53   0.50  3.4 1.6
-## Blst_4  47  0.87  0.89  0.85   0.71  2.3 1.2
-## Blst_6  48  0.87  0.89  0.85   0.71  2.3 1.3
+## rBlst_1 56  0.81  0.78  0.57   0.53  3.5 1.6
+## Blst_4  58  0.88  0.89  0.84   0.72  2.5 1.3
+## Blst_6  59  0.85  0.87  0.81   0.69  2.2 1.3
 ## 
 ## Non missing response frequency for each item
 ##            1    2    3    4    5    6    7 miss
-## rBlst_1 0.09 0.24 0.22 0.22 0.09 0.09 0.04 0.10
-## Blst_4  0.30 0.34 0.15 0.15 0.06 0.00 0.00 0.06
-## Blst_6  0.33 0.35 0.12 0.10 0.06 0.02 0.00 0.04
+## rBlst_1 0.09 0.23 0.21 0.23 0.09 0.11 0.04 0.10
+## Blst_4  0.26 0.34 0.16 0.17 0.05 0.00 0.02 0.06
+## Blst_6  0.36 0.36 0.12 0.08 0.07 0.02 0.00 0.05
 \end{verbatim}
 
-Cronbach's alpha for the campus climate responsiveness subscale was 0.784. Between the two subscales, it looks as if the responsivenes subscale is more internally consistent.
+Cronbach's alpha for the campus climate responsiveness subscale was 0.793. Between the two subscales, it looks as if the responsivenes subscale is more internally consistent.
 
 \hypertarget{distributional-characteristics-of-the-variables}{%
 \section{Distributional Characteristics of the Variables}\label{distributional-characteristics-of-the-variables}}
@@ -2710,7 +2700,7 @@ The \emph{str()} function let's us look at the variable format/measurement level
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':    50 obs. of  17 variables:
+## 'data.frame':    62 obs. of  17 variables:
 ##  $ ID        : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ iBIPOC_pr : num  0.333 0 0.5 0.333 1 ...
 ##  $ cmBlack   : int  0 5 10 6 5 20 0 0 0 4 ...
@@ -2746,16 +2736,16 @@ The difference between ``int'' (integer) and ``num'' (numerical) is that integer
 \end{Shaded}
 
 \begin{verbatim}
-##           vars  n mean   sd median trimmed  mad min  max range  skew kurtosis
-## iBIPOC_pr    1 48 0.33 0.39   0.25    0.29 0.37   0  1.0   1.0  0.78    -0.96
-## cmBlack      2 50 6.56 7.48   5.00    5.20 7.41   0 29.0  29.0  1.31     1.02
-## Belonging    3 48 4.18 1.47   4.00    4.18 1.48   1  7.0   6.0 -0.02    -0.84
-## ClimateBL    4 46 2.46 1.09   2.33    2.42 1.48   1  4.5   3.5  0.29    -1.15
+##           vars  n mean   sd median trimmed  mad min   max range skew kurtosis
+## iBIPOC_pr    1 60 0.35 0.39   0.25    0.31 0.37   0  1.00  1.00 0.63    -1.15
+## cmBlack      2 62 7.66 7.61   5.00    6.70 7.41   0 29.00 29.00 0.92    -0.06
+## Belonging    3 60 4.01 1.50   4.00    4.00 1.48   1  7.00  6.00 0.05    -0.93
+## ClimateBL    4 57 2.50 1.12   2.33    2.44 1.23   1  5.67  4.67 0.49    -0.45
 ##             se
-## iBIPOC_pr 0.06
-## cmBlack   1.06
-## Belonging 0.21
-## ClimateBL 0.16
+## iBIPOC_pr 0.05
+## cmBlack   0.97
+## Belonging 0.19
+## ClimateBL 0.15
 \end{verbatim}
 
 \begin{Shaded}
@@ -2785,7 +2775,7 @@ We can also apply the Shapiro-Wilk test of normality to each of our variables. W
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  item_scores_df$iBIPOC_pr
-## W = 0.75717, p-value = 1.585e-07
+## W = 0.78915, p-value = 7.317e-08
 \end{verbatim}
 
 \begin{Shaded}
@@ -2799,7 +2789,7 @@ We can also apply the Shapiro-Wilk test of normality to each of our variables. W
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  item_scores_df$cmBlack
-## W = 0.81606, p-value = 2.098e-06
+## W = 0.87555, p-value = 1.424e-05
 \end{verbatim}
 
 \begin{Shaded}
@@ -2813,7 +2803,7 @@ We can also apply the Shapiro-Wilk test of normality to each of our variables. W
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  item_scores_df$Belonging
-## W = 0.97779, p-value = 0.4901
+## W = 0.97088, p-value = 0.161
 \end{verbatim}
 
 \begin{Shaded}
@@ -2827,10 +2817,10 @@ We can also apply the Shapiro-Wilk test of normality to each of our variables. W
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  item_scores_df$ClimateBL
-## W = 0.93256, p-value = 0.01043
+## W = 0.94942, p-value = 0.01851
 \end{verbatim}
 
-CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP: Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning \citeyearpar{kline_principles_2016}. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (\(W\) = 0.816, \(p\) = 0.0000) and the proportion of BIPOC instructional staff(\(W\) = 0.757, \(p\) = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent's belonging (\(W\) = 0.978, \(p\) = 0.4901) and the respondent's perception of campus climate for Black students (\(W\) = 0.933, \(p\) = 0.0104) did not differ differently from a normal distribution.
+CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP: Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning \citeyearpar{kline_principles_2016}. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (\(W\) = 0.876, \(p\) = 0.0000) and the proportion of BIPOC instructional staff(\(W\) = 0.789, \(p\) = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent's belonging (\(W\) = 0.971, \(p\) = 0.1610) and the respondent's perception of campus climate for Black students (\(W\) = 0.949, \(p\) = 0.0185) did not differ differently from a normal distribution.
 
 \emph{Note. Owing to the open nature of the dataset, these values will change. While I have used inline text to update the values of the Shapiro Wilks' and associated significance test, the text narration is not automatically updated and may be inconsistent with the results.}
 
@@ -2859,7 +2849,7 @@ The \emph{pairs.panels()} function from the \emph{psych} package is useful for s
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReC_MultMod_files/figure-latex/pairs panels-1.pdf}
+\includegraphics{ReC_MultMod_files/figure-latex/unnamed-chunk-55-1.pdf}
 
 The histograms displayed in the diagonal graph for us what we learned from the Shapiro Wilk's test of normality. We can clearly see the non-normal distribution in the iBIPOC\_pr and cmBlack variables.
 
@@ -2880,7 +2870,7 @@ Numeric variables are required in the for the calculation of the Mahalanobis.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReC_MultMod_files/figure-latex/Detect multivariate outliers-1.pdf}
+\includegraphics{ReC_MultMod_files/figure-latex/unnamed-chunk-56-1.pdf}
 
 Q-Q plots take your sample data, sort it in ascending order, and then plot them versus quantiles (the number varies; you can see it on the X axis) calculated from a theoretical distribution. The number of quantiles is selected to match the size of your sample data. While Normal Q-Q Plots are the ones most often used in practice due to so many statistical methods assuming normality, Q-Q Plots can actually be created for any distribution. To the degree that the plotted line stays on the straight line (representing the theoretical normal distribution), the data is multivariate normally distributed.
 
@@ -2894,7 +2884,7 @@ It is possible, then to analyze the Mahalanobis distance values.
 
 \begin{verbatim}
 ##    vars  n mean  sd median trimmed  mad  min   max range skew kurtosis   se
-## X1    1 50 3.78 2.3   3.65    3.56 2.34 0.38 11.33 10.95 0.99     1.13 0.32
+## X1    1 62  3.8 2.2   3.64    3.62 2.47 0.26 10.67 10.42 0.77     0.45 0.28
 \end{verbatim}
 
 Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median. In fact, we can have these noted in a column in the dataframe.
@@ -2914,7 +2904,7 @@ Using this information we can determine cases that have a Mahalanobis distance v
 
 \begin{verbatim}
 ##   MOutlier  n
-## 1    FALSE 49
+## 1    FALSE 61
 ## 2     TRUE  1
 \end{verbatim}
 
@@ -2927,8 +2917,8 @@ Using this information we can determine cases that have a Mahalanobis distance v
 
 \begin{verbatim}
 ##   MOutlier  n
-## 1       50  1
-## 2       49 49
+## 1       62  1
+## 2       61 61
 \end{verbatim}
 
 \begin{Shaded}
@@ -2939,8 +2929,8 @@ Using this information we can determine cases that have a Mahalanobis distance v
 
 \begin{verbatim}
 ##   MOutlier  n
-## 1       50  1
-## 2       49 49
+## 1       62  1
+## 2       61 61
 \end{verbatim}
 
 \begin{Shaded}
@@ -2958,12 +2948,12 @@ Using this information we can determine cases that have a Mahalanobis distance v
 ## 5  5 1.0000000       5        4        4        4      6      1      1      1
 ## 6  6 0.0000000      20        5        6        5      5      1      1      2
 ##   Blst_5 Blst_6 rBlst_1 Belonging ResponseBL StigmaBL ClimateBL     Mahal
-## 1      2      2       3      6.33       2.33     3.33      2.83 2.9474599
-## 2      4      1       2      4.67       1.67     4.00      2.83 1.0363038
-## 3     NA      2      NA        NA       2.00     3.50        NA 0.4759603
-## 4      2      2       6      3.33       3.33     2.00      2.67 0.3795770
-## 5      1      1       2      4.00       1.33     1.00      1.17 3.9774323
-## 6      1      2       3      5.33       2.33     1.00      1.67 5.2238187
+## 1      2      2       3      6.33       2.33     3.33      2.83 3.1529026
+## 2      4      1       2      4.67       1.67     4.00      2.83 1.1055607
+## 3     NA      2      NA        NA       2.00     3.50        NA 0.2556646
+## 4      2      2       6      3.33       3.33     2.00      2.67 0.2881807
+## 5      1      1       2      4.00       1.33     1.00      1.17 3.6918977
+## 6      1      2       3      5.33       2.33     1.00      1.67 5.2424055
 ##   MOutlier
 ## 1    FALSE
 ## 2    FALSE
@@ -2973,7 +2963,7 @@ Using this information we can determine cases that have a Mahalanobis distance v
 ## 6    FALSE
 \end{verbatim}
 
-CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP: We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the \emph{outlier()} function in the \emph{psych} package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 49 exceed three standard deviations beyond the median. \emph{Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis} AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.
+CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP: We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the \emph{outlier()} function in the \emph{psych} package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 61 exceed three standard deviations beyond the median. \emph{Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis} AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.
 
 \hypertarget{a-few-words-on-transformations}{%
 \section{A Few Words on Transformations}\label{a-few-words-on-transformations}}
@@ -2992,17 +2982,17 @@ Since the focus of this chapter was on data diagnostics, the APA style writeup w
 \hypertarget{data-diagnostics}{%
 \subsection{Data Diagnostics}\label{data-diagnostics}}
 
-Data screening suggested that 75 individuals opened the survey link. Of those, 60 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 52 met this criteria.
+Data screening suggested that 92 individuals opened the survey link. Of those, 74 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 65 met this criteria.
 
 Available item analysis (AIA; \citep{parent_handling_2013}) is a strategy for managing missing data that uses available data for analysis and excludes cases with missing data points only for analyses in which the data points would be directly involved. Parent (2013) suggested that AIA is equivalent to more complex methods (e.g., multiple imputation) across a number of variations of sample size, magnitude of associations among items, and degree of missingness. Thus, we utilized Parent's recommendations to guide our approach to managing missing data. Missing data analyses were conducted with tools in base R as well as the R packages, \emph{psych} (v. 1.0.12) and \emph{mice} (v. 3.13.0).
 
-Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0\% to 91\%. Across the dataset, 4.18\% of cells had missing data and 86.00\% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with less than 90\% missing to continue to the scoring stage. Guided by Parent's \citeyearpar{parent_handling_2013} AIA approach, scales with three items were scored if at least two items were non-missing; the scale with four items was scored if it at least three non-missing items; and the scale with six items was scored if it had at least five non-missing items.
+Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0\% to 100\%. Across the dataset, 4.11\% of cells had missing data and 87.10\% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with less than 90\% missing to continue to the scoring stage. Guided by Parent's \citeyearpar{parent_handling_2013} AIA approach, scales with three items were scored if at least two items were non-missing; the scale with four items was scored if it at least three non-missing items; and the scale with six items was scored if it had at least five non-missing items.
 
-Across the 50 cases for which the scoring protocol was applied, missingness ranged from 0\% to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 46 cases. In this dataset we had 0.72\% missing across the df; 95.65\% of the rows had nonmissing data.
+Across the 62 cases for which the scoring protocol was applied, missingness ranged from 0\% to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 57 cases. In this dataset we had 0.58\% missing across the df; 96.49\% of the rows had nonmissing data.
 
-Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning \citeyearpar{kline_principles_2016}. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (\(W\) = 0.816, \(p\) = 0.0000) and the proportion of BIPOC instructional staff(\(W\) = 0.757, \(p\) = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent's belonging (\(W\) = 0.978, \(p\) = 0.4901) and the respondent's perception of campus climate for Black students (\(W\) = 0.933, \(p\) = 0.0104) did not differ differently from a normal distribution.
+Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning \citeyearpar{kline_principles_2016}. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (\(W\) = 0.876, \(p\) = 0.0000) and the proportion of BIPOC instructional staff(\(W\) = 0.789, \(p\) = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent's belonging (\(W\) = 0.971, \(p\) = 0.1610) and the respondent's perception of campus climate for Black students (\(W\) = 0.949, \(p\) = 0.0185) did not differ differently from a normal distribution.
 
-We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the \emph{outlier()} function in the \emph{psych} package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 49 exceed three standard deviations beyond the median. \emph{Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis} AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.
+We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the \emph{outlier()} function in the \emph{psych} package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 61 exceed three standard deviations beyond the median. \emph{Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis} AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.
 
 Given that our sample sizes were reasonable for the planned analyses and the degree of missingness was low, we used pairwise deletion in our multiple regression analysis.
 
@@ -3031,21 +3021,21 @@ With some confidence that our scrubbed-and-scored variables are appropriate for 
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.93429 -0.81101 -0.06069  0.72280  1.94092 
+## -1.90325 -0.81374 -0.00349  0.77495  2.99229 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  3.06548    0.52308   5.860 7.43e-07 ***
-## Belonging   -0.05630    0.11372  -0.495    0.623    
-## cmBlack     -0.02758    0.02093  -1.318    0.195    
-## iBIPOC_pr   -0.69730    0.41999  -1.660    0.105    
+## (Intercept)  2.94490    0.48519   6.070  1.6e-07 ***
+## Belonging   -0.01788    0.10092  -0.177   0.8601    
+## cmBlack     -0.01999    0.01920  -1.041   0.3028    
+## iBIPOC_pr   -0.71144    0.38193  -1.863   0.0683 .  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.063 on 40 degrees of freedom
-##   (6 observations deleted due to missingness)
-## Multiple R-squared:  0.1097, Adjusted R-squared:  0.04289 
-## F-statistic: 1.642 on 3 and 40 DF,  p-value: 0.1949
+## Residual standard error: 1.099 on 51 degrees of freedom
+##   (7 observations deleted due to missingness)
+## Multiple R-squared:  0.08627,    Adjusted R-squared:  0.03252 
+## F-statistic: 1.605 on 3 and 51 DF,  p-value: 0.1996
 \end{verbatim}
 
 \begin{Shaded}
@@ -3061,12 +3051,11 @@ With some confidence that our scrubbed-and-scored variables are appropriate for 
 ## [13] "model"
 \end{verbatim}
 
-Results of a multiple regression predicting the respondents' perceptions of campus climate for Black students indicated that neither contributions of the respondents' personal belonging (\(B\) = -0.056, \(p\) = 0.623) nor the proportion of BIPOC instructional staff (\(B\) = -0.697, \(p\) = 0.105), nor the proportion of Black classmates (\(B\) = -0.028, \(p\) = 0.195) led to statistically significant changes in perceptions of campus climate for Black students. Although it accounted for 10.97\% of the variance, the overall model was not statistically significant. Results are presented in Table 2.
+Results of a multiple regression predicting the respondents' perceptions of campus climate for Black students indicated that neither contributions of the respondents' personal belonging (\(B\) = -0.018, \(p\) = 0.860) nor the proportion of BIPOC instructional staff (\(B\) = -0.711, \(p\) = 0.068), nor the proportion of Black classmates (\(B\) = -0.020, \(p\) = 0.303) led to statistically significant changes in perceptions of campus climate for Black students. Although it accounted for 8.63\% of the variance, the overall model was not statistically significant. Results are presented in Table 2.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(apaTables)}
-\FunctionTok{apa.cor.table}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iBIPOC\_pr"}\NormalTok{, }\StringTok{"cmBlack"}\NormalTok{, }\StringTok{"Belonging"}\NormalTok{, }\StringTok{"ClimateBL"}\NormalTok{)], }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{show.sig.stars =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{filename =} \StringTok{"Table1\_M\_SDs\_r\_DataDx.doc"}\NormalTok{)}
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.cor.table}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iBIPOC\_pr"}\NormalTok{, }\StringTok{"cmBlack"}\NormalTok{, }\StringTok{"Belonging"}\NormalTok{, }\StringTok{"ClimateBL"}\NormalTok{)], }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{show.sig.stars =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{filename =} \StringTok{"Table1\_M\_SDs\_r\_DataDx.doc"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3079,16 +3068,16 @@ Results of a multiple regression predicting the respondents' perceptions of camp
 ##  
 ## 
 ##   Variable     M    SD   1           2           3          
-##   1. iBIPOC_pr 0.33 0.39                                    
+##   1. iBIPOC_pr 0.35 0.39                                    
 ##                                                             
-##   2. cmBlack   6.56 7.48 -.05                               
-##                          [-.33, .24]                        
+##   2. cmBlack   7.66 7.61 .03                                
+##                          [-.22, .28]                        
 ##                                                             
-##   3. Belonging 4.18 1.47 .21         -.08                   
-##                          [-.08, .47] [-.35, .21]            
+##   3. Belonging 4.01 1.50 .03         -.11                   
+##                          [-.23, .29] [-.36, .15]            
 ##                                                             
-##   4. ClimateBL 2.46 1.09 -.26        -.19        -.16       
-##                          [-.52, .04] [-.45, .11] [-.43, .14]
+##   4. ClimateBL 2.50 1.12 -.26        -.16        -.05       
+##                          [-.49, .01] [-.40, .10] [-.30, .22]
 ##                                                             
 ## 
 ## Note. M and SD are used to represent mean and standard deviation, respectively.
@@ -3115,10 +3104,10 @@ Results of a multiple regression predicting the respondents' perceptions of camp
 ##  
 ## 
 ##    Predictor      b      b_95%_CI  beta   beta_95%_CI sr2  sr2_95%_CI    r
-##  (Intercept) 3.07**  [2.01, 4.12]                                         
-##    Belonging  -0.06 [-0.29, 0.17] -0.08 [-0.38, 0.23] .01 [-.04, .05] -.11
-##      cmBlack  -0.03 [-0.07, 0.01] -0.20 [-0.50, 0.11] .04 [-.07, .15] -.18
-##    iBIPOC_pr  -0.70 [-1.55, 0.15] -0.25 [-0.56, 0.05] .06 [-.07, .20] -.26
+##  (Intercept) 2.94**  [1.97, 3.92]                                         
+##    Belonging  -0.02 [-0.22, 0.18] -0.02 [-0.29, 0.25] .00 [-.01, .01] -.01
+##      cmBlack  -0.02 [-0.06, 0.02] -0.14 [-0.41, 0.13] .02 [-.05, .09] -.15
+##    iBIPOC_pr  -0.71 [-1.48, 0.06] -0.25 [-0.52, 0.02] .06 [-.06, .18] -.26
 ##                                                                           
 ##                                                                           
 ##                                                                           
@@ -3127,8 +3116,8 @@ Results of a multiple regression predicting the respondents' perceptions of camp
 ##                 
 ##                 
 ##                 
-##        R2 = .110
-##  95% CI[.00,.26]
+##        R2 = .086
+##  95% CI[.00,.21]
 ##                 
 ## 
 ## Note. A significant b-weight indicates the beta-weight and semi-partial correlation are also significant.
@@ -3724,10 +3713,10 @@ Recall one of the guidelines was to remove variables with more than 25\% missing
 \end{Shaded}
 
 \begin{verbatim}
-##     Blst_1     Blst_4   Belong_1   Belong_3     Blst_2     Blst_3     Blst_5 
-## 0.13461538 0.09615385 0.07692308 0.07692308 0.07692308 0.07692308 0.07692308 
-##     Blst_6   Belong_2    cEval_1   cEval_19  iBIPOC_pr    cmBlack   cEval_13 
-## 0.07692308 0.05769231 0.05769231 0.05769231 0.03846154 0.03846154 0.03846154
+##     Blst_1     Blst_4     Blst_3     Blst_5     Blst_6   Belong_1   Belong_3 
+## 0.13846154 0.10769231 0.09230769 0.09230769 0.09230769 0.07692308 0.07692308 
+##     Blst_2   Belong_2    cEval_1   cEval_19  iBIPOC_pr    cmBlack   cEval_13 
+## 0.07692308 0.06153846 0.06153846 0.06153846 0.04615385 0.04615385 0.04615385
 \end{verbatim}
 
 Luckily, none of our variables have more than 25\% missing (\emph{or at least they didn't when I wrote this; the open nature of the survey and how it sources this chapter could change this}). If we did have a variable with more than 25\% missing, we would have to consider what to do about it.
@@ -3948,26 +3937,26 @@ In this process, 5 individual, OLS, regressions are being conducted and the resu
 ## # A tibble: 20 x 6
 ##    term        estimate std.error statistic      p.value  nobs
 ##    <chr>          <dbl>     <dbl>     <dbl>        <dbl> <int>
-##  1 (Intercept)   3.10      0.510      6.09  0.000000233     49
-##  2 Belonging    -0.0365    0.111     -0.329 0.744           49
-##  3 cmBlack      -0.0329    0.0210    -1.56  0.125           49
-##  4 iBIPOC_pr    -0.603     0.417     -1.45  0.155           49
-##  5 (Intercept)   3.22      0.510      6.32  0.000000106     49
-##  6 Belonging    -0.0865    0.108     -0.802 0.426           49
-##  7 cmBlack      -0.0286    0.0208    -1.37  0.177           49
-##  8 iBIPOC_pr    -0.523     0.395     -1.32  0.193           49
-##  9 (Intercept)   3.18      0.488      6.51  0.0000000542    49
-## 10 Belonging    -0.0689    0.105     -0.656 0.515           49
-## 11 cmBlack      -0.0302    0.0204    -1.48  0.147           49
-## 12 iBIPOC_pr    -0.651     0.400     -1.63  0.110           49
-## 13 (Intercept)   3.18      0.514      6.18  0.000000169     49
-## 14 Belonging    -0.0753    0.108     -0.697 0.489           49
-## 15 cmBlack      -0.0305    0.0210    -1.46  0.152           49
-## 16 iBIPOC_pr    -0.415     0.387     -1.07  0.289           49
-## 17 (Intercept)   3.27      0.520      6.29  0.000000114     49
-## 18 Belonging    -0.0978    0.109     -0.896 0.375           49
-## 19 cmBlack      -0.0271    0.0213    -1.27  0.210           49
-## 20 iBIPOC_pr    -0.482     0.392     -1.23  0.225           49
+##  1 (Intercept)  2.98       0.473     6.31   0.0000000449    61
+##  2 Belonging   -0.0151     0.0971   -0.155  0.877           61
+##  3 cmBlack     -0.0213     0.0191   -1.12   0.269           61
+##  4 iBIPOC_pr   -0.635      0.365    -1.74   0.0872          61
+##  5 (Intercept)  2.98       0.456     6.53   0.0000000192    61
+##  6 Belonging   -0.00946    0.0955   -0.0990 0.921           61
+##  7 cmBlack     -0.0202     0.0187   -1.08   0.284           61
+##  8 iBIPOC_pr   -0.810      0.363    -2.23   0.0295          61
+##  9 (Intercept)  3.02       0.468     6.44   0.0000000268    61
+## 10 Belonging   -0.0333     0.0956   -0.349  0.728           61
+## 11 cmBlack     -0.0205     0.0187   -1.10   0.277           61
+## 12 iBIPOC_pr   -0.589      0.353    -1.67   0.100           61
+## 13 (Intercept)  3.00       0.465     6.45   0.0000000260    61
+## 14 Belonging   -0.0125     0.0964   -0.130  0.897           61
+## 15 cmBlack     -0.0206     0.0189   -1.09   0.282           61
+## 16 iBIPOC_pr   -0.758      0.372    -2.04   0.0460          61
+## 17 (Intercept)  3.06       0.458     6.68   0.0000000110    61
+## 18 Belonging   -0.0256     0.0949   -0.270  0.788           61
+## 19 cmBlack     -0.0219     0.0187   -1.17   0.246           61
+## 20 iBIPOC_pr   -0.747      0.368    -2.03   0.0467          61
 \end{verbatim}
 
 \begin{Shaded}
@@ -3981,15 +3970,15 @@ In this process, 5 individual, OLS, regressions are being conducted and the resu
 \begin{verbatim}
 ## Class: mipo    m = 5 
 ##          term m    estimate         ubar            b            t dfcom
-## 1 (Intercept) 5  3.18956660 0.2584650301 3.983493e-03 0.2632452218    45
-## 2   Belonging 5 -0.07300792 0.0117174337 5.380533e-04 0.0123630977    45
-## 3     cmBlack 5 -0.02985330 0.0004371653 4.890076e-06 0.0004430334    45
-## 4   iBIPOC_pr 5 -0.53476392 0.1587727506 8.875746e-03 0.1694236457    45
-##         df        riv     lambda        fmi
-## 1 42.19463 0.01849454 0.01815870 0.06160817
-## 2 39.76456 0.05510285 0.05222510 0.09655034
-## 3 42.47452 0.01342305 0.01324526 0.05664339
-## 4 38.86218 0.06708264 0.06286546 0.10763784
+## 1 (Intercept) 5  3.00735694 0.2154077988 1.005386e-03 0.2166142615    57
+## 2   Belonging 5 -0.01920803 0.0091942123 9.935813e-05 0.0093134420    57
+## 3     cmBlack 5 -0.02089314 0.0003538947 4.763674e-07 0.0003544664    57
+## 4   iBIPOC_pr 5 -0.70790064 0.1324881894 8.469216e-03 0.1426512482    57
+##         df         riv      lambda        fmi
+## 1 54.76984 0.005600831 0.005569636 0.03999696
+## 2 54.27366 0.012967914 0.012801900 0.04727492
+## 3 55.00917 0.001615285 0.001612680 0.03603438
+## 4 48.05398 0.076709168 0.071244093 0.10762738
 \end{verbatim}
 
 \begin{Shaded}
@@ -4007,10 +3996,10 @@ In this process, 5 individual, OLS, regressions are being conducted and the resu
 
 \begin{verbatim}
 ##          term    estimate  std.error  statistic       df      p.value
-## 1 (Intercept)  3.18956660 0.51307428  6.2165786 42.19463 1.903512e-07
-## 2   Belonging -0.07300792 0.11118947 -0.6566083 39.76456 5.152150e-01
-## 3     cmBlack -0.02985330 0.02104836 -1.4183198 42.47452 1.633933e-01
-## 4   iBIPOC_pr -0.53476392 0.41161104 -1.2991972 38.86218 2.015315e-01
+## 1 (Intercept)  3.00735694 0.46541837  6.4616206 54.76984 2.911177e-08
+## 2   Belonging -0.01920803 0.09650618 -0.1990342 54.27366 8.429798e-01
+## 3     cmBlack -0.02089314 0.01882728 -1.1097272 55.00917 2.719443e-01
+## 4   iBIPOC_pr -0.70790064 0.37769200 -1.8742802 48.05398 6.697797e-02
 \end{verbatim}
 
 \begin{Shaded}
@@ -4019,7 +4008,7 @@ In this process, 5 individual, OLS, regressions are being conducted and the resu
 \end{Highlighting}
 \end{Shaded}
 
-Results of a multiple regression predicting the respondents' perceptions of campus climate for Black students indicated that neither contributions of the respondents' personal belonging (\(B\) = -0.073, \(p\) = 0.515) nor the proportion of BIPOC instructional staff (\(B\) = -0.535, \(p\) = 0.202) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (\(B\) = -0.030, \(p\) = 0.163). Results are presented in Table X.
+Results of a multiple regression predicting the respondents' perceptions of campus climate for Black students indicated that neither contributions of the respondents' personal belonging (\(B\) = -0.019, \(p\) = 0.843) nor the proportion of BIPOC instructional staff (\(B\) = -0.708, \(p\) = 0.067) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (\(B\) = -0.021, \(p\) = 0.272). Results are presented in Table X.
 
 \hypertarget{toward-the-apa-style-write-up-1}{%
 \section{Toward the APA Style Write-up}\label{toward-the-apa-style-write-up-1}}
@@ -4027,18 +4016,18 @@ Results of a multiple regression predicting the respondents' perceptions of camp
 \hypertarget{methoddata-diagnostics}{%
 \subsection{Method/Data Diagnostics}\label{methoddata-diagnostics}}
 
-Data screening suggested that 75 individuals opened the survey link. Of those, 60 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 52 met this criteria. Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0\% to 91\%. Across the dataset, 4.18\% of cells had missing data and 86.00\% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with fewer than 50\% missing to be included the multiple imputation \citep{katitas_getting_2019}.
+Data screening suggested that 92 individuals opened the survey link. Of those, 74 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 65 met this criteria. Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0\% to 100\%. Across the dataset, 4.11\% of cells had missing data and 87.10\% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with fewer than 50\% missing to be included the multiple imputation \citep{katitas_getting_2019}.
 
-Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning \citeyearpar{kline_principles_2016}. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (\(W\) = 0.816, \(p\) = 0.0000) and the proportion of BIPOC instructional staff(\(W\) = 0.757, \(p\) = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent's belonging (\(W\) = 0.978, \(p\) = 0.4901) and the respondent's perception of campus climate for Black students (\(W\) = 0.933, \(p\) = 0.0104) did not differ differently from a normal distribution.
+Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning \citeyearpar{kline_principles_2016}. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (\(W\) = 0.876, \(p\) = 0.0000) and the proportion of BIPOC instructional staff(\(W\) = 0.789, \(p\) = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent's belonging (\(W\) = 0.971, \(p\) = 0.1610) and the respondent's perception of campus climate for Black students (\(W\) = 0.949, \(p\) = 0.0185) did not differ differently from a normal distribution.
 
-We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the \emph{outlier()} function in the \emph{psych} package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 49 exceed three standard deviations beyond the median. \emph{Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis} AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.*
+We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the \emph{outlier()} function in the \emph{psych} package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 61 exceed three standard deviations beyond the median. \emph{Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis} AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.*
 
 We managed missing data with multiple imputation \citep{enders_multiple_2017, katitas_getting_2019}. We imputed five sets of data with the R package, \emph{mice} (v. 3.13) -- a program that utilizes conditional multiple imputation. The imputation included the item-level variables that comprised our scales, the variables that represented proportion of BIPOC instructional staff and proportion of Black classmates, as well as four auxiliary variables (three variables from the course evaluation and the format {[}in-person/blended/virtual{]} of the class).
 
 \hypertarget{results-1}{%
 \subsection{Results}\label{results-1}}
 
-Results of a multiple regression predicting the respondents' perceptions of campus climate for Black students indicated that neither contributions of the respondents' personal belonging (\(B\) = -0.056, \(p\) = 0.623) nor the proportion of BIPOC instructional staff (\(B\) = -0.697, \(p\) = 0.105) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (\(B\) = -0.028, \(p\) = 0.195). Although it accounted for 10.97\% of the variance, the overall model was not statistically significant. Results are presented in Table 2.
+Results of a multiple regression predicting the respondents' perceptions of campus climate for Black students indicated that neither contributions of the respondents' personal belonging (\(B\) = -0.018, \(p\) = 0.860) nor the proportion of BIPOC instructional staff (\(B\) = -0.711, \(p\) = 0.068) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (\(B\) = -0.020, \(p\) = 0.303). Although it accounted for 8.63\% of the variance, the overall model was not statistically significant. Results are presented in Table 2.
 
 \textbf{Some notes about this write-up}
 
@@ -4985,6 +4974,182 @@ First, we simulate the data from the means, standard deviations, and correlation
 ## [5,] -0.25 -0.28 -0.55 -0.66  1.00  0.08
 ## [6,] -0.02  0.00  0.07  0.05  0.08  1.00
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#renaming the variables}
+\FunctionTok{as.data.frame}\NormalTok{(Kim\_df, }\AttributeTok{row.names =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{optional =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{make.names =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              V1        V2        V3         V4       V5          V6
+## 1    0.56322125 3.6597480 4.1049053  1.9554809 3.287428  1.91805695
+## 2    0.41645739 2.4053977 3.1890486  1.5748235 4.250802  1.70143656
+## 3    0.28237771 1.8224393 3.8208709  2.5151029 3.272359  1.34220138
+## 4    0.33011916 4.8779798 3.2980691  2.2191489 3.310993  1.45026964
+## 5    0.21196480 2.1101520 3.0688062  2.1455283 3.429861  1.90920320
+## 6    0.59610682 4.0879856 3.4209156  3.1297963 2.914344  1.90028275
+## 7    0.29243256 1.8148855 3.6926166  2.1726462 3.692914  2.09629288
+## 8    0.32144987 2.6603066 2.8638870  2.4649908 4.482531  2.05989633
+## 9    0.40473325 2.7796051 2.6858598  2.5223291 3.736425  1.26499781
+## 10   0.21929113 3.2963723 2.9880902  2.2783102 4.529762  2.24630280
+## 11   0.29894241 4.0567340 3.4052729  3.2965016 2.114133  0.91627957
+## 12   0.49505466 3.6517638 4.0191818  3.2668795 2.706036  1.80508313
+## 13   0.46641997 2.8552000 4.2079011  3.0366230 3.499116  1.76026862
+## 14   0.41797389 3.1859589 3.0577687  2.6807249 4.049217  2.07708287
+## 15   0.28121203 3.6170116 4.0166686  2.7814840 3.018156  2.13050868
+## 16   0.27947105 3.9372700 2.4850059  2.9146085 3.436433  0.77516692
+## 17   0.44180986 2.6050017 2.3851485  2.0584088 3.052304  2.60069927
+## 18   0.41537287 2.6057846 1.6658239  1.9502032 3.882310  1.09460176
+## 19   0.44242174 4.7058171 3.3821579  2.4378686 3.017007  1.19035512
+## 20   0.21925056 2.6011053 3.5150938  3.6000957 2.911766  2.13795646
+## 21   0.46256196 2.8288038 1.7353880  1.3348558 4.417138  1.28094637
+## 22   0.25192604 1.5548855 4.6607166  4.4707529 1.948742  1.28294598
+## 23   0.18444063 3.0334866 1.6768300  0.6779229 4.221211  1.31821275
+## 24   0.57306932 2.9816137 3.9621891  4.2204392 2.979487  1.69121555
+## 25   0.13232967 2.6967207 1.6577405  1.9418691 3.172581  1.84875291
+## 26   0.52068343 3.3500024 2.9862440  3.3452712 3.853964  1.79230333
+## 27   0.54696255 3.8866891 2.0279332  2.4597838 2.842008  1.52644789
+## 28   0.34068549 3.0340056 4.4741623  2.9372979 3.408697  0.86947178
+## 29   0.24707523 3.5050539 3.9208420  2.8073240 4.889557  1.27544346
+## 30   0.29080131 3.4442628 3.8680698  2.4488849 3.066729  1.69060800
+## 31   0.40987324 2.9006217 2.8573747  1.5695790 4.233653  1.87189432
+## 32   0.21224331 2.5347979 0.8366917 -0.2373390 5.190592  2.05938315
+## 33   0.25207135 2.9137499 2.7603436  2.0923841 3.653351  2.24976910
+## 34   0.16276707 1.9379893 1.6489826  1.5011075 3.594861  0.88555420
+## 35   0.30096374 3.8700976 0.5264340  1.6180255 5.487318  2.21320732
+## 36   0.20986036 2.0884341 3.8084980  2.7378146 2.572915  1.36011239
+## 37   0.41616626 3.9193314 2.5776446  1.2355256 5.149036  0.78540481
+## 38   0.27217433 2.8026103 1.2385729  0.3989112 5.298260  0.62396948
+## 39   0.26740836 3.1562081 3.2528697  3.5891595 2.214625  1.74957641
+## 40   0.16334665 3.0316864 1.7137803  2.0029227 3.882992  2.00216217
+## 41   0.50594415 3.8290038 2.6312865  3.1239589 2.725843  1.41820509
+## 42   0.20385826 2.9278669 2.6276504  1.7907981 3.921445  2.07268784
+## 43   0.24120383 2.6838303 2.3003964  1.5687292 3.623936  1.92351462
+## 44   0.23563651 3.8136925 2.7114557  1.5496015 3.318703  1.15905861
+## 45   0.54883303 5.4150767 2.7186774  1.5067235 3.779996  2.12796163
+## 46   0.36711163 3.8447659 1.1925475  1.1402792 4.173351  1.34919399
+## 47   0.39302069 4.4355608 3.3954864  2.7892770 2.899815  2.24643250
+## 48   0.01009113 1.5318052 0.5697995  1.8053179 3.992898  1.40596300
+## 49  -0.12242115 1.0141619 1.4837774  0.8009489 3.914087  2.02539467
+## 50   0.38720059 1.7949009 3.8398840  2.9842122 3.796444  2.11108724
+## 51   0.47417156 3.4409436 3.1415343  3.0100808 2.592269  1.80315606
+## 52   0.17155243 3.1704047 3.1266970  2.4657630 3.266817  2.21126688
+## 53   0.30123329 2.1267192 2.3335932  2.2868177 3.896228  1.55511062
+## 54   0.24016851 2.5639564 3.9252969  2.6332829 3.295473  1.90123895
+## 55   0.39475663 2.1809573 3.2305235  2.6901743 3.910593  1.62781589
+## 56   0.37303720 3.7037489 0.3243811  2.3743395 4.499098  1.63874685
+## 57   0.07394377 2.1241313 2.3202974  2.9396688 3.471893  0.95316197
+## 58  -0.03631397 2.5749922 1.9996379  1.7276110 3.510733  1.44489216
+## 59   0.44488958 3.8220470 3.4726323  2.4509216 2.638454  1.16026810
+## 60   0.19470088 2.6600576 4.4642647  2.1333301 2.523246  0.93099385
+## 61   0.18399505 2.7719267 4.2392585  3.5143232 3.792274  1.79413576
+## 62   0.48296947 3.5876145 3.6665669  1.5926518 3.810789  1.36299191
+## 63   0.13214476 3.3355833 2.3660459  1.9111449 3.710673  1.51854198
+## 64   0.31260553 2.7558763 3.5655710  2.6195842 3.186554  2.90090850
+## 65   0.22970869 3.0652301 3.0710417  3.0539260 2.916797  2.22290780
+## 66   0.22754902 2.7779616 2.6759105  1.3301148 3.769520  1.98654728
+## 67   0.34621618 3.3871559 3.2524603  2.3411667 3.385543  2.07525975
+## 68   0.37107989 3.2195846 2.9840681  2.8915907 3.854296  2.33346597
+## 69   0.29651979 3.0691793 3.8427122  2.2771795 2.496135  1.77741943
+## 70   0.54949476 3.2521581 3.1423253  3.3621003 3.412644  1.54768706
+## 71   0.74634885 4.2323500 3.7271057  2.6895581 3.496225  1.89268623
+## 72   0.38466346 3.8560098 1.9386123  1.1558135 3.261374  1.74750657
+## 73   0.44885293 3.3497400 5.5315716  3.8040372 2.799051  1.84644839
+## 74   0.52347565 3.2051381 2.3396855  2.4519680 1.975368  0.89254378
+## 75   0.27026623 1.9825669 3.6003725  2.4845077 3.872257  1.60602936
+## 76   0.67198777 4.7928765 2.6343230  2.1368250 3.761652  1.22253688
+## 77   0.63138698 3.8316398 3.2908345  3.3553293 3.672308  1.86688799
+## 78   0.19242819 2.3835763 3.1671392  1.1680126 3.992543  1.60687601
+## 79   0.17256605 2.6267680 2.5387912  2.9853744 2.826364  2.23573447
+## 80   0.25084377 2.8155863 2.7052302  1.8583159 3.628942  2.13506470
+## 81   0.16241138 1.9999449 2.6917180  1.8076790 4.092591  2.29444680
+## 82   0.08065017 1.7547371 4.0093113  2.8669452 2.028681 -0.06934167
+## 83   0.45681650 1.8692824 1.7524186  1.4087383 4.340835  0.73662729
+## 84   0.50021187 2.9739436 5.3567815  3.2787949 2.256714  2.65150435
+## 85   0.28572356 3.4953504 3.7280728  3.4008900 1.156036  1.93540925
+## 86   0.33181611 3.1621318 5.0219882  2.8001620 3.022543  0.81954402
+## 87   0.53733479 2.6759789 2.9386910  2.5381015 4.377655  2.68297323
+## 88   0.41020747 3.9691457 2.8479777  1.3040104 5.094804  2.04100402
+## 89   0.42368572 3.4954422 1.5177826  0.1848853 4.193554  0.67010137
+## 90   0.38000797 3.0724211 2.6261843  3.0173563 3.545992  2.52286312
+## 91  -0.11476891 1.3149960 2.6636832  0.8275885 4.687246  1.41339810
+## 92   0.26836804 2.1994923 2.9514615  2.0677218 4.062034  1.87199309
+## 93   0.44334267 4.1947402 2.6460184  1.9442501 2.994570  0.24984664
+## 94   0.42326987 3.2407832 1.4084802  0.7543558 4.840738  0.82669557
+## 95   0.28052874 0.9004737 2.6095925  1.2466061 6.475142  2.10980142
+## 96   0.77003361 4.9713324 3.7115373  3.1593331 2.836750  1.31828549
+## 97   0.37167908 3.1718301 4.2706985  3.3870493 2.154981  1.71302797
+## 98   0.24127893 2.3301068 3.0251361  1.9710754 3.612900  1.96243232
+## 99   0.12837450 2.2092163 1.2456825  0.9640184 4.618485  1.68845848
+## 100  0.59027871 2.7472269 3.4322102  2.2674321 4.385459  1.96241270
+## 101  0.62339700 3.7416758 1.8543324  2.0711335 2.600590  1.39018465
+## 102  0.42922554 4.2455492 4.2517887  3.4668250 1.638455  2.41844574
+## 103  0.10031432 2.5079706 2.9805966  1.2861004 2.731720  1.40898312
+## 104  0.30924005 2.9924583 2.5508416  1.4413085 3.262446  1.42738564
+## 105  0.46372321 2.8919932 3.3235004  3.4999934 2.441695  1.21991752
+## 106  0.28876466 3.2006761 3.7026570  3.3801248 2.367959  1.70271290
+## 107  0.35953779 2.8931422 2.6210980  3.9592676 3.451652  0.86050466
+## 108  0.57323079 3.4375798 3.8516019  3.0722089 2.946010  1.51543655
+## 109  0.49625658 3.7358739 2.9225955  2.9935948 2.949448  1.86273183
+## 110  0.48391372 3.2114669 3.2209634  3.7121910 3.131195  1.77644499
+## 111  0.47870769 3.2230223 2.9068304  2.0499861 3.541410  1.74413673
+## 112  0.47523354 3.9456508 4.9667066  3.6989183 1.624991  1.64914631
+## 113  0.28356477 1.7174743 2.0049728  2.2317721 4.159874  2.62361258
+## 114  0.25340439 2.6358465 2.7628818  1.3548412 4.229701  0.61388633
+## 115  0.17747863 2.4418628 3.3949276  2.5425965 4.609277  2.81641570
+## 116  0.26332803 1.0701425 2.0732293  1.8094209 4.017358  1.27337728
+## 117  0.14233439 3.5345034 2.9562862  2.9376457 4.179457  2.21830457
+## 118  0.60818957 3.2926195 4.2566576  3.2341634 2.187463  1.50428392
+## 119  0.17362985 2.8111299 3.1611658  2.7063505 4.327138  1.92577369
+## 120  0.34625988 2.9770346 0.8043563  0.9115378 4.773798  2.47526194
+## 121  0.22995471 1.5911673 2.3430435  1.0772470 4.968784  1.36077937
+## 122  0.19198547 3.7380452 2.3159095  2.7368940 3.367743  1.31568473
+## 123  0.39980462 2.9556827 2.4930117  1.7645215 3.287901  1.43992217
+## 124  0.25732328 2.8009097 3.0928489  1.9135199 4.694348  1.67891926
+## 125  0.26154823 2.1838877 2.6804106  2.7272111 2.369941  1.15067890
+## 126  0.43994412 4.2835852 1.4634766  1.6514789 3.581195  1.71946301
+## 127  0.13447235 2.7104287 2.3076943  0.7580077 4.366919  1.32053700
+## 128  0.10091357 1.6418791 1.6862834  2.1494818 4.267309  1.70294619
+## 129  0.10646735 1.7729566 2.3437097  0.8816139 4.193043  1.95976757
+## 130  0.24014439 4.0972844 3.6801167  3.0936245 2.276948  2.28654154
+## 131  0.14539846 2.3493888 3.2405691  2.3440132 4.098868  2.13723657
+## 132  0.57756764 4.7246801 3.2135469  2.3344985 2.194079  2.24364873
+## 133  0.25197582 2.5957409 2.8994499  2.7899980 3.090376  1.82620959
+## 134  0.57770853 3.7050707 3.4709361  2.6119811 3.328878  1.14167108
+## 135  0.12261317 1.2503948 3.0024593  2.1253723 4.092472  1.47990191
+## 136  0.26291529 2.9748965 1.5534048  1.6482858 4.807430  1.59314788
+## 137  0.32139038 3.5068595 3.1679742  1.3884489 3.733213  1.16383795
+## 138  0.30901830 1.9551945 2.4312567  1.8925443 3.726499  1.22452851
+## 139  0.40064305 3.4706670 2.7419435  0.7804873 4.642437  2.39744299
+## 140  0.25166585 3.0404272 3.4198123  1.7100788 3.273517  1.18731449
+## 141  0.53430469 3.3282426 2.8288598  3.1283890 1.875542  1.74021564
+## 142  0.47101030 3.6900845 5.0647611  4.7262824 1.487914  1.73085631
+## 143  0.47626035 3.4624640 2.5962100  2.3876083 4.401440  1.57587931
+## 144  0.53725858 3.5309773 2.8245015  3.6862821 3.184580  0.13304818
+## 145  0.29017494 2.9943860 2.9720216  2.3853740 3.527133  1.43003982
+## 146  0.34106584 3.5745454 4.8982539  4.1582760 2.361561  1.34356694
+## 147  0.30282791 2.3516204 2.6772719  1.7864695 5.405350  1.56413895
+## 148  0.27240003 2.0889215 4.2100407  2.8891736 2.893292  2.31183805
+## 149  0.40388358 3.3061810 2.5783714  2.0861286 3.479841  1.82404413
+## 150  0.44336223 2.2127621 4.7736521  3.8747925 3.354023  0.59999785
+## 151  0.19531077 1.9684127 3.6376807  2.6859487 3.022946  1.05558784
+## 152  0.51459072 3.1856501 5.0372132  2.4685772 3.844596  2.12822875
+## 153  0.52853365 3.4693714 2.6153535  3.3420836 3.564815  1.60092711
+## 154  0.55048588 3.0632298 2.9962110  3.3900732 2.131883  1.54506874
+## 155  0.29878455 2.6036346 2.1778221  2.4567806 3.771628  1.12997935
+## 156  0.55409136 2.7994068 4.8666557  3.8620707 1.337963  1.57531900
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{Kim\_df }\OtherTok{\textless{}{-}}\NormalTok{ Kim\_df}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  as.data.frame }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{REMS =}\NormalTok{ V1, }\AttributeTok{CMI =}\NormalTok{ V2, }\AttributeTok{ANX =}\NormalTok{ V3, }\AttributeTok{DEP =}\NormalTok{ V4, }\AttributeTok{PWB =}\NormalTok{ V5, }\AttributeTok{HlpSk =}\NormalTok{ V6)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6686,7 +6851,7 @@ The pairs panel from the \emph{psych} package is an efficient way to see
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ReC_MultMod_files/figure-latex/unnamed-chunk-21-1.pdf}
+\includegraphics{ReC_MultMod_files/figure-latex/unnamed-chunk-81-1.pdf}
 
 The Lewis et al.~article \citeyearpar{lewis_applying_2017} reports four mediation analyses, each repeated for mental and physical outcomes. Thus, their write-up reports eight simple mediation models. Graphically, this is efficiently represented in a figure that looks like parallel mediation. Note that the figure is reporting standardized estimates. In Hayes' \citeyearpar{hayes_introduction_2018} we have been using raw, \(B\) weights. However, the standardized weights are reported in the output.
 

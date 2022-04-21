@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-03-16" />
+<meta name="date" content="2022-04-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -626,30 +626,30 @@ div.csl-indent {
 ## Reliability analysis   
 ## Call: psych::alpha(x = item_scores_df[c(&quot;Belong_1&quot;, &quot;Belong_2&quot;, &quot;Belong_3&quot;)])
 ## 
-##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-##       0.96      0.96    0.94      0.88  22 0.011  4.2 1.5     0.89
+##   raw_alpha std.alpha G6(smc) average_r S/N    ase mean  sd median_r
+##       0.96      0.96    0.94      0.89  24 0.0088    4 1.5     0.89
 ## 
 ##  lower alpha upper     95% confidence boundaries
 ## 0.94 0.96 0.98 
 ## 
 ##  Reliability if an item is dropped:
 ##          raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## Belong_1      0.94      0.94    0.89      0.89  16    0.017    NA  0.89
-## Belong_2      0.92      0.92    0.85      0.85  12    0.023    NA  0.85
-## Belong_3      0.95      0.95    0.90      0.90  18    0.015    NA  0.90
+## Belong_1      0.94      0.94    0.89      0.89  17    0.014    NA  0.89
+## Belong_2      0.93      0.93    0.88      0.88  14    0.017    NA  0.88
+## Belong_3      0.95      0.95    0.90      0.90  18    0.014    NA  0.90
 ## 
 ##  Item statistics 
 ##           n raw.r std.r r.cor r.drop mean  sd
-## Belong_1 48  0.96  0.96  0.93   0.90  4.2 1.5
-## Belong_2 49  0.97  0.97  0.95   0.93  4.3 1.5
-## Belong_3 48  0.95  0.95  0.91   0.89  4.0 1.6
+## Belong_1 60  0.96  0.96  0.93   0.91  4.1 1.5
+## Belong_2 61  0.97  0.97  0.95   0.93  4.1 1.6
+## Belong_3 60  0.96  0.96  0.93   0.91  3.8 1.6
 ## 
 ## Non missing response frequency for each item
 ##             1    2    3    4    5    6    7 miss
-## Belong_1 0.02 0.10 0.23 0.19 0.23 0.17 0.06 0.04
-## Belong_2 0.02 0.10 0.22 0.22 0.16 0.20 0.06 0.02
-## Belong_3 0.04 0.17 0.17 0.23 0.23 0.10 0.06 0.04</code></pre>
-<p>CAPTURE FOR THE APA STYLE WRITE-UP(since these are generally placed in the description of each measure in the Method section, I am not doing a cumulative capture): Cronbach’s alpha for the belonging scale was 0.957.</p>
+## Belong_1 0.02 0.15 0.23 0.18 0.22 0.15 0.05 0.03
+## Belong_2 0.03 0.15 0.20 0.23 0.15 0.20 0.05 0.02
+## Belong_3 0.05 0.20 0.17 0.23 0.20 0.10 0.05 0.03</code></pre>
+<p>CAPTURE FOR THE APA STYLE WRITE-UP(since these are generally placed in the description of each measure in the Method section, I am not doing a cumulative capture): Cronbach’s alpha for the belonging scale was 0.960.</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="DataDx.html#cb75-1" aria-hidden="true" tabindex="-1"></a>CClim_alpha <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;rBlst_1&quot;</span>, <span class="st">&quot;Blst_2&quot;</span>, <span class="st">&quot;Blst_3&quot;</span>, <span class="st">&quot;Blst_4&quot;</span>, <span class="st">&quot;Blst_5&quot;</span>, <span class="st">&quot;Blst_6&quot;</span>)])</span>
 <span id="cb75-2"><a href="DataDx.html#cb75-2" aria-hidden="true" tabindex="-1"></a>CClim_alpha</span></code></pre></div>
 <pre><code>## 
@@ -658,38 +658,38 @@ div.csl-indent {
 ##     &quot;Blst_4&quot;, &quot;Blst_5&quot;, &quot;Blst_6&quot;)])
 ## 
 ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-##       0.87      0.88    0.88      0.55 7.2 0.029  2.5 1.1     0.52
+##       0.87      0.88    0.88      0.56 7.5 0.025  2.5 1.1     0.51
 ## 
 ##  lower alpha upper     95% confidence boundaries
-## 0.81 0.87 0.93 
+## 0.82 0.87 0.92 
 ## 
 ##  Reliability if an item is dropped:
 ##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## rBlst_1      0.88      0.89    0.88      0.61 7.8    0.027 0.017  0.59
-## Blst_2       0.86      0.86    0.86      0.56 6.4    0.033 0.025  0.52
-## Blst_3       0.86      0.88    0.87      0.59 7.1    0.031 0.021  0.55
-## Blst_4       0.83      0.84    0.83      0.51 5.3    0.038 0.019  0.49
-## Blst_5       0.82      0.83    0.82      0.50 5.0    0.040 0.018  0.48
-## Blst_6       0.83      0.84    0.82      0.51 5.2    0.039 0.018  0.48
+## rBlst_1      0.88      0.89    0.89      0.61 7.8    0.025 0.017  0.62
+## Blst_2       0.87      0.87    0.87      0.58 7.0    0.027 0.020  0.55
+## Blst_3       0.86      0.88    0.87      0.59 7.1    0.028 0.019  0.55
+## Blst_4       0.83      0.85    0.84      0.52 5.5    0.034 0.019  0.47
+## Blst_5       0.83      0.84    0.83      0.51 5.2    0.035 0.015  0.49
+## Blst_6       0.84      0.85    0.83      0.52 5.5    0.033 0.016  0.51
 ## 
 ##  Item statistics 
 ##          n raw.r std.r r.cor r.drop mean  sd
-## rBlst_1 45  0.68  0.66  0.53   0.51  3.4 1.6
-## Blst_2  48  0.78  0.76  0.70   0.64  2.8 1.6
-## Blst_3  48  0.69  0.70  0.61   0.56  2.1 1.3
-## Blst_4  47  0.85  0.86  0.84   0.78  2.3 1.2
-## Blst_5  48  0.89  0.89  0.88   0.82  2.1 1.3
-## Blst_6  48  0.85  0.87  0.87   0.79  2.3 1.3
+## rBlst_1 56  0.70  0.68  0.57   0.54  3.5 1.6
+## Blst_2  60  0.77  0.74  0.67   0.62  2.9 1.7
+## Blst_3  59  0.71  0.73  0.65   0.59  2.1 1.3
+## Blst_4  58  0.86  0.86  0.84   0.79  2.5 1.3
+## Blst_5  59  0.89  0.89  0.89   0.83  2.1 1.3
+## Blst_6  59  0.83  0.86  0.85   0.77  2.2 1.3
 ## 
 ## Non missing response frequency for each item
 ##            1    2    3    4    5    6    7 miss
-## rBlst_1 0.09 0.24 0.22 0.22 0.09 0.09 0.04 0.10
-## Blst_2  0.35 0.15 0.08 0.23 0.17 0.02 0.00 0.04
-## Blst_3  0.42 0.31 0.08 0.15 0.02 0.02 0.00 0.04
-## Blst_4  0.30 0.34 0.15 0.15 0.06 0.00 0.00 0.06
-## Blst_5  0.46 0.27 0.06 0.17 0.04 0.00 0.00 0.04
-## Blst_6  0.33 0.35 0.12 0.10 0.06 0.02 0.00 0.04</code></pre>
-<p>CAPTURE FOR THE APA STYLE WRITE-UP (since these are generally placed in the description of each measure in the Method section, I am not doing a cumulative capture): Cronbach’s alpha for the campus climate scale was 0.869. Since this value is <span class="math inline">\(\geq\)</span> .80, it is within the realm of acceptability. Let’s go ahead, though, and look at its subscales.</p>
+## rBlst_1 0.09 0.23 0.21 0.23 0.09 0.11 0.04 0.10
+## Blst_2  0.35 0.15 0.08 0.18 0.17 0.07 0.00 0.03
+## Blst_3  0.42 0.34 0.07 0.12 0.03 0.02 0.00 0.05
+## Blst_4  0.26 0.34 0.16 0.17 0.05 0.00 0.02 0.06
+## Blst_5  0.44 0.31 0.05 0.15 0.05 0.00 0.00 0.05
+## Blst_6  0.36 0.36 0.12 0.08 0.07 0.02 0.00 0.05</code></pre>
+<p>CAPTURE FOR THE APA STYLE WRITE-UP (since these are generally placed in the description of each measure in the Method section, I am not doing a cumulative capture): Cronbach’s alpha for the campus climate scale was 0.872. Since this value is <span class="math inline">\(\geq\)</span> .80, it is within the realm of acceptability. Let’s go ahead, though, and look at its subscales.</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="DataDx.html#cb77-1" aria-hidden="true" tabindex="-1"></a>Stigma_alpha <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;Blst_3&quot;</span>, <span class="st">&quot;Blst_2&quot;</span>, <span class="st">&quot;Blst_5&quot;</span>)])</span>
 <span id="cb77-2"><a href="DataDx.html#cb77-2" aria-hidden="true" tabindex="-1"></a>Stigma_alpha</span></code></pre></div>
 <pre><code>## 
@@ -697,29 +697,29 @@ div.csl-indent {
 ## Call: psych::alpha(x = item_scores_df[c(&quot;Blst_3&quot;, &quot;Blst_2&quot;, &quot;Blst_5&quot;)])
 ## 
 ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-##       0.77      0.78    0.74      0.54 3.6 0.056  2.3 1.2     0.55
+##       0.76      0.78    0.74      0.54 3.6 0.051  2.3 1.2     0.59
 ## 
 ##  lower alpha upper     95% confidence boundaries
-## 0.66 0.77 0.88 
+## 0.66 0.76 0.86 
 ## 
 ##  Reliability if an item is dropped:
 ##        raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## Blst_3      0.80      0.81    0.69      0.69 4.4    0.054    NA  0.69
-## Blst_2      0.71      0.71    0.55      0.55 2.5    0.081    NA  0.55
-## Blst_5      0.55      0.56    0.39      0.39 1.3    0.123    NA  0.39
+## Blst_3      0.78      0.80    0.67      0.67 4.0    0.052    NA  0.67
+## Blst_2      0.74      0.74    0.59      0.59 2.9    0.065    NA  0.59
+## Blst_5      0.52      0.54    0.37      0.37 1.2    0.114    NA  0.37
 ## 
 ##  Item statistics 
 ##         n raw.r std.r r.cor r.drop mean  sd
-## Blst_3 48  0.76  0.78  0.58   0.50  2.1 1.3
-## Blst_2 48  0.86  0.83  0.72   0.61  2.8 1.6
-## Blst_5 48  0.90  0.90  0.84   0.75  2.1 1.3
+## Blst_3 59  0.75  0.78  0.61   0.51  2.1 1.3
+## Blst_2 60  0.86  0.82  0.69   0.59  2.9 1.7
+## Blst_5 59  0.90  0.90  0.85   0.76  2.1 1.3
 ## 
 ## Non missing response frequency for each item
 ##           1    2    3    4    5    6 miss
-## Blst_3 0.42 0.31 0.08 0.15 0.02 0.02 0.04
-## Blst_2 0.35 0.15 0.08 0.23 0.17 0.02 0.04
-## Blst_5 0.46 0.27 0.06 0.17 0.04 0.00 0.04</code></pre>
-<p>Cronbach’s alpha for the campus climate stigma subscale was 0.772.</p>
+## Blst_3 0.42 0.34 0.07 0.12 0.03 0.02 0.05
+## Blst_2 0.35 0.15 0.08 0.18 0.17 0.07 0.03
+## Blst_5 0.44 0.31 0.05 0.15 0.05 0.00 0.05</code></pre>
+<p>Cronbach’s alpha for the campus climate stigma subscale was 0.764.</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="DataDx.html#cb79-1" aria-hidden="true" tabindex="-1"></a>Resp_alpha <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;rBlst_1&quot;</span>, <span class="st">&quot;Blst_4&quot;</span>, <span class="st">&quot;Blst_6&quot;</span>)])</span>
 <span id="cb79-2"><a href="DataDx.html#cb79-2" aria-hidden="true" tabindex="-1"></a>Resp_alpha</span></code></pre></div>
 <pre><code>## 
@@ -727,29 +727,29 @@ div.csl-indent {
 ## Call: psych::alpha(x = item_scores_df[c(&quot;rBlst_1&quot;, &quot;Blst_4&quot;, &quot;Blst_6&quot;)])
 ## 
 ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-##       0.78       0.8    0.77      0.57   4 0.055  2.7 1.2     0.47
+##       0.79      0.81    0.76      0.58 4.1 0.047  2.7 1.2     0.51
 ## 
 ##  lower alpha upper     95% confidence boundaries
-## 0.68 0.78 0.89 
+## 0.7 0.79 0.89 
 ## 
 ##  Reliability if an item is dropped:
 ##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## rBlst_1      0.88      0.88    0.79      0.79 7.3    0.034    NA  0.79
-## Blst_4       0.63      0.64    0.47      0.47 1.8    0.102    NA  0.47
-## Blst_6       0.62      0.64    0.47      0.47 1.8    0.102    NA  0.47
+## rBlst_1      0.86      0.86    0.75      0.75 6.1    0.036    NA  0.75
+## Blst_4       0.63      0.64    0.47      0.47 1.8    0.091    NA  0.47
+## Blst_6       0.67      0.68    0.51      0.51 2.1    0.081    NA  0.51
 ## 
 ##  Item statistics 
 ##          n raw.r std.r r.cor r.drop mean  sd
-## rBlst_1 45  0.80  0.76  0.53   0.50  3.4 1.6
-## Blst_4  47  0.87  0.89  0.85   0.71  2.3 1.2
-## Blst_6  48  0.87  0.89  0.85   0.71  2.3 1.3
+## rBlst_1 56  0.81  0.78  0.57   0.53  3.5 1.6
+## Blst_4  58  0.88  0.89  0.84   0.72  2.5 1.3
+## Blst_6  59  0.85  0.87  0.81   0.69  2.2 1.3
 ## 
 ## Non missing response frequency for each item
 ##            1    2    3    4    5    6    7 miss
-## rBlst_1 0.09 0.24 0.22 0.22 0.09 0.09 0.04 0.10
-## Blst_4  0.30 0.34 0.15 0.15 0.06 0.00 0.00 0.06
-## Blst_6  0.33 0.35 0.12 0.10 0.06 0.02 0.00 0.04</code></pre>
-<p>Cronbach’s alpha for the campus climate responsiveness subscale was 0.784. Between the two subscales, it looks as if the responsivenes subscale is more internally consistent.</p>
+## rBlst_1 0.09 0.23 0.21 0.23 0.09 0.11 0.04 0.10
+## Blst_4  0.26 0.34 0.16 0.17 0.05 0.00 0.02 0.06
+## Blst_6  0.36 0.36 0.12 0.08 0.07 0.02 0.00 0.05</code></pre>
+<p>Cronbach’s alpha for the campus climate responsiveness subscale was 0.793. Between the two subscales, it looks as if the responsivenes subscale is more internally consistent.</p>
 </div>
 <div id="distributional-characteristics-of-the-variables" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Distributional Characteristics of the Variables</h2>
@@ -759,7 +759,7 @@ div.csl-indent {
 <p>We can continue to work from the df we uploaded at the beginning of the chapter to do this work. Let’s take a quick peek. This df has the item-level data (we used it for the alpha coefficients); the scale and subscale scores; and the two items that assess proportion of instructional staff that are BIPOC and proportion of classmates that are BIPOC.</p>
 <p>The <em>str()</em> function let’s us look at the variable format/measurement level of each variable.</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="DataDx.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(item_scores_df)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    50 obs. of  17 variables:
+<pre><code>## &#39;data.frame&#39;:    62 obs. of  17 variables:
 ##  $ ID        : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ iBIPOC_pr : num  0.333 0 0.5 0.333 1 ...
 ##  $ cmBlack   : int  0 5 10 6 5 20 0 0 0 4 ...
@@ -786,16 +786,16 @@ div.csl-indent {
 <span id="cb83-6"><a href="DataDx.html#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="co"># When we use an object, we need to write it below so the results will display</span></span>
 <span id="cb83-7"><a href="DataDx.html#cb83-7" aria-hidden="true" tabindex="-1"></a>descriptives <span class="ot">&lt;-</span> (psych<span class="sc">::</span><span class="fu">describe</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)]))</span>
 <span id="cb83-8"><a href="DataDx.html#cb83-8" aria-hidden="true" tabindex="-1"></a>descriptives</span></code></pre></div>
-<pre><code>##           vars  n mean   sd median trimmed  mad min  max range  skew kurtosis
-## iBIPOC_pr    1 48 0.33 0.39   0.25    0.29 0.37   0  1.0   1.0  0.78    -0.96
-## cmBlack      2 50 6.56 7.48   5.00    5.20 7.41   0 29.0  29.0  1.31     1.02
-## Belonging    3 48 4.18 1.47   4.00    4.18 1.48   1  7.0   6.0 -0.02    -0.84
-## ClimateBL    4 46 2.46 1.09   2.33    2.42 1.48   1  4.5   3.5  0.29    -1.15
+<pre><code>##           vars  n mean   sd median trimmed  mad min   max range skew kurtosis
+## iBIPOC_pr    1 60 0.35 0.39   0.25    0.31 0.37   0  1.00  1.00 0.63    -1.15
+## cmBlack      2 62 7.66 7.61   5.00    6.70 7.41   0 29.00 29.00 0.92    -0.06
+## Belonging    3 60 4.01 1.50   4.00    4.00 1.48   1  7.00  6.00 0.05    -0.93
+## ClimateBL    4 57 2.50 1.12   2.33    2.44 1.23   1  5.67  4.67 0.49    -0.45
 ##             se
-## iBIPOC_pr 0.06
-## cmBlack   1.06
-## Belonging 0.21
-## ClimateBL 0.16</code></pre>
+## iBIPOC_pr 0.05
+## cmBlack   0.97
+## Belonging 0.19
+## ClimateBL 0.15</code></pre>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="DataDx.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span> (descriptives, <span class="at">file=</span><span class="st">&quot;DataDx_descripts.csv&quot;</span>) <span class="co">#this can be useful if you wish to manually format the data for an APA style table</span></span></code></pre></div>
 <p>To understand whether our data are normally distributed, we can look at skew and kurtosis. The skew and kurtosis indices in the psych package are reported as <em>z</em> scores. Regarding skew, values &gt; 3.0 are generally considered “severely skewed.” Regarding kurtosis, “severely kurtotic” is argued anywhere &gt; 8 to 20 <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">Kline, 2016</a>)</span>. At the time I am writing this chapter, our skew and kurtosis values fall below the thresholds that Kline identified as concerning.</p>
 <p>We can also apply the Shapiro-Wilk test of normality to each of our variables. When the <span class="math inline">\(p\)</span> value is &lt; .05, the variable’s distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.</p>
@@ -810,26 +810,26 @@ div.csl-indent {
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  item_scores_df$iBIPOC_pr
-## W = 0.75717, p-value = 1.585e-07</code></pre>
+## W = 0.78915, p-value = 7.317e-08</code></pre>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="DataDx.html#cb88-1" aria-hidden="true" tabindex="-1"></a>SWt_cm</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  item_scores_df$cmBlack
-## W = 0.81606, p-value = 2.098e-06</code></pre>
+## W = 0.87555, p-value = 1.424e-05</code></pre>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="DataDx.html#cb90-1" aria-hidden="true" tabindex="-1"></a>SWt_Bel</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  item_scores_df$Belonging
-## W = 0.97779, p-value = 0.4901</code></pre>
+## W = 0.97088, p-value = 0.161</code></pre>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="DataDx.html#cb92-1" aria-hidden="true" tabindex="-1"></a>SWt_Cl</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  item_scores_df$ClimateBL
-## W = 0.93256, p-value = 0.01043</code></pre>
-<p>CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP: Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (<span class="math inline">\(W\)</span> = 0.816, <span class="math inline">\(p\)</span> = 0.0000) and the proportion of BIPOC instructional staff(<span class="math inline">\(W\)</span> = 0.757, <span class="math inline">\(p\)</span> = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent’s belonging (<span class="math inline">\(W\)</span> = 0.978, <span class="math inline">\(p\)</span> = 0.4901) and the respondent’s perception of campus climate for Black students (<span class="math inline">\(W\)</span> = 0.933, <span class="math inline">\(p\)</span> = 0.0104) did not differ differently from a normal distribution.</p>
+## W = 0.94942, p-value = 0.01851</code></pre>
+<p>CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP: Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (<span class="math inline">\(W\)</span> = 0.876, <span class="math inline">\(p\)</span> = 0.0000) and the proportion of BIPOC instructional staff(<span class="math inline">\(W\)</span> = 0.789, <span class="math inline">\(p\)</span> = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent’s belonging (<span class="math inline">\(W\)</span> = 0.971, <span class="math inline">\(p\)</span> = 0.1610) and the respondent’s perception of campus climate for Black students (<span class="math inline">\(W\)</span> = 0.949, <span class="math inline">\(p\)</span> = 0.0185) did not differ differently from a normal distribution.</p>
 <p><em>Note. Owing to the open nature of the dataset, these values will change. While I have used inline text to update the values of the Shapiro Wilks’ and associated significance test, the text narration is not automatically updated and may be inconsistent with the results.</em></p>
 <p>What would we do in the case of a univariate outlier? I find Kline’s <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span> chapter on data preparation and management to be extremely useful. He provides ideas for more complex analysis of both univariate and multivariate normality and provides suggestions that range from recoding an extreme value to the next most extreme that is within three standard deviations of the mean to more complicated transformations. First, though we need to further examine the relationships between variables. We do that, next.</p>
 </div>
@@ -845,7 +845,7 @@ div.csl-indent {
 <li>The upper half of is the correlation coefficient between the two variables.</li>
 </ul>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="DataDx.html#cb94-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)], <span class="at">stars =</span> <span class="cn">TRUE</span>, <span class="at">lm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/pairs%20panels-1.png" width="672" /></p>
+<p><img src="ReC_MultMod_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
 <p>The histograms displayed in the diagonal graph for us what we learned from the Shapiro Wilk’s test of normality. We can clearly see the non-normal distribution in the iBIPOC_pr and cmBlack variables.</p>
 </div>
 </div>
@@ -856,12 +856,12 @@ div.csl-indent {
 <p>The code below appends the Mahalanobis values to the dataframe. It is easy, then, to identify, sort, and examine the most extreme values (relative to the rest of the data in their case/row) to make decisions about their retention or adjustment.</p>
 <p>Numeric variables are required in the for the calculation of the Mahalanobis.</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="DataDx.html#cb95-1" aria-hidden="true" tabindex="-1"></a>item_scores_df<span class="sc">$</span>Mahal <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">outlier</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)]) </span></code></pre></div>
-<p><img src="ReC_MultMod_files/figure-html/Detect%20multivariate%20outliers-1.png" width="672" /></p>
+<p><img src="ReC_MultMod_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
 <p>Q-Q plots take your sample data, sort it in ascending order, and then plot them versus quantiles (the number varies; you can see it on the X axis) calculated from a theoretical distribution. The number of quantiles is selected to match the size of your sample data. While Normal Q-Q Plots are the ones most often used in practice due to so many statistical methods assuming normality, Q-Q Plots can actually be created for any distribution. To the degree that the plotted line stays on the straight line (representing the theoretical normal distribution), the data is multivariate normally distributed.</p>
 <p>It is possible, then to analyze the Mahalanobis distance values.</p>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="DataDx.html#cb96-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(item_scores_df<span class="sc">$</span>Mahal)</span></code></pre></div>
 <pre><code>##    vars  n mean  sd median trimmed  mad  min   max range skew kurtosis   se
-## X1    1 50 3.78 2.3   3.65    3.56 2.34 0.38 11.33 10.95 0.99     1.13 0.32</code></pre>
+## X1    1 62  3.8 2.2   3.64    3.62 2.47 0.26 10.67 10.42 0.77     0.45 0.28</code></pre>
 <p>Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median. In fact, we can have these noted in a column in the dataframe.</p>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="DataDx.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb98-2"><a href="DataDx.html#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="co">#str(item_scores_df$Mahal)</span></span>
@@ -872,17 +872,17 @@ div.csl-indent {
 <span id="cb98-7"><a href="DataDx.html#cb98-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(MOutlier)</span>
 <span id="cb98-8"><a href="DataDx.html#cb98-8" aria-hidden="true" tabindex="-1"></a>OutlierCount</span></code></pre></div>
 <pre><code>##   MOutlier  n
-## 1    FALSE 49
+## 1    FALSE 61
 ## 2     TRUE  1</code></pre>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="DataDx.html#cb100-1" aria-hidden="true" tabindex="-1"></a>NumOutliers <span class="ot">&lt;-</span> <span class="fu">nrow</span>(item_scores_df) <span class="sc">-</span> OutlierCount <span class="co">#calculating how many outliers</span></span>
 <span id="cb100-2"><a href="DataDx.html#cb100-2" aria-hidden="true" tabindex="-1"></a>NumOutliers <span class="co">#this object is used for the inline text for the reesults</span></span></code></pre></div>
 <pre><code>##   MOutlier  n
-## 1       50  1
-## 2       49 49</code></pre>
+## 1       62  1
+## 2       61 61</code></pre>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="DataDx.html#cb102-1" aria-hidden="true" tabindex="-1"></a>NumOutliers</span></code></pre></div>
 <pre><code>##   MOutlier  n
-## 1       50  1
-## 2       49 49</code></pre>
+## 1       62  1
+## 2       61 61</code></pre>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="DataDx.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(item_scores_df) <span class="co">#shows us the first 6 rows of the data so we can see the new variables (Mahal, MOutlier)</span></span></code></pre></div>
 <pre><code>##   ID iBIPOC_pr cmBlack Belong_1 Belong_2 Belong_3 Blst_1 Blst_2 Blst_3 Blst_4
 ## 1  1 0.3333333       0        6        6        7      5      3      5      2
@@ -892,12 +892,12 @@ div.csl-indent {
 ## 5  5 1.0000000       5        4        4        4      6      1      1      1
 ## 6  6 0.0000000      20        5        6        5      5      1      1      2
 ##   Blst_5 Blst_6 rBlst_1 Belonging ResponseBL StigmaBL ClimateBL     Mahal
-## 1      2      2       3      6.33       2.33     3.33      2.83 2.9474599
-## 2      4      1       2      4.67       1.67     4.00      2.83 1.0363038
-## 3     NA      2      NA        NA       2.00     3.50        NA 0.4759603
-## 4      2      2       6      3.33       3.33     2.00      2.67 0.3795770
-## 5      1      1       2      4.00       1.33     1.00      1.17 3.9774323
-## 6      1      2       3      5.33       2.33     1.00      1.67 5.2238187
+## 1      2      2       3      6.33       2.33     3.33      2.83 3.1529026
+## 2      4      1       2      4.67       1.67     4.00      2.83 1.1055607
+## 3     NA      2      NA        NA       2.00     3.50        NA 0.2556646
+## 4      2      2       6      3.33       3.33     2.00      2.67 0.2881807
+## 5      1      1       2      4.00       1.33     1.00      1.17 3.6918977
+## 6      1      2       3      5.33       2.33     1.00      1.67 5.2424055
 ##   MOutlier
 ## 1    FALSE
 ## 2    FALSE
@@ -905,7 +905,7 @@ div.csl-indent {
 ## 4    FALSE
 ## 5    FALSE
 ## 6    FALSE</code></pre>
-<p>CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP: We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the <em>outlier()</em> function in the <em>psych</em> package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 49 exceed three standard deviations beyond the median. <em>Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis</em> AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.</p>
+<p>CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP: We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the <em>outlier()</em> function in the <em>psych</em> package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 61 exceed three standard deviations beyond the median. <em>Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis</em> AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.</p>
 </div>
 <div id="a-few-words-on-transformations" class="section level2" number="4.7">
 <h2><span class="header-section-number">4.7</span> A Few Words on Transformations</h2>
@@ -918,12 +918,12 @@ div.csl-indent {
 <p>Since the focus of this chapter was on data diagnostics, the APA style writeup will focus on on this element of the Method section:</p>
 <div id="data-diagnostics" class="section level3" number="4.8.1">
 <h3><span class="header-section-number">4.8.1</span> Data Diagnostics</h3>
-<p>Data screening suggested that 75 individuals opened the survey link. Of those, 60 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 52 met this criteria.</p>
+<p>Data screening suggested that 92 individuals opened the survey link. Of those, 74 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 65 met this criteria.</p>
 <p>Available item analysis (AIA; <span class="citation">(<a href="#ref-parent_handling_2013" role="doc-biblioref">Parent, 2013</a>)</span>) is a strategy for managing missing data that uses available data for analysis and excludes cases with missing data points only for analyses in which the data points would be directly involved. Parent (2013) suggested that AIA is equivalent to more complex methods (e.g., multiple imputation) across a number of variations of sample size, magnitude of associations among items, and degree of missingness. Thus, we utilized Parent’s recommendations to guide our approach to managing missing data. Missing data analyses were conducted with tools in base R as well as the R packages, <em>psych</em> (v. 1.0.12) and <em>mice</em> (v. 3.13.0).</p>
-<p>Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 91%. Across the dataset, 4.18% of cells had missing data and 86.00% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with less than 90% missing to continue to the scoring stage. Guided by Parent’s <span class="citation">(<a href="#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> AIA approach, scales with three items were scored if at least two items were non-missing; the scale with four items was scored if it at least three non-missing items; and the scale with six items was scored if it had at least five non-missing items.</p>
-<p>Across the 50 cases for which the scoring protocol was applied, missingness ranged from 0% to 67%. After eliminating cases with greater than 20% missing, the dataset analyzed included 46 cases. In this dataset we had 0.72% missing across the df; 95.65% of the rows had nonmissing data.</p>
-<p>Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (<span class="math inline">\(W\)</span> = 0.816, <span class="math inline">\(p\)</span> = 0.0000) and the proportion of BIPOC instructional staff(<span class="math inline">\(W\)</span> = 0.757, <span class="math inline">\(p\)</span> = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent’s belonging (<span class="math inline">\(W\)</span> = 0.978, <span class="math inline">\(p\)</span> = 0.4901) and the respondent’s perception of campus climate for Black students (<span class="math inline">\(W\)</span> = 0.933, <span class="math inline">\(p\)</span> = 0.0104) did not differ differently from a normal distribution.</p>
-<p>We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the <em>outlier()</em> function in the <em>psych</em> package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 49 exceed three standard deviations beyond the median. <em>Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis</em> AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.</p>
+<p>Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 100%. Across the dataset, 4.11% of cells had missing data and 87.10% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with less than 90% missing to continue to the scoring stage. Guided by Parent’s <span class="citation">(<a href="#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> AIA approach, scales with three items were scored if at least two items were non-missing; the scale with four items was scored if it at least three non-missing items; and the scale with six items was scored if it had at least five non-missing items.</p>
+<p>Across the 62 cases for which the scoring protocol was applied, missingness ranged from 0% to 67%. After eliminating cases with greater than 20% missing, the dataset analyzed included 57 cases. In this dataset we had 0.58% missing across the df; 96.49% of the rows had nonmissing data.</p>
+<p>Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (<span class="math inline">\(W\)</span> = 0.876, <span class="math inline">\(p\)</span> = 0.0000) and the proportion of BIPOC instructional staff(<span class="math inline">\(W\)</span> = 0.789, <span class="math inline">\(p\)</span> = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent’s belonging (<span class="math inline">\(W\)</span> = 0.971, <span class="math inline">\(p\)</span> = 0.1610) and the respondent’s perception of campus climate for Black students (<span class="math inline">\(W\)</span> = 0.949, <span class="math inline">\(p\)</span> = 0.0185) did not differ differently from a normal distribution.</p>
+<p>We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the <em>outlier()</em> function in the <em>psych</em> package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 61 exceed three standard deviations beyond the median. <em>Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis</em> AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.</p>
 <p>Given that our sample sizes were reasonable for the planned analyses and the degree of missingness was low, we used pairwise deletion in our multiple regression analysis.</p>
 </div>
 </div>
@@ -942,29 +942,28 @@ div.csl-indent {
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.93429 -0.81101 -0.06069  0.72280  1.94092 
+## -1.90325 -0.81374 -0.00349  0.77495  2.99229 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  3.06548    0.52308   5.860 7.43e-07 ***
-## Belonging   -0.05630    0.11372  -0.495    0.623    
-## cmBlack     -0.02758    0.02093  -1.318    0.195    
-## iBIPOC_pr   -0.69730    0.41999  -1.660    0.105    
+## (Intercept)  2.94490    0.48519   6.070  1.6e-07 ***
+## Belonging   -0.01788    0.10092  -0.177   0.8601    
+## cmBlack     -0.01999    0.01920  -1.041   0.3028    
+## iBIPOC_pr   -0.71144    0.38193  -1.863   0.0683 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.063 on 40 degrees of freedom
-##   (6 observations deleted due to missingness)
-## Multiple R-squared:  0.1097, Adjusted R-squared:  0.04289 
-## F-statistic: 1.642 on 3 and 40 DF,  p-value: 0.1949</code></pre>
+## Residual standard error: 1.099 on 51 degrees of freedom
+##   (7 observations deleted due to missingness)
+## Multiple R-squared:  0.08627,    Adjusted R-squared:  0.03252 
+## F-statistic: 1.605 on 3 and 51 DF,  p-value: 0.1996</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="DataDx.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Climate_fit)</span></code></pre></div>
 <pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
 ##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
 ##  [9] &quot;na.action&quot;     &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;        
 ## [13] &quot;model&quot;</code></pre>
-<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = -0.056, <span class="math inline">\(p\)</span> = 0.623) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.697, <span class="math inline">\(p\)</span> = 0.105), nor the proportion of Black classmates (<span class="math inline">\(B\)</span> = -0.028, <span class="math inline">\(p\)</span> = 0.195) led to statistically significant changes in perceptions of campus climate for Black students. Although it accounted for 10.97% of the variance, the overall model was not statistically significant. Results are presented in Table 2.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="DataDx.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(apaTables)</span>
-<span id="cb110-2"><a href="DataDx.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.cor.table</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)], <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.sig.stars =</span> <span class="cn">TRUE</span>, <span class="at">filename =</span> <span class="st">&quot;Table1_M_SDs_r_DataDx.doc&quot;</span>)</span></code></pre></div>
+<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = -0.018, <span class="math inline">\(p\)</span> = 0.860) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.711, <span class="math inline">\(p\)</span> = 0.068), nor the proportion of Black classmates (<span class="math inline">\(B\)</span> = -0.020, <span class="math inline">\(p\)</span> = 0.303) led to statistically significant changes in perceptions of campus climate for Black students. Although it accounted for 8.63% of the variance, the overall model was not statistically significant. Results are presented in Table 2.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="DataDx.html#cb110-1" aria-hidden="true" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)], <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.sig.stars =</span> <span class="cn">TRUE</span>, <span class="at">filename =</span> <span class="st">&quot;Table1_M_SDs_r_DataDx.doc&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## 
 ## Table 1 
@@ -973,16 +972,16 @@ div.csl-indent {
 ##  
 ## 
 ##   Variable     M    SD   1           2           3          
-##   1. iBIPOC_pr 0.33 0.39                                    
+##   1. iBIPOC_pr 0.35 0.39                                    
 ##                                                             
-##   2. cmBlack   6.56 7.48 -.05                               
-##                          [-.33, .24]                        
+##   2. cmBlack   7.66 7.61 .03                                
+##                          [-.22, .28]                        
 ##                                                             
-##   3. Belonging 4.18 1.47 .21         -.08                   
-##                          [-.08, .47] [-.35, .21]            
+##   3. Belonging 4.01 1.50 .03         -.11                   
+##                          [-.23, .29] [-.36, .15]            
 ##                                                             
-##   4. ClimateBL 2.46 1.09 -.26        -.19        -.16       
-##                          [-.52, .04] [-.45, .11] [-.43, .14]
+##   4. ClimateBL 2.50 1.12 -.26        -.16        -.05       
+##                          [-.49, .01] [-.40, .10] [-.30, .22]
 ##                                                             
 ## 
 ## Note. M and SD are used to represent mean and standard deviation, respectively.
@@ -1001,10 +1000,10 @@ div.csl-indent {
 ##  
 ## 
 ##    Predictor      b      b_95%_CI  beta   beta_95%_CI sr2  sr2_95%_CI    r
-##  (Intercept) 3.07**  [2.01, 4.12]                                         
-##    Belonging  -0.06 [-0.29, 0.17] -0.08 [-0.38, 0.23] .01 [-.04, .05] -.11
-##      cmBlack  -0.03 [-0.07, 0.01] -0.20 [-0.50, 0.11] .04 [-.07, .15] -.18
-##    iBIPOC_pr  -0.70 [-1.55, 0.15] -0.25 [-0.56, 0.05] .06 [-.07, .20] -.26
+##  (Intercept) 2.94**  [1.97, 3.92]                                         
+##    Belonging  -0.02 [-0.22, 0.18] -0.02 [-0.29, 0.25] .00 [-.01, .01] -.01
+##      cmBlack  -0.02 [-0.06, 0.02] -0.14 [-0.41, 0.13] .02 [-.05, .09] -.15
+##    iBIPOC_pr  -0.71 [-1.48, 0.06] -0.25 [-0.52, 0.02] .06 [-.06, .18] -.26
 ##                                                                           
 ##                                                                           
 ##                                                                           
@@ -1013,8 +1012,8 @@ div.csl-indent {
 ##                 
 ##                 
 ##                 
-##        R2 = .110
-##  95% CI[.00,.26]
+##        R2 = .086
+##  95% CI[.00,.21]
 ##                 
 ## 
 ## Note. A significant b-weight indicates the beta-weight and semi-partial correlation are also significant.

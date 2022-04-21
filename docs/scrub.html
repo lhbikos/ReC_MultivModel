@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-03-16" />
+<meta name="date" content="2022-04-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -540,11 +540,10 @@ div.csl-indent {
 </div>
 <div id="planning-for-practice" class="section level3" number="2.1.2">
 <h3><span class="header-section-number">2.1.2</span> Planning for Practice</h3>
-<!-- TODO: Specify set of items to score for homework. -->
 <p>The suggestions for practice will start with this chapter and continue in the next two chapters (Scoring, Data Dx). Using Parent’s <span class="citation">(<a href="#ref-parent_handling_2013" role="doc-biblioref">2013</a>)</span> AIA approach to managing missing data, you will scrub-and-score a raw dataset. Options of graded complexity could incude:</p>
 <ul>
 <li>Repeating the steps in the chapter with the most recent data from the Rate-A-Recent-Course survey; differences will be in the number of people who have completed the survey since the chapter was written.</li>
-<li>Use the dataset that is the source of the chapter, but score a different set of items that you choose. Hey :)</li>
+<li>Use the dataset that is the source of the chapter, but score a different set of items that you choose.</li>
 <li>Begin with raw data to which you have access.</li>
 </ul>
 </div>
@@ -560,16 +559,14 @@ div.csl-indent {
 <div id="packages-1" class="section level3" number="2.1.4">
 <h3><span class="header-section-number">2.1.4</span> Packages</h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
-<!-- TODO: Build out this section. -->
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="scrub.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
-<span id="cb6-2"><a href="scrub.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(qualtRics)){<span class="fu">install.packages</span>(<span class="st">&quot;qualtRics&quot;</span>)}</span>
-<span id="cb6-3"><a href="scrub.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(tidyverse)){<span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)}</span></code></pre></div>
+<span id="cb6-2"><a href="scrub.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(qualtRics)){install.packages(&quot;qualtRics&quot;)}</span></span>
+<span id="cb6-3"><a href="scrub.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(tidyverse)){install.packages(&quot;tidyverse&quot;)}</span></span></code></pre></div>
 </div>
 </div>
 <div id="workflow-for-scrubbing-and-scoring" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Workflow for Scrubbing and Scoring</h2>
 <p>The following is a proposed workflow for preparing data for analysis.</p>
-<!-- TODO: When finalized, save as PDF so it can open in its own window) -->
 <div class="figure">
 <img src="images/Ch02/scrubscore_wrkflow.jpg" alt="" />
 <p class="caption">An image of a workflow for scrubbing and scoring data.</p>
@@ -580,18 +577,18 @@ div.csl-indent {
 <ul>
 <li>imported “intRavenously” through programs such as Qualtrics,</li>
 <li>exported from programs such as Qualtrics to another program (e.g., .xlxs, .csv),</li>
-<li>imported in other forms (e.g., .csv,.sps, .sav).</li>
+<li>imported in other forms (e.g., .csv, .sps, .sav).</li>
 </ul></li>
 <li>Scrubbing data by
 <ul>
 <li>variable naming,</li>
 <li>specifying variable characteristics such as factoring,</li>
-<li>ensuring that included particpiants consented to participation,</li>
+<li>ensuring that included participants consented to participation,</li>
 <li>determining and executing the inclusion and exclusion criteria.</li>
 </ul></li>
 <li>Conduct preliminary data diagnostics such as
 <ul>
-<li>outlier anlaysis</li>
+<li>outlier analysis</li>
 <li>assessing for univariate and multivariate analysis</li>
 <li>making transformations and/or corrections</li>
 </ul></li>
@@ -628,9 +625,9 @@ div.csl-indent {
 <span id="cb7-2"><a href="scrub.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qualtRics)</span>
 <span id="cb7-3"><a href="scrub.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#qualtrics_api_credentials(api_key = &quot;mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg&quot;,</span></span>
 <span id="cb7-4"><a href="scrub.html#cb7-4" aria-hidden="true" tabindex="-1"></a>              <span class="co">#base_url = &quot;spupsych.az1.qualtrics.com&quot;, overwrite = TRUE, install = TRUE)</span></span>
-<span id="cb7-5"><a href="scrub.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">readRenviron</span>(<span class="st">&quot;~/.Renviron&quot;</span>)</span></code></pre></div>
+<span id="cb7-5"><a href="scrub.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#readRenviron(&quot;~/.Renviron&quot;)</span></span></code></pre></div>
 <p><em>all_surveys()</em> generates a dataframe containing information about all the surveys stored on your Qualtrics account.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="scrub.html#cb8-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">all_surveys</span>() </span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="scrub.html#cb8-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> qualtRics<span class="sc">::</span><span class="fu">all_surveys</span>() </span>
 <span id="cb8-2"><a href="scrub.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#View this as an object (found in the right: Environment).  </span></span>
 <span id="cb8-3"><a href="scrub.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Get survey id # for the next command</span></span>
 <span id="cb8-4"><a href="scrub.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#If this is showing you the WRONG list of surveys, you are pulling from the wrong Qualtrics account (i.e., maybe this one instead of your own). Go back and change your API token (it saves your old one). Changing the API likely requires a restart of R.</span></span>
@@ -647,19 +644,17 @@ div.csl-indent {
 <span id="cb9-9"><a href="scrub.html#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Out of the blue, I started getting an error, that R couldn&#39;t find function &quot;fetch_survey.&quot;  After trying a million things, adding qualtRics:: to the front of it solved the problem</span></span>
 <span id="cb9-10"><a href="scrub.html#cb9-10" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>qualtRics<span class="sc">::</span><span class="fu">fetch_survey</span>(<span class="at">surveyID =</span> <span class="st">&quot;SV_b2cClqAlLGQ6nLU&quot;</span>, <span class="at">time_zone =</span> <span class="cn">NULL</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">label=</span><span class="cn">FALSE</span>, <span class="at">convert=</span><span class="cn">FALSE</span>, <span class="at">force_request =</span> <span class="cn">TRUE</span>, <span class="at">import_id =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Warning in file.remove(survey.fpath): cannot remove file &#39;C:/Users/lhbikos/
-## AppData/Local/Temp/Rtmp0AbZaV/Recent Course Eval.csv&#39;, reason &#39;Permission
+## AppData/Local/Temp/Rtmpek65bs/Recent Course Eval.csv&#39;, reason &#39;Permission
 ## denied&#39;</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="scrub.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#useLocalTime = TRUE,</span></span></code></pre></div>
-<!-- TODO: Link to the Bonus Reel -->
 <p><em>It is possible (and helpful, even) to import Qualtrics data that has been downloaded from Qualtrics as a .csv. I demo this in the Bonus Reel.</em></p>
 </div>
 <div id="about-the-rate-a-recent-course-survey" class="section level3" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> About the <em>Rate-a-Recent-Course</em> Survey</h3>
-<!-- TODO: Add link to chapter when it is available. -->
 <p>As a teaching activity for the ReCentering Psych Stats OER, the topic of the survey was selected to be consistent with the overall theme of OER. Specifically, the purpose of this study is to understand the campus climate for students whose identities make them vulnerable to bias and discrimination. These include students who are Black, non-Black students of color, LGBTQ+ students, international students, and students with disabilities.</p>
 <p>Although the dataset should provide the opportunity to test a number of statistical models, one working hypothesis that framed the study is that the there will be a greater sense of belonging and less bias and discrimination when there is similar representation (of identities that are often marginalized) in the instructional faculty and student body. Termed, “structural diversity” <span class="citation">(<a href="#ref-lewis_black_2019" role="doc-biblioref">K. R. Lewis &amp; Shah, 2019</a>)</span> this is likely an oversimplification. In fact, an increase in diverse representation without attention to interacting factors can increase hostility on campus <span class="citation">(<a href="#ref-hurtado_linking_2007" role="doc-biblioref">Hurtado, 2007</a>)</span>. Thus, we included the task of rating of a single course relates to the larger campus along the dimensions of belonging and bias/discrimination. For example, if a single class has higher ratings on issues of inclusivity, diversity, and respect, we would expect that sentiment to be echoed in the broader institution.</p>
 <p>Our design has notable limitations You will likely notice that we ask about demographic characteristics of the instructional staff and classmates in the course rated, but we do not ask about the demographic characteristics of the respondent. In making this decision, we likely lose important information; Iacovino and James <span class="citation">(<a href="#ref-iacovino_retaining_2016" role="doc-biblioref">2016</a>)</span> have noted that White students perceive campus more favorably than Black student counterparts. We made this decision to protect the identity of the respondent. As you will see when we download the data, if a faculty member asked an entire class to take the survey, the datestamp and a handful of demographic identifiers could very likely identify a student. In certain circumstances, this might be risky in that private information (i.e., gender nonconformity, disclosure of a disability) or course evaluation data could be related back to the student.</p>
-<p>Further, the items that ask respondents to <em>guess</em> the identities of the instructional staff and classmates are limited, and contrary to best practices in survey construction that recommend providing the option of a “write-in” a response. After consulting with a diverse group of stakeholders and subject matter experts (and revising the response options numerous times) I have attempted to center anti-Black racism in the U.S. <span class="citation">(<a href="#ref-mosley_radical_2020" role="doc-biblioref">Mosley et al., 2020</a>, <a href="#ref-mosley_critical_2021" role="doc-biblioref">2021</a>; <a href="#ref-singh_building_2020" role="doc-biblioref">Singh, 2020</a>)</span>. In fact, the display logic does not present the race items when the course is offered outside the U.S. There are only five options for race: <em>biracial/multiracial</em>, <em>Black</em>, <em>non-Black person(s) of color</em>, <em>White</em>, and <em>I did not notice</em> (intended to capture a color-blind response). One unintended negative consequence of this design is that the response options could contribute to <em>colorism</em> <span class="citation">(<a href="#ref-adames_fallacy_2021" role="doc-biblioref">Adames et al., 2021</a>; <a href="#ref-capielo_rosario_acculturation_2019" role="doc-biblioref">Capielo Rosario et al., 2019</a>)</span>. Another possibility is that the limited options may erase, or make invisible, other identities. At the time that I am writing the first draft of this chapter, the murder of six Asian American women in Atlanta has just occurred. The Center for the Study of Hate and Extremeism has documented that while overall hate drimes dropped by 7% in 2020, anti-Asian hate crimes reported to the police in America’s largest cities increasedby 149% <span class="citation">(<a href="#ref-noauthor_fact_nodate" role="doc-biblioref"><em><span>FACT</span> <span>SHEET</span></em>, n.d.</a>)</span>. These incidents have occurred not only in cities, but in our neighborhoods and on our campusus <span class="citation">(<a href="#ref-kim_yes_2021" role="doc-biblioref">P. Kim, 2021</a>; <a href="#ref-kim_guest_2021" role="doc-biblioref">Paul Y. Kim, 2021</a>; <a href="#ref-noauthor_stop_nodate" role="doc-biblioref"><em><span>STOP</span> <span>AAPI</span> <span>HATE</span></em>, n.d.</a>)</span>. While this survey is intended to assess campus climate as a function of race, it unfortunately does not distinguish between many identities that experience marginalization.</p>
+<p>Further, the items that ask respondents to <em>guess</em> the identities of the instructional staff and classmates are limited, and contrary to best practices in survey construction that recommend providing the option of a “write-in” a response. After consulting with a diverse group of stakeholders and subject matter experts (and revising the response options numerous times) I have attempted to center anti-Black racism in the U.S. <span class="citation">(<a href="#ref-mosley_radical_2020" role="doc-biblioref">Mosley et al., 2020</a>, <a href="#ref-mosley_critical_2021" role="doc-biblioref">2021</a>; <a href="#ref-singh_building_2020" role="doc-biblioref">Singh, 2020</a>)</span>. In fact, the display logic does not present the race items when the course is offered outside the U.S. There are only five options for race: <em>biracial/multiracial</em>, <em>Black</em>, <em>non-Black person(s) of color</em>, <em>White</em>, and <em>I did not notice</em> (intended to capture a color-blind response). One unintended negative consequence of this design is that the response options could contribute to <em>colorism</em> <span class="citation">(<a href="#ref-adames_fallacy_2021" role="doc-biblioref">Adames et al., 2021</a>; <a href="#ref-capielo_rosario_acculturation_2019" role="doc-biblioref">Capielo Rosario et al., 2019</a>)</span>. Another possibility is that the limited options may erase, or make invisible, other identities. At the time that I am writing the first draft of this chapter, the murder of six Asian American women in Atlanta has just occurred. The Center for the Study of Hate and Extremeism has documented that while overall hate crimes dropped by 7% in 2020, anti-Asian hate crimes reported to the police in America’s largest cities increasedby 149% <span class="citation">(<a href="#ref-noauthor_fact_nodate" role="doc-biblioref"><em><span>FACT</span> <span>SHEET</span></em>, n.d.</a>)</span>. These incidents have occurred not only in cities, but in our neighborhoods and on our campusus <span class="citation">(<a href="#ref-kim_yes_2021" role="doc-biblioref">P. Kim, 2021</a>; <a href="#ref-kim_guest_2021" role="doc-biblioref">Paul Y. Kim, 2021</a>; <a href="#ref-noauthor_stop_nodate" role="doc-biblioref"><em><span>STOP</span> <span>AAPI</span> <span>HATE</span></em>, n.d.</a>)</span>. While this survey is intended to assess campus climate as a function of race, it unfortunately does not distinguish between many identities that experience marginalization.</p>
 <p>In parallel, the items asking respondents to identity characteristics of the instructional staff along dimensions of gender, international status, and disability are “large buckets” and do not include “write-in” options. Similarly, there was no intent to cause harm by erasing or making invisible individuals whose identities are better defined by different descriptors. Further, no write-in items were allowed. This was also intentional to prevent potential harm caused by people who could leave inappropriate or harmful comments.</p>
 </div>
 <div id="the-codebook" class="section level3" number="2.4.3">
@@ -735,21 +730,21 @@ div.csl-indent {
 <span id="cb13-2"><a href="scrub.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># I used inline text below to update the text with the new number</span></span>
 <span id="cb13-3"><a href="scrub.html#cb13-3" aria-hidden="true" tabindex="-1"></a>attempts <span class="ot">&lt;-</span> <span class="fu">nrow</span>(QTRX_df)</span>
 <span id="cb13-4"><a href="scrub.html#cb13-4" aria-hidden="true" tabindex="-1"></a>attempts</span></code></pre></div>
-<pre><code>## [1] 75</code></pre>
-<p>CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 75 individuals opened the survey link.</p>
+<pre><code>## [1] 92</code></pre>
+<p>CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 92 individuals opened the survey link.</p>
 <p>Next let’s filter in only those who consented to take the survey. Because Qualtrics discontinued the survey for everyone who did not consent, we do not have to worry that their data is unintentionally included, but it can be useful to mention the number of non-consenters in the summary of missing data.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="scrub.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># == are used </span></span>
 <span id="cb15-2"><a href="scrub.html#cb15-2" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>(<span class="fu">filter</span> (QTRX_df, Consent <span class="sc">==</span> <span class="dv">1</span>))</span>
 <span id="cb15-3"><a href="scrub.html#cb15-3" aria-hidden="true" tabindex="-1"></a>consented_attempts <span class="ot">&lt;-</span> <span class="fu">nrow</span>(QTRX_df)</span>
 <span id="cb15-4"><a href="scrub.html#cb15-4" aria-hidden="true" tabindex="-1"></a>consented_attempts</span></code></pre></div>
-<pre><code>## [1] 60</code></pre>
-<p>CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 75 individuals opened the survey link. Of those, 60, granted consent and proceeded into the survey items.</p>
+<pre><code>## [1] 74</code></pre>
+<p>CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 92 individuals opened the survey link. Of those, 74, granted consent and proceeded into the survey items.</p>
 <p>In this particular study, the categories used to collect race were U.S.-centric. Thus, they were only shown if the respondent indicated that the course being rated was taught by an institution in the U.S. Therefore, an an additional inclusion criteria for this specific research model should be that the course was taught in the U.S.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="scrub.html#cb17-1" aria-hidden="true" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>(<span class="fu">filter</span> (QTRX_df, USinst <span class="sc">==</span> <span class="dv">0</span>))</span>
 <span id="cb17-2"><a href="scrub.html#cb17-2" aria-hidden="true" tabindex="-1"></a>US_inclusion <span class="ot">&lt;-</span> <span class="fu">nrow</span>(QTRX_df)</span>
 <span id="cb17-3"><a href="scrub.html#cb17-3" aria-hidden="true" tabindex="-1"></a>US_inclusion</span></code></pre></div>
-<pre><code>## [1] 52</code></pre>
-<p>CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 75 individuals opened the survey link. Of those, 60, granted consent and proceeded into the survey items. A further inclusion criteria was that the course was taught in the U.S; 52 met this criteria.</p>
+<pre><code>## [1] 65</code></pre>
+<p>CAPTURING RESULTS FOR WRITING IT UP: Data screening suggested that 92 individuals opened the survey link. Of those, 74, granted consent and proceeded into the survey items. A further inclusion criteria was that the course was taught in the U.S; 65 met this criteria.</p>
 </div>
 <div id="renaming-variables" class="section level3" number="2.5.3">
 <h3><span class="header-section-number">2.5.3</span> Renaming Variables</h3>
@@ -783,7 +778,7 @@ df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
 <h2><span class="header-section-number">2.6</span> Toward the APA Style Write-up</h2>
 <div id="methodprocedure" class="section level3" number="2.6.1">
 <h3><span class="header-section-number">2.6.1</span> Method/Procedure</h3>
-<p>Data screening suggested that 75 individuals opened the survey link. Of those, 60 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 52 met this criteria.</p>
+<p>Data screening suggested that 92 individuals opened the survey link. Of those, 74 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 65 met this criteria.</p>
 </div>
 </div>
 <div id="practice-problems" class="section level2" number="2.7">

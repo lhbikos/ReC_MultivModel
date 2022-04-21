@@ -51,7 +51,7 @@ Little, T. D., Howard, W. J., McConnell, E. K., & Stump, K. N. (2008). Missing d
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
 <!-- TODO: Build out this section. -->
-```{r initial packages for multiple imputation, eval=FALSE}
+```{r  eval=FALSE}
 #will install the package if not already installed
 if(!require(qualtRics)){install.packages("qualtRics")}
 if(!require(psych)){install.packages("psych")}
@@ -168,7 +168,7 @@ There are some guidelines for selecting and formatting variables for imputation.
 
 To make this as realistic as possible. Let's start with our very raw data.  The [Scrubbing chapter](#scrub) provides greater detail on importing data directly from Qualtrics.  Therefore, I will repeat our protocol that imports the data and then scrubs it for our purposes. As described in the prior chapter, I named variables in Qualtrics to facilitate a more intuitive use in R.
 
-```{r intRavenous qualtRics, warning=FALSE, message=FALSE}
+```{r warning=FALSE, message=FALSE}
 library(qualtRics)
 QTRX_df2 <- qualtRics::fetch_survey(surveyID = "SV_b2cClqAlLGQ6nLU",useLocalTime = TRUE,
                          verbose = FALSE, label=FALSE, convert=FALSE, force_request = TRUE, import_id = FALSE)
@@ -180,7 +180,7 @@ Next, I apply inclusion/exclusion criteria.  As described in the [Scrubbing chap
 * including only those who consented
 * including only those whose rated course was offered by a U.S. institution
 
-```{r Apply inclusion and exclusion critera}
+```{r }
 library(tidyverse)
 QTRX_df2 <- filter (QTRX_df2, DistributionChannel != "preview")
 QTRX_df2 <-filter (QTRX_df2, Consent == 1)
@@ -188,7 +188,7 @@ QTRX_df2 <-filter (QTRX_df2, USinst == 0)
 ```
 
 Preparing the data also meant renaming some variables that started with numbers (a hassle in R). I also renamed variables on the Campus Climate scale so that we know to which subscale they belong.
-```{r rename variables that start with a number}
+```{r }
 library(tidyverse)
 #renaming variables that started with numbers
 QTRX_df2 <- rename(QTRX_df2, iRace1 = '1_iRace', iRace2 = '2_iRace', iRace3 = '3_iRace', iRace4 = '4_iRace', iRace5 = '5_iRace', iRace6 = '6_iRace', iRace7 = '7_iRace', iRace8 = '8_iRace', iRace9 = '9_iRace', iRace10 = '10_iRace')
@@ -197,14 +197,14 @@ QTRX_df2 <- rename(QTRX_df2, cmBiMulti = Race_10, cmBlack = Race_1, cmNBPoC = Ra
 ```
 
 The Qualtrics download does not include an ID number.  Because new variables are always appended to the end of the df, we also include code to make this the first column. 
-```{r applying an ID number for each case}
+```{r }
 QTRX_df2 <- QTRX_df2 %>% mutate(ID = row_number())
 #moving the ID number to the first column; requires 
 QTRX_df2 <- QTRX_df2%>%select(ID, everything())
 ```
 
 Because this huge df is cumbersome to work with, let's downsize it to be closer to the size we will work with in the imputation
-```{r downsizing the df}
+```{r }
 mimp_df <-  select (QTRX_df2, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1:Belong_3, Blst_1:Blst_6, cEval_1, cEval_13, cEval_19, format)
 #glimpse(mimp_df)
 head(mimp_df)
@@ -213,7 +213,7 @@ head(mimp_df)
 ### Creating Composite Variables
 
 Qualtrics imports many of the categorical variables as numbers.  R often reads them numerically (integers or numbers). If they are directly converted to factors, R will sometimes collapse.  In this example, if there is a race that is not represented (e.g., 2 for BiMulti), when the numbers are changed to factors, R will assume it's ordered and will change up the numbers.  Therefore, it is ESSENTIAL to check (again and again ad nauseum) to ensure that your variables are recoding in a manner you understand.
-```{r creating an ordered factor}
+```{r }
 mimp_df$iRace1 = factor(mimp_df$iRace1,
                         levels = c(0,1,2,3,4),
                         labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
@@ -246,7 +246,7 @@ mimp_df$iRace10 = factor(mimp_df$iRace10,
                         labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
 ```
 
-```{r another peek, results='hide'}
+```{r  results='hide'}
 head(mimp_df)
 ```
 

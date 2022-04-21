@@ -1,8 +1,0 @@
-"0","library(tidyverse)"
-"0","Kim_df <- Kim_df%>%"
-"0","  as.data.frame %>%"
-"0","  rename(REMS = V1, CMI = V2, ANX = V3, DEP = V4, PWB = V5, HlpSk = V6)"
-"0","#Checking our work against the original correlation matrix"
-"0","#round(cor(Kim_df),3)"
-"0",""
-"0",""

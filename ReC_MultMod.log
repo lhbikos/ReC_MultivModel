@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.2.16)  16 MAR 2022 20:51
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.2.16)  21 APR 2022 09:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1039,16 +1039,13 @@ File: images/Ch02/wrkflow_item_lvl.jpg Graphic file (type bmp)
 [53] [54] [55] [56] [57]
 File: images/Ch02/wrkflow_scale_lvl.jpg Graphic file (type bmp)
 <images/Ch02/wrkflow_scale_lvl.jpg>
-[58] [59] [60]
-File: ReC_MultMod_files/figure-latex/scale level missingness w mice-1.pdf Graphic file (type pdf)
-<use ReC_MultMod_files/figure-latex/scale level missingness w mice-1.pdf>
-
-Underfull \vbox (badness 1038) has occurred while \output is active []
-
-[61]
+[58] [59]
+File: ReC_MultMod_files/figure-latex/unnamed-chunk-43-1.pdf Graphic file (type pdf)
+<use ReC_MultMod_files/figure-latex/unnamed-chunk-43-1.pdf>
+[60]
 File: images/Ch02/wrkflow_AIAready.jpg Graphic file (type bmp)
 <images/Ch02/wrkflow_AIAready.jpg>
-[62] [63] [64] [65] [66
+[61] [62] [63] [64] [65] [66
 
 ]
 Chapter 4.
@@ -1064,55 +1061,52 @@ File: images/Ch04/BlStuRegression.jpg Graphic file (type bmp)
 Underfull \vbox (badness 3302) has occurred while \output is active []
 
 [70] [71] [72] [73] [74] [75] [76] [77]
-Underfull \hbox (badness 10000) in paragraph at lines 2849--2851
+Underfull \hbox (badness 10000) in paragraph at lines 2839--2841
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2851--2853
+Underfull \hbox (badness 10000) in paragraph at lines 2841--2843
 
  []
 
-File: ReC_MultMod_files/figure-latex/pairs panels-1.pdf Graphic file (type pdf)
-<use ReC_MultMod_files/figure-latex/pairs panels-1.pdf>
+File: ReC_MultMod_files/figure-latex/unnamed-chunk-55-1.pdf Graphic file (type pdf)
+<use ReC_MultMod_files/figure-latex/unnamed-chunk-55-1.pdf>
 [78]
-File: ReC_MultMod_files/figure-latex/Detect multivariate outliers-1.pdf Graphic file (type pdf)
-<use ReC_MultMod_files/figure-latex/Detect multivariate outliers-1.pdf>
+File: ReC_MultMod_files/figure-latex/unnamed-chunk-56-1.pdf Graphic file (type pdf)
+<use ReC_MultMod_files/figure-latex/unnamed-chunk-56-1.pdf>
 [79] [80] [81] [82]
 File: images/Ch04/BlStuRegression.jpg Graphic file (type bmp)
 <images/Ch04/BlStuRegression.jpg>
 
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 3049--3049
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 3039--3039
 []\TU/lmtt/m/n/10.95 ## lm(formula = ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)[] 
  []
 
 [83]
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 3100--3100
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 3089--3089
 []\TU/lmtt/m/n/10.95 ## Note. M and SD are used to represent mean and standard deviation, respectively.[] 
  []
 
 [84]
-Overfull \hbox (151.10985pt too wide) in paragraph at lines 3140--3140
+Overfull \hbox (151.10985pt too wide) in paragraph at lines 3129--3129
 []\TU/lmtt/m/n/10.95 ## Note. A significant b-weight indicates the beta-weight and semi-partial correlation are also significant.[] 
  []
 
 
-Overfull \hbox (116.61736pt too wide) in paragraph at lines 3140--3140
+Overfull \hbox (116.61736pt too wide) in paragraph at lines 3129--3129
 []\TU/lmtt/m/n/10.95 ## b represents unstandardized regression weights. beta indicates the standardized regression weights.[] 
  []
 
 
-Overfull \hbox (82.12486pt too wide) in paragraph at lines 3140--3140
+Overfull \hbox (82.12486pt too wide) in paragraph at lines 3129--3129
 []\TU/lmtt/m/n/10.95 ## sr2 represents the semi-partial correlation squared. r represents the zero-order correlation.[] 
  []
 
 
-Overfull \hbox (53.38112pt too wide) in paragraph at lines 3140--3140
+Overfull \hbox (53.38112pt too wide) in paragraph at lines 3129--3129
 []\TU/lmtt/m/n/10.95 ## Square brackets are used to enclose the lower and upper limits of a confidence interval.[] 
  []
-
-
-Underfull \vbox (badness 1881) has occurred while \output is active []
 
 [85] [86] [87] [88
 
@@ -1130,39 +1124,39 @@ File: images/Ch04/BlStuRegression.jpg Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [93]
-Underfull \hbox (badness 10000) in paragraph at lines 3414--3415
+Underfull \hbox (badness 10000) in paragraph at lines 3403--3404
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3419--3421
+Underfull \hbox (badness 10000) in paragraph at lines 3408--3410
 
  []
 
 File: images/Ch05/KatitasMimpFig.jpg Graphic file (type bmp)
 <images/Ch05/KatitasMimpFig.jpg>
 [94] [95] [96] [97] [98] [99] [100]
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 3823--3823
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 3812--3812
 []\TU/lmtt/m/n/10.95 ##        ID iBIPOC_pr   cmBlack  Belong_1  Belong_2  Belong_3    Blst_1    Blst_2[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 3823--3823
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 3812--3812
 []\TU/lmtt/m/n/10.95 ##        ""     "pmm"        ""     "pmm"        ""     "pmm"     "pmm"     "pmm"[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 3823--3823
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 3812--3812
 []\TU/lmtt/m/n/10.95 ##    Blst_3    Blst_4    Blst_5    Blst_6   cEval_1  cEval_13  cEval_19    format[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 3823--3823
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 3812--3812
 []\TU/lmtt/m/n/10.95 ##     "pmm"     "pmm"     "pmm"     "pmm"     "pmm"        ""     "pmm" "polyreg"[] 
  []
 
 [101]
-Overfull \hbox (18.88863pt too wide) in paragraph at lines 3918--3918
+Overfull \hbox (18.88863pt too wide) in paragraph at lines 3907--3907
 []\TU/lmtt/m/n/10.95 Climate_fit <- lm(ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)[] 
  []
 
@@ -1173,7 +1167,7 @@ Overfull \hbox (18.88863pt too wide) in paragraph at lines 3918--3918
 ]
 Chapter 6.
 [111] [112]
-Underfull \hbox (badness 1173) in paragraph at lines 4329--4329
+Underfull \hbox (badness 1173) in paragraph at lines 4318--4318
 []\TU/lmr/bx/n/14.4 Estimating Indirect Effects (the analytic approach often
  []
 
@@ -1187,19 +1181,19 @@ Overfull \hbox (76.71696pt too wide) has occurred while \output is active
  []
 
 [113] [114]
-Underfull \hbox (badness 10000) in paragraph at lines 4375--4377
+Underfull \hbox (badness 10000) in paragraph at lines 4364--4366
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4377--4379
+Underfull \hbox (badness 10000) in paragraph at lines 4366--4368
 
  []
 
 File: images/SimpleMed/SimpleMed.jpg Graphic file (type bmp)
 <images/SimpleMed/SimpleMed.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 4395--4397
+Underfull \hbox (badness 10000) in paragraph at lines 4384--4386
 
  []
 
@@ -1217,7 +1211,7 @@ Overfull \hbox (76.71696pt too wide) has occurred while \output is active
 File: images/SimpleMed/MedRationale.jpg Graphic file (type bmp)
 <images/SimpleMed/MedRationale.jpg>
 [116] [117]
-Underfull \hbox (badness 10000) in paragraph at lines 4547--4549
+Underfull \hbox (badness 10000) in paragraph at lines 4536--4538
 
  []
 
@@ -1225,240 +1219,239 @@ Underfull \hbox (badness 10000) in paragraph at lines 4547--4549
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [120] [121] [122] [123]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 4850--4850
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 4839--4839
 []\TU/lmtt/m/n/10.95 ## Probability values (Entries above the diagonal are adjusted for multiple tests.)[] 
  []
 
 
-Overfull \hbox (24.63737pt too wide) in paragraph at lines 4850--4850
+Overfull \hbox (24.63737pt too wide) in paragraph at lines 4839--4839
 []\TU/lmtt/m/n/10.95 ##  To see confidence intervals of the correlations, print with the short=FALSE option[] 
  []
 
 [124]
 File: ReC_MultMod_files/figure-latex/FakyDaty Simple Plot-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/FakyDaty Simple Plot-1.pdf>
-[125] [126] [127]
-File: images/SimpleMed/Kim_SimpMed.jpg Graphic file (type bmp)
-<images/SimpleMed/Kim_SimpMed.jpg>
-[128] [129]
+[125] [126] [127] [128]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[130] [131] [132]
-Underfull \hbox (badness 10000) in paragraph at lines 5284--5286
+[129]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[130] [131]
+File: images/SimpleMed/Kim_SimpMed.jpg Graphic file (type bmp)
+<images/SimpleMed/Kim_SimpMed.jpg>
+[132] [133]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[134] [135] [136]
+Underfull \hbox (badness 10000) in paragraph at lines 5449--5451
 
  []
 
-[133]
 File: ReC_MultMod_files/figure-latex/semPLOT of PMI-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/semPLOT of PMI-1.pdf>
-[134] [135]
-File: images/SimpleMed/Kim_wCovs.jpg Graphic file (type bmp)
-<images/SimpleMed/Kim_wCovs.jpg>
-[136]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Underfull \vbox (badness 4518) has occurred while \output is active []
 
 [137] [138]
+File: images/SimpleMed/Kim_wCovs.jpg Graphic file (type bmp)
+<images/SimpleMed/Kim_wCovs.jpg>
+[139] [140]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[139]
-Underfull \vbox (badness 2617) has occurred while \output is active []
-
-[140]
+[141] [142] [143] [144]
 File: ReC_MultMod_files/figure-latex/semPLOT for model w covs-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/semPLOT for model w covs-1.pdf>
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[141]
-Overfull \hbox (1.76706pt too wide) in paragraph at lines 5721--5721
+Overfull \hbox (1.76706pt too wide) in paragraph at lines 5886--5886
 []|\TU/lmr/m/n/10.95 Antecedent|  
  []
 
-[142]
-Underfull \hbox (badness 10000) in paragraph at lines 5763--5764
+[145]
+Underfull \hbox (badness 10000) in paragraph at lines 5928--5929
 
  []
 
-[143] [144] [145] [146]
+[146] [147] [148] [149] [150
+
+]
 Chapter 7.
 
-Underfull \hbox (badness 10000) in paragraph at lines 5926--5928
+Underfull \hbox (badness 10000) in paragraph at lines 6091--6093
 
  []
 
-[147
-
-] [148]
+[151] [152]
 File: images/CompMed/ParaMed.jpg Graphic file (type bmp)
 <images/CompMed/ParaMed.jpg>
-[149] [150] [151] [152]
+[153] [154] [155] [156]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[153] [154]
+[157] [158]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[155] [156] [157]
+[159] [160] [161]
 File: ReC_MultMod_files/figure-latex/Fake Data Simple Plot-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/Fake Data Simple Plot-1.pdf>
 
-Overfull \hbox (3.03555pt too wide) in paragraph at lines 6473--6473
+Overfull \hbox (3.03555pt too wide) in paragraph at lines 6638--6638
  []|\TU/lmr/m/n/10.95 M1| 
  []
 
 
-Overfull \hbox (3.03555pt too wide) in paragraph at lines 6474--6474
+Overfull \hbox (3.03555pt too wide) in paragraph at lines 6639--6639
  []|\TU/lmr/m/n/10.95 M2| 
  []
 
-[158] [159] [160] [161] [162]
-File: ReC_MultMod_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (type pdf)
-<use ReC_MultMod_files/figure-latex/unnamed-chunk-21-1.pdf>
+[162] [163] [164] [165] [166]
+File: ReC_MultMod_files/figure-latex/unnamed-chunk-81-1.pdf Graphic file (type pdf)
+<use ReC_MultMod_files/figure-latex/unnamed-chunk-81-1.pdf>
 File: images/CompMed/LewisMedFig.jpg Graphic file (type bmp)
 <images/CompMed/LewisMedFig.jpg>
 
-Underfull \hbox (badness 1783) in paragraph at lines 6693--6695
+Underfull \hbox (badness 1783) in paragraph at lines 6858--6860
 [][] \TU/lmr/m/n/10.95 Because the
  []
 
-[163]
+[167]
 File: images/CompMed/LewisParaMed.jpg Graphic file (type bmp)
 <images/CompMed/LewisParaMed.jpg>
-[164] [165]
+[168] [169]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[166] [167]
+[170] [171]
 File: ReC_MultMod_files/figure-latex/Lewis Parallel model plot-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/Lewis Parallel model plot-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[168]
-Overfull \hbox (11.07988pt too wide) in paragraph at lines 6934--6934
+[172]
+Overfull \hbox (11.07988pt too wide) in paragraph at lines 7099--7099
  []|\TU/lmr/m/n/10.95 GRMS| 
  []
 
 
-Overfull \hbox (8.55304pt too wide) in paragraph at lines 6934--6934
+Overfull \hbox (8.55304pt too wide) in paragraph at lines 7099--7099
  []|\TU/lmr/m/n/10.95 MntlHlth| 
  []
 
 
-Overfull \hbox (11.07988pt too wide) in paragraph at lines 6935--6935
+Overfull \hbox (11.07988pt too wide) in paragraph at lines 7100--7100
  []|\TU/lmr/m/n/10.95 GRMS| 
  []
 
 
-Overfull \hbox (15.26201pt too wide) in paragraph at lines 6935--6935
+Overfull \hbox (15.26201pt too wide) in paragraph at lines 7100--7100
  []|\TU/lmr/m/n/10.95 DisEngmt| 
  []
 
 
-Overfull \hbox (8.55304pt too wide) in paragraph at lines 6935--6935
+Overfull \hbox (8.55304pt too wide) in paragraph at lines 7100--7100
  []|\TU/lmr/m/n/10.95 MntlHlth| 
  []
 
-[169] [170] [171]
-Underfull \hbox (badness 10000) in paragraph at lines 7075--7077
+[173] [174] [175]
+Underfull \hbox (badness 10000) in paragraph at lines 7240--7242
 
  []
 
-[172]
-Underfull \hbox (badness 10000) in paragraph at lines 7107--7109
+[176]
+Underfull \hbox (badness 10000) in paragraph at lines 7272--7274
 
  []
 
-[173]
+[177]
 File: images/CompMed/LewisSerialMed.jpg Graphic file (type bmp)
 <images/CompMed/LewisSerialMed.jpg>
-[174] [175]
+[178] [179]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[176] [177]
+[180] [181]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[178]
-Overfull \hbox (16.16866pt too wide) in paragraph at lines 7414--7414
+[182]
+Overfull \hbox (16.16866pt too wide) in paragraph at lines 7579--7579
  []|\TU/lmr/m/n/10.95 GRMS| 
  []
 
 
-Overfull \hbox (9.93855pt too wide) in paragraph at lines 7414--7414
+Overfull \hbox (9.93855pt too wide) in paragraph at lines 7579--7579
  []|\TU/lmr/m/n/10.95 Engmt| 
  []
 
 
-Overfull \hbox (17.03459pt too wide) in paragraph at lines 7414--7414
+Overfull \hbox (17.03459pt too wide) in paragraph at lines 7579--7579
  []|\TU/lmr/m/n/10.95 MntlHlth| 
  []
 
 
-Overfull \hbox (16.16866pt too wide) in paragraph at lines 7415--7415
+Overfull \hbox (16.16866pt too wide) in paragraph at lines 7580--7580
  []|\TU/lmr/m/n/10.95 GRMS| 
  []
 
 
-Overfull \hbox (25.66275pt too wide) in paragraph at lines 7415--7415
+Overfull \hbox (25.66275pt too wide) in paragraph at lines 7580--7580
  []|\TU/lmr/m/n/10.95 DisEngmt| 
  []
 
 
-Overfull \hbox (17.03459pt too wide) in paragraph at lines 7415--7415
+Overfull \hbox (17.03459pt too wide) in paragraph at lines 7580--7580
  []|\TU/lmr/m/n/10.95 MntlHlth| 
  []
 
 
-Overfull \hbox (16.16866pt too wide) in paragraph at lines 7416--7416
+Overfull \hbox (16.16866pt too wide) in paragraph at lines 7581--7581
  []|\TU/lmr/m/n/10.95 GRMS| 
  []
 
 
-Overfull \hbox (9.93855pt too wide) in paragraph at lines 7416--7416
+Overfull \hbox (9.93855pt too wide) in paragraph at lines 7581--7581
  []|\TU/lmr/m/n/10.95 Engmt| 
  []
 
 
-Overfull \hbox (25.66275pt too wide) in paragraph at lines 7416--7416
+Overfull \hbox (25.66275pt too wide) in paragraph at lines 7581--7581
  []|\TU/lmr/m/n/10.95 DisEngmt| 
  []
 
 
-Overfull \hbox (17.03459pt too wide) in paragraph at lines 7416--7416
+Overfull \hbox (17.03459pt too wide) in paragraph at lines 7581--7581
  []|\TU/lmr/m/n/10.95 MntlHlth| 
  []
 
-[179]
+[183]
 File: ReC_MultMod_files/figure-latex/semPlot of serial PMI model-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/semPlot of serial PMI model-1.pdf>
-[180] [181] [182]
-Underfull \hbox (badness 10000) in paragraph at lines 7584--7586
+[184] [185] [186]
+Underfull \hbox (badness 10000) in paragraph at lines 7749--7751
 
  []
 
-[183] [184] [185] [186
+[187] [188] [189] [190
 
-] [187] [188
+] [191] [192
 
 ]
 Chapter 8.
-[189] [190]
+[193] [194]
 Overfull \hbox (347.91074pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 8.2.  ON \TU/lmr/m/n/10.95 MODELING\TU/lmr/m/sl/10.95 : INTRODUCTORY COMMENTS ON THE SIMULTANEOUSLY INVISIBLE AND PARADIGM-SHIFTING TRANSITION WE ARE MAKING \TU/lmr/m/n/10.95 191
+\TU/lmr/m/sl/10.95 8.2.  ON \TU/lmr/m/n/10.95 MODELING\TU/lmr/m/sl/10.95 : INTRODUCTORY COMMENTS ON THE SIMULTANEOUSLY INVISIBLE AND PARADIGM-SHIFTING TRANSITION WE ARE MAKING \TU/lmr/m/n/10.95 195
  []
 
-[191] [192] [193]
+[195] [196] [197]
 File: ReC_MultMod_files/figure-latex/drawing a line of best fit-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/drawing a line of best fit-1.pdf>
-[194] [195] [196]
+[198] [199] [200]
 File: images/SimpleMod/SimpleMedLV.jpg Graphic file (type bmp)
 <images/SimpleMod/SimpleMedLV.jpg>
-[197] [198]
+[201] [202]
 File: images/SimpleMod/SimpleMed.jpg Graphic file (type bmp)
 <images/SimpleMod/SimpleMed.jpg>
 File: images/SimpleMod/HybridMed.jpg Graphic file (type bmp)
 <images/SimpleMod/HybridMed.jpg>
 File: images/SimpleMod/OLS_MLEwrkflow.jpg Graphic file (type bmp)
 <images/SimpleMod/OLS_MLEwrkflow.jpg>
-[199] [200] [201] [202]
+[203] [204] [205] [206]
 File: ReC_MultMod_files/figure-latex/pairs panels for Kim et al-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/pairs panels for Kim et al-1.pdf>
 File: images/SimpleMod/KimMod.jpg Graphic file (type bmp)
@@ -1468,7 +1461,7 @@ File: images/SimpleMod/KimModStatistical.jpg Graphic file (type bmp)
 
 Underfull \vbox (badness 4328) has occurred while \output is active []
 
-[203] [204] [205]
+[207] [208] [209]
 File: ReC_MultMod_files/figure-latex/Plot Kim SimpMod-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/Plot Kim SimpMod-1.pdf>
 File: ReC_MultMod_files/figure-latex/Plot Kim SimpMod-2.pdf Graphic file (type pdf)
@@ -1476,79 +1469,58 @@ File: ReC_MultMod_files/figure-latex/Plot Kim SimpMod-2.pdf Graphic file (type p
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[206] [207] [208] [209] [210] [211] [212] [213]
+[210] [211] [212] [213] [214] [215] [216] [217]
 File: ReC_MultMod_files/figure-latex/semPlot of simple mod-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/semPlot of simple mod-1.pdf>
-[214] [215] [216]
+[218] [219] [220]
 File: images/film-strip-1.jpg Graphic file (type bmp)
 <images/film-strip-1.jpg>
-[217] [218] [219] [220
+[221] [222] [223] [224
 
-] [221] [222
+] [225] [226
 
 ]
 Chapter 9.
-[223]
-Underfull \hbox (badness 10000) in paragraph at lines 9040--9042
+[227]
+Underfull \hbox (badness 10000) in paragraph at lines 9205--9207
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9092--9094
+Underfull \hbox (badness 10000) in paragraph at lines 9257--9259
 
  []
 
-[224]
-Underfull \hbox (badness 10000) in paragraph at lines 9150--9152
+[228]
+Underfull \hbox (badness 10000) in paragraph at lines 9315--9317
 
  []
 
-[225]
+[229]
 File: images/SimpleMed/CPAmodel.jpg Graphic file (type bmp)
 <images/SimpleMed/CPAmodel.jpg>
-[226] [227] [228] [229] [230]
-Overfull \hbox (128.11485pt too wide) in paragraph at lines 9407--9407
+[230] [231] [232] [233] [234]
+Overfull \hbox (128.11485pt too wide) in paragraph at lines 9572--9572
 []\TU/lmtt/m/n/10.95 The ability to suppress reporting of reporting confidence intervals has been deprecated in this version.[] 
  []
 
-[231] [232]
+[235] [236]
 File: images/ModMed/LewisModMed.jpg Graphic file (type bmp)
 <images/ModMed/LewisModMed.jpg>
 File: images/ModMed/LewisStatistical.jpg Graphic file (type bmp)
 <images/ModMed/LewisStatistical.jpg>
-[233]
+[237]
 File: images/ModMed/PiecewiseAssembly.jpg Graphic file (type bmp)
 <images/ModMed/PiecewiseAssembly.jpg>
 File: images/ModMed/LewisMod1.jpg Graphic file (type bmp)
 <images/ModMed/LewisMod1.jpg>
-[234] [235]
+[238] [239]
 File: ReC_MultMod_files/figure-latex/MOD a path plot-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/MOD a path plot-1.pdf>
 File: ReC_MultMod_files/figure-latex/MOD a path plot-2.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/MOD a path plot-2.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 9582--9584
-[][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[236] [237]
-File: images/ModMed/LewisMod2.jpg Graphic file (type bmp)
-<images/ModMed/LewisMod2.jpg>
-
-Underfull \hbox (badness 10000) in paragraph at lines 9661--9662
-
- []
-
-[238] [239]
-File: ReC_MultMod_files/figure-latex/MOD c path plot-1.pdf Graphic file (type pdf)
-<use ReC_MultMod_files/figure-latex/MOD c path plot-1.pdf>
-File: ReC_MultMod_files/figure-latex/MOD c path plot-2.pdf Graphic file (type pdf)
-<use ReC_MultMod_files/figure-latex/MOD c path plot-2.pdf>
-
-Underfull \hbox (badness 10000) in paragraph at lines 9711--9713
+Underfull \hbox (badness 10000) in paragraph at lines 9747--9749
 [][]
  []
 
@@ -1556,67 +1528,88 @@ Underfull \hbox (badness 10000) in paragraph at lines 9711--9713
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [240] [241]
-File: images/ModMed/LewisMed.jpg Graphic file (type bmp)
-<images/ModMed/LewisMed.jpg>
+File: images/ModMed/LewisMod2.jpg Graphic file (type bmp)
+<images/ModMed/LewisMod2.jpg>
+
+Underfull \hbox (badness 10000) in paragraph at lines 9826--9827
+
+ []
+
 [242] [243]
+File: ReC_MultMod_files/figure-latex/MOD c path plot-1.pdf Graphic file (type pdf)
+<use ReC_MultMod_files/figure-latex/MOD c path plot-1.pdf>
+File: ReC_MultMod_files/figure-latex/MOD c path plot-2.pdf Graphic file (type pdf)
+<use ReC_MultMod_files/figure-latex/MOD c path plot-2.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 9876--9878
+[][]
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[244] [245] [246]
+[244] [245]
+File: images/ModMed/LewisMed.jpg Graphic file (type bmp)
+<images/ModMed/LewisMed.jpg>
+[246] [247]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[248] [249] [250]
 File: ReC_MultMod_files/figure-latex/semPlot of simple med in the modmed-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/semPlot of simple med in the modmed-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[247]
+[251]
 File: images/ModMed/LewisStatistical.jpg Graphic file (type bmp)
 <images/ModMed/LewisStatistical.jpg>
-[248] [249] [250]
+[252] [253] [254]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[251]
+[255]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[252]
+[256]
 File: ReC_MultMod_files/figure-latex/semPlot of the modmed-1.pdf Graphic file (type pdf)
 <use ReC_MultMod_files/figure-latex/semPlot of the modmed-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[253] [254]
-Overfull \hbox (58.13184pt too wide) in paragraph at lines 10359--10359
+[257] [258]
+Overfull \hbox (58.13184pt too wide) in paragraph at lines 10524--10524
 []|\TU/lmr/m/n/10.95 GRMS*GRIcntrlty(XW)|  
  []
 
-[255]
-Underfull \hbox (badness 10000) in paragraph at lines 10450--10452
+[259]
+Underfull \hbox (badness 10000) in paragraph at lines 10615--10617
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 10452--10454
+Underfull \hbox (badness 10000) in paragraph at lines 10617--10619
 
  []
 
-[256] [257]
+[260] [261]
 File: images/Modmed/GRMS_MH_GRIC.jpg Graphic file (type bmp)
 <images/Modmed/GRMS_MH_GRIC.jpg>
-[258] [259] [260]
+[262] [263] [264]
 File: images/film-strip-1.jpg Graphic file (type bmp)
 <images/film-strip-1.jpg>
-[261]
-Underfull \vbox (badness 10000) detected at line 10729
+[265]
+Underfull \vbox (badness 10000) detected at line 10894
  []
 
 
-Underfull \vbox (badness 10000) detected at line 10729
+Underfull \vbox (badness 10000) detected at line 10894
  []
 
-[262] [263]
+[266] [267]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[264] [265] [266
+[268] [269] [270
 
-] (./ReC_MultMod.bbl [267] [268
+] (./ReC_MultMod.bbl [271] [272
 
 ]
 Underfull \hbox (badness 1112) in paragraph at lines 41--50
@@ -1624,116 +1617,106 @@ Underfull \hbox (badness 1112) in paragraph at lines 41--50
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--84
+Underfull \hbox (badness 10000) in paragraph at lines 75--85
 [] [] [][][][][][] [] [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][][][][][][][][][][][] [] [][][][][] [] [][][][][][][] [] [][][][] [][] [][][][][] [][]
  []
 
-[269]
-Underfull \hbox (badness 1558) in paragraph at lines 164--174
+[273]
+Underfull \hbox (badness 1558) in paragraph at lines 165--175
 []\TU/lmr/m/n/10.95 Sylvia Hurtado.  Linking Diversity with the Educational and Civic Missions of Higher
  []
 
 
-Underfull \hbox (badness 1609) in paragraph at lines 164--174
+Underfull \hbox (badness 1609) in paragraph at lines 165--175
 \TU/lmr/m/n/10.95 Education.  \TU/lmr/m/it/10.95 Review of Higher Education: Journal of the Association for the Study
  []
 
 
-Underfull \hbox (badness 1596) in paragraph at lines 164--174
+Underfull \hbox (badness 1596) in paragraph at lines 165--175
 \TU/lmr/m/it/10.95 of Higher Education\TU/lmr/m/n/10.95 , 30(2):185–196, 2007.  ISSN 0162-5748.  doi: $[][] [] [][][][] [] [][][] [] [][][][] []
  []
 
 
-Underfull \hbox (badness 2961) in paragraph at lines 176--184
+Underfull \hbox (badness 2961) in paragraph at lines 177--185
 []\TU/lmr/m/n/10.95 Sylvia Hurtado and Deborah Faye Carter.  Effects of college transition and percep-
  []
 
 
-Underfull \hbox (badness 2772) in paragraph at lines 176--184
+Underfull \hbox (badness 2772) in paragraph at lines 177--185
 \TU/lmr/m/it/10.95 ciology of Education\TU/lmr/m/n/10.95 , 70:324–345, October 1997.  ISSN 00380407.  doi: $[][] [] [][][][] []
  []
 
 
-Underfull \hbox (badness 2088) in paragraph at lines 176--184
+Underfull \hbox (badness 2088) in paragraph at lines 177--185
 [][][][][][][]$\TU/lmr/m/n/10.95 .  URL [][]$[][][][][] [] [] [] [][][][][][][] [] [][][] [] [][][] [] [][][][][] [] [][][] [] [][][][] [] [] [] [][][][][][] [] [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] []
  []
 
-[270]
-Underfull \hbox (badness 3861) in paragraph at lines 229--235
+[274]
+Underfull \hbox (badness 3861) in paragraph at lines 230--236
 []\TU/lmr/m/n/10.95 Paul Y. Kim.  Guest Post: Anti-Asian Racism during the Pandemic: How Fac-
  []
 
 
-Underfull \hbox (badness 1005) in paragraph at lines 229--235
+Underfull \hbox (badness 1005) in paragraph at lines 230--236
 \TU/lmr/m/n/10.95 ulty on Christian Campuses Can Support Asian and Asian American Students, March
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 249--258
+Underfull \hbox (badness 10000) in paragraph at lines 250--259
 [][][] [] [][][][] [] [] [] [][][][][][] [] [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][][][][][][][][][][][] [] [][][][][] [] [][][][][][][] [] [][][][] [][]
  []
 
 
-Underfull \hbox (badness 4752) in paragraph at lines 268--278
+Underfull \hbox (badness 4752) in paragraph at lines 269--279
 []\TU/lmr/m/n/10.95 Jioni A. Lewis and Helen A. Neville.  Construction and initial validation of the
  []
 
 
-Underfull \hbox (badness 6204) in paragraph at lines 268--278
+Underfull \hbox (badness 6204) in paragraph at lines 269--279
 \TU/lmr/m/n/10.95 Gendered Racial Microaggressions Scale for Black women.  \TU/lmr/m/it/10.95 Journal of Counsel-
  []
 
 
-Underfull \hbox (badness 7397) in paragraph at lines 268--278
+Underfull \hbox (badness 7397) in paragraph at lines 269--279
 \TU/lmr/m/it/10.95 ing Psychology\TU/lmr/m/n/10.95 , 62(2):289–302, April 2015.  ISSN 0022-0167.  doi: $[][] [] [][][][] []
  []
 
-[271]
-Underfull \hbox (badness 1014) in paragraph at lines 293--302
+[275]
+Underfull \hbox (badness 1014) in paragraph at lines 294--303
 []\TU/lmr/m/n/10.95 Kaleea R. Lewis and Payal P. Shah.  Black students’ narratives of diversity and inclu-
  []
 
 
-Underfull \hbox (badness 1052) in paragraph at lines 320--328
+Underfull \hbox (badness 1052) in paragraph at lines 321--329
 []\TU/lmr/m/n/10.95 R. Duncan Luce.  Four tensions concerning mathematical modeling in psychology.  \TU/lmr/m/it/10.95 An-
  []
 
 
-Underfull \hbox (badness 2913) in paragraph at lines 331--341
+Underfull \hbox (badness 2913) in paragraph at lines 332--342
 \TU/lmr/m/it/10.95 chology\TU/lmr/m/n/10.95 , 53(3):372–378, July 2006.  ISSN 0022-0167.  doi: $[][] [] [][][][] [] [][][][] [][] [][][][] [] [][] [] [] []
  []
 
 
-Underfull \hbox (badness 1558) in paragraph at lines 369--380
+Underfull \hbox (badness 1558) in paragraph at lines 370--381
 []\TU/lmr/m/n/10.95 Della V. Mosley, Candice N. Hargons, Carolyn Meiller, Blanka Angyal, Paris Wheeler,
  []
 
 
-Underfull \hbox (badness 4699) in paragraph at lines 369--380
+Underfull \hbox (badness 4699) in paragraph at lines 370--381
 \TU/lmr/m/n/10.95 Candice Davis, and Danelle Stevens-Watkins.  Critical consciousness of anti-Black
  []
 
 
-Underfull \hbox (badness 1817) in paragraph at lines 369--380
+Underfull \hbox (badness 1817) in paragraph at lines 370--381
 \TU/lmr/m/n/10.95 racism: A practical model to prevent and resist racial trauma.  \TU/lmr/m/it/10.95 Journal of Coun-
  []
 
 
-Underfull \hbox (badness 5504) in paragraph at lines 369--380
+Underfull \hbox (badness 5504) in paragraph at lines 370--381
 \TU/lmr/m/it/10.95 seling Psychology\TU/lmr/m/n/10.95 , 68(1):1–16, January 2021.  ISSN 0022-0167.  doi: $[][] [] [][][][] []
  []
 
-[272]
-Underfull \hbox (badness 1199) in paragraph at lines 463--473
-\TU/lmr/m/n/10.95 pus Climate Scale: Development and Psychometric Evaluation.  \TU/lmr/m/it/10.95 Journal of Homosex-
- []
-
-
-Underfull \hbox (badness 1033) in paragraph at lines 463--473
-\TU/lmr/m/it/10.95 uality\TU/lmr/m/n/10.95 , 67(10):1412–1428, August 2020.  ISSN 0091-8369.  doi: $[][] [] [][][][] [] [][][][][][][][] [] [][][][] []
- []
-
-[273]) [274] (./ReC_MultMod.aux)
+[276]) [277] (./ReC_MultMod.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1742,11 +1725,11 @@ Package rerunfilecheck Info: File `ReC_MultMod.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  19365 strings out of 478181
- 369471 string characters out of 5852708
- 854052 words of memory out of 5000000
+ 369295 string characters out of 5852708
+ 855052 words of memory out of 5000000
  39651 multiletter control sequences out of 15000+600000
  475756 words of font info for 87 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,7n,121p,2361b,594s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ReC_MultMod.pdf (274 pages).
+Output written on ReC_MultMod.pdf (277 pages).

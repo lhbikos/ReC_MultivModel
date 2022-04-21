@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-03-16" />
+<meta name="date" content="2022-04-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -797,10 +797,10 @@ NA. Other (5)</li>
 <p>Recall one of the guidelines was to remove variables with more than 25% missing. This code calculates the proportion missing from our variables and places them in rank order.</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="multimp.html#cb126-1" aria-hidden="true" tabindex="-1"></a>p_missing <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(mimp_df, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x))))<span class="sc">/</span><span class="fu">nrow</span>(mimp_df)</span>
 <span id="cb126-2"><a href="multimp.html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(p_missing[p_missing <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>##     Blst_1     Blst_4   Belong_1   Belong_3     Blst_2     Blst_3     Blst_5 
-## 0.13461538 0.09615385 0.07692308 0.07692308 0.07692308 0.07692308 0.07692308 
-##     Blst_6   Belong_2    cEval_1   cEval_19  iBIPOC_pr    cmBlack   cEval_13 
-## 0.07692308 0.05769231 0.05769231 0.05769231 0.03846154 0.03846154 0.03846154</code></pre>
+<pre><code>##     Blst_1     Blst_4     Blst_3     Blst_5     Blst_6   Belong_1   Belong_3 
+## 0.13846154 0.10769231 0.09230769 0.09230769 0.09230769 0.07692308 0.07692308 
+##     Blst_2   Belong_2    cEval_1   cEval_19  iBIPOC_pr    cmBlack   cEval_13 
+## 0.07692308 0.06153846 0.06153846 0.06153846 0.04615385 0.04615385 0.04615385</code></pre>
 <p>Luckily, none of our variables have more than 25% missing (<em>or at least they didn’t when I wrote this; the open nature of the survey and how it sources this chapter could change this</em>). If we did have a variable with more than 25% missing, we would have to consider what to do about it.</p>
 <p>Later we learn that we should eliminate case with greater than 50% missingness. Let’s write code for that, now.</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="multimp.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculating number and proportion of item-level missingness</span></span>
@@ -919,63 +919,63 @@ summary(Climate_fit)</code></pre>
 <pre><code>## # A tibble: 20 x 6
 ##    term        estimate std.error statistic      p.value  nobs
 ##    &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
-##  1 (Intercept)   3.10      0.510      6.09  0.000000233     49
-##  2 Belonging    -0.0365    0.111     -0.329 0.744           49
-##  3 cmBlack      -0.0329    0.0210    -1.56  0.125           49
-##  4 iBIPOC_pr    -0.603     0.417     -1.45  0.155           49
-##  5 (Intercept)   3.22      0.510      6.32  0.000000106     49
-##  6 Belonging    -0.0865    0.108     -0.802 0.426           49
-##  7 cmBlack      -0.0286    0.0208    -1.37  0.177           49
-##  8 iBIPOC_pr    -0.523     0.395     -1.32  0.193           49
-##  9 (Intercept)   3.18      0.488      6.51  0.0000000542    49
-## 10 Belonging    -0.0689    0.105     -0.656 0.515           49
-## 11 cmBlack      -0.0302    0.0204    -1.48  0.147           49
-## 12 iBIPOC_pr    -0.651     0.400     -1.63  0.110           49
-## 13 (Intercept)   3.18      0.514      6.18  0.000000169     49
-## 14 Belonging    -0.0753    0.108     -0.697 0.489           49
-## 15 cmBlack      -0.0305    0.0210    -1.46  0.152           49
-## 16 iBIPOC_pr    -0.415     0.387     -1.07  0.289           49
-## 17 (Intercept)   3.27      0.520      6.29  0.000000114     49
-## 18 Belonging    -0.0978    0.109     -0.896 0.375           49
-## 19 cmBlack      -0.0271    0.0213    -1.27  0.210           49
-## 20 iBIPOC_pr    -0.482     0.392     -1.23  0.225           49</code></pre>
+##  1 (Intercept)  2.98       0.473     6.31   0.0000000449    61
+##  2 Belonging   -0.0151     0.0971   -0.155  0.877           61
+##  3 cmBlack     -0.0213     0.0191   -1.12   0.269           61
+##  4 iBIPOC_pr   -0.635      0.365    -1.74   0.0872          61
+##  5 (Intercept)  2.98       0.456     6.53   0.0000000192    61
+##  6 Belonging   -0.00946    0.0955   -0.0990 0.921           61
+##  7 cmBlack     -0.0202     0.0187   -1.08   0.284           61
+##  8 iBIPOC_pr   -0.810      0.363    -2.23   0.0295          61
+##  9 (Intercept)  3.02       0.468     6.44   0.0000000268    61
+## 10 Belonging   -0.0333     0.0956   -0.349  0.728           61
+## 11 cmBlack     -0.0205     0.0187   -1.10   0.277           61
+## 12 iBIPOC_pr   -0.589      0.353    -1.67   0.100           61
+## 13 (Intercept)  3.00       0.465     6.45   0.0000000260    61
+## 14 Belonging   -0.0125     0.0964   -0.130  0.897           61
+## 15 cmBlack     -0.0206     0.0189   -1.09   0.282           61
+## 16 iBIPOC_pr   -0.758      0.372    -2.04   0.0460          61
+## 17 (Intercept)  3.06       0.458     6.68   0.0000000110    61
+## 18 Belonging   -0.0256     0.0949   -0.270  0.788           61
+## 19 cmBlack     -0.0219     0.0187   -1.17   0.246           61
+## 20 iBIPOC_pr   -0.747      0.368    -2.03   0.0467          61</code></pre>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="multimp.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the pooled result</span></span>
 <span id="cb145-2"><a href="multimp.html#cb145-2" aria-hidden="true" tabindex="-1"></a>pooledests <span class="ot">&lt;-</span> <span class="fu">pool</span>(fitimp)</span>
 <span id="cb145-3"><a href="multimp.html#cb145-3" aria-hidden="true" tabindex="-1"></a>pooledests</span></code></pre></div>
 <pre><code>## Class: mipo    m = 5 
 ##          term m    estimate         ubar            b            t dfcom
-## 1 (Intercept) 5  3.18956660 0.2584650301 3.983493e-03 0.2632452218    45
-## 2   Belonging 5 -0.07300792 0.0117174337 5.380533e-04 0.0123630977    45
-## 3     cmBlack 5 -0.02985330 0.0004371653 4.890076e-06 0.0004430334    45
-## 4   iBIPOC_pr 5 -0.53476392 0.1587727506 8.875746e-03 0.1694236457    45
-##         df        riv     lambda        fmi
-## 1 42.19463 0.01849454 0.01815870 0.06160817
-## 2 39.76456 0.05510285 0.05222510 0.09655034
-## 3 42.47452 0.01342305 0.01324526 0.05664339
-## 4 38.86218 0.06708264 0.06286546 0.10763784</code></pre>
+## 1 (Intercept) 5  3.00735694 0.2154077988 1.005386e-03 0.2166142615    57
+## 2   Belonging 5 -0.01920803 0.0091942123 9.935813e-05 0.0093134420    57
+## 3     cmBlack 5 -0.02089314 0.0003538947 4.763674e-07 0.0003544664    57
+## 4   iBIPOC_pr 5 -0.70790064 0.1324881894 8.469216e-03 0.1426512482    57
+##         df         riv      lambda        fmi
+## 1 54.76984 0.005600831 0.005569636 0.03999696
+## 2 54.27366 0.012967914 0.012801900 0.04727492
+## 3 55.00917 0.001615285 0.001612680 0.03603438
+## 4 48.05398 0.076709168 0.071244093 0.10762738</code></pre>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="multimp.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co">#str(pooledests)</span></span></code></pre></div>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="multimp.html#cb148-1" aria-hidden="true" tabindex="-1"></a>sumpooled <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">pool</span>(fitimp))</span>
 <span id="cb148-2"><a href="multimp.html#cb148-2" aria-hidden="true" tabindex="-1"></a>sumpooled</span></code></pre></div>
 <pre><code>##          term    estimate  std.error  statistic       df      p.value
-## 1 (Intercept)  3.18956660 0.51307428  6.2165786 42.19463 1.903512e-07
-## 2   Belonging -0.07300792 0.11118947 -0.6566083 39.76456 5.152150e-01
-## 3     cmBlack -0.02985330 0.02104836 -1.4183198 42.47452 1.633933e-01
-## 4   iBIPOC_pr -0.53476392 0.41161104 -1.2991972 38.86218 2.015315e-01</code></pre>
+## 1 (Intercept)  3.00735694 0.46541837  6.4616206 54.76984 2.911177e-08
+## 2   Belonging -0.01920803 0.09650618 -0.1990342 54.27366 8.429798e-01
+## 3     cmBlack -0.02089314 0.01882728 -1.1097272 55.00917 2.719443e-01
+## 4   iBIPOC_pr -0.70790064 0.37769200 -1.8742802 48.05398 6.697797e-02</code></pre>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="multimp.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co">#str(sumpooled)</span></span></code></pre></div>
-<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = -0.073, <span class="math inline">\(p\)</span> = 0.515) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.535, <span class="math inline">\(p\)</span> = 0.202) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (<span class="math inline">\(B\)</span> = -0.030, <span class="math inline">\(p\)</span> = 0.163). Results are presented in Table X.</p>
+<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = -0.019, <span class="math inline">\(p\)</span> = 0.843) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.708, <span class="math inline">\(p\)</span> = 0.067) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (<span class="math inline">\(B\)</span> = -0.021, <span class="math inline">\(p\)</span> = 0.272). Results are presented in Table X.</p>
 </div>
 <div id="toward-the-apa-style-write-up-1" class="section level2" number="5.7">
 <h2><span class="header-section-number">5.7</span> Toward the APA Style Write-up</h2>
 <div id="methoddata-diagnostics" class="section level3" number="5.7.1">
 <h3><span class="header-section-number">5.7.1</span> Method/Data Diagnostics</h3>
-<p>Data screening suggested that 75 individuals opened the survey link. Of those, 60 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 52 met this criteria. Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 91%. Across the dataset, 4.18% of cells had missing data and 86.00% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with fewer than 50% missing to be included the multiple imputation <span class="citation">(<a href="#ref-katitas_getting_2019" role="doc-biblioref">Katitas, 2019</a>)</span>.</p>
-<p>Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (<span class="math inline">\(W\)</span> = 0.816, <span class="math inline">\(p\)</span> = 0.0000) and the proportion of BIPOC instructional staff(<span class="math inline">\(W\)</span> = 0.757, <span class="math inline">\(p\)</span> = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent’s belonging (<span class="math inline">\(W\)</span> = 0.978, <span class="math inline">\(p\)</span> = 0.4901) and the respondent’s perception of campus climate for Black students (<span class="math inline">\(W\)</span> = 0.933, <span class="math inline">\(p\)</span> = 0.0104) did not differ differently from a normal distribution.</p>
-<p>We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the <em>outlier()</em> function in the <em>psych</em> package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 49 exceed three standard deviations beyond the median. <em>Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis</em> AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.*</p>
+<p>Data screening suggested that 92 individuals opened the survey link. Of those, 74 granted consent and proceeded to the survey items. A further inclusion criteria was that the course was taught in the U.S; 65 met this criteria. Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0% to 100%. Across the dataset, 4.11% of cells had missing data and 87.10% of cases had nonmissing data. At this stage in the analysis, we allowed all cases with fewer than 50% missing to be included the multiple imputation <span class="citation">(<a href="#ref-katitas_getting_2019" role="doc-biblioref">Katitas, 2019</a>)</span>.</p>
+<p>Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 8 to 20 (kurtosis) that Kline suggests are concerning <span class="citation">(<a href="#ref-kline_principles_2016" role="doc-biblioref">2016</a>)</span>. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (<span class="math inline">\(W\)</span> = 0.876, <span class="math inline">\(p\)</span> = 0.0000) and the proportion of BIPOC instructional staff(<span class="math inline">\(W\)</span> = 0.789, <span class="math inline">\(p\)</span> = 0.0000) are statistically significantly different than a normal distribution. The scales assessing the respondent’s belonging (<span class="math inline">\(W\)</span> = 0.971, <span class="math inline">\(p\)</span> = 0.1610) and the respondent’s perception of campus climate for Black students (<span class="math inline">\(W\)</span> = 0.949, <span class="math inline">\(p\)</span> = 0.0185) did not differ differently from a normal distribution.</p>
+<p>We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the <em>outlier()</em> function in the <em>psych</em> package and included all continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 1, 61 exceed three standard deviations beyond the median. <em>Thus, with no outliers, we assumed multivariate normality and proceeded with the data analysis</em> AS DATA IS ADDED THIS NUMBER OF OUTLIERS COULD UPDATE FROM ZERO AND THIS TEXT COULD CHANGE.*</p>
 <p>We managed missing data with multiple imputation <span class="citation">(<a href="#ref-enders_multiple_2017" role="doc-biblioref">Enders, 2017</a>; <a href="#ref-katitas_getting_2019" role="doc-biblioref">Katitas, 2019</a>)</span>. We imputed five sets of data with the R package, <em>mice</em> (v. 3.13) – a program that utilizes conditional multiple imputation. The imputation included the item-level variables that comprised our scales, the variables that represented proportion of BIPOC instructional staff and proportion of Black classmates, as well as four auxiliary variables (three variables from the course evaluation and the format [in-person/blended/virtual] of the class).</p>
 </div>
 <div id="results-1" class="section level3" number="5.7.2">
 <h3><span class="header-section-number">5.7.2</span> Results</h3>
-<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = -0.056, <span class="math inline">\(p\)</span> = 0.623) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.697, <span class="math inline">\(p\)</span> = 0.105) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (<span class="math inline">\(B\)</span> = -0.028, <span class="math inline">\(p\)</span> = 0.195). Although it accounted for 10.97% of the variance, the overall model was not statistically significant. Results are presented in Table 2.</p>
+<p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B\)</span> = -0.018, <span class="math inline">\(p\)</span> = 0.860) nor the proportion of BIPOC instructional staff (<span class="math inline">\(B\)</span> = -0.711, <span class="math inline">\(p\)</span> = 0.068) led to statistically significant changes in perceptions of campus climate for Black students. Results did suggest a statistically significant negative effect of the proportion of Black classmates on the campus climate for Black students. Specifically, as the proportion of Black students increases, there is less stigmatization and hostility on the campus (<span class="math inline">\(B\)</span> = -0.020, <span class="math inline">\(p\)</span> = 0.303). Although it accounted for 8.63% of the variance, the overall model was not statistically significant. Results are presented in Table 2.</p>
 <p><strong>Some notes about this write-up</strong></p>
 <ul>
 <li>I went ahead and used the data diagnostics that we did in the AIA method. It feels to me like these should be calculated with the multiply imputed data (i.e., 5 sets, with pooled estimates and standard errors), but I do not see that modeled – anywhere in R.</li>

@@ -24,7 +24,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2022-03-16" />
+<meta name="date" content="2022-04-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1027,8 +1027,171 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ## [4,]  0.34  0.19  0.66  1.00 -0.66  0.05
 ## [5,] -0.25 -0.28 -0.55 -0.66  1.00  0.08
 ## [6,] -0.02  0.00  0.07  0.05  0.08  1.00</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="SimpleMed.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co">#look at the first 6 rows of the new df</span></span>
-<span id="cb177-2"><a href="SimpleMed.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Kim_df)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="SimpleMed.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co">#renaming the variables</span></span>
+<span id="cb177-2"><a href="SimpleMed.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(Kim_df, <span class="at">row.names =</span> <span class="cn">NULL</span>, <span class="at">optional =</span> <span class="cn">FALSE</span>, <span class="at">make.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##              V1        V2        V3         V4       V5          V6
+## 1    0.56322125 3.6597480 4.1049053  1.9554809 3.287428  1.91805695
+## 2    0.41645739 2.4053977 3.1890486  1.5748235 4.250802  1.70143656
+## 3    0.28237771 1.8224393 3.8208709  2.5151029 3.272359  1.34220138
+## 4    0.33011916 4.8779798 3.2980691  2.2191489 3.310993  1.45026964
+## 5    0.21196480 2.1101520 3.0688062  2.1455283 3.429861  1.90920320
+## 6    0.59610682 4.0879856 3.4209156  3.1297963 2.914344  1.90028275
+## 7    0.29243256 1.8148855 3.6926166  2.1726462 3.692914  2.09629288
+## 8    0.32144987 2.6603066 2.8638870  2.4649908 4.482531  2.05989633
+## 9    0.40473325 2.7796051 2.6858598  2.5223291 3.736425  1.26499781
+## 10   0.21929113 3.2963723 2.9880902  2.2783102 4.529762  2.24630280
+## 11   0.29894241 4.0567340 3.4052729  3.2965016 2.114133  0.91627957
+## 12   0.49505466 3.6517638 4.0191818  3.2668795 2.706036  1.80508313
+## 13   0.46641997 2.8552000 4.2079011  3.0366230 3.499116  1.76026862
+## 14   0.41797389 3.1859589 3.0577687  2.6807249 4.049217  2.07708287
+## 15   0.28121203 3.6170116 4.0166686  2.7814840 3.018156  2.13050868
+## 16   0.27947105 3.9372700 2.4850059  2.9146085 3.436433  0.77516692
+## 17   0.44180986 2.6050017 2.3851485  2.0584088 3.052304  2.60069927
+## 18   0.41537287 2.6057846 1.6658239  1.9502032 3.882310  1.09460176
+## 19   0.44242174 4.7058171 3.3821579  2.4378686 3.017007  1.19035512
+## 20   0.21925056 2.6011053 3.5150938  3.6000957 2.911766  2.13795646
+## 21   0.46256196 2.8288038 1.7353880  1.3348558 4.417138  1.28094637
+## 22   0.25192604 1.5548855 4.6607166  4.4707529 1.948742  1.28294598
+## 23   0.18444063 3.0334866 1.6768300  0.6779229 4.221211  1.31821275
+## 24   0.57306932 2.9816137 3.9621891  4.2204392 2.979487  1.69121555
+## 25   0.13232967 2.6967207 1.6577405  1.9418691 3.172581  1.84875291
+## 26   0.52068343 3.3500024 2.9862440  3.3452712 3.853964  1.79230333
+## 27   0.54696255 3.8866891 2.0279332  2.4597838 2.842008  1.52644789
+## 28   0.34068549 3.0340056 4.4741623  2.9372979 3.408697  0.86947178
+## 29   0.24707523 3.5050539 3.9208420  2.8073240 4.889557  1.27544346
+## 30   0.29080131 3.4442628 3.8680698  2.4488849 3.066729  1.69060800
+## 31   0.40987324 2.9006217 2.8573747  1.5695790 4.233653  1.87189432
+## 32   0.21224331 2.5347979 0.8366917 -0.2373390 5.190592  2.05938315
+## 33   0.25207135 2.9137499 2.7603436  2.0923841 3.653351  2.24976910
+## 34   0.16276707 1.9379893 1.6489826  1.5011075 3.594861  0.88555420
+## 35   0.30096374 3.8700976 0.5264340  1.6180255 5.487318  2.21320732
+## 36   0.20986036 2.0884341 3.8084980  2.7378146 2.572915  1.36011239
+## 37   0.41616626 3.9193314 2.5776446  1.2355256 5.149036  0.78540481
+## 38   0.27217433 2.8026103 1.2385729  0.3989112 5.298260  0.62396948
+## 39   0.26740836 3.1562081 3.2528697  3.5891595 2.214625  1.74957641
+## 40   0.16334665 3.0316864 1.7137803  2.0029227 3.882992  2.00216217
+## 41   0.50594415 3.8290038 2.6312865  3.1239589 2.725843  1.41820509
+## 42   0.20385826 2.9278669 2.6276504  1.7907981 3.921445  2.07268784
+## 43   0.24120383 2.6838303 2.3003964  1.5687292 3.623936  1.92351462
+## 44   0.23563651 3.8136925 2.7114557  1.5496015 3.318703  1.15905861
+## 45   0.54883303 5.4150767 2.7186774  1.5067235 3.779996  2.12796163
+## 46   0.36711163 3.8447659 1.1925475  1.1402792 4.173351  1.34919399
+## 47   0.39302069 4.4355608 3.3954864  2.7892770 2.899815  2.24643250
+## 48   0.01009113 1.5318052 0.5697995  1.8053179 3.992898  1.40596300
+## 49  -0.12242115 1.0141619 1.4837774  0.8009489 3.914087  2.02539467
+## 50   0.38720059 1.7949009 3.8398840  2.9842122 3.796444  2.11108724
+## 51   0.47417156 3.4409436 3.1415343  3.0100808 2.592269  1.80315606
+## 52   0.17155243 3.1704047 3.1266970  2.4657630 3.266817  2.21126688
+## 53   0.30123329 2.1267192 2.3335932  2.2868177 3.896228  1.55511062
+## 54   0.24016851 2.5639564 3.9252969  2.6332829 3.295473  1.90123895
+## 55   0.39475663 2.1809573 3.2305235  2.6901743 3.910593  1.62781589
+## 56   0.37303720 3.7037489 0.3243811  2.3743395 4.499098  1.63874685
+## 57   0.07394377 2.1241313 2.3202974  2.9396688 3.471893  0.95316197
+## 58  -0.03631397 2.5749922 1.9996379  1.7276110 3.510733  1.44489216
+## 59   0.44488958 3.8220470 3.4726323  2.4509216 2.638454  1.16026810
+## 60   0.19470088 2.6600576 4.4642647  2.1333301 2.523246  0.93099385
+## 61   0.18399505 2.7719267 4.2392585  3.5143232 3.792274  1.79413576
+## 62   0.48296947 3.5876145 3.6665669  1.5926518 3.810789  1.36299191
+## 63   0.13214476 3.3355833 2.3660459  1.9111449 3.710673  1.51854198
+## 64   0.31260553 2.7558763 3.5655710  2.6195842 3.186554  2.90090850
+## 65   0.22970869 3.0652301 3.0710417  3.0539260 2.916797  2.22290780
+## 66   0.22754902 2.7779616 2.6759105  1.3301148 3.769520  1.98654728
+## 67   0.34621618 3.3871559 3.2524603  2.3411667 3.385543  2.07525975
+## 68   0.37107989 3.2195846 2.9840681  2.8915907 3.854296  2.33346597
+## 69   0.29651979 3.0691793 3.8427122  2.2771795 2.496135  1.77741943
+## 70   0.54949476 3.2521581 3.1423253  3.3621003 3.412644  1.54768706
+## 71   0.74634885 4.2323500 3.7271057  2.6895581 3.496225  1.89268623
+## 72   0.38466346 3.8560098 1.9386123  1.1558135 3.261374  1.74750657
+## 73   0.44885293 3.3497400 5.5315716  3.8040372 2.799051  1.84644839
+## 74   0.52347565 3.2051381 2.3396855  2.4519680 1.975368  0.89254378
+## 75   0.27026623 1.9825669 3.6003725  2.4845077 3.872257  1.60602936
+## 76   0.67198777 4.7928765 2.6343230  2.1368250 3.761652  1.22253688
+## 77   0.63138698 3.8316398 3.2908345  3.3553293 3.672308  1.86688799
+## 78   0.19242819 2.3835763 3.1671392  1.1680126 3.992543  1.60687601
+## 79   0.17256605 2.6267680 2.5387912  2.9853744 2.826364  2.23573447
+## 80   0.25084377 2.8155863 2.7052302  1.8583159 3.628942  2.13506470
+## 81   0.16241138 1.9999449 2.6917180  1.8076790 4.092591  2.29444680
+## 82   0.08065017 1.7547371 4.0093113  2.8669452 2.028681 -0.06934167
+## 83   0.45681650 1.8692824 1.7524186  1.4087383 4.340835  0.73662729
+## 84   0.50021187 2.9739436 5.3567815  3.2787949 2.256714  2.65150435
+## 85   0.28572356 3.4953504 3.7280728  3.4008900 1.156036  1.93540925
+## 86   0.33181611 3.1621318 5.0219882  2.8001620 3.022543  0.81954402
+## 87   0.53733479 2.6759789 2.9386910  2.5381015 4.377655  2.68297323
+## 88   0.41020747 3.9691457 2.8479777  1.3040104 5.094804  2.04100402
+## 89   0.42368572 3.4954422 1.5177826  0.1848853 4.193554  0.67010137
+## 90   0.38000797 3.0724211 2.6261843  3.0173563 3.545992  2.52286312
+## 91  -0.11476891 1.3149960 2.6636832  0.8275885 4.687246  1.41339810
+## 92   0.26836804 2.1994923 2.9514615  2.0677218 4.062034  1.87199309
+## 93   0.44334267 4.1947402 2.6460184  1.9442501 2.994570  0.24984664
+## 94   0.42326987 3.2407832 1.4084802  0.7543558 4.840738  0.82669557
+## 95   0.28052874 0.9004737 2.6095925  1.2466061 6.475142  2.10980142
+## 96   0.77003361 4.9713324 3.7115373  3.1593331 2.836750  1.31828549
+## 97   0.37167908 3.1718301 4.2706985  3.3870493 2.154981  1.71302797
+## 98   0.24127893 2.3301068 3.0251361  1.9710754 3.612900  1.96243232
+## 99   0.12837450 2.2092163 1.2456825  0.9640184 4.618485  1.68845848
+## 100  0.59027871 2.7472269 3.4322102  2.2674321 4.385459  1.96241270
+## 101  0.62339700 3.7416758 1.8543324  2.0711335 2.600590  1.39018465
+## 102  0.42922554 4.2455492 4.2517887  3.4668250 1.638455  2.41844574
+## 103  0.10031432 2.5079706 2.9805966  1.2861004 2.731720  1.40898312
+## 104  0.30924005 2.9924583 2.5508416  1.4413085 3.262446  1.42738564
+## 105  0.46372321 2.8919932 3.3235004  3.4999934 2.441695  1.21991752
+## 106  0.28876466 3.2006761 3.7026570  3.3801248 2.367959  1.70271290
+## 107  0.35953779 2.8931422 2.6210980  3.9592676 3.451652  0.86050466
+## 108  0.57323079 3.4375798 3.8516019  3.0722089 2.946010  1.51543655
+## 109  0.49625658 3.7358739 2.9225955  2.9935948 2.949448  1.86273183
+## 110  0.48391372 3.2114669 3.2209634  3.7121910 3.131195  1.77644499
+## 111  0.47870769 3.2230223 2.9068304  2.0499861 3.541410  1.74413673
+## 112  0.47523354 3.9456508 4.9667066  3.6989183 1.624991  1.64914631
+## 113  0.28356477 1.7174743 2.0049728  2.2317721 4.159874  2.62361258
+## 114  0.25340439 2.6358465 2.7628818  1.3548412 4.229701  0.61388633
+## 115  0.17747863 2.4418628 3.3949276  2.5425965 4.609277  2.81641570
+## 116  0.26332803 1.0701425 2.0732293  1.8094209 4.017358  1.27337728
+## 117  0.14233439 3.5345034 2.9562862  2.9376457 4.179457  2.21830457
+## 118  0.60818957 3.2926195 4.2566576  3.2341634 2.187463  1.50428392
+## 119  0.17362985 2.8111299 3.1611658  2.7063505 4.327138  1.92577369
+## 120  0.34625988 2.9770346 0.8043563  0.9115378 4.773798  2.47526194
+## 121  0.22995471 1.5911673 2.3430435  1.0772470 4.968784  1.36077937
+## 122  0.19198547 3.7380452 2.3159095  2.7368940 3.367743  1.31568473
+## 123  0.39980462 2.9556827 2.4930117  1.7645215 3.287901  1.43992217
+## 124  0.25732328 2.8009097 3.0928489  1.9135199 4.694348  1.67891926
+## 125  0.26154823 2.1838877 2.6804106  2.7272111 2.369941  1.15067890
+## 126  0.43994412 4.2835852 1.4634766  1.6514789 3.581195  1.71946301
+## 127  0.13447235 2.7104287 2.3076943  0.7580077 4.366919  1.32053700
+## 128  0.10091357 1.6418791 1.6862834  2.1494818 4.267309  1.70294619
+## 129  0.10646735 1.7729566 2.3437097  0.8816139 4.193043  1.95976757
+## 130  0.24014439 4.0972844 3.6801167  3.0936245 2.276948  2.28654154
+## 131  0.14539846 2.3493888 3.2405691  2.3440132 4.098868  2.13723657
+## 132  0.57756764 4.7246801 3.2135469  2.3344985 2.194079  2.24364873
+## 133  0.25197582 2.5957409 2.8994499  2.7899980 3.090376  1.82620959
+## 134  0.57770853 3.7050707 3.4709361  2.6119811 3.328878  1.14167108
+## 135  0.12261317 1.2503948 3.0024593  2.1253723 4.092472  1.47990191
+## 136  0.26291529 2.9748965 1.5534048  1.6482858 4.807430  1.59314788
+## 137  0.32139038 3.5068595 3.1679742  1.3884489 3.733213  1.16383795
+## 138  0.30901830 1.9551945 2.4312567  1.8925443 3.726499  1.22452851
+## 139  0.40064305 3.4706670 2.7419435  0.7804873 4.642437  2.39744299
+## 140  0.25166585 3.0404272 3.4198123  1.7100788 3.273517  1.18731449
+## 141  0.53430469 3.3282426 2.8288598  3.1283890 1.875542  1.74021564
+## 142  0.47101030 3.6900845 5.0647611  4.7262824 1.487914  1.73085631
+## 143  0.47626035 3.4624640 2.5962100  2.3876083 4.401440  1.57587931
+## 144  0.53725858 3.5309773 2.8245015  3.6862821 3.184580  0.13304818
+## 145  0.29017494 2.9943860 2.9720216  2.3853740 3.527133  1.43003982
+## 146  0.34106584 3.5745454 4.8982539  4.1582760 2.361561  1.34356694
+## 147  0.30282791 2.3516204 2.6772719  1.7864695 5.405350  1.56413895
+## 148  0.27240003 2.0889215 4.2100407  2.8891736 2.893292  2.31183805
+## 149  0.40388358 3.3061810 2.5783714  2.0861286 3.479841  1.82404413
+## 150  0.44336223 2.2127621 4.7736521  3.8747925 3.354023  0.59999785
+## 151  0.19531077 1.9684127 3.6376807  2.6859487 3.022946  1.05558784
+## 152  0.51459072 3.1856501 5.0372132  2.4685772 3.844596  2.12822875
+## 153  0.52853365 3.4693714 2.6153535  3.3420836 3.564815  1.60092711
+## 154  0.55048588 3.0632298 2.9962110  3.3900732 2.131883  1.54506874
+## 155  0.29878455 2.6036346 2.1778221  2.4567806 3.771628  1.12997935
+## 156  0.55409136 2.7994068 4.8666557  3.8620707 1.337963  1.57531900</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="SimpleMed.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb179-2"><a href="SimpleMed.html#cb179-2" aria-hidden="true" tabindex="-1"></a>Kim_df <span class="ot">&lt;-</span> Kim_df<span class="sc">%&gt;%</span></span>
+<span id="cb179-3"><a href="SimpleMed.html#cb179-3" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span></span>
+<span id="cb179-4"><a href="SimpleMed.html#cb179-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">REMS =</span> V1, <span class="at">CMI =</span> V2, <span class="at">ANX =</span> V3, <span class="at">DEP =</span> V4, <span class="at">PWB =</span> V5, <span class="at">HlpSk =</span> V6)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="SimpleMed.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co">#look at the first 6 rows of the new df</span></span>
+<span id="cb180-2"><a href="SimpleMed.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Kim_df)</span></code></pre></div>
 <pre><code>##        REMS      CMI      ANX      DEP      PWB    HlpSk
 ## 1 0.5632213 3.659748 4.104905 1.955481 3.287428 1.918057
 ## 2 0.4164574 2.405398 3.189049 1.574824 4.250802 1.701437
@@ -1037,8 +1200,8 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ## 5 0.2119648 2.110152 3.068806 2.145528 3.429861 1.909203
 ## 6 0.5961068 4.087986 3.420916 3.129796 2.914344 1.900283</code></pre>
 <p>Let’s check the descriptives to see if they align with those in the article.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="SimpleMed.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb179-2"><a href="SimpleMed.html#cb179-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(Kim_df)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="SimpleMed.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb182-2"><a href="SimpleMed.html#cb182-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(Kim_df)</span></code></pre></div>
 <pre><code>##       vars   n mean   sd median trimmed  mad   min  max range  skew kurtosis
 ## REMS     1 156 0.34 0.16   0.32    0.34 0.16 -0.12 0.77  0.89 -0.02    -0.01
 ## CMI      2 156 3.00 0.83   3.01    3.00 0.73  0.90 5.42  4.51 -0.01     0.07
@@ -1068,18 +1231,18 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 <li>replacing the name of the df</li>
 <li>updated the object names (so I could use them in the same .rmd file)</li>
 </ul>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="SimpleMed.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb181-2"><a href="SimpleMed.html#cb181-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>) <span class="co">#reset in case you choose to separate these sections</span></span>
-<span id="cb181-3"><a href="SimpleMed.html#cb181-3" aria-hidden="true" tabindex="-1"></a>Kim_model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb181-4"><a href="SimpleMed.html#cb181-4" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ b*CMI + c_p*REMS </span></span>
-<span id="cb181-5"><a href="SimpleMed.html#cb181-5" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~a*REMS</span></span>
-<span id="cb181-6"><a href="SimpleMed.html#cb181-6" aria-hidden="true" tabindex="-1"></a><span class="st">          </span></span>
-<span id="cb181-7"><a href="SimpleMed.html#cb181-7" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
-<span id="cb181-8"><a href="SimpleMed.html#cb181-8" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
-<span id="cb181-9"><a href="SimpleMed.html#cb181-9" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
-<span id="cb181-10"><a href="SimpleMed.html#cb181-10" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span></code></pre></div>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="SimpleMed.html#cb182-1" aria-hidden="true" tabindex="-1"></a>Kim_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(Kim_model, <span class="at">data =</span> Kim_df, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing=</span> <span class="st">&#39;fiml&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="SimpleMed.html#cb183-1" aria-hidden="true" tabindex="-1"></a>Kim_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(Kim_fit, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="SimpleMed.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb184-2"><a href="SimpleMed.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>) <span class="co">#reset in case you choose to separate these sections</span></span>
+<span id="cb184-3"><a href="SimpleMed.html#cb184-3" aria-hidden="true" tabindex="-1"></a>Kim_model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb184-4"><a href="SimpleMed.html#cb184-4" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ b*CMI + c_p*REMS </span></span>
+<span id="cb184-5"><a href="SimpleMed.html#cb184-5" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~a*REMS</span></span>
+<span id="cb184-6"><a href="SimpleMed.html#cb184-6" aria-hidden="true" tabindex="-1"></a><span class="st">          </span></span>
+<span id="cb184-7"><a href="SimpleMed.html#cb184-7" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
+<span id="cb184-8"><a href="SimpleMed.html#cb184-8" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
+<span id="cb184-9"><a href="SimpleMed.html#cb184-9" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
+<span id="cb184-10"><a href="SimpleMed.html#cb184-10" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="SimpleMed.html#cb185-1" aria-hidden="true" tabindex="-1"></a>Kim_fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(Kim_model, <span class="at">data =</span> Kim_df, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing=</span> <span class="st">&#39;fiml&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="SimpleMed.html#cb186-1" aria-hidden="true" tabindex="-1"></a>Kim_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(Kim_fit, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## lavaan 0.6-9 ended normally after 23 iterations
 ## 
 ##   Estimator                                         ML
@@ -1175,8 +1338,8 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ##    -0.675   -0.120
 ##    -0.732   -0.130
 ##    -1.406   -0.250</code></pre>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="SimpleMed.html#cb185-1" aria-hidden="true" tabindex="-1"></a>Kim_ParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(Kim_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
-<span id="cb185-2"><a href="SimpleMed.html#cb185-2" aria-hidden="true" tabindex="-1"></a>Kim_summary</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="SimpleMed.html#cb188-1" aria-hidden="true" tabindex="-1"></a>Kim_ParamEsts <span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(Kim_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb188-2"><a href="SimpleMed.html#cb188-2" aria-hidden="true" tabindex="-1"></a>Kim_summary</span></code></pre></div>
 <pre><code>## $FIT
 ##              npar              fmin             chisq                df 
 ##             7.000             0.000             0.000             0.000 
@@ -1222,7 +1385,7 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ## 12 0.0001151982 -2.1222575 -0.71330366 -1.4062500 -0.2500000 -1.5675322
 ## 13           NA         NA          NA         NA         NA         NA
 ## 14           NA         NA          NA         NA         NA         NA</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="SimpleMed.html#cb187-1" aria-hidden="true" tabindex="-1"></a>Kim_ParamEsts</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="SimpleMed.html#cb190-1" aria-hidden="true" tabindex="-1"></a>Kim_ParamEsts</span></code></pre></div>
 <pre><code>##         lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper
 ## 1       PWB  ~       CMI        b -0.220 0.118 -1.873  0.061   -0.456    0.012
 ## 2       PWB  ~      REMS      c_p -0.732 0.509 -1.437  0.151   -1.697    0.293
@@ -1267,30 +1430,30 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 <div id="a-figure-and-a-table" class="section level3" number="6.5.4">
 <h3><span class="header-section-number">6.5.4</span> A Figure and a Table</h3>
 <p>I make it a practice to immediately plot what I did. Because the plotting packages use our models, this can be a helpful self-check of our work.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="SimpleMed.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
-<span id="cb189-2"><a href="SimpleMed.html#cb189-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(Kim_fit, <span class="co">#must identiy the model you want to map</span></span>
-<span id="cb189-3"><a href="SimpleMed.html#cb189-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
-<span id="cb189-4"><a href="SimpleMed.html#cb189-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
-<span id="cb189-5"><a href="SimpleMed.html#cb189-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
-<span id="cb189-6"><a href="SimpleMed.html#cb189-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
-<span id="cb189-7"><a href="SimpleMed.html#cb189-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
-<span id="cb189-8"><a href="SimpleMed.html#cb189-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
-<span id="cb189-9"><a href="SimpleMed.html#cb189-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
-<span id="cb189-10"><a href="SimpleMed.html#cb189-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
-<span id="cb189-11"><a href="SimpleMed.html#cb189-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
-<span id="cb189-12"><a href="SimpleMed.html#cb189-12" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
-<span id="cb189-13"><a href="SimpleMed.html#cb189-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
-<span id="cb189-14"><a href="SimpleMed.html#cb189-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
-<span id="cb189-15"><a href="SimpleMed.html#cb189-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
-<span id="cb189-16"><a href="SimpleMed.html#cb189-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
-<span id="cb189-17"><a href="SimpleMed.html#cb189-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
-<span id="cb189-18"><a href="SimpleMed.html#cb189-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
-<span id="cb189-19"><a href="SimpleMed.html#cb189-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb189-20"><a href="SimpleMed.html#cb189-20" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Depression by Racial Microaggressions via Cultural Mistrust&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="SimpleMed.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb192-2"><a href="SimpleMed.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(Kim_fit, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb192-3"><a href="SimpleMed.html#cb192-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb192-4"><a href="SimpleMed.html#cb192-4" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb192-5"><a href="SimpleMed.html#cb192-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
+<span id="cb192-6"><a href="SimpleMed.html#cb192-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb192-7"><a href="SimpleMed.html#cb192-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb192-8"><a href="SimpleMed.html#cb192-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb192-9"><a href="SimpleMed.html#cb192-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb192-10"><a href="SimpleMed.html#cb192-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb192-11"><a href="SimpleMed.html#cb192-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb192-12"><a href="SimpleMed.html#cb192-12" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb192-13"><a href="SimpleMed.html#cb192-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb192-14"><a href="SimpleMed.html#cb192-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb192-15"><a href="SimpleMed.html#cb192-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb192-16"><a href="SimpleMed.html#cb192-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb192-17"><a href="SimpleMed.html#cb192-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb192-18"><a href="SimpleMed.html#cb192-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb192-19"><a href="SimpleMed.html#cb192-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb192-20"><a href="SimpleMed.html#cb192-20" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Depression by Racial Microaggressions via Cultural Mistrust&quot;</span>)</span></code></pre></div>
 <p><img src="ReC_MultMod_files/figure-html/semPLOT%20of%20PMI-1.png" width="672" /></p>
 <p>The semTable package can be used to write results to an outfile.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="SimpleMed.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
-<span id="cb190-2"><a href="SimpleMed.html#cb190-2" aria-hidden="true" tabindex="-1"></a>fitTab1 <span class="ot">&lt;-</span> <span class="fu">semTable</span>(Kim_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;pmi_fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="SimpleMed.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTable)</span>
+<span id="cb193-2"><a href="SimpleMed.html#cb193-2" aria-hidden="true" tabindex="-1"></a>fitTab1 <span class="ot">&lt;-</span> <span class="fu">semTable</span>(Kim_fit, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;pmi_fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>For the purpose of the OER, and because it’s good trainng, I also think it can be useful to make our own table. For me, it facilitates my conceptual understanding of (a) what the statistic is doing and (b) the results of our specific data.</p>
 <p>Table 1</p>
 <table>
@@ -1411,19 +1574,19 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 <img src="images/SimpleMed/Kim_wCovs.jpg" alt="" />
 <p class="caption">Image of the simple mediation model from Kim et al.</p>
 </div>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="SimpleMed.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>)</span>
-<span id="cb191-2"><a href="SimpleMed.html#cb191-2" aria-hidden="true" tabindex="-1"></a>Kim_fit_covs <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb191-3"><a href="SimpleMed.html#cb191-3" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ b*CMI + c_p*REMS </span></span>
-<span id="cb191-4"><a href="SimpleMed.html#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~a*REMS</span></span>
-<span id="cb191-5"><a href="SimpleMed.html#cb191-5" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~ covM*ANX</span></span>
-<span id="cb191-6"><a href="SimpleMed.html#cb191-6" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ covY*ANX</span></span>
-<span id="cb191-7"><a href="SimpleMed.html#cb191-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb191-8"><a href="SimpleMed.html#cb191-8" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
-<span id="cb191-9"><a href="SimpleMed.html#cb191-9" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
-<span id="cb191-10"><a href="SimpleMed.html#cb191-10" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
-<span id="cb191-11"><a href="SimpleMed.html#cb191-11" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span>
-<span id="cb191-12"><a href="SimpleMed.html#cb191-12" aria-hidden="true" tabindex="-1"></a>Kim_fit_covs <span class="ot">&lt;-</span> <span class="fu">sem</span>(Kim_fit_covs, <span class="at">data =</span> Kim_df, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>)</span>
-<span id="cb191-13"><a href="SimpleMed.html#cb191-13" aria-hidden="true" tabindex="-1"></a>Kcov_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(Kim_fit_covs, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="SimpleMed.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">210410</span>)</span>
+<span id="cb194-2"><a href="SimpleMed.html#cb194-2" aria-hidden="true" tabindex="-1"></a>Kim_fit_covs <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb194-3"><a href="SimpleMed.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ b*CMI + c_p*REMS </span></span>
+<span id="cb194-4"><a href="SimpleMed.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~a*REMS</span></span>
+<span id="cb194-5"><a href="SimpleMed.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="st">          CMI ~ covM*ANX</span></span>
+<span id="cb194-6"><a href="SimpleMed.html#cb194-6" aria-hidden="true" tabindex="-1"></a><span class="st">          PWB ~ covY*ANX</span></span>
+<span id="cb194-7"><a href="SimpleMed.html#cb194-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-8"><a href="SimpleMed.html#cb194-8" aria-hidden="true" tabindex="-1"></a><span class="st">          indirect :=  a*b</span></span>
+<span id="cb194-9"><a href="SimpleMed.html#cb194-9" aria-hidden="true" tabindex="-1"></a><span class="st">          direct  := c_p</span></span>
+<span id="cb194-10"><a href="SimpleMed.html#cb194-10" aria-hidden="true" tabindex="-1"></a><span class="st">          total_c  := c_p + (a*b)</span></span>
+<span id="cb194-11"><a href="SimpleMed.html#cb194-11" aria-hidden="true" tabindex="-1"></a><span class="st">          &#39;</span></span>
+<span id="cb194-12"><a href="SimpleMed.html#cb194-12" aria-hidden="true" tabindex="-1"></a>Kim_fit_covs <span class="ot">&lt;-</span> <span class="fu">sem</span>(Kim_fit_covs, <span class="at">data =</span> Kim_df, <span class="at">se=</span><span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>)</span>
+<span id="cb194-13"><a href="SimpleMed.html#cb194-13" aria-hidden="true" tabindex="-1"></a>Kcov_sum <span class="ot">&lt;-</span> <span class="fu">summary</span>(Kim_fit_covs, <span class="at">standardized=</span>T, <span class="at">rsq=</span>T, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## lavaan 0.6-9 ended normally after 25 iterations
 ## 
 ##   Estimator                                         ML
@@ -1525,8 +1688,8 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ##    -0.776   -0.138
 ##     0.131    0.023
 ##    -0.646   -0.115</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="SimpleMed.html#cb193-1" aria-hidden="true" tabindex="-1"></a>Kcov_ParEsts<span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(Kim_fit_covs, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
-<span id="cb193-2"><a href="SimpleMed.html#cb193-2" aria-hidden="true" tabindex="-1"></a>Kcov_sum</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="SimpleMed.html#cb196-1" aria-hidden="true" tabindex="-1"></a>Kcov_ParEsts<span class="ot">&lt;-</span> <span class="fu">parameterEstimates</span>(Kim_fit_covs, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb196-2"><a href="SimpleMed.html#cb196-2" aria-hidden="true" tabindex="-1"></a>Kcov_sum</span></code></pre></div>
 <pre><code>## $FIT
 ##              npar              fmin             chisq                df 
 ##             9.000             0.000             0.000             0.000 
@@ -1582,7 +1745,7 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 ## 17 8.345224e-02 -1.3981671  0.07871598 -0.6455116 -0.11475762 -0.7195450
 ## 18           NA         NA          NA         NA          NA         NA
 ## 19           NA         NA          NA         NA          NA         NA</code></pre>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="SimpleMed.html#cb195-1" aria-hidden="true" tabindex="-1"></a>Kcov_ParEsts</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="SimpleMed.html#cb198-1" aria-hidden="true" tabindex="-1"></a>Kcov_ParEsts</span></code></pre></div>
 <pre><code>##         lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper
 ## 1       PWB  ~       CMI        b -0.250 0.100 -2.509  0.012   -0.447   -0.066
 ## 2       PWB  ~      REMS      c_p  0.131 0.511  0.256  0.798   -0.854    1.158
@@ -1622,29 +1785,29 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 <div id="a-figure-and-a-table-1" class="section level3" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> A Figure and a Table</h3>
 <p>Let’s look at a figure to see see if we did what we think we did. And to also get a graphic representation of our results. The semplot package does this easily, but the figure is more statistical than conceptual and would require more tinkering for a journal article.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="SimpleMed.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(Kim_fit_covs, <span class="co">#must identiy the model you want to map</span></span>
-<span id="cb197-2"><a href="SimpleMed.html#cb197-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
-<span id="cb197-3"><a href="SimpleMed.html#cb197-3" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
-<span id="cb197-4"><a href="SimpleMed.html#cb197-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
-<span id="cb197-5"><a href="SimpleMed.html#cb197-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
-<span id="cb197-6"><a href="SimpleMed.html#cb197-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
-<span id="cb197-7"><a href="SimpleMed.html#cb197-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
-<span id="cb197-8"><a href="SimpleMed.html#cb197-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
-<span id="cb197-9"><a href="SimpleMed.html#cb197-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
-<span id="cb197-10"><a href="SimpleMed.html#cb197-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
-<span id="cb197-11"><a href="SimpleMed.html#cb197-11" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
-<span id="cb197-12"><a href="SimpleMed.html#cb197-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
-<span id="cb197-13"><a href="SimpleMed.html#cb197-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
-<span id="cb197-14"><a href="SimpleMed.html#cb197-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
-<span id="cb197-15"><a href="SimpleMed.html#cb197-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
-<span id="cb197-16"><a href="SimpleMed.html#cb197-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
-<span id="cb197-17"><a href="SimpleMed.html#cb197-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
-<span id="cb197-18"><a href="SimpleMed.html#cb197-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb197-19"><a href="SimpleMed.html#cb197-19" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Entrepreneurial Withdrawal by eDistress via Negative Affect (&amp; some covariates(&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="SimpleMed.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(Kim_fit_covs, <span class="co">#must identiy the model you want to map</span></span>
+<span id="cb200-2"><a href="SimpleMed.html#cb200-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">&quot;est&quot;</span>, <span class="co">#&quot;est&quot; plots the estimates, but keeps it greyscale with no fading</span></span>
+<span id="cb200-3"><a href="SimpleMed.html#cb200-3" aria-hidden="true" tabindex="-1"></a>         <span class="co">#whatLabels = &quot;stand&quot;, #&quot;stand&quot; changes to standardized values</span></span>
+<span id="cb200-4"><a href="SimpleMed.html#cb200-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">&#39;tree&#39;</span>, <span class="at">rotation =</span> <span class="dv">2</span>, <span class="co">#together, puts predictors on left, IVs on right </span></span>
+<span id="cb200-5"><a href="SimpleMed.html#cb200-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.00</span>, <span class="co">#font size of parameter values</span></span>
+<span id="cb200-6"><a href="SimpleMed.html#cb200-6" aria-hidden="true" tabindex="-1"></a>         <span class="co">#edge.color = &quot;black&quot;, #overwrites the green/black coloring</span></span>
+<span id="cb200-7"><a href="SimpleMed.html#cb200-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan=</span><span class="dv">10</span>, <span class="co">#size of squares/observed/&quot;manifest&quot; variables</span></span>
+<span id="cb200-8"><a href="SimpleMed.html#cb200-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">fade=</span><span class="cn">FALSE</span>, <span class="co">#if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals</span></span>
+<span id="cb200-9"><a href="SimpleMed.html#cb200-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">esize=</span><span class="dv">2</span>, </span>
+<span id="cb200-10"><a href="SimpleMed.html#cb200-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">asize=</span><span class="dv">3</span>,</span>
+<span id="cb200-11"><a href="SimpleMed.html#cb200-11" aria-hidden="true" tabindex="-1"></a>         <span class="co">#label.prop = .5,</span></span>
+<span id="cb200-12"><a href="SimpleMed.html#cb200-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.font =</span> <span class="fl">2.5</span>, <span class="co">#controls size (I think) of font for labels</span></span>
+<span id="cb200-13"><a href="SimpleMed.html#cb200-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.scale =</span> <span class="cn">TRUE</span>, <span class="co">#if false, the labels will not scale to fit inside the nodes</span></span>
+<span id="cb200-14"><a href="SimpleMed.html#cb200-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">nDigits =</span> <span class="dv">3</span>, <span class="co">#decimal places (default is 2)</span></span>
+<span id="cb200-15"><a href="SimpleMed.html#cb200-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">residuals =</span> <span class="cn">FALSE</span>,<span class="co">#excludes residuals (and variances) from the path diagram</span></span>
+<span id="cb200-16"><a href="SimpleMed.html#cb200-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>, <span class="co">#specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)</span></span>
+<span id="cb200-17"><a href="SimpleMed.html#cb200-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">intercepts =</span> <span class="cn">FALSE</span>, <span class="co">#gets rid of those annoying triangles (intercepts) in the path diagram)</span></span>
+<span id="cb200-18"><a href="SimpleMed.html#cb200-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb200-19"><a href="SimpleMed.html#cb200-19" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Entrepreneurial Withdrawal by eDistress via Negative Affect (&amp; some covariates(&quot;</span>)</span></code></pre></div>
 <p><img src="ReC_MultMod_files/figure-html/semPLOT%20for%20model%20w%20covs-1.png" width="672" /></p>
 <p>The path coefficients appear to be correct, but this is really a statistical map and doesn’t relay the concept of mediation well.</p>
 <p>Below is code to create an outfile that could help with creating a table in a word document or spreadsheet. There will be output that is produced with SEM models that won’t be relevant for this project.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="SimpleMed.html#cb198-1" aria-hidden="true" tabindex="-1"></a>KimCOVTab <span class="ot">&lt;-</span> <span class="fu">semTable</span>(Kim_fit_covs, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;ESTRESScov_fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="SimpleMed.html#cb201-1" aria-hidden="true" tabindex="-1"></a>KimCOVTab <span class="ot">&lt;-</span> <span class="fu">semTable</span>(Kim_fit_covs, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;est&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;p&quot;</span>, <span class="st">&quot;rsquare&quot;</span>),  <span class="at">columnLabels =</span> <span class="fu">c</span>(<span class="at">eststars =</span> <span class="st">&quot;Estimate&quot;</span>), <span class="at">paramSets =</span> <span class="fu">c</span>(<span class="st">&quot;composites&quot;</span>, <span class="st">&quot;loadings&quot;</span>, <span class="st">&quot;slopes&quot;</span>, <span class="st">&quot;intercepts&quot;</span>, <span class="st">&quot;residualvariances&quot;</span>), <span class="at">file =</span> <span class="st">&quot;ESTRESScov_fitTABLE&quot;</span>, <span class="at">type =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">print.results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Table 2</p>
 <table>
 <colgroup>
@@ -1988,7 +2151,7 @@ Also, in Hayes text the direct path from X to Y is c’ (“c prime”; where as
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-byrne_structural_2016" class="csl-entry">
-Byrne, B. M. (2016). <em>Structural equation modeling with <span>AMOS</span>: <span>Basic</span> concepts, applications, and programming</em> (3rd ed.). Routledge. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523</a>
+Byrne, B. M. (2016). Structural <span>Equation</span> <span>Modeling</span>: <span>The</span> basics (<span>Chapter</span> 1). In <em>Structural <span>Equation</span> <span>Modeling</span> with <span>AMOS</span>: <span>Basic</span> <span>Concepts</span>, <span>Applications</span>, and <span>Programming</span>, <span>Third</span> <span>Edition</span></em>. Taylor &amp; Francis Group. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523</a>
 </div>
 <div id="ref-hayes_introduction_2018" class="csl-entry">
 Hayes, A. F. (2018). <em>Introduction to <span>Mediation</span>, <span>Moderation</span>, and <span>Conditional</span> <span>Process</span> <span>Analysis</span>, <span>Second</span> <span>Edition</span>: <span>A</span> <span>Regression</span>-<span>Based</span> <span>Approach</span></em>. Guilford Publications. <a href="http://ebookcentral.proquest.com/lib/spu/detail.action?docID=5109647">http://ebookcentral.proquest.com/lib/spu/detail.action?docID=5109647</a>
