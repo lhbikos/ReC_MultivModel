@@ -3,14 +3,25 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">ReCetering Psych Stats</a></li>
+        <li><a href="./">ReCentering Psych Stats</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
+  toc: true 
+  toc_depth: 4 
+  toc_unnumbered: no
+  toc_appendix: yes
+  highlight_bw: yes
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: yes
+  fig_width: 7 
+  fig_height: 6 
+  fig_caption: true 
+  pandoc_args: [--top-level-division=chapter, --wrap=none]
 bookdown::epub_book: default
+#bookdown::bs4_book: default
+bookdown::word_document2: default

@@ -1,0 +1,3 @@
+"0","# First, turn the datasets into long format"
+"0","# This procedure is, best I can tell, unique to mice and wouldn't work for repeated measures designs"
+"0","mimp_long <- mice::complete(imp2, action=""long"", include = TRUE)"

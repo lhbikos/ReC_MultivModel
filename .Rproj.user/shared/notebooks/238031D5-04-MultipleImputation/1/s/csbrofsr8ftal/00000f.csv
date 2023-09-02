@@ -1,0 +1,2 @@
+"0","fitimp <- with(mimp_mids,"
+"0","               lm(ClimateBL ~ Belonging + cmBlack + iBIPOC_pr))"

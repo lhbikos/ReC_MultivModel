@@ -1,0 +1,2 @@
+"0","write.table(scrub_df, file=""BlStItmsScrs230902.csv"", sep="","", col.names=TRUE, row.names=FALSE)"
+"0","saveRDS(scrub_df, ""BlStItmsScrs230902.rds"")"

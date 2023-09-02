@@ -1,0 +1,7 @@
+"0","# With this command, we tell mice to impute the anesimpor2 data, create 5vvdatasets, use predM as the predictor matrix and don't print the imputation process. "
+"0","#If you would like to see the process (or if the process is failing to execute) set print as TRUE; seeing where the execution halts can point to problematic variables (more notes at end of lecture)"
+"0",""
+"0","imp2 <- mice(mimp_df, maxit = 5, "
+"0","             predictorMatrix = predM, "
+"0","             method = meth, print =  FALSE)"
+"2","Warning: Number of logged events: 275"

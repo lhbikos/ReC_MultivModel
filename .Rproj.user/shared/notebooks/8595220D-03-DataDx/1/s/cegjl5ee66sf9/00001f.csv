@@ -1,0 +1,5 @@
+"0","#creates a variable indicating TRUE or FALSE if an item is an outlier"
+"0","item_scores_df$MOutlier <- dplyr::if_else(item_scores_df$Mahal > (median(item_scores_df$Mahal) + (3*sd(item_scores_df$Mahal))), TRUE, FALSE)"
+"0",""
+"0","#shows us the first 6 rows of the data so we can see the new variables (Mahal, MOutlier)"
+"0","head(item_scores_df)"

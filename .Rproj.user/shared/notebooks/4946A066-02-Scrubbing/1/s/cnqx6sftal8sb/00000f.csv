@@ -1,8 +1,0 @@
-"0","# I created an object that lists how many rows/cases remain."
-"0","# I used inline text below to update the text with the new number"
-"0","attempts <- nrow(QTRX_df)"
-"0","attempts"
-"1","[1]"
-"1"," 88"
-"1","
-"

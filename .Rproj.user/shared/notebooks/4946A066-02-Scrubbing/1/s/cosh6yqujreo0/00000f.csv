@@ -1,8 +1,0 @@
-"0","# == are used "
-"0","QTRX_df <-(filter (QTRX_df, Consent == 1))"
-"0","consented_attempts <- nrow(QTRX_df)"
-"0","consented_attempts"
-"1","[1]"
-"1"," 71"
-"1","
-"

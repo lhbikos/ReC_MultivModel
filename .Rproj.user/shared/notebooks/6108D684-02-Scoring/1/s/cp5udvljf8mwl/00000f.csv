@@ -1,0 +1,1 @@
+"0","mice_out <- mice::md.pattern(scrub_df, plot = TRUE, rotate.names = TRUE)"

@@ -1,0 +1,1 @@
+"0","item_scores_df$Mahal <- psych::outlier(item_scores_df[c(""iBIPOC_pr"", ""cmBlack"", ""Belonging"", ""ClimateBL"")]) "

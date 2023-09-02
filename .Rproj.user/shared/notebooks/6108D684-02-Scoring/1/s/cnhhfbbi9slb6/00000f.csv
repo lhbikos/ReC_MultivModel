@@ -1,0 +1,3 @@
+"0","#further update to exclude the n_miss and prop_miss variables"
+"0","scrub_df <- scrub_df %>%"
+"0","  dplyr::select (-c(ID, nmiss, prop_miss))"

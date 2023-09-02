@@ -1,0 +1,7 @@
+"0","library(tidyverse)"
+"0","#counts frequency TRUE and FALSE indicating outlier or not"
+"0","OutlierCount<- item_scores_df%>%"
+"0","  dplyr::count(MOutlier)"
+"0",""
+"0","#calculating how many outliers a slightly different way"
+"0","nrow(item_scores_df) - OutlierCount "

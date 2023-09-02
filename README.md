@@ -1,1 +1,0 @@
-Welcome to ReCentering Psych Stats:  Multivariate Modeling by Lynette H. Bikos, PhD, ABPP. This Open Educational Resource is perpetually in progress. This section of the OER is expected to have chapters and screencasts on data preparation, conditional process analysis, and multilevel modeling.

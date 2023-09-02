@@ -1,0 +1,6 @@
+"0","#Opening the tidyverse so that I can use pipes"
+"0","library(tidyverse)"
+"0","QTRX_df <- QTRX_df %>% dplyr::mutate(ID = row_number())"
+"0",""
+"0","#moving the ID number to the first column; requires "
+"0","QTRX_df <- QTRX_df%>%dplyr::select(ID, everything())"

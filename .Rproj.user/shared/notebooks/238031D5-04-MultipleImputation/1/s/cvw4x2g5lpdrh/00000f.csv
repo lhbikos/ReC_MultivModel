@@ -1,0 +1,20 @@
+"0","library(mice)"
+"2","
+Attaching package: ‘mice’
+
+"
+"2","The following object is masked from ‘package:stats’:
+
+    filter
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    cbind, rbind
+
+"
+"0","# runs the mice code with 0 iterations"
+"0","imp <- mice(mimp_df, maxit = 0)"
+"0","# Extract predictor Matrix and methods of imputation "
+"0","predM = imp$predictorMatrix"
+"0","meth = imp$method"
