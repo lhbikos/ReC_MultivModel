@@ -1,0 +1,212 @@
+---
+title: "ReCentering Psych Stats"
+author: "anonymized"
+date: '2023-05-11'
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(scipen = 999)
+```
+
+
+```{r}
+ReC <- readRDS("ReC.rds")
+as.data.frame(ReC)
+```
+
+
+
+# Evaluating course evaluation items to determine factors
+
+So, what do I think "goes together":
+
+Traditional Pedagogy:ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation
+
+Valued by Me: ValObjectives, IncrUnderstanding, IncrInterest, 
+
+Socially Responsive Pedagogy:   MultPerspectives, InclusvClassrm, DEIintegration, EquitableEval
+
+
+
+```{r}
+corrF  <- 'TradPed =~ ClearResponsibilities + EffectiveAnswers + Feedback + ClearOrganization + ClearPresentation  
+          Valued =~ ValObjectives + IncrUnderstanding + IncrInterest 
+          SocRPed =~ MultPerspectives + InclusvClassrm + DEIintegration + EquitableEval
+
+  TradPed~~Valued
+  TradPed~~SocRPed
+  Valued~~SocRPed
+'
+corrF
+```
+```{r}
+corrF_fit <- lavaan::cfa(corrF, data = ReC)
+lavaan::summary(corrF_fit, fit.measures=TRUE, standardized=TRUE, rsquare = TRUE)
+```
+
+# Scoring 
+
+```{r}
+Valued_vars <- c('ValObjectives', 'IncrUnderstanding', 'IncrInterest')
+TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers', 'Feedback', 'ClearOrganization', 'ClearPresentation')
+SocRPed_vars <- c('MultPerspectives', 'InclusvClassrm','EquitableEval')
+
+ReC$Valued <- sjstats::mean_n(ReC[, ..Valued_vars], .75)
+ReC$TradPed <- sjstats::mean_n(ReC[, ..TradPed_vars], .75)
+ReC$SocRPed <- sjstats::mean_n(ReC[, ..SocRPed_vars], .75)
+```
+
+
+
+# Data Dx
+
+
+
+## Internal Consistency Coefficients
+```{r}
+psych::alpha(ReC[, ..Valued_vars])
+```
+```{r}
+psych::alpha(ReC[, ..TradPed_vars])
+```
+
+```{r}
+psych::alpha(ReC[, ..SocRPed_vars])
+```
+## Making babydf for the univariate and multivariate analyes
+
+```{r}
+babydf <- dplyr::select(ReC, StatsPkg, Centering, ProgramYear,  Valued, TradPed, SocRPed)
+```
+
+```{r}
+mice::md.pattern(babydf, plot = TRUE, rotate.names = TRUE)
+```
+
+## Descriptives
+
+```{r}
+psych::describe(babydf)
+```
+
+```{r}
+psych::describeBy(TradPed ~ Centering + StatsPkg + ProgramYear, data=babydf, mat=TRUE)
+```
+
+Shapiro test for univariate normality, for continuous variables, only.
+```{r}
+shapiro.test(babydf$Valued)
+shapiro.test(babydf$TradPed)
+shapiro.test(babydf$SocRPed)
+```
+
+When the p value is < .05, the variable’s distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.
+
+```{r}
+psych::pairs.panels(babydf)
+```
+
+# Do we need to nest by course?
+
+```{r}
+ValuedM1 <- lme4::lmer(Valued ~1  +(1 | CourseID), ReC, REML = FALSE)
+TrPedM1 <- lme4::lmer(TradPed ~1 + (1 | CourseID), ReC, REML = FALSE)
+SCRPedM1 <- lme4::lmer(SocRPed ~1 +(1 | CourseID), ReC, REML = FALSE)
+
+sjPlot::tab_model(ValuedM1, TrPedM1, SCRPedM1, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Valued M1", "Trad M1", "SocR M1"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se")
+#, file = "Valued.doc"
+```
+
+# Nested within students
+
+```{r}
+ValuedM1 <- lme4::lmer(Valued ~1 +(1 | deID), ReC, REML = FALSE)
+ValuedM2 <- lme4::lmer(Valued ~ ProgramYear + StatsPkg + Centering + (1 | deID), ReC, REML = FALSE)
+
+sjPlot::tab_model(ValuedM1, ValuedM2, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Valued M1", "Valued M2"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se", pred.labels = c("Intercept [Valued])", "Program Year [Transition]", "Program Year [First]", "Stats Package [R]", "Centering [ReCentered]"))
+#, file = "Valued.doc"
+```
+
+```{r}
+#change in Too student
+(21 - 19)/21
+```
+
+
+
+```{r}
+sjPlot::plot_model(ValuedM2, type = "pred", axis.lim = c(1, 5),terms = c("ProgramYear", "StatsPkg", "Centering"))
+```
+
+```{r}
+TrPedM1 <- lme4::lmer(TradPed ~1 +(1 | deID), ReC, REML = FALSE)
+TrPedM2 <- lme4::lmer(TradPed ~ ProgramYear + StatsPkg + Centering +(1 | deID), ReC, REML = FALSE)
+
+sjPlot::tab_model(TrPedM1, TrPedM2, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.std = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("TradPed M1", "TradPed M2"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se", pred.labels = c("Intercept [Trad Ped])", "Program Year [Transition]", "Program Year [First]", "Stats Package [R]", "Centering [ReCentered]"))
+#, file = "TradPed.doc"
+```
+
+Evaluating change in tau naught naught
+```{r}
+(.33 - .27)/.33
+
+```
+
+
+```{r}
+sjPlot::plot_model(TrPedM2, type = "pred", axis.lim = c(1, 5),terms = c("ProgramYear", "StatsPkg", "Centering"))
+```
+
+```{r}
+SCRPedM1 <- lme4::lmer(SocRPed ~1 +(1 | deID), ReC, REML = FALSE)
+SCRPedM2 <- lme4::lmer(SocRPed ~ ProgramYear + StatsPkg + Centering +(1 | deID), ReC, REML = FALSE)
+
+sjPlot::tab_model(SCRPedM1, SCRPedM2, p.style = "numeric", show.ci = FALSE, show.se = TRUE,show.std = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("SCRped M1", "SCRped M2"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se", pred.labels = c("Intercept [SCR Ped])", "Program Year [Transition]", "Program Year [First]", "Stats Package [R]", "Centering [ReCentered]"))
+#, file = "SCRPed.doc"
+```
+
+Evaluating change in tau naught naught
+```{r}
+(.33 - .27)/.33
+
+```
+
+```{r}
+sjPlot::plot_model(SCRPedM2, type = "pred", axis.lim = c(1, 5),terms = c("ProgramYear", "StatsPkg", "Centering"))
+```
+
+```{r}
+sjPlot::tab_model(ValuedM1, ValuedM2, TrPedM1, TrPedM2, SCRPedM1, SCRPedM2, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.std = NULL,  show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = FALSE, dv.labels = c("Valued M1", "Valued M2","TradPed M1", "TradPed M2", "SocRPed M1", "SocRPed M2"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se", pred.labels = c("Intercept [SCR Ped])", "Program Year [Transition]", "Program Year [First]", "Stats Package [R]", "Centering [ReCentered]"))
+#,  file = "ModelsOut.doc"
+```
+
+
+
+```{r}
+BoxLong <- reshape2::melt(ReC, id= c("ProgramYear", "StatsPkg", "Centering" ), measure = c("Valued", "TradPed", "SocRPed"))
+
+
+trio <- ggpubr::ggboxplot(BoxLong, x = "variable", y = "value", color = "ProgramYear", facet.by = c("Centering", "StatsPkg"),ylim = c(1,5), xlab = "Course Evaluation Factors", ylab = "Course Evaluation Ratings")
+trio <-  trio + scale_colour_grey(start= 0, end = .7) + theme_bw()
+trio
+
+```
+```{r}
+trio2 <- ggpubr::ggboxplot(BoxLong, x = "variable", y = "value", color = "ProgramYear", facet.by = c("StatsPkg", "Centering"),ylim = c(1,5), xlab = "Course Evaluation Factors", ylab = "Course Evaluation Ratings")
+trio2 <-  trio2 + scale_colour_grey(start= 0, end = .7) + theme_bw()
+
+trio2 <- ggpubr::ggarrange(trio2, legend = "bottom")
+trio2
+```
+
+```{r}
+
+ggpubr::ggarrange(trio2)%>%
+  ggpubr::ggexport(plotlist = "trio2", filename="boxplot3w.png")
+```
+
+
+
+

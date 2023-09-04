@@ -1,0 +1,747 @@
+---
+title: "ReCentering Psych Stats"
+author: "lhbikos"
+date: '2022-05-01'
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(scipen = 999)
+```
+
+```{r}
+#CPY <- read.delim("CPY_Custom.txt")
+#ORG <- read.delim("ORG_Custom.txt")
+CPY <- read.csv ("CPY_Custom.csv", head = TRUE, sep = ",")
+ORG <- read.csv ("ORG_Custom.csv", head = TRUE, sep = ",")
+
+bound <- dplyr::bind_rows(CPY, ORG)
+bigBikos <- subset(bound, InstructorLastName == "Bikos") #subset data
+
+library(tidyverse)
+Bikos <- bound%>%
+  dplyr::filter(str_detect(Course.Name, "Research Methods and Stats I|Research Methods &Statistics I|Research Methds & Statistics I|Research Methds & Statstcs III|Psychmetrc Thry/Test Constrctn")) 
+Bikos <- subset(Bikos, InstructorLastName == "Bikos") #subset data
+```
+
+
+
+```{r}
+str(Bikos$Course.Name)
+#as.factor(Bikos$Course.Name)
+Bikos[,'Course.Name'] <- as.factor(Bikos[,'Course.Name'])
+Bikos$Course <- Bikos$Course.Name
+str(Bikos$Course)
+levels(Bikos$Course)
+```
+
+```{r}
+levels(Bikos$Course) <- list(Psychometrics = "Psychmetrc Thry/Test Constrctn", ANOVA = "Research Methds & Statistics I", Multivariate = "Research Methds & Statstcs III", ANOVA = "Research Methods &Statistics I", ANOVA = "Research Methods and Stats I")
+
+Bikos <- Bikos %>%
+  add_column(StatsPkg = NA)%>%
+  add_column(Centering = NA)
+
+Bikos <- dplyr::rename(Bikos, StndtID = X.SmartEvalsStudentNo, CourseID = SmartEvalsCourseID, TchrID = AdditionalTeacherID, Year = CourseYear, Quarter = CourseSemester)
+Bikos <- Bikos%>%select(StndtID:Dept,Course, StatsPkg, Centering, everything())
+
+#Deleting empty columns
+Bikos <- Bikos %>%
+  select (-c("Course.Name", "Time.of.day.evaluation.completed", "What.was.your.grade.", "Required.or.elective", "Major..Minor..or.GenEd", "Expected.grade", "Hours.spent"))
+```
+
+
+Deleting those who opted out.
+```{r}
+Bikos <- Bikos[!(Bikos$StndtID == "6686426" & Bikos$CourseID == "57085617"),]
+Bikos <- Bikos[!(Bikos$StndtID == "8296243" & Bikos$CourseID == "57085635"),]
+Bikos <- Bikos[!(Bikos$StndtID == "7549326" & Bikos$CourseID == "57085617"),]
+Bikos <- Bikos[!(Bikos$StndtID == "7549478" & Bikos$CourseID == "57085617"),]
+Bikos <- Bikos[!(Bikos$StndtID == "8296145" & Bikos$CourseID == "57085635"),]
+Bikos <- Bikos[!(Bikos$StndtID == "8296859" & Bikos$CourseID == "57085804"),]
+```
+
+I confirmed that there were the following years:
+ 
+CPY/ANOVA:  2017, 2018, 2019, 2020, 2021
+ORG/ANOVA:  2018, 2019, 2020, 2021
+CPY Multivariate:  2018, 2019, 2020, 2021
+ORG Multivariate:  2019, 2020, 2021
+CPY Psychometrics:  2017, 2018, 2019, 2020, 2021
+ORG Psychometrics:  2018, 2019, 2020, 2021
+ 
+Notes:
+* The Absence of ORG in 2017 ANOVA and Psychometrics and 2017 and 2018 Multivariate is because prior to Fall 2018, all the statistics courses only had a CPY course code.
+* There is no 2017 Multivariate because that would be at the END of the 2016-17 academic year. I believe course evals switched to banner in Fall 2017.
+
+Coding the classes as SPSS/R and Pre/Re
+
+```{r}
+Bikos <- Bikos %>%
+  dplyr::mutate(StatsPkg = case_when(
+    
+    Course == "Psychometrics" & Year == 2017 ~ "SPSS",
+    Course == "ANOVA" & Year == 2017 ~ "SPSS",
+    Course == "Multivariate" & Year == 2018 ~ "SPSS",
+    Course == "Psychometrics" & Year == 2018 ~ "SPSS",
+    Course == "ANOVA" & Year == 2018 ~ "R",
+    Course == "Multivariate" & Year == 2019 ~ "R",
+    Course == "Psychometrics" & Year == 2019 ~ "R",
+    Course == "ANOVA" & Year == 2019 ~ "R",
+    Course == "Multivariate" & Year == 2020 ~ "R",
+    Course == "Psychometrics" & Year == 2020 ~ "R",
+    Course == "ANOVA" & Year == 2020 ~ "R",
+    Course == "Multivariate" & Year == 2021 ~ "R",
+    Course == "Psychometrics" & Year == 2021 ~ "R",
+    Course == "ANOVA" & Year == 2021 ~ "R",
+  ))
+
+#Centering so that SPSS is baseline
+Bikos$StatsPkg <- factor(Bikos$StatsPkg, levels = c("SPSS", "R"))
+
+
+Bikos <- Bikos %>%
+  dplyr::mutate(Centering = case_when(
+    Course == "Psychometrics" & Year == 2017 ~ "Pre",
+    Course == "ANOVA" & Year == 2017 ~ "Pre",
+    Course == "Multivariate" & Year == 2018 ~ "Pre",
+    Course == "Psychometrics" & Year == 2018 ~ "Pre",
+    Course == "ANOVA" & Year == 2018 ~ "Pre",
+    Course == "Multivariate" & Year == 2019 ~ "Pre",
+    Course == "Psychometrics" & Year == 2019 ~ "Pre",
+    Course == "ANOVA" & Year == 2019 ~ "Pre",
+    Course == "Multivariate" & Year == 2020 ~ "Pre",
+    Course == "Psychometrics" & Year == 2020 ~ "Re",
+    Course == "ANOVA" & Year == 2020 ~ "Re",
+    Course == "Multivariate" & Year == 2021 ~ "Re",
+    Course == "Psychometrics" & Year == 2021 ~ "Re",
+    Course == "ANOVA" & Year == 2021 ~ "Re",
+  ))
+#Centering so that RE is baseline
+Bikos$Centering <- factor(Bikos$Centering, levels = c("Pre", "Re"))
+
+Bikos <- Bikos %>%
+  dplyr::mutate(ProgramYear = case_when(
+    Course == "Psychometrics" & Year == 2017 ~ "Second",
+    
+    Course == "ANOVA" & Year == 2017 ~ "Second",
+    Course == "Multivariate" & Year == 2018 ~ "Second",
+    Course == "Psychometrics" & Year == 2018 ~ "Second",
+    
+    Course == "ANOVA" & Year == 2018 ~ "Second",
+    Course == "Multivariate" & Year == 2019 ~ "Second",
+    Course == "Psychometrics" & Year == 2019 ~ "Second",
+    
+    Course == "ANOVA" & Year == 2019 & Dept == "CPY" ~  "Second",
+    Course == "ANOVA" & Year == 2019 & Dept == "ORG" ~ "Transition",
+    Course == "Multivariate" & Year == 2020 & Dept == "CPY" ~ "Second",
+    Course == "Multivariate" & Year == 2020 & Dept == "ORG"~ "Transition",
+    Course == "Psychometrics" & Year == 2020 & Dept == "CPY"~ "Second",
+    Course == "Psychometrics" & Year == 2020 & Dept == "ORG" ~ "Transition",
+    
+    Course == "ANOVA" & Year == 2020 & Dept == "CPY" ~ "Transition",
+    Course == "ANOVA" & Year == 2020 & Dept == "ORG" ~ "First",
+    Course == "Multivariate" & Year == 2021 & Dept == "CPY" ~ "Transition",
+    Course == "Multivariate" & Year == 2021 & Dept == "ORG" ~ "First",
+    Course == "Psychometrics" & Year == 2021  & Dept == "CPY"~ "Transition",
+    Course == "Psychometrics" & Year == 2021 & Dept == "ORG" ~ "First",
+   
+    Course == "ANOVA" & Year == 2021 ~ "First",
+  ))
+
+#Jamie's suggestion that everyone in transition be counted as such
+Bikos <- Bikos %>%
+  dplyr::mutate(ProgramYearB = case_when(
+    Course == "Psychometrics" & Year == 2017 ~ "Second",
+    
+    Course == "ANOVA" & Year == 2017 ~ "Second",
+    Course == "Multivariate" & Year == 2018 ~ "Second",
+    Course == "Psychometrics" & Year == 2018 ~ "Second",
+    
+    Course == "ANOVA" & Year == 2018 ~ "Second",
+    Course == "Multivariate" & Year == 2019 ~ "Second",
+    Course == "Psychometrics" & Year == 2019 ~ "Second",
+    
+    Course == "ANOVA" & Year == 2019 & Dept == "CPY" ~  "Transition",
+    Course == "ANOVA" & Year == 2019 & Dept == "ORG" ~ "Transition",
+    Course == "Multivariate" & Year == 2020 & Dept == "CPY" ~ "Transition",
+    Course == "Multivariate" & Year == 2020 & Dept == "ORG"~ "Transition",
+    Course == "Psychometrics" & Year == 2020 & Dept == "CPY"~ "Transition",
+    Course == "Psychometrics" & Year == 2020 & Dept == "ORG" ~ "Transition",
+    
+    Course == "ANOVA" & Year == 2020 & Dept == "CPY" ~ "Transition",
+    Course == "ANOVA" & Year == 2020 & Dept == "ORG" ~ "Transition",
+    Course == "Multivariate" & Year == 2021 & Dept == "CPY" ~ "Transition",
+    Course == "Multivariate" & Year == 2021 & Dept == "ORG" ~ "Transition",
+    Course == "Psychometrics" & Year == 2021  & Dept == "CPY"~ "Transition",
+    Course == "Psychometrics" & Year == 2021 & Dept == "ORG" ~ "Transition",
+   
+    Course == "ANOVA" & Year == 2021 ~ "First",
+  ))
+
+
+#Centering so that 2nd is baseline
+Bikos$ProgramYear <- factor(Bikos$ProgramYear, levels = c("Second", "Transition", "First"))
+Bikos$ProgramYearB <- factor(Bikos$ProgramYearB, levels = c("Second", "Transition", "First"))
+```
+
+
+
+
+Collapsing across parallel columns. Identical (or nearly-identical) items were asked but are in different columns based on the type of course eval. Here, I collapse across these.
+
+MMdf$WeeklyTime <- ifelse(MMdf$WeeklyTime == 0, MMdf$Min7, MMdf$WeeklyTime)
+```{r}
+#Collapsing across the parallel quant items
+Bikos <- transform(Bikos, ClearOrganization = pmax(Clear.organization, Clear.organization.1, na.rm = TRUE))
+Bikos <- transform(Bikos, RegPrepare = pmax(Regularly.prepared, Regularly.read.understood.followed.instructions, na.rm = TRUE))
+Bikos <- transform(Bikos, EffectiveLearning = pmax(Effective.learning, Effective.in.helping.me.learn, na.rm = TRUE))
+Bikos <- transform(Bikos, AccessibleInstructor = pmax(Has.been.accessible, Has.been.accessible.out.of.class, na.rm = TRUE))
+
+#Collapsing across the qualitative items
+Bikos <- transform(Bikos, QL_Observations = pmax(Decolonization_observations, Decolonization_observations.1, SPFC.Decolonize.Appearence, na.rm=TRUE))
+Bikos <- transform(Bikos, QL_Impacts = pmax(Decolonization_impacts, Decolonization_impacts.1, SPFC.Decolonize.Impact, na.rm=TRUE))
+Bikos <- transform(Bikos, QL_Rex = pmax(Decolonization_input, Decolonization_input.1, SPFC.Decolonize.Ideas, na.rm=TRUE))
+```
+There are a ton of columns with all missing data.  
+```{r}
+#First we find them
+#sapply(Bikos, function(x)all(is.na(x)))
+#Then delete them
+ Bikos <- Bikos %>%
+  select (-c("Hours.spent.1":"Effective.experience", "Provided.feedback.1", "Sufficient.time.and.context":"Integrates.issues.related.to.ethics.safety", "Overall.rating", "Aspects.of.the.course.that.should.be.continued.and.expanded":"Other.comments.or.suggestions", "Methods.of.evaluating.student.course.work", "Methods.of.evaluating.student.course.work", "Hours.in.Preparation", "Tracks.overall", "Screen.casts.helpful":"Mastery.suggestions", "X2.Things.U.Recall":"Together", "Fall2020.planning":"SPFC.Decolonize.Ideas", "Regularly.read.reviewed.visited.logged.on", "Facilitated.participation", "Regularly.interacted.with.others", "Development.of.a.sense.of.community"))
+```
+
+
+```{r}
+Qual <- Bikos %>%
+   dplyr::select(c("StndtID", "CourseID", "Course", "Year", "QL_Observations", "QL_Impacts", "QL_Rex", "SPFC.Decolonize.Opt.Out"))
+
+str(Qual$Year)
+
+#Qual <- Qual %>%
+  #dplyr::filter(Year >= 2021)
+
+#the string variables apparently had a blank space and couldn't be manipulated (deleted) with NA-related commands, this code makes them NA  
+Qual <- Qual %>% mutate_all(na_if,"")
+
+Qual <- dplyr::rename(Qual, A = QL_Observations, B = QL_Impacts, C = QL_Rex)
+Qual$Course <- plyr::mapvalues(Qual$Course , from = c("ANOVA", "Multivariate", "Psychometrics"), to = c(1000, 3000, 2000))
+
+#Qual <- Qual %>%
+  #dplyr::select (-c(StndtID, CourseID, Year))
+
+Qualong <- reshape2::melt(Qual, id= c("Course", "StndtID", "CourseID", "Year"), measure = c("A", "B", "C"))
+
+Qualong <- Qualong %>%
+  dplyr::filter(!is.na(value))
+
+#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
+#saveRDS(Qualong, "qual.rds")
+write.table(Qualong, file="Qualong.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated dat from an .rds file
+#dfGRMS <- readRDS("dfGRMS.rds")
+```
+
+```{r}
+dplyr::n_distinct(Qualong$StndtID)
+```
+
+```{r}
+jmv::descriptives(
+    data = Qualong,
+    vars = c(
+        "CourseID",
+        "Course",
+        "Year"),
+    freq = TRUE,
+    #hist = TRUE,
+    #dens = TRUE,
+    #bar = TRUE,
+    #barCounts = TRUE,
+    #box = TRUE,
+    #sd = TRUE,
+    #variance = TRUE,
+    #range = TRUE,
+    #se = TRUE,
+    #skew = TRUE,
+    #kurt = TRUE,
+    #quart = TRUE,
+    #pcEqGr = TRUE,
+    #pcNEqGr = 10
+)
+```
+
+
+```{r}
+ Bikos <- Bikos %>%
+  select (-c("Regularly.prepared", "Regular.attendance", "Regularly.participated", "Clear.organization", "Clear.organization.1", 
+             "Regularly.read.understood.followed.instructions","Effective.learning",
+             "Effective.in.helping.me.learn","Has.been.accessible",  "Has.been.accessible.out.of.class", "QL_Observations":"QL_Rex"))
+```
+
+
+```{r}
+#psych::describeBy (ValObjectives ~ Course + Year + Quarter, mat = TRUE, data = Bikos)
+```
+
+
+```{r}
+Bikos <- dplyr::rename(Bikos, IncrInterest = Interest.in.subject.increased, IncrUnderstanding = Understanding.increased, ValObjectives = Valuable.objectives, ApprAssignments = Assignments.supported.objectives, EffectiveAnswers = Effectively.answered.student.questions, Respectful = Shown.respect, ClearResponsibilities = Responsibilities.are.clear, Feedback = Provided.feedback, OvInstructor = Overall.instructor, MultPerspectives = Mentor.considers.issues.from.multiple.perspectives, OvCourse = Overall.Course.rating, InclusvClassrm = Fostering.an.inclusive.classroom, DEIintegration = Discussed.relationship.between.race.ethnicity.culture.and.content, ClearPresentation = Has.presented.course.material.clearly, ApprWorkload = Appropriate.workload, MyContribution = Overall.contribution.to.this.course, InspiredInterest = Inspired.student.interest.in.subject.matter, Faith = When.appropriate..discussed.relationship.btwn.Christian.faith.and.course, EquitableEval = Methods.of.evaluating.work.that.were.equitable)
+```
+
+```{r}
+library(data.table)
+library(tidyverse)
+setDT(Bikos)[, deID := .GRP, by = StndtID]
+#moving the ID number to the first column; requires 
+Bikos <- Bikos%>%select(deID, everything())
+ReC <-Bikos %>% dplyr::select(-c(StndtID, TchrID, ProgramYearB, InstructorLastName))
+saveRDS(ReC, "ReC.rds")
+```
+
+
+
+So, what do I think "goes together":
+
+Student effort/engagement: MyContribution, RegPrepare, 
+DEI: MultPerspectives, InclusvClassroom, DEIintegration, EquitableEval
+Course: ValObjectives, ApprAssignments, ClearResponsibilities, OvCourse, ClearPresentation, ClearOrganization
+Instructor:  EffectiveAnswers, Respectful, Feedback, OvInstructor, ApprWorkload, InspiredInterest, EffectiveLearning, AccessibleInstructor
+Outcomes: IncrInterest, IncrUnderstanding
+
+```{r}
+ALLvars <- c('MyContribution', 'RegPrepare',
+             'MultPerspectives', 'InclusvClassrm', 'DEIintegration', 'EquitableEval',                                         'ValObjectives', 'ApprAssignments', 'ClearResponsibilities', 'OvCourse','ClearPresentation',                     'ClearOrganization',
+             'EffectiveAnswers', 'Respectful', 'Feedback', 'OvInstructor', 'ApprWorkload','InspiredInterest',                 'EffectiveLearning',  'AccessibleInstructor',
+             'IncrInterest', 'IncrUnderstanding')
+```
+
+
+KMO (Kaiser-Meyer-Olkin), an index of sampling adequacy that can be used with the actual sample to let us know if the sample size is sufficient (or if we should collect more data).
+
+Kaiser’s 1974 recommendations were:
+
+    bare minimum of .5
+    values between .5 and .7 are mediocre
+    values between .7 and .8 are good
+    values above .9 are superb
+
+```{r}
+psych::KMO(Bikos[,ALLvars])
+```
+Bartlett’s lets us know if a matrix is an identity matrix. In an identity matrix all correlation coefficients (everything on the off-diagonal) would be 0.0 (and everything on the diagonal would be 1.0).
+
+A significant Barlett’s (i.e., p<.05
+) tells that the R-matrix is not an identity matrix. That is, there are some relationships between variables that can be analyzed.
+
+```{r}
+psych::cortest.bartlett(Bikos[,ALLvars]) #from the raw data
+```
+
+The determinant of the correlation matrix should be greater than 0.00001 (that would be 4 zeros before the 1). If it is smaller than 0.00001 then we may have an issue with multicollinearity (i.e., variables that are too highly correlated) or singularity (variables that are perfectly correlated).
+
+```{r}
+det(cor(Bikos[,ALLvars], use = "complete.obs"))
+```
+
+
+```{r}
+EXPvars <- c('MyContribution', 'RegPrepare',
+             'MultPerspectives', 'InclusvClassrm', 'DEIintegration',                             'EquitableEval', 'ClearResponsibilities', 'ClearPresentation', 
+             'EffectiveAnswers', 'Respectful', 'Feedback', 'InspiredInterest',
+             'AccessibleInstructor',
+             'IncrInterest', 'IncrUnderstanding'
+                         )
+```
+
+
+```{r}
+Run1 <- psych::fa(Bikos[,ALLvars], nfactors = 3, fm = "pa", max.iter = 100, rotate = "varimax")
+Run1
+```
+
+```{r}
+#Turns out I didn't need to do this, but it didn't hurt.
+
+Bikos$IncrInterest <- as.numeric(Bikos$IncrInterest)
+Bikos$IncrUnderstanding <- as.numeric(Bikos$IncrUnderstanding)
+Bikos$ValObjectives <- as.numeric(Bikos$ValObjectives)
+Bikos$ApprAssignments <- as.numeric(Bikos$ApprAssignments)
+Bikos$EffectiveAnswers <- as.numeric(Bikos$EffectiveAnswers)
+Bikos$Respectful <- as.numeric(Bikos$Respectful)
+Bikos$ClearResponsibilities <- as.numeric(Bikos$ClearResponsibilities)
+Bikos$Feedback <- as.numeric(Bikos$Feedback)
+Bikos$OvInstructor <- as.numeric(Bikos$OvInstructor)
+Bikos$MultPerspectives <- as.numeric(Bikos$MultPerspectives)
+Bikos$OvCourse <- as.numeric(Bikos$OvCourse)
+Bikos$InclusvClassrm <- as.numeric(Bikos$InclusvClassrm)
+Bikos$DEIintegration <- as.numeric(Bikos$DEIintegration)
+Bikos$ClearPresentation <- as.numeric(Bikos$ClearPresentation)
+Bikos$ApprWorkload <- as.numeric(Bikos$ApprWorkload)
+Bikos$MyContribution <- as.numeric(Bikos$MyContribution)
+Bikos$InspiredInterest <- as.numeric(Bikos$InspiredInterest)
+Bikos$Faith <- as.numeric(Bikos$Faith)
+Bikos$EquitableEval <- as.numeric(Bikos$EquitableEval)
+Bikos$ClearOrganization <- as.numeric(Bikos$ClearOrganization)
+Bikos$RegPrepare <- as.numeric(Bikos$RegPrepare)
+Bikos$EffectiveLearning <- as.numeric(Bikos$EffectiveLearning)
+Bikos$AccessibleInstructor <- as.numeric(Bikos$AccessibleInstructor)
+```
+
+
+```{r}
+#str(Bikos)
+```
+
+
+```{r}
+Run1 <- psych::fa(Bikos[,EXPvars], nfactors = 8, fm = "pa", max.iter = 100)
+Run1
+```
+
+```{r}
+plot(Run1$values, type = "b")
+```
+
+INTERP: There were 7 eigenvalues greater than 1, but scree plot suggested a single factor. My narrative read of the course eval items would see 3 or 4 factors.
+
+Therefore, I tinkered around with items (clustered, above, in what my qualitative eye thinks "goes toether")
+
+RESULTS:
+
+Given that the data 
+
+```{r}
+EXPrun <- psych::fa(Bikos[,EXPvars], nfactors = 3, fm = "pa", max.iter = 100, rotate = "oblimin", scores=TRUE)
+EXPrun
+EXPtable <- psych::print.psych(EXPrun,  sort = TRUE)
+Bikos <- cbind(Bikos, EXPrun$scores)
+#cut = 0.3,
+```
+
+```{r}
+psych::fa.diagram(EXPrun)
+```
+```{r}
+EXPtable <- psych::print.psych(EXPrun,  sort = TRUE)
+EXPloadings <- round(EXPrun$loadings,3)
+write.table(EXPloadings, file="EXP_loadings.csv", sep=",", col.names=TRUE, row.names=FALSE)
+EXPtable
+```
+```{r}
+#this got me the variance accounted for information
+capture.output(EXPtable, file = "efa.csv")
+```
+
+
+
+
+
+* PA1/Traditional Pedagogy:  ClearResponsibilities, EffectiveAnswers, ClearPresentation, EquitableEval, InspiredInterest, Feedback, Respectful, MultPerspectives, AccessibleInstructor
+* PA2/Valued by Me: RegPrepare, IncrUnderstanding, MyContribution, IncrInterest
+* PA3: Socially & Culturallky Responsive Pedagogy: DEIintegration, InclusiveClassroom
+
+
+KMO (Kaiser-Meyer-Olkin), an index of sampling adequacy that can be used with the actual sample to let us know if the sample size is sufficient (or if we should collect more data).
+
+Kaiser’s 1974 recommendations were:
+
+    bare minimum of .5
+    values between .5 and .7 are mediocre
+    values between .7 and .8 are good
+    values above .9 are superb
+
+```{r}
+psych::KMO(Bikos[,EXPvars])
+```
+Bartlett’s lets us know if a matrix is an identity matrix. In an identity matrix all correlation coefficients (everything on the off-diagonal) would be 0.0 (and everything on the diagonal would be 1.0).
+
+A significant Barlett’s (i.e., p<.05
+) tells that the R-matrix is not an identity matrix. That is, there are some relationships between variables that can be analyzed.
+
+```{r}
+psych::cortest.bartlett(Bikos[,EXPvars]) #from the raw data
+```
+
+The determinant of the correlation matrix should be greater than 0.00001 (that would be 4 zeros before the 1). If it is smaller than 0.00001 then we may have an issue with multicollinearity (i.e., variables that are too highly correlated) or singularity (variables that are perfectly correlated).
+
+```{r}
+det(cor(Bikos[,EXPvars], use = "complete.obs"))
+```
+
+# Scoring 
+
+```{r}
+Bikos <- dplyr::rename(Bikos, PA1_TradPed = PA1, PA2_Valued = PA2, PA3_SCRped = PA3)
+```
+
+Scoring the factors as mean. This allows an interpretation consistent with the 1-5 scaling on the course evals.
+```{r}
+Valued_vars <- c('RegPrepare', 'IncrUnderstanding', 'MyContribution', 'IncrInterest')
+TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers', 'ClearPresentation', 'EquitableEval', 'InspiredInterest', 'Feedback', 'Respectful', 'MultPerspectives', 'AccessibleInstructor')
+SCRPed_vars <- c('InclusvClassrm', 'DEIintegration')
+
+Bikos$Valued <- sjstats::mean_n(Bikos[,Valued_vars], .75)
+Bikos$TradPed <- sjstats::mean_n(Bikos[,TradPed_vars], .75)
+Bikos$SCRPed <- sjstats::mean_n(Bikos[,SCRPed_vars], .75)
+```
+
+* PA1/Traditional Pedagogy:  ClearResponsibilities, EffectiveAnswers, ClearPresentation, EquitableEval, InspiredInterest, Feedback, Respectful, MultPerspectives, AccessibleInstructor
+* PA2/Valued by Me: RegPrepare, IncrUnderstanding, MyContribution, IncrInterest
+* PA3: Socially & Culturallky Responsive Pedagogy: DEIintegration, InclusiveClassroom
+
+# Data Dx
+
+## Missing Data Analysis
+
+Here we create the variable "nmiss" to count how many of the items used in the PAF were missing.
+```{r}
+Bikos$nmiss <- (Bikos[,EXPvars])%>%
+  is.na%>%
+  rowSums
+```
+
+Creating a proportion of missingness variable.
+```{r}
+Bikos <- Bikos %>%
+  dplyr::mutate(prop_miss = (nmiss/15)*100)
+```
+
+Getting descriptive information around the prop_miss variable.
+```{r}
+psych::describe(Bikos$prop_miss)
+```
+
+```{r}
+formattable::percent(mean(is.na(Bikos[,EXPvars])))
+formattable::percent(mean(complete.cases(Bikos[,EXPvars])))
+
+```
+```{r}
+mice::md.pattern(Bikos[,EXPvars], plot=TRUE, rotate.names=TRUE)
+```
+
+
+## Internal Consistency Coefficients
+```{r}
+psych::alpha(Bikos[,Valued_vars])
+```
+```{r}
+psych::alpha(Bikos[,TradPed_vars])
+```
+
+```{r}
+psych::alpha(Bikos[,SCRPed_vars])
+```
+## Making babydf for the univariate and multivariate analyes
+
+```{r}
+babydf <- dplyr::select(Bikos, StatsPkg, Centering, ProgramYear, ProgramYearB, Valued, TradPed, SCRPed)
+```
+
+```{r}
+mice::md.pattern(babydf, plot = TRUE, rotate.names = TRUE)
+```
+
+## Descriptives
+
+```{r}
+psych::describe(babydf)
+```
+
+```{r}
+psych::describeBy(TradPed ~ Centering + StatsPkg + ProgramYear, data=babydf, mat=TRUE)
+```
+
+Shapiro test for univariate normality, for continuous variables, only.
+```{r}
+shapiro.test(babydf$Valued)
+shapiro.test(babydf$TradPed)
+shapiro.test(babydf$SCRPed)
+```
+
+When the p value is < .05, the variable’s distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.
+
+```{r}
+psych::pairs.panels(babydf)
+```
+## Multivariate Normality
+
+Using the Mahalanobis test -- distance between profile of scores for that case and the centroid (vector of sample means), correcting for intercorrelations.
+
+Use only the continuously scored variables (not factors).
+
+```{r}
+babydf$Mahal <- psych::outlier(babydf[c("Valued", "TradPed", "SCRPed")])
+```
+Are these Mahalanobis scores normally distributed?
+```{r}
+psych::describe(babydf$Mahal)
+```
+
+Lsting the Mahalanobis scores that exceed +/- 3SDs
+
+```{r}
+babydf$MOutlier <- if_else(babydf$Mahal > (median(babydf$Mahal) + (3*sd(babydf$Mahal))), TRUE, FALSE)
+```
+
+```{r}
+library(dplyr)
+OutlierCount <- babydf%>%
+  count(MOutlier)
+OutlierCount
+```
+
+
+```{r}
+Bikos %>%
+  group_by(ProgramYear, StatsPkg, Centering) %>%
+  rstatix::identify_outliers(Valued)
+
+Bikos %>%
+  group_by(ProgramYear, StatsPkg, Centering) %>%
+  rstatix::shapiro_test(Valued)
+```
+
+```{r}
+Bikos %>%
+  group_by(ProgramYear, StatsPkg, Centering) %>%
+  rstatix::identify_outliers(TradPed)
+
+Bikos %>%
+  group_by(ProgramYear, StatsPkg, Centering) %>%
+  rstatix::shapiro_test(TradPed)
+```
+
+```{r}
+Bikos %>%
+  group_by(ProgramYear, StatsPkg, Centering) %>%
+  rstatix::identify_outliers(SCRPed)
+
+Bikos %>%
+  group_by(ProgramYear, StatsPkg, Centering) %>%
+  rstatix::shapiro_test(SCRPed)
+```
+
+Given the factorial nature of our design, we inspected multivariate normality by using the identify_outliers() function of the rstatix package. This reports values above of Q3 + 1.5xIQR or below Q1 – 1.5xIQR (where IQR is the interquartile range) at each combination of the three factors. Although there were outliers identified in all combinations of factors for both when valued-by-me and traditional pedagogy were assessed, none were extreme.  For the SCR pedagogy factor, there were extreme outliers.
+
+# Cross-Nested Models with the mean scores as DVs 
+```{r}
+ValuedM1 <- lme4::lmer(Valued ~1 +(1 | StndtID) +(1 | CourseID), Bikos, REML = FALSE)
+ValuedM2 <- lme4::lmer(Valued ~ ProgramYear + StatsPkg + Centering + (1 | StndtID) + (1 | CourseID), Bikos, REML = FALSE)
+
+sjPlot::tab_model(ValuedM1, ValuedM2, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Valued M1", "Valued M2"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se", pred.labels = c("Intercept [Valued])", "Program Year [Transition]", "Program Year [First]", "Stats Package [R]", "Centering [ReCentered]"))
+#, file = "Valued.doc"
+```
+
+```{r}
+#change in Too student
+(25 - 24)/25
+```
+```{r}
+#chagne in Too course
+(.04 - .03)/.04
+```
+
+
+```{r}
+sjPlot::plot_model(ValuedM2, type = "pred", axis.lim = c(1, 5),terms = c("ProgramYear", "StatsPkg", "Centering"))
+```
+
+```{r}
+#The mixedpower package looked promising -- had to be downloaded w devtools from GitHub and errors said it was corrupt
+#power_val <- mixedpower(model = ValuedM2, data = Bikos, fixed_effects = c("ProgramYear", "StatsPkg", "Centering"), simvar = #"StndtID", steps = c(20, 30, 40, 50, 60), critical_value=2)
+```
+
+
+
+```{r}
+TrPedM1 <- lme4::lmer(TradPed ~1 +(1 | StndtID) + (1 | CourseID), Bikos, REML = FALSE)
+TrPedM2 <- lme4::lmer(TradPed ~ ProgramYear + StatsPkg + Centering +(1 | StndtID) + (1 | CourseID), Bikos, REML = FALSE)
+
+sjPlot::tab_model(TrPedM1, TrPedM2, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("TradPed M1", "TradPed M2"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se", pred.labels = c("Intercept [Trad Ped])", "Program Year [Transition]", "Program Year [First]", "Stats Package [R]", "Centering [ReCentered]"))
+#, file = "TradPed.doc"
+```
+
+Evaluating change in tau naught naught
+```{r}
+(.23 - .22)/.23
+(.03 - .02)/.03
+```
+
+
+```{r}
+sjPlot::plot_model(TrPedM2, type = "pred", axis.lim = c(1, 5),terms = c("ProgramYear", "StatsPkg", "Centering"))
+```
+
+```{r}
+SCRPedM1 <- lme4::lmer(SCRPed ~1 +(1 | StndtID) + (1 | CourseID), Bikos, REML = FALSE)
+SCRPedM2 <- lme4::lmer(SCRPed ~ ProgramYear + StatsPkg + Centering +(1 | StndtID) + (1 | CourseID), Bikos, REML = FALSE)
+
+sjPlot::tab_model(SCRPedM1, SCRPedM2, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("SCRped M1", "SCRped M2"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se", pred.labels = c("Intercept [SCR Ped])", "Program Year [Transition]", "Program Year [First]", "Stats Package [R]", "Centering [ReCentered]"))
+#, file = "SCRPed.doc"
+```
+
+```{r}
+sjPlot::plot_model(SCRPedM2, type = "pred", axis.lim = c(1, 5),terms = c("ProgramYear", "StatsPkg", "Centering"))
+```
+
+Power analysis of the crossed effects model
+https://humburg.github.io/Power-Analysis/simr_power_analysis.html 
+```{r}
+sim_valued <- simr::powerSim(ValuedM2, nsim=10)
+sim_valued
+sim_trad <- simr::powerSim(TrPedM2, nsim=10)
+sim_trad
+sim_scr <- simr::powerSim(SCRPedM2, nsim=10)
+sim_scr
+```
+```{r}
+saveRDS(Bikos, "TEPPout.rds")
+
+```
+
+
+
+```{r}
+#install.packages("ggpubr")
+#INFOyaxis <- c("Not at all", "To a small extent", "To a moderate extent", "To a great extent", "To a very great extent")
+inf <- ggpubr::ggboxplot(Bikos, x = "ProgramYear", y = c("Valued", "TradPed", "SCRPed"), color = "Centering", facet.by = "StatsPkg",  add = "Course Eval Item", ylim = c(1,5))
+#inf <- inf + scale_y_continuous(breaks = 1:5)
+inf
+#inf + ggpubr::stat_compare_means(method = "t.test")
+#PANAScomps <- list(c("1", "2"), c("1", "2"), c("1", "2"), c("1", "2"))
+#inf <- inf + ggpubr::stat_compare_means(aes(group=Wave), label = "p.signif", label.y = 4.5)
+#inf <- inf + ggpubr::stat_compare_means(aes(group=Language), label = "p.signif", label.y = 4.8, label.x = 2.5)
+#PANASbox <- PANASbox + ggpubr::stat_compare_means(aes(group=RACE), label = "p.signif", label.y = 4.8, label.x = 1.5)
+#PANASbox<- PANASbox + theme(legend.title=element_blank())
+
+
+```
+
+```{r}
+BoxLong <- reshape2::melt(Bikos, id= c("ProgramYear", "StatsPkg", "Centering" ), measure = c("Valued", "TradPed", "SCRPed"))
+
+
+trio <- ggpubr::ggboxplot(BoxLong, x = "variable", y = "value", color = "ProgramYear", facet.by = c("Centering", "StatsPkg"),ylim = c(1,5), xlab = "Course Evaluation Factors", ylab = "Course Evaluation Ratings")
+trio <-  trio + scale_colour_grey(start= 0, end = .7) + theme_bw()
+trio
+
+```
+
+```{r}
+trio2 <- ggpubr::ggboxplot(BoxLong, x = "variable", y = "value", color = "ProgramYear", facet.by = c("StatsPkg", "Centering"),ylim = c(1,5), xlab = "Course Evaluation Factors", ylab = "Course Evaluation Ratings")
+trio2 <-  trio2 + scale_colour_grey(start= 0, end = .7) + theme_bw()
+
+trio2 <- ggpubr::ggarrange(trio2, legend = "bottom")
+trio2
+```
+
+```{r}
+
+ggpubr::ggarrange(trio2)%>%
+  ggpubr::ggexport(plotlist = "trio2", filename="boxplot3w.png")
+```
+

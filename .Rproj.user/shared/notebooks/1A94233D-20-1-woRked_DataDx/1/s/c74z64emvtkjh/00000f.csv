@@ -1,0 +1,7 @@
+"0","#testing to see if my code worked"
+"0","#raw <- dplyr::filter (raw, SPFC.Decolonize.Opt.Out != ""Okay"")"
+"0","raw <- dplyr::filter (raw, SPFC.Decolonize.Opt.Out != ""Opt Out"")"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"

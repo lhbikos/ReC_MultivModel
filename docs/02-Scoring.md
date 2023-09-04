@@ -46,11 +46,11 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
 ```r
-#if(!require(tidyverse)){install.packages("tidyverse")}
-#if(!require(psych)){install.packages("psych")}
-#if(!require(mice)){install.packages("mice")}
-#if(!require(sjstats)){install.packages("sjstats")}
-#if(!require(formattable)){install.packages("formattable")}
+# if(!require(tidyverse)){install.packages('tidyverse')}
+# if(!require(psych)){install.packages('psych')}
+# if(!require(mice)){install.packages('mice')}
+# if(!require(sjstats)){install.packages('sjstats')}
+# if(!require(formattable)){install.packages('formattable')}
 ```
 
 
@@ -191,7 +191,7 @@ I use *different* names for the object/df in my R environment than I use for the
 
 
 ```r
-scrub_df <- read.csv ("BlackStntsModel230902.csv", head = TRUE, sep = ",")
+scrub_df <- read.csv("BlackStntsModel230902.csv", head = TRUE, sep = ",")
 str(scrub_df)
 ```
 
@@ -258,36 +258,26 @@ One way to avoid this is to use the code below to identify the levels and the la
 
 
 ```r
-scrub_df$tRace1 = factor(scrub_df$iRace1,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace2 = factor(scrub_df$iRace2,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace3 = factor(scrub_df$iRace3,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace4 = factor(scrub_df$iRace4,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace5 = factor(scrub_df$iRace5,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace6 = factor(scrub_df$iRace6,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace7 = factor(scrub_df$iRace7,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace8 = factor(scrub_df$iRace8,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace9 = factor(scrub_df$iRace9,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace10 = factor(scrub_df$iRace10,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace1 = factor(scrub_df$iRace1, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace2 = factor(scrub_df$iRace2, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace3 = factor(scrub_df$iRace3, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace4 = factor(scrub_df$iRace4, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace5 = factor(scrub_df$iRace5, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace6 = factor(scrub_df$iRace6, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace7 = factor(scrub_df$iRace7, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace8 = factor(scrub_df$iRace8, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace9 = factor(scrub_df$iRace9, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace10 = factor(scrub_df$iRace10, levels = c(0, 1, 2, 3, 4),
+    labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
 ```
 
 Let's check the structure to see if they are factors.
@@ -361,13 +351,17 @@ Calculating the proportion of the BIPOC instructional staff could likely be acco
   * assigning a count of "1" each time the factor value was Black, nBpoc, or BiMulti
 
 ```r
-scrub_df$count.BIPOC <- apply(scrub_df[c("tRace1", "tRace2", "tRace3", "tRace4", "tRace5", "tRace6", "tRace7", "tRace8", "tRace9", "tRace10")], 1, function(x) sum(x %in% c("Black", "nBpoc", "BiMulti")))
+scrub_df$count.BIPOC <- apply(scrub_df[c("tRace1", "tRace2", "tRace3",
+    "tRace4", "tRace5", "tRace6", "tRace7", "tRace8", "tRace9", "tRace10")],
+    1, function(x) sum(x %in% c("Black", "nBpoc", "BiMulti")))
 ```
 
 Next, I created a variable that counted the number of non-missing values across the tRace1 through tRace10 variables.
 
 ```r
-scrub_df$count.nMiss <- apply(scrub_df[c("tRace1", "tRace2", "tRace3", "tRace4", "tRace5", "tRace6", "tRace7", "tRace8", "tRace9", "tRace10")], 1, function(x) sum(!is.na(x)))
+scrub_df$count.nMiss <- apply(scrub_df[c("tRace1", "tRace2", "tRace3",
+    "tRace4", "tRace5", "tRace6", "tRace7", "tRace8", "tRace9", "tRace10")],
+    1, function(x) sum(!is.na(x)))
 ```
 
 Now to calculate the proportion of BIPOC instructional faculty for each case.
@@ -387,7 +381,8 @@ Because we just created a host of new variables in creating the *prop_BIPOC* var
 
 
 ```r
-scrub_df <-(select (scrub_df, ID, iBIPOC_pr, cmBlack, Belong_1:Belong_3, Blst_1:Blst_6))
+scrub_df <- (select(scrub_df, ID, iBIPOC_pr, cmBlack, Belong_1:Belong_3,
+    Blst_1:Blst_6))
 ```
 
 With a couple of calculations, we create a proportion of item-level missingness.
@@ -436,9 +431,9 @@ To analyze missingness at this level, we need a df that has only the variables o
 
 
 ```r
-#further update to exclude the n_miss and prop_miss variables
+# further update to exclude the n_miss and prop_miss variables
 scrub_df <- scrub_df %>%
-  dplyr::select (-c(ID, nmiss, prop_miss))
+    dplyr::select(-c(ID, nmiss, prop_miss))
 ```
 
 Missing data analysis commonly looks at proportions by:
@@ -448,7 +443,7 @@ Missing data analysis commonly looks at proportions by:
 
 
 ```r
-#what proportion of cells missing across entire dataset
+# what proportion of cells missing across entire dataset
 formattable::percent(mean(is.na(scrub_df)))
 ```
 
@@ -457,7 +452,7 @@ formattable::percent(mean(is.na(scrub_df)))
 ```
 
 ```r
-#what proportion of cases (rows) are complete (nonmissing)
+# what proportion of cases (rows) are complete (nonmissing)
 formattable::percent(mean(complete.cases(scrub_df)))
 ```
 
@@ -484,7 +479,7 @@ The last column and row contain row and column counts, respectively.
 ```r
 mice_out <- mice::md.pattern(scrub_df, plot = TRUE, rotate.names = TRUE)
 mice_out
-write.csv (mice_out, file="mice_out.csv") #optional to write it to a .csv file
+write.csv(mice_out, file = "mice_out.csv")  #optional to write it to a .csv file
 ```
 
 The table lets us examine each missing pattern and see which variable(s) is/are missing. The output is in the form of a table that indicates the frequency of each pattern of missingness.  Because I haven't (yet) figured out how to pipe objects from this table into the chapter, this text may differ from the patterns in the current data frame.
@@ -495,7 +490,9 @@ Each row in the table represents a different pattern of missingness.  At the tim
 
 To date, we do not have statistical tools that can accurately diagnose our patterns of missingness. You may have heard that "Little's MCAR" is a helpful tool. Unfortunately, as Enders [-@enders_applied_2010] has noted, the tool is problematic. Perhaps the most significant one is that under the null hypothesis, a statistically significant test indicates that the missing data are MAR (missing at random) or MNAR (missing not at random); a non-significant test indicates the data are MCAR (missint completely at random) or MNAR. Consequently, regardless of the result, an MNAR circumstance cannot be ruled out. Correspondingly, the Little's MCAR test has disappeard from the more reliable R packages that assess missingness.
 
-Enders [-@enders_applied_2010] *Applied Missing Data Analysis* text does provide a set of [figures](https://www.google.com/books/edition/Applied_Missing_Data_Analysis/uHt4EAAAQBAJ?hl=en&gbpv=1&dq=enders+missing+data&pg=PP1&printsec=frontcover) (page 3) that illustrate common missing data patterns. Comparing these to the figure produced with *mice::mdpattern* our data looks somewhat monotonic -- that is, as individuals completed the survey, they began to experience test fatigue and simply stopped responding.
+Enders [-@enders_applied_2010] *Applied Missing Data Analysis* text does provide a set of [figures](https://www.google.com/books/edition/Applied_Missing_Data_Analysis/uHt4EAAAQBAJ?hl=en&gbpv=1&dq=enders+missing+data&pg=PP1&printsec=frontcover) (page 3) that illustrate common missing data patterns. Comparing these to the figure produced with *mice::mdpattern* our data looks somewhat monotonic -- that is, as individuals completed the survey, they began to experience test fatigue and simply stopped responding. Diagnosisng monotonicity requires that the variables in the dataset must be in the order in which the students completed them. If the variables have been re-ordered or if the surveys were presented to students in a randomized order, then more data manipulation would be required before attributing missingnes to test fatigue.
+
+Survey programs like Qualtrics offer the randomization of items within blocks (or blocks themselves). This can help distribute missingness caused by test fatigue so that more cases can be retained.
 
 ## Scoring
 
@@ -513,8 +510,8 @@ To rescore:
 
 
 ```r
-scrub_df<- scrub_df %>%
-  mutate(rBlst_1 = 8 - Blst_1) #if you had multiple items, you could add a pipe (%>%) at the end of the line and add more until the last one
+scrub_df <- scrub_df %>%
+    mutate(rBlst_1 = 8 - Blst_1)  #if you had multiple items, you could add a pipe (%>%) at the end of the line and add more until the last one
 ```
 
 Per Parent [-@parent_handling_2013] we will analyze missingness for each scale, separately.  
@@ -530,27 +527,30 @@ In our case, the scale assessing belonging [@bollen_perceived_1990; @hurtado_eff
 
 
 ```r
-#Making the list of variables
-Belonging_vars <- c('Belong_1','Belong_2','Belong_3')
-ResponseBL_vars <- c('rBlst_1', 'Blst_4','Blst_6')
-StigmaBL_vars <- c('Blst_2', 'Blst_3','Blst_5')
-ClimateBL_vars <- c('rBlst_1', 'Blst_4','Blst_6','Blst_2', 'Blst_3','Blst_5' )
+# Making the list of variables
+Belonging_vars <- c("Belong_1", "Belong_2", "Belong_3")
+ResponseBL_vars <- c("rBlst_1", "Blst_4", "Blst_6")
+StigmaBL_vars <- c("Blst_2", "Blst_3", "Blst_5")
+ClimateBL_vars <- c("rBlst_1", "Blst_4", "Blst_6", "Blst_2", "Blst_3",
+    "Blst_5")
 
-#Creating the new variables
-scrub_df$Belonging <- sjstats::mean_n(scrub_df[,Belonging_vars], .65)
-scrub_df$ResponseBL <- sjstats::mean_n(scrub_df[,ResponseBL_vars], .80)
-scrub_df$StigmaBL <- sjstats::mean_n(scrub_df[,StigmaBL_vars], .80)
-scrub_df$ClimateBL <- sjstats::mean_n(scrub_df[,ClimateBL_vars], .80)
+# Creating the new variables
+scrub_df$Belonging <- sjstats::mean_n(scrub_df[, Belonging_vars], 0.65)
+scrub_df$ResponseBL <- sjstats::mean_n(scrub_df[, ResponseBL_vars], 0.8)
+scrub_df$StigmaBL <- sjstats::mean_n(scrub_df[, StigmaBL_vars], 0.8)
+scrub_df$ClimateBL <- sjstats::mean_n(scrub_df[, ClimateBL_vars], 0.8)
 ```
 
 Later it will be helpful to have a df with the item and scale-level variables.  It will also be helpful if there is an ID for each case.
 
 
 ```r
-scrub_df <- scrub_df %>% dplyr::mutate(ID = row_number())
+scrub_df <- scrub_df %>%
+    dplyr::mutate(ID = row_number())
 
-#moving the ID number to the first column; requires 
-scrub_df <- scrub_df%>%dplyr::select(ID, everything())
+# moving the ID number to the first column; requires
+scrub_df <- scrub_df %>%
+    dplyr::select(ID, everything())
 ```
 
 
@@ -558,7 +558,8 @@ Let's save our *scrub_df* data for this and write it as an outfile. I will save 
 
 
 ```r
-write.table(scrub_df, file="BlStItmsScrs230902.csv", sep=",", col.names=TRUE, row.names=FALSE)
+write.table(scrub_df, file = "BlStItmsScrs230902.csv", sep = ",", col.names = TRUE,
+    row.names = FALSE)
 saveRDS(scrub_df, "BlStItmsScrs230902.rds")
 ```
 
@@ -573,8 +574,9 @@ First let's get the df down to the variables we want to retain:
 
 
 ```r
-scored <-(select (scrub_df, iBIPOC_pr, cmBlack, Belonging, ResponseBL, StigmaBL, ClimateBL))
-ScoredCaseMiss <- nrow(scored) #I produced this object for the sole purpose of feeding the number of cases into the inline text, below
+scored <- (select(scrub_df, iBIPOC_pr, cmBlack, Belonging, ResponseBL,
+    StigmaBL, ClimateBL))
+ScoredCaseMiss <- nrow(scored)  #I produced this object for the sole purpose of feeding the number of cases into the inline text, below
 ```
 
 
@@ -586,17 +588,18 @@ Using the *describe()* function from the *psych* package, we can investigate thi
 
 
 ```r
-#Create a variable (n_miss) that counts the number missing
-scored$n_miss <- scored%>%
-  dplyr::select(iBIPOC_pr:ClimateBL) %>% 
-is.na %>% 
-rowSums
+# Create a variable (n_miss) that counts the number missing
+scored$n_miss <- scored %>%
+    dplyr::select(iBIPOC_pr:ClimateBL) %>%
+    is.na %>%
+    rowSums
 
-#Create a proportion missing by dividing n_miss by the total number of variables (6)
-#Pipe to sort in order of descending frequency to get a sense of the missingness
-scored<- scored%>%
-mutate(prop_miss = (n_miss/6)*100)%>%
-  arrange(desc(n_miss))
+# Create a proportion missing by dividing n_miss by the total number
+# of variables (6) Pipe to sort in order of descending frequency to
+# get a sense of the missingness
+scored <- scored %>%
+    mutate(prop_miss = (n_miss/6) * 100) %>%
+    arrange(desc(n_miss))
 
 psych::describe(scored$prop_miss)
 ```
@@ -615,13 +618,14 @@ We need to decide what is our retention threshhold. Twenty percent seems to be a
 
 
 ```r
-#update df to have only those with at least 20% of complete data (this is an arbitrary decision)
-scored <- filter(scored, prop_miss <= 20) 
+# update df to have only those with at least 20% of complete data
+# (this is an arbitrary decision)
+scored <- filter(scored, prop_miss <= 20)
 
-#the variable selection just lops off the proportion missing
-scored <-(select (scored, iBIPOC_pr:ClimateBL)) 
+# the variable selection just lops off the proportion missing
+scored <- (select(scored, iBIPOC_pr:ClimateBL))
 
-#this produces the number of cases retained
+# this produces the number of cases retained
 nrow(scored)
 ```
 
@@ -643,12 +647,12 @@ We work with a df that includes only the variables in our model.  In our case th
 
 Again, we look at missingness as the proportion of 
 
-* individual cells across the dataset, and
+* individual cells across the scored dataset, and
 * rows/cases with nonmissing data
 
 
 ```r
-#percent missing across df
+# percent missing across df
 formattable::percent(mean(is.na(scored)))
 ```
 
@@ -657,8 +661,8 @@ formattable::percent(mean(is.na(scored)))
 ```
 
 ```r
-#percent of rows with nonmissing data
-formattable::percent(mean(complete.cases(scored))) 
+# percent of rows with nonmissing data
+formattable::percent(mean(complete.cases(scored)))
 ```
 
 ```
@@ -680,7 +684,7 @@ Returning to the *mice* package, we can use the *md.pattern()* function to exami
 
 
 ```r
-mice_ScaleLvl <- mice::md.pattern(scored, plot = TRUE, rotate.names=TRUE)
+mice_ScaleLvl <- mice::md.pattern(scored, plot = TRUE, rotate.names = TRUE)
 ```
 
 ![](02-Scoring_files/figure-docx/unnamed-chunk-26-1.png)<!-- -->
@@ -696,7 +700,9 @@ mice_ScaleLvl
 ##          0         0          0        0         0         2 2
 ```
 
-At the scale-level, this is much easier to interpret. There are *2* rows of data because there are only *2* patterns of missingness. The most common pattern is non-missing data (*n* = 56). 
+At the scale-level, this is much easier to interpret. There are *2* rows of data because there are only *2* patterns of missingness. The most common pattern is non-missing data (*n* = 59). 
+
+If our statistical choice uses listwise deletion (i.e., the case is eliminated if one or more variables in the model has missing data), our sample size will be 59. As we will earn in later chapters, there are alternatives (i.e., specifying a FIML option in analyses that use maximum likelihood estimators) that can use all of the cases -- even those with missing data. 
 
 
 ### R-eady for Analysis
@@ -757,17 +763,17 @@ If you chose this option in the prior chapter, you used raw data that was availa
 
 ### Grading Rubric
 
-|Assignment Component                                                                          | Points Possible| Points Earned|
-|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
-|1. Proper formatting of your first variable                                                   |      5         |    _____     |           
-|2. Proper formatting of your second variable                                                  |      5         |    _____     |
-|3. Proper formatting of your third variable                                                   |      5         |    _____     |
-|4. Evaluate and interpret item-level missingness                                              |      5         |    _____     |  
-|5. Score any scales/subscales                                                                 |      5         |    _____     |            
-|6. Evaluate and interpret scale-level missingness                                             |      5         |    _____     |   
-|7. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)|      5         |    _____     |       
-|8. Explanation to grader                                                                      |      5         |    _____     |
-|**Totals**                                                                                    |      40        |    _____     |                                                                                                                                              
+|Assignment Component                                                                    | Points Possible| Points Earned|
+|:---------------------------------------------------------------------------------------|:-------------: |:------------:|
+|1. Proper formatting of the items(s) in your first predictor variable                   |      5         |    _____     |        
+|2. Proper formatting of the items(s) in your second predictor variable                  |      5         |    _____     |
+|3. Proper formatting of the items(s) your third predictor variable                      |      5         |    _____     |
+|4. Proper formatting of your dependent variable                                         |      5         |    _____     |
+|4. Evaluate and interpret item-level missingness                                        |      5         |    _____     |  
+|5. Score any scales/subscales                                                           |      5         |    _____     |        |6. Evaluate and interpret scale-level missingness                                       |      5         |    _____     |   
+|7. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)|      5   |    _____     |  
+|8. Explanation to grader                                                                      |      5   |    _____     |
+|**Totals**                                                                                    |      45  |    _____     |                                                                                                                                              
 A *homeworked example* for the Scrubbing, Scoring, and DataDx lessons (combined) follows the [Data Dx](#DataDx) lesson.
 
 

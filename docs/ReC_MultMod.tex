@@ -127,7 +127,7 @@
 
 \title{ReCentering Psych Stats: Multivariate Modeling}
 \author{Lynette H. Bikos, PhD, ABPP}
-\date{02 Sep 2023}
+\date{03 Sep 2023}
 
 \begin{document}
 \maketitle
@@ -161,7 +161,7 @@ All materials used in creating this OER are available at its \href{https://githu
 \chapter*{PREFACE}\label{preface}}
 
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 02 Sep 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 03 Sep 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -305,9 +305,9 @@ The script below will (a) check to see if the following packages are installed o
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#will install the package if not already installed}
-\CommentTok{\#if(!require(qualtRics))\{install.packages("qualtRics")\}}
-\CommentTok{\#if(!require(tidyverse))\{install.packages("tidyverse")\}}
+\CommentTok{\# will install the package if not already installed}
+\CommentTok{\# if(!require(qualtRics))\{install.packages(\textquotesingle{}qualtRics\textquotesingle{})\}}
+\CommentTok{\# if(!require(tidyverse))\{install.packages(\textquotesingle{}tidyverse\textquotesingle{})\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -431,11 +431,14 @@ You do need to change the API key/token if you want to download data from a diff
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#surveys \textless{}{-} qualtRics::all\_surveys() }
+\CommentTok{\# surveys \textless{}{-} qualtRics::all\_surveys()}
 
-\CommentTok{\#View this as an object (found in the right: Environment).  }
-\CommentTok{\#Get survey id \# for the next command}
-\CommentTok{\#If this is showing you the WRONG list of surveys, you are pulling from the wrong Qualtrics account (i.e., maybe this one instead of your own). Go back and change your API token (it saves your old one). Changing the API likely requires a restart of R.}
+\CommentTok{\# View this as an object (found in the right: Environment).  Get}
+\CommentTok{\# survey id \# for the next command If this is showing you the WRONG}
+\CommentTok{\# list of surveys, you are pulling from the wrong Qualtrics account}
+\CommentTok{\# (i.e., maybe this one instead of your own). Go back and change your}
+\CommentTok{\# API token (it saves your old one). Changing the API likely requires}
+\CommentTok{\# a restart of R.}
 \NormalTok{surveys}
 \end{Highlighting}
 \end{Shaded}
@@ -444,17 +447,20 @@ To retrieve the survey, use the \emph{fetch\_survey()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#obtained with the survey ID }
-\CommentTok{\#"surveyID" should be the ID from above}
-\CommentTok{\#"verbose" prints messages to the R console}
-\CommentTok{\#"label", when TRUE, imports data as text responses; if FALSE prints the data as numerical responses}
-\CommentTok{\#"convert", when TRUE, attempts to convert certain question types to the "proper" data type in R; because I don\textquotesingle{}t like guessing, I want to set up my own factors.}
-\CommentTok{\#"force\_request", when TRUE, always downloads the survey from the API instead of from a temporary directory (i.e., it always goes to the primary source)}
-\CommentTok{\# "import\_id", when TRUE includes the unique Qualtrics{-}assigned ID; since I have provided labels, I want false}
+\CommentTok{\# obtained with the survey ID}
+\CommentTok{\#\textquotesingle{}surveyID\textquotesingle{} should be the ID from above}
+\CommentTok{\#\textquotesingle{}verbose\textquotesingle{} prints messages to the R console}
+\CommentTok{\#\textquotesingle{}label\textquotesingle{}, when TRUE, imports data as text responses; if FALSE prints the data as numerical responses}
+\CommentTok{\#\textquotesingle{}convert\textquotesingle{}, when TRUE, attempts to convert certain question types to the \textquotesingle{}proper\textquotesingle{} data type in R; because I don\textquotesingle{}t like guessing, I want to set up my own factors.}
+\CommentTok{\#\textquotesingle{}force\_request\textquotesingle{}, when TRUE, always downloads the survey from the API instead of from a temporary directory (i.e., it always goes to the primary source)}
+\CommentTok{\# \textquotesingle{}import\_id\textquotesingle{}, when TRUE includes the unique Qualtrics{-}assigned ID;}
+\CommentTok{\# since I have provided labels, I want false}
 
-\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{qualtRics}\SpecialCharTok{::}\FunctionTok{fetch\_survey}\NormalTok{(}\AttributeTok{surveyID =} \StringTok{"SV\_b2cClqAlLGQ6nLU"}\NormalTok{, }\AttributeTok{time\_zone =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{verbose =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{label=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{convert=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{force\_request =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{import\_id =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ qualtRics}\SpecialCharTok{::}\FunctionTok{fetch\_survey}\NormalTok{(}\AttributeTok{surveyID =} \StringTok{"SV\_b2cClqAlLGQ6nLU"}\NormalTok{, }\AttributeTok{time\_zone =} \ConstantTok{NULL}\NormalTok{,}
+    \AttributeTok{verbose =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{label =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{convert =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{force\_request =} \ConstantTok{TRUE}\NormalTok{,}
+    \AttributeTok{import\_id =} \ConstantTok{FALSE}\NormalTok{)}
 
-\CommentTok{\#useLocalTime = TRUE,}
+\CommentTok{\# useLocalTime = TRUE,}
 \end{Highlighting}
 \end{Shaded}
 
@@ -469,8 +475,9 @@ Because .rds files will retain any formatting information we provide about varia
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with}
-\CommentTok{\#saveRDS(QTRX\_df, "QTRX\_df230902.rds")}
+\CommentTok{\# to save the df as an .rds (think \textquotesingle{}R object\textquotesingle{}) file on your computer;}
+\CommentTok{\# it should save in the same file as the .rmd file you are working}
+\CommentTok{\# with saveRDS(QTRX\_df, \textquotesingle{}QTRX\_df230902.rds\textquotesingle{})}
 \end{Highlighting}
 \end{Shaded}
 
@@ -632,13 +639,14 @@ In this particular survey, the majority of respondents will take the survey beca
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# the filter command is used when we are making inclusion/exclusion decisions about rows}
-\CommentTok{\# != means do not include cases with "preview"}
+\CommentTok{\# the filter command is used when we are making inclusion/exclusion}
+\CommentTok{\# decisions about rows != means do not include cases with \textquotesingle{}preview\textquotesingle{}}
 
-\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{ (QTRX\_df, DistributionChannel }\SpecialCharTok{!=} \StringTok{"preview"}\NormalTok{)}
+\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(QTRX\_df, DistributionChannel }\SpecialCharTok{!=} \StringTok{"preview"}\NormalTok{)}
 
-\CommentTok{\#FYI, another way that doesn\textquotesingle{}t use tidyverse, but gets the same result}
-\CommentTok{\#QTRX\_df \textless{}{-} QTRX\_df[!QTRX\_df$DistributionChannel == "preview",]}
+\CommentTok{\# FYI, another way that doesn\textquotesingle{}t use tidyverse, but gets the same}
+\CommentTok{\# result QTRX\_df \textless{}{-} QTRX\_df[!QTRX\_df$DistributionChannel ==}
+\CommentTok{\# \textquotesingle{}preview\textquotesingle{},]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -646,8 +654,8 @@ APA Style, and in particular the Journal Article Reporting Standards (JARS) for 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# I created an object that lists how many rows/cases remain.}
-\CommentTok{\# I used inline text below to update the text with the new number}
+\CommentTok{\# I created an object that lists how many rows/cases remain.  I used}
+\CommentTok{\# inline text below to update the text with the new number}
 \FunctionTok{nrow}\NormalTok{(QTRX\_df)}
 \end{Highlighting}
 \end{Shaded}
@@ -668,8 +676,8 @@ Next let's filter in only those who consented to take the survey. Because Qualtr
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# == are used }
-\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{(dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{ (QTRX\_df, Consent }\SpecialCharTok{==} \DecValTok{1}\NormalTok{))}
+\CommentTok{\# == are used}
+\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(QTRX\_df, Consent }\SpecialCharTok{==} \DecValTok{1}\NormalTok{))}
 \FunctionTok{nrow}\NormalTok{(QTRX\_df)}
 \end{Highlighting}
 \end{Shaded}
@@ -716,7 +724,9 @@ The form of the \emph{rename()} function is this: df\_named \textless- rename(df
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{rename}\NormalTok{(QTRX\_df, }\AttributeTok{iRace1 =} \StringTok{\textquotesingle{}1\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace2 =} \StringTok{\textquotesingle{}2\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace3 =} \StringTok{\textquotesingle{}3\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace4 =} \StringTok{\textquotesingle{}4\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace5 =} \StringTok{\textquotesingle{}5\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace6 =} \StringTok{\textquotesingle{}6\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace7 =} \StringTok{\textquotesingle{}7\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace8 =} \StringTok{\textquotesingle{}8\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace9 =} \StringTok{\textquotesingle{}9\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace10 =} \StringTok{\textquotesingle{}10\_iRace\textquotesingle{}}\NormalTok{)}
+\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{rename}\NormalTok{(QTRX\_df, }\AttributeTok{iRace1 =} \StringTok{"1\_iRace"}\NormalTok{, }\AttributeTok{iRace2 =} \StringTok{"2\_iRace"}\NormalTok{,}
+    \AttributeTok{iRace3 =} \StringTok{"3\_iRace"}\NormalTok{, }\AttributeTok{iRace4 =} \StringTok{"4\_iRace"}\NormalTok{, }\AttributeTok{iRace5 =} \StringTok{"5\_iRace"}\NormalTok{, }\AttributeTok{iRace6 =} \StringTok{"6\_iRace"}\NormalTok{,}
+    \AttributeTok{iRace7 =} \StringTok{"7\_iRace"}\NormalTok{, }\AttributeTok{iRace8 =} \StringTok{"8\_iRace"}\NormalTok{, }\AttributeTok{iRace9 =} \StringTok{"9\_iRace"}\NormalTok{, }\AttributeTok{iRace10 =} \StringTok{"10\_iRace"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -724,7 +734,8 @@ Also in Qualtrics, it was not possible to rename the variable (formatted with sl
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{rename}\NormalTok{(QTRX\_df, }\AttributeTok{cmBiMulti =}\NormalTok{ Race\_10, }\AttributeTok{cmBlack =}\NormalTok{ Race\_1, }\AttributeTok{cmNBPoC =}\NormalTok{ Race\_7, }\AttributeTok{cmWhite =}\NormalTok{ Race\_8, }\AttributeTok{cmUnsure =}\NormalTok{ Race\_2)}
+\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{rename}\NormalTok{(QTRX\_df, }\AttributeTok{cmBiMulti =}\NormalTok{ Race\_10, }\AttributeTok{cmBlack =}\NormalTok{ Race\_1,}
+    \AttributeTok{cmNBPoC =}\NormalTok{ Race\_7, }\AttributeTok{cmWhite =}\NormalTok{ Race\_8, }\AttributeTok{cmUnsure =}\NormalTok{ Race\_2)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -732,7 +743,7 @@ Let's also create an ID variable (different from the lengthy Qualtrics-issued ID
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Opening the tidyverse so that I can use pipes}
+\CommentTok{\# Opening the tidyverse so that I can use pipes}
 \FunctionTok{library}\NormalTok{(tidyverse)}
 \end{Highlighting}
 \end{Shaded}
@@ -752,10 +763,12 @@ i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all confl
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ QTRX\_df }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{ID =} \FunctionTok{row\_number}\NormalTok{())}
+\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ QTRX\_df }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{ID =} \FunctionTok{row\_number}\NormalTok{())}
 
-\CommentTok{\#moving the ID number to the first column; requires }
-\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ QTRX\_df}\SpecialCharTok{\%\textgreater{}\%}\NormalTok{dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(ID, }\FunctionTok{everything}\NormalTok{())}
+\CommentTok{\# moving the ID number to the first column; requires}
+\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ QTRX\_df }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(ID, }\FunctionTok{everything}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
 
@@ -772,9 +785,14 @@ The \emph{select()} function can let us list the variables we want to retain.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#You can use the ":" to include all variables from the first to last variable in any sequence; I could have written this more efficiently.  I just like to "see" my scales and clusters of variables.}
+\CommentTok{\# You can use the \textquotesingle{}:\textquotesingle{} to include all variables from the first to last}
+\CommentTok{\# variable in any sequence; I could have written this more}
+\CommentTok{\# efficiently.  I just like to \textquotesingle{}see\textquotesingle{} my scales and clusters of}
+\CommentTok{\# variables.}
 
-\NormalTok{Model\_df }\OtherTok{\textless{}{-}}\NormalTok{(dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{ (QTRX\_df, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong\_1}\SpecialCharTok{:}\NormalTok{Belong\_3, Blst\_1}\SpecialCharTok{:}\NormalTok{Blst\_6))}
+\NormalTok{Model\_df }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(QTRX\_df, ID, iRace1, iRace2, iRace3, iRace4,}
+\NormalTok{    iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack,}
+\NormalTok{    cmNBPoC, cmWhite, cmUnsure, Belong\_1}\SpecialCharTok{:}\NormalTok{Belong\_3, Blst\_1}\SpecialCharTok{:}\NormalTok{Blst\_6))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -816,7 +834,31 @@ Data screening suggested that 107 individuals opened the survey link. Of those, 
 \hypertarget{practice-problems}{%
 \section{Practice Problems}\label{practice-problems}}
 
-Starting with this chapter, the practice problems for this and the next two chapters (i.e., Scoring, Data Dx) are connected. Whatever practice option(s) you choose, please (a) use raw data that (b) has some data missing. This second criteria will be important in the subsequent chapters.
+Starting with this chapter, the practice problems for this and the next two chapters (i.e., Scoring, Data Dx) are intended to be completed in a sequence. Whatever practice option(s) you choose, please
+
+\begin{itemize}
+\tightlist
+\item
+  Use raw data that has some missingness (as a last resort you could manually delete some cells),
+\item
+  Includes at least 3 independent/predictor variables
+
+  \begin{itemize}
+  \tightlist
+  \item
+    these could be categorically or continuously scaled
+  \item
+    at least one variable should require scoring.
+  \end{itemize}
+\item
+  Include at least 1 dependent variable
+
+  \begin{itemize}
+  \tightlist
+  \item
+    at this point in your learning it should be continuously scaled
+  \end{itemize}
+\end{itemize}
 
 The three problems below are listed in the order of graded complexity. If you are just getting started, you may wish to start with the first problem. If you are more confident, choose the second or third option. You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.
 
@@ -856,16 +898,18 @@ Points Earned
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-1. Import the data from Qualtrics & 5 & \_\_\_\_\_ \\
-2. Exclude all previews & 5 & \_\_\_\_\_ \\
-3. Include only those who consented & 5 & \_\_\_\_\_ \\
-4. Exclude those whose institutions are outside the U.S. & 5 & \_\_\_\_\_ \\
-5. Rename variables & 5 & \_\_\_\_\_ \\
+1. Specify a research model that includes three predictor variables (continuously or categorically scaled) and one dependent (continuously scaled) variable & 5 & \_\_\_\_\_ \\
+2. Import data & 5 & \_\_\_\_\_ \\
+3. Include only those who consented\(^*\) & 5 & \_\_\_\_\_ \\
+4. Apply exclusionary criteria \(^*\) & 5 & \_\_\_\_\_ \\
+5. Rename variables to be sensible and systematic \(^*\) & 5 & \_\_\_\_\_ \\
 6. Downsize the dataframe to the variables of interest & 5 & \_\_\_\_\_ \\
-7. Write up of preliminary results & 5 & \_\_\_\_\_ \\
+7. Provide an APA style write-up of these preliminary steps & 5 & \_\_\_\_\_ \\
 8. Explanation to grader & 5 & \_\_\_\_\_ \\
 \textbf{Totals} & 40 & \_\_\_\_\_ \\
 \end{longtable}
+
+\(^*\) If your dataset does not require these steps, please provide example code that uses variables in your dataset. For example, for the inclusion or exclusion criteria, provide an example of how to filter in (or out) any variable on the basis of one of the response options. Once demonstrated, hashtag it out and rerun your script with those commands excluded.
 
 A \emph{homeworked example} for the Scrubbing, Scoring, and DataDx lessons (combined) follows the \protect\hyperlink{DataDx}{Data Dx} lesson.
 
@@ -894,7 +938,8 @@ R is sensitive to characters used filenames As downloaded, my Qualtrics .csv fil
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(qualtRics)}
-\NormalTok{QTRX\_csv }\OtherTok{\textless{}{-}} \FunctionTok{read\_survey}\NormalTok{(}\StringTok{"ReC\_Download210319.csv"}\NormalTok{, }\AttributeTok{strip\_html =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{import\_id =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{time\_zone=}\ConstantTok{NULL}\NormalTok{, }\AttributeTok{legacy =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{QTRX\_csv }\OtherTok{\textless{}{-}} \FunctionTok{read\_survey}\NormalTok{(}\StringTok{"ReC\_Download210319.csv"}\NormalTok{, }\AttributeTok{strip\_html =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{import\_id =} \ConstantTok{FALSE}\NormalTok{,}
+    \AttributeTok{time\_zone =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{legacy =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1018,11 +1063,11 @@ The packages used in this lesson are embedded in this code. When the hashtags ar
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#if(!require(tidyverse))\{install.packages("tidyverse")\}}
-\CommentTok{\#if(!require(psych))\{install.packages("psych")\}}
-\CommentTok{\#if(!require(mice))\{install.packages("mice")\}}
-\CommentTok{\#if(!require(sjstats))\{install.packages("sjstats")\}}
-\CommentTok{\#if(!require(formattable))\{install.packages("formattable")\}}
+\CommentTok{\# if(!require(tidyverse))\{install.packages(\textquotesingle{}tidyverse\textquotesingle{})\}}
+\CommentTok{\# if(!require(psych))\{install.packages(\textquotesingle{}psych\textquotesingle{})\}}
+\CommentTok{\# if(!require(mice))\{install.packages(\textquotesingle{}mice\textquotesingle{})\}}
+\CommentTok{\# if(!require(sjstats))\{install.packages(\textquotesingle{}sjstats\textquotesingle{})\}}
+\CommentTok{\# if(!require(formattable))\{install.packages(\textquotesingle{}formattable\textquotesingle{})\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1271,7 +1316,7 @@ I use \emph{different} names for the object/df in my R environment than I use fo
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{scrub\_df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{ (}\StringTok{"BlackStntsModel230902.csv"}\NormalTok{, }\AttributeTok{head =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{)}
+\NormalTok{scrub\_df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"BlackStntsModel230902.csv"}\NormalTok{, }\AttributeTok{head =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{)}
 \FunctionTok{str}\NormalTok{(scrub\_df)}
 \end{Highlighting}
 \end{Shaded}
@@ -1369,36 +1414,26 @@ One way to avoid this is to use the code below to identify the levels and the la
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace1 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace1,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace2 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace2,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace3 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace3,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace4 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace4,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace5 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace5,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace6 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace6,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace7 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace7,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace8 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace8,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace9 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace9,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace10 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace10,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace1 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace1, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace2 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace2, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace3 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace3, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace4 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace4, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace5 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace5, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace6 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace6, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace7 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace7, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace8 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace8, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace9 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace9, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{tRace10 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{iRace10, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{),}
+    \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1487,7 +1522,9 @@ Calculating the proportion of the BIPOC instructional staff could likely be acco
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{count.BIPOC }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(scrub\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"tRace1"}\NormalTok{, }\StringTok{"tRace2"}\NormalTok{, }\StringTok{"tRace3"}\NormalTok{, }\StringTok{"tRace4"}\NormalTok{, }\StringTok{"tRace5"}\NormalTok{, }\StringTok{"tRace6"}\NormalTok{, }\StringTok{"tRace7"}\NormalTok{, }\StringTok{"tRace8"}\NormalTok{, }\StringTok{"tRace9"}\NormalTok{, }\StringTok{"tRace10"}\NormalTok{)], }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sum}\NormalTok{(x }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{)))}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{count.BIPOC }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(scrub\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"tRace1"}\NormalTok{, }\StringTok{"tRace2"}\NormalTok{, }\StringTok{"tRace3"}\NormalTok{,}
+    \StringTok{"tRace4"}\NormalTok{, }\StringTok{"tRace5"}\NormalTok{, }\StringTok{"tRace6"}\NormalTok{, }\StringTok{"tRace7"}\NormalTok{, }\StringTok{"tRace8"}\NormalTok{, }\StringTok{"tRace9"}\NormalTok{, }\StringTok{"tRace10"}\NormalTok{)],}
+    \DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sum}\NormalTok{(x }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{)))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1495,7 +1532,9 @@ Next, I created a variable that counted the number of non-missing values across 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{count.nMiss }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(scrub\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"tRace1"}\NormalTok{, }\StringTok{"tRace2"}\NormalTok{, }\StringTok{"tRace3"}\NormalTok{, }\StringTok{"tRace4"}\NormalTok{, }\StringTok{"tRace5"}\NormalTok{, }\StringTok{"tRace6"}\NormalTok{, }\StringTok{"tRace7"}\NormalTok{, }\StringTok{"tRace8"}\NormalTok{, }\StringTok{"tRace9"}\NormalTok{, }\StringTok{"tRace10"}\NormalTok{)], }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(x)))}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{count.nMiss }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(scrub\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"tRace1"}\NormalTok{, }\StringTok{"tRace2"}\NormalTok{, }\StringTok{"tRace3"}\NormalTok{,}
+    \StringTok{"tRace4"}\NormalTok{, }\StringTok{"tRace5"}\NormalTok{, }\StringTok{"tRace6"}\NormalTok{, }\StringTok{"tRace7"}\NormalTok{, }\StringTok{"tRace8"}\NormalTok{, }\StringTok{"tRace9"}\NormalTok{, }\StringTok{"tRace10"}\NormalTok{)],}
+    \DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(x)))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1522,7 +1561,8 @@ Because we just created a host of new variables in creating the \emph{prop\_BIPO
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{scrub\_df }\OtherTok{\textless{}{-}}\NormalTok{(}\FunctionTok{select}\NormalTok{ (scrub\_df, ID, iBIPOC\_pr, cmBlack, Belong\_1}\SpecialCharTok{:}\NormalTok{Belong\_3, Blst\_1}\SpecialCharTok{:}\NormalTok{Blst\_6))}
+\NormalTok{scrub\_df }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{select}\NormalTok{(scrub\_df, ID, iBIPOC\_pr, cmBlack, Belong\_1}\SpecialCharTok{:}\NormalTok{Belong\_3,}
+\NormalTok{    Blst\_1}\SpecialCharTok{:}\NormalTok{Blst\_6))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1578,9 +1618,9 @@ To analyze missingness at this level, we need a df that has only the variables o
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#further update to exclude the n\_miss and prop\_miss variables}
+\CommentTok{\# further update to exclude the n\_miss and prop\_miss variables}
 \NormalTok{scrub\_df }\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{ (}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(ID, nmiss, prop\_miss))}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(ID, nmiss, prop\_miss))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1596,7 +1636,7 @@ Missing data analysis commonly looks at proportions by:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#what proportion of cells missing across entire dataset}
+\CommentTok{\# what proportion of cells missing across entire dataset}
 \NormalTok{formattable}\SpecialCharTok{::}\FunctionTok{percent}\NormalTok{(}\FunctionTok{mean}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(scrub\_df)))}
 \end{Highlighting}
 \end{Shaded}
@@ -1607,7 +1647,7 @@ Missing data analysis commonly looks at proportions by:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#what proportion of cases (rows) are complete (nonmissing)}
+\CommentTok{\# what proportion of cases (rows) are complete (nonmissing)}
 \NormalTok{formattable}\SpecialCharTok{::}\FunctionTok{percent}\NormalTok{(}\FunctionTok{mean}\NormalTok{(}\FunctionTok{complete.cases}\NormalTok{(scrub\_df)))}
 \end{Highlighting}
 \end{Shaded}
@@ -1639,7 +1679,7 @@ The last column and row contain row and column counts, respectively.
 \begin{Highlighting}[]
 \NormalTok{mice\_out }\OtherTok{\textless{}{-}}\NormalTok{ mice}\SpecialCharTok{::}\FunctionTok{md.pattern}\NormalTok{(scrub\_df, }\AttributeTok{plot =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{rotate.names =} \ConstantTok{TRUE}\NormalTok{)}
 \NormalTok{mice\_out}
-\FunctionTok{write.csv}\NormalTok{ (mice\_out, }\AttributeTok{file=}\StringTok{"mice\_out.csv"}\NormalTok{) }\CommentTok{\#optional to write it to a .csv file}
+\FunctionTok{write.csv}\NormalTok{(mice\_out, }\AttributeTok{file =} \StringTok{"mice\_out.csv"}\NormalTok{)  }\CommentTok{\#optional to write it to a .csv file}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1652,7 +1692,9 @@ Each row in the table represents a different pattern of missingness. At the time
 
 To date, we do not have statistical tools that can accurately diagnose our patterns of missingness. You may have heard that ``Little's MCAR'' is a helpful tool. Unfortunately, as Enders \citeyearpar{enders_applied_2010} has noted, the tool is problematic. Perhaps the most significant one is that under the null hypothesis, a statistically significant test indicates that the missing data are MAR (missing at random) or MNAR (missing not at random); a non-significant test indicates the data are MCAR (missint completely at random) or MNAR. Consequently, regardless of the result, an MNAR circumstance cannot be ruled out. Correspondingly, the Little's MCAR test has disappeard from the more reliable R packages that assess missingness.
 
-Enders \citeyearpar{enders_applied_2010} \emph{Applied Missing Data Analysis} text does provide a set of \href{https://www.google.com/books/edition/Applied_Missing_Data_Analysis/uHt4EAAAQBAJ?hl=en\&gbpv=1\&dq=enders+missing+data\&pg=PP1\&printsec=frontcover}{figures} (page 3) that illustrate common missing data patterns. Comparing these to the figure produced with \emph{mice::mdpattern} our data looks somewhat monotonic -- that is, as individuals completed the survey, they began to experience test fatigue and simply stopped responding.
+Enders \citeyearpar{enders_applied_2010} \emph{Applied Missing Data Analysis} text does provide a set of \href{https://www.google.com/books/edition/Applied_Missing_Data_Analysis/uHt4EAAAQBAJ?hl=en\&gbpv=1\&dq=enders+missing+data\&pg=PP1\&printsec=frontcover}{figures} (page 3) that illustrate common missing data patterns. Comparing these to the figure produced with \emph{mice::mdpattern} our data looks somewhat monotonic -- that is, as individuals completed the survey, they began to experience test fatigue and simply stopped responding. Diagnosisng monotonicity requires that the variables in the dataset must be in the order in which the students completed them. If the variables have been re-ordered or if the surveys were presented to students in a randomized order, then more data manipulation would be required before attributing missingnes to test fatigue.
+
+Survey programs like Qualtrics offer the randomization of items within blocks (or blocks themselves). This can help distribute missingness caused by test fatigue so that more cases can be retained.
 
 \hypertarget{scoring}{%
 \section{Scoring}\label{scoring}}
@@ -1682,8 +1724,8 @@ To rescore:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{scrub\_df}\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{rBlst\_1 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ Blst\_1) }\CommentTok{\#if you had multiple items, you could add a pipe (\%\textgreater{}\%) at the end of the line and add more until the last one}
+\NormalTok{scrub\_df }\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{rBlst\_1 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ Blst\_1)  }\CommentTok{\#if you had multiple items, you could add a pipe (\%\textgreater{}\%) at the end of the line and add more until the last one}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1711,17 +1753,18 @@ In our case, the scale assessing belonging \citep{bollen_perceived_1990, hurtado
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Making the list of variables}
-\NormalTok{Belonging\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Belong\_1\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Belong\_2\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Belong\_3\textquotesingle{}}\NormalTok{)}
-\NormalTok{ResponseBL\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}rBlst\_1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Blst\_4\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Blst\_6\textquotesingle{}}\NormalTok{)}
-\NormalTok{StigmaBL\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Blst\_2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Blst\_3\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Blst\_5\textquotesingle{}}\NormalTok{)}
-\NormalTok{ClimateBL\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}rBlst\_1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Blst\_4\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Blst\_6\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Blst\_2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Blst\_3\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Blst\_5\textquotesingle{}}\NormalTok{ )}
+\CommentTok{\# Making the list of variables}
+\NormalTok{Belonging\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Belong\_1"}\NormalTok{, }\StringTok{"Belong\_2"}\NormalTok{, }\StringTok{"Belong\_3"}\NormalTok{)}
+\NormalTok{ResponseBL\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"rBlst\_1"}\NormalTok{, }\StringTok{"Blst\_4"}\NormalTok{, }\StringTok{"Blst\_6"}\NormalTok{)}
+\NormalTok{StigmaBL\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Blst\_2"}\NormalTok{, }\StringTok{"Blst\_3"}\NormalTok{, }\StringTok{"Blst\_5"}\NormalTok{)}
+\NormalTok{ClimateBL\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"rBlst\_1"}\NormalTok{, }\StringTok{"Blst\_4"}\NormalTok{, }\StringTok{"Blst\_6"}\NormalTok{, }\StringTok{"Blst\_2"}\NormalTok{, }\StringTok{"Blst\_3"}\NormalTok{,}
+    \StringTok{"Blst\_5"}\NormalTok{)}
 
-\CommentTok{\#Creating the new variables}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{Belonging }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(scrub\_df[,Belonging\_vars], .}\DecValTok{65}\NormalTok{)}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{ResponseBL }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(scrub\_df[,ResponseBL\_vars], .}\DecValTok{80}\NormalTok{)}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{StigmaBL }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(scrub\_df[,StigmaBL\_vars], .}\DecValTok{80}\NormalTok{)}
-\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{ClimateBL }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(scrub\_df[,ClimateBL\_vars], .}\DecValTok{80}\NormalTok{)}
+\CommentTok{\# Creating the new variables}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{Belonging }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(scrub\_df[, Belonging\_vars], }\FloatTok{0.65}\NormalTok{)}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{ResponseBL }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(scrub\_df[, ResponseBL\_vars], }\FloatTok{0.8}\NormalTok{)}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{StigmaBL }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(scrub\_df[, StigmaBL\_vars], }\FloatTok{0.8}\NormalTok{)}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{ClimateBL }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(scrub\_df[, ClimateBL\_vars], }\FloatTok{0.8}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1729,10 +1772,12 @@ Later it will be helpful to have a df with the item and scale-level variables. I
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{scrub\_df }\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{ID =} \FunctionTok{row\_number}\NormalTok{())}
+\NormalTok{scrub\_df }\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{ID =} \FunctionTok{row\_number}\NormalTok{())}
 
-\CommentTok{\#moving the ID number to the first column; requires }
-\NormalTok{scrub\_df }\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df}\SpecialCharTok{\%\textgreater{}\%}\NormalTok{dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(ID, }\FunctionTok{everything}\NormalTok{())}
+\CommentTok{\# moving the ID number to the first column; requires}
+\NormalTok{scrub\_df }\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(ID, }\FunctionTok{everything}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1740,7 +1785,8 @@ Let's save our \emph{scrub\_df} data for this and write it as an outfile. I will
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{write.table}\NormalTok{(scrub\_df, }\AttributeTok{file=}\StringTok{"BlStItmsScrs230902.csv"}\NormalTok{, }\AttributeTok{sep=}\StringTok{","}\NormalTok{, }\AttributeTok{col.names=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{row.names=}\ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{write.table}\NormalTok{(scrub\_df, }\AttributeTok{file =} \StringTok{"BlStItmsScrs230902.csv"}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{, }\AttributeTok{col.names =} \ConstantTok{TRUE}\NormalTok{,}
+    \AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{)}
 \FunctionTok{saveRDS}\NormalTok{(scrub\_df, }\StringTok{"BlStItmsScrs230902.rds"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1760,8 +1806,9 @@ First let's get the df down to the variables we want to retain:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{(}\FunctionTok{select}\NormalTok{ (scrub\_df, iBIPOC\_pr, cmBlack, Belonging, ResponseBL, StigmaBL, ClimateBL))}
-\NormalTok{ScoredCaseMiss }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(scored) }\CommentTok{\#I produced this object for the sole purpose of feeding the number of cases into the inline text, below}
+\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{select}\NormalTok{(scrub\_df, iBIPOC\_pr, cmBlack, Belonging, ResponseBL,}
+\NormalTok{    StigmaBL, ClimateBL))}
+\NormalTok{ScoredCaseMiss }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(scored)  }\CommentTok{\#I produced this object for the sole purpose of feeding the number of cases into the inline text, below}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1771,17 +1818,18 @@ Using the \emph{describe()} function from the \emph{psych} package, we can inves
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Create a variable (n\_miss) that counts the number missing}
-\NormalTok{scored}\SpecialCharTok{$}\NormalTok{n\_miss }\OtherTok{\textless{}{-}}\NormalTok{ scored}\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(iBIPOC\_pr}\SpecialCharTok{:}\NormalTok{ClimateBL) }\SpecialCharTok{\%\textgreater{}\%} 
-\NormalTok{is.na }\SpecialCharTok{\%\textgreater{}\%} 
-\NormalTok{rowSums}
+\CommentTok{\# Create a variable (n\_miss) that counts the number missing}
+\NormalTok{scored}\SpecialCharTok{$}\NormalTok{n\_miss }\OtherTok{\textless{}{-}}\NormalTok{ scored }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(iBIPOC\_pr}\SpecialCharTok{:}\NormalTok{ClimateBL) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    is.na }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rowSums}
 
-\CommentTok{\#Create a proportion missing by dividing n\_miss by the total number of variables (6)}
-\CommentTok{\#Pipe to sort in order of descending frequency to get a sense of the missingness}
-\NormalTok{scored}\OtherTok{\textless{}{-}}\NormalTok{ scored}\SpecialCharTok{\%\textgreater{}\%}
-\FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (n\_miss}\SpecialCharTok{/}\DecValTok{6}\NormalTok{)}\SpecialCharTok{*}\DecValTok{100}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n\_miss))}
+\CommentTok{\# Create a proportion missing by dividing n\_miss by the total number}
+\CommentTok{\# of variables (6) Pipe to sort in order of descending frequency to}
+\CommentTok{\# get a sense of the missingness}
+\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ scored }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (n\_miss}\SpecialCharTok{/}\DecValTok{6}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n\_miss))}
 
 \NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(scored}\SpecialCharTok{$}\NormalTok{prop\_miss)}
 \end{Highlighting}
@@ -1810,13 +1858,14 @@ We need to decide what is our retention threshhold. Twenty percent seems to be a
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#update df to have only those with at least 20\% of complete data (this is an arbitrary decision)}
-\NormalTok{scored }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(scored, prop\_miss }\SpecialCharTok{\textless{}=} \DecValTok{20}\NormalTok{) }
+\CommentTok{\# update df to have only those with at least 20\% of complete data}
+\CommentTok{\# (this is an arbitrary decision)}
+\NormalTok{scored }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(scored, prop\_miss }\SpecialCharTok{\textless{}=} \DecValTok{20}\NormalTok{)}
 
-\CommentTok{\#the variable selection just lops off the proportion missing}
-\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{(}\FunctionTok{select}\NormalTok{ (scored, iBIPOC\_pr}\SpecialCharTok{:}\NormalTok{ClimateBL)) }
+\CommentTok{\# the variable selection just lops off the proportion missing}
+\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{select}\NormalTok{(scored, iBIPOC\_pr}\SpecialCharTok{:}\NormalTok{ClimateBL))}
 
-\CommentTok{\#this produces the number of cases retained}
+\CommentTok{\# this produces the number of cases retained}
 \FunctionTok{nrow}\NormalTok{(scored)}
 \end{Highlighting}
 \end{Shaded}
@@ -1851,14 +1900,14 @@ Again, we look at missingness as the proportion of
 \begin{itemize}
 \tightlist
 \item
-  individual cells across the dataset, and
+  individual cells across the scored dataset, and
 \item
   rows/cases with nonmissing data
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#percent missing across df}
+\CommentTok{\# percent missing across df}
 \NormalTok{formattable}\SpecialCharTok{::}\FunctionTok{percent}\NormalTok{(}\FunctionTok{mean}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(scored)))}
 \end{Highlighting}
 \end{Shaded}
@@ -1869,8 +1918,8 @@ Again, we look at missingness as the proportion of
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#percent of rows with nonmissing data}
-\NormalTok{formattable}\SpecialCharTok{::}\FunctionTok{percent}\NormalTok{(}\FunctionTok{mean}\NormalTok{(}\FunctionTok{complete.cases}\NormalTok{(scored))) }
+\CommentTok{\# percent of rows with nonmissing data}
+\NormalTok{formattable}\SpecialCharTok{::}\FunctionTok{percent}\NormalTok{(}\FunctionTok{mean}\NormalTok{(}\FunctionTok{complete.cases}\NormalTok{(scored)))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1901,7 +1950,7 @@ Returning to the \emph{mice} package, we can use the \emph{md.pattern()} functio
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mice\_ScaleLvl }\OtherTok{\textless{}{-}}\NormalTok{ mice}\SpecialCharTok{::}\FunctionTok{md.pattern}\NormalTok{(scored, }\AttributeTok{plot =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{rotate.names=}\ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{mice\_ScaleLvl }\OtherTok{\textless{}{-}}\NormalTok{ mice}\SpecialCharTok{::}\FunctionTok{md.pattern}\NormalTok{(scored, }\AttributeTok{plot =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{rotate.names =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1920,7 +1969,9 @@ Returning to the \emph{mice} package, we can use the \emph{md.pattern()} functio
 ##          0         0          0        0         0         2 2
 \end{verbatim}
 
-At the scale-level, this is much easier to interpret. There are \emph{2} rows of data because there are only \emph{2} patterns of missingness. The most common pattern is non-missing data (\emph{n} = 56).
+At the scale-level, this is much easier to interpret. There are \emph{2} rows of data because there are only \emph{2} patterns of missingness. The most common pattern is non-missing data (\emph{n} = 59).
+
+If our statistical choice uses listwise deletion (i.e., the case is eliminated if one or more variables in the model has missing data), our sample size will be 59. As we will earn in later chapters, there are alternatives (i.e., specifying a FIML option in analyses that use maximum likelihood estimators) that can use all of the cases -- even those with missing data.
 
 \hypertarget{r-eady-for-analysis}{%
 \subsection{R-eady for Analysis}\label{r-eady-for-analysis}}
@@ -2055,9 +2106,9 @@ If you chose this option in the prior chapter, you used raw data that was availa
 \subsection{Grading Rubric}\label{grading-rubric-1}}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.7642}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1220}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1138}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.7521}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1282}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1197}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Assignment Component
@@ -2070,15 +2121,15 @@ Points Earned
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-1. Proper formatting of your first variable & 5 & \_\_\_\_\_ \\
-2. Proper formatting of your second variable & 5 & \_\_\_\_\_ \\
-3. Proper formatting of your third variable & 5 & \_\_\_\_\_ \\
+1. Proper formatting of the items(s) in your first predictor variable & 5 & \_\_\_\_\_ \\
+2. Proper formatting of the items(s) in your second predictor variable & 5 & \_\_\_\_\_ \\
+3. Proper formatting of the items(s) your third predictor variable & 5 & \_\_\_\_\_ \\
+4. Proper formatting of your dependent variable & 5 & \_\_\_\_\_ \\
 4. Evaluate and interpret item-level missingness & 5 & \_\_\_\_\_ \\
 5. Score any scales/subscales & 5 & \_\_\_\_\_ \\
-6. Evaluate and interpret scale-level missingness & 5 & \_\_\_\_\_ \\
 7. Represent your work in an APA-style write-up (added to the writeup in the previous chapter) & 5 & \_\_\_\_\_ \\
 8. Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 40 & \_\_\_\_\_ \\
+\textbf{Totals} & 45 & \_\_\_\_\_ \\
 \end{longtable}
 
 A \emph{homeworked example} for the Scrubbing, Scoring, and DataDx lessons (combined) follows the \protect\hyperlink{DataDx}{Data Dx} lesson.
@@ -2171,9 +2222,15 @@ The packages used in this lesson are embedded in this code. When the hashtags ar
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(tidyverse))\{}\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)\} }\CommentTok{\#this includes dplyr}
-\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(psych))\{}\FunctionTok{install.packages}\NormalTok{(}\StringTok{"psych"}\NormalTok{)\}}
-\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(apaTables))\{}\FunctionTok{install.packages}\NormalTok{(}\StringTok{"apaTables"}\NormalTok{)\}}
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(tidyverse)) \{}
+    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\NormalTok{\}  }\CommentTok{\#this includes dplyr}
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(psych)) \{}
+    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"psych"}\NormalTok{)}
+\NormalTok{\}}
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(apaTables)) \{}
+    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"apaTables"}\NormalTok{)}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2263,15 +2320,15 @@ The df from which I am pulling data was created and written as an outfile in the
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{item\_scores\_df }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"BlStItmsScrs230902.rds"}\NormalTok{)}
-\CommentTok{\#item\_scores\_df \textless{}{-} read.csv("BlStItmsScrs230902.csv", header = TRUE)}
+\CommentTok{\# item\_scores\_df \textless{}{-} read.csv(\textquotesingle{}BlStItmsScrs230902.csv\textquotesingle{}, header = TRUE)}
 \end{Highlighting}
 \end{Shaded}
 
-From this, we create tiny dfs, one for each of the alpha coefficients we need to create. A priori, we are planning to use all six items of the campus climate scale. We'll go ahead and also calculate the subscales because (a) it's good practice and (b) if the alpha is low, a \emph{reason} might show up in one of the subscales.
+Within the \emph{psych::alpha} function we can retrieve alpha coefficients for the specific variables of interest by imbedding a concatonated list. A priori, we are planning to use the campus climate scale as a total score. However, we'll go ahead and also calculate alpha coefficients for the subscales because (a) it's good practice and (b) if the alpha is low, a \emph{reason} might show up in one of the subscales.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#alpha for the belonging scale}
+\CommentTok{\# alpha for the belonging scale}
 \NormalTok{psych}\SpecialCharTok{::}\FunctionTok{alpha}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"Belong\_1"}\NormalTok{, }\StringTok{"Belong\_2"}\NormalTok{, }\StringTok{"Belong\_3"}\NormalTok{)])}
 \end{Highlighting}
 \end{Shaded}
@@ -2318,8 +2375,9 @@ Cronbach's alpha for the belonging scale was 0.95.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#alpha for the campus climate for Black students scale}
-\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{alpha}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"rBlst\_1"}\NormalTok{, }\StringTok{"Blst\_2"}\NormalTok{, }\StringTok{"Blst\_3"}\NormalTok{, }\StringTok{"Blst\_4"}\NormalTok{, }\StringTok{"Blst\_5"}\NormalTok{, }\StringTok{"Blst\_6"}\NormalTok{)])}
+\CommentTok{\# alpha for the campus climate for Black students scale}
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{alpha}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"rBlst\_1"}\NormalTok{, }\StringTok{"Blst\_2"}\NormalTok{, }\StringTok{"Blst\_3"}\NormalTok{, }\StringTok{"Blst\_4"}\NormalTok{,}
+    \StringTok{"Blst\_5"}\NormalTok{, }\StringTok{"Blst\_6"}\NormalTok{)])}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2375,7 +2433,8 @@ Since this value is \(\geq\) .80, it is within the realm of acceptability. Let's
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#alpha for the stigma scale of the campus climate for Black students scale}
+\CommentTok{\# alpha for the stigma scale of the campus climate for Black students}
+\CommentTok{\# scale}
 \NormalTok{psych}\SpecialCharTok{::}\FunctionTok{alpha}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"Blst\_3"}\NormalTok{, }\StringTok{"Blst\_2"}\NormalTok{, }\StringTok{"Blst\_5"}\NormalTok{)])}
 \end{Highlighting}
 \end{Shaded}
@@ -2420,7 +2479,8 @@ Cronbach's alpha for the campus climate stigma subscale was 0.73.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#alpha for the campus responsiveness scale of the campus climate for Black students scale}
+\CommentTok{\# alpha for the campus responsiveness scale of the campus climate for}
+\CommentTok{\# Black students scale}
 \NormalTok{psych}\SpecialCharTok{::}\FunctionTok{alpha}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"rBlst\_1"}\NormalTok{, }\StringTok{"Blst\_4"}\NormalTok{, }\StringTok{"Blst\_6"}\NormalTok{)])}
 \end{Highlighting}
 \end{Shaded}
@@ -2506,14 +2566,18 @@ The difference between ``int'' (integer) and ``num'' (numerical) is that integer
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#the script may look a little complicated; I could have simply written:}
-\CommentTok{\#describe(item\_scores\_df) }
-\CommentTok{\#because I only wanted only a few variables, I provided them in a concatenated: list [c("iBIPOC\_pr", "cmBlack", "Belonging", "ClimateBL")]}
-\CommentTok{\#I used type =1 so that we can interpret skew and kurtosis along Kline\textquotesingle{}s recommendations}
-\CommentTok{\#I created an object from the descriptive results, this can be used to export the results for easier table making or manipulation outside of R}
+\CommentTok{\# the script may look a little complicated; I could have simply}
+\CommentTok{\# written: describe(item\_scores\_df) because I only wanted only a few}
+\CommentTok{\# variables, I provided them in a concatenated: list [c(\textquotesingle{}iBIPOC\_pr\textquotesingle{},}
+\CommentTok{\# \textquotesingle{}cmBlack\textquotesingle{}, \textquotesingle{}Belonging\textquotesingle{}, \textquotesingle{}ClimateBL\textquotesingle{})] I used type =1 so that we can}
+\CommentTok{\# interpret skew and kurtosis along Kline\textquotesingle{}s recommendations I created}
+\CommentTok{\# an object from the descriptive results, this can be used to export}
+\CommentTok{\# the results for easier table making or manipulation outside of R}
 
-\NormalTok{descriptives }\OtherTok{\textless{}{-}}\NormalTok{ psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iBIPOC\_pr"}\NormalTok{, }\StringTok{"cmBlack"}\NormalTok{, }\StringTok{"Belonging"}\NormalTok{, }\StringTok{"ClimateBL"}\NormalTok{)], }\AttributeTok{type =} \DecValTok{1}\NormalTok{)}
-\CommentTok{\#When we capture results in an object, we need to write it below so the results will display}
+\NormalTok{descriptives }\OtherTok{\textless{}{-}}\NormalTok{ psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iBIPOC\_pr"}\NormalTok{, }\StringTok{"cmBlack"}\NormalTok{,}
+    \StringTok{"Belonging"}\NormalTok{, }\StringTok{"ClimateBL"}\NormalTok{)], }\AttributeTok{type =} \DecValTok{1}\NormalTok{)}
+\CommentTok{\# When we capture results in an object, we need to write it below so}
+\CommentTok{\# the results will display}
 \NormalTok{descriptives}
 \end{Highlighting}
 \end{Shaded}
@@ -2533,19 +2597,21 @@ The difference between ``int'' (integer) and ``num'' (numerical) is that integer
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#this can be useful if you wish to manually format the data for an APA style table}
-\FunctionTok{write.csv}\NormalTok{ (descriptives, }\AttributeTok{file=}\StringTok{"DataDx\_descripts.csv"}\NormalTok{) }
+\CommentTok{\# this can be useful if you wish to manually format the data for an}
+\CommentTok{\# APA style table}
+\FunctionTok{write.csv}\NormalTok{(descriptives, }\AttributeTok{file =} \StringTok{"DataDx\_descripts.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-Skew and kurtosis are one way to evaluate whether or not data are normally distributed. When we use the ``type=1'' argument, the skew and kurtosis indices in the \emph{psych} package can be interpreted according to Kline's \citeyearpar{kline_data_2016} guidelines. Regarding skew, values greater than the absolute value of 3.0 are generally considered ``severely skewed.'' Regarding kurtosis, ``severely kurtotic'' is argued to be anywhere greater 8 to 20. Kline recommended using a conservative threshold of the absolute value of 10. The skew and kurtosis values for our variables fall well below these thessholds.
+Skew and kurtosis are one way to evaluate whether or not data are normally distributed. When we use the ``type=1'' argument, the skew and kurtosis indices in the \emph{psych} package can be interpreted according to Kline's \citeyearpar{kline_data_2016} guidelines. Regarding skew, values greater than the absolute value of 3.0 are generally considered ``severely skewed.'' Regarding kurtosis, ``severely kurtotic'' is argued to be anywhere greater 8 to 20. Kline recommended using a conservative threshold of the absolute value of 10. The skew and kurtosis values for our variables fall well below these thesholds.
 
 We can also apply the Shapiro-Wilk test of normality to each of our variables. When the \(p\) value is \textless{} .05, the variable's distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#The shapiro{-}test is in base R; it\textquotesingle{}s specification is simple:  shapiro.test(df$variable)}
-\CommentTok{\#I added the object (and had to list it below) so I can use the inline text function}
+\CommentTok{\# The shapiro{-}test is in base R; it\textquotesingle{}s specification is simple:}
+\CommentTok{\# shapiro.test(df$variable) I added the object (and had to list it}
+\CommentTok{\# below) so I can use the inline text function}
 \FunctionTok{shapiro.test}\NormalTok{(item\_scores\_df}\SpecialCharTok{$}\NormalTok{cmBlack)}
 \end{Highlighting}
 \end{Shaded}
@@ -2629,7 +2695,8 @@ The \emph{pairs.panels()} function from the \emph{psych} package is useful for s
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{pairs.panels}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iBIPOC\_pr"}\NormalTok{, }\StringTok{"cmBlack"}\NormalTok{, }\StringTok{"Belonging"}\NormalTok{, }\StringTok{"ClimateBL"}\NormalTok{)], }\AttributeTok{stars =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{lm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{pairs.panels}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iBIPOC\_pr"}\NormalTok{, }\StringTok{"cmBlack"}\NormalTok{, }\StringTok{"Belonging"}\NormalTok{,}
+    \StringTok{"ClimateBL"}\NormalTok{)], }\AttributeTok{stars =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{lm =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2650,7 +2717,8 @@ Numeric variables are required in the of the calculation of the Mahalanobis.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{item\_scores\_df}\SpecialCharTok{$}\NormalTok{Mahal }\OtherTok{\textless{}{-}}\NormalTok{ psych}\SpecialCharTok{::}\FunctionTok{outlier}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iBIPOC\_pr"}\NormalTok{, }\StringTok{"cmBlack"}\NormalTok{, }\StringTok{"Belonging"}\NormalTok{, }\StringTok{"ClimateBL"}\NormalTok{)]) }
+\NormalTok{item\_scores\_df}\SpecialCharTok{$}\NormalTok{Mahal }\OtherTok{\textless{}{-}}\NormalTok{ psych}\SpecialCharTok{::}\FunctionTok{outlier}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iBIPOC\_pr"}\NormalTok{, }\StringTok{"cmBlack"}\NormalTok{,}
+    \StringTok{"Belonging"}\NormalTok{, }\StringTok{"ClimateBL"}\NormalTok{)])}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2675,10 +2743,13 @@ Using this information we can determine cases that have a Mahalanobis distance v
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#creates a variable indicating TRUE or FALSE if an item is an outlier}
-\NormalTok{item\_scores\_df}\SpecialCharTok{$}\NormalTok{MOutlier }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{if\_else}\NormalTok{(item\_scores\_df}\SpecialCharTok{$}\NormalTok{Mahal }\SpecialCharTok{\textgreater{}}\NormalTok{ (}\FunctionTok{median}\NormalTok{(item\_scores\_df}\SpecialCharTok{$}\NormalTok{Mahal) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{3}\SpecialCharTok{*}\FunctionTok{sd}\NormalTok{(item\_scores\_df}\SpecialCharTok{$}\NormalTok{Mahal))), }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{)}
+\CommentTok{\# creates a variable indicating TRUE or FALSE if an item is an}
+\CommentTok{\# outlier}
+\NormalTok{item\_scores\_df}\SpecialCharTok{$}\NormalTok{MOutlier }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{if\_else}\NormalTok{(item\_scores\_df}\SpecialCharTok{$}\NormalTok{Mahal }\SpecialCharTok{\textgreater{}}\NormalTok{ (}\FunctionTok{median}\NormalTok{(item\_scores\_df}\SpecialCharTok{$}\NormalTok{Mahal) }\SpecialCharTok{+}
+\NormalTok{    (}\DecValTok{3} \SpecialCharTok{*} \FunctionTok{sd}\NormalTok{(item\_scores\_df}\SpecialCharTok{$}\NormalTok{Mahal))), }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{)}
 
-\CommentTok{\#shows us the first 6 rows of the data so we can see the new variables (Mahal, MOutlier)}
+\CommentTok{\# shows us the first 6 rows of the data so we can see the new}
+\CommentTok{\# variables (Mahal, MOutlier)}
 \FunctionTok{head}\NormalTok{(item\_scores\_df)}
 \end{Highlighting}
 \end{Shaded}
@@ -2728,12 +2799,12 @@ Using this information we can determine cases that have a Mahalanobis distance v
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#counts frequency TRUE and FALSE indicating outlier or not}
-\NormalTok{OutlierCount}\OtherTok{\textless{}{-}}\NormalTok{ item\_scores\_df}\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{count}\NormalTok{(MOutlier)}
+\CommentTok{\# counts frequency TRUE and FALSE indicating outlier or not}
+\NormalTok{OutlierCount }\OtherTok{\textless{}{-}}\NormalTok{ item\_scores\_df }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{count}\NormalTok{(MOutlier)}
 
-\CommentTok{\#calculating how many outliers a slightly different way}
-\FunctionTok{nrow}\NormalTok{(item\_scores\_df) }\SpecialCharTok{{-}}\NormalTok{ OutlierCount }
+\CommentTok{\# calculating how many outliers a slightly different way}
+\FunctionTok{nrow}\NormalTok{(item\_scores\_df) }\SpecialCharTok{{-}}\NormalTok{ OutlierCount}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2865,7 +2936,8 @@ Results of a multiple regression predicting the respondents' perceptions of camp
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.cor.table}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iBIPOC\_pr"}\NormalTok{, }\StringTok{"cmBlack"}\NormalTok{, }\StringTok{"Belonging"}\NormalTok{, }\StringTok{"ClimateBL"}\NormalTok{)], }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{show.sig.stars =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{filename =} \StringTok{"Table1\_M\_SDs\_r\_DataDx.doc"}\NormalTok{)}
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.cor.table}\NormalTok{(item\_scores\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iBIPOC\_pr"}\NormalTok{, }\StringTok{"cmBlack"}\NormalTok{, }\StringTok{"Belonging"}\NormalTok{,}
+    \StringTok{"ClimateBL"}\NormalTok{)], }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{show.sig.stars =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{filename =} \StringTok{"Table1\_M\_SDs\_r\_DataDx.doc"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2980,8 +3052,1008 @@ Assignment Component
 3. Evaluate multivarite normality (Mahalanobis test) & 5 & \_\_\_\_\_ \\
 4. Represent your work in an APA-style write-up (added to the writeup in the previous chapter) & 5 & \_\_\_\_\_ \\
 5. Conduct a quick analysis (e.g., regression, ANOVA) including at least three variables & 5 & \_\_\_\_\_ \\
+6. Explanation to grader & 5 & \_\_\_\_\_ \\
 \textbf{Totals} & 30 & \_\_\_\_\_ \\
 \end{longtable}
+
+\hypertarget{homeworked-example}{%
+\section{Homeworked Example}\label{homeworked-example}}
+
+\href{}{Screencast Link}
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the \href{https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html\#introduction-to-the-data-set-used-for-homeworked-examples}{introductory lesson} in \href{https://lhbikos.github.io/ReCenterPsychStats/}{ReCentering Psych Stats}. An .rds file which holds the data is located in the \href{https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples}{Worked Examples} folder at the GitHub site the hosts the OER. The file name is \emph{ReC.rds}.
+
+Although the lessons focused on preparing data for analyses were presented in smaller sections, this homeworked example combines the suggestions for practice from the \protect\hyperlink{scrub}{Scrubbing}, \protect\hyperlink{scrub}{Scoring}, and \protect\hyperlink{datadx}{Data Dx} lessons. My hope is that is cumulative presentation is a closer approximation of what researchers need for their research projects.
+
+These lessons were created to prepare a set of data to analyze a specific research model. Consequently, the model should be known and described at the beginning.
+
+\hypertarget{scrubbing-1}{%
+\subsection{Scrubbing}\label{scrubbing-1}}
+
+\hypertarget{specify-a-research-model}{%
+\subsubsection*{Specify a research model}\label{specify-a-research-model}}
+
+
+A further requirement was that the model should include three predictor variables (continuously or categorically scaled) and one dependent (continuously scaled) variable.
+
+I am hypothesizing that socially responsive pedagogy (my dependent variable) will increase as a function of:
+
+\begin{itemize}
+\tightlist
+\item
+  the transition from SPSS (0) to R(1),
+\item
+  the transition from a pre-centered (0) to re-centered (1) curriculum, and
+\item
+  higher evaluations of traditional pedagogy
+\end{itemize}
+
+Because this data is nested within the person (i.e., students can contribute up to three course evaluations over the ANOVA, multivariate, and psychometrics courses) proper analysis would require a statistic (e.g., multilevel modeling) that would address the dependency in the data. Therefore, I will include only those students who are taking the multivariate modeling class.
+
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the multivariate modeling class. You could choose ANOVA or psychometrics. You could also choose a different combinations of variables.}
+
+\begin{figure}
+\centering
+\includegraphics{Worked_Examples/images/homeworked_model.jpg}
+\caption{An image of our the prediction model for the homeworked example.}
+\end{figure}
+
+\hypertarget{import-data}{%
+\subsubsection*{Import data}\label{import-data}}
+
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{raw }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\FunctionTok{nrow}\NormalTok{(raw)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 310
+\end{verbatim}
+
+\hypertarget{include-only-those-who-consented}{%
+\subsubsection*{Include only those who consented}\label{include-only-those-who-consented}}
+
+
+Because this data is publicly posted on the Open Science Framework, it was necessary for me to already exclude those individuals. This data was unique in that students could freely write some version of ``Opt out.'' My original code included a handful of versions, but here was the basic form:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# testing to see if my code worked raw \textless{}{-} dplyr::filter (raw,}
+\CommentTok{\# SPFC.Decolonize.Opt.Out != \textquotesingle{}Okay\textquotesingle{})}
+\NormalTok{raw }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(raw, SPFC.Decolonize.Opt.Out }\SpecialCharTok{!=} \StringTok{"Opt Out"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{apply-exclusionary-criteria}{%
+\subsubsection*{Apply exclusionary criteria}\label{apply-exclusionary-criteria}}
+
+
+I want to exclude students' responses for the ANOVA and psychometrics courses.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{raw }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(raw, Course }\SpecialCharTok{==} \StringTok{"Multivariate"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+At this point, these my only inclusion/exclusion criteria. I can determine how many students (who consented) completed any portion of the survey.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(raw)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 84
+\end{verbatim}
+
+\hypertarget{rename-variables-to-be-sensible-and-systematic}{%
+\subsubsection*{Rename variables to be sensible and systematic}\label{rename-variables-to-be-sensible-and-systematic}}
+
+
+Because this dataset is already on the OSF, the variables are sensibly named. However, I don't like ``SPFC.Decolonize.Opt.Out''. I will change it to simply ``OptOut.''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{raw }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{rename}\NormalTok{(raw, }\AttributeTok{OptOut =} \StringTok{"SPFC.Decolonize.Opt.Out"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+It would have made more sense to do this before I used this variable in the calculations.
+
+\hypertarget{downsize-the-dataframe-to-the-variables-of-interest}{%
+\subsubsection*{Downsize the dataframe to the variables of interest}\label{downsize-the-dataframe-to-the-variables-of-interest}}
+
+
+I will need to include:
+
+\begin{itemize}
+\tightlist
+\item
+  deID
+\item
+  StatsPkg
+\item
+  Centering
+\item
+  Items included in the traditional pedagogy scale: ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation
+\item
+  Items included in the socially responsive pedagogy scale: InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{scrub\_df }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(raw, deID, StatsPkg, Centering, ClearResponsibilities,}
+\NormalTok{    EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm,}
+\NormalTok{    EquitableEval, MultPerspectives, DEIintegration))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{provide-an-apa-style-write-up-of-these-preliminary-steps}{%
+\subsubsection*{Provide an APA style write-up of these preliminary steps}\label{provide-an-apa-style-write-up-of-these-preliminary-steps}}
+
+
+\begin{quote}
+\begin{quote}
+This is a secondary analysis of data involved in a more comprehensive dataset that included students taking multiple statistics courses (\emph{N} = 310). Having retrieved this data from a repository in the Open Science Framework, only those who consented to participation in the study were included. Data used in these analyses were 84 students who completed the multivariate clas.
+\end{quote}
+\end{quote}
+
+\hypertarget{scoring-1}{%
+\subsection{Scoring}\label{scoring-1}}
+
+\hypertarget{proper-formatting-of-the-items-in-your-first-predictor-variable}{%
+\subsubsection*{Proper formatting of the item(s) in your first predictor variable}\label{proper-formatting-of-the-items-in-your-first-predictor-variable}}
+
+
+StatsPkg is a dichotomous variable. It should be structured as a factor with two ordered levels: SPSS, R
+
+Because I am using the .rds form of the data from the OSF, this variable retains the former structure I assigned to it. If I needed to write the code, I would do this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{StatsPkg }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{StatsPkg, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"SPSS"}\NormalTok{, }\StringTok{"R"}\NormalTok{))}
+\FunctionTok{str}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{StatsPkg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
+\end{verbatim}
+
+\hypertarget{proper-formatting-of-items-in-your-second-predictor-variable}{%
+\subsubsection*{Proper formatting of item(s) in your second predictor variable}\label{proper-formatting-of-items-in-your-second-predictor-variable}}
+
+
+Similarly, Centering is a dichotomous variable. It should be structured as a factor with two ordered levels: Pre, Re.
+
+Because I am using the .rds form of the data from the OSF, this variable retains the former structure I assigned to it. If I needed to write the code, I would do this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{Centering }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{Centering, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Pre"}\NormalTok{, }\StringTok{"Re"}\NormalTok{))}
+\FunctionTok{str}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{Centering)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+\end{verbatim}
+
+\hypertarget{proper-formatting-of-the-items-in-your-third-predictor-variable}{%
+\subsubsection*{Proper formatting of the item(s) in your third predictor variable}\label{proper-formatting-of-the-items-in-your-third-predictor-variable}}
+
+
+\hypertarget{proper-formatting-of-the-items-in-your-dependent-variable}{%
+\subsubsection*{Proper formatting of the item(s) in your dependent variable}\label{proper-formatting-of-the-items-in-your-dependent-variable}}
+
+
+The third predictor variable is traditional pedagogy. The dependent variable is socially repsonsive pedagogy. The items that will be used in the scale scores for both of these variables are all continuously scaled and should be identified as ``int'' or ``num.'' None of the items need to be reverse-scored.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(scrub\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Classes 'data.table' and 'data.frame':   84 obs. of  12 variables:
+##  $ deID                 : int  11 12 13 14 15 16 17 18 35 19 ...
+##  $ StatsPkg             : Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ ClearResponsibilities: int  4 5 5 5 4 3 5 5 3 5 ...
+##  $ EffectiveAnswers     : int  4 5 5 4 4 3 5 5 4 4 ...
+##  $ Feedback             : int  4 5 4 4 5 4 5 4 4 5 ...
+##  $ ClearOrganization    : int  3 5 5 4 4 3 5 5 4 5 ...
+##  $ ClearPresentation    : int  4 5 5 3 4 2 5 4 5 5 ...
+##  $ InclusvClassrm       : int  5 5 5 5 5 4 5 5 5 5 ...
+##  $ EquitableEval        : int  4 5 5 5 4 4 5 4 5 5 ...
+##  $ MultPerspectives     : int  4 5 5 5 5 5 5 4 5 5 ...
+##  $ DEIintegration       : int  5 5 5 5 5 5 5 5 5 5 ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+\end{verbatim}
+
+\hypertarget{evaluate-and-interpret-item-level-missingness}{%
+\subsubsection*{Evaluate and interpret item-level missingness}\label{evaluate-and-interpret-item-level-missingness}}
+
+
+The \emph{scrub\_df} is already downsized to include the item-level raw variables and the ID variable. We can continue using it.
+
+I will create a ``proportion missing'' variable.
+
+In this chunk I first calculate the number of missing (nmiss)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}\CommentTok{\#needed because the script has pipes}
+
+\CommentTok{\#Calculating number and proportion of item{-}level missingness}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{nmiss }\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(StatsPkg}\SpecialCharTok{:}\NormalTok{DEIintegration) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#the colon allows us to include all variables between the two listed (the variables need to be in order)}
+\NormalTok{    is.na }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{    rowSums}
+
+\NormalTok{scrub\_df}\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (nmiss}\SpecialCharTok{/}\DecValTok{11}\NormalTok{)}\SpecialCharTok{*}\DecValTok{100}\NormalTok{) }\CommentTok{\#11 is the number of variables included in calculating the proportion}
+\end{Highlighting}
+\end{Shaded}
+
+We can grab the descriptives for the \emph{prop\_miss} variable to begin to understand our data. I will create an object from it so I can use it with inline
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(scrub\_df}\SpecialCharTok{$}\NormalTok{prop\_miss)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
+## X1    1 84 2.38 6.17      0    0.94   0   0 36.36 36.36 3.29    12.33 0.67
+\end{verbatim}
+
+Because I want to use the AIA approach to scoring, I'm not willing to filter out any cases yet. If I wanted to eliminate cases with egregious missing (i.e., like 90\%), here is the code I would use:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{scrub\_df }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(scrub\_df, prop\_miss }\SpecialCharTok{\textless{}=} \DecValTok{90}\NormalTok{)  }\CommentTok{\#update df to have only those with at least 90\% of complete data}
+\end{Highlighting}
+\end{Shaded}
+
+CUMULATIVE CAPTURE FOR WRITING IT UP:
+
+\begin{quote}
+\begin{quote}
+Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0 to 36\%.
+\end{quote}
+\end{quote}
+
+To analyze missingness at this level, we need a df that has only the variables of interest. That is, variables like \emph{ID} and the \emph{prop\_miss} and \emph{nmiss} variables we created will interfere with an accurate assessment of missingness. I will update our df to eliminate these.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# further update to exclude the n\_miss and prop\_miss variables}
+\NormalTok{ItemMiss\_df }\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(deID, nmiss, prop\_miss))}
+\end{Highlighting}
+\end{Shaded}
+
+Missing data analysis commonly looks at proportions by:
+
+\begin{itemize}
+\tightlist
+\item
+  the entire df
+\item
+  rows/cases/people
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# what proportion of cells missing across entire dataset}
+\NormalTok{formattable}\SpecialCharTok{::}\FunctionTok{percent}\NormalTok{(}\FunctionTok{mean}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(ItemMiss\_df)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.38%
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# what proportion of cases (rows) are complete (nonmissing)}
+\NormalTok{formattable}\SpecialCharTok{::}\FunctionTok{percent}\NormalTok{(}\FunctionTok{mean}\NormalTok{(}\FunctionTok{complete.cases}\NormalTok{(ItemMiss\_df)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 82.14%
+\end{verbatim}
+
+CUMULATIVE CAPTURE FOR WRITING IT UP:
+
+\begin{quote}
+\begin{quote}
+Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0 to 36\%. Across the dataset, 2.38\% of cells had missing data and 82.14\% of cases had nonmissing data.
+\end{quote}
+\end{quote}
+
+We can further explore patterns of missingness with \emph{mice.md.pattern}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mice}\SpecialCharTok{::}\FunctionTok{md.pattern}\NormalTok{(ItemMiss\_df, }\AttributeTok{plot =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{rotate.names =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 6 missingness patterns. The most common (\emph{n} = 69) have no missingness. There are 11 students missing the DEIintegration item (on the traditional pedagogy scale). This item may have been a later addition to the Canvas course evaluations.
+
+Comparing this to Enders' \citeyearpar{enders_applied_2010} \href{https://www.google.com/books/edition/Applied_Missing_Data_Analysis/uHt4EAAAQBAJ?hl=en\&gbpv=1\&dq=enders+missing+data\&pg=PP1\&printsec=frontcover}{prototypical patterns of missingness} (page 3), the \emph{mice} output represents the monotonic pattern often caused by test fatigue. That is, once a student stopped responding, they didn't continue with the rest of the evaluation. That said, this was true of only 4 students (1 each pattern). A quick reminder -- diagnosing monotonicity requires that the variables in the \emph{mice.mdpattern} figures were presented to the research participant in that order.
+
+\hypertarget{score-any-scalessubscales}{%
+\subsubsection*{Score any scales/subscales}\label{score-any-scalessubscales}}
+
+
+Traditional pedagogy is a predictor variable that needs to be created by calculating the mean if at least 75\% of the items are non-missing. None of the items need to be reverse-scored. I will return to working with the \emph{scrub\_df} data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# this seems to work when I build the book, but not in \textquotesingle{}working the}
+\CommentTok{\# problem\textquotesingle{} TradPed\_vars \textless{}{-} c(\textquotesingle{}ClearResponsibilities\textquotesingle{},}
+\CommentTok{\# \textquotesingle{}EffectiveAnswers\textquotesingle{},\textquotesingle{}Feedback\textquotesingle{},}
+\CommentTok{\# \textquotesingle{}ClearOrganization\textquotesingle{},\textquotesingle{}ClearPresentation\textquotesingle{}) scrub\_df$TradPed \textless{}{-}}
+\CommentTok{\# sjstats::mean\_n(scrub\_df[, TradPed\_vars], .75)}
+
+\CommentTok{\# this seems to work when I \textquotesingle{}work the problem\textquotesingle{} (but not when I build}
+\CommentTok{\# the book) the difference is the two dots before the last SRPed\_vars}
+\NormalTok{TradPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"ClearResponsibilities"}\NormalTok{, }\StringTok{"EffectiveAnswers"}\NormalTok{, }\StringTok{"Feedback"}\NormalTok{,}
+    \StringTok{"ClearOrganization"}\NormalTok{, }\StringTok{"ClearPresentation"}\NormalTok{)}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{TradPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(scrub\_df[, TradPed\_vars], }\FloatTok{0.75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The dependent variable is socially responsive pedagogy. It needs to be created by calculating the mean if at least 75\% of the items are non-missing. None of the items need to be reverse-scored.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# this seems to work when I build the book, but not in \textquotesingle{}working the}
+\CommentTok{\# problem\textquotesingle{} SRPed\_vars \textless{}{-} c(\textquotesingle{}InclusvClassrm\textquotesingle{},\textquotesingle{}EquitableEval\textquotesingle{},}
+\CommentTok{\# \textquotesingle{}MultPerspectives\textquotesingle{}, \textquotesingle{}DEIintegration\textquotesingle{}) scrub\_df$SRPed \textless{}{-}}
+\CommentTok{\# sjstats::mean\_n(scrub\_df[, SRPed\_vars], .75)}
+
+\CommentTok{\# this seems to work when I \textquotesingle{}work the problem\textquotesingle{} (but not when I build}
+\CommentTok{\# the book) the difference is the two dots before the last SRPed\_vars}
+\NormalTok{SRPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"InclusvClassrm"}\NormalTok{, }\StringTok{"EquitableEval"}\NormalTok{, }\StringTok{"MultPerspectives"}\NormalTok{,}
+    \StringTok{"DEIintegration"}\NormalTok{)}
+\NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{SRPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(scrub\_df[, SRPed\_vars], }\FloatTok{0.75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{evaluate-and-interpret-scale-level-missingness}{%
+\subsubsection*{Evaluate and interpret scale-level missingness}\label{evaluate-and-interpret-scale-level-missingness}}
+
+
+To evaluate scale level missingness, let's create a df with the focal variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(scrub\_df, StatsPkg, Centering, TradPed, SRPed)}
+\NormalTok{ScoredCaseMiss }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(scored)  }\CommentTok{\#I produced this object for the sole purpose of feeding the number of cases into the inline text, below}
+\NormalTok{ScoredCaseMiss}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 84
+\end{verbatim}
+
+Before we start our formal analysis of missingness at the scale level, let's continue to scrub by eliminating cases that will have too much missingness. In the script below we create a variable that counts the number of missing variables and then creates a proportion by dividing it by the number of total variables.
+
+Using the \emph{describe()} function from the \emph{psych} package, we can investigate this variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\CommentTok{\# Create a variable (n\_miss) that counts the number missing}
+\NormalTok{scored}\SpecialCharTok{$}\NormalTok{n\_miss }\OtherTok{\textless{}{-}}\NormalTok{ scored }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    is.na }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    rowSums}
+
+\CommentTok{\# Create a proportion missing by dividing n\_miss by the total number}
+\CommentTok{\# of variables (6) Pipe to sort in order of descending frequency to}
+\CommentTok{\# get a sense of the missingness}
+\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ scored }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (n\_miss}\SpecialCharTok{/}\DecValTok{6}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n\_miss))}
+
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(scored}\SpecialCharTok{$}\NormalTok{prop\_miss)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
+## X1    1 84 0.79 4.41      0       0   0   0 33.33 33.33 5.89    36.31 0.48
+\end{verbatim}
+
+CUMULATIVE CAPTURE FOR WRITING IT UP:
+
+\begin{quote}
+\begin{quote}
+Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0 to 36\%. Across the dataset, 2.38\% of cells had missing data and 82.14\% of cases had nonmissing data.
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+Across the 84 cases for which the scoring protocol was applied, missingness ranged from 0 to 33\%.
+\end{quote}
+\end{quote}
+
+We need to decide what is our retention threshhold. Twenty percent seems to be a general rule of thumb. Let's delete all cases with missingness at 20\% or greater.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# update df to have only those with at least 20\% of complete data}
+\CommentTok{\# (this is an arbitrary decision)}
+\NormalTok{scored }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(scored, prop\_miss }\SpecialCharTok{\textless{}=} \DecValTok{20}\NormalTok{)}
+
+\CommentTok{\# the variable selection just lops off the proportion missing}
+\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{select}\NormalTok{(scored, StatsPkg}\SpecialCharTok{:}\NormalTok{SRPed))}
+
+\CommentTok{\# this produces the number of cases retained}
+\FunctionTok{nrow}\NormalTok{(scored)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 83
+\end{verbatim}
+
+CUMULATIVE CAPTURE FOR WRITING IT UP:
+
+\begin{quote}
+\begin{quote}
+Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0 to 100\%. Across the dataset, 3.86\% of cells had missing data and 87.88\% of cases had nonmissing data.
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+Across the 84 cases for which the scoring protocol was applied, missingness ranged from 0 to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 83 cases.
+\end{quote}
+\end{quote}
+
+Now, at the scale level, we look at missingness as the proportion of
+
+\begin{itemize}
+\tightlist
+\item
+  individual cells across the scored dataset, and
+\item
+  rows/cases with nonmissing data
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# percent missing across df}
+\NormalTok{formattable}\SpecialCharTok{::}\FunctionTok{percent}\NormalTok{(}\FunctionTok{mean}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(scored)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.60%
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# percent of rows with nonmissing data}
+\NormalTok{formattable}\SpecialCharTok{::}\FunctionTok{percent}\NormalTok{(}\FunctionTok{mean}\NormalTok{(}\FunctionTok{complete.cases}\NormalTok{(scored)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 97.59%
+\end{verbatim}
+
+CUMULATIVE CAPTURE FOR WRITING IT UP:
+
+\begin{quote}
+\begin{quote}
+Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0 to 100\%. Across the dataset, 3.86\% of cells had missing data and 87.88\% of cases had nonmissing data.
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+Across the 84 cases for which the scoring protocol was applied, missingness ranged from 0 to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 83 cases. In this dataset we had less than 1\% (0.60\%) missing across the df; 98\% of the rows had nonmissing data.
+\end{quote}
+\end{quote}
+
+Let's look again at missing patterns and mechanisms.
+
+Returning to the \emph{mice} package, we can use the \emph{md.pattern()} function to examine a matrix with the number of columns 1 in which each row corresponds to a missing data pattern (0 = observed, 0 = missing). The rows and columns are sorted in increasing amounts of missing information. The last column and row contain row and column counts, respectively.
+
+The corresponding figure shows non-missing data in blue; missing data in red.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mice\_ScaleLvl }\OtherTok{\textless{}{-}}\NormalTok{ mice}\SpecialCharTok{::}\FunctionTok{md.pattern}\NormalTok{(scored, }\AttributeTok{plot =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{rotate.names =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mice\_ScaleLvl}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    StatsPkg Centering TradPed SRPed  
+## 81        1         1       1     1 0
+## 2         1         1       1     0 1
+##           0         0       0     2 2
+\end{verbatim}
+
+There are \emph{2} rows of data because there are only \emph{2} patterns of missingness. The most common pattern is non-missing data (\emph{n} = 81). Two cases are missing the SRPed variable. If our statistical choice uses listwise deletion (i.e., the case is eliminated if one or more variables in the model has missing data), our sample size will be 79. As we will earn in later chapters, there are alternatives (i.e., specifying a FIML option in analyses that use maximum likelihood estimators) that can use all of the cases -- even those with missing data.
+
+\hypertarget{represent-your-work-in-an-apa-style-write-up-added-to-the-writeup-in-the-previous-chapter}{%
+\subsubsection*{Represent your work in an APA-style write-up (added to the writeup in the previous chapter}\label{represent-your-work-in-an-apa-style-write-up-added-to-the-writeup-in-the-previous-chapter}}
+
+
+\begin{quote}
+\begin{quote}
+Available item analysis (AIA; \citep{parent_handling_2013}) is a strategy for managing missing data that uses available data for analysis and excludes cases with missing data points only for analyses in which the data points would be directly involved. Parent (2013) suggested that AIA is equivalent to more complex methods (e.g., multiple imputation) across a number of variations of sample size, magnitude of associations among items, and degree of missingness. Thus, we utilized Parent's recommendations to guide our approach to managing missing data. Missing data analyses were conducted with tools in base R as well as the R packages, \emph{psych} (v. 2.3.6) and \emph{mice} (v. 3.16.0).
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0 to 100\%. Across the dataset, 3.86\% of cells had missing data and 87.88\% of cases had nonmissing data.
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+Across the 84 cases for which the scoring protocol was applied, missingness ranged from 0 to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 83 cases. In this dataset we had less than 1\% (0.60\%) missing across the df; 98\% of the rows had nonmissing data.
+\end{quote}
+\end{quote}
+
+\hypertarget{data-dx}{%
+\subsection{Data Dx}\label{data-dx}}
+
+\hypertarget{calculate-alpha-coefficients-for-scalessubscales}{%
+\subsubsection*{Calculate alpha coefficients for scales/subscales}\label{calculate-alpha-coefficients-for-scalessubscales}}
+
+
+To calculate the alpha coefficients, we need item-level data. We will return to \emph{scrub\_df} that contains the item-level data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# alpha for the traditional pedagogy scale}
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{alpha}\NormalTok{(scrub\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"ClearResponsibilities"}\NormalTok{, }\StringTok{"EffectiveAnswers"}\NormalTok{, }\StringTok{"Feedback"}\NormalTok{,}
+    \StringTok{"ClearOrganization"}\NormalTok{, }\StringTok{"ClearPresentation"}\NormalTok{)])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Reliability analysis   
+## Call: psych::alpha(x = scrub_df[c("ClearResponsibilities", "EffectiveAnswers", 
+##     "Feedback", "ClearOrganization", "ClearPresentation")])
+## 
+##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
+##       0.87      0.88    0.87      0.59 7.2 0.022  4.3 0.72     0.58
+## 
+##     95% confidence boundaries 
+##          lower alpha upper
+## Feldt     0.83  0.87  0.91
+## Duhachek  0.83  0.87  0.92
+## 
+##  Reliability if an item is dropped:
+##                       raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
+## ClearResponsibilities      0.84      0.84    0.82      0.57 5.3    0.029 0.0110
+## EffectiveAnswers           0.84      0.84    0.81      0.57 5.2    0.029 0.0088
+## Feedback                   0.87      0.87    0.86      0.64 7.0    0.023 0.0053
+## ClearOrganization          0.86      0.86    0.83      0.60 6.1    0.025 0.0067
+## ClearPresentation          0.83      0.84    0.81      0.57 5.3    0.030 0.0074
+##                       med.r
+## ClearResponsibilities  0.55
+## EffectiveAnswers       0.58
+## Feedback               0.63
+## ClearOrganization      0.59
+## ClearPresentation      0.57
+## 
+##  Item statistics 
+##                        n raw.r std.r r.cor r.drop mean   sd
+## ClearResponsibilities 83  0.85  0.85  0.80   0.74  4.5 0.87
+## EffectiveAnswers      84  0.84  0.85  0.82   0.76  4.4 0.79
+## Feedback              82  0.74  0.75  0.65   0.60  4.3 0.81
+## ClearOrganization     84  0.82  0.80  0.74   0.68  4.1 1.04
+## ClearPresentation     84  0.85  0.85  0.81   0.76  4.2 0.87
+## 
+## Non missing response frequency for each item
+##                          1    2    3    4    5 miss
+## ClearResponsibilities 0.01 0.05 0.04 0.27 0.64 0.01
+## EffectiveAnswers      0.02 0.00 0.05 0.40 0.52 0.00
+## Feedback              0.01 0.01 0.11 0.38 0.49 0.02
+## ClearOrganization     0.04 0.07 0.07 0.43 0.39 0.00
+## ClearPresentation     0.01 0.06 0.04 0.46 0.43 0.00
+\end{verbatim}
+
+\begin{quote}
+\begin{quote}
+Cronbach's alpha for the traditional pedagogy scale was 0.88.
+\end{quote}
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# alpha for the traditional pedagogy scale}
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{alpha}\NormalTok{(scrub\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"InclusvClassrm"}\NormalTok{, }\StringTok{"EquitableEval"}\NormalTok{, }\StringTok{"DEIintegration"}\NormalTok{,}
+    \StringTok{"DEIintegration"}\NormalTok{)])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in cor.smooth(r): Matrix was not positive definite, smoothing was done
+\end{verbatim}
+
+\begin{verbatim}
+## In smc, smcs < 0 were set to .0
+## In smc, smcs < 0 were set to .0
+## In smc, smcs < 0 were set to .0
+## In smc, smcs < 0 were set to .0
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Reliability analysis   
+## Call: psych::alpha(x = scrub_df[c("InclusvClassrm", "EquitableEval", 
+##     "DEIintegration", "DEIintegration")])
+## 
+##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
+##       0.85      0.85     0.7      0.58 5.6 0.025  4.5 0.62     0.55
+## 
+##     95% confidence boundaries 
+##          lower alpha upper
+## Feldt     0.79  0.85   0.9
+## Duhachek  0.80  0.85   0.9
+## 
+##  Reliability if an item is dropped:
+##                  raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
+## InclusvClassrm        0.84      0.83    0.58      0.61 4.8    0.027 0.1115
+## EquitableEval         0.88      0.88    0.63      0.71 7.3    0.025 0.0640
+## DEIintegration        0.74      0.75    0.68      0.50 3.1    0.046 0.0054
+## DEIintegration.1      0.74      0.75    0.68      0.50 3.1    0.046 0.0054
+##                  med.r
+## InclusvClassrm    0.42
+## EquitableEval     0.56
+## DEIintegration    0.53
+## DEIintegration.1  0.53
+## 
+##  Item statistics 
+##                   n raw.r std.r r.cor r.drop mean   sd
+## InclusvClassrm   80  0.85  0.80  0.75   0.62  4.6 0.72
+## EquitableEval    84  0.71  0.72  0.60   0.51  4.7 0.50
+## DEIintegration   70  0.96  0.90  0.71   0.85  4.5 0.79
+## DEIintegration.1 70  0.96  0.90  0.71   0.85  4.5 0.79
+## 
+## Non missing response frequency for each item
+##                     1    3    4    5 miss
+## InclusvClassrm   0.01 0.06 0.21 0.71 0.05
+## EquitableEval    0.00 0.01 0.32 0.67 0.00
+## DEIintegration   0.00 0.19 0.17 0.64 0.17
+## DEIintegration.1 0.00 0.19 0.17 0.64 0.17
+\end{verbatim}
+
+\begin{quote}
+\begin{quote}
+Cronbach's alpha for the socially responsive pedagogy scale was 0.85.
+\end{quote}
+\end{quote}
+
+Both of these are above the recommended value of 0.80.
+
+\hypertarget{evaluate-univariate-normality-skew-kurtosis-shapiro-wilks}{%
+\subsubsection*{Evaluate univariate normality (skew, kurtosis, Shapiro-Wilks)}\label{evaluate-univariate-normality-skew-kurtosis-shapiro-wilks}}
+
+
+We can inspect univariate normality by examining the skew and kurtosis values of the continuously scored variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(scored, }\AttributeTok{type =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            vars  n mean   sd median trimmed  mad  min max range  skew kurtosis
+## StatsPkg*     1 83 1.73 0.44   2.00    1.79 0.00 1.00   2  1.00 -1.06    -0.87
+## Centering*    2 83 1.36 0.48   1.00    1.33 0.00 1.00   2  1.00  0.58    -1.67
+## TradPed       3 83 4.29 0.72   4.40    4.40 0.59 1.20   5  3.80 -1.75     4.49
+## SRPed         4 81 4.51 0.58   4.75    4.60 0.37 2.33   5  2.67 -1.19     1.30
+##              se
+## StatsPkg*  0.05
+## Centering* 0.05
+## TradPed    0.08
+## SRPed      0.06
+\end{verbatim}
+
+When we use the ``type=1'' argument, the skew and kurtosis indices in the \emph{psych} package can be interpreted according to Kline's \citeyearpar{kline_data_2016} guidelines.
+
+\begin{quote}
+\begin{quote}
+Regarding the distributional characteristics of the data, skew and kurtosis values for our continuously scaled variables fall below the thresholds of concern (i.e., absolute value of 3 for skew; absolute value of 10 for kurtosis) identified by Kline \citeyearpar{kline_data_2016} as concerning.
+\end{quote}
+\end{quote}
+
+Still at the univariate level, we can apply the Shapiro-Wilk test of normality to each of our continuously scaled variables. When the \(p\) value is \textless{} .05, the variable's distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The shapiro{-}test is in base R; it\textquotesingle{}s specification is simple:}
+\CommentTok{\# shapiro.test(df$variable) I added the object (and had to list it}
+\CommentTok{\# below) so I can use the inline text function}
+\FunctionTok{shapiro.test}\NormalTok{(scored}\SpecialCharTok{$}\NormalTok{TradPed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  scored$TradPed
+## W = 0.83046, p-value = 0.0000000245
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{shapiro.test}\NormalTok{(scored}\SpecialCharTok{$}\NormalTok{SRPed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  scored$SRPed
+## W = 0.81782, p-value = 0.0000000134
+\end{verbatim}
+
+Both variable differ from a normal distribution in a statistically significant way.
+
+\begin{itemize}
+\tightlist
+\item
+  For the traditional pedagogy variable, \(W = 0.830, p < 0.001\)
+\item
+  for the socially responsive pedagogy variable, \(0.818, p < 0.001\)
+\end{itemize}
+
+Obtaining a quick \emph{psych::pairs.panel} can provide a quick glimpse of the distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{pairs.panels}\NormalTok{(scored, }\AttributeTok{stars =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{lm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-47-1.pdf}
+
+CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:
+
+\begin{quote}
+\begin{quote}
+Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 10 (kurtosis) that Kline suggests are concerning \citeyearpar{kline_principles_2016}. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the traditional pedagogy (\(W = 0.830, p < 0.001\)) and socially responsive pedagogy (0.818, p \textless{} 0.001) are statistically significantly different than a normal distribution. Inspection of distributions of the variables indicated that both course evaluation variables were negatively skewed, with a large proportion of high scores.
+\end{quote}
+\end{quote}
+
+\hypertarget{evaluate-multivarite-normality-mahalanobis-test}{%
+\subsubsection*{Evaluate multivarite normality (Mahalanobis test)}\label{evaluate-multivarite-normality-mahalanobis-test}}
+
+
+In more complex models, multivariate normality is probably a more useful analysis. Although I am teaching this evaluation in advance of the formal analysis, as demonstrated in many of \href{https://lhbikos.github.io/ReCenterPsychStats/analysis-of-variance.html}{ReCentering Psych Stats ANOVA chapters}, this can also be assessed by examining the distribution of residuals after the analysis is complete.
+
+Multivariate normality can be assessed with the continuously scaled variables. The code below includes the only two continuously scaled variables. The code simultaneously (a) appends the df with a Mahalanobis value and (b) creates a QQ plot. Dots that stray from the line are the scores that are contributing to multivariate non-normality.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{scored}\SpecialCharTok{$}\NormalTok{Mahal }\OtherTok{\textless{}{-}}\NormalTok{ psych}\SpecialCharTok{::}\FunctionTok{outlier}\NormalTok{(scored[}\FunctionTok{c}\NormalTok{(}\StringTok{"TradPed"}\NormalTok{, }\StringTok{"SRPed"}\NormalTok{)])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-48-1.pdf}
+
+We can analyze the distributional characteristics of the Mahalanobis values with \emph{psych::describe}. It is possible, then to analyze the Mahalanobis distance values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(scored}\SpecialCharTok{$}\NormalTok{Mahal)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    vars  n mean   sd median trimmed  mad  min   max range skew kurtosis   se
+## X1    1 83 1.97 3.12   1.01    1.27 0.42 0.03 19.61 19.58 3.75    15.87 0.34
+\end{verbatim}
+
+Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median. In fact, we can have these noted in a column in the dataframe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# creates a variable indicating TRUE or FALSE if an item is an}
+\CommentTok{\# outlier}
+\NormalTok{scored}\SpecialCharTok{$}\NormalTok{MOutlier }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{if\_else}\NormalTok{(scored}\SpecialCharTok{$}\NormalTok{Mahal }\SpecialCharTok{\textgreater{}}\NormalTok{ (}\FunctionTok{median}\NormalTok{(scored}\SpecialCharTok{$}\NormalTok{Mahal) }\SpecialCharTok{+}
+\NormalTok{    (}\DecValTok{3} \SpecialCharTok{*} \FunctionTok{sd}\NormalTok{(scored}\SpecialCharTok{$}\NormalTok{Mahal))), }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# shows us the first 6 rows of the data so we can see the new}
+\CommentTok{\# variables (Mahal, MOutlier)}
+\FunctionTok{head}\NormalTok{(scored)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   StatsPkg Centering TradPed SRPed     Mahal MOutlier
+## 1     SPSS       Pre     4.2    NA 0.0319020    FALSE
+## 2        R       Pre     2.8    NA 8.3615550    FALSE
+## 3        R        Re     3.8   4.5 0.8702516    FALSE
+## 4        R        Re     5.0   5.0 1.0087776    FALSE
+## 5        R        Re     4.8   5.0 0.7363631    FALSE
+## 6        R        Re     4.0   5.0 2.6509906    FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\CommentTok{\# counts frequency TRUE and FALSE indicating outlier or not}
+\NormalTok{OutlierCount }\OtherTok{\textless{}{-}}\NormalTok{ scored }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{count}\NormalTok{(MOutlier)}
+
+\CommentTok{\# calculating how many outliers a slightly different way}
+\FunctionTok{nrow}\NormalTok{(scored) }\SpecialCharTok{{-}}\NormalTok{ OutlierCount}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   MOutlier  n
+## 1       83  2
+## 2       82 81
+\end{verbatim}
+
+When we identify outliers we often ask if we should delete them or transform the data. A general rule of thumb is to look for ``jumps'' in the Mahalanobis distance values. If they are progressing steadily and there is no ``jump,'' researchers will often retain the outliers.
+
+In this case, I do see a jump. When I sort the df on Mahal values, the jump from 9.37 to 16.56 is much different than the more gradual increase in values that precedes it. Therefore, I think I will delete cases with Mahalanobis values greater than 10 (a number I ``just picked'').
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(scored, Mahal }\SpecialCharTok{\textless{}} \StringTok{"10"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\begin{quote}
+We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the \emph{psych::outlier()} function and included both continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 2 cases exceed three standard deviations beyond the median. Because there was a substantial ``jump'' between the non-outliers and these two variables we chose to delete them.
+\end{quote}
+\end{quote}
+
+\hypertarget{represent-your-work-in-an-apa-style-write-up-added-to-the-writeup-in-the-previous-chapter-1}{%
+\subsubsection*{Represent your work in an APA-style write-up (added to the writeup in the previous chapter)}\label{represent-your-work-in-an-apa-style-write-up-added-to-the-writeup-in-the-previous-chapter-1}}
+
+
+\begin{quote}
+\begin{quote}
+This is a secondary analysis of data involved in a more comprehensive dataset that included students taking multiple statistics courses (\emph{N} = 310). Having retrieved this data from a repository in the Open Science Framework, only those who consented to participation in the study were included. Data used in these analyses were 84 students who completed the multivariate clas.
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+Available item analysis (AIA; \citep{parent_handling_2013}) is a strategy for managing missing data that uses available data for analysis and excludes cases with missing data points only for analyses in which the data points would be directly involved. Parent (2013) suggested that AIA is equivalent to more complex methods (e.g., multiple imputation) across a number of variations of sample size, magnitude of associations among items, and degree of missingness. Thus, we utilized Parent's recommendations to guide our approach to managing missing data. Missing data analyses were conducted with tools in base R as well as the R packages, \emph{psych} (v. 2.3.6) and \emph{mice} (v. 3.16.0).
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0 to 100\%. Across the dataset, 3.86\% of cells had missing data and 87.88\% of cases had nonmissing data.
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+Across the 84 cases for which the scoring protocol was applied, missingness ranged from 0 to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 83 cases. In this dataset we had less than 1\% (0.60\%) missing across the df; 98\% of the rows had nonmissing data.
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 10 (kurtosis) that Kline suggests are concerning \citeyearpar{kline_principles_2016}. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the traditional pedagogy (\(W = 0.830, p < 0.001\)) and socially responsive pedagogy (0.818, p \textless{} 0.001) are statistically significantly different than a normal distribution. Inspection of distributions of the variables indicated that both course evaluation variables were negatively skewed, with a large proportion of high scores.
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the \emph{psych::outlier()} function and included both continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 2 cases exceed three standard deviations beyond the median. Because there was a substantial ``jump'' between the non-outliers and these two variables we chose to delete them.
+\end{quote}
+\end{quote}
+
+\hypertarget{conduct-a-quick-analysis-e.g.-regression-anova-including-at-least-three-variables}{%
+\subsubsection*{Conduct a quick analysis (e.g., regression, ANOVA) including at least three variables}\label{conduct-a-quick-analysis-e.g.-regression-anova-including-at-least-three-variables}}
+
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SRPed\_fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(SRPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ StatsPkg }\SpecialCharTok{+}\NormalTok{ Centering }\SpecialCharTok{+}\NormalTok{ TradPed, }\AttributeTok{data =}\NormalTok{ scored)}
+\FunctionTok{summary}\NormalTok{(SRPed\_fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = SRPed ~ StatsPkg + Centering + TradPed, data = scored)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.56099 -0.14406  0.01551  0.10594  0.46498 
+## 
+## Coefficients:
+##             Estimate Std. Error t value          Pr(>|t|)    
+## (Intercept)  1.46330    0.34441   4.249 0.000077464849487 ***
+## StatsPkgR    0.13251    0.08056   1.645             0.105    
+## CenteringRe  0.05666    0.07423   0.763             0.448    
+## TradPed      0.68663    0.07365   9.323 0.000000000000332 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.2433 on 59 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.6167, Adjusted R-squared:  0.5972 
+## F-statistic: 31.64 on 3 and 59 DF,  p-value: 0.000000000002547
+\end{verbatim}
+
+\hypertarget{results-2}{%
+\subsection{Results}\label{results-2}}
+
+\begin{quote}
+\begin{quote}
+Results of a multiple regression predicting the socially responsive course evaluation ratings indicated that neither the transition from SPSS to R (\(B = 0.133, p = 0.105\)) nor the transition to an explicitly recentered curriculum (\(B = 0.057, p = 0.448) led to statistically significant diferences. In contrast, traditional pedagogy had a strong, positive effect on evaluations of socially responsive pedagogy (\)B = 0.686, p \textless{} 0.001). The model accounted for 62\% of the variance and was statistically significant (\(p , 0.001\)). Means, standard deviations, and correlations among variables are presented in Table 1; results of the regression model are presented in Table 2.
+\end{quote}
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.cor.table}\NormalTok{(scored[}\FunctionTok{c}\NormalTok{(}\StringTok{"SRPed"}\NormalTok{, }\StringTok{"StatsPkg"}\NormalTok{, }\StringTok{"Centering"}\NormalTok{, }\StringTok{"TradPed"}\NormalTok{)],}
+    \AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{show.sig.stars =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{filename =} \StringTok{"Table1\_\_DataDx\_HW.doc"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 
+## Table 1 
+## 
+## Means, standard deviations, and correlations with confidence intervals
+##  
+## 
+##   Variable   M    SD   1         
+##   1. SRPed   4.69 0.38           
+##                                  
+##   2. TradPed 4.53 0.43 .76**     
+##                        [.63, .85]
+##                                  
+## 
+## Note. M and SD are used to represent mean and standard deviation, respectively.
+## Values in square brackets indicate the 95% confidence interval.
+## The confidence interval is a plausible range of population correlations 
+## that could have caused the sample correlation (Cumming, 2014).
+##  * indicates p < .05. ** indicates p < .01.
+## 
+\end{verbatim}
 
 \hypertarget{multimp}{%
 \chapter{Multiple Imputation (A Brief Demo)}\label{multimp}}
@@ -3659,7 +4731,7 @@ We need to create a ``long file'' that stacks all the imputed data. Looking at t
 \end{Highlighting}
 \end{Shaded}
 
-If we look at it, we can see 6 sets of data. Playing with it\ldots{}
+If we look at it, we can see 6 sets of data. If the \emph{ID} variable is sorted we see that:
 
 \begin{itemize}
 \tightlist
@@ -3669,9 +4741,7 @@ If we look at it, we can see 6 sets of data. Playing with it\ldots{}
   .imp = 1, 2, 3, or 5 has no missing values for the variables we included in the imputation
 \end{itemize}
 
-Sort on the ID number to see how this works\ldots6 sets of data.
-
-With this fully imputed file, let's recode the data as we had done for the OLS regression with the raw, unimputed, data.
+With the code below we can see the proportion of missingness for each variable (that has missing data), sorted from highest to lowest.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3849,8 +4919,8 @@ We managed missing data with multiple imputation \citep{enders_multiple_2017, ka
 \end{quote}
 \end{quote}
 
-\hypertarget{results-2}{%
-\subsection{Results}\label{results-2}}
+\hypertarget{results-3}{%
+\subsection{Results}\label{results-3}}
 
 \begin{quote}
 \begin{quote}
@@ -3968,16 +5038,475 @@ Points Earned
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-1. Import the raw data & 5 & \_\_\_\_\_ \\
-2. Apply inclusionary/exclusionary criteria & 5 & \_\_\_\_\_ \\
-3. Format any variables that shouldn't be imputed in their raw form & 5 & \_\_\_\_\_ \\
-4. Multiply impute a minimum of 5 sets of data & 5 & \_\_\_\_\_ \\
-5. Run a regression with at least three variables & 5 & \_\_\_\_\_ \\
-6. APA style write-up of the multiple imputation section of data diagnostics & 5 & \_\_\_\_\_ \\
-7. APA style write-up regression results & 5 & \_\_\_\_\_ \\
-8. Explanation to grader & 5 & \_\_\_\_\_ \\
-\textbf{Totals} & 40 & \_\_\_\_\_ \\
+1. Specify a research model with three predictor variables (continuously or categorically scaled) and one dependent (continuously scaled) variable. & 5 & \_\_\_\_\_ \\
+2. Import the raw data & 5 & \_\_\_\_\_ \\
+3. Apply inclusionary/exclusionary criteria & 5 & \_\_\_\_\_ \\
+4. Format any variables that shouldn't be imputed in their raw form & 5 & \_\_\_\_\_ \\
+5. Multiply impute a minimum of 5 sets of data & 5 & \_\_\_\_\_ \\
+6. Run a regression (for multiply imputed data) with at least three variables & 5 & \_\_\_\_\_ \\
+7. APA style write-up of the multiple imputation section of data diagnostics & 5 & \_\_\_\_\_ \\
+8. APA style write-up regression results & 5 & \_\_\_\_\_ \\
+9. Explanation to grader & 5 & \_\_\_\_\_ \\
+\textbf{Totals} & 45 & \_\_\_\_\_ \\
 \end{longtable}
+
+\hypertarget{homeworked-example-1}{%
+\section{Homeworked Example}\label{homeworked-example-1}}
+
+\href{}{Screencast Link}
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the \href{https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html\#introduction-to-the-data-set-used-for-homeworked-examples}{introductory lesson} in \href{https://lhbikos.github.io/ReCenterPsychStats/}{ReCentering Psych Stats}. An .rds file which holds the data is located in the \href{https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples}{Worked Examples} folder at the GitHub site the hosts the OER. The file name is \emph{ReC.rds}.
+
+Although the lessons focused on preparing data for analyses were presented in smaller sections, this homeworked example combines the suggestions for practice from the \protect\hyperlink{scrub}{Scrubbing}, \protect\hyperlink{scrub}{Scoring}, \protect\hyperlink{datadx}{Data Dx} because they are also used when missing data is managed with multiple imputation. My hope is that is cumulative presentation is a closer approximation of what researchers need for their research projects.
+
+These lessons were created to prepare a set of data to analyze a specific research model. Consequently, the model should be known and described at the beginning.
+
+\hypertarget{scrubbing-2}{%
+\subsection{Scrubbing}\label{scrubbing-2}}
+
+\hypertarget{specify-a-research-model-1}{%
+\subsubsection*{Specify a research model}\label{specify-a-research-model-1}}
+
+
+A further assignment requirement was that the model should include three predictor variables (continuously or categorically scaled) and one dependent (continuously scaled) variable.
+
+As in the homeworked example for the Data Dx lesson, I am hypothesizing that socially responsive pedagogy (my dependent variable) will increase as a function of:
+
+\begin{itemize}
+\tightlist
+\item
+  the transition from SPSS (0) to R(1),
+\item
+  the transition from a pre-centered (0) to re-centered (1) curriculum, and
+\item
+  higher evaluations of traditional pedagogy
+\end{itemize}
+
+Because this data is nested within the person (i.e., students can contribute up to three course evaluations over the ANOVA, multivariate, and psychometrics courses) proper analysis would require a statistic (e.g., multilevel modeling) that would address the dependency in the data. Therefore, I will include only those students who are taking the multivariate modeling class.
+
+While it is possible to conduct multiple imputation at the scale level, we will do so at the item-level (i.e., before we compute the scale scores).
+
+\emph{If you wanted to use this example and dataset as a basis for a homework assignment, you could create a different subset of data. I worked the example for students taking the multivariate modeling class. You could choose ANOVA or psychometrics. You could also choose a different combinations of variables.}
+
+\begin{figure}
+\centering
+\includegraphics{Worked_Examples/images/homeworked_model.jpg}
+\caption{An image of our the prediction model for the homeworked example.}
+\end{figure}
+
+\hypertarget{import-data-1}{%
+\subsubsection*{Import data}\label{import-data-1}}
+
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{raw }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"ReC.rds"}\NormalTok{)}
+\FunctionTok{nrow}\NormalTok{(raw)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 310
+\end{verbatim}
+
+\hypertarget{apply-inclusionaryexclusionary-criteria}{%
+\subsubsection*{Apply inclusionary/exclusionary criteria}\label{apply-inclusionaryexclusionary-criteria}}
+
+
+Because this data is publicly posted on the Open Science Framework, it was necessary for me to already exclude those individuals. This data was unique in that students could freely write some version of ``Opt out.'' My original code included a handful of versions, but here was the basic form:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# testing to see if my code worked raw \textless{}{-} dplyr::filter (raw,}
+\CommentTok{\# SPFC.Decolonize.Opt.Out != \textquotesingle{}Okay\textquotesingle{})}
+\NormalTok{raw }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(raw, SPFC.Decolonize.Opt.Out }\SpecialCharTok{!=} \StringTok{"Opt Out"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+I want to exclude students' responses for the ANOVA and psychometrics courses.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{raw }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(raw, Course }\SpecialCharTok{==} \StringTok{"Multivariate"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+At this point, these my only inclusion/exclusion criteria. I can determine how many students (who consented) completed any portion of the survey.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(raw)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 84
+\end{verbatim}
+
+\hypertarget{format-any-variables-that-shouldnt-be-imputed-in-their-raw-form}{%
+\subsubsection{Format any variables that shouldn't be imputed in their raw form}\label{format-any-variables-that-shouldnt-be-imputed-in-their-raw-form}}
+
+*( Let's first create a df with the item-level variables that will fuel our model. In addition to the variables in our model, we will include four auxillary variables. These include Dept (Department: Clinical or Industrial-Organizational) and four additional course evaluation items: OvInstructor, MyContribution, IncrInterest, IncrUnderstanding.
+
+Let's check the structure to be certain that \emph{StatsPkg} (SPSS, R) and \emph{Centered} (Pre, Re) are ordered factors. We also want the course evaluation items to be integer (or numerical).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mimp\_df }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(raw, deID, StatsPkg, Centering, ClearResponsibilities,}
+\NormalTok{    EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm,}
+\NormalTok{    EquitableEval, MultPerspectives, DEIintegration, Dept, OvInstructor,}
+\NormalTok{    MyContribution, IncrInterest, IncrUnderstanding))}
+\FunctionTok{str}\NormalTok{(mimp\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Classes 'data.table' and 'data.frame':   84 obs. of  17 variables:
+##  $ deID                 : int  11 12 13 14 15 16 17 18 35 19 ...
+##  $ StatsPkg             : Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ ClearResponsibilities: int  4 5 5 5 4 3 5 5 3 5 ...
+##  $ EffectiveAnswers     : int  4 5 5 4 4 3 5 5 4 4 ...
+##  $ Feedback             : int  4 5 4 4 5 4 5 4 4 5 ...
+##  $ ClearOrganization    : int  3 5 5 4 4 3 5 5 4 5 ...
+##  $ ClearPresentation    : int  4 5 5 3 4 2 5 4 5 5 ...
+##  $ InclusvClassrm       : int  5 5 5 5 5 4 5 5 5 5 ...
+##  $ EquitableEval        : int  4 5 5 5 4 4 5 4 5 5 ...
+##  $ MultPerspectives     : int  4 5 5 5 5 5 5 4 5 5 ...
+##  $ DEIintegration       : int  5 5 5 5 5 5 5 5 5 5 ...
+##  $ Dept                 : chr  "CPY" "CPY" "CPY" "CPY" ...
+##  $ OvInstructor         : int  3 5 5 3 5 2 5 4 5 5 ...
+##  $ MyContribution       : int  4 5 4 3 4 3 5 4 4 5 ...
+##  $ IncrInterest         : int  4 5 4 3 4 3 5 4 5 4 ...
+##  $ IncrUnderstanding    : int  4 5 5 3 4 3 5 4 5 5 ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+\end{verbatim}
+
+We should eliminate case with greater than 50\% missingness.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\CommentTok{\#Calculating number and proportion of item{-}level missingness}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{nmiss }\OtherTok{\textless{}{-}}\NormalTok{ mimp\_df}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(StatsPkg}\SpecialCharTok{:}\NormalTok{IncrUnderstanding) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#the colon allows us to include all variables between the two listed (the variables need to be in order)}
+\NormalTok{    is.na }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{    rowSums}
+
+\NormalTok{mimp\_df}\OtherTok{\textless{}{-}}\NormalTok{ mimp\_df}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (nmiss}\SpecialCharTok{/}\DecValTok{13}\NormalTok{)}\SpecialCharTok{*}\DecValTok{100}\NormalTok{) }\CommentTok{\#11 is the number of variables included in calculating the proportion}
+
+\NormalTok{mimp\_df }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(mimp\_df, prop\_miss }\SpecialCharTok{\textless{}=} \DecValTok{50}\NormalTok{)  }\CommentTok{\#update df to have only those with at least 50\% of complete data}
+\end{Highlighting}
+\end{Shaded}
+
+Once again, trim the df to include only the data to be included in the imputation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mimp\_df }\OtherTok{\textless{}{-}}  \FunctionTok{select}\NormalTok{ (mimp\_df, deID, StatsPkg, Centering,ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration, Dept, OvInstructor, MyContribution, IncrInterest, IncrUnderstanding)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{multiply-impute-a-minimum-of-5-sets-of-data}{%
+\subsubsection{Multiply impute a minimum of 5 sets of data}\label{multiply-impute-a-minimum-of-5-sets-of-data}}
+
+Because multiple imputation is a \emph{random} process, if we all want the same answers we need to set a \emph{random seed.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2309034}\NormalTok{)  }\CommentTok{\#you can pick any number you want, today I\textquotesingle{}m using today\textquotesingle{}s datestamp}
+\end{Highlighting}
+\end{Shaded}
+
+The program we will use is \emph{mice}. \emph{mice} assumes that each variable has a distribution and it imputes missing variables according to that distribution.
+
+This means we need to correctly specify each variable's format/role. \emph{mice} will automatically choose a distribution (think ``format'') for each variable; we can override this by changing the methods' characteristics.
+
+The following code sets up the structure for the imputation. This follows the Katitas example.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(mice)}
+\CommentTok{\# runs the mice code with 0 iterations}
+\NormalTok{imp }\OtherTok{\textless{}{-}} \FunctionTok{mice}\NormalTok{(mimp\_df, }\AttributeTok{maxit =} \DecValTok{0}\NormalTok{)}
+\CommentTok{\# Extract predictor Matrix and methods of imputation}
+\NormalTok{predM }\OtherTok{=}\NormalTok{ imp}\SpecialCharTok{$}\NormalTok{predictorMatrix}
+\NormalTok{meth }\OtherTok{=}\NormalTok{ imp}\SpecialCharTok{$}\NormalTok{method}
+\NormalTok{log }\OtherTok{=}\NormalTok{ imp}\SpecialCharTok{$}\NormalTok{log}
+\end{Highlighting}
+\end{Shaded}
+
+Here we code what format/role each variable should be.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# These variables are left in the dataset, but setting them = 0 means}
+\CommentTok{\# they are not used as predictors.  We want our ID to be retained in}
+\CommentTok{\# the df.  There\textquotesingle{}s nothing missing from it, and we don\textquotesingle{}t want it used}
+\CommentTok{\# as a predictor, so it will just hang out.}
+\NormalTok{predM[, }\FunctionTok{c}\NormalTok{(}\StringTok{"deID"}\NormalTok{)] }\OtherTok{=} \DecValTok{0}
+
+\CommentTok{\# If you like, view the first few rows of the predictor matrix}
+\CommentTok{\# head(predM)}
+
+\CommentTok{\# We don\textquotesingle{}t have any ordered categorical variables, but if we did we}
+\CommentTok{\# would follow this format poly \textless{}{-} c(\textquotesingle{}Var1\textquotesingle{}, \textquotesingle{}Var2\textquotesingle{})}
+
+\CommentTok{\# We have three dichotomous variables}
+\NormalTok{log }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"StatsPkg"}\NormalTok{, }\StringTok{"Centering"}\NormalTok{, }\StringTok{"Dept"}\NormalTok{)}
+
+\CommentTok{\# Unordered categorical variables (nominal variables), but if we did}
+\CommentTok{\# we would follow this format poly2 \textless{}{-} c(\textquotesingle{}format\textquotesingle{})}
+
+\CommentTok{\# Turn their methods matrix into the specified imputation models}
+\CommentTok{\# Remove the hashtag if you have any of these variables meth[poly] =}
+\CommentTok{\# \textquotesingle{}polr\textquotesingle{}}
+\NormalTok{meth[log] }\OtherTok{=} \StringTok{"logreg"}
+\CommentTok{\# meth[poly2] = \textquotesingle{}polyreg\textquotesingle{}}
+
+\NormalTok{meth}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  deID              StatsPkg             Centering 
+##                    ""              "logreg"              "logreg" 
+## ClearResponsibilities      EffectiveAnswers              Feedback 
+##                 "pmm"                    ""                 "pmm" 
+##     ClearOrganization     ClearPresentation        InclusvClassrm 
+##                    ""                    ""                 "pmm" 
+##         EquitableEval      MultPerspectives        DEIintegration 
+##                    ""                 "pmm"                 "pmm" 
+##                  Dept          OvInstructor        MyContribution 
+##              "logreg"                    ""                    "" 
+##          IncrInterest     IncrUnderstanding 
+##                 "pmm"                    ""
+\end{verbatim}
+
+This list (meth) contains all our variables; ``pmm'' is the default and is the ``predictive mean matching'' process used. We see that \emph{StatsPkg} and \emph{Centering} are noted as ``logreg.'' This is because they are dichotomous variables. If there is \emph{``\,``} underneath it means the data is complete. The data will be used in imputing other data, but none of that data will be imputed.
+
+Our variables of interest are now configured to be imputed with the imputation method we specified. Empty cells in the method matrix mean that those variables aren't going to be imputed.
+
+If a variable has no missing values, it is automatically set to be empty. We can also manually set variables to not be imputed with the \emph{meth{[}variable{]}=``\,``} command.
+
+The code below begins the imputation process. We are asking for 5 datasets. If you have many cases and many variables, this can take awhile. How many imputations? Recommendations have ranged as low as five to several hundred.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# With this command, we tell mice to impute the anesimpor2 data,}
+\CommentTok{\# create 5vvdatasets, use predM as the predictor matrix and don\textquotesingle{}t}
+\CommentTok{\# print the imputation process.  If you would like to see the process}
+\CommentTok{\# (or if the process is failing to execute) set print as TRUE; seeing}
+\CommentTok{\# where the execution halts can point to problematic variables (more}
+\CommentTok{\# notes at end of lecture)}
+
+\NormalTok{imp2 }\OtherTok{\textless{}{-}} \FunctionTok{mice}\NormalTok{(mimp\_df, }\AttributeTok{maxit =} \DecValTok{5}\NormalTok{, }\AttributeTok{predictorMatrix =}\NormalTok{ predM, }\AttributeTok{method =}\NormalTok{ meth,}
+    \AttributeTok{log =}\NormalTok{ log, }\AttributeTok{print =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We need to create a ``long file'' that stacks all the imputed data. Looking at the df in R Studio shows us that when imp = 0 (the pe-imputed data), there is still missingness. As we scroll through the remaining imputations, there are no NA cells.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# First, turn the datasets into long format This procedure is, best I}
+\CommentTok{\# can tell, unique to mice and wouldn\textquotesingle{}t work for repeated measures}
+\CommentTok{\# designs}
+\NormalTok{mimp\_long }\OtherTok{\textless{}{-}}\NormalTok{ mice}\SpecialCharTok{::}\FunctionTok{complete}\NormalTok{(imp2, }\AttributeTok{action =} \StringTok{"long"}\NormalTok{, }\AttributeTok{include =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+If we look at it, we can see 6 sets of data. If the \emph{deID} variable is sorted we see that:
+
+\begin{itemize}
+\tightlist
+\item
+  .imp = 0 is the unimputed set; there are still missing values
+\item
+  .imp = 1, 2, 3, or 5 has no missing values for the variables we included in the imputation
+\end{itemize}
+
+With the code below we can see the proportion of missingness for each variable (that has missing data), sorted from highest to lowest.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p\_missing\_mimp\_long }\OtherTok{\textless{}{-}} \FunctionTok{unlist}\NormalTok{(}\FunctionTok{lapply}\NormalTok{(mimp\_long, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sum}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(x))))}\SpecialCharTok{/}\FunctionTok{nrow}\NormalTok{(mimp\_long)}
+\FunctionTok{sort}\NormalTok{(p\_missing\_mimp\_long[p\_missing\_mimp\_long }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{], }\AttributeTok{decreasing =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\#check to see if this works}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        DEIintegration        InclusvClassrm              Feedback 
+##           0.027777778           0.007936508           0.003968254 
+## ClearResponsibilities      MultPerspectives          IncrInterest 
+##           0.001984127           0.001984127           0.001984127
+\end{verbatim}
+
+Because our imputation was item-level, we need to score the variables with scales/subscales.
+
+Traditional pedagogy is a predictor variable that needs to be created by calculating the mean if at least 75\% of the items are non-missing. None of the items need to be reverse-scored. I will return to working with the \emph{scrub\_df} data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# this seems to work when I build the book, but not in \textquotesingle{}working the}
+\CommentTok{\# problem\textquotesingle{}}
+\NormalTok{TradPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"ClearResponsibilities"}\NormalTok{, }\StringTok{"EffectiveAnswers"}\NormalTok{, }\StringTok{"Feedback"}\NormalTok{,}
+    \StringTok{"ClearOrganization"}\NormalTok{, }\StringTok{"ClearPresentation"}\NormalTok{)}
+\CommentTok{\# mimp\_long$TradPed \textless{}{-} sjstats::mean\_n(mimp\_long[, TradPed\_vars],}
+\CommentTok{\# .75)}
+
+\CommentTok{\# this seems to work when I \textquotesingle{}work the problem\textquotesingle{} (but not when I build}
+\CommentTok{\# the book) the difference is the two dots before the last SRPed\_vars}
+\NormalTok{mimp\_long}\SpecialCharTok{$}\NormalTok{TradPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(mimp\_long[, TradPed\_vars], }\FloatTok{0.75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The dependent variable is socially responsive pedagogy. It needs to be created by calculating the mean if at least 75\% of the items are non-missing. None of the items need to be reverse-scored.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# this seems to work when I build the book, but not in \textquotesingle{}working the}
+\CommentTok{\# problem\textquotesingle{} SRPed\_vars \textless{}{-} c(\textquotesingle{}InclusvClassrm\textquotesingle{},\textquotesingle{}EquitableEval\textquotesingle{},}
+\CommentTok{\# \textquotesingle{}MultPerspectives\textquotesingle{}, \textquotesingle{}DEIintegration\textquotesingle{}) mimp\_long$SRPed \textless{}{-}}
+\CommentTok{\# sjstats::mean\_n(mimp\_long[, SRPed\_vars], .75)}
+
+\CommentTok{\# this seems to work when I \textquotesingle{}work the problem\textquotesingle{} (but not when I build}
+\CommentTok{\# the book) the difference is the two dots before the last SRPed\_vars}
+\NormalTok{SRPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"InclusvClassrm"}\NormalTok{, }\StringTok{"EquitableEval"}\NormalTok{, }\StringTok{"MultPerspectives"}\NormalTok{,}
+    \StringTok{"DEIintegration"}\NormalTok{)}
+\NormalTok{mimp\_long}\SpecialCharTok{$}\NormalTok{SRPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(mimp\_long[, SRPed\_vars], }\FloatTok{0.75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{run-a-regression-for-multiply-imputed-data-with-at-least-three-variables}{%
+\subsubsection{Run a regression (for multiply imputed data) with at least three variables}\label{run-a-regression-for-multiply-imputed-data-with-at-least-three-variables}}
+
+For comparison, here was the script when we used the AIA approach for managing missingness:
+
+\begin{quote}
+\begin{quote}
+SRPed\_fit \textless- lm(SRPed \textasciitilde{} StatsPkg + Centering + TradPed, data = scored)
+\end{quote}
+\end{quote}
+
+In order for the regression to use multiply imputed data, it must be a ``mids'' (multiply imputed data sets) type
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Convert to mids type {-} mice can work with this type}
+\NormalTok{mimp\_mids }\OtherTok{\textless{}{-}} \FunctionTok{as.mids}\NormalTok{(mimp\_long)}
+\end{Highlighting}
+\end{Shaded}
+
+Here's what we do with imputed data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fitimp }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(mimp\_mids, }\FunctionTok{lm}\NormalTok{(SRPed }\SpecialCharTok{\textasciitilde{}}\NormalTok{ StatsPkg }\SpecialCharTok{+}\NormalTok{ Centering }\SpecialCharTok{+}\NormalTok{ TradPed))}
+\end{Highlighting}
+\end{Shaded}
+
+In this process, 5 individual, OLS, regressions are being conducted and the results being pooled into this single set.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# to get the 5, individual imputations}
+\FunctionTok{summary}\NormalTok{(fitimp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 20 x 6
+##    term        estimate std.error statistic  p.value  nobs
+##    <chr>          <dbl>     <dbl>     <dbl>    <dbl> <int>
+##  1 (Intercept)    1.89     0.305      6.20  2.28e- 8    84
+##  2 StatsPkgR      0.171    0.116      1.47  1.46e- 1    84
+##  3 CenteringRe    0.116    0.106      1.09  2.81e- 1    84
+##  4 TradPed        0.569    0.0648     8.78  2.34e-13    84
+##  5 (Intercept)    1.94     0.313      6.20  2.31e- 8    84
+##  6 StatsPkgR      0.190    0.119      1.60  1.14e- 1    84
+##  7 CenteringRe    0.107    0.109      0.979 3.30e- 1    84
+##  8 TradPed        0.556    0.0665     8.36  1.59e-12    84
+##  9 (Intercept)    1.82     0.304      6.00  5.42e- 8    84
+## 10 StatsPkgR      0.164    0.116      1.42  1.61e- 1    84
+## 11 CenteringRe    0.123    0.106      1.16  2.49e- 1    84
+## 12 TradPed        0.585    0.0645     9.06  6.63e-14    84
+## 13 (Intercept)    1.80     0.306      5.87  9.43e- 8    84
+## 14 StatsPkgR      0.177    0.116      1.52  1.32e- 1    84
+## 15 CenteringRe    0.129    0.106      1.21  2.29e- 1    84
+## 16 TradPed        0.588    0.0650     9.04  7.26e-14    84
+## 17 (Intercept)    1.94     0.313      6.20  2.31e- 8    84
+## 18 StatsPkgR      0.190    0.119      1.60  1.14e- 1    84
+## 19 CenteringRe    0.107    0.109      0.979 3.30e- 1    84
+## 20 TradPed        0.556    0.0665     8.36  1.59e-12    84
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{pool}\NormalTok{(fitimp))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          term  estimate  std.error statistic       df              p.value
+## 1 (Intercept) 1.8790900 0.31681889  5.931117 70.17893 0.000000102899891375
+## 2   StatsPkgR 0.1782696 0.11790145  1.512022 76.90009 0.134627050376375595
+## 3 CenteringRe 0.1161789 0.10785952  1.077131 77.18229 0.284776760713007282
+## 4     TradPed 0.5706829 0.06755959  8.447105 68.62731 0.000000000003163489
+\end{verbatim}
+
+\begin{quote}
+\begin{quote}
+Results of a multiple regression predicting the socially responsive course evaluation ratings indicated that neither the transition from SPSS to R (\(B = 0.178, p = 0.135\)) nor the transition to an explicitly recentered curriculum (\(B = 0.116, p = 0.285) led to statistically significant diferences. In contrast, traditional pedagogy had a strong, positive effect on evaluations of socially responsive pedagogy (\)B = 0.571, p \textless{} 0.001). Results of the regression model are presented in Table 2.
+\end{quote}
+\end{quote}
+
+\hypertarget{apa-style-write-up-of-the-multiple-imputation-section-of-data-diagnostics}{%
+\subsubsection{APA style write-up of the multiple imputation section of data diagnostics}\label{apa-style-write-up-of-the-multiple-imputation-section-of-data-diagnostics}}
+
+My write-up draws from some of the results we obtained in the homeworked example at the end of the \protect\hyperlink{DataDx}{Data Dx} chapter.
+
+\begin{quote}
+\begin{quote}
+This is a secondary analysis of data involved in a more comprehensive dataset that included students taking multiple statistics courses (\emph{N} = 310). Having retrieved this data from a repository in the Open Science Framework, only those who consented to participation in the study were included. Data used in these analyses were 84 students who completed the multivariate clas.
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0 to 100\%. Across the dataset, 3.86\% of cells had missing data and 87.88\% of cases had nonmissing data. At this stage in the analysis, missingness for all cases did not exceed 50\% \citep{katitas_getting_2019} and they were all included in the multiple imputation .
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 10 (kurtosis) that Kline suggests are concerning \citeyearpar{kline_principles_2016}. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the traditional pedagogy (\(W = 0.830, p < 0.001\)) and socially responsive pedagogy (0.818, p \textless{} 0.001) are statistically significantly different than a normal distribution. Inspection of distributions of the variables indicated that both course evaluation variables were negatively skewed, with a large proportion of high scores.
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the \emph{psych::outlier()} function and included both continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 2 cases exceed three standard deviations beyond the median.
+\end{quote}
+\end{quote}
+
+\begin{quote}
+\begin{quote}
+We managed missing data with multiple imputation \citep{enders_multiple_2017, katitas_getting_2019}. We imputed five sets of data with the R package, \emph{mice} (v. 3.13) -- a program that utilizes conditional multiple imputation. The imputation included the 9 item-level variables that comprised our scales and the dichotomous variable representing traditional pedagogy and socially responsive pedagogy. We also included five auxiliary variables (four variables from the course evaluation and the whether the student was from the Clinical or Industrial-Organizational Psychology program).
+\end{quote}
+\end{quote}
+
+\hypertarget{aapa-style-write-up-regression-results}{%
+\subsubsection{AAPA style write-up regression results}\label{aapa-style-write-up-regression-results}}
+
+\begin{quote}
+\begin{quote}
+Results of a multiple regression predicting the socially responsive course evaluation ratings indicated that neither the transition from SPSS to R (\(B = 0.178, p = 0.135\)) nor the transition to an explicitly recentered curriculum (\(B = 0.116, p = 0.285) led to statistically significant diferences. In contrast, traditional pedagogy had a strong, positive effect on evaluations of socially responsive pedagogy (\)B = 0.571, p \textless{} 0.001). Results of the regression model are presented in Table 2.
+\end{quote}
+\end{quote}
+
+\emph{As in the lesson itself, I used the data diagnostics that we did in the AIA method. It feels to me like these should be calculated with the multiply imputed data (i.e., 5 sets, with pooled estimates and standard errors), but I do not see that modeled -- anywhere in tutorials I consulted.}
 
 \hypertarget{MED}{%
 \chapter*{MEDIATION}\label{MED}}
@@ -4615,8 +6144,8 @@ Hayes has great examples of APA style tables. I haven't yet found a package that
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{results-3}{%
-\subsection{Results}\label{results-3}}
+\hypertarget{results-4}{%
+\subsection{Results}\label{results-4}}
 
 A simple mediation model examined the degree to which M mediated the relation of X on Y. Using the \emph{lavaan} package (v 0.6-7) in R, coefficients for each path, the indirect effect, and total effects were calculated. These values are presented in Table 1 and illustrated in Figure 1. Results suggested that of the variance in M and of the variance in Y were accounted for in the model. The indirect effect (\(B\) = 0.529, \(p\) = 0.000) was statistically significant; the direct effect (\(B\) = -0.209, \(p\) = 0.058) was not. Comparing the nonsignificant direct effect to the statistically significant total effect (\(B\) = 0.321, \(p\) = 0.008) is consistent with the notion that the effect of X on Y is explained through M.
 
@@ -5264,8 +6793,8 @@ CMI (M) & & & & & \(b\) & -0.220 & 0.108 & 0.041 \\
 & \(R^2\) = & & \(R^2\) = \\
 \end{longtable}
 
-\hypertarget{results-4}{%
-\subsection{Results}\label{results-4}}
+\hypertarget{results-5}{%
+\subsection{Results}\label{results-5}}
 
 A simple mediation model examined the degree to which cultural mistrust mediated the relation of racial microaggressions on depressive symptoms Using the \emph{lavaan} package (v 0.6-7) in R, coefficients for each path, the indirect effect, and total effects were calculated. These values are presented in Table 1 and illustrated in Figure 1. Results suggested that of the variance in cultural mistrust and of the variance in depression were accounted for by the model. When the mediator was included in the model, bias-corrected confidence intervals surrounding the indirect effect (\(B\) = -0.675, \(p\) = 0.041, CI95 -1.364 to -0.077) were not quite statistically significant. Consistent with mediation, the value of the total effect was larger in magnitude and statistically significant (\(B\) = -1.406, \(p\) = 0.001, CI95 -2.263 to -0.605) than the smaller and non-significant direct effect (\(B\) = -0.732, \(p\) = 0.154, CI95 -1.852 to 0.202).
 

@@ -1,0 +1,339 @@
+---
+title: "ReCentering Psych Stats"
+author: "anonymized for review"
+date: '20230515'
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(scipen = 999)
+```
+
+The data available has been de-identified.The student id variable is not the institutional student ID number. The LMS system further de-identifies it.
+
+```{r}
+ReC <-readRDS("ReC_df.rds")
+```
+
+
+# Evaluating course evaluation items to determine factors
+
+So, what do I think "goes together":
+
+Traditional Pedagogy:ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation
+
+Valued by Me: ValObjectives, IncrUnderstanding, IncrInterest, 
+
+Socially Responsive Pedagogy:   MultPerspectives, InclusvClassrm, DEIintegration, EquitableEval
+
+
+
+```{r}
+corrF  <- 'Valued =~ ValObjectives + IncrUnderstanding + IncrInterest 
+          TradPed =~ ClearResponsibilities + EffectiveAnswers   + ClearPresentation  + ClearOrganization + Feedback
+          SocRPed =~  InclusvClassrm + DEIintegration + EquitableEval +MultPerspectives
+
+  TradPed~~Valued
+  TradPed~~SocRPed
+  Valued~~SocRPed
+'
+corrF
+```
+```{r}
+corrF_fit <- lavaan::cfa(corrF, data = ReC)
+lavaan::summary(corrF_fit, fit.measures=TRUE, standardized=TRUE, rsquare = TRUE)
+```
+
+
+```{r}
+v1 <- c(ClearResponsibilities = "The instructor has made student responsibilities clear.", EffectiveAnswers = "The instructor has effectively answered student questions.", ClearPresentation = "The instructor has presented course material clearly.", ClearOrganization = "The course has had a clear overall organization.", Feedback = "The instructor has provided feedback to me about my learning progress.", ValObjectives = "The course has objectives that are valuable in furthering my education.", IncrUnderstanding = "My understanding of the subject matter increased over the span of the course.", IncrInterest = "My interest in the subject matter increased over the span of the course.", InclusvClassrm = "The instructor has been intentional in fostering an inclusive classroom for students with diverse backgrounds and abilities.", DEIintegration = "The instructor has when appropriate discussed the relationships between race/ethnicity/culture and course content.", EquitableEval = "The instructor has used methods of evaluating student course work that were equitable.", MultPerspectives = "The instructor has helped students consider issues from multiple perspectives, where applicable.", Valued = "Valued by the Student", TradPed = "Traditional Pedagogy", SocRPed = "Socially Responsive Pedagogy")
+
+CFA_Table <- semTable::semTable(corrF_fit,columns = c("est", "se", "p", "rsquare"),  columnLabels = c(eststars = "Estimate"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"), varLabels = v1, file = "CFA_Table", type = "csv", print.results = FALSE)
+
+```
+```{r}
+#tidySEM::table_results(corrF_fit,  columns = NULL,  digits = 3,  format_numeric = TRUE)
+
+CFAtable <- tidySEM::table_results(corrF_fit,  columns = c("lhs", "rhs", "est_std", "se_std", "pval_std"), digits = 3,  format_numeric = TRUE)
+
+CFAtable
+
+```
+```{r}
+write.table(CFAtable, file = "CFAtable.csv", sep=",", col.names=TRUE, row.names=FALSE)
+```
+
+
+
+# Scoring 
+
+```{r}
+ReC$Valued <- sjstats::mean_n(ReC[, Val_vars], .75)
+
+TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')  
+ReC$TradPed <- sjstats::mean_n(ReC[, TradPed_vars], .75)
+
+SocRPed_vars <- c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration')  
+ReC$SocRPed <- sjstats::mean_n(ReC[, SocRPed_vars], .75)
+```
+
+# Internal Consistency Coefficients
+```{r}
+psych::alpha(ReC[, Val_vars])
+```
+```{r}
+psych::alpha(ReC[, TradPed_vars])
+```
+
+```{r}
+psych::alpha(ReC[, SocRPed_vars])
+```
+
+## Making babydf for the univariate and multivariate analyes
+
+```{r}
+babydf <- dplyr::select(ReC, StatsPkg, Centering, Valued, TradPed, SocRPed)
+```
+
+```{r}
+mice::md.pattern(babydf, plot = TRUE, rotate.names = TRUE)
+```
+
+## Descriptives
+
+Since this is multilevel data, these descriptives only give a very shallow view. The multi-level analyses will be more appropriate for interpretation.
+
+```{r}
+psych::describe(babydf)
+```
+
+```{r}
+psych::describeBy(TradPed ~ Centering + StatsPkg, data=babydf, mat=TRUE)
+```
+
+Shapiro test for univariate normality, for continuous variables, only.
+```{r}
+shapiro.test(babydf$Valued)
+shapiro.test(babydf$TradPed)
+shapiro.test(babydf$SocRPed)
+```
+
+When the p value is < .05, the variable’s distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.
+
+```{r}
+psych::pairs.panels(babydf)
+```
+
+# Do we need to nest by course?
+
+```{r}
+ValuedM1 <- lme4::lmer(Valued ~1  +(1 | CourseID), ReC, REML = FALSE)
+TrPedM1 <- lme4::lmer(TradPed ~1 + (1 | CourseID), ReC, REML = FALSE)
+SCRPedM1 <- lme4::lmer(SocRPed ~1 +(1 | CourseID), ReC, REML = FALSE)
+
+sjPlot::tab_model(ValuedM1, TrPedM1, SCRPedM1, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Valued M1", "Trad M1", "SocR M1"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se")
+#, file = "Valued.doc"
+```
+
+# Streamlined, nested within students
+
+
+```{r}
+ValuedM1b <- lme4::lmer(Valued ~1 +(1 | StndtID), ReC, REML = FALSE)
+ValuedM2b <- lme4::lmer(Valued ~ StatsPkg + Centering + (1 | StndtID), ReC, REML = FALSE)
+
+sjPlot::tab_model(ValuedM1b, ValuedM2b, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Valued M1", "Valued M2"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se")
+#, file = "Valued.doc"
+#, pred.labels = c("Intercept [Valued])", "Program Year [Transition]", "Program Year [First]", "Stats Package [R]", "Centering [ReCentered]")
+```
+
+```{r}
+#change in Too student
+(19 - 16)/19
+```
+```{r}
+sjPlot::plot_model(ValuedM2b, type = "pred", axis.lim = c(1, 5), terms=c("Centering", "StatsPkg"))
+```
+
+
+```{r}
+TradPedM1b <- lme4::lmer(TradPed ~1 +(1 | StndtID), ReC, REML = FALSE)
+TradPedM2b <- lme4::lmer(TradPed ~ StatsPkg + Centering + (1 | StndtID), ReC, REML = FALSE)
+
+sjPlot::tab_model(TradPedM1b, TradPedM2b, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("TradPed M1", "TradPed M2"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se")
+#, file = "Valued.doc"
+#, pred.labels = c("Intercept [Valued])", "Program Year [Transition]", "Program Year [First]", "Stats Package [R]", "Centering [ReCentered]")
+```
+
+```{r}
+(.30-.27)/.30
+```
+
+```{r}
+sjPlot::plot_model(TradPedM2b, type = "pred", axis.lim = c(1, 5), terms =c("Centering", "StatsPkg"))
+```
+
+```{r}
+#change in Too student
+(30 - 26)/30
+```
+
+```{r}
+SocRPedM1b <- lme4::lmer(SocRPed ~1 +(1 | StndtID), ReC, REML = FALSE)
+SocRPedM2b <- lme4::lmer(SocRPed ~ StatsPkg + Centering + (1 | StndtID), ReC, REML = FALSE)
+
+sjPlot::tab_model(SocRPedM1b, SocRPedM2b, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("SocRPedM1b", "SocRPedM2b"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se")
+#, file = "Valued.doc"
+#, pred.labels = c("Intercept [Valued])", "Program Year [Transition]", "Program Year [First]", "Stats Package [R]", "Centering [ReCentered]")
+```
+
+
+
+
+```{r}
+sjPlot::plot_model(SocRPedM2b, type = "pred", axis.lim = c(1, 5), terms=c("StatsPkg", "Centering"))
+```
+
+```{r}
+sjPlot::tab_model(ValuedM1b, ValuedM2b, TradPedM1b, TradPedM2b, SocRPedM1b, SocRPedM2b, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.std = NULL,  show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Valued Empty", "Valued Full","Traditional Ped Empty", "Traditional Ped Full", "Socially Rx Empty", "Socially Rx Full"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se", pred.labels = c("Intercept [SCR Ped])", "Stats Package [R]", "Centering [ReCentered]"))
+#, file = "ModelsOut230508.doc"
+```
+
+```{r}
+library(ggplot2)
+BoxLong2 <- reshape2::melt(ReC, id= c("StatsPkg", "Centering" ), measure = c("Valued", "TradPed", "SocRPed"))
+
+
+trio2 <- ggpubr::ggboxplot(BoxLong2, x = "variable", y = "value", color = "Centering", facet.by = c("StatsPkg"),ylim = c(1,5), xlab = "Course Evaluation Factors", ylab = "Course Evaluation Ratings")
+trio2 <-  trio2 + scale_colour_grey(start= 0, end = .7) + theme_bw()
+trio2
+
+```
+
+```{r}
+library(tidyverse)
+ggpubr::ggarrange(trio2)%>%
+  ggpubr::ggexport(plotlist = "trio2", filename="boxplot3w.png")
+```
+
+## Benjamini Hochberg Correction for Multiple Comparisons
+
+Helpful examples:
+
+* https://www.statology.org/benjamini-hochberg-procedure/
+* https://www.statisticshowto.com/benjamini-hochberg-procedure/ 
+
+Column #1: *p* values aligned in ascending order.
+Column #2:  rank order of *p* values
+Column #3:  (i/m)*Q where
+
+* i = rank of *p* value
+* m = total number of tests
+* Q = chosen false discovery rate (5%)
+
+
+|Ranked *p* values | Rank | (i/6)*.05 |
+|:---------------- |:-----|:----------|
+|0.001             | 1    |0.008      |           
+|0.001             | 2    |0.016      |
+|0.001             | 3    |0.025      |  
+|0.003             | 4    |0.033      |               
+|0.096             | 5    |0.042      |   
+|0.229             | 6    |0.050      |       
+
+
+
+```{r}
+(1/6)*.05
+(2/6)*.05
+(3/6)*.05
+(4/6)*.05
+(5/6)*.05
+(6/6)*.05
+```
+
+# Correlations 
+
+## Times taught using R
+
+```{r}
+Rpkg <- subset(ReC, StatsPkg == "R")
+```
+
+```{r}
+misty::multilevel.cor(Rpkg[, c("Valued", "TradPed", "SocRPed",  "StatsYear")], cluster = Rpkg$StndtID, print = c("cor", "p"), missing = "listwise")
+```
+
+### Benjamini Hochberg Correction for multiple comparisons for times taught after explicit recentering
+
+Helpful examples:
+
+* https://www.statology.org/benjamini-hochberg-procedure/
+* https://www.statisticshowto.com/benjamini-hochberg-procedure/ 
+
+Column #1: *p* values aligned in ascending order.
+Column #2:  rank order of *p* values
+Column #3:  (i/m)*Q where
+
+* i = rank of *p* value
+* m = total number of tests
+* Q = chosen false discovery rate (5%)
+
+
+|Ranked *p* values | Rank | (i/3)*.05 |
+|:---------------- |:-----|:----------|
+|0.000             | 1    |0.017      |           
+|0.001             | 2    |0.033      |
+|0.006             | 3    |0.050      |  
+ 
+```{r}
+(1/3)*.05
+(2/3)*.05
+(3/3)*.05
+
+```
+
+## Times taught after explicitly recentered 
+Dataset of Recentered only
+
+```{r}
+ReCentered <- subset(ReC, Centering == "Re")
+```
+
+```{r}
+misty::multilevel.descript(ReCentered[, c("Valued", "TradPed", "SocRPed",  "ReCYear")], cluster = ReCentered$StndtID)
+```
+
+```{r}
+misty::multilevel.cor(ReCentered[, c("Valued", "TradPed", "SocRPed",  "ReCYear")], cluster = ReCentered$StndtID, print = c("cor", "p"), missing = "listwise")
+```
+
+### Benjamini Hochberg Correction for multiple comparisons for times taught after explicit recentering
+
+Helpful examples:
+
+* https://www.statology.org/benjamini-hochberg-procedure/
+* https://www.statisticshowto.com/benjamini-hochberg-procedure/ 
+
+Column #1: *p* values aligned in ascending order.
+Column #2:  rank order of *p* values
+Column #3:  (i/m)*Q where
+
+* i = rank of *p* value
+* m = total number of tests
+* Q = chosen false discovery rate (5%)
+
+
+|Ranked *p* values | Rank | (i/3)*.05 |
+|:---------------- |:-----|:----------|
+|0.017             | 1    |0.017      |           
+|0.103             | 2    |0.033      |
+|0.240             | 3    |0.050      |  
+ 
+```{r}
+(1/3)*.05
+(2/3)*.05
+(3/3)*.05
+
+```

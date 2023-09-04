@@ -52,9 +52,9 @@ The script below will (a) check to see if the following packages are installed o
 
 
 ```r
-#will install the package if not already installed
-#if(!require(qualtRics)){install.packages("qualtRics")}
-#if(!require(tidyverse)){install.packages("tidyverse")}
+# will install the package if not already installed
+# if(!require(qualtRics)){install.packages('qualtRics')}
+# if(!require(tidyverse)){install.packages('tidyverse')}
 ```
 
 ## Workflow for Scrubbing
@@ -126,11 +126,14 @@ You do need to change the API key/token if you want to download data from a diff
 
 
 ```r
-#surveys <- qualtRics::all_surveys() 
+# surveys <- qualtRics::all_surveys()
 
-#View this as an object (found in the right: Environment).  
-#Get survey id # for the next command
-#If this is showing you the WRONG list of surveys, you are pulling from the wrong Qualtrics account (i.e., maybe this one instead of your own). Go back and change your API token (it saves your old one). Changing the API likely requires a restart of R.
+# View this as an object (found in the right: Environment).  Get
+# survey id # for the next command If this is showing you the WRONG
+# list of surveys, you are pulling from the wrong Qualtrics account
+# (i.e., maybe this one instead of your own). Go back and change your
+# API token (it saves your old one). Changing the API likely requires
+# a restart of R.
 surveys
 ```
 
@@ -138,17 +141,20 @@ To retrieve the survey, use the *fetch_survey()* function.
 
 
 ```r
-#obtained with the survey ID 
-#"surveyID" should be the ID from above
-#"verbose" prints messages to the R console
-#"label", when TRUE, imports data as text responses; if FALSE prints the data as numerical responses
-#"convert", when TRUE, attempts to convert certain question types to the "proper" data type in R; because I don't like guessing, I want to set up my own factors.
-#"force_request", when TRUE, always downloads the survey from the API instead of from a temporary directory (i.e., it always goes to the primary source)
-# "import_id", when TRUE includes the unique Qualtrics-assigned ID; since I have provided labels, I want false
+# obtained with the survey ID
+#'surveyID' should be the ID from above
+#'verbose' prints messages to the R console
+#'label', when TRUE, imports data as text responses; if FALSE prints the data as numerical responses
+#'convert', when TRUE, attempts to convert certain question types to the 'proper' data type in R; because I don't like guessing, I want to set up my own factors.
+#'force_request', when TRUE, always downloads the survey from the API instead of from a temporary directory (i.e., it always goes to the primary source)
+# 'import_id', when TRUE includes the unique Qualtrics-assigned ID;
+# since I have provided labels, I want false
 
-QTRX_df <-qualtRics::fetch_survey(surveyID = "SV_b2cClqAlLGQ6nLU", time_zone = NULL, verbose = FALSE, label=FALSE, convert=FALSE, force_request = TRUE, import_id = FALSE)
+QTRX_df <- qualtRics::fetch_survey(surveyID = "SV_b2cClqAlLGQ6nLU", time_zone = NULL,
+    verbose = FALSE, label = FALSE, convert = FALSE, force_request = TRUE,
+    import_id = FALSE)
 
-#useLocalTime = TRUE,
+# useLocalTime = TRUE,
 ```
 
 *It is possible to import Qualtrics data that has been downloaded from Qualtrics as a .csv.  I demo this in the Bonus Reel at the end of this lesson.*
@@ -160,8 +166,9 @@ In prior versions of this chapter I allowed the chapter to automatically update 
 Because .rds files will retain any formatting information we provide about variables, I like using them. The downside is that you cannot simply open and view them outside of the R environment. Here is the code I used to produce the .rds version of the file. If you want to obtain the same results as I report in the chapter, do NOT run it again. 
 
 ```r
-#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
-#saveRDS(QTRX_df, "QTRX_df230902.rds")
+# to save the df as an .rds (think 'R object') file on your computer;
+# it should save in the same file as the .rmd file you are working
+# with saveRDS(QTRX_df, 'QTRX_df230902.rds')
 ```
 
 Rather, head to the [MultivModel GitHub](https://github.com/lhbikos/ReC_MultivModel) site  and download the *QTRX_df230902b.rds* file. Place it in the same folder as the .rmd you are using and run the code below. And actually, I further re-named the file that you will retrieve so that it won't be over-written.*
@@ -270,13 +277,14 @@ In this particular survey, the majority of respondents will take the survey beca
 
 
 ```r
-# the filter command is used when we are making inclusion/exclusion decisions about rows
-# != means do not include cases with "preview"
+# the filter command is used when we are making inclusion/exclusion
+# decisions about rows != means do not include cases with 'preview'
 
-QTRX_df <- dplyr::filter (QTRX_df, DistributionChannel != "preview")
+QTRX_df <- dplyr::filter(QTRX_df, DistributionChannel != "preview")
 
-#FYI, another way that doesn't use tidyverse, but gets the same result
-#QTRX_df <- QTRX_df[!QTRX_df$DistributionChannel == "preview",]
+# FYI, another way that doesn't use tidyverse, but gets the same
+# result QTRX_df <- QTRX_df[!QTRX_df$DistributionChannel ==
+# 'preview',]
 ```
 
 
@@ -284,8 +292,8 @@ APA Style, and in particular the Journal Article Reporting Standards (JARS) for 
 
 
 ```r
-# I created an object that lists how many rows/cases remain.
-# I used inline text below to update the text with the new number
+# I created an object that lists how many rows/cases remain.  I used
+# inline text below to update the text with the new number
 nrow(QTRX_df)
 ```
 
@@ -300,8 +308,8 @@ CAPTURING RESULTS FOR WRITING IT UP:
 Next let's filter in only those who consented to take the survey.  Because Qualtrics discontinued the survey for everyone who did not consent, we do not have to worry that their data is unintentionally included, but it can be useful to mention the number of non-consenters in the summary of missing data.
 
 ```r
-# == are used 
-QTRX_df <-(dplyr::filter (QTRX_df, Consent == 1))
+# == are used
+QTRX_df <- (dplyr::filter(QTRX_df, Consent == 1))
 nrow(QTRX_df)
 ```
 
@@ -336,19 +344,22 @@ df_named <- rename(df_raw, NewName1 = OldName1)
 
 
 ```r
-QTRX_df <- dplyr::rename(QTRX_df, iRace1 = '1_iRace', iRace2 = '2_iRace', iRace3 = '3_iRace', iRace4 = '4_iRace', iRace5 = '5_iRace', iRace6 = '6_iRace', iRace7 = '7_iRace', iRace8 = '8_iRace', iRace9 = '9_iRace', iRace10 = '10_iRace')
+QTRX_df <- dplyr::rename(QTRX_df, iRace1 = "1_iRace", iRace2 = "2_iRace",
+    iRace3 = "3_iRace", iRace4 = "4_iRace", iRace5 = "5_iRace", iRace6 = "6_iRace",
+    iRace7 = "7_iRace", iRace8 = "8_iRace", iRace9 = "9_iRace", iRace10 = "10_iRace")
 ```
 
 Also in Qualtrics, it was not possible to rename the variable (formatted with sliders) that asked respondents to estimate the proportion of classmates in each race-based category.  Using the codebook, we can do this now.  I will use "cm" to precede each variable name to represent "classmates."
 
 ```r
-QTRX_df <- dplyr::rename(QTRX_df, cmBiMulti = Race_10, cmBlack = Race_1, cmNBPoC = Race_7, cmWhite = Race_8, cmUnsure = Race_2)
+QTRX_df <- dplyr::rename(QTRX_df, cmBiMulti = Race_10, cmBlack = Race_1,
+    cmNBPoC = Race_7, cmWhite = Race_8, cmUnsure = Race_2)
 ```
 
 Let's also create an ID variable (different from the lengthy Qualtrics-issued ID) and then move it to the front of the distribution.
 
 ```r
-#Opening the tidyverse so that I can use pipes
+# Opening the tidyverse so that I can use pipes
 library(tidyverse)
 ```
 
@@ -366,10 +377,12 @@ library(tidyverse)
 ```
 
 ```r
-QTRX_df <- QTRX_df %>% dplyr::mutate(ID = row_number())
+QTRX_df <- QTRX_df %>%
+    dplyr::mutate(ID = row_number())
 
-#moving the ID number to the first column; requires 
-QTRX_df <- QTRX_df%>%dplyr::select(ID, everything())
+# moving the ID number to the first column; requires
+QTRX_df <- QTRX_df %>%
+    dplyr::select(ID, everything())
 ```
 
 ### Downsizing the Dataframe
@@ -384,9 +397,14 @@ The *select()* function can let us list the variables we want to retain.
 
 
 ```r
-#You can use the ":" to include all variables from the first to last variable in any sequence; I could have written this more efficiently.  I just like to "see" my scales and clusters of variables.
+# You can use the ':' to include all variables from the first to last
+# variable in any sequence; I could have written this more
+# efficiently.  I just like to 'see' my scales and clusters of
+# variables.
 
-Model_df <-(dplyr::select (QTRX_df, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1:Belong_3, Blst_1:Blst_6))
+Model_df <- (dplyr::select(QTRX_df, ID, iRace1, iRace2, iRace3, iRace4,
+    iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack,
+    cmNBPoC, cmWhite, cmUnsure, Belong_1:Belong_3, Blst_1:Blst_6))
 ```
 
 
@@ -421,7 +439,14 @@ Because we have been capturing the results as we have worked the problem, our re
 
 ## Practice Problems
 
-Starting with this chapter, the practice problems for this and the next two chapters (i.e., Scoring, Data Dx) are connected. Whatever practice option(s) you choose, please (a) use raw data that (b) has some data missing.  This second criteria will be important in the subsequent chapters.
+Starting with this chapter, the practice problems for this and the next two chapters (i.e., Scoring, Data Dx) are intended to be completed in a sequence. Whatever practice option(s) you choose, please
+
+* Use raw data that has some missingness (as a last resort you could manually delete some cells),
+* Includes at least 3 independent/predictor variables
+  - these could be categorically or continuously scaled
+  - at least one variable should require scoring. 
+* Include at least 1 dependent variable
+  - at this point in your learning it should be continuously scaled
 
 The three problems below are listed in the order of graded complexity. If you are just getting started, you may wish to start with the first problem. If you are more confident, choose the second or third option. You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.
 
@@ -446,15 +471,17 @@ Regardless which option(s) you chose, use the elements in the grading rubric to 
 
 |Assignment Component                                    | Points Possible| Points Earned|
 |:------------------------------------------------------ |:-------------: |:------------:|
-|1. Import the data from Qualtrics                       |      5         |    _____     |     
-|2. Exclude all previews                                 |      5         |    _____     |
-|3. Include only those who consented                     |      5         |    _____     |  
-|4. Exclude those whose institutions are outside the U.S.|      5         |    _____     |     
-|5. Rename variables                                     |      5         |    _____     |   
+|1. Specify a research model that includes three predictor variables (continuously or categorically scaled) and one dependent (continuously scaled) variable                                         |      5         |    _____     | 
+|2. Import data                                          |      5         |    _____     |     
+|3. Include only those who consented$^*$                 |      5         |    _____     |
+|4. Apply exclusionary criteria $^*$                     |      5         |    _____     |  
+|5. Rename variables to be sensible and systematic $^*$  |      5         |    _____     |   
 |6. Downsize the dataframe to the variables of interest  |      5         |    _____     |    
-|7. Write up of preliminary results                      |      5         |    _____     |
+|7. Provide an APA style write-up of these preliminary steps|      5      |    _____     |
 |8. Explanation to grader                                |      5         |    _____     |
-|**Totals**                                              |      40        |    _____     |             
+|**Totals**                                              |      40        |    _____     |  
+
+$^*$ If your dataset does not require these steps, please provide example code that uses variables in your dataset. For example, for the inclusion or exclusion criteria, provide an example of how to filter in (or out) any variable on the basis of one of the response options. Once demonstrated, hashtag it out and rerun your script with those commands excluded.
 
 A *homeworked example* for the Scrubbing, Scoring, and DataDx lessons (combined) follows the [Data Dx](#DataDx) lesson.
 
@@ -475,7 +502,8 @@ R is sensitive to characters used filenames  As downloaded, my Qualtrics .csv fi
 
 ```r
 library(qualtRics)
-QTRX_csv <- read_survey("ReC_Download210319.csv", strip_html = TRUE, import_id = FALSE, time_zone=NULL, legacy = FALSE)
+QTRX_csv <- read_survey("ReC_Download210319.csv", strip_html = TRUE, import_id = FALSE,
+    time_zone = NULL, legacy = FALSE)
 ```
 
 ```
