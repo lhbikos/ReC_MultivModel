@@ -1,4 +1,8 @@
-
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+options(scipen=999)#eliminates scientific notation
+```
 # Data Dx {#DataDx}
 
  [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=43dbe818-8186-498d-8e84-acf7000acb5b) 
@@ -47,9 +51,9 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
 ```{r  eval=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-if(!require(tidyverse)){install.packages("tidyverse")} #this includes dplyr
-if(!require(psych)){install.packages("psych")}
-if(!require(apaTables)){install.packages("apaTables")}
+#if(!require(tidyverse)){install.packages("tidyverse")} #this includes dplyr
+#if(!require(psych)){install.packages("psych")}
+#if(!require(apaTables)){install.packages("apaTables")}
 ```
 
 
@@ -98,7 +102,7 @@ First, though, let's take a more conceptual look at issues regarding missing dat
 
 Alpha coefficients are *reliability coefficients* that assess the *internal consistency* of an instrument. It asks, "For each person, are responses *consistently* high, or medium, or low?"  To the degree that they are (meaning there are high inter-item correlations), the internal consistency coefficient will be high.  We want values >.80.  There are numerous problems with alpha coefficients.  The biggest one is that they are influenced by sample size -- longer scales have higher alpha coefficients [@cortina_what_1993].  Fourteen seems to be a magic number where we begin to not trust the high alpha coefficient. I address this more thoroughly -- offering an alternative -- in psychometrics. While there is much criticism about the usefulness of the alpha coefficient [@sijtsma_use_2009], researchers continue to use the alpha coefficient as an indicator of the internal consistency of scales that consist of multiple items and contain several variables.  
 
-We need item level data to compute an alpha coefficient. The easiest way to get an alpha coefficient is to feed the *alpha()* function (*psych* package) a contatonated list of items (with any items already reverse-scored). There should be no extra items. In the [scoring chapter](#score) we already reverse-coded the single item in the campus climate scale, so we are ready to calculate alphas. 
+We need item level data to compute an alpha coefficient. The easiest way to get an alpha coefficient is to feed the *alpha()* function (*psych* package) a concatonated list of items (with any items already reverse-scored). There should be no extra items. In the [scoring chapter](#score) we already reverse-coded the single item in the campus climate scale, so we are ready to calculate alphas. 
 
 The df from which I am pulling data was created and written as an outfile in the [scoring chapter](#score). You may also download the file from the [Github site](https://github.com/lhbikos/ReC_MultivModel) that hosts the chapter. Be sure to place the file in the same folder as the .rmd file. This particular df has item-level data. I am working with the .rds file. In case this is problematic for you, I have also provided code to import a .csv version of the file. 
 
@@ -108,7 +112,6 @@ item_scores_df <- readRDS("BlStItmsScrs230902.rds")
 ```
 
 Within the *psych::alpha* function we can retrieve alpha coefficients for the specific variables of interest by imbedding a concatonated list. A priori, we are planning to use the campus climate scale as a total score. However, we'll go ahead and also calculate alpha coefficients for the subscales because (a) it's good practice and (b) if the alpha is low, a *reason* might show up in one of the subscales.
-
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #alpha for the belonging scale
@@ -121,7 +124,6 @@ For each scale I will capture a statement for the APA style write-up. Because th
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #alpha for the campus climate for Black students scale
 psych::alpha(item_scores_df[c("rBlst_1", "Blst_2", "Blst_3", "Blst_4", "Blst_5", "Blst_6")])
-
 ```
 >>Cronbach's alpha for the campus climate scale was 0.87. 
 
@@ -144,7 +146,7 @@ psych::alpha(item_scores_df[c("rBlst_1", "Blst_4", "Blst_6")])
 
 ### Evaluating Univariate Normality
 
-Statistics like ANOVA and regression each have a set of assumptions about the distributional characteristics of the data. In most of the chapters in this OER we review those assumptions and how to evaluate them.  Common across many statistics is the requirement of univariate and multivariate normality.  Let's take a look at the variables we will use in our analysis and assess those.
+Statistics like ANOVA and regression each have a set of assumptions about the distributional characteristics of the data. In most of the chapters in this OER we review those assumptions and how to evaluate them. Common across many statistics is the requirement of univariate and multivariate normality. Let's take a look at the variables we will use in our analysis and assess those.
 
 We can continue to work from the df we uploaded at the beginning of the chapter to do this work. Let's take a quick peek. This df has the item-level data (we used it for the alpha coefficients); the scale and subscale scores; and the two items that assess proportion of instructional staff that are BIPOC and proportion of classmates that are BIPOC.
 
@@ -181,11 +183,6 @@ shapiro.test(item_scores_df$Belonging)
 shapiro.test(item_scores_df$ClimateBL)
 
 ```
-CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:  
-
->>Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 10 (kurtosis) that Kline suggests are concerning [-@kline_principles_2016]. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black ($W = 0.878, p < 0.001$) and the proportion of BIPOC instructional staff($W = 0.787, p < 0.001$) are statistically significantly different than a normal distribution. The scales assessing the respondent's belonging ($0.973, p = 0.165$) and the respondent's perception of campus climate for Black students ($W = 0.951, p = 0.016$) did not differ differently from a normal distribution.
-
-What would we do in the case of a univariate outlier? I find Kline's [-@kline_principles_2016] chapter on data preparation and management to be extremely useful. He provides ideas for more complex analysis of both univariate and multivariate normality and provides suggestions that range from recoding an extreme value to the next most extreme that is within three standard deviations of the mean to more complicated transformations. First, though we need to further examine the relationships between variables.  We do that, next.
 
 ### Pairs Panels
 
@@ -202,6 +199,12 @@ psych::pairs.panels(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging", "Clima
 ```
 
 The histograms displayed in the diagonal graph for us what we learned from the Shapiro Wilk's test of normality.  We can clearly see the non-normal distribution in the iBIPOC_pr and cmBlack variables.
+
+CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:  
+
+>>Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 10 (kurtosis) that Kline suggests are concerning [-@kline_principles_2016]. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black ($W = 0.878, p < 0.001$) and the proportion of BIPOC instructional staff($W = 0.787, p < 0.001$) are statistically significantly different than a normal distribution. Similarly the scale assessing the respondent's perception of campus climate for Black students ($W = 0.951, p = 0.016$) differed significantly from a normal distribution. In all three cases the skew values and histograms suggested a somewhat positive skew. That is, there were predominantly low proportions of instructional staff who are BIPOC and classmates who are Black, and the perceptions of campus climate for Black students was evaluated somewhat favorably. The scales assessing the respondent's belonging ($0.973, p = 0.165$) did not differ significantly from a normal distribution. 
+
+What would we do in the case of a univariate outlier? I find Kline's [-@kline_principles_2016] chapter on data preparation and management to be extremely useful. He provides ideas for more complex analysis of both univariate and multivariate normality and provides suggestions that range from recoding an extreme value to the next most extreme that is within three standard deviations of the mean to more complicated transformations. First, though we need to further examine the relationships between variables.  We do that, next.
 
 
 ## Evaluating Multivariate Normality
@@ -329,9 +332,9 @@ If you chose this option in the prior chapter, you used raw data that was availa
 |:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
 |1. Calculate alpha coefficients for scales/subscales.                                         |      5         |    _____     |    
 |2. Evaluate univariate normality (skew, kurtosis, Shapiro-Wilks).                             |      5         |    _____     |
-|3. Evaluate multivarite normality (Mahalanobis test)                                          |      5         |    _____     |
+|3. Evaluate multivariate normality (Mahalanobis test)                                          |      5        |    _____     |
 |4. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)|      5         |    _____     |  
-|5. Conduct a quick analysis (e.g., regression, ANOVA) including at least three variables      |      5         |    _____     |    
+|5. Conduct a quick analysis (e.g., regression, ANOVA) including at least three predictor variables|      5     |    _____     |    
 |6. Explanation to grader                                                                      |      5         |    _____     |   
 |**Totals**                                                                                    |      30        |    _____     |               
                                                                                                                     

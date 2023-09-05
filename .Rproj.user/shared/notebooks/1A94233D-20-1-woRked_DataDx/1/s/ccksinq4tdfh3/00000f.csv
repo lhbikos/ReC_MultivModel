@@ -1,0 +1,7 @@
+"0","#percent of rows with nonmissing data
+formattable::percent(mean(complete.cases(scored))) 
+"
+"1","[1]"
+"1"," 97.59%"
+"1","
+"

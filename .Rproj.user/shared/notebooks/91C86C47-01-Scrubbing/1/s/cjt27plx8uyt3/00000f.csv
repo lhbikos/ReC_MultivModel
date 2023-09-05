@@ -1,0 +1,7 @@
+"0","# the filter command is used when we are making inclusion/exclusion decisions about rows"
+"0","# != means do not include cases with ""preview"""
+"0",""
+"0","QTRX_df <- dplyr::filter(QTRX_df, DistributionChannel != ""preview"")"
+"0",""
+"0","#FYI, another way that doesn't use tidyverse, but gets the same result"
+"0","#QTRX_df <- QTRX_df[!QTRX_df$DistributionChannel == ""preview"",]"

@@ -1,10 +1,9 @@
-
 # DATA PREP {-#dataprep}
 # Scrubbing {#scrub}
 
 
 
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=7c87f991-276b-448f-aed9-acf6015b9638) 
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KPwGvx4MHxA7C1StPkHnFH3&si=VzB-HVlJTS07FuFw) 
 
 The focus of this chapter is the process of starting with raw data and preparing it for multivariate analysis. To that end, we will address the conceptual considerations and practical steps in "scrubbing and scoring." 
 
@@ -114,12 +113,15 @@ You do need to change the API key/token if you want to download data from a diff
 
 
 ```r
-#You only need to run this ONCE to draw from the same Qualtrics account.
-#If you change Qualtrics accounts you will need to get a different token. 
+# You only need to run this ONCE to draw from the same Qualtrics
+# account. If you change Qualtrics accounts you will need to get a
+# different token.
 
-#qualtRics::qualtrics_api_credentials(api_key = "mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg",
-              base_url = "spupsych.az1.qualtrics.com", overwrite = TRUE, install = TRUE)
-#readRenviron("~/.Renviron")
+# qualtRics::qualtrics_api_credentials(api_key =
+# 'mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg', base_url =
+# 'spupsych.az1.qualtrics.com', overwrite = TRUE, install = TRUE)
+
+# readRenviron('~/.Renviron')
 ```
 
 *all_surveys()* generates a dataframe containing information about all the surveys stored on your Qualtrics account.
@@ -134,7 +136,6 @@ You do need to change the API key/token if you want to download data from a diff
 # (i.e., maybe this one instead of your own). Go back and change your
 # API token (it saves your old one). Changing the API likely requires
 # a restart of R.
-surveys
 ```
 
 To retrieve the survey, use the *fetch_survey()* function.  
@@ -244,7 +245,7 @@ Looking at the QTRX_df, *StartDate* thru *UserLanguage* are metadata created by 
 
 With a look at our survey, codebook, and imported data, we now get to the business of scRubbing (deleting those who did not give consent, deleting previews, etc.). This level of "scrubbing" precedes the more formal detection of outliers.
 
-### Tools for Data Manipulations
+### Tools for Data Manipulation
 
 The next stages will provide some experience manipulating data with **dplyr** from  the **tidyverse**.
 
@@ -263,7 +264,7 @@ A handy cheatsheet for data transformation is found [here](https://www.rstudio.c
 
 ### Inclusion and Exclusion Criteria
 
-For me, the first pass at scrubbing is to eliminate the obvious. In our case this is includes *previews* and respondents who did not consent to continue.  Previews are the researcher-initiated responses usually designed to proofread or troubleshoot survey problems. There could be other first-pass-deletions, such as selecting response between certain dates. 
+For me, the first pass at scrubbing is to eliminate the obvious. In our case this is includes *previews* and respondents who did not consent to continue. Previews are the researcher-initiated responses usually designed to proofread or troubleshoot survey problems. There could be other first-pass-deletions, such as selecting response between certain dates. 
 
 I think these first-pass deletions, especially the ones around consent, are important to do as soon as possible. Otherwise, we might delete some of the variables (e.g., timestamps, consent documentation, preview status) and neglect to delete these cases later in the process.
 
@@ -287,7 +288,6 @@ QTRX_df <- dplyr::filter(QTRX_df, DistributionChannel != "preview")
 # 'preview',]
 ```
 
-
 APA Style, and in particular the Journal Article Reporting Standards (JARS) for quantitative research specify that we should report the frequency or percentages of missing data.  We would start our counting *after* eliminating the previews.  
 
 
@@ -307,9 +307,10 @@ CAPTURING RESULTS FOR WRITING IT UP:
 
 Next let's filter in only those who consented to take the survey.  Because Qualtrics discontinued the survey for everyone who did not consent, we do not have to worry that their data is unintentionally included, but it can be useful to mention the number of non-consenters in the summary of missing data.
 
+
 ```r
 # == are used
-QTRX_df <- (dplyr::filter(QTRX_df, Consent == 1))
+QTRX_df <- dplyr::filter(QTRX_df, Consent == 1)
 nrow(QTRX_df)
 ```
 
@@ -320,10 +321,10 @@ CAPTURING RESULTS FOR WRITING IT UP:
 
 >>Data screening suggested that 107 individuals opened the survey link. Of those, 83 granted consent and proceeded into the survey items.
 
-In this particular study, the categories used to collect race were U.S.-centric.  Thus, they were only shown if the respondent indicated that the course being rated was taught by an institution in the U.S. Therefore, an an additional inclusion criteria for this specific research model should be that the course was taught in the U.S.
+In this particular study, the categories used to collect informtaion about race/ethnicity were U.S.-centric.  Thus, they were only shown if the respondent indicated that the course being rated was taught by an institution in the U.S. Therefore, an an additional inclusion criteria for this specific research model should be that the course was taught in the U.S.
 
 ```r
-QTRX_df <-(dplyr::filter (QTRX_df, USinst == 0))
+QTRX_df <-dplyr::filter(QTRX_df, USinst == 0)
 nrow(QTRX_df)
 ```
 
@@ -407,7 +408,6 @@ Model_df <- (dplyr::select(QTRX_df, ID, iRace1, iRace2, iRace3, iRace4,
     cmNBPoC, cmWhite, cmUnsure, Belong_1:Belong_3, Blst_1:Blst_6))
 ```
 
-
 It can be helpful to save outfile of progress as we go along.  Here I save this raw file. I will demonstrate how to save both .rds and .csv files.  
 
 
@@ -449,7 +449,6 @@ Starting with this chapter, the practice problems for this and the next two chap
   - at this point in your learning it should be continuously scaled
 
 The three problems below are listed in the order of graded complexity. If you are just getting started, you may wish to start with the first problem. If you are more confident, choose the second or third option. You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.
-
 
 ### Problem #1: Rework the Chapter Problem
 

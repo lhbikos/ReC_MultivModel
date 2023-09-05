@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2023-09-03" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -188,7 +188,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="scrub.html"><a href="scrub.html#scrubbing"><i class="fa fa-check"></i><b>1.5</b> Scrubbing</a>
 <ul>
-<li class="chapter" data-level="1.5.1" data-path="scrub.html"><a href="scrub.html#tools-for-data-manipulations"><i class="fa fa-check"></i><b>1.5.1</b> Tools for Data Manipulations</a></li>
+<li class="chapter" data-level="1.5.1" data-path="scrub.html"><a href="scrub.html#tools-for-data-manipulation"><i class="fa fa-check"></i><b>1.5.1</b> Tools for Data Manipulation</a></li>
 <li class="chapter" data-level="1.5.2" data-path="scrub.html"><a href="scrub.html#inclusion-and-exclusion-criteria"><i class="fa fa-check"></i><b>1.5.2</b> Inclusion and Exclusion Criteria</a></li>
 <li class="chapter" data-level="1.5.3" data-path="scrub.html"><a href="scrub.html#renaming-variables"><i class="fa fa-check"></i><b>1.5.3</b> Renaming Variables</a></li>
 <li class="chapter" data-level="1.5.4" data-path="scrub.html"><a href="scrub.html#downsizing-the-dataframe"><i class="fa fa-check"></i><b>1.5.4</b> Downsizing the Dataframe</a></li>
@@ -229,9 +229,10 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="score.html"><a href="score.html#working-the-problem-1"><i class="fa fa-check"></i><b>2.5</b> Working the Problem</a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="score.html"><a href="score.html#missing-data-analysis-whole-df-and-item-level"><i class="fa fa-check"></i><b>2.5.1</b> Missing Data Analysis: Whole df and Item level</a></li>
-<li class="chapter" data-level="2.5.2" data-path="score.html"><a href="score.html#analyzing-missing-data-patterns"><i class="fa fa-check"></i><b>2.5.2</b> Analyzing Missing Data Patterns</a></li>
-<li class="chapter" data-level="2.5.3" data-path="score.html"><a href="score.html#can-we-identify-the-missing-mechanisms"><i class="fa fa-check"></i><b>2.5.3</b> Can we identify the missing mechanisms?</a></li>
+<li class="chapter" data-level="2.5.1" data-path="score.html"><a href="score.html#variable-planning-and-preparation"><i class="fa fa-check"></i><b>2.5.1</b> Variable Planning and Preparation</a></li>
+<li class="chapter" data-level="2.5.2" data-path="score.html"><a href="score.html#missing-data-analysis-whole-df-and-item-level"><i class="fa fa-check"></i><b>2.5.2</b> Missing Data Analysis: Whole df and Item level</a></li>
+<li class="chapter" data-level="2.5.3" data-path="score.html"><a href="score.html#analyzing-missing-data-patterns"><i class="fa fa-check"></i><b>2.5.3</b> Analyzing Missing Data Patterns</a></li>
+<li class="chapter" data-level="2.5.4" data-path="score.html"><a href="score.html#can-we-identify-the-missing-mechanisms"><i class="fa fa-check"></i><b>2.5.4</b> Can we identify the missing mechanisms?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="score.html"><a href="score.html#scoring"><i class="fa fa-check"></i><b>2.6</b> Scoring</a>
 <ul>
@@ -433,7 +434,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="score" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Scoring<a href="score.html#score" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=18a6be07-5bdc-404d-bc95-acf601830887">Screencasted Lecture Link</a></p>
+<p><a href="https://youtube.com/playlist?list=PLtz5cFLQl4KNJXbHg2vDU-sbCH-QwXMlr&amp;si=7i1LFdRqxEJMLVZ6">Screencasted Lecture Link</a></p>
 <p>The focus of this chapter is to continue the process of scrubbing-and-scoring. We continue with the raw data we downloaded and prepared in the prior chapter. In this chapter we analyze and manage missingness, score scales/subscales, and represent our work with an APA-style write-up. To that end, we will address the conceptual considerations and practical steps in this process.</p>
 <div id="navigating-this-lesson-1" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Navigating this Lesson<a href="score.html#navigating-this-lesson-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -619,37 +620,97 @@ analyses.</p></li>
 </div>
 <div id="working-the-problem-1" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> Working the Problem<a href="score.html#working-the-problem-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the prior chapter we imported the data from Qualtrics and applied the broadest levels of inclusion (e.g., the course rated was offered from an institution in the U.S., the respondent consented to participation) and exclusion (e.g., the survey was not a preview). We then downsized the survey to include the variables we will use in our statistical model. We then saved the data in a .csv file.</p>
-<p>Presuming that you are working along with me in an .rmd file, if you have placed that file in the same folder as this .rmd file, the following code should read the data into your environment.</p>
+<div id="variable-planning-and-preparation" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Variable Planning and Preparation<a href="score.html#variable-planning-and-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the <a href="scrub.html#scrub">Scrubbing lesson</a> we imported the data from Qualtrics and applied the broadest levels of inclusion (e.g., the course rated was offered from an institution in the U.S., the respondent consented to participation) and exclusion (e.g., the survey was not a preview). We then downsized the survey to include the variables we will use in our statistical model. We then saved the data in .csv and .rds file.</p>
+<p>Presuming that you are working along with me in an .rmd file and have placed that file in the same folder as this .rmd file, the following code should read the data into your environment.</p>
 <p>I use <em>different</em> names for the object/df in my R environment than I use for the filename that holds the data on my computer. Why? I don’t want to accidentally overwrite this precious “source” of data.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="score.html#cb27-1" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;BlackStntsModel230902.csv&quot;</span>, <span class="at">head =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
-<span id="cb27-2"><a href="score.html#cb27-2" tabindex="-1"></a><span class="fu">str</span>(scrub_df)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    69 obs. of  25 variables:
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="score.html#cb27-1" tabindex="-1"></a><span class="co"># scrub_df &lt;- read.csv (&#39;BlackStntsModel230902.csv&#39;, head = TRUE, sep</span></span>
+<span id="cb27-2"><a href="score.html#cb27-2" tabindex="-1"></a><span class="co"># = &#39;,&#39;)</span></span>
+<span id="cb27-3"><a href="score.html#cb27-3" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;BlackStntsModel230902.rds&quot;</span>)</span>
+<span id="cb27-4"><a href="score.html#cb27-4" tabindex="-1"></a><span class="fu">str</span>(scrub_df)</span></code></pre></div>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    69 obs. of  25 variables:
 ##  $ ID       : int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ iRace1   : int  3 3 3 3 1 3 3 3 1 0 ...
-##  $ iRace2   : int  1 NA 1 1 NA NA 3 NA NA 0 ...
-##  $ iRace3   : int  3 NA NA 3 NA NA NA NA NA 3 ...
-##  $ iRace4   : int  NA NA NA NA NA NA NA NA NA 3 ...
+##  $ iRace1   : num  3 3 3 3 1 3 3 3 1 0 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;1 - From your perspective as a student, which of the following best describes the [Field-2] instructor.&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;1_iRace&quot;
+##  $ iRace2   : num  1 NA 1 1 NA NA 3 NA NA 0 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;2 - From your perspective as a student, which of the following best describes the [Field-2] instructor.&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;2_iRace&quot;
+##  $ iRace3   : num  3 NA NA 3 NA NA NA NA NA 3 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;3 - From your perspective as a student, which of the following best describes the [Field-2] instructor.&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;3_iRace&quot;
+##  $ iRace4   : num  NA NA NA NA NA NA NA NA NA 3 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;4 - From your perspective as a student, which of the following best describes the [Field-2] instructor.&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;4_iRace&quot;
 ##  $ iRace5   : logi  NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;5 - From your perspective as a student, which of the following best describes the [Field-2] instructor.&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;5_iRace&quot;
 ##  $ iRace6   : logi  NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;6 - From your perspective as a student, which of the following best describes the [Field-2] instructor.&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;6_iRace&quot;
 ##  $ iRace7   : logi  NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;7 - From your perspective as a student, which of the following best describes the [Field-2] instructor.&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;7_iRace&quot;
 ##  $ iRace8   : logi  NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;8 - From your perspective as a student, which of the following best describes the [Field-2] instructor.&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;8_iRace&quot;
 ##  $ iRace9   : logi  NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;9 - From your perspective as a student, which of the following best describes the [Field-2] instructor.&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;9_iRace&quot;
 ##  $ iRace10  : logi  NA NA NA NA NA NA ...
-##  $ cmBiMulti: int  0 0 0 2 5 15 0 0 0 7 ...
-##  $ cmBlack  : int  0 5 10 6 5 20 0 0 0 4 ...
-##  $ cmNBPoC  : int  39 10 30 19 10 30 40 5 30 13 ...
-##  $ cmWhite  : int  61 85 60 73 80 35 60 90 70 73 ...
-##  $ cmUnsure : int  0 0 0 0 0 0 0 5 0 3 ...
-##  $ Belong_1 : int  6 4 NA 5 4 5 6 7 6 3 ...
-##  $ Belong_2 : int  6 4 3 3 4 6 6 7 6 3 ...
-##  $ Belong_3 : int  7 6 NA 2 4 5 5 7 6 3 ...
-##  $ Blst_1   : int  5 6 NA 2 6 5 5 5 5 3 ...
-##  $ Blst_2   : int  3 6 5 2 1 1 4 4 3 5 ...
-##  $ Blst_3   : int  5 2 2 2 1 1 4 3 1 2 ...
-##  $ Blst_4   : int  2 2 2 2 1 2 4 3 2 3 ...
-##  $ Blst_5   : int  2 4 NA 2 1 1 4 4 1 3 ...
-##  $ Blst_6   : int  2 1 2 2 1 2 4 3 2 3 ...</code></pre>
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;10 - From your perspective as a student, which of the following best describes the [Field-2] instructor.&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;10_iRace&quot;
+##  $ cmBiMulti: num  0 0 0 2 5 15 0 0 0 7 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Regarding race, what proportion of students were from each broad classification.  Your responses should add to &quot;| __truncated__
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Race_10&quot;
+##  $ cmBlack  : num  0 5 10 6 5 20 0 0 0 4 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - Black&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Race_1&quot;
+##  $ cmNBPoC  : num  39 10 30 19 10 30 40 5 30 13 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Regarding race, what proportion of students were from each broad classification.  Your responses should add to &quot;| __truncated__
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Race_7&quot;
+##  $ cmWhite  : num  61 85 60 73 80 35 60 90 70 73 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - White&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Race_8&quot;
+##  $ cmUnsure : num  0 0 0 0 0 0 0 5 0 3 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - Unsure&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Race_2&quot;
+##  $ Belong_1 : num  6 4 NA 5 4 5 6 7 6 3 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Please indicate the degree to which you agree with the following questions about the course. Please skip the it&quot;| __truncated__
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Belong_1&quot;
+##  $ Belong_2 : num  6 4 3 3 4 6 6 7 6 3 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Please indicate the degree to which you agree with the following questions about the course. Please skip the it&quot;| __truncated__
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Belong_2&quot;
+##  $ Belong_3 : num  7 6 NA 2 4 5 5 7 6 3 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Please indicate the degree to which you agree with the following questions about the course. Please skip the it&quot;| __truncated__
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Belong_3&quot;
+##  $ Blst_1   : num  5 6 NA 2 6 5 5 5 5 3 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Each item below asks you to rate elements of campus climate for your \&quot;academic department/program.\&quot;  If you d&quot;| __truncated__
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Blst_1&quot;
+##  $ Blst_2   : num  3 6 5 2 1 1 4 4 3 5 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Each item below asks you to rate elements of campus climate for your \&quot;academic department/program.\&quot;  If you d&quot;| __truncated__
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Blst_2&quot;
+##  $ Blst_3   : num  5 2 2 2 1 1 4 3 1 2 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Each item below asks you to rate elements of campus climate for your \&quot;academic department/program.\&quot;  If you d&quot;| __truncated__
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Blst_3&quot;
+##  $ Blst_4   : num  2 2 2 2 1 2 4 3 2 3 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Each item below asks you to rate elements of campus climate for your \&quot;academic department/program.\&quot;  If you d&quot;| __truncated__
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Blst_4&quot;
+##  $ Blst_5   : num  2 4 NA 2 1 1 4 4 1 3 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Each item below asks you to rate elements of campus climate for your \&quot;academic department/program.\&quot;  If you d&quot;| __truncated__
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Blst_5&quot;
+##  $ Blst_6   : num  2 1 2 2 1 2 4 3 2 3 ...
+##   ..- attr(*, &quot;label&quot;)= Named chr &quot;Each item below asks you to rate elements of campus climate for your \&quot;academic department/program.\&quot;  If you d&quot;| __truncated__
+##   .. ..- attr(*, &quot;names&quot;)= chr &quot;Blst_6&quot;
+##  - attr(*, &quot;column_map&quot;)=Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:   182 obs. of  7 variables:
+##   ..$ qname      : chr [1:182] &quot;StartDate&quot; &quot;EndDate&quot; &quot;Status&quot; &quot;Progress&quot; ...
+##   ..$ description: chr [1:182] &quot;Start Date&quot; &quot;End Date&quot; &quot;Response Type&quot; &quot;Progress&quot; ...
+##   ..$ main       : chr [1:182] &quot;Start Date&quot; &quot;End Date&quot; &quot;Response Type&quot; &quot;Progress&quot; ...
+##   ..$ sub        : chr [1:182] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   ..$ ImportId   : chr [1:182] &quot;startDate&quot; &quot;endDate&quot; &quot;status&quot; &quot;progress&quot; ...
+##   ..$ timeZone   : chr [1:182] &quot;America/Los_Angeles&quot; &quot;America/Los_Angeles&quot; NA NA ...
+##   ..$ choiceId   : chr [1:182] NA NA NA NA ...</code></pre>
 <p>Let’s think about how the variables in our model should be measured:</p>
 <ul>
 <li>DV: Campus Climate for Black Students (as perceived by the respondent)
@@ -672,9 +733,11 @@ analyses.</p></li>
 <li>must be calculated from each of the single items for each instructor</li>
 </ul></li>
 </ul>
-<p>Our next step is to conduct a preliminary missing data analysis at the item level, across the dataset we are using. The Campus Climate and Belonging scales are traditional in the sense that they have items that we sum. The variable representing proportion of classmates who are Black is a single item. The variable representing the proportion of instructional staff who are BIPOC must be calculated in a manner that takes into consideration the there may be multiple instructors. The survey allowed a respondent to name up to 10 instructors.</p>
+<p>To summarize, the Campus Climate and Belonging scales are traditional in the sense that they have items that we sum. The variable representing proportion of classmates who are Black is a single item. The variable representing the proportion of instructional staff who are BIPOC must be calculated in a manner that takes into consideration the there may be multiple instructors. The survey allowed a respondent to name up to 10 instructors.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="score.html#cb29-1" tabindex="-1"></a><span class="fu">str</span>(scrub_df<span class="sc">$</span>iRace1)</span></code></pre></div>
-<pre><code>##  int [1:69] 3 3 3 3 1 3 3 3 1 0 ...</code></pre>
+<pre><code>##  num [1:69] 3 3 3 3 1 3 3 3 1 0 ...
+##  - attr(*, &quot;label&quot;)= Named chr &quot;1 - From your perspective as a student, which of the following best describes the [Field-2] instructor.&quot;
+##   ..- attr(*, &quot;names&quot;)= chr &quot;1_iRace&quot;</code></pre>
 <p>Looking at the structure of our data, the iRace(1 thru 10) variables are in “int” or integer format. This means that they are represented as whole numbers. We need them to be represented as factors. R handles factors represented as words well. Therefore, let’s use our codebook to reformat this variable as a an ordered factor, with words instead of numbers.</p>
 <p>Qualtrics imports many of the categorical variables as numbers. R often reads them numerically (integers or numbers). If they are directly converted to factors, R will sometimes collapse across missing numbers. In this example, if there is a race that is not represented (e.g., 2 for BiMulti), when the numbers are changed to factors, R will assume they are ordered and there is a consecutive series of numbers (0,1,2,3,4). If a number in the sequence is missing (0,1,3,4) and labels are applied, it will collapse across the numbers and the labels you think are attached to each number are not. Therefore, it is ESSENTIAL to check (again and again ad nauseum) to ensure that your variables are recoding in a manner you understand.</p>
 <p>One way to avoid this is to use the code below to identify the levels and the labels. When they are in order, they align and don’t “skip” numbers. To quadruple check our work, we will recode into a new variable “tRace#” for “teacher” Race.</p>
@@ -714,30 +777,30 @@ analyses.</p></li>
 <pre><code>## Rows: 69
 ## Columns: 35
 ## $ ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
-## $ iRace1    &lt;int&gt; 3, 3, 3, 3, 1, 3, 3, 3, 1, 0, 2, 1, 1, 1, 3, 3, 3, 1, 3, 3, …
-## $ iRace2    &lt;int&gt; 1, NA, 1, 1, NA, NA, 3, NA, NA, 0, NA, NA, 3, NA, 3, 3, NA, …
-## $ iRace3    &lt;int&gt; 3, NA, NA, 3, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, 3, 1, N…
-## $ iRace4    &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, NA, 3…
+## $ iRace1    &lt;dbl&gt; 3, 3, 3, 3, 1, 3, 3, 3, 1, 0, 2, 1, 1, 1, 3, 3, 3, 1, 3, 3, …
+## $ iRace2    &lt;dbl&gt; 1, NA, 1, 1, NA, NA, 3, NA, NA, 0, NA, NA, 3, NA, 3, 3, NA, …
+## $ iRace3    &lt;dbl&gt; 3, NA, NA, 3, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, 3, 1, N…
+## $ iRace4    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, NA, 3…
 ## $ iRace5    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 ## $ iRace6    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 ## $ iRace7    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 ## $ iRace8    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 ## $ iRace9    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 ## $ iRace10   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-## $ cmBiMulti &lt;int&gt; 0, 0, 0, 2, 5, 15, 0, 0, 0, 7, 0, 0, 20, 0, 9, 12, 0, 6, 6, …
-## $ cmBlack   &lt;int&gt; 0, 5, 10, 6, 5, 20, 0, 0, 0, 4, 0, 7, 0, 6, 9, 1, 21, 5, 6, …
-## $ cmNBPoC   &lt;int&gt; 39, 10, 30, 19, 10, 30, 40, 5, 30, 13, 80, 19, 0, 19, 15, 22…
-## $ cmWhite   &lt;int&gt; 61, 85, 60, 73, 80, 35, 60, 90, 70, 73, 10, 74, 80, 0, 67, 5…
-## $ cmUnsure  &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 5, 0, 3, 10, 0, 0, 75, 0, 14, 0, 5, 0, …
-## $ Belong_1  &lt;int&gt; 6, 4, NA, 5, 4, 5, 6, 7, 6, 3, 6, 6, 3, 4, 3, 3, 4, 5, 1, 2,…
-## $ Belong_2  &lt;int&gt; 6, 4, 3, 3, 4, 6, 6, 7, 6, 3, 6, 6, 5, 4, 3, 3, 4, 6, 1, 2, …
-## $ Belong_3  &lt;int&gt; 7, 6, NA, 2, 4, 5, 5, 7, 6, 3, 5, 6, 4, 4, 3, 2, 4, 5, 1, 1,…
-## $ Blst_1    &lt;int&gt; 5, 6, NA, 2, 6, 5, 5, 5, 5, 3, NA, 4, 5, 6, 3, 4, 6, 4, 4, 4…
-## $ Blst_2    &lt;int&gt; 3, 6, 5, 2, 1, 1, 4, 4, 3, 5, NA, 5, 1, 1, 3, 2, 1, 2, 5, 3,…
-## $ Blst_3    &lt;int&gt; 5, 2, 2, 2, 1, 1, 4, 3, 1, 2, 2, 1, 1, 1, 3, 2, 6, 2, 2, 2, …
-## $ Blst_4    &lt;int&gt; 2, 2, 2, 2, 1, 2, 4, 3, 2, 3, NA, 4, 3, 1, 3, 2, 1, 3, 2, 1,…
-## $ Blst_5    &lt;int&gt; 2, 4, NA, 2, 1, 1, 4, 4, 1, 3, 2, 2, 1, 1, 3, 2, 1, 2, 2, 1,…
-## $ Blst_6    &lt;int&gt; 2, 1, 2, 2, 1, 2, 4, 3, 2, 3, NA, 2, 1, 1, 3, 2, 2, 3, 2, 1,…
+## $ cmBiMulti &lt;dbl&gt; 0, 0, 0, 2, 5, 15, 0, 0, 0, 7, 0, 0, 20, 0, 9, 12, 0, 6, 6, …
+## $ cmBlack   &lt;dbl&gt; 0, 5, 10, 6, 5, 20, 0, 0, 0, 4, 0, 7, 0, 6, 9, 1, 21, 5, 6, …
+## $ cmNBPoC   &lt;dbl&gt; 39, 10, 30, 19, 10, 30, 40, 5, 30, 13, 80, 19, 0, 19, 15, 22…
+## $ cmWhite   &lt;dbl&gt; 61, 85, 60, 73, 80, 35, 60, 90, 70, 73, 10, 74, 80, 0, 67, 5…
+## $ cmUnsure  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 5, 0, 3, 10, 0, 0, 75, 0, 14, 0, 5, 0, …
+## $ Belong_1  &lt;dbl&gt; 6, 4, NA, 5, 4, 5, 6, 7, 6, 3, 6, 6, 3, 4, 3, 3, 4, 5, 1, 2,…
+## $ Belong_2  &lt;dbl&gt; 6, 4, 3, 3, 4, 6, 6, 7, 6, 3, 6, 6, 5, 4, 3, 3, 4, 6, 1, 2, …
+## $ Belong_3  &lt;dbl&gt; 7, 6, NA, 2, 4, 5, 5, 7, 6, 3, 5, 6, 4, 4, 3, 2, 4, 5, 1, 1,…
+## $ Blst_1    &lt;dbl&gt; 5, 6, NA, 2, 6, 5, 5, 5, 5, 3, NA, 4, 5, 6, 3, 4, 6, 4, 4, 4…
+## $ Blst_2    &lt;dbl&gt; 3, 6, 5, 2, 1, 1, 4, 4, 3, 5, NA, 5, 1, 1, 3, 2, 1, 2, 5, 3,…
+## $ Blst_3    &lt;dbl&gt; 5, 2, 2, 2, 1, 1, 4, 3, 1, 2, 2, 1, 1, 1, 3, 2, 6, 2, 2, 2, …
+## $ Blst_4    &lt;dbl&gt; 2, 2, 2, 2, 1, 2, 4, 3, 2, 3, NA, 4, 3, 1, 3, 2, 1, 3, 2, 1,…
+## $ Blst_5    &lt;dbl&gt; 2, 4, NA, 2, 1, 1, 4, 4, 1, 3, 2, 2, 1, 1, 3, 2, 1, 2, 2, 1,…
+## $ Blst_6    &lt;dbl&gt; 2, 1, 2, 2, 1, 2, 4, 3, 2, 3, NA, 2, 1, 1, 3, 2, 2, 3, 2, 1,…
 ## $ tRace1    &lt;fct&gt; White, White, White, White, nBpoc, White, White, White, nBpo…
 ## $ tRace2    &lt;fct&gt; nBpoc, NA, nBpoc, nBpoc, NA, NA, White, NA, NA, Black, NA, N…
 ## $ tRace3    &lt;fct&gt; White, NA, NA, White, NA, NA, NA, NA, NA, White, NA, NA, NA,…
@@ -765,8 +828,9 @@ analyses.</p></li>
 <span id="cb37-3"><a href="score.html#cb37-3" tabindex="-1"></a>    <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)))</span></code></pre></div>
 <p>Now to calculate the proportion of BIPOC instructional faculty for each case.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="score.html#cb38-1" tabindex="-1"></a>scrub_df<span class="sc">$</span>iBIPOC_pr <span class="ot">=</span> scrub_df<span class="sc">$</span>count.BIPOC<span class="sc">/</span>scrub_df<span class="sc">$</span>count.nMiss</span></code></pre></div>
-<div id="missing-data-analysis-whole-df-and-item-level" class="section level3 hasAnchor" number="2.5.1">
-<h3><span class="header-section-number">2.5.1</span> Missing Data Analysis: Whole df and Item level<a href="score.html#missing-data-analysis-whole-df-and-item-level" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="missing-data-analysis-whole-df-and-item-level" class="section level3 hasAnchor" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Missing Data Analysis: Whole df and Item level<a href="score.html#missing-data-analysis-whole-df-and-item-level" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In understanding missingness across the dataset, I think it is important to analyze and manage it, iteratively. We will start with a view of the whole df-level missingness. Subsequently, and consistent with the available information analysis [AIA; <span class="citation">Parent (<a href="#ref-parent_handling_2013">2013</a>)</span>] approach, we will score the scales and then look again at missingness, using the new information to update our decisions about how to manage it.</p>
 <div class="float">
 <img src="images/Ch02/wrkflow_item_lvl.jpg" alt="An image of our stage in the workflow for scrubbing and scoring data." />
@@ -777,14 +841,15 @@ analyses.</p></li>
 <span id="cb39-2"><a href="score.html#cb39-2" tabindex="-1"></a>    Blst_1<span class="sc">:</span>Blst_6))</span></code></pre></div>
 <p>With a couple of calculations, we create a proportion of item-level missingness.</p>
 <p>In this chunk I first calculate the number of missing (nmiss)</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="score.html#cb40-1" tabindex="-1"></a><span class="co">#Calculating number and proportion of item-level missingness</span></span>
-<span id="cb40-2"><a href="score.html#cb40-2" tabindex="-1"></a>scrub_df<span class="sc">$</span>nmiss <span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span></span>
-<span id="cb40-3"><a href="score.html#cb40-3" tabindex="-1"></a>    <span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>Blst_6) <span class="sc">%&gt;%</span> <span class="co">#the colon allows us to include all variables between the two listed (the variables need to be in order)</span></span>
-<span id="cb40-4"><a href="score.html#cb40-4" tabindex="-1"></a>    is.na <span class="sc">%&gt;%</span> </span>
-<span id="cb40-5"><a href="score.html#cb40-5" tabindex="-1"></a>    rowSums</span>
-<span id="cb40-6"><a href="score.html#cb40-6" tabindex="-1"></a></span>
-<span id="cb40-7"><a href="score.html#cb40-7" tabindex="-1"></a>scrub_df<span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span></span>
-<span id="cb40-8"><a href="score.html#cb40-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_miss =</span> (nmiss<span class="sc">/</span><span class="dv">11</span>)<span class="sc">*</span><span class="dv">100</span>) <span class="co">#11 is the number of variables included in calculating the proportion</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="score.html#cb40-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb40-2"><a href="score.html#cb40-2" tabindex="-1"></a><span class="co">#Calculating number and proportion of item-level missingness</span></span>
+<span id="cb40-3"><a href="score.html#cb40-3" tabindex="-1"></a>scrub_df<span class="sc">$</span>nmiss <span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span></span>
+<span id="cb40-4"><a href="score.html#cb40-4" tabindex="-1"></a>    <span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>Blst_6) <span class="sc">%&gt;%</span> <span class="co">#the colon allows us to include all variables between the two listed (the variables need to be in order)</span></span>
+<span id="cb40-5"><a href="score.html#cb40-5" tabindex="-1"></a>    is.na <span class="sc">%&gt;%</span> </span>
+<span id="cb40-6"><a href="score.html#cb40-6" tabindex="-1"></a>    rowSums</span>
+<span id="cb40-7"><a href="score.html#cb40-7" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="score.html#cb40-8" tabindex="-1"></a>scrub_df<span class="ot">&lt;-</span> scrub_df<span class="sc">%&gt;%</span></span>
+<span id="cb40-9"><a href="score.html#cb40-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">prop_miss =</span> (nmiss<span class="sc">/</span><span class="dv">11</span>)<span class="sc">*</span><span class="dv">100</span>) <span class="co">#11 is the number of variables included in calculating the proportion</span></span></code></pre></div>
 <p>We can grab the descriptives for the <em>prop_miss</em> variable to begin to understand our data. I will create an object from it so I can use it with inline</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="score.html#cb41-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(scrub_df<span class="sc">$</span>prop_miss)</span></code></pre></div>
 <pre><code>##    vars  n mean    sd median trimmed mad min max range skew kurtosis   se
@@ -795,8 +860,7 @@ analyses.</p></li>
 <p>Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0 to 100%.</p>
 </blockquote>
 </blockquote>
-<p>At the time that I am lecturing this, the the amount of missing is not so egregious that I want to eliminate any cases. That is, I’m willing to wait until after I score the items to make further decisions, then.</p>
-<p>That said, because (a) I want you to have such code and (b) it is quite likely that we will receive responses with high levels of missingness, I will write code to eliminate cases with <span class="math inline">\(\geq\)</span> 90%.</p>
+<p>At the time that I am lecturing this, we do have some rather egregious missingness. At this point I will write code to eliminate cases with <span class="math inline">\(\geq\)</span> 90%.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="score.html#cb43-1" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(scrub_df, prop_miss <span class="sc">&lt;=</span> <span class="dv">90</span>)  <span class="co">#update df to have only those with at least 90% of complete data</span></span></code></pre></div>
 <p>To analyze missingness at this level, we need a df that has only the variables of interest. That is, variables like <em>ID</em> and the <em>prop_miss</em> and <em>nmiss</em> variables we created will interfere with an accurate assessment of missingness. I will update our df to eliminate these.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="score.html#cb44-1" tabindex="-1"></a><span class="co"># further update to exclude the n_miss and prop_miss variables</span></span>
@@ -820,8 +884,8 @@ analyses.</p></li>
 </blockquote>
 </blockquote>
 </div>
-<div id="analyzing-missing-data-patterns" class="section level3 hasAnchor" number="2.5.2">
-<h3><span class="header-section-number">2.5.2</span> Analyzing Missing Data Patterns<a href="score.html#analyzing-missing-data-patterns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="analyzing-missing-data-patterns" class="section level3 hasAnchor" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Analyzing Missing Data Patterns<a href="score.html#analyzing-missing-data-patterns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One approach to analyzing missing data is to assess patterns of missingness.</p>
 <p>Several R packages are popularly used for conducting such analyses. In the <em>mice</em> package, <em>md.pattern()</em> function provides a matrix with the number of columns + 1, in which each row corresponds to a missing data pattern (1 = observed, 0 = missing).</p>
 <p>Rows and columns are sorted in increasing amounts of missing information.</p>
@@ -832,10 +896,10 @@ analyses.</p></li>
 <p>The table lets us examine each missing pattern and see which variable(s) is/are missing. The output is in the form of a table that indicates the frequency of each pattern of missingness. Because I haven’t (yet) figured out how to pipe objects from this table into the chapter, this text may differ from the patterns in the current data frame.</p>
 <p>Each row in the table represents a different pattern of missingness. At the time of writing, there are <em>8</em> patterns of missing data. The patterns are listed in descending order of the least amount of missingness. The most common pattern (<em>58</em> cases, top row) is one with no missing data. One case is missing one cell – one item assessing the campus climate for Black students, and so forth.</p>
 </div>
-<div id="can-we-identify-the-missing-mechanisms" class="section level3 hasAnchor" number="2.5.3">
-<h3><span class="header-section-number">2.5.3</span> Can we identify the missing mechanisms?<a href="score.html#can-we-identify-the-missing-mechanisms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To date, we do not have statistical tools that can accurately diagnose our patterns of missingness. You may have heard that “Little’s MCAR” is a helpful tool. Unfortunately, as Enders <span class="citation">(<a href="#ref-enders_applied_2010">2010</a>)</span> has noted, the tool is problematic. Perhaps the most significant one is that under the null hypothesis, a statistically significant test indicates that the missing data are MAR (missing at random) or MNAR (missing not at random); a non-significant test indicates the data are MCAR (missint completely at random) or MNAR. Consequently, regardless of the result, an MNAR circumstance cannot be ruled out. Correspondingly, the Little’s MCAR test has disappeard from the more reliable R packages that assess missingness.</p>
-<p>Enders <span class="citation">(<a href="#ref-enders_applied_2010">2010</a>)</span> <em>Applied Missing Data Analysis</em> text does provide a set of <a href="https://www.google.com/books/edition/Applied_Missing_Data_Analysis/uHt4EAAAQBAJ?hl=en&amp;gbpv=1&amp;dq=enders+missing+data&amp;pg=PP1&amp;printsec=frontcover">figures</a> (page 3) that illustrate common missing data patterns. Comparing these to the figure produced with <em>mice::mdpattern</em> our data looks somewhat monotonic – that is, as individuals completed the survey, they began to experience test fatigue and simply stopped responding. Diagnosisng monotonicity requires that the variables in the dataset must be in the order in which the students completed them. If the variables have been re-ordered or if the surveys were presented to students in a randomized order, then more data manipulation would be required before attributing missingnes to test fatigue.</p>
+<div id="can-we-identify-the-missing-mechanisms" class="section level3 hasAnchor" number="2.5.4">
+<h3><span class="header-section-number">2.5.4</span> Can we identify the missing mechanisms?<a href="score.html#can-we-identify-the-missing-mechanisms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To date, we do not have statistical tools that can accurately diagnose our patterns of missingness. You may have heard that “Little’s MCAR” is a helpful tool. Unfortunately, as Enders <span class="citation">(<a href="#ref-enders_applied_2010">2010</a>)</span> has noted, the tool is problematic. Perhaps the most significant one is that under the null hypothesis, a statistically significant test indicates that the missing data are MAR (missing at random) or MNAR (missing not at random); a non-significant test indicates the data are MCAR (missing completely at random) or MNAR. Consequently, regardless of the result, an MNAR circumstance cannot be ruled out. Correspondingly, the Little’s MCAR test has disappeared from the more reliable R packages that assess missingness.</p>
+<p>Enders <span class="citation">(<a href="#ref-enders_applied_2010">2010</a>)</span> <em>Applied Missing Data Analysis</em> text does provide a set of <a href="https://www.google.com/books/edition/Applied_Missing_Data_Analysis/uHt4EAAAQBAJ?hl=en&amp;gbpv=1&amp;dq=enders+missing+data&amp;pg=PP1&amp;printsec=frontcover">figures</a> (page 3) that illustrate common missing data patterns. Comparing these to the figure produced with <em>mice::mdpattern</em> our data looks somewhat monotonic – that is, as individuals completed the survey, they began to experience test fatigue and simply stopped responding. Diagnosisng monotonicity requires that the variables in the dataset must be in the order in which the students completed them. If the variables have been re-ordered or if the surveys were presented to students in a randomized order, then more data manipulation would be required before attributing missingness to test fatigue.</p>
 <p>Survey programs like Qualtrics offer the randomization of items within blocks (or blocks themselves). This can help distribute missingness caused by test fatigue so that more cases can be retained.</p>
 </div>
 </div>
@@ -854,7 +918,7 @@ analyses.</p></li>
 <li>The reversal is an <em>equation</em> where you subtract the value in the item from the range/scaling + 1. For the our three items we subtract each item’s value from 8.</li>
 </ul>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="score.html#cb50-1" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> scrub_df <span class="sc">%&gt;%</span></span>
-<span id="cb50-2"><a href="score.html#cb50-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">rBlst_1 =</span> <span class="dv">8</span> <span class="sc">-</span> Blst_1)  <span class="co">#if you had multiple items, you could add a pipe (%&gt;%) at the end of the line and add more until the last one</span></span></code></pre></div>
+<span id="cb50-2"><a href="score.html#cb50-2" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">rBlst_1 =</span> <span class="dv">8</span> <span class="sc">-</span> Blst_1)  <span class="co">#if you had multiple items, you could add a pipe (%&gt;%) at the end of the line and add more until the last one</span></span></code></pre></div>
 <p>Per Parent <span class="citation">(<a href="#ref-parent_handling_2013">2013</a>)</span> we will analyze missingness for each scale, separately.</p>
 <ul>
 <li>We will calculate scale scores on each scale separately when 80% (roughly) of the data is present.
@@ -899,25 +963,27 @@ analyses.</p></li>
 <div class="figcaption">An image of our stage in the workflow for scrubbing and scoring data.</div>
 </div>
 <p>First let’s get the df down to the variables we want to retain:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="score.html#cb54-1" tabindex="-1"></a>scored <span class="ot">&lt;-</span> (<span class="fu">select</span>(scrub_df, iBIPOC_pr, cmBlack, Belonging, ResponseBL,</span>
-<span id="cb54-2"><a href="score.html#cb54-2" tabindex="-1"></a>    StigmaBL, ClimateBL))</span>
-<span id="cb54-3"><a href="score.html#cb54-3" tabindex="-1"></a>ScoredCaseMiss <span class="ot">&lt;-</span> <span class="fu">nrow</span>(scored)  <span class="co">#I produced this object for the sole purpose of feeding the number of cases into the inline text, below</span></span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="score.html#cb54-1" tabindex="-1"></a>scored <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(scrub_df, iBIPOC_pr, cmBlack, Belonging, ResponseBL,</span>
+<span id="cb54-2"><a href="score.html#cb54-2" tabindex="-1"></a>    StigmaBL, ClimateBL)</span>
+<span id="cb54-3"><a href="score.html#cb54-3" tabindex="-1"></a>ScoredCaseMiss <span class="ot">&lt;-</span> <span class="fu">nrow</span>(scored)  <span class="co">#I produced this object for the sole purpose of feeding the number of cases into the inline text, below</span></span>
+<span id="cb54-4"><a href="score.html#cb54-4" tabindex="-1"></a>ScoredCaseMiss</span></code></pre></div>
+<pre><code>## [1] 66</code></pre>
 <p>Before we start our formal analysis of missingness at the scale level, let’s continue to scrub by eliminating cases that will have too much missingness. In the script below we create a variable that counts the number of missing variables and then creates a proportion by dividing it by the number of total variables.</p>
 <p>Using the <em>describe()</em> function from the <em>psych</em> package, we can investigate this variable.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="score.html#cb55-1" tabindex="-1"></a><span class="co"># Create a variable (n_miss) that counts the number missing</span></span>
-<span id="cb55-2"><a href="score.html#cb55-2" tabindex="-1"></a>scored<span class="sc">$</span>n_miss <span class="ot">&lt;-</span> scored <span class="sc">%&gt;%</span></span>
-<span id="cb55-3"><a href="score.html#cb55-3" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>ClimateBL) <span class="sc">%&gt;%</span></span>
-<span id="cb55-4"><a href="score.html#cb55-4" tabindex="-1"></a>    is.na <span class="sc">%&gt;%</span></span>
-<span id="cb55-5"><a href="score.html#cb55-5" tabindex="-1"></a>    rowSums</span>
-<span id="cb55-6"><a href="score.html#cb55-6" tabindex="-1"></a></span>
-<span id="cb55-7"><a href="score.html#cb55-7" tabindex="-1"></a><span class="co"># Create a proportion missing by dividing n_miss by the total number</span></span>
-<span id="cb55-8"><a href="score.html#cb55-8" tabindex="-1"></a><span class="co"># of variables (6) Pipe to sort in order of descending frequency to</span></span>
-<span id="cb55-9"><a href="score.html#cb55-9" tabindex="-1"></a><span class="co"># get a sense of the missingness</span></span>
-<span id="cb55-10"><a href="score.html#cb55-10" tabindex="-1"></a>scored <span class="ot">&lt;-</span> scored <span class="sc">%&gt;%</span></span>
-<span id="cb55-11"><a href="score.html#cb55-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prop_miss =</span> (n_miss<span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb55-12"><a href="score.html#cb55-12" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n_miss))</span>
-<span id="cb55-13"><a href="score.html#cb55-13" tabindex="-1"></a></span>
-<span id="cb55-14"><a href="score.html#cb55-14" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(scored<span class="sc">$</span>prop_miss)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="score.html#cb56-1" tabindex="-1"></a><span class="co"># Create a variable (n_miss) that counts the number missing</span></span>
+<span id="cb56-2"><a href="score.html#cb56-2" tabindex="-1"></a>scored<span class="sc">$</span>n_miss <span class="ot">&lt;-</span> scored <span class="sc">%&gt;%</span></span>
+<span id="cb56-3"><a href="score.html#cb56-3" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(iBIPOC_pr<span class="sc">:</span>ClimateBL) <span class="sc">%&gt;%</span></span>
+<span id="cb56-4"><a href="score.html#cb56-4" tabindex="-1"></a>    is.na <span class="sc">%&gt;%</span></span>
+<span id="cb56-5"><a href="score.html#cb56-5" tabindex="-1"></a>    rowSums</span>
+<span id="cb56-6"><a href="score.html#cb56-6" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="score.html#cb56-7" tabindex="-1"></a><span class="co"># Create a proportion missing by dividing n_miss by the total number</span></span>
+<span id="cb56-8"><a href="score.html#cb56-8" tabindex="-1"></a><span class="co"># of variables (6) Pipe to sort in order of descending frequency to</span></span>
+<span id="cb56-9"><a href="score.html#cb56-9" tabindex="-1"></a><span class="co"># get a sense of the missingness</span></span>
+<span id="cb56-10"><a href="score.html#cb56-10" tabindex="-1"></a>scored <span class="ot">&lt;-</span> scored <span class="sc">%&gt;%</span></span>
+<span id="cb56-11"><a href="score.html#cb56-11" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">prop_miss =</span> (n_miss<span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb56-12"><a href="score.html#cb56-12" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n_miss))</span>
+<span id="cb56-13"><a href="score.html#cb56-13" tabindex="-1"></a></span>
+<span id="cb56-14"><a href="score.html#cb56-14" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(scored<span class="sc">$</span>prop_miss)</span></code></pre></div>
 <pre><code>##    vars  n mean    sd median trimmed mad min   max range skew kurtosis   se
 ## X1    1 66 3.79 12.33      0    0.31   0   0 66.67 66.67 3.44    11.77 1.52</code></pre>
 <p>CUMULATIVE CAPTURE FOR WRITING IT UP:</p>
@@ -932,15 +998,15 @@ analyses.</p></li>
 </blockquote>
 </blockquote>
 <p>We need to decide what is our retention threshhold. Twenty percent seems to be a general rule of thumb. Let’s delete all cases with missingness at 20% or greater.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="score.html#cb57-1" tabindex="-1"></a><span class="co"># update df to have only those with at least 20% of complete data</span></span>
-<span id="cb57-2"><a href="score.html#cb57-2" tabindex="-1"></a><span class="co"># (this is an arbitrary decision)</span></span>
-<span id="cb57-3"><a href="score.html#cb57-3" tabindex="-1"></a>scored <span class="ot">&lt;-</span> <span class="fu">filter</span>(scored, prop_miss <span class="sc">&lt;=</span> <span class="dv">20</span>)</span>
-<span id="cb57-4"><a href="score.html#cb57-4" tabindex="-1"></a></span>
-<span id="cb57-5"><a href="score.html#cb57-5" tabindex="-1"></a><span class="co"># the variable selection just lops off the proportion missing</span></span>
-<span id="cb57-6"><a href="score.html#cb57-6" tabindex="-1"></a>scored <span class="ot">&lt;-</span> (<span class="fu">select</span>(scored, iBIPOC_pr<span class="sc">:</span>ClimateBL))</span>
-<span id="cb57-7"><a href="score.html#cb57-7" tabindex="-1"></a></span>
-<span id="cb57-8"><a href="score.html#cb57-8" tabindex="-1"></a><span class="co"># this produces the number of cases retained</span></span>
-<span id="cb57-9"><a href="score.html#cb57-9" tabindex="-1"></a><span class="fu">nrow</span>(scored)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="score.html#cb58-1" tabindex="-1"></a><span class="co"># update df to have only those with at least 20% of complete data</span></span>
+<span id="cb58-2"><a href="score.html#cb58-2" tabindex="-1"></a><span class="co"># (this is an arbitrary decision)</span></span>
+<span id="cb58-3"><a href="score.html#cb58-3" tabindex="-1"></a>scored <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(scored, prop_miss <span class="sc">&lt;=</span> <span class="dv">20</span>)</span>
+<span id="cb58-4"><a href="score.html#cb58-4" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="score.html#cb58-5" tabindex="-1"></a><span class="co"># the variable selection just lops off the proportion missing</span></span>
+<span id="cb58-6"><a href="score.html#cb58-6" tabindex="-1"></a>scored <span class="ot">&lt;-</span> (<span class="fu">select</span>(scored, iBIPOC_pr<span class="sc">:</span>ClimateBL))</span>
+<span id="cb58-7"><a href="score.html#cb58-7" tabindex="-1"></a></span>
+<span id="cb58-8"><a href="score.html#cb58-8" tabindex="-1"></a><span class="co"># this produces the number of cases retained</span></span>
+<span id="cb58-9"><a href="score.html#cb58-9" tabindex="-1"></a><span class="fu">nrow</span>(scored)</span></code></pre></div>
 <pre><code>## [1] 61</code></pre>
 <p>CUMULATIVE CAPTURE FOR WRITING IT UP:</p>
 <blockquote>
@@ -963,11 +1029,11 @@ analyses.</p></li>
 <li>individual cells across the scored dataset, and</li>
 <li>rows/cases with nonmissing data</li>
 </ul>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="score.html#cb59-1" tabindex="-1"></a><span class="co"># percent missing across df</span></span>
-<span id="cb59-2"><a href="score.html#cb59-2" tabindex="-1"></a>formattable<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">is.na</span>(scored)))</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="score.html#cb60-1" tabindex="-1"></a><span class="co"># percent missing across df</span></span>
+<span id="cb60-2"><a href="score.html#cb60-2" tabindex="-1"></a>formattable<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">is.na</span>(scored)))</span></code></pre></div>
 <pre><code>## [1] 0.55%</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="score.html#cb61-1" tabindex="-1"></a><span class="co"># percent of rows with nonmissing data</span></span>
-<span id="cb61-2"><a href="score.html#cb61-2" tabindex="-1"></a>formattable<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">complete.cases</span>(scored)))</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="score.html#cb62-1" tabindex="-1"></a><span class="co"># percent of rows with nonmissing data</span></span>
+<span id="cb62-2"><a href="score.html#cb62-2" tabindex="-1"></a>formattable<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">complete.cases</span>(scored)))</span></code></pre></div>
 <pre><code>## [1] 96.72%</code></pre>
 <p>CUMULATIVE CAPTURE FOR WRITING IT UP:</p>
 <blockquote>
@@ -984,9 +1050,9 @@ analyses.</p></li>
 <div id="scale-level-patterns-of-missing-data" class="section level3 hasAnchor" number="2.8.1">
 <h3><span class="header-section-number">2.8.1</span> Scale Level: Patterns of Missing Data<a href="score.html#scale-level-patterns-of-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Returning to the <em>mice</em> package, we can use the <em>md.pattern()</em> function to examine a matrix with the number of columns + 1 in which each row corresponds to a missing data pattern (1 = observed, 0 = missing). The rows and columns are sorted in increasing amounts of missing information. The last column and row contain row and column counts, respectively.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="score.html#cb63-1" tabindex="-1"></a>mice_ScaleLvl <span class="ot">&lt;-</span> mice<span class="sc">::</span><span class="fu">md.pattern</span>(scored, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">rotate.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="score.html#cb64-1" tabindex="-1"></a>mice_ScaleLvl <span class="ot">&lt;-</span> mice<span class="sc">::</span><span class="fu">md.pattern</span>(scored, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">rotate.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="02-Scoring_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="score.html#cb64-1" tabindex="-1"></a>mice_ScaleLvl</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="score.html#cb65-1" tabindex="-1"></a>mice_ScaleLvl</span></code></pre></div>
 <pre><code>##    cmBlack Belonging ResponseBL StigmaBL ClimateBL iBIPOC_pr  
 ## 59       1         1          1        1         1         1 0
 ## 2        1         1          1        1         1         0 1
@@ -1061,7 +1127,7 @@ analyses.</p></li>
 </blockquote>
 <blockquote>
 <blockquote>
-<p>Across the 66 cases for which the scoring protocol was applied, missingness ranged from 0 to 67%. After eliminating cases with greater than 20% missing, the dataset analyzed included 61 cases. In this dataset we had less than 1% (0.55%) missing across the df; 97% of the rows had nonmissing data.</p>
+<p>Across the 66 cases for which the scoring protocol was applied, missingness ranged from 0 to 67%. After eliminating cases with greater than 20% missing, the dataset analyzed included 61 cases. In this dataset we had less than 1% (0.55%) missing across the data set; 97% of the rows had nonmissing data.</p>
 </blockquote>
 </blockquote>
 </div>

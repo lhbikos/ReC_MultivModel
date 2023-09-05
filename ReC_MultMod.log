@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.3)  3 SEP 2023 16:58
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.3)  4 SEP 2023 21:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -817,12 +817,12 @@ File: images/Ch02/scrubscore_wrkflow.jpg Graphic file (type bmp)
 <images/Ch02/scrubscore_wrkflow.jpg>
 [20] [21] [22]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 425.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 461.
 [23] [24] [25] [26] [27]
 File: images/Ch02/wrkflow_prelim.jpg Graphic file (type bmp)
 <images/Ch02/wrkflow_prelim.jpg>
 [28] [29] [30]
-Overfull \hbox (110.8686pt too wide) in paragraph at lines 762--762
+Overfull \hbox (110.8686pt too wide) in paragraph at lines 764--764
 []\TU/lmtt/m/n/10.95 i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
  []
 
@@ -839,213 +839,361 @@ File: images/Ch02/wrkflow_prelim.jpg Graphic file (type bmp)
 [39]
 File: images/Ch03/BlStuMed.jpg Graphic file (type bmp)
 <images/Ch03/BlStuMed.jpg>
-[40] [41] [42] [43] [44] [45] [46]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 1459--1459
+[40] [41] [42] [43] [44]
+Overfull \hbox (346.5673pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "1 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
+ []
+
+
+Overfull \hbox (346.5673pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "2 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
+ []
+
+
+Overfull \hbox (346.5673pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "3 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
+ []
+
+
+Overfull \hbox (346.5673pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "4 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
+ []
+
+
+Overfull \hbox (346.5673pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "5 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
+ []
+
+
+Overfull \hbox (346.5673pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "6 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
+ []
+
+
+Overfull \hbox (346.5673pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "7 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
+ []
+
+
+Overfull \hbox (346.5673pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "8 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
+ []
+
+
+Overfull \hbox (346.5673pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "9 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
+ []
+
+
+Overfull \hbox (352.31606pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "10 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
+ []
+
+
+Overfull \hbox (478.78853pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to "| __truncated__[] 
+ []
+
+[45]
+Overfull \hbox (467.29103pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - Black"[] 
+ []
+
+
+Overfull \hbox (478.78853pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to "| __truncated__[] 
+ []
+
+
+Overfull \hbox (467.29103pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - White"[] 
+ []
+
+
+Overfull \hbox (473.03978pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - Unsure"[] 
+ []
+
+
+Overfull \hbox (478.78853pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__[] 
+ []
+
+
+Overfull \hbox (478.78853pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__[] 
+ []
+
+
+Overfull \hbox (478.78853pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__[] 
+ []
+
+
+Overfull \hbox (478.78853pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (478.78853pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (478.78853pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (478.78853pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (478.78853pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (478.78853pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (87.87361pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##  - attr(*, "column_map")=Classes 'tbl_df', 'tbl' and 'data.frame':   182 obs. of  7 variables:[] 
+ []
+
+
+Overfull \hbox (36.13487pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..$ description: chr [1:182] "Start Date" "End Date" "Response Type" "Progress" ...[] 
+ []
+
+
+Overfull \hbox (36.13487pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..$ main       : chr [1:182] "Start Date" "End Date" "Response Type" "Progress" ...[] 
+ []
+
+
+Overfull \hbox (30.38612pt too wide) in paragraph at lines 1414--1414
+[]\TU/lmtt/m/n/10.95 ##   ..$ timeZone   : chr [1:182] "America/Los_Angeles" "America/Los_Angeles" NA NA ...[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[46]
+Overfull \hbox (329.32106pt too wide) in paragraph at lines 1472--1472
+[]\TU/lmtt/m/n/10.95 ##  - attr(*, "label")= Named chr "1 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
+ []
+
+[47]
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 1524--1524
 []\TU/lmtt/m/n/10.95 ## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --[] 
  []
 
 
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 1459--1459
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 1524--1524
 []\TU/lmtt/m/n/10.95 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --[] 
  []
 
 
-Overfull \hbox (128.11485pt too wide) in paragraph at lines 1459--1459
+Overfull \hbox (128.11485pt too wide) in paragraph at lines 1524--1524
 []\TU/lmtt/m/n/10.95 ## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ ID        <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ iRace1    <int> 3, 3, 3, 3, 1, 3, 3, 3, 1, 0, 2, 1, 1, 1, 3, 3, 3, 1, 3, 3, ~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ iRace1    <dbl> 3, 3, 3, 3, 1, 3, 3, 3, 1, 0, 2, 1, 1, 1, 3, 3, 3, 1, 3, 3, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ iRace2    <int> 1, NA, 1, 1, NA, NA, 3, NA, NA, 0, NA, NA, 3, NA, 3, 3, NA, ~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ iRace2    <dbl> 1, NA, 1, 1, NA, NA, 3, NA, NA, 0, NA, NA, 3, NA, 3, 3, NA, ~[] 
+ []
+
+[48]
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ iRace3    <dbl> 3, NA, NA, 3, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, 3, 1, N~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ iRace3    <int> 3, NA, NA, 3, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, 3, 1, N~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ iRace4    <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, NA, 3~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ iRace4    <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, NA, 3~[] 
- []
-
-
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ iRace5    <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ iRace6    <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ iRace7    <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ iRace8    <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ iRace9    <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ iRace10   <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ cmBiMulti <int> 0, 0, 0, 2, 5, 15, 0, 0, 0, 7, 0, 0, 20, 0, 9, 12, 0, 6, 6, ~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ cmBiMulti <dbl> 0, 0, 0, 2, 5, 15, 0, 0, 0, 7, 0, 0, 20, 0, 9, 12, 0, 6, 6, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ cmBlack   <int> 0, 5, 10, 6, 5, 20, 0, 0, 0, 4, 0, 7, 0, 6, 9, 1, 21, 5, 6, ~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ cmBlack   <dbl> 0, 5, 10, 6, 5, 20, 0, 0, 0, 4, 0, 7, 0, 6, 9, 1, 21, 5, 6, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ cmNBPoC   <int> 39, 10, 30, 19, 10, 30, 40, 5, 30, 13, 80, 19, 0, 19, 15, 22~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ cmNBPoC   <dbl> 39, 10, 30, 19, 10, 30, 40, 5, 30, 13, 80, 19, 0, 19, 15, 22~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ cmWhite   <int> 61, 85, 60, 73, 80, 35, 60, 90, 70, 73, 10, 74, 80, 0, 67, 5~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ cmWhite   <dbl> 61, 85, 60, 73, 80, 35, 60, 90, 70, 73, 10, 74, 80, 0, 67, 5~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ cmUnsure  <int> 0, 0, 0, 0, 0, 0, 0, 5, 0, 3, 10, 0, 0, 75, 0, 14, 0, 5, 0, ~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ cmUnsure  <dbl> 0, 0, 0, 0, 0, 0, 0, 5, 0, 3, 10, 0, 0, 75, 0, 14, 0, 5, 0, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ Belong_1  <int> 6, 4, NA, 5, 4, 5, 6, 7, 6, 3, 6, 6, 3, 4, 3, 3, 4, 5, 1, 2,~[] 
- []
-
-[47]
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ Belong_2  <int> 6, 4, 3, 3, 4, 6, 6, 7, 6, 3, 6, 6, 5, 4, 3, 3, 4, 6, 1, 2, ~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ Belong_1  <dbl> 6, 4, NA, 5, 4, 5, 6, 7, 6, 3, 6, 6, 3, 4, 3, 3, 4, 5, 1, 2,~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ Belong_3  <int> 7, 6, NA, 2, 4, 5, 5, 7, 6, 3, 5, 6, 4, 4, 3, 2, 4, 5, 1, 1,~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ Belong_2  <dbl> 6, 4, 3, 3, 4, 6, 6, 7, 6, 3, 6, 6, 5, 4, 3, 3, 4, 6, 1, 2, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ Blst_1    <int> 5, 6, NA, 2, 6, 5, 5, 5, 5, 3, NA, 4, 5, 6, 3, 4, 6, 4, 4, 4~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ Belong_3  <dbl> 7, 6, NA, 2, 4, 5, 5, 7, 6, 3, 5, 6, 4, 4, 3, 2, 4, 5, 1, 1,~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ Blst_2    <int> 3, 6, 5, 2, 1, 1, 4, 4, 3, 5, NA, 5, 1, 1, 3, 2, 1, 2, 5, 3,~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ Blst_1    <dbl> 5, 6, NA, 2, 6, 5, 5, 5, 5, 3, NA, 4, 5, 6, 3, 4, 6, 4, 4, 4~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ Blst_3    <int> 5, 2, 2, 2, 1, 1, 4, 3, 1, 2, 2, 1, 1, 1, 3, 2, 6, 2, 2, 2, ~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ Blst_2    <dbl> 3, 6, 5, 2, 1, 1, 4, 4, 3, 5, NA, 5, 1, 1, 3, 2, 1, 2, 5, 3,~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ Blst_4    <int> 2, 2, 2, 2, 1, 2, 4, 3, 2, 3, NA, 4, 3, 1, 3, 2, 1, 3, 2, 1,~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ Blst_3    <dbl> 5, 2, 2, 2, 1, 1, 4, 3, 1, 2, 2, 1, 1, 1, 3, 2, 6, 2, 2, 2, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ Blst_5    <int> 2, 4, NA, 2, 1, 1, 4, 4, 1, 3, 2, 2, 1, 1, 3, 2, 1, 2, 2, 1,~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ Blst_4    <dbl> 2, 2, 2, 2, 1, 2, 4, 3, 2, 3, NA, 4, 3, 1, 3, 2, 1, 3, 2, 1,~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
-[]\TU/lmtt/m/n/10.95 ## $ Blst_6    <int> 2, 1, 2, 2, 1, 2, 4, 3, 2, 3, NA, 2, 1, 1, 3, 2, 2, 3, 2, 1,~[] 
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ Blst_5    <dbl> 2, 4, NA, 2, 1, 1, 4, 4, 1, 3, 2, 2, 1, 1, 3, 2, 1, 2, 2, 1,~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
+[]\TU/lmtt/m/n/10.95 ## $ Blst_6    <dbl> 2, 1, 2, 2, 1, 2, 4, 3, 2, 3, NA, 2, 1, 1, 3, 2, 2, 3, 2, 1,~[] 
+ []
+
+
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ tRace1    <fct> White, White, White, White, nBpoc, White, White, White, nBpo~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ tRace2    <fct> nBpoc, NA, nBpoc, nBpoc, NA, NA, White, NA, NA, Black, NA, N~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ tRace3    <fct> White, NA, NA, White, NA, NA, NA, NA, NA, White, NA, NA, NA,~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ tRace4    <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, White, NA, NA, NA, NA, N~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ tRace5    <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ tRace6    <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ tRace7    <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ tRace8    <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ tRace9    <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 1570--1570
 []\TU/lmtt/m/n/10.95 ## $ tRace10   <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
-[48]
+[49]
 File: images/Ch02/wrkflow_item_lvl.jpg Graphic file (type bmp)
 <images/Ch02/wrkflow_item_lvl.jpg>
-[49] [50] [51] [52]
+[50] [51] [52] [53] [54]
 File: images/Ch02/wrkflow_scale_lvl.jpg Graphic file (type bmp)
 <images/Ch02/wrkflow_scale_lvl.jpg>
-[53] [54] [55] [56]
+[55] [56] [57]
 File: 02-Scoring_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type pdf)
 <use 02-Scoring_files/figure-latex/unnamed-chunk-26-1.pdf>
-[57]
+[58]
 File: images/Ch02/wrkflow_AIAready.jpg Graphic file (type bmp)
 <images/Ch02/wrkflow_AIAready.jpg>
-[58] [59] [60] [61] [62
-
-]
+[59] [60] [61] [62]
 Chapter 3.
-[63] [64]
+[63
+
+] [64]
 File: images/Ch04/wrkflow_dx.jpg Graphic file (type bmp)
 <images/Ch04/wrkflow_dx.jpg>
 [65]
@@ -1053,271 +1201,260 @@ File: images/Ch04/BlStuMed.jpg Graphic file (type bmp)
 <images/Ch04/BlStuMed.jpg>
 File: images/Ch04/BlStuRegression.jpg Graphic file (type bmp)
 <images/Ch04/BlStuRegression.jpg>
-[66] [67] [68] [69] [70] [71] [72] [73]
-Underfull \hbox (badness 10000) in paragraph at lines 2689--2691
+[66] [67] [68] [69] [70]
+Overfull \hbox (450.04478pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - Black"[] 
+ []
+
+
+Overfull \hbox (461.54228pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__[] 
+ []
+
+[71]
+Overfull \hbox (461.54228pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__[] 
+ []
+
+
+Overfull \hbox (461.54228pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__[] 
+ []
+
+
+Overfull \hbox (461.54228pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (461.54228pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (461.54228pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (461.54228pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (461.54228pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (461.54228pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (461.54228pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__[] 
+ []
+
+
+Overfull \hbox (64.87862pt too wide) in paragraph at lines 2656--2656
+[] \TU/lmtt/m/n/10.95 - attr(*, "column_map")=Classes 'tbl_df', 'tbl' and 'data.frame':  182 obs. of  7 variables:[] 
+ []
+
+
+Overfull \hbox (18.88863pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..$ description: chr [1:182] "Start Date" "End Date" "Response Type" "Progress" ...[] 
+ []
+
+
+Overfull \hbox (18.88863pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..$ main       : chr [1:182] "Start Date" "End Date" "Response Type" "Progress" ...[] 
+ []
+
+
+Overfull \hbox (13.13988pt too wide) in paragraph at lines 2656--2656
+[]  \TU/lmtt/m/n/10.95 ..$ timeZone   : chr [1:182] "America/Los_Angeles" "America/Los_Angeles" NA NA ...[] 
+ []
+
+
+Underfull \vbox (badness 1097) has occurred while \output is active []
+
+[72] [73]
+Underfull \hbox (badness 10000) in paragraph at lines 2772--2774
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2691--2693
+Underfull \hbox (badness 10000) in paragraph at lines 2774--2776
 
  []
 
-File: 03-DataDx_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
-<use 03-DataDx_files/figure-latex/unnamed-chunk-10-1.pdf>
-[74] [75]
+[74]
 File: 03-DataDx_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf)
 <use 03-DataDx_files/figure-latex/unnamed-chunk-11-1.pdf>
-[76]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 2798--2798
-[]\TU/lmtt/m/n/10.95 ## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --[] 
- []
+[75]
+File: 03-DataDx_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
+<use 03-DataDx_files/figure-latex/unnamed-chunk-12-1.pdf>
 
-[77]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 2798--2798
-[]\TU/lmtt/m/n/10.95 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --[] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Overfull \hbox (128.11485pt too wide) in paragraph at lines 2798--2798
-[]\TU/lmtt/m/n/10.95 ## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
+[76] [77]
+Overfull \hbox (110.8686pt too wide) in paragraph at lines 2882--2882
+[]\TU/lmtt/m/n/10.95 i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
  []
 
 [78] [79]
 File: images/Ch04/BlStuRegression.jpg Graphic file (type bmp)
 <images/Ch04/BlStuRegression.jpg>
-
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 2926--2926
-[]\TU/lmtt/m/n/10.95 ## lm(formula = ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)[] 
- []
-
 [80]
-Underfull \hbox (badness 2213) in paragraph at lines 2933--2934
+Underfull \hbox (badness 2213) in paragraph at lines 3017--3018
 \TU/lmr/m/n/10.95 of campus climate for Black students indicated that neither contri-
  []
 
 
-Underfull \hbox (badness 2253) in paragraph at lines 2933--2934
+Underfull \hbox (badness 2253) in paragraph at lines 3017--3018
 \TU/lmr/m/n/10.95 butions of the respondents’ personal belonging ($[] [] [][][][][][][] [] []
  []
 
 
-Underfull \hbox (badness 1077) in paragraph at lines 2933--2934
+Underfull \hbox (badness 1077) in paragraph at lines 3017--3018
 [][][][][]$\TU/lmr/m/n/10.95 ), the proportion of BIPOC instructional staff ($[] [] [][][][][][] [] []
  []
 
-[81]
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 2971--2971
-[]\TU/lmtt/m/n/10.95 ## Note. M and SD are used to represent mean and standard deviation, respectively.[] 
+[81] [82]
+Overfull \hbox (133.8636pt too wide) in paragraph at lines 3095--3095
+[]\TU/lmtt/m/n/10.95 Note. A significant b-weight indicates the beta-weight and semi-partial correlation are also significant.[] 
  []
 
 
-Overfull \hbox (151.10985pt too wide) in paragraph at lines 3011--3011
-[]\TU/lmtt/m/n/10.95 ## Note. A significant b-weight indicates the beta-weight and semi-partial correlation are also significant.[] 
+Overfull \hbox (99.37111pt too wide) in paragraph at lines 3095--3095
+[]\TU/lmtt/m/n/10.95 b represents unstandardized regression weights. beta indicates the standardized regression weights.[] 
  []
 
 
-Overfull \hbox (116.61736pt too wide) in paragraph at lines 3011--3011
-[]\TU/lmtt/m/n/10.95 ## b represents unstandardized regression weights. beta indicates the standardized regression weights.[] 
+Overfull \hbox (64.87862pt too wide) in paragraph at lines 3095--3095
+[]\TU/lmtt/m/n/10.95 sr2 represents the semi-partial correlation squared. r represents the zero-order correlation.[] 
  []
 
 
-Overfull \hbox (82.12486pt too wide) in paragraph at lines 3011--3011
-[]\TU/lmtt/m/n/10.95 ## sr2 represents the semi-partial correlation squared. r represents the zero-order correlation.[] 
+Overfull \hbox (36.13487pt too wide) in paragraph at lines 3095--3095
+[]\TU/lmtt/m/n/10.95 Square brackets are used to enclose the lower and upper limits of a confidence interval.[] 
  []
 
 
-Overfull \hbox (53.38112pt too wide) in paragraph at lines 3011--3011
-[]\TU/lmtt/m/n/10.95 ## Square brackets are used to enclose the lower and upper limits of a confidence interval.[] 
- []
+Underfull \vbox (badness 1178) has occurred while \output is active []
 
-[82] [83]
+[83]
 
-Package hyperref Warning: Suppressing link with empty target on input line 3062.
+Package hyperref Warning: Suppressing link with empty target on input line 3146.
 
+[84]
 File: Worked_Examples/images/homeworked_model.jpg Graphic file (type bmp)
 <Worked_Examples/images/homeworked_model.jpg>
-[84] [85] [86]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 3278--3278
-[]\TU/lmtt/m/n/10.95 ##  $ StatsPkg             : Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...[] 
- []
+[85] [86] [87] [88] [89] [90] [91] [92]
+File: 03-DataDx_files/figure-latex/unnamed-chunk-43-1.pdf Graphic file (type pdf)
+<use 03-DataDx_files/figure-latex/unnamed-chunk-43-1.pdf>
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 3278--3278
-[]\TU/lmtt/m/n/10.95 ##  $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...[] 
- []
-
-[87] [88] [89] [90] [91] [92]
-File: 03-DataDx_files/figure-latex/unnamed-chunk-42-1.pdf Graphic file (type pdf)
-<use 03-DataDx_files/figure-latex/unnamed-chunk-42-1.pdf>
 [93]
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 3686--3686
-[]\TU/lmtt/m/n/10.95 ##                       raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r[] 
- []
+Underfull \vbox (badness 2608) has occurred while \output is active []
 
-
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 3686--3686
-[]\TU/lmtt/m/n/10.95 ## ClearResponsibilities      0.84      0.84    0.82      0.57 5.3    0.029 0.0110[] 
- []
-
-[94]
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 3686--3686
-[]\TU/lmtt/m/n/10.95 ## EffectiveAnswers           0.84      0.84    0.81      0.57 5.2    0.029 0.0088[] 
- []
-
-
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 3686--3686
-[]\TU/lmtt/m/n/10.95 ## Feedback                   0.87      0.87    0.86      0.64 7.0    0.023 0.0053[] 
- []
-
-
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 3686--3686
-[]\TU/lmtt/m/n/10.95 ## ClearOrganization          0.86      0.86    0.83      0.60 6.1    0.025 0.0067[] 
- []
-
-
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 3686--3686
-[]\TU/lmtt/m/n/10.95 ## ClearPresentation          0.83      0.84    0.81      0.57 5.3    0.030 0.0074[] 
- []
-
-[95] [96] [97]
-File: 03-DataDx_files/figure-latex/unnamed-chunk-47-1.pdf Graphic file (type pdf)
-<use 03-DataDx_files/figure-latex/unnamed-chunk-47-1.pdf>
-[98]
+[94] [95] [96] [97] [98]
 File: 03-DataDx_files/figure-latex/unnamed-chunk-48-1.pdf Graphic file (type pdf)
 <use 03-DataDx_files/figure-latex/unnamed-chunk-48-1.pdf>
-[99] [100] [101]
-Overfull \hbox (448.18521pt too wide) in paragraph at lines 4024--4025
+[99]
+File: 03-DataDx_files/figure-latex/unnamed-chunk-49-1.pdf Graphic file (type pdf)
+<use 03-DataDx_files/figure-latex/unnamed-chunk-49-1.pdf>
+[100] [101] [102]
+Overfull \hbox (448.18521pt too wide) in paragraph at lines 4108--4109
 \TU/lmr/m/n/10.95 ($[] [] [][][][][][] [] [] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$B
  []
 
-[102]
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 4056--4056
-[]\TU/lmtt/m/n/10.95 ## Note. M and SD are used to represent mean and standard deviation, respectively.[] 
+[103] [104]
+Overfull \hbox (36.13487pt too wide) in paragraph at lines 4171--4171
+[]\TU/lmtt/m/n/10.95 Note. A significant b-weight indicates the semi-partial correlation is also significant.[] 
  []
 
-[103] [104
+
+Overfull \hbox (36.13487pt too wide) in paragraph at lines 4171--4171
+[]\TU/lmtt/m/n/10.95 Square brackets are used to enclose the lower and upper limits of a confidence interval.[] 
+ []
+
+[105] [106
 
 ]
 Chapter 4.
-[105]
+[107] [108]
 File: images/Ch05/scrubscore_mimp_itemlvl.jpg Graphic file (type bmp)
 <images/Ch05/scrubscore_mimp_itemlvl.jpg>
-[106] [107] [108]
+[109] [110]
 File: images/Ch04/BlStuMed.jpg Graphic file (type bmp)
 <images/Ch04/BlStuMed.jpg>
 File: images/Ch04/BlStuRegression.jpg Graphic file (type bmp)
 <images/Ch04/BlStuRegression.jpg>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[109]
-Underfull \hbox (badness 10000) in paragraph at lines 4250--4251
+[111]
+Underfull \hbox (badness 10000) in paragraph at lines 4373--4374
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4255--4257
+Underfull \hbox (badness 10000) in paragraph at lines 4378--4380
 
  []
 
 File: images/Ch05/KatitasMimpFig.jpg Graphic file (type bmp)
 <images/Ch05/KatitasMimpFig.jpg>
-[110] [111]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 4403--4403
-[]\TU/lmtt/m/n/10.95 ## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --[] 
- []
-
-
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 4403--4403
-[]\TU/lmtt/m/n/10.95 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --[] 
- []
-
-[112]
-Overfull \hbox (128.11485pt too wide) in paragraph at lines 4403--4403
-[]\TU/lmtt/m/n/10.95 ## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
- []
-
-[113] [114] [115] [116]
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 4699--4699
-[]\TU/lmtt/m/n/10.95 ##        ID iBIPOC_pr   cmBlack  Belong_1  Belong_2  Belong_3    Blst_1    Blst_2[] 
- []
-
-
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 4699--4699
-[]\TU/lmtt/m/n/10.95 ##        ""     "pmm"        ""     "pmm"        ""     "pmm"     "pmm"     "pmm"[] 
- []
-
-
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 4699--4699
-[]\TU/lmtt/m/n/10.95 ##    Blst_3    Blst_4    Blst_5    Blst_6   cEval_1  cEval_13  cEval_19    format[] 
- []
-
-
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 4699--4699
-[]\TU/lmtt/m/n/10.95 ##     "pmm"     "pmm"     "pmm"     "pmm"     "pmm"        ""     "pmm" "polyreg"[] 
- []
-
-[117] [118]
-Overfull \hbox (18.88863pt too wide) in paragraph at lines 4791--4791
+[112] [113] [114] [115] [116] [117] [118] [119] [120]
+Overfull \hbox (18.88863pt too wide) in paragraph at lines 4887--4887
 []\TU/lmtt/m/n/10.95 Climate_fit <- lm(ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)[] 
  []
 
-[119]
-Underfull \hbox (badness 2753) in paragraph at lines 4882--4883
+[121]
+Underfull \hbox (badness 2753) in paragraph at lines 4977--4978
 []\TU/lmr/m/n/10.95 Results of a multiple regression predicting the respondents’ percep-
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 4882--4883
+Underfull \hbox (badness 1147) in paragraph at lines 4977--4978
 \TU/lmr/m/n/10.95 tributions of the respondents’ personal belonging ($[] [] [][][][][][][] [] []
  []
 
-[120]
-Underfull \hbox (badness 2753) in paragraph at lines 4927--4928
+[122]
+Underfull \hbox (badness 2753) in paragraph at lines 5022--5023
 []\TU/lmr/m/n/10.95 Results of a multiple regression predicting the respondents’ percep-
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 4927--4928
+Underfull \hbox (badness 1147) in paragraph at lines 5022--5023
 \TU/lmr/m/n/10.95 tributions of the respondents’ personal belonging ($[] [] [][][][][][][] [] []
  []
 
-[121] [122] [123]
+[123] [124] [125]
 
-Package hyperref Warning: Suppressing link with empty target on input line 5056.
+Package hyperref Warning: Suppressing link with empty target on input line 5151.
 
-[124]
+[126]
 File: Worked_Examples/images/homeworked_model.jpg Graphic file (type bmp)
 <Worked_Examples/images/homeworked_model.jpg>
-[125]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 5183--5183
-[]\TU/lmtt/m/n/10.95 ##  $ StatsPkg             : Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...[] 
- []
-
-
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 5183--5183
-[]\TU/lmtt/m/n/10.95 ##  $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...[] 
- []
-
-[126] [127] [128] [129] [130]
-Overfull \hbox (448.04286pt too wide) in paragraph at lines 5461--5462
+[127] [128] [129] [130] [131] [132]
+Overfull \hbox (448.04286pt too wide) in paragraph at lines 5569--5570
 \TU/lmr/m/n/10.95 ($[] [] [][][][][][] [] [] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$B
  []
 
-[131] [132]
-Overfull \hbox (448.04286pt too wide) in paragraph at lines 5505--5506
+[133] [134]
+Overfull \hbox (448.04286pt too wide) in paragraph at lines 5613--5614
 \TU/lmr/m/n/10.95 ($[] [] [][][][][][] [] [] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$B
  []
 
-[133] [134
+[135] [136
 
-] [135] [136
+] [137] [138
 
 ]
 Chapter 5.
-[137] [138]
-Underfull \hbox (badness 1173) in paragraph at lines 5620--5620
+[139] [140]
+Underfull \hbox (badness 1173) in paragraph at lines 5728--5728
 []\TU/lmr/bx/n/14.4 Estimating Indirect Effects (the analytic approach often
  []
 
@@ -1327,23 +1464,23 @@ File: images/SimpleMed/SimpleInteraction.jpg Graphic file (type bmp)
 <images/SimpleMed/SimpleInteraction.jpg>
 
 Overfull \hbox (76.71696pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 5.2.  ESTIMATING INDIRECT EFFECTS (THE ANALYTIC APPROACH OFTEN TERMED \TU/lmr/m/n/10.95 MEDIATION\TU/lmr/m/sl/10.95 ) \TU/lmr/m/n/10.95 139
+\TU/lmr/m/sl/10.95 5.2.  ESTIMATING INDIRECT EFFECTS (THE ANALYTIC APPROACH OFTEN TERMED \TU/lmr/m/n/10.95 MEDIATION\TU/lmr/m/sl/10.95 ) \TU/lmr/m/n/10.95 141
  []
 
-[139] [140]
-Underfull \hbox (badness 10000) in paragraph at lines 5666--5668
+[141] [142]
+Underfull \hbox (badness 10000) in paragraph at lines 5774--5776
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5668--5670
+Underfull \hbox (badness 10000) in paragraph at lines 5776--5778
 
  []
 
 File: images/SimpleMed/SimpleMed.jpg Graphic file (type bmp)
 <images/SimpleMed/SimpleMed.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 5686--5688
+Underfull \hbox (badness 10000) in paragraph at lines 5794--5796
 
  []
 
@@ -1354,264 +1491,264 @@ Underfull \vbox (badness 2073) has occurred while \output is active []
 
 
 Overfull \hbox (76.71696pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 5.2.  ESTIMATING INDIRECT EFFECTS (THE ANALYTIC APPROACH OFTEN TERMED \TU/lmr/m/n/10.95 MEDIATION\TU/lmr/m/sl/10.95 ) \TU/lmr/m/n/10.95 141
+\TU/lmr/m/sl/10.95 5.2.  ESTIMATING INDIRECT EFFECTS (THE ANALYTIC APPROACH OFTEN TERMED \TU/lmr/m/n/10.95 MEDIATION\TU/lmr/m/sl/10.95 ) \TU/lmr/m/n/10.95 143
  []
 
-[141]
+[143]
 File: images/SimpleMed/MedRationale.jpg Graphic file (type bmp)
 <images/SimpleMed/MedRationale.jpg>
-[142] [143]
-Underfull \hbox (badness 10000) in paragraph at lines 5827--5829
+[144] [145]
+Underfull \hbox (badness 10000) in paragraph at lines 5935--5937
 
  []
 
-[144] [145]
+[146] [147]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[146] [147] [148]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 6102--6102
+[148] [149] [150]
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 6210--6210
 []\TU/lmtt/m/n/10.95 ## Probability values (Entries above the diagonal are adjusted for multiple tests.)[] 
  []
 
 
-Overfull \hbox (24.63737pt too wide) in paragraph at lines 6102--6102
+Overfull \hbox (24.63737pt too wide) in paragraph at lines 6210--6210
 []\TU/lmtt/m/n/10.95 ##  To see confidence intervals of the correlations, print with the short=FALSE option[] 
  []
 
-[149]
+[151]
 File: 05-SimpleMed_files/figure-latex/FakyDaty Simple Plot-1.pdf Graphic file (type pdf)
 <use 05-SimpleMed_files/figure-latex/FakyDaty Simple Plot-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[150] [151] [152] [153]
+[152] [153] [154] [155]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[154]
+[156]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[155]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 6422--6422
+[157]
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 6530--6530
 []\TU/lmtt/m/n/10.95 ## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --[] 
  []
 
-[156]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 6422--6422
+[158]
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 6530--6530
 []\TU/lmtt/m/n/10.95 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --[] 
  []
 
 
-Overfull \hbox (128.11485pt too wide) in paragraph at lines 6422--6422
+Overfull \hbox (128.11485pt too wide) in paragraph at lines 6530--6530
 []\TU/lmtt/m/n/10.95 ## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
  []
 
-[157]
+[159]
 File: images/SimpleMed/Kim_SimpMed.jpg Graphic file (type bmp)
 <images/SimpleMed/Kim_SimpMed.jpg>
-[158] [159]
+[160] [161]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[160] [161]
-Underfull \hbox (badness 10000) in paragraph at lines 6684--6686
+[162] [163]
+Underfull \hbox (badness 10000) in paragraph at lines 6792--6794
 
  []
 
 File: 05-SimpleMed_files/figure-latex/semPLOT of PMI-1.pdf Graphic file (type pdf)
 <use 05-SimpleMed_files/figure-latex/semPLOT of PMI-1.pdf>
-[162] [163]
+[164] [165]
 File: images/SimpleMed/Kim_wCovs.jpg Graphic file (type bmp)
 <images/SimpleMed/Kim_wCovs.jpg>
-[164] [165]
+[166] [167]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[166] [167] [168]
+[168] [169] [170]
 File: 05-SimpleMed_files/figure-latex/semPLOT for model w covs-1.pdf Graphic file (type pdf)
 <use 05-SimpleMed_files/figure-latex/semPLOT for model w covs-1.pdf>
 
 Underfull \vbox (badness 1616) has occurred while \output is active []
 
-[169]
-Overfull \hbox (1.76706pt too wide) in paragraph at lines 7076--7076
+[171]
+Overfull \hbox (1.76706pt too wide) in paragraph at lines 7184--7184
 []|\TU/lmr/m/n/10.95 Antecedent|  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7118--7119
+Underfull \hbox (badness 10000) in paragraph at lines 7226--7227
 
  []
 
-[170] [171] [172] [173] [174
+[172] [173] [174] [175] [176
 
 ]
 Chapter 6.
 
-Underfull \hbox (badness 10000) in paragraph at lines 7284--7286
+Underfull \hbox (badness 10000) in paragraph at lines 7392--7394
 
  []
 
-[175] [176]
+[177] [178]
 File: images/CompMed/ParaMed.jpg Graphic file (type bmp)
 <images/CompMed/ParaMed.jpg>
-[177] [178] [179] [180]
+[179] [180] [181] [182]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[181] [182] [183]
+[183] [184] [185]
 File: 06-ComplexMed_files/figure-latex/Fake Data Simple Plot-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/Fake Data Simple Plot-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[184]
-Overfull \hbox (3.03555pt too wide) in paragraph at lines 7761--7761
+[186]
+Overfull \hbox (3.03555pt too wide) in paragraph at lines 7869--7869
  []|\TU/lmr/m/n/10.95 M1| 
  []
 
 
-Overfull \hbox (3.03555pt too wide) in paragraph at lines 7762--7762
+Overfull \hbox (3.03555pt too wide) in paragraph at lines 7870--7870
  []|\TU/lmr/m/n/10.95 M2| 
  []
 
-[185] [186] [187] [188] [189]
+[187] [188] [189] [190] [191]
 File: 06-ComplexMed_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/unnamed-chunk-4-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[190]
+[192]
 File: images/CompMed/LewisMedFig.jpg Graphic file (type bmp)
 <images/CompMed/LewisMedFig.jpg>
 
-Underfull \hbox (badness 1783) in paragraph at lines 8019--8020
+Underfull \hbox (badness 1783) in paragraph at lines 8127--8128
 [][] \TU/lmr/m/n/10.95 Because the
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[191]
+[193]
 File: images/CompMed/LewisParaMed.jpg Graphic file (type bmp)
 <images/CompMed/LewisParaMed.jpg>
-[192] [193]
+[194] [195]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[194]
+[196]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[195] [196]
+[197] [198]
 File: 06-ComplexMed_files/figure-latex/Lewis Parallel model plot-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/Lewis Parallel model plot-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[197]
-Overfull \hbox (11.07988pt too wide) in paragraph at lines 8301--8301
+[199]
+Overfull \hbox (11.07988pt too wide) in paragraph at lines 8409--8409
  []|\TU/lmr/m/n/10.95 GRMS| 
  []
 
 
-Overfull \hbox (8.55304pt too wide) in paragraph at lines 8301--8301
+Overfull \hbox (8.55304pt too wide) in paragraph at lines 8409--8409
  []|\TU/lmr/m/n/10.95 MntlHlth| 
  []
 
 
-Overfull \hbox (11.07988pt too wide) in paragraph at lines 8302--8302
+Overfull \hbox (11.07988pt too wide) in paragraph at lines 8410--8410
  []|\TU/lmr/m/n/10.95 GRMS| 
  []
 
 
-Overfull \hbox (15.26201pt too wide) in paragraph at lines 8302--8302
+Overfull \hbox (15.26201pt too wide) in paragraph at lines 8410--8410
  []|\TU/lmr/m/n/10.95 DisEngmt| 
  []
 
 
-Overfull \hbox (8.55304pt too wide) in paragraph at lines 8302--8302
+Overfull \hbox (8.55304pt too wide) in paragraph at lines 8410--8410
  []|\TU/lmr/m/n/10.95 MntlHlth| 
  []
 
-[198] [199]
+[200] [201]
 Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[200]
-Underfull \hbox (badness 10000) in paragraph at lines 8443--8445
-
- []
-
-[201]
-Underfull \hbox (badness 10000) in paragraph at lines 8473--8475
-
- []
 
 [202]
+Underfull \hbox (badness 10000) in paragraph at lines 8551--8553
+
+ []
+
+[203]
+Underfull \hbox (badness 10000) in paragraph at lines 8581--8583
+
+ []
+
+[204]
 File: images/CompMed/LewisSerialMed.jpg Graphic file (type bmp)
 <images/CompMed/LewisSerialMed.jpg>
-[203] [204]
+[205] [206]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[205]
+[207]
 Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[206] [207]
-Overfull \hbox (16.16866pt too wide) in paragraph at lines 8817--8817
- []|\TU/lmr/m/n/10.95 GRMS| 
- []
-
-
-Overfull \hbox (9.93855pt too wide) in paragraph at lines 8817--8817
- []|\TU/lmr/m/n/10.95 Engmt| 
- []
-
-
-Overfull \hbox (17.03459pt too wide) in paragraph at lines 8817--8817
- []|\TU/lmr/m/n/10.95 MntlHlth| 
- []
-
-
-Overfull \hbox (16.16866pt too wide) in paragraph at lines 8818--8818
- []|\TU/lmr/m/n/10.95 GRMS| 
- []
-
-
-Overfull \hbox (25.66275pt too wide) in paragraph at lines 8818--8818
- []|\TU/lmr/m/n/10.95 DisEngmt| 
- []
-
-
-Overfull \hbox (17.03459pt too wide) in paragraph at lines 8818--8818
- []|\TU/lmr/m/n/10.95 MntlHlth| 
- []
-
-
-Overfull \hbox (16.16866pt too wide) in paragraph at lines 8819--8819
- []|\TU/lmr/m/n/10.95 GRMS| 
- []
-
-
-Overfull \hbox (9.93855pt too wide) in paragraph at lines 8819--8819
- []|\TU/lmr/m/n/10.95 Engmt| 
- []
-
-
-Overfull \hbox (25.66275pt too wide) in paragraph at lines 8819--8819
- []|\TU/lmr/m/n/10.95 DisEngmt| 
- []
-
-
-Overfull \hbox (17.03459pt too wide) in paragraph at lines 8819--8819
- []|\TU/lmr/m/n/10.95 MntlHlth| 
- []
 
 [208] [209]
+Overfull \hbox (16.16866pt too wide) in paragraph at lines 8925--8925
+ []|\TU/lmr/m/n/10.95 GRMS| 
+ []
+
+
+Overfull \hbox (9.93855pt too wide) in paragraph at lines 8925--8925
+ []|\TU/lmr/m/n/10.95 Engmt| 
+ []
+
+
+Overfull \hbox (17.03459pt too wide) in paragraph at lines 8925--8925
+ []|\TU/lmr/m/n/10.95 MntlHlth| 
+ []
+
+
+Overfull \hbox (16.16866pt too wide) in paragraph at lines 8926--8926
+ []|\TU/lmr/m/n/10.95 GRMS| 
+ []
+
+
+Overfull \hbox (25.66275pt too wide) in paragraph at lines 8926--8926
+ []|\TU/lmr/m/n/10.95 DisEngmt| 
+ []
+
+
+Overfull \hbox (17.03459pt too wide) in paragraph at lines 8926--8926
+ []|\TU/lmr/m/n/10.95 MntlHlth| 
+ []
+
+
+Overfull \hbox (16.16866pt too wide) in paragraph at lines 8927--8927
+ []|\TU/lmr/m/n/10.95 GRMS| 
+ []
+
+
+Overfull \hbox (9.93855pt too wide) in paragraph at lines 8927--8927
+ []|\TU/lmr/m/n/10.95 Engmt| 
+ []
+
+
+Overfull \hbox (25.66275pt too wide) in paragraph at lines 8927--8927
+ []|\TU/lmr/m/n/10.95 DisEngmt| 
+ []
+
+
+Overfull \hbox (17.03459pt too wide) in paragraph at lines 8927--8927
+ []|\TU/lmr/m/n/10.95 MntlHlth| 
+ []
+
+[210] [211]
 File: 06-ComplexMed_files/figure-latex/semPlot of serial PMI model-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/semPlot of serial PMI model-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[210] [211] [212]
-Underfull \hbox (badness 10000) in paragraph at lines 8983--8985
+[212] [213] [214]
+Underfull \hbox (badness 10000) in paragraph at lines 9091--9093
 
  []
 
-[213] [214] (./ReC_MultMod.bbl [215] [216
+[215] [216] (./ReC_MultMod.bbl [217] [218
 
 ]
 Underfull \hbox (badness 1112) in paragraph at lines 33--40
@@ -1623,7 +1760,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--64
 [] [] [][][][][][] [] [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][][][][][][][][][][][] [] [][][][][] [] [][][][][][][] [] [][][][] [][] [][][][][] [][]
  []
 
-[217]
+[219]
 Underfull \hbox (badness 1558) in paragraph at lines 101--108
 []\TU/lmr/m/n/10.95 Sylvia Hurtado.  Linking Diversity with the Educational and Civic Missions of Higher
  []
@@ -1653,7 +1790,7 @@ Underfull \hbox (badness 2088) in paragraph at lines 110--116
 [][][][][][][]$\TU/lmr/m/n/10.95 .  URL [][]$[][][][][] [] [] [] [][][][][][][] [] [][][] [] [][][] [] [][][][][] [] [][][] [] [][][][] [] [] [] [][][][][][] [] [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] []
  []
 
-[218]
+[220]
 Underfull \hbox (badness 3861) in paragraph at lines 153--156
 []\TU/lmr/m/n/10.95 Paul Y. Kim.  Guest Post: Anti-Asian Racism during the Pandemic: How Fac-
  []
@@ -1688,7 +1825,7 @@ Underfull \hbox (badness 1014) in paragraph at lines 208--215
 []\TU/lmr/m/n/10.95 Kaleea R. Lewis and Payal P. Shah.  Black students’ narratives of diversity and inclu-
  []
 
-[219]
+[221]
 Underfull \hbox (badness 2913) in paragraph at lines 230--237
 \TU/lmr/m/it/10.95 chology\TU/lmr/m/n/10.95 , 53(3):372–378, July 2006.  ISSN 0022-0167.  doi: $[][] [] [][][][] [] [][][][] [][] [][][][] [] [][] [] [] []
  []
@@ -1713,11 +1850,11 @@ Underfull \hbox (badness 5504) in paragraph at lines 256--263
 \TU/lmr/m/it/10.95 seling Psychology\TU/lmr/m/n/10.95 , 68(1):1–16, January 2021.  ISSN 0022-0167.  doi: $[][] [] [][][][] []
  []
 
-[220])
+[222])
 
 Package natbib Warning: There were undefined citations.
 
-[221] (./ReC_MultMod.aux)
+[223] (./ReC_MultMod.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
@@ -1726,15 +1863,15 @@ L3 programming layer <2023-08-29>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `ReC_MultMod.out' has not changed.
-(rerunfilecheck)             Checksum: A134F890C72061A705923C867B670447;36217.
+(rerunfilecheck)             Checksum: 925BC57B95A7FB383946C6E0AC6FE361;36444.
  ) 
 Here is how much of TeX's memory you used:
- 19022 strings out of 477590
- 356897 string characters out of 5817187
- 1948432 words of memory out of 5000000
- 39930 multiletter control sequences out of 15000+600000
+ 19023 strings out of 477590
+ 356930 string characters out of 5817187
+ 1951432 words of memory out of 5000000
+ 39931 multiletter control sequences out of 15000+600000
  564566 words of font info for 95 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,7n,120p,2365b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ReC_MultMod.pdf (221 pages).
+Output written on ReC_MultMod.pdf (223 pages).

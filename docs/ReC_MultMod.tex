@@ -127,7 +127,7 @@
 
 \title{ReCentering Psych Stats: Multivariate Modeling}
 \author{Lynette H. Bikos, PhD, ABPP}
-\date{03 Sep 2023}
+\date{04 Sep 2023}
 
 \begin{document}
 \maketitle
@@ -161,7 +161,7 @@ All materials used in creating this OER are available at its \href{https://githu
 \chapter*{PREFACE}\label{preface}}
 
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 03 Sep 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 04 Sep 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -224,7 +224,7 @@ Financial support for this project has been provided the following:
 \hypertarget{scrub}{%
 \chapter{Scrubbing}\label{scrub}}
 
-\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=7c87f991-276b-448f-aed9-acf6015b9638}{Screencasted Lecture Link}
+\href{https://youtube.com/playlist?list=PLtz5cFLQl4KPwGvx4MHxA7C1StPkHnFH3\&si=VzB-HVlJTS07FuFw}{Screencasted Lecture Link}
 
 The focus of this chapter is the process of starting with raw data and preparing it for multivariate analysis. To that end, we will address the conceptual considerations and practical steps in ``scrubbing and scoring.''
 
@@ -418,12 +418,15 @@ You do need to change the API key/token if you want to download data from a diff
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#You only need to run this ONCE to draw from the same Qualtrics account.}
-\CommentTok{\#If you change Qualtrics accounts you will need to get a different token. }
+\CommentTok{\# You only need to run this ONCE to draw from the same Qualtrics}
+\CommentTok{\# account. If you change Qualtrics accounts you will need to get a}
+\CommentTok{\# different token.}
 
-\CommentTok{\#qualtRics::qualtrics\_api\_credentials(api\_key = "mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg",}
-\NormalTok{              base\_url }\OtherTok{=} \StringTok{"spupsych.az1.qualtrics.com"}\NormalTok{, overwrite }\OtherTok{=} \ConstantTok{TRUE}\NormalTok{, install }\OtherTok{=} \ConstantTok{TRUE}\ErrorTok{)}
-\CommentTok{\#readRenviron("\textasciitilde{}/.Renviron")}
+\CommentTok{\# qualtRics::qualtrics\_api\_credentials(api\_key =}
+\CommentTok{\# \textquotesingle{}mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg\textquotesingle{}, base\_url =}
+\CommentTok{\# \textquotesingle{}spupsych.az1.qualtrics.com\textquotesingle{}, overwrite = TRUE, install = TRUE)}
+
+\CommentTok{\# readRenviron(\textquotesingle{}\textasciitilde{}/.Renviron\textquotesingle{})}
 \end{Highlighting}
 \end{Shaded}
 
@@ -439,7 +442,6 @@ You do need to change the API key/token if you want to download data from a diff
 \CommentTok{\# (i.e., maybe this one instead of your own). Go back and change your}
 \CommentTok{\# API token (it saves your old one). Changing the API likely requires}
 \CommentTok{\# a restart of R.}
-\NormalTok{surveys}
 \end{Highlighting}
 \end{Shaded}
 
@@ -591,8 +593,8 @@ Looking at the QTRX\_df, \emph{StartDate} thru \emph{UserLanguage} are metadata 
 
 With a look at our survey, codebook, and imported data, we now get to the business of scRubbing (deleting those who did not give consent, deleting previews, etc.). This level of ``scrubbing'' precedes the more formal detection of outliers.
 
-\hypertarget{tools-for-data-manipulations}{%
-\subsection{Tools for Data Manipulations}\label{tools-for-data-manipulations}}
+\hypertarget{tools-for-data-manipulation}{%
+\subsection{Tools for Data Manipulation}\label{tools-for-data-manipulation}}
 
 The next stages will provide some experience manipulating data with \textbf{dplyr} from the \textbf{tidyverse}.
 
@@ -677,7 +679,7 @@ Next let's filter in only those who consented to take the survey. Because Qualtr
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# == are used}
-\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(QTRX\_df, Consent }\SpecialCharTok{==} \DecValTok{1}\NormalTok{))}
+\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(QTRX\_df, Consent }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
 \FunctionTok{nrow}\NormalTok{(QTRX\_df)}
 \end{Highlighting}
 \end{Shaded}
@@ -694,11 +696,11 @@ Data screening suggested that 107 individuals opened the survey link. Of those, 
 \end{quote}
 \end{quote}
 
-In this particular study, the categories used to collect race were U.S.-centric. Thus, they were only shown if the respondent indicated that the course being rated was taught by an institution in the U.S. Therefore, an an additional inclusion criteria for this specific research model should be that the course was taught in the U.S.
+In this particular study, the categories used to collect informtaion about race/ethnicity were U.S.-centric. Thus, they were only shown if the respondent indicated that the course being rated was taught by an institution in the U.S. Therefore, an an additional inclusion criteria for this specific research model should be that the course was taught in the U.S.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{(dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{ (QTRX\_df, USinst }\SpecialCharTok{==} \DecValTok{0}\NormalTok{))}
+\NormalTok{QTRX\_df }\OtherTok{\textless{}{-}}\NormalTok{dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(QTRX\_df, USinst }\SpecialCharTok{==} \DecValTok{0}\NormalTok{)}
 \FunctionTok{nrow}\NormalTok{(QTRX\_df)}
 \end{Highlighting}
 \end{Shaded}
@@ -978,7 +980,7 @@ Although minor tweaking may be required, the same script above should be applica
 \hypertarget{score}{%
 \chapter{Scoring}\label{score}}
 
-\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=18a6be07-5bdc-404d-bc95-acf601830887}{Screencasted Lecture Link}
+\href{https://youtube.com/playlist?list=PLtz5cFLQl4KNJXbHg2vDU-sbCH-QwXMlr\&si=7i1LFdRqxEJMLVZ6}{Screencasted Lecture Link}
 
 The focus of this chapter is to continue the process of scrubbing-and-scoring. We continue with the raw data we downloaded and prepared in the prior chapter. In this chapter we analyze and manage missingness, score scales/subscales, and represent our work with an APA-style write-up. To that end, we will address the conceptual considerations and practical steps in this process.
 
@@ -1308,46 +1310,107 @@ Very practically speaking, Parent's \citeyearpar{parent_handling_2013} recommend
 \hypertarget{working-the-problem-1}{%
 \section{Working the Problem}\label{working-the-problem-1}}
 
-In the prior chapter we imported the data from Qualtrics and applied the broadest levels of inclusion (e.g., the course rated was offered from an institution in the U.S., the respondent consented to participation) and exclusion (e.g., the survey was not a preview). We then downsized the survey to include the variables we will use in our statistical model. We then saved the data in a .csv file.
+\hypertarget{variable-planning-and-preparation}{%
+\subsection{Variable Planning and Preparation}\label{variable-planning-and-preparation}}
 
-Presuming that you are working along with me in an .rmd file, if you have placed that file in the same folder as this .rmd file, the following code should read the data into your environment.
+In the \protect\hyperlink{scrub}{Scrubbing lesson} we imported the data from Qualtrics and applied the broadest levels of inclusion (e.g., the course rated was offered from an institution in the U.S., the respondent consented to participation) and exclusion (e.g., the survey was not a preview). We then downsized the survey to include the variables we will use in our statistical model. We then saved the data in .csv and .rds file.
+
+Presuming that you are working along with me in an .rmd file and have placed that file in the same folder as this .rmd file, the following code should read the data into your environment.
 
 I use \emph{different} names for the object/df in my R environment than I use for the filename that holds the data on my computer. Why? I don't want to accidentally overwrite this precious ``source'' of data.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{scrub\_df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"BlackStntsModel230902.csv"}\NormalTok{, }\AttributeTok{head =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{)}
+\CommentTok{\# scrub\_df \textless{}{-} read.csv (\textquotesingle{}BlackStntsModel230902.csv\textquotesingle{}, head = TRUE, sep}
+\CommentTok{\# = \textquotesingle{},\textquotesingle{})}
+\NormalTok{scrub\_df }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"BlackStntsModel230902.rds"}\NormalTok{)}
 \FunctionTok{str}\NormalTok{(scrub\_df)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':    69 obs. of  25 variables:
+## Classes 'tbl_df', 'tbl' and 'data.frame':    69 obs. of  25 variables:
 ##  $ ID       : int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ iRace1   : int  3 3 3 3 1 3 3 3 1 0 ...
-##  $ iRace2   : int  1 NA 1 1 NA NA 3 NA NA 0 ...
-##  $ iRace3   : int  3 NA NA 3 NA NA NA NA NA 3 ...
-##  $ iRace4   : int  NA NA NA NA NA NA NA NA NA 3 ...
+##  $ iRace1   : num  3 3 3 3 1 3 3 3 1 0 ...
+##   ..- attr(*, "label")= Named chr "1 - From your perspective as a student, which of the following best describes the [Field-2] instructor."
+##   .. ..- attr(*, "names")= chr "1_iRace"
+##  $ iRace2   : num  1 NA 1 1 NA NA 3 NA NA 0 ...
+##   ..- attr(*, "label")= Named chr "2 - From your perspective as a student, which of the following best describes the [Field-2] instructor."
+##   .. ..- attr(*, "names")= chr "2_iRace"
+##  $ iRace3   : num  3 NA NA 3 NA NA NA NA NA 3 ...
+##   ..- attr(*, "label")= Named chr "3 - From your perspective as a student, which of the following best describes the [Field-2] instructor."
+##   .. ..- attr(*, "names")= chr "3_iRace"
+##  $ iRace4   : num  NA NA NA NA NA NA NA NA NA 3 ...
+##   ..- attr(*, "label")= Named chr "4 - From your perspective as a student, which of the following best describes the [Field-2] instructor."
+##   .. ..- attr(*, "names")= chr "4_iRace"
 ##  $ iRace5   : logi  NA NA NA NA NA NA ...
+##   ..- attr(*, "label")= Named chr "5 - From your perspective as a student, which of the following best describes the [Field-2] instructor."
+##   .. ..- attr(*, "names")= chr "5_iRace"
 ##  $ iRace6   : logi  NA NA NA NA NA NA ...
+##   ..- attr(*, "label")= Named chr "6 - From your perspective as a student, which of the following best describes the [Field-2] instructor."
+##   .. ..- attr(*, "names")= chr "6_iRace"
 ##  $ iRace7   : logi  NA NA NA NA NA NA ...
+##   ..- attr(*, "label")= Named chr "7 - From your perspective as a student, which of the following best describes the [Field-2] instructor."
+##   .. ..- attr(*, "names")= chr "7_iRace"
 ##  $ iRace8   : logi  NA NA NA NA NA NA ...
+##   ..- attr(*, "label")= Named chr "8 - From your perspective as a student, which of the following best describes the [Field-2] instructor."
+##   .. ..- attr(*, "names")= chr "8_iRace"
 ##  $ iRace9   : logi  NA NA NA NA NA NA ...
+##   ..- attr(*, "label")= Named chr "9 - From your perspective as a student, which of the following best describes the [Field-2] instructor."
+##   .. ..- attr(*, "names")= chr "9_iRace"
 ##  $ iRace10  : logi  NA NA NA NA NA NA ...
-##  $ cmBiMulti: int  0 0 0 2 5 15 0 0 0 7 ...
-##  $ cmBlack  : int  0 5 10 6 5 20 0 0 0 4 ...
-##  $ cmNBPoC  : int  39 10 30 19 10 30 40 5 30 13 ...
-##  $ cmWhite  : int  61 85 60 73 80 35 60 90 70 73 ...
-##  $ cmUnsure : int  0 0 0 0 0 0 0 5 0 3 ...
-##  $ Belong_1 : int  6 4 NA 5 4 5 6 7 6 3 ...
-##  $ Belong_2 : int  6 4 3 3 4 6 6 7 6 3 ...
-##  $ Belong_3 : int  7 6 NA 2 4 5 5 7 6 3 ...
-##  $ Blst_1   : int  5 6 NA 2 6 5 5 5 5 3 ...
-##  $ Blst_2   : int  3 6 5 2 1 1 4 4 3 5 ...
-##  $ Blst_3   : int  5 2 2 2 1 1 4 3 1 2 ...
-##  $ Blst_4   : int  2 2 2 2 1 2 4 3 2 3 ...
-##  $ Blst_5   : int  2 4 NA 2 1 1 4 4 1 3 ...
-##  $ Blst_6   : int  2 1 2 2 1 2 4 3 2 3 ...
+##   ..- attr(*, "label")= Named chr "10 - From your perspective as a student, which of the following best describes the [Field-2] instructor."
+##   .. ..- attr(*, "names")= chr "10_iRace"
+##  $ cmBiMulti: num  0 0 0 2 5 15 0 0 0 7 ...
+##   ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to "| __truncated__
+##   .. ..- attr(*, "names")= chr "Race_10"
+##  $ cmBlack  : num  0 5 10 6 5 20 0 0 0 4 ...
+##   ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - Black"
+##   .. ..- attr(*, "names")= chr "Race_1"
+##  $ cmNBPoC  : num  39 10 30 19 10 30 40 5 30 13 ...
+##   ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to "| __truncated__
+##   .. ..- attr(*, "names")= chr "Race_7"
+##  $ cmWhite  : num  61 85 60 73 80 35 60 90 70 73 ...
+##   ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - White"
+##   .. ..- attr(*, "names")= chr "Race_8"
+##  $ cmUnsure : num  0 0 0 0 0 0 0 5 0 3 ...
+##   ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - Unsure"
+##   .. ..- attr(*, "names")= chr "Race_2"
+##  $ Belong_1 : num  6 4 NA 5 4 5 6 7 6 3 ...
+##   ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__
+##   .. ..- attr(*, "names")= chr "Belong_1"
+##  $ Belong_2 : num  6 4 3 3 4 6 6 7 6 3 ...
+##   ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__
+##   .. ..- attr(*, "names")= chr "Belong_2"
+##  $ Belong_3 : num  7 6 NA 2 4 5 5 7 6 3 ...
+##   ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__
+##   .. ..- attr(*, "names")= chr "Belong_3"
+##  $ Blst_1   : num  5 6 NA 2 6 5 5 5 5 3 ...
+##   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+##   .. ..- attr(*, "names")= chr "Blst_1"
+##  $ Blst_2   : num  3 6 5 2 1 1 4 4 3 5 ...
+##   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+##   .. ..- attr(*, "names")= chr "Blst_2"
+##  $ Blst_3   : num  5 2 2 2 1 1 4 3 1 2 ...
+##   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+##   .. ..- attr(*, "names")= chr "Blst_3"
+##  $ Blst_4   : num  2 2 2 2 1 2 4 3 2 3 ...
+##   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+##   .. ..- attr(*, "names")= chr "Blst_4"
+##  $ Blst_5   : num  2 4 NA 2 1 1 4 4 1 3 ...
+##   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+##   .. ..- attr(*, "names")= chr "Blst_5"
+##  $ Blst_6   : num  2 1 2 2 1 2 4 3 2 3 ...
+##   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+##   .. ..- attr(*, "names")= chr "Blst_6"
+##  - attr(*, "column_map")=Classes 'tbl_df', 'tbl' and 'data.frame':   182 obs. of  7 variables:
+##   ..$ qname      : chr [1:182] "StartDate" "EndDate" "Status" "Progress" ...
+##   ..$ description: chr [1:182] "Start Date" "End Date" "Response Type" "Progress" ...
+##   ..$ main       : chr [1:182] "Start Date" "End Date" "Response Type" "Progress" ...
+##   ..$ sub        : chr [1:182] "" "" "" "" ...
+##   ..$ ImportId   : chr [1:182] "startDate" "endDate" "status" "progress" ...
+##   ..$ timeZone   : chr [1:182] "America/Los_Angeles" "America/Los_Angeles" NA NA ...
+##   ..$ choiceId   : chr [1:182] NA NA NA NA ...
 \end{verbatim}
 
 Let's think about how the variables in our model should be measured:
@@ -1394,7 +1457,7 @@ Let's think about how the variables in our model should be measured:
   \end{itemize}
 \end{itemize}
 
-Our next step is to conduct a preliminary missing data analysis at the item level, across the dataset we are using. The Campus Climate and Belonging scales are traditional in the sense that they have items that we sum. The variable representing proportion of classmates who are Black is a single item. The variable representing the proportion of instructional staff who are BIPOC must be calculated in a manner that takes into consideration the there may be multiple instructors. The survey allowed a respondent to name up to 10 instructors.
+To summarize, the Campus Climate and Belonging scales are traditional in the sense that they have items that we sum. The variable representing proportion of classmates who are Black is a single item. The variable representing the proportion of instructional staff who are BIPOC must be calculated in a manner that takes into consideration the there may be multiple instructors. The survey allowed a respondent to name up to 10 instructors.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1403,7 +1466,9 @@ Our next step is to conduct a preliminary missing data analysis at the item leve
 \end{Shaded}
 
 \begin{verbatim}
-##  int [1:69] 3 3 3 3 1 3 3 3 1 0 ...
+##  num [1:69] 3 3 3 3 1 3 3 3 1 0 ...
+##  - attr(*, "label")= Named chr "1 - From your perspective as a student, which of the following best describes the [Field-2] instructor."
+##   ..- attr(*, "names")= chr "1_iRace"
 \end{verbatim}
 
 Looking at the structure of our data, the iRace(1 thru 10) variables are in ``int'' or integer format. This means that they are represented as whole numbers. We need them to be represented as factors. R handles factors represented as words well. Therefore, let's use our codebook to reformat this variable as a an ordered factor, with words instead of numbers.
@@ -1468,30 +1533,30 @@ Let's check the structure to see if they are factors.
 ## Rows: 69
 ## Columns: 35
 ## $ ID        <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~
-## $ iRace1    <int> 3, 3, 3, 3, 1, 3, 3, 3, 1, 0, 2, 1, 1, 1, 3, 3, 3, 1, 3, 3, ~
-## $ iRace2    <int> 1, NA, 1, 1, NA, NA, 3, NA, NA, 0, NA, NA, 3, NA, 3, 3, NA, ~
-## $ iRace3    <int> 3, NA, NA, 3, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, 3, 1, N~
-## $ iRace4    <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, NA, 3~
+## $ iRace1    <dbl> 3, 3, 3, 3, 1, 3, 3, 3, 1, 0, 2, 1, 1, 1, 3, 3, 3, 1, 3, 3, ~
+## $ iRace2    <dbl> 1, NA, 1, 1, NA, NA, 3, NA, NA, 0, NA, NA, 3, NA, 3, 3, NA, ~
+## $ iRace3    <dbl> 3, NA, NA, 3, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, 3, 1, N~
+## $ iRace4    <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, NA, 3~
 ## $ iRace5    <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
 ## $ iRace6    <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
 ## $ iRace7    <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
 ## $ iRace8    <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
 ## $ iRace9    <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
 ## $ iRace10   <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
-## $ cmBiMulti <int> 0, 0, 0, 2, 5, 15, 0, 0, 0, 7, 0, 0, 20, 0, 9, 12, 0, 6, 6, ~
-## $ cmBlack   <int> 0, 5, 10, 6, 5, 20, 0, 0, 0, 4, 0, 7, 0, 6, 9, 1, 21, 5, 6, ~
-## $ cmNBPoC   <int> 39, 10, 30, 19, 10, 30, 40, 5, 30, 13, 80, 19, 0, 19, 15, 22~
-## $ cmWhite   <int> 61, 85, 60, 73, 80, 35, 60, 90, 70, 73, 10, 74, 80, 0, 67, 5~
-## $ cmUnsure  <int> 0, 0, 0, 0, 0, 0, 0, 5, 0, 3, 10, 0, 0, 75, 0, 14, 0, 5, 0, ~
-## $ Belong_1  <int> 6, 4, NA, 5, 4, 5, 6, 7, 6, 3, 6, 6, 3, 4, 3, 3, 4, 5, 1, 2,~
-## $ Belong_2  <int> 6, 4, 3, 3, 4, 6, 6, 7, 6, 3, 6, 6, 5, 4, 3, 3, 4, 6, 1, 2, ~
-## $ Belong_3  <int> 7, 6, NA, 2, 4, 5, 5, 7, 6, 3, 5, 6, 4, 4, 3, 2, 4, 5, 1, 1,~
-## $ Blst_1    <int> 5, 6, NA, 2, 6, 5, 5, 5, 5, 3, NA, 4, 5, 6, 3, 4, 6, 4, 4, 4~
-## $ Blst_2    <int> 3, 6, 5, 2, 1, 1, 4, 4, 3, 5, NA, 5, 1, 1, 3, 2, 1, 2, 5, 3,~
-## $ Blst_3    <int> 5, 2, 2, 2, 1, 1, 4, 3, 1, 2, 2, 1, 1, 1, 3, 2, 6, 2, 2, 2, ~
-## $ Blst_4    <int> 2, 2, 2, 2, 1, 2, 4, 3, 2, 3, NA, 4, 3, 1, 3, 2, 1, 3, 2, 1,~
-## $ Blst_5    <int> 2, 4, NA, 2, 1, 1, 4, 4, 1, 3, 2, 2, 1, 1, 3, 2, 1, 2, 2, 1,~
-## $ Blst_6    <int> 2, 1, 2, 2, 1, 2, 4, 3, 2, 3, NA, 2, 1, 1, 3, 2, 2, 3, 2, 1,~
+## $ cmBiMulti <dbl> 0, 0, 0, 2, 5, 15, 0, 0, 0, 7, 0, 0, 20, 0, 9, 12, 0, 6, 6, ~
+## $ cmBlack   <dbl> 0, 5, 10, 6, 5, 20, 0, 0, 0, 4, 0, 7, 0, 6, 9, 1, 21, 5, 6, ~
+## $ cmNBPoC   <dbl> 39, 10, 30, 19, 10, 30, 40, 5, 30, 13, 80, 19, 0, 19, 15, 22~
+## $ cmWhite   <dbl> 61, 85, 60, 73, 80, 35, 60, 90, 70, 73, 10, 74, 80, 0, 67, 5~
+## $ cmUnsure  <dbl> 0, 0, 0, 0, 0, 0, 0, 5, 0, 3, 10, 0, 0, 75, 0, 14, 0, 5, 0, ~
+## $ Belong_1  <dbl> 6, 4, NA, 5, 4, 5, 6, 7, 6, 3, 6, 6, 3, 4, 3, 3, 4, 5, 1, 2,~
+## $ Belong_2  <dbl> 6, 4, 3, 3, 4, 6, 6, 7, 6, 3, 6, 6, 5, 4, 3, 3, 4, 6, 1, 2, ~
+## $ Belong_3  <dbl> 7, 6, NA, 2, 4, 5, 5, 7, 6, 3, 5, 6, 4, 4, 3, 2, 4, 5, 1, 1,~
+## $ Blst_1    <dbl> 5, 6, NA, 2, 6, 5, 5, 5, 5, 3, NA, 4, 5, 6, 3, 4, 6, 4, 4, 4~
+## $ Blst_2    <dbl> 3, 6, 5, 2, 1, 1, 4, 4, 3, 5, NA, 5, 1, 1, 3, 2, 1, 2, 5, 3,~
+## $ Blst_3    <dbl> 5, 2, 2, 2, 1, 1, 4, 3, 1, 2, 2, 1, 1, 1, 3, 2, 6, 2, 2, 2, ~
+## $ Blst_4    <dbl> 2, 2, 2, 2, 1, 2, 4, 3, 2, 3, NA, 4, 3, 1, 3, 2, 1, 3, 2, 1,~
+## $ Blst_5    <dbl> 2, 4, NA, 2, 1, 1, 4, 4, 1, 3, 2, 2, 1, 1, 3, 2, 1, 2, 2, 1,~
+## $ Blst_6    <dbl> 2, 1, 2, 2, 1, 2, 4, 3, 2, 3, NA, 2, 1, 1, 3, 2, 2, 3, 2, 1,~
 ## $ tRace1    <fct> White, White, White, White, nBpoc, White, White, White, nBpo~
 ## $ tRace2    <fct> nBpoc, NA, nBpoc, nBpoc, NA, NA, White, NA, NA, Black, NA, N~
 ## $ tRace3    <fct> White, NA, NA, White, NA, NA, NA, NA, NA, White, NA, NA, NA,~
@@ -1572,6 +1637,7 @@ In this chunk I first calculate the number of missing (nmiss)
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
 \CommentTok{\#Calculating number and proportion of item{-}level missingness}
 \NormalTok{scrub\_df}\SpecialCharTok{$}\NormalTok{nmiss }\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df}\SpecialCharTok{\%\textgreater{}\%}
     \FunctionTok{select}\NormalTok{(iBIPOC\_pr}\SpecialCharTok{:}\NormalTok{Blst\_6) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#the colon allows us to include all variables between the two listed (the variables need to be in order)}
@@ -1579,7 +1645,7 @@ In this chunk I first calculate the number of missing (nmiss)
 \NormalTok{    rowSums}
 
 \NormalTok{scrub\_df}\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df}\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (nmiss}\SpecialCharTok{/}\DecValTok{11}\NormalTok{)}\SpecialCharTok{*}\DecValTok{100}\NormalTok{) }\CommentTok{\#11 is the number of variables included in calculating the proportion}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (nmiss}\SpecialCharTok{/}\DecValTok{11}\NormalTok{)}\SpecialCharTok{*}\DecValTok{100}\NormalTok{) }\CommentTok{\#11 is the number of variables included in calculating the proportion}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1604,9 +1670,7 @@ Across cases that were deemed eligible on the basis of the inclusion/exclusion c
 \end{quote}
 \end{quote}
 
-At the time that I am lecturing this, the the amount of missing is not so egregious that I want to eliminate any cases. That is, I'm willing to wait until after I score the items to make further decisions, then.
-
-That said, because (a) I want you to have such code and (b) it is quite likely that we will receive responses with high levels of missingness, I will write code to eliminate cases with \(\geq\) 90\%.
+At the time that I am lecturing this, we do have some rather egregious missingness. At this point I will write code to eliminate cases with \(\geq\) 90\%.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1690,9 +1754,9 @@ Each row in the table represents a different pattern of missingness. At the time
 \hypertarget{can-we-identify-the-missing-mechanisms}{%
 \subsection{Can we identify the missing mechanisms?}\label{can-we-identify-the-missing-mechanisms}}
 
-To date, we do not have statistical tools that can accurately diagnose our patterns of missingness. You may have heard that ``Little's MCAR'' is a helpful tool. Unfortunately, as Enders \citeyearpar{enders_applied_2010} has noted, the tool is problematic. Perhaps the most significant one is that under the null hypothesis, a statistically significant test indicates that the missing data are MAR (missing at random) or MNAR (missing not at random); a non-significant test indicates the data are MCAR (missint completely at random) or MNAR. Consequently, regardless of the result, an MNAR circumstance cannot be ruled out. Correspondingly, the Little's MCAR test has disappeard from the more reliable R packages that assess missingness.
+To date, we do not have statistical tools that can accurately diagnose our patterns of missingness. You may have heard that ``Little's MCAR'' is a helpful tool. Unfortunately, as Enders \citeyearpar{enders_applied_2010} has noted, the tool is problematic. Perhaps the most significant one is that under the null hypothesis, a statistically significant test indicates that the missing data are MAR (missing at random) or MNAR (missing not at random); a non-significant test indicates the data are MCAR (missing completely at random) or MNAR. Consequently, regardless of the result, an MNAR circumstance cannot be ruled out. Correspondingly, the Little's MCAR test has disappeared from the more reliable R packages that assess missingness.
 
-Enders \citeyearpar{enders_applied_2010} \emph{Applied Missing Data Analysis} text does provide a set of \href{https://www.google.com/books/edition/Applied_Missing_Data_Analysis/uHt4EAAAQBAJ?hl=en\&gbpv=1\&dq=enders+missing+data\&pg=PP1\&printsec=frontcover}{figures} (page 3) that illustrate common missing data patterns. Comparing these to the figure produced with \emph{mice::mdpattern} our data looks somewhat monotonic -- that is, as individuals completed the survey, they began to experience test fatigue and simply stopped responding. Diagnosisng monotonicity requires that the variables in the dataset must be in the order in which the students completed them. If the variables have been re-ordered or if the surveys were presented to students in a randomized order, then more data manipulation would be required before attributing missingnes to test fatigue.
+Enders \citeyearpar{enders_applied_2010} \emph{Applied Missing Data Analysis} text does provide a set of \href{https://www.google.com/books/edition/Applied_Missing_Data_Analysis/uHt4EAAAQBAJ?hl=en\&gbpv=1\&dq=enders+missing+data\&pg=PP1\&printsec=frontcover}{figures} (page 3) that illustrate common missing data patterns. Comparing these to the figure produced with \emph{mice::mdpattern} our data looks somewhat monotonic -- that is, as individuals completed the survey, they began to experience test fatigue and simply stopped responding. Diagnosisng monotonicity requires that the variables in the dataset must be in the order in which the students completed them. If the variables have been re-ordered or if the surveys were presented to students in a randomized order, then more data manipulation would be required before attributing missingness to test fatigue.
 
 Survey programs like Qualtrics offer the randomization of items within blocks (or blocks themselves). This can help distribute missingness caused by test fatigue so that more cases can be retained.
 
@@ -1725,7 +1789,7 @@ To rescore:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{scrub\_df }\OtherTok{\textless{}{-}}\NormalTok{ scrub\_df }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{rBlst\_1 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ Blst\_1)  }\CommentTok{\#if you had multiple items, you could add a pipe (\%\textgreater{}\%) at the end of the line and add more until the last one}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{rBlst\_1 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ Blst\_1)  }\CommentTok{\#if you had multiple items, you could add a pipe (\%\textgreater{}\%) at the end of the line and add more until the last one}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1806,11 +1870,16 @@ First let's get the df down to the variables we want to retain:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{select}\NormalTok{(scrub\_df, iBIPOC\_pr, cmBlack, Belonging, ResponseBL,}
-\NormalTok{    StigmaBL, ClimateBL))}
+\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(scrub\_df, iBIPOC\_pr, cmBlack, Belonging, ResponseBL,}
+\NormalTok{    StigmaBL, ClimateBL)}
 \NormalTok{ScoredCaseMiss }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(scored)  }\CommentTok{\#I produced this object for the sole purpose of feeding the number of cases into the inline text, below}
+\NormalTok{ScoredCaseMiss}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## [1] 66
+\end{verbatim}
 
 Before we start our formal analysis of missingness at the scale level, let's continue to scrub by eliminating cases that will have too much missingness. In the script below we create a variable that counts the number of missing variables and then creates a proportion by dividing it by the number of total variables.
 
@@ -1828,7 +1897,7 @@ Using the \emph{describe()} function from the \emph{psych} package, we can inves
 \CommentTok{\# of variables (6) Pipe to sort in order of descending frequency to}
 \CommentTok{\# get a sense of the missingness}
 \NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ scored }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (n\_miss}\SpecialCharTok{/}\DecValTok{6}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (n\_miss}\SpecialCharTok{/}\DecValTok{6}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
     \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n\_miss))}
 
 \NormalTok{psych}\SpecialCharTok{::}\FunctionTok{describe}\NormalTok{(scored}\SpecialCharTok{$}\NormalTok{prop\_miss)}
@@ -1860,7 +1929,7 @@ We need to decide what is our retention threshhold. Twenty percent seems to be a
 \begin{Highlighting}[]
 \CommentTok{\# update df to have only those with at least 20\% of complete data}
 \CommentTok{\# (this is an arbitrary decision)}
-\NormalTok{scored }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(scored, prop\_miss }\SpecialCharTok{\textless{}=} \DecValTok{20}\NormalTok{)}
+\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(scored, prop\_miss }\SpecialCharTok{\textless{}=} \DecValTok{20}\NormalTok{)}
 
 \CommentTok{\# the variable selection just lops off the proportion missing}
 \NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{select}\NormalTok{(scored, iBIPOC\_pr}\SpecialCharTok{:}\NormalTok{ClimateBL))}
@@ -2078,7 +2147,7 @@ Across cases that were deemed eligible on the basis of the inclusion/exclusion c
 
 \begin{quote}
 \begin{quote}
-Across the 66 cases for which the scoring protocol was applied, missingness ranged from 0 to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 61 cases. In this dataset we had less than 1\% (0.55\%) missing across the df; 97\% of the rows had nonmissing data.
+Across the 66 cases for which the scoring protocol was applied, missingness ranged from 0 to 67\%. After eliminating cases with greater than 20\% missing, the dataset analyzed included 61 cases. In this dataset we had less than 1\% (0.55\%) missing across the data set; 97\% of the rows had nonmissing data.
 \end{quote}
 \end{quote}
 
@@ -2222,15 +2291,9 @@ The packages used in this lesson are embedded in this code. When the hashtags ar
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(tidyverse)) \{}
-    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
-\NormalTok{\}  }\CommentTok{\#this includes dplyr}
-\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(psych)) \{}
-    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"psych"}\NormalTok{)}
-\NormalTok{\}}
-\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(apaTables)) \{}
-    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"apaTables"}\NormalTok{)}
-\NormalTok{\}}
+\CommentTok{\# if(!require(tidyverse))\{install.packages(\textquotesingle{}tidyverse\textquotesingle{})\} \#this}
+\CommentTok{\# includes dplyr if(!require(psych))\{install.packages(\textquotesingle{}psych\textquotesingle{})\}}
+\CommentTok{\# if(!require(apaTables))\{install.packages(\textquotesingle{}apaTables\textquotesingle{})\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2313,7 +2376,7 @@ First, though, let's take a more conceptual look at issues regarding missing dat
 
 Alpha coefficients are \emph{reliability coefficients} that assess the \emph{internal consistency} of an instrument. It asks, ``For each person, are responses \emph{consistently} high, or medium, or low?'' To the degree that they are (meaning there are high inter-item correlations), the internal consistency coefficient will be high. We want values \textgreater.80. There are numerous problems with alpha coefficients. The biggest one is that they are influenced by sample size -- longer scales have higher alpha coefficients \citep{cortina_what_1993}. Fourteen seems to be a magic number where we begin to not trust the high alpha coefficient. I address this more thoroughly -- offering an alternative -- in psychometrics. While there is much criticism about the usefulness of the alpha coefficient \citep{sijtsma_use_2009}, researchers continue to use the alpha coefficient as an indicator of the internal consistency of scales that consist of multiple items and contain several variables.
 
-We need item level data to compute an alpha coefficient. The easiest way to get an alpha coefficient is to feed the \emph{alpha()} function (\emph{psych} package) a contatonated list of items (with any items already reverse-scored). There should be no extra items. In the \protect\hyperlink{score}{scoring chapter} we already reverse-coded the single item in the campus climate scale, so we are ready to calculate alphas.
+We need item level data to compute an alpha coefficient. The easiest way to get an alpha coefficient is to feed the \emph{alpha()} function (\emph{psych} package) a concatonated list of items (with any items already reverse-scored). There should be no extra items. In the \protect\hyperlink{score}{scoring chapter} we already reverse-coded the single item in the campus climate scale, so we are ready to calculate alphas.
 
 The df from which I am pulling data was created and written as an outfile in the \protect\hyperlink{score}{scoring chapter}. You may also download the file from the \href{https://github.com/lhbikos/ReC_MultivModel}{Github site} that hosts the chapter. Be sure to place the file in the same folder as the .rmd file. This particular df has item-level data. I am working with the .rds file. In case this is problematic for you, I have also provided code to import a .csv version of the file.
 
@@ -2334,35 +2397,35 @@ Within the \emph{psych::alpha} function we can retrieve alpha coefficients for t
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Reliability analysis   
-## Call: psych::alpha(x = item_scores_df[c("Belong_1", "Belong_2", "Belong_3")])
-## 
-##   raw_alpha std.alpha G6(smc) average_r S/N    ase mean  sd median_r
-##       0.95      0.95    0.93      0.87  21 0.0099    4 1.5     0.88
-## 
-##     95% confidence boundaries 
-##          lower alpha upper
-## Feldt     0.93  0.95  0.97
-## Duhachek  0.93  0.95  0.97
-## 
-##  Reliability if an item is dropped:
-##          raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## Belong_1      0.94      0.94    0.88      0.88  15    0.016    NA  0.88
-## Belong_2      0.92      0.92    0.85      0.85  11    0.020    NA  0.85
-## Belong_3      0.94      0.94    0.89      0.89  16    0.015    NA  0.89
-## 
-##  Item statistics 
-##           n raw.r std.r r.cor r.drop mean  sd
-## Belong_1 64  0.95  0.95  0.92   0.90  4.1 1.5
-## Belong_2 65  0.96  0.96  0.94   0.92  4.1 1.6
-## Belong_3 64  0.95  0.95  0.91   0.89  3.8 1.5
-## 
-## Non missing response frequency for each item
-##             1    2    3    4    5    6    7 miss
-## Belong_1 0.02 0.14 0.23 0.17 0.22 0.17 0.05 0.03
-## Belong_2 0.03 0.14 0.22 0.22 0.15 0.20 0.05 0.02
-## Belong_3 0.05 0.19 0.19 0.23 0.20 0.09 0.05 0.03
+
+Reliability analysis   
+Call: psych::alpha(x = item_scores_df[c("Belong_1", "Belong_2", "Belong_3")])
+
+  raw_alpha std.alpha G6(smc) average_r S/N    ase mean  sd median_r
+      0.95      0.95    0.93      0.87  21 0.0099    4 1.5     0.88
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.93  0.95  0.97
+Duhachek  0.93  0.95  0.97
+
+ Reliability if an item is dropped:
+         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
+Belong_1      0.94      0.94    0.88      0.88  15    0.016    NA  0.88
+Belong_2      0.92      0.92    0.85      0.85  11    0.020    NA  0.85
+Belong_3      0.94      0.94    0.89      0.89  16    0.015    NA  0.89
+
+ Item statistics 
+          n raw.r std.r r.cor r.drop mean  sd
+Belong_1 64  0.95  0.95  0.92   0.90  4.1 1.5
+Belong_2 65  0.96  0.96  0.94   0.92  4.1 1.6
+Belong_3 64  0.95  0.95  0.91   0.89  3.8 1.5
+
+Non missing response frequency for each item
+            1    2    3    4    5    6    7 miss
+Belong_1 0.02 0.14 0.23 0.17 0.22 0.17 0.05 0.03
+Belong_2 0.03 0.14 0.22 0.22 0.15 0.20 0.05 0.02
+Belong_3 0.05 0.19 0.19 0.23 0.20 0.09 0.05 0.03
 \end{verbatim}
 
 For each scale I will capture a statement for the APA style write-up. Because these values are typically reported with each measure (and not in the prliminary results), I won't create a cumulative write-up.
@@ -2382,45 +2445,45 @@ Cronbach's alpha for the belonging scale was 0.95.
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Reliability analysis   
-## Call: psych::alpha(x = item_scores_df[c("rBlst_1", "Blst_2", "Blst_3", 
-##     "Blst_4", "Blst_5", "Blst_6")])
-## 
-##   raw_alpha std.alpha G6(smc) average_r S/N  ase mean  sd median_r
-##       0.85      0.87    0.87      0.52 6.5 0.03  2.5 1.1     0.52
-## 
-##     95% confidence boundaries 
-##          lower alpha upper
-## Feldt     0.78  0.85  0.90
-## Duhachek  0.79  0.85  0.91
-## 
-##  Reliability if an item is dropped:
-##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## rBlst_1      0.85      0.87    0.87      0.57 6.5    0.031 0.029  0.57
-## Blst_2       0.87      0.88    0.87      0.59 7.1    0.026 0.019  0.56
-## Blst_3       0.83      0.85    0.85      0.54 5.8    0.034 0.029  0.50
-## Blst_4       0.80      0.82    0.82      0.48 4.6    0.041 0.027  0.48
-## Blst_5       0.79      0.81    0.81      0.46 4.3    0.042 0.024  0.47
-## Blst_6       0.80      0.82    0.81      0.48 4.6    0.040 0.021  0.50
-## 
-##  Item statistics 
-##          n raw.r std.r r.cor r.drop mean  sd
-## rBlst_1 60  0.69  0.67  0.56   0.52  3.4 1.6
-## Blst_2  64  0.68  0.62  0.51   0.46  3.0 1.8
-## Blst_3  63  0.71  0.74  0.66   0.59  2.0 1.2
-## Blst_4  62  0.85  0.86  0.84   0.77  2.5 1.3
-## Blst_5  63  0.89  0.89  0.89   0.82  2.0 1.2
-## Blst_6  63  0.83  0.86  0.86   0.77  2.1 1.3
-## 
-## Non missing response frequency for each item
-##            1    2    3    4    5    6    7 miss
-## rBlst_1 0.10 0.23 0.20 0.25 0.08 0.10 0.03 0.09
-## Blst_2  0.33 0.16 0.09 0.17 0.16 0.06 0.03 0.03
-## Blst_3  0.44 0.33 0.06 0.11 0.03 0.02 0.00 0.05
-## Blst_4  0.27 0.34 0.15 0.18 0.05 0.00 0.02 0.06
-## Blst_5  0.46 0.30 0.05 0.14 0.05 0.00 0.00 0.05
-## Blst_6  0.38 0.35 0.11 0.08 0.06 0.02 0.00 0.05
+
+Reliability analysis   
+Call: psych::alpha(x = item_scores_df[c("rBlst_1", "Blst_2", "Blst_3", 
+    "Blst_4", "Blst_5", "Blst_6")])
+
+  raw_alpha std.alpha G6(smc) average_r S/N  ase mean  sd median_r
+      0.85      0.87    0.87      0.52 6.5 0.03  2.5 1.1     0.52
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.78  0.85  0.90
+Duhachek  0.79  0.85  0.91
+
+ Reliability if an item is dropped:
+        raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
+rBlst_1      0.85      0.87    0.87      0.57 6.5    0.031 0.029  0.57
+Blst_2       0.87      0.88    0.87      0.59 7.1    0.026 0.019  0.56
+Blst_3       0.83      0.85    0.85      0.54 5.8    0.034 0.029  0.50
+Blst_4       0.80      0.82    0.82      0.48 4.6    0.041 0.027  0.48
+Blst_5       0.79      0.81    0.81      0.46 4.3    0.042 0.024  0.47
+Blst_6       0.80      0.82    0.81      0.48 4.6    0.040 0.021  0.50
+
+ Item statistics 
+         n raw.r std.r r.cor r.drop mean  sd
+rBlst_1 60  0.69  0.67  0.56   0.52  3.4 1.6
+Blst_2  64  0.68  0.62  0.51   0.46  3.0 1.8
+Blst_3  63  0.71  0.74  0.66   0.59  2.0 1.2
+Blst_4  62  0.85  0.86  0.84   0.77  2.5 1.3
+Blst_5  63  0.89  0.89  0.89   0.82  2.0 1.2
+Blst_6  63  0.83  0.86  0.86   0.77  2.1 1.3
+
+Non missing response frequency for each item
+           1    2    3    4    5    6    7 miss
+rBlst_1 0.10 0.23 0.20 0.25 0.08 0.10 0.03 0.09
+Blst_2  0.33 0.16 0.09 0.17 0.16 0.06 0.03 0.03
+Blst_3  0.44 0.33 0.06 0.11 0.03 0.02 0.00 0.05
+Blst_4  0.27 0.34 0.15 0.18 0.05 0.00 0.02 0.06
+Blst_5  0.46 0.30 0.05 0.14 0.05 0.00 0.00 0.05
+Blst_6  0.38 0.35 0.11 0.08 0.06 0.02 0.00 0.05
 \end{verbatim}
 
 \begin{quote}
@@ -2440,35 +2503,35 @@ Since this value is \(\geq\) .80, it is within the realm of acceptability. Let's
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Reliability analysis   
-## Call: psych::alpha(x = item_scores_df[c("Blst_3", "Blst_2", "Blst_5")])
-## 
-##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-##       0.69      0.73    0.69      0.47 2.7 0.065  2.3 1.2     0.54
-## 
-##     95% confidence boundaries 
-##          lower alpha upper
-## Feldt     0.54  0.69  0.80
-## Duhachek  0.57  0.69  0.82
-## 
-##  Reliability if an item is dropped:
-##        raw_alpha std.alpha G6(smc) average_r  S/N alpha se var.r med.r
-## Blst_3      0.67      0.70    0.54      0.54 2.35    0.074    NA  0.54
-## Blst_2      0.75      0.75    0.60      0.60 3.03    0.061    NA  0.60
-## Blst_5      0.41      0.43    0.28      0.28 0.76    0.135    NA  0.28
-## 
-##  Item statistics 
-##         n raw.r std.r r.cor r.drop mean  sd
-## Blst_3 63  0.72  0.78  0.62   0.46    2 1.2
-## Blst_2 64  0.82  0.75  0.55   0.46    3 1.8
-## Blst_5 63  0.87  0.89  0.83   0.70    2 1.2
-## 
-## Non missing response frequency for each item
-##           1    2    3    4    5    6    7 miss
-## Blst_3 0.44 0.33 0.06 0.11 0.03 0.02 0.00 0.05
-## Blst_2 0.33 0.16 0.09 0.17 0.16 0.06 0.03 0.03
-## Blst_5 0.46 0.30 0.05 0.14 0.05 0.00 0.00 0.05
+
+Reliability analysis   
+Call: psych::alpha(x = item_scores_df[c("Blst_3", "Blst_2", "Blst_5")])
+
+  raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
+      0.69      0.73    0.69      0.47 2.7 0.065  2.3 1.2     0.54
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.54  0.69  0.80
+Duhachek  0.57  0.69  0.82
+
+ Reliability if an item is dropped:
+       raw_alpha std.alpha G6(smc) average_r  S/N alpha se var.r med.r
+Blst_3      0.67      0.70    0.54      0.54 2.35    0.074    NA  0.54
+Blst_2      0.75      0.75    0.60      0.60 3.03    0.061    NA  0.60
+Blst_5      0.41      0.43    0.28      0.28 0.76    0.135    NA  0.28
+
+ Item statistics 
+        n raw.r std.r r.cor r.drop mean  sd
+Blst_3 63  0.72  0.78  0.62   0.46    2 1.2
+Blst_2 64  0.82  0.75  0.55   0.46    3 1.8
+Blst_5 63  0.87  0.89  0.83   0.70    2 1.2
+
+Non missing response frequency for each item
+          1    2    3    4    5    6    7 miss
+Blst_3 0.44 0.33 0.06 0.11 0.03 0.02 0.00 0.05
+Blst_2 0.33 0.16 0.09 0.17 0.16 0.06 0.03 0.03
+Blst_5 0.46 0.30 0.05 0.14 0.05 0.00 0.00 0.05
 \end{verbatim}
 
 \begin{quote}
@@ -2486,35 +2549,35 @@ Cronbach's alpha for the campus climate stigma subscale was 0.73.
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Reliability analysis   
-## Call: psych::alpha(x = item_scores_df[c("rBlst_1", "Blst_4", "Blst_6")])
-## 
-##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-##       0.79      0.81    0.76      0.58 4.2 0.045  2.7 1.2     0.52
-## 
-##     95% confidence boundaries 
-##          lower alpha upper
-## Feldt     0.69  0.79  0.87
-## Duhachek  0.71  0.79  0.88
-## 
-##  Reliability if an item is dropped:
-##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## rBlst_1      0.86      0.86    0.75      0.75 6.0    0.035    NA  0.75
-## Blst_4       0.64      0.65    0.48      0.48 1.8    0.087    NA  0.48
-## Blst_6       0.68      0.68    0.52      0.52 2.1    0.078    NA  0.52
-## 
-##  Item statistics 
-##          n raw.r std.r r.cor r.drop mean  sd
-## rBlst_1 60  0.81  0.78  0.58   0.53  3.4 1.6
-## Blst_4  62  0.88  0.89  0.84   0.72  2.5 1.3
-## Blst_6  63  0.85  0.87  0.81   0.69  2.1 1.3
-## 
-## Non missing response frequency for each item
-##            1    2    3    4    5    6    7 miss
-## rBlst_1 0.10 0.23 0.20 0.25 0.08 0.10 0.03 0.09
-## Blst_4  0.27 0.34 0.15 0.18 0.05 0.00 0.02 0.06
-## Blst_6  0.38 0.35 0.11 0.08 0.06 0.02 0.00 0.05
+
+Reliability analysis   
+Call: psych::alpha(x = item_scores_df[c("rBlst_1", "Blst_4", "Blst_6")])
+
+  raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
+      0.79      0.81    0.76      0.58 4.2 0.045  2.7 1.2     0.52
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.69  0.79  0.87
+Duhachek  0.71  0.79  0.88
+
+ Reliability if an item is dropped:
+        raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
+rBlst_1      0.86      0.86    0.75      0.75 6.0    0.035    NA  0.75
+Blst_4       0.64      0.65    0.48      0.48 1.8    0.087    NA  0.48
+Blst_6       0.68      0.68    0.52      0.52 2.1    0.078    NA  0.52
+
+ Item statistics 
+         n raw.r std.r r.cor r.drop mean  sd
+rBlst_1 60  0.81  0.78  0.58   0.53  3.4 1.6
+Blst_4  62  0.88  0.89  0.84   0.72  2.5 1.3
+Blst_6  63  0.85  0.87  0.81   0.69  2.1 1.3
+
+Non missing response frequency for each item
+           1    2    3    4    5    6    7 miss
+rBlst_1 0.10 0.23 0.20 0.25 0.08 0.10 0.03 0.09
+Blst_4  0.27 0.34 0.15 0.18 0.05 0.00 0.02 0.06
+Blst_6  0.38 0.35 0.11 0.08 0.06 0.02 0.00 0.05
 \end{verbatim}
 
 \begin{quote}
@@ -2542,24 +2605,54 @@ The \emph{str()} function let's us look at the variable format/measurement level
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':    66 obs. of  17 variables:
-##  $ ID        : int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ iBIPOC_pr : num  0.333 0 0.5 0.333 1 ...
-##  $ cmBlack   : int  0 5 10 6 5 20 0 0 0 4 ...
-##  $ Belong_1  : int  6 4 NA 5 4 5 6 7 6 3 ...
-##  $ Belong_2  : int  6 4 3 3 4 6 6 7 6 3 ...
-##  $ Belong_3  : int  7 6 NA 2 4 5 5 7 6 3 ...
-##  $ Blst_1    : int  5 6 NA 2 6 5 5 5 5 3 ...
-##  $ Blst_2    : int  3 6 5 2 1 1 4 4 3 5 ...
-##  $ Blst_3    : int  5 2 2 2 1 1 4 3 1 2 ...
-##  $ Blst_4    : int  2 2 2 2 1 2 4 3 2 3 ...
-##  $ Blst_5    : int  2 4 NA 2 1 1 4 4 1 3 ...
-##  $ Blst_6    : int  2 1 2 2 1 2 4 3 2 3 ...
-##  $ rBlst_1   : num  3 2 NA 6 2 3 3 3 3 5 ...
-##  $ Belonging : num  6.33 4.67 NA 3.33 4 5.33 5.67 7 6 3 ...
-##  $ ResponseBL: num  2.33 1.67 2 3.33 1.33 2.33 3.67 3 2.33 3.67 ...
-##  $ StigmaBL  : num  3.33 4 3.5 2 1 1 4 3.67 1.67 3.33 ...
-##  $ ClimateBL : num  2.83 2.83 NA 2.67 1.17 1.67 3.83 3.33 2 3.5 ...
+Classes 'tbl_df', 'tbl' and 'data.frame':   66 obs. of  17 variables:
+ $ ID        : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ iBIPOC_pr : num  0.333 0 0.5 0.333 1 ...
+ $ cmBlack   : num  0 5 10 6 5 20 0 0 0 4 ...
+  ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - Black"
+  .. ..- attr(*, "names")= chr "Race_1"
+ $ Belong_1  : num  6 4 NA 5 4 5 6 7 6 3 ...
+  ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__
+  .. ..- attr(*, "names")= chr "Belong_1"
+ $ Belong_2  : num  6 4 3 3 4 6 6 7 6 3 ...
+  ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__
+  .. ..- attr(*, "names")= chr "Belong_2"
+ $ Belong_3  : num  7 6 NA 2 4 5 5 7 6 3 ...
+  ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__
+  .. ..- attr(*, "names")= chr "Belong_3"
+ $ Blst_1    : num  5 6 NA 2 6 5 5 5 5 3 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_1"
+ $ Blst_2    : num  3 6 5 2 1 1 4 4 3 5 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_2"
+ $ Blst_3    : num  5 2 2 2 1 1 4 3 1 2 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_3"
+ $ Blst_4    : num  2 2 2 2 1 2 4 3 2 3 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_4"
+ $ Blst_5    : num  2 4 NA 2 1 1 4 4 1 3 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_5"
+ $ Blst_6    : num  2 1 2 2 1 2 4 3 2 3 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_6"
+ $ rBlst_1   : num  3 2 NA 6 2 3 3 3 3 5 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_1"
+ $ Belonging : num  6.33 4.67 NA 3.33 4 5.33 5.67 7 6 3 ...
+ $ ResponseBL: num  2.33 1.67 2 3.33 1.33 2.33 3.67 3 2.33 3.67 ...
+ $ StigmaBL  : num  3.33 4 3.5 2 1 1 4 3.67 1.67 3.33 ...
+ $ ClimateBL : num  2.83 2.83 NA 2.67 1.17 1.67 3.83 3.33 2 3.5 ...
+ - attr(*, "column_map")=Classes 'tbl_df', 'tbl' and 'data.frame':  182 obs. of  7 variables:
+  ..$ qname      : chr [1:182] "StartDate" "EndDate" "Status" "Progress" ...
+  ..$ description: chr [1:182] "Start Date" "End Date" "Response Type" "Progress" ...
+  ..$ main       : chr [1:182] "Start Date" "End Date" "Response Type" "Progress" ...
+  ..$ sub        : chr [1:182] "" "" "" "" ...
+  ..$ ImportId   : chr [1:182] "startDate" "endDate" "status" "progress" ...
+  ..$ timeZone   : chr [1:182] "America/Los_Angeles" "America/Los_Angeles" NA NA ...
+  ..$ choiceId   : chr [1:182] NA NA NA NA ...
 \end{verbatim}
 
 The difference between ``int'' (integer) and ``num'' (numerical) is that integers are limited to whole numbers. For the statistics used in this lesson, both are acceptable formats for the variables.
@@ -2583,16 +2676,16 @@ The difference between ``int'' (integer) and ``num'' (numerical) is that integer
 \end{Shaded}
 
 \begin{verbatim}
-##           vars  n mean   sd median trimmed  mad min   max range skew kurtosis
-## iBIPOC_pr    1 64 0.35 0.39   0.25    0.32 0.37   0  1.00  1.00 0.64    -1.05
-## cmBlack      2 66 8.20 8.02   5.50    7.24 8.15   0 30.00 30.00 0.95     0.05
-## Belonging    3 64 4.03 1.47   4.00    4.03 1.48   1  7.00  6.00 0.03    -0.76
-## ClimateBL    4 61 2.48 1.09   2.33    2.41 0.99   1  5.67  4.67 0.56     0.04
-##             se
-## iBIPOC_pr 0.05
-## cmBlack   0.99
-## Belonging 0.18
-## ClimateBL 0.14
+          vars  n mean   sd median trimmed  mad min   max range skew kurtosis
+iBIPOC_pr    1 64 0.35 0.39   0.25    0.32 0.37   0  1.00  1.00 0.64    -1.05
+cmBlack      2 66 8.20 8.02   5.50    7.24 8.15   0 30.00 30.00 0.95     0.05
+Belonging    3 64 4.03 1.47   4.00    4.03 1.48   1  7.00  6.00 0.03    -0.76
+ClimateBL    4 61 2.48 1.09   2.33    2.41 0.99   1  5.67  4.67 0.56     0.04
+            se
+iBIPOC_pr 0.05
+cmBlack   0.99
+Belonging 0.18
+ClimateBL 0.14
 \end{verbatim}
 
 \begin{Shaded}
@@ -2617,11 +2710,11 @@ We can also apply the Shapiro-Wilk test of normality to each of our variables. W
 \end{Shaded}
 
 \begin{verbatim}
-## 
-##  Shapiro-Wilk normality test
-## 
-## data:  item_scores_df$cmBlack
-## W = 0.87796, p-value = 9.899e-06
+
+    Shapiro-Wilk normality test
+
+data:  item_scores_df$cmBlack
+W = 0.87796, p-value = 0.000009899
 \end{verbatim}
 
 \begin{Shaded}
@@ -2631,11 +2724,11 @@ We can also apply the Shapiro-Wilk test of normality to each of our variables. W
 \end{Shaded}
 
 \begin{verbatim}
-## 
-##  Shapiro-Wilk normality test
-## 
-## data:  item_scores_df$iBIPOC_pr
-## W = 0.78725, p-value = 3.181e-08
+
+    Shapiro-Wilk normality test
+
+data:  item_scores_df$iBIPOC_pr
+W = 0.78725, p-value = 0.00000003181
 \end{verbatim}
 
 \begin{Shaded}
@@ -2645,11 +2738,11 @@ We can also apply the Shapiro-Wilk test of normality to each of our variables. W
 \end{Shaded}
 
 \begin{verbatim}
-## 
-##  Shapiro-Wilk normality test
-## 
-## data:  item_scores_df$Belonging
-## W = 0.97262, p-value = 0.1654
+
+    Shapiro-Wilk normality test
+
+data:  item_scores_df$Belonging
+W = 0.97262, p-value = 0.1654
 \end{verbatim}
 
 \begin{Shaded}
@@ -2659,22 +2752,12 @@ We can also apply the Shapiro-Wilk test of normality to each of our variables. W
 \end{Shaded}
 
 \begin{verbatim}
-## 
-##  Shapiro-Wilk normality test
-## 
-## data:  item_scores_df$ClimateBL
-## W = 0.95102, p-value = 0.01613
+
+    Shapiro-Wilk normality test
+
+data:  item_scores_df$ClimateBL
+W = 0.95102, p-value = 0.01613
 \end{verbatim}
-
-CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:
-
-\begin{quote}
-\begin{quote}
-Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 10 (kurtosis) that Kline suggests are concerning \citeyearpar{kline_principles_2016}. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (\(W = 0.878, p < 0.001\)) and the proportion of BIPOC instructional staff(\(W = 0.787, p < 0.001\)) are statistically significantly different than a normal distribution. The scales assessing the respondent's belonging (\(0.973, p = 0.165\)) and the respondent's perception of campus climate for Black students (\(W = 0.951, p = 0.016\)) did not differ differently from a normal distribution.
-\end{quote}
-\end{quote}
-
-What would we do in the case of a univariate outlier? I find Kline's \citeyearpar{kline_principles_2016} chapter on data preparation and management to be extremely useful. He provides ideas for more complex analysis of both univariate and multivariate normality and provides suggestions that range from recoding an extreme value to the next most extreme that is within three standard deviations of the mean to more complicated transformations. First, though we need to further examine the relationships between variables. We do that, next.
 
 \hypertarget{pairs-panels}{%
 \subsection{Pairs Panels}\label{pairs-panels}}
@@ -2700,9 +2783,19 @@ The \emph{pairs.panels()} function from the \emph{psych} package is useful for s
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-10-1.pdf}
+\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-11-1.pdf}
 
 The histograms displayed in the diagonal graph for us what we learned from the Shapiro Wilk's test of normality. We can clearly see the non-normal distribution in the iBIPOC\_pr and cmBlack variables.
+
+CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:
+
+\begin{quote}
+\begin{quote}
+Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 10 (kurtosis) that Kline suggests are concerning \citeyearpar{kline_principles_2016}. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black (\(W = 0.878, p < 0.001\)) and the proportion of BIPOC instructional staff(\(W = 0.787, p < 0.001\)) are statistically significantly different than a normal distribution. Similarly the scale assessing the respondent's perception of campus climate for Black students (\(W = 0.951, p = 0.016\)) differed significantly from a normal distribution. In all three cases the skew values and histograms suggested a somewhat positive skew. That is, there were predominantly low proportions of instructional staff who are BIPOC and classmates who are Black, and the perceptions of campus climate for Black students was evaluated somewhat favorably. The scales assessing the respondent's belonging (\(0.973, p = 0.165\)) did not differ significantly from a normal distribution.
+\end{quote}
+\end{quote}
+
+What would we do in the case of a univariate outlier? I find Kline's \citeyearpar{kline_principles_2016} chapter on data preparation and management to be extremely useful. He provides ideas for more complex analysis of both univariate and multivariate normality and provides suggestions that range from recoding an extreme value to the next most extreme that is within three standard deviations of the mean to more complicated transformations. First, though we need to further examine the relationships between variables. We do that, next.
 
 \hypertarget{evaluating-multivariate-normality}{%
 \section{Evaluating Multivariate Normality}\label{evaluating-multivariate-normality}}
@@ -2722,7 +2815,7 @@ Numeric variables are required in the of the calculation of the Mahalanobis.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-11-1.pdf}
+\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-12-1.pdf}
 
 Q-Q plots take your sample data, sort it in ascending order, and then plot them versus quantiles (the number varies; you can see it on the X axis) calculated from a theoretical distribution. The number of quantiles is selected to match the size of your sample data. While Normal Q-Q Plots are the ones most often used in practice due to so many statistical methods assuming normality, Q-Q Plots can actually be created for any distribution. To the degree that the plotted line stays on the straight line (representing the theoretical normal distribution), the data is multivariate normally distributed.
 
@@ -2735,8 +2828,8 @@ It is possible, then to analyze the Mahalanobis distance values.
 \end{Shaded}
 
 \begin{verbatim}
-##    vars  n mean   sd median trimmed  mad min   max range skew kurtosis   se
-## X1    1 66 3.81 2.24   3.68    3.62 2.36 0.2 11.25 11.05 0.86     0.82 0.28
+   vars  n mean   sd median trimmed  mad min   max range skew kurtosis   se
+X1    1 66 3.81 2.24   3.68    3.62 2.36 0.2 11.25 11.05 0.86     0.82 0.28
 \end{verbatim}
 
 Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median. In fact, we can have these noted in a column in the dataframe.
@@ -2755,27 +2848,18 @@ Using this information we can determine cases that have a Mahalanobis distance v
 \end{Shaded}
 
 \begin{verbatim}
-##   ID iBIPOC_pr cmBlack Belong_1 Belong_2 Belong_3 Blst_1 Blst_2 Blst_3 Blst_4
-## 1  1 0.3333333       0        6        6        7      5      3      5      2
-## 2  2 0.0000000       5        4        4        6      6      6      2      2
-## 3  3 0.5000000      10       NA        3       NA     NA      5      2      2
-## 4  4 0.3333333       6        5        3        2      2      2      2      2
-## 5  5 1.0000000       5        4        4        4      6      1      1      1
-## 6  6 0.0000000      20        5        6        5      5      1      1      2
-##   Blst_5 Blst_6 rBlst_1 Belonging ResponseBL StigmaBL ClimateBL     Mahal
-## 1      2      2       3      6.33       2.33     3.33      2.83 3.1826820
-## 2      4      1       2      4.67       1.67     4.00      2.83 1.0923648
-## 3     NA      2      NA        NA       2.00     3.50        NA 0.1979919
-## 4      2      2       6      3.33       3.33     2.00      2.67 0.3505949
-## 5      1      1       2      4.00       1.33     1.00      1.17 3.8711215
-## 6      1      2       3      5.33       2.33     1.00      1.67 4.8818622
-##   MOutlier
-## 1    FALSE
-## 2    FALSE
-## 3    FALSE
-## 4    FALSE
-## 5    FALSE
-## 6    FALSE
+# A tibble: 6 x 19
+     ID iBIPOC_pr cmBlack Belong_1 Belong_2 Belong_3 Blst_1 Blst_2 Blst_3 Blst_4
+  <int>     <dbl>   <dbl>    <dbl>    <dbl>    <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
+1     1     0.333       0        6        6        7      5      3      5      2
+2     2     0           5        4        4        6      6      6      2      2
+3     3     0.5        10       NA        3       NA     NA      5      2      2
+4     4     0.333       6        5        3        2      2      2      2      2
+5     5     1           5        4        4        4      6      1      1      1
+6     6     0          20        5        6        5      5      1      1      2
+# i 9 more variables: Blst_5 <dbl>, Blst_6 <dbl>, rBlst_1 <dbl>,
+#   Belonging <dbl>, ResponseBL <dbl>, StigmaBL <dbl>, ClimateBL <dbl>,
+#   Mahal <dbl>, MOutlier <lgl>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2785,16 +2869,16 @@ Using this information we can determine cases that have a Mahalanobis distance v
 \end{Shaded}
 
 \begin{verbatim}
-## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-## v dplyr     1.1.2     v readr     2.1.4
-## v forcats   1.0.0     v stringr   1.5.0
-## v ggplot2   3.4.3     v tibble    3.2.1
-## v lubridate 1.9.2     v tidyr     1.3.0
-## v purrr     1.0.1     
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.2     v readr     2.1.4
+v forcats   1.0.0     v stringr   1.5.0
+v ggplot2   3.4.3     v tibble    3.2.1
+v lubridate 1.9.2     v tidyr     1.3.0
+v purrr     1.0.1     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 \end{verbatim}
 
 \begin{Shaded}
@@ -2809,9 +2893,9 @@ Using this information we can determine cases that have a Mahalanobis distance v
 \end{Shaded}
 
 \begin{verbatim}
-##   MOutlier  n
-## 1       66  1
-## 2       65 65
+  MOutlier  n
+1       66  1
+2       65 65
 \end{verbatim}
 
 When we identify outliers we often ask if we should delete them or transform the data. A general rule of thumb is to look for ``jumps'' in the Mahalanobis distance values. If they are progressing steadily and there is no ``jump,'' researchers will often retain the outliers.
@@ -2902,27 +2986,27 @@ With some confidence that our scrubbed-and-scored variables are appropriate for 
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.86732 -0.80535  0.02355  0.70459  3.02003 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  2.90791    0.46653   6.233 6.74e-08 ***
-## Belonging   -0.01742    0.09643  -0.181    0.857    
-## cmBlack     -0.01918    0.01717  -1.117    0.269    
-## iBIPOC_pr   -0.64125    0.35701  -1.796    0.078 .  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 1.066 on 55 degrees of freedom
-##   (7 observations deleted due to missingness)
-## Multiple R-squared:  0.08212,    Adjusted R-squared:  0.03206 
-## F-statistic:  1.64 on 3 and 55 DF,  p-value: 0.1906
+
+Call:
+lm(formula = ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.86732 -0.80535  0.02355  0.70459  3.02003 
+
+Coefficients:
+            Estimate Std. Error t value     Pr(>|t|)    
+(Intercept)  2.90791    0.46653   6.233 0.0000000674 ***
+Belonging   -0.01742    0.09643  -0.181        0.857    
+cmBlack     -0.01918    0.01717  -1.117        0.269    
+iBIPOC_pr   -0.64125    0.35701  -1.796        0.078 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.066 on 55 degrees of freedom
+  (7 observations deleted due to missingness)
+Multiple R-squared:  0.08212,   Adjusted R-squared:  0.03206 
+F-statistic:  1.64 on 3 and 55 DF,  p-value: 0.1906
 \end{verbatim}
 
 \hypertarget{results-1}{%
@@ -2942,32 +3026,32 @@ Results of a multiple regression predicting the respondents' perceptions of camp
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## 
-## Table 1 
-## 
-## Means, standard deviations, and correlations with confidence intervals
-##  
-## 
-##   Variable     M    SD   1           2           3          
-##   1. iBIPOC_pr 0.35 0.39                                    
-##                                                             
-##   2. cmBlack   8.20 8.02 .07                                
-##                          [-.18, .31]                        
-##                                                             
-##   3. Belonging 4.03 1.47 .01         -.13                   
-##                          [-.24, .26] [-.36, .12]            
-##                                                             
-##   4. ClimateBL 2.48 1.09 -.25        -.17        -.04       
-##                          [-.47, .01] [-.41, .08] [-.29, .22]
-##                                                             
-## 
-## Note. M and SD are used to represent mean and standard deviation, respectively.
-## Values in square brackets indicate the 95% confidence interval.
-## The confidence interval is a plausible range of population correlations 
-## that could have caused the sample correlation (Cumming, 2014).
-##  * indicates p < .05. ** indicates p < .01.
-## 
+
+
+Table 1 
+
+Means, standard deviations, and correlations with confidence intervals
+ 
+
+  Variable     M    SD   1           2           3          
+  1. iBIPOC_pr 0.35 0.39                                    
+                                                            
+  2. cmBlack   8.20 8.02 .07                                
+                         [-.18, .31]                        
+                                                            
+  3. Belonging 4.03 1.47 .01         -.13                   
+                         [-.24, .26] [-.36, .12]            
+                                                            
+  4. ClimateBL 2.48 1.09 -.25        -.17        -.04       
+                         [-.47, .01] [-.41, .08] [-.29, .22]
+                                                            
+
+Note. M and SD are used to represent mean and standard deviation, respectively.
+Values in square brackets indicate the 95% confidence interval.
+The confidence interval is a plausible range of population correlations 
+that could have caused the sample correlation (Cumming, 2014).
+ * indicates p < .05. ** indicates p < .01.
+ 
 \end{verbatim}
 
 \begin{Shaded}
@@ -2978,36 +3062,36 @@ Results of a multiple regression predicting the respondents' perceptions of camp
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## 
-## Table 2 
-## 
-## Regression results using ClimateBL as the criterion
-##  
-## 
-##    Predictor      b      b_95%_CI  beta   beta_95%_CI sr2  sr2_95%_CI    r
-##  (Intercept) 2.91**  [1.97, 3.84]                                         
-##    Belonging  -0.02 [-0.21, 0.18] -0.02 [-0.28, 0.24] .00 [-.01, .01] -.00
-##      cmBlack  -0.02 [-0.05, 0.02] -0.15 [-0.41, 0.12] .02 [-.05, .09] -.17
-##    iBIPOC_pr  -0.64 [-1.36, 0.07] -0.23 [-0.49, 0.03] .05 [-.06, .16] -.25
-##                                                                           
-##                                                                           
-##                                                                           
-##              Fit
-##                 
-##                 
-##                 
-##                 
-##        R2 = .082
-##  95% CI[.00,.20]
-##                 
-## 
-## Note. A significant b-weight indicates the beta-weight and semi-partial correlation are also significant.
-## b represents unstandardized regression weights. beta indicates the standardized regression weights. 
-## sr2 represents the semi-partial correlation squared. r represents the zero-order correlation.
-## Square brackets are used to enclose the lower and upper limits of a confidence interval.
-## * indicates p < .05. ** indicates p < .01.
-## 
+
+
+Table 2 
+
+Regression results using ClimateBL as the criterion
+ 
+
+   Predictor      b      b_95%_CI  beta   beta_95%_CI sr2  sr2_95%_CI    r
+ (Intercept) 2.91**  [1.97, 3.84]                                         
+   Belonging  -0.02 [-0.21, 0.18] -0.02 [-0.28, 0.24] .00 [-.01, .01] -.00
+     cmBlack  -0.02 [-0.05, 0.02] -0.15 [-0.41, 0.12] .02 [-.05, .09] -.17
+   iBIPOC_pr  -0.64 [-1.36, 0.07] -0.23 [-0.49, 0.03] .05 [-.06, .16] -.25
+                                                                          
+                                                                          
+                                                                          
+             Fit
+                
+                
+                
+                
+       R2 = .082
+ 95% CI[.00,.20]
+                
+
+Note. A significant b-weight indicates the beta-weight and semi-partial correlation are also significant.
+b represents unstandardized regression weights. beta indicates the standardized regression weights. 
+sr2 represents the semi-partial correlation squared. r represents the zero-order correlation.
+Square brackets are used to enclose the lower and upper limits of a confidence interval.
+* indicates p < .05. ** indicates p < .01.
+ 
 \end{verbatim}
 
 \hypertarget{practice-problems-2}{%
@@ -3049,9 +3133,9 @@ Assignment Component
 \endlastfoot
 1. Calculate alpha coefficients for scales/subscales. & 5 & \_\_\_\_\_ \\
 2. Evaluate univariate normality (skew, kurtosis, Shapiro-Wilks). & 5 & \_\_\_\_\_ \\
-3. Evaluate multivarite normality (Mahalanobis test) & 5 & \_\_\_\_\_ \\
+3. Evaluate multivariate normality (Mahalanobis test) & 5 & \_\_\_\_\_ \\
 4. Represent your work in an APA-style write-up (added to the writeup in the previous chapter) & 5 & \_\_\_\_\_ \\
-5. Conduct a quick analysis (e.g., regression, ANOVA) including at least three variables & 5 & \_\_\_\_\_ \\
+5. Conduct a quick analysis (e.g., regression, ANOVA) including at least three predictor variables & 5 & \_\_\_\_\_ \\
 6. Explanation to grader & 5 & \_\_\_\_\_ \\
 \textbf{Totals} & 30 & \_\_\_\_\_ \\
 \end{longtable}
@@ -3110,7 +3194,7 @@ Because this data is nested within the person (i.e., students can contribute up 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 310
+[1] 310
 \end{verbatim}
 
 \hypertarget{include-only-those-who-consented}{%
@@ -3148,7 +3232,7 @@ At this point, these my only inclusion/exclusion criteria. I can determine how m
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 84
+[1] 84
 \end{verbatim}
 
 \hypertarget{rename-variables-to-be-sensible-and-systematic}{%
@@ -3199,7 +3283,7 @@ I will need to include:
 
 \begin{quote}
 \begin{quote}
-This is a secondary analysis of data involved in a more comprehensive dataset that included students taking multiple statistics courses (\emph{N} = 310). Having retrieved this data from a repository in the Open Science Framework, only those who consented to participation in the study were included. Data used in these analyses were 84 students who completed the multivariate clas.
+This is a secondary analysis of data involved in a more comprehensive dataset that included students taking multiple statistics courses (\emph{N} = 310). Having retrieved this data from a repository in the Open Science Framework, only those who consented to participation in the study were included. Data used in these analyses were 84 students who completed the multivariate class.
 \end{quote}
 \end{quote}
 
@@ -3222,7 +3306,7 @@ Because I am using the .rds form of the data from the OSF, this variable retains
 \end{Shaded}
 
 \begin{verbatim}
-##  Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
+ Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
 \end{verbatim}
 
 \hypertarget{proper-formatting-of-items-in-your-second-predictor-variable}{%
@@ -3241,7 +3325,7 @@ Because I am using the .rds form of the data from the OSF, this variable retains
 \end{Shaded}
 
 \begin{verbatim}
-##  Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
 \end{verbatim}
 
 \hypertarget{proper-formatting-of-the-items-in-your-third-predictor-variable}{%
@@ -3261,20 +3345,20 @@ The third predictor variable is traditional pedagogy. The dependent variable is 
 \end{Shaded}
 
 \begin{verbatim}
-## Classes 'data.table' and 'data.frame':   84 obs. of  12 variables:
-##  $ deID                 : int  11 12 13 14 15 16 17 18 35 19 ...
-##  $ StatsPkg             : Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ ClearResponsibilities: int  4 5 5 5 4 3 5 5 3 5 ...
-##  $ EffectiveAnswers     : int  4 5 5 4 4 3 5 5 4 4 ...
-##  $ Feedback             : int  4 5 4 4 5 4 5 4 4 5 ...
-##  $ ClearOrganization    : int  3 5 5 4 4 3 5 5 4 5 ...
-##  $ ClearPresentation    : int  4 5 5 3 4 2 5 4 5 5 ...
-##  $ InclusvClassrm       : int  5 5 5 5 5 4 5 5 5 5 ...
-##  $ EquitableEval        : int  4 5 5 5 4 4 5 4 5 5 ...
-##  $ MultPerspectives     : int  4 5 5 5 5 5 5 4 5 5 ...
-##  $ DEIintegration       : int  5 5 5 5 5 5 5 5 5 5 ...
-##  - attr(*, ".internal.selfref")=<externalptr>
+Classes 'data.table' and 'data.frame':  84 obs. of  12 variables:
+ $ deID                 : int  11 12 13 14 15 16 17 18 35 19 ...
+ $ StatsPkg             : Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
+ $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ ClearResponsibilities: int  4 5 5 5 4 3 5 5 3 5 ...
+ $ EffectiveAnswers     : int  4 5 5 4 4 3 5 5 4 4 ...
+ $ Feedback             : int  4 5 4 4 5 4 5 4 4 5 ...
+ $ ClearOrganization    : int  3 5 5 4 4 3 5 5 4 5 ...
+ $ ClearPresentation    : int  4 5 5 3 4 2 5 4 5 5 ...
+ $ InclusvClassrm       : int  5 5 5 5 5 4 5 5 5 5 ...
+ $ EquitableEval        : int  4 5 5 5 4 4 5 4 5 5 ...
+ $ MultPerspectives     : int  4 5 5 5 5 5 5 4 5 5 ...
+ $ DEIintegration       : int  5 5 5 5 5 5 5 5 5 5 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
 \end{verbatim}
 
 \hypertarget{evaluate-and-interpret-item-level-missingness}{%
@@ -3311,8 +3395,8 @@ We can grab the descriptives for the \emph{prop\_miss} variable to begin to unde
 \end{Shaded}
 
 \begin{verbatim}
-##    vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
-## X1    1 84 2.38 6.17      0    0.94   0   0 36.36 36.36 3.29    12.33 0.67
+   vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
+X1    1 84 2.38 6.17      0    0.94   0   0 36.36 36.36 3.29    12.33 0.67
 \end{verbatim}
 
 Because I want to use the AIA approach to scoring, I'm not willing to filter out any cases yet. If I wanted to eliminate cases with egregious missing (i.e., like 90\%), here is the code I would use:
@@ -3331,7 +3415,7 @@ Across cases that were deemed eligible on the basis of the inclusion/exclusion c
 \end{quote}
 \end{quote}
 
-To analyze missingness at this level, we need a df that has only the variables of interest. That is, variables like \emph{ID} and the \emph{prop\_miss} and \emph{nmiss} variables we created will interfere with an accurate assessment of missingness. I will update our df to eliminate these.
+To analyze missingness at the item level, we need a df that has only the variables of interest. That is, variables like \emph{ID} and the \emph{prop\_miss} and \emph{nmiss} variables we created will interfere with an accurate assessment of missingness. I will update our df to eliminate these.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3359,7 +3443,7 @@ Missing data analysis commonly looks at proportions by:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.38%
+[1] 2.38%
 \end{verbatim}
 
 \begin{Shaded}
@@ -3370,7 +3454,7 @@ Missing data analysis commonly looks at proportions by:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 82.14%
+[1] 82.14%
 \end{verbatim}
 
 CUMULATIVE CAPTURE FOR WRITING IT UP:
@@ -3447,7 +3531,7 @@ To evaluate scale level missingness, let's create a df with the focal variables.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 84
+[1] 84
 \end{verbatim}
 
 Before we start our formal analysis of missingness at the scale level, let's continue to scrub by eliminating cases that will have too much missingness. In the script below we create a variable that counts the number of missing variables and then creates a proportion by dividing it by the number of total variables.
@@ -3474,8 +3558,8 @@ Using the \emph{describe()} function from the \emph{psych} package, we can inves
 \end{Shaded}
 
 \begin{verbatim}
-##    vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
-## X1    1 84 0.79 4.41      0       0   0   0 33.33 33.33 5.89    36.31 0.48
+   vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
+X1    1 84 0.79 4.41      0       0   0   0 33.33 33.33 5.89    36.31 0.48
 \end{verbatim}
 
 CUMULATIVE CAPTURE FOR WRITING IT UP:
@@ -3498,7 +3582,7 @@ We need to decide what is our retention threshhold. Twenty percent seems to be a
 \begin{Highlighting}[]
 \CommentTok{\# update df to have only those with at least 20\% of complete data}
 \CommentTok{\# (this is an arbitrary decision)}
-\NormalTok{scored }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(scored, prop\_miss }\SpecialCharTok{\textless{}=} \DecValTok{20}\NormalTok{)}
+\NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(scored, prop\_miss }\SpecialCharTok{\textless{}=} \DecValTok{20}\NormalTok{)}
 
 \CommentTok{\# the variable selection just lops off the proportion missing}
 \NormalTok{scored }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{select}\NormalTok{(scored, StatsPkg}\SpecialCharTok{:}\NormalTok{SRPed))}
@@ -3509,7 +3593,7 @@ We need to decide what is our retention threshhold. Twenty percent seems to be a
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 83
+[1] 83
 \end{verbatim}
 
 CUMULATIVE CAPTURE FOR WRITING IT UP:
@@ -3544,7 +3628,7 @@ Now, at the scale level, we look at missingness as the proportion of
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.60%
+[1] 0.60%
 \end{verbatim}
 
 \begin{Shaded}
@@ -3555,7 +3639,7 @@ Now, at the scale level, we look at missingness as the proportion of
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 97.59%
+[1] 97.59%
 \end{verbatim}
 
 CUMULATIVE CAPTURE FOR WRITING IT UP:
@@ -3584,7 +3668,7 @@ The corresponding figure shows non-missing data in blue; missing data in red.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-42-1.pdf}
+\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-43-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3593,10 +3677,10 @@ The corresponding figure shows non-missing data in blue; missing data in red.
 \end{Shaded}
 
 \begin{verbatim}
-##    StatsPkg Centering TradPed SRPed  
-## 81        1         1       1     1 0
-## 2         1         1       1     0 1
-##           0         0       0     2 2
+   StatsPkg Centering TradPed SRPed  
+81        1         1       1     1 0
+2         1         1       1     0 1
+          0         0       0     2 2
 \end{verbatim}
 
 There are \emph{2} rows of data because there are only \emph{2} patterns of missingness. The most common pattern is non-missing data (\emph{n} = 81). Two cases are missing the SRPed variable. If our statistical choice uses listwise deletion (i.e., the case is eliminated if one or more variables in the model has missing data), our sample size will be 79. As we will earn in later chapters, there are alternatives (i.e., specifying a FIML option in analyses that use maximum likelihood estimators) that can use all of the cases -- even those with missing data.
@@ -3641,48 +3725,48 @@ To calculate the alpha coefficients, we need item-level data. We will return to 
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Reliability analysis   
-## Call: psych::alpha(x = scrub_df[c("ClearResponsibilities", "EffectiveAnswers", 
-##     "Feedback", "ClearOrganization", "ClearPresentation")])
-## 
-##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
-##       0.87      0.88    0.87      0.59 7.2 0.022  4.3 0.72     0.58
-## 
-##     95% confidence boundaries 
-##          lower alpha upper
-## Feldt     0.83  0.87  0.91
-## Duhachek  0.83  0.87  0.92
-## 
-##  Reliability if an item is dropped:
-##                       raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
-## ClearResponsibilities      0.84      0.84    0.82      0.57 5.3    0.029 0.0110
-## EffectiveAnswers           0.84      0.84    0.81      0.57 5.2    0.029 0.0088
-## Feedback                   0.87      0.87    0.86      0.64 7.0    0.023 0.0053
-## ClearOrganization          0.86      0.86    0.83      0.60 6.1    0.025 0.0067
-## ClearPresentation          0.83      0.84    0.81      0.57 5.3    0.030 0.0074
-##                       med.r
-## ClearResponsibilities  0.55
-## EffectiveAnswers       0.58
-## Feedback               0.63
-## ClearOrganization      0.59
-## ClearPresentation      0.57
-## 
-##  Item statistics 
-##                        n raw.r std.r r.cor r.drop mean   sd
-## ClearResponsibilities 83  0.85  0.85  0.80   0.74  4.5 0.87
-## EffectiveAnswers      84  0.84  0.85  0.82   0.76  4.4 0.79
-## Feedback              82  0.74  0.75  0.65   0.60  4.3 0.81
-## ClearOrganization     84  0.82  0.80  0.74   0.68  4.1 1.04
-## ClearPresentation     84  0.85  0.85  0.81   0.76  4.2 0.87
-## 
-## Non missing response frequency for each item
-##                          1    2    3    4    5 miss
-## ClearResponsibilities 0.01 0.05 0.04 0.27 0.64 0.01
-## EffectiveAnswers      0.02 0.00 0.05 0.40 0.52 0.00
-## Feedback              0.01 0.01 0.11 0.38 0.49 0.02
-## ClearOrganization     0.04 0.07 0.07 0.43 0.39 0.00
-## ClearPresentation     0.01 0.06 0.04 0.46 0.43 0.00
+
+Reliability analysis   
+Call: psych::alpha(x = scrub_df[c("ClearResponsibilities", "EffectiveAnswers", 
+    "Feedback", "ClearOrganization", "ClearPresentation")])
+
+  raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
+      0.87      0.88    0.87      0.59 7.2 0.022  4.3 0.72     0.58
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.83  0.87  0.91
+Duhachek  0.83  0.87  0.92
+
+ Reliability if an item is dropped:
+                      raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
+ClearResponsibilities      0.84      0.84    0.82      0.57 5.3    0.029 0.0110
+EffectiveAnswers           0.84      0.84    0.81      0.57 5.2    0.029 0.0088
+Feedback                   0.87      0.87    0.86      0.64 7.0    0.023 0.0053
+ClearOrganization          0.86      0.86    0.83      0.60 6.1    0.025 0.0067
+ClearPresentation          0.83      0.84    0.81      0.57 5.3    0.030 0.0074
+                      med.r
+ClearResponsibilities  0.55
+EffectiveAnswers       0.58
+Feedback               0.63
+ClearOrganization      0.59
+ClearPresentation      0.57
+
+ Item statistics 
+                       n raw.r std.r r.cor r.drop mean   sd
+ClearResponsibilities 83  0.85  0.85  0.80   0.74  4.5 0.87
+EffectiveAnswers      84  0.84  0.85  0.82   0.76  4.4 0.79
+Feedback              82  0.74  0.75  0.65   0.60  4.3 0.81
+ClearOrganization     84  0.82  0.80  0.74   0.68  4.1 1.04
+ClearPresentation     84  0.85  0.85  0.81   0.76  4.2 0.87
+
+Non missing response frequency for each item
+                         1    2    3    4    5 miss
+ClearResponsibilities 0.01 0.05 0.04 0.27 0.64 0.01
+EffectiveAnswers      0.02 0.00 0.05 0.40 0.52 0.00
+Feedback              0.01 0.01 0.11 0.38 0.49 0.02
+ClearOrganization     0.04 0.07 0.07 0.43 0.39 0.00
+ClearPresentation     0.01 0.06 0.04 0.46 0.43 0.00
 \end{verbatim}
 
 \begin{quote}
@@ -3700,55 +3784,55 @@ Cronbach's alpha for the traditional pedagogy scale was 0.88.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in cor.smooth(r): Matrix was not positive definite, smoothing was done
+Warning in cor.smooth(r): Matrix was not positive definite, smoothing was done
 \end{verbatim}
 
 \begin{verbatim}
-## In smc, smcs < 0 were set to .0
-## In smc, smcs < 0 were set to .0
-## In smc, smcs < 0 were set to .0
-## In smc, smcs < 0 were set to .0
+In smc, smcs < 0 were set to .0
+In smc, smcs < 0 were set to .0
+In smc, smcs < 0 were set to .0
+In smc, smcs < 0 were set to .0
 \end{verbatim}
 
 \begin{verbatim}
-## 
-## Reliability analysis   
-## Call: psych::alpha(x = scrub_df[c("InclusvClassrm", "EquitableEval", 
-##     "DEIintegration", "DEIintegration")])
-## 
-##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
-##       0.85      0.85     0.7      0.58 5.6 0.025  4.5 0.62     0.55
-## 
-##     95% confidence boundaries 
-##          lower alpha upper
-## Feldt     0.79  0.85   0.9
-## Duhachek  0.80  0.85   0.9
-## 
-##  Reliability if an item is dropped:
-##                  raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
-## InclusvClassrm        0.84      0.83    0.58      0.61 4.8    0.027 0.1115
-## EquitableEval         0.88      0.88    0.63      0.71 7.3    0.025 0.0640
-## DEIintegration        0.74      0.75    0.68      0.50 3.1    0.046 0.0054
-## DEIintegration.1      0.74      0.75    0.68      0.50 3.1    0.046 0.0054
-##                  med.r
-## InclusvClassrm    0.42
-## EquitableEval     0.56
-## DEIintegration    0.53
-## DEIintegration.1  0.53
-## 
-##  Item statistics 
-##                   n raw.r std.r r.cor r.drop mean   sd
-## InclusvClassrm   80  0.85  0.80  0.75   0.62  4.6 0.72
-## EquitableEval    84  0.71  0.72  0.60   0.51  4.7 0.50
-## DEIintegration   70  0.96  0.90  0.71   0.85  4.5 0.79
-## DEIintegration.1 70  0.96  0.90  0.71   0.85  4.5 0.79
-## 
-## Non missing response frequency for each item
-##                     1    3    4    5 miss
-## InclusvClassrm   0.01 0.06 0.21 0.71 0.05
-## EquitableEval    0.00 0.01 0.32 0.67 0.00
-## DEIintegration   0.00 0.19 0.17 0.64 0.17
-## DEIintegration.1 0.00 0.19 0.17 0.64 0.17
+
+Reliability analysis   
+Call: psych::alpha(x = scrub_df[c("InclusvClassrm", "EquitableEval", 
+    "DEIintegration", "DEIintegration")])
+
+  raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
+      0.85      0.85     0.7      0.58 5.6 0.025  4.5 0.62     0.55
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.79  0.85   0.9
+Duhachek  0.80  0.85   0.9
+
+ Reliability if an item is dropped:
+                 raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
+InclusvClassrm        0.84      0.83    0.58      0.61 4.8    0.027 0.1115
+EquitableEval         0.88      0.88    0.63      0.71 7.3    0.025 0.0640
+DEIintegration        0.74      0.75    0.68      0.50 3.1    0.046 0.0054
+DEIintegration.1      0.74      0.75    0.68      0.50 3.1    0.046 0.0054
+                 med.r
+InclusvClassrm    0.42
+EquitableEval     0.56
+DEIintegration    0.53
+DEIintegration.1  0.53
+
+ Item statistics 
+                  n raw.r std.r r.cor r.drop mean   sd
+InclusvClassrm   80  0.85  0.80  0.75   0.62  4.6 0.72
+EquitableEval    84  0.71  0.72  0.60   0.51  4.7 0.50
+DEIintegration   70  0.96  0.90  0.71   0.85  4.5 0.79
+DEIintegration.1 70  0.96  0.90  0.71   0.85  4.5 0.79
+
+Non missing response frequency for each item
+                    1    3    4    5 miss
+InclusvClassrm   0.01 0.06 0.21 0.71 0.05
+EquitableEval    0.00 0.01 0.32 0.67 0.00
+DEIintegration   0.00 0.19 0.17 0.64 0.17
+DEIintegration.1 0.00 0.19 0.17 0.64 0.17
 \end{verbatim}
 
 \begin{quote}
@@ -3772,23 +3856,23 @@ We can inspect univariate normality by examining the skew and kurtosis values of
 \end{Shaded}
 
 \begin{verbatim}
-##            vars  n mean   sd median trimmed  mad  min max range  skew kurtosis
-## StatsPkg*     1 83 1.73 0.44   2.00    1.79 0.00 1.00   2  1.00 -1.06    -0.87
-## Centering*    2 83 1.36 0.48   1.00    1.33 0.00 1.00   2  1.00  0.58    -1.67
-## TradPed       3 83 4.29 0.72   4.40    4.40 0.59 1.20   5  3.80 -1.75     4.49
-## SRPed         4 81 4.51 0.58   4.75    4.60 0.37 2.33   5  2.67 -1.19     1.30
-##              se
-## StatsPkg*  0.05
-## Centering* 0.05
-## TradPed    0.08
-## SRPed      0.06
+           vars  n mean   sd median trimmed  mad  min max range  skew kurtosis
+StatsPkg*     1 83 1.73 0.44   2.00    1.79 0.00 1.00   2  1.00 -1.06    -0.87
+Centering*    2 83 1.36 0.48   1.00    1.33 0.00 1.00   2  1.00  0.58    -1.67
+TradPed       3 83 4.29 0.72   4.40    4.40 0.59 1.20   5  3.80 -1.75     4.49
+SRPed         4 81 4.51 0.58   4.75    4.60 0.37 2.33   5  2.67 -1.19     1.30
+             se
+StatsPkg*  0.05
+Centering* 0.05
+TradPed    0.08
+SRPed      0.06
 \end{verbatim}
 
 When we use the ``type=1'' argument, the skew and kurtosis indices in the \emph{psych} package can be interpreted according to Kline's \citeyearpar{kline_data_2016} guidelines.
 
 \begin{quote}
 \begin{quote}
-Regarding the distributional characteristics of the data, skew and kurtosis values for our continuously scaled variables fall below the thresholds of concern (i.e., absolute value of 3 for skew; absolute value of 10 for kurtosis) identified by Kline \citeyearpar{kline_data_2016} as concerning.
+Regarding the distributional characteristics of the data, skew and kurtosis values for our continuously scaled variables fall below the thresholds of concern (i.e., absolute value of 3 for skew; absolute value of 10 for kurtosis) identified by Kline \citeyearpar{kline_data_2016}.
 \end{quote}
 \end{quote}
 
@@ -3804,11 +3888,11 @@ Still at the univariate level, we can apply the Shapiro-Wilk test of normality t
 \end{Shaded}
 
 \begin{verbatim}
-## 
-##  Shapiro-Wilk normality test
-## 
-## data:  scored$TradPed
-## W = 0.83046, p-value = 0.0000000245
+
+    Shapiro-Wilk normality test
+
+data:  scored$TradPed
+W = 0.83046, p-value = 0.0000000245
 \end{verbatim}
 
 \begin{Shaded}
@@ -3818,11 +3902,11 @@ Still at the univariate level, we can apply the Shapiro-Wilk test of normality t
 \end{Shaded}
 
 \begin{verbatim}
-## 
-##  Shapiro-Wilk normality test
-## 
-## data:  scored$SRPed
-## W = 0.81782, p-value = 0.0000000134
+
+    Shapiro-Wilk normality test
+
+data:  scored$SRPed
+W = 0.81782, p-value = 0.0000000134
 \end{verbatim}
 
 Both variable differ from a normal distribution in a statistically significant way.
@@ -3843,7 +3927,7 @@ Obtaining a quick \emph{psych::pairs.panel} can provide a quick glimpse of the d
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-47-1.pdf}
+\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-48-1.pdf}
 
 CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:
 
@@ -3867,7 +3951,7 @@ Multivariate normality can be assessed with the continuously scaled variables. T
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-48-1.pdf}
+\includegraphics{03-DataDx_files/figure-latex/unnamed-chunk-49-1.pdf}
 
 We can analyze the distributional characteristics of the Mahalanobis values with \emph{psych::describe}. It is possible, then to analyze the Mahalanobis distance values.
 
@@ -3878,8 +3962,8 @@ We can analyze the distributional characteristics of the Mahalanobis values with
 \end{Shaded}
 
 \begin{verbatim}
-##    vars  n mean   sd median trimmed  mad  min   max range skew kurtosis   se
-## X1    1 83 1.97 3.12   1.01    1.27 0.42 0.03 19.61 19.58 3.75    15.87 0.34
+   vars  n mean   sd median trimmed  mad  min   max range skew kurtosis   se
+X1    1 83 1.97 3.12   1.01    1.27 0.42 0.03 19.61 19.58 3.75    15.87 0.34
 \end{verbatim}
 
 Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median. In fact, we can have these noted in a column in the dataframe.
@@ -3898,13 +3982,13 @@ Using this information we can determine cases that have a Mahalanobis distance v
 \end{Shaded}
 
 \begin{verbatim}
-##   StatsPkg Centering TradPed SRPed     Mahal MOutlier
-## 1     SPSS       Pre     4.2    NA 0.0319020    FALSE
-## 2        R       Pre     2.8    NA 8.3615550    FALSE
-## 3        R        Re     3.8   4.5 0.8702516    FALSE
-## 4        R        Re     5.0   5.0 1.0087776    FALSE
-## 5        R        Re     4.8   5.0 0.7363631    FALSE
-## 6        R        Re     4.0   5.0 2.6509906    FALSE
+  StatsPkg Centering TradPed SRPed     Mahal MOutlier
+1     SPSS       Pre     4.2    NA 0.0319020    FALSE
+2        R       Pre     2.8    NA 8.3615550    FALSE
+3        R        Re     3.8   4.5 0.8702516    FALSE
+4        R        Re     5.0   5.0 1.0087776    FALSE
+5        R        Re     4.8   5.0 0.7363631    FALSE
+6        R        Re     4.0   5.0 2.6509906    FALSE
 \end{verbatim}
 
 \begin{Shaded}
@@ -3920,9 +4004,9 @@ Using this information we can determine cases that have a Mahalanobis distance v
 \end{Shaded}
 
 \begin{verbatim}
-##   MOutlier  n
-## 1       83  2
-## 2       82 81
+  MOutlier  n
+1       83  2
+2       82 81
 \end{verbatim}
 
 When we identify outliers we often ask if we should delete them or transform the data. A general rule of thumb is to look for ``jumps'' in the Mahalanobis distance values. If they are progressing steadily and there is no ``jump,'' researchers will often retain the outliers.
@@ -3993,27 +4077,27 @@ We evaluated multivariate normality with the Mahalanobis distance test. Specific
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = SRPed ~ StatsPkg + Centering + TradPed, data = scored)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.56099 -0.14406  0.01551  0.10594  0.46498 
-## 
-## Coefficients:
-##             Estimate Std. Error t value          Pr(>|t|)    
-## (Intercept)  1.46330    0.34441   4.249 0.000077464849487 ***
-## StatsPkgR    0.13251    0.08056   1.645             0.105    
-## CenteringRe  0.05666    0.07423   0.763             0.448    
-## TradPed      0.68663    0.07365   9.323 0.000000000000332 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.2433 on 59 degrees of freedom
-##   (1 observation deleted due to missingness)
-## Multiple R-squared:  0.6167, Adjusted R-squared:  0.5972 
-## F-statistic: 31.64 on 3 and 59 DF,  p-value: 0.000000000002547
+
+Call:
+lm(formula = SRPed ~ StatsPkg + Centering + TradPed, data = scored)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.56099 -0.14406  0.01551  0.10594  0.46498 
+
+Coefficients:
+            Estimate Std. Error t value          Pr(>|t|)    
+(Intercept)  1.46330    0.34441   4.249 0.000077464849487 ***
+StatsPkgR    0.13251    0.08056   1.645             0.105    
+CenteringRe  0.05666    0.07423   0.763             0.448    
+TradPed      0.68663    0.07365   9.323 0.000000000000332 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2433 on 59 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.6167,    Adjusted R-squared:  0.5972 
+F-statistic: 31.64 on 3 and 59 DF,  p-value: 0.000000000002547
 \end{verbatim}
 
 \hypertarget{results-2}{%
@@ -4033,26 +4117,57 @@ Results of a multiple regression predicting the socially responsive course evalu
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## 
-## Table 1 
-## 
-## Means, standard deviations, and correlations with confidence intervals
-##  
-## 
-##   Variable   M    SD   1         
-##   1. SRPed   4.69 0.38           
-##                                  
-##   2. TradPed 4.53 0.43 .76**     
-##                        [.63, .85]
-##                                  
-## 
-## Note. M and SD are used to represent mean and standard deviation, respectively.
-## Values in square brackets indicate the 95% confidence interval.
-## The confidence interval is a plausible range of population correlations 
-## that could have caused the sample correlation (Cumming, 2014).
-##  * indicates p < .05. ** indicates p < .01.
-## 
+
+
+Table 1 
+
+Means, standard deviations, and correlations with confidence intervals
+ 
+
+  Variable   M    SD   1         
+  1. SRPed   4.69 0.38           
+                                 
+  2. TradPed 4.53 0.43 .76**     
+                       [.63, .85]
+                                 
+
+Note. M and SD are used to represent mean and standard deviation, respectively.
+Values in square brackets indicate the 95% confidence interval.
+The confidence interval is a plausible range of population correlations 
+that could have caused the sample correlation (Cumming, 2014).
+ * indicates p < .05. ** indicates p < .01.
+ 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.reg.table}\NormalTok{(SRPed\_fit, }\AttributeTok{table.number =} \DecValTok{2}\NormalTok{, }\AttributeTok{filename =} \StringTok{"SRPed\_table.doc"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+
+Table 2 
+
+Regression results using SRPed as the criterion
+ 
+
+   Predictor      b      b_95%_CI sr2  sr2_95%_CI             Fit
+ (Intercept) 1.46**  [0.77, 2.15]                                
+   StatsPkgR   0.13 [-0.03, 0.29] .02 [-.02, .06]                
+ CenteringRe   0.06 [-0.09, 0.21] .00 [-.02, .02]                
+     TradPed 0.69**  [0.54, 0.83] .56  [.40, .73]                
+                                                      R2 = .617**
+                                                  95% CI[.43,.70]
+                                                                 
+
+Note. A significant b-weight indicates the semi-partial correlation is also significant.
+b represents unstandardized regression weights. 
+sr2 represents the semi-partial correlation squared.
+Square brackets are used to enclose the lower and upper limits of a confidence interval.
+* indicates p < .05. ** indicates p < .01.
+ 
 \end{verbatim}
 
 \hypertarget{multimp}{%
@@ -4141,11 +4256,19 @@ The script below will (a) check to see if the following packages are installed o
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#will install the package if not already installed}
-\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(qualtRics))\{}\FunctionTok{install.packages}\NormalTok{(}\StringTok{"qualtRics"}\NormalTok{)\}}
-\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(psych))\{}\FunctionTok{install.packages}\NormalTok{(}\StringTok{"psych"}\NormalTok{)\}}
-\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(dplyr))\{}\FunctionTok{install.packages}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)\}}
-\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(mice))\{}\FunctionTok{install.packages}\NormalTok{(}\StringTok{"mice"}\NormalTok{)\}}
+\CommentTok{\# will install the package if not already installed}
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(qualtRics)) \{}
+    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"qualtRics"}\NormalTok{)}
+\NormalTok{\}}
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(psych)) \{}
+    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"psych"}\NormalTok{)}
+\NormalTok{\}}
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(dplyr)) \{}
+    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}
+\NormalTok{\}}
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(mice)) \{}
+    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"mice"}\NormalTok{)}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4360,14 +4483,14 @@ There are some guidelines for selecting and formatting variables for imputation.
   Exclude variables with more than 25\% missing
 \end{itemize}
 
-To make this as realistic as possible. Let's start with our very raw data. The \protect\hyperlink{scrub}{Scrubbing chapter} provides greater detail on importing data directly from Qualtrics. If you have worked the lessons, consecutively, you know that data can be added to this survey at any time. So that the values in the chapter are consistent, I will use the datafiles that I immediately saved when I conducted the anlaysis at the time I last updated the chapter.
+To make this as realistic as possible. Let's start with our very raw data. The \protect\hyperlink{scrub}{Scrubbing chapter} provides greater detail on importing data directly from Qualtrics. If you have worked the lessons, consecutively, you know that data can be added to this survey at any time. So that the values in the chapter are consistent, I will use the datafiles that I immediately saved when I conducted the analysis at the time I last updated the chapter.
 
 Please download the .rds or .csv file from \href{https://github.com/lhbikos/ReC_MultivModel}{MultivModel GitHub} site. Please the file in the same folder as your .rmd file. As always, I prefer working with .rds files.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"QTRX\_df230902b.rds"}\NormalTok{)}
-\CommentTok{\#QTRX\_df \textless{}{-} read.csv("QTRX\_df230902b.csv", header = TRUE)}
+\CommentTok{\# QTRX\_df \textless{}{-} read.csv(\textquotesingle{}QTRX\_df230902b.csv\textquotesingle{}, header = TRUE)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4386,27 +4509,9 @@ Next, I apply inclusion/exclusion criteria. As described in the \protect\hyperli
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-## v dplyr     1.1.2     v readr     2.1.4
-## v forcats   1.0.0     v stringr   1.5.0
-## v ggplot2   3.4.3     v tibble    3.2.1
-## v lubridate 1.9.2     v tidyr     1.3.0
-## v purrr     1.0.1     
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{ (QTRX\_df2, DistributionChannel }\SpecialCharTok{!=} \StringTok{"preview"}\NormalTok{)}
-\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}}\FunctionTok{filter}\NormalTok{ (QTRX\_df2, Consent }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
-\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}}\FunctionTok{filter}\NormalTok{ (QTRX\_df2, USinst }\SpecialCharTok{==} \DecValTok{0}\NormalTok{)}
+\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(QTRX\_df2, DistributionChannel }\SpecialCharTok{!=} \StringTok{"preview"}\NormalTok{)}
+\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(QTRX\_df2, Consent }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(QTRX\_df2, USinst }\SpecialCharTok{==} \DecValTok{0}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4414,11 +4519,13 @@ Preparing the data also meant renaming some variables that started with numbers 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
-\CommentTok{\#renaming variables that started with numbers}
-\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(QTRX\_df2, }\AttributeTok{iRace1 =} \StringTok{\textquotesingle{}1\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace2 =} \StringTok{\textquotesingle{}2\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace3 =} \StringTok{\textquotesingle{}3\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace4 =} \StringTok{\textquotesingle{}4\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace5 =} \StringTok{\textquotesingle{}5\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace6 =} \StringTok{\textquotesingle{}6\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace7 =} \StringTok{\textquotesingle{}7\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace8 =} \StringTok{\textquotesingle{}8\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace9 =} \StringTok{\textquotesingle{}9\_iRace\textquotesingle{}}\NormalTok{, }\AttributeTok{iRace10 =} \StringTok{\textquotesingle{}10\_iRace\textquotesingle{}}\NormalTok{)}
-\CommentTok{\#renaming variables from the identification of classmates}
-\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}} \FunctionTok{rename}\NormalTok{(QTRX\_df2, }\AttributeTok{cmBiMulti =}\NormalTok{ Race\_10, }\AttributeTok{cmBlack =}\NormalTok{ Race\_1, }\AttributeTok{cmNBPoC =}\NormalTok{ Race\_7, }\AttributeTok{cmWhite =}\NormalTok{ Race\_8, }\AttributeTok{cmUnsure =}\NormalTok{ Race\_2)}
+\CommentTok{\# renaming variables that started with numbers}
+\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{rename}\NormalTok{(QTRX\_df2, }\AttributeTok{iRace1 =} \StringTok{"1\_iRace"}\NormalTok{, }\AttributeTok{iRace2 =} \StringTok{"2\_iRace"}\NormalTok{,}
+    \AttributeTok{iRace3 =} \StringTok{"3\_iRace"}\NormalTok{, }\AttributeTok{iRace4 =} \StringTok{"4\_iRace"}\NormalTok{, }\AttributeTok{iRace5 =} \StringTok{"5\_iRace"}\NormalTok{, }\AttributeTok{iRace6 =} \StringTok{"6\_iRace"}\NormalTok{,}
+    \AttributeTok{iRace7 =} \StringTok{"7\_iRace"}\NormalTok{, }\AttributeTok{iRace8 =} \StringTok{"8\_iRace"}\NormalTok{, }\AttributeTok{iRace9 =} \StringTok{"9\_iRace"}\NormalTok{, }\AttributeTok{iRace10 =} \StringTok{"10\_iRace"}\NormalTok{)}
+\CommentTok{\# renaming variables from the identification of classmates}
+\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{rename}\NormalTok{(QTRX\_df2, }\AttributeTok{cmBiMulti =}\NormalTok{ Race\_10, }\AttributeTok{cmBlack =}\NormalTok{ Race\_1,}
+    \AttributeTok{cmNBPoC =}\NormalTok{ Race\_7, }\AttributeTok{cmWhite =}\NormalTok{ Race\_8, }\AttributeTok{cmUnsure =}\NormalTok{ Race\_2)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4426,9 +4533,11 @@ The Qualtrics download does not include an ID number. Because new variables are 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}}\NormalTok{ QTRX\_df2 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{ID =} \FunctionTok{row\_number}\NormalTok{())}
-\CommentTok{\#moving the ID number to the first column; requires }
-\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}}\NormalTok{ QTRX\_df2}\SpecialCharTok{\%\textgreater{}\%}\FunctionTok{select}\NormalTok{(ID, }\FunctionTok{everything}\NormalTok{())}
+\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}}\NormalTok{ QTRX\_df2 }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{ID =} \FunctionTok{row\_number}\NormalTok{())}
+\CommentTok{\# moving the ID number to the first column; requires}
+\NormalTok{QTRX\_df2 }\OtherTok{\textless{}{-}}\NormalTok{ QTRX\_df2 }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(ID, }\FunctionTok{everything}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4436,27 +4545,30 @@ Because this huge df is cumbersome to work with, let's downsize it to be closer 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mimp\_df }\OtherTok{\textless{}{-}}  \FunctionTok{select}\NormalTok{ (QTRX\_df2, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong\_1}\SpecialCharTok{:}\NormalTok{Belong\_3, Blst\_1}\SpecialCharTok{:}\NormalTok{Blst\_6, cEval\_1, cEval\_13, cEval\_19, format)}
-\CommentTok{\#glimpse(mimp\_df)}
+\NormalTok{mimp\_df }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(QTRX\_df2, ID, iRace1, iRace2, iRace3, iRace4,}
+\NormalTok{    iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack,}
+\NormalTok{    cmNBPoC, cmWhite, cmUnsure, Belong\_1}\SpecialCharTok{:}\NormalTok{Belong\_3, Blst\_1}\SpecialCharTok{:}\NormalTok{Blst\_6, cEval\_1,}
+\NormalTok{    cEval\_13, cEval\_19, format)}
+\CommentTok{\# glimpse(mimp\_df)}
 \FunctionTok{head}\NormalTok{(mimp\_df)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 6 x 29
-##      ID iRace1 iRace2 iRace3 iRace4 iRace5 iRace6 iRace7 iRace8 iRace9 iRace10
-##   <int>  <dbl>  <dbl>  <dbl>  <dbl> <lgl>  <lgl>  <lgl>  <lgl>  <lgl>  <lgl>  
-## 1     1      3      1      3     NA NA     NA     NA     NA     NA     NA     
-## 2     2      3     NA     NA     NA NA     NA     NA     NA     NA     NA     
-## 3     3      3      1     NA     NA NA     NA     NA     NA     NA     NA     
-## 4     4      3      1      3     NA NA     NA     NA     NA     NA     NA     
-## 5     5      1     NA     NA     NA NA     NA     NA     NA     NA     NA     
-## 6     6      3     NA     NA     NA NA     NA     NA     NA     NA     NA     
-## # i 18 more variables: cmBiMulti <dbl>, cmBlack <dbl>, cmNBPoC <dbl>,
-## #   cmWhite <dbl>, cmUnsure <dbl>, Belong_1 <dbl>, Belong_2 <dbl>,
-## #   Belong_3 <dbl>, Blst_1 <dbl>, Blst_2 <dbl>, Blst_3 <dbl>, Blst_4 <dbl>,
-## #   Blst_5 <dbl>, Blst_6 <dbl>, cEval_1 <dbl>, cEval_13 <dbl>, cEval_19 <dbl>,
-## #   format <dbl>
+# A tibble: 6 x 29
+     ID iRace1 iRace2 iRace3 iRace4 iRace5 iRace6 iRace7 iRace8 iRace9 iRace10
+  <int>  <dbl>  <dbl>  <dbl>  <dbl> <lgl>  <lgl>  <lgl>  <lgl>  <lgl>  <lgl>  
+1     1      3      1      3     NA NA     NA     NA     NA     NA     NA     
+2     2      3     NA     NA     NA NA     NA     NA     NA     NA     NA     
+3     3      3      1     NA     NA NA     NA     NA     NA     NA     NA     
+4     4      3      1      3     NA NA     NA     NA     NA     NA     NA     
+5     5      1     NA     NA     NA NA     NA     NA     NA     NA     NA     
+6     6      3     NA     NA     NA NA     NA     NA     NA     NA     NA     
+# i 18 more variables: cmBiMulti <dbl>, cmBlack <dbl>, cmNBPoC <dbl>,
+#   cmWhite <dbl>, cmUnsure <dbl>, Belong_1 <dbl>, Belong_2 <dbl>,
+#   Belong_3 <dbl>, Blst_1 <dbl>, Blst_2 <dbl>, Blst_3 <dbl>, Blst_4 <dbl>,
+#   Blst_5 <dbl>, Blst_6 <dbl>, cEval_1 <dbl>, cEval_13 <dbl>, cEval_19 <dbl>,
+#   format <dbl>
 \end{verbatim}
 
 \hypertarget{creating-composite-variables}{%
@@ -4466,36 +4578,26 @@ Qualtrics imports many of the categorical variables as numbers. R often reads th
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace1 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace1,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace2 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace2,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace3 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace3,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace4 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace4,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace5 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace5,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace6 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace6,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace7 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace7,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace8 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace8,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace9 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace9,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace10 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace10,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace1 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace1, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace2 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace2, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace3 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace3, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace4 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace4, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace5 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace5, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace6 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace6, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace7 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace7, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace8 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace8, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace9 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace9, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iRace10 }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{iRace10, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{,}
+    \StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{, }\StringTok{"White"}\NormalTok{, }\StringTok{"NotNotice"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4509,13 +4611,17 @@ This is a quick recap of how we calculated the proportion of instructional staff
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#creating a count of BIPOC faculty identified by each respondent}
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{count.BIPOC }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(mimp\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iRace1"}\NormalTok{, }\StringTok{"iRace2"}\NormalTok{, }\StringTok{"iRace3"}\NormalTok{, }\StringTok{"iRace4"}\NormalTok{, }\StringTok{"iRace5"}\NormalTok{, }\StringTok{"iRace6"}\NormalTok{, }\StringTok{"iRace7"}\NormalTok{, }\StringTok{"iRace8"}\NormalTok{, }\StringTok{"iRace9"}\NormalTok{, }\StringTok{"iRace10"}\NormalTok{)], }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sum}\NormalTok{(x }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{)))}
+\CommentTok{\# creating a count of BIPOC faculty identified by each respondent}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{count.BIPOC }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(mimp\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iRace1"}\NormalTok{, }\StringTok{"iRace2"}\NormalTok{, }\StringTok{"iRace3"}\NormalTok{, }\StringTok{"iRace4"}\NormalTok{,}
+    \StringTok{"iRace5"}\NormalTok{, }\StringTok{"iRace6"}\NormalTok{, }\StringTok{"iRace7"}\NormalTok{, }\StringTok{"iRace8"}\NormalTok{, }\StringTok{"iRace9"}\NormalTok{, }\StringTok{"iRace10"}\NormalTok{)], }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sum}\NormalTok{(x }\SpecialCharTok{\%in\%}
+    \FunctionTok{c}\NormalTok{(}\StringTok{"Black"}\NormalTok{, }\StringTok{"nBpoc"}\NormalTok{, }\StringTok{"BiMulti"}\NormalTok{)))}
 
-\CommentTok{\#creating a count of all instructional  faculty identified by each respondent}
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{count.nMiss }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(mimp\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iRace1"}\NormalTok{, }\StringTok{"iRace2"}\NormalTok{, }\StringTok{"iRace3"}\NormalTok{, }\StringTok{"iRace4"}\NormalTok{, }\StringTok{"iRace5"}\NormalTok{, }\StringTok{"iRace6"}\NormalTok{, }\StringTok{"iRace7"}\NormalTok{, }\StringTok{"iRace8"}\NormalTok{, }\StringTok{"iRace9"}\NormalTok{, }\StringTok{"iRace10"}\NormalTok{)], }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(x)))}
+\CommentTok{\# creating a count of all instructional faculty identified by each}
+\CommentTok{\# respondent}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{count.nMiss }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(mimp\_df[}\FunctionTok{c}\NormalTok{(}\StringTok{"iRace1"}\NormalTok{, }\StringTok{"iRace2"}\NormalTok{, }\StringTok{"iRace3"}\NormalTok{, }\StringTok{"iRace4"}\NormalTok{,}
+    \StringTok{"iRace5"}\NormalTok{, }\StringTok{"iRace6"}\NormalTok{, }\StringTok{"iRace7"}\NormalTok{, }\StringTok{"iRace8"}\NormalTok{, }\StringTok{"iRace9"}\NormalTok{, }\StringTok{"iRace10"}\NormalTok{)], }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(x)))}
 
-\CommentTok{\#calculating the proportion of BIPOC faculty with the counts above}
+\CommentTok{\# calculating the proportion of BIPOC faculty with the counts above}
 \NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{iBIPOC\_pr }\OtherTok{=}\NormalTok{ mimp\_df}\SpecialCharTok{$}\NormalTok{count.BIPOC}\SpecialCharTok{/}\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{count.nMiss}
 \end{Highlighting}
 \end{Shaded}
@@ -4553,10 +4659,10 @@ Let's recoded it to have three categories:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#we can assign more than one value to the same factor by repeating the label}
-\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{format }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{format,}
-                        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{),}
-                        \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"InPerson"}\NormalTok{, }\StringTok{"Blend"}\NormalTok{, }\StringTok{"Blend"}\NormalTok{, }\StringTok{"Online"}\NormalTok{, }\FunctionTok{is.na}\NormalTok{(}\DecValTok{5}\NormalTok{)))}
+\CommentTok{\# we can assign more than one value to the same factor by repeating}
+\CommentTok{\# the label}
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{format }\OtherTok{=} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{format, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"InPerson"}\NormalTok{,}
+    \StringTok{"Blend"}\NormalTok{, }\StringTok{"Blend"}\NormalTok{, }\StringTok{"Online"}\NormalTok{, }\FunctionTok{is.na}\NormalTok{(}\DecValTok{5}\NormalTok{)))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4564,7 +4670,8 @@ Let's trim the df again to just include the variables we need in the imputation.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mimp\_df }\OtherTok{\textless{}{-}}  \FunctionTok{select}\NormalTok{ (mimp\_df, ID, iBIPOC\_pr, cmBlack, Belong\_1}\SpecialCharTok{:}\NormalTok{Belong\_3, Blst\_1}\SpecialCharTok{:}\NormalTok{Blst\_6, cEval\_1, cEval\_13, cEval\_19, format)}
+\NormalTok{mimp\_df }\OtherTok{\textless{}{-}} \FunctionTok{select}\NormalTok{(mimp\_df, ID, iBIPOC\_pr, cmBlack, Belong\_1}\SpecialCharTok{:}\NormalTok{Belong\_3, Blst\_1}\SpecialCharTok{:}\NormalTok{Blst\_6,}
+\NormalTok{    cEval\_1, cEval\_13, cEval\_19, format)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4578,10 +4685,10 @@ Recall one of the guidelines was to remove variables with more than 25\% missing
 \end{Shaded}
 
 \begin{verbatim}
-##     Blst_1     Blst_4     Blst_3     Blst_5     Blst_6   Belong_1   Belong_3 
-## 0.13043478 0.10144928 0.08695652 0.08695652 0.08695652 0.07246377 0.07246377 
-##     Blst_2   Belong_2    cEval_1   cEval_19  iBIPOC_pr    cmBlack   cEval_13 
-## 0.07246377 0.05797101 0.05797101 0.05797101 0.04347826 0.04347826 0.04347826
+    Blst_1     Blst_4     Blst_3     Blst_5     Blst_6   Belong_1   Belong_3 
+0.13043478 0.10144928 0.08695652 0.08695652 0.08695652 0.07246377 0.07246377 
+    Blst_2   Belong_2    cEval_1   cEval_19  iBIPOC_pr    cmBlack   cEval_13 
+0.07246377 0.05797101 0.05797101 0.05797101 0.04347826 0.04347826 0.04347826 
 \end{verbatim}
 
 Luckily, none of our variables have more than 25\% missing. If we did have a variable with more than 25\% missing, we would have to consider what to do about it.
@@ -4592,14 +4699,14 @@ Later we learn that we should eliminate case with greater than 50\% missingness.
 \begin{Highlighting}[]
 \CommentTok{\#Calculating number and proportion of item{-}level missingness}
 \NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{nmiss }\OtherTok{\textless{}{-}}\NormalTok{ mimp\_df}\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{select}\NormalTok{(iBIPOC\_pr}\SpecialCharTok{:}\NormalTok{format) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#the colon allows us to include all variables between the two listed (the variables need to be in order)}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(iBIPOC\_pr}\SpecialCharTok{:}\NormalTok{format) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#the colon allows us to include all variables between the two listed (the variables need to be in order)}
 \NormalTok{    is.na }\SpecialCharTok{\%\textgreater{}\%} 
 \NormalTok{    rowSums}
 
 \NormalTok{mimp\_df}\OtherTok{\textless{}{-}}\NormalTok{ mimp\_df}\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (nmiss}\SpecialCharTok{/}\DecValTok{15}\NormalTok{)}\SpecialCharTok{*}\DecValTok{100}\NormalTok{) }\CommentTok{\#11 is the number of variables included in calculating the proportion}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (nmiss}\SpecialCharTok{/}\DecValTok{15}\NormalTok{)}\SpecialCharTok{*}\DecValTok{100}\NormalTok{) }\CommentTok{\#11 is the number of variables included in calculating the proportion}
 
-\NormalTok{mimp\_df }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(mimp\_df, prop\_miss }\SpecialCharTok{\textless{}=} \DecValTok{50}\NormalTok{)  }\CommentTok{\#update df to have only those with at least 50\% of complete data}
+\NormalTok{mimp\_df }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(mimp\_df, prop\_miss }\SpecialCharTok{\textless{}=} \DecValTok{50}\NormalTok{)  }\CommentTok{\#update df to have only those with at least 50\% of complete data}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4607,7 +4714,8 @@ Once again, trim the df to include only the data to be included in the imputatio
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mimp\_df }\OtherTok{\textless{}{-}}  \FunctionTok{select}\NormalTok{ (mimp\_df, ID, iBIPOC\_pr, cmBlack, Belong\_1}\SpecialCharTok{:}\NormalTok{Belong\_3, Blst\_1}\SpecialCharTok{:}\NormalTok{Blst\_6, cEval\_1, cEval\_13, cEval\_19, format)}
+\NormalTok{mimp\_df }\OtherTok{\textless{}{-}} \FunctionTok{select}\NormalTok{(mimp\_df, ID, iBIPOC\_pr, cmBlack, Belong\_1}\SpecialCharTok{:}\NormalTok{Belong\_3, Blst\_1}\SpecialCharTok{:}\NormalTok{Blst\_6,}
+\NormalTok{    cEval\_1, cEval\_13, cEval\_19, format)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4618,7 +4726,7 @@ Because multiple imputation is a \emph{random} process, if we all want the same 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{210404}\NormalTok{) }\CommentTok{\#you can pick any number you want, today I\textquotesingle{}m using today\textquotesingle{}s datestamp}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{210404}\NormalTok{)  }\CommentTok{\#you can pick any number you want, today I\textquotesingle{}m using today\textquotesingle{}s datestamp}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4631,31 +4739,9 @@ The following code sets up the structure for the imputation. I'm not an expert a
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(mice)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'mice'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:stats':
-## 
-##     filter
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:base':
-## 
-##     cbind, rbind
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \CommentTok{\# runs the mice code with 0 iterations}
 \NormalTok{imp }\OtherTok{\textless{}{-}} \FunctionTok{mice}\NormalTok{(mimp\_df, }\AttributeTok{maxit =} \DecValTok{0}\NormalTok{)}
-\CommentTok{\# Extract predictor Matrix and methods of imputation }
+\CommentTok{\# Extract predictor Matrix and methods of imputation}
 \NormalTok{predM }\OtherTok{=}\NormalTok{ imp}\SpecialCharTok{$}\NormalTok{predictorMatrix}
 \NormalTok{meth }\OtherTok{=}\NormalTok{ imp}\SpecialCharTok{$}\NormalTok{method}
 \end{Highlighting}
@@ -4665,26 +4751,28 @@ Here we code what format/role each variable should be.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#These variables are left in the dataset, but setting them = 0 means they are not used as predictors.  }
-\CommentTok{\#We want our ID to be retained in the df.  There\textquotesingle{}s nothing missing from it, and we don\textquotesingle{}t want it used as a predictor, so it will just hang out.}
-\NormalTok{predM[, }\FunctionTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{)]}\OtherTok{=}\DecValTok{0}
+\CommentTok{\# These variables are left in the dataset, but setting them = 0 means}
+\CommentTok{\# they are not used as predictors.  We want our ID to be retained in}
+\CommentTok{\# the df.  There\textquotesingle{}s nothing missing from it, and we don\textquotesingle{}t want it used}
+\CommentTok{\# as a predictor, so it will just hang out.}
+\NormalTok{predM[, }\FunctionTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{)] }\OtherTok{=} \DecValTok{0}
 
-\CommentTok{\#If you like, view the first few rows of the predictor matrix}
-\CommentTok{\#head(predM)}
+\CommentTok{\# If you like, view the first few rows of the predictor matrix}
+\CommentTok{\# head(predM)}
 
-\CommentTok{\#We don\textquotesingle{}t have any ordered categorical variables, but if we did we would follow this format}
-\CommentTok{\#poly \textless{}{-} c("Var1", "Var2")}
+\CommentTok{\# We don\textquotesingle{}t have any ordered categorical variables, but if we did we}
+\CommentTok{\# would follow this format poly \textless{}{-} c(\textquotesingle{}Var1\textquotesingle{}, \textquotesingle{}Var2\textquotesingle{})}
 
-\CommentTok{\#We don\textquotesingle{}t have any dichotomous variables, but if we did we would follow this format}
-\CommentTok{\#log \textless{}{-} c("Var3", "Var4")}
+\CommentTok{\# We don\textquotesingle{}t have any dichotomous variables, but if we did we would}
+\CommentTok{\# follow this format log \textless{}{-} c(\textquotesingle{}Var3\textquotesingle{}, \textquotesingle{}Var4\textquotesingle{})}
 
-\CommentTok{\#Unordered categorical variables (nominal variables), but if we did we would follow this format}
+\CommentTok{\# Unordered categorical variables (nominal variables), but if we did}
+\CommentTok{\# we would follow this format}
 \NormalTok{poly2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"format"}\NormalTok{)}
 
-\CommentTok{\#Turn their methods matrix into the specified imputation models}
-\CommentTok{\#Remove the hashtag if you have any of these variables}
-\CommentTok{\#meth[poly] = "polr" }
-\CommentTok{\#meth[log] = "logreg"}
+\CommentTok{\# Turn their methods matrix into the specified imputation models}
+\CommentTok{\# Remove the hashtag if you have any of these variables meth[poly] =}
+\CommentTok{\# \textquotesingle{}polr\textquotesingle{} meth[log] = \textquotesingle{}logreg\textquotesingle{}}
 \NormalTok{meth[poly2] }\OtherTok{=} \StringTok{"polyreg"}
 
 \NormalTok{meth}
@@ -4692,10 +4780,10 @@ Here we code what format/role each variable should be.
 \end{Shaded}
 
 \begin{verbatim}
-##        ID iBIPOC_pr   cmBlack  Belong_1  Belong_2  Belong_3    Blst_1    Blst_2 
-##        ""     "pmm"        ""     "pmm"        ""     "pmm"     "pmm"     "pmm" 
-##    Blst_3    Blst_4    Blst_5    Blst_6   cEval_1  cEval_13  cEval_19    format 
-##     "pmm"     "pmm"     "pmm"     "pmm"     "pmm"        ""     "pmm" "polyreg"
+       ID iBIPOC_pr   cmBlack  Belong_1  Belong_2  Belong_3    Blst_1    Blst_2 
+       ""     "pmm"        ""     "pmm"        ""     "pmm"     "pmm"     "pmm" 
+   Blst_3    Blst_4    Blst_5    Blst_6   cEval_1  cEval_13  cEval_19    format 
+    "pmm"     "pmm"     "pmm"     "pmm"     "pmm"        ""     "pmm" "polyreg" 
 \end{verbatim}
 
 This list (meth) contains all our variables; ``pmm'' is the default and is the ``predictive mean matching'' process used. We see that format (an unordered categorical variable) is noted as ``polyreg.'' If we had used other categorical variables (ordered/poly, dichotomous/log), we would have seen those designations, instead. If there is ``\,'' underneath it means the data is complete.
@@ -4708,26 +4796,26 @@ The code below begins the imputation process. We are asking for 5 datasets. If y
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# With this command, we tell mice to impute the anesimpor2 data, create 5vvdatasets, use predM as the predictor matrix and don\textquotesingle{}t print the imputation process. }
-\CommentTok{\#If you would like to see the process (or if the process is failing to execute) set print as TRUE; seeing where the execution halts can point to problematic variables (more notes at end of lecture)}
+\CommentTok{\# With this command, we tell mice to impute the mimp\_df data, create}
+\CommentTok{\# 5 datasets, use predM as the predictor matrix and don\textquotesingle{}t print the}
+\CommentTok{\# imputation process.  If you would like to see the process (or if}
+\CommentTok{\# the process is failing to execute) set print as TRUE; seeing where}
+\CommentTok{\# the execution halts can point to problematic variables (more notes}
+\CommentTok{\# at end of lecture)}
 
-\NormalTok{imp2 }\OtherTok{\textless{}{-}} \FunctionTok{mice}\NormalTok{(mimp\_df, }\AttributeTok{maxit =} \DecValTok{5}\NormalTok{, }
-             \AttributeTok{predictorMatrix =}\NormalTok{ predM, }
-             \AttributeTok{method =}\NormalTok{ meth, }\AttributeTok{print =}  \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{imp2 }\OtherTok{\textless{}{-}} \FunctionTok{mice}\NormalTok{(mimp\_df, }\AttributeTok{maxit =} \DecValTok{5}\NormalTok{, }\AttributeTok{predictorMatrix =}\NormalTok{ predM, }\AttributeTok{method =}\NormalTok{ meth,}
+    \AttributeTok{print =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Warning: Number of logged events: 275
-\end{verbatim}
 
 We need to create a ``long file'' that stacks all the imputed data. Looking at the df in R Studio shows us that when imp = 0 (the pe-imputed data), there is still missingness. As we scroll through the remaining imputations, there are no NA cells.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# First, turn the datasets into long format}
-\CommentTok{\# This procedure is, best I can tell, unique to mice and wouldn\textquotesingle{}t work for repeated measures designs}
-\NormalTok{mimp\_long }\OtherTok{\textless{}{-}}\NormalTok{ mice}\SpecialCharTok{::}\FunctionTok{complete}\NormalTok{(imp2, }\AttributeTok{action=}\StringTok{"long"}\NormalTok{, }\AttributeTok{include =} \ConstantTok{TRUE}\NormalTok{)}
+\CommentTok{\# First, turn the datasets into long format This procedure is, best I}
+\CommentTok{\# can tell, unique to mice and wouldn\textquotesingle{}t work for repeated measures}
+\CommentTok{\# designs}
+\NormalTok{mimp\_long }\OtherTok{\textless{}{-}}\NormalTok{ mice}\SpecialCharTok{::}\FunctionTok{complete}\NormalTok{(imp2, }\AttributeTok{action =} \StringTok{"long"}\NormalTok{, }\AttributeTok{include =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4746,9 +4834,16 @@ With the code below we can see the proportion of missingness for each variable (
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{p\_missing\_mimp\_long }\OtherTok{\textless{}{-}} \FunctionTok{unlist}\NormalTok{(}\FunctionTok{lapply}\NormalTok{(mimp\_long, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sum}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(x))))}\SpecialCharTok{/}\FunctionTok{nrow}\NormalTok{(mimp\_long)}
-\FunctionTok{sort}\NormalTok{(p\_missing\_mimp\_long[p\_missing\_mimp\_long }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{], }\AttributeTok{decreasing =} \ConstantTok{TRUE}\NormalTok{)}\CommentTok{\#check to see if this works}
+\FunctionTok{sort}\NormalTok{(p\_missing\_mimp\_long[p\_missing\_mimp\_long }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{], }\AttributeTok{decreasing =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\#check to see if this works}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+     Blst_1      Blst_4   iBIPOC_pr      Blst_3      Blst_5      Blst_6 
+0.012820513 0.007692308 0.005128205 0.005128205 0.005128205 0.005128205 
+   Belong_1    Belong_3      Blst_2     cEval_1    cEval_19 
+0.002564103 0.002564103 0.002564103 0.002564103 0.002564103 
+\end{verbatim}
 
 \hypertarget{creating-scale-scores}{%
 \subsection{Creating Scale Scores}\label{creating-scale-scores}}
@@ -4757,8 +4852,8 @@ Because our imputation was item-level, we need to score the variables with scale
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mimp\_long}\OtherTok{\textless{}{-}}\NormalTok{ mimp\_long }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{rBlst\_1 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ Blst\_1) }\CommentTok{\#if you had multiple items, you could add a pipe (\%\textgreater{}\%) at the end of the line and add more until the last one}
+\NormalTok{mimp\_long }\OtherTok{\textless{}{-}}\NormalTok{ mimp\_long }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{rBlst\_1 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ Blst\_1)  }\CommentTok{\#if you had multiple items, you could add a pipe (\%\textgreater{}\%) at the end of the line and add more until the last one}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4766,17 +4861,18 @@ Below is the scoring protocol we used in the AIA protocol for scoring. Although 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#Making the list of variables}
-\NormalTok{Belonging\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Belong\_1\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Belong\_2\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Belong\_3\textquotesingle{}}\NormalTok{)}
-\NormalTok{ResponseBL\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}rBlst\_1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Blst\_4\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Blst\_6\textquotesingle{}}\NormalTok{)}
-\NormalTok{StigmaBL\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Blst\_2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Blst\_3\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Blst\_5\textquotesingle{}}\NormalTok{)}
-\NormalTok{ClimateBL\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}rBlst\_1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Blst\_4\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Blst\_6\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Blst\_2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Blst\_3\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Blst\_5\textquotesingle{}}\NormalTok{ )}
+\CommentTok{\# Making the list of variables}
+\NormalTok{Belonging\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Belong\_1"}\NormalTok{, }\StringTok{"Belong\_2"}\NormalTok{, }\StringTok{"Belong\_3"}\NormalTok{)}
+\NormalTok{ResponseBL\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"rBlst\_1"}\NormalTok{, }\StringTok{"Blst\_4"}\NormalTok{, }\StringTok{"Blst\_6"}\NormalTok{)}
+\NormalTok{StigmaBL\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Blst\_2"}\NormalTok{, }\StringTok{"Blst\_3"}\NormalTok{, }\StringTok{"Blst\_5"}\NormalTok{)}
+\NormalTok{ClimateBL\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"rBlst\_1"}\NormalTok{, }\StringTok{"Blst\_4"}\NormalTok{, }\StringTok{"Blst\_6"}\NormalTok{, }\StringTok{"Blst\_2"}\NormalTok{, }\StringTok{"Blst\_3"}\NormalTok{,}
+    \StringTok{"Blst\_5"}\NormalTok{)}
 
-\CommentTok{\#Creating the new variables}
-\NormalTok{mimp\_long}\SpecialCharTok{$}\NormalTok{Belonging }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(mimp\_long[,Belonging\_vars], .}\DecValTok{65}\NormalTok{)}
-\NormalTok{mimp\_long}\SpecialCharTok{$}\NormalTok{ResponseBL }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(mimp\_long[,ResponseBL\_vars], .}\DecValTok{80}\NormalTok{)}
-\NormalTok{mimp\_long}\SpecialCharTok{$}\NormalTok{StigmaBL }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(mimp\_long[,StigmaBL\_vars], .}\DecValTok{80}\NormalTok{)}
-\NormalTok{mimp\_long}\SpecialCharTok{$}\NormalTok{ClimateBL }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(mimp\_long[,ClimateBL\_vars], .}\DecValTok{80}\NormalTok{)}
+\CommentTok{\# Creating the new variables}
+\NormalTok{mimp\_long}\SpecialCharTok{$}\NormalTok{Belonging }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(mimp\_long[, Belonging\_vars], }\FloatTok{0.65}\NormalTok{)}
+\NormalTok{mimp\_long}\SpecialCharTok{$}\NormalTok{ResponseBL }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(mimp\_long[, ResponseBL\_vars], }\FloatTok{0.8}\NormalTok{)}
+\NormalTok{mimp\_long}\SpecialCharTok{$}\NormalTok{StigmaBL }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(mimp\_long[, StigmaBL\_vars], }\FloatTok{0.8}\NormalTok{)}
+\NormalTok{mimp\_long}\SpecialCharTok{$}\NormalTok{ClimateBL }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(mimp\_long[, ClimateBL\_vars], }\FloatTok{0.8}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4795,7 +4891,7 @@ In order for the regression to use multiply imputed data, it must be a ``mids'' 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Convert to mids type {-} mice can work with this type}
-\NormalTok{mimp\_mids}\OtherTok{\textless{}{-}}\FunctionTok{as.mids}\NormalTok{(mimp\_long)}
+\NormalTok{mimp\_mids }\OtherTok{\textless{}{-}} \FunctionTok{as.mids}\NormalTok{(mimp\_long)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4803,8 +4899,7 @@ Here's what we do with imputed data:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fitimp }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(mimp\_mids,}
-               \FunctionTok{lm}\NormalTok{(ClimateBL }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Belonging }\SpecialCharTok{+}\NormalTok{ cmBlack }\SpecialCharTok{+}\NormalTok{ iBIPOC\_pr))}
+\NormalTok{fitimp }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(mimp\_mids, }\FunctionTok{lm}\NormalTok{(ClimateBL }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Belonging }\SpecialCharTok{+}\NormalTok{ cmBlack }\SpecialCharTok{+}\NormalTok{ iBIPOC\_pr))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4818,29 +4913,29 @@ In this process, 5 individual, OLS, regressions are being conducted and the resu
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 20 x 6
-##    term        estimate std.error statistic       p.value  nobs
-##    <chr>          <dbl>     <dbl>     <dbl>         <dbl> <int>
-##  1 (Intercept)   3.02      0.435      6.95  0.00000000283    65
-##  2 Belonging    -0.0311    0.0897    -0.346 0.730            65
-##  3 cmBlack      -0.0206    0.0165    -1.25  0.215            65
-##  4 iBIPOC_pr    -0.663     0.339     -1.95  0.0552           65
-##  5 (Intercept)   3.02      0.446      6.77  0.00000000578    65
-##  6 Belonging    -0.0349    0.0907    -0.385 0.702            65
-##  7 cmBlack      -0.0234    0.0166    -1.41  0.165            65
-##  8 iBIPOC_pr    -0.470     0.329     -1.43  0.158            65
-##  9 (Intercept)   3.01      0.450      6.70  0.00000000744    65
-## 10 Belonging    -0.0349    0.0915    -0.381 0.704            65
-## 11 cmBlack      -0.0222    0.0167    -1.33  0.187            65
-## 12 iBIPOC_pr    -0.485     0.330     -1.47  0.147            65
-## 13 (Intercept)   2.95      0.448      6.57  0.0000000127     65
-## 14 Belonging    -0.0152    0.0920    -0.165 0.870            65
-## 15 cmBlack      -0.0216    0.0168    -1.29  0.203            65
-## 16 iBIPOC_pr    -0.558     0.343     -1.62  0.110            65
-## 17 (Intercept)   3.00      0.452      6.64  0.00000000963    65
-## 18 Belonging    -0.0311    0.0921    -0.337 0.737            65
-## 19 cmBlack      -0.0214    0.0168    -1.28  0.207            65
-## 20 iBIPOC_pr    -0.531     0.337     -1.57  0.121            65
+# A tibble: 20 x 6
+   term        estimate std.error statistic       p.value  nobs
+   <chr>          <dbl>     <dbl>     <dbl>         <dbl> <int>
+ 1 (Intercept)   3.02      0.435      6.95  0.00000000283    65
+ 2 Belonging    -0.0311    0.0897    -0.346 0.730            65
+ 3 cmBlack      -0.0206    0.0165    -1.25  0.215            65
+ 4 iBIPOC_pr    -0.663     0.339     -1.95  0.0552           65
+ 5 (Intercept)   3.02      0.446      6.77  0.00000000578    65
+ 6 Belonging    -0.0349    0.0907    -0.385 0.702            65
+ 7 cmBlack      -0.0234    0.0166    -1.41  0.165            65
+ 8 iBIPOC_pr    -0.470     0.329     -1.43  0.158            65
+ 9 (Intercept)   3.01      0.450      6.70  0.00000000744    65
+10 Belonging    -0.0349    0.0915    -0.381 0.704            65
+11 cmBlack      -0.0222    0.0167    -1.33  0.187            65
+12 iBIPOC_pr    -0.485     0.330     -1.47  0.147            65
+13 (Intercept)   2.95      0.448      6.57  0.0000000127     65
+14 Belonging    -0.0152    0.0920    -0.165 0.870            65
+15 cmBlack      -0.0216    0.0168    -1.29  0.203            65
+16 iBIPOC_pr    -0.558     0.343     -1.62  0.110            65
+17 (Intercept)   3.00      0.452      6.64  0.00000000963    65
+18 Belonging    -0.0311    0.0921    -0.337 0.737            65
+19 cmBlack      -0.0214    0.0168    -1.28  0.207            65
+20 iBIPOC_pr    -0.531     0.337     -1.57  0.121            65
 \end{verbatim}
 
 \begin{Shaded}
@@ -4850,17 +4945,17 @@ In this process, 5 individual, OLS, regressions are being conducted and the resu
 \end{Shaded}
 
 \begin{verbatim}
-## Class: mipo    m = 5 
-##          term m    estimate         ubar            b            t dfcom
-## 1 (Intercept) 5  2.99980658 0.1990231323 9.993159e-04 0.2002223113    61
-## 2   Belonging 5 -0.02940746 0.0083160161 6.701754e-05 0.0083964371    61
-## 3     cmBlack 5 -0.02184241 0.0002777582 1.056566e-06 0.0002790261    61
-## 4   iBIPOC_pr 5 -0.54138195 0.1128248694 5.817915e-03 0.1198063673    61
-##         df         riv      lambda        fmi
-## 1 58.70890 0.006025325 0.005989238 0.03820536
-## 2 58.44929 0.009670622 0.009577997 0.04181342
-## 3 58.80737 0.004564689 0.004543947 0.03675551
-## 4 53.13966 0.061879070 0.058273179 0.09182261
+Class: mipo    m = 5 
+         term m    estimate         ubar              b            t dfcom
+1 (Intercept) 5  2.99980658 0.1990231323 0.000999315858 0.2002223113    61
+2   Belonging 5 -0.02940746 0.0083160161 0.000067017541 0.0083964371    61
+3     cmBlack 5 -0.02184241 0.0002777582 0.000001056566 0.0002790261    61
+4   iBIPOC_pr 5 -0.54138195 0.1128248694 0.005817914953 0.1198063673    61
+        df         riv      lambda        fmi
+1 58.70890 0.006025325 0.005989238 0.03820536
+2 58.44929 0.009670622 0.009577997 0.04181342
+3 58.80737 0.004564689 0.004543947 0.03675551
+4 53.13966 0.061879070 0.058273179 0.09182261
 \end{verbatim}
 
 \begin{Shaded}
@@ -4870,11 +4965,11 @@ In this process, 5 individual, OLS, regressions are being conducted and the resu
 \end{Shaded}
 
 \begin{verbatim}
-##          term    estimate  std.error  statistic       df      p.value
-## 1 (Intercept)  2.99980658 0.44746208  6.7040465 58.70890 8.735881e-09
-## 2   Belonging -0.02940746 0.09163207 -0.3209298 58.44929 7.494083e-01
-## 3     cmBlack -0.02184241 0.01670407 -1.3076097 58.80737 1.960948e-01
-## 4   iBIPOC_pr -0.54138195 0.34613056 -1.5640975 53.13966 1.237310e-01
+         term    estimate  std.error  statistic       df           p.value
+1 (Intercept)  2.99980658 0.44746208  6.7040465 58.70890 0.000000008735881
+2   Belonging -0.02940746 0.09163207 -0.3209298 58.44929 0.749408305666738
+3     cmBlack -0.02184241 0.01670407 -1.3076097 58.80737 0.196094825405891
+4   iBIPOC_pr -0.54138195 0.34613056 -1.5640975 53.13966 0.123730969370680
 \end{verbatim}
 
 \begin{quote}
@@ -5106,7 +5201,7 @@ While it is possible to conduct multiple imputation at the scale level, we will 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 310
+[1] 310
 \end{verbatim}
 
 \hypertarget{apply-inclusionaryexclusionary-criteria}{%
@@ -5127,7 +5222,7 @@ I want to exclude students' responses for the ANOVA and psychometrics courses.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{raw }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(raw, Course }\SpecialCharTok{==} \StringTok{"Multivariate"}\NormalTok{))}
+\NormalTok{raw }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(raw, Course }\SpecialCharTok{==} \StringTok{"Multivariate"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5140,46 +5235,59 @@ At this point, these my only inclusion/exclusion criteria. I can determine how m
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 84
+[1] 84
 \end{verbatim}
 
 \hypertarget{format-any-variables-that-shouldnt-be-imputed-in-their-raw-form}{%
 \subsubsection{Format any variables that shouldn't be imputed in their raw form}\label{format-any-variables-that-shouldnt-be-imputed-in-their-raw-form}}
 
-*( Let's first create a df with the item-level variables that will fuel our model. In addition to the variables in our model, we will include four auxillary variables. These include Dept (Department: Clinical or Industrial-Organizational) and four additional course evaluation items: OvInstructor, MyContribution, IncrInterest, IncrUnderstanding.
+Let's first create a df with the item-level variables that will fuel our model.
+
+In addition to the variables in our model, we will include four auxiliary variables. These include Dept (Department: Clinical or Industrial-Organizational) and four additional course evaluation items: OvInstructor, MyContribution, IncrInterest, IncrUnderstanding.
 
 Let's check the structure to be certain that \emph{StatsPkg} (SPSS, R) and \emph{Centered} (Pre, Re) are ordered factors. We also want the course evaluation items to be integer (or numerical).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mimp\_df }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(raw, deID, StatsPkg, Centering, ClearResponsibilities,}
+\NormalTok{mimp\_df }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(raw, deID, StatsPkg, Centering, ClearResponsibilities,}
 \NormalTok{    EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm,}
 \NormalTok{    EquitableEval, MultPerspectives, DEIintegration, Dept, OvInstructor,}
-\NormalTok{    MyContribution, IncrInterest, IncrUnderstanding))}
+\NormalTok{    MyContribution, IncrInterest, IncrUnderstanding)}
 \FunctionTok{str}\NormalTok{(mimp\_df)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Classes 'data.table' and 'data.frame':   84 obs. of  17 variables:
-##  $ deID                 : int  11 12 13 14 15 16 17 18 35 19 ...
-##  $ StatsPkg             : Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ ClearResponsibilities: int  4 5 5 5 4 3 5 5 3 5 ...
-##  $ EffectiveAnswers     : int  4 5 5 4 4 3 5 5 4 4 ...
-##  $ Feedback             : int  4 5 4 4 5 4 5 4 4 5 ...
-##  $ ClearOrganization    : int  3 5 5 4 4 3 5 5 4 5 ...
-##  $ ClearPresentation    : int  4 5 5 3 4 2 5 4 5 5 ...
-##  $ InclusvClassrm       : int  5 5 5 5 5 4 5 5 5 5 ...
-##  $ EquitableEval        : int  4 5 5 5 4 4 5 4 5 5 ...
-##  $ MultPerspectives     : int  4 5 5 5 5 5 5 4 5 5 ...
-##  $ DEIintegration       : int  5 5 5 5 5 5 5 5 5 5 ...
-##  $ Dept                 : chr  "CPY" "CPY" "CPY" "CPY" ...
-##  $ OvInstructor         : int  3 5 5 3 5 2 5 4 5 5 ...
-##  $ MyContribution       : int  4 5 4 3 4 3 5 4 4 5 ...
-##  $ IncrInterest         : int  4 5 4 3 4 3 5 4 5 4 ...
-##  $ IncrUnderstanding    : int  4 5 5 3 4 3 5 4 5 5 ...
-##  - attr(*, ".internal.selfref")=<externalptr>
+Classes 'data.table' and 'data.frame':  84 obs. of  17 variables:
+ $ deID                 : int  11 12 13 14 15 16 17 18 35 19 ...
+ $ StatsPkg             : Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
+ $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ ClearResponsibilities: int  4 5 5 5 4 3 5 5 3 5 ...
+ $ EffectiveAnswers     : int  4 5 5 4 4 3 5 5 4 4 ...
+ $ Feedback             : int  4 5 4 4 5 4 5 4 4 5 ...
+ $ ClearOrganization    : int  3 5 5 4 4 3 5 5 4 5 ...
+ $ ClearPresentation    : int  4 5 5 3 4 2 5 4 5 5 ...
+ $ InclusvClassrm       : int  5 5 5 5 5 4 5 5 5 5 ...
+ $ EquitableEval        : int  4 5 5 5 4 4 5 4 5 5 ...
+ $ MultPerspectives     : int  4 5 5 5 5 5 5 4 5 5 ...
+ $ DEIintegration       : int  5 5 5 5 5 5 5 5 5 5 ...
+ $ Dept                 : chr  "CPY" "CPY" "CPY" "CPY" ...
+ $ OvInstructor         : int  3 5 5 3 5 2 5 4 5 5 ...
+ $ MyContribution       : int  4 5 4 3 4 3 5 4 4 5 ...
+ $ IncrInterest         : int  4 5 4 3 4 3 5 4 5 4 ...
+ $ IncrUnderstanding    : int  4 5 5 3 4 3 5 4 5 5 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{Dept }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{Dept, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"CPY"}\NormalTok{, }\StringTok{"ORG"}\NormalTok{))}
+\FunctionTok{str}\NormalTok{(mimp\_df}\SpecialCharTok{$}\NormalTok{Dept)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ Factor w/ 2 levels "CPY","ORG": 1 1 1 1 1 1 1 1 1 1 ...
 \end{verbatim}
 
 We should eliminate case with greater than 50\% missingness.
@@ -5189,12 +5297,12 @@ We should eliminate case with greater than 50\% missingness.
 \FunctionTok{library}\NormalTok{(tidyverse)}
 \CommentTok{\#Calculating number and proportion of item{-}level missingness}
 \NormalTok{mimp\_df}\SpecialCharTok{$}\NormalTok{nmiss }\OtherTok{\textless{}{-}}\NormalTok{ mimp\_df}\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{select}\NormalTok{(StatsPkg}\SpecialCharTok{:}\NormalTok{IncrUnderstanding) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#the colon allows us to include all variables between the two listed (the variables need to be in order)}
+\NormalTok{    dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(StatsPkg}\SpecialCharTok{:}\NormalTok{IncrUnderstanding) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#the colon allows us to include all variables between the two listed (the variables need to be in order)}
 \NormalTok{    is.na }\SpecialCharTok{\%\textgreater{}\%} 
 \NormalTok{    rowSums}
 
 \NormalTok{mimp\_df}\OtherTok{\textless{}{-}}\NormalTok{ mimp\_df}\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (nmiss}\SpecialCharTok{/}\DecValTok{13}\NormalTok{)}\SpecialCharTok{*}\DecValTok{100}\NormalTok{) }\CommentTok{\#11 is the number of variables included in calculating the proportion}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{prop\_miss =}\NormalTok{ (nmiss}\SpecialCharTok{/}\DecValTok{13}\NormalTok{)}\SpecialCharTok{*}\DecValTok{100}\NormalTok{) }\CommentTok{\#11 is the number of variables included in calculating the proportion}
 
 \NormalTok{mimp\_df }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(mimp\_df, prop\_miss }\SpecialCharTok{\textless{}=} \DecValTok{50}\NormalTok{)  }\CommentTok{\#update df to have only those with at least 50\% of complete data}
 \end{Highlighting}
@@ -5204,7 +5312,7 @@ Once again, trim the df to include only the data to be included in the imputatio
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mimp\_df }\OtherTok{\textless{}{-}}  \FunctionTok{select}\NormalTok{ (mimp\_df, deID, StatsPkg, Centering,ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration, Dept, OvInstructor, MyContribution, IncrInterest, IncrUnderstanding)}
+\NormalTok{mimp\_df }\OtherTok{\textless{}{-}}\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(mimp\_df, deID, StatsPkg, Centering,ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration, Dept, OvInstructor, MyContribution, IncrInterest, IncrUnderstanding)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5270,18 +5378,18 @@ Here we code what format/role each variable should be.
 \end{Shaded}
 
 \begin{verbatim}
-##                  deID              StatsPkg             Centering 
-##                    ""              "logreg"              "logreg" 
-## ClearResponsibilities      EffectiveAnswers              Feedback 
-##                 "pmm"                    ""                 "pmm" 
-##     ClearOrganization     ClearPresentation        InclusvClassrm 
-##                    ""                    ""                 "pmm" 
-##         EquitableEval      MultPerspectives        DEIintegration 
-##                    ""                 "pmm"                 "pmm" 
-##                  Dept          OvInstructor        MyContribution 
-##              "logreg"                    ""                    "" 
-##          IncrInterest     IncrUnderstanding 
-##                 "pmm"                    ""
+                 deID              StatsPkg             Centering 
+                   ""              "logreg"              "logreg" 
+ClearResponsibilities      EffectiveAnswers              Feedback 
+                "pmm"                    ""                 "pmm" 
+    ClearOrganization     ClearPresentation        InclusvClassrm 
+                   ""                    ""                 "pmm" 
+        EquitableEval      MultPerspectives        DEIintegration 
+                   ""                 "pmm"                 "pmm" 
+                 Dept          OvInstructor        MyContribution 
+             "logreg"                    ""                    "" 
+         IncrInterest     IncrUnderstanding 
+                "pmm"                    "" 
 \end{verbatim}
 
 This list (meth) contains all our variables; ``pmm'' is the default and is the ``predictive mean matching'' process used. We see that \emph{StatsPkg} and \emph{Centering} are noted as ``logreg.'' This is because they are dichotomous variables. If there is \emph{``\,``} underneath it means the data is complete. The data will be used in imputing other data, but none of that data will be imputed.
@@ -5337,10 +5445,10 @@ With the code below we can see the proportion of missingness for each variable (
 \end{Shaded}
 
 \begin{verbatim}
-##        DEIintegration        InclusvClassrm              Feedback 
-##           0.027777778           0.007936508           0.003968254 
-## ClearResponsibilities      MultPerspectives          IncrInterest 
-##           0.001984127           0.001984127           0.001984127
+       DEIintegration        InclusvClassrm              Feedback 
+          0.027777778           0.007936508           0.003968254 
+ClearResponsibilities      MultPerspectives          IncrInterest 
+          0.001984127           0.001984127           0.001984127 
 \end{verbatim}
 
 Because our imputation was item-level, we need to score the variables with scales/subscales.
@@ -5417,29 +5525,29 @@ In this process, 5 individual, OLS, regressions are being conducted and the resu
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 20 x 6
-##    term        estimate std.error statistic  p.value  nobs
-##    <chr>          <dbl>     <dbl>     <dbl>    <dbl> <int>
-##  1 (Intercept)    1.89     0.305      6.20  2.28e- 8    84
-##  2 StatsPkgR      0.171    0.116      1.47  1.46e- 1    84
-##  3 CenteringRe    0.116    0.106      1.09  2.81e- 1    84
-##  4 TradPed        0.569    0.0648     8.78  2.34e-13    84
-##  5 (Intercept)    1.94     0.313      6.20  2.31e- 8    84
-##  6 StatsPkgR      0.190    0.119      1.60  1.14e- 1    84
-##  7 CenteringRe    0.107    0.109      0.979 3.30e- 1    84
-##  8 TradPed        0.556    0.0665     8.36  1.59e-12    84
-##  9 (Intercept)    1.82     0.304      6.00  5.42e- 8    84
-## 10 StatsPkgR      0.164    0.116      1.42  1.61e- 1    84
-## 11 CenteringRe    0.123    0.106      1.16  2.49e- 1    84
-## 12 TradPed        0.585    0.0645     9.06  6.63e-14    84
-## 13 (Intercept)    1.80     0.306      5.87  9.43e- 8    84
-## 14 StatsPkgR      0.177    0.116      1.52  1.32e- 1    84
-## 15 CenteringRe    0.129    0.106      1.21  2.29e- 1    84
-## 16 TradPed        0.588    0.0650     9.04  7.26e-14    84
-## 17 (Intercept)    1.94     0.313      6.20  2.31e- 8    84
-## 18 StatsPkgR      0.190    0.119      1.60  1.14e- 1    84
-## 19 CenteringRe    0.107    0.109      0.979 3.30e- 1    84
-## 20 TradPed        0.556    0.0665     8.36  1.59e-12    84
+# A tibble: 20 x 6
+   term        estimate std.error statistic  p.value  nobs
+   <chr>          <dbl>     <dbl>     <dbl>    <dbl> <int>
+ 1 (Intercept)    1.90     0.310      6.13  3.13e- 8    84
+ 2 StatsPkgR      0.187    0.118      1.59  1.16e- 1    84
+ 3 CenteringRe    0.117    0.108      1.09  2.79e- 1    84
+ 4 TradPed        0.565    0.0659     8.56  6.30e-13    84
+ 5 (Intercept)    1.94     0.314      6.17  2.62e- 8    84
+ 6 StatsPkgR      0.191    0.119      1.60  1.13e- 1    84
+ 7 CenteringRe    0.110    0.109      1.01  3.17e- 1    84
+ 8 TradPed        0.557    0.0667     8.36  1.63e-12    84
+ 9 (Intercept)    1.96     0.313      6.26  1.80e- 8    84
+10 StatsPkgR      0.178    0.119      1.50  1.38e- 1    84
+11 CenteringRe    0.111    0.109      1.02  3.10e- 1    84
+12 TradPed        0.555    0.0665     8.35  1.69e-12    84
+13 (Intercept)    2.03     0.325      6.24  1.98e- 8    84
+14 StatsPkgR      0.185    0.123      1.50  1.38e- 1    84
+15 CenteringRe    0.104    0.113      0.918 3.62e- 1    84
+16 TradPed        0.539    0.0691     7.80  1.95e-11    84
+17 (Intercept)    1.91     0.306      6.26  1.77e- 8    84
+18 StatsPkgR      0.158    0.116      1.36  1.78e- 1    84
+19 CenteringRe    0.117    0.107      1.10  2.76e- 1    84
+20 TradPed        0.567    0.0649     8.73  2.93e-13    84
 \end{verbatim}
 
 \begin{Shaded}
@@ -5449,11 +5557,11 @@ In this process, 5 individual, OLS, regressions are being conducted and the resu
 \end{Shaded}
 
 \begin{verbatim}
-##          term  estimate  std.error statistic       df              p.value
-## 1 (Intercept) 1.8790900 0.31681889  5.931117 70.17893 0.000000102899891375
-## 2   StatsPkgR 0.1782696 0.11790145  1.512022 76.90009 0.134627050376375595
-## 3 CenteringRe 0.1161789 0.10785952  1.077131 77.18229 0.284776760713007282
-## 4     TradPed 0.5706829 0.06755959  8.447105 68.62731 0.000000000003163489
+         term  estimate  std.error statistic       df              p.value
+1 (Intercept) 1.9480744 0.31833535  6.119567 74.55114 0.000000040039269753
+2   StatsPkgR 0.1798400 0.11996611  1.499090 76.64577 0.137957984459613908
+3 CenteringRe 0.1117906 0.10918108  1.023901 77.81162 0.309054914517060075
+4     TradPed 0.5564494 0.06768356  8.221338 74.26455 0.000000000004825124
 \end{verbatim}
 
 \begin{quote}
@@ -5497,8 +5605,8 @@ We managed missing data with multiple imputation \citep{enders_multiple_2017, ka
 \end{quote}
 \end{quote}
 
-\hypertarget{aapa-style-write-up-regression-results}{%
-\subsubsection{AAPA style write-up regression results}\label{aapa-style-write-up-regression-results}}
+\hypertarget{apa-style-write-up-regression-results}{%
+\subsubsection{APA style write-up regression results}\label{apa-style-write-up-regression-results}}
 
 \begin{quote}
 \begin{quote}

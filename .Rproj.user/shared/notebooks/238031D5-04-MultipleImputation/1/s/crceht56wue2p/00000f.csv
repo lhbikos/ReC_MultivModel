@@ -1,0 +1,6 @@
+"0","library(mice)"
+"0","# runs the mice code with 0 iterations"
+"0","imp <- mice(mimp_df, maxit = 0)"
+"0","# Extract predictor Matrix and methods of imputation "
+"0","predM = imp$predictorMatrix"
+"0","meth = imp$method"

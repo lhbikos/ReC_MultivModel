@@ -1,0 +1,2 @@
+"0","fitimp <- with(mimp_mids,"
+"0","               lm(SRPed ~ StatsPkg + Centering + TradPed))"

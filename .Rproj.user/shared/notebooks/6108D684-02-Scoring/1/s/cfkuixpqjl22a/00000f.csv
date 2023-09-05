@@ -1,0 +1,7 @@
+"0","#what proportion of cases (rows) are complete (nonmissing)
+formattable::percent(mean(complete.cases(scrub_df)))
+"
+"1","[1]"
+"1"," 87.88%"
+"1","
+"

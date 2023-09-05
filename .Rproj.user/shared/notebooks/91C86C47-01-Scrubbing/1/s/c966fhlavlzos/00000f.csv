@@ -1,0 +1,7 @@
+"0","#View this as an object (found in the right: Environment).  
+#Get survey id # for the next command
+#If this is showing you the WRONG list of surveys, you are pulling from the wrong Qualtrics account (i.e., maybe this one instead of your own). Go back and change your API token (it saves your old one). Changing the API likely requires a restart of R.
+qualtRics::surveys
+"
+"2","Error: 'surveys' is not an exported object from 'namespace:qualtRics'
+"

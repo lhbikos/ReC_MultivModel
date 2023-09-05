@@ -1,0 +1,7 @@
+"0","#this seems to work when I build the book, but not in ""working the problem"""
+"0","TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')  "
+"0","#mimp_long$TradPed <- sjstats::mean_n(mimp_long[, TradPed_vars], .75)"
+"0",""
+"0","#this seems to work when I ""work the problem"" (but not when I build the book)"
+"0","#the difference is the two dots before the last SRPed_vars"
+"0","mimp_long$TradPed <- sjstats::mean_n(mimp_long[, TradPed_vars], .75)"

@@ -48,15 +48,9 @@ The packages used in this lesson are embedded in this code. When the hashtags ar
 
 
 ```r
-if (!require(tidyverse)) {
-    install.packages("tidyverse")
-}  #this includes dplyr
-if (!require(psych)) {
-    install.packages("psych")
-}
-if (!require(apaTables)) {
-    install.packages("apaTables")
-}
+# if(!require(tidyverse)){install.packages('tidyverse')} #this
+# includes dplyr if(!require(psych)){install.packages('psych')}
+# if(!require(apaTables)){install.packages('apaTables')}
 ```
 
 
@@ -105,7 +99,7 @@ First, though, let's take a more conceptual look at issues regarding missing dat
 
 Alpha coefficients are *reliability coefficients* that assess the *internal consistency* of an instrument. It asks, "For each person, are responses *consistently* high, or medium, or low?"  To the degree that they are (meaning there are high inter-item correlations), the internal consistency coefficient will be high.  We want values >.80.  There are numerous problems with alpha coefficients.  The biggest one is that they are influenced by sample size -- longer scales have higher alpha coefficients [@cortina_what_1993].  Fourteen seems to be a magic number where we begin to not trust the high alpha coefficient. I address this more thoroughly -- offering an alternative -- in psychometrics. While there is much criticism about the usefulness of the alpha coefficient [@sijtsma_use_2009], researchers continue to use the alpha coefficient as an indicator of the internal consistency of scales that consist of multiple items and contain several variables.  
 
-We need item level data to compute an alpha coefficient. The easiest way to get an alpha coefficient is to feed the *alpha()* function (*psych* package) a contatonated list of items (with any items already reverse-scored). There should be no extra items. In the [scoring chapter](#score) we already reverse-coded the single item in the campus climate scale, so we are ready to calculate alphas. 
+We need item level data to compute an alpha coefficient. The easiest way to get an alpha coefficient is to feed the *alpha()* function (*psych* package) a concatonated list of items (with any items already reverse-scored). There should be no extra items. In the [scoring chapter](#score) we already reverse-coded the single item in the campus climate scale, so we are ready to calculate alphas. 
 
 The df from which I am pulling data was created and written as an outfile in the [scoring chapter](#score). You may also download the file from the [Github site](https://github.com/lhbikos/ReC_MultivModel) that hosts the chapter. Be sure to place the file in the same folder as the .rmd file. This particular df has item-level data. I am working with the .rds file. In case this is problematic for you, I have also provided code to import a .csv version of the file. 
 
@@ -118,42 +112,41 @@ item_scores_df <- readRDS("BlStItmsScrs230902.rds")
 Within the *psych::alpha* function we can retrieve alpha coefficients for the specific variables of interest by imbedding a concatonated list. A priori, we are planning to use the campus climate scale as a total score. However, we'll go ahead and also calculate alpha coefficients for the subscales because (a) it's good practice and (b) if the alpha is low, a *reason* might show up in one of the subscales.
 
 
-
 ```r
 # alpha for the belonging scale
 psych::alpha(item_scores_df[c("Belong_1", "Belong_2", "Belong_3")])
 ```
 
 ```
-## 
-## Reliability analysis   
-## Call: psych::alpha(x = item_scores_df[c("Belong_1", "Belong_2", "Belong_3")])
-## 
-##   raw_alpha std.alpha G6(smc) average_r S/N    ase mean  sd median_r
-##       0.95      0.95    0.93      0.87  21 0.0099    4 1.5     0.88
-## 
-##     95% confidence boundaries 
-##          lower alpha upper
-## Feldt     0.93  0.95  0.97
-## Duhachek  0.93  0.95  0.97
-## 
-##  Reliability if an item is dropped:
-##          raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## Belong_1      0.94      0.94    0.88      0.88  15    0.016    NA  0.88
-## Belong_2      0.92      0.92    0.85      0.85  11    0.020    NA  0.85
-## Belong_3      0.94      0.94    0.89      0.89  16    0.015    NA  0.89
-## 
-##  Item statistics 
-##           n raw.r std.r r.cor r.drop mean  sd
-## Belong_1 64  0.95  0.95  0.92   0.90  4.1 1.5
-## Belong_2 65  0.96  0.96  0.94   0.92  4.1 1.6
-## Belong_3 64  0.95  0.95  0.91   0.89  3.8 1.5
-## 
-## Non missing response frequency for each item
-##             1    2    3    4    5    6    7 miss
-## Belong_1 0.02 0.14 0.23 0.17 0.22 0.17 0.05 0.03
-## Belong_2 0.03 0.14 0.22 0.22 0.15 0.20 0.05 0.02
-## Belong_3 0.05 0.19 0.19 0.23 0.20 0.09 0.05 0.03
+
+Reliability analysis   
+Call: psych::alpha(x = item_scores_df[c("Belong_1", "Belong_2", "Belong_3")])
+
+  raw_alpha std.alpha G6(smc) average_r S/N    ase mean  sd median_r
+      0.95      0.95    0.93      0.87  21 0.0099    4 1.5     0.88
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.93  0.95  0.97
+Duhachek  0.93  0.95  0.97
+
+ Reliability if an item is dropped:
+         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
+Belong_1      0.94      0.94    0.88      0.88  15    0.016    NA  0.88
+Belong_2      0.92      0.92    0.85      0.85  11    0.020    NA  0.85
+Belong_3      0.94      0.94    0.89      0.89  16    0.015    NA  0.89
+
+ Item statistics 
+          n raw.r std.r r.cor r.drop mean  sd
+Belong_1 64  0.95  0.95  0.92   0.90  4.1 1.5
+Belong_2 65  0.96  0.96  0.94   0.92  4.1 1.6
+Belong_3 64  0.95  0.95  0.91   0.89  3.8 1.5
+
+Non missing response frequency for each item
+            1    2    3    4    5    6    7 miss
+Belong_1 0.02 0.14 0.23 0.17 0.22 0.17 0.05 0.03
+Belong_2 0.03 0.14 0.22 0.22 0.15 0.20 0.05 0.02
+Belong_3 0.05 0.19 0.19 0.23 0.20 0.09 0.05 0.03
 ```
 For each scale I will capture a statement for the APA style write-up. Because these values are typically reported with each measure (and not in the prliminary results), I won't create a cumulative write-up.
 
@@ -167,45 +160,45 @@ psych::alpha(item_scores_df[c("rBlst_1", "Blst_2", "Blst_3", "Blst_4",
 ```
 
 ```
-## 
-## Reliability analysis   
-## Call: psych::alpha(x = item_scores_df[c("rBlst_1", "Blst_2", "Blst_3", 
-##     "Blst_4", "Blst_5", "Blst_6")])
-## 
-##   raw_alpha std.alpha G6(smc) average_r S/N  ase mean  sd median_r
-##       0.85      0.87    0.87      0.52 6.5 0.03  2.5 1.1     0.52
-## 
-##     95% confidence boundaries 
-##          lower alpha upper
-## Feldt     0.78  0.85  0.90
-## Duhachek  0.79  0.85  0.91
-## 
-##  Reliability if an item is dropped:
-##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## rBlst_1      0.85      0.87    0.87      0.57 6.5    0.031 0.029  0.57
-## Blst_2       0.87      0.88    0.87      0.59 7.1    0.026 0.019  0.56
-## Blst_3       0.83      0.85    0.85      0.54 5.8    0.034 0.029  0.50
-## Blst_4       0.80      0.82    0.82      0.48 4.6    0.041 0.027  0.48
-## Blst_5       0.79      0.81    0.81      0.46 4.3    0.042 0.024  0.47
-## Blst_6       0.80      0.82    0.81      0.48 4.6    0.040 0.021  0.50
-## 
-##  Item statistics 
-##          n raw.r std.r r.cor r.drop mean  sd
-## rBlst_1 60  0.69  0.67  0.56   0.52  3.4 1.6
-## Blst_2  64  0.68  0.62  0.51   0.46  3.0 1.8
-## Blst_3  63  0.71  0.74  0.66   0.59  2.0 1.2
-## Blst_4  62  0.85  0.86  0.84   0.77  2.5 1.3
-## Blst_5  63  0.89  0.89  0.89   0.82  2.0 1.2
-## Blst_6  63  0.83  0.86  0.86   0.77  2.1 1.3
-## 
-## Non missing response frequency for each item
-##            1    2    3    4    5    6    7 miss
-## rBlst_1 0.10 0.23 0.20 0.25 0.08 0.10 0.03 0.09
-## Blst_2  0.33 0.16 0.09 0.17 0.16 0.06 0.03 0.03
-## Blst_3  0.44 0.33 0.06 0.11 0.03 0.02 0.00 0.05
-## Blst_4  0.27 0.34 0.15 0.18 0.05 0.00 0.02 0.06
-## Blst_5  0.46 0.30 0.05 0.14 0.05 0.00 0.00 0.05
-## Blst_6  0.38 0.35 0.11 0.08 0.06 0.02 0.00 0.05
+
+Reliability analysis   
+Call: psych::alpha(x = item_scores_df[c("rBlst_1", "Blst_2", "Blst_3", 
+    "Blst_4", "Blst_5", "Blst_6")])
+
+  raw_alpha std.alpha G6(smc) average_r S/N  ase mean  sd median_r
+      0.85      0.87    0.87      0.52 6.5 0.03  2.5 1.1     0.52
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.78  0.85  0.90
+Duhachek  0.79  0.85  0.91
+
+ Reliability if an item is dropped:
+        raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
+rBlst_1      0.85      0.87    0.87      0.57 6.5    0.031 0.029  0.57
+Blst_2       0.87      0.88    0.87      0.59 7.1    0.026 0.019  0.56
+Blst_3       0.83      0.85    0.85      0.54 5.8    0.034 0.029  0.50
+Blst_4       0.80      0.82    0.82      0.48 4.6    0.041 0.027  0.48
+Blst_5       0.79      0.81    0.81      0.46 4.3    0.042 0.024  0.47
+Blst_6       0.80      0.82    0.81      0.48 4.6    0.040 0.021  0.50
+
+ Item statistics 
+         n raw.r std.r r.cor r.drop mean  sd
+rBlst_1 60  0.69  0.67  0.56   0.52  3.4 1.6
+Blst_2  64  0.68  0.62  0.51   0.46  3.0 1.8
+Blst_3  63  0.71  0.74  0.66   0.59  2.0 1.2
+Blst_4  62  0.85  0.86  0.84   0.77  2.5 1.3
+Blst_5  63  0.89  0.89  0.89   0.82  2.0 1.2
+Blst_6  63  0.83  0.86  0.86   0.77  2.1 1.3
+
+Non missing response frequency for each item
+           1    2    3    4    5    6    7 miss
+rBlst_1 0.10 0.23 0.20 0.25 0.08 0.10 0.03 0.09
+Blst_2  0.33 0.16 0.09 0.17 0.16 0.06 0.03 0.03
+Blst_3  0.44 0.33 0.06 0.11 0.03 0.02 0.00 0.05
+Blst_4  0.27 0.34 0.15 0.18 0.05 0.00 0.02 0.06
+Blst_5  0.46 0.30 0.05 0.14 0.05 0.00 0.00 0.05
+Blst_6  0.38 0.35 0.11 0.08 0.06 0.02 0.00 0.05
 ```
 >>Cronbach's alpha for the campus climate scale was 0.87. 
 
@@ -219,35 +212,35 @@ psych::alpha(item_scores_df[c("Blst_3", "Blst_2", "Blst_5")])
 ```
 
 ```
-## 
-## Reliability analysis   
-## Call: psych::alpha(x = item_scores_df[c("Blst_3", "Blst_2", "Blst_5")])
-## 
-##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-##       0.69      0.73    0.69      0.47 2.7 0.065  2.3 1.2     0.54
-## 
-##     95% confidence boundaries 
-##          lower alpha upper
-## Feldt     0.54  0.69  0.80
-## Duhachek  0.57  0.69  0.82
-## 
-##  Reliability if an item is dropped:
-##        raw_alpha std.alpha G6(smc) average_r  S/N alpha se var.r med.r
-## Blst_3      0.67      0.70    0.54      0.54 2.35    0.074    NA  0.54
-## Blst_2      0.75      0.75    0.60      0.60 3.03    0.061    NA  0.60
-## Blst_5      0.41      0.43    0.28      0.28 0.76    0.135    NA  0.28
-## 
-##  Item statistics 
-##         n raw.r std.r r.cor r.drop mean  sd
-## Blst_3 63  0.72  0.78  0.62   0.46    2 1.2
-## Blst_2 64  0.82  0.75  0.55   0.46    3 1.8
-## Blst_5 63  0.87  0.89  0.83   0.70    2 1.2
-## 
-## Non missing response frequency for each item
-##           1    2    3    4    5    6    7 miss
-## Blst_3 0.44 0.33 0.06 0.11 0.03 0.02 0.00 0.05
-## Blst_2 0.33 0.16 0.09 0.17 0.16 0.06 0.03 0.03
-## Blst_5 0.46 0.30 0.05 0.14 0.05 0.00 0.00 0.05
+
+Reliability analysis   
+Call: psych::alpha(x = item_scores_df[c("Blst_3", "Blst_2", "Blst_5")])
+
+  raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
+      0.69      0.73    0.69      0.47 2.7 0.065  2.3 1.2     0.54
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.54  0.69  0.80
+Duhachek  0.57  0.69  0.82
+
+ Reliability if an item is dropped:
+       raw_alpha std.alpha G6(smc) average_r  S/N alpha se var.r med.r
+Blst_3      0.67      0.70    0.54      0.54 2.35    0.074    NA  0.54
+Blst_2      0.75      0.75    0.60      0.60 3.03    0.061    NA  0.60
+Blst_5      0.41      0.43    0.28      0.28 0.76    0.135    NA  0.28
+
+ Item statistics 
+        n raw.r std.r r.cor r.drop mean  sd
+Blst_3 63  0.72  0.78  0.62   0.46    2 1.2
+Blst_2 64  0.82  0.75  0.55   0.46    3 1.8
+Blst_5 63  0.87  0.89  0.83   0.70    2 1.2
+
+Non missing response frequency for each item
+          1    2    3    4    5    6    7 miss
+Blst_3 0.44 0.33 0.06 0.11 0.03 0.02 0.00 0.05
+Blst_2 0.33 0.16 0.09 0.17 0.16 0.06 0.03 0.03
+Blst_5 0.46 0.30 0.05 0.14 0.05 0.00 0.00 0.05
 ```
 >>Cronbach's alpha for the campus climate stigma subscale was 0.73. 
 
@@ -259,35 +252,35 @@ psych::alpha(item_scores_df[c("rBlst_1", "Blst_4", "Blst_6")])
 ```
 
 ```
-## 
-## Reliability analysis   
-## Call: psych::alpha(x = item_scores_df[c("rBlst_1", "Blst_4", "Blst_6")])
-## 
-##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-##       0.79      0.81    0.76      0.58 4.2 0.045  2.7 1.2     0.52
-## 
-##     95% confidence boundaries 
-##          lower alpha upper
-## Feldt     0.69  0.79  0.87
-## Duhachek  0.71  0.79  0.88
-## 
-##  Reliability if an item is dropped:
-##         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-## rBlst_1      0.86      0.86    0.75      0.75 6.0    0.035    NA  0.75
-## Blst_4       0.64      0.65    0.48      0.48 1.8    0.087    NA  0.48
-## Blst_6       0.68      0.68    0.52      0.52 2.1    0.078    NA  0.52
-## 
-##  Item statistics 
-##          n raw.r std.r r.cor r.drop mean  sd
-## rBlst_1 60  0.81  0.78  0.58   0.53  3.4 1.6
-## Blst_4  62  0.88  0.89  0.84   0.72  2.5 1.3
-## Blst_6  63  0.85  0.87  0.81   0.69  2.1 1.3
-## 
-## Non missing response frequency for each item
-##            1    2    3    4    5    6    7 miss
-## rBlst_1 0.10 0.23 0.20 0.25 0.08 0.10 0.03 0.09
-## Blst_4  0.27 0.34 0.15 0.18 0.05 0.00 0.02 0.06
-## Blst_6  0.38 0.35 0.11 0.08 0.06 0.02 0.00 0.05
+
+Reliability analysis   
+Call: psych::alpha(x = item_scores_df[c("rBlst_1", "Blst_4", "Blst_6")])
+
+  raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
+      0.79      0.81    0.76      0.58 4.2 0.045  2.7 1.2     0.52
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.69  0.79  0.87
+Duhachek  0.71  0.79  0.88
+
+ Reliability if an item is dropped:
+        raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
+rBlst_1      0.86      0.86    0.75      0.75 6.0    0.035    NA  0.75
+Blst_4       0.64      0.65    0.48      0.48 1.8    0.087    NA  0.48
+Blst_6       0.68      0.68    0.52      0.52 2.1    0.078    NA  0.52
+
+ Item statistics 
+         n raw.r std.r r.cor r.drop mean  sd
+rBlst_1 60  0.81  0.78  0.58   0.53  3.4 1.6
+Blst_4  62  0.88  0.89  0.84   0.72  2.5 1.3
+Blst_6  63  0.85  0.87  0.81   0.69  2.1 1.3
+
+Non missing response frequency for each item
+           1    2    3    4    5    6    7 miss
+rBlst_1 0.10 0.23 0.20 0.25 0.08 0.10 0.03 0.09
+Blst_4  0.27 0.34 0.15 0.18 0.05 0.00 0.02 0.06
+Blst_6  0.38 0.35 0.11 0.08 0.06 0.02 0.00 0.05
 ```
 
 >>Cronbach's alpha for the campus climate responsiveness subscale was 0.80.  Between the two subscales, it looks as if the responsivenes subscale is more internally consistent. 
@@ -296,7 +289,7 @@ psych::alpha(item_scores_df[c("rBlst_1", "Blst_4", "Blst_6")])
 
 ### Evaluating Univariate Normality
 
-Statistics like ANOVA and regression each have a set of assumptions about the distributional characteristics of the data. In most of the chapters in this OER we review those assumptions and how to evaluate them.  Common across many statistics is the requirement of univariate and multivariate normality.  Let's take a look at the variables we will use in our analysis and assess those.
+Statistics like ANOVA and regression each have a set of assumptions about the distributional characteristics of the data. In most of the chapters in this OER we review those assumptions and how to evaluate them. Common across many statistics is the requirement of univariate and multivariate normality. Let's take a look at the variables we will use in our analysis and assess those.
 
 We can continue to work from the df we uploaded at the beginning of the chapter to do this work. Let's take a quick peek. This df has the item-level data (we used it for the alpha coefficients); the scale and subscale scores; and the two items that assess proportion of instructional staff that are BIPOC and proportion of classmates that are BIPOC.
 
@@ -307,24 +300,54 @@ str(item_scores_df)
 ```
 
 ```
-## 'data.frame':	66 obs. of  17 variables:
-##  $ ID        : int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ iBIPOC_pr : num  0.333 0 0.5 0.333 1 ...
-##  $ cmBlack   : int  0 5 10 6 5 20 0 0 0 4 ...
-##  $ Belong_1  : int  6 4 NA 5 4 5 6 7 6 3 ...
-##  $ Belong_2  : int  6 4 3 3 4 6 6 7 6 3 ...
-##  $ Belong_3  : int  7 6 NA 2 4 5 5 7 6 3 ...
-##  $ Blst_1    : int  5 6 NA 2 6 5 5 5 5 3 ...
-##  $ Blst_2    : int  3 6 5 2 1 1 4 4 3 5 ...
-##  $ Blst_3    : int  5 2 2 2 1 1 4 3 1 2 ...
-##  $ Blst_4    : int  2 2 2 2 1 2 4 3 2 3 ...
-##  $ Blst_5    : int  2 4 NA 2 1 1 4 4 1 3 ...
-##  $ Blst_6    : int  2 1 2 2 1 2 4 3 2 3 ...
-##  $ rBlst_1   : num  3 2 NA 6 2 3 3 3 3 5 ...
-##  $ Belonging : num  6.33 4.67 NA 3.33 4 5.33 5.67 7 6 3 ...
-##  $ ResponseBL: num  2.33 1.67 2 3.33 1.33 2.33 3.67 3 2.33 3.67 ...
-##  $ StigmaBL  : num  3.33 4 3.5 2 1 1 4 3.67 1.67 3.33 ...
-##  $ ClimateBL : num  2.83 2.83 NA 2.67 1.17 1.67 3.83 3.33 2 3.5 ...
+Classes 'tbl_df', 'tbl' and 'data.frame':	66 obs. of  17 variables:
+ $ ID        : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ iBIPOC_pr : num  0.333 0 0.5 0.333 1 ...
+ $ cmBlack   : num  0 5 10 6 5 20 0 0 0 4 ...
+  ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - Black"
+  .. ..- attr(*, "names")= chr "Race_1"
+ $ Belong_1  : num  6 4 NA 5 4 5 6 7 6 3 ...
+  ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__
+  .. ..- attr(*, "names")= chr "Belong_1"
+ $ Belong_2  : num  6 4 3 3 4 6 6 7 6 3 ...
+  ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__
+  .. ..- attr(*, "names")= chr "Belong_2"
+ $ Belong_3  : num  7 6 NA 2 4 5 5 7 6 3 ...
+  ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__
+  .. ..- attr(*, "names")= chr "Belong_3"
+ $ Blst_1    : num  5 6 NA 2 6 5 5 5 5 3 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_1"
+ $ Blst_2    : num  3 6 5 2 1 1 4 4 3 5 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_2"
+ $ Blst_3    : num  5 2 2 2 1 1 4 3 1 2 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_3"
+ $ Blst_4    : num  2 2 2 2 1 2 4 3 2 3 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_4"
+ $ Blst_5    : num  2 4 NA 2 1 1 4 4 1 3 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_5"
+ $ Blst_6    : num  2 1 2 2 1 2 4 3 2 3 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_6"
+ $ rBlst_1   : num  3 2 NA 6 2 3 3 3 3 5 ...
+  ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
+  .. ..- attr(*, "names")= chr "Blst_1"
+ $ Belonging : num  6.33 4.67 NA 3.33 4 5.33 5.67 7 6 3 ...
+ $ ResponseBL: num  2.33 1.67 2 3.33 1.33 2.33 3.67 3 2.33 3.67 ...
+ $ StigmaBL  : num  3.33 4 3.5 2 1 1 4 3.67 1.67 3.33 ...
+ $ ClimateBL : num  2.83 2.83 NA 2.67 1.17 1.67 3.83 3.33 2 3.5 ...
+ - attr(*, "column_map")=Classes 'tbl_df', 'tbl' and 'data.frame':	182 obs. of  7 variables:
+  ..$ qname      : chr [1:182] "StartDate" "EndDate" "Status" "Progress" ...
+  ..$ description: chr [1:182] "Start Date" "End Date" "Response Type" "Progress" ...
+  ..$ main       : chr [1:182] "Start Date" "End Date" "Response Type" "Progress" ...
+  ..$ sub        : chr [1:182] "" "" "" "" ...
+  ..$ ImportId   : chr [1:182] "startDate" "endDate" "status" "progress" ...
+  ..$ timeZone   : chr [1:182] "America/Los_Angeles" "America/Los_Angeles" NA NA ...
+  ..$ choiceId   : chr [1:182] NA NA NA NA ...
 ```
 The difference between "int" (integer) and "num" (numerical) is that integers are limited to whole numbers. For the statistics used in this lesson, both are acceptable formats for the variables.
 
@@ -346,16 +369,16 @@ descriptives
 ```
 
 ```
-##           vars  n mean   sd median trimmed  mad min   max range skew kurtosis
-## iBIPOC_pr    1 64 0.35 0.39   0.25    0.32 0.37   0  1.00  1.00 0.64    -1.05
-## cmBlack      2 66 8.20 8.02   5.50    7.24 8.15   0 30.00 30.00 0.95     0.05
-## Belonging    3 64 4.03 1.47   4.00    4.03 1.48   1  7.00  6.00 0.03    -0.76
-## ClimateBL    4 61 2.48 1.09   2.33    2.41 0.99   1  5.67  4.67 0.56     0.04
-##             se
-## iBIPOC_pr 0.05
-## cmBlack   0.99
-## Belonging 0.18
-## ClimateBL 0.14
+          vars  n mean   sd median trimmed  mad min   max range skew kurtosis
+iBIPOC_pr    1 64 0.35 0.39   0.25    0.32 0.37   0  1.00  1.00 0.64    -1.05
+cmBlack      2 66 8.20 8.02   5.50    7.24 8.15   0 30.00 30.00 0.95     0.05
+Belonging    3 64 4.03 1.47   4.00    4.03 1.48   1  7.00  6.00 0.03    -0.76
+ClimateBL    4 61 2.48 1.09   2.33    2.41 0.99   1  5.67  4.67 0.56     0.04
+            se
+iBIPOC_pr 0.05
+cmBlack   0.99
+Belonging 0.18
+ClimateBL 0.14
 ```
 
 ```r
@@ -377,11 +400,11 @@ shapiro.test(item_scores_df$cmBlack)
 ```
 
 ```
-## 
-## 	Shapiro-Wilk normality test
-## 
-## data:  item_scores_df$cmBlack
-## W = 0.87796, p-value = 9.899e-06
+
+	Shapiro-Wilk normality test
+
+data:  item_scores_df$cmBlack
+W = 0.87796, p-value = 0.000009899
 ```
 
 ```r
@@ -389,11 +412,11 @@ shapiro.test(item_scores_df$iBIPOC_pr)
 ```
 
 ```
-## 
-## 	Shapiro-Wilk normality test
-## 
-## data:  item_scores_df$iBIPOC_pr
-## W = 0.78725, p-value = 3.181e-08
+
+	Shapiro-Wilk normality test
+
+data:  item_scores_df$iBIPOC_pr
+W = 0.78725, p-value = 0.00000003181
 ```
 
 ```r
@@ -401,11 +424,11 @@ shapiro.test(item_scores_df$Belonging)
 ```
 
 ```
-## 
-## 	Shapiro-Wilk normality test
-## 
-## data:  item_scores_df$Belonging
-## W = 0.97262, p-value = 0.1654
+
+	Shapiro-Wilk normality test
+
+data:  item_scores_df$Belonging
+W = 0.97262, p-value = 0.1654
 ```
 
 ```r
@@ -413,17 +436,12 @@ shapiro.test(item_scores_df$ClimateBL)
 ```
 
 ```
-## 
-## 	Shapiro-Wilk normality test
-## 
-## data:  item_scores_df$ClimateBL
-## W = 0.95102, p-value = 0.01613
+
+	Shapiro-Wilk normality test
+
+data:  item_scores_df$ClimateBL
+W = 0.95102, p-value = 0.01613
 ```
-CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:  
-
->>Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 10 (kurtosis) that Kline suggests are concerning [-@kline_principles_2016]. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black ($W = 0.878, p < 0.001$) and the proportion of BIPOC instructional staff($W = 0.787, p < 0.001$) are statistically significantly different than a normal distribution. The scales assessing the respondent's belonging ($0.973, p = 0.165$) and the respondent's perception of campus climate for Black students ($W = 0.951, p = 0.016$) did not differ differently from a normal distribution.
-
-What would we do in the case of a univariate outlier? I find Kline's [-@kline_principles_2016] chapter on data preparation and management to be extremely useful. He provides ideas for more complex analysis of both univariate and multivariate normality and provides suggestions that range from recoding an extreme value to the next most extreme that is within three standard deviations of the mean to more complicated transformations. First, though we need to further examine the relationships between variables.  We do that, next.
 
 ### Pairs Panels
 
@@ -441,9 +459,15 @@ psych::pairs.panels(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging",
     "ClimateBL")], stars = TRUE, lm = TRUE)
 ```
 
-![](03-DataDx_files/figure-docx/unnamed-chunk-10-1.png)<!-- -->
+![](03-DataDx_files/figure-docx/unnamed-chunk-11-1.png)<!-- -->
 
 The histograms displayed in the diagonal graph for us what we learned from the Shapiro Wilk's test of normality.  We can clearly see the non-normal distribution in the iBIPOC_pr and cmBlack variables.
+
+CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:  
+
+>>Regarding the distributional characteristics of the data, skew and kurtosis values of the variables fell below the values of 3 (skew) and 10 (kurtosis) that Kline suggests are concerning [-@kline_principles_2016]. Results of the Shapiro-Wilk test of normality indicate that our variables assessing the proportion of classmates who are Black ($W = 0.878, p < 0.001$) and the proportion of BIPOC instructional staff($W = 0.787, p < 0.001$) are statistically significantly different than a normal distribution. Similarly the scale assessing the respondent's perception of campus climate for Black students ($W = 0.951, p = 0.016$) differed significantly from a normal distribution. In all three cases the skew values and histograms suggested a somewhat positive skew. That is, there were predominantly low proportions of instructional staff who are BIPOC and classmates who are Black, and the perceptions of campus climate for Black students was evaluated somewhat favorably. The scales assessing the respondent's belonging ($0.973, p = 0.165$) did not differ significantly from a normal distribution. 
+
+What would we do in the case of a univariate outlier? I find Kline's [-@kline_principles_2016] chapter on data preparation and management to be extremely useful. He provides ideas for more complex analysis of both univariate and multivariate normality and provides suggestions that range from recoding an extreme value to the next most extreme that is within three standard deviations of the mean to more complicated transformations. First, though we need to further examine the relationships between variables.  We do that, next.
 
 
 ## Evaluating Multivariate Normality
@@ -462,7 +486,7 @@ item_scores_df$Mahal <- psych::outlier(item_scores_df[c("iBIPOC_pr", "cmBlack",
     "Belonging", "ClimateBL")])
 ```
 
-![](03-DataDx_files/figure-docx/unnamed-chunk-11-1.png)<!-- -->
+![](03-DataDx_files/figure-docx/unnamed-chunk-12-1.png)<!-- -->
 
 Q-Q plots take your sample data, sort it in ascending order, and then plot them versus quantiles (the number varies; you can see it on the X axis) calculated from a theoretical distribution. The number of quantiles is selected to match the size of your sample data. While Normal Q-Q Plots are the ones most often used in practice due to so many statistical methods assuming normality, Q-Q Plots can actually be created for any distribution. To the degree that the plotted line stays on the straight line (representing the theoretical normal distribution), the data is multivariate normally distributed.
 
@@ -474,8 +498,8 @@ psych::describe(item_scores_df$Mahal)
 ```
 
 ```
-##    vars  n mean   sd median trimmed  mad min   max range skew kurtosis   se
-## X1    1 66 3.81 2.24   3.68    3.62 2.36 0.2 11.25 11.05 0.86     0.82 0.28
+   vars  n mean   sd median trimmed  mad min   max range skew kurtosis   se
+X1    1 66 3.81 2.24   3.68    3.62 2.36 0.2 11.25 11.05 0.86     0.82 0.28
 ```
 
 Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median.  In fact, we can have these noted in a column in the dataframe.
@@ -493,27 +517,18 @@ head(item_scores_df)
 ```
 
 ```
-##   ID iBIPOC_pr cmBlack Belong_1 Belong_2 Belong_3 Blst_1 Blst_2 Blst_3 Blst_4
-## 1  1 0.3333333       0        6        6        7      5      3      5      2
-## 2  2 0.0000000       5        4        4        6      6      6      2      2
-## 3  3 0.5000000      10       NA        3       NA     NA      5      2      2
-## 4  4 0.3333333       6        5        3        2      2      2      2      2
-## 5  5 1.0000000       5        4        4        4      6      1      1      1
-## 6  6 0.0000000      20        5        6        5      5      1      1      2
-##   Blst_5 Blst_6 rBlst_1 Belonging ResponseBL StigmaBL ClimateBL     Mahal
-## 1      2      2       3      6.33       2.33     3.33      2.83 3.1826820
-## 2      4      1       2      4.67       1.67     4.00      2.83 1.0923648
-## 3     NA      2      NA        NA       2.00     3.50        NA 0.1979919
-## 4      2      2       6      3.33       3.33     2.00      2.67 0.3505949
-## 5      1      1       2      4.00       1.33     1.00      1.17 3.8711215
-## 6      1      2       3      5.33       2.33     1.00      1.67 4.8818622
-##   MOutlier
-## 1    FALSE
-## 2    FALSE
-## 3    FALSE
-## 4    FALSE
-## 5    FALSE
-## 6    FALSE
+# A tibble: 6 × 19
+     ID iBIPOC_pr cmBlack Belong_1 Belong_2 Belong_3 Blst_1 Blst_2 Blst_3 Blst_4
+  <int>     <dbl>   <dbl>    <dbl>    <dbl>    <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
+1     1     0.333       0        6        6        7      5      3      5      2
+2     2     0           5        4        4        6      6      6      2      2
+3     3     0.5        10       NA        3       NA     NA      5      2      2
+4     4     0.333       6        5        3        2      2      2      2      2
+5     5     1           5        4        4        4      6      1      1      1
+6     6     0          20        5        6        5      5      1      1      2
+# ℹ 9 more variables: Blst_5 <dbl>, Blst_6 <dbl>, rBlst_1 <dbl>,
+#   Belonging <dbl>, ResponseBL <dbl>, StigmaBL <dbl>, ClimateBL <dbl>,
+#   Mahal <dbl>, MOutlier <lgl>
 ```
 
 
@@ -522,16 +537,16 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
 ```r
@@ -544,9 +559,9 @@ nrow(item_scores_df) - OutlierCount
 ```
 
 ```
-##   MOutlier  n
-## 1       66  1
-## 2       65 65
+  MOutlier  n
+1       66  1
+2       65 65
 ```
 When we identify outliers we often ask if we should delete them or transform the data. A general rule of thumb is to look for "jumps" in the Mahalanobis distance values. If they are progressing steadily and there is no "jump," researchers will often retain the outliers.
 
@@ -597,27 +612,27 @@ summary(Climate_fit)
 ```
 
 ```
-## 
-## Call:
-## lm(formula = ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.86732 -0.80535  0.02355  0.70459  3.02003 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  2.90791    0.46653   6.233 6.74e-08 ***
-## Belonging   -0.01742    0.09643  -0.181    0.857    
-## cmBlack     -0.01918    0.01717  -1.117    0.269    
-## iBIPOC_pr   -0.64125    0.35701  -1.796    0.078 .  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 1.066 on 55 degrees of freedom
-##   (7 observations deleted due to missingness)
-## Multiple R-squared:  0.08212,	Adjusted R-squared:  0.03206 
-## F-statistic:  1.64 on 3 and 55 DF,  p-value: 0.1906
+
+Call:
+lm(formula = ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.86732 -0.80535  0.02355  0.70459  3.02003 
+
+Coefficients:
+            Estimate Std. Error t value     Pr(>|t|)    
+(Intercept)  2.90791    0.46653   6.233 0.0000000674 ***
+Belonging   -0.01742    0.09643  -0.181        0.857    
+cmBlack     -0.01918    0.01717  -1.117        0.269    
+iBIPOC_pr   -0.64125    0.35701  -1.796        0.078 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.066 on 55 degrees of freedom
+  (7 observations deleted due to missingness)
+Multiple R-squared:  0.08212,	Adjusted R-squared:  0.03206 
+F-statistic:  1.64 on 3 and 55 DF,  p-value: 0.1906
 ```
 ### Results
 
@@ -630,32 +645,32 @@ apaTables::apa.cor.table(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging",
 ```
 
 ```
-## 
-## 
-## Table 1 
-## 
-## Means, standard deviations, and correlations with confidence intervals
-##  
-## 
-##   Variable     M    SD   1           2           3          
-##   1. iBIPOC_pr 0.35 0.39                                    
-##                                                             
-##   2. cmBlack   8.20 8.02 .07                                
-##                          [-.18, .31]                        
-##                                                             
-##   3. Belonging 4.03 1.47 .01         -.13                   
-##                          [-.24, .26] [-.36, .12]            
-##                                                             
-##   4. ClimateBL 2.48 1.09 -.25        -.17        -.04       
-##                          [-.47, .01] [-.41, .08] [-.29, .22]
-##                                                             
-## 
-## Note. M and SD are used to represent mean and standard deviation, respectively.
-## Values in square brackets indicate the 95% confidence interval.
-## The confidence interval is a plausible range of population correlations 
-## that could have caused the sample correlation (Cumming, 2014).
-##  * indicates p < .05. ** indicates p < .01.
-## 
+
+
+Table 1 
+
+Means, standard deviations, and correlations with confidence intervals
+ 
+
+  Variable     M    SD   1           2           3          
+  1. iBIPOC_pr 0.35 0.39                                    
+                                                            
+  2. cmBlack   8.20 8.02 .07                                
+                         [-.18, .31]                        
+                                                            
+  3. Belonging 4.03 1.47 .01         -.13                   
+                         [-.24, .26] [-.36, .12]            
+                                                            
+  4. ClimateBL 2.48 1.09 -.25        -.17        -.04       
+                         [-.47, .01] [-.41, .08] [-.29, .22]
+                                                            
+
+Note. M and SD are used to represent mean and standard deviation, respectively.
+Values in square brackets indicate the 95% confidence interval.
+The confidence interval is a plausible range of population correlations 
+that could have caused the sample correlation (Cumming, 2014).
+ * indicates p < .05. ** indicates p < .01.
+ 
 ```
 
 
@@ -665,36 +680,36 @@ apaTables::apa.reg.table(Climate_fit, table.number = 2, filename = "Climate_tabl
 ```
 
 ```
-## 
-## 
-## Table 2 
-## 
-## Regression results using ClimateBL as the criterion
-##  
-## 
-##    Predictor      b      b_95%_CI  beta   beta_95%_CI sr2  sr2_95%_CI    r
-##  (Intercept) 2.91**  [1.97, 3.84]                                         
-##    Belonging  -0.02 [-0.21, 0.18] -0.02 [-0.28, 0.24] .00 [-.01, .01] -.00
-##      cmBlack  -0.02 [-0.05, 0.02] -0.15 [-0.41, 0.12] .02 [-.05, .09] -.17
-##    iBIPOC_pr  -0.64 [-1.36, 0.07] -0.23 [-0.49, 0.03] .05 [-.06, .16] -.25
-##                                                                           
-##                                                                           
-##                                                                           
-##              Fit
-##                 
-##                 
-##                 
-##                 
-##        R2 = .082
-##  95% CI[.00,.20]
-##                 
-## 
-## Note. A significant b-weight indicates the beta-weight and semi-partial correlation are also significant.
-## b represents unstandardized regression weights. beta indicates the standardized regression weights. 
-## sr2 represents the semi-partial correlation squared. r represents the zero-order correlation.
-## Square brackets are used to enclose the lower and upper limits of a confidence interval.
-## * indicates p < .05. ** indicates p < .01.
-## 
+
+
+Table 2 
+
+Regression results using ClimateBL as the criterion
+ 
+
+   Predictor      b      b_95%_CI  beta   beta_95%_CI sr2  sr2_95%_CI    r
+ (Intercept) 2.91**  [1.97, 3.84]                                         
+   Belonging  -0.02 [-0.21, 0.18] -0.02 [-0.28, 0.24] .00 [-.01, .01] -.00
+     cmBlack  -0.02 [-0.05, 0.02] -0.15 [-0.41, 0.12] .02 [-.05, .09] -.17
+   iBIPOC_pr  -0.64 [-1.36, 0.07] -0.23 [-0.49, 0.03] .05 [-.06, .16] -.25
+                                                                          
+                                                                          
+                                                                          
+             Fit
+                
+                
+                
+                
+       R2 = .082
+ 95% CI[.00,.20]
+                
+
+Note. A significant b-weight indicates the beta-weight and semi-partial correlation are also significant.
+b represents unstandardized regression weights. beta indicates the standardized regression weights. 
+sr2 represents the semi-partial correlation squared. r represents the zero-order correlation.
+Square brackets are used to enclose the lower and upper limits of a confidence interval.
+* indicates p < .05. ** indicates p < .01.
+ 
 ```
 
 ## Practice Problems
@@ -721,9 +736,9 @@ If you chose this option in the prior chapter, you used raw data that was availa
 |:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
 |1. Calculate alpha coefficients for scales/subscales.                                         |      5         |    _____     |    
 |2. Evaluate univariate normality (skew, kurtosis, Shapiro-Wilks).                             |      5         |    _____     |
-|3. Evaluate multivarite normality (Mahalanobis test)                                          |      5         |    _____     |
+|3. Evaluate multivariate normality (Mahalanobis test)                                          |      5        |    _____     |
 |4. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)|      5         |    _____     |  
-|5. Conduct a quick analysis (e.g., regression, ANOVA) including at least three variables      |      5         |    _____     |    
+|5. Conduct a quick analysis (e.g., regression, ANOVA) including at least three predictor variables|      5     |    _____     |    
 |6. Explanation to grader                                                                      |      5         |    _____     |   
 |**Totals**                                                                                    |      30        |    _____     |               
                                                                                                                     
@@ -769,7 +784,7 @@ nrow(raw)
 ```
 
 ```
-## [1] 310
+[1] 310
 ```
 
 #### Include only those who consented {-} 
@@ -800,7 +815,7 @@ nrow(raw)
 ```
 
 ```
-## [1] 84
+[1] 84
 ```
 
 #### Rename variables to be sensible and systematic {-} 
@@ -833,7 +848,7 @@ scrub_df <- (dplyr::select(raw, deID, StatsPkg, Centering, ClearResponsibilities
 
 #### Provide an APA style write-up of these preliminary steps {-} 
 
->>This is a secondary analysis of data involved in a more comprehensive dataset that included students taking multiple statistics courses (*N* = 310). Having retrieved this data from a repository in the Open Science Framework, only those who consented to participation in the study were included. Data used in these analyses were 84 students who completed the multivariate clas. 
+>>This is a secondary analysis of data involved in a more comprehensive dataset that included students taking multiple statistics courses (*N* = 310). Having retrieved this data from a repository in the Open Science Framework, only those who consented to participation in the study were included. Data used in these analyses were 84 students who completed the multivariate class. 
 
 ### Scoring
 
@@ -850,7 +865,7 @@ str(scrub_df$StatsPkg)
 ```
 
 ```
-##  Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
+ Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
 ```
 
 #### Proper formatting of item(s) in your second predictor variable  {-} 
@@ -866,7 +881,7 @@ str(scrub_df$Centering)
 ```
 
 ```
-##  Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
 ```
 
 #### Proper formatting of the item(s) in your third predictor variable {-} 
@@ -875,25 +890,26 @@ str(scrub_df$Centering)
 The third predictor variable is traditional pedagogy. The dependent variable is socially repsonsive pedagogy. The items that will be used in the scale scores for both of these variables are all continuously scaled and should be identified as "int" or "num." None of the items need to be reverse-scored.
 
 
+
 ```r
 str(scrub_df)
 ```
 
 ```
-## Classes 'data.table' and 'data.frame':	84 obs. of  12 variables:
-##  $ deID                 : int  11 12 13 14 15 16 17 18 35 19 ...
-##  $ StatsPkg             : Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ ClearResponsibilities: int  4 5 5 5 4 3 5 5 3 5 ...
-##  $ EffectiveAnswers     : int  4 5 5 4 4 3 5 5 4 4 ...
-##  $ Feedback             : int  4 5 4 4 5 4 5 4 4 5 ...
-##  $ ClearOrganization    : int  3 5 5 4 4 3 5 5 4 5 ...
-##  $ ClearPresentation    : int  4 5 5 3 4 2 5 4 5 5 ...
-##  $ InclusvClassrm       : int  5 5 5 5 5 4 5 5 5 5 ...
-##  $ EquitableEval        : int  4 5 5 5 4 4 5 4 5 5 ...
-##  $ MultPerspectives     : int  4 5 5 5 5 5 5 4 5 5 ...
-##  $ DEIintegration       : int  5 5 5 5 5 5 5 5 5 5 ...
-##  - attr(*, ".internal.selfref")=<externalptr>
+Classes 'data.table' and 'data.frame':	84 obs. of  12 variables:
+ $ deID                 : int  11 12 13 14 15 16 17 18 35 19 ...
+ $ StatsPkg             : Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
+ $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ ClearResponsibilities: int  4 5 5 5 4 3 5 5 3 5 ...
+ $ EffectiveAnswers     : int  4 5 5 4 4 3 5 5 4 4 ...
+ $ Feedback             : int  4 5 4 4 5 4 5 4 4 5 ...
+ $ ClearOrganization    : int  3 5 5 4 4 3 5 5 4 5 ...
+ $ ClearPresentation    : int  4 5 5 3 4 2 5 4 5 5 ...
+ $ InclusvClassrm       : int  5 5 5 5 5 4 5 5 5 5 ...
+ $ EquitableEval        : int  4 5 5 5 4 4 5 4 5 5 ...
+ $ MultPerspectives     : int  4 5 5 5 5 5 5 4 5 5 ...
+ $ DEIintegration       : int  5 5 5 5 5 5 5 5 5 5 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
 ```
 
 #### Evaluate and interpret item-level missingness {-} 
@@ -924,8 +940,8 @@ psych::describe(scrub_df$prop_miss)
 ```
 
 ```
-##    vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
-## X1    1 84 2.38 6.17      0    0.94   0   0 36.36 36.36 3.29    12.33 0.67
+   vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
+X1    1 84 2.38 6.17      0    0.94   0   0 36.36 36.36 3.29    12.33 0.67
 ```
 Because I want to use the AIA approach to scoring, I'm not willing to filter out any cases yet. If I wanted to eliminate cases with egregious missing (i.e., like 90%), here is the code I would use:
 
@@ -939,7 +955,7 @@ CUMULATIVE CAPTURE FOR WRITING IT UP:
 
 >>Across cases that were deemed eligible on the basis of the inclusion/exclusion criteria, missingness ranged from 0 to 36%.
 
-To analyze missingness at this level, we need a df that has only the variables of interest.  That is, variables like *ID* and the *prop_miss* and *nmiss* variables we created will interfere with an accurate assessment of missingness. I will update our df to eliminate these.  
+To analyze missingness at the item level, we need a df that has only the variables of interest.  That is, variables like *ID* and the *prop_miss* and *nmiss* variables we created will interfere with an accurate assessment of missingness. I will update our df to eliminate these.  
 
 
 ```r
@@ -960,7 +976,7 @@ formattable::percent(mean(is.na(ItemMiss_df)))
 ```
 
 ```
-## [1] 2.38%
+[1] 2.38%
 ```
 
 ```r
@@ -969,7 +985,7 @@ formattable::percent(mean(complete.cases(ItemMiss_df)))
 ```
 
 ```
-## [1] 82.14%
+[1] 82.14%
 ```
 
 CUMULATIVE CAPTURE FOR WRITING IT UP: 
@@ -1032,7 +1048,7 @@ ScoredCaseMiss
 ```
 
 ```
-## [1] 84
+[1] 84
 ```
 
 Before we start our formal analysis of missingness at the scale level, let's continue to scrub by eliminating cases that will have too much missingness. In the script below we create a variable that counts the number of missing variables and then creates a proportion by dividing it by the number of total variables.
@@ -1058,8 +1074,8 @@ psych::describe(scored$prop_miss)
 ```
 
 ```
-##    vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
-## X1    1 84 0.79 4.41      0       0   0   0 33.33 33.33 5.89    36.31 0.48
+   vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
+X1    1 84 0.79 4.41      0       0   0   0 33.33 33.33 5.89    36.31 0.48
 ```
 CUMULATIVE CAPTURE FOR WRITING IT UP:  
 
@@ -1073,7 +1089,7 @@ We need to decide what is our retention threshhold. Twenty percent seems to be a
 ```r
 # update df to have only those with at least 20% of complete data
 # (this is an arbitrary decision)
-scored <- filter(scored, prop_miss <= 20)
+scored <- dplyr::filter(scored, prop_miss <= 20)
 
 # the variable selection just lops off the proportion missing
 scored <- (select(scored, StatsPkg:SRPed))
@@ -1083,7 +1099,7 @@ nrow(scored)
 ```
 
 ```
-## [1] 83
+[1] 83
 ```
 
 CUMULATIVE CAPTURE FOR WRITING IT UP:  
@@ -1104,7 +1120,7 @@ formattable::percent(mean(is.na(scored)))
 ```
 
 ```
-## [1] 0.60%
+[1] 0.60%
 ```
 
 ```r
@@ -1113,7 +1129,7 @@ formattable::percent(mean(complete.cases(scored)))
 ```
 
 ```
-## [1] 97.59%
+[1] 97.59%
 ```
 
 CUMULATIVE CAPTURE FOR WRITING IT UP: 
@@ -1133,17 +1149,17 @@ The corresponding figure shows non-missing data in blue; missing data in red.
 mice_ScaleLvl <- mice::md.pattern(scored, plot = TRUE, rotate.names = TRUE)
 ```
 
-![](03-DataDx_files/figure-docx/unnamed-chunk-42-1.png)<!-- -->
+![](03-DataDx_files/figure-docx/unnamed-chunk-43-1.png)<!-- -->
 
 ```r
 mice_ScaleLvl
 ```
 
 ```
-##    StatsPkg Centering TradPed SRPed  
-## 81        1         1       1     1 0
-## 2         1         1       1     0 1
-##           0         0       0     2 2
+   StatsPkg Centering TradPed SRPed  
+81        1         1       1     1 0
+2         1         1       1     0 1
+          0         0       0     2 2
 ```
 
 There are *2* rows of data because there are only *2* patterns of missingness. The most common pattern is non-missing data (*n* = 81). Two cases are missing the SRPed variable. If our statistical choice uses listwise deletion (i.e., the case is eliminated if one or more variables in the model has missing data), our sample size will be 79. As we will earn in later chapters, there are alternatives (i.e., specifying a FIML option in analyses that use maximum likelihood estimators) that can use all of the cases -- even those with missing data. 
@@ -1170,48 +1186,48 @@ psych::alpha(scrub_df[c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
 ```
 
 ```
-## 
-## Reliability analysis   
-## Call: psych::alpha(x = scrub_df[c("ClearResponsibilities", "EffectiveAnswers", 
-##     "Feedback", "ClearOrganization", "ClearPresentation")])
-## 
-##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
-##       0.87      0.88    0.87      0.59 7.2 0.022  4.3 0.72     0.58
-## 
-##     95% confidence boundaries 
-##          lower alpha upper
-## Feldt     0.83  0.87  0.91
-## Duhachek  0.83  0.87  0.92
-## 
-##  Reliability if an item is dropped:
-##                       raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
-## ClearResponsibilities      0.84      0.84    0.82      0.57 5.3    0.029 0.0110
-## EffectiveAnswers           0.84      0.84    0.81      0.57 5.2    0.029 0.0088
-## Feedback                   0.87      0.87    0.86      0.64 7.0    0.023 0.0053
-## ClearOrganization          0.86      0.86    0.83      0.60 6.1    0.025 0.0067
-## ClearPresentation          0.83      0.84    0.81      0.57 5.3    0.030 0.0074
-##                       med.r
-## ClearResponsibilities  0.55
-## EffectiveAnswers       0.58
-## Feedback               0.63
-## ClearOrganization      0.59
-## ClearPresentation      0.57
-## 
-##  Item statistics 
-##                        n raw.r std.r r.cor r.drop mean   sd
-## ClearResponsibilities 83  0.85  0.85  0.80   0.74  4.5 0.87
-## EffectiveAnswers      84  0.84  0.85  0.82   0.76  4.4 0.79
-## Feedback              82  0.74  0.75  0.65   0.60  4.3 0.81
-## ClearOrganization     84  0.82  0.80  0.74   0.68  4.1 1.04
-## ClearPresentation     84  0.85  0.85  0.81   0.76  4.2 0.87
-## 
-## Non missing response frequency for each item
-##                          1    2    3    4    5 miss
-## ClearResponsibilities 0.01 0.05 0.04 0.27 0.64 0.01
-## EffectiveAnswers      0.02 0.00 0.05 0.40 0.52 0.00
-## Feedback              0.01 0.01 0.11 0.38 0.49 0.02
-## ClearOrganization     0.04 0.07 0.07 0.43 0.39 0.00
-## ClearPresentation     0.01 0.06 0.04 0.46 0.43 0.00
+
+Reliability analysis   
+Call: psych::alpha(x = scrub_df[c("ClearResponsibilities", "EffectiveAnswers", 
+    "Feedback", "ClearOrganization", "ClearPresentation")])
+
+  raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
+      0.87      0.88    0.87      0.59 7.2 0.022  4.3 0.72     0.58
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.83  0.87  0.91
+Duhachek  0.83  0.87  0.92
+
+ Reliability if an item is dropped:
+                      raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
+ClearResponsibilities      0.84      0.84    0.82      0.57 5.3    0.029 0.0110
+EffectiveAnswers           0.84      0.84    0.81      0.57 5.2    0.029 0.0088
+Feedback                   0.87      0.87    0.86      0.64 7.0    0.023 0.0053
+ClearOrganization          0.86      0.86    0.83      0.60 6.1    0.025 0.0067
+ClearPresentation          0.83      0.84    0.81      0.57 5.3    0.030 0.0074
+                      med.r
+ClearResponsibilities  0.55
+EffectiveAnswers       0.58
+Feedback               0.63
+ClearOrganization      0.59
+ClearPresentation      0.57
+
+ Item statistics 
+                       n raw.r std.r r.cor r.drop mean   sd
+ClearResponsibilities 83  0.85  0.85  0.80   0.74  4.5 0.87
+EffectiveAnswers      84  0.84  0.85  0.82   0.76  4.4 0.79
+Feedback              82  0.74  0.75  0.65   0.60  4.3 0.81
+ClearOrganization     84  0.82  0.80  0.74   0.68  4.1 1.04
+ClearPresentation     84  0.85  0.85  0.81   0.76  4.2 0.87
+
+Non missing response frequency for each item
+                         1    2    3    4    5 miss
+ClearResponsibilities 0.01 0.05 0.04 0.27 0.64 0.01
+EffectiveAnswers      0.02 0.00 0.05 0.40 0.52 0.00
+Feedback              0.01 0.01 0.11 0.38 0.49 0.02
+ClearOrganization     0.04 0.07 0.07 0.43 0.39 0.00
+ClearPresentation     0.01 0.06 0.04 0.46 0.43 0.00
 ```
 >>Cronbach's alpha for the traditional pedagogy scale was 0.88.
 
@@ -1224,55 +1240,55 @@ psych::alpha(scrub_df[c("InclusvClassrm", "EquitableEval", "DEIintegration",
 ```
 
 ```
-## Warning in cor.smooth(r): Matrix was not positive definite, smoothing was done
+Warning in cor.smooth(r): Matrix was not positive definite, smoothing was done
 ```
 
 ```
-## In smc, smcs < 0 were set to .0
-## In smc, smcs < 0 were set to .0
-## In smc, smcs < 0 were set to .0
-## In smc, smcs < 0 were set to .0
+In smc, smcs < 0 were set to .0
+In smc, smcs < 0 were set to .0
+In smc, smcs < 0 were set to .0
+In smc, smcs < 0 were set to .0
 ```
 
 ```
-## 
-## Reliability analysis   
-## Call: psych::alpha(x = scrub_df[c("InclusvClassrm", "EquitableEval", 
-##     "DEIintegration", "DEIintegration")])
-## 
-##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
-##       0.85      0.85     0.7      0.58 5.6 0.025  4.5 0.62     0.55
-## 
-##     95% confidence boundaries 
-##          lower alpha upper
-## Feldt     0.79  0.85   0.9
-## Duhachek  0.80  0.85   0.9
-## 
-##  Reliability if an item is dropped:
-##                  raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
-## InclusvClassrm        0.84      0.83    0.58      0.61 4.8    0.027 0.1115
-## EquitableEval         0.88      0.88    0.63      0.71 7.3    0.025 0.0640
-## DEIintegration        0.74      0.75    0.68      0.50 3.1    0.046 0.0054
-## DEIintegration.1      0.74      0.75    0.68      0.50 3.1    0.046 0.0054
-##                  med.r
-## InclusvClassrm    0.42
-## EquitableEval     0.56
-## DEIintegration    0.53
-## DEIintegration.1  0.53
-## 
-##  Item statistics 
-##                   n raw.r std.r r.cor r.drop mean   sd
-## InclusvClassrm   80  0.85  0.80  0.75   0.62  4.6 0.72
-## EquitableEval    84  0.71  0.72  0.60   0.51  4.7 0.50
-## DEIintegration   70  0.96  0.90  0.71   0.85  4.5 0.79
-## DEIintegration.1 70  0.96  0.90  0.71   0.85  4.5 0.79
-## 
-## Non missing response frequency for each item
-##                     1    3    4    5 miss
-## InclusvClassrm   0.01 0.06 0.21 0.71 0.05
-## EquitableEval    0.00 0.01 0.32 0.67 0.00
-## DEIintegration   0.00 0.19 0.17 0.64 0.17
-## DEIintegration.1 0.00 0.19 0.17 0.64 0.17
+
+Reliability analysis   
+Call: psych::alpha(x = scrub_df[c("InclusvClassrm", "EquitableEval", 
+    "DEIintegration", "DEIintegration")])
+
+  raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
+      0.85      0.85     0.7      0.58 5.6 0.025  4.5 0.62     0.55
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.79  0.85   0.9
+Duhachek  0.80  0.85   0.9
+
+ Reliability if an item is dropped:
+                 raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
+InclusvClassrm        0.84      0.83    0.58      0.61 4.8    0.027 0.1115
+EquitableEval         0.88      0.88    0.63      0.71 7.3    0.025 0.0640
+DEIintegration        0.74      0.75    0.68      0.50 3.1    0.046 0.0054
+DEIintegration.1      0.74      0.75    0.68      0.50 3.1    0.046 0.0054
+                 med.r
+InclusvClassrm    0.42
+EquitableEval     0.56
+DEIintegration    0.53
+DEIintegration.1  0.53
+
+ Item statistics 
+                  n raw.r std.r r.cor r.drop mean   sd
+InclusvClassrm   80  0.85  0.80  0.75   0.62  4.6 0.72
+EquitableEval    84  0.71  0.72  0.60   0.51  4.7 0.50
+DEIintegration   70  0.96  0.90  0.71   0.85  4.5 0.79
+DEIintegration.1 70  0.96  0.90  0.71   0.85  4.5 0.79
+
+Non missing response frequency for each item
+                    1    3    4    5 miss
+InclusvClassrm   0.01 0.06 0.21 0.71 0.05
+EquitableEval    0.00 0.01 0.32 0.67 0.00
+DEIintegration   0.00 0.19 0.17 0.64 0.17
+DEIintegration.1 0.00 0.19 0.17 0.64 0.17
 ```
 
 >>Cronbach's alpha for the socially responsive pedagogy scale was 0.85.
@@ -1290,21 +1306,21 @@ psych::describe(scored, type = 1)
 ```
 
 ```
-##            vars  n mean   sd median trimmed  mad  min max range  skew kurtosis
-## StatsPkg*     1 83 1.73 0.44   2.00    1.79 0.00 1.00   2  1.00 -1.06    -0.87
-## Centering*    2 83 1.36 0.48   1.00    1.33 0.00 1.00   2  1.00  0.58    -1.67
-## TradPed       3 83 4.29 0.72   4.40    4.40 0.59 1.20   5  3.80 -1.75     4.49
-## SRPed         4 81 4.51 0.58   4.75    4.60 0.37 2.33   5  2.67 -1.19     1.30
-##              se
-## StatsPkg*  0.05
-## Centering* 0.05
-## TradPed    0.08
-## SRPed      0.06
+           vars  n mean   sd median trimmed  mad  min max range  skew kurtosis
+StatsPkg*     1 83 1.73 0.44   2.00    1.79 0.00 1.00   2  1.00 -1.06    -0.87
+Centering*    2 83 1.36 0.48   1.00    1.33 0.00 1.00   2  1.00  0.58    -1.67
+TradPed       3 83 4.29 0.72   4.40    4.40 0.59 1.20   5  3.80 -1.75     4.49
+SRPed         4 81 4.51 0.58   4.75    4.60 0.37 2.33   5  2.67 -1.19     1.30
+             se
+StatsPkg*  0.05
+Centering* 0.05
+TradPed    0.08
+SRPed      0.06
 ```
 
 When we use the "type=1" argument, the skew and kurtosis indices in the *psych* package can be interpreted according to Kline's [-@kline_data_2016] guidelines. 
 
->>Regarding the distributional characteristics of the data, skew and kurtosis values for our continuously scaled variables fall below the thresholds of concern (i.e., absolute value of 3 for skew; absolute value of 10 for kurtosis) identified by Kline [-@kline_data_2016] as concerning.
+>>Regarding the distributional characteristics of the data, skew and kurtosis values for our continuously scaled variables fall below the thresholds of concern (i.e., absolute value of 3 for skew; absolute value of 10 for kurtosis) identified by Kline [-@kline_data_2016].
 
 Still at the univariate level, we can apply the Shapiro-Wilk test of normality to each of our continuously scaled variables. When the $p$ value is < .05, the variable's distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.
 
@@ -1317,11 +1333,11 @@ shapiro.test(scored$TradPed)
 ```
 
 ```
-## 
-## 	Shapiro-Wilk normality test
-## 
-## data:  scored$TradPed
-## W = 0.83046, p-value = 0.0000000245
+
+	Shapiro-Wilk normality test
+
+data:  scored$TradPed
+W = 0.83046, p-value = 0.0000000245
 ```
 
 ```r
@@ -1329,11 +1345,11 @@ shapiro.test(scored$SRPed)
 ```
 
 ```
-## 
-## 	Shapiro-Wilk normality test
-## 
-## data:  scored$SRPed
-## W = 0.81782, p-value = 0.0000000134
+
+	Shapiro-Wilk normality test
+
+data:  scored$SRPed
+W = 0.81782, p-value = 0.0000000134
 ```
 
 Both variable differ from a normal distribution in a statistically significant way.
@@ -1348,7 +1364,7 @@ Obtaining a quick *psych::pairs.panel* can provide a quick glimpse of the distri
 psych::pairs.panels(scored, stars = TRUE, lm = TRUE)
 ```
 
-![](03-DataDx_files/figure-docx/unnamed-chunk-47-1.png)<!-- -->
+![](03-DataDx_files/figure-docx/unnamed-chunk-48-1.png)<!-- -->
 
 CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:  
 
@@ -1364,7 +1380,7 @@ Multivariate normality can be assessed with the continuously scaled variables. T
 scored$Mahal <- psych::outlier(scored[c("TradPed", "SRPed")])
 ```
 
-![](03-DataDx_files/figure-docx/unnamed-chunk-48-1.png)<!-- -->
+![](03-DataDx_files/figure-docx/unnamed-chunk-49-1.png)<!-- -->
 
 We can analyze the distributional characteristics of the Mahalanobis values with *psych::describe*.
 It is possible, then to analyze the Mahalanobis distance values.
@@ -1375,8 +1391,8 @@ psych::describe(scored$Mahal)
 ```
 
 ```
-##    vars  n mean   sd median trimmed  mad  min   max range skew kurtosis   se
-## X1    1 83 1.97 3.12   1.01    1.27 0.42 0.03 19.61 19.58 3.75    15.87 0.34
+   vars  n mean   sd median trimmed  mad  min   max range skew kurtosis   se
+X1    1 83 1.97 3.12   1.01    1.27 0.42 0.03 19.61 19.58 3.75    15.87 0.34
 ```
 Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median.  In fact, we can have these noted in a column in the dataframe.
 
@@ -1393,13 +1409,13 @@ head(scored)
 ```
 
 ```
-##   StatsPkg Centering TradPed SRPed     Mahal MOutlier
-## 1     SPSS       Pre     4.2    NA 0.0319020    FALSE
-## 2        R       Pre     2.8    NA 8.3615550    FALSE
-## 3        R        Re     3.8   4.5 0.8702516    FALSE
-## 4        R        Re     5.0   5.0 1.0087776    FALSE
-## 5        R        Re     4.8   5.0 0.7363631    FALSE
-## 6        R        Re     4.0   5.0 2.6509906    FALSE
+  StatsPkg Centering TradPed SRPed     Mahal MOutlier
+1     SPSS       Pre     4.2    NA 0.0319020    FALSE
+2        R       Pre     2.8    NA 8.3615550    FALSE
+3        R        Re     3.8   4.5 0.8702516    FALSE
+4        R        Re     5.0   5.0 1.0087776    FALSE
+5        R        Re     4.8   5.0 0.7363631    FALSE
+6        R        Re     4.0   5.0 2.6509906    FALSE
 ```
 
 
@@ -1415,9 +1431,9 @@ nrow(scored) - OutlierCount
 ```
 
 ```
-##   MOutlier  n
-## 1       83  2
-## 2       82 81
+  MOutlier  n
+1       83  2
+2       82 81
 ```
 When we identify outliers we often ask if we should delete them or transform the data. A general rule of thumb is to look for "jumps" in the Mahalanobis distance values. If they are progressing steadily and there is no "jump," researchers will often retain the outliers.
 
@@ -1454,27 +1470,27 @@ summary(SRPed_fit)
 ```
 
 ```
-## 
-## Call:
-## lm(formula = SRPed ~ StatsPkg + Centering + TradPed, data = scored)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.56099 -0.14406  0.01551  0.10594  0.46498 
-## 
-## Coefficients:
-##             Estimate Std. Error t value          Pr(>|t|)    
-## (Intercept)  1.46330    0.34441   4.249 0.000077464849487 ***
-## StatsPkgR    0.13251    0.08056   1.645             0.105    
-## CenteringRe  0.05666    0.07423   0.763             0.448    
-## TradPed      0.68663    0.07365   9.323 0.000000000000332 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.2433 on 59 degrees of freedom
-##   (1 observation deleted due to missingness)
-## Multiple R-squared:  0.6167,	Adjusted R-squared:  0.5972 
-## F-statistic: 31.64 on 3 and 59 DF,  p-value: 0.000000000002547
+
+Call:
+lm(formula = SRPed ~ StatsPkg + Centering + TradPed, data = scored)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.56099 -0.14406  0.01551  0.10594  0.46498 
+
+Coefficients:
+            Estimate Std. Error t value          Pr(>|t|)    
+(Intercept)  1.46330    0.34441   4.249 0.000077464849487 ***
+StatsPkgR    0.13251    0.08056   1.645             0.105    
+CenteringRe  0.05666    0.07423   0.763             0.448    
+TradPed      0.68663    0.07365   9.323 0.000000000000332 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2433 on 59 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.6167,	Adjusted R-squared:  0.5972 
+F-statistic: 31.64 on 3 and 59 DF,  p-value: 0.000000000002547
 ```
 ### Results
 
@@ -1487,26 +1503,56 @@ apaTables::apa.cor.table(scored[c("SRPed", "StatsPkg", "Centering", "TradPed")],
 ```
 
 ```
-## 
-## 
-## Table 1 
-## 
-## Means, standard deviations, and correlations with confidence intervals
-##  
-## 
-##   Variable   M    SD   1         
-##   1. SRPed   4.69 0.38           
-##                                  
-##   2. TradPed 4.53 0.43 .76**     
-##                        [.63, .85]
-##                                  
-## 
-## Note. M and SD are used to represent mean and standard deviation, respectively.
-## Values in square brackets indicate the 95% confidence interval.
-## The confidence interval is a plausible range of population correlations 
-## that could have caused the sample correlation (Cumming, 2014).
-##  * indicates p < .05. ** indicates p < .01.
-## 
+
+
+Table 1 
+
+Means, standard deviations, and correlations with confidence intervals
+ 
+
+  Variable   M    SD   1         
+  1. SRPed   4.69 0.38           
+                                 
+  2. TradPed 4.53 0.43 .76**     
+                       [.63, .85]
+                                 
+
+Note. M and SD are used to represent mean and standard deviation, respectively.
+Values in square brackets indicate the 95% confidence interval.
+The confidence interval is a plausible range of population correlations 
+that could have caused the sample correlation (Cumming, 2014).
+ * indicates p < .05. ** indicates p < .01.
+ 
+```
+
+
+```r
+apaTables::apa.reg.table(SRPed_fit, table.number = 2, filename = "SRPed_table.doc")
+```
+
+```
+
+
+Table 2 
+
+Regression results using SRPed as the criterion
+ 
+
+   Predictor      b      b_95%_CI sr2  sr2_95%_CI             Fit
+ (Intercept) 1.46**  [0.77, 2.15]                                
+   StatsPkgR   0.13 [-0.03, 0.29] .02 [-.02, .06]                
+ CenteringRe   0.06 [-0.09, 0.21] .00 [-.02, .02]                
+     TradPed 0.69**  [0.54, 0.83] .56  [.40, .73]                
+                                                      R2 = .617**
+                                                  95% CI[.43,.70]
+                                                                 
+
+Note. A significant b-weight indicates the semi-partial correlation is also significant.
+b represents unstandardized regression weights. 
+sr2 represents the semi-partial correlation squared.
+Square brackets are used to enclose the lower and upper limits of a confidence interval.
+* indicates p < .05. ** indicates p < .01.
+ 
 ```
 
 

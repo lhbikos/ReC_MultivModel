@@ -1,1 +1,0 @@
-{"frames":[{"func":"readRDS(\"accSIM.rds\")","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0},{"func":"gzfile(file, \"rb\")","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0}],"message":"Error in gzfile(file, \"rb\") : cannot open the connection\n"}

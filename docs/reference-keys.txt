@@ -13,7 +13,7 @@ option-2.-upload-a-.csv-file
 about-the-rate-a-recent-course-survey
 the-codebook
 scrubbing
-tools-for-data-manipulations
+tools-for-data-manipulation
 inclusion-and-exclusion-criteria
 renaming-variables
 downsizing-the-dataframe
@@ -40,6 +40,7 @@ diagnosing-missing-data-mechanisms
 managing-missing-data
 available-information-analysis-aia
 working-the-problem-1
+variable-planning-and-preparation
 missing-data-analysis-whole-df-and-item-level
 analyzing-missing-data-patterns
 can-we-identify-the-missing-mechanisms
@@ -116,7 +117,7 @@ format-any-variables-that-shouldnt-be-imputed-in-their-raw-form
 multiply-impute-a-minimum-of-5-sets-of-data
 run-a-regression-for-multiply-imputed-data-with-at-least-three-variables
 apa-style-write-up-of-the-multiple-imputation-section-of-data-diagnostics
-aapa-style-write-up-regression-results
+apa-style-write-up-regression-results
 SimpleMed
 navigating-this-lesson-4
 learning-objectives-4

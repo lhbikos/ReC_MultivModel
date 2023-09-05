@@ -1,0 +1,7 @@
+"0","#what proportion of cases (rows) are complete (nonmissing)
+formattable::percent(mean(complete.cases(ItemMiss_df)))
+"
+"1","[1]"
+"1"," 82.14%"
+"1","
+"

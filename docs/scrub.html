@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2023-09-03" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -188,7 +188,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="scrub.html"><a href="scrub.html#scrubbing"><i class="fa fa-check"></i><b>1.5</b> Scrubbing</a>
 <ul>
-<li class="chapter" data-level="1.5.1" data-path="scrub.html"><a href="scrub.html#tools-for-data-manipulations"><i class="fa fa-check"></i><b>1.5.1</b> Tools for Data Manipulations</a></li>
+<li class="chapter" data-level="1.5.1" data-path="scrub.html"><a href="scrub.html#tools-for-data-manipulation"><i class="fa fa-check"></i><b>1.5.1</b> Tools for Data Manipulation</a></li>
 <li class="chapter" data-level="1.5.2" data-path="scrub.html"><a href="scrub.html#inclusion-and-exclusion-criteria"><i class="fa fa-check"></i><b>1.5.2</b> Inclusion and Exclusion Criteria</a></li>
 <li class="chapter" data-level="1.5.3" data-path="scrub.html"><a href="scrub.html#renaming-variables"><i class="fa fa-check"></i><b>1.5.3</b> Renaming Variables</a></li>
 <li class="chapter" data-level="1.5.4" data-path="scrub.html"><a href="scrub.html#downsizing-the-dataframe"><i class="fa fa-check"></i><b>1.5.4</b> Downsizing the Dataframe</a></li>
@@ -229,9 +229,10 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="score.html"><a href="score.html#working-the-problem-1"><i class="fa fa-check"></i><b>2.5</b> Working the Problem</a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="score.html"><a href="score.html#missing-data-analysis-whole-df-and-item-level"><i class="fa fa-check"></i><b>2.5.1</b> Missing Data Analysis: Whole df and Item level</a></li>
-<li class="chapter" data-level="2.5.2" data-path="score.html"><a href="score.html#analyzing-missing-data-patterns"><i class="fa fa-check"></i><b>2.5.2</b> Analyzing Missing Data Patterns</a></li>
-<li class="chapter" data-level="2.5.3" data-path="score.html"><a href="score.html#can-we-identify-the-missing-mechanisms"><i class="fa fa-check"></i><b>2.5.3</b> Can we identify the missing mechanisms?</a></li>
+<li class="chapter" data-level="2.5.1" data-path="score.html"><a href="score.html#variable-planning-and-preparation"><i class="fa fa-check"></i><b>2.5.1</b> Variable Planning and Preparation</a></li>
+<li class="chapter" data-level="2.5.2" data-path="score.html"><a href="score.html#missing-data-analysis-whole-df-and-item-level"><i class="fa fa-check"></i><b>2.5.2</b> Missing Data Analysis: Whole df and Item level</a></li>
+<li class="chapter" data-level="2.5.3" data-path="score.html"><a href="score.html#analyzing-missing-data-patterns"><i class="fa fa-check"></i><b>2.5.3</b> Analyzing Missing Data Patterns</a></li>
+<li class="chapter" data-level="2.5.4" data-path="score.html"><a href="score.html#can-we-identify-the-missing-mechanisms"><i class="fa fa-check"></i><b>2.5.4</b> Can we identify the missing mechanisms?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="score.html"><a href="score.html#scoring"><i class="fa fa-check"></i><b>2.6</b> Scoring</a>
 <ul>
@@ -433,7 +434,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="scrub" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Scrubbing<a href="scrub.html#scrub" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=7c87f991-276b-448f-aed9-acf6015b9638">Screencasted Lecture Link</a></p>
+<p><a href="https://youtube.com/playlist?list=PLtz5cFLQl4KPwGvx4MHxA7C1StPkHnFH3&amp;si=VzB-HVlJTS07FuFw">Screencasted Lecture Link</a></p>
 <p>The focus of this chapter is the process of starting with raw data and preparing it for multivariate analysis. To that end, we will address the conceptual considerations and practical steps in “scrubbing and scoring.”</p>
 <p>A twist in this lesson is that I am asking you to contribute to the dataset that serves as the basis for the chapter and the practice problems. In the spirit of <em>open science</em>, this dataset is available to you and others for your own learning. Before continuing, please take 15-20 minutes to complete the survey titled, <a href="https://spupsych.az1.qualtrics.com/jfe/form/SV_b2cClqAlLGQ6nLU">Rate-a-Recent-Course: A ReCentering Psych Stats Exercise</a>. The study is approved by the Institutional Review Board at Seattle Pacific University (SPUIRB# 202102011, no expiration). Details about the study, including an informed consent, are included at the link.</p>
 <div id="navigating-this-lesson" class="section level2 hasAnchor" number="1.1">
@@ -540,12 +541,15 @@ div.csl-indent {
 <p><em>BE CAREFUL WITH THE API TOKEN</em> This is the key to your Qualtrics accounts. If you leave it in an .rmd file that you forward to someone else or upload to a data repository, this key and the base URL gives access to every survey in your account. If you share it, you could be releasing survey data to others that would violate confidentiality promises in an IRB application.</p>
 <p>If you mistakenly give out your API token you can generate a new one within your Qualtrics account and re-protect all its contents.</p>
 <p>You do need to change the API key/token if you want to download data from a different Qualtrics account. If your list of surveys generates the wrong set of surveys, restart R, make sure you have the correct API token and try again.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="scrub.html#cb2-1" tabindex="-1"></a><span class="co">#You only need to run this ONCE to draw from the same Qualtrics account.</span></span>
-<span id="cb2-2"><a href="scrub.html#cb2-2" tabindex="-1"></a><span class="co">#If you change Qualtrics accounts you will need to get a different token. </span></span>
-<span id="cb2-3"><a href="scrub.html#cb2-3" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="scrub.html#cb2-4" tabindex="-1"></a><span class="co">#qualtRics::qualtrics_api_credentials(api_key = &quot;mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg&quot;,</span></span>
-<span id="cb2-5"><a href="scrub.html#cb2-5" tabindex="-1"></a>              base_url <span class="ot">=</span> <span class="st">&quot;spupsych.az1.qualtrics.com&quot;</span>, overwrite <span class="ot">=</span> <span class="cn">TRUE</span>, install <span class="ot">=</span> <span class="cn">TRUE</span><span class="er">)</span></span>
-<span id="cb2-6"><a href="scrub.html#cb2-6" tabindex="-1"></a><span class="co">#readRenviron(&quot;~/.Renviron&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="scrub.html#cb2-1" tabindex="-1"></a><span class="co"># You only need to run this ONCE to draw from the same Qualtrics</span></span>
+<span id="cb2-2"><a href="scrub.html#cb2-2" tabindex="-1"></a><span class="co"># account. If you change Qualtrics accounts you will need to get a</span></span>
+<span id="cb2-3"><a href="scrub.html#cb2-3" tabindex="-1"></a><span class="co"># different token.</span></span>
+<span id="cb2-4"><a href="scrub.html#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="scrub.html#cb2-5" tabindex="-1"></a><span class="co"># qualtRics::qualtrics_api_credentials(api_key =</span></span>
+<span id="cb2-6"><a href="scrub.html#cb2-6" tabindex="-1"></a><span class="co"># &#39;mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg&#39;, base_url =</span></span>
+<span id="cb2-7"><a href="scrub.html#cb2-7" tabindex="-1"></a><span class="co"># &#39;spupsych.az1.qualtrics.com&#39;, overwrite = TRUE, install = TRUE)</span></span>
+<span id="cb2-8"><a href="scrub.html#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="scrub.html#cb2-9" tabindex="-1"></a><span class="co"># readRenviron(&#39;~/.Renviron&#39;)</span></span></code></pre></div>
 <p><em>all_surveys()</em> generates a dataframe containing information about all the surveys stored on your Qualtrics account.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="scrub.html#cb3-1" tabindex="-1"></a><span class="co"># surveys &lt;- qualtRics::all_surveys()</span></span>
 <span id="cb3-2"><a href="scrub.html#cb3-2" tabindex="-1"></a></span>
@@ -554,8 +558,7 @@ div.csl-indent {
 <span id="cb3-5"><a href="scrub.html#cb3-5" tabindex="-1"></a><span class="co"># list of surveys, you are pulling from the wrong Qualtrics account</span></span>
 <span id="cb3-6"><a href="scrub.html#cb3-6" tabindex="-1"></a><span class="co"># (i.e., maybe this one instead of your own). Go back and change your</span></span>
 <span id="cb3-7"><a href="scrub.html#cb3-7" tabindex="-1"></a><span class="co"># API token (it saves your old one). Changing the API likely requires</span></span>
-<span id="cb3-8"><a href="scrub.html#cb3-8" tabindex="-1"></a><span class="co"># a restart of R.</span></span>
-<span id="cb3-9"><a href="scrub.html#cb3-9" tabindex="-1"></a>surveys</span></code></pre></div>
+<span id="cb3-8"><a href="scrub.html#cb3-8" tabindex="-1"></a><span class="co"># a restart of R.</span></span></code></pre></div>
 <p>To retrieve the survey, use the <em>fetch_survey()</em> function.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="scrub.html#cb4-1" tabindex="-1"></a><span class="co"># obtained with the survey ID</span></span>
 <span id="cb4-2"><a href="scrub.html#cb4-2" tabindex="-1"></a><span class="co">#&#39;surveyID&#39; should be the ID from above</span></span>
@@ -637,8 +640,8 @@ div.csl-indent {
 <div id="scrubbing" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> Scrubbing<a href="scrub.html#scrubbing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>With a look at our survey, codebook, and imported data, we now get to the business of scRubbing (deleting those who did not give consent, deleting previews, etc.). This level of “scrubbing” precedes the more formal detection of outliers.</p>
-<div id="tools-for-data-manipulations" class="section level3 hasAnchor" number="1.5.1">
-<h3><span class="header-section-number">1.5.1</span> Tools for Data Manipulations<a href="scrub.html#tools-for-data-manipulations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="tools-for-data-manipulation" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Tools for Data Manipulation<a href="scrub.html#tools-for-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The next stages will provide some experience manipulating data with <strong>dplyr</strong> from the <strong>tidyverse</strong>.</p>
 <p>The <strong>tidyverse</strong> is a system of packages (i.e,. when you download the tidyverse, you download all its packages/members) for data manipulation, exploration and visualization. The packages in the tidyverse share a common design philosophy. These were mostly developed by Hadley Wickham, but more recently, more designers are contributing to them. Tidyverse packages are intended to make statisticians and data scientists more productive by guiding them through workflows that facilitate communication and result in reproducible work products. Fundamentally, the tidyverse is about the connections between the tools that make the workflow possible. Critical packages in the tidyverse include:</p>
 <ul>
@@ -684,7 +687,7 @@ div.csl-indent {
 </blockquote>
 <p>Next let’s filter in only those who consented to take the survey. Because Qualtrics discontinued the survey for everyone who did not consent, we do not have to worry that their data is unintentionally included, but it can be useful to mention the number of non-consenters in the summary of missing data.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="scrub.html#cb12-1" tabindex="-1"></a><span class="co"># == are used</span></span>
-<span id="cb12-2"><a href="scrub.html#cb12-2" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">filter</span>(QTRX_df, Consent <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb12-2"><a href="scrub.html#cb12-2" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(QTRX_df, Consent <span class="sc">==</span> <span class="dv">1</span>)</span>
 <span id="cb12-3"><a href="scrub.html#cb12-3" tabindex="-1"></a><span class="fu">nrow</span>(QTRX_df)</span></code></pre></div>
 <pre><code>[1] 83</code></pre>
 <p>CAPTURING RESULTS FOR WRITING IT UP:</p>
@@ -693,8 +696,8 @@ div.csl-indent {
 <p>Data screening suggested that 107 individuals opened the survey link. Of those, 83 granted consent and proceeded into the survey items.</p>
 </blockquote>
 </blockquote>
-<p>In this particular study, the categories used to collect race were U.S.-centric. Thus, they were only shown if the respondent indicated that the course being rated was taught by an institution in the U.S. Therefore, an an additional inclusion criteria for this specific research model should be that the course was taught in the U.S.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="scrub.html#cb14-1" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>(dplyr<span class="sc">::</span><span class="fu">filter</span> (QTRX_df, USinst <span class="sc">==</span> <span class="dv">0</span>))</span>
+<p>In this particular study, the categories used to collect informtaion about race/ethnicity were U.S.-centric. Thus, they were only shown if the respondent indicated that the course being rated was taught by an institution in the U.S. Therefore, an an additional inclusion criteria for this specific research model should be that the course was taught in the U.S.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="scrub.html#cb14-1" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>dplyr<span class="sc">::</span><span class="fu">filter</span>(QTRX_df, USinst <span class="sc">==</span> <span class="dv">0</span>)</span>
 <span id="cb14-2"><a href="scrub.html#cb14-2" tabindex="-1"></a><span class="fu">nrow</span>(QTRX_df)</span></code></pre></div>
 <pre><code>[1] 69</code></pre>
 <p>CAPTURING RESULTS FOR WRITING IT UP:</p>

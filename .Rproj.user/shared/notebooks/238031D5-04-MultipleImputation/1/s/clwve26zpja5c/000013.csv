@@ -1,3 +1,0 @@
-"0","mimp_df <-  select (QTRX_df2, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1:Belong_3, Blst_1:Blst_6, cEval_1, cEval_13, cEval_19, format)"
-"0","#glimpse(mimp_df)"
-"0","head(mimp_df)"

@@ -1,8 +1,9 @@
----
-output:
-  word_document: default
-  html_document: default
----
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+options(scipen=999)#eliminates scientific notation
+```
 # Multiple Imputation (A Brief Demo) {#multimp}
 
 [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=94d59efe-3f02-4c65-b068-ad01003e09a9)
@@ -34,6 +35,7 @@ The suggestions for practice are a continuation from the three prior chapters. I
 * Use the dataset that is the source of the chapter, but score a different set of items that you choose.
 * Begin with raw data to which you have access. 
 
+
 ### Readings & Resources
 
 In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
@@ -53,7 +55,7 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
 <!-- TODO: Build out this section. -->
-```{r  eval=FALSE}
+```{r  eval=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #will install the package if not already installed
 if(!require(qualtRics)){install.packages("qualtRics")}
 if(!require(psych)){install.packages("psych")}
@@ -166,11 +168,11 @@ There are some guidelines for selecting and formatting variables for imputation.
   * Violation of this also provides clues for troubleshooting 
 * Exclude variables with more than 25% missing
 
-To make this as realistic as possible. Let's start with our very raw data.  The [Scrubbing chapter](#scrub) provides greater detail on importing data directly from Qualtrics. If you have worked the lessons, consecutively, you know that data can be added to this survey at any time. So that the values in the chapter are consistent, I will use the datafiles that I immediately saved when I conducted the anlaysis at the time I last updated the chapter.
+To make this as realistic as possible. Let's start with our very raw data.  The [Scrubbing chapter](#scrub) provides greater detail on importing data directly from Qualtrics. If you have worked the lessons, consecutively, you know that data can be added to this survey at any time. So that the values in the chapter are consistent, I will use the datafiles that I immediately saved when I conducted the analysis at the time I last updated the chapter.
 
 Please download the .rds or .csv file  from [MultivModel GitHub](https://github.com/lhbikos/ReC_MultivModel) site. Please the file in the same folder as your .rmd file. As always, I prefer working with .rds files.
 
-```{r}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 QTRX_df2 <- readRDS("QTRX_df230902b.rds")
 #QTRX_df <- read.csv("QTRX_df230902b.csv", header = TRUE)
 ```
@@ -181,32 +183,31 @@ Next, I apply inclusion/exclusion criteria.  As described in the [Scrubbing chap
 * including only those who consented
 * including only those whose rated course was offered by a U.S. institution
 
-```{r }
+```{r warning=FALSE, message=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 library(tidyverse)
-QTRX_df2 <- filter (QTRX_df2, DistributionChannel != "preview")
-QTRX_df2 <-filter (QTRX_df2, Consent == 1)
-QTRX_df2 <-filter (QTRX_df2, USinst == 0)
+QTRX_df2 <- dplyr::filter(QTRX_df2, DistributionChannel != "preview")
+QTRX_df2 <-dplyr::filter(QTRX_df2, Consent == 1)
+QTRX_df2 <- dplyr::filter(QTRX_df2, USinst == 0)
 ```
 
 Preparing the data also meant renaming some variables that started with numbers (a hassle in R). I also renamed variables on the Campus Climate scale so that we know to which subscale they belong.
-```{r }
-library(tidyverse)
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #renaming variables that started with numbers
-QTRX_df2 <- rename(QTRX_df2, iRace1 = '1_iRace', iRace2 = '2_iRace', iRace3 = '3_iRace', iRace4 = '4_iRace', iRace5 = '5_iRace', iRace6 = '6_iRace', iRace7 = '7_iRace', iRace8 = '8_iRace', iRace9 = '9_iRace', iRace10 = '10_iRace')
+QTRX_df2 <- dplyr::rename(QTRX_df2, iRace1 = '1_iRace', iRace2 = '2_iRace', iRace3 = '3_iRace', iRace4 = '4_iRace', iRace5 = '5_iRace', iRace6 = '6_iRace', iRace7 = '7_iRace', iRace8 = '8_iRace', iRace9 = '9_iRace', iRace10 = '10_iRace')
 #renaming variables from the identification of classmates
-QTRX_df2 <- rename(QTRX_df2, cmBiMulti = Race_10, cmBlack = Race_1, cmNBPoC = Race_7, cmWhite = Race_8, cmUnsure = Race_2)
+QTRX_df2 <- dplyr::rename(QTRX_df2, cmBiMulti = Race_10, cmBlack = Race_1, cmNBPoC = Race_7, cmWhite = Race_8, cmUnsure = Race_2)
 ```
 
 The Qualtrics download does not include an ID number.  Because new variables are always appended to the end of the df, we also include code to make this the first column. 
-```{r }
-QTRX_df2 <- QTRX_df2 %>% mutate(ID = row_number())
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+QTRX_df2 <- QTRX_df2 %>% dplyr::mutate(ID = row_number())
 #moving the ID number to the first column; requires 
-QTRX_df2 <- QTRX_df2%>%select(ID, everything())
+QTRX_df2 <- QTRX_df2%>%dplyr::select(ID, everything())
 ```
 
 Because this huge df is cumbersome to work with, let's downsize it to be closer to the size we will work with in the imputation
-```{r }
-mimp_df <-  select (QTRX_df2, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1:Belong_3, Blst_1:Blst_6, cEval_1, cEval_13, cEval_19, format)
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+mimp_df <-  dplyr::select(QTRX_df2, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1:Belong_3, Blst_1:Blst_6, cEval_1, cEval_13, cEval_19, format)
 #glimpse(mimp_df)
 head(mimp_df)
 ```
@@ -214,7 +215,7 @@ head(mimp_df)
 ### Creating Composite Variables
 
 Qualtrics imports many of the categorical variables as numbers.  R often reads them numerically (integers or numbers). If they are directly converted to factors, R will sometimes collapse.  In this example, if there is a race that is not represented (e.g., 2 for BiMulti), when the numbers are changed to factors, R will assume it's ordered and will change up the numbers.  Therefore, it is ESSENTIAL to check (again and again ad nauseum) to ensure that your variables are recoding in a manner you understand.
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 mimp_df$iRace1 = factor(mimp_df$iRace1,
                         levels = c(0,1,2,3,4),
                         labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
@@ -247,12 +248,12 @@ mimp_df$iRace10 = factor(mimp_df$iRace10,
                         labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
 ```
 
-```{r  results='hide'}
+```{r  results='hide', tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 head(mimp_df)
 ```
 
 This is a quick recap of how we calculated the proportion of instructional staff who are BIPOC.
-```{r calculating the proportion of BIPOC instructional staff}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #creating a count of BIPOC faculty identified by each respondent
 mimp_df$count.BIPOC <- apply(mimp_df[c("iRace1", "iRace2", "iRace3", "iRace4", "iRace5", "iRace6", "iRace7", "iRace8", "iRace9", "iRace10")], 1, function(x) sum(x %in% c("Black", "nBpoc", "BiMulti")))
 
@@ -278,7 +279,7 @@ Let's recoded it to have three categories:
 2. 100% online/virtual (4)
 NA. Other (5)
 
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #we can assign more than one value to the same factor by repeating the label
 mimp_df$format = factor(mimp_df$format,
                         levels = c(1,2,3,4,5),
@@ -287,7 +288,7 @@ mimp_df$format = factor(mimp_df$format,
 
 
 Let's trim the df again to just include the variables we need in the imputation.
-```{r trim the df to variables of interest}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 mimp_df <-  select (mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1:Belong_3, Blst_1:Blst_6, cEval_1, cEval_13, cEval_19, format)
 ```
 
@@ -299,21 +300,21 @@ sort(p_missing[p_missing > 0], decreasing = TRUE)
 Luckily, none of our variables have more than 25% missing. If we did have a variable with more than 25% missing, we would have to consider what to do about it.
 
 Later we learn that we should eliminate case with greater than 50% missingness.  Let's write code for that, now.
-```{r }
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #Calculating number and proportion of item-level missingness
 mimp_df$nmiss <- mimp_df%>%
-    select(iBIPOC_pr:format) %>% #the colon allows us to include all variables between the two listed (the variables need to be in order)
+    dplyr::select(iBIPOC_pr:format) %>% #the colon allows us to include all variables between the two listed (the variables need to be in order)
     is.na %>% 
     rowSums
 
 mimp_df<- mimp_df%>%
-  mutate(prop_miss = (nmiss/15)*100) #11 is the number of variables included in calculating the proportion
+  dplyr::mutate(prop_miss = (nmiss/15)*100) #11 is the number of variables included in calculating the proportion
 
-mimp_df <- filter(mimp_df, prop_miss <= 50)  #update df to have only those with at least 50% of complete data
+mimp_df <- dplyr::filter(mimp_df, prop_miss <= 50)  #update df to have only those with at least 50% of complete data
 ```
 
 Once again, trim the df to include only the data to be included in the imputation
-```{r another trimming of the df}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 mimp_df <-  select (mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1:Belong_3, Blst_1:Blst_6, cEval_1, cEval_13, cEval_19, format)
 ```
 
@@ -321,7 +322,7 @@ mimp_df <-  select (mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1:Belong_3, Blst_1:B
 
 Because multiple imputation is a *random* process, if we all want the same answers we need to set a *random seed.* 
 
-```{r Set random seed}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 set.seed(210404) #you can pick any number you want, today I'm using today's datestamp
 ```
 
@@ -331,7 +332,7 @@ This means we need to correctly specify each variable's format/role.  *mice* wil
 
 The following code sets up the structure for the imputation. I'm not an expert at this -- just following the Katitas example.
 
-```{r warning=FALSE}
+```{r warning=FALSE, message=FALSE,  tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 library(mice)
 # runs the mice code with 0 iterations
 imp <- mice(mimp_df, maxit = 0)
@@ -341,7 +342,7 @@ meth = imp$method
 ```
 
 Here we code what format/role each variable should be.
-```{r Specifying variable role in imputation}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #These variables are left in the dataset, but setting them = 0 means they are not used as predictors.  
 #We want our ID to be retained in the df.  There's nothing missing from it, and we don't want it used as a predictor, so it will just hang out.
 predM[, c("ID")]=0
@@ -376,8 +377,8 @@ If a variable has no missing values, it is automatically set to be empty.  We ca
 The code below begins the imputation process. We are asking for 5 datasets. If you have many cases and many variables, this can take awhile. How many imputations?  Recommendations have ranged as low as five to several hundred.
 
 
-```{r imputing five sets}
-# With this command, we tell mice to impute the anesimpor2 data, create 5vvdatasets, use predM as the predictor matrix and don't print the imputation process. 
+```{r warning=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+# With this command, we tell mice to impute the mimp_df data, create 5 datasets, use predM as the predictor matrix and don't print the imputation process. 
 #If you would like to see the process (or if the process is failing to execute) set print as TRUE; seeing where the execution halts can point to problematic variables (more notes at end of lecture)
 
 imp2 <- mice(mimp_df, maxit = 5, 
@@ -387,7 +388,7 @@ imp2 <- mice(mimp_df, maxit = 5,
 
 We need to create a "long file" that stacks all the imputed data.  Looking at the df in R Studio shows us that when imp = 0 (the pe-imputed data), there is still missingness.  As we scroll through the remaining imputations, there are no NA cells.
 
-```{r Restructuring df to long}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 # First, turn the datasets into long format
 # This procedure is, best I can tell, unique to mice and wouldn't work for repeated measures designs
 mimp_long <- mice::complete(imp2, action="long", include = TRUE)
@@ -400,7 +401,7 @@ If we look at it, we can see 6 sets of data. If the *ID* variable is sorted we s
 
 With the code below we can see the proportion of missingness for each variable (that has missing data), sorted from highest to lowest.
 
-```{r Proportion of missingness for each imputed item, eval = FALSE}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 p_missing_mimp_long <- unlist(lapply(mimp_long, function(x) sum(is.na(x))))/nrow(mimp_long)
 sort(p_missing_mimp_long[p_missing_mimp_long > 0], decreasing = TRUE)#check to see if this works
 ```
@@ -409,14 +410,14 @@ sort(p_missing_mimp_long[p_missing_mimp_long > 0], decreasing = TRUE)#check to s
 
 Because our imputation was item-level, we need to score the variables with scales/subscales.  As demonstrated more completely in the [Scoring chapter](#score), this required reversing one item in the campus climate scale:
 
-```{r reverse scoring the Blst_1 item}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 mimp_long<- mimp_long %>%
   mutate(rBlst_1 = 8 - Blst_1) #if you had multiple items, you could add a pipe (%>%) at the end of the line and add more until the last one
 ```
 
 
 Below is the scoring protocol we used in the AIA protocol for scoring.  Although the protocol below functionally says, "Create a mean score if (65-80)% is non-missing, for the imputed version, it doesn't harm anything to leave this because there is no missing data.
-```{r Scoring scales and subscales}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #Making the list of variables
 Belonging_vars <- c('Belong_1','Belong_2','Belong_3')
 ResponseBL_vars <- c('rBlst_1', 'Blst_4','Blst_6')
@@ -441,21 +442,21 @@ summary(Climate_fit)
 ~~~
 
 In order for the regression to use multiply imputed data, it must be a "mids" (multiply imputed data sets) type
-```{r Convertion to mids_A}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 # Convert to mids type - mice can work with this type
 mimp_mids<-as.mids(mimp_long)
 ```
 
 Here's what we do with imputed data:
 
-```{r OLS regression w imputed data}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 fitimp <- with(mimp_mids,
                lm(ClimateBL ~ Belonging + cmBlack + iBIPOC_pr))
 ```
 
 In this process, 5 individual, OLS, regressions are being conducted and the results being pooled into this single set.
 
-```{r Summary of each OLS regression}
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 # to get the 5, individual imputations
 summary(fitimp)
 ```

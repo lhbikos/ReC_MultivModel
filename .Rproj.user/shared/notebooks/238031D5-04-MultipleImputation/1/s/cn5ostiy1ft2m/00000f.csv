@@ -1,3 +1,0 @@
-"0","QTRX_df2 <- QTRX_df2 %>% mutate(ID = row_number())"
-"0","#moving the ID number to the first column; requires "
-"0","QTRX_df2 <- QTRX_df2%>%select(ID, everything())"

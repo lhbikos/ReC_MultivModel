@@ -1,8 +1,5 @@
----
-output:
-  word_document: default
-  html_document: default
----
+
+
 # Multiple Imputation (A Brief Demo) {#multimp}
 
 [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=94d59efe-3f02-4c65-b068-ad01003e09a9)
@@ -34,6 +31,7 @@ The suggestions for practice are a continuation from the three prior chapters. I
 * Use the dataset that is the source of the chapter, but score a different set of items that you choose.
 * Begin with raw data to which you have access. 
 
+
 ### Readings & Resources
 
 In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
@@ -55,11 +53,19 @@ The script below will (a) check to see if the following packages are installed o
 <!-- TODO: Build out this section. -->
 
 ```r
-#will install the package if not already installed
-if(!require(qualtRics)){install.packages("qualtRics")}
-if(!require(psych)){install.packages("psych")}
-if(!require(dplyr)){install.packages("dplyr")}
-if(!require(mice)){install.packages("mice")}
+# will install the package if not already installed
+if (!require(qualtRics)) {
+    install.packages("qualtRics")
+}
+if (!require(psych)) {
+    install.packages("psych")
+}
+if (!require(dplyr)) {
+    install.packages("dplyr")
+}
+if (!require(mice)) {
+    install.packages("mice")
+}
 ```
 
 
@@ -167,14 +173,14 @@ There are some guidelines for selecting and formatting variables for imputation.
   * Violation of this also provides clues for troubleshooting 
 * Exclude variables with more than 25% missing
 
-To make this as realistic as possible. Let's start with our very raw data.  The [Scrubbing chapter](#scrub) provides greater detail on importing data directly from Qualtrics. If you have worked the lessons, consecutively, you know that data can be added to this survey at any time. So that the values in the chapter are consistent, I will use the datafiles that I immediately saved when I conducted the anlaysis at the time I last updated the chapter.
+To make this as realistic as possible. Let's start with our very raw data.  The [Scrubbing chapter](#scrub) provides greater detail on importing data directly from Qualtrics. If you have worked the lessons, consecutively, you know that data can be added to this survey at any time. So that the values in the chapter are consistent, I will use the datafiles that I immediately saved when I conducted the analysis at the time I last updated the chapter.
 
 Please download the .rds or .csv file  from [MultivModel GitHub](https://github.com/lhbikos/ReC_MultivModel) site. Please the file in the same folder as your .rmd file. As always, I prefer working with .rds files.
 
 
 ```r
 QTRX_df2 <- readRDS("QTRX_df230902b.rds")
-#QTRX_df <- read.csv("QTRX_df230902b.csv", header = TRUE)
+# QTRX_df <- read.csv('QTRX_df230902b.csv', header = TRUE)
 ```
 
 Next, I apply inclusion/exclusion criteria.  As described in the [Scrubbing chapter](#scrub) this includes:
@@ -186,68 +192,59 @@ Next, I apply inclusion/exclusion criteria.  As described in the [Scrubbing chap
 
 ```r
 library(tidyverse)
-```
-
-```
-## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-```
-
-```r
-QTRX_df2 <- filter (QTRX_df2, DistributionChannel != "preview")
-QTRX_df2 <-filter (QTRX_df2, Consent == 1)
-QTRX_df2 <-filter (QTRX_df2, USinst == 0)
+QTRX_df2 <- dplyr::filter(QTRX_df2, DistributionChannel != "preview")
+QTRX_df2 <- dplyr::filter(QTRX_df2, Consent == 1)
+QTRX_df2 <- dplyr::filter(QTRX_df2, USinst == 0)
 ```
 
 Preparing the data also meant renaming some variables that started with numbers (a hassle in R). I also renamed variables on the Campus Climate scale so that we know to which subscale they belong.
 
 ```r
-library(tidyverse)
-#renaming variables that started with numbers
-QTRX_df2 <- rename(QTRX_df2, iRace1 = '1_iRace', iRace2 = '2_iRace', iRace3 = '3_iRace', iRace4 = '4_iRace', iRace5 = '5_iRace', iRace6 = '6_iRace', iRace7 = '7_iRace', iRace8 = '8_iRace', iRace9 = '9_iRace', iRace10 = '10_iRace')
-#renaming variables from the identification of classmates
-QTRX_df2 <- rename(QTRX_df2, cmBiMulti = Race_10, cmBlack = Race_1, cmNBPoC = Race_7, cmWhite = Race_8, cmUnsure = Race_2)
+# renaming variables that started with numbers
+QTRX_df2 <- dplyr::rename(QTRX_df2, iRace1 = "1_iRace", iRace2 = "2_iRace",
+    iRace3 = "3_iRace", iRace4 = "4_iRace", iRace5 = "5_iRace", iRace6 = "6_iRace",
+    iRace7 = "7_iRace", iRace8 = "8_iRace", iRace9 = "9_iRace", iRace10 = "10_iRace")
+# renaming variables from the identification of classmates
+QTRX_df2 <- dplyr::rename(QTRX_df2, cmBiMulti = Race_10, cmBlack = Race_1,
+    cmNBPoC = Race_7, cmWhite = Race_8, cmUnsure = Race_2)
 ```
 
 The Qualtrics download does not include an ID number.  Because new variables are always appended to the end of the df, we also include code to make this the first column. 
 
 ```r
-QTRX_df2 <- QTRX_df2 %>% mutate(ID = row_number())
-#moving the ID number to the first column; requires 
-QTRX_df2 <- QTRX_df2%>%select(ID, everything())
+QTRX_df2 <- QTRX_df2 %>%
+    dplyr::mutate(ID = row_number())
+# moving the ID number to the first column; requires
+QTRX_df2 <- QTRX_df2 %>%
+    dplyr::select(ID, everything())
 ```
 
 Because this huge df is cumbersome to work with, let's downsize it to be closer to the size we will work with in the imputation
 
 ```r
-mimp_df <-  select (QTRX_df2, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1:Belong_3, Blst_1:Blst_6, cEval_1, cEval_13, cEval_19, format)
-#glimpse(mimp_df)
+mimp_df <- dplyr::select(QTRX_df2, ID, iRace1, iRace2, iRace3, iRace4,
+    iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack,
+    cmNBPoC, cmWhite, cmUnsure, Belong_1:Belong_3, Blst_1:Blst_6, cEval_1,
+    cEval_13, cEval_19, format)
+# glimpse(mimp_df)
 head(mimp_df)
 ```
 
 ```
-## # A tibble: 6 × 29
-##      ID iRace1 iRace2 iRace3 iRace4 iRace5 iRace6 iRace7 iRace8 iRace9 iRace10
-##   <int>  <dbl>  <dbl>  <dbl>  <dbl> <lgl>  <lgl>  <lgl>  <lgl>  <lgl>  <lgl>  
-## 1     1      3      1      3     NA NA     NA     NA     NA     NA     NA     
-## 2     2      3     NA     NA     NA NA     NA     NA     NA     NA     NA     
-## 3     3      3      1     NA     NA NA     NA     NA     NA     NA     NA     
-## 4     4      3      1      3     NA NA     NA     NA     NA     NA     NA     
-## 5     5      1     NA     NA     NA NA     NA     NA     NA     NA     NA     
-## 6     6      3     NA     NA     NA NA     NA     NA     NA     NA     NA     
-## # ℹ 18 more variables: cmBiMulti <dbl>, cmBlack <dbl>, cmNBPoC <dbl>,
-## #   cmWhite <dbl>, cmUnsure <dbl>, Belong_1 <dbl>, Belong_2 <dbl>,
-## #   Belong_3 <dbl>, Blst_1 <dbl>, Blst_2 <dbl>, Blst_3 <dbl>, Blst_4 <dbl>,
-## #   Blst_5 <dbl>, Blst_6 <dbl>, cEval_1 <dbl>, cEval_13 <dbl>, cEval_19 <dbl>,
-## #   format <dbl>
+# A tibble: 6 × 29
+     ID iRace1 iRace2 iRace3 iRace4 iRace5 iRace6 iRace7 iRace8 iRace9 iRace10
+  <int>  <dbl>  <dbl>  <dbl>  <dbl> <lgl>  <lgl>  <lgl>  <lgl>  <lgl>  <lgl>  
+1     1      3      1      3     NA NA     NA     NA     NA     NA     NA     
+2     2      3     NA     NA     NA NA     NA     NA     NA     NA     NA     
+3     3      3      1     NA     NA NA     NA     NA     NA     NA     NA     
+4     4      3      1      3     NA NA     NA     NA     NA     NA     NA     
+5     5      1     NA     NA     NA NA     NA     NA     NA     NA     NA     
+6     6      3     NA     NA     NA NA     NA     NA     NA     NA     NA     
+# ℹ 18 more variables: cmBiMulti <dbl>, cmBlack <dbl>, cmNBPoC <dbl>,
+#   cmWhite <dbl>, cmUnsure <dbl>, Belong_1 <dbl>, Belong_2 <dbl>,
+#   Belong_3 <dbl>, Blst_1 <dbl>, Blst_2 <dbl>, Blst_3 <dbl>, Blst_4 <dbl>,
+#   Blst_5 <dbl>, Blst_6 <dbl>, cEval_1 <dbl>, cEval_13 <dbl>, cEval_19 <dbl>,
+#   format <dbl>
 ```
 
 ### Creating Composite Variables
@@ -255,36 +252,26 @@ head(mimp_df)
 Qualtrics imports many of the categorical variables as numbers.  R often reads them numerically (integers or numbers). If they are directly converted to factors, R will sometimes collapse.  In this example, if there is a race that is not represented (e.g., 2 for BiMulti), when the numbers are changed to factors, R will assume it's ordered and will change up the numbers.  Therefore, it is ESSENTIAL to check (again and again ad nauseum) to ensure that your variables are recoding in a manner you understand.
 
 ```r
-mimp_df$iRace1 = factor(mimp_df$iRace1,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-mimp_df$iRace2 = factor(mimp_df$iRace2,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-mimp_df$iRace3 = factor(mimp_df$iRace3,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-mimp_df$iRace4 = factor(mimp_df$iRace4,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-mimp_df$iRace5 = factor(mimp_df$iRace5,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-mimp_df$iRace6 = factor(mimp_df$iRace6,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-mimp_df$iRace7 = factor(mimp_df$iRace7,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-mimp_df$iRace8 = factor(mimp_df$iRace8,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-mimp_df$iRace9 = factor(mimp_df$iRace9,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
-mimp_df$iRace10 = factor(mimp_df$iRace10,
-                        levels = c(0,1,2,3,4),
-                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
+mimp_df$iRace1 = factor(mimp_df$iRace1, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+mimp_df$iRace2 = factor(mimp_df$iRace2, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+mimp_df$iRace3 = factor(mimp_df$iRace3, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+mimp_df$iRace4 = factor(mimp_df$iRace4, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+mimp_df$iRace5 = factor(mimp_df$iRace5, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+mimp_df$iRace6 = factor(mimp_df$iRace6, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+mimp_df$iRace7 = factor(mimp_df$iRace7, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+mimp_df$iRace8 = factor(mimp_df$iRace8, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+mimp_df$iRace9 = factor(mimp_df$iRace9, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
+mimp_df$iRace10 = factor(mimp_df$iRace10, levels = c(0, 1, 2, 3, 4), labels = c("Black",
+    "nBpoc", "BiMulti", "White", "NotNotice"))
 ```
 
 
@@ -295,13 +282,17 @@ head(mimp_df)
 This is a quick recap of how we calculated the proportion of instructional staff who are BIPOC.
 
 ```r
-#creating a count of BIPOC faculty identified by each respondent
-mimp_df$count.BIPOC <- apply(mimp_df[c("iRace1", "iRace2", "iRace3", "iRace4", "iRace5", "iRace6", "iRace7", "iRace8", "iRace9", "iRace10")], 1, function(x) sum(x %in% c("Black", "nBpoc", "BiMulti")))
+# creating a count of BIPOC faculty identified by each respondent
+mimp_df$count.BIPOC <- apply(mimp_df[c("iRace1", "iRace2", "iRace3", "iRace4",
+    "iRace5", "iRace6", "iRace7", "iRace8", "iRace9", "iRace10")], 1, function(x) sum(x %in%
+    c("Black", "nBpoc", "BiMulti")))
 
-#creating a count of all instructional  faculty identified by each respondent
-mimp_df$count.nMiss <- apply(mimp_df[c("iRace1", "iRace2", "iRace3", "iRace4", "iRace5", "iRace6", "iRace7", "iRace8", "iRace9", "iRace10")], 1, function(x) sum(!is.na(x)))
+# creating a count of all instructional faculty identified by each
+# respondent
+mimp_df$count.nMiss <- apply(mimp_df[c("iRace1", "iRace2", "iRace3", "iRace4",
+    "iRace5", "iRace6", "iRace7", "iRace8", "iRace9", "iRace10")], 1, function(x) sum(!is.na(x)))
 
-#calculating the proportion of BIPOC faculty with the counts above
+# calculating the proportion of BIPOC faculty with the counts above
 mimp_df$iBIPOC_pr = mimp_df$count.BIPOC/mimp_df$count.nMiss
 ```
 
@@ -322,17 +313,18 @@ NA. Other (5)
 
 
 ```r
-#we can assign more than one value to the same factor by repeating the label
-mimp_df$format = factor(mimp_df$format,
-                        levels = c(1,2,3,4,5),
-                        labels = c("InPerson", "Blend", "Blend", "Online", is.na(5)))
+# we can assign more than one value to the same factor by repeating
+# the label
+mimp_df$format = factor(mimp_df$format, levels = c(1, 2, 3, 4, 5), labels = c("InPerson",
+    "Blend", "Blend", "Online", is.na(5)))
 ```
 
 
 Let's trim the df again to just include the variables we need in the imputation.
 
 ```r
-mimp_df <-  select (mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1:Belong_3, Blst_1:Blst_6, cEval_1, cEval_13, cEval_19, format)
+mimp_df <- select(mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1:Belong_3, Blst_1:Blst_6,
+    cEval_1, cEval_13, cEval_19, format)
 ```
 
 Recall one of the guidelines was to remove variables with more than 25% missing. This code calculates the proportion missing from our variables and places them in rank order.
@@ -343,10 +335,10 @@ sort(p_missing[p_missing > 0], decreasing = TRUE)
 ```
 
 ```
-##     Blst_1     Blst_4     Blst_3     Blst_5     Blst_6   Belong_1   Belong_3 
-## 0.13043478 0.10144928 0.08695652 0.08695652 0.08695652 0.07246377 0.07246377 
-##     Blst_2   Belong_2    cEval_1   cEval_19  iBIPOC_pr    cmBlack   cEval_13 
-## 0.07246377 0.05797101 0.05797101 0.05797101 0.04347826 0.04347826 0.04347826
+    Blst_1     Blst_4     Blst_3     Blst_5     Blst_6   Belong_1   Belong_3 
+0.13043478 0.10144928 0.08695652 0.08695652 0.08695652 0.07246377 0.07246377 
+    Blst_2   Belong_2    cEval_1   cEval_19  iBIPOC_pr    cmBlack   cEval_13 
+0.07246377 0.05797101 0.05797101 0.05797101 0.04347826 0.04347826 0.04347826 
 ```
 Luckily, none of our variables have more than 25% missing. If we did have a variable with more than 25% missing, we would have to consider what to do about it.
 
@@ -355,20 +347,21 @@ Later we learn that we should eliminate case with greater than 50% missingness. 
 ```r
 #Calculating number and proportion of item-level missingness
 mimp_df$nmiss <- mimp_df%>%
-    select(iBIPOC_pr:format) %>% #the colon allows us to include all variables between the two listed (the variables need to be in order)
+    dplyr::select(iBIPOC_pr:format) %>% #the colon allows us to include all variables between the two listed (the variables need to be in order)
     is.na %>% 
     rowSums
 
 mimp_df<- mimp_df%>%
-  mutate(prop_miss = (nmiss/15)*100) #11 is the number of variables included in calculating the proportion
+  dplyr::mutate(prop_miss = (nmiss/15)*100) #11 is the number of variables included in calculating the proportion
 
-mimp_df <- filter(mimp_df, prop_miss <= 50)  #update df to have only those with at least 50% of complete data
+mimp_df <- dplyr::filter(mimp_df, prop_miss <= 50)  #update df to have only those with at least 50% of complete data
 ```
 
 Once again, trim the df to include only the data to be included in the imputation
 
 ```r
-mimp_df <-  select (mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1:Belong_3, Blst_1:Blst_6, cEval_1, cEval_13, cEval_19, format)
+mimp_df <- select(mimp_df, ID, iBIPOC_pr, cmBlack, Belong_1:Belong_3, Blst_1:Blst_6,
+    cEval_1, cEval_13, cEval_19, format)
 ```
 
 ### The Multiple Imputation
@@ -377,7 +370,7 @@ Because multiple imputation is a *random* process, if we all want the same answe
 
 
 ```r
-set.seed(210404) #you can pick any number you want, today I'm using today's datestamp
+set.seed(210404)  #you can pick any number you want, today I'm using today's datestamp
 ```
 
 The program we will use is *mice*. *mice* assumes that each variable has a distribution and it imputes missing variables according to that distribution.  
@@ -389,29 +382,9 @@ The following code sets up the structure for the imputation. I'm not an expert a
 
 ```r
 library(mice)
-```
-
-```
-## 
-## Attaching package: 'mice'
-```
-
-```
-## The following object is masked from 'package:stats':
-## 
-##     filter
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     cbind, rbind
-```
-
-```r
 # runs the mice code with 0 iterations
 imp <- mice(mimp_df, maxit = 0)
-# Extract predictor Matrix and methods of imputation 
+# Extract predictor Matrix and methods of imputation
 predM = imp$predictorMatrix
 meth = imp$method
 ```
@@ -419,36 +392,38 @@ meth = imp$method
 Here we code what format/role each variable should be.
 
 ```r
-#These variables are left in the dataset, but setting them = 0 means they are not used as predictors.  
-#We want our ID to be retained in the df.  There's nothing missing from it, and we don't want it used as a predictor, so it will just hang out.
-predM[, c("ID")]=0
+# These variables are left in the dataset, but setting them = 0 means
+# they are not used as predictors.  We want our ID to be retained in
+# the df.  There's nothing missing from it, and we don't want it used
+# as a predictor, so it will just hang out.
+predM[, c("ID")] = 0
 
-#If you like, view the first few rows of the predictor matrix
-#head(predM)
+# If you like, view the first few rows of the predictor matrix
+# head(predM)
 
-#We don't have any ordered categorical variables, but if we did we would follow this format
-#poly <- c("Var1", "Var2")
+# We don't have any ordered categorical variables, but if we did we
+# would follow this format poly <- c('Var1', 'Var2')
 
-#We don't have any dichotomous variables, but if we did we would follow this format
-#log <- c("Var3", "Var4")
+# We don't have any dichotomous variables, but if we did we would
+# follow this format log <- c('Var3', 'Var4')
 
-#Unordered categorical variables (nominal variables), but if we did we would follow this format
+# Unordered categorical variables (nominal variables), but if we did
+# we would follow this format
 poly2 <- c("format")
 
-#Turn their methods matrix into the specified imputation models
-#Remove the hashtag if you have any of these variables
-#meth[poly] = "polr" 
-#meth[log] = "logreg"
+# Turn their methods matrix into the specified imputation models
+# Remove the hashtag if you have any of these variables meth[poly] =
+# 'polr' meth[log] = 'logreg'
 meth[poly2] = "polyreg"
 
 meth
 ```
 
 ```
-##        ID iBIPOC_pr   cmBlack  Belong_1  Belong_2  Belong_3    Blst_1    Blst_2 
-##        ""     "pmm"        ""     "pmm"        ""     "pmm"     "pmm"     "pmm" 
-##    Blst_3    Blst_4    Blst_5    Blst_6   cEval_1  cEval_13  cEval_19    format 
-##     "pmm"     "pmm"     "pmm"     "pmm"     "pmm"        ""     "pmm" "polyreg"
+       ID iBIPOC_pr   cmBlack  Belong_1  Belong_2  Belong_3    Blst_1    Blst_2 
+       ""     "pmm"        ""     "pmm"        ""     "pmm"     "pmm"     "pmm" 
+   Blst_3    Blst_4    Blst_5    Blst_6   cEval_1  cEval_13  cEval_19    format 
+    "pmm"     "pmm"     "pmm"     "pmm"     "pmm"        ""     "pmm" "polyreg" 
 ```
 
 This list (meth) contains all our variables; "pmm" is the default and is the "predictive mean matching" process used. We see that format (an unordered categorical variable) is noted as "polyreg."  If we had used other categorical variables (ordered/poly, dichotomous/log), we would have seen those designations, instead.  If there is "" underneath it means the data is complete.
@@ -462,25 +437,25 @@ The code below begins the imputation process. We are asking for 5 datasets. If y
 
 
 ```r
-# With this command, we tell mice to impute the anesimpor2 data, create 5vvdatasets, use predM as the predictor matrix and don't print the imputation process. 
-#If you would like to see the process (or if the process is failing to execute) set print as TRUE; seeing where the execution halts can point to problematic variables (more notes at end of lecture)
+# With this command, we tell mice to impute the mimp_df data, create
+# 5 datasets, use predM as the predictor matrix and don't print the
+# imputation process.  If you would like to see the process (or if
+# the process is failing to execute) set print as TRUE; seeing where
+# the execution halts can point to problematic variables (more notes
+# at end of lecture)
 
-imp2 <- mice(mimp_df, maxit = 5, 
-             predictorMatrix = predM, 
-             method = meth, print =  FALSE)
-```
-
-```
-## Warning: Number of logged events: 275
+imp2 <- mice(mimp_df, maxit = 5, predictorMatrix = predM, method = meth,
+    print = FALSE)
 ```
 
 We need to create a "long file" that stacks all the imputed data.  Looking at the df in R Studio shows us that when imp = 0 (the pe-imputed data), there is still missingness.  As we scroll through the remaining imputations, there are no NA cells.
 
 
 ```r
-# First, turn the datasets into long format
-# This procedure is, best I can tell, unique to mice and wouldn't work for repeated measures designs
-mimp_long <- mice::complete(imp2, action="long", include = TRUE)
+# First, turn the datasets into long format This procedure is, best I
+# can tell, unique to mice and wouldn't work for repeated measures
+# designs
+mimp_long <- mice::complete(imp2, action = "long", include = TRUE)
 ```
 
 If we look at it, we can see 6 sets of data. If the *ID* variable is sorted we see that:
@@ -493,7 +468,14 @@ With the code below we can see the proportion of missingness for each variable (
 
 ```r
 p_missing_mimp_long <- unlist(lapply(mimp_long, function(x) sum(is.na(x))))/nrow(mimp_long)
-sort(p_missing_mimp_long[p_missing_mimp_long > 0], decreasing = TRUE)#check to see if this works
+sort(p_missing_mimp_long[p_missing_mimp_long > 0], decreasing = TRUE)  #check to see if this works
+```
+
+```
+     Blst_1      Blst_4   iBIPOC_pr      Blst_3      Blst_5      Blst_6 
+0.012820513 0.007692308 0.005128205 0.005128205 0.005128205 0.005128205 
+   Belong_1    Belong_3      Blst_2     cEval_1    cEval_19 
+0.002564103 0.002564103 0.002564103 0.002564103 0.002564103 
 ```
 
 ### Creating Scale Scores
@@ -502,25 +484,26 @@ Because our imputation was item-level, we need to score the variables with scale
 
 
 ```r
-mimp_long<- mimp_long %>%
-  mutate(rBlst_1 = 8 - Blst_1) #if you had multiple items, you could add a pipe (%>%) at the end of the line and add more until the last one
+mimp_long <- mimp_long %>%
+    mutate(rBlst_1 = 8 - Blst_1)  #if you had multiple items, you could add a pipe (%>%) at the end of the line and add more until the last one
 ```
 
 
 Below is the scoring protocol we used in the AIA protocol for scoring.  Although the protocol below functionally says, "Create a mean score if (65-80)% is non-missing, for the imputed version, it doesn't harm anything to leave this because there is no missing data.
 
 ```r
-#Making the list of variables
-Belonging_vars <- c('Belong_1','Belong_2','Belong_3')
-ResponseBL_vars <- c('rBlst_1', 'Blst_4','Blst_6')
-StigmaBL_vars <- c('Blst_2', 'Blst_3','Blst_5')
-ClimateBL_vars <- c('rBlst_1', 'Blst_4','Blst_6','Blst_2', 'Blst_3','Blst_5' )
+# Making the list of variables
+Belonging_vars <- c("Belong_1", "Belong_2", "Belong_3")
+ResponseBL_vars <- c("rBlst_1", "Blst_4", "Blst_6")
+StigmaBL_vars <- c("Blst_2", "Blst_3", "Blst_5")
+ClimateBL_vars <- c("rBlst_1", "Blst_4", "Blst_6", "Blst_2", "Blst_3",
+    "Blst_5")
 
-#Creating the new variables
-mimp_long$Belonging <- sjstats::mean_n(mimp_long[,Belonging_vars], .65)
-mimp_long$ResponseBL <- sjstats::mean_n(mimp_long[,ResponseBL_vars], .80)
-mimp_long$StigmaBL <- sjstats::mean_n(mimp_long[,StigmaBL_vars], .80)
-mimp_long$ClimateBL <- sjstats::mean_n(mimp_long[,ClimateBL_vars], .80)
+# Creating the new variables
+mimp_long$Belonging <- sjstats::mean_n(mimp_long[, Belonging_vars], 0.65)
+mimp_long$ResponseBL <- sjstats::mean_n(mimp_long[, ResponseBL_vars], 0.8)
+mimp_long$StigmaBL <- sjstats::mean_n(mimp_long[, StigmaBL_vars], 0.8)
+mimp_long$ClimateBL <- sjstats::mean_n(mimp_long[, ClimateBL_vars], 0.8)
 ```
 
 
@@ -537,15 +520,14 @@ In order for the regression to use multiply imputed data, it must be a "mids" (m
 
 ```r
 # Convert to mids type - mice can work with this type
-mimp_mids<-as.mids(mimp_long)
+mimp_mids <- as.mids(mimp_long)
 ```
 
 Here's what we do with imputed data:
 
 
 ```r
-fitimp <- with(mimp_mids,
-               lm(ClimateBL ~ Belonging + cmBlack + iBIPOC_pr))
+fitimp <- with(mimp_mids, lm(ClimateBL ~ Belonging + cmBlack + iBIPOC_pr))
 ```
 
 In this process, 5 individual, OLS, regressions are being conducted and the results being pooled into this single set.
@@ -557,29 +539,29 @@ summary(fitimp)
 ```
 
 ```
-## # A tibble: 20 × 6
-##    term        estimate std.error statistic       p.value  nobs
-##    <chr>          <dbl>     <dbl>     <dbl>         <dbl> <int>
-##  1 (Intercept)   3.02      0.435      6.95  0.00000000283    65
-##  2 Belonging    -0.0311    0.0897    -0.346 0.730            65
-##  3 cmBlack      -0.0206    0.0165    -1.25  0.215            65
-##  4 iBIPOC_pr    -0.663     0.339     -1.95  0.0552           65
-##  5 (Intercept)   3.02      0.446      6.77  0.00000000578    65
-##  6 Belonging    -0.0349    0.0907    -0.385 0.702            65
-##  7 cmBlack      -0.0234    0.0166    -1.41  0.165            65
-##  8 iBIPOC_pr    -0.470     0.329     -1.43  0.158            65
-##  9 (Intercept)   3.01      0.450      6.70  0.00000000744    65
-## 10 Belonging    -0.0349    0.0915    -0.381 0.704            65
-## 11 cmBlack      -0.0222    0.0167    -1.33  0.187            65
-## 12 iBIPOC_pr    -0.485     0.330     -1.47  0.147            65
-## 13 (Intercept)   2.95      0.448      6.57  0.0000000127     65
-## 14 Belonging    -0.0152    0.0920    -0.165 0.870            65
-## 15 cmBlack      -0.0216    0.0168    -1.29  0.203            65
-## 16 iBIPOC_pr    -0.558     0.343     -1.62  0.110            65
-## 17 (Intercept)   3.00      0.452      6.64  0.00000000963    65
-## 18 Belonging    -0.0311    0.0921    -0.337 0.737            65
-## 19 cmBlack      -0.0214    0.0168    -1.28  0.207            65
-## 20 iBIPOC_pr    -0.531     0.337     -1.57  0.121            65
+# A tibble: 20 × 6
+   term        estimate std.error statistic       p.value  nobs
+   <chr>          <dbl>     <dbl>     <dbl>         <dbl> <int>
+ 1 (Intercept)   3.02      0.435      6.95  0.00000000283    65
+ 2 Belonging    -0.0311    0.0897    -0.346 0.730            65
+ 3 cmBlack      -0.0206    0.0165    -1.25  0.215            65
+ 4 iBIPOC_pr    -0.663     0.339     -1.95  0.0552           65
+ 5 (Intercept)   3.02      0.446      6.77  0.00000000578    65
+ 6 Belonging    -0.0349    0.0907    -0.385 0.702            65
+ 7 cmBlack      -0.0234    0.0166    -1.41  0.165            65
+ 8 iBIPOC_pr    -0.470     0.329     -1.43  0.158            65
+ 9 (Intercept)   3.01      0.450      6.70  0.00000000744    65
+10 Belonging    -0.0349    0.0915    -0.381 0.704            65
+11 cmBlack      -0.0222    0.0167    -1.33  0.187            65
+12 iBIPOC_pr    -0.485     0.330     -1.47  0.147            65
+13 (Intercept)   2.95      0.448      6.57  0.0000000127     65
+14 Belonging    -0.0152    0.0920    -0.165 0.870            65
+15 cmBlack      -0.0216    0.0168    -1.29  0.203            65
+16 iBIPOC_pr    -0.558     0.343     -1.62  0.110            65
+17 (Intercept)   3.00      0.452      6.64  0.00000000963    65
+18 Belonging    -0.0311    0.0921    -0.337 0.737            65
+19 cmBlack      -0.0214    0.0168    -1.28  0.207            65
+20 iBIPOC_pr    -0.531     0.337     -1.57  0.121            65
 ```
 
 
@@ -588,17 +570,17 @@ pool(fitimp)
 ```
 
 ```
-## Class: mipo    m = 5 
-##          term m    estimate         ubar            b            t dfcom
-## 1 (Intercept) 5  2.99980658 0.1990231323 9.993159e-04 0.2002223113    61
-## 2   Belonging 5 -0.02940746 0.0083160161 6.701754e-05 0.0083964371    61
-## 3     cmBlack 5 -0.02184241 0.0002777582 1.056566e-06 0.0002790261    61
-## 4   iBIPOC_pr 5 -0.54138195 0.1128248694 5.817915e-03 0.1198063673    61
-##         df         riv      lambda        fmi
-## 1 58.70890 0.006025325 0.005989238 0.03820536
-## 2 58.44929 0.009670622 0.009577997 0.04181342
-## 3 58.80737 0.004564689 0.004543947 0.03675551
-## 4 53.13966 0.061879070 0.058273179 0.09182261
+Class: mipo    m = 5 
+         term m    estimate         ubar              b            t dfcom
+1 (Intercept) 5  2.99980658 0.1990231323 0.000999315858 0.2002223113    61
+2   Belonging 5 -0.02940746 0.0083160161 0.000067017541 0.0083964371    61
+3     cmBlack 5 -0.02184241 0.0002777582 0.000001056566 0.0002790261    61
+4   iBIPOC_pr 5 -0.54138195 0.1128248694 0.005817914953 0.1198063673    61
+        df         riv      lambda        fmi
+1 58.70890 0.006025325 0.005989238 0.03820536
+2 58.44929 0.009670622 0.009577997 0.04181342
+3 58.80737 0.004564689 0.004543947 0.03675551
+4 53.13966 0.061879070 0.058273179 0.09182261
 ```
 
 
@@ -607,11 +589,11 @@ summary(pool(fitimp))
 ```
 
 ```
-##          term    estimate  std.error  statistic       df      p.value
-## 1 (Intercept)  2.99980658 0.44746208  6.7040465 58.70890 8.735881e-09
-## 2   Belonging -0.02940746 0.09163207 -0.3209298 58.44929 7.494083e-01
-## 3     cmBlack -0.02184241 0.01670407 -1.3076097 58.80737 1.960948e-01
-## 4   iBIPOC_pr -0.54138195 0.34613056 -1.5640975 53.13966 1.237310e-01
+         term    estimate  std.error  statistic       df           p.value
+1 (Intercept)  2.99980658 0.44746208  6.7040465 58.70890 0.000000008735881
+2   Belonging -0.02940746 0.09163207 -0.3209298 58.44929 0.749408305666738
+3     cmBlack -0.02184241 0.01670407 -1.3076097 58.80737 0.196094825405891
+4   iBIPOC_pr -0.54138195 0.34613056 -1.5640975 53.13966 0.123730969370680
 ```
 >>Results of a multiple regression predicting the respondents' perceptions of campus climate for Black students indicated that neither contributions of the respondents' personal belonging ($B = -0.029, p = 0.749),the proportion of BIPOC instructional staff ($B = -0.541, p = 0.124), nor proportion of Black classmates ($B = -0.022, p = 0.196$) led to statistically significant changes in perceptions of campus climate for Black students. Results are presented in Table X.
 
@@ -699,7 +681,6 @@ If you chose this option in the prior chapter, you used raw data that was availa
 
 
 
-
 ## Homeworked Example
 [Screencast Link]()
 
@@ -739,7 +720,7 @@ nrow(raw)
 ```
 
 ```
-## [1] 310
+[1] 310
 ```
 
 #### Apply inclusionary/exclusionary criteria {-} 
@@ -755,9 +736,8 @@ raw <- dplyr::filter(raw, SPFC.Decolonize.Opt.Out != "Opt Out")
 
 I want to exclude students' responses for the ANOVA and psychometrics courses.
 
-
 ```r
-raw <- (dplyr::filter(raw, Course == "Multivariate"))
+raw <- dplyr::filter(raw, Course == "Multivariate")
 ```
 At this point, these my only inclusion/exclusion criteria. I can determine how many students (who consented) completed any portion of the survey.
 
@@ -767,58 +747,68 @@ nrow(raw)
 ```
 
 ```
-## [1] 84
+[1] 84
 ```
 
 #### Format any variables that shouldn't be imputed in their raw form    
-*(
-Let's first create a df with the item-level variables that will fuel our model. In addition to the variables in our model, we will include four auxillary variables. These include Dept (Department: Clinical or Industrial-Organizational) and four additional course evaluation items:  OvInstructor, MyContribution, IncrInterest, IncrUnderstanding. 
+
+Let's first create a df with the item-level variables that will fuel our model. 
+
+In addition to the variables in our model, we will include four auxiliary variables. These include Dept (Department: Clinical or Industrial-Organizational) and four additional course evaluation items:  OvInstructor, MyContribution, IncrInterest, IncrUnderstanding. 
 
 Let's check the structure to be certain that *StatsPkg* (SPSS, R) and  *Centered* (Pre, Re) are ordered factors. We also want the course evaluation items to be integer (or numerical).  
 
 
 ```r
-mimp_df <- (dplyr::select(raw, deID, StatsPkg, Centering, ClearResponsibilities,
+mimp_df <- dplyr::select(raw, deID, StatsPkg, Centering, ClearResponsibilities,
     EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm,
     EquitableEval, MultPerspectives, DEIintegration, Dept, OvInstructor,
-    MyContribution, IncrInterest, IncrUnderstanding))
+    MyContribution, IncrInterest, IncrUnderstanding)
 str(mimp_df)
 ```
 
 ```
-## Classes 'data.table' and 'data.frame':	84 obs. of  17 variables:
-##  $ deID                 : int  11 12 13 14 15 16 17 18 35 19 ...
-##  $ StatsPkg             : Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ ClearResponsibilities: int  4 5 5 5 4 3 5 5 3 5 ...
-##  $ EffectiveAnswers     : int  4 5 5 4 4 3 5 5 4 4 ...
-##  $ Feedback             : int  4 5 4 4 5 4 5 4 4 5 ...
-##  $ ClearOrganization    : int  3 5 5 4 4 3 5 5 4 5 ...
-##  $ ClearPresentation    : int  4 5 5 3 4 2 5 4 5 5 ...
-##  $ InclusvClassrm       : int  5 5 5 5 5 4 5 5 5 5 ...
-##  $ EquitableEval        : int  4 5 5 5 4 4 5 4 5 5 ...
-##  $ MultPerspectives     : int  4 5 5 5 5 5 5 4 5 5 ...
-##  $ DEIintegration       : int  5 5 5 5 5 5 5 5 5 5 ...
-##  $ Dept                 : chr  "CPY" "CPY" "CPY" "CPY" ...
-##  $ OvInstructor         : int  3 5 5 3 5 2 5 4 5 5 ...
-##  $ MyContribution       : int  4 5 4 3 4 3 5 4 4 5 ...
-##  $ IncrInterest         : int  4 5 4 3 4 3 5 4 5 4 ...
-##  $ IncrUnderstanding    : int  4 5 5 3 4 3 5 4 5 5 ...
-##  - attr(*, ".internal.selfref")=<externalptr>
+Classes 'data.table' and 'data.frame':	84 obs. of  17 variables:
+ $ deID                 : int  11 12 13 14 15 16 17 18 35 19 ...
+ $ StatsPkg             : Factor w/ 2 levels "SPSS","R": 2 2 2 2 2 2 2 2 2 2 ...
+ $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ ClearResponsibilities: int  4 5 5 5 4 3 5 5 3 5 ...
+ $ EffectiveAnswers     : int  4 5 5 4 4 3 5 5 4 4 ...
+ $ Feedback             : int  4 5 4 4 5 4 5 4 4 5 ...
+ $ ClearOrganization    : int  3 5 5 4 4 3 5 5 4 5 ...
+ $ ClearPresentation    : int  4 5 5 3 4 2 5 4 5 5 ...
+ $ InclusvClassrm       : int  5 5 5 5 5 4 5 5 5 5 ...
+ $ EquitableEval        : int  4 5 5 5 4 4 5 4 5 5 ...
+ $ MultPerspectives     : int  4 5 5 5 5 5 5 4 5 5 ...
+ $ DEIintegration       : int  5 5 5 5 5 5 5 5 5 5 ...
+ $ Dept                 : chr  "CPY" "CPY" "CPY" "CPY" ...
+ $ OvInstructor         : int  3 5 5 3 5 2 5 4 5 5 ...
+ $ MyContribution       : int  4 5 4 3 4 3 5 4 4 5 ...
+ $ IncrInterest         : int  4 5 4 3 4 3 5 4 5 4 ...
+ $ IncrUnderstanding    : int  4 5 5 3 4 3 5 4 5 5 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
 ```
 
+```r
+mimp_df$Dept <- factor(mimp_df$Dept, levels = c("CPY", "ORG"))
+str(mimp_df$Dept)
+```
+
+```
+ Factor w/ 2 levels "CPY","ORG": 1 1 1 1 1 1 1 1 1 1 ...
+```
 We should eliminate case with greater than 50% missingness.  
 
 ```r
 library(tidyverse)
 #Calculating number and proportion of item-level missingness
 mimp_df$nmiss <- mimp_df%>%
-    select(StatsPkg:IncrUnderstanding) %>% #the colon allows us to include all variables between the two listed (the variables need to be in order)
+    dplyr::select(StatsPkg:IncrUnderstanding) %>% #the colon allows us to include all variables between the two listed (the variables need to be in order)
     is.na %>% 
     rowSums
 
 mimp_df<- mimp_df%>%
-  mutate(prop_miss = (nmiss/13)*100) #11 is the number of variables included in calculating the proportion
+  dplyr::mutate(prop_miss = (nmiss/13)*100) #11 is the number of variables included in calculating the proportion
 
 mimp_df <- filter(mimp_df, prop_miss <= 50)  #update df to have only those with at least 50% of complete data
 ```
@@ -826,14 +816,13 @@ mimp_df <- filter(mimp_df, prop_miss <= 50)  #update df to have only those with 
 Once again, trim the df to include only the data to be included in the imputation
 
 ```r
-mimp_df <-  select (mimp_df, deID, StatsPkg, Centering,ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration, Dept, OvInstructor, MyContribution, IncrInterest, IncrUnderstanding)
+mimp_df <-  dplyr::select(mimp_df, deID, StatsPkg, Centering,ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration, Dept, OvInstructor, MyContribution, IncrInterest, IncrUnderstanding)
 ```
 
 
 #### Multiply impute a minimum of 5 sets of data   
 
 Because multiple imputation is a *random* process, if we all want the same answers we need to set a *random seed.* 
-
 
 ```r
 set.seed(2309034)  #you can pick any number you want, today I'm using today's datestamp
@@ -887,18 +876,18 @@ meth
 ```
 
 ```
-##                  deID              StatsPkg             Centering 
-##                    ""              "logreg"              "logreg" 
-## ClearResponsibilities      EffectiveAnswers              Feedback 
-##                 "pmm"                    ""                 "pmm" 
-##     ClearOrganization     ClearPresentation        InclusvClassrm 
-##                    ""                    ""                 "pmm" 
-##         EquitableEval      MultPerspectives        DEIintegration 
-##                    ""                 "pmm"                 "pmm" 
-##                  Dept          OvInstructor        MyContribution 
-##              "logreg"                    ""                    "" 
-##          IncrInterest     IncrUnderstanding 
-##                 "pmm"                    ""
+                 deID              StatsPkg             Centering 
+                   ""              "logreg"              "logreg" 
+ClearResponsibilities      EffectiveAnswers              Feedback 
+                "pmm"                    ""                 "pmm" 
+    ClearOrganization     ClearPresentation        InclusvClassrm 
+                   ""                    ""                 "pmm" 
+        EquitableEval      MultPerspectives        DEIintegration 
+                   ""                 "pmm"                 "pmm" 
+                 Dept          OvInstructor        MyContribution 
+             "logreg"                    ""                    "" 
+         IncrInterest     IncrUnderstanding 
+                "pmm"                    "" 
 ```
 
 
@@ -909,7 +898,6 @@ Our variables of interest are now configured to be imputed with the imputation m
 If a variable has no missing values, it is automatically set to be empty.  We can also manually set variables to not be imputed with the *meth[variable]=""* command.
 
 The code below begins the imputation process. We are asking for 5 datasets. If you have many cases and many variables, this can take awhile. How many imputations?  Recommendations have ranged as low as five to several hundred.
-
 
 
 ```r
@@ -948,10 +936,10 @@ sort(p_missing_mimp_long[p_missing_mimp_long > 0], decreasing = TRUE)  #check to
 ```
 
 ```
-##        DEIintegration        InclusvClassrm              Feedback 
-##           0.027777778           0.007936508           0.003968254 
-## ClearResponsibilities      MultPerspectives          IncrInterest 
-##           0.001984127           0.001984127           0.001984127
+       DEIintegration        InclusvClassrm              Feedback 
+          0.027777778           0.007936508           0.003968254 
+ClearResponsibilities      MultPerspectives          IncrInterest 
+          0.001984127           0.001984127           0.001984127 
 ```
 Because our imputation was item-level, we need to score the variables with scales/subscales.
 
@@ -1015,31 +1003,30 @@ summary(fitimp)
 ```
 
 ```
-## # A tibble: 20 × 6
-##    term        estimate std.error statistic  p.value  nobs
-##    <chr>          <dbl>     <dbl>     <dbl>    <dbl> <int>
-##  1 (Intercept)    1.89     0.305      6.20  2.28e- 8    84
-##  2 StatsPkgR      0.171    0.116      1.47  1.46e- 1    84
-##  3 CenteringRe    0.116    0.106      1.09  2.81e- 1    84
-##  4 TradPed        0.569    0.0648     8.78  2.34e-13    84
-##  5 (Intercept)    1.94     0.313      6.20  2.31e- 8    84
-##  6 StatsPkgR      0.190    0.119      1.60  1.14e- 1    84
-##  7 CenteringRe    0.107    0.109      0.979 3.30e- 1    84
-##  8 TradPed        0.556    0.0665     8.36  1.59e-12    84
-##  9 (Intercept)    1.82     0.304      6.00  5.42e- 8    84
-## 10 StatsPkgR      0.164    0.116      1.42  1.61e- 1    84
-## 11 CenteringRe    0.123    0.106      1.16  2.49e- 1    84
-## 12 TradPed        0.585    0.0645     9.06  6.63e-14    84
-## 13 (Intercept)    1.80     0.306      5.87  9.43e- 8    84
-## 14 StatsPkgR      0.177    0.116      1.52  1.32e- 1    84
-## 15 CenteringRe    0.129    0.106      1.21  2.29e- 1    84
-## 16 TradPed        0.588    0.0650     9.04  7.26e-14    84
-## 17 (Intercept)    1.94     0.313      6.20  2.31e- 8    84
-## 18 StatsPkgR      0.190    0.119      1.60  1.14e- 1    84
-## 19 CenteringRe    0.107    0.109      0.979 3.30e- 1    84
-## 20 TradPed        0.556    0.0665     8.36  1.59e-12    84
+# A tibble: 20 × 6
+   term        estimate std.error statistic  p.value  nobs
+   <chr>          <dbl>     <dbl>     <dbl>    <dbl> <int>
+ 1 (Intercept)    1.90     0.310      6.13  3.13e- 8    84
+ 2 StatsPkgR      0.187    0.118      1.59  1.16e- 1    84
+ 3 CenteringRe    0.117    0.108      1.09  2.79e- 1    84
+ 4 TradPed        0.565    0.0659     8.56  6.30e-13    84
+ 5 (Intercept)    1.94     0.314      6.17  2.62e- 8    84
+ 6 StatsPkgR      0.191    0.119      1.60  1.13e- 1    84
+ 7 CenteringRe    0.110    0.109      1.01  3.17e- 1    84
+ 8 TradPed        0.557    0.0667     8.36  1.63e-12    84
+ 9 (Intercept)    1.96     0.313      6.26  1.80e- 8    84
+10 StatsPkgR      0.178    0.119      1.50  1.38e- 1    84
+11 CenteringRe    0.111    0.109      1.02  3.10e- 1    84
+12 TradPed        0.555    0.0665     8.35  1.69e-12    84
+13 (Intercept)    2.03     0.325      6.24  1.98e- 8    84
+14 StatsPkgR      0.185    0.123      1.50  1.38e- 1    84
+15 CenteringRe    0.104    0.113      0.918 3.62e- 1    84
+16 TradPed        0.539    0.0691     7.80  1.95e-11    84
+17 (Intercept)    1.91     0.306      6.26  1.77e- 8    84
+18 StatsPkgR      0.158    0.116      1.36  1.78e- 1    84
+19 CenteringRe    0.117    0.107      1.10  2.76e- 1    84
+20 TradPed        0.567    0.0649     8.73  2.93e-13    84
 ```
-
 
 
 ```r
@@ -1047,11 +1034,11 @@ summary(pool(fitimp))
 ```
 
 ```
-##          term  estimate  std.error statistic       df              p.value
-## 1 (Intercept) 1.8790900 0.31681889  5.931117 70.17893 0.000000102899891375
-## 2   StatsPkgR 0.1782696 0.11790145  1.512022 76.90009 0.134627050376375595
-## 3 CenteringRe 0.1161789 0.10785952  1.077131 77.18229 0.284776760713007282
-## 4     TradPed 0.5706829 0.06755959  8.447105 68.62731 0.000000000003163489
+         term  estimate  std.error statistic       df              p.value
+1 (Intercept) 1.9480744 0.31833535  6.119567 74.55114 0.000000040039269753
+2   StatsPkgR 0.1798400 0.11996611  1.499090 76.64577 0.137957984459613908
+3 CenteringRe 0.1117906 0.10918108  1.023901 77.81162 0.309054914517060075
+4     TradPed 0.5564494 0.06768356  8.221338 74.26455 0.000000000004825124
 ```
 >>Results of a multiple regression predicting the socially responsive course evaluation ratings indicated that neither the transition from SPSS to R ($B = 0.178, p = 0.135$) nor the transition to an explicitly recentered curriculum ($B = 0.116, p = 0.285) led to statistically significant diferences. In contrast, traditional pedagogy had a strong, positive effect on evaluations of socially responsive pedagogy ($B = 0.571, p < 0.001). Results of the regression model are presented in Table 2.
 
@@ -1070,7 +1057,7 @@ My write-up draws from some of the results we obtained in the homeworked example
 
 >>We managed missing data with multiple imputation [@enders_multiple_2017; @katitas_getting_2019]. We imputed five sets of data with the R package, *mice* (v. 3.13) -- a program that utilizes conditional multiple imputation. The imputation included the 9 item-level variables that comprised our scales and the dichotomous variable representing traditional pedagogy and socially responsive pedagogy. We also included five auxiliary variables (four variables from the course evaluation and the whether the student was from the Clinical or Industrial-Organizational Psychology program).
 
-#### AAPA style write-up regression results
+#### APA style write-up regression results
 
 >>Results of a multiple regression predicting the socially responsive course evaluation ratings indicated that neither the transition from SPSS to R ($B = 0.178, p = 0.135$) nor the transition to an explicitly recentered curriculum ($B = 0.116, p = 0.285) led to statistically significant diferences. In contrast, traditional pedagogy had a strong, positive effect on evaluations of socially responsive pedagogy ($B = 0.571, p < 0.001). Results of the regression model are presented in Table 2.
 
