@@ -1,7 +1,7 @@
 
 # Data Dx {#DataDx}
 
- [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=43dbe818-8186-498d-8e84-acf7000acb5b) 
+ [Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KMSDPjNOLxzIclCsjVypm8n&si=hIIFTxL2Zby2i8n0) 
 
 The focus of this chapter is *data diagnostics*. We are asking the question, "Does the data have the appropriate characteristics for the analysis we want to perform?" Some statistics are more robust than others to violations of the assumptions about the characteristics of the data. None-the-less, we must report these characteristics when we disseminate the results.
 
@@ -748,7 +748,7 @@ If you chose this option in the prior chapter, you used raw data that was availa
 
 
 ## Homeworked Example
-[Screencast Link]()
+[Screencast Link](https://youtube.com/playlist?list=PLtz5cFLQl4KOZBkREeIJ5Wm_QhX7Pi4un&si=1aV0H5pJOtbnzWYI)
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
 
