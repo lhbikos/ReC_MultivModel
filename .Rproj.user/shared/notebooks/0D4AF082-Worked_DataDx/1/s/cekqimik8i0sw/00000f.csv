@@ -1,0 +1,4 @@
+"0","#testing to see if my code worked"
+"0","#raw <- dplyr::filter (raw, Consent == ""Yes"")"
+"0","#or, if the value is numerical"
+"0","#raw <- dplyr::filter (raw, Consent == 1)"

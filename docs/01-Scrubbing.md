@@ -151,9 +151,9 @@ To retrieve the survey, use the *fetch_survey()* function.
 # 'import_id', when TRUE includes the unique Qualtrics-assigned ID;
 # since I have provided labels, I want false
 
-QTRX_df <- qualtRics::fetch_survey(surveyID = "SV_b2cClqAlLGQ6nLU", time_zone = NULL,
-    verbose = FALSE, label = FALSE, convert = FALSE, force_request = TRUE,
-    import_id = FALSE)
+# QTRX_df <-qualtRics::fetch_survey(surveyID = 'SV_b2cClqAlLGQ6nLU',
+# time_zone = NULL, verbose = FALSE, label=FALSE, convert=FALSE,
+# force_request = TRUE, import_id = FALSE)
 
 # useLocalTime = TRUE,
 ```

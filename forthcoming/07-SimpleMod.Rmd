@@ -495,9 +495,9 @@ KimSimpModMLE <- '
     mean := b1 + b3*(HlpSk.mean)
     SD.above := b1 + b3*(HlpSk.mean + sqrt(HlpSk.var))
 '
-kMLE_fit <- sem(KimSimpModMLE, data = Kim_df, missing = 'fiml', se = "bootstrap", bootstrap = 1000)
-k1summary <- summary(kMLE_fit, standardized = TRUE, rsq=T, ci=TRUE)    
-k1ParamEsts <- parameterEstimates(kMLE_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+kMLE_fit <- lavaan::sem(KimSimpModMLE, data = Kim_df, missing = 'fiml', se = "bootstrap", bootstrap = 1000)
+k1summary <- lavaan::summary(kMLE_fit, standardized = TRUE,  ci=TRUE)    
+k1ParamEsts <- lavaan::parameterEstimates(kMLE_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 k1summary
 k1ParamEsts
 

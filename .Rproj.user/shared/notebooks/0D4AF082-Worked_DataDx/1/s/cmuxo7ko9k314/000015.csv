@@ -1,0 +1,2 @@
+"0","raw <- dplyr::rename(raw, WearingProp = 'myFMprop')"
+"0","raw <- dplyr::rename(raw, MetricCases = 'mCases')"

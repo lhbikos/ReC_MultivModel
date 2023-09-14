@@ -1,0 +1,5 @@
+"0","	for(i in seq_along(Data$Y)) {"
+"0","	  xval <- Data$X[i]*c(1,1)"
+"0","	  yval <- c(Data$Y[i],good.coef[1]+good.coef[2]*Data$Y[i])"
+"0","	  lines(xval,yval,type='l', col = emphGrey)"
+"0","	}"

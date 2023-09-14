@@ -54,13 +54,25 @@ The script below will (a) check to see if the following packages are installed o
 <!-- TODO: Build out this section. -->
 
 ```r
-#will install the package if not already installed
-if(!require(lavaan)){install.packages("lavaan")}
-if(!require(semPlot)){install.packages("semPlot")}
-if(!require(tidyverse)){install.packages("tidyverse")}
-if(!require(psych)){install.packages("psych")}
-if(!require(formattable)){install.packages("formattable")}
-if(!require(semTable)){install.packages("semTable")}
+# will install the package if not already installed
+if (!require(lavaan)) {
+    install.packages("lavaan")
+}
+if (!require(semPlot)) {
+    install.packages("semPlot")
+}
+if (!require(tidyverse)) {
+    install.packages("tidyverse")
+}
+if (!require(psych)) {
+    install.packages("psych")
+}
+if (!require(formattable)) {
+    install.packages("formattable")
+}
+if (!require(semTable)) {
+    install.packages("semTable")
+}
 ```
 
 ## Estimating Indirect Effects (the analytic approach often termed *mediation*)
@@ -150,8 +162,8 @@ The code below is asking to create a dataset with a sample size of 100.  The dat
 ```r
 set.seed(210410)
 X <- rnorm(100)
-M <- 0.5*X + rnorm(100)
-Y <- 0.7*M + rnorm(100)
+M <- 0.5 * X + rnorm(100)
+Y <- 0.7 * M + rnorm(100)
 Data <- data.frame(X = X, Y = Y, M = M)
 ```
 
@@ -201,18 +213,18 @@ Let's run the whole model.
 
 
 ```r
-set.seed(210410) #reset in case you choose to separate these sections
-model <- '
+set.seed(210410)  #reset in case you choose to separate these sections
+model <- "
           Y ~ b*M + c_p*X 
           M ~ a*X
           
           indirect :=  a*b
           direct  := c_p
           total_c  := c_p + (a*b)
-          '
-fit <- sem(model, data = Data, se="bootstrap", missing= 'fiml')
-FDsummary <- summary(fit, standardized=T, rsq=T, fit=TRUE, ci=TRUE)
-FD_ParamEsts <- parameterEstimates(fit, boot.ci.type = "bca.simple", standardized=TRUE)
+          "
+fit <- sem(model, data = Data, se = "bootstrap", missing = "fiml")
+FDsummary <- summary(fit, standardized = T, rsq = T, fit = TRUE, ci = TRUE)
+FD_ParamEsts <- parameterEstimates(fit, boot.ci.type = "bca.simple", standardized = TRUE)
 FDsummary
 ```
 
@@ -471,14 +483,16 @@ semPaths(fit, #must identify the model you want to map
 title("Fake Data:  Simple Mediation")
 ```
 
-![](05-SimpleMed_files/figure-docx/FakyDaty Simple Plot-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-8-1.png)<!-- -->
 
 Hayes has great examples of APA style tables.  I haven't yet found a package that will turn this output into a journal-ready table, however the *semTable* package can at least write the output to a .csv file and you can further manipulate it into a table.
 
 
 ```r
 library(semTable)
-fitTab1 <- semTable(fit, columns = c("est", "se", "p", "rsquare"),  columnLabels = c(eststars = "Estimate"), paramSets = c("composites", "loadings", "slopes", "intercepts", "residualvariances"), file = "fitTABLE", type = "csv", print.results = TRUE)
+fitTab1 <- semTable(fit, columns = c("est", "se", "p", "rsquare"), columnLabels = c(eststars = "Estimate"),
+    paramSets = c("composites", "loadings", "slopes", "intercepts", "residualvariances"),
+    file = "fitTABLE", type = "csv", print.results = TRUE)
 ```
 
 ### Results
@@ -503,19 +517,19 @@ First, we simulate the data from the means, standard deviations, and correlation
 
 
 ```r
-#Entering the intercorrelations, means, and standard deviations from the journal article
-mu <- c(.34, 3.00, 2.98, 2.36, 3.50, 1.64)
-sd <- c(.16, .83, .99, .90, .90, .53)
-r_mat <- matrix (c(1,   .59, .26,   .34,  -.25, -.02,
-                  .59, 1.00, .12,   .19,  -.28, .00, 
-                  .26,  .12, 1.00, .66,  -.55, .07,
-                  .34,  .19, .66,  1.00, -.66, .05,
-                 -.25, -.28, -.55,-.66,  1.00, .08, 
-                 -.02,  .00,  .07, .05, .08,  1), ncol = 6)
-#Creating a covariance matrix
+# Entering the intercorrelations, means, and standard deviations from
+# the journal article
+mu <- c(0.34, 3, 2.98, 2.36, 3.5, 1.64)
+sd <- c(0.16, 0.83, 0.99, 0.9, 0.9, 0.53)
+r_mat <- matrix(c(1, 0.59, 0.26, 0.34, -0.25, -0.02, 0.59, 1, 0.12, 0.19,
+    -0.28, 0, 0.26, 0.12, 1, 0.66, -0.55, 0.07, 0.34, 0.19, 0.66, 1, -0.66,
+    0.05, -0.25, -0.28, -0.55, -0.66, 1, 0.08, -0.02, 0, 0.07, 0.05, 0.08,
+    1), ncol = 6)
+# Creating a covariance matrix
 cov_mat <- sd %*% t(sd) * r_mat
 
-#Set random seed so that the following matrix always gets the same results.
+# Set random seed so that the following matrix always gets the same
+# results.
 set.seed(210409)
 library(MASS)
 ```
@@ -532,7 +546,7 @@ library(MASS)
 ```
 
 ```r
-Kim_df <- mvrnorm(n = 156, mu=mu, Sigma = cov_mat, empirical = TRUE)
+Kim_df <- mvrnorm(n = 156, mu = mu, Sigma = cov_mat, empirical = TRUE)
 colMeans(Kim_df)
 ```
 
@@ -541,8 +555,8 @@ colMeans(Kim_df)
 ```
 
 ```r
-#Checking our work against the original correlation matrix
-round(cor(Kim_df),3)
+# Checking our work against the original correlation matrix
+round(cor(Kim_df), 3)
 ```
 
 ```
@@ -748,7 +762,7 @@ Kim_df <- Kim_df%>%
 
 
 ```r
-#look at the first 6 rows of the new df
+# look at the first 6 rows of the new df
 head(Kim_df)
 ```
 
@@ -803,26 +817,28 @@ I am a big fan of "copying the model."  In specifying my model I used our simple
 
 ```r
 library(lavaan)
-set.seed(210410) #reset in case you choose to separate these sections
-Kim_model <- '
+set.seed(210410)  #reset in case you choose to separate these sections
+Kim_model <- "
           PWB ~ b*CMI + c_p*REMS 
           CMI ~a*REMS
           
           indirect :=  a*b
           direct  := c_p
           total_c  := c_p + (a*b)
-          '
+          "
 ```
 
 
 ```r
-Kim_fit <- sem(Kim_model, data = Kim_df, se="bootstrap", missing= 'fiml')
+Kim_fit <- sem(Kim_model, data = Kim_df, se = "bootstrap", missing = "fiml")
 ```
 
 
 ```r
-Kim_summary <- summary(Kim_fit, standardized=T, rsq=T, fit=TRUE, ci=TRUE)
-Kim_ParamEsts <- parameterEstimates(Kim_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+Kim_summary <- summary(Kim_fit, standardized = T, rsq = T, fit = TRUE,
+    ci = TRUE)
+Kim_ParamEsts <- parameterEstimates(Kim_fit, boot.ci.type = "bca.simple",
+    standardized = TRUE)
 Kim_summary
 ```
 
@@ -1009,13 +1025,16 @@ semPaths(Kim_fit, #must identiy the model you want to map
 title("Depression by Racial Microaggressions via Cultural Mistrust")
 ```
 
-![](05-SimpleMed_files/figure-docx/semPLOT of PMI-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-18-1.png)<!-- -->
 
 The semTable package can be used to write results to an outfile.
 
 ```r
 library(semTable)
-fitTab1 <- semTable(Kim_fit, columns = c("est", "se", "p", "rsquare"),  columnLabels = c(eststars = "Estimate"), paramSets = c("composites", "loadings", "slopes", "intercepts", "residualvariances"), file = "pmi_fitTABLE", type = "csv", print.results = TRUE)
+fitTab1 <- semTable(Kim_fit, columns = c("est", "se", "p", "rsquare"),
+    columnLabels = c(eststars = "Estimate"), paramSets = c("composites",
+        "loadings", "slopes", "intercepts", "residualvariances"), file = "pmi_fitTABLE",
+    type = "csv", print.results = TRUE)
 ```
 
 For the purpose of the OER, and because it's good trainng, I also think it can be useful to make our own table.  For me, it facilitates my conceptual understanding of (a) what the statistic is doing and (b) the results of our specific data.
@@ -1057,7 +1076,7 @@ Let's say we are concerned that anxiety covaries with cultural mistrust and PWB 
 
 ```r
 set.seed(210410)
-Kim_fit_covs <- '
+Kim_fit_covs <- "
           PWB ~ b*CMI + c_p*REMS 
           CMI ~a*REMS
           CMI ~ covM*ANX
@@ -1066,10 +1085,12 @@ Kim_fit_covs <- '
           indirect :=  a*b
           direct  := c_p
           total_c  := c_p + (a*b)
-          '
-Kim_fit_covs <- sem(Kim_fit_covs, data = Kim_df, se="bootstrap", missing = 'fiml')
-Kcov_sum <- summary(Kim_fit_covs, standardized=T, rsq=T, fit=TRUE, ci=TRUE)
-Kcov_ParEsts<- parameterEstimates(Kim_fit_covs, boot.ci.type = "bca.simple", standardized=TRUE)
+          "
+Kim_fit_covs <- sem(Kim_fit_covs, data = Kim_df, se = "bootstrap", missing = "fiml")
+Kcov_sum <- summary(Kim_fit_covs, standardized = T, rsq = T, fit = TRUE,
+    ci = TRUE)
+Kcov_ParEsts <- parameterEstimates(Kim_fit_covs, boot.ci.type = "bca.simple",
+    standardized = TRUE)
 Kcov_sum
 ```
 
@@ -1260,14 +1281,17 @@ semPaths(Kim_fit_covs, #must identiy the model you want to map
 title("Entrepreneurial Withdrawal by eDistress via Negative Affect (& some covariates(")
 ```
 
-![](05-SimpleMed_files/figure-docx/semPLOT for model w covs-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-22-1.png)<!-- -->
 
 The path coefficients appear to be correct, but this is really a statistical map and doesn't relay the concept of mediation well.
 
 Below is code to create an outfile that could help with creating a table in a word document or spreadsheet. There will be output that is produced with SEM models that won't be relevant for this project.
 
 ```r
-KimCOVTab <- semTable(Kim_fit_covs, columns = c("est", "se", "p", "rsquare"),  columnLabels = c(eststars = "Estimate"), paramSets = c("composites", "loadings", "slopes", "intercepts", "residualvariances"), file = "ESTRESScov_fitTABLE", type = "csv", print.results = TRUE)
+KimCOVTab <- semTable(Kim_fit_covs, columns = c("est", "se", "p", "rsquare"),
+    columnLabels = c(eststars = "Estimate"), paramSets = c("composites",
+        "loadings", "slopes", "intercepts", "residualvariances"), file = "ESTRESScov_fitTABLE",
+    type = "csv", print.results = TRUE)
 ```
 
 

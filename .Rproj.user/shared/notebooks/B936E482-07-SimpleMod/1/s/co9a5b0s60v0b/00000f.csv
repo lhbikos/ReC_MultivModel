@@ -1,0 +1,6 @@
+"0","library(jtools) #the summ function creates a terrific regression table"
+"0","library(interactions)"
+"0","library(ggplot2)"
+"0",""
+"0","KimSimpMod <- lm(ANX~REMS*HlpSk, data=Kim_df)"
+"0","#summary(KimSimpMod)"

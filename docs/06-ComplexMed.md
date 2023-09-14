@@ -1,8 +1,3 @@
----
-output:
-  word_document: default
-  html_document: default
----
 
 # Complex Mediation {#CompMed}
 
@@ -54,13 +49,25 @@ The script below will (a) check to see if the following packages are installed o
 <!-- TODO: Build out this section. -->
 
 ```r
-#will install the package if not already installed
-if(!require(lavaan)){install.packages("lavaan")}
-if(!require(semPlot)){install.packages("semPlot")}
-if(!require(tidyverse)){install.packages("tidyverse")}
-if(!require(psych)){install.packages("psych")}
-if(!require(apaTables)){install.packages("apaTables")}
-if(!require(formattable)){install.packages("formattable")}
+# will install the package if not already installed
+if (!require(lavaan)) {
+    install.packages("lavaan")
+}
+if (!require(semPlot)) {
+    install.packages("semPlot")
+}
+if (!require(tidyverse)) {
+    install.packages("tidyverse")
+}
+if (!require(psych)) {
+    install.packages("psych")
+}
+if (!require(apaTables)) {
+    install.packages("apaTables")
+}
+if (!require(formattable)) {
+    install.packages("formattable")
+}
 ```
 
 ## Complex Mediation
@@ -112,12 +119,13 @@ We can bake our own data by updating the script we used in simple mediation to a
 
 
 ```r
-# Concerned that identical variable names across book chapters may be problematic, I'm adding "p" in front the "Data" variable.
+# Concerned that identical variable names across book chapters may be
+# problematic, I'm adding 'p' in front the 'Data' variable.
 set.seed(210417)
 X <- rnorm(100)
-M1 <- 0.5*X + rnorm(100)
-M2 <- -0.35*X + rnorm(100)
-Y <- 0.7*M2 + 0.48*M1 + rnorm(100)
+M1 <- 0.5 * X + rnorm(100)
+M2 <- -0.35 * X + rnorm(100)
+Y <- 0.7 * M2 + 0.48 * M1 + rnorm(100)
 pData <- data.frame(X = X, Y = Y, M1 = M1, M2 = M2)
 ```
 
@@ -151,7 +159,7 @@ library(lavaan)
 
 ```r
 set.seed(210418)
-parallel_med <- '
+parallel_med <- "
     Y ~ b1*M1 + b2*M2 + c_p*X
     M1 ~ a1*X
     M2 ~ a2*X
@@ -161,10 +169,13 @@ parallel_med <- '
     total_indirects := indirect1 + indirect2
     total_c    := c_p + (indirect1) + (indirect2)
     direct := c_p
- '
-parallel_fit <- sem(parallel_med, data = pData, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
-pfit_sum <- summary(parallel_fit, standardized = TRUE, rsq=T, fit=TRUE, ci=TRUE)    
-pfit_ParEsts <- parameterEstimates(parallel_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+ "
+parallel_fit <- sem(parallel_med, data = pData, se = "bootstrap", missing = "fiml",
+    bootstrap = 1000)
+pfit_sum <- summary(parallel_fit, standardized = TRUE, rsq = T, fit = TRUE,
+    ci = TRUE)
+pfit_ParEsts <- parameterEstimates(parallel_fit, boot.ci.type = "bca.simple",
+    standardized = TRUE)
 pfit_sum
 ```
 
@@ -356,7 +367,10 @@ The method we have specified in *lavaan* produced bias-corrected confidence inte
 
 ```r
 library(semTable)
-Tb1FDataparallel <- semTable(parallel_fit, columns = c("est", "se", "p", "rsquare"),  columnLabels = c(eststars = "Estimate"), paramSets = c("composites", "loadings", "slopes", "intercepts", "residualvariances"), file = "Tb1FakyDataparallel", type = "csv", print.results = TRUE)
+Tb1FDataparallel <- semTable(parallel_fit, columns = c("est", "se", "p",
+    "rsquare"), columnLabels = c(eststars = "Estimate"), paramSets = c("composites",
+    "loadings", "slopes", "intercepts", "residualvariances"), file = "Tb1FakyDataparallel",
+    type = "csv", print.results = TRUE)
 ```
 
 
@@ -385,7 +399,7 @@ semPaths(parallel_fit, #must identiy the model you want to map
 title("Baked Data:  Parallel Mediation")
 ```
 
-![](06-ComplexMed_files/figure-docx/Fake Data Simple Plot-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-6-1.png)<!-- -->
 
 
 There are a number of ways to tabalize the data.  You might be surprised to learn that a number of articles that analyze mediating effects focus their presentation on those values and not the traditional intercepts and B weights.  This is the approach I have taken in this chapter.
@@ -441,18 +455,17 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 Simulating the data:
 
 ```r
-#Entering the intercorrelations, means, and standard deviations from the journal article
+# Entering the intercorrelations, means, and standard deviations from
+# the journal article
 mu <- c(1.99, 2.82, 2.48, 2.32, 1.75, 5.71, 21.37, 21.07)
-sd <- c(.90, .70, .81, .61, .53, 1.03, 3.83, 4.66)
-r_mat <- matrix (c(1, .20, .28, .30, .41, .19, -.32, -.18,
-        .20, 1, .49, .57, .22, .13, -.06, -.13,
-        .28, .49, 1, .46, .26, .38, -.18,-.08, 
-        .30, .57, .46,  1, .37, .08, -.14, -.06,
-        .41, .22, .26, .37, 1, .05, -.54, -.28, 
-        .19, .13, .38, .08, .05, 1, -.10, .14, 
-        -.32, -.06, -.18, -.14, -.54, -.10, 1, .47,
-        -.18, -.13, -.08, -.06, -.28, .14, .47, 1), ncol = 8)
-#Creating a covariance matrix
+sd <- c(0.9, 0.7, 0.81, 0.61, 0.53, 1.03, 3.83, 4.66)
+r_mat <- matrix(c(1, 0.2, 0.28, 0.3, 0.41, 0.19, -0.32, -0.18, 0.2, 1,
+    0.49, 0.57, 0.22, 0.13, -0.06, -0.13, 0.28, 0.49, 1, 0.46, 0.26, 0.38,
+    -0.18, -0.08, 0.3, 0.57, 0.46, 1, 0.37, 0.08, -0.14, -0.06, 0.41, 0.22,
+    0.26, 0.37, 1, 0.05, -0.54, -0.28, 0.19, 0.13, 0.38, 0.08, 0.05, 1,
+    -0.1, 0.14, -0.32, -0.06, -0.18, -0.14, -0.54, -0.1, 1, 0.47, -0.18,
+    -0.13, -0.08, -0.06, -0.28, 0.14, 0.47, 1), ncol = 8)
+# Creating a covariance matrix
 
 cov_mat <- sd %*% t(sd) * r_mat
 cov_mat
@@ -527,9 +540,10 @@ Rename the variables
 ```r
 as.data.frame(Lewis_df, row.names = NULL, optional = FALSE, make.names = TRUE)
 library(tidyverse)
-Lewis_df <- Lewis_df%>%
-  as.data.frame %>%
-  rename(GRMS = V1, Sprtlty = V2, SocSup = V3, Engmt = V4, DisEngmt = V5, GRIcntlty = V6, MtnlHlth = V7, PhysHlth = V8)
+Lewis_df <- Lewis_df %>%
+    as.data.frame %>%
+    rename(GRMS = V1, Sprtlty = V2, SocSup = V3, Engmt = V4, DisEngmt = V5,
+        GRIcntlty = V6, MtnlHlth = V7, PhysHlth = V8)
 ```
 
 
@@ -609,7 +623,7 @@ The pairs panel from the *psych* package is an efficient way to see
 psych::pairs.panels(Lewis_df)
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-4-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-12-1.png)<!-- -->
 
 The Lewis et al. article [-@lewis_applying_2017] reports four mediation analyses, each repeated for mental and physical outcomes. Thus, their write-up reports eight simple mediation models. Graphically, this is efficiently represented in a figure that looks like parallel mediation. Note that the figure is reporting standardized estimates.  In Hayes' [-@hayes_introduction_2018] we have been using raw, $B$ weights. However, the standardized weights are reported in the output.
 
@@ -626,7 +640,7 @@ We can use the guidelines above to specify our model and then request summaries 
 set.seed(210403)
 library(lavaan)
 
-parallel_Lewis <- '
+parallel_Lewis <- "
     MtnlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS
     Engmt ~ a1*GRMS    
     DisEngmt ~ a2*GRMS
@@ -636,10 +650,13 @@ parallel_Lewis <- '
     total_indirects := indirect1 + indirect2
     total_c := c_p + (indirect1) + (indirect2)
     direct := c_p
-'
-para_Lewis_fit <- sem(parallel_Lewis, data = Lewis_df, se = "bootstrap", bootstrap = 1000, missing = 'fiml') #holds the "whole" result
-pLewis_sum <- summary(para_Lewis_fit , standardized = TRUE, rsq=T, fit=TRUE, ci=TRUE) #today, we really only need the R-squared from here    
-pLewis_ParEsts <- parameterEstimates(para_Lewis_fit, boot.ci.type = "bca.simple", standardized=TRUE) #provides our estimates, se, p values for all the elements we specified
+"
+para_Lewis_fit <- sem(parallel_Lewis, data = Lewis_df, se = "bootstrap",
+    bootstrap = 1000, missing = "fiml")  #holds the 'whole' result
+pLewis_sum <- summary(para_Lewis_fit, standardized = TRUE, rsq = T, fit = TRUE,
+    ci = TRUE)  #today, we really only need the R-squared from here    
+pLewis_ParEsts <- parameterEstimates(para_Lewis_fit, boot.ci.type = "bca.simple",
+    standardized = TRUE)  #provides our estimates, se, p values for all the elements we specified
 ```
 
 ```r
@@ -851,7 +868,7 @@ semPaths(para_Lewis_fit, #must identiy the model you want to map
 title("Mental Health from Gendered Racial Microaggressions, Mediated by Engagement and Disengagement Coping")
 ```
 
-![](06-ComplexMed_files/figure-docx/Lewis Parallel model plot-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-15-1.png)<!-- -->
 
 Now let's make a table.
 
@@ -889,7 +906,10 @@ Now let's make a table.
 
 
 ```r
-LewisparaTable <- semTable(para_Lewis_fit, columns = c("est", "se", "p", "rsquare"),  columnLabels = c(eststars = "Estimate"), paramSets = c("composites", "loadings", "slopes", "intercepts", "residualvariances"), file = "LewisParaTable", type = "csv", print.results = TRUE)
+LewisparaTable <- semTable(para_Lewis_fit, columns = c("est", "se", "p",
+    "rsquare"), columnLabels = c(eststars = "Estimate"), paramSets = c("composites",
+    "loadings", "slopes", "intercepts", "residualvariances"), file = "LewisParaTable",
+    type = "csv", print.results = TRUE)
 ```
 
 ```
@@ -1041,7 +1061,7 @@ If this is our goal (image), how many direct and indirect effects are contained 
 ```r
 set.seed(210403)
 library(lavaan)
-serial_Lewis <- '
+serial_Lewis <- "
     MtnlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS
     Engmt ~ a1*GRMS    
     DisEngmt ~ a2*GRMS
@@ -1055,10 +1075,13 @@ serial_Lewis <- '
     total_indirects := indirect1 + indirect2 + indirect3
     total_c := c_p + indirect1 + indirect2 + indirect3
     direct := c_p
-'
-serial_Lewis_fit <- sem(serial_Lewis, data = Lewis_df, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
-sLewis_sum <- summary(serial_Lewis_fit, standardized = TRUE, rsq=T, fit=TRUE, ci=TRUE)    
-sLewis_ParEsts <- parameterEstimates(serial_Lewis_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+"
+serial_Lewis_fit <- sem(serial_Lewis, data = Lewis_df, se = "bootstrap",
+    missing = "fiml", bootstrap = 1000)
+sLewis_sum <- summary(serial_Lewis_fit, standardized = TRUE, rsq = T, fit = TRUE,
+    ci = TRUE)
+sLewis_ParEsts <- parameterEstimates(serial_Lewis_fit, boot.ci.type = "bca.simple",
+    standardized = TRUE)
 ```
 
 
@@ -1302,7 +1325,10 @@ Working through the data, we should be able to find these items:
 
 ```r
 library(semTable)
-LewisserialTbl <- semTable(serial_Lewis_fit, columns = c("est", "se", "p", "rsquare"),  columnLabels = c(eststars = "Estimate"), paramSets = c("composites", "loadings", "slopes", "intercepts", "residualvariances"), file = "LewisSerialTbl", type = "csv", print.results = TRUE)
+LewisserialTbl <- semTable(serial_Lewis_fit, columns = c("est", "se", "p",
+    "rsquare"), columnLabels = c(eststars = "Estimate"), paramSets = c("composites",
+    "loadings", "slopes", "intercepts", "residualvariances"), file = "LewisSerialTbl",
+    type = "csv", print.results = TRUE)
 ```
 
 This is not the greatest figure.  There is much to learn in *semPlot*.
@@ -1330,7 +1356,7 @@ semPaths(serial_Lewis_fit, #must identiy the model you want to map
 title("The Effect of Gendered Racial Microaggressions on Mental Health through Engaged and Disengaged Coping Styles")
 ```
 
-![](06-ComplexMed_files/figure-docx/semPlot of serial PMI model-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-21-1.png)<!-- -->
 
 
 ### APA Style Writeup

@@ -1,0 +1,8 @@
+"0","#this seems to work when I build the book, but not in ""working the problem"""
+"0","#SRPed_vars <- c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration')  "
+"0","#scrub_df$SRPed <- sjstats::mean_n(scrub_df[, SRPed_vars], .75)"
+"0",""
+"0","#this seems to work when I ""work the problem"" (but not when I build the book)"
+"0","#the difference is the two dots before the last SRPed_vars"
+"0","SRPed_vars <- c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration')  "
+"0","scrub_df$SRPed <- sjstats::mean_n(scrub_df[, SRPed_vars], .75)"
