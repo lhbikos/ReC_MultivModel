@@ -1,0 +1,5 @@
+"0","set.seed(230916)"
+"0","X <- rnorm(100)"
+"0","M <- 0.5*X + rnorm(100)"
+"0","Y <- 0.7*M + rnorm(100)"
+"0","Data <- data.frame(X = X, Y = Y, M = M)"

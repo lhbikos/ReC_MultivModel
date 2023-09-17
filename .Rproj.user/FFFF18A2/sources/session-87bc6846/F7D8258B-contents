@@ -1,0 +1,519 @@
+---
+title: "Untitled"
+author: "Lynette Bikos"
+date: "01/21/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## LGBTQIA+ Campus Climate Survey Analyses
+```{r}
+#install.packages("qualtRics")
+
+```
+# Importing the data
+
+```{r}
+library(qualtRics)
+#qualtRics::qualtrics_api_credentials(api_key = "REMOVED FOR SECURITY", base_url = "spupsych.az1.qualtrics.com", overwrite = TRUE, install = TRUE)
+#readRenviron("~/.Renviron")
+#QTRX_df <-qualtRics::fetch_survey(surveyID = "REMOVED FOR SECURITY", time_zone = NULL, verbose = FALSE, label=FALSE, convert=FALSE, force_request = TRUE, import_id = FALSE)
+#saveRDS(QTRX_df, "AllVoices.rds")
+#write.table(QTRX_df, file="AllVoices.csv", sep=",", col.names=TRUE, row.names=FALSE)
+```
+
+# Pulling in the RDS File
+```{r}
+QTRX_df <- readRDS('AllVoices (1).rds')
+#QTRX_df <- read.csv('AllVoices.rds', header=TRUE) #if you can, use the .rds file
+```
+
+
+# Scrubbing the data
+```{r}
+library(tidyverse)
+QTRX_df <- filter (QTRX_df, DistributionChannel != "preview")
+```
+
+
+```{r}
+attempts <- nrow(QTRX_df)
+attempts
+```
+# Looks right so far! Now confirming the number of actual consented attempts. 
+```{r}
+QTRX_df <-(filter (QTRX_df, Consent == 1))
+consented_attempts <- nrow(QTRX_df)
+consented_attempts
+```
+# Pulling the surveys I want to use into their respective variables. 
+```{r}
+#Experience of microaggressions
+Religious_MicroAVars <- c('Religious_MicroA_1', 'Religious_MicroA_43', 'Religious_MicroA_44', 'Religious_MicroA_45', 'Religious_MicroA_46', 'Religious_MicroA_47','Religious_MicroA_48','Religious_MicroA_49','Religious_MicroA_50')
+QTRX_df$Religious_MicroA <- sjstats::mean_n(QTRX_df[, Religious_MicroAVars], .80)
+
+```
+
+```{r}
+FaithVars <- c('Faith_1', 'Faith_2', 'Faith_3', 'Faith_4', 'Faith_5')
+
+QTRX_df$Faith <- sjstats::mean_n(QTRX_df[,FaithVars], .80)#will create the mean for each individual if 80% of variables are present (this means there must be at least 5 of 6)
+```
+
+# Positively worded items needing to be reverse scored 1r, 2, 3, 4r, 5, 6r, 7 to communicate that higher scores indicate higher identity distress. 
+```{r}
+library(tidyverse)
+
+
+QTRX_df<- QTRX_df %>% 
+  dplyr::mutate(Sex_Iden_Dist_1r = 6 - Sex_Iden_Dist_1) %>% 
+  dplyr::mutate(Sex_Iden_Dist_2r = 6 - Sex_Iden_Dist_2) %>%
+  dplyr::mutate(Sex_Iden_Dist_3r = 6 - Sex_Iden_Dist_3) %>%
+  dplyr::mutate(Sex_Iden_Dist_4r = 6 - Sex_Iden_Dist_4) %>%
+  dplyr::mutate(Sex_Iden_Dist_5r = 6 - Sex_Iden_Dist_5) %>%
+  dplyr::mutate(Sex_Iden_Dist_6r = 6 - Sex_Iden_Dist_6) %>% 
+  dplyr::mutate(Sex_Iden_Dist_7r = 6 - Sex_Iden_Dist_7) 
+
+#This is for a total scale score where a higher score reverse coded items:
+
+Sex_Iden_DistVars <- c('Sex_Iden_Dist_1r', 'Sex_Iden_Dist_2', 'Sex_Iden_Dist_3', 'Sex_Iden_Dist_4r', 'Sex_Iden_Dist_5', 'Sex_Iden_Dist_6r', 'Sex_Iden_Dist_7')
+
+QTRX_df$Sex_Iden_Dist <- sjstats::mean_n(QTRX_df[,Sex_Iden_DistVars], .80)#will create the mean for each individual if 80% of variables are present (this means there must be at least 5 of 6)
+```
+
+# Positively worded items needing to be reverse scored 1,2,3,4r,5r to communicate that higher scores indicate higher religion sexuality conflict. 
+```{r}
+library(tidyverse)
+
+
+QTRX_df<- QTRX_df %>% 
+  dplyr::mutate(Relig_Sex_1r = 6 - Relig_Sex_1) %>% 
+  dplyr::mutate(Relig_Sex_2r = 6 - Relig_Sex_2) %>%
+  dplyr::mutate(Relig_Sex_3r = 6 - Relig_Sex_3) %>%
+  dplyr::mutate(Relig_Sex_4r = 6 - Relig_Sex_4) %>%
+  dplyr::mutate(Relig_Sex_5r = 6 - Relig_Sex_5)  
+
+#This is for a total scale score where a higher score reverse coded items:
+
+Relig_SexVars <- c('Relig_Sex_1', 'Relig_Sex_2', 'Relig_Sex_3', 'Relig_Sex_4r', 'Relig_Sex_5r')
+
+QTRX_df$Relig_Sex <- sjstats::mean_n(QTRX_df[,Relig_SexVars], .80)#will create the mean for each individual if 80% of variables are present (this means there must be at least 5 of 6)
+```
+
+#Checking the reliability of the scales that I'll be using
+```{r}
+#Checking reliability for Religion-Sexuality Conflict scale
+Relig_Sex1 <- dplyr::select(QTRX_df, Relig_Sex_1, Relig_Sex_2, Relig_Sex_3, Relig_Sex_4r, Relig_Sex_5r)
+psych::pairs.panels(Relig_Sex1)
+psych::alpha(Relig_Sex1)
+```
+```{r}
+#Checking reliability for Sexual-Identity Distress scale
+Sex_Iden_Dist1 <- dplyr::select(QTRX_df, Sex_Iden_Dist_1r, Sex_Iden_Dist_2, Sex_Iden_Dist_3, Sex_Iden_Dist_4r, Sex_Iden_Dist_5, Sex_Iden_Dist_6r, Sex_Iden_Dist_7)
+psych::pairs.panels(Sex_Iden_Dist1)
+psych::alpha(Sex_Iden_Dist1)
+```
+```{r}
+#Checking reliability for Strength of Religious Faith scale
+Faith1 <- dplyr::select(QTRX_df, Faith_1, Faith_2, Faith_3, Faith_4, Faith_5)
+psych::pairs.panels(Faith1)
+psych::alpha(Faith1)
+```
+```{r}
+#Checking reliability for Religiously Based Microaggressions scale
+Religious_MicroA1 <- dplyr::select(QTRX_df, Religious_MicroA_1, Religious_MicroA_43, Religious_MicroA_44, Religious_MicroA_45, Religious_MicroA_46, Religious_MicroA_47, Religious_MicroA_48, Religious_MicroA_49, Religious_MicroA_50)
+psych::pairs.panels(Religious_MicroA1)
+psych::alpha(Religious_MicroA1)
+```
+
+
+# Peeking at the data by creating a smaller df of scored variables
+
+```{r}
+BBY_df <-(select (QTRX_df, Faith, Religious_MicroA, Relig_Sex, Sex_Iden_Dist))
+```
+```{r}
+psych::pairs.panels(BBY_df)
+```
+We want to recode Gender into Conforming and Non-Conforming. The original variable (Gender) is coded as:
+
+* Female (1)
+* Male (2)
+* Gender non-conforming (3)
+* Transwoman (4)
+* Transman (5)
+* Other (6)
+* Prefer not to say (7)
+
+We are recoding 1, 2 as Conforming; 3, 4, 5 as NonConforming; 7 as NoSay
+
+
+```{r}
+
+QTRX_df$Conforming <- plyr::mapvalues(QTRX_df$Gender, from = c(1, 2, 3, 4, 5, 6, 7), to = c('Conforming', 'Conforming', 'NonConforming', 'NonConforming', 'NonConforming', 'NonConforming', 'NoSay'))
+```
+
+We want to recode Orientation into Hetero and NonHetero.  The original variable (Orientation)  is coded as:
+
+* Heterosexual (straight) (1)
+* Homosexual (gay) (2)
+* Bisexual (3)
+* Asexual (4)
+* Other (5)
+* Prefer not to say (6)
+
+```{r}
+QTRX_df$Orntn <- plyr::mapvalues(QTRX_df$Orientation, from = c(1, 2, 3, 4, 5, 6), to = c('Hetero', 'NonHetero', 'NonHetero', 'NonHetero', 'NonHetero', 'NoSay'))
+```
+
+Sometimes code can be (seemingly) unpredictable. In creating factors before, I've had difficulty if numerical options are not skipped and the R code collapses over them. Therefore, I'm creating this super baby df so I can compare my pre and recoded responses.
+```{r}
+Compare_df <- QTRX_df%>%select(Gender, Conforming, Orientation, Orntn)
+#looks good!
+```
+
+Now we want to create a CisHet and LGBTQIA+ distinction. We'll use the variables we just created to do this.
+```{r}
+QTRX_df <- QTRX_df %>%
+  dplyr::mutate(ID_OR = ifelse (Conforming == 'Conforming' & Orntn == 'Hetero', "CisHetero",
+                                  ifelse (Conforming == 'NoSay' & Orntn == 'NoSay', "NoSay", "LGBTQIA")))
+```
+
+```{r}
+Compare_df <- QTRX_df%>%select(Gender, Conforming, Orientation, Orntn, ID_OR)
+#looks good!
+```
+
+I want to add ta layer of intersectionality to these analyses. To simplify this, I will first create a White/BIPOC distinction.
+
+```{r}
+QTRX_df$RACE <- plyr::mapvalues(QTRX_df$Race, from = c(1, 2, 3, 4, 5, 6, 7, 8), to = c('BIPOC', 'BIPOC', 'BIPOC', 'BIPOC', 'White', 'BIPOC', 'BIPOC', 'NoSay'))
+```
+
+Next, I will recode so that we have the following categories:
+
+* Intersectonal:  LGBTQIA and BIPOC
+* WhCisHet:  CisHet and White
+* WhLGBTQIA:  LGBTQIA and White
+* BIPOCCisHet:  CisHet and BIPOC
+* NoSay:  If there was NoSay on either the BIPOC or LGBTQIA variable
+
+```{r}
+QTRX_df <- QTRX_df %>%
+  dplyr::mutate(Intersectional = ifelse (ID_OR == 'LGBTQIA' & RACE == 'BIPOC', "Intersectional",
+                                  ifelse (ID_OR == 'CisHetero' & RACE == 'White', "WhCisHetero",
+                                   ifelse (ID_OR == 'LGBTQIA' & RACE == 'White', "WhLGBTQIA", 
+                                     ifelse (ID_OR == 'CisHetero' & RACE == 'BIPOC', "BIPOCCisHet", "NoSay")))))
+```
+
+```{r}
+Compare_df <- QTRX_df%>%select(Gender, Conforming, Orientation, Orntn, ID_OR, Race, RACE, Intersectional)
+#after much tinkering it looks good!
+```
+#Now creating a df that specifically pulls in the interesting variables and only from those who identify as LGBTQIA+
+```{r}
+LGBT_df <- subset(QTRX_df, ID_OR == 'LGBTQIA')
+```
+```{r}
+#install.packages("summarytools")
+```
+
+The LGBT_df had too many variables for me to be able to concentrate. Making it even smaller.  Also renaming so that the graph and tables are a little more intuitive. I don't know that these are -- but since I made them up, they are to me.  Feel fre to change. I spent an hour trying to change them directly in the plot and couldn't, so backed up to do it here.
+```{r}
+trim_df <- (select (LGBT_df, Faith, Religious_MicroA, Relig_Sex, Sex_Iden_Dist, RACE))
+trim_df <- dplyr::rename(trim_df, Race = RACE, MicroAggr = Religious_MicroA, Conflict = Relig_Sex, Distress = Sex_Iden_Dist)
+```
+```{r}
+str(trim_df)
+```
+
+
+Late, when we introduce RACE as a moderator, its format causes problems. Moderation in lavaan with a categorical predictor is tricky. In fact, neither lavaan nor Nayes' process macro for R can handle a multi-categorical predictor, so it's good that yours is dichotomous.
+
+Checking the structure of your variable.... 
+
+```{r}
+str(trim_df$Race)
+```
+shows that it's, yikes, character. Plus, you have three values, including "NoSay."  We need to subset this data to include only White and BIPOC. We also need to get it to 0,1 numeric coding
+```{r}
+#deleting NoSay
+trim_df <- subset(trim_df, Race != "NoSay") #subset data
+#Recoding
+trim_df$Race <- plyr::mapvalues(trim_df$Race, from = c("White", "BIPOC"), to = c(0, 1))
+#trim_df$Race <- droplevels(trim_df$Race)
+
+trim_df$Race <- as.numeric(trim_df$Race)
+#trim_df$Race <- trim_df$Race-1
+str(trim_df$Race)
+
+```
+
+Although we often like to preserve cases with missing data, when we sequentially build models it's problematic when the smaller models have different sample sizes. I'm trimming to non-missing data in this primary model.
+
+```{r}
+trim_df <- na.omit(trim_df)
+```
+
+0 = White (reluctantly chosen on purpose b/c of larger sample size)
+1 = BIPOC
+
+```{r}
+library(summarytools)
+freq(trim_df$Race)
+
+```
+#From just visually looking at the data it looks like there are 6 total faculty , 27 staff, and 5 other (current/former) who are included in the data and the rest are students, however, it is worth noting that individuals could select multiple roles. 
+
+
+
+#Running the first simple mediation looking at the mediating role of religion sexuality conflict on the relationship between religiously based microaggressions and strength of religious faith. 
+```{r}
+library(lavaan)
+
+Mediated_model1 <- '
+          Faith ~ b*Conflict + c_p*MicroAggr 
+          Conflict ~ a*MicroAggr
+          
+          indirect :=  a*b
+          direct  := c_p
+          total_c  := c_p + (a*b)
+          '
+```
+```{r}
+Mediated_fit <- lavaan::sem(Mediated_model1, data = trim_df, se="bootstrap", missing= 'fiml')
+```
+```{r}
+Mediated_summary <- lavaan::summary(Mediated_fit, standardized=T, rsq=T, fit=TRUE, ci=TRUE)
+Mediated_summary
+```
+```{r}
+Mediated_ParamEsts <- lavaan::parameterEstimates(Mediated_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+Mediated_ParamEsts
+```
+
+Easiest way to get the output into a .csv file to make a table if you want a small, staged table for the dissertation; I wouldn't do it for the poster. 
+```{r}
+write.csv(Mediated_ParamEsts, file = "Mediated_ParamEsts1.csv")
+```
+
+
+#Plotting the mediation now
+
+SEMPLOT struggles to map moderations (later) but tidySEM can handle it.  Let's do all the figures with tidySEM.  First, you need all these packages open and running:
+
+```{r}
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+```
+```{r}
+tidySEM::graph_sem(model=Mediated_fit)
+```
+This code lets us understand the label names and how they are mapped
+```{r}
+tidySEM::get_layout(Mediated_fit)
+```
+
+We can write code to remap them. I did it "upside down" because it will be consistent with the combined figure.
+```{r}
+med1_map <- tidySEM::get_layout("MicroAggr", "", "Faith",
+                               "", "Conflict", ",", rows=2)
+med1_map
+```
+
+We run again with our map and BOOM!  Still needs tinkering for gorgeous, but hey!
+```{r}
+plot_Med1 <- tidySEM::graph_sem(Mediated_fit, layout=med1_map)
+plot_Med1
+```
+
+
+### Here is the 2nd simple mediation looking at the impact of religion sexuality conflict on the relationship between religiously based microaggressions and sexual identity distress.
+```{r}
+library(lavaan)
+
+Mediated2_model1 <- '
+          Distress ~ b*Conflict + c_p*MicroAggr 
+          Conflict ~ a*MicroAggr
+          
+          indirect :=  a*b
+          direct  := c_p
+          total_c  := c_p + (a*b)
+          '
+```
+```{r}
+Mediated2_fit <- lavaan::sem(Mediated2_model1, data = trim_df, se="bootstrap", missing= 'fiml')
+```
+```{r}
+Mediated2_summary <- lavaan::summary(Mediated2_fit, standardized=T, rsq=T, fit=TRUE, ci=TRUE)
+Mediated2_summary
+```
+```{r}
+Mediated2_ParamEsts <- parameterEstimates(Mediated2_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+Mediated2_ParamEsts
+```
+
+Easiest way to get the output into a .csv file to make a table if you want a small, staged table for the dissertation; I wouldn't do it for the poster. 
+```{r}
+write.csv(Mediated2_ParamEsts, file = "Mediated_ParamEsts2.csv")
+```
+
+#Plotting the mediation now
+
+```{r}
+tidySEM::graph_sem(model=Mediated2_fit)
+```
+This code lets us understand the label names and how they are mapped
+```{r}
+tidySEM::get_layout(Mediated2_fit) 
+```
+
+We can write code to remap them. I did it "upside down" because it will be consistent with the combined figure.
+```{r}
+med2_map <- tidySEM::get_layout("", "Conflict", "",
+                               "MicroAggr", "", "Distress", rows=2)
+med2_map
+```
+
+We run again with our map and BOOM!  Still needs tinkering for gorgeous, but hey!
+```{r}
+plot_Med2 <- tidySEM::graph_sem(Mediated2_fit, layout=med2_map)
+plot_Med2
+```
+
+
+###Now trying to run the moderation
+```{r}
+#install.packages("jtools")
+#install.packages("interactions")
+
+```
+
+```{r}
+library(jtools) #the summ function creates a terrific regression table
+library(interactions)
+library(ggplot2)
+
+RaceSimpMod <- lm(Distress~MicroAggr*Race, data=trim_df)
+summary(RaceSimpMod)
+```
+
+```{r}
+interact_plot(RaceSimpMod, pred = MicroAggr, modx = Race)
+```
+```{r}
+sim_slopes(RaceSimpMod, pred = MicroAggr, modx = Race)
+```
+Looks like it is not significant...however, I still need to pull in the descriptives to see how many people there actually are in each group. 
+
+## Rerunning the moderation in lavaan instead of OLS with base R
+
+First we have to get the simple moderation to run in lavaan.  The b labels appear to be standard notation. At the moment, I can't figure out how to do the simple slopes with the dichotomous moderator...but it seems common to use both lm and lavaan output in results (e.g., using the interaction plots from lm output).
+
+```{r}
+modmod <- '
+  Distress ~ b1*MicroAggr + b2*Race + b3*MicroAggr:Race
+  
+  #Intercept for DV
+  #Distress ~Distress*1
+  '
+```
+
+```{r}
+modfit1 <- lavaan::sem(model = modmod, data = trim_df, fixed.x = FALSE, meanstructure = TRUE)
+lavaan::summary(modfit1, standardized = TRUE, rsq=T, ci=TRUE)
+```
+
+```{r}
+Mod1OUT <- lavaan::parameterEstimates(modfit1, boot.ci.type = "bca.simple", standardized=TRUE, rsq=T, ci=TRUE)
+Mod1OUT
+```
+
+
+
+###OKAY HERE IS WHERE I RUN INTO PROBLEMS...  trying to run the full model. I am not sure how to do this with a categorical moderator and am not sure exactly how to do this with two predictors. 
+
+```{r}
+finalassembly <- '
+  #equations
+  Conflict ~ a*MicroAggr
+  Faith ~ c_p1*MicroAggr + b1*Conflict
+  Distress ~ c_p2*MicroAggr + b2*Conflict + W*Race + W1*Race:MicroAggr
+  
+  #intercepts for endogenous variables
+  Conflict ~ Conflict.mean*1
+  Faith ~ Faith.mean*1
+  Distress ~ Distress.mean*1
+  
+  #means, varianances of moderator (W) for simple slopes
+  Race ~ Race.mean*1
+  Race ~~ Race.var*Race
+  
+  #Given that moderation is on C path I do not think you will calculate an IMM
+  
+  #effects for model predicting strength of faith
+  indirectFAITH :=  a*b1
+  directFAITH  := c_p1
+  total_cFAITH  := c_p1 + (a*b1)
+  
+  #effects for model predicting sexual identity distress
+  indirectDIST :=  a*b2
+  directDIST  := c_p2
+  total_cDIST  := c_p2 + (a*b2)
+  
+  
+'
+```
+
+```{r}
+FA_fit <- lavaan::sem(finalassembly, data = trim_df, se = "bootstrap", missing = 'fiml', bootstrap = 1000, meanstructure=TRUE, fixed.x = FALSE)
+lavaan::summary(FA_fit,  standardized = TRUE, rsq=T, ci=TRUE)
+```
+
+```{r}
+faParamEsts <- lavaan::parameterEstimates(FA_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+faParamEsts
+```
+```{r}
+write.csv(faParamEsts, file = "CombinedParamEsts.csv")
+```
+
+```{r}
+tidySEM::graph_sem(model=FA_fit)
+```
+This code lets us understand the label names and how they are mapped
+```{r}
+tidySEM::get_layout(FA_fit) 
+```
+
+We can write code to remap them. I did it "upside down" because it will be consistent with the combined figure.
+```{r}
+FA_map <- tidySEM::get_layout("",        "",          "",          "",     "Faith",
+                                "MicroAggr", "", "Conflict",   "",      "",
+                                "",      "",            "",          "",     "Distress",
+                               "",                  "",          "Race",  "", "", 
+                               "",                  "",     "Race:MicroAggr", "", "",  rows=5)
+FA_map
+```
+
+We run again with our map and BOOM!  Still needs tinkering for gorgeous, but hey!
+```{r}
+tidySEM::graph_sem(FA_fit, layout=FA_map, rect_width = 2.25, rect_height = 1.25)
+ 
+```
+
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.13)  13 SEP 2023 19:53
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.13)  16 SEP 2023 21:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1583,7 +1583,7 @@ File: images/SimpleMed/CPAmodel.jpg Graphic file (type bmp)
 File: images/SimpleMed/MedRationale.jpg Graphic file (type bmp)
 <images/SimpleMed/MedRationale.jpg>
 [145] [146] [147] [148]
-Underfull \hbox (badness 10000) in paragraph at lines 5961--5963
+Underfull \hbox (badness 10000) in paragraph at lines 5950--5952
 
  []
 
@@ -1593,292 +1593,397 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [150]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[151] [152] [153]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 6236--6236
+[151] [152]
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 6210--6210
 []\TU/lmtt/m/n/10.95 ## Probability values (Entries above the diagonal are adjusted for multiple tests.)[] 
  []
 
-
-Overfull \hbox (24.63737pt too wide) in paragraph at lines 6236--6236
+[153]
+Overfull \hbox (24.63737pt too wide) in paragraph at lines 6210--6210
 []\TU/lmtt/m/n/10.95 ##  To see confidence intervals of the correlations, print with the short=FALSE option[] 
  []
 
-File: 05-SimpleMed_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf)
-<use 05-SimpleMed_files/figure-latex/unnamed-chunk-8-1.pdf>
+[154]
+File: 05-SimpleMed_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
+<use 05-SimpleMed_files/figure-latex/unnamed-chunk-6-1.pdf>
+[155]
+File: 05-SimpleMed_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use 05-SimpleMed_files/figure-latex/unnamed-chunk-9-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[154] [155] [156] [157]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[156]
+Overfull \hbox (3.6026pt too wide) in paragraph at lines 6409--6409
+[]|\TU/lmr/m/n/10.95 Independent 
+ []
 
-[158]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[159]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[160]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 6558--6558
+[157] [158] [159]
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 6523--6523
 []\TU/lmtt/m/n/10.95 ## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --[] 
  []
 
 
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 6558--6558
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 6523--6523
 []\TU/lmtt/m/n/10.95 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --[] 
  []
 
 
-Overfull \hbox (128.11485pt too wide) in paragraph at lines 6558--6558
+Overfull \hbox (128.11485pt too wide) in paragraph at lines 6523--6523
 []\TU/lmtt/m/n/10.95 ## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
  []
 
-[161]
-File: images/SimpleMed/Kim_SimpMed.jpg Graphic file (type bmp)
-<images/SimpleMed/Kim_SimpMed.jpg>
-[162] [163]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[164] [165]
-Underfull \hbox (badness 10000) in paragraph at lines 6822--6824
-
+[160]
+Underfull \vbox (badness 10000) detected at line 6677
  []
 
-[166]
-File: 05-SimpleMed_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type pdf)
-<use 05-SimpleMed_files/figure-latex/unnamed-chunk-18-1.pdf>
-[167]
-File: images/SimpleMed/Kim_wCovs.jpg Graphic file (type bmp)
-<images/SimpleMed/Kim_wCovs.jpg>
-[168] [169]
+
+Underfull \vbox (badness 10000) detected at line 6677
+ []
+
+[161]
+Underfull \vbox (badness 10000) detected at line 6677
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6677
+ []
+
+[162] [163]
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 6746--6746
+[]\TU/lmtt/m/n/10.95 ## Note. M and SD are used to represent mean and standard deviation, respectively.[] 
+ []
+
+[164]
+File: images/SimpleMed/Kim_SimpMed.jpg Graphic file (type bmp)
+<images/SimpleMed/Kim_SimpMed.jpg>
+[165] [166]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+[167] [168]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[169]
+File: 05-SimpleMed_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type pdf)
+<use 05-SimpleMed_files/figure-latex/unnamed-chunk-18-1.pdf>
+
+Underfull \vbox (badness 1377) has occurred while \output is active []
+
 [170]
+File: 05-SimpleMed_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (type pdf)
+<use 05-SimpleMed_files/figure-latex/unnamed-chunk-21-1.pdf>
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [171] [172]
-File: 05-SimpleMed_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type pdf)
-<use 05-SimpleMed_files/figure-latex/unnamed-chunk-22-1.pdf>
-
+File: images/SimpleMed/Kim_wCovs.jpg Graphic file (type bmp)
+<images/SimpleMed/Kim_wCovs.jpg>
+[173] [174]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[173] [174]
-Overfull \hbox (1.76706pt too wide) in paragraph at lines 7222--7222
-[]|\TU/lmr/m/n/10.95 Antecedent|  
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7264--7265
-
- []
-
-[175] [176] [177] [178]
-Chapter 6.
-
-Underfull \hbox (badness 10000) in paragraph at lines 7430--7432
+[175] [176]
+File: 05-SimpleMed_files/figure-latex/unnamed-chunk-24-1.pdf Graphic file (type pdf)
+<use 05-SimpleMed_files/figure-latex/unnamed-chunk-24-1.pdf>
+[177] [178]
+File: 05-SimpleMed_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (type pdf)
+<use 05-SimpleMed_files/figure-latex/unnamed-chunk-27-1.pdf>
+[179]
+Underfull \hbox (badness 10000) in paragraph at lines 7488--7489
 
  []
 
-[179
+[180] [181] [182]
 
-] [180] [181]
-File: images/CompMed/ParaMed.jpg Graphic file (type bmp)
-<images/CompMed/ParaMed.jpg>
-[182] [183] [184]
+Package hyperref Warning: Suppressing link with empty target on input line 7585.
+
+[183] [184]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [185]
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ##          lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper[] 
+ []
+
+
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ## 1      SRPed  ~   TradPed        b  0.549 0.046 11.891  0.000    0.454    0.639[] 
+ []
+
+
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ## 2      SRPed  ~ Centering      c_p  0.127 0.047  2.690  0.007    0.034    0.223[] 
+ []
+
+
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ## 3    TradPed  ~ Centering        a -0.101 0.085 -1.193  0.233   -0.272    0.066[] 
+ []
+
+[186]
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ## 4      SRPed ~~     SRPed           0.165 0.018  9.053  0.000    0.133    0.202[] 
+ []
+
+
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ## 5    TradPed ~~   TradPed           0.576 0.074  7.789  0.000    0.440    0.732[] 
+ []
+
+
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ## 6  Centering ~~ Centering           0.241 0.000     NA     NA    0.241    0.241[] 
+ []
+
+
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ## 7      SRPed ~1                     2.006 0.234  8.591  0.000    1.528    2.460[] 
+ []
+
+
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ## 8    TradPed ~1                     4.394 0.129 34.082  0.000    4.127    4.640[] 
+ []
+
+
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ## 9  Centering ~1                     1.406 0.000     NA     NA    1.406    1.406[] 
+ []
+
+
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ## 10  indirect :=       a*b indirect -0.056 0.048 -1.151  0.250   -0.159    0.033[] 
+ []
+
+
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ## 11    direct :=       c_p   direct  0.127 0.047  2.689  0.007    0.034    0.223[] 
+ []
+
+
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7812--7812
+[]\TU/lmtt/m/n/10.95 ## 12   total_c := c_p+(a*b)  total_c  0.071 0.066  1.072  0.284   -0.060    0.200[] 
+ []
+
+File: 05-SimpleMed_files/figure-latex/unnamed-chunk-37-1.pdf Graphic file (type pdf)
+<use 05-SimpleMed_files/figure-latex/unnamed-chunk-37-1.pdf>
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[186] [187] [188]
+[187] [188]
+File: 05-SimpleMed_files/figure-latex/unnamed-chunk-40-1.pdf Graphic file (type pdf)
+<use 05-SimpleMed_files/figure-latex/unnamed-chunk-40-1.pdf>
+[189] [190]
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 7983--7983
+[]\TU/lmtt/m/n/10.95 ## Note. M and SD are used to represent mean and standard deviation, respectively.[] 
+ []
+
+[191] [192
+
+]
+Chapter 6.
+
+Underfull \hbox (badness 10000) in paragraph at lines 8025--8027
+
+ []
+
+[193] [194] [195]
+File: images/CompMed/ParaMed.jpg Graphic file (type bmp)
+<images/CompMed/ParaMed.jpg>
+[196] [197] [198]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[199]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[200] [201] [202]
 File: 06-ComplexMed_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/unnamed-chunk-6-1.pdf>
 
-Overfull \hbox (3.03555pt too wide) in paragraph at lines 7926--7926
+Overfull \hbox (3.03555pt too wide) in paragraph at lines 8521--8521
  []|\TU/lmr/m/n/10.95 M1| 
  []
 
 
-Overfull \hbox (3.03555pt too wide) in paragraph at lines 7927--7927
+Overfull \hbox (3.03555pt too wide) in paragraph at lines 8522--8522
  []|\TU/lmr/m/n/10.95 M2| 
  []
 
-[189] [190] [191] [192] [193]
+[203] [204] [205] [206] [207]
 File: 06-ComplexMed_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/unnamed-chunk-12-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[194]
+[208]
 File: images/CompMed/LewisMedFig.jpg Graphic file (type bmp)
 <images/CompMed/LewisMedFig.jpg>
 
-Underfull \hbox (badness 1783) in paragraph at lines 8184--8185
+Underfull \hbox (badness 1783) in paragraph at lines 8779--8780
 [][] \TU/lmr/m/n/10.95 Because the
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[195]
+[209]
 File: images/CompMed/LewisParaMed.jpg Graphic file (type bmp)
 <images/CompMed/LewisParaMed.jpg>
-[196] [197]
+[210] [211]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[198]
+[212]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[199] [200]
+[213] [214]
 File: 06-ComplexMed_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/unnamed-chunk-15-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[201]
-Overfull \hbox (11.07988pt too wide) in paragraph at lines 8469--8469
+[215]
+Overfull \hbox (11.07988pt too wide) in paragraph at lines 9064--9064
  []|\TU/lmr/m/n/10.95 GRMS| 
  []
 
 
-Overfull \hbox (8.55304pt too wide) in paragraph at lines 8469--8469
+Overfull \hbox (8.55304pt too wide) in paragraph at lines 9064--9064
  []|\TU/lmr/m/n/10.95 MntlHlth| 
  []
 
 
-Overfull \hbox (11.07988pt too wide) in paragraph at lines 8470--8470
+Overfull \hbox (11.07988pt too wide) in paragraph at lines 9065--9065
  []|\TU/lmr/m/n/10.95 GRMS| 
  []
 
 
-Overfull \hbox (15.26201pt too wide) in paragraph at lines 8470--8470
+Overfull \hbox (15.26201pt too wide) in paragraph at lines 9065--9065
  []|\TU/lmr/m/n/10.95 DisEngmt| 
  []
 
 
-Overfull \hbox (8.55304pt too wide) in paragraph at lines 8470--8470
+Overfull \hbox (8.55304pt too wide) in paragraph at lines 9065--9065
  []|\TU/lmr/m/n/10.95 MntlHlth| 
  []
 
-[202] [203]
+[216] [217]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[204]
-Underfull \hbox (badness 10000) in paragraph at lines 8614--8616
+[218]
+Underfull \hbox (badness 10000) in paragraph at lines 9209--9211
 
  []
 
-[205]
-Underfull \hbox (badness 10000) in paragraph at lines 8644--8646
+[219]
+Underfull \hbox (badness 10000) in paragraph at lines 9239--9241
 
  []
 
-[206]
+[220]
 File: images/CompMed/LewisSerialMed.jpg Graphic file (type bmp)
 <images/CompMed/LewisSerialMed.jpg>
-[207] [208] [209]
+[221] [222] [223]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[210] [211]
+[224] [225]
 Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[212]
-Overfull \hbox (16.16866pt too wide) in paragraph at lines 8991--8991
- []|\TU/lmr/m/n/10.95 GRMS| 
- []
-
-
-Overfull \hbox (9.93855pt too wide) in paragraph at lines 8991--8991
- []|\TU/lmr/m/n/10.95 Engmt| 
- []
-
-
-Overfull \hbox (17.03459pt too wide) in paragraph at lines 8991--8991
- []|\TU/lmr/m/n/10.95 MntlHlth| 
- []
-
-
-Overfull \hbox (16.16866pt too wide) in paragraph at lines 8992--8992
- []|\TU/lmr/m/n/10.95 GRMS| 
- []
-
-
-Overfull \hbox (25.66275pt too wide) in paragraph at lines 8992--8992
- []|\TU/lmr/m/n/10.95 DisEngmt| 
- []
-
-
-Overfull \hbox (17.03459pt too wide) in paragraph at lines 8992--8992
- []|\TU/lmr/m/n/10.95 MntlHlth| 
- []
-
-
-Overfull \hbox (16.16866pt too wide) in paragraph at lines 8993--8993
- []|\TU/lmr/m/n/10.95 GRMS| 
- []
-
-
-Overfull \hbox (9.93855pt too wide) in paragraph at lines 8993--8993
- []|\TU/lmr/m/n/10.95 Engmt| 
- []
-
-
-Overfull \hbox (25.66275pt too wide) in paragraph at lines 8993--8993
- []|\TU/lmr/m/n/10.95 DisEngmt| 
- []
-
-
-Overfull \hbox (17.03459pt too wide) in paragraph at lines 8993--8993
- []|\TU/lmr/m/n/10.95 MntlHlth| 
- []
-
-[213] [214]
-File: 06-ComplexMed_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (type pdf)
-<use 06-ComplexMed_files/figure-latex/unnamed-chunk-21-1.pdf>
-[215] [216]
-Underfull \hbox (badness 10000) in paragraph at lines 9160--9162
-
- []
-
-[217] [218] [219] [220
-
-] [221] [222
-
-]
-Chapter 7.
-[223] [224] [225]
-Overfull \hbox (110.8686pt too wide) in paragraph at lines 9446--9446
-[]\TU/lmtt/m/n/10.95 i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
- []
 
 [226]
-Overfull \hbox (347.91074pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 7.2.  ON \TU/lmr/m/n/10.95 MODELING\TU/lmr/m/sl/10.95 : INTRODUCTORY COMMENTS ON THE SIMULTANEOUSLY INVISIBLE AND PARADIGM-SHIFTING TRANSITION WE ARE MAKING \TU/lmr/m/n/10.95 227
+Overfull \hbox (16.16866pt too wide) in paragraph at lines 9586--9586
+ []|\TU/lmr/m/n/10.95 GRMS| 
+ []
+
+
+Overfull \hbox (9.93855pt too wide) in paragraph at lines 9586--9586
+ []|\TU/lmr/m/n/10.95 Engmt| 
+ []
+
+
+Overfull \hbox (17.03459pt too wide) in paragraph at lines 9586--9586
+ []|\TU/lmr/m/n/10.95 MntlHlth| 
+ []
+
+
+Overfull \hbox (16.16866pt too wide) in paragraph at lines 9587--9587
+ []|\TU/lmr/m/n/10.95 GRMS| 
+ []
+
+
+Overfull \hbox (25.66275pt too wide) in paragraph at lines 9587--9587
+ []|\TU/lmr/m/n/10.95 DisEngmt| 
+ []
+
+
+Overfull \hbox (17.03459pt too wide) in paragraph at lines 9587--9587
+ []|\TU/lmr/m/n/10.95 MntlHlth| 
+ []
+
+
+Overfull \hbox (16.16866pt too wide) in paragraph at lines 9588--9588
+ []|\TU/lmr/m/n/10.95 GRMS| 
+ []
+
+
+Overfull \hbox (9.93855pt too wide) in paragraph at lines 9588--9588
+ []|\TU/lmr/m/n/10.95 Engmt| 
+ []
+
+
+Overfull \hbox (25.66275pt too wide) in paragraph at lines 9588--9588
+ []|\TU/lmr/m/n/10.95 DisEngmt| 
+ []
+
+
+Overfull \hbox (17.03459pt too wide) in paragraph at lines 9588--9588
+ []|\TU/lmr/m/n/10.95 MntlHlth| 
  []
 
 [227] [228]
+File: 06-ComplexMed_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (type pdf)
+<use 06-ComplexMed_files/figure-latex/unnamed-chunk-21-1.pdf>
+[229] [230]
+Underfull \hbox (badness 10000) in paragraph at lines 9755--9757
+
+ []
+
+[231] [232] [233] [234
+
+] [235] [236
+
+]
+Chapter 7.
+[237] [238] [239]
+Overfull \hbox (110.8686pt too wide) in paragraph at lines 10041--10041
+[]\TU/lmtt/m/n/10.95 i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
+ []
+
+[240]
+Overfull \hbox (347.91074pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 7.2.  ON \TU/lmr/m/n/10.95 MODELING\TU/lmr/m/sl/10.95 : INTRODUCTORY COMMENTS ON THE SIMULTANEOUSLY INVISIBLE AND PARADIGM-SHIFTING TRANSITION WE ARE MAKING \TU/lmr/m/n/10.95 241
+ []
+
+[241] [242]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-6-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[229] [230] [231] [232]
+[243] [244] [245] [246]
 File: images/SimpleMod/SimpleMedLV.jpg Graphic file (type bmp)
 <images/SimpleMod/SimpleMedLV.jpg>
-[233] [234]
+[247] [248]
 File: images/SimpleMod/SimpleMed.jpg Graphic file (type bmp)
 <images/SimpleMod/SimpleMed.jpg>
 File: images/SimpleMod/HybridMed.jpg Graphic file (type bmp)
 <images/SimpleMod/HybridMed.jpg>
 File: images/SimpleMod/OLS_MLEwrkflow.jpg Graphic file (type bmp)
 <images/SimpleMod/OLS_MLEwrkflow.jpg>
-[235] [236] [237] [238]
+[249] [250] [251] [252]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-10-1.pdf>
 File: images/SimpleMod/KimMod.jpg Graphic file (type bmp)
 <images/SimpleMod/KimMod.jpg>
 File: images/SimpleMod/KimModStatistical.jpg Graphic file (type bmp)
 <images/SimpleMod/KimModStatistical.jpg>
-[239] [240] [241]
+[253] [254] [255]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-14-1.pdf>
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-14-2.pdf Graphic file (type pdf)
@@ -1886,78 +1991,78 @@ File: 07-SimpleMod_files/figure-latex/unnamed-chunk-14-2.pdf Graphic file (type 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[242] [243] [244] [245] [246]
+[256] [257] [258] [259] [260]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[247] [248] [249]
+[261] [262] [263]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-17-1.pdf>
 
 Underfull \vbox (badness 1442) has occurred while \output is active []
 
-[250] [251] [252] [253]
+[264] [265] [266] [267]
 File: images/film-strip-1.jpg Graphic file (type bmp)
 <images/film-strip-1.jpg>
-[254] [255] [256
+[268] [269] [270
 
-] [257] [258
+] [271] [272
 
 ]
 Chapter 8.
 
-Underfull \hbox (badness 10000) in paragraph at lines 10718--10720
+Underfull \hbox (badness 10000) in paragraph at lines 11313--11315
 
  []
 
-[259]
-Underfull \hbox (badness 10000) in paragraph at lines 10770--10772
+[273]
+Underfull \hbox (badness 10000) in paragraph at lines 11365--11367
 
  []
 
-[260]
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 10836--10836
+[274]
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 11431--11431
 []\TU/lmtt/m/n/10.95 ## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --[] 
  []
 
 
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 10836--10836
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 11431--11431
 []\TU/lmtt/m/n/10.95 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --[] 
  []
 
 
-Overfull \hbox (128.11485pt too wide) in paragraph at lines 10836--10836
+Overfull \hbox (128.11485pt too wide) in paragraph at lines 11431--11431
 []\TU/lmtt/m/n/10.95 ## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
  []
 
-[261]
-Underfull \hbox (badness 10000) in paragraph at lines 10906--10908
+[275]
+Underfull \hbox (badness 10000) in paragraph at lines 11501--11503
 
  []
 
-[262]
+[276]
 File: images/SimpleMed/CPAmodel.jpg Graphic file (type bmp)
 <images/SimpleMed/CPAmodel.jpg>
-[263] [264] [265] [266] [267]
-Overfull \hbox (145.3611pt too wide) in paragraph at lines 11191--11191
+[277] [278] [279] [280] [281]
+Overfull \hbox (145.3611pt too wide) in paragraph at lines 11786--11786
 []\TU/lmtt/m/n/10.95 ## The ability to suppress reporting of reporting confidence intervals has been deprecated in this version.[] 
  []
 
-[268]
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 11254--11254
+[282]
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 11849--11849
 []\TU/lmtt/m/n/10.95 ## Note. M and SD are used to represent mean and standard deviation, respectively.[] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[269]
+[283]
 File: images/ModMed/LewisModMed.jpg Graphic file (type bmp)
 <images/ModMed/LewisModMed.jpg>
 File: images/ModMed/LewisStatistical.jpg Graphic file (type bmp)
 <images/ModMed/LewisStatistical.jpg>
 File: images/ModMed/PiecewiseAssembly.jpg Graphic file (type bmp)
 <images/ModMed/PiecewiseAssembly.jpg>
-[270] [271]
+[284] [285]
 File: images/ModMed/LewisMod1.jpg Graphic file (type bmp)
 <images/ModMed/LewisMod1.jpg>
 
@@ -1969,27 +2074,27 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[272]
+[286]
 File: 08-CPA_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-10-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[273]
+[287]
 File: 08-CPA_files/figure-latex/unnamed-chunk-10-2.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-10-2.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[274] [275] [276]
+[288] [289] [290]
 File: images/ModMed/LewisMod2.jpg Graphic file (type bmp)
 <images/ModMed/LewisMod2.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 11456--11457
+Underfull \hbox (badness 10000) in paragraph at lines 12051--12052
 
  []
 
-[277]
+[291]
 File: 08-CPA_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-13-1.pdf>
 File: 08-CPA_files/figure-latex/unnamed-chunk-13-2.pdf Graphic file (type pdf)
@@ -1997,54 +2102,54 @@ File: 08-CPA_files/figure-latex/unnamed-chunk-13-2.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[278] [279]
+[292] [293]
 Underfull \vbox (badness 1077) has occurred while \output is active []
 
-[280]
+[294]
 File: images/ModMed/LewisMed.jpg Graphic file (type bmp)
 <images/ModMed/LewisMed.jpg>
-[281]
+[295]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[282] [283]
+[296] [297]
 File: 08-CPA_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-16-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[284]
+[298]
 File: images/ModMed/LewisStatistical.jpg Graphic file (type bmp)
 <images/ModMed/LewisStatistical.jpg>
-[285] [286] [287]
+[299] [300] [301]
 File: 08-CPA_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-18-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[288] [289]
-Overfull \hbox (58.13184pt too wide) in paragraph at lines 12024--12024
+[302] [303]
+Overfull \hbox (58.13184pt too wide) in paragraph at lines 12619--12619
 []|\TU/lmr/m/n/10.95 GRMS*GRIcntrlty(XW)|  
  []
 
-[290]
-Underfull \hbox (badness 10000) in paragraph at lines 12118--12120
+[304]
+Underfull \hbox (badness 10000) in paragraph at lines 12713--12715
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12120--12122
+Underfull \hbox (badness 10000) in paragraph at lines 12715--12717
 
  []
 
-[291] [292]
+[305] [306]
 File: images/Modmed/GRMS_MH_GRIC.jpg Graphic file (type bmp)
 <images/Modmed/GRMS_MH_GRIC.jpg>
-[293] [294] [295]
+[307] [308] [309]
 File: images/film-strip-1.jpg Graphic file (type bmp)
 <images/film-strip-1.jpg>
-[296] [297] [298] (./ReC_MultMod.bbl [299
+[310] [311] [312] (./ReC_MultMod.bbl [313
 
-] [300
+] [314
 
 ]
 Underfull \hbox (badness 1112) in paragraph at lines 33--40
@@ -2056,7 +2161,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--64
 [] [] [][][][][][] [] [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][][][][][][][][][][][] [] [][][][][] [] [][][][][][][] [] [][][][] [][] [][][][][] [][]
  []
 
-[301]
+[315]
 Underfull \hbox (badness 1558) in paragraph at lines 120--127
 []\TU/lmr/m/n/10.95 Sylvia Hurtado.  Linking Diversity with the Educational and Civic Missions of Higher
  []
@@ -2086,7 +2191,7 @@ Underfull \hbox (badness 2088) in paragraph at lines 129--135
 [][][][][][][]$\TU/lmr/m/n/10.95 .  URL [][]$[][][][][] [] [] [] [][][][][][][] [] [][][] [] [][][] [] [][][][][] [] [][][] [] [][][][] [] [] [] [][][][][][] [] [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] []
  []
 
-[302]
+[316]
 Underfull \hbox (badness 3861) in paragraph at lines 172--175
 []\TU/lmr/m/n/10.95 Paul Y. Kim.  Guest Post: Anti-Asian Racism during the Pandemic: How Fac-
  []
@@ -2121,7 +2226,7 @@ Underfull \hbox (badness 1014) in paragraph at lines 227--234
 []\TU/lmr/m/n/10.95 Kaleea R. Lewis and Payal P. Shah.  Black students’ narratives of diversity and inclu-
  []
 
-[303]
+[317]
 Underfull \hbox (badness 1052) in paragraph at lines 249--256
 []\TU/lmr/m/n/10.95 R. Duncan Luce.  Four tensions concerning mathematical modeling in psychology.  \TU/lmr/m/it/10.95 An-
  []
@@ -2151,11 +2256,26 @@ Underfull \hbox (badness 5504) in paragraph at lines 284--291
 \TU/lmr/m/it/10.95 seling Psychology\TU/lmr/m/n/10.95 , 68(1):1–16, January 2021.  ISSN 0022-0167.  doi: $[][] [] [][][][] []
  []
 
-[304])
+[318]
+Underfull \hbox (badness 4621) in paragraph at lines 382--389
+[]\TU/lmr/m/n/10.95 Clairice T. Veit and John E. Ware.  The structure of psychological distress and
+ []
+
+
+Underfull \hbox (badness 6461) in paragraph at lines 382--389
+\TU/lmr/m/n/10.95 well-being in general populations.  \TU/lmr/m/it/10.95 Journal of Consulting and Clinical Psychol-
+ []
+
+
+Underfull \hbox (badness 2384) in paragraph at lines 382--389
+\TU/lmr/m/it/10.95 ogy\TU/lmr/m/n/10.95 , 51(5):730–742, October 1983.  ISSN 0022-006X.  doi: $[][] [] [][][][] [] [][][][] [][] [][][][] [] [][] [] [] []
+ []
+
+[319])
 
 Package natbib Warning: There were undefined citations.
 
-[305] (./ReC_MultMod.aux)
+[320] (./ReC_MultMod.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
@@ -2164,15 +2284,15 @@ L3 programming layer <2023-08-29>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `ReC_MultMod.out' has not changed.
-(rerunfilecheck)             Checksum: 230B19F693D0372D9F94571017047636;51590.
+(rerunfilecheck)             Checksum: E1A027704117D1FA2F6CD61961DC8B99;52718.
  ) 
 Here is how much of TeX's memory you used:
- 20854 strings out of 477590
- 394188 string characters out of 5817186
- 1952432 words of memory out of 5000000
- 41677 multiletter control sequences out of 15000+600000
+ 20927 strings out of 477590
+ 397548 string characters out of 5817186
+ 1963432 words of memory out of 5000000
+ 41747 multiletter control sequences out of 15000+600000
  564680 words of font info for 97 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,11n,120p,2365b,592s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,11n,120p,2365b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ReC_MultMod.pdf (305 pages).
+Output written on ReC_MultMod.pdf (320 pages).

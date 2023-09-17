@@ -1,0 +1,148 @@
+```{r include = FALSE}
+options(scipen=999)
+```
+
+
+## Homeworked Example
+[Screencast Link](https://youtube.com/playlist?list=PLtz5cFLQl4KOZBkREeIJ5Wm_QhX7Pi4un&si=1aV0H5pJOtbnzWYI)
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
+
+
+The suggested practice problem for this chapter is to conduct a simple mediation. 
+
+### Assign each variable to the X, Y, or M roles (ok but not required  to include a cov) 
+
+X = Centering: explicit recentering (0 = precentered; 1 = recentered)
+M = TradPed: traditional pedagogy (continuously scaled with higher scores being more favorable)
+Y = SRPed:  socially responsive pedagogy (continuously scaled with higher scores being more favorable)
+
+### Specify a research model  {-}
+
+I am hypothesizing that the evaluation of social responsive pedagogy is predicted by intentional recentering through traditional pedagogy. 
+
+### Import the data and format the variables in the model  {-}
+
+```{r}
+raw <- readRDS("ReC.rds")
+```
+
+I need to score the TradPed and SRPed variables
+
+```{r}
+TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')  
+raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], .75)
+
+SRPed_vars <- c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration')  
+raw$SRPed <- sjstats::mean_n(raw[,..SRPed_vars], .75)
+```
+
+I will create a babydf.
+
+```{r}
+babydf <- dplyr::select(raw, Centering, TradPed, SRPed)
+```
+
+Let's check the structure of the variables:
+
+```{r}
+str(babydf)
+```
+
+### Specify and run the lavaan model  {-}
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ReCMed <- '
+          SRPed ~ b*TradPed + c_p*Centering
+          TradPed ~ a*Centering
+          
+          indirect :=  a*b
+          direct  := c_p
+          total_c  := c_p + (a*b)
+          '
+ReCfit <- lavaan::sem(ReCMed, data = babydf, se="bootstrap", missing= 'fiml')
+ReCsummary <- lavaan::summary(ReCfit, standardized=T, rsq=T, fit=TRUE, ci=TRUE)
+ReC_ParamEsts <- lavaan::parameterEstimates(ReCfit, boot.ci.type = "bca.simple", standardized=TRUE)
+ReCsummary
+ReC_ParamEsts
+```
+$B = 0.071, p = 0.302$
+direct: $B = 0.127, p = 0.008$
+
+### Use tidySEM to create a figure that represents your results {-}
+
+
+```{r}
+#only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model=ReCfit)
+```
+
+```{r}
+tidySEM::get_layout(ReCfit)
+```
+We can write code to remap them
+```{r}
+med_map <- tidySEM::get_layout("", "TradPed", "",
+                               "Centering", "", "SRPed", rows=2)
+med_map
+```
+```{r}
+tidySEM::graph_sem(ReCfit, layout=med_map,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+```
+
+
+### Create a table that includes regression output for the M and Y variables {-}
+
+```{r}
+write.csv(ReC_ParamEsts, file = "ReCSimpMed.csv")
+```
+
+Table 1  
+
+|Model Coefficients Assessing Traditional Pedagogy as a Mediator Between Centering and Socially Responsive Pedagogy        |
+|:-------------------------------------------------------------------------------------------------------------------------|
+
+|                         
+|:------------------------|:---------------------------------------:|:-----:|:--------------------------------------------:|
+|                         |Traditional Pedagogy  (M)                |       |Socially Responsive Pedagogy (Y)              |
+
+|
+|:----------------|:-----:|:------------:|:----------:|:-----------:|:-----:|:-----------:|:--------------:|:-------------:|
+|Antecedent       |path   |$B$           |$SE$        |$p$          |path   |$B$          |$SE$            |$p$            |
+|constant         |$i_{M}$|4.394         |0.133       |< 0.001      |$i_{Y}$|2.006        |0.238           |< 0.001        |
+|Centering (X)    |$a$    |-0.101        |0.088       |< 0.247      |$c'$   |0.127        |0.048           |0.008          |
+|TradPed (M)      |       |              |            |             |$b$    |0.549        |0.047           |< 0.001        |
+
+|
+|:------------------------|:-----------------------------------------------:|:-----:|:------------------------------------:|
+|                         |$R^2$ = .4%                              |       |$R^2$ = 51%                                   |                    
+
+|                                                                                                                          |
+|:-------------------------------------------------------------------------------------------------------------------------|
+|*Note*. Centering:  0 = pre-centered, 1 = recentered. TradPed is traditional pedagogy. The value of the indirect effect was $B = -0.056, SE = 0.051, p = 0.272, 95CI(-0.163,0.035)$ |
+
+### Represent your work in an APA-style write-up {-}
+
+A simple mediation model examined the degree to which evaluations of traditional pedagogy mediated the relation of explicit recentering on socially responsive pedagogy.  Using the *lavaan* package (v 0.6-16) in R, coefficients for  each path, the indirect effect, and total effects were calculated. These values are presented in Table 1 and illustrated in Figure 1.  Results suggested that neglgible (.4%) of the variance was accounted for in traditional pedagogy. In contrast 51% of the variance was accounted for in socially responsive pedagogy.  The indirect effect $(B = -0.056, SE = 0.051, p = 0.272, 95CI[-0.163,0.035])$ was statistically significant. Comparing total and direct effects, the total effect of centering and traditional pedagogy on socially responsive pedagogy was not statistically significant $(B = 0.071, p = 0.302)$. In contrast, the direct effect was ($B = 0.127, p = 0.008$ was not). This suggests that while centering and traditional pedagogy do influence socially responsive pedagogy, their influence is relatively independent.
+
+```{r}
+apaTables::apa.cor.table(babydf, table.number = 1, show.sig.stars=TRUE, landscape=TRUE, filename=NA)
+
+```
+
+### Explanation to grader {-}
+
+### Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths {-}
+
+Indirect = a*b
+Direct = Total minus indirect
+Total = (a*b) + c'
+
+
+
+
+

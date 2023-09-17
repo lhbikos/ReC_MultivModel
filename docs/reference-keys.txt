@@ -127,7 +127,7 @@ packages-4
 estimating-indirect-effects-the-analytic-approach-often-termed-mediation
 the-definitional-and-conceptual
 workflow-for-simple-mediation
-simple-mediation-in-lavaan-a-focus-on-the-mechanics
+super-simple-mediation-in-lavaan-a-focus-on-the-mechanics
 simulate-fake-data
 specify-mediation-model
 interpret-the-output
@@ -135,6 +135,7 @@ a-table-and-a-figure
 results-4
 research-vignette-4
 simulate-data-from-the-journal-article
+scrubbing-scoring-and-data-diagnostics
 specify-the-model-in-lavaan
 interpret-the-output-1
 a-figure-and-a-table
@@ -147,6 +148,9 @@ practice-problems-4
 problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed
 problem-2-rework-the-research-vignette-but-swap-one-or-more-variables
 problem-3-use-other-data-that-is-available-to-you
+grading-rubric-4
+homeworked-example-2
+assign-each-variable-to-the-x-y-or-m-roles-ok-but-not-required-to-include-a-cov
 CompMed
 navigating-this-lesson-5
 learning-objectives-5

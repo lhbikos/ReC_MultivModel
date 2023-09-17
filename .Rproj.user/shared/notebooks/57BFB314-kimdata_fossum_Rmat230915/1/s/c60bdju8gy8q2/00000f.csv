@@ -1,0 +1,5 @@
+"0","set.seed(210410)"
+"0","Kim_df_latent <- simulateData(model = Kim_generating_model,"
+"0","                              model.type = ""sem"","
+"0","                              meanstructure = T,"
+"0","                              sample.nobs=156)"
