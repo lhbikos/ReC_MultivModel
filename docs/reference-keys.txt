@@ -131,10 +131,10 @@ super-simple-mediation-in-lavaan-a-focus-on-the-mechanics
 simulate-fake-data
 specify-mediation-model
 interpret-the-output
-a-table-and-a-figure
+a-figure-and-table
 results-4
 research-vignette-4
-simulate-data-from-the-journal-article
+data-simulation
 scrubbing-scoring-and-data-diagnostics
 specify-the-model-in-lavaan
 interpret-the-output-1
@@ -143,6 +143,7 @@ results-5
 considering-covariates
 a-figure-and-a-table-1
 apa-style-write-up
+stay-tuned
 residual-and-related-questions
 practice-problems-4
 problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed
@@ -150,7 +151,7 @@ problem-2-rework-the-research-vignette-but-swap-one-or-more-variables
 problem-3-use-other-data-that-is-available-to-you
 grading-rubric-4
 homeworked-example-2
-assign-each-variable-to-the-x-y-or-m-roles-ok-but-not-required-to-include-a-cov
+assign-each-variable-to-the-x-y-or-m-roles-ok-but-not-required-to-include-a-covariate
 CompMed
 navigating-this-lesson-5
 learning-objectives-5
@@ -160,13 +161,13 @@ packages-5
 complex-mediation
 parallel-mediation
 a-mechanical-example
-data-simulation
+data-simulation-1
 specifying-lavaan-code
 a-note-on-indirect-effects-and-confidence-intervals
 figures-and-tables
 apa-style-writeup
 research-vignette-5
-data-simulation-1
+data-simulation-2
 quick-descriptives
 specifying-the-lavaan-model
 figures-and-tables-1
@@ -200,7 +201,7 @@ the-fiml-magic-for-which-we-have-been-waiting
 picking-up-with-moderation
 workflow-for-a-simple-moderation
 research-vignette-6
-simulate-data-from-the-journal-article-1
+simulate-data-from-the-journal-article
 working-the-simple-moderation-with-ols-and-mle
 ols-with-lm
 an-apa-style-write-up-of-ols-results

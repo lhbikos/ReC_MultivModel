@@ -1,0 +1,1 @@
+"0","Kim_fit <- lavaan::sem(modKim, data = dfModel, se=""bootstrap"", missing= 'fiml')"

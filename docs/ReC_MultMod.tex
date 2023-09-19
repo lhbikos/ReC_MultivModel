@@ -141,7 +141,7 @@
 
 \title{ReCentering Psych Stats: Multivariate Modeling}
 \author{Lynette H. Bikos, PhD, ABPP}
-\date{16 Sep 2023}
+\date{19 Sep 2023}
 
 \begin{document}
 \maketitle
@@ -175,7 +175,7 @@ All materials used in creating this OER are available at its \href{https://githu
 \chapter*{PREFACE}\label{preface}}
 
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 16 Sep 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 19 Sep 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -5637,7 +5637,7 @@ Results of a multiple regression predicting the socially responsive course evalu
 \hypertarget{SimpleMed}{%
 \chapter{Simple Mediation}\label{SimpleMed}}
 
-\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=7ffb03e6-b34b-4e0b-8f10-ad080180b069}{Screencasted Lecture Link}
+\href{https://youtube.com/playlist?list=PLtz5cFLQl4KO-j2YBYGwyUl34pIXzNVST\&si=Jp5LJf35y5T-VbFb}{Screencasted Lecture Link}
 
 The focus of this lecture is to estimate indirect effects (aka ``mediation''). We examine the logic/design required to support the argument that \emph{mediation} is the \emph{mechanism} that explains the X --\textgreater{} Y relationship. We also work three examples (one with covariates).
 
@@ -5837,7 +5837,80 @@ We will work toward building a conditional process model, a moderated mediation,
 \hypertarget{workflow-for-simple-mediation}{%
 \section{Workflow for Simple Mediation}\label{workflow-for-simple-mediation}}
 
-The workflow for a simple mediation is straightforward. Furhter, the very traditional the figure below is very helpful in understanding the logic beneath mediation as the explanatory mechanism.
+The following is a proposed workflow for conducting a simple mediation.
+
+\begin{figure}
+\centering
+\includegraphics{images/SimpleMed/SimpMed_Workflow.jpg}
+\caption{A colorful image of a workflow for the simple mediation}
+\end{figure}
+
+Conducting a simple mediation involves the following steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Conducting an a priori power analysis to determine the appropriate sample size.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This will require estimates of effect that are drawn from pilot data, the literature, or both.
+  \end{itemize}
+\item
+  \href{https://lhbikos.github.io/ReC_MultivModel/scrub.html}{Scrubbing} and \href{https://lhbikos.github.io/ReC_MultivModel/score.html}{scoring} the data.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Guidelines for such are presented in the respective lessons.
+  \end{itemize}
+\item
+  Conducting data diagnostics, this includes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    item and scale level missingness,
+  \item
+    internal consistency coefficients (e.g., alphas or omegas) for scale scores,
+  \item
+    univariate and multivariate normality
+  \end{itemize}
+\item
+  Specifying and running the model (this lesson presumes it will with the R package, \emph{lavaan}).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The dependent variable should be predicted by the independent, mediating, and covarying (if any) variables.
+  \item
+    ``Labels'' can facilitate interpretation by naming the a, b, and c' paths. +Additional script provides labels for the indirect, direct, and total effects.
+  \end{itemize}
+\item
+  Conducting a post hoc power analysis.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Informed by your own results, you can see if you were adequately powered to detect a statistically significant effect, if, in fact, one exists.
+  \end{itemize}
+\item
+  Interpret and report the results.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Interpret ALL the paths and their pattens.
+  \item
+    Create a table and figure.
+  \item
+    Prepare the results in a manner that is useful to your audience.
+  \end{itemize}
+\end{enumerate}
+
+In addition to the workflow through the statistical problem, the very traditional and classic figure below is useful in understanding the logic beneath mediation as the explanatory mechanism.
 
 \begin{figure}
 \centering
@@ -5849,7 +5922,7 @@ The top figure represents the bivariate relationship between the independent and
 
 The lower figure represents that the relationship between the IV and DV is \emph{mediated} by a third variable. We assign three labels to the paths: \emph{a}, between the IV and mediator; \emph{b}, between the mediator and DV; and \emph{c'} (c prime) between the IV and DV.
 
-Statistically speaking, a mediated relationship is supported when the value of \emph{c'} is statistically significantly lower than \emph{c}. If this occurs, then we can say that the mediator is sharing some of the variance in the prediction of the DV.
+Although Hayes makes a compelling case that we can claim ``mediation'' when there is a statistically significant indirect effect \citeyearpar{hayes_introduction_2018}, traditionally, a mediated relationship is supported when the value of \emph{c'} is statistically significantly lower than \emph{c}. When this occurs, then know that the mediator is sharing some of the variance (and therefore acting as a \emph{conduit}) in the prediction of the DV.
 
 You might already be imagining potential challenges to this model. For example, which variable should be the IV and which one should be the mediator? Can we switch them? You can -- and you will likely have very similar (if not identical) results. Good research design is what provides support for suggesting that mediation is the proper, casual, mechanism regarding the relationship between the IV and DV. An excellent review of the challenges of establishing a robust mediation model is provided by Kline \citeyearpar{kline_mediation_2015}, where he suggests the following as the minimally required elements of a mediation design:
 
@@ -6209,8 +6282,8 @@ In a simple model such as this, it is also the same value as the bivariate corre
 ##  To see confidence intervals of the correlations, print with the short=FALSE option
 \end{verbatim}
 
-\hypertarget{a-table-and-a-figure}{%
-\subsection{A Table and a Figure}\label{a-table-and-a-figure}}
+\hypertarget{a-figure-and-table}{%
+\subsection{A Figure and Table}\label{a-figure-and-table}}
 
 We can use the package \href{https://cjvanlissa.github.io/tidySEM/articles/Plotting_graphs.html}{tidySEM} to create a figure that includes the values on the path.
 
@@ -6218,7 +6291,7 @@ Here's what the base package gets us
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#only worked when I used the library to turn on all these pkgs}
+\CommentTok{\# only worked when I used the library to turn on all these pkgs}
 \FunctionTok{library}\NormalTok{(lavaan)}
 \end{Highlighting}
 \end{Shaded}
@@ -6308,7 +6381,7 @@ Here's what the base package gets us
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(}\AttributeTok{model=}\NormalTok{fit)}
+\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(}\AttributeTok{model =}\NormalTok{ fit)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6332,8 +6405,7 @@ We can write code to remap them
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{med\_map }\OtherTok{\textless{}{-}}\NormalTok{ tidySEM}\SpecialCharTok{::}\FunctionTok{get\_layout}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{""}\NormalTok{,}
-                               \StringTok{"X"}\NormalTok{, }\StringTok{""}\NormalTok{, }\StringTok{"Y"}\NormalTok{, }\AttributeTok{rows=}\DecValTok{2}\NormalTok{)}
+\NormalTok{med\_map }\OtherTok{\textless{}{-}}\NormalTok{ tidySEM}\SpecialCharTok{::}\FunctionTok{get\_layout}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{""}\NormalTok{, }\StringTok{"X"}\NormalTok{, }\StringTok{""}\NormalTok{, }\StringTok{"Y"}\NormalTok{, }\AttributeTok{rows =} \DecValTok{2}\NormalTok{)}
 \NormalTok{med\_map}
 \end{Highlighting}
 \end{Shaded}
@@ -6350,7 +6422,8 @@ We run again with our map and BOOM! Still needs tinkering for gorgeous, but hey!
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(fit, }\AttributeTok{layout=}\NormalTok{med\_map,  }\AttributeTok{rect\_width =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{rect\_height =} \FloatTok{1.25}\NormalTok{, }\AttributeTok{spacing\_x =} \DecValTok{2}\NormalTok{, }\AttributeTok{spacing\_y =} \DecValTok{3}\NormalTok{, }\AttributeTok{text\_size =} \FloatTok{4.5}\NormalTok{)}
+\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(fit, }\AttributeTok{layout =}\NormalTok{ med\_map, }\AttributeTok{rect\_width =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{rect\_height =} \FloatTok{1.25}\NormalTok{,}
+    \AttributeTok{spacing\_x =} \DecValTok{2}\NormalTok{, }\AttributeTok{spacing\_y =} \DecValTok{3}\NormalTok{, }\AttributeTok{text\_size =} \FloatTok{4.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6455,8 +6528,8 @@ Variables used in the study included:
   \textbf{HlpSkg}: The Attiudes Toward Seeking Professional Psychological Help -- Short Form (Fischer \& Farina, 1995) includes 10 items on a 4-point scale (0 = disagree, 3 = agree) where higher scores indicate more favorable attitudes toward help seeking.
 \end{itemize}
 
-\hypertarget{simulate-data-from-the-journal-article}{%
-\subsection{Simulate Data from the Journal Article}\label{simulate-data-from-the-journal-article}}
+\hypertarget{data-simulation}{%
+\subsection{Data Simulation}\label{data-simulation}}
 
 We used the \emph{lavaan::simulateData} function for the simulation. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures \citep{nadal_racial_2011, veit_structure_1983}. We then approximated the \emph{measurement model} by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette \citep{kim_racial_2017}. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
 
@@ -6687,15 +6760,28 @@ As described in the \href{https://lhbikos.github.io/ReC_MultivModel/score.html}{
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{PWB\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"pwb1"}\NormalTok{, }\StringTok{"pwb2"}\NormalTok{, }\StringTok{"pwb3"}\NormalTok{, }\StringTok{"pwb4"}\NormalTok{, }\StringTok{"pwb5"}\NormalTok{, }\StringTok{"pwb6"}\NormalTok{, }\StringTok{"pwb7"}\NormalTok{, }\StringTok{"pwb8"}\NormalTok{, }\StringTok{"pwb9"}\NormalTok{, }\StringTok{"pwb10"}\NormalTok{)}
-\NormalTok{ANX\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Anx1"}\NormalTok{, }\StringTok{"Anx2"}\NormalTok{, }\StringTok{"Anx3"}\NormalTok{, }\StringTok{"Anx4"}\NormalTok{, }\StringTok{"Anx5"}\NormalTok{, }\StringTok{"Anx6"}\NormalTok{, }\StringTok{"Anx7"}\NormalTok{, }\StringTok{"Anx8"}\NormalTok{, }\StringTok{"Anx9"}\NormalTok{)}
-\NormalTok{CMI\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"cmi1"}\NormalTok{, }\StringTok{"cmi2"}\NormalTok{, }\StringTok{"cmi3"}\NormalTok{, }\StringTok{"cmi4"}\NormalTok{, }\StringTok{"cmi5"}\NormalTok{, }\StringTok{"cmi6"}\NormalTok{, }\StringTok{"cmi7"}\NormalTok{, }\StringTok{"cmi8"}\NormalTok{, }\StringTok{"cmi9"}\NormalTok{, }\StringTok{"cmi10"}\NormalTok{, }\StringTok{"cmi11"}\NormalTok{, }\StringTok{"cmi12"}\NormalTok{, }\StringTok{"cmi13"}\NormalTok{, }\StringTok{"cmi14"}\NormalTok{, }\StringTok{"cmi15"}\NormalTok{, }\StringTok{"cmi16"}\NormalTok{, }\StringTok{"cmi17"}\NormalTok{, }\StringTok{"cmi18"}\NormalTok{, }\StringTok{"cmi19"}\NormalTok{, }\StringTok{"cmi20"}\NormalTok{, }\StringTok{"cmi21"}\NormalTok{, }\StringTok{"cmi22"}\NormalTok{, }\StringTok{"cmi23"}\NormalTok{, }\StringTok{"cmi24"}\NormalTok{, }\StringTok{"cmi25"}\NormalTok{, }\StringTok{"cmi26"}\NormalTok{, }\StringTok{"cmi27"}\NormalTok{, }\StringTok{"cmi28"}\NormalTok{, }\StringTok{"cmi29"}\NormalTok{, }\StringTok{"cmi30"}\NormalTok{, }\StringTok{"cmi31"}\NormalTok{, }\StringTok{"cmi32"}\NormalTok{, }\StringTok{"cmi33"}\NormalTok{, }\StringTok{"cmi34"}\NormalTok{, }\StringTok{"cmi35"}\NormalTok{, }\StringTok{"cmi36"}\NormalTok{, }\StringTok{"cmi37"}\NormalTok{, }\StringTok{"cmi38"}\NormalTok{, }\StringTok{"cmi39"}\NormalTok{, }\StringTok{"cmi40"}\NormalTok{, }\StringTok{"cmi41"}\NormalTok{, }\StringTok{"cmi42"}\NormalTok{, }\StringTok{"cmi43"}\NormalTok{, }\StringTok{"cmi44"}\NormalTok{, }\StringTok{"cmi45"}\NormalTok{, }\StringTok{"cmi46"}\NormalTok{, }\StringTok{"cmi47"}\NormalTok{)}
-\NormalTok{REMS\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Inf32"}\NormalTok{, }\StringTok{"Inf38"}\NormalTok{, }\StringTok{"Inf21"}\NormalTok{, }\StringTok{"Inf17"}\NormalTok{, }\StringTok{"Inf9"}\NormalTok{, }\StringTok{"Inf36"}\NormalTok{, }\StringTok{"Inf5"}\NormalTok{, }\StringTok{"Inf22"}\NormalTok{, }\StringTok{"SClass6"}\NormalTok{, }\StringTok{"SClass31"}\NormalTok{, }\StringTok{"SClass8"}\NormalTok{, }\StringTok{"SClass40"}\NormalTok{, }\StringTok{"SClass2"}\NormalTok{, }\StringTok{"SClass34"}\NormalTok{, }\StringTok{"SClass11"}\NormalTok{, }\StringTok{"mInv27"}\NormalTok{, }\StringTok{"mInv30"}\NormalTok{, }\StringTok{"mInv39"}\NormalTok{, }\StringTok{"mInv7"}\NormalTok{, }\StringTok{"mInv26"}\NormalTok{, }\StringTok{"mInv33"}\NormalTok{, }\StringTok{"mInv4"}\NormalTok{, }\StringTok{"mInv14"}\NormalTok{, }\StringTok{"mInv10"}\NormalTok{, }\StringTok{"Exot3"}\NormalTok{, }\StringTok{"Exot29"}\NormalTok{, }\StringTok{"Exot45"}\NormalTok{, }\StringTok{"Exot35"}\NormalTok{, }\StringTok{"Exot42"}\NormalTok{, }\StringTok{"Exot23"}\NormalTok{, }\StringTok{"Exot13"}\NormalTok{, }\StringTok{"Exot20"}\NormalTok{, }\StringTok{"Exot43"}\NormalTok{, }\StringTok{"mEnv37"}\NormalTok{, }\StringTok{"mEnv24"}\NormalTok{, }\StringTok{"mEnv19"}\NormalTok{, }\StringTok{"mEnv28"}\NormalTok{, }\StringTok{"mEnv18"}\NormalTok{, }\StringTok{"mEnv41"}\NormalTok{, }\StringTok{"mEnv12"}\NormalTok{, }\StringTok{"mWork25"}\NormalTok{, }\StringTok{"mWork15"}\NormalTok{, }\StringTok{"mWork1"}\NormalTok{, }\StringTok{"mWork16"}\NormalTok{, }\StringTok{"mWork44"}\NormalTok{)}
+\NormalTok{PWB\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"pwb1"}\NormalTok{, }\StringTok{"pwb2"}\NormalTok{, }\StringTok{"pwb3"}\NormalTok{, }\StringTok{"pwb4"}\NormalTok{, }\StringTok{"pwb5"}\NormalTok{, }\StringTok{"pwb6"}\NormalTok{, }\StringTok{"pwb7"}\NormalTok{, }\StringTok{"pwb8"}\NormalTok{,}
+    \StringTok{"pwb9"}\NormalTok{, }\StringTok{"pwb10"}\NormalTok{)}
+\NormalTok{ANX\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Anx1"}\NormalTok{, }\StringTok{"Anx2"}\NormalTok{, }\StringTok{"Anx3"}\NormalTok{, }\StringTok{"Anx4"}\NormalTok{, }\StringTok{"Anx5"}\NormalTok{, }\StringTok{"Anx6"}\NormalTok{, }\StringTok{"Anx7"}\NormalTok{, }\StringTok{"Anx8"}\NormalTok{,}
+    \StringTok{"Anx9"}\NormalTok{)}
+\NormalTok{CMI\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"cmi1"}\NormalTok{, }\StringTok{"cmi2"}\NormalTok{, }\StringTok{"cmi3"}\NormalTok{, }\StringTok{"cmi4"}\NormalTok{, }\StringTok{"cmi5"}\NormalTok{, }\StringTok{"cmi6"}\NormalTok{, }\StringTok{"cmi7"}\NormalTok{, }\StringTok{"cmi8"}\NormalTok{,}
+    \StringTok{"cmi9"}\NormalTok{, }\StringTok{"cmi10"}\NormalTok{, }\StringTok{"cmi11"}\NormalTok{, }\StringTok{"cmi12"}\NormalTok{, }\StringTok{"cmi13"}\NormalTok{, }\StringTok{"cmi14"}\NormalTok{, }\StringTok{"cmi15"}\NormalTok{, }\StringTok{"cmi16"}\NormalTok{,}
+    \StringTok{"cmi17"}\NormalTok{, }\StringTok{"cmi18"}\NormalTok{, }\StringTok{"cmi19"}\NormalTok{, }\StringTok{"cmi20"}\NormalTok{, }\StringTok{"cmi21"}\NormalTok{, }\StringTok{"cmi22"}\NormalTok{, }\StringTok{"cmi23"}\NormalTok{, }\StringTok{"cmi24"}\NormalTok{,}
+    \StringTok{"cmi25"}\NormalTok{, }\StringTok{"cmi26"}\NormalTok{, }\StringTok{"cmi27"}\NormalTok{, }\StringTok{"cmi28"}\NormalTok{, }\StringTok{"cmi29"}\NormalTok{, }\StringTok{"cmi30"}\NormalTok{, }\StringTok{"cmi31"}\NormalTok{, }\StringTok{"cmi32"}\NormalTok{,}
+    \StringTok{"cmi33"}\NormalTok{, }\StringTok{"cmi34"}\NormalTok{, }\StringTok{"cmi35"}\NormalTok{, }\StringTok{"cmi36"}\NormalTok{, }\StringTok{"cmi37"}\NormalTok{, }\StringTok{"cmi38"}\NormalTok{, }\StringTok{"cmi39"}\NormalTok{, }\StringTok{"cmi40"}\NormalTok{,}
+    \StringTok{"cmi41"}\NormalTok{, }\StringTok{"cmi42"}\NormalTok{, }\StringTok{"cmi43"}\NormalTok{, }\StringTok{"cmi44"}\NormalTok{, }\StringTok{"cmi45"}\NormalTok{, }\StringTok{"cmi46"}\NormalTok{, }\StringTok{"cmi47"}\NormalTok{)}
+\NormalTok{REMS\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Inf32"}\NormalTok{, }\StringTok{"Inf38"}\NormalTok{, }\StringTok{"Inf21"}\NormalTok{, }\StringTok{"Inf17"}\NormalTok{, }\StringTok{"Inf9"}\NormalTok{, }\StringTok{"Inf36"}\NormalTok{, }\StringTok{"Inf5"}\NormalTok{,}
+    \StringTok{"Inf22"}\NormalTok{, }\StringTok{"SClass6"}\NormalTok{, }\StringTok{"SClass31"}\NormalTok{, }\StringTok{"SClass8"}\NormalTok{, }\StringTok{"SClass40"}\NormalTok{, }\StringTok{"SClass2"}\NormalTok{, }\StringTok{"SClass34"}\NormalTok{,}
+    \StringTok{"SClass11"}\NormalTok{, }\StringTok{"mInv27"}\NormalTok{, }\StringTok{"mInv30"}\NormalTok{, }\StringTok{"mInv39"}\NormalTok{, }\StringTok{"mInv7"}\NormalTok{, }\StringTok{"mInv26"}\NormalTok{, }\StringTok{"mInv33"}\NormalTok{,}
+    \StringTok{"mInv4"}\NormalTok{, }\StringTok{"mInv14"}\NormalTok{, }\StringTok{"mInv10"}\NormalTok{, }\StringTok{"Exot3"}\NormalTok{, }\StringTok{"Exot29"}\NormalTok{, }\StringTok{"Exot45"}\NormalTok{, }\StringTok{"Exot35"}\NormalTok{,}
+    \StringTok{"Exot42"}\NormalTok{, }\StringTok{"Exot23"}\NormalTok{, }\StringTok{"Exot13"}\NormalTok{, }\StringTok{"Exot20"}\NormalTok{, }\StringTok{"Exot43"}\NormalTok{, }\StringTok{"mEnv37"}\NormalTok{, }\StringTok{"mEnv24"}\NormalTok{,}
+    \StringTok{"mEnv19"}\NormalTok{, }\StringTok{"mEnv28"}\NormalTok{, }\StringTok{"mEnv18"}\NormalTok{, }\StringTok{"mEnv41"}\NormalTok{, }\StringTok{"mEnv12"}\NormalTok{, }\StringTok{"mWork25"}\NormalTok{, }\StringTok{"mWork15"}\NormalTok{,}
+    \StringTok{"mWork1"}\NormalTok{, }\StringTok{"mWork16"}\NormalTok{, }\StringTok{"mWork44"}\NormalTok{)}
 
-\NormalTok{dfKim}\SpecialCharTok{$}\NormalTok{PWB }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(dfKim[, PWB\_vars], }\FloatTok{0.80}\NormalTok{)}
-\NormalTok{dfKim}\SpecialCharTok{$}\NormalTok{ANX }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(dfKim[, ANX\_vars], }\FloatTok{0.80}\NormalTok{)}
-\NormalTok{dfKim}\SpecialCharTok{$}\NormalTok{CMI }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(dfKim[, CMI\_vars], }\FloatTok{0.80}\NormalTok{)}
-\NormalTok{dfKim}\SpecialCharTok{$}\NormalTok{REMS }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(dfKim[, REMS\_vars], }\FloatTok{0.80}\NormalTok{)}
+\NormalTok{dfKim}\SpecialCharTok{$}\NormalTok{PWB }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(dfKim[, PWB\_vars], }\FloatTok{0.8}\NormalTok{)}
+\NormalTok{dfKim}\SpecialCharTok{$}\NormalTok{ANX }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(dfKim[, ANX\_vars], }\FloatTok{0.8}\NormalTok{)}
+\NormalTok{dfKim}\SpecialCharTok{$}\NormalTok{CMI }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(dfKim[, CMI\_vars], }\FloatTok{0.8}\NormalTok{)}
+\NormalTok{dfKim}\SpecialCharTok{$}\NormalTok{REMS }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(dfKim[, REMS\_vars], }\FloatTok{0.8}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6711,7 +6797,8 @@ Let's check a table of means, standards, and correlations to see if they align w
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{DescriptivesTable }\OtherTok{\textless{}{-}}\NormalTok{ apaTables}\SpecialCharTok{::}\FunctionTok{apa.cor.table}\NormalTok{(dfModel, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{show.sig.stars=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{landscape=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{filename=}\ConstantTok{NA}\NormalTok{)}
+\NormalTok{DescriptivesTable }\OtherTok{\textless{}{-}}\NormalTok{ apaTables}\SpecialCharTok{::}\FunctionTok{apa.cor.table}\NormalTok{(dfModel, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{,}
+    \AttributeTok{show.sig.stars =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{landscape =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{filename =} \ConstantTok{NA}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(DescriptivesTable)}
 \end{Highlighting}
 \end{Shaded}
@@ -6806,7 +6893,7 @@ I am a big fan of ``copying the model.'' That is, I find \emph{code that works} 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Kim\_fit }\OtherTok{\textless{}{-}} \FunctionTok{sem}\NormalTok{(modKim, }\AttributeTok{data =}\NormalTok{ dfModel, }\AttributeTok{se =} \StringTok{"bootstrap"}\NormalTok{, }\AttributeTok{missing =} \StringTok{"fiml"}\NormalTok{)}
+\NormalTok{Kim\_fit }\OtherTok{\textless{}{-}}\NormalTok{ lavaan}\SpecialCharTok{::}\FunctionTok{sem}\NormalTok{(modKim, }\AttributeTok{data =}\NormalTok{ dfModel, }\AttributeTok{se =} \StringTok{"bootstrap"}\NormalTok{, }\AttributeTok{missing =} \StringTok{"fiml"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6995,12 +7082,12 @@ I make it a practice to immediately plot what I did. Because the plotting packag
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#only worked when I used the library to turn on all these pkgs}
+\CommentTok{\# only worked when I used the library to turn on all these pkgs}
 \FunctionTok{library}\NormalTok{(lavaan)}
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{library}\NormalTok{(ggplot2)}
 \FunctionTok{library}\NormalTok{(tidySEM)}
-\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(}\AttributeTok{model=}\NormalTok{fit)}
+\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(}\AttributeTok{model =}\NormalTok{ Kim\_fit)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7023,8 +7110,7 @@ We can write code to remap them
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{med\_map2 }\OtherTok{\textless{}{-}}\NormalTok{ tidySEM}\SpecialCharTok{::}\FunctionTok{get\_layout}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"CMI"}\NormalTok{, }\StringTok{""}\NormalTok{,}
-                               \StringTok{"REMS"}\NormalTok{, }\StringTok{""}\NormalTok{, }\StringTok{"PWB"}\NormalTok{, }\AttributeTok{rows=}\DecValTok{2}\NormalTok{)}
+\NormalTok{med\_map2 }\OtherTok{\textless{}{-}}\NormalTok{ tidySEM}\SpecialCharTok{::}\FunctionTok{get\_layout}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"CMI"}\NormalTok{, }\StringTok{""}\NormalTok{, }\StringTok{"REMS"}\NormalTok{, }\StringTok{""}\NormalTok{, }\StringTok{"PWB"}\NormalTok{, }\AttributeTok{rows =} \DecValTok{2}\NormalTok{)}
 \NormalTok{med\_map2}
 \end{Highlighting}
 \end{Shaded}
@@ -7041,7 +7127,8 @@ We run again with our map and BOOM! Still needs tinkering for gorgeous, but hey!
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(Kim\_fit, }\AttributeTok{layout=}\NormalTok{med\_map2,  }\AttributeTok{rect\_width =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{rect\_height =} \FloatTok{1.25}\NormalTok{, }\AttributeTok{spacing\_x =} \DecValTok{2}\NormalTok{, }\AttributeTok{spacing\_y =} \DecValTok{3}\NormalTok{, }\AttributeTok{text\_size =} \FloatTok{4.5}\NormalTok{)}
+\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(Kim\_fit, }\AttributeTok{layout =}\NormalTok{ med\_map2, }\AttributeTok{rect\_width =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{rect\_height =} \FloatTok{1.25}\NormalTok{,}
+    \AttributeTok{spacing\_x =} \DecValTok{2}\NormalTok{, }\AttributeTok{spacing\_y =} \DecValTok{3}\NormalTok{, }\AttributeTok{text\_size =} \FloatTok{4.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7127,7 +7214,7 @@ CMI (M) & & & & & \(b\) & -0.189 & 0.052 & \textless{} 0.001 \\
 \hypertarget{results-5}{%
 \subsection{Results}\label{results-5}}
 
-A simple mediation model examined the degree to which cultural mistrust mediated the relation of racial microaggressions on depressive symptoms Using the \emph{lavaan} package (v 0.6-16) in R, coefficients for each path, the indirect effect, and total effects were calculated. These values are presented in Table 2 and illustrated in Figure 2. Results suggested that racial/ethnic microaggressions had statistically significant effects on both cultural mistrust \((B = 1.576, p < 0.001)\) and well-being \((B = -0.453, p = 0.001)\). Further, the indirect effect from our simulated data was statistically significant (\(B = -.298, SE = 0.093, p = 0.001, 95CI[-0.495,-0.136])\). Results suggested that 34\% of the variance in cultural mistrust and 29\% of the variance in depression were accounted for by the model.
+A simple mediation model examined the degree to which cultural mistrust mediated the relation of racial microaggressions on well-being. Using the \emph{lavaan} package (v 0.6-16) in R, coefficients for each path, the indirect effect, and total effects were calculated. These values are presented in Table 2 and illustrated in Figure 2. Results suggested that racial/ethnic microaggressions had statistically significant effects on both cultural mistrust \((B = 1.576, p < 0.001)\) and well-being \((B = -0.453, p = 0.001)\). Further, the indirect effect from our simulated data was statistically significant (\(B = -.298, SE = 0.093, p = 0.001, 95CI[-0.495,-0.136])\). Results suggested that 34\% of the variance in cultural mistrust and 29\% of the variance in well-being were accounted for by the model.
 
 \hypertarget{considering-covariates}{%
 \section{Considering Covariates}\label{considering-covariates}}
@@ -7332,12 +7419,12 @@ Let's look at a figure to see see if we did what we think we did. And to also ge
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#only worked when I used the library to turn on all these pkgs}
+\CommentTok{\# only worked when I used the library to turn on all these pkgs}
 \FunctionTok{library}\NormalTok{(lavaan)}
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{library}\NormalTok{(ggplot2)}
 \FunctionTok{library}\NormalTok{(tidySEM)}
-\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(}\AttributeTok{model=}\NormalTok{Kim\_fit\_covs)}
+\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(}\AttributeTok{model =}\NormalTok{ Kim\_fit\_covs)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7380,7 +7467,8 @@ We run again with our map and BOOM! Still needs tinkering for gorgeous, but hey!
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(Kim\_fit\_covs, }\AttributeTok{layout=}\NormalTok{med\_map3,  }\AttributeTok{rect\_width =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{rect\_height =} \FloatTok{1.25}\NormalTok{, }\AttributeTok{spacing\_x =} \DecValTok{2}\NormalTok{, }\AttributeTok{spacing\_y =} \DecValTok{3}\NormalTok{, }\AttributeTok{text\_size =} \FloatTok{4.5}\NormalTok{)}
+\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(Kim\_fit\_covs, }\AttributeTok{layout =}\NormalTok{ med\_map3, }\AttributeTok{rect\_width =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{rect\_height =} \FloatTok{1.25}\NormalTok{,}
+    \AttributeTok{spacing\_x =} \DecValTok{2}\NormalTok{, }\AttributeTok{spacing\_y =} \DecValTok{3}\NormalTok{, }\AttributeTok{text\_size =} \FloatTok{4.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7469,7 +7557,12 @@ There are varying models for reporting the results of mediation. The Kim et al. 
 
 \textbf{Results}
 
-A simple mediation model examined the degree to which cultural mistrust mediated the effect of racial microaggressions on psychological well-being. Using the \emph{lavaan} package (v 0.6-16) in R, coefficients for the each path, the indirect effect, and total effects were calculated. The effect of covariate, anxiety, was mapped onto both the mediator and dependent 36\% of the variance in cultural mistrust and 35\% of the variance in well-being were accounted for by the model. Supporting the notion of a mediated model, there was a statistically significant indirect effect \((B = -.220, SE = 0.075, p = 0.004, 95CI[-0.383,-0.090])\) in combination with a non-significant direct effect \((B = -0.219, p = 0.126)\) and a statistically significant \((B = -0.440, p < 0.001)\).
+A simple mediation model examined the degree to which cultural mistrust mediated the effect of racial microaggressions on psychological well-being. Using the \emph{lavaan} package (v 0.6-16) in R, coefficients for the each path, the indirect effect, and total effects were calculated. Additionally, the effect of covariate, anxiety, was mapped onto both the mediator and dependent variable. The model accounted for 36\% of the variance in cultural mistrust and 35\% of the variance in well-being. Supporting the notion of a mediated model, there was a statistically significant indirect effect \((B = -.220, SE = 0.075, p = 0.004, 95CI[-0.383,-0.090])\) in combination with a non-significant direct effect \((B = -0.219, p = 0.126)\) and a statistically significant \((B = -0.440, p < 0.001)\).
+
+\hypertarget{stay-tuned}{%
+\section{STAY TUNED}\label{stay-tuned}}
+
+A section on power analysis is planned and coming soon! My apologies that it's not quite \emph{R}eady.
 
 \hypertarget{residual-and-related-questions}{%
 \section{Residual and Related Questions\ldots{}}\label{residual-and-related-questions}}
@@ -7582,14 +7675,14 @@ Points Earned
 \hypertarget{homeworked-example-2}{%
 \section{Homeworked Example}\label{homeworked-example-2}}
 
-\href{}{Screencast Link}
+\href{https://youtu.be/hXTFPSQrjpQ}{Screencast Link}
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the \href{https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html\#introduction-to-the-data-set-used-for-homeworked-examples}{introductory lesson} in \href{https://lhbikos.github.io/ReCenterPsychStats/}{ReCentering Psych Stats}. An .rds file which holds the data is located in the \href{https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples}{Worked Examples} folder at the GitHub site the hosts the OER. The file name is \emph{ReC.rds}.
 
 The suggested practice problem for this chapter is to conduct a simple mediation.
 
-\hypertarget{assign-each-variable-to-the-x-y-or-m-roles-ok-but-not-required-to-include-a-cov}{%
-\subsection{Assign each variable to the X, Y, or M roles (ok but not required to include a cov)}\label{assign-each-variable-to-the-x-y-or-m-roles-ok-but-not-required-to-include-a-cov}}
+\hypertarget{assign-each-variable-to-the-x-y-or-m-roles-ok-but-not-required-to-include-a-covariate}{%
+\subsection{Assign each variable to the X, Y, or M roles (ok but not required to include a covariate)}\label{assign-each-variable-to-the-x-y-or-m-roles-ok-but-not-required-to-include-a-covariate}}
 
 X = Centering: explicit recentering (0 = precentered; 1 = recentered) M = TradPed: traditional pedagogy (continuously scaled with higher scores being more favorable) Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores being more favorable)
 
@@ -7613,11 +7706,13 @@ I need to score the TradPed and SRPed variables
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{TradPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}ClearResponsibilities\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}EffectiveAnswers\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Feedback\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ClearOrganization\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}ClearPresentation\textquotesingle{}}\NormalTok{)  }
-\NormalTok{raw}\SpecialCharTok{$}\NormalTok{TradPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(raw[, ..TradPed\_vars], .}\DecValTok{75}\NormalTok{)}
+\NormalTok{TradPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"ClearResponsibilities"}\NormalTok{, }\StringTok{"EffectiveAnswers"}\NormalTok{, }\StringTok{"Feedback"}\NormalTok{,}
+    \StringTok{"ClearOrganization"}\NormalTok{, }\StringTok{"ClearPresentation"}\NormalTok{)}
+\NormalTok{raw}\SpecialCharTok{$}\NormalTok{TradPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(raw[, ..TradPed\_vars], }\FloatTok{0.75}\NormalTok{)}
 
-\NormalTok{SRPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}InclusvClassrm\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}EquitableEval\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}MultPerspectives\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}DEIintegration\textquotesingle{}}\NormalTok{)  }
-\NormalTok{raw}\SpecialCharTok{$}\NormalTok{SRPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(raw[,..SRPed\_vars], .}\DecValTok{75}\NormalTok{)}
+\NormalTok{SRPed\_vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"InclusvClassrm"}\NormalTok{, }\StringTok{"EquitableEval"}\NormalTok{, }\StringTok{"MultPerspectives"}\NormalTok{,}
+    \StringTok{"DEIintegration"}\NormalTok{)}
+\NormalTok{raw}\SpecialCharTok{$}\NormalTok{SRPed }\OtherTok{\textless{}{-}}\NormalTok{ sjstats}\SpecialCharTok{::}\FunctionTok{mean\_n}\NormalTok{(raw[, ..SRPed\_vars], }\FloatTok{0.75}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7631,18 +7726,8 @@ I will create a babydf.
 
 Let's check the structure of the variables:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{str}\NormalTok{(babydf)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
-## Classes 'data.table' and 'data.frame':   310 obs. of  3 variables:
-##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ TradPed  : num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
-##  $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
-##  - attr(*, ".internal.selfref")=<externalptr>
+str(babydf)
 \end{verbatim}
 
 \hypertarget{specify-and-run-the-lavaan-model}{%
@@ -7819,37 +7904,23 @@ Let's check the structure of the variables:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#only worked when I used the library to turn on all these pkgs}
+\CommentTok{\# only worked when I used the library to turn on all these pkgs}
 \FunctionTok{library}\NormalTok{(lavaan)}
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{library}\NormalTok{(ggplot2)}
 \FunctionTok{library}\NormalTok{(tidySEM)}
-\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(}\AttributeTok{model=}\NormalTok{ReCfit)}
+\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{graph\_sem}\NormalTok{(}\AttributeTok{model =}\NormalTok{ ReCfit)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{05-SimpleMed_files/figure-latex/unnamed-chunk-37-1.pdf}
+\includegraphics{05-SimpleMed_files/figure-latex/unnamed-chunk-36-1.pdf}
+
+\texttt{tidy=TRUE,\ tidy.opts=list(width.cutoff=70)\}\ tidySEM::get\_layout(ReCfit)} We can write code to remap them
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tidySEM}\SpecialCharTok{::}\FunctionTok{get\_layout}\NormalTok{(ReCfit)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      [,1]    [,2]      [,3]       
-## [1,] "SRPed" NA        NA         
-## [2,] NA      "TradPed" "Centering"
-## attr(,"class")
-## [1] "layout_matrix" "matrix"        "array"
-\end{verbatim}
-
-We can write code to remap them
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{med\_map }\OtherTok{\textless{}{-}}\NormalTok{ tidySEM}\SpecialCharTok{::}\FunctionTok{get\_layout}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"TradPed"}\NormalTok{, }\StringTok{""}\NormalTok{,}
-                               \StringTok{"Centering"}\NormalTok{, }\StringTok{""}\NormalTok{, }\StringTok{"SRPed"}\NormalTok{, }\AttributeTok{rows=}\DecValTok{2}\NormalTok{)}
+\NormalTok{med\_map }\OtherTok{\textless{}{-}}\NormalTok{ tidySEM}\SpecialCharTok{::}\FunctionTok{get\_layout}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"TradPed"}\NormalTok{, }\StringTok{""}\NormalTok{, }\StringTok{"Centering"}\NormalTok{, }\StringTok{""}\NormalTok{, }\StringTok{"SRPed"}\NormalTok{,}
+    \AttributeTok{rows =} \DecValTok{2}\NormalTok{)}
 \NormalTok{med\_map}
 \end{Highlighting}
 \end{Shaded}
@@ -7868,7 +7939,7 @@ We can write code to remap them
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{05-SimpleMed_files/figure-latex/unnamed-chunk-40-1.pdf}
+\includegraphics{05-SimpleMed_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 \hypertarget{create-a-table-that-includes-regression-output-for-the-m-and-y-variables}{%
 \subsection*{Create a table that includes regression output for the M and Y variables}\label{create-a-table-that-includes-regression-output-for-the-m-and-y-variables}}
@@ -7935,7 +8006,7 @@ TradPed (M) & & & & & \(b\) & 0.549 & 0.047 & \textless{} 0.001 \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-& \(R^2\) = .4\% & & \(R^2\) = 51\% \\
+& \(R^2\) = 0.4\% & & \(R^2\) = 51\% \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
@@ -7951,11 +8022,12 @@ TradPed (M) & & & & & \(b\) & 0.549 & 0.047 & \textless{} 0.001 \\
 \subsection*{Represent your work in an APA-style write-up}\label{represent-your-work-in-an-apa-style-write-up}}
 
 
-A simple mediation model examined the degree to which evaluations of traditional pedagogy mediated the relation of explicit recentering on socially responsive pedagogy. Using the \emph{lavaan} package (v 0.6-16) in R, coefficients for each path, the indirect effect, and total effects were calculated. These values are presented in Table 1 and illustrated in Figure 1. Results suggested that neglgible (.4\%) of the variance was accounted for in traditional pedagogy. In contrast 51\% of the variance was accounted for in socially responsive pedagogy. The indirect effect \((B = -0.056, SE = 0.051, p = 0.272, 95CI[-0.163,0.035])\) was statistically significant. Comparing total and direct effects, the total effect of centering and traditional pedagogy on socially responsive pedagogy was not statistically significant \((B = 0.071, p = 0.302)\). In contrast, the direct effect was (\(B = 0.127, p = 0.008\) was not). This suggests that while centering and traditional pedagogy do influence socially responsive pedagogy, their influence is relatively independent.
+A simple mediation model examined the degree to which evaluations of traditional pedagogy mediated the relation of explicit recentering on socially responsive pedagogy. Using the \emph{lavaan} package (v 0.6-16) in R, coefficients for each path, the indirect effect, and total effects were calculated. These values are presented in Table 1 and illustrated in Figure 1. Results suggested that neglibible (.4\%) of the variance was accounted for in traditional pedagogy. In contrast 51\% of the variance was accounted for in socially responsive pedagogy. The indirect effect \((B = -0.056, SE = 0.051, p = 0.272, 95CI[-0.163,0.035])\) was statistically significant. Comparing total and direct effects, the total effect of centering and traditional pedagogy on socially responsive pedagogy was not statistically significant \((B = 0.071, p = 0.302)\). In contrast, the direct effect was (\(B = 0.127, p = 0.008\) was not). This suggests that while centering and traditional pedagogy do influence socially responsive pedagogy, their influence is relatively independent.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.cor.table}\NormalTok{(babydf, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{show.sig.stars=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{landscape=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{filename=}\ConstantTok{NA}\NormalTok{)}
+\NormalTok{apaTables}\SpecialCharTok{::}\FunctionTok{apa.cor.table}\NormalTok{(babydf, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{show.sig.stars =} \ConstantTok{TRUE}\NormalTok{,}
+    \AttributeTok{landscape =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{filename =} \ConstantTok{NA}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7990,7 +8062,90 @@ A simple mediation model examined the degree to which evaluations of traditional
 \subsection*{Be able to hand-calculate the indirect, direct, and total effects from the a, b, \& c' paths}\label{be-able-to-hand-calculate-the-indirect-direct-and-total-effects-from-the-a-b-c-paths}}
 
 
-Indirect = a\emph{b Direct = Total minus indirect Total = (a}b) + c'
+\begin{itemize}
+\tightlist
+\item
+  Indirect = a*b
+\item
+  Direct = Total minus indirect
+\item
+  Total = (a*b) + c'
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sessionInfo}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R version 4.3.1 (2023-06-16 ucrt)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 11 x64 (build 22621)
+## 
+## Matrix products: default
+## 
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.utf8 
+## [2] LC_CTYPE=English_United States.utf8   
+## [3] LC_MONETARY=English_United States.utf8
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.utf8    
+## 
+## time zone: America/Los_Angeles
+## tzcode source: internal
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] lubridate_1.9.2 forcats_1.0.0   stringr_1.5.0   purrr_1.0.1    
+##  [5] readr_2.1.4     tidyr_1.3.0     tibble_3.2.1    tidyverse_2.0.0
+##  [9] tidySEM_0.2.4   OpenMx_2.21.8   ggplot2_3.4.3   dplyr_1.1.2    
+## [13] lavaan_0.6-16   psych_2.3.6    
+## 
+## loaded via a namespace (and not attached):
+##   [1] mnormt_2.1.1          gridExtra_2.3         formatR_1.14         
+##   [4] inline_0.3.19         sandwich_3.0-2        rlang_1.1.1          
+##   [7] magrittr_2.0.3        multcomp_1.4-25       matrixStats_1.0.0    
+##  [10] compiler_4.3.1        loo_2.6.0             callr_3.7.3          
+##  [13] vctrs_0.6.3           quadprog_1.5-8        pkgconfig_2.0.3      
+##  [16] crayon_1.5.2          fastmap_1.1.1         backports_1.4.1      
+##  [19] bain_0.2.8            labeling_0.4.2        pbivnorm_0.6.0       
+##  [22] pander_0.6.5          utf8_1.2.3            rmarkdown_2.24       
+##  [25] tzdb_0.4.0            nloptr_2.0.3          ps_1.7.5             
+##  [28] xfun_0.39             highr_0.10            sjmisc_2.8.9         
+##  [31] broom_1.0.5           parallel_4.3.1        prettyunits_1.1.1    
+##  [34] R6_2.5.1              stringi_1.7.12        StanHeaders_2.26.27  
+##  [37] parallelly_1.36.0     car_3.1-2             boot_1.3-28.1        
+##  [40] estimability_1.4.1    Rcpp_1.0.10           bookdown_0.34        
+##  [43] rstan_2.21.8          knitr_1.43            modelr_0.1.11        
+##  [46] future.apply_1.11.0   zoo_1.8-12            bayesplot_1.10.0     
+##  [49] splines_4.3.1         timechange_0.2.0      Matrix_1.5-4.1       
+##  [52] igraph_1.5.1          tidyselect_1.2.0      rstudioapi_0.15.0    
+##  [55] abind_1.4-5           yaml_2.3.7            sjlabelled_1.2.0     
+##  [58] codetools_0.2-19      tmvnsim_1.0-2         processx_3.8.1       
+##  [61] listenv_0.9.0         pkgbuild_1.4.2        lattice_0.21-8       
+##  [64] nonnest2_0.5-5        plyr_1.8.8            bayestestR_0.13.1    
+##  [67] withr_2.5.0           coda_0.19-4           evaluate_0.21        
+##  [70] survival_3.5-5        future_1.33.0         fastDummies_1.7.3    
+##  [73] CompQuadForm_1.4.3    RcppParallel_5.1.7    texreg_1.38.6        
+##  [76] pillar_1.9.0          carData_3.0-5         checkmate_2.2.0      
+##  [79] stats4_4.3.1          insight_0.19.3        generics_0.1.3       
+##  [82] dbscan_1.1-11         hms_1.1.3             rstantools_2.3.1     
+##  [85] munsell_0.5.0         scales_1.2.1          blavaan_0.4-8        
+##  [88] minqa_1.2.5           globals_0.16.2        xtable_1.8-4         
+##  [91] glue_1.6.2            emmeans_1.8.7         tools_4.3.1          
+##  [94] data.table_1.14.8     lme4_1.1-33           gsubfn_0.7           
+##  [97] RANN_2.6.1            mvtnorm_1.2-2         grid_4.3.1           
+## [100] MplusAutomation_1.1.0 apaTables_2.0.8       colorspace_2.1-0     
+## [103] nlme_3.1-162          performance_0.10.4    proto_1.0.0          
+## [106] cli_3.6.1             fansi_1.0.4           sjstats_0.18.2       
+## [109] gtable_0.3.3          digest_0.6.32         progressr_0.13.0     
+## [112] TH.data_1.1-2         farver_2.1.1          htmltools_0.5.5      
+## [115] lifecycle_1.0.3       httr_1.4.7            MASS_7.3-60
+\end{verbatim}
 
 \hypertarget{CompMed}{%
 \chapter{Complex Mediation}\label{CompMed}}
@@ -8169,8 +8324,8 @@ As before, let's work a mechanical example with simulated data that assures a st
 
 We can bake our own data by updating the script we used in simple mediation to add a second mediator.
 
-\hypertarget{data-simulation}{%
-\subsubsection{Data Simulation}\label{data-simulation}}
+\hypertarget{data-simulation-1}{%
+\subsubsection{Data Simulation}\label{data-simulation-1}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8574,8 +8729,8 @@ Variables used in the study included:
   \textbf{GRIcntlty}: The Multidimensional Inventory of Black Identity Centrality subscale \citep{sellers_multidimensional_nodate} was modified to measure the intersection of racial and gender identity centrality. The scale included 10 items scaled from 1 (\emph{strongly disagree}) to 7 (\emph{strongly agree}). An example item was, ``Being a \emph{Black woman} is important to my self-image.'' Higher scores indicated higher levels of gendered racial identity centrality.
 \end{itemize}
 
-\hypertarget{data-simulation-1}{%
-\subsubsection{Data Simulation}\label{data-simulation-1}}
+\hypertarget{data-simulation-2}{%
+\subsubsection{Data Simulation}\label{data-simulation-2}}
 
 Simulating the data:
 
@@ -10469,8 +10624,8 @@ Variables used in the study included:
   \textbf{HlpSkg}: The Attiudes Toward Seeking Professional Psychological Help -- Short Form (Fischer \& Farina, 1995) includes 10 items on a 4-point scale (0 = disagree, 3 = agree) where higher scores indicate more favorable attitudes toward help seeking.
 \end{itemize}
 
-\hypertarget{simulate-data-from-the-journal-article-1}{%
-\subsection{Simulate Data from the Journal Article}\label{simulate-data-from-the-journal-article-1}}
+\hypertarget{simulate-data-from-the-journal-article}{%
+\subsection{Simulate Data from the Journal Article}\label{simulate-data-from-the-journal-article}}
 
 First, we simulate the data from the means, standard deviations, and correlation matrix from the journal article.
 

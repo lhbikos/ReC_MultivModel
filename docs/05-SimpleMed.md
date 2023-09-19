@@ -2,7 +2,7 @@
 
 # Simple Mediation {#SimpleMed}
 
- [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=7ffb03e6-b34b-4e0b-8f10-ad080180b069) 
+ [Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KO-j2YBYGwyUl34pIXzNVST&si=Jp5LJf35y5T-VbFb) 
 
 The focus of this lecture is to estimate indirect effects (aka "mediation").  We examine the logic/design required to support the argument that *mediation* is the *mechanism* that explains the X --> Y relationship.  We also work three examples (one with covariates).
 
@@ -120,7 +120,32 @@ We will work toward building a conditional process model, a moderated mediation,
 
 ## Workflow for Simple Mediation
 
-The workflow for a simple mediation is straightforward. Furhter, the very traditional the figure below is very helpful in understanding the logic beneath mediation as the explanatory mechanism.
+The following is a proposed workflow for conducting a simple mediation. 
+
+![A colorful image of a workflow for the simple mediation](images/SimpleMed/SimpMed_Workflow.jpg) 
+
+Conducting a simple mediation involves the following steps:
+
+1. Conducting an a priori power analysis to determine the appropriate sample size.
+   + This will require estimates of effect that are drawn from pilot data, the literature, or both.
+2. [Scrubbing](https://lhbikos.github.io/ReC_MultivModel/scrub.html) and [scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) the data. 
+   + Guidelines for such are presented in the respective lessons.
+3. Conducting data diagnostics, this includes:
+   + item and scale level missingness,
+   + internal consistency coefficients (e.g., alphas or omegas) for scale scores,
+   + univariate and multivariate normality
+4. Specifying and running the model (this lesson presumes it will with the R package, *lavaan*).
+   + The dependent variable should be predicted by the independent, mediating, and covarying (if any) variables.
+   + “Labels” can facilitate interpretation by naming the a, b, and c’ paths.
+   +Additional script provides labels for the indirect, direct, and total effects.
+5. Conducting a post hoc power analysis.
+   + Informed by your own results, you can see if you were adequately powered to detect a statistically significant effect, if, in fact, one exists.
+6. Interpret and report the results.
+   + Interpret ALL the paths and their pattens.
+   + Create a table and figure.
+   + Prepare the results in a manner that is useful to your audience.
+
+In addition to the workflow through the statistical problem, the very traditional and classic figure below is useful in understanding the logic beneath mediation as the explanatory mechanism.
 
 ![Image of conditional process analysis model where the mediator is hypothesized to change the a path; the path between the IV and mediator](images/SimpleMed/MedRationale.jpg)
 
@@ -128,7 +153,7 @@ The top figure represents the bivariate relationship between the independent and
 
 The lower figure represents that the relationship between the IV and DV is *mediated* by a third variable.  We assign three labels to the paths:  *a*, between the IV and mediator; *b*, between the mediator and DV; and *c'* (c prime) between the IV and DV.
 
-Statistically speaking, a mediated relationship is supported when the value of *c'* is statistically significantly lower than *c*.  If this occurs, then we can say that the mediator is sharing some of the variance in the prediction of the DV.
+Although Hayes makes a compelling case that we can claim "mediation" when there is a statistically significant indirect effect [-@hayes_introduction_2018], traditionally, a mediated relationship is supported when the value of *c'* is statistically significantly lower than *c*.  When this occurs, then know that the mediator is sharing some of the variance (and therefore acting as a *conduit*) in the prediction of the DV.
 
 You might already be imagining potential challenges to this model.  For example, which variable should be the IV and which one should be the mediator?  Can we switch them?  You can -- and you will likely have very similar (if not identical) results.  Good research design is what provides support for suggesting that mediation is the proper, casual, mechanism regarding the relationship between the IV and DV.  An excellent review of the challenges of establishing a robust mediation model is provided by Kline [-@kline_mediation_2015], where he suggests the following as the minimally required elements of a mediation design:
 
@@ -153,8 +178,6 @@ The lavaan tutorial [@rosseel_lavaan_2020] provides a helpful model of how writi
 ### Simulate Fake Data
 
 The code below is asking to create a dataset with a sample size of 100.  The dataset has 3 variables, conveniently named X (predictor, antecedent, IV), M (mediator), and Y (outome, consequent, DV).  The R code asks for random selection of numbers with a normal distribution.  You can see that the M variable will be related to the X variable by + .5; and the Y variable will be related to the M variable by + .7.  This rather ensures a statistically significant indirect effect.
-
-<!-- TODO: Return and replace with data from our mediation) -->
 
 
 ```r
@@ -428,7 +451,7 @@ XY_r
 ## 
 ##  To see confidence intervals of the correlations, print with the short=FALSE option
 ```
-### A Table and a Figure
+### A Figure and Table
 
 We can use the package [tidySEM](https://cjvanlissa.github.io/tidySEM/articles/Plotting_graphs.html) to create a figure that includes the values on the path.  
 
@@ -436,7 +459,7 @@ Here's what the base package gets us
 
 
 ```r
-#only worked when I used the library to turn on all these pkgs
+# only worked when I used the library to turn on all these pkgs
 library(lavaan)
 ```
 
@@ -518,7 +541,7 @@ library(tidySEM)
 ```
 
 ```r
-tidySEM::graph_sem(model=fit)
+tidySEM::graph_sem(model = fit)
 ```
 
 ![](05-SimpleMed_files/figure-docx/unnamed-chunk-6-1.png)<!-- -->
@@ -538,8 +561,7 @@ tidySEM::get_layout(fit)
 We can write code to remap them
 
 ```r
-med_map <- tidySEM::get_layout("", "M", "",
-                               "X", "", "Y", rows=2)
+med_map <- tidySEM::get_layout("", "M", "", "X", "", "Y", rows = 2)
 med_map
 ```
 
@@ -553,7 +575,8 @@ med_map
 We run again with our map and BOOM!  Still needs tinkering for gorgeous, but hey!
 
 ```r
-tidySEM::graph_sem(fit, layout=med_map,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+tidySEM::graph_sem(fit, layout = med_map, rect_width = 1.5, rect_height = 1.25,
+    spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
 ![](05-SimpleMed_files/figure-docx/unnamed-chunk-9-1.png)<!-- -->
@@ -607,7 +630,7 @@ Variables used in the study included:
 * **ANX**, **DEP**, **PWB**:  Subscales of the Mental Health Inventory (Veit & Ware, 1983) that assess the mental health outcomes of anxiety (9 items), depression (4 items), and psychological well-being (14 items).  Higher scores (on a 6 point scale) indicate stronger endorsement of the mental health outcome being assessed.
 * **HlpSkg**:  The Attiudes Toward Seeking Professional Psychological Help -- Short Form (Fischer & Farina, 1995) includes 10 items on a 4-point scale (0 = disagree, 3 = agree) where higher scores indicate more favorable attitudes toward help seeking.
 
-### Simulate Data from the Journal Article
+### Data Simulation
 
 We used the *lavaan::simulateData* function for the simulation. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. We then approximated the *measurement model* by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette [@kim_racial_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
 
@@ -834,15 +857,28 @@ As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.ht
 
 
 ```r
-PWB_vars <- c("pwb1", "pwb2", "pwb3", "pwb4", "pwb5", "pwb6", "pwb7", "pwb8", "pwb9", "pwb10")
-ANX_vars <- c("Anx1", "Anx2", "Anx3", "Anx4", "Anx5", "Anx6", "Anx7", "Anx8", "Anx9")
-CMI_vars <- c("cmi1", "cmi2", "cmi3", "cmi4", "cmi5", "cmi6", "cmi7", "cmi8", "cmi9", "cmi10", "cmi11", "cmi12", "cmi13", "cmi14", "cmi15", "cmi16", "cmi17", "cmi18", "cmi19", "cmi20", "cmi21", "cmi22", "cmi23", "cmi24", "cmi25", "cmi26", "cmi27", "cmi28", "cmi29", "cmi30", "cmi31", "cmi32", "cmi33", "cmi34", "cmi35", "cmi36", "cmi37", "cmi38", "cmi39", "cmi40", "cmi41", "cmi42", "cmi43", "cmi44", "cmi45", "cmi46", "cmi47")
-REMS_vars <- c("Inf32", "Inf38", "Inf21", "Inf17", "Inf9", "Inf36", "Inf5", "Inf22", "SClass6", "SClass31", "SClass8", "SClass40", "SClass2", "SClass34", "SClass11", "mInv27", "mInv30", "mInv39", "mInv7", "mInv26", "mInv33", "mInv4", "mInv14", "mInv10", "Exot3", "Exot29", "Exot45", "Exot35", "Exot42", "Exot23", "Exot13", "Exot20", "Exot43", "mEnv37", "mEnv24", "mEnv19", "mEnv28", "mEnv18", "mEnv41", "mEnv12", "mWork25", "mWork15", "mWork1", "mWork16", "mWork44")
+PWB_vars <- c("pwb1", "pwb2", "pwb3", "pwb4", "pwb5", "pwb6", "pwb7", "pwb8",
+    "pwb9", "pwb10")
+ANX_vars <- c("Anx1", "Anx2", "Anx3", "Anx4", "Anx5", "Anx6", "Anx7", "Anx8",
+    "Anx9")
+CMI_vars <- c("cmi1", "cmi2", "cmi3", "cmi4", "cmi5", "cmi6", "cmi7", "cmi8",
+    "cmi9", "cmi10", "cmi11", "cmi12", "cmi13", "cmi14", "cmi15", "cmi16",
+    "cmi17", "cmi18", "cmi19", "cmi20", "cmi21", "cmi22", "cmi23", "cmi24",
+    "cmi25", "cmi26", "cmi27", "cmi28", "cmi29", "cmi30", "cmi31", "cmi32",
+    "cmi33", "cmi34", "cmi35", "cmi36", "cmi37", "cmi38", "cmi39", "cmi40",
+    "cmi41", "cmi42", "cmi43", "cmi44", "cmi45", "cmi46", "cmi47")
+REMS_vars <- c("Inf32", "Inf38", "Inf21", "Inf17", "Inf9", "Inf36", "Inf5",
+    "Inf22", "SClass6", "SClass31", "SClass8", "SClass40", "SClass2", "SClass34",
+    "SClass11", "mInv27", "mInv30", "mInv39", "mInv7", "mInv26", "mInv33",
+    "mInv4", "mInv14", "mInv10", "Exot3", "Exot29", "Exot45", "Exot35",
+    "Exot42", "Exot23", "Exot13", "Exot20", "Exot43", "mEnv37", "mEnv24",
+    "mEnv19", "mEnv28", "mEnv18", "mEnv41", "mEnv12", "mWork25", "mWork15",
+    "mWork1", "mWork16", "mWork44")
 
-dfKim$PWB <- sjstats::mean_n(dfKim[, PWB_vars], 0.80)
-dfKim$ANX <- sjstats::mean_n(dfKim[, ANX_vars], 0.80)
-dfKim$CMI <- sjstats::mean_n(dfKim[, CMI_vars], 0.80)
-dfKim$REMS <- sjstats::mean_n(dfKim[, REMS_vars], 0.80)
+dfKim$PWB <- sjstats::mean_n(dfKim[, PWB_vars], 0.8)
+dfKim$ANX <- sjstats::mean_n(dfKim[, ANX_vars], 0.8)
+dfKim$CMI <- sjstats::mean_n(dfKim[, CMI_vars], 0.8)
+dfKim$REMS <- sjstats::mean_n(dfKim[, REMS_vars], 0.8)
 ```
 
 Now that we have scored our data, let's trim the variables to just those we need.
@@ -851,11 +887,11 @@ Now that we have scored our data, let's trim the variables to just those we need
 dfModel <- dplyr::select(dfKim, PWB, ANX, CMI, REMS)
 ```
 
-
 Let's check a table of means, standards, and correlations to see if they align with the published article.
 
 ```r
-DescriptivesTable <- apaTables::apa.cor.table(dfModel, table.number = 1, show.sig.stars=TRUE, landscape=TRUE, filename=NA)
+DescriptivesTable <- apaTables::apa.cor.table(dfModel, table.number = 1,
+    show.sig.stars = TRUE, landscape = TRUE, filename = NA)
 print(DescriptivesTable)
 ```
 
@@ -903,7 +939,7 @@ While the patterns are similar, we can see some differences. This means that our
 |CMI ~ REMS     |0.59***    |0.58**       |
 
 
-There are a number of reasons I love the Kim et al. [-@kim_racial_2017] manuscript.  One is that their approach was openly one that tested *alternate models*.  Byrne [-@byrne_structural_2016] credits Joreskog [@bollen_testing_1993] with classifying the researcher's model testing approach in three ways.  If a researcher uses a *strictly confirmatory* approach, they only test the proposed model and then accept or reject it without further alteration. While this is the tradition of null hypothesis significance testing (NHST), it contributes to the "file drawer problem" of unpublished, non-significant, findings.  Additionally, the data are them discarded -- potentially losing valuable resource.  The *alternative models* approach is to propose a handful of competing models before beginning the analysis and then evaluating to see if one model is superior to the other.  The third option is *model generating*.  In this case the researcher begins with a theoretically proposed model.  In the presence of poor fit, the researcher seeks to identify the source of misfit -- respecifying it to best represent the sample data.  The researcher must use caution to produce a model that fits well and is meaningful.
+There are a number of reasons I love the Kim et al. [-@kim_racial_2017] manuscript.  One is that their approach was openly one that tested *alternate models*. Byrne [-@byrne_structural_2016] credits Joreskog [@bollen_testing_1993] with classifying the researcher's model testing approach in three ways.  If a researcher uses a *strictly confirmatory* approach, they only test the proposed model and then accept or reject it without further alteration. While this is the tradition of null hypothesis significance testing (NHST), it contributes to the "file drawer problem" of unpublished, non-significant, findings.  Additionally, the data are them discarded -- potentially losing valuable resource.  The *alternative models* approach is to propose a handful of competing models before beginning the analysis and then evaluating to see if one model is superior to the other.  The third option is *model generating*.  In this case the researcher begins with a theoretically proposed model.  In the presence of poor fit, the researcher seeks to identify the source of misfit -- respecifying it to best represent the sample data. The researcher must use caution to produce a model that fits well and is meaningful.
 
 Several of the Kim et al. [-@kim_racial_2017] models were non-significant.  To demonstrate a model that is statistically significant, I will test the hypothesis that racial microaggressions (REMS, the X variable) influence depression (DEP, the Y variable) through cultural mistrust (CMI, the M variable).
 
@@ -931,7 +967,7 @@ modKim <- "
 
 
 ```r
-Kim_fit <- sem(modKim, data = dfModel, se = "bootstrap", missing = "fiml")
+Kim_fit <- lavaan::sem(modKim, data = dfModel, se = "bootstrap", missing = "fiml")
 ```
 
 
@@ -1103,12 +1139,12 @@ I make it a practice to immediately plot what I did. Because the plotting packag
 
 
 ```r
-#only worked when I used the library to turn on all these pkgs
+# only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
 library(ggplot2)
 library(tidySEM)
-tidySEM::graph_sem(model=fit)
+tidySEM::graph_sem(model = Kim_fit)
 ```
 
 ![](05-SimpleMed_files/figure-docx/unnamed-chunk-18-1.png)<!-- -->
@@ -1127,8 +1163,7 @@ tidySEM::get_layout(Kim_fit)
 We can write code to remap them
 
 ```r
-med_map2 <- tidySEM::get_layout("", "CMI", "",
-                               "REMS", "", "PWB", rows=2)
+med_map2 <- tidySEM::get_layout("", "CMI", "", "REMS", "", "PWB", rows = 2)
 med_map2
 ```
 
@@ -1142,7 +1177,8 @@ med_map2
 We run again with our map and BOOM!  Still needs tinkering for gorgeous, but hey!
 
 ```r
-tidySEM::graph_sem(Kim_fit, layout=med_map2,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+tidySEM::graph_sem(Kim_fit, layout = med_map2, rect_width = 1.5, rect_height = 1.25,
+    spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
 ![](05-SimpleMed_files/figure-docx/unnamed-chunk-21-1.png)<!-- -->
@@ -1182,7 +1218,7 @@ Table 2
 
 ### Results
 
-A simple mediation model examined the degree to which cultural mistrust mediated the relation of racial microaggressions on depressive symptoms  Using the *lavaan* package (v 0.6-16) in R, coefficients for  each path, the indirect effect, and total effects were calculated. These values are presented in Table 2 and illustrated in Figure 2. Results suggested that racial/ethnic microaggressions had statistically significant effects on both cultural mistrust $(B = 1.576, p < 0.001)$ and well-being $(B = -0.453, p = 0.001)$. Further, the indirect effect from our simulated data was statistically significant ($B = -.298, SE = 0.093, p = 0.001, 95CI[-0.495,-0.136])$. Results suggested that 34% of the variance in cultural mistrust and 29% of the variance in depression were accounted for by the model. 
+A simple mediation model examined the degree to which cultural mistrust mediated the relation of racial microaggressions on well-being.  Using the *lavaan* package (v 0.6-16) in R, coefficients for  each path, the indirect effect, and total effects were calculated. These values are presented in Table 2 and illustrated in Figure 2. Results suggested that racial/ethnic microaggressions had statistically significant effects on both cultural mistrust $(B = 1.576, p < 0.001)$ and well-being $(B = -0.453, p = 0.001)$. Further, the indirect effect from our simulated data was statistically significant ($B = -.298, SE = 0.093, p = 0.001, 95CI[-0.495,-0.136])$. Results suggested that 34% of the variance in cultural mistrust and 29% of the variance in well-being were accounted for by the model. 
 
 ## Considering Covariates
 
@@ -1379,12 +1415,12 @@ Let's look at a figure to see see if we did what we think we did. And to also ge
 
 
 ```r
-#only worked when I used the library to turn on all these pkgs
+# only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
 library(ggplot2)
 library(tidySEM)
-tidySEM::graph_sem(model=Kim_fit_covs)
+tidySEM::graph_sem(model = Kim_fit_covs)
 ```
 
 ![](05-SimpleMed_files/figure-docx/unnamed-chunk-24-1.png)<!-- -->
@@ -1420,7 +1456,8 @@ med_map3
 We run again with our map and BOOM!  Still needs tinkering for gorgeous, but hey!
 
 ```r
-tidySEM::graph_sem(Kim_fit_covs, layout=med_map3,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+tidySEM::graph_sem(Kim_fit_covs, layout = med_map3, rect_width = 1.5, rect_height = 1.25,
+    spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
 ![](05-SimpleMed_files/figure-docx/unnamed-chunk-27-1.png)<!-- -->
@@ -1464,7 +1501,11 @@ There are varying models for reporting the results of mediation.  The Kim et al.
 
 **Results**
 
-A simple mediation model examined the degree to which cultural mistrust mediated the effect of racial microaggressions on psychological well-being.  Using the *lavaan* package (v 0.6-16) in R, coefficients for the each path, the indirect effect, and total effects were calculated. The effect of covariate, anxiety, was mapped onto both the mediator and dependent 36% of the variance in cultural mistrust and 35% of the variance in well-being were accounted for by the model.  Supporting the notion of a mediated model, there was a statistically significant indirect effect $(B = -.220, SE = 0.075, p = 0.004, 95CI[-0.383,-0.090])$ in combination with a  non-significant direct effect $(B = -0.219, p = 0.126)$ and a statistically significant $(B = -0.440, p < 0.001)$. 
+A simple mediation model examined the degree to which cultural mistrust mediated the effect of racial microaggressions on psychological well-being.  Using the *lavaan* package (v 0.6-16) in R, coefficients for the each path, the indirect effect, and total effects were calculated. Additionally, the effect of covariate, anxiety, was mapped onto both the mediator and dependent variable.  The model accounted for 36% of the variance in cultural mistrust and 35% of the variance in well-being.  Supporting the notion of a mediated model, there was a statistically significant indirect effect $(B = -.220, SE = 0.075, p = 0.004, 95CI[-0.383,-0.090])$ in combination with a  non-significant direct effect $(B = -0.219, p = 0.126)$ and a statistically significant $(B = -0.440, p < 0.001)$. 
+
+## STAY TUNED
+
+A section on power analysis is planned and coming soon!  My apologies that it's not quite *R*eady.
 
 ## Residual and Related Questions...
 
@@ -1522,14 +1563,14 @@ Using data for which you have permission and access (e.g.,  IRB approved data yo
 
 
 ## Homeworked Example
-[Screencast Link]()
+[Screencast Link](https://youtu.be/hXTFPSQrjpQ)
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
 
 
 The suggested practice problem for this chapter is to conduct a simple mediation. 
 
-### Assign each variable to the X, Y, or M roles (ok but not required  to include a cov) 
+### Assign each variable to the X, Y, or M roles (ok but not required  to include a covariate) 
 
 X = Centering: explicit recentering (0 = precentered; 1 = recentered)
 M = TradPed: traditional pedagogy (continuously scaled with higher scores being more favorable)
@@ -1550,11 +1591,13 @@ I need to score the TradPed and SRPed variables
 
 
 ```r
-TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')  
-raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], .75)
+TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
+    "ClearOrganization", "ClearPresentation")
+raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], 0.75)
 
-SRPed_vars <- c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration')  
-raw$SRPed <- sjstats::mean_n(raw[,..SRPed_vars], .75)
+SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
+    "DEIintegration")
+raw$SRPed <- sjstats::mean_n(raw[, ..SRPed_vars], 0.75)
 ```
 
 I will create a babydf.
@@ -1566,17 +1609,8 @@ babydf <- dplyr::select(raw, Centering, TradPed, SRPed)
 
 Let's check the structure of the variables:
 
-
-```r
+```{rtidy=TRUE, tidy.opts=list(width.cutoff=70)}
 str(babydf)
-```
-
-```
-## Classes 'data.table' and 'data.frame':	310 obs. of  3 variables:
-##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ TradPed  : num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
-##  $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
-##  - attr(*, ".internal.selfref")=<externalptr>
 ```
 
 ### Specify and run the lavaan model  {-}
@@ -1747,33 +1781,24 @@ direct: $B = 0.127, p = 0.008$
 
 
 ```r
-#only worked when I used the library to turn on all these pkgs
+# only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
 library(ggplot2)
 library(tidySEM)
-tidySEM::graph_sem(model=ReCfit)
+tidySEM::graph_sem(model = ReCfit)
 ```
 
-![](05-SimpleMed_files/figure-docx/unnamed-chunk-37-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-36-1.png)<!-- -->
 
-
-```r
+```tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 tidySEM::get_layout(ReCfit)
-```
-
-```
-##      [,1]    [,2]      [,3]       
-## [1,] "SRPed" NA        NA         
-## [2,] NA      "TradPed" "Centering"
-## attr(,"class")
-## [1] "layout_matrix" "matrix"        "array"
 ```
 We can write code to remap them
 
 ```r
-med_map <- tidySEM::get_layout("", "TradPed", "",
-                               "Centering", "", "SRPed", rows=2)
+med_map <- tidySEM::get_layout("", "TradPed", "", "Centering", "", "SRPed",
+    rows = 2)
 med_map
 ```
 
@@ -1789,7 +1814,7 @@ med_map
 tidySEM::graph_sem(ReCfit, layout=med_map,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](05-SimpleMed_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-38-1.png)<!-- -->
 
 
 ### Create a table that includes regression output for the M and Y variables {-}
@@ -1817,7 +1842,7 @@ Table 1
 
 |
 |:------------------------|:-----------------------------------------------:|:-----:|:------------------------------------:|
-|                         |$R^2$ = .4%                              |       |$R^2$ = 51%                                   |                    
+|                         |$R^2$ = 0.4%                              |       |$R^2$ = 51%                                   |                    
 
 |                                                                                                                          |
 |:-------------------------------------------------------------------------------------------------------------------------|
@@ -1825,11 +1850,12 @@ Table 1
 
 ### Represent your work in an APA-style write-up {-}
 
-A simple mediation model examined the degree to which evaluations of traditional pedagogy mediated the relation of explicit recentering on socially responsive pedagogy.  Using the *lavaan* package (v 0.6-16) in R, coefficients for  each path, the indirect effect, and total effects were calculated. These values are presented in Table 1 and illustrated in Figure 1.  Results suggested that neglgible (.4%) of the variance was accounted for in traditional pedagogy. In contrast 51% of the variance was accounted for in socially responsive pedagogy.  The indirect effect $(B = -0.056, SE = 0.051, p = 0.272, 95CI[-0.163,0.035])$ was statistically significant. Comparing total and direct effects, the total effect of centering and traditional pedagogy on socially responsive pedagogy was not statistically significant $(B = 0.071, p = 0.302)$. In contrast, the direct effect was ($B = 0.127, p = 0.008$ was not). This suggests that while centering and traditional pedagogy do influence socially responsive pedagogy, their influence is relatively independent.
+A simple mediation model examined the degree to which evaluations of traditional pedagogy mediated the relation of explicit recentering on socially responsive pedagogy.  Using the *lavaan* package (v 0.6-16) in R, coefficients for  each path, the indirect effect, and total effects were calculated. These values are presented in Table 1 and illustrated in Figure 1.  Results suggested that neglibible (.4%) of the variance was accounted for in traditional pedagogy. In contrast 51% of the variance was accounted for in socially responsive pedagogy.  The indirect effect $(B = -0.056, SE = 0.051, p = 0.272, 95CI[-0.163,0.035])$ was statistically significant. Comparing total and direct effects, the total effect of centering and traditional pedagogy on socially responsive pedagogy was not statistically significant $(B = 0.071, p = 0.302)$. In contrast, the direct effect was ($B = 0.127, p = 0.008$ was not). This suggests that while centering and traditional pedagogy do influence socially responsive pedagogy, their influence is relatively independent.
 
 
 ```r
-apaTables::apa.cor.table(babydf, table.number = 1, show.sig.stars=TRUE, landscape=TRUE, filename=NA)
+apaTables::apa.cor.table(babydf, table.number = 1, show.sig.stars = TRUE,
+    landscape = TRUE, filename = NA)
 ```
 
 ```
@@ -1859,9 +1885,9 @@ apaTables::apa.cor.table(babydf, table.number = 1, show.sig.stars=TRUE, landscap
 
 ### Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths {-}
 
-Indirect = a*b
-Direct = Total minus indirect
-Total = (a*b) + c'
+* Indirect = a*b
+* Direct = Total minus indirect
+* Total = (a*b) + c'
 
 
 
@@ -1869,5 +1895,77 @@ Total = (a*b) + c'
 
 
 
+```r
+sessionInfo()
+```
+
+```
+## R version 4.3.1 (2023-06-16 ucrt)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 11 x64 (build 22621)
+## 
+## Matrix products: default
+## 
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.utf8 
+## [2] LC_CTYPE=English_United States.utf8   
+## [3] LC_MONETARY=English_United States.utf8
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.utf8    
+## 
+## time zone: America/Los_Angeles
+## tzcode source: internal
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] lubridate_1.9.2 forcats_1.0.0   stringr_1.5.0   purrr_1.0.1    
+##  [5] readr_2.1.4     tidyr_1.3.0     tibble_3.2.1    tidyverse_2.0.0
+##  [9] tidySEM_0.2.4   OpenMx_2.21.8   ggplot2_3.4.3   dplyr_1.1.2    
+## [13] lavaan_0.6-16   psych_2.3.6    
+## 
+## loaded via a namespace (and not attached):
+##   [1] mnormt_2.1.1          gridExtra_2.3         formatR_1.14         
+##   [4] inline_0.3.19         sandwich_3.0-2        rlang_1.1.1          
+##   [7] magrittr_2.0.3        multcomp_1.4-25       matrixStats_1.0.0    
+##  [10] compiler_4.3.1        loo_2.6.0             callr_3.7.3          
+##  [13] vctrs_0.6.3           quadprog_1.5-8        pkgconfig_2.0.3      
+##  [16] crayon_1.5.2          fastmap_1.1.1         backports_1.4.1      
+##  [19] bain_0.2.8            labeling_0.4.2        pbivnorm_0.6.0       
+##  [22] pander_0.6.5          utf8_1.2.3            rmarkdown_2.24       
+##  [25] tzdb_0.4.0            nloptr_2.0.3          ps_1.7.5             
+##  [28] xfun_0.39             highr_0.10            sjmisc_2.8.9         
+##  [31] broom_1.0.5           parallel_4.3.1        prettyunits_1.1.1    
+##  [34] R6_2.5.1              stringi_1.7.12        StanHeaders_2.26.27  
+##  [37] parallelly_1.36.0     car_3.1-2             boot_1.3-28.1        
+##  [40] estimability_1.4.1    Rcpp_1.0.10           bookdown_0.34        
+##  [43] rstan_2.21.8          knitr_1.43            modelr_0.1.11        
+##  [46] future.apply_1.11.0   zoo_1.8-12            bayesplot_1.10.0     
+##  [49] splines_4.3.1         timechange_0.2.0      Matrix_1.5-4.1       
+##  [52] igraph_1.5.1          tidyselect_1.2.0      rstudioapi_0.15.0    
+##  [55] abind_1.4-5           yaml_2.3.7            sjlabelled_1.2.0     
+##  [58] codetools_0.2-19      tmvnsim_1.0-2         processx_3.8.1       
+##  [61] listenv_0.9.0         pkgbuild_1.4.2        lattice_0.21-8       
+##  [64] nonnest2_0.5-5        plyr_1.8.8            bayestestR_0.13.1    
+##  [67] withr_2.5.0           coda_0.19-4           evaluate_0.21        
+##  [70] survival_3.5-5        future_1.33.0         fastDummies_1.7.3    
+##  [73] CompQuadForm_1.4.3    RcppParallel_5.1.7    texreg_1.38.6        
+##  [76] pillar_1.9.0          carData_3.0-5         checkmate_2.2.0      
+##  [79] stats4_4.3.1          insight_0.19.3        generics_0.1.3       
+##  [82] dbscan_1.1-11         hms_1.1.3             rstantools_2.3.1     
+##  [85] munsell_0.5.0         scales_1.2.1          blavaan_0.4-8        
+##  [88] minqa_1.2.5           globals_0.16.2        xtable_1.8-4         
+##  [91] glue_1.6.2            emmeans_1.8.7         tools_4.3.1          
+##  [94] data.table_1.14.8     lme4_1.1-33           gsubfn_0.7           
+##  [97] RANN_2.6.1            mvtnorm_1.2-2         grid_4.3.1           
+## [100] MplusAutomation_1.1.0 apaTables_2.0.8       colorspace_2.1-0     
+## [103] nlme_3.1-162          performance_0.10.4    proto_1.0.0          
+## [106] cli_3.6.1             fansi_1.0.4           sjstats_0.18.2       
+## [109] gtable_0.3.3          digest_0.6.32         progressr_0.13.0     
+## [112] TH.data_1.1-2         farver_2.1.1          htmltools_0.5.5      
+## [115] lifecycle_1.0.3       httr_1.4.7            MASS_7.3-60
+```
 
 
