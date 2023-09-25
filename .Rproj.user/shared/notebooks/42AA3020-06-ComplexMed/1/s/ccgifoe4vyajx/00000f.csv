@@ -1,0 +1,61 @@
+"0","library(semTable)"
+"0","Tb1FDataparallel <- semTable(parallel_fit, columns = c(""est"", ""se"", ""p"", ""rsquare""),  columnLabels = c(eststars = ""Estimate""), paramSets = c(""composites"", ""loadings"", ""slopes"", ""intercepts"", ""residualvariances""), file = ""Tb1FakyDataparallel"", type = ""csv"", print.results = TRUE)"
+"1",",Model,
+ 
+,Estimate,Std. Err.,p,R Square,
+
+,Regression Slopes,
+ Y,
+
+M1,0.34,0.08,.000,,
+
+M2,0.76,0.10,.000,,
+
+X,0.12,0.14,.369,,
+
+ M1,
+
+X,0.48,0.10,.000,,
+
+ M2,
+
+X,-0.60,0.10,.000,,
+
+,Intercepts,
+
+Y,-0.10,0.10,.293,,
+
+M1,-0.01,0.12,.925,,
+
+M2,0.01,0.10,.887,,
+
+X,0.13+,,,,
+
+,Residual Variances,
+
+Y,0.91,0.12,.000,,
+
+M1,1.23,0.13,.000,,
+
+M2,0.93,0.15,.000,,
+
+X,1.02+,,,,
+
+,Fit Indices,
+
+chi^2,0.02(1),,.874,,
+
+CFI,1.00,,,,
+
+TLI,1.06,,,,
+
+RMSEA,0.00,,,,
+
++Fixed parameter,
+
+
+
+"
+"1"," "
+"1","
+"

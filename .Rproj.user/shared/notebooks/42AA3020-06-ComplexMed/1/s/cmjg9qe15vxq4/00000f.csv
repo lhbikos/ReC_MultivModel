@@ -1,0 +1,7 @@
+"0","# Concerned that identical variable names across book chapters may be problematic, I'm adding ""p"" in front the ""Data"" variable."
+"0","set.seed(230925)"
+"0","X <- rnorm(100)"
+"0","M1 <- 0.5*X + rnorm(100)"
+"0","M2 <- -0.35*X + rnorm(100)"
+"0","Y <- 0.7*M2 + 0.48*M1 + rnorm(100)"
+"0","pData <- data.frame(X = X, Y = Y, M1 = M1, M2 = M2)"

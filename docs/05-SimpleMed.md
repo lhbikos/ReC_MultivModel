@@ -141,7 +141,7 @@ Conducting a simple mediation involves the following steps:
 5. Conducting a post hoc power analysis.
    + Informed by your own results, you can see if you were adequately powered to detect a statistically significant effect, if, in fact, one exists.
 6. Interpret and report the results.
-   + Interpret ALL the paths and their pattens.
+   + Interpret ALL the paths and their patterns.
    + Create a table and figure.
    + Prepare the results in a manner that is useful to your audience.
 
@@ -632,7 +632,7 @@ Variables used in the study included:
 
 ### Data Simulation
 
-We used the *lavaan::simulateData* function for the simulation. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. We then approximated the *measurement model* by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette [@kim_racial_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
+We used the *lavaan::simulateData* function for the simulation. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. For all others we specified a factor loading of 0.80. We then approximated the *measurement model* by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette [@kim_racial_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
 
 
 ```r
@@ -846,14 +846,46 @@ dfKim <- dfKim %>%
 # Checking our work against the original correlation matrix
 # round(cor(Kim_df),3)
 ```
+The script below allows you to store the simulated data as a file on your computer. This is optional -- the entire lesson can be worked with the simulated data.
+
+If you prefer the .rds format, use this script (remove the hashtags). The .rds format has the advantage of preserving any formatting of variables. A disadvantage is that you cannot open these files outside of the R environment.
+
+Script to save the data to your computer as an .rds file.
+
+
+```r
+#saveRDS(dfKim, 'dfKim.rds')  
+```
+
+Once saved, you could clean your environment and bring the data back in from its .csv format.
+
+```r
+# dfKim<- readRDS('dfKim.rds')
+```
+
+If you prefer the .csv format (think "Excel lite") use this script (remove the hashtags). An advantage of the .csv format is that you can open the data outside of the R environment. A disadvantage is that it may not retain any formatting of variables
+
+Script to save the data to your computer as a .csv file.
+
+
+```r
+#write.table(dfKim, file = 'dfKim.csv', sep = ',', col.names=TRUE, row.names=FALSE) 
+```
+
+Once saved, you could clean your environment and bring the data back in from its .csv format.
+
+```r
+# dfKim<- read.csv ('dfKim.csv', header = TRUE)
+```
+
 
 ### Scrubbing, Scoring, and Data Diagnostics
 
 Because the focus of this lesson is on simple mediation, we have used simulated data. If this were real, raw, data, it would be important to [scrub](https://lhbikos.github.io/ReC_MultivModel/scrub.html), [score](https://lhbikos.github.io/ReC_MultivModel/score.html), and conduct [data diagnostics](https://lhbikos.github.io/ReC_MultivModel/DataDx.html) to evaluate the suitability of the data for the proposes anlayses.
 
-Because we are working with item level data we first need to score the scales used in the researcher's model/. Because we are using simulated data and the authors pre-reverse coded any such items, we can omit that step.
+Because we are working with item level data we first need to score the scales used in the researcher's model/. Because we are using simulated data and the authors already reverse coded any items requiring recoding, we can omit that step.
 
-As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we can calculate mean scores of these variables by first creating concatonated lists of variable names, then applying *sjstats::mean_n* to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
+As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we can calculate mean scores of these variables by first creating concatenated lists of variable names. Next we apply the *sjstats::mean_n* function to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
 
 
 ```r
@@ -888,6 +920,7 @@ dfModel <- dplyr::select(dfKim, PWB, ANX, CMI, REMS)
 ```
 
 Let's check a table of means, standards, and correlations to see if they align with the published article.
+
 
 ```r
 DescriptivesTable <- apaTables::apa.cor.table(dfModel, table.number = 1,
@@ -1147,7 +1180,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = Kim_fit)
 ```
 
-![](05-SimpleMed_files/figure-docx/unnamed-chunk-18-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-22-1.png)<!-- -->
 Hayes has great examples of APA style tables that have become the standard way to communicate results.  I haven't yet found a package that will turn this output into a journal-ready table, however with a little tinkering, we can approximate one of the standard tables. This code lets us understand the label names and how they are mapped
 
 ```r
@@ -1181,7 +1214,7 @@ tidySEM::graph_sem(Kim_fit, layout = med_map2, rect_width = 1.5, rect_height = 1
     spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](05-SimpleMed_files/figure-docx/unnamed-chunk-21-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-25-1.png)<!-- -->
 
 We can use simple code from base R to write the results to a .csv file. This makes it easier to create a table for presenting the results.
 
@@ -1423,7 +1456,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = Kim_fit_covs)
 ```
 
-![](05-SimpleMed_files/figure-docx/unnamed-chunk-24-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-28-1.png)<!-- -->
 
 
 ```r
@@ -1460,7 +1493,7 @@ tidySEM::graph_sem(Kim_fit_covs, layout = med_map3, rect_width = 1.5, rect_heigh
     spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](05-SimpleMed_files/figure-docx/unnamed-chunk-27-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-31-1.png)<!-- -->
 
 Below is code to create an outfile that could help with creating a table in a word document or spreadsheet. There will be output that is produced with SEM models that won't be relevant for this project.
 
@@ -1773,8 +1806,7 @@ ReC_ParamEsts
 ## 11  0.127   0.107   0.217
 ## 12  0.071   0.060   0.122
 ```
-$B = 0.071, p = 0.302$
-direct: $B = 0.127, p = 0.008$
+
 
 ### Use tidySEM to create a figure that represents your results {-}
 
@@ -1789,7 +1821,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = ReCfit)
 ```
 
-![](05-SimpleMed_files/figure-docx/unnamed-chunk-36-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
 
 ```tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 tidySEM::get_layout(ReCfit)
@@ -1814,7 +1846,7 @@ med_map
 tidySEM::graph_sem(ReCfit, layout=med_map,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](05-SimpleMed_files/figure-docx/unnamed-chunk-38-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-42-1.png)<!-- -->
 
 
 ### Create a table that includes regression output for the M and Y variables {-}

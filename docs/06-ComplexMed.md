@@ -37,7 +37,7 @@ The suggestions for practice in this chapter include conducting parallel, serial
 
 In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
 
-* Hayes, A. F. (2018).  *Introduction to mediation, moderation, and conditional process anlaysis:  A regression-based approach*. New York, NY: Guilford Press. Available as an ebook from the SPU library:  https://ebookcentral-proquest-com.ezproxy.spu.edu/lib/spu/detail.action?docID=5109647 
+* Hayes, A. F. (2022).  *Introduction to mediation, moderation, and conditional process anlaysis:  A regression-based approach*. New York, NY: Guilford Press. Available as an ebook from the SPU library:  https://alliance-spu.primo.exlibrisgroup.com/permalink/01ALLIANCE_SPU/1q85832/alma99900435260301847  
   - **Chapter 5: More than One Mediator**: This chapter walks the reader through parallel and serial mediation models.  We will do both! 
   - **Appendix A:  Using Process**:  An essential tool for PROCESS users because, even when we are in the R environment, this is the "idea book." That is, the place where all the path models are presented in figures.
 * Lewis, J. A., Williams, M. G., Peppers, E. J., & Gadson, C. A. (2017). Applying intersectionality to explore the relations between gendered racism and health among Black women. *Journal of Counseling Psychology*, *64*(5), 475–486. https://doi-org.ezproxy.spu.edu/10.1037/cou0000231
@@ -46,15 +46,11 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-<!-- TODO: Build out this section. -->
 
 ```r
 # will install the package if not already installed
 if (!require(lavaan)) {
     install.packages("lavaan")
-}
-if (!require(semPlot)) {
-    install.packages("semPlot")
 }
 if (!require(tidyverse)) {
     install.packages("tidyverse")
@@ -77,7 +73,7 @@ The simple mediation model is quite popular, but also limiting in that it:
 * frequently oversimplifies the processes we want to study, and
 * is likely mis-specified, in that there are unmodeled mechanisms.
 
-Hayes [-@hayes_introduction_2018] identified four reasons to consider multiply mediated models: 
+Hayes [-@hayes_more_2022] identified four reasons to consider multiply mediated models: 
 
 * We are generally interested in MULTIPLE mechanisms
 * A mechanism (such as a mediator) in the model, might, itself be mediated (i.e., mediated mediation)
@@ -86,10 +82,38 @@ Hayes [-@hayes_introduction_2018] identified four reasons to consider multiply m
 
 There are two multiple mediator models that we will consider:  parallel, serial.
 
+## Workflow for Complex Mediation
+
+The following is a proposed workflow for conducting a complex mediation. 
+
+![A colorful image of a workflow for complex mediation](images/CompMed/CompMedWorkflow.jpg) 
+
+Conducting a parallel or serial (i.e., complex) mediation involves the following steps:
+
+1. Conducting an a priori power analysis to determine the appropriate sample size.
+   + This will require estimates of effect that are drawn from pilot data, the literature, or both.
+2. [Scrubbing](https://lhbikos.github.io/ReC_MultivModel/scrub.html) and [scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) the data. 
+   + Guidelines for such are presented in the respective lessons.
+3. Conducting data diagnostics, this includes:
+   + item and scale level missingness,
+   + internal consistency coefficients (e.g., alphas or omegas) for scale scores,
+   + univariate and multivariate normality
+4. Specifying and running the model (this lesson presumes it will with the R package, *lavaan*).
+   + The dependent variable should be predicted by the independent, mediating, and covarying (if any) variables.
+   + “Labels” can facilitate interpretation by naming the a, b, and c’ paths.
+   + Additional script provides labels for the indirect, direct, and total effects.
+   + With multiple indirect effects, specify contrasts to see if they are statistically significantly different form each other.
+5. Conducting a post hoc power analysis.
+   + Informed by your own results, you can see if you were adequately powered to detect a statistically significant effect, if, in fact, one exists.
+6. Interpret and report the results.
+   + Interpret ALL the paths and their patterns.
+   + Report if some indirect effects are stronger than others (i.e., results of the contrasts).
+   + Create a table and figure.
+   + Prepare the results in a manner that is useful to your audience.
 
 ## Parallel Mediation
 
-**Parallel multiple mediation**:  An antecedent variable X is modeled as influencing consequent Y directly as well as indirectly through two or more mediators, with the condition that no mediator causally influences another [@hayes_introduction_2018, p. 149]
+**Parallel multiple mediation**:  An antecedent variable X is modeled as influencing consequent Y directly as well as indirectly through two or more mediators, with the condition that no mediator causally influences another [@hayes_more_2022, p. 161]
 
 With multiple mediation we introduce additional effects:
 
@@ -109,9 +133,9 @@ In this parallel model, we can describe these effects this way:
 
 Recall that for a complex mediation to be parallel, there can be no causal links between mediators.  This is true in this example. 
 
-As before, let's work a mechanical example with simulated data that assures a statistically significant outcome. Credit to this example is from the PAULOTOFFANIN website [@toffanin_multiple-mediator_2017].
-
 ### A Mechanical Example
+
+Let's work a mechanical example with simulated data that assures a statistically significant outcome. Credit to this example is from the PAULOTOFFANIN website [@toffanin_multiple-mediator_2017].
 
 We can bake our own data by updating the script we used in simple mediation to add a second mediator.
 
@@ -121,7 +145,7 @@ We can bake our own data by updating the script we used in simple mediation to a
 ```r
 # Concerned that identical variable names across book chapters may be
 # problematic, I'm adding 'p' in front the 'Data' variable.
-set.seed(210417)
+set.seed(230925)
 X <- rnorm(100)
 M1 <- 0.5 * X + rnorm(100)
 M2 <- -0.35 * X + rnorm(100)
@@ -149,16 +173,6 @@ Remember...
 #### Specifying *lavaan* code
 
 ```r
-library(lavaan)
-```
-
-```
-## This is lavaan 0.6-16
-## lavaan is FREE software! Please report any bugs.
-```
-
-```r
-set.seed(210418)
 parallel_med <- "
     Y ~ b1*M1 + b2*M2 + c_p*X
     M1 ~ a1*X
@@ -170,17 +184,17 @@ parallel_med <- "
     total_c    := c_p + (indirect1) + (indirect2)
     direct := c_p
  "
-parallel_fit <- sem(parallel_med, data = pData, se = "bootstrap", missing = "fiml",
-    bootstrap = 1000)
-pfit_sum <- summary(parallel_fit, standardized = TRUE, rsq = T, fit = TRUE,
-    ci = TRUE)
-pfit_ParEsts <- parameterEstimates(parallel_fit, boot.ci.type = "bca.simple",
+parallel_fit <- lavaan::sem(parallel_med, data = pData, se = "bootstrap",
+    missing = "fiml", bootstrap = 1000)
+pfit_sum <- lavaan::summary(parallel_fit, standardized = TRUE, rsq = T,
+    fit = TRUE, ci = TRUE)
+pfit_ParEsts <- lavaan::parameterEstimates(parallel_fit, boot.ci.type = "bca.simple",
     standardized = TRUE)
 pfit_sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 3 iterations
+## lavaan 0.6.16 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -191,50 +205,50 @@ pfit_sum
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                 0.095
+##   Test statistic                                 2.475
 ##   Degrees of freedom                                 1
-##   P-value (Chi-square)                           0.757
+##   P-value (Chi-square)                           0.116
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                                91.109
+##   Test statistic                               126.642
 ##   Degrees of freedom                                 6
 ##   P-value                                        0.000
 ## 
 ## User Model versus Baseline Model:
 ## 
-##   Comparative Fit Index (CFI)                    1.000
-##   Tucker-Lewis Index (TLI)                       1.064
+##   Comparative Fit Index (CFI)                    0.988
+##   Tucker-Lewis Index (TLI)                       0.927
 ##                                                       
-##   Robust Comparative Fit Index (CFI)             1.000
-##   Robust Tucker-Lewis Index (TLI)                1.064
+##   Robust Comparative Fit Index (CFI)             0.988
+##   Robust Tucker-Lewis Index (TLI)                0.927
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)               -425.933
-##   Loglikelihood unrestricted model (H1)       -425.885
+##   Loglikelihood user model (H0)               -433.660
+##   Loglikelihood unrestricted model (H1)       -432.423
 ##                                                       
-##   Akaike (AIC)                                 873.866
-##   Bayesian (BIC)                               902.522
-##   Sample-size adjusted Bayesian (SABIC)        867.782
+##   Akaike (AIC)                                 889.321
+##   Bayesian (BIC)                               917.977
+##   Sample-size adjusted Bayesian (SABIC)        883.237
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
-##   RMSEA                                          0.000
+##   RMSEA                                          0.121
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.181
-##   P-value H_0: RMSEA <= 0.050                    0.785
-##   P-value H_0: RMSEA >= 0.080                    0.178
+##   90 Percent confidence interval - upper         0.322
+##   P-value H_0: RMSEA <= 0.050                    0.161
+##   P-value H_0: RMSEA >= 0.080                    0.772
 ##                                                       
-##   Robust RMSEA                                   0.000
+##   Robust RMSEA                                   0.121
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.181
-##   P-value H_0: Robust RMSEA <= 0.050             0.785
-##   P-value H_0: Robust RMSEA >= 0.080             0.178
+##   90 Percent confidence interval - upper         0.322
+##   P-value H_0: Robust RMSEA <= 0.050             0.161
+##   P-value H_0: Robust RMSEA >= 0.080             0.772
 ## 
 ## Standardized Root Mean Square Residual:
 ## 
-##   SRMR                                           0.009
+##   SRMR                                           0.046
 ## 
 ## Parameter Estimates:
 ## 
@@ -245,64 +259,64 @@ pfit_sum
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   Y ~                                                                   
-##     M1        (b1)    0.540    0.111    4.851    0.000    0.312    0.752
-##     M2        (b2)    0.690    0.119    5.805    0.000    0.430    0.923
-##     X        (c_p)    0.105    0.130    0.812    0.417   -0.149    0.354
+##     M1        (b1)    0.456    0.111    4.123    0.000    0.247    0.670
+##     M2        (b2)    0.743    0.074   10.095    0.000    0.611    0.903
+##     X        (c_p)    0.030    0.100    0.301    0.764   -0.176    0.214
 ##   M1 ~                                                                  
-##     X         (a1)    0.528    0.114    4.623    0.000    0.308    0.746
+##     X         (a1)    0.510    0.079    6.480    0.000    0.357    0.673
 ##   M2 ~                                                                  
-##     X         (a2)   -0.324    0.107   -3.031    0.002   -0.548   -0.111
+##     X         (a2)   -0.381    0.121   -3.152    0.002   -0.619   -0.135
 ##    Std.lv  Std.all
 ##                   
-##     0.540    0.478
-##     0.690    0.529
-##     0.105    0.074
+##     0.456    0.383
+##     0.743    0.693
+##     0.030    0.025
 ##                   
-##     0.528    0.419
+##     0.510    0.502
 ##                   
-##    -0.324   -0.297
+##    -0.381   -0.338
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .Y                -0.187    0.105   -1.788    0.074   -0.398    0.009
-##    .M1                0.010    0.106    0.096    0.924   -0.187    0.226
-##    .M2               -0.043    0.097   -0.445    0.657   -0.236    0.147
+##    .Y                 0.113    0.092    1.224    0.221   -0.068    0.289
+##    .M1               -0.089    0.097   -0.913    0.361   -0.262    0.113
+##    .M2                0.017    0.120    0.140    0.888   -0.215    0.256
 ##    Std.lv  Std.all
-##    -0.187   -0.142
-##     0.010    0.009
-##    -0.043   -0.043
+##     0.113    0.083
+##    -0.089   -0.078
+##     0.017    0.013
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .Y                 0.948    0.152    6.248    0.000    0.633    1.226
-##    .M1                1.131    0.121    9.308    0.000    0.880    1.350
-##    .M2                0.938    0.126    7.424    0.000    0.687    1.182
+##    .Y                 0.855    0.106    8.030    0.000    0.618    1.027
+##    .M1                0.970    0.118    8.221    0.000    0.731    1.181
+##    .M2                1.415    0.193    7.328    0.000    1.014    1.792
 ##    Std.lv  Std.all
-##     0.948    0.542
-##     1.131    0.825
-##     0.938    0.912
+##     0.855    0.465
+##     0.970    0.748
+##     1.415    0.886
 ## 
 ## R-Square:
 ##                    Estimate
-##     Y                 0.458
-##     M1                0.175
-##     M2                0.088
+##     Y                 0.535
+##     M1                0.252
+##     M2                0.114
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect1         0.285    0.086    3.331    0.001    0.129    0.472
-##     indirect2        -0.224    0.085   -2.645    0.008   -0.408   -0.073
-##     contrast          0.509    0.124    4.090    0.000    0.272    0.787
-##     total_indircts    0.061    0.116    0.527    0.598   -0.171    0.287
-##     total_c           0.167    0.160    1.043    0.297   -0.160    0.482
-##     direct            0.105    0.130    0.812    0.417   -0.149    0.354
+##     indirect1         0.233    0.069    3.381    0.001    0.107    0.381
+##     indirect2        -0.283    0.090   -3.159    0.002   -0.466   -0.100
+##     contrast          0.516    0.103    5.007    0.000    0.329    0.725
+##     total_indircts   -0.051    0.122   -0.415    0.678   -0.299    0.194
+##     total_c          -0.021    0.123   -0.167    0.868   -0.277    0.215
+##     direct            0.030    0.100    0.301    0.764   -0.176    0.214
 ##    Std.lv  Std.all
-##     0.285    0.200
-##    -0.224   -0.157
-##     0.509    0.357
-##     0.061    0.043
-##     0.167    0.117
-##     0.105    0.074
+##     0.233    0.192
+##    -0.283   -0.234
+##     0.516    0.426
+##    -0.051   -0.042
+##    -0.021   -0.017
+##     0.030    0.025
 ```
 
 ```r
@@ -311,127 +325,210 @@ pfit_ParEsts
 
 ```
 ##                lhs op                         rhs           label    est    se
-## 1                Y  ~                          M1              b1  0.540 0.111
-## 2                Y  ~                          M2              b2  0.690 0.119
-## 3                Y  ~                           X             c_p  0.105 0.130
-## 4               M1  ~                           X              a1  0.528 0.114
-## 5               M2  ~                           X              a2 -0.324 0.107
-## 6                Y ~~                           Y                  0.948 0.152
-## 7               M1 ~~                          M1                  1.131 0.121
-## 8               M2 ~~                          M2                  0.938 0.126
-## 9                X ~~                           X                  0.862 0.000
-## 10               Y ~1                                             -0.187 0.105
-## 11              M1 ~1                                              0.010 0.106
-## 12              M2 ~1                                             -0.043 0.097
-## 13               X ~1                                              0.010 0.000
-## 14       indirect1 :=                       a1*b1       indirect1  0.285 0.086
-## 15       indirect2 :=                       a2*b2       indirect2 -0.224 0.085
-## 16        contrast :=         indirect1-indirect2        contrast  0.509 0.124
-## 17 total_indirects :=         indirect1+indirect2 total_indirects  0.061 0.116
-## 18         total_c := c_p+(indirect1)+(indirect2)         total_c  0.167 0.160
-## 19          direct :=                         c_p          direct  0.105 0.130
+## 1                Y  ~                          M1              b1  0.456 0.111
+## 2                Y  ~                          M2              b2  0.743 0.074
+## 3                Y  ~                           X             c_p  0.030 0.100
+## 4               M1  ~                           X              a1  0.510 0.079
+## 5               M2  ~                           X              a2 -0.381 0.121
+## 6                Y ~~                           Y                  0.855 0.106
+## 7               M1 ~~                          M1                  0.970 0.118
+## 8               M2 ~~                          M2                  1.415 0.193
+## 9                X ~~                           X                  1.253 0.000
+## 10               Y ~1                                              0.113 0.092
+## 11              M1 ~1                                             -0.089 0.097
+## 12              M2 ~1                                              0.017 0.120
+## 13               X ~1                                              0.009 0.000
+## 14       indirect1 :=                       a1*b1       indirect1  0.233 0.069
+## 15       indirect2 :=                       a2*b2       indirect2 -0.283 0.090
+## 16        contrast :=         indirect1-indirect2        contrast  0.516 0.103
+## 17 total_indirects :=         indirect1+indirect2 total_indirects -0.051 0.122
+## 18         total_c := c_p+(indirect1)+(indirect2)         total_c -0.021 0.123
+## 19          direct :=                         c_p          direct  0.030 0.100
 ##         z pvalue ci.lower ci.upper std.lv std.all std.nox
-## 1   4.851  0.000    0.306    0.747  0.540   0.478   0.478
-## 2   5.805  0.000    0.432    0.923  0.690   0.529   0.529
-## 3   0.812  0.417   -0.162    0.344  0.105   0.074   0.080
-## 4   4.623  0.000    0.311    0.749  0.528   0.419   0.451
-## 5  -3.031  0.002   -0.548   -0.110 -0.324  -0.297  -0.320
-## 6   6.248  0.000    0.723    1.411  0.948   0.542   0.542
-## 7   9.308  0.000    0.926    1.419  1.131   0.825   0.825
-## 8   7.424  0.000    0.731    1.234  0.938   0.912   0.912
-## 9      NA     NA    0.862    0.862  0.862   1.000   0.862
-## 10 -1.788  0.074   -0.391    0.021 -0.187  -0.142  -0.142
-## 11  0.096  0.924   -0.188    0.217  0.010   0.009   0.009
-## 12 -0.445  0.657   -0.222    0.156 -0.043  -0.043  -0.043
-## 13     NA     NA    0.010    0.010  0.010   0.011   0.010
-## 14  3.331  0.001    0.135    0.479  0.285   0.200   0.216
-## 15 -2.645  0.008   -0.447   -0.092 -0.224  -0.157  -0.169
-## 16  4.090  0.000    0.293    0.801  0.509   0.357   0.385
-## 17  0.527  0.598   -0.171    0.287  0.061   0.043   0.046
-## 18  1.043  0.297   -0.193    0.460  0.167   0.117   0.126
-## 19  0.812  0.417   -0.162    0.344  0.105   0.074   0.080
+## 1   4.123  0.000    0.249    0.679  0.456   0.383   0.383
+## 2  10.095  0.000    0.612    0.906  0.743   0.693   0.693
+## 3   0.301  0.764   -0.174    0.215  0.030   0.025   0.022
+## 4   6.480  0.000    0.355    0.664  0.510   0.502   0.448
+## 5  -3.152  0.002   -0.609   -0.124 -0.381  -0.338  -0.302
+## 6   8.030  0.000    0.676    1.102  0.855   0.465   0.465
+## 7   8.221  0.000    0.773    1.222  0.970   0.748   0.748
+## 8   7.328  0.000    1.097    1.872  1.415   0.886   0.886
+## 9      NA     NA    1.253    1.253  1.253   1.000   1.253
+## 10  1.224  0.221   -0.068    0.289  0.113   0.083   0.083
+## 11 -0.913  0.361   -0.278    0.099 -0.089  -0.078  -0.078
+## 12  0.140  0.888   -0.231    0.237  0.017   0.013   0.013
+## 13     NA     NA    0.009    0.009  0.009   0.008   0.009
+## 14  3.381  0.001    0.113    0.390  0.233   0.192   0.172
+## 15 -3.159  0.002   -0.459   -0.097 -0.283  -0.234  -0.209
+## 16  5.007  0.000    0.316    0.711  0.516   0.426   0.380
+## 17 -0.415  0.678   -0.292    0.206 -0.051  -0.042  -0.037
+## 18 -0.167  0.868   -0.262    0.240 -0.021  -0.017  -0.015
+## 19  0.301  0.764   -0.174    0.215  0.030   0.025   0.022
 ```
 
 #### A note on indirect effects and confidence intervals
 
-Before we move onto interpretation, I want to stop and look at both $p$ values and confidence intervals. Especially with Hayes [-@hayes_introduction_2018] PROCESS macro, there is a great deal of emphasis on the use of bootstrapped confidence intervals to determine the statistical significance of the indirect effects. In fact, PROCESS output has (at least historically) not provided $p$ values with the indirect effects.  This is because, especially in the ordinary least squares context,  bias-corrected bootstrapped confidence intervals are more powerful (i.e., they are more likely to support a statistically significant result) than $p$ values.   
+Before we move onto interpretation, I want to stop and look at both $p$ values and confidence intervals. Especially with Hayes [-@hayes_more_2022] PROCESS macro, there is a great deal of emphasis on the use of bootstrapped confidence intervals to determine the statistical significance of the indirect effects. In fact, PROCESS output has (at least historically) not provided $p$ values with the indirect effects.  This is because, especially in the ordinary least squares context,  bias-corrected bootstrapped confidence intervals are more powerful (i.e., they are more likely to support a statistically significant result) than $p$ values.   
 
 An excellent demonstration of this phenomena was provided by Mallinckrodt et al. [-@mallinckrodt_advances_2006] where they compared confidence intervals produced by the normal theory method to those that are bias corrected. The bias corrected intervals were more powerful to determining if there were statistically significant indirect effects.  
 
 The method we have specified in *lavaan* produced bias-corrected confidence intervals. The $p$ values and corresponding confidence intervals should be consistent with each other. That is, if $p$ < .05, then the CI95s should not pass through zero. Of course we can always check to be certain this is true.  For this reason, I will report $p$ values in my results.  There are reviewers, though, who may prefer that you report CI95s (or both).
 
-
-
 #### Figures and Tables
 
-
-```r
-library(semTable)
-Tb1FDataparallel <- semTable(parallel_fit, columns = c("est", "se", "p",
-    "rsquare"), columnLabels = c(eststars = "Estimate"), paramSets = c("composites",
-    "loadings", "slopes", "intercepts", "residualvariances"), file = "Tb1FakyDataparallel",
-    type = "csv", print.results = TRUE)
-```
+To assist in table preparation, it is possible to export the results to a .csv file that can be manipulated in Excel, Microsoft Word, or other program to prepare an APA style table.
 
 
 ```r
-library(semPlot)
-#note change in layout 
-semPaths(parallel_fit, #must identiy the model you want to map
-         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
-         #whatLabels = "stand", #"stand" changes to standardized values
-         #layout = 'tree', rotation = 2, #together, puts predictors on left, IVs on right 
-         layout = 'spring', 
-         edge.label.cex = 1.00, #font size of parameter values
-         #edge.color = "black", #overwrites the green/black coloring
-         sizeMan=10, #size of squares/observed/"manifest" variables
-         fade=FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals
-         esize=2, 
-         asize=3,
-         #label.prop = .5,
-         label.font = 2.5, #controls size (I think) of font for labels
-         label.scale = TRUE, #if false, the labels will not scale to fit inside the nodes
-         nDigits = 3, #decimal places (default is 2)
-         residuals = FALSE,#excludes residuals (and variances) from the path diagram
-         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)
-         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram)
-)
-title("Baked Data:  Parallel Mediation")
+write.csv(pfit_ParEsts, file = "pfit_ParEsts.csv")
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-6-1.png)<!-- -->
+We can use the package [tidySEM](https://cjvanlissa.github.io/tidySEM/articles/Plotting_graphs.html) to create a figure that includes the values on the path.  
 
+Here's what the base package gets us
+
+
+```r
+# only worked when I used the library to turn on all these pkgs
+library(lavaan)
+```
+
+```
+## This is lavaan 0.6-16
+## lavaan is FREE software! Please report any bugs.
+```
+
+```r
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
+library(ggplot2)
+library(tidySEM)
+```
+
+```
+## Loading required package: OpenMx
+```
+
+```
+## Registered S3 method overwritten by 'tidySEM':
+##   method          from  
+##   predict.MxModel OpenMx
+```
+
+```r
+tidySEM::graph_sem(model = parallel_fit)
+```
+
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-5-1.png)<!-- -->
+
+We can create model that communicates more intuitively with a little tinkering. First, let's retrieve the current "map" of the layout.
+
+
+```r
+tidySEM::get_layout(parallel_fit)
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,] NA   "X"  NA  
+## [2,] "M1" "M2" "Y" 
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+To create the figure I showed at the beginning of the chapter, we will want three rows and three columns.
+
+
+```r
+parallel_map <- tidySEM::get_layout("", "M1", "", "X", "", "Y", "", "M2",
+    "", rows = 3)
+parallel_map
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,] ""   "M1" ""  
+## [2,] "X"  ""   "Y" 
+## [3,] ""   "M2" ""  
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can update our figure by supplying this new map and adjusting the object and text sizes.
+
+
+```r
+tidySEM::graph_sem(parallel_fit, layout = parallel_map, rect_width = 1.5,
+    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+```
+
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-8-1.png)<!-- -->
 
 There are a number of ways to tabalize the data.  You might be surprised to learn that a number of articles that analyze mediating effects focus their presentation on those values and not the traditional intercepts and B weights.  This is the approach I have taken in this chapter.
 
 **Table 1 ** 
 
 |Model Coefficients Assessing M1 and M2 as Parallel Mediators Between X and Y
-|:-----------------------------------------------------------------------------------------------|
+|:---------------------------------------------------------------------|
 
-|                         
-|:----:|:-:|:-:|:-:|:--:|:------------------------:|:-:|:----------:|:------------:|:-----------:|
-|IV    |   |M  |   |DV  |$B$ for *a* and *b* paths |   |$B$         | $SE$         |$p$          |
-|X     |-->|M1 |-->|DV  |(0.528) X (0.540)     |=  |0.285   |0.086   |0.001  |
-|X     |-->|M2 |-->|DV  |(-0.324) X (0.690)     |=  |-0.224   |0.085   |0.008  |
+| Predictor                  |$B$     |$SE_{B}$ |$p$    |$R^2$         |                   
+|:---------------------------|:------:|:-------:|:-----:|-------------:|
+
+|M1                          |        |         |       |.25
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Constant                    |-0.089	|0.097	  |0.360  |              |
+|X ($a_1$)                   |0.510	  |0.076	  |0.000  |              |
+
+|M2                          |        |         |       |.11
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Constant                    |0.017	  |0.126	  |0.894  |              |
+|X ($a_2$)                   |-0.381	|0.117	  |0.001  |              |
+
+|DV                          |        |         |       |.54
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Constant                    |0.113	  |0.097	  |0.243  |              |
+|M1 ($b_1$)                  |0.456	  |0.113	  |<0.001 |              |
+|M2 ($b_2$)                  |0.743	  |0.074    |<0.001 |              |
+|X ($c'$)                    |0.030	  |0.098	  |0.757  |              |
+
+|Summary of Effects          |$B$     |$SE_{B}$ |$p$    |95% CI
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Total                       |-0.021	|0.120	  |0.865	|-0.251, 0.214 | 
+|Indirect 1 ($a_1$ * $a_2$)  |0.233	  |0.070	  |0.001  |0.116,	0.394  |                        
+|Indirect 2 ($b_1$ * $b_2$)  |-0.283	|0.086	  |0.001	|-0.455, -0.106|           
+|Total indirects             |-0.051	|0.121	  |0.676	|-0.280, 0.187 |
+|Contrast (Ind1 - Ind2)      |0.516	  |0.100	  |0.000	|0.324,	0.725  |
 
 |
-|:----------------------------------------------------:|:----------:|:------------:|:-----------:|
-|                                                      |$B$         | $SE$         |$p$          |
-|Total indirect effect                                 |0.061 |0.116|0.598|
-|Total effect of X on Y (c path)                       |0.167    |0.160   |0.297   |
-|Direct effect of X on Y (c')                          |0.105    |0.130   |0.130  |
-
-|
-|------------------------------------------------------------------------------------------------|
-*Note*. X =definition; M1 = definition; M2 = definition; Y = definition. The significance of the indirect effects was calculated with bias-corrected confidence intervals (.95) bootstrap analysis.
-
+|----------------------------------------------------------------------|
+|*Note*. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
 
 #### APA Style Writeup
 
-A model of parallel multiple mediation was analyzed examining the degree to which importance of M1 and M2 mediated the relation of X on Y. Hayes [-@hayes_introduction_2018] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously.  The resultant direct and indirect values for each path account for other mediation paths.  Using the *lavaan (v. 0.6-7)* package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
+You may notice that my write-up includes almost no statistical output. This is consistent with APA style that avoids redundancy in text and table. When I want to emphasize a specific result, I may duplicate some output in the text.
 
-Results (depicted in Figure 1 and presented in Table 2) suggest that  of the variance in Y is accounted for by the model.  While each of the specific indirect effects (X through M1 and M2, respectively) were statistically significant, the total indirect effect (i.e., the sum of the specific indirect effects was not.  This is likely because the indirect effect passing through M1 was positive in valence and the indirect effect passing through M2 was negative; hence, they "cancelled each other out." A pairwise comparison of the specific indirect effects indicated that the strength of the effects were statistically significantly different from each other ($B$ = 0.509, $p$ = 0.000). This means that the indirect effect passing through M1 was statistically stronger than the indirect effect passing through M2. 
+>A model of parallel multiple mediation was analyzed examining the degree to which importance of M1 and M2 mediated the relation of X on Y. Hayes [-@hayes_more_2022] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously.  The resultant direct and indirect values for each path account for other mediation paths.  Using the *lavaan (v. 0.6-16)* package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
+
+>Results (depicted in Figure 1 and presented in Table 1) suggest that 54% of the variance in Y is accounted for by the model.  Neither the total nor direct effect of X on Y were statistically significant. In contrast, both indirect effects were statistically significant. A pairwise comparison of the specific indirect effects indicated that the strength of the effects were statistically significantly different from each other.  In summary, the effect of X on Y is mediated through M1 and M2, with a stronger influence through M2.
+
+You may notice this write-up included only one statistic. I offered this as an example of avoiding redundancy in text and table. When tables and figures convey maximal information, the results section may be used to describe the patterns -- including numbers when they reduce the cognitive load for the readers and reviewers.
 
 Let's turn now to the research vignette and work an example with simulated data from that example. Because the research vignette use an entirely new set of output I will either restart R or clear my environment so that there are a few less objects "in the way."
 
@@ -441,10 +538,9 @@ The research vignette comes from the Lewis, Williams, Peppers, and Gadson's [-@l
 
 Variables used in the study included:
 
-* **GRMS**:  Gendered Racial Microaggressions Scale [@lewis_construction_2015] is a 26-item scale that assesses the frequency of nonverbal, verbal, and behavioral negative racial and gender slights experienced by Black women. Scaling is along six points ranging from 0 (never) to 5 (once a week or more).  Higher scores indicate a greater frequency of gendered racial microaggressions. An example item is, "Someone has made a sexually inappropriate comment about my butt, hips, or thighs."
+* **GRMS**:  Gendered Racial Microaggressions Scale [@lewis_construction_2015] is a 26-item scale that assesses the frequency of nonverbal, verbal, and behavioral negative racial and gender slights experienced by Black women. Scaling is along six points ranging from 0 (*never*) to 5 (*once a week or more*).  Higher scores indicate a greater frequency of gendered racial microaggressions. An example item is, "Someone has tried to 'put me in my place.'"
 
-* **MntlHlth** and **PhysHlth**: Short Form Health Survey - Version 2 [@ware_comparison_1995] is a 12-item scale used to report self-reported mental (six items) and physical health (six items).
-Higher scores indicate higher mental health (e.g., little or no psychological ldistress) and physical health (e.g., little or no reported symptoms in physical functioning). An example of an item assessing mental health was, "How much of the time during the last 4 weeks have you felt calm and peaceful?"; an example of a physical health item was, "During the past 4 weeks, how much did pain interfere with your normal work?"
+* **MntlHlth** and **PhysHlth**: Short Form Health Survey - Version 2 [@ware_comparison_1995] is a 12-item scale used to report self-reported mental (six items) and physical health (six items). Although the article did not specify, when this scale is used in other contexts [e.g., @kim_racial_2017], a 6-point scale has been reported. Higher scores indicate higher mental health (e.g., little or no psychological distress) and physical health (e.g., little or no reported symptoms in physical functioning). An example of an item assessing mental health was, "How much of the time during the last 4 weeks have you felt calm and peaceful?"; an example of a physical health item was, "During the past 4 weeks, how much did pain interfere with your normal work?"
 
 * **Sprtlty**, **SocSup**, **Engmgt**, and **DisEngmt** are four subscales from the Brief Coping with Problems Experienced Inventory [@carver_you_1997]. The 28 items on this scale are presented on a 4-point scale ranging from 1 (*I usually do not do this at all*) to 4(*I usually do this a lot*).  Higher scores indicate a respondents' tendency to engage in a particular strategy.  Instructions were modified to ask how the female participants responded to recent experiences of racism and sexism as Black women. The four subscales included spirituality (religion, acceptance, planning), interconnectedness/social support (vent emotions, emotional support,instrumental social support), problem-oriented/engagement coping (active coping, humor, positive reinterpretation/positive reframing), and disengagement coping (behavioral disengagement, substance abuse, denial, self-blame, self-distraction).
 
@@ -452,183 +548,229 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 
 #### Data Simulation
 
-Simulating the data:
+The *lavaan::simulateData* function was used. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. For all others we specified a factor loading of 0.80. We then approximated the *measurement model* by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette  [@lewis_applying_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
+
+
+
 
 ```r
-# Entering the intercorrelations, means, and standard deviations from
-# the journal article
-mu <- c(1.99, 2.82, 2.48, 2.32, 1.75, 5.71, 21.37, 21.07)
-sd <- c(0.9, 0.7, 0.81, 0.61, 0.53, 1.03, 3.83, 4.66)
-r_mat <- matrix(c(1, 0.2, 0.28, 0.3, 0.41, 0.19, -0.32, -0.18, 0.2, 1,
-    0.49, 0.57, 0.22, 0.13, -0.06, -0.13, 0.28, 0.49, 1, 0.46, 0.26, 0.38,
-    -0.18, -0.08, 0.3, 0.57, 0.46, 1, 0.37, 0.08, -0.14, -0.06, 0.41, 0.22,
-    0.26, 0.37, 1, 0.05, -0.54, -0.28, 0.19, 0.13, 0.38, 0.08, 0.05, 1,
-    -0.1, 0.14, -0.32, -0.06, -0.18, -0.14, -0.54, -0.1, 1, 0.47, -0.18,
-    -0.13, -0.08, -0.06, -0.28, 0.14, 0.47, 1), ncol = 8)
-# Creating a covariance matrix
+#Entering the intercorrelations, means, and standard deviations from the journal article
 
-cov_mat <- sd %*% t(sd) * r_mat
-cov_mat
-```
+Lewis_generating_model <- '
+        ##measurement model
+        GRMS  =~ .69*Ob1 + .69*Ob2 + .60*Ob3 + .59*Ob4 + .55*Ob5 + .55*Ob6 + .54*Ob7 + .50*Ob8 + .41*Ob9 + .41*Ob10 + .93*Ma1 + .81*Ma2 + .69*Ma3 + .67*Ma4 + .61*Ma5 + .58*Ma6 + .54*Ma7 + .59*St1 + .55*St2 + .54*St3 + .54*St4 + .51*St5 + .70*An1 + .69*An2 + .68*An3
+        MntlHlth  =~ .8*MH1 + .8*MH2 + .8*MH3 + .8*MH4 + .8*MH5 + .8*MH6
+        PhysHlth  =~ .8*PhH1 + .8*PhH2 + .8*PhH3 + .8*PhH4 + .8*PhH5 + .8*PhH6
+        Spirituality  =~ .8*Spirit1 + .8*Spirit2
+        SocSupport  =~ .8*SocS1 + .8*SocS2
+        Engagement  =~ .8*Eng1 + .8*Eng2
+        Disengagement  =~  .8*dEng1 + .8*dEng2
+        GRIC  =~ .8*Cntrlty1 + .8*Cntrlty2 + .8*Cntrlty3 + .8*Cntrlty4 + .8*Cntrlty5 + .8*Cntrlty6 + .8*Cntrlty7 + .8*Cntrlty8 + .8*Cntrlty9 + .8*Cntrlty10
+   
+        # Means
+         GRMS ~ 1.99*1
+         Spirituality ~2.82*1
+         SocSupport ~ 2.48*1
+         Engagement ~ 2.32*1
+         Disengagement ~ 1.75*1
+         GRIC ~ 5.71*1
+         MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
+         PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
+         
+        # Correlations (ha!)
+         GRMS ~ 0.20*Spirituality
+         GRMS ~ 0.28*SocSupport
+         GRMS ~ 0.30*Engagement
+         GRMS ~ 0.41*Disengagement
+         GRMS ~ 0.19*GRIC
+         GRMS ~ -0.32*MntlHlth
+         GRMS ~ -0.18*PhysHlth
+         
+         Spirituality ~ 0.49*SocSupport
+         Spirituality ~ 0.57*Engagement
+         Spirituality ~ 0.22*Disengagement
+         Spirituality ~ 0.12*GRIC
+         Spirituality ~ -0.06*MntlHlth
+         Spirituality ~ -0.13*PhysHlth
+         
+         SocSupport ~ 0.46*Engagement
+         SocSupport ~ 0.26*Disengagement
+         SocSupport ~ 0.38*GRIC
+         SocSupport ~ -0.18*MntlHlth
+         SocSupport ~ -0.08*PhysHlth
+         
+         Engagement ~ 0.37*Disengagement
+         Engagement ~ 0.08*GRIC
+         Engagement ~ -0.14*MntlHlth
+         Engagement ~ -0.06*PhysHlth
+         
+         Disengagement ~ 0.05*GRIC
+         Disengagement ~ -0.54*MntlHlth
+         Disengagement ~ -0.28*PhysHlth
+         
+         GRIC ~ -0.10*MntlHlth
+         GRIC ~ 0.14*PhysHlth
+     
+         MntlHlth ~ 0.47*PhysHlth         
+        '
 
-```
-##          [,1]     [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
-## [1,]  0.81000  0.12600  0.204120  0.164700  0.195570  0.176130 -1.103040
-## [2,]  0.12600  0.49000  0.277830  0.243390  0.081620  0.093730 -0.160860
-## [3,]  0.20412  0.27783  0.656100  0.227286  0.111618  0.317034 -0.558414
-## [4,]  0.16470  0.24339  0.227286  0.372100  0.119621  0.050264 -0.327082
-## [5,]  0.19557  0.08162  0.111618  0.119621  0.280900  0.027295 -1.096146
-## [6,]  0.17613  0.09373  0.317034  0.050264  0.027295  1.060900 -0.394490
-## [7,] -1.10304 -0.16086 -0.558414 -0.327082 -1.096146 -0.394490 14.668900
-## [8,] -0.75492 -0.42406 -0.301968 -0.170556 -0.691544  0.671972  8.388466
-##           [,8]
-## [1,] -0.754920
-## [2,] -0.424060
-## [3,] -0.301968
-## [4,] -0.170556
-## [5,] -0.691544
-## [6,]  0.671972
-## [7,]  8.388466
-## [8,] 21.715600
-```
+set.seed(230925)
+dfLewis <- lavaan::simulateData(model = Lewis_generating_model,
+                              model.type = "sem",
+                              meanstructure = T,
+                              sample.nobs=231,
+                              standardized=FALSE)
 
-```r
-#Set random seed so that the following matrix always gets the same results.
-set.seed(210403)
-library(MASS)
-```
+#used to retrieve column indices used in the rescaling script below
+#col_index <- as.data.frame(colnames(dfLewis))
 
-```
-## 
-## Attaching package: 'MASS'
-```
+for(i in 1:ncol(dfLewis)){  # for loop to go through each column of the dataframe 
+  if(i >= 1 & i <= 25){   # apply only to GRMS variables
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(0, 5))
+  }
+  if(i >= 26 & i <= 37){   # apply only to mental and physical health variables 
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(0, 6))
+  }
+  if(i >= 38 & i <= 45){   # apply only to coping variables
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(1, 4))
+  }
+  if(i >= 46 & i <= 55){   # apply only to GRIC variables
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(1, 7))
+  }
+}
 
-```
-## The following object is masked from 'package:formattable':
-## 
-##     area
-```
-
-```r
-Lewis_df <- mvrnorm(n = 212, mu=mu, Sigma = cov_mat, empirical = TRUE)
-colMeans(Lewis_df)
-```
-
-```
-## [1]  1.99  2.82  2.48  2.32  1.75  5.71 21.37 21.07
-```
-
-```r
-#Checking our work against the original correlation matrix
-cor(Lewis_df)
-```
-
-```
-##       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]
-## [1,]  1.00  0.20  0.28  0.30  0.41  0.19 -0.32 -0.18
-## [2,]  0.20  1.00  0.49  0.57  0.22  0.13 -0.06 -0.13
-## [3,]  0.28  0.49  1.00  0.46  0.26  0.38 -0.18 -0.08
-## [4,]  0.30  0.57  0.46  1.00  0.37  0.08 -0.14 -0.06
-## [5,]  0.41  0.22  0.26  0.37  1.00  0.05 -0.54 -0.28
-## [6,]  0.19  0.13  0.38  0.08  0.05  1.00 -0.10  0.14
-## [7,] -0.32 -0.06 -0.18 -0.14 -0.54 -0.10  1.00  0.47
-## [8,] -0.18 -0.13 -0.08 -0.06 -0.28  0.14  0.47  1.00
-```
-
-Rename the variables
-
-```r
-as.data.frame(Lewis_df, row.names = NULL, optional = FALSE, make.names = TRUE)
+#rounding to integers so that the data resembles that which was collected
 library(tidyverse)
-Lewis_df <- Lewis_df %>%
-    as.data.frame %>%
-    rename(GRMS = V1, Sprtlty = V2, SocSup = V3, Engmt = V4, DisEngmt = V5,
-        GRIcntlty = V6, MtnlHlth = V7, PhysHlth = V8)
 ```
+
+```
+## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ lubridate 1.9.2     ✔ tibble    3.2.1
+## ✔ purrr     1.0.1     ✔ tidyr     1.3.0
+## ✔ readr     2.1.4     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+```
+
+```r
+dfLewis <- dfLewis %>% round(0) 
+
+#quick check of my work
+#psych::describe(dfLewis) 
+```
+
+
+The script below allows you to store the simulated data as a file on your computer. This is optional -- the entire lesson can be worked with the simulated data.
+
+If you prefer the .rds format, use this script (remove the hashtags). The .rds format has the advantage of preserving any formatting of variables. A disadvantage is that you cannot open these files outside of the R environment.
+
+Script to save the data to your computer as an .rds file.
 
 
 ```r
-head(Lewis_df)
+#saveRDS(dfLewis, 'dfLewis.rds')  
 ```
 
-```
-##        GRMS  Sprtlty   SocSup    Engmt DisEngmt GRIcntlty MtnlHlth PhysHlth
-## 1 0.7792361 2.628957 1.758948 1.691459 1.062341  5.533258 22.70042 19.42231
-## 2 1.5729406 1.943789 1.101567 2.446707 1.885076  5.806530 22.67086 22.25516
-## 3 1.9586843 3.039406 1.591625 2.428866 1.635518  5.166721 19.06958 23.23199
-## 4 0.6532324 2.624590 1.039778 1.495290 1.506393  4.276244 23.90836 18.74549
-## 5 2.8280150 3.242341 2.202956 1.553723 1.024422  5.730293 22.86224 18.80227
-## 6 1.2809196 3.052410 4.097964 2.727955 1.565009  8.474002 19.13631 24.48153
-```
-
-#### Quick Descriptives
-
-Of course it is is a good idea to examine our data ahead of time.  While we won't take time to do a thorough analysis, we can at least take a peek.
+Once saved, you could clean your environment and bring the data back in from its .csv format.
 
 ```r
-library(psych)
+#dfLewis<- readRDS('dfLewis.rds')
+```
+
+If you prefer the .csv format (think "Excel lite") use this script (remove the hashtags). An advantage of the .csv format is that you can open the data outside of the R environment. A disadvantage is that it may not retain any formatting of variables
+
+Script to save the data to your computer as a .csv file.
+
+
+```r
+# write.table(dfLewis, file = 'dfLewis.csv', sep = ',',
+# col.names=TRUE, row.names=FALSE)
+```
+
+Once saved, you could clean your environment and bring the data back in from its .csv format.
+
+```r
+#dfLewis<- read.csv ('dfLewis.csv', header = TRUE)
+```
+
+
+### Scrubbing, Scoring, and Data Diagnostics
+
+Because the focus of this lesson is on complex mediation, we have used simulated data. If this were real, raw, data, it would be important to [scrub](https://lhbikos.github.io/ReC_MultivModel/scrub.html), [score](https://lhbikos.github.io/ReC_MultivModel/score.html), and conduct [data diagnostics](https://lhbikos.github.io/ReC_MultivModel/DataDx.html) to evaluate the suitability of the data for the proposes anlayses.
+
+Because we are working with item level data we do need ro score the scales used in the researcher's model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.
+
+As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we  calculate mean scores of these variables by first creating concatenated lists of variable names. Next we apply the *sjstats::mean_n* function to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
+
+Note that I am only scoring the variables used in the models demonstrated in this lesson. The remaining variables are available as practice options.
+
+
+```r
+GRMS_vars <- c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8",
+    "Ob9", "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1",
+    "St2", "St3", "St4", "St5", "An1", "An2", "An3")
+Eng_vars <- c("Eng1", "Eng2")
+dEng_vars <- c("dEng1", "dEng2")
+MntlHlth_vars <- c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6")
+
+dfLewis$GRMS <- sjstats::mean_n(dfLewis[, GRMS_vars], 0.8)
+dfLewis$Engmt <- sjstats::mean_n(dfLewis[, Eng_vars], 0.8)
+dfLewis$DisEngmt <- sjstats::mean_n(dfLewis[, dEng_vars], 0.8)
+dfLewis$MntlHlth <- sjstats::mean_n(dfLewis[, MntlHlth_vars], 0.8)
+```
+
+Now that we have scored our data, let's trim the variables to just those we need.
+
+```r
+Lewis_df <- dplyr::select(dfLewis, GRMS, Engmt, DisEngmt, MntlHlth)
+```
+
+Let's check a table of means, standards, and correlations to see if they align with the published article.
+
+
+```r
+Lewis_table <- apaTables::apa.cor.table(Lewis_df, table.number = 1, show.sig.stars = TRUE,
+    landscape = TRUE, filename = NA)
+print(Lewis_table)
 ```
 
 ```
 ## 
-## Attaching package: 'psych'
-```
-
-```
-## The following objects are masked from 'package:ggplot2':
 ## 
-##     %+%, alpha
-```
-
-```
-## The following object is masked from 'package:lavaan':
+## Table 1 
 ## 
-##     cor2cov
+## Means, standard deviations, and correlations with confidence intervals
+##  
+## 
+##   Variable    M    SD   1            2            3           
+##   1. GRMS     2.56 0.72                                       
+##                                                               
+##   2. Engmt    2.48 0.53 .52**                                 
+##                         [.42, .61]                            
+##                                                               
+##   3. DisEngmt 2.48 0.52 .53**        .32**                    
+##                         [.43, .62]   [.20, .43]               
+##                                                               
+##   4. MntlHlth 3.16 0.81 -.56**       -.23**       -.48**      
+##                         [-.64, -.47] [-.35, -.11] [-.57, -.37]
+##                                                               
+## 
+## Note. M and SD are used to represent mean and standard deviation, respectively.
+## Values in square brackets indicate the 95% confidence interval.
+## The confidence interval is a plausible range of population correlations 
+## that could have caused the sample correlation (Cumming, 2014).
+##  * indicates p < .05. ** indicates p < .01.
+## 
 ```
-
-```r
-psych::describe(Lewis_df)
-```
-
-```
-##           vars   n  mean   sd median trimmed  mad   min   max range  skew
-## GRMS         1 212  1.99 0.90   2.01    2.00 0.93 -0.75  4.24  4.99 -0.12
-## Sprtlty      2 212  2.82 0.70   2.75    2.82 0.65  0.46  4.68  4.23 -0.06
-## SocSup       3 212  2.48 0.81   2.47    2.46 0.77 -0.32  4.68  5.00  0.11
-## Engmt        4 212  2.32 0.61   2.33    2.32 0.57  0.37  4.08  3.71 -0.02
-## DisEngmt     5 212  1.75 0.53   1.75    1.75 0.55  0.58  3.00  2.42 -0.04
-## GRIcntlty    6 212  5.71 1.03   5.67    5.68 1.00  3.08  9.40  6.32  0.32
-## MtnlHlth     7 212 21.37 3.83  21.60   21.46 4.29 11.65 31.90 20.25 -0.15
-## PhysHlth     8 212 21.07 4.66  20.79   21.03 4.68  8.43 33.71 25.28  0.07
-##           kurtosis   se
-## GRMS         -0.14 0.06
-## Sprtlty       0.34 0.05
-## SocSup        0.41 0.06
-## Engmt         0.22 0.04
-## DisEngmt     -0.64 0.04
-## GRIcntlty     0.36 0.07
-## MtnlHlth     -0.54 0.26
-## PhysHlth     -0.18 0.32
-```
-We note that our means and standard deviations map exactly onto those in the article. Because we asked for a normal distribution, we do not violate any of the assumptions related to univariate normality; our skew and kurtosis are well within the limits.
-
-The pairs panel from the *psych* package is an efficient way to see
-
-* the distribution of each variable with a normal curve superimposed (on the diagonal)
-* the value of the bivariate correlation (upper diagonal)
-* a scatterplot with a regression line between each pair of variables (lower diagonal)
+While they are not exact, they approximate the magnitude and patterns in the correlation matrix in the article [@lewis_applying_2017].
 
 
-```r
-psych::pairs.panels(Lewis_df)
-```
+The Lewis et al. article [-@lewis_applying_2017] reports four mediation analyses, each repeated for mental and physical outcomes. Thus, their write-up reports eight simple mediation models. Graphically, their analyses were efficiently presented in a figure that looked (to me) like parallel mediation.  Correspondingly, it made sense to me that we could try this in our research vignette. In the upcoming chapter on conditional process analysis, we will work the moderated mediation that was a primary focus of their research.  
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-12-1.png)<!-- -->
-
-The Lewis et al. article [-@lewis_applying_2017] reports four mediation analyses, each repeated for mental and physical outcomes. Thus, their write-up reports eight simple mediation models. Graphically, this is efficiently represented in a figure that looks like parallel mediation. Note that the figure is reporting standardized estimates.  In Hayes' [-@hayes_introduction_2018] we have been using raw, $B$ weights. However, the standardized weights are reported in the output.
-
-![An image of Figure 1 from the Lewis article illustrating the mediated models that were tested](images/CompMed/LewisMedFig.jpg)
-Because the figure looked like a parallel mediation, it made sense to me that we could try this in our research vignette. In the chapter on conditional process analysis, we will work the moderated mediation as they have done.  Below is the model we will work.  Specifically, we will evaluate whether gendered racial microaggressions impact mental health separately, thorough mediated paths of engagement and disengagement. We will also be able to see if the strength of those mediated paths are statistically, significantly, different from each other.
+Below is the model we will work.  Specifically, we will evaluate whether gendered racial microaggressions impact mental health separately, thorough mediated paths of engagement and disengagement. We will also be able to see if the strength of those mediated paths are statistically, significantly, different from each other.
 
 ![An image of the parallel mediation we will work](images/CompMed/LewisParaMed.jpg)
 
@@ -637,11 +779,8 @@ Because the figure looked like a parallel mediation, it made sense to me that we
 We can use the guidelines above to specify our model and then request summaries of the fit indices and parameter estimates.
 
 ```r
-set.seed(210403)
-library(lavaan)
-
 parallel_Lewis <- "
-    MtnlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS
+    MntlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS
     Engmt ~ a1*GRMS    
     DisEngmt ~ a2*GRMS
     indirect1 := a1 * b1
@@ -651,336 +790,145 @@ parallel_Lewis <- "
     total_c := c_p + (indirect1) + (indirect2)
     direct := c_p
 "
-para_Lewis_fit <- sem(parallel_Lewis, data = Lewis_df, se = "bootstrap",
+para_Lewis_fit <- lavaan::sem(parallel_Lewis, data = Lewis_df, se = "bootstrap",
     bootstrap = 1000, missing = "fiml")  #holds the 'whole' result
-pLewis_sum <- summary(para_Lewis_fit, standardized = TRUE, rsq = T, fit = TRUE,
-    ci = TRUE)  #today, we really only need the R-squared from here    
-pLewis_ParEsts <- parameterEstimates(para_Lewis_fit, boot.ci.type = "bca.simple",
+pLewis_sum <- lavaan::summary(para_Lewis_fit, standardized = TRUE, rsq = T,
+    fit = TRUE, ci = TRUE)  #today, we really only need the R-squared from here    
+pLewis_ParEsts <- lavaan::parameterEstimates(para_Lewis_fit, boot.ci.type = "bca.simple",
     standardized = TRUE)  #provides our estimates, se, p values for all the elements we specified
-```
 
-```r
 pLewis_sum
-```
-
-```
-## lavaan 0.6.16 ended normally after 1 iteration
-## 
-##   Estimator                                         ML
-##   Optimization method                           NLMINB
-##   Number of model parameters                        11
-## 
-##   Number of observations                           212
-##   Number of missing patterns                         1
-## 
-## Model Test User Model:
-##                                                       
-##   Test statistic                                17.813
-##   Degrees of freedom                                 1
-##   P-value (Chi-square)                           0.000
-## 
-## Model Test Baseline Model:
-## 
-##   Test statistic                               155.625
-##   Degrees of freedom                                 6
-##   P-value                                        0.000
-## 
-## User Model versus Baseline Model:
-## 
-##   Comparative Fit Index (CFI)                    0.888
-##   Tucker-Lewis Index (TLI)                       0.326
-##                                                       
-##   Robust Comparative Fit Index (CFI)             0.888
-##   Robust Tucker-Lewis Index (TLI)                0.326
-## 
-## Loglikelihood and Information Criteria:
-## 
-##   Loglikelihood user model (H0)               -877.337
-##   Loglikelihood unrestricted model (H1)       -868.431
-##                                                       
-##   Akaike (AIC)                                1776.675
-##   Bayesian (BIC)                              1813.597
-##   Sample-size adjusted Bayesian (SABIC)       1778.742
-## 
-## Root Mean Square Error of Approximation:
-## 
-##   RMSEA                                          0.282
-##   90 Percent confidence interval - lower         0.177
-##   90 Percent confidence interval - upper         0.403
-##   P-value H_0: RMSEA <= 0.050                    0.000
-##   P-value H_0: RMSEA >= 0.080                    0.999
-##                                                       
-##   Robust RMSEA                                   0.282
-##   90 Percent confidence interval - lower         0.177
-##   90 Percent confidence interval - upper         0.403
-##   P-value H_0: Robust RMSEA <= 0.050             0.000
-##   P-value H_0: Robust RMSEA >= 0.080             0.999
-## 
-## Standardized Root Mean Square Residual:
-## 
-##   SRMR                                           0.075
-## 
-## Parameter Estimates:
-## 
-##   Standard errors                            Bootstrap
-##   Number of requested bootstrap draws             1000
-##   Number of successful bootstrap draws            1000
-## 
-## Regressions:
-##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##   MtnlHlth ~                                                            
-##     Engmt     (b1)    0.581    0.431    1.346    0.178   -0.287    1.447
-##     DisEngmt  (b2)   -3.750    0.471   -7.954    0.000   -4.670   -2.851
-##     GRMS     (c_p)   -0.575    0.243   -2.363    0.018   -1.071   -0.126
-##   Engmt ~                                                               
-##     GRMS      (a1)    0.203    0.044    4.584    0.000    0.116    0.292
-##   DisEngmt ~                                                            
-##     GRMS      (a2)    0.241    0.037    6.570    0.000    0.169    0.312
-##    Std.lv  Std.all
-##                   
-##     0.581    0.091
-##    -3.750   -0.513
-##    -0.575   -0.133
-##                   
-##     0.203    0.300
-##                   
-##     0.241    0.410
-## 
-## Intercepts:
-##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .MtnlHlth         27.728    1.027   27.004    0.000   25.525   29.753
-##    .Engmt             1.915    0.100   19.140    0.000    1.720    2.110
-##    .DisEngmt          1.270    0.080   15.877    0.000    1.106    1.423
-##    Std.lv  Std.all
-##    27.728    7.172
-##     1.915    3.147
-##     1.270    2.401
-## 
-## Variances:
-##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .MtnlHlth         10.067    0.846   11.895    0.000    8.249   11.477
-##    .Engmt             0.337    0.035    9.718    0.000    0.270    0.402
-##    .DisEngmt          0.233    0.021   10.927    0.000    0.190    0.275
-##    Std.lv  Std.all
-##    10.067    0.674
-##     0.337    0.910
-##     0.233    0.832
-## 
-## R-Square:
-##                    Estimate
-##     MtnlHlth          0.326
-##     Engmt             0.090
-##     DisEngmt          0.168
-## 
-## Defined Parameters:
-##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect1         0.118    0.095    1.249    0.212   -0.062    0.310
-##     indirect2        -0.905    0.182   -4.974    0.000   -1.305   -0.574
-##     contrast          1.023    0.224    4.578    0.000    0.618    1.491
-##     total_indircts   -0.787    0.185   -4.259    0.000   -1.152   -0.440
-##     total_c          -1.362    0.253   -5.392    0.000   -1.841   -0.864
-##     direct           -0.575    0.243   -2.362    0.018   -1.071   -0.126
-##    Std.lv  Std.all
-##     0.118    0.027
-##    -0.905   -0.210
-##     1.023    0.238
-##    -0.787   -0.183
-##    -1.362   -0.316
-##    -0.575   -0.133
-```
-
-```r
 pLewis_ParEsts
 ```
 
-```
-##                lhs op                         rhs           label    est    se
-## 1         MtnlHlth  ~                       Engmt              b1  0.581 0.431
-## 2         MtnlHlth  ~                    DisEngmt              b2 -3.750 0.471
-## 3         MtnlHlth  ~                        GRMS             c_p -0.575 0.243
-## 4            Engmt  ~                        GRMS              a1  0.203 0.044
-## 5         DisEngmt  ~                        GRMS              a2  0.241 0.037
-## 6         MtnlHlth ~~                    MtnlHlth                 10.067 0.846
-## 7            Engmt ~~                       Engmt                  0.337 0.035
-## 8         DisEngmt ~~                    DisEngmt                  0.233 0.021
-## 9             GRMS ~~                        GRMS                  0.806 0.000
-## 10        MtnlHlth ~1                                             27.728 1.027
-## 11           Engmt ~1                                              1.915 0.100
-## 12        DisEngmt ~1                                              1.270 0.080
-## 13            GRMS ~1                                              1.990 0.000
-## 14       indirect1 :=                       a1*b1       indirect1  0.118 0.095
-## 15       indirect2 :=                       a2*b2       indirect2 -0.905 0.182
-## 16        contrast :=         indirect1-indirect2        contrast  1.023 0.224
-## 17 total_indirects :=         indirect1+indirect2 total_indirects -0.787 0.185
-## 18         total_c := c_p+(indirect1)+(indirect2)         total_c -1.362 0.253
-## 19          direct :=                         c_p          direct -0.575 0.243
-##         z pvalue ci.lower ci.upper std.lv std.all std.nox
-## 1   1.346  0.178   -0.339    1.354  0.581   0.091   0.091
-## 2  -7.954  0.000   -4.703   -2.892 -3.750  -0.513  -0.513
-## 3  -2.363  0.018   -1.047   -0.099 -0.575  -0.133  -0.149
-## 4   4.584  0.000    0.116    0.292  0.203   0.300   0.334
-## 5   6.570  0.000    0.170    0.313  0.241   0.410   0.457
-## 6  11.895  0.000    8.599   11.773 10.067   0.674   0.674
-## 7   9.718  0.000    0.279    0.414  0.337   0.910   0.910
-## 8  10.927  0.000    0.199    0.286  0.233   0.832   0.832
-## 9      NA     NA    0.806    0.806  0.806   1.000   0.806
-## 10 27.004  0.000   25.599   29.794 27.728   7.172   7.172
-## 11 19.140  0.000    1.719    2.109  1.915   3.147   3.147
-## 12 15.877  0.000    1.094    1.416  1.270   2.401   2.401
-## 13     NA     NA    1.990    1.990  1.990   2.216   1.990
-## 14  1.249  0.212   -0.061    0.311  0.118   0.027   0.031
-## 15 -4.974  0.000   -1.370   -0.602 -0.905  -0.210  -0.234
-## 16  4.578  0.000    0.650    1.561  1.023   0.238   0.265
-## 17 -4.259  0.000   -1.198   -0.471 -0.787  -0.183  -0.204
-## 18 -5.392  0.000   -1.873   -0.891 -1.362  -0.316  -0.352
-## 19 -2.362  0.018   -1.047   -0.099 -0.575  -0.133  -0.149
-```
+#### Table and Figure
 
-
-
-#### Figures and Tables
-
-When I interpret the data I first plot it and then create the table.  Both processes force me to slow down and work conceptually through and deeply in the data.
+To assist in table preparation, it is possible to export the results to a .csv file that can be manipulated in Excel, Microsoft Word, or other program to prepare an APA style table.
 
 
 ```r
-library(semPlot)
-#note change in layout 
-semPaths(para_Lewis_fit, #must identiy the model you want to map
-         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
-         #whatLabels = "stand", #"stand" changes to standardized values
-         #layout = 'tree', rotation = 2, #together, puts predictors on left, IVs on right 
-         layout = 'spring', 
-         edge.label.cex = 1.00, #font size of parameter values
-         #edge.color = "black", #overwrites the green/black coloring
-         sizeMan=10, #size of squares/observed/"manifest" variables
-         fade=FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals
-         esize=2, 
-         asize=3,
-         #label.prop = .5,
-         label.font = 2.5, #controls size (I think) of font for labels
-         label.scale = TRUE, #if false, the labels will not scale to fit inside the nodes
-         nDigits = 3, #decimal places (default is 2)
-         residuals = FALSE,#excludes residuals (and variances) from the path diagram
-         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)
-         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram)
-)
-title("Mental Health from Gendered Racial Microaggressions, Mediated by Engagement and Disengagement Coping")
+write.csv(pLewis_ParEsts, file = "pLewis_ParEsts.csv")
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-15-1.png)<!-- -->
+We can use the package [tidySEM](https://cjvanlissa.github.io/tidySEM/articles/Plotting_graphs.html) to create a figure that includes the values on the path.  
+
+Here's what the base package gets us
+
+
+```r
+# only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = para_Lewis_fit)
+```
+
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-19-1.png)<!-- -->
+
+We can create model that communicates more intuitively with a little tinkering. First, let's retrieve the current "map" of the layout.
+
+
+```r
+tidySEM::get_layout(para_Lewis_fit)
+```
+
+```
+##      [,1]    [,2]       [,3]      
+## [1,] NA      "GRMS"     NA        
+## [2,] "Engmt" "DisEngmt" "MntlHlth"
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+To create the figure I showed at the beginning of the chapter, we will want three rows and three columns.
+
+
+```r
+pLewis_map <- tidySEM::get_layout("", "Engmt", "", "GRMS", "", "MntlHlth",
+    "", "DisEngmt", "", rows = 3)
+pLewis_map
+```
+
+```
+##      [,1]   [,2]       [,3]      
+## [1,] ""     "Engmt"    ""        
+## [2,] "GRMS" ""         "MntlHlth"
+## [3,] ""     "DisEngmt" ""        
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can update our figure by supplying this new map and adjusting the object and text sizes.
+
+
+```r
+tidySEM::graph_sem(para_Lewis_fit, layout = pLewis_map, rect_width = 1.5,
+    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+```
+
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-22-1.png)<!-- -->
+
+
 
 Now let's make a table.
 
 **Table 2 ** 
 
 |Model Coefficients Assessing Engagement and Disengagement Coping as Parallel Mediators Between Predicting Mental Health from Gendered Racial Microaggressions
-|:------------------------------------------------------------------------------------------------------------|
+|:---------------------------------------------------------------------|
 
-|                         
-|:----:|:-:|:-------:|:-:|:--------:|:-----------------------:|:-:|:----------:|:-------------:|:------------:|
-|IV    |   |M        |   |DV        |$B$ for *a* and *b* paths|   |$B$         | $SE$          |$p$           |
-|GRMS  |-->|Engmt    |-->|MntlHlth  |(0.203) X (0.581)  |=  |0.118  |0.095   |0.212  |
-|GRMS  |-->|DisEngmt |-->|MntlHlth  |(0.241) X (-3.750)  |=  |-0.905  |0.182   |0.000  |
+| Predictor                  |$B$     |$SE_{B}$ |$p$    |$R^2$         |                   
+|:---------------------------|:------:|:-------:|:-----:|-------------:|
+
+|Engagement coping (M1)      |        |         |       |.27
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Constant                    |1.494   |0.109    |<0.001 |              |
+|GRMS ($a_1$)                |0.384   |0.042    |<0.001 |              |
+
+|Disengagement coping (M2)   |        |         |       |.28
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Constant                    |1.490   |0.113    |<0.001 |              |
+|GRMS ($a_2$)                |0.386   |0.043    |<0.001 |              |
+
+|Mental Health (IV)          |        |         |       |.37
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Constant                    |5.141   |0.239    |<0.001 |              |
+|Engagement ($b_1$)          |0.144   |0.090    |0.109  |              |
+|Disengagement ($b_2$)       |-0.391  |0.089    |<0.001 |              |
+|GRMS ($c'$)                 |-0.535  |0.076    |<0.001 |              |
+
+|Summary of Effects          |$B$     |$SE_{B}$ |$p$    |95% CI
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Total                       |-0.631  |0.060    |<0.001 |-0.748, -0.507| 
+|Indirect 1 ($a_1$ * $a_2$)  |0.055   |0.036    |0.121  |-0.009, 0.126 |                        
+|Indirect 2 ($b_1$ * $b_2$)  |-0.151  |0.039    |<0.001 |-0.230, -0.079|           
+|Total indirects             |-0.096  |0.054    |0.075  |-0.206, 0.008 |
+|Contrast (Ind1 - Ind2)      |0.206   |0.052    |<0.001 |0.112, 0.316  |
 
 |
-|:---------------------------------------------------------------:|:----------:|:-------------:|:------------:|
-|                                                                 |$B$         | $SE$          |$p$           |
-|Total indirect effect                                            |-0.787|0.185|0.000|
-|Total effect of X on Y (c path)                                  |-1.362   |0.253   |0.000   |
-|Direct effect of X on Y (c')                                     |-0.575   |0.243   |0.243  |
-
-|
-|-------------------------------------------------------------------------------------------------------------|
-*Note*. IV = gendered racial microaggressions; M1 = engagement coping; M2 = disengagement coping; Y = mental health. The significance of the indirect effects was calculated with bias-corrected confidence intervals (.95) bootstrap analysis.
-
-* The model accounts for  of the variance in predicting mental health outcomes.
-* The total effect of GRMS on mental health is -1.362 ($p$ = 0.000) is negative and statistically significant.  That is, gendered racial microaggressions have a statistically significant negative effect on mental health.
-* The direct effect of GRMS on mental health is -0.575 (*p* = 0.243) is still negative but not statistically significant.  
-  * Using Baron and Kenny's [-@baron_moderator-mediator_1986] causal steps logic, the smaller and non-significant direct effect (compared to the total effect) provides helpful, logical support for mediation. According to Hayes [-@hayes_introduction_2018] this difference is not necessary. However it is logically helpful.
-*  Indirect effect #1 (a1 x b1 or GRMS through engagement coping) is 0.118 ($p$ = 0.000) and not statistically significant.  Looking at the paths we see that *a1* is positive and statistically significant (GRMS leds to increased engagement coping), but the next link, *b1* (engagement to mental health) is not statistically significant. 
-*  Indirect effect #2 (a2 x b2, or GRMS through disengagement to coping) is -0.905($p$ = 0.000). Gendered racial microaggressions lead to greater disengagement (*a1*). In turn, disengagement has negative effects on mental health (*b2*)
-* The total indirect effect (i.e., sum of M1 and M2) -0.787 ($p$ = 0.000 ) The sum of all specific indirect effects; statistically significant.
-* We look at the contrast to see if the indirect effects statistically significantly different from each other?  $B$ = 1.023, $p$ = 0.000.  They are. This is not surprising since the path mediated by engagement was not statistically significant but the path mediated by disengagement was statistically significant.
+|----------------------------------------------------------------------|
+|*Note*. GRMS = gendered racial microaggressions. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
 
 
 
-```r
-LewisparaTable <- semTable(para_Lewis_fit, columns = c("est", "se", "p",
-    "rsquare"), columnLabels = c(eststars = "Estimate"), paramSets = c("composites",
-    "loadings", "slopes", "intercepts", "residualvariances"), file = "LewisParaTable",
-    type = "csv", print.results = TRUE)
-```
-
-```
-## ,Model,
-##  
-## ,Estimate,Std. Err.,p,R Square,
-## 
-## ,Regression Slopes,
-##  MtnlHlth,
-## 
-## Engmt,0.58,0.43,.178,,
-## 
-## DisEngmt,-3.75,0.47,.000,,
-## 
-## GRMS,-0.57,0.24,.018,,
-## 
-##  Engmt,
-## 
-## GRMS,0.20,0.04,.000,,
-## 
-##  DisEngmt,
-## 
-## GRMS,0.24,0.04,.000,,
-## 
-## ,Intercepts,
-## 
-## MtnlHlth,27.73,1.03,.000,,
-## 
-## Engmt,1.92,0.10,.000,,
-## 
-## DisEngmt,1.27,0.08,.000,,
-## 
-## GRMS,1.99+,,,,
-## 
-## ,Residual Variances,
-## 
-## MtnlHlth,10.07,0.85,.000,,
-## 
-## Engmt,0.34,0.03,.000,,
-## 
-## DisEngmt,0.23,0.02,.000,,
-## 
-## GRMS,0.81+,,,,
-## 
-## ,Fit Indices,
-## 
-## chi^2,17.81(1),,.000,,
-## 
-## CFI,0.89,,,,
-## 
-## TLI,0.33,,,,
-## 
-## RMSEA,0.28,,,,
-## 
-## +Fixed parameter,
-## 
-## 
-## 
-## 
-```
+* The model accounts for 37% of the variance in predicting mental health outcomes.
+* The total effect of GRMS on mental health is -0.631 ($p < 0.001$) is negative and statistically significant.  That is, gendered racial microaggressions have a statistically significant negative effect on mental health.
+* The direct effect of GRMS on mental health is -0.535 ($p < 0.001$); while this is lower than the total effect, it remains statistically significant.   
+  * Using Baron and Kenny's [-@baron_moderator-mediator_1986] causal steps logic, the fact that the direct effect does not decrease in a statistically significant manner does not provide helpful, logical support for mediation. According to Hayes [-@hayes_more_2022] this difference is not necessary. That is, a statistically significant indirect effect can stand on its own.
+*  Indirect effect #1 (a1 x b1 or GRMS through engagement coping) is 0.055 ($p = 0.121, CI95[-0.011, 0.124]$) and not statistically significant. Because they can be inconsistent with the *p* values, we should always check the confidence intervals to see if they pass through zero. In this case they do.
+*  Indirect effect #2 (a2 x b2, or GRMS through disengagement to coping) is -0.151 ($p < 0.001, CI95[-0.231, -0.082]$). The *p* value is significant and the 95% confidence interval does not pass through zero. Thus, gendered racial microaggressions lead to greater disengagement (*a1*). In turn, disengagement has negative effects on mental health (*b2*).
+* The total indirect effect (i.e., sum of all specific indirect effects) $(-0.096, p = 0.075)$ is not statistically significant.
+* We examine the contrast to see if the indirect effects statistically significantly different from each other:  $B= `0.206, p < 0.001$.  They are. This is not surprising since the path mediated by engagement was not statistically significant but the path mediated by disengagement was statistically significant.
 
 #### APA Style Writeup
 
-Hayes [-@hayes_introduction_2018] provides helpful guidelines for presenting statistical results.  Here is a summary of his recommendations.
+Hayes [@hayes_introduction_2022] provides helpful guidelines for presenting statistical results.  Here is a summary of his recommendations.
 
-* Pack as much statistical info as possible into a table(s) or figure (s).
+* Pack as much statistical info as possible into a table(s) or figure(s).
 * Use statistics in the text as punctuation; avoid redundancy in text and table.
 *	Avoid using abbreviations for variables in the text itself; rather focus on the construct names rather than their shorthand
 *	Avoid focusing on what you hypothesized (e.g., avoid, "Results supported/did not support hypothesis A1") and instead focus on what you found.  The reader is more interested in the results, not your forecasts.
-*	Hayes uses unstandardized metrics. He prefers reporting unstandardized metrics because they map onto the measurement scales used in the study. He believes this is especially important when dichotomous variables are used.
-*	There is "no harm" in reporting hypothesis tests and CIs for the a and b paths, but whether/not these paths are statistically significant does not determine the significance of the indirect effect.
+*	Hayes prefers reporting unstandardized metrics because they map onto the measurement scales used in the study. He believes this is especially important when dichotomous variables are used.
+*	There is "no harm" in reporting hypothesis tests and CIs for the *a* and *b* paths, but whether/not these paths are statistically significant does not determine the significance of the indirect effect.
 *	Be precise with language:
   + OK:  X exerts an effect on Y directly and/or indirectly through M.
   + Not OK:  the indirect effect of M	
@@ -993,18 +941,17 @@ Here's my attempt to write up the simulated data from the Lewis et al. [-@lewis_
 
 Data Analysis
 
-Parallel multiple mediation is appropriate when testing the influence of an independent variable (X) on the dependent variable (Y) directly, as well as indirectly through two or more mediators. A condition of parallel multiple mediation is that no mediator causally influences another [@hayes_introduction_2018]. Using data simulated from Lewis et al. [-@lewis_applying_2017] we utilized parallel multiple mediation analysis to test the influence of gendered racial microaggressions (X, GRMS) on mental health outcomes (Y, MntlHlth) directly as well as indirectly through the mediators engagement coping (M1, Engmt) and disengaged coping (M2, DisEngmt).  Using the *lavaan* (v. 0.6-7) package in R we followed the procedures outlined in Hayes [-@hayes_introduction_2018] by analyzing the strength and significance of four sets of effects:  specific indirect, the total indirect, the direct, and total. 
+Parallel multiple mediation is appropriate when testing the influence of an independent variable (X) on the dependent variable (Y) directly, as well as indirectly through two or more mediators. A condition of parallel multiple mediation is that no mediator causally influences another [@hayes_more_2022]. Using data simulated from Lewis et al. [-@lewis_applying_2017] we utilized parallel multiple mediation analysis to test the influence of gendered racial microaggressions (X, GRMS) on mental health outcomes (Y, MntlHlth) directly as well as indirectly through the mediators engagement coping (M1, Engmt) and disengaged coping (M2, DisEngmt).  Using the *lavaan* (v. 0.6-16) package in R we followed the procedures outlined in Hayes [-@hayes_more_2022] by analyzing the strength and significance of four sets of effects:  specific indirect, the total indirect, the direct, and total. 
 
 **Results**
 
 **Preliminary Analyses**
-Descriptive statistics were computed, and all variables were assessed for skewness and kurtosis. *More narration,here.*  A summary of descriptive statistics and a correlation matrix for the study is provided in Table #.  These bivariate relations provide evidence to support the test of mediation analysis.
+Descriptive statistics were computed, and all variables were assessed for skewness and kurtosis. *More narration,here.*  A summary of descriptive statistics and a correlation matrix for the study is provided in Table 2.  These bivariate relations provide evidence to support the test of mediation analysis.
 	
 **Parallel Multiple Mediation Analysis**
-A model of parallel multiple mediation was analyzed examining the degree to which engagement and disengagement coping strategies mediated the relation of gendered racial microaggressions on mental health outcomes in Black women. Hayes [-@hayes_introduction_2018] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously.  The resultant direct and indirect values for each path account for other mediation paths.  Using the *lavaan* (v. 0.6-7) package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
+A model of parallel mediation examined the degree to which engagement and disengagement coping strategies mediated the relation of gendered racial microaggressions on mental health outcomes in Black women. Hayes [-@hayes_more_2022] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously.  The resultant direct and indirect values for each path account for other mediation paths.  Using the *lavaan* (v. 0.6-17) package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
 
-Results (depicted in Figure # and presented in Table #) suggest that  of the variance in mental health outcomes is accounted for by the three variables in the model. The indirect effect predicting mental health from gendered racial microaggressions via engagement coping was not statistically significant ($B$ = 0.118, $p$ = 0.000). Looking at the individual paths we see that $a_{1}$ was positive and statistically significant (GRMS leds to increased engagement coping), but the subsequent link, $b_{1}$ (engagement to mental health) was not. The indirect effect predicting mental health from gendered racial microaggressions through disengagement to coping was statistically significant ($B$ = -0.905, $p$ = 0.000). In this case, gendered racial microaggressions led to greater disengagement coping ($a_{2}$). In turn, disengagement coping had negative effects on mental health ($b_{2}$).  Correspondingly, the total indirect effect (i.e., the sum of the specific indirect effects was statistically significant.  A pairwise comparison of the specific indirect effects indicated that the strength of the effects were statistically significantly different from each other ($B$ = 1.023, $p$ = 0.000). Given that the path through engagement coping was not significant, but the path through disengagement coping was, this statistically signifciant difference is not surprising. Further support for understanding mediation as the mechanism of change is found in the drop in statistical significance from the total effect (*c*) to the direct effect (*c'*).
-
+Results (depicted in Figure 2 and presented in Table 3) suggest that 37% of the variance in mental health outcomes is accounted for by the model. The indirect effect predicting mental health from gendered racial microaggressions via engagement coping was not statistically significant $*B = 0.055, SE = 0.036, p = 0.121, CI95[-0.011, 0.124]$). Looking at the individual paths we see that $a_{1}$ was positive and statistically significant (GRMS leds to increased engagement coping), but the subsequent link, $b_{1}$ (engagement to mental health) was not. The indirect effect predicting mental health from gendered racial microaggressions through disengagement to coping was statistically significant $B = -0.151, SE = 0.039, p < 0.001, CI95[-0.231, -0.082]$). In this case, gendered racial microaggressions led to greater disengagement coping ($a_{2}$). In turn, disengagement coping had negative effects on mental health ($b_{2}$).  Curiously, the total indirect effect (i.e., the sum of the specific indirect effects was not statistically significant. It is possible that the positive and negative valences of the indirect effects "cancelled each other out."  A pairwise comparison of the specific indirect effects indicated that the strength of the effects were statistically significantly different from each other. Given that the path through engagement coping was not significant, but the path through disengagement coping was, this statistically signifcicant difference is not surprising. 
 
 **Hints for Writing Method/Results Sections**
 
@@ -1018,7 +965,7 @@ Results (depicted in Figure # and presented in Table #) suggest that  of the var
 
 Recall that one of the conditions of the *parallel mediator model*  was that "no mediator causally influences another."
 
-Regarding these correlated mediators [-@hayes_introduction_2018]:
+Regarding these correlated mediators [@hayes_more_2022]:
 
 * Typically, two or more mediators that are causally located between X and Y will be correlated - if for no other reason than that they share a common cause (X).
 *	Estimating the partial correlation between two mediators after controlling for X is one way to examine whether all of their association is accounted for by this common cause.
@@ -1059,10 +1006,8 @@ If this is our goal (image), how many direct and indirect effects are contained 
 
 
 ```r
-set.seed(210403)
-library(lavaan)
 serial_Lewis <- "
-    MtnlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS
+    MntlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS
     Engmt ~ a1*GRMS    
     DisEngmt ~ a2*GRMS
     DisEngmt ~ d21*Engmt
@@ -1076,294 +1021,151 @@ serial_Lewis <- "
     total_c := c_p + indirect1 + indirect2 + indirect3
     direct := c_p
 "
-serial_Lewis_fit <- sem(serial_Lewis, data = Lewis_df, se = "bootstrap",
+serial_Lewis_fit <- lavaan::sem(serial_Lewis, data = Lewis_df, se = "bootstrap",
     missing = "fiml", bootstrap = 1000)
-sLewis_sum <- summary(serial_Lewis_fit, standardized = TRUE, rsq = T, fit = TRUE,
-    ci = TRUE)
-sLewis_ParEsts <- parameterEstimates(serial_Lewis_fit, boot.ci.type = "bca.simple",
+sLewis_sum <- lavaan::summary(serial_Lewis_fit, standardized = TRUE, rsq = T,
+    fit = TRUE, ci = TRUE)
+sLewis_ParEsts <- lavaan::parameterEstimates(serial_Lewis_fit, boot.ci.type = "bca.simple",
     standardized = TRUE)
-```
 
-
-```r
 sLewis_sum
-```
-
-```
-## lavaan 0.6.16 ended normally after 1 iteration
-## 
-##   Estimator                                         ML
-##   Optimization method                           NLMINB
-##   Number of model parameters                        12
-## 
-##   Number of observations                           212
-##   Number of missing patterns                         1
-## 
-## Model Test User Model:
-##                                                       
-##   Test statistic                                 0.000
-##   Degrees of freedom                                 0
-## 
-## Model Test Baseline Model:
-## 
-##   Test statistic                               155.625
-##   Degrees of freedom                                 6
-##   P-value                                        0.000
-## 
-## User Model versus Baseline Model:
-## 
-##   Comparative Fit Index (CFI)                    1.000
-##   Tucker-Lewis Index (TLI)                       1.000
-##                                                       
-##   Robust Comparative Fit Index (CFI)             1.000
-##   Robust Tucker-Lewis Index (TLI)                1.000
-## 
-## Loglikelihood and Information Criteria:
-## 
-##   Loglikelihood user model (H0)               -868.431
-##   Loglikelihood unrestricted model (H1)       -868.431
-##                                                       
-##   Akaike (AIC)                                1760.862
-##   Bayesian (BIC)                              1801.141
-##   Sample-size adjusted Bayesian (SABIC)       1763.117
-## 
-## Root Mean Square Error of Approximation:
-## 
-##   RMSEA                                          0.000
-##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.000
-##   P-value H_0: RMSEA <= 0.050                       NA
-##   P-value H_0: RMSEA >= 0.080                       NA
-##                                                       
-##   Robust RMSEA                                   0.000
-##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.000
-##   P-value H_0: Robust RMSEA <= 0.050                NA
-##   P-value H_0: Robust RMSEA >= 0.080                NA
-## 
-## Standardized Root Mean Square Residual:
-## 
-##   SRMR                                           0.000
-## 
-## Parameter Estimates:
-## 
-##   Standard errors                            Bootstrap
-##   Number of requested bootstrap draws             1000
-##   Number of successful bootstrap draws            1000
-## 
-## Regressions:
-##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##   MtnlHlth ~                                                            
-##     Engmt     (b1)    0.581    0.431    1.346    0.178   -0.287    1.447
-##     DisEngmt  (b2)   -3.750    0.471   -7.954    0.000   -4.670   -2.851
-##     GRMS     (c_p)   -0.575    0.243   -2.363    0.018   -1.071   -0.126
-##   Engmt ~                                                               
-##     GRMS      (a1)    0.203    0.044    4.584    0.000    0.116    0.292
-##   DisEngmt ~                                                            
-##     GRMS      (a2)    0.193    0.038    5.150    0.000    0.117    0.266
-##     Engmt    (d21)    0.236    0.057    4.163    0.000    0.132    0.355
-##    Std.lv  Std.all
-##                   
-##     0.581    0.092
-##    -3.750   -0.519
-##    -0.575   -0.135
-##                   
-##     0.203    0.300
-##                   
-##     0.193    0.329
-##     0.236    0.271
-## 
-## Intercepts:
-##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .MtnlHlth         27.728    1.027   27.004    0.000   25.525   29.753
-##    .Engmt             1.915    0.100   19.140    0.000    1.720    2.110
-##    .DisEngmt          0.818    0.128    6.400    0.000    0.564    1.073
-##    Std.lv  Std.all
-##    27.728    7.257
-##     1.915    3.147
-##     0.818    1.547
-## 
-## Variances:
-##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .MtnlHlth         10.067    0.846   11.895    0.000    8.249   11.477
-##    .Engmt             0.337    0.035    9.718    0.000    0.270    0.402
-##    .DisEngmt          0.214    0.019   11.318    0.000    0.175    0.249
-##    Std.lv  Std.all
-##    10.067    0.690
-##     0.337    0.910
-##     0.214    0.765
-## 
-## R-Square:
-##                    Estimate
-##     MtnlHlth          0.310
-##     Engmt             0.090
-##     DisEngmt          0.235
-## 
-## Defined Parameters:
-##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect1         0.118    0.095    1.249    0.212   -0.062    0.310
-##     indirect2        -0.726    0.169   -4.295    0.000   -1.067   -0.417
-##     indirect3        -0.180    0.065   -2.750    0.006   -0.337   -0.076
-##     contrast1         0.844    0.207    4.069    0.000    0.471    1.252
-##     contrast2         0.298    0.125    2.384    0.017    0.089    0.572
-##     contrast3        -0.546    0.180   -3.028    0.002   -0.896   -0.206
-##     total_indircts   -0.787    0.185   -4.259    0.000   -1.152   -0.440
-##     total_c          -1.362    0.253   -5.392    0.000   -1.841   -0.864
-##     direct           -0.575    0.243   -2.362    0.018   -1.071   -0.126
-##    Std.lv  Std.all
-##     0.118    0.028
-##    -0.726   -0.170
-##    -0.180   -0.042
-##     0.844    0.198
-##     0.298    0.070
-##    -0.546   -0.128
-##    -0.787   -0.185
-##    -1.362   -0.320
-##    -0.575   -0.135
-```
-
-```r
 sLewis_ParEsts
 ```
 
-```
-##                lhs op                               rhs           label    est
-## 1         MtnlHlth  ~                             Engmt              b1  0.581
-## 2         MtnlHlth  ~                          DisEngmt              b2 -3.750
-## 3         MtnlHlth  ~                              GRMS             c_p -0.575
-## 4            Engmt  ~                              GRMS              a1  0.203
-## 5         DisEngmt  ~                              GRMS              a2  0.193
-## 6         DisEngmt  ~                             Engmt             d21  0.236
-## 7         MtnlHlth ~~                          MtnlHlth                 10.067
-## 8            Engmt ~~                             Engmt                  0.337
-## 9         DisEngmt ~~                          DisEngmt                  0.214
-## 10            GRMS ~~                              GRMS                  0.806
-## 11        MtnlHlth ~1                                                   27.728
-## 12           Engmt ~1                                                    1.915
-## 13        DisEngmt ~1                                                    0.818
-## 14            GRMS ~1                                                    1.990
-## 15       indirect1 :=                             a1*b1       indirect1  0.118
-## 16       indirect2 :=                             a2*b2       indirect2 -0.726
-## 17       indirect3 :=                         a1*d21*b2       indirect3 -0.180
-## 18       contrast1 :=               indirect1-indirect2       contrast1  0.844
-## 19       contrast2 :=               indirect1-indirect3       contrast2  0.298
-## 20       contrast3 :=               indirect2-indirect3       contrast3 -0.546
-## 21 total_indirects :=     indirect1+indirect2+indirect3 total_indirects -0.787
-## 22         total_c := c_p+indirect1+indirect2+indirect3         total_c -1.362
-## 23          direct :=                               c_p          direct -0.575
-##       se      z pvalue ci.lower ci.upper std.lv std.all std.nox
-## 1  0.431  1.346  0.178   -0.339    1.354  0.581   0.092   0.092
-## 2  0.471 -7.954  0.000   -4.703   -2.892 -3.750  -0.519  -0.519
-## 3  0.243 -2.363  0.018   -1.047   -0.099 -0.575  -0.135  -0.150
-## 4  0.044  4.584  0.000    0.116    0.292  0.203   0.300   0.334
-## 5  0.038  5.150  0.000    0.117    0.267  0.193   0.329   0.366
-## 6  0.057  4.163  0.000    0.141    0.366  0.236   0.271   0.271
-## 7  0.846 11.895  0.000    8.599   11.773 10.067   0.690   0.690
-## 8  0.035  9.718  0.000    0.279    0.414  0.337   0.910   0.910
-## 9  0.019 11.318  0.000    0.183    0.257  0.214   0.765   0.765
-## 10 0.000     NA     NA    0.806    0.806  0.806   1.000   0.806
-## 11 1.027 27.004  0.000   25.599   29.794 27.728   7.257   7.257
-## 12 0.100 19.140  0.000    1.719    2.109  1.915   3.147   3.147
-## 13 0.128  6.400  0.000    0.542    1.047  0.818   1.547   1.547
-## 14 0.000     NA     NA    1.990    1.990  1.990   2.216   1.990
-## 15 0.095  1.249  0.212   -0.061    0.311  0.118   0.028   0.031
-## 16 0.169 -4.295  0.000   -1.130   -0.452 -0.726  -0.170  -0.190
-## 17 0.065 -2.750  0.006   -0.359   -0.084 -0.180  -0.042  -0.047
-## 18 0.207  4.069  0.000    0.493    1.325  0.844   0.198   0.221
-## 19 0.125  2.384  0.017    0.108    0.605  0.298   0.070   0.078
-## 20 0.180 -3.028  0.002   -0.965   -0.227 -0.546  -0.128  -0.143
-## 21 0.185 -4.259  0.000   -1.198   -0.471 -0.787  -0.185  -0.206
-## 22 0.253 -5.392  0.000   -1.873   -0.891 -1.362  -0.320  -0.356
-## 23 0.243 -2.362  0.018   -1.047   -0.099 -0.575  -0.135  -0.150
+
+#### Table and Figure
+
+To assist in table preparation, it is possible to export the results to a .csv file that can be manipulated in Excel, Microsoft Word, or other program to prepare an APA style table.
+
+
+```r
+write.csv(sLewis_ParEsts, file = "sLewis_ParEsts.csv")
 ```
 
+We can use the package [tidySEM](https://cjvanlissa.github.io/tidySEM/articles/Plotting_graphs.html) to create a figure that includes the values on the path.  
+
+Here's what the base package gets us
 
 
-### Figures and Tables
+```r
+# only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = serial_Lewis_fit)
+```
 
-**Table 2 ** 
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-25-1.png)<!-- -->
 
-|Model Coefficients Assessing Engagement and Disengagement Coping as Serial Mediators Between Predicting Mental Health from Gendered Racial Microaggressions
-|:------------------------------------------------------------------------------------------------------------------------------------|
+We can create model that communicates more intuitively with a little tinkering. First, let's retrieve the current "map" of the layout.
 
-|                         
-|:----:|:-:|:------:|:-:|:------:|:-:|:--------:|:-----------------------------------:|:-:|-----------:|:-------------:|:------------:|
-|IV    |   |M1      |   |M2      |   |DV        |$B$ for *a*,  *b*, and $d_{21}$ paths|   |$B$         |$SE$           |$p$           |
-|GRMS  |-->|Engmt   |-->|        |   |MntlHlth  |(0.203) X (0.581)              |=  |0.118  |0.095   |0.212  |
-|GRMS  |-->|DisEngmt|-->|        |   |MntlHlth  |(0.193) X (-3.750)              |=  |-0.726  |0.169   |0.000  |
-|GRMS  |-->|Engmt   |-->|DisEngmt|-->|MntlHlth  |(0.203) X (0.236) X (-3.750)|=  |-0.180  |0.065   |0.000  |
+
+```r
+tidySEM::get_layout(serial_Lewis_fit)
+```
+
+```
+##      [,1]    [,2]       [,3]      
+## [1,] NA      "GRMS"     NA        
+## [2,] "Engmt" "DisEngmt" "MntlHlth"
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+To create the figure I showed at the beginning of the chapter, we will want three rows and three columns.
+
+
+```r
+sLewis_map <- tidySEM::get_layout("", "Engmt", "", "GRMS", "", "MntlHlth",
+    "", "DisEngmt", "", rows = 3)
+sLewis_map
+```
+
+```
+##      [,1]   [,2]       [,3]      
+## [1,] ""     "Engmt"    ""        
+## [2,] "GRMS" ""         "MntlHlth"
+## [3,] ""     "DisEngmt" ""        
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can update our figure by supplying this new map and adjusting the object and text sizes.
+
+
+```r
+tidySEM::graph_sem(serial_Lewis_fit, layout = sLewis_map, rect_width = 1.5,
+    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+```
+
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-28-1.png)<!-- -->
+
+
+Now let's make a table.
+
+**Table 4 ** 
+
+|Model Coefficients Assessing Engagement and Disengagement Coping in a Model of Serial Mediation Predicting Mental Health from Gendered Racial Microaggressions
+|:---------------------------------------------------------------------|
+
+| Predictor                  |$B$     |$SE_{B}$ |$p$    |$R^2$         |                   
+|:---------------------------|:------:|:-------:|:-----:|-------------:|
+
+|Engagement coping           |        |         |       |.27
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Constant                    |1.494   |0.112    |<0.001 |              |
+|GRMS ($a_1$)                |0.384   |0.042    |<0.001 |              |
+
+|Disengagement coping        |        |         |       |.29       
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Constant                    |1.400   |0.133    |<0.001 |              |
+|GRMS ($a_2$)                |0.363   |0.048    |<0.001 |              |
+|Engagement ($d_{21}$)       |0.061   |0.061    |0.321  |              |
+
+|Mental Health               |        |         |       |.37
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Constant                    |5.141   |0.230    |<0.001 |              |
+|Engagement ($b_1$)          |0.144   |0.089    |0.107  |              |
+|Disengagement ($b_2$)       |-0.391  |0.090    |<0.001 |              |
+|GRMS ($c'$)                 |-0.535  |0.077    |<0.001 |              |
+
+|Effects                     |$B$     |$SE_{B}$ |$p$    |95% CI 
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Total effect                |-0.631	|0.059	  |0.000	|-0.735, -0.505|
+|Indirect 1 ($a_1$ * $a_2$)  |0.055   |0.036    |0.126  |-0.010, 0.133 |
+|Indirect 2 ($b_1$ * $b_2$)  |-0.142|0.039      |<0.001 |-0.225, -0.076|
+|Indirect 3 ($b_1$ * $d_{21}$ * $b_2$)|-0.009|0.010|0.363|-0.031, 0.009|
+|Total indirects             |-0.096  |0.052    |0.067  |-0.205,	0.004|
+|Contrast1 (Ind1 - Ind2)     |0.197   |0.053    |<0.001 |0.101, 0.308  |
+|Contrast2 (Ind1 - Ind3)     |0.064   |0.039    |0.103  |-0.009, 0.153 |
+|Contrast3 (Ind2 - Ind3)     |-0.133  |0.041    |0.001  |-0.225, -0.06 |
 
 |
-|:---------------------------------------------------------------------------------------:|:----------:|:-------------:|:------------:|
-|                                                                                         |$B$         | $SE$          |$p$           |
-|Total indirect effect                                                                    |-0.787|0.185|0.000|
-|Total effect of GRMS (X) on mental health (Y; c path)                                    |-1.362   |0.253   |0.000   |
-|Direct effect of GRMS (X) on mental health (Y; c' path)                                  |-0.575   |0.243   |0.018   |
-|Contrast comparing indirects 1 (via engagement) and 2 (via disengagement)                |0.844 |0.207 |0.000 |
-|Contrast comparing indirects 1 (via engagement) and 3 (serially via disengagement)       |0.298 |0.125 |0.017 |
-|Contrast comparing indirects 2 (via disengagement) and 3 (serially via disengagement)    |-0.546 |0.180 |0.002 |
+|-----------------------------------------------------------------------|
+|*Note*. GRMS = gendered racial microaggressions. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
 
-|
-|-------------------------------------------------------------------------------------------------------------------------------------|
-*Note*. IV = gendered racial microaggressions; M1 = engagement coping; M2 = disengagement coping; Y = mental health. The significance of the indirect effects was calculated with bias-corrected confidence intervals (.95) bootstrap analysis.
 
 Working through the data, we should be able to find these items:
 
-*  The model accounts for  of the variance in predicting mental health outcomes.
-*  The total effect of GRMS (X) on mental health (Y) is -1.362 ($p$ = 0.000) is negative and statistically significant.
-*  The direct effect of GRMS (X) on mental health (Y) (-0.575,  $p$ = 0.018) is still negative, but weaker in magnitude (relative to the total effect).  While the $p$ value is statistically significant, it is closer to being not significant (than the total effect).  This reduction in magnitude and strength of significance is consistent with the Baron and Kenny [-@baron_moderator-mediator_1986] logic of mediation.
-*  Indirect effect #1 ($a_{1}$ x $b_{1}$ or GRMS through engagement coping to mental health) is 0.118 ($p$ = 0.212).  Again, $p$ is > .05. Examining the individual paths, there is a statistically significant relationship from GRMS to engagement, but not from engagement to mental health.
-*  Indirect effect #2 ($a_{2}$ x $b_{2}$, or GRMS through disengagement coping to mental health, is -0.726 ($p$ = 0.000). Each of the paths is statistically significant from zero and so is the indirect effect.
-*  Indirect effect #3 ($a_{2}$ x $d_{21}$ x $b_{2}$; GRMS through engagement coping through disengagement coping to mental health) is -0.180 ($p$ = 0.000). This indirect effect involves $a_{1}$ (GRMS to engagement) which is not significant.  However, the remaining paths were significant.  That is engagement coping led to increased disengagement coping, which led to poorer mental health outcomes.
-* Total indirect:  -0.787 ($p$ = 0.000) is the sum of all specific indirect effects and is statistically significant.
+*  The model accounts for 37% of the variance in predicting mental health outcomes.
+*  The total effect of GRMS (X) on mental health (Y) is $-0.631, (p < .001)$; it is negative and statistically significant.
+*  The direct effect of GRMS (X) on mental health (Y) ($-0.535, p < 0.001$) is still negative. Although someone lower in magnitute, it is still statistically significant. While inconsistent with the Baron and Kenny [-@baron_moderator-mediator_1986] logic of mediation, Hayes [@hayes_more_2022] argues that a statistically significant indirect effect can stand on its own.
+*  Indirect effect #1 ($a_{1}$ x $b_{1}$ or GRMS through engagement coping to mental health) is $B = 0.055, p =0.126$.  As in the parallel mediation, $p$ is > .05 and the 95% CIs pass through zero $(-0.010, 0.133
+)$. Examining the individual paths, there is a statistically significant relationship from GRMS to engagement, but not from engagement to mental health.
+*  Indirect effect #2 ($a_{2}$ x $b_{2}$, or GRMS through disengagement coping to mental health, is $B = -0.142, p < 0.001, 95CI (-0.225,	-0.076)$. Each of the paths is statistically significant from zero and so is the indirect effect.
+  *  Indirect effect #3 ($a_{2}$ x $d_{21}$ x $b_{2}$; GRMS through engagement coping through disengagement coping to mental health) is $-0.009, p = 0.363, 95C (-0.031, 0.009)$. This indirect effect involves $a_{1}$ (GRMS to engagement) and  $b_{2}$ which are  significant.  However, the path from engagement coping to disengagement coping is not significant.
+* Total indirect:  $B = -0.096, p = 0.067$ is the sum of all specific indirect effects and is not statistically significant. The positive and negative indirects likely cancel each other out.
 * With **contrasts** we ask:  Are the indirect effects statistically significantly different from each other?
-  *  Contrast 1 (indirect 1 v 2) = 0.844 ($p$ = 0.000), yes
-  *  Contrast 2 (indirect 1 v 3) = 0.844 ($p$ = 0.017), yes
-  *  Contrast 3 (indirect 2 v 3) = 0.844 ($p$ = -0.546), yes
-  *  This formal test of contrasts is an important one.  It is not ok to infer that effects are statistically significantly different than each other on the basis of their estimates or $p$ values. The formal test allows us to claim (with justification) that the strongest indirect effect is #2 -- GRMS through disengagement coping to mental health.  
-
-
-```r
-library(semTable)
-LewisserialTbl <- semTable(serial_Lewis_fit, columns = c("est", "se", "p",
-    "rsquare"), columnLabels = c(eststars = "Estimate"), paramSets = c("composites",
-    "loadings", "slopes", "intercepts", "residualvariances"), file = "LewisSerialTbl",
-    type = "csv", print.results = TRUE)
-```
-
-This is not the greatest figure.  There is much to learn in *semPlot*.
-
-```r
-semPaths(serial_Lewis_fit, #must identiy the model you want to map
-         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
-         #whatLabels = "stand", #"stand" changes to standardized values
-         #layout = 'tree', rotation = 2, #together, puts predictors on left, IVs on right 
-         layout = 'circle',
-         edge.label.cex = 1.00, #font size of parameter values
-         #edge.color = "black", #overwrites the green/black coloring
-         sizeMan=10, #size of squares/observed/"manifest" variables
-         fade=FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals
-         esize=2, 
-         asize=3,
-         #label.prop = .5,
-         label.font = 2.5, #controls size (I think) of font for labels
-         label.scale = TRUE, #if false, the labels will not scale to fit inside the nodes
-         nDigits = 3, #decimal places (default is 2)
-         residuals = FALSE,#excludes residuals (and variances) from the path diagram
-         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)
-         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram)
-)
-title("The Effect of Gendered Racial Microaggressions on Mental Health through Engaged and Disengaged Coping Styles")
-```
-
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-21-1.png)<!-- -->
-
+  *  Contrast 1 (indirect 1 v 2): $B = 0.197, p <0.001)$, yes
+  *  Contrast 2 (indirect 1 v 3): $B = 0.064, p = 0.103$, no
+  *  Contrast 3 (indirect 2 v 3): $B = -0.133,p = 0.001p$, yes
+  *  This formal test of contrasts is an important one.  It is not ok to infer that effects are statistically significantly different than each other on the basis of their estimates or $p$ values. The formal test allows us to claim (with justification) that there are statistically significant differences between indirect effects 1 and 2; and 2 and 3.
 
 ### APA Style Writeup
 
 **Method**
+
 **Data Analysis**
-Serial multiple mediation is appropriate when testing the influence of an independent variable (X) on the dependent variable (Y) directly, as well as indirectly through two or more mediators (M) and there is reason to hypothesize that variables that are causally prior in the model affect all variables later in the causal sequence [@hayes_introduction_2018]. We utilized serial multiple mediation analysis to test the influence of gendered racial microaggressions (X, GRMS) on mental health (Y, MntlHlth) directly as well as indirectly through the mediators engagement coping (M1, Engmt) and disengagement coping (M2, DisEngmt).  Moreover, we hypothesized a causal linkage between from the engagement coping mediator to the disengagement coping mediator such that a third specific indirect effect began with GRMS (X) through engagement coping (M1) through disengagement coping (M2) to mental health (Y).  Using the *lavaan* (v. 0.6-7) package in R we followed the procedures outlined in Hayes [-@hayes_introduction_2018] by analyzing the strength and significance of four sets of effects:  specific indirect, the total indirect, the direct, and total. Bootstrap analysis, a nonparametric sampling procedure, was used to test the significance of the indirect effects. 
+Serial multiple mediation is appropriate when testing the influence of an independent variable (X) on the dependent variable (Y) directly, as well as indirectly through two or more mediators (M) and there is reason to hypothesize that variables that are causally prior in the model affect all variables later in the causal sequence [@hayes_more_2022]. We utilized serial multiple mediation analysis to test the influence of gendered racial microaggressions (X, GRMS) on mental health (Y, MntlHlth) directly as well as indirectly through the mediators engagement coping (M1, Engmt) and disengagement coping (M2, DisEngmt).  Moreover, we hypothesized a causal linkage between from the engagement coping mediator to the disengagement coping mediator such that a third specific indirect effect began with GRMS (X) through engagement coping (M1) through disengagement coping (M2) to mental health (Y).  Using the *lavaan* (v. 0.6-16) package in R we followed the procedures outlined in Hayes [-@hayes_more_2022] by analyzing the strength and significance of four sets of effects:  specific indirect, the total indirect, the direct, and total. Bootstrap analysis, a nonparametric sampling procedure, was used to test the significance of the indirect effects. 
 
 *Hayes would likely recommend that we say this with fewer acronyms and more words/story.*
 
@@ -1372,11 +1174,15 @@ Serial multiple mediation is appropriate when testing the influence of an indepe
 Descriptive statistics were computed, and all variables were assessed univariate normality.  *You would give your results regarding skew, kurtosis, Shapiro Wilks', here. If relevant, you could also describe multivariate normality.*  A summary of descriptive statistics and a correlation matrix for the study is provided in Table 1.  These bivariate relations provide evidence to support the test of mediation analysis.
 	
 **Serial Multiple Mediation Analysis**
-A model of serial multiple mediation was analyzed examining the degree to which engagement and disengagement coping mediated the relationship between gendered racial microaggressions and mental health outcomes. Hayes [-@hayes_introduction_2018] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously and allows the testing of the seriated effect of prior mediators onto subsequent ones.  Using the *lavaan* (v. 0.6-7) package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
+A model of serial multiple mediation was analyzed examining the degree to which engagement and disengagement coping mediated the relationship between gendered racial microaggressions and mental health outcomes. Hayes [-@hayes_more_2022] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously and allows the testing of the seriated effect of prior mediators onto subsequent ones.  Using the *lavaan* (v. 0.6-16) package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
 
-Results (depicted in Figure # and presented in Table #) suggest that  of the variance in behavioral intentions is accounted for by the three variables in the model.  Two of the specific indirect effects were significant and were statistically significantly different from each other.   Specifically, the effect of gendered racial microaggressions through disengagement coping to mental health ($B$ = 0.118, $p$ = 0.212) was stronger than the indirect effect from gendered racial microaggressions through engagement coping through disengagement coping to mental health ($B$ = -0.180, $p$ = 0.000).  Interpreting the results suggests that, mental health outcomes are negatively impacted by gendered racial microaggressions direct and indirectly through disengagement coping. It is this latter path that has the greatest impact. 
+Results (depicted in Figure # and presented in Table #) suggest that 37% of the variance in behavioral intentions is accounted for by the three variables in the model.  Two of the specific indirect effects were significant and were statistically significantly different from each other.   Specifically, the effect of gendered racial microaggressions through disengagement coping to mental health ($B= -0.142, SE = 0.039, p < .001, 95CI[-0.076, -0.142]$) was stronger than the indirect effect from gendered racial microaggressions through engagement coping through disengagement coping to mental health ($B = 0.055, SE = 0.036, p =0.126, 95CI [0.133, 0.055]$).  Interpreting the results suggests that, mental health outcomes are negatively impacted by gendered racial microaggressions direct and indirectly through disengagement coping. It is this latter path that has the greatest impact. 
 
 *Note*:  In a manner consistent with the Lewis et al. [-@lewis_applying_2017] article, the APA Results section can be fairly short.  This is especially true when a well-organized table presents the results.  In fact, I oculd have left all the numbers out of this except for the $R^2$ (because it was not reported in the table).
+
+## STAY TUNED
+
+A section on power analysis is planned and coming soon!  My apologies that it's not quite *R*eady.
 
 ## Troubleshooting and FAQs
 
@@ -1393,8 +1199,8 @@ A total effect was not significant, but there is one or more statistically signi
 
 Your editor/peer reviewer/dissertation chair-or-committee member may insist that you do this the Baron & Kenny way (aka "the causal steps approach").
 
-* Hayes 4.1 [-@hayes_introduction_2018] provides fabulous narration and justification for how to justify your (I believe correct) decision to just use the PROCESS (aka, bootstrapped, bias corrected, CIs )approach.
-* My favorite line in his text reads, " (the B&K way).is still being taught and recommended by researchers who don't follow the methodology literature."
+* Hayes [@hayes_introduction_2022] provides compelling arguments for how to justify your (I believe correct) decision to just use the PROCESS (aka, bootstrapped, bias corrected, CIs )approach.
+* My favorite line in his text reads, " (the Baron and Kenny way)...is still being taught and recommended by researchers who don't follow the methodology literature."
 
 How can I extend a mediation (only) model to include multiple Xs, Ys, or COVs?
 
@@ -1408,57 +1214,426 @@ What about effect sizes? Shouldn't we be including/reporting them?
 
 ## Practice Problems
 
-The three problems described below are designed to be grow in this series of chapters that begins with simple mediation and progresses through complex mediation, moderated moderation, and conditional process analysis. I recommend that you select a dataset that includes at least four variables. If you are new to this topic, you may wish to select variables that are all continuously scaled.  The IV and moderator (in subsequent chapters) could be categorical (if they are dichotomous, please use 0/1 coding; if they have more than one category it is best if they are ordered).  You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.
+The three problems described below are designed to be grow in this series of chapters that begins with simple mediation and progresses through complex mediation, moderated moderation, and conditional process analysis. The goal of this assignment is to conduct a complex (e.g., parallel or serial) mediation.
+
+I recommend that you select a dataset that includes at least four variables. If you are new to this topic, you may wish to select variables that are all continuously scaled.  The IV and moderator (in subsequent chapters) *could* be categorical (if they are dichotomous, please use 0/1 coding; if they have more than one category it is best if they are ordered).  You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.
 
 The suggested practice problem for this chapter is to conduct a parallel or serial mediation (or both).
 
 ### Problem #1: Rework the research vignette as demonstrated, but change the random seed
 
-If this topic feels a bit overwhelming, simply change the random seed in the data simulation, then rework the problem. This should provide minor changes to the data (maybe in the second or third decimal point), but the results will likely be very similar.
-
-|Assignment Component  
-|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
-|1. Assign each variable to the X, Y, M1, and M2 roles (ok but not required  to include a cov) |      5         |    _____     |      
-|2. Specify and run the lavaan model                                                           |      5         |    _____     |
-|3. Use semPlot to create a figure                                                             |      5         |    _____     |
-|4. Create a table that includes a summary of the effects (indirect, direct, total, total indirect) as well as contrasts (if you chose a serially mediated model)          |      5         |    _____     |   
-|5. Represent your work in an APA-style write-up                                               |      5         |    _____     |          
-|6. Explanation to grader                                                                      |      5         |    _____     |   
-|7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths|      5         |    _____     |
-|**Totals**                                                                                    |      35        |    _____     |
+If conducting a parallel or serial mediation feels a bit overwhelming, simply change the random seed in the data simulation, then rework one of the chapter problems (i.e., parallel or serial mediation). This should provide minor changes to the data (maybe in the second or third decimal point), but the results will likely be very similar.
 
 ### Problem #2:  Rework the research vignette, but swap one or more variables
 
-Use the simulated data provided in this chapter, but swap out one or more of the variables.  This could mean changing roles for the variables that were the focus of the chapter, or substituting one or more variables for those in the simulated data but not modeled in the chapter.
-
-|Assignment Component  
-|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
-|1. Assign each variable to the X, Y, M1, and M2 roles (ok but not required  to include a cov) |      5         |    _____     |      
-|2. Specify and run the lavaan model                                                           |      5         |    _____     |
-|3. Use semPlot to create a figure                                                             |      5         |    _____     |
-|4. Create a table that includes a summary of the effects (indirect, direct, total, total indirect) as well as contrasts (if you chose a serially mediated model)          |      5         |    _____     |   
-|5. Represent your work in an APA-style write-up                                               |      5         |    _____     |          
-|6. Explanation to grader                                                                      |      5         |    _____     |   
-|7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths|      5         |    _____     |
-|**Totals**                                                                                    |      35        |    _____     |
-             
-                                                                 
+Conduct the complex mediation (parallel or serial) using the simulated data provided in this chapter, but swap out one or more of the variables.  This could mean changing roles for the variables that were the focus of the chapter, or substituting one or more variables for those in the simulated data but not modeled in the chapter.
 
 ### Problem #3:  Use other data that is available to you
 
-Use data for which you have permission and access. This could be IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; or data from other chapters in this OER.
+To conduct the parallel or serial mediation, use data for which you have permission and access. This could be IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; or data from other chapters (or the "homeworked example") in this OER.
+
+### Grading Rubric
 
 |Assignment Component  
 |:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
-|1. Assign each variable to the X, Y, M1, and M2 roles (ok but not required  to include a cov) |      5         |    _____     |      
-|2. Specify and run the lavaan model                                                           |      5         |    _____     |
-|3. Use semPlot to create a figure                                                             |      5         |    _____     |
-|4. Create a table that includes a summary of the effects (indirect, direct, total, total indirect) as well as contrasts (if you chose a serially mediated model)          |      5         |    _____     |   
-|5. Represent your work in an APA-style write-up                                               |      5         |    _____     |          
-|6. Explanation to grader                                                                      |      5         |    _____     |   
-|7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths|      5         |    _____     |
-|**Totals**                                                                                    |      35        |    _____     |
-                                                                                                               
+|1. Assign each variable to the X, Y, M1, and M2 roles                                         |      5         |    _____     |  |2. Import the data and format the variables in the model                                      |      5         |    _____     |  |3. Specify and run the lavaan model                                                           |      5         |    _____     |
+|4. Use tidySEM to create a figure that represents your results                                |      5         |    _____     |
+|5. Create a table that includes a summary of the effects (indirect, direct, total, total indirect) as well as contrasts |      5         |    _____     |   
+|6. Represent your work in an APA-style write-up                                               |      5         |    _____     |    
+|7. Explanation to grader                                                                      |      5         |    _____     |   
+|8. Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths|      5         |    _____     |
+|**Totals**                                                                                    |      40        |    _____     |
+
+
+
+
+
+## Homeworked Example
+[Screencast Link](https://youtu.be/hXTFPSQrjpQ)
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
+
+The suggested practice problem for this chapter is to conduct a complex (i.e., parallel or serial) mediation. 
+
+### Assign each variable to the X, Y, M1, and M2 roles {-}
+
+X = Centering: explicit recentering (0 = precentered; 1 = recentered)
+M1 = TradPed: traditional pedagogy (continuously scaled with higher scores being more favorable)
+M2 = SRPed:  socially responsive pedagogy (continuously scaled with higher scores being more favorable)
+Y = Valued: valued by me (continuously scaled with higher scores being more favorable)
+
+In this *parallel mediation*, I am hypothesizing that the perceived course value to the students is predicted by intentional recentering through their assessments of traditional and socially responsive pedagogy.
+
+It helps me to make a quick sketch:
+
+![An image of the parallel mediation model for the homeworked example.](Worked_Examples/images/CompMedHWfig.jpg)
+
+### Import the data and format the variables in the model  {-}
+
+
+```r
+raw <- readRDS("ReC.rds")
+```
+
+I need to score the TradPed and SRPed variables
+
+
+```r
+TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
+    "ClearOrganization", "ClearPresentation")
+raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], 0.75)
+
+Valued_vars <- c("ValObjectives", "IncrUnderstanding", "IncrInterest")
+raw$Valued <- sjstats::mean_n(raw[, ..Valued_vars], 0.75)
+
+SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
+    "DEIintegration")
+raw$SRPed <- sjstats::mean_n(raw[, ..SRPed_vars], 0.75)
+```
+
+I will create a babydf.
+
+
+```r
+babydf <- dplyr::select(raw, Centering, TradPed, Valued, SRPed)
+```
+
+Let's check the structure of the variables:
+
+```{rtidy=TRUE, tidy.opts=list(width.cutoff=70)}
+str(babydf)
+```
+The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
+
+
+```r
+babydf <- (dplyr::filter(raw, Course == "Multivariate"))
+```
+
+At this point, these my only inclusion/exclusion criteria. I can determine how many students (who consented) completed any portion of the survey.
+
+### Specify and run the lavaan model  {-}
+
+
+```r
+ReCpMed <- "
+          Valued ~ b1*TradPed + b2*SRPed + c_p*Centering
+          TradPed ~ a1*Centering
+          SRPed ~ a2*Centering
+          
+          indirect1 := a1 * b1
+          indirect2 := a2 * b2
+          contrast := indirect1 - indirect2
+          total_indirects := indirect1 + indirect2
+          total_c    := c_p + (indirect1) + (indirect2)
+          direct := c_p
+          "
+ReCpMedfit <- lavaan::sem(ReCpMed, data = babydf, se = "bootstrap", missing = "fiml")
+ReCpMedsummary <- lavaan::summary(ReCpMedfit, standardized = T, rsq = T,
+    fit = TRUE, ci = TRUE)
+ReC_pMedParamEsts <- lavaan::parameterEstimates(ReCpMedfit, boot.ci.type = "bca.simple",
+    standardized = TRUE)
+ReCpMedsummary
+```
+
+```
+## lavaan 0.6.16 ended normally after 23 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        11
+## 
+##   Number of observations                            84
+##   Number of missing patterns                         3
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                54.059
+##   Degrees of freedom                                 1
+##   P-value (Chi-square)                           0.000
+## 
+## Model Test Baseline Model:
+## 
+##   Test statistic                               145.642
+##   Degrees of freedom                                 6
+##   P-value                                        0.000
+## 
+## User Model versus Baseline Model:
+## 
+##   Comparative Fit Index (CFI)                    0.620
+##   Tucker-Lewis Index (TLI)                      -1.280
+##                                                       
+##   Robust Comparative Fit Index (CFI)             0.613
+##   Robust Tucker-Lewis Index (TLI)               -1.323
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)               -202.536
+##   Loglikelihood unrestricted model (H1)       -175.506
+##                                                       
+##   Akaike (AIC)                                 427.071
+##   Bayesian (BIC)                               453.810
+##   Sample-size adjusted Bayesian (SABIC)        419.110
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.795
+##   90 Percent confidence interval - lower         0.623
+##   90 Percent confidence interval - upper         0.982
+##   P-value H_0: RMSEA <= 0.050                    0.000
+##   P-value H_0: RMSEA >= 0.080                    1.000
+##                                                       
+##   Robust RMSEA                                   0.815
+##   90 Percent confidence interval - lower         0.641
+##   90 Percent confidence interval - upper         1.004
+##   P-value H_0: Robust RMSEA <= 0.050             0.000
+##   P-value H_0: Robust RMSEA >= 0.080             1.000
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.217
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                            Bootstrap
+##   Number of requested bootstrap draws             1000
+##   Number of successful bootstrap draws            1000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##   Valued ~                                                              
+##     TradPed   (b1)    0.686    0.133    5.168    0.000    0.470    0.976
+##     SRPed     (b2)    0.119    0.138    0.867    0.386   -0.176    0.380
+##     Centerng (c_p)    0.015    0.101    0.145    0.885   -0.174    0.214
+##   TradPed ~                                                             
+##     Centerng  (a1)    0.312    0.146    2.135    0.033    0.014    0.588
+##   SRPed ~                                                               
+##     Centerng  (a2)    0.353    0.120    2.931    0.003    0.107    0.577
+##    Std.lv  Std.all
+##                   
+##     0.686    0.747
+##     0.119    0.104
+##     0.015    0.011
+##                   
+##     0.312    0.210
+##                   
+##     0.353    0.296
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##    .Valued            0.710    0.474    1.498    0.134   -0.203    1.671
+##    .TradPed           3.870    0.244   15.865    0.000    3.409    4.358
+##    .SRPed             4.029    0.196   20.507    0.000    3.643    4.409
+##    Std.lv  Std.all
+##     0.710    1.077
+##     3.870    5.396
+##     4.029    7.013
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##    .Valued            0.181    0.028    6.386    0.000    0.117    0.227
+##    .TradPed           0.492    0.128    3.826    0.000    0.253    0.767
+##    .SRPed             0.301    0.059    5.071    0.000    0.191    0.419
+##    Std.lv  Std.all
+##     0.181    0.418
+##     0.492    0.956
+##     0.301    0.912
+## 
+## R-Square:
+##                    Estimate
+##     Valued            0.582
+##     TradPed           0.044
+##     SRPed             0.088
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##     indirect1         0.214    0.108    1.986    0.047    0.008    0.439
+##     indirect2         0.042    0.053    0.794    0.427   -0.073    0.152
+##     contrast          0.172    0.125    1.373    0.170   -0.035    0.454
+##     total_indircts    0.256    0.115    2.231    0.026    0.028    0.473
+##     total_c           0.271    0.145    1.875    0.061   -0.012    0.551
+##     direct            0.015    0.101    0.145    0.885   -0.174    0.214
+##    Std.lv  Std.all
+##     0.214    0.157
+##     0.042    0.031
+##     0.172    0.126
+##     0.256    0.188
+##     0.271    0.199
+##     0.015    0.011
+```
+
+```r
+ReC_pMedParamEsts
+```
+
+```
+##                lhs op                         rhs           label   est    se
+## 1           Valued  ~                     TradPed              b1 0.686 0.133
+## 2           Valued  ~                       SRPed              b2 0.119 0.138
+## 3           Valued  ~                   Centering             c_p 0.015 0.101
+## 4          TradPed  ~                   Centering              a1 0.312 0.146
+## 5            SRPed  ~                   Centering              a2 0.353 0.120
+## 6           Valued ~~                      Valued                 0.181 0.028
+## 7          TradPed ~~                     TradPed                 0.492 0.128
+## 8            SRPed ~~                       SRPed                 0.301 0.059
+## 9        Centering ~~                   Centering                 0.233 0.000
+## 10          Valued ~1                                             0.710 0.474
+## 11         TradPed ~1                                             3.870 0.244
+## 12           SRPed ~1                                             4.029 0.196
+## 13       Centering ~1                                             1.369 0.000
+## 14       indirect1 :=                       a1*b1       indirect1 0.214 0.108
+## 15       indirect2 :=                       a2*b2       indirect2 0.042 0.053
+## 16        contrast :=         indirect1-indirect2        contrast 0.172 0.125
+## 17 total_indirects :=         indirect1+indirect2 total_indirects 0.256 0.115
+## 18         total_c := c_p+(indirect1)+(indirect2)         total_c 0.271 0.145
+## 19          direct :=                         c_p          direct 0.015 0.101
+##         z pvalue ci.lower ci.upper std.lv std.all std.nox
+## 1   5.168  0.000    0.421    0.920  0.686   0.747   0.747
+## 2   0.867  0.386   -0.135    0.416  0.119   0.104   0.104
+## 3   0.145  0.885   -0.176    0.209  0.015   0.011   0.022
+## 4   2.135  0.033    0.014    0.591  0.312   0.210   0.435
+## 5   2.931  0.003    0.098    0.568  0.353   0.296   0.614
+## 6   6.386  0.000    0.138    0.253  0.181   0.418   0.418
+## 7   3.826  0.000    0.282    0.835  0.492   0.956   0.956
+## 8   5.071  0.000    0.212    0.458  0.301   0.912   0.912
+## 9      NA     NA    0.233    0.233  0.233   1.000   0.233
+## 10  1.498  0.134   -0.174    1.732  0.710   1.077   1.077
+## 11 15.865  0.000    3.364    4.326  3.870   5.396   5.396
+## 12 20.507  0.000    3.625    4.402  4.029   7.013   7.013
+## 13     NA     NA    1.369    1.369  1.369   2.837   1.369
+## 14  1.986  0.047    0.008    0.439  0.214   0.157   0.325
+## 15  0.794  0.427   -0.028    0.220  0.042   0.031   0.064
+## 16  1.373  0.170   -0.036    0.453  0.172   0.126   0.261
+## 17  2.231  0.026    0.038    0.482  0.256   0.188   0.389
+## 18  1.875  0.061   -0.017    0.539  0.271   0.199   0.411
+## 19  0.145  0.885   -0.176    0.209  0.015   0.011   0.022
+```
+
+### Use tidySEM to create a figure that represents your results {-}
+
+
+
+```r
+# only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = ReCpMedfit)
+```
+
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-37-1.png)<!-- -->
+
+
+
+```r
+tidySEM::get_layout(ReCpMedfit)
+```
+
+```
+##      [,1]      [,2]        [,3]    
+## [1,] NA        "Centering" NA      
+## [2,] "TradPed" "SRPed"     "Valued"
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+To create the figure I showed at the beginning of the chapter, we will want three rows and three columns.
+
+
+```r
+ReCpMed_map <- tidySEM::get_layout("", "TradPed", "", "Centering", "",
+    "Valued", "", "SRPed", "", rows = 3)
+ReCpMed_map
+```
+
+```
+##      [,1]        [,2]      [,3]    
+## [1,] ""          "TradPed" ""      
+## [2,] "Centering" ""        "Valued"
+## [3,] ""          "SRPed"   ""      
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+
+```r
+tidySEM::graph_sem(ReCpMedfit, layout = ReCpMed_map, rect_width = 1.5,
+    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+```
+
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
+
+
+
+### Create a table that includes a summary of the effects (indirect, direct, total, total indirect) as well as contrasts {-}
+
+I will write my results to a .csv file.
+
+
+```r
+write.csv(ReC_pMedParamEsts, file = "ReC_pMedParamEsts.csv")
+```
+
+**Table 1**  
+
+|Model Coefficients Assessing Students' Appraisal of Traditional and Socially Responsive Pedagogy in a Model of Parallel Mediation Predicting Perceived Course Value from Explicit Recentering
+|:---------------------------------------------------------------------|
+
+| Predictor                  |$B$     |$SE_{B}$ |$p$    |$R^2$         |                   
+|:---------------------------|:------:|:-------:|:-----:|-------------:|
+
+|Traditional Pedagogy        |        |         |       |.04
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Constant                    |3.870   |0.226    |<0.001 |              |
+|Centering ($a_1$)           |0.312	  |0.136 	  |0.022  |              |
+
+|Socially Responsive Pedagogy|        |         |       |.09       
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Constant                    |4.029 	|0.184    |<0.001 |              |
+|Centering ($a_2$)           |0.353	  |0.112	  |0.002  |              |
+
+|Perceived Course Value      |        |         |       |.58
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Constant                    |0.710	  |0.462	  |0.124  |              |
+|Traditional Pedagogy ($b_1$)|0.686	  |0.136    |<0.001 |              |
+|Socially Rx Pedagogy ($b_2$)|0.119	  |0.142	  |0.400  |              |
+|Centering ($c'$)            |0.015	  |0.105	  |0.889  |              |
+
+|Effects                     |$B$     |$SE_{B}$ |$p$    |95% CI 
+|:---------------------------|-------:|--------:|------:|-------------:|
+|Total effect                |0.271	  |0.144	  |0.059	|0.013,	0.580  |
+|Indirect 1 ($a_1$ * $a_2$)  |0.214	  |0.102	  |0.036	|0.036,	0.442  |
+|Indirect 2 ($b_1$ * $b_2$)  |0.042	  |0.053	  |0.429	|-0.038, 0.195 |
+|Total indirects             |0.256	  |0.107	  |0.017	|0.061,	0.473  |
+|Contrast1 (Ind1 - Ind2)     |0.172	  |0.123	  |0.162	|-0.021,0.431  |
+
+|
+|-----------------------------------------------------------------------|
+|*Note*. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
+            
+
+
+### Represent your work in an APA-style write-up {-}
+
+A model of parallel mediation analyzed the degree to which students' perceptions of traditional and socially responsive pedagogy mediated the relationship between explicit recentering of the course and course value. Hayes [-@hayes_more_2022] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously.  The resultant direct and indirect values for each path account for other mediation paths.  Using the *lavaan* (v. 0.6-17) package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
+
+Results (depicted in Figure 1 and presented in Table 1) suggest that 58% of the variance in perceptions of course value is accounted for by the model. The indirect effect predicting course value from explicit recentering through traditional pedagogy was statistically significant $(B = 0.214, SE = 0.102, p = 0.036, 95CI [0.036, 0.442])$. Examining the individual paths we see that $a_{1}$ was positive and statistically significant (recentering is associated with higher evaluations of traditional pedagogy). The  $b_{1}$ path was similarly statistically significant (traditional pedagogy was associated with course valuation). The indirect effect predicting course value from recentering through socially responsive pedagogy was not statistically significant $B = 0.042, SE = 0.053, p = 0.429, 95CE [-0.038, 0.195])$.  While explicit recentering had a statistically significant effect on ratings of socially responsive pedagogy (i.e., the $a_{2}$ path), socially responsive pedagogy did not have a statistically significant effect on perceptions of course value (i.e., the $b_{2}$ path). The drop in magnitude and near-significance from the total effect $(B = 0.271, p = 0.059)$ to the direct effect $(B = 0.014, p = 0.889)$ supports the presence of mediation.  A pairwise comparison of the specific indirect effects indicated that the strength of the effects were not statistically significantly different from each other. In summary, the effects of explicit recentering on perceived value to the student appears to be mediated through students evaluation of traditional pedagogy.
+
+
+### Explanation to grader {-}
+
+### Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths {-}
+
+* Indirect = a*b
+* Direct = Total minus indirect
+* Total = (a*b) + c'
+
+### A homework idea {-}
+
+Augment this model to a serial mediation -- adding a path from traditional pedagogy to socially responsive pedagogy.
+
+
+
+
 
 
 

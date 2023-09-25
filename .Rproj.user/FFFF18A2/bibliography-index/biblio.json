@@ -15930,6 +15930,74 @@
             "note": "Institution: American Psychological Association",
             "title": "Inventory of Attitudes Towards Seeking Mental Help Services–Filipino Version",
             "type": ""
+        },
+        {
+            "ISBN": "978-1-4625-4905-4",
+            "URL": "http://ebookcentral.proquest.com/lib/spu/detail.action?docID=6809031",
+            "abstract": "Acclaimed for its thorough presentation of mediation, moderation, and conditional process analysis, this book has been updated to reflect the latest developments in PROCESS for SPSS, SAS, and, new to this edition, R. Using the principles of ordinary least squares regression, Andrew F. Hayes illustrates each step in an analysis using diverse examples from published studies, and displays SPSS, SAS, and R code for each example. Procedures are outlined for estimating and interpreting direct, indirect, and conditional effects; probing and visualizing interactions; testing hypotheses about the moderation of mechanisms; and reporting different types of analyses. Readers gain an understanding of the link between statistics and causality, as well as what the data are telling them. The companion website (www.afhayes.com) provides data for all the examples, plus the free PROCESS download. New to This Edition *Rewritten Appendix A, which provides the only documentation of PROCESS, including a discussion of the syntax structure of PROCESS for R compared to SPSS and SAS. *Expanded discussion of effect scaling and the difference between unstandardized, completely standardized, and partially standardized effects. *Discussion of the meaning of and how to generate the correlation between mediator residuals in a multiple-mediator model, using a new PROCESS option. *Discussion of a method for comparing the strength of two specific indirect effects that are different in sign. *Introduction of a bootstrap-based Johnson-Neyman-like approach for probing moderation of mediation in a conditional process model. *Discussion of testing for interaction between a causal antecedent variable [ital]X[/ital] and a mediator [ital]M[/ital] in a mediation analysis, and how to test this assumption in a new PROCESS feature.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        9,
+                        23
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Hayes",
+                    "given": "Andrew F."
+                }
+            ],
+            "id": "hayes_introduction_2022",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "keyword": "Mediation (Statistics), Regression analysis., Social sciences-Statistical methods.",
+            "publisher": "Guilford Publications",
+            "publisher-place": "New York, UNITED STATES",
+            "title": "Introduction to Mediation, Moderation, and Conditional Process Analysis: A Regression-Based Approach",
+            "title-short": "Introduction to Mediation, Moderation, and Conditional Process Analysis",
+            "type": "book"
+        },
+        {
+            "ISBN": "978-1-4625-4905-4",
+            "URL": "http://ebookcentral.proquest.com/lib/spu/detail.action?docID=6809031",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        9,
+                        23
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Hayes",
+                    "given": "Andrew F."
+                }
+            ],
+            "container-title": "Introduction to Mediation, Moderation, and Conditional Process Analysis: A Regression-Based Approach",
+            "id": "hayes_more_2022",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "keyword": "Mediation (Statistics), Regression analysis., Social sciences-Statistical methods.",
+            "page": "159-200",
+            "publisher": "Guilford Publications",
+            "publisher-place": "New York, UNITED STATES",
+            "title": "More than one Mediator",
+            "type": "chapter"
         }
     ],
     "project_biblios": [

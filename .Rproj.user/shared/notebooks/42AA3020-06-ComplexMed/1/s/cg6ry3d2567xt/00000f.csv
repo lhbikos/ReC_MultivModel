@@ -1,0 +1,22 @@
+"0","#only worked when I used the library to turn on all these pkgs"
+"0","library(lavaan)"
+"0","library(dplyr)"
+"2","
+Attaching package: ‘dplyr’
+
+"
+"2","The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+"
+"0","library(ggplot2)"
+"0","library(tidySEM)"
+"2","Loading required package: OpenMx
+"
+"0","tidySEM::graph_sem(model=parallel_fit)"
