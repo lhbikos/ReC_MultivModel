@@ -1,15 +1,16 @@
 
+
 # Complex Mediation {#CompMed}
 
- [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=6991fd3d-22b6-44f5-ab5b-ad1000314b7f) 
+ [Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KPxygMnwxro3FkuJj2rN6p-&si=a7lIlFcLkMQzTc19) 
 
-The focus of this chapter is the extension of simple mediation to models with multiple mediatrs. In these models with greater complexity we look at both parallel and serial mediation.  There is also more elaboration on some of the conceptual issues related to the estimation of indirect effects. 
+The focus of this chapter is the extension of simple mediation to models with multiple mediators. In these models with greater complexity we look at both parallel and serial mediation.  There is also more elaboration on some of the conceptual issues related to the estimation of indirect effects. 
 
 ## Navigating this Lesson
 
 There is about 1 hour and 20 minutes of lecture.  If you work through the materials with me it would be plan for an additional two hours.
 
-While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://https://github.com/lhbikos/ReC_MultivModel) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://https://github.com/lhbikos/ReC_MultivModel) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples)
 
 ### Learning Objectives
 
@@ -18,16 +19,16 @@ Learning objectives from this lecture include the following:
 * Define *epiphenomality* and explain how it is related to (and supports the notion of) multiple mediation.
 *	Distinguish between parallel and serial mediation models.
 *	Locate and interpret *lavaan* output from multiply mediated models including 
-  * identifying coefficients, 
-  * percentage of variance accounted for,   
-  * all the effects (total, direct, indirec. total indirect), 
-  * contrasts.
+  - identifying coefficients, 
+  - percentage of variance accounted for,   
+  - all the effects (total, direct, indirect, total indirect), 
+  - contrasts (comparing the significance of the indirect effects).
 *	Explain the limitations of the classic approach [@baron_moderator-mediator_1986] to mediation. 
 
 
 ### Planning for Practice
 
-The suggestions for practice in this chapter include conducting parallel, serial, and/or mediation models. Options of graded complexity could incude:
+The suggestions for practice in this chapter include conducting parallel, serial, and/or mediation models. Options of graded complexity could include:
 
 * Rework the problem in the chapter by changing the random seed in the code that simulates the data.  This should provide minor changes to the data, but the results will likely be very similar.
 * There are a number of variables in the dataset that sourced the research vignettes for this and the prior chapter on [simple mediation](#SimpleMed).  Swap out one or more variables in a parallel or serial (or both) model.
@@ -55,14 +56,17 @@ if (!require(lavaan)) {
 if (!require(tidyverse)) {
     install.packages("tidyverse")
 }
+if (!require(dplyr)) {
+    install.packages("dplyr")
+}
 if (!require(psych)) {
     install.packages("psych")
 }
 if (!require(apaTables)) {
     install.packages("apaTables")
 }
-if (!require(formattable)) {
-    install.packages("formattable")
+if (!require(tidySEM)) {
+    install.packages("tidySEM")
 }
 ```
 
@@ -135,7 +139,7 @@ Recall that for a complex mediation to be parallel, there can be no causal links
 
 ### A Mechanical Example
 
-Let's work a mechanical example with simulated data that assures a statistically significant outcome. Credit to this example is from the PAULOTOFFANIN website [@toffanin_multiple-mediator_2017].
+Let's work a mechanical example with simulated data that assures a statistically significant outcome. Credit to this example is from the Paulo Toffanin website [@toffanin_multiple-mediator_2017].
 
 We can bake our own data by updating the script we used in simple mediation to add a second mediator.
 
@@ -177,6 +181,7 @@ parallel_med <- "
     Y ~ b1*M1 + b2*M2 + c_p*X
     M1 ~ a1*X
     M2 ~ a2*X
+    
     indirect1 := a1 * b1
     indirect2 := a2 * b2
     contrast := indirect1 - indirect2
@@ -366,6 +371,8 @@ pfit_ParEsts
 ## 19  0.301  0.764   -0.174    0.215  0.030   0.025   0.022
 ```
 
+
+
 #### A note on indirect effects and confidence intervals
 
 Before we move onto interpretation, I want to stop and look at both $p$ values and confidence intervals. Especially with Hayes [-@hayes_more_2022] PROCESS macro, there is a great deal of emphasis on the use of bootstrapped confidence intervals to determine the statistical significance of the indirect effects. In fact, PROCESS output has (at least historically) not provided $p$ values with the indirect effects.  This is because, especially in the ordinary least squares context,  bias-corrected bootstrapped confidence intervals are more powerful (i.e., they are more likely to support a statistically significant result) than $p$ values.   
@@ -438,7 +445,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = parallel_fit)
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-5-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-6-1.png)<!-- -->
 
 We can create model that communicates more intuitively with a little tinkering. First, let's retrieve the current "map" of the layout.
 
@@ -479,45 +486,45 @@ tidySEM::graph_sem(parallel_fit, layout = parallel_map, rect_width = 1.5,
     rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-8-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-9-1.png)<!-- -->
 
 There are a number of ways to tabalize the data.  You might be surprised to learn that a number of articles that analyze mediating effects focus their presentation on those values and not the traditional intercepts and B weights.  This is the approach I have taken in this chapter.
 
 **Table 1 ** 
 
 |Model Coefficients Assessing M1 and M2 as Parallel Mediators Between X and Y
-|:---------------------------------------------------------------------|
+|:-------------------------------------------------------------------------|
 
-| Predictor                  |$B$     |$SE_{B}$ |$p$    |$R^2$         |                   
-|:---------------------------|:------:|:-------:|:-----:|-------------:|
+| Predictor                  |$B$      |$SE_{B}$  |$p$     |$R^2$          |                   
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
 
-|M1                          |        |         |       |.25
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Constant                    |-0.089	|0.097	  |0.360  |              |
-|X ($a_1$)                   |0.510	  |0.076	  |0.000  |              |
+|M1                          |         |          |        |.25
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |-0.089	 |0.097	    |0.360   |               |
+|X ($a_1$)                   |0.510	   |0.076	    |0.000   |               |
 
-|M2                          |        |         |       |.11
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Constant                    |0.017	  |0.126	  |0.894  |              |
-|X ($a_2$)                   |-0.381	|0.117	  |0.001  |              |
+|M2                          |         |          |        |.11
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |0.017	   |0.126	   |0.894    |               |
+|X ($a_2$)                   |-0.381	 |0.117	   |0.001    |               |
 
-|DV                          |        |         |       |.54
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Constant                    |0.113	  |0.097	  |0.243  |              |
-|M1 ($b_1$)                  |0.456	  |0.113	  |<0.001 |              |
-|M2 ($b_2$)                  |0.743	  |0.074    |<0.001 |              |
-|X ($c'$)                    |0.030	  |0.098	  |0.757  |              |
+|DV                          |         |          |        |.54
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |0.113	   |0.097	    |0.243   |               |
+|M1 ($b_1$)                  |0.456	   |0.113	    |<0.001  |               |
+|M2 ($b_2$)                  |0.743	   |0.074     |<0.001  |               |
+|X ($c'$)                    |0.030	   |0.098	    |0.757   |               |
 
-|Summary of Effects          |$B$     |$SE_{B}$ |$p$    |95% CI
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Total                       |-0.021	|0.120	  |0.865	|-0.251, 0.214 | 
-|Indirect 1 ($a_1$ * $a_2$)  |0.233	  |0.070	  |0.001  |0.116,	0.394  |                        
-|Indirect 2 ($b_1$ * $b_2$)  |-0.283	|0.086	  |0.001	|-0.455, -0.106|           
-|Total indirects             |-0.051	|0.121	  |0.676	|-0.280, 0.187 |
-|Contrast (Ind1 - Ind2)      |0.516	  |0.100	  |0.000	|0.324,	0.725  |
+|Summary of Effects          |$B$      |$SE_{B}$  |$p$     |95% CI
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Total                       |-0.021	 |0.120	    |0.865   |-0.251, 0.214  | 
+|Indirect 1 ($a_1$ * $a_2$)  |0.233	   |0.070	    |0.001   |0.116,	0.394  |                        
+|Indirect 2 ($b_1$ * $b_2$)  |-0.283	 |0.086	    |0.001	 |-0.455, -0.106 |           
+|Total indirects             |-0.051	 |0.121	    |0.676	 |-0.280, 0.187  |
+|Contrast (Ind1 - Ind2)      |0.516	   |0.100	    |0.000	 |0.324,	0.725  |
 
 |
-|----------------------------------------------------------------------|
+|--------------------------------------------------------------------------|
 |*Note*. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
 
 #### APA Style Writeup
@@ -549,8 +556,6 @@ Variables used in the study included:
 #### Data Simulation
 
 The *lavaan::simulateData* function was used. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. For all others we specified a factor loading of 0.80. We then approximated the *measurement model* by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette  [@lewis_applying_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
-
-
 
 
 ```r
@@ -661,8 +666,6 @@ dfLewis <- dfLewis %>% round(0)
 #quick check of my work
 #psych::describe(dfLewis) 
 ```
-
-
 The script below allows you to store the simulated data as a file on your computer. This is optional -- the entire lesson can be worked with the simulated data.
 
 If you prefer the .rds format, use this script (remove the hashtags). The .rds format has the advantage of preserving any formatting of variables. A disadvantage is that you cannot open these files outside of the R environment.
@@ -701,7 +704,7 @@ Once saved, you could clean your environment and bring the data back in from its
 
 Because the focus of this lesson is on complex mediation, we have used simulated data. If this were real, raw, data, it would be important to [scrub](https://lhbikos.github.io/ReC_MultivModel/scrub.html), [score](https://lhbikos.github.io/ReC_MultivModel/score.html), and conduct [data diagnostics](https://lhbikos.github.io/ReC_MultivModel/DataDx.html) to evaluate the suitability of the data for the proposes anlayses.
 
-Because we are working with item level data we do need ro score the scales used in the researcher's model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.
+Because we are working with item level data we do need to score the scales used in the researcher's model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.
 
 As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we  calculate mean scores of these variables by first creating concatenated lists of variable names. Next we apply the *sjstats::mean_n* function to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
 
@@ -728,12 +731,12 @@ Now that we have scored our data, let's trim the variables to just those we need
 Lewis_df <- dplyr::select(dfLewis, GRMS, Engmt, DisEngmt, MntlHlth)
 ```
 
-Let's check a table of means, standards, and correlations to see if they align with the published article.
+Let's check a table of means, standard deviations, and correlations to see if they align with the published article.
 
 
 ```r
 Lewis_table <- apaTables::apa.cor.table(Lewis_df, table.number = 1, show.sig.stars = TRUE,
-    landscape = TRUE, filename = NA)
+    landscape = TRUE, filename = "Lewis_Corr.doc")
 print(Lewis_table)
 ```
 
@@ -767,14 +770,13 @@ print(Lewis_table)
 ```
 While they are not exact, they approximate the magnitude and patterns in the correlation matrix in the article [@lewis_applying_2017].
 
+#### Specifying the *lavaan* model
 
 The Lewis et al. article [-@lewis_applying_2017] reports four mediation analyses, each repeated for mental and physical outcomes. Thus, their write-up reports eight simple mediation models. Graphically, their analyses were efficiently presented in a figure that looked (to me) like parallel mediation.  Correspondingly, it made sense to me that we could try this in our research vignette. In the upcoming chapter on conditional process analysis, we will work the moderated mediation that was a primary focus of their research.  
 
 Below is the model we will work.  Specifically, we will evaluate whether gendered racial microaggressions impact mental health separately, thorough mediated paths of engagement and disengagement. We will also be able to see if the strength of those mediated paths are statistically, significantly, different from each other.
 
 ![An image of the parallel mediation we will work](images/CompMed/LewisParaMed.jpg)
-
-#### Specifying the *lavaan* model
 
 We can use the guidelines above to specify our model and then request summaries of the fit indices and parameter estimates.
 
@@ -783,6 +785,7 @@ parallel_Lewis <- "
     MntlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS
     Engmt ~ a1*GRMS    
     DisEngmt ~ a2*GRMS
+    
     indirect1 := a1 * b1
     indirect2 := a2 * b2
     contrast := indirect1 - indirect2
@@ -824,7 +827,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = para_Lewis_fit)
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-19-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-20-1.png)<!-- -->
 
 We can create model that communicates more intuitively with a little tinkering. First, let's retrieve the current "map" of the layout.
 
@@ -865,7 +868,7 @@ tidySEM::graph_sem(para_Lewis_fit, layout = pLewis_map, rect_width = 1.5,
     rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-22-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-23-1.png)<!-- -->
 
 
 
@@ -874,38 +877,38 @@ Now let's make a table.
 **Table 2 ** 
 
 |Model Coefficients Assessing Engagement and Disengagement Coping as Parallel Mediators Between Predicting Mental Health from Gendered Racial Microaggressions
-|:---------------------------------------------------------------------|
+|:-------------------------------------------------------------------------|
 
-| Predictor                  |$B$     |$SE_{B}$ |$p$    |$R^2$         |                   
-|:---------------------------|:------:|:-------:|:-----:|-------------:|
+| Predictor                  |$B$      |$SE_{B}$  |$p$     |$R^2$          |                   
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
 
-|Engagement coping (M1)      |        |         |       |.27
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Constant                    |1.494   |0.109    |<0.001 |              |
-|GRMS ($a_1$)                |0.384   |0.042    |<0.001 |              |
+|Engagement coping (M1)      |         |          |        |.27
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |1.494    |0.109     |<0.001  |               |
+|GRMS ($a_1$)                |0.384    |0.042     |<0.001  |               |
 
-|Disengagement coping (M2)   |        |         |       |.28
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Constant                    |1.490   |0.113    |<0.001 |              |
-|GRMS ($a_2$)                |0.386   |0.043    |<0.001 |              |
+|Disengagement coping (M2)   |         |          |        |.28
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |1.490    |0.113     |<0.001  |               |
+|GRMS ($a_2$)                |0.386    |0.043     |<0.001  |               |
 
-|Mental Health (IV)          |        |         |       |.37
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Constant                    |5.141   |0.239    |<0.001 |              |
-|Engagement ($b_1$)          |0.144   |0.090    |0.109  |              |
-|Disengagement ($b_2$)       |-0.391  |0.089    |<0.001 |              |
-|GRMS ($c'$)                 |-0.535  |0.076    |<0.001 |              |
+|Mental Health (DV)          |         |          |        |.37
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |5.141    |0.239     |<0.001  |               |
+|Engagement ($b_1$)          |0.144    |0.090     |0.109   |               |
+|Disengagement ($b_2$)       |-0.391   |0.089     |<0.001  |               |
+|GRMS ($c'$)                 |-0.535   |0.076     |<0.001  |               |
 
-|Summary of Effects          |$B$     |$SE_{B}$ |$p$    |95% CI
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Total                       |-0.631  |0.060    |<0.001 |-0.748, -0.507| 
-|Indirect 1 ($a_1$ * $a_2$)  |0.055   |0.036    |0.121  |-0.009, 0.126 |                        
-|Indirect 2 ($b_1$ * $b_2$)  |-0.151  |0.039    |<0.001 |-0.230, -0.079|           
-|Total indirects             |-0.096  |0.054    |0.075  |-0.206, 0.008 |
-|Contrast (Ind1 - Ind2)      |0.206   |0.052    |<0.001 |0.112, 0.316  |
+|Summary of Effects          |$B$      |$SE_{B}$  |$p$     |95% CI
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Total                       |-0.631   |0.060     |<0.001  |-0.748, -0.507 | 
+|Indirect 1 ($a_1$ * $a_2$)  |0.055    |0.036     |0.121   |-0.009, 0.126  |                        
+|Indirect 2 ($b_1$ * $b_2$)  |-0.151   |0.039     |<0.001  |-0.230, -0.079 |           
+|Total indirects             |-0.096   |0.054     |0.075   |-0.206, 0.008  |
+|Contrast (Ind1 - Ind2)      |0.206    |0.052     |<0.001  |0.112, 0.316   |
 
 |
-|----------------------------------------------------------------------|
+|--------------------------------------------------------------------------|
 |*Note*. GRMS = gendered racial microaggressions. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
 
 
@@ -913,7 +916,7 @@ Now let's make a table.
 * The model accounts for 37% of the variance in predicting mental health outcomes.
 * The total effect of GRMS on mental health is -0.631 ($p < 0.001$) is negative and statistically significant.  That is, gendered racial microaggressions have a statistically significant negative effect on mental health.
 * The direct effect of GRMS on mental health is -0.535 ($p < 0.001$); while this is lower than the total effect, it remains statistically significant.   
-  * Using Baron and Kenny's [-@baron_moderator-mediator_1986] causal steps logic, the fact that the direct effect does not decrease in a statistically significant manner does not provide helpful, logical support for mediation. According to Hayes [-@hayes_more_2022] this difference is not necessary. That is, a statistically significant indirect effect can stand on its own.
+  - Using Baron and Kenny's [-@baron_moderator-mediator_1986] causal steps logic, the fact that the direct effect does not decrease in a statistically significant manner does not provide helpful, logical support for mediation. According to Hayes [-@hayes_more_2022] this difference is not necessary. That is, a statistically significant indirect effect can stand on its own.
 *  Indirect effect #1 (a1 x b1 or GRMS through engagement coping) is 0.055 ($p = 0.121, CI95[-0.011, 0.124]$) and not statistically significant. Because they can be inconsistent with the *p* values, we should always check the confidence intervals to see if they pass through zero. In this case they do.
 *  Indirect effect #2 (a2 x b2, or GRMS through disengagement to coping) is -0.151 ($p < 0.001, CI95[-0.231, -0.082]$). The *p* value is significant and the 95% confidence interval does not pass through zero. Thus, gendered racial microaggressions lead to greater disengagement (*a1*). In turn, disengagement has negative effects on mental health (*b2*).
 * The total indirect effect (i.e., sum of all specific indirect effects) $(-0.096, p = 0.075)$ is not statistically significant.
@@ -930,8 +933,8 @@ Hayes [@hayes_introduction_2022] provides helpful guidelines for presenting stat
 *	Hayes prefers reporting unstandardized metrics because they map onto the measurement scales used in the study. He believes this is especially important when dichotomous variables are used.
 *	There is "no harm" in reporting hypothesis tests and CIs for the *a* and *b* paths, but whether/not these paths are statistically significant does not determine the significance of the indirect effect.
 *	Be precise with language:
-  + OK:  X exerts an effect on Y directly and/or indirectly through M.
-  + Not OK:  the indirect effect of M	
+  - OK:  X exerts an effect on Y directly and/or indirectly through M.
+  - Not OK:  the indirect effect of M	
 * Report direct and indirect effects and their corresponding inferential tests
 *	Hayes argues that a statistically significant indirect effect is, in fact statistic.  He dislikes narration of the Baron and Kenny [-@baron_moderator-mediator_1986] process and steps.
 
@@ -969,12 +972,12 @@ Regarding these correlated mediators [@hayes_more_2022]:
 
 * Typically, two or more mediators that are causally located between X and Y will be correlated - if for no other reason than that they share a common cause (X).
 *	Estimating the partial correlation between two mediators after controlling for X is one way to examine whether all of their association is accounted for by this common cause.
-  + *Partial correlation* is the Pearson correlation between the residuals from a model estimating Y from a set of covariates, and the residuals from a model estimating X from the same set of covariates.
-  + Partial correlations allow the assessment of their association, independent of what they have in common with the covariates that were regressed onto Y and X, separately.
+  - *Partial correlation* is the Pearson correlation between the residuals from a model estimating Y from a set of covariates, and the residuals from a model estimating X from the same set of covariates.
+  - Partial correlations allow the assessment of their association, independent of what they have in common with the covariates that were regressed onto Y and X, separately.
 *	If two (or more) mediators remain correlated after adjusting for X, then 
-  + the correlation is *spurious,* they share another (unmodeled) common cause.
-  + the remaining association is *epiphenomenal*.  That is, a proposed mediator could be related to an outcome not because it causes the outcome, but because it is correlated with another variable that is causally influencing the outcome.  This is a noncausal alternative explanation for an association.  Also,	many things correlated with the cause of Y will also tend to be correlated with X, but it doesn't make all those things cause Y
-  + *or one mediator causally affects another*
+  - the correlation is *spurious,* they share another (unmodeled) common cause.
+  - the remaining association is *epiphenomenal*.  That is, a proposed mediator could be related to an outcome not because it causes the outcome, but because it is correlated with another variable that is causally influencing the outcome.  This is a noncausal alternative explanation for an association.  Also,	many things correlated with the cause of Y will also tend to be correlated with X, but it doesn't make all those things cause Y
+  - *or one mediator causally affects another*
 
 The goal of a serial multiple mediator model is to investigate the direct and indirect effects of X on Y while modeling a process in which X causes M1, which in turn causes M2, and so forth, concluding with  Y as the final consequent.
 
@@ -1011,6 +1014,7 @@ serial_Lewis <- "
     Engmt ~ a1*GRMS    
     DisEngmt ~ a2*GRMS
     DisEngmt ~ d21*Engmt
+    
     indirect1 := a1 * b1
     indirect2 := a2 * b2
     indirect3 := a1 * d21 * b2
@@ -1056,7 +1060,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = serial_Lewis_fit)
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-25-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-26-1.png)<!-- -->
 
 We can create model that communicates more intuitively with a little tinkering. First, let's retrieve the current "map" of the layout.
 
@@ -1097,7 +1101,7 @@ tidySEM::graph_sem(serial_Lewis_fit, layout = sLewis_map, rect_width = 1.5,
     rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-28-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-29-1.png)<!-- -->
 
 
 Now let's make a table.
@@ -1105,42 +1109,42 @@ Now let's make a table.
 **Table 4 ** 
 
 |Model Coefficients Assessing Engagement and Disengagement Coping in a Model of Serial Mediation Predicting Mental Health from Gendered Racial Microaggressions
-|:---------------------------------------------------------------------|
+|:-------------------------------------------------------------------------|
 
-| Predictor                  |$B$     |$SE_{B}$ |$p$    |$R^2$         |                   
-|:---------------------------|:------:|:-------:|:-----:|-------------:|
+| Predictor                  |$B$      |$SE_{B}$  |$p$     |$R^2$          |                   
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
 
-|Engagement coping           |        |         |       |.27
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Constant                    |1.494   |0.112    |<0.001 |              |
-|GRMS ($a_1$)                |0.384   |0.042    |<0.001 |              |
+|Engagement coping (M1)      |         |          |        |.27
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |1.494    |0.112     |<0.001  |               |
+|GRMS ($a_1$)                |0.384    |0.042     |<0.001  |               |
 
-|Disengagement coping        |        |         |       |.29       
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Constant                    |1.400   |0.133    |<0.001 |              |
-|GRMS ($a_2$)                |0.363   |0.048    |<0.001 |              |
-|Engagement ($d_{21}$)       |0.061   |0.061    |0.321  |              |
+|Disengagement coping (M2)   |         |          |        |.29       
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |1.400    |0.133     |<0.001  |               |
+|GRMS ($a_2$)                |0.363    |0.048     |<0.001  |               |
+|Engagement ($d_{21}$)       |0.061    |0.061     |0.321   |               |
 
-|Mental Health               |        |         |       |.37
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Constant                    |5.141   |0.230    |<0.001 |              |
-|Engagement ($b_1$)          |0.144   |0.089    |0.107  |              |
-|Disengagement ($b_2$)       |-0.391  |0.090    |<0.001 |              |
-|GRMS ($c'$)                 |-0.535  |0.077    |<0.001 |              |
+|Mental Health (DV)          |         |          |        |.37
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |5.141    |0.230     |<0.001  |               |
+|Engagement ($b_1$)          |0.144    |0.089     |0.107   |               |
+|Disengagement ($b_2$)       |-0.391   |0.090     |<0.001  |               |
+|GRMS ($c'$)                 |-0.535   |0.077     |<0.001  |               |
 
-|Effects                     |$B$     |$SE_{B}$ |$p$    |95% CI 
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Total effect                |-0.631	|0.059	  |0.000	|-0.735, -0.505|
-|Indirect 1 ($a_1$ * $a_2$)  |0.055   |0.036    |0.126  |-0.010, 0.133 |
-|Indirect 2 ($b_1$ * $b_2$)  |-0.142|0.039      |<0.001 |-0.225, -0.076|
-|Indirect 3 ($b_1$ * $d_{21}$ * $b_2$)|-0.009|0.010|0.363|-0.031, 0.009|
-|Total indirects             |-0.096  |0.052    |0.067  |-0.205,	0.004|
-|Contrast1 (Ind1 - Ind2)     |0.197   |0.053    |<0.001 |0.101, 0.308  |
-|Contrast2 (Ind1 - Ind3)     |0.064   |0.039    |0.103  |-0.009, 0.153 |
-|Contrast3 (Ind2 - Ind3)     |-0.133  |0.041    |0.001  |-0.225, -0.06 |
+|Effects                     |$B$      |$SE_{B}$  |$p$     |95% CI 
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Total effect                |-0.631 	 |0.059	    |0.000	 |-0.735, -0.505 |
+|Indirect 1 ($a_1$ * $a_2$)  |0.055    |0.036     |0.126   |-0.010, 0.133  |
+|Indirect 2 ($b_1$ * $b_2$)  |-0.142   |0.039     |<0.001  |-0.225, -0.076 |
+|Indirect 3 ($b_1$ * $d_{21}$ * $b_2$)|-0.009|0.010|0.363  |-0.031, 0.009  |
+|Total indirects             |-0.096   |0.052     |0.067   |-0.205,	0.004  |
+|Contrast1 (Ind1 - Ind2)     |0.197    |0.053     |<0.001  |0.101, 0.308   |
+|Contrast2 (Ind1 - Ind3)     |0.064    |0.039     |0.103   |-0.009, 0.153  |
+|Contrast3 (Ind2 - Ind3)     |-0.133   |0.041     |0.001   |-0.225, -0.06  |
 
 |
-|-----------------------------------------------------------------------|
+|--------------------------------------------------------------------------|
 |*Note*. GRMS = gendered racial microaggressions. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
 
 
@@ -1155,10 +1159,10 @@ Working through the data, we should be able to find these items:
   *  Indirect effect #3 ($a_{2}$ x $d_{21}$ x $b_{2}$; GRMS through engagement coping through disengagement coping to mental health) is $-0.009, p = 0.363, 95C (-0.031, 0.009)$. This indirect effect involves $a_{1}$ (GRMS to engagement) and  $b_{2}$ which are  significant.  However, the path from engagement coping to disengagement coping is not significant.
 * Total indirect:  $B = -0.096, p = 0.067$ is the sum of all specific indirect effects and is not statistically significant. The positive and negative indirects likely cancel each other out.
 * With **contrasts** we ask:  Are the indirect effects statistically significantly different from each other?
-  *  Contrast 1 (indirect 1 v 2): $B = 0.197, p <0.001)$, yes
-  *  Contrast 2 (indirect 1 v 3): $B = 0.064, p = 0.103$, no
-  *  Contrast 3 (indirect 2 v 3): $B = -0.133,p = 0.001p$, yes
-  *  This formal test of contrasts is an important one.  It is not ok to infer that effects are statistically significantly different than each other on the basis of their estimates or $p$ values. The formal test allows us to claim (with justification) that there are statistically significant differences between indirect effects 1 and 2; and 2 and 3.
+  -  Contrast 1 (indirect 1 v 2): $B = 0.197, p <0.001)$, yes
+  -  Contrast 2 (indirect 1 v 3): $B = 0.064, p = 0.103$, no
+  -  Contrast 3 (indirect 2 v 3): $B = -0.133,p = 0.001p$, yes
+  -  This formal test of contrasts is an important one.  It is not ok to infer that effects are statistically significantly different than each other on the basis of their estimates or $p$ values. The formal test allows us to claim (with justification) that there are statistically significant differences between indirect effects 1 and 2; and 2 and 3.
 
 ### APA Style Writeup
 
@@ -1249,7 +1253,7 @@ To conduct the parallel or serial mediation, use data for which you have permiss
 
 
 ## Homeworked Example
-[Screencast Link](https://youtu.be/hXTFPSQrjpQ)
+[Screencast Link](https://youtu.be/p-iScWS_tT0)
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
 
@@ -1275,7 +1279,13 @@ It helps me to make a quick sketch:
 raw <- readRDS("ReC.rds")
 ```
 
-I need to score the TradPed and SRPed variables
+The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
+
+```r
+raw <- (dplyr::filter(raw, Course == "Multivariate"))
+```
+
+I need to score the TradPed, SRPed, and Valued variables
 
 
 ```r
@@ -1300,14 +1310,18 @@ babydf <- dplyr::select(raw, Centering, TradPed, Valued, SRPed)
 
 Let's check the structure of the variables:
 
-```{rtidy=TRUE, tidy.opts=list(width.cutoff=70)}
-str(babydf)
-```
-The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
-
 
 ```r
-babydf <- (dplyr::filter(raw, Course == "Multivariate"))
+str(babydf)
+```
+
+```
+## Classes 'data.table' and 'data.frame':	84 obs. of  4 variables:
+##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ TradPed  : num  3.8 5 4.8 4 4.2 3 5 4.6 4 4.8 ...
+##  $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+##  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
+##  - attr(*, ".internal.selfref")=<externalptr>
 ```
 
 At this point, these my only inclusion/exclusion criteria. I can determine how many students (who consented) completed any portion of the survey.
@@ -1522,7 +1536,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = ReCpMedfit)
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-37-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-39-1.png)<!-- -->
 
 
 
@@ -1560,7 +1574,7 @@ tidySEM::graph_sem(ReCpMedfit, layout = ReCpMed_map, rect_width = 1.5,
     rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-42-1.png)<!-- -->
 
 
 
@@ -1576,47 +1590,47 @@ write.csv(ReC_pMedParamEsts, file = "ReC_pMedParamEsts.csv")
 **Table 1**  
 
 |Model Coefficients Assessing Students' Appraisal of Traditional and Socially Responsive Pedagogy in a Model of Parallel Mediation Predicting Perceived Course Value from Explicit Recentering
-|:---------------------------------------------------------------------|
+|:--------------------------------------------------------------------------|
 
-| Predictor                  |$B$     |$SE_{B}$ |$p$    |$R^2$         |                   
-|:---------------------------|:------:|:-------:|:-----:|-------------:|
+| Predictor                  |$B$      |$SE_{B}$  |$p$     |$R^2$           |                   
+|:---------------------------|:-------:|:--------:|:------:|:--------------:|
 
-|Traditional Pedagogy        |        |         |       |.04
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Constant                    |3.870   |0.226    |<0.001 |              |
-|Centering ($a_1$)           |0.312	  |0.136 	  |0.022  |              |
+|Traditional Pedagogy (M1)   |         |          |        |.04
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |3.870    |0.234     |<0.001  |               |
+|Centering ($a_1$)           |0.312	   |0.141 	  |0.027   |               |
 
-|Socially Responsive Pedagogy|        |         |       |.09       
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Constant                    |4.029 	|0.184    |<0.001 |              |
-|Centering ($a_2$)           |0.353	  |0.112	  |0.002  |              |
+|Socially Responsive Pedagogy (M2)|    |          |        |.09       
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |4.029  	 |0.193     |<0.001  |               |
+|Centering ($a_2$)           |0.353	   |0.116	    |0.002   |               |
 
-|Perceived Course Value      |        |         |       |.58
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Constant                    |0.710	  |0.462	  |0.124  |              |
-|Traditional Pedagogy ($b_1$)|0.686	  |0.136    |<0.001 |              |
-|Socially Rx Pedagogy ($b_2$)|0.119	  |0.142	  |0.400  |              |
-|Centering ($c'$)            |0.015	  |0.105	  |0.889  |              |
+|Perceived Course Value (DV) |         |          |        |.58
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |0.710	   |0.477	    |0.136   |               |
+|Traditional Pedagogy ($b_1$)|0.686	   |0.133     |<0.001  |               |
+|Socially Rx Pedagogy ($b_2$)|0.119	   |0.141	    |0.397   |               |
+|Centering ($c'$)            |0.015	   |0.102	    |0.885   |               |
 
-|Effects                     |$B$     |$SE_{B}$ |$p$    |95% CI 
-|:---------------------------|-------:|--------:|------:|-------------:|
-|Total effect                |0.271	  |0.144	  |0.059	|0.013,	0.580  |
-|Indirect 1 ($a_1$ * $a_2$)  |0.214	  |0.102	  |0.036	|0.036,	0.442  |
-|Indirect 2 ($b_1$ * $b_2$)  |0.042	  |0.053	  |0.429	|-0.038, 0.195 |
-|Total indirects             |0.256	  |0.107	  |0.017	|0.061,	0.473  |
-|Contrast1 (Ind1 - Ind2)     |0.172	  |0.123	  |0.162	|-0.021,0.431  |
+|Effects                     |$B$      |$SE_{B}$  |$p$     |95% CI 
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Total effect                |0.271	   |0.143	   |0.059	   |-0.024, 0.550  |
+|Indirect 1 ($a_1$ * $b_1$)  |0.214	   |0.103	   |0.037	   |0.035,	0.440  |
+|Indirect 2 ($a_2$ * $b_2$)  |0.042	   |0.053	   |0.429	   |-0.040, 0.184  |
+|Total indirects             |0.256	   |0.111	   |0.021	   |0.060,	0.489  |
+|Contrast1 (Ind1 - Ind2)     |0.172	   |0.120	   |0.152	   |-0.041, 0.423  |
 
 |
-|-----------------------------------------------------------------------|
+|--------------------------------------------------------------------------|
 |*Note*. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
             
 
 
 ### Represent your work in an APA-style write-up {-}
 
-A model of parallel mediation analyzed the degree to which students' perceptions of traditional and socially responsive pedagogy mediated the relationship between explicit recentering of the course and course value. Hayes [-@hayes_more_2022] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously.  The resultant direct and indirect values for each path account for other mediation paths.  Using the *lavaan* (v. 0.6-17) package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
+A model of parallel mediation analyzed the degree to which students' perceptions of traditional and socially responsive pedagogy mediated the relationship between explicit recentering of the course and course value. Hayes [-@hayes_more_2022] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously.  The resultant direct and indirect values for each path account for other mediation paths.  Using the *lavaan* (v. 0.6-16) package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
 
-Results (depicted in Figure 1 and presented in Table 1) suggest that 58% of the variance in perceptions of course value is accounted for by the model. The indirect effect predicting course value from explicit recentering through traditional pedagogy was statistically significant $(B = 0.214, SE = 0.102, p = 0.036, 95CI [0.036, 0.442])$. Examining the individual paths we see that $a_{1}$ was positive and statistically significant (recentering is associated with higher evaluations of traditional pedagogy). The  $b_{1}$ path was similarly statistically significant (traditional pedagogy was associated with course valuation). The indirect effect predicting course value from recentering through socially responsive pedagogy was not statistically significant $B = 0.042, SE = 0.053, p = 0.429, 95CE [-0.038, 0.195])$.  While explicit recentering had a statistically significant effect on ratings of socially responsive pedagogy (i.e., the $a_{2}$ path), socially responsive pedagogy did not have a statistically significant effect on perceptions of course value (i.e., the $b_{2}$ path). The drop in magnitude and near-significance from the total effect $(B = 0.271, p = 0.059)$ to the direct effect $(B = 0.014, p = 0.889)$ supports the presence of mediation.  A pairwise comparison of the specific indirect effects indicated that the strength of the effects were not statistically significantly different from each other. In summary, the effects of explicit recentering on perceived value to the student appears to be mediated through students evaluation of traditional pedagogy.
+Results (depicted in Figure 1 and presented in Table 1) suggest that 58% of the variance in perceptions of course value is accounted for by the model. The indirect effect predicting course value from explicit recentering through traditional pedagogy was statistically significant $(B = 0.214, SE = 0.103, p = 0.037, 95CI [0.035, 0.440])$. Examining the individual paths we see that $a_{1}$ was positive and statistically significant (recentering is associated with higher evaluations of traditional pedagogy). The  $b_{1}$ path was similarly statistically significant (traditional pedagogy was associated with course valuation). The indirect effect predicting course value from recentering through socially responsive pedagogy was not statistically significant $B = 0.042, SE = 0.053, p = 0.429, 95CE [-0.040, 0.184])$.  While explicit recentering had a statistically significant effect on ratings of socially responsive pedagogy (i.e., the $a_{2}$ path), socially responsive pedagogy did not have a statistically significant effect on perceptions of course value (i.e., the $b_{2}$ path). The drop in magnitude and near-significance from the total effect $(B = 0.271, p = 0.059)$ to the direct effect $(B = 0.015, p = 0.885)$ supports the presence of mediation.  A pairwise comparison of the specific indirect effects indicated that the strength of the effects were not statistically significantly different from each other. In summary, the effects of explicit recentering on perceived value to the student appears to be mediated through students evaluation of traditional pedagogy.
 
 
 ### Explanation to grader {-}

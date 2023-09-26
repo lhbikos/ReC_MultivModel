@@ -141,7 +141,7 @@
 
 \title{ReCentering Psych Stats: Multivariate Modeling}
 \author{Lynette H. Bikos, PhD, ABPP}
-\date{24 Sep 2023}
+\date{25 Sep 2023}
 
 \begin{document}
 \maketitle
@@ -175,7 +175,7 @@ All materials used in creating this OER are available at its \href{https://githu
 \chapter*{PREFACE}\label{preface}}
 
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 24 Sep 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 25 Sep 2023}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -8186,16 +8186,16 @@ A simple mediation model examined the degree to which evaluations of traditional
 \hypertarget{CompMed}{%
 \chapter{Complex Mediation}\label{CompMed}}
 
-\href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=6991fd3d-22b6-44f5-ab5b-ad1000314b7f}{Screencasted Lecture Link}
+\href{https://youtube.com/playlist?list=PLtz5cFLQl4KPxygMnwxro3FkuJj2rN6p-\&si=a7lIlFcLkMQzTc19}{Screencasted Lecture Link}
 
-The focus of this chapter is the extension of simple mediation to models with multiple mediatrs. In these models with greater complexity we look at both parallel and serial mediation. There is also more elaboration on some of the conceptual issues related to the estimation of indirect effects.
+The focus of this chapter is the extension of simple mediation to models with multiple mediators. In these models with greater complexity we look at both parallel and serial mediation. There is also more elaboration on some of the conceptual issues related to the estimation of indirect effects.
 
 \hypertarget{navigating-this-lesson-5}{%
 \section{Navigating this Lesson}\label{navigating-this-lesson-5}}
 
 There is about 1 hour and 20 minutes of lecture. If you work through the materials with me it would be plan for an additional two hours.
 
-While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the \href{https://https://github.com/lhbikos/ReC_MultivModel}{Github site} that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's \protect\hyperlink{ReCintro}{introduction}
+While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the \href{https://https://github.com/lhbikos/ReC_MultivModel}{Github site} that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's \href{https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html\#introduction-to-the-data-set-used-for-homeworked-examples}{introduction}
 
 \hypertarget{learning-objectives-5}{%
 \subsection{Learning Objectives}\label{learning-objectives-5}}
@@ -8215,9 +8215,9 @@ Learning objectives from this lecture include the following:
 \item
   percentage of variance accounted for,\\
 \item
-  all the effects (total, direct, indirec. total indirect),
+  all the effects (total, direct, indirect, total indirect),
 \item
-  contrasts.
+  contrasts (comparing the significance of the indirect effects).
 \item
   Explain the limitations of the classic approach \citep{baron_moderator-mediator_1986} to mediation.
 \end{itemize}
@@ -8225,7 +8225,7 @@ Learning objectives from this lecture include the following:
 \hypertarget{planning-for-practice-5}{%
 \subsection{Planning for Practice}\label{planning-for-practice-5}}
 
-The suggestions for practice in this chapter include conducting parallel, serial, and/or mediation models. Options of graded complexity could incude:
+The suggestions for practice in this chapter include conducting parallel, serial, and/or mediation models. Options of graded complexity could include:
 
 \begin{itemize}
 \tightlist
@@ -8272,14 +8272,17 @@ The script below will (a) check to see if the following packages are installed o
 \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(tidyverse)) \{}
     \FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
 \NormalTok{\}}
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(dplyr)) \{}
+    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}
+\NormalTok{\}}
 \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(psych)) \{}
     \FunctionTok{install.packages}\NormalTok{(}\StringTok{"psych"}\NormalTok{)}
 \NormalTok{\}}
 \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(apaTables)) \{}
     \FunctionTok{install.packages}\NormalTok{(}\StringTok{"apaTables"}\NormalTok{)}
 \NormalTok{\}}
-\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(formattable)) \{}
-    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"formattable"}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(tidySEM)) \{}
+    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidySEM"}\NormalTok{)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -8435,7 +8438,7 @@ Recall that for a complex mediation to be parallel, there can be no causal links
 \hypertarget{a-mechanical-example}{%
 \subsection{A Mechanical Example}\label{a-mechanical-example}}
 
-Let's work a mechanical example with simulated data that assures a statistically significant outcome. Credit to this example is from the PAULOTOFFANIN website \citep{toffanin_multiple-mediator_2017}.
+Let's work a mechanical example with simulated data that assures a statistically significant outcome. Credit to this example is from the Paulo Toffanin website \citep{toffanin_multiple-mediator_2017}.
 
 We can bake our own data by updating the script we used in simple mediation to add a second mediator.
 
@@ -8501,6 +8504,7 @@ Remember\ldots{}
 \StringTok{    Y \textasciitilde{} b1*M1 + b2*M2 + c\_p*X}
 \StringTok{    M1 \textasciitilde{} a1*X}
 \StringTok{    M2 \textasciitilde{} a2*X}
+\StringTok{    }
 \StringTok{    indirect1 := a1 * b1}
 \StringTok{    indirect2 := a2 * b2}
 \StringTok{    contrast := indirect1 {-} indirect2}
@@ -8775,7 +8779,7 @@ Here's what the base package gets us
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-5-1.pdf}
+\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-6-1.pdf}
 
 We can create model that communicates more intuitively with a little tinkering. First, let's retrieve the current ``map'' of the layout.
 
@@ -8821,7 +8825,7 @@ We can update our figure by supplying this new map and adjusting the object and 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-8-1.pdf}
+\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-9-1.pdf}
 
 There are a number of ways to tabalize the data. You might be surprised to learn that a number of articles that analyze mediating effects focus their presentation on those values and not the traditional intercepts and B weights. This is the approach I have taken in this chapter.
 
@@ -8839,9 +8843,24 @@ Model Coefficients Assessing M1 and M2 as Parallel Mediators Between X and Y
 \endlastfoot
 \end{longtable}
 
-\begin{longtable}[]{@{}lcccr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
-Predictor & \(B\) & \(SE_{B}\) & \(p\) & \(R^2\) \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Predictor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(B\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(SE_{B}\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(p\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(R^2\)
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -8849,18 +8868,18 @@ Predictor & \(B\) & \(SE_{B}\) & \(p\) & \(R^2\) \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4242}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1212}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1364}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1061}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2121}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 M1
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 .25
 \end{minipage} \\
 \midrule\noalign{}
@@ -8872,18 +8891,18 @@ X (\(a_1\)) & 0.510 & 0.076 & 0.000 & \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4242}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1212}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1364}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1061}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2121}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 M2
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 .11
 \end{minipage} \\
 \midrule\noalign{}
@@ -8895,18 +8914,18 @@ X (\(a_2\)) & -0.381 & 0.117 & 0.001 & \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4242}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1212}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1364}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1061}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2121}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 DV
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 .54
 \end{minipage} \\
 \midrule\noalign{}
@@ -8920,21 +8939,21 @@ X (\(c'\)) & 0.030 & 0.098 & 0.757 & \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4242}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1212}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1364}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1061}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2121}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Summary of Effects
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 \(B\)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 \(SE_{B}\)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 \(p\)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 95\% CI
 \end{minipage} \\
 \midrule\noalign{}
@@ -9154,7 +9173,7 @@ Once saved, you could clean your environment and bring the data back in from its
 
 Because the focus of this lesson is on complex mediation, we have used simulated data. If this were real, raw, data, it would be important to \href{https://lhbikos.github.io/ReC_MultivModel/scrub.html}{scrub}, \href{https://lhbikos.github.io/ReC_MultivModel/score.html}{score}, and conduct \href{https://lhbikos.github.io/ReC_MultivModel/DataDx.html}{data diagnostics} to evaluate the suitability of the data for the proposes anlayses.
 
-Because we are working with item level data we do need ro score the scales used in the researcher's model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.
+Because we are working with item level data we do need to score the scales used in the researcher's model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.
 
 As described in the \href{https://lhbikos.github.io/ReC_MultivModel/score.html}{Scoring} chapter, we calculate mean scores of these variables by first creating concatenated lists of variable names. Next we apply the \emph{sjstats::mean\_n} function to obtain mean scores when a given percentage (we'll specify 80\%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
 
@@ -9184,12 +9203,12 @@ Now that we have scored our data, let's trim the variables to just those we need
 \end{Highlighting}
 \end{Shaded}
 
-Let's check a table of means, standards, and correlations to see if they align with the published article.
+Let's check a table of means, standard deviations, and correlations to see if they align with the published article.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{Lewis\_table }\OtherTok{\textless{}{-}}\NormalTok{ apaTables}\SpecialCharTok{::}\FunctionTok{apa.cor.table}\NormalTok{(Lewis\_df, }\AttributeTok{table.number =} \DecValTok{1}\NormalTok{, }\AttributeTok{show.sig.stars =} \ConstantTok{TRUE}\NormalTok{,}
-    \AttributeTok{landscape =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{filename =} \ConstantTok{NA}\NormalTok{)}
+    \AttributeTok{landscape =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{filename =} \StringTok{"Lewis\_Corr.doc"}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(Lewis\_table)}
 \end{Highlighting}
 \end{Shaded}
@@ -9225,6 +9244,9 @@ Let's check a table of means, standards, and correlations to see if they align w
 
 While they are not exact, they approximate the magnitude and patterns in the correlation matrix in the article \citep{lewis_applying_2017}.
 
+\hypertarget{specifying-the-lavaan-model}{%
+\subsubsection{\texorpdfstring{Specifying the \emph{lavaan} model}{Specifying the lavaan model}}\label{specifying-the-lavaan-model}}
+
 The Lewis et al.~article \citeyearpar{lewis_applying_2017} reports four mediation analyses, each repeated for mental and physical outcomes. Thus, their write-up reports eight simple mediation models. Graphically, their analyses were efficiently presented in a figure that looked (to me) like parallel mediation. Correspondingly, it made sense to me that we could try this in our research vignette. In the upcoming chapter on conditional process analysis, we will work the moderated mediation that was a primary focus of their research.
 
 Below is the model we will work. Specifically, we will evaluate whether gendered racial microaggressions impact mental health separately, thorough mediated paths of engagement and disengagement. We will also be able to see if the strength of those mediated paths are statistically, significantly, different from each other.
@@ -9235,9 +9257,6 @@ Below is the model we will work. Specifically, we will evaluate whether gendered
 \caption{An image of the parallel mediation we will work}
 \end{figure}
 
-\hypertarget{specifying-the-lavaan-model}{%
-\subsubsection{\texorpdfstring{Specifying the \emph{lavaan} model}{Specifying the lavaan model}}\label{specifying-the-lavaan-model}}
-
 We can use the guidelines above to specify our model and then request summaries of the fit indices and parameter estimates.
 
 \begin{Shaded}
@@ -9246,6 +9265,7 @@ We can use the guidelines above to specify our model and then request summaries 
 \StringTok{    MntlHlth \textasciitilde{} b1*Engmt + b2*DisEngmt + c\_p*GRMS}
 \StringTok{    Engmt \textasciitilde{} a1*GRMS    }
 \StringTok{    DisEngmt \textasciitilde{} a2*GRMS}
+\StringTok{    }
 \StringTok{    indirect1 := a1 * b1}
 \StringTok{    indirect2 := a2 * b2}
 \StringTok{    contrast := indirect1 {-} indirect2}
@@ -9291,7 +9311,7 @@ Here's what the base package gets us
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-19-1.pdf}
+\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 We can create model that communicates more intuitively with a little tinkering. First, let's retrieve the current ``map'' of the layout.
 
@@ -9337,7 +9357,7 @@ We can update our figure by supplying this new map and adjusting the object and 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-22-1.pdf}
+\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-23-1.pdf}
 
 Now let's make a table.
 
@@ -9355,18 +9375,45 @@ Model Coefficients Assessing Engagement and Disengagement Coping as Parallel Med
 \endlastfoot
 \end{longtable}
 
-\begin{longtable}[]{@{}lcccr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
-Predictor & \(B\) & \(SE_{B}\) & \(p\) & \(R^2\) \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Predictor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(B\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(SE_{B}\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(p\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(R^2\)
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
 \end{longtable}
 
-\begin{longtable}[]{@{}lrrrr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
-Engagement coping (M1) & & & & .27 \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Engagement coping (M1)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+.27
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -9375,9 +9422,21 @@ Constant & 1.494 & 0.109 & \textless0.001 & \\
 GRMS (\(a_1\)) & 0.384 & 0.042 & \textless0.001 & \\
 \end{longtable}
 
-\begin{longtable}[]{@{}lrrrr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
-Disengagement coping (M2) & & & & .28 \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Disengagement coping (M2)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+.28
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -9386,9 +9445,21 @@ Constant & 1.490 & 0.113 & \textless0.001 & \\
 GRMS (\(a_2\)) & 0.386 & 0.043 & \textless0.001 & \\
 \end{longtable}
 
-\begin{longtable}[]{@{}lrrrr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
-Mental Health (IV) & & & & .37 \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Mental Health (DV)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+.37
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -9399,9 +9470,24 @@ Disengagement (\(b_2\)) & -0.391 & 0.089 & \textless0.001 & \\
 GRMS (\(c'\)) & -0.535 & 0.076 & \textless0.001 & \\
 \end{longtable}
 
-\begin{longtable}[]{@{}lrrrr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
-Summary of Effects & \(B\) & \(SE_{B}\) & \(p\) & 95\% CI \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Summary of Effects
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(B\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(SE_{B}\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(p\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+95\% CI
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -9595,6 +9681,7 @@ If this is our goal (image), how many direct and indirect effects are contained 
 \StringTok{    Engmt \textasciitilde{} a1*GRMS    }
 \StringTok{    DisEngmt \textasciitilde{} a2*GRMS}
 \StringTok{    DisEngmt \textasciitilde{} d21*Engmt}
+\StringTok{    }
 \StringTok{    indirect1 := a1 * b1}
 \StringTok{    indirect2 := a2 * b2}
 \StringTok{    indirect3 := a1 * d21 * b2}
@@ -9643,7 +9730,7 @@ Here's what the base package gets us
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-25-1.pdf}
+\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-26-1.pdf}
 
 We can create model that communicates more intuitively with a little tinkering. First, let's retrieve the current ``map'' of the layout.
 
@@ -9689,7 +9776,7 @@ We can update our figure by supplying this new map and adjusting the object and 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-28-1.pdf}
+\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 Now let's make a table.
 
@@ -9707,18 +9794,45 @@ Model Coefficients Assessing Engagement and Disengagement Coping in a Model of S
 \endlastfoot
 \end{longtable}
 
-\begin{longtable}[]{@{}lcccr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
-Predictor & \(B\) & \(SE_{B}\) & \(p\) & \(R^2\) \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Predictor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(B\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(SE_{B}\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(p\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(R^2\)
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
 \end{longtable}
 
-\begin{longtable}[]{@{}lrrrr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
-Engagement coping & & & & .27 \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Engagement coping (M1)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+.27
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -9727,9 +9841,21 @@ Constant & 1.494 & 0.112 & \textless0.001 & \\
 GRMS (\(a_1\)) & 0.384 & 0.042 & \textless0.001 & \\
 \end{longtable}
 
-\begin{longtable}[]{@{}lrrrr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
-Disengagement coping & & & & .29 \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Disengagement coping (M2)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+.29
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -9739,9 +9865,21 @@ GRMS (\(a_2\)) & 0.363 & 0.048 & \textless0.001 & \\
 Engagement (\(d_{21}\)) & 0.061 & 0.061 & 0.321 & \\
 \end{longtable}
 
-\begin{longtable}[]{@{}lrrrr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
-Mental Health & & & & .37 \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Mental Health (DV)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+.37
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -9753,21 +9891,21 @@ GRMS (\(c'\)) & -0.535 & 0.077 & \textless0.001 & \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4242}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1212}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1364}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1061}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2121}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Effects
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 \(B\)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 \(SE_{B}\)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 \(p\)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 95\% CI
 \end{minipage} \\
 \midrule\noalign{}
@@ -9955,7 +10093,7 @@ Assignment Component
 \hypertarget{homeworked-example-3}{%
 \section{Homeworked Example}\label{homeworked-example-3}}
 
-\href{https://youtu.be/hXTFPSQrjpQ}{Screencast Link}
+\href{https://youtu.be/p-iScWS_tT0}{Screencast Link}
 
 For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the \href{https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html\#introduction-to-the-data-set-used-for-homeworked-examples}{introductory lesson} in \href{https://lhbikos.github.io/ReCenterPsychStats/}{ReCentering Psych Stats}. An .rds file which holds the data is located in the \href{https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples}{Worked Examples} folder at the GitHub site the hosts the OER. The file name is \emph{ReC.rds}.
 
@@ -9987,7 +10125,15 @@ It helps me to make a quick sketch:
 \end{Highlighting}
 \end{Shaded}
 
-I need to score the TradPed and SRPed variables
+The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{raw }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(raw, Course }\SpecialCharTok{==} \StringTok{"Multivariate"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+I need to score the TradPed, SRPed, and Valued variables
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10014,17 +10160,20 @@ I will create a babydf.
 
 Let's check the structure of the variables:
 
-\begin{verbatim}
-str(babydf)
-\end{verbatim}
-
-The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
-
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{babydf }\OtherTok{\textless{}{-}}\NormalTok{ (dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(raw, Course }\SpecialCharTok{==} \StringTok{"Multivariate"}\NormalTok{))}
+\FunctionTok{str}\NormalTok{(babydf)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Classes 'data.table' and 'data.frame':   84 obs. of  4 variables:
+##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ TradPed  : num  3.8 5 4.8 4 4.2 3 5 4.6 4 4.8 ...
+##  $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+##  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+\end{verbatim}
 
 At this point, these my only inclusion/exclusion criteria. I can determine how many students (who consented) completed any portion of the survey.
 
@@ -10245,7 +10394,7 @@ At this point, these my only inclusion/exclusion criteria. I can determine how m
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-37-1.pdf}
+\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-39-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10287,7 +10436,7 @@ To create the figure I showed at the beginning of the chapter, we will want thre
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-40-1.pdf}
+\includegraphics{06-ComplexMed_files/figure-latex/unnamed-chunk-42-1.pdf}
 
 \hypertarget{create-a-table-that-includes-a-summary-of-the-effects-indirect-direct-total-total-indirect-as-well-as-contrasts}{%
 \subsection*{Create a table that includes a summary of the effects (indirect, direct, total, total indirect) as well as contrasts}\label{create-a-table-that-includes-a-summary-of-the-effects-indirect-direct-total-total-indirect-as-well-as-contrasts}}
@@ -10315,9 +10464,24 @@ Model Coefficients Assessing Students' Appraisal of Traditional and Socially Res
 \endlastfoot
 \end{longtable}
 
-\begin{longtable}[]{@{}lcccr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3944}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1268}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1408}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1127}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2254}}@{}}
 \toprule\noalign{}
-Predictor & \(B\) & \(SE_{B}\) & \(p\) & \(R^2\) \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Predictor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(B\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(SE_{B}\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(p\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(R^2\)
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -10325,103 +10489,103 @@ Predictor & \(B\) & \(SE_{B}\) & \(p\) & \(R^2\) \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4242}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1212}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1364}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1061}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2121}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Traditional Pedagogy
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Traditional Pedagogy (M1)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 .04
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Constant & 3.870 & 0.226 & \textless0.001 & \\
-Centering (\(a_1\)) & 0.312 & 0.136 & 0.022 & \\
+Constant & 3.870 & 0.234 & \textless0.001 & \\
+Centering (\(a_1\)) & 0.312 & 0.141 & 0.027 & \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4242}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1212}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1364}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1061}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2121}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Socially Responsive Pedagogy
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Socially Responsive Pedagogy (M2)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 .09
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Constant & 4.029 & 0.184 & \textless0.001 & \\
-Centering (\(a_2\)) & 0.353 & 0.112 & 0.002 & \\
+Constant & 4.029 & 0.193 & \textless0.001 & \\
+Centering (\(a_2\)) & 0.353 & 0.116 & 0.002 & \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4242}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1212}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1364}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1061}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2121}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Perceived Course Value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Perceived Course Value (DV)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 .58
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Constant & 0.710 & 0.462 & 0.124 & \\
-Traditional Pedagogy (\(b_1\)) & 0.686 & 0.136 & \textless0.001 & \\
-Socially Rx Pedagogy (\(b_2\)) & 0.119 & 0.142 & 0.400 & \\
-Centering (\(c'\)) & 0.015 & 0.105 & 0.889 & \\
+Constant & 0.710 & 0.477 & 0.136 & \\
+Traditional Pedagogy (\(b_1\)) & 0.686 & 0.133 & \textless0.001 & \\
+Socially Rx Pedagogy (\(b_2\)) & 0.119 & 0.141 & 0.397 & \\
+Centering (\(c'\)) & 0.015 & 0.102 & 0.885 & \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4242}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1212}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1364}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1061}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2121}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1286}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1143}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2143}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Effects
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 \(B\)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 \(SE_{B}\)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 \(p\)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 95\% CI
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Total effect & 0.271 & 0.144 & 0.059 & 0.013, 0.580 \\
-Indirect 1 (\(a_1\) * \(a_2\)) & 0.214 & 0.102 & 0.036 & 0.036, 0.442 \\
-Indirect 2 (\(b_1\) * \(b_2\)) & 0.042 & 0.053 & 0.429 & -0.038, 0.195 \\
-Total indirects & 0.256 & 0.107 & 0.017 & 0.061, 0.473 \\
-Contrast1 (Ind1 - Ind2) & 0.172 & 0.123 & 0.162 & -0.021,0.431 \\
+Total effect & 0.271 & 0.143 & 0.059 & -0.024, 0.550 \\
+Indirect 1 (\(a_1\) * \(b_1\)) & 0.214 & 0.103 & 0.037 & 0.035, 0.440 \\
+Indirect 2 (\(a_2\) * \(b_2\)) & 0.042 & 0.053 & 0.429 & -0.040, 0.184 \\
+Total indirects & 0.256 & 0.111 & 0.021 & 0.060, 0.489 \\
+Contrast1 (Ind1 - Ind2) & 0.172 & 0.120 & 0.152 & -0.041, 0.423 \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
@@ -10437,9 +10601,9 @@ Contrast1 (Ind1 - Ind2) & 0.172 & 0.123 & 0.162 & -0.021,0.431 \\
 \subsection*{Represent your work in an APA-style write-up}\label{represent-your-work-in-an-apa-style-write-up-1}}
 
 
-A model of parallel mediation analyzed the degree to which students' perceptions of traditional and socially responsive pedagogy mediated the relationship between explicit recentering of the course and course value. Hayes \citeyearpar{hayes_more_2022} recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously. The resultant direct and indirect values for each path account for other mediation paths. Using the \emph{lavaan} (v. 0.6-17) package in R, coefficients for specific indirect, total indirect, direct, and total were computed. Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.
+A model of parallel mediation analyzed the degree to which students' perceptions of traditional and socially responsive pedagogy mediated the relationship between explicit recentering of the course and course value. Hayes \citeyearpar{hayes_more_2022} recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously. The resultant direct and indirect values for each path account for other mediation paths. Using the \emph{lavaan} (v. 0.6-16) package in R, coefficients for specific indirect, total indirect, direct, and total were computed. Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.
 
-Results (depicted in Figure 1 and presented in Table 1) suggest that 58\% of the variance in perceptions of course value is accounted for by the model. The indirect effect predicting course value from explicit recentering through traditional pedagogy was statistically significant \((B = 0.214, SE = 0.102, p = 0.036, 95CI [0.036, 0.442])\). Examining the individual paths we see that \(a_{1}\) was positive and statistically significant (recentering is associated with higher evaluations of traditional pedagogy). The \(b_{1}\) path was similarly statistically significant (traditional pedagogy was associated with course valuation). The indirect effect predicting course value from recentering through socially responsive pedagogy was not statistically significant \(B = 0.042, SE = 0.053, p = 0.429, 95CE [-0.038, 0.195])\). While explicit recentering had a statistically significant effect on ratings of socially responsive pedagogy (i.e., the \(a_{2}\) path), socially responsive pedagogy did not have a statistically significant effect on perceptions of course value (i.e., the \(b_{2}\) path). The drop in magnitude and near-significance from the total effect \((B = 0.271, p = 0.059)\) to the direct effect \((B = 0.014, p = 0.889)\) supports the presence of mediation. A pairwise comparison of the specific indirect effects indicated that the strength of the effects were not statistically significantly different from each other. In summary, the effects of explicit recentering on perceived value to the student appears to be mediated through students evaluation of traditional pedagogy.
+Results (depicted in Figure 1 and presented in Table 1) suggest that 58\% of the variance in perceptions of course value is accounted for by the model. The indirect effect predicting course value from explicit recentering through traditional pedagogy was statistically significant \((B = 0.214, SE = 0.103, p = 0.037, 95CI [0.035, 0.440])\). Examining the individual paths we see that \(a_{1}\) was positive and statistically significant (recentering is associated with higher evaluations of traditional pedagogy). The \(b_{1}\) path was similarly statistically significant (traditional pedagogy was associated with course valuation). The indirect effect predicting course value from recentering through socially responsive pedagogy was not statistically significant \(B = 0.042, SE = 0.053, p = 0.429, 95CE [-0.040, 0.184])\). While explicit recentering had a statistically significant effect on ratings of socially responsive pedagogy (i.e., the \(a_{2}\) path), socially responsive pedagogy did not have a statistically significant effect on perceptions of course value (i.e., the \(b_{2}\) path). The drop in magnitude and near-significance from the total effect \((B = 0.271, p = 0.059)\) to the direct effect \((B = 0.015, p = 0.885)\) supports the presence of mediation. A pairwise comparison of the specific indirect effects indicated that the strength of the effects were not statistically significantly different from each other. In summary, the effects of explicit recentering on perceived value to the student appears to be mediated through students evaluation of traditional pedagogy.
 
 \hypertarget{explanation-to-grader-1}{%
 \subsection*{Explanation to grader}\label{explanation-to-grader-1}}

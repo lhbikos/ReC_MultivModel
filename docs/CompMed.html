@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2023-09-24" />
+<meta name="date" content="2023-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -556,12 +556,12 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="CompMed" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Complex Mediation<a href="CompMed.html#CompMed" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><a href="https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=6991fd3d-22b6-44f5-ab5b-ad1000314b7f">Screencasted Lecture Link</a></p>
-<p>The focus of this chapter is the extension of simple mediation to models with multiple mediatrs. In these models with greater complexity we look at both parallel and serial mediation. There is also more elaboration on some of the conceptual issues related to the estimation of indirect effects.</p>
+<p><a href="https://youtube.com/playlist?list=PLtz5cFLQl4KPxygMnwxro3FkuJj2rN6p-&amp;si=a7lIlFcLkMQzTc19">Screencasted Lecture Link</a></p>
+<p>The focus of this chapter is the extension of simple mediation to models with multiple mediators. In these models with greater complexity we look at both parallel and serial mediation. There is also more elaboration on some of the conceptual issues related to the estimation of indirect effects.</p>
 <div id="navigating-this-lesson-5" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Navigating this Lesson<a href="CompMed.html#navigating-this-lesson-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There is about 1 hour and 20 minutes of lecture. If you work through the materials with me it would be plan for an additional two hours.</p>
-<p>While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the <a href="https://https://github.com/lhbikos/ReC_MultivModel">Github site</a> that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER’s <a href="#ReCintro">introduction</a></p>
+<p>While the majority of R objects and data you will need are created within the R script that sources the chapter, there are a few that cannot be created from within the R framework. Additionally, sometimes links fail. All original materials are provided at the <a href="https://https://github.com/lhbikos/ReC_MultivModel">Github site</a> that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER’s <a href="https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples">introduction</a></p>
 <div id="learning-objectives-5" class="section level3 hasAnchor" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Learning Objectives<a href="CompMed.html#learning-objectives-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Learning objectives from this lecture include the following:</p>
@@ -572,14 +572,14 @@ div.csl-indent {
 <li>identifying coefficients,</li>
 <li>percentage of variance accounted for,<br />
 </li>
-<li>all the effects (total, direct, indirec. total indirect),</li>
-<li>contrasts.</li>
+<li>all the effects (total, direct, indirect, total indirect),</li>
+<li>contrasts (comparing the significance of the indirect effects).</li>
 <li>Explain the limitations of the classic approach <span class="citation">(<a href="#ref-baron_moderator-mediator_1986">Baron &amp; Kenny, 1986</a>)</span> to mediation.</li>
 </ul>
 </div>
 <div id="planning-for-practice-5" class="section level3 hasAnchor" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Planning for Practice<a href="CompMed.html#planning-for-practice-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The suggestions for practice in this chapter include conducting parallel, serial, and/or mediation models. Options of graded complexity could incude:</p>
+<p>The suggestions for practice in this chapter include conducting parallel, serial, and/or mediation models. Options of graded complexity could include:</p>
 <ul>
 <li>Rework the problem in the chapter by changing the random seed in the code that simulates the data. This should provide minor changes to the data, but the results will likely be very similar.</li>
 <li>There are a number of variables in the dataset that sourced the research vignettes for this and the prior chapter on <a href="SimpleMed.html#SimpleMed">simple mediation</a>. Swap out one or more variables in a parallel or serial (or both) model.</li>
@@ -608,15 +608,18 @@ div.csl-indent {
 <span id="cb320-5"><a href="CompMed.html#cb320-5" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(tidyverse)) {</span>
 <span id="cb320-6"><a href="CompMed.html#cb320-6" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
 <span id="cb320-7"><a href="CompMed.html#cb320-7" tabindex="-1"></a>}</span>
-<span id="cb320-8"><a href="CompMed.html#cb320-8" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(psych)) {</span>
-<span id="cb320-9"><a href="CompMed.html#cb320-9" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)</span>
+<span id="cb320-8"><a href="CompMed.html#cb320-8" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(dplyr)) {</span>
+<span id="cb320-9"><a href="CompMed.html#cb320-9" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
 <span id="cb320-10"><a href="CompMed.html#cb320-10" tabindex="-1"></a>}</span>
-<span id="cb320-11"><a href="CompMed.html#cb320-11" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(apaTables)) {</span>
-<span id="cb320-12"><a href="CompMed.html#cb320-12" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;apaTables&quot;</span>)</span>
+<span id="cb320-11"><a href="CompMed.html#cb320-11" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(psych)) {</span>
+<span id="cb320-12"><a href="CompMed.html#cb320-12" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)</span>
 <span id="cb320-13"><a href="CompMed.html#cb320-13" tabindex="-1"></a>}</span>
-<span id="cb320-14"><a href="CompMed.html#cb320-14" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(formattable)) {</span>
-<span id="cb320-15"><a href="CompMed.html#cb320-15" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;formattable&quot;</span>)</span>
-<span id="cb320-16"><a href="CompMed.html#cb320-16" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb320-14"><a href="CompMed.html#cb320-14" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(apaTables)) {</span>
+<span id="cb320-15"><a href="CompMed.html#cb320-15" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;apaTables&quot;</span>)</span>
+<span id="cb320-16"><a href="CompMed.html#cb320-16" tabindex="-1"></a>}</span>
+<span id="cb320-17"><a href="CompMed.html#cb320-17" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(tidySEM)) {</span>
+<span id="cb320-18"><a href="CompMed.html#cb320-18" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;tidySEM&quot;</span>)</span>
+<span id="cb320-19"><a href="CompMed.html#cb320-19" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 <div id="complex-mediation" class="section level2 hasAnchor" number="6.2">
@@ -700,7 +703,7 @@ In this parallel model, we can describe these effects this way:</p>
 <p>Recall that for a complex mediation to be parallel, there can be no causal links between mediators. This is true in this example.</p>
 <div id="a-mechanical-example" class="section level3 hasAnchor" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> A Mechanical Example<a href="CompMed.html#a-mechanical-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Let’s work a mechanical example with simulated data that assures a statistically significant outcome. Credit to this example is from the PAULOTOFFANIN website <span class="citation">(<a href="#ref-toffanin_multiple-mediator_2017">Toffanin, 2017</a>)</span>.</p>
+<p>Let’s work a mechanical example with simulated data that assures a statistically significant outcome. Credit to this example is from the Paulo Toffanin website <span class="citation">(<a href="#ref-toffanin_multiple-mediator_2017">Toffanin, 2017</a>)</span>.</p>
 <p>We can bake our own data by updating the script we used in simple mediation to add a second mediator.</p>
 <div id="data-simulation-1" class="section level4 hasAnchor" number="6.4.1.1">
 <h4><span class="header-section-number">6.4.1.1</span> Data Simulation<a href="CompMed.html#data-simulation-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -738,20 +741,21 @@ In this parallel model, we can describe these effects this way:</p>
 <span id="cb322-2"><a href="CompMed.html#cb322-2" tabindex="-1"></a><span class="st">    Y ~ b1*M1 + b2*M2 + c_p*X</span></span>
 <span id="cb322-3"><a href="CompMed.html#cb322-3" tabindex="-1"></a><span class="st">    M1 ~ a1*X</span></span>
 <span id="cb322-4"><a href="CompMed.html#cb322-4" tabindex="-1"></a><span class="st">    M2 ~ a2*X</span></span>
-<span id="cb322-5"><a href="CompMed.html#cb322-5" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
-<span id="cb322-6"><a href="CompMed.html#cb322-6" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
-<span id="cb322-7"><a href="CompMed.html#cb322-7" tabindex="-1"></a><span class="st">    contrast := indirect1 - indirect2</span></span>
-<span id="cb322-8"><a href="CompMed.html#cb322-8" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2</span></span>
-<span id="cb322-9"><a href="CompMed.html#cb322-9" tabindex="-1"></a><span class="st">    total_c    := c_p + (indirect1) + (indirect2)</span></span>
-<span id="cb322-10"><a href="CompMed.html#cb322-10" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
-<span id="cb322-11"><a href="CompMed.html#cb322-11" tabindex="-1"></a><span class="st"> &quot;</span></span>
-<span id="cb322-12"><a href="CompMed.html#cb322-12" tabindex="-1"></a>parallel_fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(parallel_med, <span class="at">data =</span> pData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>,</span>
-<span id="cb322-13"><a href="CompMed.html#cb322-13" tabindex="-1"></a>    <span class="at">missing =</span> <span class="st">&quot;fiml&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
-<span id="cb322-14"><a href="CompMed.html#cb322-14" tabindex="-1"></a>pfit_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(parallel_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq =</span> T,</span>
-<span id="cb322-15"><a href="CompMed.html#cb322-15" tabindex="-1"></a>    <span class="at">fit =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb322-16"><a href="CompMed.html#cb322-16" tabindex="-1"></a>pfit_ParEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(parallel_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
-<span id="cb322-17"><a href="CompMed.html#cb322-17" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb322-18"><a href="CompMed.html#cb322-18" tabindex="-1"></a>pfit_sum</span></code></pre></div>
+<span id="cb322-5"><a href="CompMed.html#cb322-5" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb322-6"><a href="CompMed.html#cb322-6" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
+<span id="cb322-7"><a href="CompMed.html#cb322-7" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
+<span id="cb322-8"><a href="CompMed.html#cb322-8" tabindex="-1"></a><span class="st">    contrast := indirect1 - indirect2</span></span>
+<span id="cb322-9"><a href="CompMed.html#cb322-9" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2</span></span>
+<span id="cb322-10"><a href="CompMed.html#cb322-10" tabindex="-1"></a><span class="st">    total_c    := c_p + (indirect1) + (indirect2)</span></span>
+<span id="cb322-11"><a href="CompMed.html#cb322-11" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
+<span id="cb322-12"><a href="CompMed.html#cb322-12" tabindex="-1"></a><span class="st"> &quot;</span></span>
+<span id="cb322-13"><a href="CompMed.html#cb322-13" tabindex="-1"></a>parallel_fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(parallel_med, <span class="at">data =</span> pData, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>,</span>
+<span id="cb322-14"><a href="CompMed.html#cb322-14" tabindex="-1"></a>    <span class="at">missing =</span> <span class="st">&quot;fiml&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb322-15"><a href="CompMed.html#cb322-15" tabindex="-1"></a>pfit_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(parallel_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq =</span> T,</span>
+<span id="cb322-16"><a href="CompMed.html#cb322-16" tabindex="-1"></a>    <span class="at">fit =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb322-17"><a href="CompMed.html#cb322-17" tabindex="-1"></a>pfit_ParEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(parallel_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
+<span id="cb322-18"><a href="CompMed.html#cb322-18" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb322-19"><a href="CompMed.html#cb322-19" tabindex="-1"></a>pfit_sum</span></code></pre></div>
 <pre><code>## lavaan 0.6.16 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
@@ -949,7 +953,7 @@ In this parallel model, we can describe these effects this way:</p>
 ##   method          from  
 ##   predict.MxModel OpenMx</code></pre>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="CompMed.html#cb336-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> parallel_fit)</span></code></pre></div>
-<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>We can create model that communicates more intuitively with a little tinkering. First, let’s retrieve the current “map” of the layout.</p>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="CompMed.html#cb337-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(parallel_fit)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
@@ -970,7 +974,7 @@ In this parallel model, we can describe these effects this way:</p>
 <p>We can update our figure by supplying this new map and adjusting the object and text sizes.</p>
 <div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="CompMed.html#cb341-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(parallel_fit, <span class="at">layout =</span> parallel_map, <span class="at">rect_width =</span> <span class="fl">1.5</span>,</span>
 <span id="cb341-2"><a href="CompMed.html#cb341-2" tabindex="-1"></a>    <span class="at">rect_height =</span> <span class="fl">1.25</span>, <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">4.5</span>)</span></code></pre></div>
-<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>There are a number of ways to tabalize the data. You might be surprised to learn that a number of articles that analyze mediating effects focus their presentation on those values and not the traditional intercepts and B weights. This is the approach I have taken in this chapter.</p>
 <p><strong>Table 1 </strong></p>
 <table>
@@ -986,13 +990,20 @@ In this parallel model, we can describe these effects this way:</p>
 </tbody>
 </table>
 <table>
+<colgroup>
+<col width="40%" />
+<col width="12%" />
+<col width="14%" />
+<col width="11%" />
+<col width="21%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Predictor</th>
 <th align="center"><span class="math inline">\(B\)</span></th>
 <th align="center"><span class="math inline">\(SE_{B}\)</span></th>
 <th align="center"><span class="math inline">\(p\)</span></th>
-<th align="right"><span class="math inline">\(R^2\)</span></th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
 </tr>
 </thead>
 <tbody>
@@ -1000,172 +1011,172 @@ In this parallel model, we can describe these effects this way:</p>
 </table>
 <table>
 <colgroup>
-<col width="42%" />
+<col width="40%" />
 <col width="12%" />
-<col width="13%" />
-<col width="10%" />
+<col width="14%" />
+<col width="11%" />
 <col width="21%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">M1</th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right">.25</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">.25</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Constant</td>
-<td align="right">-0.089</td>
-<td align="right">0.097</td>
-<td align="right">0.360</td>
-<td align="right"></td>
+<td align="center">-0.089</td>
+<td align="center">0.097</td>
+<td align="center">0.360</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">X (<span class="math inline">\(a_1\)</span>)</td>
-<td align="right">0.510</td>
-<td align="right">0.076</td>
-<td align="right">0.000</td>
-<td align="right"></td>
+<td align="center">0.510</td>
+<td align="center">0.076</td>
+<td align="center">0.000</td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="42%" />
+<col width="40%" />
 <col width="12%" />
-<col width="13%" />
-<col width="10%" />
+<col width="14%" />
+<col width="11%" />
 <col width="21%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">M2</th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right">.11</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">.11</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Constant</td>
-<td align="right">0.017</td>
-<td align="right">0.126</td>
-<td align="right">0.894</td>
-<td align="right"></td>
+<td align="center">0.017</td>
+<td align="center">0.126</td>
+<td align="center">0.894</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">X (<span class="math inline">\(a_2\)</span>)</td>
-<td align="right">-0.381</td>
-<td align="right">0.117</td>
-<td align="right">0.001</td>
-<td align="right"></td>
+<td align="center">-0.381</td>
+<td align="center">0.117</td>
+<td align="center">0.001</td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="42%" />
+<col width="40%" />
 <col width="12%" />
-<col width="13%" />
-<col width="10%" />
+<col width="14%" />
+<col width="11%" />
 <col width="21%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">DV</th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right">.54</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">.54</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Constant</td>
-<td align="right">0.113</td>
-<td align="right">0.097</td>
-<td align="right">0.243</td>
-<td align="right"></td>
+<td align="center">0.113</td>
+<td align="center">0.097</td>
+<td align="center">0.243</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">M1 (<span class="math inline">\(b_1\)</span>)</td>
-<td align="right">0.456</td>
-<td align="right">0.113</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">0.456</td>
+<td align="center">0.113</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
 <td align="left">M2 (<span class="math inline">\(b_2\)</span>)</td>
-<td align="right">0.743</td>
-<td align="right">0.074</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">0.743</td>
+<td align="center">0.074</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">X (<span class="math inline">\(c&#39;\)</span>)</td>
-<td align="right">0.030</td>
-<td align="right">0.098</td>
-<td align="right">0.757</td>
-<td align="right"></td>
+<td align="center">0.030</td>
+<td align="center">0.098</td>
+<td align="center">0.757</td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="42%" />
+<col width="40%" />
 <col width="12%" />
-<col width="13%" />
-<col width="10%" />
+<col width="14%" />
+<col width="11%" />
 <col width="21%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">Summary of Effects</th>
-<th align="right"><span class="math inline">\(B\)</span></th>
-<th align="right"><span class="math inline">\(SE_{B}\)</span></th>
-<th align="right"><span class="math inline">\(p\)</span></th>
-<th align="right">95% CI</th>
+<th align="center"><span class="math inline">\(B\)</span></th>
+<th align="center"><span class="math inline">\(SE_{B}\)</span></th>
+<th align="center"><span class="math inline">\(p\)</span></th>
+<th align="center">95% CI</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Total</td>
-<td align="right">-0.021</td>
-<td align="right">0.120</td>
-<td align="right">0.865</td>
-<td align="right">-0.251, 0.214</td>
+<td align="center">-0.021</td>
+<td align="center">0.120</td>
+<td align="center">0.865</td>
+<td align="center">-0.251, 0.214</td>
 </tr>
 <tr class="even">
 <td align="left">Indirect 1 (<span class="math inline">\(a_1\)</span> * <span class="math inline">\(a_2\)</span>)</td>
-<td align="right">0.233</td>
-<td align="right">0.070</td>
-<td align="right">0.001</td>
-<td align="right">0.116, 0.394</td>
+<td align="center">0.233</td>
+<td align="center">0.070</td>
+<td align="center">0.001</td>
+<td align="center">0.116, 0.394</td>
 </tr>
 <tr class="odd">
 <td align="left">Indirect 2 (<span class="math inline">\(b_1\)</span> * <span class="math inline">\(b_2\)</span>)</td>
-<td align="right">-0.283</td>
-<td align="right">0.086</td>
-<td align="right">0.001</td>
-<td align="right">-0.455, -0.106</td>
+<td align="center">-0.283</td>
+<td align="center">0.086</td>
+<td align="center">0.001</td>
+<td align="center">-0.455, -0.106</td>
 </tr>
 <tr class="even">
 <td align="left">Total indirects</td>
-<td align="right">-0.051</td>
-<td align="right">0.121</td>
-<td align="right">0.676</td>
-<td align="right">-0.280, 0.187</td>
+<td align="center">-0.051</td>
+<td align="center">0.121</td>
+<td align="center">0.676</td>
+<td align="center">-0.280, 0.187</td>
 </tr>
 <tr class="odd">
 <td align="left">Contrast (Ind1 - Ind2)</td>
-<td align="right">0.516</td>
-<td align="right">0.100</td>
-<td align="right">0.000</td>
-<td align="right">0.324, 0.725</td>
+<td align="center">0.516</td>
+<td align="center">0.100</td>
+<td align="center">0.000</td>
+<td align="center">0.324, 0.725</td>
 </tr>
 </tbody>
 </table>
@@ -1323,7 +1334,7 @@ In this parallel model, we can describe these effects this way:</p>
 <div id="scrubbing-scoring-and-data-diagnostics-1" class="section level3 hasAnchor" number="6.4.3">
 <h3><span class="header-section-number">6.4.3</span> Scrubbing, Scoring, and Data Diagnostics<a href="CompMed.html#scrubbing-scoring-and-data-diagnostics-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Because the focus of this lesson is on complex mediation, we have used simulated data. If this were real, raw, data, it would be important to <a href="https://lhbikos.github.io/ReC_MultivModel/scrub.html">scrub</a>, <a href="https://lhbikos.github.io/ReC_MultivModel/score.html">score</a>, and conduct <a href="https://lhbikos.github.io/ReC_MultivModel/DataDx.html">data diagnostics</a> to evaluate the suitability of the data for the proposes anlayses.</p>
-<p>Because we are working with item level data we do need ro score the scales used in the researcher’s model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.</p>
+<p>Because we are working with item level data we do need to score the scales used in the researcher’s model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.</p>
 <p>As described in the <a href="https://lhbikos.github.io/ReC_MultivModel/score.html">Scoring</a> chapter, we calculate mean scores of these variables by first creating concatenated lists of variable names. Next we apply the <em>sjstats::mean_n</em> function to obtain mean scores when a given percentage (we’ll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.</p>
 <p>Note that I am only scoring the variables used in the models demonstrated in this lesson. The remaining variables are available as practice options.</p>
 <div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="CompMed.html#cb349-1" tabindex="-1"></a>GRMS_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Ob1&quot;</span>, <span class="st">&quot;Ob2&quot;</span>, <span class="st">&quot;Ob3&quot;</span>, <span class="st">&quot;Ob4&quot;</span>, <span class="st">&quot;Ob5&quot;</span>, <span class="st">&quot;Ob6&quot;</span>, <span class="st">&quot;Ob7&quot;</span>, <span class="st">&quot;Ob8&quot;</span>,</span>
@@ -1339,9 +1350,9 @@ In this parallel model, we can describe these effects this way:</p>
 <span id="cb349-11"><a href="CompMed.html#cb349-11" tabindex="-1"></a>dfLewis<span class="sc">$</span>MntlHlth <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(dfLewis[, MntlHlth_vars], <span class="fl">0.8</span>)</span></code></pre></div>
 <p>Now that we have scored our data, let’s trim the variables to just those we need.</p>
 <div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="CompMed.html#cb350-1" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(dfLewis, GRMS, Engmt, DisEngmt, MntlHlth)</span></code></pre></div>
-<p>Let’s check a table of means, standards, and correlations to see if they align with the published article.</p>
+<p>Let’s check a table of means, standard deviations, and correlations to see if they align with the published article.</p>
 <div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="CompMed.html#cb351-1" tabindex="-1"></a>Lewis_table <span class="ot">&lt;-</span> apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(Lewis_df, <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.sig.stars =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb351-2"><a href="CompMed.html#cb351-2" tabindex="-1"></a>    <span class="at">landscape =</span> <span class="cn">TRUE</span>, <span class="at">filename =</span> <span class="cn">NA</span>)</span>
+<span id="cb351-2"><a href="CompMed.html#cb351-2" tabindex="-1"></a>    <span class="at">landscape =</span> <span class="cn">TRUE</span>, <span class="at">filename =</span> <span class="st">&quot;Lewis_Corr.doc&quot;</span>)</span>
 <span id="cb351-3"><a href="CompMed.html#cb351-3" tabindex="-1"></a><span class="fu">print</span>(Lewis_table)</span></code></pre></div>
 <pre><code>## 
 ## 
@@ -1370,35 +1381,36 @@ In this parallel model, we can describe these effects this way:</p>
 ##  * indicates p &lt; .05. ** indicates p &lt; .01.
 ## </code></pre>
 <p>While they are not exact, they approximate the magnitude and patterns in the correlation matrix in the article <span class="citation">(<a href="#ref-lewis_applying_2017">J. A. Lewis et al., 2017</a>)</span>.</p>
+<div id="specifying-the-lavaan-model" class="section level4 hasAnchor" number="6.4.3.1">
+<h4><span class="header-section-number">6.4.3.1</span> Specifying the <em>lavaan</em> model<a href="CompMed.html#specifying-the-lavaan-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The Lewis et al. article <span class="citation">(<a href="#ref-lewis_applying_2017">2017</a>)</span> reports four mediation analyses, each repeated for mental and physical outcomes. Thus, their write-up reports eight simple mediation models. Graphically, their analyses were efficiently presented in a figure that looked (to me) like parallel mediation. Correspondingly, it made sense to me that we could try this in our research vignette. In the upcoming chapter on conditional process analysis, we will work the moderated mediation that was a primary focus of their research.</p>
 <p>Below is the model we will work. Specifically, we will evaluate whether gendered racial microaggressions impact mental health separately, thorough mediated paths of engagement and disengagement. We will also be able to see if the strength of those mediated paths are statistically, significantly, different from each other.</p>
 <div class="float">
 <img src="images/CompMed/LewisParaMed.jpg" alt="An image of the parallel mediation we will work" />
 <div class="figcaption">An image of the parallel mediation we will work</div>
 </div>
-<div id="specifying-the-lavaan-model" class="section level4 hasAnchor" number="6.4.3.1">
-<h4><span class="header-section-number">6.4.3.1</span> Specifying the <em>lavaan</em> model<a href="CompMed.html#specifying-the-lavaan-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can use the guidelines above to specify our model and then request summaries of the fit indices and parameter estimates.</p>
 <div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="CompMed.html#cb353-1" tabindex="-1"></a>parallel_Lewis <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
 <span id="cb353-2"><a href="CompMed.html#cb353-2" tabindex="-1"></a><span class="st">    MntlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS</span></span>
 <span id="cb353-3"><a href="CompMed.html#cb353-3" tabindex="-1"></a><span class="st">    Engmt ~ a1*GRMS    </span></span>
 <span id="cb353-4"><a href="CompMed.html#cb353-4" tabindex="-1"></a><span class="st">    DisEngmt ~ a2*GRMS</span></span>
-<span id="cb353-5"><a href="CompMed.html#cb353-5" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
-<span id="cb353-6"><a href="CompMed.html#cb353-6" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
-<span id="cb353-7"><a href="CompMed.html#cb353-7" tabindex="-1"></a><span class="st">    contrast := indirect1 - indirect2</span></span>
-<span id="cb353-8"><a href="CompMed.html#cb353-8" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2</span></span>
-<span id="cb353-9"><a href="CompMed.html#cb353-9" tabindex="-1"></a><span class="st">    total_c := c_p + (indirect1) + (indirect2)</span></span>
-<span id="cb353-10"><a href="CompMed.html#cb353-10" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
-<span id="cb353-11"><a href="CompMed.html#cb353-11" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb353-12"><a href="CompMed.html#cb353-12" tabindex="-1"></a>para_Lewis_fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(parallel_Lewis, <span class="at">data =</span> Lewis_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>,</span>
-<span id="cb353-13"><a href="CompMed.html#cb353-13" tabindex="-1"></a>    <span class="at">bootstrap =</span> <span class="dv">1000</span>, <span class="at">missing =</span> <span class="st">&quot;fiml&quot;</span>)  <span class="co">#holds the &#39;whole&#39; result</span></span>
-<span id="cb353-14"><a href="CompMed.html#cb353-14" tabindex="-1"></a>pLewis_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(para_Lewis_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq =</span> T,</span>
-<span id="cb353-15"><a href="CompMed.html#cb353-15" tabindex="-1"></a>    <span class="at">fit =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">TRUE</span>)  <span class="co">#today, we really only need the R-squared from here    </span></span>
-<span id="cb353-16"><a href="CompMed.html#cb353-16" tabindex="-1"></a>pLewis_ParEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(para_Lewis_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
-<span id="cb353-17"><a href="CompMed.html#cb353-17" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)  <span class="co">#provides our estimates, se, p values for all the elements we specified</span></span>
-<span id="cb353-18"><a href="CompMed.html#cb353-18" tabindex="-1"></a></span>
-<span id="cb353-19"><a href="CompMed.html#cb353-19" tabindex="-1"></a>pLewis_sum</span>
-<span id="cb353-20"><a href="CompMed.html#cb353-20" tabindex="-1"></a>pLewis_ParEsts</span></code></pre></div>
+<span id="cb353-5"><a href="CompMed.html#cb353-5" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb353-6"><a href="CompMed.html#cb353-6" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
+<span id="cb353-7"><a href="CompMed.html#cb353-7" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
+<span id="cb353-8"><a href="CompMed.html#cb353-8" tabindex="-1"></a><span class="st">    contrast := indirect1 - indirect2</span></span>
+<span id="cb353-9"><a href="CompMed.html#cb353-9" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2</span></span>
+<span id="cb353-10"><a href="CompMed.html#cb353-10" tabindex="-1"></a><span class="st">    total_c := c_p + (indirect1) + (indirect2)</span></span>
+<span id="cb353-11"><a href="CompMed.html#cb353-11" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
+<span id="cb353-12"><a href="CompMed.html#cb353-12" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb353-13"><a href="CompMed.html#cb353-13" tabindex="-1"></a>para_Lewis_fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(parallel_Lewis, <span class="at">data =</span> Lewis_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>,</span>
+<span id="cb353-14"><a href="CompMed.html#cb353-14" tabindex="-1"></a>    <span class="at">bootstrap =</span> <span class="dv">1000</span>, <span class="at">missing =</span> <span class="st">&quot;fiml&quot;</span>)  <span class="co">#holds the &#39;whole&#39; result</span></span>
+<span id="cb353-15"><a href="CompMed.html#cb353-15" tabindex="-1"></a>pLewis_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(para_Lewis_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq =</span> T,</span>
+<span id="cb353-16"><a href="CompMed.html#cb353-16" tabindex="-1"></a>    <span class="at">fit =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">TRUE</span>)  <span class="co">#today, we really only need the R-squared from here    </span></span>
+<span id="cb353-17"><a href="CompMed.html#cb353-17" tabindex="-1"></a>pLewis_ParEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(para_Lewis_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
+<span id="cb353-18"><a href="CompMed.html#cb353-18" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)  <span class="co">#provides our estimates, se, p values for all the elements we specified</span></span>
+<span id="cb353-19"><a href="CompMed.html#cb353-19" tabindex="-1"></a></span>
+<span id="cb353-20"><a href="CompMed.html#cb353-20" tabindex="-1"></a>pLewis_sum</span>
+<span id="cb353-21"><a href="CompMed.html#cb353-21" tabindex="-1"></a>pLewis_ParEsts</span></code></pre></div>
 </div>
 <div id="table-and-figure" class="section level4 hasAnchor" number="6.4.3.2">
 <h4><span class="header-section-number">6.4.3.2</span> Table and Figure<a href="CompMed.html#table-and-figure" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1412,7 +1424,7 @@ In this parallel model, we can describe these effects this way:</p>
 <span id="cb355-4"><a href="CompMed.html#cb355-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb355-5"><a href="CompMed.html#cb355-5" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
 <span id="cb355-6"><a href="CompMed.html#cb355-6" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> para_Lewis_fit)</span></code></pre></div>
-<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>We can create model that communicates more intuitively with a little tinkering. First, let’s retrieve the current “map” of the layout.</p>
 <div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="CompMed.html#cb356-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(para_Lewis_fit)</span></code></pre></div>
 <pre><code>##      [,1]    [,2]       [,3]      
@@ -1433,7 +1445,7 @@ In this parallel model, we can describe these effects this way:</p>
 <p>We can update our figure by supplying this new map and adjusting the object and text sizes.</p>
 <div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="CompMed.html#cb360-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(para_Lewis_fit, <span class="at">layout =</span> pLewis_map, <span class="at">rect_width =</span> <span class="fl">1.5</span>,</span>
 <span id="cb360-2"><a href="CompMed.html#cb360-2" tabindex="-1"></a>    <span class="at">rect_height =</span> <span class="fl">1.25</span>, <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">4.5</span>)</span></code></pre></div>
-<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>Now let’s make a table.</p>
 <p><strong>Table 2 </strong></p>
 <table>
@@ -1449,158 +1461,193 @@ In this parallel model, we can describe these effects this way:</p>
 </tbody>
 </table>
 <table>
+<colgroup>
+<col width="40%" />
+<col width="12%" />
+<col width="14%" />
+<col width="11%" />
+<col width="21%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Predictor</th>
 <th align="center"><span class="math inline">\(B\)</span></th>
 <th align="center"><span class="math inline">\(SE_{B}\)</span></th>
 <th align="center"><span class="math inline">\(p\)</span></th>
-<th align="right"><span class="math inline">\(R^2\)</span></th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
 </tr>
 </thead>
 <tbody>
 </tbody>
 </table>
 <table>
+<colgroup>
+<col width="40%" />
+<col width="12%" />
+<col width="14%" />
+<col width="11%" />
+<col width="21%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Engagement coping (M1)</th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right">.27</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">.27</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Constant</td>
-<td align="right">1.494</td>
-<td align="right">0.109</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">1.494</td>
+<td align="center">0.109</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">GRMS (<span class="math inline">\(a_1\)</span>)</td>
-<td align="right">0.384</td>
-<td align="right">0.042</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">0.384</td>
+<td align="center">0.042</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <table>
+<colgroup>
+<col width="40%" />
+<col width="12%" />
+<col width="14%" />
+<col width="11%" />
+<col width="21%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Disengagement coping (M2)</th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right">.28</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">.28</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Constant</td>
-<td align="right">1.490</td>
-<td align="right">0.113</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">1.490</td>
+<td align="center">0.113</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">GRMS (<span class="math inline">\(a_2\)</span>)</td>
-<td align="right">0.386</td>
-<td align="right">0.043</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">0.386</td>
+<td align="center">0.043</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <table>
+<colgroup>
+<col width="40%" />
+<col width="12%" />
+<col width="14%" />
+<col width="11%" />
+<col width="21%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th align="left">Mental Health (IV)</th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right">.37</th>
+<th align="left">Mental Health (DV)</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">.37</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Constant</td>
-<td align="right">5.141</td>
-<td align="right">0.239</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">5.141</td>
+<td align="center">0.239</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">Engagement (<span class="math inline">\(b_1\)</span>)</td>
-<td align="right">0.144</td>
-<td align="right">0.090</td>
-<td align="right">0.109</td>
-<td align="right"></td>
+<td align="center">0.144</td>
+<td align="center">0.090</td>
+<td align="center">0.109</td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
 <td align="left">Disengagement (<span class="math inline">\(b_2\)</span>)</td>
-<td align="right">-0.391</td>
-<td align="right">0.089</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">-0.391</td>
+<td align="center">0.089</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">GRMS (<span class="math inline">\(c&#39;\)</span>)</td>
-<td align="right">-0.535</td>
-<td align="right">0.076</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">-0.535</td>
+<td align="center">0.076</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <table>
+<colgroup>
+<col width="40%" />
+<col width="12%" />
+<col width="14%" />
+<col width="11%" />
+<col width="21%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Summary of Effects</th>
-<th align="right"><span class="math inline">\(B\)</span></th>
-<th align="right"><span class="math inline">\(SE_{B}\)</span></th>
-<th align="right"><span class="math inline">\(p\)</span></th>
-<th align="right">95% CI</th>
+<th align="center"><span class="math inline">\(B\)</span></th>
+<th align="center"><span class="math inline">\(SE_{B}\)</span></th>
+<th align="center"><span class="math inline">\(p\)</span></th>
+<th align="center">95% CI</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Total</td>
-<td align="right">-0.631</td>
-<td align="right">0.060</td>
-<td align="right">&lt;0.001</td>
-<td align="right">-0.748, -0.507</td>
+<td align="center">-0.631</td>
+<td align="center">0.060</td>
+<td align="center">&lt;0.001</td>
+<td align="center">-0.748, -0.507</td>
 </tr>
 <tr class="even">
 <td align="left">Indirect 1 (<span class="math inline">\(a_1\)</span> * <span class="math inline">\(a_2\)</span>)</td>
-<td align="right">0.055</td>
-<td align="right">0.036</td>
-<td align="right">0.121</td>
-<td align="right">-0.009, 0.126</td>
+<td align="center">0.055</td>
+<td align="center">0.036</td>
+<td align="center">0.121</td>
+<td align="center">-0.009, 0.126</td>
 </tr>
 <tr class="odd">
 <td align="left">Indirect 2 (<span class="math inline">\(b_1\)</span> * <span class="math inline">\(b_2\)</span>)</td>
-<td align="right">-0.151</td>
-<td align="right">0.039</td>
-<td align="right">&lt;0.001</td>
-<td align="right">-0.230, -0.079</td>
+<td align="center">-0.151</td>
+<td align="center">0.039</td>
+<td align="center">&lt;0.001</td>
+<td align="center">-0.230, -0.079</td>
 </tr>
 <tr class="even">
 <td align="left">Total indirects</td>
-<td align="right">-0.096</td>
-<td align="right">0.054</td>
-<td align="right">0.075</td>
-<td align="right">-0.206, 0.008</td>
+<td align="center">-0.096</td>
+<td align="center">0.054</td>
+<td align="center">0.075</td>
+<td align="center">-0.206, 0.008</td>
 </tr>
 <tr class="odd">
 <td align="left">Contrast (Ind1 - Ind2)</td>
-<td align="right">0.206</td>
-<td align="right">0.052</td>
-<td align="right">&lt;0.001</td>
-<td align="right">0.112, 0.316</td>
+<td align="center">0.206</td>
+<td align="center">0.052</td>
+<td align="center">&lt;0.001</td>
+<td align="center">0.112, 0.316</td>
 </tr>
 </tbody>
 </table>
@@ -1714,25 +1761,26 @@ A model of parallel mediation examined the degree to which engagement and diseng
 <span id="cb361-3"><a href="CompMed.html#cb361-3" tabindex="-1"></a><span class="st">    Engmt ~ a1*GRMS    </span></span>
 <span id="cb361-4"><a href="CompMed.html#cb361-4" tabindex="-1"></a><span class="st">    DisEngmt ~ a2*GRMS</span></span>
 <span id="cb361-5"><a href="CompMed.html#cb361-5" tabindex="-1"></a><span class="st">    DisEngmt ~ d21*Engmt</span></span>
-<span id="cb361-6"><a href="CompMed.html#cb361-6" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
-<span id="cb361-7"><a href="CompMed.html#cb361-7" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
-<span id="cb361-8"><a href="CompMed.html#cb361-8" tabindex="-1"></a><span class="st">    indirect3 := a1 * d21 * b2</span></span>
-<span id="cb361-9"><a href="CompMed.html#cb361-9" tabindex="-1"></a><span class="st">    contrast1 := indirect1 - indirect2</span></span>
-<span id="cb361-10"><a href="CompMed.html#cb361-10" tabindex="-1"></a><span class="st">    contrast2 := indirect1 - indirect3</span></span>
-<span id="cb361-11"><a href="CompMed.html#cb361-11" tabindex="-1"></a><span class="st">    contrast3 := indirect2 - indirect3</span></span>
-<span id="cb361-12"><a href="CompMed.html#cb361-12" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2 + indirect3</span></span>
-<span id="cb361-13"><a href="CompMed.html#cb361-13" tabindex="-1"></a><span class="st">    total_c := c_p + indirect1 + indirect2 + indirect3</span></span>
-<span id="cb361-14"><a href="CompMed.html#cb361-14" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
-<span id="cb361-15"><a href="CompMed.html#cb361-15" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb361-16"><a href="CompMed.html#cb361-16" tabindex="-1"></a>serial_Lewis_fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(serial_Lewis, <span class="at">data =</span> Lewis_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>,</span>
-<span id="cb361-17"><a href="CompMed.html#cb361-17" tabindex="-1"></a>    <span class="at">missing =</span> <span class="st">&quot;fiml&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
-<span id="cb361-18"><a href="CompMed.html#cb361-18" tabindex="-1"></a>sLewis_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(serial_Lewis_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq =</span> T,</span>
-<span id="cb361-19"><a href="CompMed.html#cb361-19" tabindex="-1"></a>    <span class="at">fit =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb361-20"><a href="CompMed.html#cb361-20" tabindex="-1"></a>sLewis_ParEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(serial_Lewis_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
-<span id="cb361-21"><a href="CompMed.html#cb361-21" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb361-22"><a href="CompMed.html#cb361-22" tabindex="-1"></a></span>
-<span id="cb361-23"><a href="CompMed.html#cb361-23" tabindex="-1"></a>sLewis_sum</span>
-<span id="cb361-24"><a href="CompMed.html#cb361-24" tabindex="-1"></a>sLewis_ParEsts</span></code></pre></div>
+<span id="cb361-6"><a href="CompMed.html#cb361-6" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb361-7"><a href="CompMed.html#cb361-7" tabindex="-1"></a><span class="st">    indirect1 := a1 * b1</span></span>
+<span id="cb361-8"><a href="CompMed.html#cb361-8" tabindex="-1"></a><span class="st">    indirect2 := a2 * b2</span></span>
+<span id="cb361-9"><a href="CompMed.html#cb361-9" tabindex="-1"></a><span class="st">    indirect3 := a1 * d21 * b2</span></span>
+<span id="cb361-10"><a href="CompMed.html#cb361-10" tabindex="-1"></a><span class="st">    contrast1 := indirect1 - indirect2</span></span>
+<span id="cb361-11"><a href="CompMed.html#cb361-11" tabindex="-1"></a><span class="st">    contrast2 := indirect1 - indirect3</span></span>
+<span id="cb361-12"><a href="CompMed.html#cb361-12" tabindex="-1"></a><span class="st">    contrast3 := indirect2 - indirect3</span></span>
+<span id="cb361-13"><a href="CompMed.html#cb361-13" tabindex="-1"></a><span class="st">    total_indirects := indirect1 + indirect2 + indirect3</span></span>
+<span id="cb361-14"><a href="CompMed.html#cb361-14" tabindex="-1"></a><span class="st">    total_c := c_p + indirect1 + indirect2 + indirect3</span></span>
+<span id="cb361-15"><a href="CompMed.html#cb361-15" tabindex="-1"></a><span class="st">    direct := c_p</span></span>
+<span id="cb361-16"><a href="CompMed.html#cb361-16" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb361-17"><a href="CompMed.html#cb361-17" tabindex="-1"></a>serial_Lewis_fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(serial_Lewis, <span class="at">data =</span> Lewis_df, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>,</span>
+<span id="cb361-18"><a href="CompMed.html#cb361-18" tabindex="-1"></a>    <span class="at">missing =</span> <span class="st">&quot;fiml&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb361-19"><a href="CompMed.html#cb361-19" tabindex="-1"></a>sLewis_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(serial_Lewis_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq =</span> T,</span>
+<span id="cb361-20"><a href="CompMed.html#cb361-20" tabindex="-1"></a>    <span class="at">fit =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb361-21"><a href="CompMed.html#cb361-21" tabindex="-1"></a>sLewis_ParEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(serial_Lewis_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
+<span id="cb361-22"><a href="CompMed.html#cb361-22" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb361-23"><a href="CompMed.html#cb361-23" tabindex="-1"></a></span>
+<span id="cb361-24"><a href="CompMed.html#cb361-24" tabindex="-1"></a>sLewis_sum</span>
+<span id="cb361-25"><a href="CompMed.html#cb361-25" tabindex="-1"></a>sLewis_ParEsts</span></code></pre></div>
 <div id="table-and-figure-1" class="section level4 hasAnchor" number="6.5.2.1">
 <h4><span class="header-section-number">6.5.2.1</span> Table and Figure<a href="CompMed.html#table-and-figure-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To assist in table preparation, it is possible to export the results to a .csv file that can be manipulated in Excel, Microsoft Word, or other program to prepare an APA style table.</p>
@@ -1745,7 +1793,7 @@ A model of parallel mediation examined the degree to which engagement and diseng
 <span id="cb363-4"><a href="CompMed.html#cb363-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb363-5"><a href="CompMed.html#cb363-5" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
 <span id="cb363-6"><a href="CompMed.html#cb363-6" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> serial_Lewis_fit)</span></code></pre></div>
-<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>We can create model that communicates more intuitively with a little tinkering. First, let’s retrieve the current “map” of the layout.</p>
 <div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="CompMed.html#cb364-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(serial_Lewis_fit)</span></code></pre></div>
 <pre><code>##      [,1]    [,2]       [,3]      
@@ -1766,7 +1814,7 @@ A model of parallel mediation examined the degree to which engagement and diseng
 <p>We can update our figure by supplying this new map and adjusting the object and text sizes.</p>
 <div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="CompMed.html#cb368-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(serial_Lewis_fit, <span class="at">layout =</span> sLewis_map, <span class="at">rect_width =</span> <span class="fl">1.5</span>,</span>
 <span id="cb368-2"><a href="CompMed.html#cb368-2" tabindex="-1"></a>    <span class="at">rect_height =</span> <span class="fl">1.25</span>, <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">4.5</span>)</span></code></pre></div>
-<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>Now let’s make a table.</p>
 <p><strong>Table 4 </strong></p>
 <table>
@@ -1782,193 +1830,221 @@ A model of parallel mediation examined the degree to which engagement and diseng
 </tbody>
 </table>
 <table>
+<colgroup>
+<col width="40%" />
+<col width="12%" />
+<col width="14%" />
+<col width="11%" />
+<col width="21%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Predictor</th>
 <th align="center"><span class="math inline">\(B\)</span></th>
 <th align="center"><span class="math inline">\(SE_{B}\)</span></th>
 <th align="center"><span class="math inline">\(p\)</span></th>
-<th align="right"><span class="math inline">\(R^2\)</span></th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
 </tr>
 </thead>
 <tbody>
 </tbody>
 </table>
 <table>
+<colgroup>
+<col width="40%" />
+<col width="12%" />
+<col width="14%" />
+<col width="11%" />
+<col width="21%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th align="left">Engagement coping</th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right">.27</th>
+<th align="left">Engagement coping (M1)</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">.27</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Constant</td>
-<td align="right">1.494</td>
-<td align="right">0.112</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">1.494</td>
+<td align="center">0.112</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">GRMS (<span class="math inline">\(a_1\)</span>)</td>
-<td align="right">0.384</td>
-<td align="right">0.042</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Disengagement coping</th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right">.29</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Constant</td>
-<td align="right">1.400</td>
-<td align="right">0.133</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
-</tr>
-<tr class="even">
-<td align="left">GRMS (<span class="math inline">\(a_2\)</span>)</td>
-<td align="right">0.363</td>
-<td align="right">0.048</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
-</tr>
-<tr class="odd">
-<td align="left">Engagement (<span class="math inline">\(d_{21}\)</span>)</td>
-<td align="right">0.061</td>
-<td align="right">0.061</td>
-<td align="right">0.321</td>
-<td align="right"></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Mental Health</th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right">.37</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Constant</td>
-<td align="right">5.141</td>
-<td align="right">0.230</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
-</tr>
-<tr class="even">
-<td align="left">Engagement (<span class="math inline">\(b_1\)</span>)</td>
-<td align="right">0.144</td>
-<td align="right">0.089</td>
-<td align="right">0.107</td>
-<td align="right"></td>
-</tr>
-<tr class="odd">
-<td align="left">Disengagement (<span class="math inline">\(b_2\)</span>)</td>
-<td align="right">-0.391</td>
-<td align="right">0.090</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
-</tr>
-<tr class="even">
-<td align="left">GRMS (<span class="math inline">\(c&#39;\)</span>)</td>
-<td align="right">-0.535</td>
-<td align="right">0.077</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">0.384</td>
+<td align="center">0.042</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="42%" />
+<col width="40%" />
 <col width="12%" />
-<col width="13%" />
-<col width="10%" />
+<col width="14%" />
+<col width="11%" />
+<col width="21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Disengagement coping (M2)</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">.29</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Constant</td>
+<td align="center">1.400</td>
+<td align="center">0.133</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">GRMS (<span class="math inline">\(a_2\)</span>)</td>
+<td align="center">0.363</td>
+<td align="center">0.048</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">Engagement (<span class="math inline">\(d_{21}\)</span>)</td>
+<td align="center">0.061</td>
+<td align="center">0.061</td>
+<td align="center">0.321</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="40%" />
+<col width="12%" />
+<col width="14%" />
+<col width="11%" />
+<col width="21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Mental Health (DV)</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">.37</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Constant</td>
+<td align="center">5.141</td>
+<td align="center">0.230</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">Engagement (<span class="math inline">\(b_1\)</span>)</td>
+<td align="center">0.144</td>
+<td align="center">0.089</td>
+<td align="center">0.107</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">Disengagement (<span class="math inline">\(b_2\)</span>)</td>
+<td align="center">-0.391</td>
+<td align="center">0.090</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">GRMS (<span class="math inline">\(c&#39;\)</span>)</td>
+<td align="center">-0.535</td>
+<td align="center">0.077</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="40%" />
+<col width="12%" />
+<col width="14%" />
+<col width="11%" />
 <col width="21%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">Effects</th>
-<th align="right"><span class="math inline">\(B\)</span></th>
-<th align="right"><span class="math inline">\(SE_{B}\)</span></th>
-<th align="right"><span class="math inline">\(p\)</span></th>
-<th align="right">95% CI</th>
+<th align="center"><span class="math inline">\(B\)</span></th>
+<th align="center"><span class="math inline">\(SE_{B}\)</span></th>
+<th align="center"><span class="math inline">\(p\)</span></th>
+<th align="center">95% CI</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Total effect</td>
-<td align="right">-0.631</td>
-<td align="right">0.059</td>
-<td align="right">0.000</td>
-<td align="right">-0.735, -0.505</td>
+<td align="center">-0.631</td>
+<td align="center">0.059</td>
+<td align="center">0.000</td>
+<td align="center">-0.735, -0.505</td>
 </tr>
 <tr class="even">
 <td align="left">Indirect 1 (<span class="math inline">\(a_1\)</span> * <span class="math inline">\(a_2\)</span>)</td>
-<td align="right">0.055</td>
-<td align="right">0.036</td>
-<td align="right">0.126</td>
-<td align="right">-0.010, 0.133</td>
+<td align="center">0.055</td>
+<td align="center">0.036</td>
+<td align="center">0.126</td>
+<td align="center">-0.010, 0.133</td>
 </tr>
 <tr class="odd">
 <td align="left">Indirect 2 (<span class="math inline">\(b_1\)</span> * <span class="math inline">\(b_2\)</span>)</td>
-<td align="right">-0.142</td>
-<td align="right">0.039</td>
-<td align="right">&lt;0.001</td>
-<td align="right">-0.225, -0.076</td>
+<td align="center">-0.142</td>
+<td align="center">0.039</td>
+<td align="center">&lt;0.001</td>
+<td align="center">-0.225, -0.076</td>
 </tr>
 <tr class="even">
 <td align="left">Indirect 3 (<span class="math inline">\(b_1\)</span> * <span class="math inline">\(d_{21}\)</span> * <span class="math inline">\(b_2\)</span>)</td>
-<td align="right">-0.009</td>
-<td align="right">0.010</td>
-<td align="right">0.363</td>
-<td align="right">-0.031, 0.009</td>
+<td align="center">-0.009</td>
+<td align="center">0.010</td>
+<td align="center">0.363</td>
+<td align="center">-0.031, 0.009</td>
 </tr>
 <tr class="odd">
 <td align="left">Total indirects</td>
-<td align="right">-0.096</td>
-<td align="right">0.052</td>
-<td align="right">0.067</td>
-<td align="right">-0.205, 0.004</td>
+<td align="center">-0.096</td>
+<td align="center">0.052</td>
+<td align="center">0.067</td>
+<td align="center">-0.205, 0.004</td>
 </tr>
 <tr class="even">
 <td align="left">Contrast1 (Ind1 - Ind2)</td>
-<td align="right">0.197</td>
-<td align="right">0.053</td>
-<td align="right">&lt;0.001</td>
-<td align="right">0.101, 0.308</td>
+<td align="center">0.197</td>
+<td align="center">0.053</td>
+<td align="center">&lt;0.001</td>
+<td align="center">0.101, 0.308</td>
 </tr>
 <tr class="odd">
 <td align="left">Contrast2 (Ind1 - Ind3)</td>
-<td align="right">0.064</td>
-<td align="right">0.039</td>
-<td align="right">0.103</td>
-<td align="right">-0.009, 0.153</td>
+<td align="center">0.064</td>
+<td align="center">0.039</td>
+<td align="center">0.103</td>
+<td align="center">-0.009, 0.153</td>
 </tr>
 <tr class="even">
 <td align="left">Contrast3 (Ind2 - Ind3)</td>
-<td align="right">-0.133</td>
-<td align="right">0.041</td>
-<td align="right">0.001</td>
-<td align="right">-0.225, -0.06</td>
+<td align="center">-0.133</td>
+<td align="center">0.041</td>
+<td align="center">0.001</td>
+<td align="center">-0.225, -0.06</td>
 </tr>
 </tbody>
 </table>
@@ -2123,7 +2199,7 @@ A model of serial multiple mediation was analyzed examining the degree to which 
 </div>
 <div id="homeworked-example-3" class="section level2 hasAnchor" number="6.9">
 <h2><span class="header-section-number">6.9</span> Homeworked Example<a href="CompMed.html#homeworked-example-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="https://youtu.be/hXTFPSQrjpQ">Screencast Link</a></p>
+<p><a href="https://youtu.be/p-iScWS_tT0">Screencast Link</a></p>
 <p>For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the <a href="https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples">introductory lesson</a> in <a href="https://lhbikos.github.io/ReCenterPsychStats/">ReCentering Psych Stats</a>. An .rds file which holds the data is located in the <a href="https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples">Worked Examples</a> folder at the GitHub site the hosts the OER. The file name is <em>ReC.rds</em>.</p>
 <p>The suggested practice problem for this chapter is to conduct a complex (i.e., parallel or serial) mediation.</p>
 <div id="assign-each-variable-to-the-x-y-m1-and-m2-roles" class="section level3 unnumbered hasAnchor">
@@ -2142,45 +2218,51 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 <div id="import-the-data-and-format-the-variables-in-the-model-1" class="section level3 unnumbered hasAnchor">
 <h3>Import the data and format the variables in the model<a href="CompMed.html#import-the-data-and-format-the-variables-in-the-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="CompMed.html#cb369-1" tabindex="-1"></a>raw <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
-<p>I need to score the TradPed and SRPed variables</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="CompMed.html#cb370-1" tabindex="-1"></a>TradPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ClearResponsibilities&quot;</span>, <span class="st">&quot;EffectiveAnswers&quot;</span>, <span class="st">&quot;Feedback&quot;</span>,</span>
-<span id="cb370-2"><a href="CompMed.html#cb370-2" tabindex="-1"></a>    <span class="st">&quot;ClearOrganization&quot;</span>, <span class="st">&quot;ClearPresentation&quot;</span>)</span>
-<span id="cb370-3"><a href="CompMed.html#cb370-3" tabindex="-1"></a>raw<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(raw[, ..TradPed_vars], <span class="fl">0.75</span>)</span>
-<span id="cb370-4"><a href="CompMed.html#cb370-4" tabindex="-1"></a></span>
-<span id="cb370-5"><a href="CompMed.html#cb370-5" tabindex="-1"></a>Valued_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ValObjectives&quot;</span>, <span class="st">&quot;IncrUnderstanding&quot;</span>, <span class="st">&quot;IncrInterest&quot;</span>)</span>
-<span id="cb370-6"><a href="CompMed.html#cb370-6" tabindex="-1"></a>raw<span class="sc">$</span>Valued <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(raw[, ..Valued_vars], <span class="fl">0.75</span>)</span>
-<span id="cb370-7"><a href="CompMed.html#cb370-7" tabindex="-1"></a></span>
-<span id="cb370-8"><a href="CompMed.html#cb370-8" tabindex="-1"></a>SRPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;InclusvClassrm&quot;</span>, <span class="st">&quot;EquitableEval&quot;</span>, <span class="st">&quot;MultPerspectives&quot;</span>,</span>
-<span id="cb370-9"><a href="CompMed.html#cb370-9" tabindex="-1"></a>    <span class="st">&quot;DEIintegration&quot;</span>)</span>
-<span id="cb370-10"><a href="CompMed.html#cb370-10" tabindex="-1"></a>raw<span class="sc">$</span>SRPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(raw[, ..SRPed_vars], <span class="fl">0.75</span>)</span></code></pre></div>
-<p>I will create a babydf.</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="CompMed.html#cb371-1" tabindex="-1"></a>babydf <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(raw, Centering, TradPed, Valued, SRPed)</span></code></pre></div>
-<p>Let’s check the structure of the variables:</p>
-<pre rtidy="TRUE," tidy.opts="list(width.cutoff=70)"><code>str(babydf)</code></pre>
 <p>The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="CompMed.html#cb373-1" tabindex="-1"></a>babydf <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">filter</span>(raw, Course <span class="sc">==</span> <span class="st">&quot;Multivariate&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="CompMed.html#cb370-1" tabindex="-1"></a>raw <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">filter</span>(raw, Course <span class="sc">==</span> <span class="st">&quot;Multivariate&quot;</span>))</span></code></pre></div>
+<p>I need to score the TradPed, SRPed, and Valued variables</p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="CompMed.html#cb371-1" tabindex="-1"></a>TradPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ClearResponsibilities&quot;</span>, <span class="st">&quot;EffectiveAnswers&quot;</span>, <span class="st">&quot;Feedback&quot;</span>,</span>
+<span id="cb371-2"><a href="CompMed.html#cb371-2" tabindex="-1"></a>    <span class="st">&quot;ClearOrganization&quot;</span>, <span class="st">&quot;ClearPresentation&quot;</span>)</span>
+<span id="cb371-3"><a href="CompMed.html#cb371-3" tabindex="-1"></a>raw<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(raw[, ..TradPed_vars], <span class="fl">0.75</span>)</span>
+<span id="cb371-4"><a href="CompMed.html#cb371-4" tabindex="-1"></a></span>
+<span id="cb371-5"><a href="CompMed.html#cb371-5" tabindex="-1"></a>Valued_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ValObjectives&quot;</span>, <span class="st">&quot;IncrUnderstanding&quot;</span>, <span class="st">&quot;IncrInterest&quot;</span>)</span>
+<span id="cb371-6"><a href="CompMed.html#cb371-6" tabindex="-1"></a>raw<span class="sc">$</span>Valued <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(raw[, ..Valued_vars], <span class="fl">0.75</span>)</span>
+<span id="cb371-7"><a href="CompMed.html#cb371-7" tabindex="-1"></a></span>
+<span id="cb371-8"><a href="CompMed.html#cb371-8" tabindex="-1"></a>SRPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;InclusvClassrm&quot;</span>, <span class="st">&quot;EquitableEval&quot;</span>, <span class="st">&quot;MultPerspectives&quot;</span>,</span>
+<span id="cb371-9"><a href="CompMed.html#cb371-9" tabindex="-1"></a>    <span class="st">&quot;DEIintegration&quot;</span>)</span>
+<span id="cb371-10"><a href="CompMed.html#cb371-10" tabindex="-1"></a>raw<span class="sc">$</span>SRPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(raw[, ..SRPed_vars], <span class="fl">0.75</span>)</span></code></pre></div>
+<p>I will create a babydf.</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="CompMed.html#cb372-1" tabindex="-1"></a>babydf <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(raw, Centering, TradPed, Valued, SRPed)</span></code></pre></div>
+<p>Let’s check the structure of the variables:</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="CompMed.html#cb373-1" tabindex="-1"></a><span class="fu">str</span>(babydf)</span></code></pre></div>
+<pre><code>## Classes &#39;data.table&#39; and &#39;data.frame&#39;:   84 obs. of  4 variables:
+##  $ Centering: Factor w/ 2 levels &quot;Pre&quot;,&quot;Re&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ TradPed  : num  3.8 5 4.8 4 4.2 3 5 4.6 4 4.8 ...
+##  $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+##  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
+##  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</code></pre>
 <p>At this point, these my only inclusion/exclusion criteria. I can determine how many students (who consented) completed any portion of the survey.</p>
 </div>
 <div id="specify-and-run-the-lavaan-model-1" class="section level3 unnumbered hasAnchor">
 <h3>Specify and run the lavaan model<a href="CompMed.html#specify-and-run-the-lavaan-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="CompMed.html#cb374-1" tabindex="-1"></a>ReCpMed <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
-<span id="cb374-2"><a href="CompMed.html#cb374-2" tabindex="-1"></a><span class="st">          Valued ~ b1*TradPed + b2*SRPed + c_p*Centering</span></span>
-<span id="cb374-3"><a href="CompMed.html#cb374-3" tabindex="-1"></a><span class="st">          TradPed ~ a1*Centering</span></span>
-<span id="cb374-4"><a href="CompMed.html#cb374-4" tabindex="-1"></a><span class="st">          SRPed ~ a2*Centering</span></span>
-<span id="cb374-5"><a href="CompMed.html#cb374-5" tabindex="-1"></a><span class="st">          </span></span>
-<span id="cb374-6"><a href="CompMed.html#cb374-6" tabindex="-1"></a><span class="st">          indirect1 := a1 * b1</span></span>
-<span id="cb374-7"><a href="CompMed.html#cb374-7" tabindex="-1"></a><span class="st">          indirect2 := a2 * b2</span></span>
-<span id="cb374-8"><a href="CompMed.html#cb374-8" tabindex="-1"></a><span class="st">          contrast := indirect1 - indirect2</span></span>
-<span id="cb374-9"><a href="CompMed.html#cb374-9" tabindex="-1"></a><span class="st">          total_indirects := indirect1 + indirect2</span></span>
-<span id="cb374-10"><a href="CompMed.html#cb374-10" tabindex="-1"></a><span class="st">          total_c    := c_p + (indirect1) + (indirect2)</span></span>
-<span id="cb374-11"><a href="CompMed.html#cb374-11" tabindex="-1"></a><span class="st">          direct := c_p</span></span>
-<span id="cb374-12"><a href="CompMed.html#cb374-12" tabindex="-1"></a><span class="st">          &quot;</span></span>
-<span id="cb374-13"><a href="CompMed.html#cb374-13" tabindex="-1"></a>ReCpMedfit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(ReCpMed, <span class="at">data =</span> babydf, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&quot;fiml&quot;</span>)</span>
-<span id="cb374-14"><a href="CompMed.html#cb374-14" tabindex="-1"></a>ReCpMedsummary <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(ReCpMedfit, <span class="at">standardized =</span> T, <span class="at">rsq =</span> T,</span>
-<span id="cb374-15"><a href="CompMed.html#cb374-15" tabindex="-1"></a>    <span class="at">fit =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb374-16"><a href="CompMed.html#cb374-16" tabindex="-1"></a>ReC_pMedParamEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(ReCpMedfit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
-<span id="cb374-17"><a href="CompMed.html#cb374-17" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb374-18"><a href="CompMed.html#cb374-18" tabindex="-1"></a>ReCpMedsummary</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="CompMed.html#cb375-1" tabindex="-1"></a>ReCpMed <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
+<span id="cb375-2"><a href="CompMed.html#cb375-2" tabindex="-1"></a><span class="st">          Valued ~ b1*TradPed + b2*SRPed + c_p*Centering</span></span>
+<span id="cb375-3"><a href="CompMed.html#cb375-3" tabindex="-1"></a><span class="st">          TradPed ~ a1*Centering</span></span>
+<span id="cb375-4"><a href="CompMed.html#cb375-4" tabindex="-1"></a><span class="st">          SRPed ~ a2*Centering</span></span>
+<span id="cb375-5"><a href="CompMed.html#cb375-5" tabindex="-1"></a><span class="st">          </span></span>
+<span id="cb375-6"><a href="CompMed.html#cb375-6" tabindex="-1"></a><span class="st">          indirect1 := a1 * b1</span></span>
+<span id="cb375-7"><a href="CompMed.html#cb375-7" tabindex="-1"></a><span class="st">          indirect2 := a2 * b2</span></span>
+<span id="cb375-8"><a href="CompMed.html#cb375-8" tabindex="-1"></a><span class="st">          contrast := indirect1 - indirect2</span></span>
+<span id="cb375-9"><a href="CompMed.html#cb375-9" tabindex="-1"></a><span class="st">          total_indirects := indirect1 + indirect2</span></span>
+<span id="cb375-10"><a href="CompMed.html#cb375-10" tabindex="-1"></a><span class="st">          total_c    := c_p + (indirect1) + (indirect2)</span></span>
+<span id="cb375-11"><a href="CompMed.html#cb375-11" tabindex="-1"></a><span class="st">          direct := c_p</span></span>
+<span id="cb375-12"><a href="CompMed.html#cb375-12" tabindex="-1"></a><span class="st">          &quot;</span></span>
+<span id="cb375-13"><a href="CompMed.html#cb375-13" tabindex="-1"></a>ReCpMedfit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(ReCpMed, <span class="at">data =</span> babydf, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">missing =</span> <span class="st">&quot;fiml&quot;</span>)</span>
+<span id="cb375-14"><a href="CompMed.html#cb375-14" tabindex="-1"></a>ReCpMedsummary <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(ReCpMedfit, <span class="at">standardized =</span> T, <span class="at">rsq =</span> T,</span>
+<span id="cb375-15"><a href="CompMed.html#cb375-15" tabindex="-1"></a>    <span class="at">fit =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb375-16"><a href="CompMed.html#cb375-16" tabindex="-1"></a>ReC_pMedParamEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(ReCpMedfit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
+<span id="cb375-17"><a href="CompMed.html#cb375-17" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb375-18"><a href="CompMed.html#cb375-18" tabindex="-1"></a>ReCpMedsummary</span></code></pre></div>
 <pre><code>## lavaan 0.6.16 ended normally after 23 iterations
 ## 
 ##   Estimator                                         ML
@@ -2304,7 +2386,7 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 ##     0.256    0.188
 ##     0.271    0.199
 ##     0.015    0.011</code></pre>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="CompMed.html#cb376-1" tabindex="-1"></a>ReC_pMedParamEsts</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="CompMed.html#cb377-1" tabindex="-1"></a>ReC_pMedParamEsts</span></code></pre></div>
 <pre><code>##                lhs op                         rhs           label   est    se
 ## 1           Valued  ~                     TradPed              b1 0.686 0.133
 ## 2           Valued  ~                       SRPed              b2 0.119 0.138
@@ -2348,37 +2430,37 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 </div>
 <div id="use-tidysem-to-create-a-figure-that-represents-your-results-1" class="section level3 unnumbered hasAnchor">
 <h3>Use tidySEM to create a figure that represents your results<a href="CompMed.html#use-tidysem-to-create-a-figure-that-represents-your-results-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="CompMed.html#cb378-1" tabindex="-1"></a><span class="co"># only worked when I used the library to turn on all these pkgs</span></span>
-<span id="cb378-2"><a href="CompMed.html#cb378-2" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb378-3"><a href="CompMed.html#cb378-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb378-4"><a href="CompMed.html#cb378-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb378-5"><a href="CompMed.html#cb378-5" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
-<span id="cb378-6"><a href="CompMed.html#cb378-6" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> ReCpMedfit)</span></code></pre></div>
-<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="CompMed.html#cb379-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(ReCpMedfit)</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="CompMed.html#cb379-1" tabindex="-1"></a><span class="co"># only worked when I used the library to turn on all these pkgs</span></span>
+<span id="cb379-2"><a href="CompMed.html#cb379-2" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb379-3"><a href="CompMed.html#cb379-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb379-4"><a href="CompMed.html#cb379-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb379-5"><a href="CompMed.html#cb379-5" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
+<span id="cb379-6"><a href="CompMed.html#cb379-6" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> ReCpMedfit)</span></code></pre></div>
+<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="CompMed.html#cb380-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(ReCpMedfit)</span></code></pre></div>
 <pre><code>##      [,1]      [,2]        [,3]    
 ## [1,] NA        &quot;Centering&quot; NA      
 ## [2,] &quot;TradPed&quot; &quot;SRPed&quot;     &quot;Valued&quot;
 ## attr(,&quot;class&quot;)
 ## [1] &quot;layout_matrix&quot; &quot;matrix&quot;        &quot;array&quot;</code></pre>
 <p>To create the figure I showed at the beginning of the chapter, we will want three rows and three columns.</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="CompMed.html#cb381-1" tabindex="-1"></a>ReCpMed_map <span class="ot">&lt;-</span> tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;TradPed&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;Centering&quot;</span>, <span class="st">&quot;&quot;</span>,</span>
-<span id="cb381-2"><a href="CompMed.html#cb381-2" tabindex="-1"></a>    <span class="st">&quot;Valued&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;SRPed&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="at">rows =</span> <span class="dv">3</span>)</span>
-<span id="cb381-3"><a href="CompMed.html#cb381-3" tabindex="-1"></a>ReCpMed_map</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="CompMed.html#cb382-1" tabindex="-1"></a>ReCpMed_map <span class="ot">&lt;-</span> tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;TradPed&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;Centering&quot;</span>, <span class="st">&quot;&quot;</span>,</span>
+<span id="cb382-2"><a href="CompMed.html#cb382-2" tabindex="-1"></a>    <span class="st">&quot;Valued&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;SRPed&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="at">rows =</span> <span class="dv">3</span>)</span>
+<span id="cb382-3"><a href="CompMed.html#cb382-3" tabindex="-1"></a>ReCpMed_map</span></code></pre></div>
 <pre><code>##      [,1]        [,2]      [,3]    
 ## [1,] &quot;&quot;          &quot;TradPed&quot; &quot;&quot;      
 ## [2,] &quot;Centering&quot; &quot;&quot;        &quot;Valued&quot;
 ## [3,] &quot;&quot;          &quot;SRPed&quot;   &quot;&quot;      
 ## attr(,&quot;class&quot;)
 ## [1] &quot;layout_matrix&quot; &quot;matrix&quot;        &quot;array&quot;</code></pre>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="CompMed.html#cb383-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(ReCpMedfit, <span class="at">layout =</span> ReCpMed_map, <span class="at">rect_width =</span> <span class="fl">1.5</span>,</span>
-<span id="cb383-2"><a href="CompMed.html#cb383-2" tabindex="-1"></a>    <span class="at">rect_height =</span> <span class="fl">1.25</span>, <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">4.5</span>)</span></code></pre></div>
-<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="CompMed.html#cb384-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(ReCpMedfit, <span class="at">layout =</span> ReCpMed_map, <span class="at">rect_width =</span> <span class="fl">1.5</span>,</span>
+<span id="cb384-2"><a href="CompMed.html#cb384-2" tabindex="-1"></a>    <span class="at">rect_height =</span> <span class="fl">1.25</span>, <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">4.5</span>)</span></code></pre></div>
+<p><img src="06-ComplexMed_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 </div>
 <div id="create-a-table-that-includes-a-summary-of-the-effects-indirect-direct-total-total-indirect-as-well-as-contrasts" class="section level3 unnumbered hasAnchor">
 <h3>Create a table that includes a summary of the effects (indirect, direct, total, total indirect) as well as contrasts<a href="CompMed.html#create-a-table-that-includes-a-summary-of-the-effects-indirect-direct-total-total-indirect-as-well-as-contrasts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>I will write my results to a .csv file.</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="CompMed.html#cb384-1" tabindex="-1"></a><span class="fu">write.csv</span>(ReC_pMedParamEsts, <span class="at">file =</span> <span class="st">&quot;ReC_pMedParamEsts.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="CompMed.html#cb385-1" tabindex="-1"></a><span class="fu">write.csv</span>(ReC_pMedParamEsts, <span class="at">file =</span> <span class="st">&quot;ReC_pMedParamEsts.csv&quot;</span>)</span></code></pre></div>
 <p><strong>Table 1</strong></p>
 <table>
 <colgroup>
@@ -2393,13 +2475,20 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 </tbody>
 </table>
 <table>
+<colgroup>
+<col width="39%" />
+<col width="12%" />
+<col width="14%" />
+<col width="11%" />
+<col width="22%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Predictor</th>
 <th align="center"><span class="math inline">\(B\)</span></th>
 <th align="center"><span class="math inline">\(SE_{B}\)</span></th>
 <th align="center"><span class="math inline">\(p\)</span></th>
-<th align="right"><span class="math inline">\(R^2\)</span></th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
 </tr>
 </thead>
 <tbody>
@@ -2407,172 +2496,172 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 </table>
 <table>
 <colgroup>
-<col width="42%" />
+<col width="40%" />
 <col width="12%" />
-<col width="13%" />
-<col width="10%" />
+<col width="14%" />
+<col width="11%" />
 <col width="21%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Traditional Pedagogy</th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right">.04</th>
+<th align="left">Traditional Pedagogy (M1)</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">.04</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Constant</td>
-<td align="right">3.870</td>
-<td align="right">0.226</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">3.870</td>
+<td align="center">0.234</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">Centering (<span class="math inline">\(a_1\)</span>)</td>
-<td align="right">0.312</td>
-<td align="right">0.136</td>
-<td align="right">0.022</td>
-<td align="right"></td>
+<td align="center">0.312</td>
+<td align="center">0.141</td>
+<td align="center">0.027</td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="42%" />
+<col width="40%" />
 <col width="12%" />
-<col width="13%" />
-<col width="10%" />
+<col width="14%" />
+<col width="11%" />
 <col width="21%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Socially Responsive Pedagogy</th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right">.09</th>
+<th align="left">Socially Responsive Pedagogy (M2)</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">.09</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Constant</td>
-<td align="right">4.029</td>
-<td align="right">0.184</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">4.029</td>
+<td align="center">0.193</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">Centering (<span class="math inline">\(a_2\)</span>)</td>
-<td align="right">0.353</td>
-<td align="right">0.112</td>
-<td align="right">0.002</td>
-<td align="right"></td>
+<td align="center">0.353</td>
+<td align="center">0.116</td>
+<td align="center">0.002</td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="42%" />
+<col width="40%" />
 <col width="12%" />
-<col width="13%" />
-<col width="10%" />
+<col width="14%" />
+<col width="11%" />
 <col width="21%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Perceived Course Value</th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right"></th>
-<th align="right">.58</th>
+<th align="left">Perceived Course Value (DV)</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">.58</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Constant</td>
-<td align="right">0.710</td>
-<td align="right">0.462</td>
-<td align="right">0.124</td>
-<td align="right"></td>
+<td align="center">0.710</td>
+<td align="center">0.477</td>
+<td align="center">0.136</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">Traditional Pedagogy (<span class="math inline">\(b_1\)</span>)</td>
-<td align="right">0.686</td>
-<td align="right">0.136</td>
-<td align="right">&lt;0.001</td>
-<td align="right"></td>
+<td align="center">0.686</td>
+<td align="center">0.133</td>
+<td align="center">&lt;0.001</td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
 <td align="left">Socially Rx Pedagogy (<span class="math inline">\(b_2\)</span>)</td>
-<td align="right">0.119</td>
-<td align="right">0.142</td>
-<td align="right">0.400</td>
-<td align="right"></td>
+<td align="center">0.119</td>
+<td align="center">0.141</td>
+<td align="center">0.397</td>
+<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left">Centering (<span class="math inline">\(c&#39;\)</span>)</td>
-<td align="right">0.015</td>
-<td align="right">0.105</td>
-<td align="right">0.889</td>
-<td align="right"></td>
+<td align="center">0.015</td>
+<td align="center">0.102</td>
+<td align="center">0.885</td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="42%" />
+<col width="40%" />
 <col width="12%" />
-<col width="13%" />
-<col width="10%" />
+<col width="14%" />
+<col width="11%" />
 <col width="21%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">Effects</th>
-<th align="right"><span class="math inline">\(B\)</span></th>
-<th align="right"><span class="math inline">\(SE_{B}\)</span></th>
-<th align="right"><span class="math inline">\(p\)</span></th>
-<th align="right">95% CI</th>
+<th align="center"><span class="math inline">\(B\)</span></th>
+<th align="center"><span class="math inline">\(SE_{B}\)</span></th>
+<th align="center"><span class="math inline">\(p\)</span></th>
+<th align="center">95% CI</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Total effect</td>
-<td align="right">0.271</td>
-<td align="right">0.144</td>
-<td align="right">0.059</td>
-<td align="right">0.013, 0.580</td>
+<td align="center">0.271</td>
+<td align="center">0.143</td>
+<td align="center">0.059</td>
+<td align="center">-0.024, 0.550</td>
 </tr>
 <tr class="even">
-<td align="left">Indirect 1 (<span class="math inline">\(a_1\)</span> * <span class="math inline">\(a_2\)</span>)</td>
-<td align="right">0.214</td>
-<td align="right">0.102</td>
-<td align="right">0.036</td>
-<td align="right">0.036, 0.442</td>
+<td align="left">Indirect 1 (<span class="math inline">\(a_1\)</span> * <span class="math inline">\(b_1\)</span>)</td>
+<td align="center">0.214</td>
+<td align="center">0.103</td>
+<td align="center">0.037</td>
+<td align="center">0.035, 0.440</td>
 </tr>
 <tr class="odd">
-<td align="left">Indirect 2 (<span class="math inline">\(b_1\)</span> * <span class="math inline">\(b_2\)</span>)</td>
-<td align="right">0.042</td>
-<td align="right">0.053</td>
-<td align="right">0.429</td>
-<td align="right">-0.038, 0.195</td>
+<td align="left">Indirect 2 (<span class="math inline">\(a_2\)</span> * <span class="math inline">\(b_2\)</span>)</td>
+<td align="center">0.042</td>
+<td align="center">0.053</td>
+<td align="center">0.429</td>
+<td align="center">-0.040, 0.184</td>
 </tr>
 <tr class="even">
 <td align="left">Total indirects</td>
-<td align="right">0.256</td>
-<td align="right">0.107</td>
-<td align="right">0.017</td>
-<td align="right">0.061, 0.473</td>
+<td align="center">0.256</td>
+<td align="center">0.111</td>
+<td align="center">0.021</td>
+<td align="center">0.060, 0.489</td>
 </tr>
 <tr class="odd">
 <td align="left">Contrast1 (Ind1 - Ind2)</td>
-<td align="right">0.172</td>
-<td align="right">0.123</td>
-<td align="right">0.162</td>
-<td align="right">-0.021,0.431</td>
+<td align="center">0.172</td>
+<td align="center">0.120</td>
+<td align="center">0.152</td>
+<td align="center">-0.041, 0.423</td>
 </tr>
 </tbody>
 </table>
@@ -2589,8 +2678,8 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 </div>
 <div id="represent-your-work-in-an-apa-style-write-up-1" class="section level3 unnumbered hasAnchor">
 <h3>Represent your work in an APA-style write-up<a href="CompMed.html#represent-your-work-in-an-apa-style-write-up-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A model of parallel mediation analyzed the degree to which students’ perceptions of traditional and socially responsive pedagogy mediated the relationship between explicit recentering of the course and course value. Hayes <span class="citation">(<a href="#ref-hayes_more_2022">2022b</a>)</span> recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously. The resultant direct and indirect values for each path account for other mediation paths. Using the <em>lavaan</em> (v. 0.6-17) package in R, coefficients for specific indirect, total indirect, direct, and total were computed. Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.</p>
-<p>Results (depicted in Figure 1 and presented in Table 1) suggest that 58% of the variance in perceptions of course value is accounted for by the model. The indirect effect predicting course value from explicit recentering through traditional pedagogy was statistically significant <span class="math inline">\((B = 0.214, SE = 0.102, p = 0.036, 95CI [0.036, 0.442])\)</span>. Examining the individual paths we see that <span class="math inline">\(a_{1}\)</span> was positive and statistically significant (recentering is associated with higher evaluations of traditional pedagogy). The <span class="math inline">\(b_{1}\)</span> path was similarly statistically significant (traditional pedagogy was associated with course valuation). The indirect effect predicting course value from recentering through socially responsive pedagogy was not statistically significant <span class="math inline">\(B = 0.042, SE = 0.053, p = 0.429, 95CE [-0.038, 0.195])\)</span>. While explicit recentering had a statistically significant effect on ratings of socially responsive pedagogy (i.e., the <span class="math inline">\(a_{2}\)</span> path), socially responsive pedagogy did not have a statistically significant effect on perceptions of course value (i.e., the <span class="math inline">\(b_{2}\)</span> path). The drop in magnitude and near-significance from the total effect <span class="math inline">\((B = 0.271, p = 0.059)\)</span> to the direct effect <span class="math inline">\((B = 0.014, p = 0.889)\)</span> supports the presence of mediation. A pairwise comparison of the specific indirect effects indicated that the strength of the effects were not statistically significantly different from each other. In summary, the effects of explicit recentering on perceived value to the student appears to be mediated through students evaluation of traditional pedagogy.</p>
+<p>A model of parallel mediation analyzed the degree to which students’ perceptions of traditional and socially responsive pedagogy mediated the relationship between explicit recentering of the course and course value. Hayes <span class="citation">(<a href="#ref-hayes_more_2022">2022b</a>)</span> recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously. The resultant direct and indirect values for each path account for other mediation paths. Using the <em>lavaan</em> (v. 0.6-16) package in R, coefficients for specific indirect, total indirect, direct, and total were computed. Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.</p>
+<p>Results (depicted in Figure 1 and presented in Table 1) suggest that 58% of the variance in perceptions of course value is accounted for by the model. The indirect effect predicting course value from explicit recentering through traditional pedagogy was statistically significant <span class="math inline">\((B = 0.214, SE = 0.103, p = 0.037, 95CI [0.035, 0.440])\)</span>. Examining the individual paths we see that <span class="math inline">\(a_{1}\)</span> was positive and statistically significant (recentering is associated with higher evaluations of traditional pedagogy). The <span class="math inline">\(b_{1}\)</span> path was similarly statistically significant (traditional pedagogy was associated with course valuation). The indirect effect predicting course value from recentering through socially responsive pedagogy was not statistically significant <span class="math inline">\(B = 0.042, SE = 0.053, p = 0.429, 95CE [-0.040, 0.184])\)</span>. While explicit recentering had a statistically significant effect on ratings of socially responsive pedagogy (i.e., the <span class="math inline">\(a_{2}\)</span> path), socially responsive pedagogy did not have a statistically significant effect on perceptions of course value (i.e., the <span class="math inline">\(b_{2}\)</span> path). The drop in magnitude and near-significance from the total effect <span class="math inline">\((B = 0.271, p = 0.059)\)</span> to the direct effect <span class="math inline">\((B = 0.015, p = 0.885)\)</span> supports the presence of mediation. A pairwise comparison of the specific indirect effects indicated that the strength of the effects were not statistically significantly different from each other. In summary, the effects of explicit recentering on perceived value to the student appears to be mediated through students evaluation of traditional pedagogy.</p>
 </div>
 <div id="explanation-to-grader-1" class="section level3 unnumbered hasAnchor">
 <h3>Explanation to grader<a href="CompMed.html#explanation-to-grader-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
