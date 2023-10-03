@@ -1,0 +1,2 @@
+"0","ReC_SimpModOLS <- as.data.frame(broom::tidy(ReC_SimpMod))"
+"0","write.csv(ReC_SimpModOLS, ""ReC_SimpModOLS.csv"")"

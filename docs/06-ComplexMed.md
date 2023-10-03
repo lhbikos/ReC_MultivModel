@@ -38,10 +38,9 @@ The suggestions for practice in this chapter include conducting parallel, serial
 
 In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
 
-* Hayes, A. F. (2022).  *Introduction to mediation, moderation, and conditional process anlaysis:  A regression-based approach*. New York, NY: Guilford Press. Available as an ebook from the SPU library:  https://alliance-spu.primo.exlibrisgroup.com/permalink/01ALLIANCE_SPU/1q85832/alma99900435260301847  
-  - **Chapter 5: More than One Mediator**: This chapter walks the reader through parallel and serial mediation models.  We will do both! 
-  - **Appendix A:  Using Process**:  An essential tool for PROCESS users because, even when we are in the R environment, this is the "idea book." That is, the place where all the path models are presented in figures.
-* Lewis, J. A., Williams, M. G., Peppers, E. J., & Gadson, C. A. (2017). Applying intersectionality to explore the relations between gendered racism and health among Black women. *Journal of Counseling Psychology*, *64*(5), 475–486. https://doi-org.ezproxy.spu.edu/10.1037/cou0000231
+* Hayes, A. F. (2022).  *Introduction to mediation, moderation, and conditional process analysis:  A regression-based approach*. New York, NY: Guilford Press.  
+  - **Chapter 5: More than one mediator**: This chapter walks the reader through parallel and serial mediation models.  We will do both! 
+  - **Appendix A:  Using PROCESS**:  An essential tool for PROCESS users because, even when we are in the R environment, this is the "idea book." That is, the place where all the path models are presented in figures.
 
 ### Packages
 
@@ -189,6 +188,7 @@ parallel_med <- "
     total_c    := c_p + (indirect1) + (indirect2)
     direct := c_p
  "
+set.seed(230925)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
 parallel_fit <- lavaan::sem(parallel_med, data = pData, se = "bootstrap",
     missing = "fiml", bootstrap = 1000)
 pfit_sum <- lavaan::summary(parallel_fit, standardized = TRUE, rsq = T,
@@ -264,13 +264,13 @@ pfit_sum
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   Y ~                                                                   
-##     M1        (b1)    0.456    0.111    4.123    0.000    0.247    0.670
-##     M2        (b2)    0.743    0.074   10.095    0.000    0.611    0.903
-##     X        (c_p)    0.030    0.100    0.301    0.764   -0.176    0.214
+##     M1        (b1)    0.456    0.107    4.243    0.000    0.241    0.667
+##     M2        (b2)    0.743    0.075    9.972    0.000    0.605    0.894
+##     X        (c_p)    0.030    0.099    0.305    0.760   -0.161    0.221
 ##   M1 ~                                                                  
-##     X         (a1)    0.510    0.079    6.480    0.000    0.357    0.673
+##     X         (a1)    0.510    0.081    6.308    0.000    0.353    0.657
 ##   M2 ~                                                                  
-##     X         (a2)   -0.381    0.121   -3.152    0.002   -0.619   -0.135
+##     X         (a2)   -0.381    0.126   -3.014    0.003   -0.630   -0.129
 ##    Std.lv  Std.all
 ##                   
 ##     0.456    0.383
@@ -283,9 +283,9 @@ pfit_sum
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .Y                 0.113    0.092    1.224    0.221   -0.068    0.289
-##    .M1               -0.089    0.097   -0.913    0.361   -0.262    0.113
-##    .M2                0.017    0.120    0.140    0.888   -0.215    0.256
+##    .Y                 0.113    0.098    1.155    0.248   -0.088    0.297
+##    .M1               -0.089    0.099   -0.897    0.370   -0.279    0.098
+##    .M2                0.017    0.121    0.139    0.889   -0.215    0.273
 ##    Std.lv  Std.all
 ##     0.113    0.083
 ##    -0.089   -0.078
@@ -293,9 +293,9 @@ pfit_sum
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .Y                 0.855    0.106    8.030    0.000    0.618    1.027
-##    .M1                0.970    0.118    8.221    0.000    0.731    1.181
-##    .M2                1.415    0.193    7.328    0.000    1.014    1.792
+##    .Y                 0.855    0.106    8.031    0.000    0.622    1.035
+##    .M1                0.970    0.118    8.193    0.000    0.728    1.191
+##    .M2                1.415    0.181    7.815    0.000    1.048    1.742
 ##    Std.lv  Std.all
 ##     0.855    0.465
 ##     0.970    0.748
@@ -309,12 +309,12 @@ pfit_sum
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect1         0.233    0.069    3.381    0.001    0.107    0.381
-##     indirect2        -0.283    0.090   -3.159    0.002   -0.466   -0.100
-##     contrast          0.516    0.103    5.007    0.000    0.329    0.725
-##     total_indircts   -0.051    0.122   -0.415    0.678   -0.299    0.194
-##     total_c          -0.021    0.123   -0.167    0.868   -0.277    0.215
-##     direct            0.030    0.100    0.301    0.764   -0.176    0.214
+##     indirect1         0.233    0.068    3.435    0.001    0.110    0.376
+##     indirect2        -0.283    0.094   -3.026    0.002   -0.473   -0.094
+##     contrast          0.516    0.103    5.001    0.000    0.307    0.712
+##     total_indircts   -0.051    0.127   -0.400    0.689   -0.302    0.198
+##     total_c          -0.021    0.131   -0.157    0.876   -0.277    0.238
+##     direct            0.030    0.099    0.305    0.760   -0.161    0.221
 ##    Std.lv  Std.all
 ##     0.233    0.192
 ##    -0.283   -0.234
@@ -330,45 +330,45 @@ pfit_ParEsts
 
 ```
 ##                lhs op                         rhs           label    est    se
-## 1                Y  ~                          M1              b1  0.456 0.111
-## 2                Y  ~                          M2              b2  0.743 0.074
-## 3                Y  ~                           X             c_p  0.030 0.100
-## 4               M1  ~                           X              a1  0.510 0.079
-## 5               M2  ~                           X              a2 -0.381 0.121
+## 1                Y  ~                          M1              b1  0.456 0.107
+## 2                Y  ~                          M2              b2  0.743 0.075
+## 3                Y  ~                           X             c_p  0.030 0.099
+## 4               M1  ~                           X              a1  0.510 0.081
+## 5               M2  ~                           X              a2 -0.381 0.126
 ## 6                Y ~~                           Y                  0.855 0.106
 ## 7               M1 ~~                          M1                  0.970 0.118
-## 8               M2 ~~                          M2                  1.415 0.193
+## 8               M2 ~~                          M2                  1.415 0.181
 ## 9                X ~~                           X                  1.253 0.000
-## 10               Y ~1                                              0.113 0.092
-## 11              M1 ~1                                             -0.089 0.097
-## 12              M2 ~1                                              0.017 0.120
+## 10               Y ~1                                              0.113 0.098
+## 11              M1 ~1                                             -0.089 0.099
+## 12              M2 ~1                                              0.017 0.121
 ## 13               X ~1                                              0.009 0.000
-## 14       indirect1 :=                       a1*b1       indirect1  0.233 0.069
-## 15       indirect2 :=                       a2*b2       indirect2 -0.283 0.090
+## 14       indirect1 :=                       a1*b1       indirect1  0.233 0.068
+## 15       indirect2 :=                       a2*b2       indirect2 -0.283 0.094
 ## 16        contrast :=         indirect1-indirect2        contrast  0.516 0.103
-## 17 total_indirects :=         indirect1+indirect2 total_indirects -0.051 0.122
-## 18         total_c := c_p+(indirect1)+(indirect2)         total_c -0.021 0.123
-## 19          direct :=                         c_p          direct  0.030 0.100
+## 17 total_indirects :=         indirect1+indirect2 total_indirects -0.051 0.127
+## 18         total_c := c_p+(indirect1)+(indirect2)         total_c -0.021 0.131
+## 19          direct :=                         c_p          direct  0.030 0.099
 ##         z pvalue ci.lower ci.upper std.lv std.all std.nox
-## 1   4.123  0.000    0.249    0.679  0.456   0.383   0.383
-## 2  10.095  0.000    0.612    0.906  0.743   0.693   0.693
-## 3   0.301  0.764   -0.174    0.215  0.030   0.025   0.022
-## 4   6.480  0.000    0.355    0.664  0.510   0.502   0.448
-## 5  -3.152  0.002   -0.609   -0.124 -0.381  -0.338  -0.302
-## 6   8.030  0.000    0.676    1.102  0.855   0.465   0.465
-## 7   8.221  0.000    0.773    1.222  0.970   0.748   0.748
-## 8   7.328  0.000    1.097    1.872  1.415   0.886   0.886
+## 1   4.243  0.000    0.227    0.658  0.456   0.383   0.383
+## 2   9.972  0.000    0.597    0.890  0.743   0.693   0.693
+## 3   0.305  0.760   -0.160    0.227  0.030   0.025   0.022
+## 4   6.308  0.000    0.356    0.660  0.510   0.502   0.448
+## 5  -3.014  0.003   -0.624   -0.125 -0.381  -0.338  -0.302
+## 6   8.031  0.000    0.671    1.078  0.855   0.465   0.465
+## 7   8.193  0.000    0.758    1.248  0.970   0.748   0.748
+## 8   7.815  0.000    1.113    1.834  1.415   0.886   0.886
 ## 9      NA     NA    1.253    1.253  1.253   1.000   1.253
-## 10  1.224  0.221   -0.068    0.289  0.113   0.083   0.083
-## 11 -0.913  0.361   -0.278    0.099 -0.089  -0.078  -0.078
-## 12  0.140  0.888   -0.231    0.237  0.017   0.013   0.013
+## 10  1.155  0.248   -0.078    0.301  0.113   0.083   0.083
+## 11 -0.897  0.370   -0.286    0.094 -0.089  -0.078  -0.078
+## 12  0.139  0.889   -0.234    0.240  0.017   0.013   0.013
 ## 13     NA     NA    0.009    0.009  0.009   0.008   0.009
-## 14  3.381  0.001    0.113    0.390  0.233   0.192   0.172
-## 15 -3.159  0.002   -0.459   -0.097 -0.283  -0.234  -0.209
-## 16  5.007  0.000    0.316    0.711  0.516   0.426   0.380
-## 17 -0.415  0.678   -0.292    0.206 -0.051  -0.042  -0.037
-## 18 -0.167  0.868   -0.262    0.240 -0.021  -0.017  -0.015
-## 19  0.301  0.764   -0.174    0.215  0.030   0.025   0.022
+## 14  3.435  0.001    0.124    0.395  0.233   0.192   0.172
+## 15 -3.026  0.002   -0.483   -0.105 -0.283  -0.234  -0.209
+## 16  5.001  0.000    0.299    0.708  0.516   0.426   0.380
+## 17 -0.400  0.689   -0.304    0.193 -0.051  -0.042  -0.037
+## 18 -0.157  0.876   -0.251    0.252 -0.021  -0.017  -0.015
+## 19  0.305  0.760   -0.160    0.227  0.030   0.025   0.022
 ```
 
 
@@ -398,50 +398,9 @@ Here's what the base package gets us
 ```r
 # only worked when I used the library to turn on all these pkgs
 library(lavaan)
-```
-
-```
-## This is lavaan 0.6-16
-## lavaan is FREE software! Please report any bugs.
-```
-
-```r
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 library(ggplot2)
 library(tidySEM)
-```
-
-```
-## Loading required package: OpenMx
-```
-
-```
-## Registered S3 method overwritten by 'tidySEM':
-##   method          from  
-##   predict.MxModel OpenMx
-```
-
-```r
 tidySEM::graph_sem(model = parallel_fit)
 ```
 
@@ -500,28 +459,28 @@ There are a number of ways to tabalize the data.  You might be surprised to lear
 
 |M1                          |         |          |        |.25
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |-0.089	 |0.097	    |0.360   |               |
-|X ($a_1$)                   |0.510	   |0.076	    |0.000   |               |
+|Constant                    |-0.089	 |0.099	    |0.370   |               |
+|X ($a_1$)                   |0.510	   |0.081	    |<0.001  |               |
 
 |M2                          |         |          |        |.11
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |0.017	   |0.126	   |0.894    |               |
-|X ($a_2$)                   |-0.381	 |0.117	   |0.001    |               |
-
+|Constant                    |0.017	   |0.121	    |0.889   |               |
+|X ($a_2$)                   |-0.381	 |0.126	    |0.003   |               |
+ 
 |DV                          |         |          |        |.54
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |0.113	   |0.097	    |0.243   |               |
-|M1 ($b_1$)                  |0.456	   |0.113	    |<0.001  |               |
-|M2 ($b_2$)                  |0.743	   |0.074     |<0.001  |               |
-|X ($c'$)                    |0.030	   |0.098	    |0.757   |               |
+|Constant                    |0.113	   |0.098	    |0.248   |               |
+|M1 ($b_1$)                  |0.456	   |0.107	    |<0.001  |               |
+|M2 ($b_2$)                  |0.743	   |0.075     |<0.001  |               |
+|X ($c'$)                    |0.030	   |0.099	    |0.760   |               |
 
 |Summary of Effects          |$B$      |$SE_{B}$  |$p$     |95% CI
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Total                       |-0.021	 |0.120	    |0.865   |-0.251, 0.214  | 
-|Indirect 1 ($a_1$ * $a_2$)  |0.233	   |0.070	    |0.001   |0.116,	0.394  |                        
-|Indirect 2 ($b_1$ * $b_2$)  |-0.283	 |0.086	    |0.001	 |-0.455, -0.106 |           
-|Total indirects             |-0.051	 |0.121	    |0.676	 |-0.280, 0.187  |
-|Contrast (Ind1 - Ind2)      |0.516	   |0.100	    |0.000	 |0.324,	0.725  |
+|Total                       |-0.021	 |0.131	    |0.876   |-0.251, 0.252  | 
+|Indirect 1 ($a_1$ * $a_2$)  |0.233	   |0.068	    |0.001	 |0.124,	0.395  |                        
+|Indirect 2 ($b_1$ * $b_2$)  |-0.283	 |0.094	    |0.002	 |-0.483,	-0.105 |           
+|Total indirects             |-0.051	 |0.127	    |0.689	 |-0.304,	0.193  |
+|Contrast (Ind1 - Ind2)      |0.516	   |0.103	    |<0.001	 |0.299,	0.708  |
 
 |
 |--------------------------------------------------------------------------|
@@ -646,21 +605,6 @@ for(i in 1:ncol(dfLewis)){  # for loop to go through each column of the datafram
 
 #rounding to integers so that the data resembles that which was collected
 library(tidyverse)
-```
-
-```
-## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ lubridate 1.9.2     ✔ tibble    3.2.1
-## ✔ purrr     1.0.1     ✔ tidyr     1.3.0
-## ✔ readr     2.1.4     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-```
-
-```r
 dfLewis <- dfLewis %>% round(0) 
 
 #quick check of my work
@@ -793,6 +737,7 @@ parallel_Lewis <- "
     total_c := c_p + (indirect1) + (indirect2)
     direct := c_p
 "
+set.seed(230925)  #necessary for reproducible results because lavaan introduces randomness into the estimation process
 para_Lewis_fit <- lavaan::sem(parallel_Lewis, data = Lewis_df, se = "bootstrap",
     bootstrap = 1000, missing = "fiml")  #holds the 'whole' result
 pLewis_sum <- lavaan::summary(para_Lewis_fit, standardized = TRUE, rsq = T,
@@ -884,28 +829,28 @@ Now let's make a table.
 
 |Engagement coping (M1)      |         |          |        |.27
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |1.494    |0.109     |<0.001  |               |
+|Constant                    |1.494    |0.111     |<0.001  |               |
 |GRMS ($a_1$)                |0.384    |0.042     |<0.001  |               |
 
 |Disengagement coping (M2)   |         |          |        |.28
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |1.490    |0.113     |<0.001  |               |
-|GRMS ($a_2$)                |0.386    |0.043     |<0.001  |               |
+|Constant                    |1.490    |0.100     |<0.001  |               |
+|GRMS ($a_2$)                |0.386    |0.038     |<0.001  |               |
 
 |Mental Health (DV)          |         |          |        |.37
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |5.141    |0.239     |<0.001  |               |
-|Engagement ($b_1$)          |0.144    |0.090     |0.109   |               |
+|Constant                    |5.141    |0.226     |<0.001  |               |
+|Engagement ($b_1$)          |0.144    |0.089     |0.106   |               |
 |Disengagement ($b_2$)       |-0.391   |0.089     |<0.001  |               |
 |GRMS ($c'$)                 |-0.535   |0.076     |<0.001  |               |
 
 |Summary of Effects          |$B$      |$SE_{B}$  |$p$     |95% CI
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Total                       |-0.631   |0.060     |<0.001  |-0.748, -0.507 | 
-|Indirect 1 ($a_1$ * $a_2$)  |0.055    |0.036     |0.121   |-0.009, 0.126  |                        
-|Indirect 2 ($b_1$ * $b_2$)  |-0.151   |0.039     |<0.001  |-0.230, -0.079 |           
-|Total indirects             |-0.096   |0.054     |0.075   |-0.206, 0.008  |
-|Contrast (Ind1 - Ind2)      |0.206    |0.052     |<0.001  |0.112, 0.316   |
+|Total                       |-0.631   |0.058     |<0.001  |-0.739, -0.505 | 
+|Indirect 1 ($a_1$ * $a_2$)  |0.055    |0.036     |0.121   |-0.003, 0.140  |                        
+|Indirect 2 ($b_1$ * $b_2$)  |-0.151   |0.038     |<0.001  |-0.235, -0.085 |           
+|Total indirects             |-0.096   |0.051     |0.059   |-0.193, 0.007  |
+|Contrast (Ind1 - Ind2)      |0.206    |0.054     |<0.001  |0.109, 0.338   |
 
 |
 |--------------------------------------------------------------------------|
@@ -917,10 +862,10 @@ Now let's make a table.
 * The total effect of GRMS on mental health is -0.631 ($p < 0.001$) is negative and statistically significant.  That is, gendered racial microaggressions have a statistically significant negative effect on mental health.
 * The direct effect of GRMS on mental health is -0.535 ($p < 0.001$); while this is lower than the total effect, it remains statistically significant.   
   - Using Baron and Kenny's [-@baron_moderator-mediator_1986] causal steps logic, the fact that the direct effect does not decrease in a statistically significant manner does not provide helpful, logical support for mediation. According to Hayes [-@hayes_more_2022] this difference is not necessary. That is, a statistically significant indirect effect can stand on its own.
-*  Indirect effect #1 (a1 x b1 or GRMS through engagement coping) is 0.055 ($p = 0.121, CI95[-0.011, 0.124]$) and not statistically significant. Because they can be inconsistent with the *p* values, we should always check the confidence intervals to see if they pass through zero. In this case they do.
-*  Indirect effect #2 (a2 x b2, or GRMS through disengagement to coping) is -0.151 ($p < 0.001, CI95[-0.231, -0.082]$). The *p* value is significant and the 95% confidence interval does not pass through zero. Thus, gendered racial microaggressions lead to greater disengagement (*a1*). In turn, disengagement has negative effects on mental health (*b2*).
-* The total indirect effect (i.e., sum of all specific indirect effects) $(-0.096, p = 0.075)$ is not statistically significant.
-* We examine the contrast to see if the indirect effects statistically significantly different from each other:  $B= `0.206, p < 0.001$.  They are. This is not surprising since the path mediated by engagement was not statistically significant but the path mediated by disengagement was statistically significant.
+*  Indirect effect #1 (a1 x b1 or GRMS through engagement coping) is 0.055 ($p = 0.121, CI95[-0.003, 0.140]$) and not statistically significant. Because they can be inconsistent with the *p* values, we should always check the confidence intervals to see if they pass through zero. In this case they do.
+*  Indirect effect #2 (a2 x b2, or GRMS through disengagement to coping) is -0.151 ($p < 0.001, CI95[-0.235, -0.085]$). The *p* value is significant and the 95% confidence interval does not pass through zero. Thus, gendered racial microaggressions lead to greater disengagement (*a1*). In turn, disengagement has negative effects on mental health (*b2*).
+* The total indirect effect (i.e., sum of all specific indirect effects) $(-0.096, p = 0.059)$ is not statistically significant.
+* We examine the contrast to see if the indirect effects statistically significantly different from each other:  $B= 0.206, p < 0.001$.  They are. This is not surprising since the path mediated by engagement was not statistically significant but the path mediated by disengagement was statistically significant.
 
 #### APA Style Writeup
 
@@ -954,7 +899,8 @@ Descriptive statistics were computed, and all variables were assessed for skewne
 **Parallel Multiple Mediation Analysis**
 A model of parallel mediation examined the degree to which engagement and disengagement coping strategies mediated the relation of gendered racial microaggressions on mental health outcomes in Black women. Hayes [-@hayes_more_2022] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously.  The resultant direct and indirect values for each path account for other mediation paths.  Using the *lavaan* (v. 0.6-17) package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
 
-Results (depicted in Figure 2 and presented in Table 3) suggest that 37% of the variance in mental health outcomes is accounted for by the model. The indirect effect predicting mental health from gendered racial microaggressions via engagement coping was not statistically significant $*B = 0.055, SE = 0.036, p = 0.121, CI95[-0.011, 0.124]$). Looking at the individual paths we see that $a_{1}$ was positive and statistically significant (GRMS leds to increased engagement coping), but the subsequent link, $b_{1}$ (engagement to mental health) was not. The indirect effect predicting mental health from gendered racial microaggressions through disengagement to coping was statistically significant $B = -0.151, SE = 0.039, p < 0.001, CI95[-0.231, -0.082]$). In this case, gendered racial microaggressions led to greater disengagement coping ($a_{2}$). In turn, disengagement coping had negative effects on mental health ($b_{2}$).  Curiously, the total indirect effect (i.e., the sum of the specific indirect effects was not statistically significant. It is possible that the positive and negative valences of the indirect effects "cancelled each other out."  A pairwise comparison of the specific indirect effects indicated that the strength of the effects were statistically significantly different from each other. Given that the path through engagement coping was not significant, but the path through disengagement coping was, this statistically signifcicant difference is not surprising. 
+Results (depicted in Figure 2 and presented in Table 3) suggest that 37% of the variance in mental health outcomes is accounted for by the model. The indirect effect predicting mental health from gendered racial microaggressions via engagement coping was not statistically significant $*B = 0.055, SE = 0.036, p = 0.121, CI95[-0.003,	0.140
+]$). Looking at the individual paths we see that $a_{1}$ was positive and statistically significant (GRMS leds to increased engagement coping), but the subsequent link, $b_{1}$ (engagement to mental health) was not. The indirect effect predicting mental health from gendered racial microaggressions through disengagement to coping was statistically significant $B = -0.151, SE = 0.038, p < 0.001, CI95[-0.235, -0.085]$). In this case, gendered racial microaggressions led to greater disengagement coping ($a_{2}$). In turn, disengagement coping had negative effects on mental health ($b_{2}$).  Curiously, the total indirect effect (i.e., the sum of the specific indirect effects was not statistically significant. It is possible that the positive and negative valences of the indirect effects "cancelled each other out."  A pairwise comparison of the specific indirect effects indicated that the strength of the effects were statistically significantly different from each other. Given that the path through engagement coping was not significant, but the path through disengagement coping was, this statistically significant difference is not surprising. 
 
 **Hints for Writing Method/Results Sections**
 
@@ -1025,6 +971,7 @@ serial_Lewis <- "
     total_c := c_p + indirect1 + indirect2 + indirect3
     direct := c_p
 "
+set.seed(230925)  #necessary for reproducible results because lavaan introduces randomness into the estimation process
 serial_Lewis_fit <- lavaan::sem(serial_Lewis, data = Lewis_df, se = "bootstrap",
     missing = "fiml", bootstrap = 1000)
 sLewis_sum <- lavaan::summary(serial_Lewis_fit, standardized = TRUE, rsq = T,
@@ -1116,32 +1063,32 @@ Now let's make a table.
 
 |Engagement coping (M1)      |         |          |        |.27
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |1.494    |0.112     |<0.001  |               |
+|Constant                    |1.494    |0.111     |<0.001  |               |
 |GRMS ($a_1$)                |0.384    |0.042     |<0.001  |               |
 
 |Disengagement coping (M2)   |         |          |        |.29       
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |1.400    |0.133     |<0.001  |               |
-|GRMS ($a_2$)                |0.363    |0.048     |<0.001  |               |
-|Engagement ($d_{21}$)       |0.061    |0.061     |0.321   |               |
+|Constant                    |1.400    |0.128     |<0.001  |               |
+|GRMS ($a_2$)                |0.363    |0.046     |<0.001  |               |
+|Engagement ($d_{21}$)       |0.061    |0.059     |0.304   |               |
 
 |Mental Health (DV)          |         |          |        |.37
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |5.141    |0.230     |<0.001  |               |
-|Engagement ($b_1$)          |0.144    |0.089     |0.107   |               |
-|Disengagement ($b_2$)       |-0.391   |0.090     |<0.001  |               |
-|GRMS ($c'$)                 |-0.535   |0.077     |<0.001  |               |
+|Constant                    |5.141    |0.226     |<0.001  |               |
+|Engagement ($b_1$)          |0.144    |0.089     |0.106   |               |
+|Disengagement ($b_2$)       |-0.391   |0.089     |<0.001  |               |
+|GRMS ($c'$)                 |-0.535   |0.076     |<0.001  |               |
 
 |Effects                     |$B$      |$SE_{B}$  |$p$     |95% CI 
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Total effect                |-0.631 	 |0.059	    |0.000	 |-0.735, -0.505 |
-|Indirect 1 ($a_1$ * $a_2$)  |0.055    |0.036     |0.126   |-0.010, 0.133  |
-|Indirect 2 ($b_1$ * $b_2$)  |-0.142   |0.039     |<0.001  |-0.225, -0.076 |
-|Indirect 3 ($b_1$ * $d_{21}$ * $b_2$)|-0.009|0.010|0.363  |-0.031, 0.009  |
-|Total indirects             |-0.096   |0.052     |0.067   |-0.205,	0.004  |
-|Contrast1 (Ind1 - Ind2)     |0.197    |0.053     |<0.001  |0.101, 0.308   |
-|Contrast2 (Ind1 - Ind3)     |0.064    |0.039     |0.103   |-0.009, 0.153  |
-|Contrast3 (Ind2 - Ind3)     |-0.133   |0.041     |0.001   |-0.225, -0.06  |
+|Total effect                |-0.631 	 |0.059	    |<0.001  |-0.739, -0.505 |
+|Indirect 1 ($a_1$ * $a_2$)  |0.055    |0.036     |0.121   |-0.003,	0.140  |
+|Indirect 2 ($b_1$ * $b_2$)  |-0.142   |0.038     |<0.001  |-0.227,	-0.078 |
+|Indirect 3 ($b_1$ * $d_{21}$ * $b_2$)|-0.009|0.009|0.339	 |-0.032,	0.007  |
+|Total indirects             |-0.096   |0.051     |0.059	 |-0.193,	0.007  |
+|Contrast1 (Ind1 - Ind2)     |0.197    |0.053     |<0.001  |0.106, 0.318   |
+|Contrast2 (Ind1 - Ind3)     |0.064    |0.039     |0.095	 |0.002,	0.156  |
+|Contrast3 (Ind2 - Ind3)     |-0.133   |0.039	    |0.001	 |-0.230,	-0.066 |
 
 |
 |--------------------------------------------------------------------------|
@@ -1153,14 +1100,13 @@ Working through the data, we should be able to find these items:
 *  The model accounts for 37% of the variance in predicting mental health outcomes.
 *  The total effect of GRMS (X) on mental health (Y) is $-0.631, (p < .001)$; it is negative and statistically significant.
 *  The direct effect of GRMS (X) on mental health (Y) ($-0.535, p < 0.001$) is still negative. Although someone lower in magnitute, it is still statistically significant. While inconsistent with the Baron and Kenny [-@baron_moderator-mediator_1986] logic of mediation, Hayes [@hayes_more_2022] argues that a statistically significant indirect effect can stand on its own.
-*  Indirect effect #1 ($a_{1}$ x $b_{1}$ or GRMS through engagement coping to mental health) is $B = 0.055, p =0.126$.  As in the parallel mediation, $p$ is > .05 and the 95% CIs pass through zero $(-0.010, 0.133
-)$. Examining the individual paths, there is a statistically significant relationship from GRMS to engagement, but not from engagement to mental health.
-*  Indirect effect #2 ($a_{2}$ x $b_{2}$, or GRMS through disengagement coping to mental health, is $B = -0.142, p < 0.001, 95CI (-0.225,	-0.076)$. Each of the paths is statistically significant from zero and so is the indirect effect.
-  *  Indirect effect #3 ($a_{2}$ x $d_{21}$ x $b_{2}$; GRMS through engagement coping through disengagement coping to mental health) is $-0.009, p = 0.363, 95C (-0.031, 0.009)$. This indirect effect involves $a_{1}$ (GRMS to engagement) and  $b_{2}$ which are  significant.  However, the path from engagement coping to disengagement coping is not significant.
-* Total indirect:  $B = -0.096, p = 0.067$ is the sum of all specific indirect effects and is not statistically significant. The positive and negative indirects likely cancel each other out.
+*  Indirect effect #1 ($a_{1}$ x $b_{1}$ or GRMS through engagement coping to mental health) is $B = 0.055, p =0.121$.  As in the parallel mediation, $p$ is > .05 and the 95% CIs pass through zero $(-0.003,	0.140)$. Examining the individual paths, there is a statistically significant relationship from GRMS to engagement, but not from engagement to mental health.
+*  Indirect effect #2 ($a_{2}$ x $b_{2}$, or GRMS through disengagement coping to mental health, is $B = -0.142, p < 0.001, 95CI (-0.227,	-0.078)$. Each of the paths is statistically significant from zero and so is the indirect effect.
+  *  Indirect effect #3 ($a_{2}$ x $d_{21}$ x $b_{2}$; GRMS through engagement coping through disengagement coping to mental health) is $B = -0.009, p = 0.339, 95CI (-0.032, 0.007)$. This indirect effect involves $a_{1}$ (GRMS to engagement) and  $b_{2}$ which are  significant.  However, the path from engagement coping to disengagement coping is not significant.
+* Total indirect:  $B = -0.096, p = 0.059$ is the sum of all specific indirect effects and is not statistically significant. The positive and negative indirects likely cancel each other out.
 * With **contrasts** we ask:  Are the indirect effects statistically significantly different from each other?
   -  Contrast 1 (indirect 1 v 2): $B = 0.197, p <0.001)$, yes
-  -  Contrast 2 (indirect 1 v 3): $B = 0.064, p = 0.103$, no
+  -  Contrast 2 (indirect 1 v 3): $B = 0.064, p = 0.095$, no
   -  Contrast 3 (indirect 2 v 3): $B = -0.133,p = 0.001p$, yes
   -  This formal test of contrasts is an important one.  It is not ok to infer that effects are statistically significantly different than each other on the basis of their estimates or $p$ values. The formal test allows us to claim (with justification) that there are statistically significant differences between indirect effects 1 and 2; and 2 and 3.
 
@@ -1180,7 +1126,7 @@ Descriptive statistics were computed, and all variables were assessed univariate
 **Serial Multiple Mediation Analysis**
 A model of serial multiple mediation was analyzed examining the degree to which engagement and disengagement coping mediated the relationship between gendered racial microaggressions and mental health outcomes. Hayes [-@hayes_more_2022] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously and allows the testing of the seriated effect of prior mediators onto subsequent ones.  Using the *lavaan* (v. 0.6-16) package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
 
-Results (depicted in Figure # and presented in Table #) suggest that 37% of the variance in behavioral intentions is accounted for by the three variables in the model.  Two of the specific indirect effects were significant and were statistically significantly different from each other.   Specifically, the effect of gendered racial microaggressions through disengagement coping to mental health ($B= -0.142, SE = 0.039, p < .001, 95CI[-0.076, -0.142]$) was stronger than the indirect effect from gendered racial microaggressions through engagement coping through disengagement coping to mental health ($B = 0.055, SE = 0.036, p =0.126, 95CI [0.133, 0.055]$).  Interpreting the results suggests that, mental health outcomes are negatively impacted by gendered racial microaggressions direct and indirectly through disengagement coping. It is this latter path that has the greatest impact. 
+Results (depicted in Figure # and presented in Table #) suggest that 37% of the variance in behavioral intentions is accounted for by the three variables in the model.  Two of the specific indirect effects were significant and were statistically significantly different from each other.   Specifically, the effect of gendered racial microaggressions through disengagement coping to mental health ($B= -0.142, SE = 0.038, p < .001, 95CI[-0.227,	-0.078]$) was stronger than the indirect effect from gendered racial microaggressions through engagement coping through disengagement coping to mental health ($B = 0.055, SE = 0.036, p =0.121, 95CI [-0.003,	0.140]$).  Interpreting the results suggests that, mental health outcomes are negatively impacted by gendered racial microaggressions direct and indirectly through disengagement coping. It is this latter path that has the greatest impact. 
 
 *Note*:  In a manner consistent with the Lewis et al. [-@lewis_applying_2017] article, the APA Results section can be fairly short.  This is especially true when a well-organized table presents the results.  In fact, I oculd have left all the numbers out of this except for the $R^2$ (because it was not reported in the table).
 
@@ -1341,7 +1287,10 @@ ReCpMed <- "
           total_indirects := indirect1 + indirect2
           total_c    := c_p + (indirect1) + (indirect2)
           direct := c_p
+
           "
+
+set.seed(230916)  #needed for reproducible results since lavaan includes randomness in its estimates
 ReCpMedfit <- lavaan::sem(ReCpMed, data = babydf, se = "bootstrap", missing = "fiml")
 ReCpMedsummary <- lavaan::summary(ReCpMedfit, standardized = T, rsq = T,
     fit = TRUE, ci = TRUE)
@@ -1416,13 +1365,13 @@ ReCpMedsummary
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   Valued ~                                                              
-##     TradPed   (b1)    0.686    0.133    5.168    0.000    0.470    0.976
-##     SRPed     (b2)    0.119    0.138    0.867    0.386   -0.176    0.380
-##     Centerng (c_p)    0.015    0.101    0.145    0.885   -0.174    0.214
+##     TradPed   (b1)    0.686    0.131    5.217    0.000    0.451    0.955
+##     SRPed     (b2)    0.119    0.146    0.816    0.414   -0.193    0.400
+##     Centerng (c_p)    0.015    0.103    0.143    0.886   -0.182    0.230
 ##   TradPed ~                                                             
-##     Centerng  (a1)    0.312    0.146    2.135    0.033    0.014    0.588
+##     Centerng  (a1)    0.312    0.137    2.283    0.022    0.047    0.582
 ##   SRPed ~                                                               
-##     Centerng  (a2)    0.353    0.120    2.931    0.003    0.107    0.577
+##     Centerng  (a2)    0.353    0.113    3.124    0.002    0.130    0.569
 ##    Std.lv  Std.all
 ##                   
 ##     0.686    0.747
@@ -1435,9 +1384,9 @@ ReCpMedsummary
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .Valued            0.710    0.474    1.498    0.134   -0.203    1.671
-##    .TradPed           3.870    0.244   15.865    0.000    3.409    4.358
-##    .SRPed             4.029    0.196   20.507    0.000    3.643    4.409
+##    .Valued            0.710    0.469    1.514    0.130   -0.177    1.664
+##    .TradPed           3.870    0.231   16.773    0.000    3.419    4.291
+##    .SRPed             4.029    0.186   21.617    0.000    3.675    4.396
 ##    Std.lv  Std.all
 ##     0.710    1.077
 ##     3.870    5.396
@@ -1445,9 +1394,9 @@ ReCpMedsummary
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .Valued            0.181    0.028    6.386    0.000    0.117    0.227
-##    .TradPed           0.492    0.128    3.826    0.000    0.253    0.767
-##    .SRPed             0.301    0.059    5.071    0.000    0.191    0.419
+##    .Valued            0.181    0.027    6.658    0.000    0.118    0.224
+##    .TradPed           0.492    0.128    3.837    0.000    0.259    0.733
+##    .SRPed             0.301    0.060    5.007    0.000    0.193    0.425
 ##    Std.lv  Std.all
 ##     0.181    0.418
 ##     0.492    0.956
@@ -1461,12 +1410,12 @@ ReCpMedsummary
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect1         0.214    0.108    1.986    0.047    0.008    0.439
-##     indirect2         0.042    0.053    0.794    0.427   -0.073    0.152
-##     contrast          0.172    0.125    1.373    0.170   -0.035    0.454
-##     total_indircts    0.256    0.115    2.231    0.026    0.028    0.473
-##     total_c           0.271    0.145    1.875    0.061   -0.012    0.551
-##     direct            0.015    0.101    0.145    0.885   -0.174    0.214
+##     indirect1         0.214    0.105    2.045    0.041    0.032    0.442
+##     indirect2         0.042    0.053    0.790    0.429   -0.080    0.148
+##     contrast          0.172    0.125    1.373    0.170   -0.024    0.469
+##     total_indircts    0.256    0.109    2.346    0.019    0.051    0.469
+##     total_c           0.271    0.142    1.914    0.056    0.003    0.576
+##     direct            0.015    0.103    0.143    0.887   -0.182    0.230
 ##    Std.lv  Std.all
 ##     0.214    0.157
 ##     0.042    0.031
@@ -1482,45 +1431,45 @@ ReC_pMedParamEsts
 
 ```
 ##                lhs op                         rhs           label   est    se
-## 1           Valued  ~                     TradPed              b1 0.686 0.133
-## 2           Valued  ~                       SRPed              b2 0.119 0.138
-## 3           Valued  ~                   Centering             c_p 0.015 0.101
-## 4          TradPed  ~                   Centering              a1 0.312 0.146
-## 5            SRPed  ~                   Centering              a2 0.353 0.120
-## 6           Valued ~~                      Valued                 0.181 0.028
+## 1           Valued  ~                     TradPed              b1 0.686 0.131
+## 2           Valued  ~                       SRPed              b2 0.119 0.146
+## 3           Valued  ~                   Centering             c_p 0.015 0.103
+## 4          TradPed  ~                   Centering              a1 0.312 0.137
+## 5            SRPed  ~                   Centering              a2 0.353 0.113
+## 6           Valued ~~                      Valued                 0.181 0.027
 ## 7          TradPed ~~                     TradPed                 0.492 0.128
-## 8            SRPed ~~                       SRPed                 0.301 0.059
+## 8            SRPed ~~                       SRPed                 0.301 0.060
 ## 9        Centering ~~                   Centering                 0.233 0.000
-## 10          Valued ~1                                             0.710 0.474
-## 11         TradPed ~1                                             3.870 0.244
-## 12           SRPed ~1                                             4.029 0.196
+## 10          Valued ~1                                             0.710 0.469
+## 11         TradPed ~1                                             3.870 0.231
+## 12           SRPed ~1                                             4.029 0.186
 ## 13       Centering ~1                                             1.369 0.000
-## 14       indirect1 :=                       a1*b1       indirect1 0.214 0.108
+## 14       indirect1 :=                       a1*b1       indirect1 0.214 0.105
 ## 15       indirect2 :=                       a2*b2       indirect2 0.042 0.053
 ## 16        contrast :=         indirect1-indirect2        contrast 0.172 0.125
-## 17 total_indirects :=         indirect1+indirect2 total_indirects 0.256 0.115
-## 18         total_c := c_p+(indirect1)+(indirect2)         total_c 0.271 0.145
-## 19          direct :=                         c_p          direct 0.015 0.101
+## 17 total_indirects :=         indirect1+indirect2 total_indirects 0.256 0.109
+## 18         total_c := c_p+(indirect1)+(indirect2)         total_c 0.271 0.142
+## 19          direct :=                         c_p          direct 0.015 0.103
 ##         z pvalue ci.lower ci.upper std.lv std.all std.nox
-## 1   5.168  0.000    0.421    0.920  0.686   0.747   0.747
-## 2   0.867  0.386   -0.135    0.416  0.119   0.104   0.104
-## 3   0.145  0.885   -0.176    0.209  0.015   0.011   0.022
-## 4   2.135  0.033    0.014    0.591  0.312   0.210   0.435
-## 5   2.931  0.003    0.098    0.568  0.353   0.296   0.614
-## 6   6.386  0.000    0.138    0.253  0.181   0.418   0.418
-## 7   3.826  0.000    0.282    0.835  0.492   0.956   0.956
-## 8   5.071  0.000    0.212    0.458  0.301   0.912   0.912
+## 1   5.217  0.000    0.415    0.918  0.686   0.747   0.747
+## 2   0.816  0.414   -0.161    0.434  0.119   0.104   0.104
+## 3   0.143  0.886   -0.194    0.207  0.015   0.011   0.022
+## 4   2.283  0.022    0.047    0.582  0.312   0.210   0.435
+## 5   3.124  0.002    0.134    0.571  0.353   0.296   0.614
+## 6   6.658  0.000    0.143    0.268  0.181   0.418   0.418
+## 7   3.837  0.000    0.279    0.813  0.492   0.956   0.956
+## 8   5.007  0.000    0.204    0.454  0.301   0.912   0.912
 ## 9      NA     NA    0.233    0.233  0.233   1.000   0.233
-## 10  1.498  0.134   -0.174    1.732  0.710   1.077   1.077
-## 11 15.865  0.000    3.364    4.326  3.870   5.396   5.396
-## 12 20.507  0.000    3.625    4.402  4.029   7.013   7.013
+## 10  1.514  0.130   -0.109    1.770  0.710   1.077   1.077
+## 11 16.773  0.000    3.383    4.286  3.870   5.396   5.396
+## 12 21.617  0.000    3.666    4.382  4.029   7.013   7.013
 ## 13     NA     NA    1.369    1.369  1.369   2.837   1.369
-## 14  1.986  0.047    0.008    0.439  0.214   0.157   0.325
-## 15  0.794  0.427   -0.028    0.220  0.042   0.031   0.064
-## 16  1.373  0.170   -0.036    0.453  0.172   0.126   0.261
-## 17  2.231  0.026    0.038    0.482  0.256   0.188   0.389
-## 18  1.875  0.061   -0.017    0.539  0.271   0.199   0.411
-## 19  0.145  0.885   -0.176    0.209  0.015   0.011   0.022
+## 14  2.045  0.041    0.034    0.451  0.214   0.157   0.325
+## 15  0.790  0.429   -0.044    0.174  0.042   0.031   0.064
+## 16  1.373  0.170   -0.026    0.456  0.172   0.126   0.261
+## 17  2.346  0.019    0.053    0.472  0.256   0.188   0.389
+## 18  1.914  0.056    0.003    0.577  0.271   0.199   0.411
+## 19  0.143  0.887   -0.194    0.207  0.015   0.011   0.022
 ```
 
 ### Use tidySEM to create a figure that represents your results {-}
@@ -1597,28 +1546,28 @@ write.csv(ReC_pMedParamEsts, file = "ReC_pMedParamEsts.csv")
 
 |Traditional Pedagogy (M1)   |         |          |        |.04
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |3.870    |0.234     |<0.001  |               |
-|Centering ($a_1$)           |0.312	   |0.141 	  |0.027   |               |
+|Constant                    |3.870    |0.231     |<0.001  |               |
+|Centering ($a_1$)           |0.312	   |0.137 	  |0.022   |               |
 
 |Socially Responsive Pedagogy (M2)|    |          |        |.09       
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |4.029  	 |0.193     |<0.001  |               |
-|Centering ($a_2$)           |0.353	   |0.116	    |0.002   |               |
+|Constant                    |4.029  	 |0.186     |<0.001  |               |
+|Centering ($a_2$)           |0.353	   |0.113	    |0.002   |               |
 
 |Perceived Course Value (DV) |         |          |        |.58
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |0.710	   |0.477	    |0.136   |               |
-|Traditional Pedagogy ($b_1$)|0.686	   |0.133     |<0.001  |               |
-|Socially Rx Pedagogy ($b_2$)|0.119	   |0.141	    |0.397   |               |
-|Centering ($c'$)            |0.015	   |0.102	    |0.885   |               |
+|Constant                    |0.710	   |0.469	    |0.130   |               |
+|Traditional Pedagogy ($b_1$)|0.686	   |0.131     |<0.001  |               |
+|Socially Rx Pedagogy ($b_2$)|0.119	   |0.146	    |0.414   |               |
+|Centering ($c'$)            |0.015	   |0.103	    |0.886   |               |
 
 |Effects                     |$B$      |$SE_{B}$  |$p$     |95% CI 
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Total effect                |0.271	   |0.143	   |0.059	   |-0.024, 0.550  |
-|Indirect 1 ($a_1$ * $b_1$)  |0.214	   |0.103	   |0.037	   |0.035,	0.440  |
-|Indirect 2 ($a_2$ * $b_2$)  |0.042	   |0.053	   |0.429	   |-0.040, 0.184  |
-|Total indirects             |0.256	   |0.111	   |0.021	   |0.060,	0.489  |
-|Contrast1 (Ind1 - Ind2)     |0.172	   |0.120	   |0.152	   |-0.041, 0.423  |
+|Total effect                |0.271	   |0.142	    |0.056	 |0.003,	0.577  |
+|Indirect 1 ($a_1$ * $b_1$)  |0.214	   |0.105	    |0.041	 |0.034,	0.451  |
+|Indirect 2 ($a_2$ * $b_2$)  |0.042    |0.053	    |0.429	 |-0.044, 0.174  |
+|Total indirects             |0.256	   |0.109	    |0.019	 |0.053, 0.472   | 
+|Contrast1 (Ind1 - Ind2)     |0.172	   |0.125	    |0.170	 |-0.026,	0.456  |
 
 |
 |--------------------------------------------------------------------------|
@@ -1630,7 +1579,7 @@ write.csv(ReC_pMedParamEsts, file = "ReC_pMedParamEsts.csv")
 
 A model of parallel mediation analyzed the degree to which students' perceptions of traditional and socially responsive pedagogy mediated the relationship between explicit recentering of the course and course value. Hayes [-@hayes_more_2022] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously.  The resultant direct and indirect values for each path account for other mediation paths.  Using the *lavaan* (v. 0.6-16) package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
 
-Results (depicted in Figure 1 and presented in Table 1) suggest that 58% of the variance in perceptions of course value is accounted for by the model. The indirect effect predicting course value from explicit recentering through traditional pedagogy was statistically significant $(B = 0.214, SE = 0.103, p = 0.037, 95CI [0.035, 0.440])$. Examining the individual paths we see that $a_{1}$ was positive and statistically significant (recentering is associated with higher evaluations of traditional pedagogy). The  $b_{1}$ path was similarly statistically significant (traditional pedagogy was associated with course valuation). The indirect effect predicting course value from recentering through socially responsive pedagogy was not statistically significant $B = 0.042, SE = 0.053, p = 0.429, 95CE [-0.040, 0.184])$.  While explicit recentering had a statistically significant effect on ratings of socially responsive pedagogy (i.e., the $a_{2}$ path), socially responsive pedagogy did not have a statistically significant effect on perceptions of course value (i.e., the $b_{2}$ path). The drop in magnitude and near-significance from the total effect $(B = 0.271, p = 0.059)$ to the direct effect $(B = 0.015, p = 0.885)$ supports the presence of mediation.  A pairwise comparison of the specific indirect effects indicated that the strength of the effects were not statistically significantly different from each other. In summary, the effects of explicit recentering on perceived value to the student appears to be mediated through students evaluation of traditional pedagogy.
+Results (depicted in Figure 1 and presented in Table 1) suggest that 58% of the variance in perceptions of course value is accounted for by the model. The indirect effect predicting course value from explicit recentering through traditional pedagogy was statistically significant $(B = 0.214, SE = 0.105, p = 0.041, 95CI [0.034, 0.451])$. Examining the individual paths we see that $a_{1}$ was positive and statistically significant (recentering is associated with higher evaluations of traditional pedagogy). The  $b_{1}$ path was similarly statistically significant (traditional pedagogy was associated with course valuation). The indirect effect predicting course value from recentering through socially responsive pedagogy was not statistically significant $B = 0.042, SE = 0.053, p = 0.429, 95CE[-0.044, 0.174])$.  While explicit recentering had a statistically significant effect on ratings of socially responsive pedagogy (i.e., the $a_{2}$ path), socially responsive pedagogy did not have a statistically significant effect on perceptions of course value (i.e., the $b_{2}$ path). The drop in magnitude and near-significance from the total effect $(B = 0.271, p = 0.056)$ to the direct effect $(B = 0.015, p = 0.886)$ supports the presence of mediation.  A pairwise comparison of the specific indirect effects indicated that the strength of the effects were not statistically significantly different from each other. In summary, the effects of explicit recentering on perceived value to the student appears to be mediated through students evaluation of traditional pedagogy.
 
 
 ### Explanation to grader {-}

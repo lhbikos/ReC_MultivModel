@@ -1,0 +1,29 @@
+"0","library(lavaan)"
+"0",""
+"0","LewisSimpModMLE <- '"
+"0","    MntlHlth ~ b1*GRMS + b2*Centrality + b3*GRMS:Centrality"
+"0","    "
+"0","    #intercept (constant) of MntlHlth"
+"0","    MntlHlth ~ MntlHlth.mean*1"
+"0","    #mean of W (Centrality, in this case) for use in simple slopes"
+"0","    Centrality ~ Centrality.mean*1"
+"0","    #variance of W (Centrality, in this case) for use in simple slopes"
+"0","    Centrality ~~Centrality.var*Centrality"
+"0",""
+"0","    #simple slopes"
+"0","    SD.below := b1 + b3*(Centrality.mean - sqrt(Centrality.var))"
+"0","    mean := b1 + b3*(Centrality.mean)"
+"0","    SD.above := b1 + b3*(Centrality.mean + sqrt(Centrality.var))"
+"0","'"
+"0","LewMLEfit <- lavaan::sem(LewisSimpModMLE, data = dfLewis,  missing = 'fiml', se = ""bootstrap"", bootstrap = 1000)"
+"2","Warning: lavaan WARNING:
+    model syntax contains variance/covariance/intercept formulas
+    involving (an) exogenous variable(s): [Centrality]; These
+    variables will now be treated as random introducing additional
+    free parameters. If you wish to treat those variables as fixed,
+    remove these formulas from the model syntax. Otherwise, consider
+    adding the fixed.x = FALSE option."
+"0","LewisMLEsummary <- lavaan::summary(LewMLEfit, standardized = TRUE, rsq=T, fit=TRUE, ci=TRUE)    "
+"2","Error in data.frame(lhs = NAMES, op = rep(""r2"", nel), rhs = NAMES, block = block,  : 
+  row names contain missing values
+"

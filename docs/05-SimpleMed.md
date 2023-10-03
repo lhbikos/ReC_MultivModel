@@ -41,15 +41,15 @@ The following suggestions for practice will involve specifying, testing, and int
 
 In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
 
-* Hayes, A. F. (2018). *Introduction to mediation, moderation, and conditional process anlaysis:  A regression-based approach*. New York, NY: Guilford Press. Available as an ebook from the SPU library:  https://ebookcentral-proquest-com.ezproxy.spu.edu/lib/spu/detail.action?docID=5109647 
-  - **Chapter 3, Simple mediation**:  Hayes' text is another great example of a teaching tool that is accessible at both procedural and conceptual levels.   I especially appreciate  his attention to the controversies (even those directed toward his work).  We deviate from his text in that we are not using the PROCESS macro...and I'll address those concerns in the lecture.
-  - **Chapter 4, Causality and confounds**:  A great chapter that addresses "What happened to Baron & Kenny"; partial v complete mediation; and conditions required for claims of causality.  Procedurally, our focus in this chapter is on the role of covariates. 
-  - **Appendix A:  Using Process**:  An essential tool for PROCESS users because, even when we are in the R environment, this is the "idea book." That is, the place where all the path models are presented in figures.
+* Hayes, A. F. (2022).  *Introduction to mediation, moderation, and conditional process analysis:  A regression-based approach*. New York, NY: Guilford Press.  
+  - **Chapter 3, The simple mediation model**:  Hayes' text is another great example of a teaching tool that is accessible at both procedural and conceptual levels.   I especially appreciate  his attention to the controversies (even those directed toward his work).  We deviate from his text in that we are not using the PROCESS macro...and I'll address those concerns in the lecture.
+  - **Chapter 4, Causal steps, scaling, confounding, and causal order**:  A great chapter that addresses "What happened to Baron & Kenny"; partial v complete mediation; and conditions required for claims of causality.  Procedurally, our focus in this chapter is on the role of covariates. 
+  - **Appendix A:  Using PROCESS**:  An essential tool for PROCESS users because, even when we are in the R environment, this is the "idea book." That is, the place where all the path models are presented in figures.
 * Kim, P. Y., Kendall, D. L., & Cheon, H.-S. (2017). Racial microaggressions, cultural mistrust, and mental health outcomes among Asian American college students. *American Journal of Orthopsychiatry, 87*(6), 663–670. https://doi-org.ezproxy.spu.edu/10.1037/ort0000203
 
 ### Packages
 
-The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
+The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them. 
 
 
 ```r
@@ -231,7 +231,9 @@ model <- "
           indirect :=  a*b
           direct  := c_p
           total_c  := c_p + (a*b)
+
           "
+set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
 fit <- lavaan::sem(model, data = Data, se = "bootstrap", missing = "fiml")
 FDsummary <- lavaan::summary(fit, standardized = T, rsq = T, fit = TRUE,
     ci = TRUE)
@@ -305,10 +307,10 @@ FDsummary
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   Y ~                                                                   
-##     M          (b)    0.708    0.082    8.642    0.000    0.552    0.867
-##     X        (c_p)   -0.107    0.108   -0.986    0.324   -0.329    0.092
+##     M          (b)    0.708    0.085    8.360    0.000    0.537    0.869
+##     X        (c_p)   -0.107    0.112   -0.954    0.340   -0.327    0.114
 ##   M ~                                                                   
-##     X          (a)    0.513    0.093    5.510    0.000    0.329    0.704
+##     X          (a)    0.513    0.097    5.278    0.000    0.334    0.708
 ##    Std.lv  Std.all
 ##                   
 ##     0.708    0.639
@@ -318,16 +320,16 @@ FDsummary
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .Y                -0.022    0.099   -0.221    0.825   -0.205    0.181
-##    .M                -0.031    0.100   -0.310    0.756   -0.229    0.162
+##    .Y                -0.022    0.097   -0.224    0.822   -0.212    0.179
+##    .M                -0.031    0.097   -0.320    0.749   -0.232    0.143
 ##    Std.lv  Std.all
 ##    -0.022   -0.018
 ##    -0.031   -0.028
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .Y                 0.927    0.125    7.436    0.000    0.664    1.166
-##    .M                 0.981    0.124    7.924    0.000    0.724    1.224
+##    .Y                 0.927    0.127    7.315    0.000    0.669    1.160
+##    .M                 0.981    0.128    7.636    0.000    0.716    1.229
 ##    Std.lv  Std.all
 ##     0.927    0.629
 ##     0.981    0.818
@@ -339,9 +341,9 @@ FDsummary
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect          0.363    0.078    4.661    0.000    0.226    0.531
-##     direct           -0.107    0.108   -0.985    0.325   -0.329    0.092
-##     total_c           0.257    0.118    2.169    0.030    0.030    0.476
+##     indirect          0.363    0.084    4.328    0.000    0.216    0.543
+##     direct           -0.107    0.112   -0.953    0.340   -0.327    0.114
+##     total_c           0.257    0.120    2.132    0.033    0.024    0.507
 ##    Std.lv  Std.all
 ##     0.363    0.272
 ##    -0.107   -0.080
@@ -354,18 +356,18 @@ FD_ParamEsts
 
 ```
 ##         lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper
-## 1         Y  ~         M        b  0.708 0.082  8.642  0.000    0.544    0.861
-## 2         Y  ~         X      c_p -0.107 0.108 -0.986  0.324   -0.314    0.109
-## 3         M  ~         X        a  0.513 0.093  5.510  0.000    0.322    0.697
-## 4         Y ~~         Y           0.927 0.125  7.436  0.000    0.740    1.262
-## 5         M ~~         M           0.981 0.124  7.924  0.000    0.772    1.276
+## 1         Y  ~         M        b  0.708 0.085  8.360  0.000    0.541    0.871
+## 2         Y  ~         X      c_p -0.107 0.112 -0.954  0.340   -0.326    0.120
+## 3         M  ~         X        a  0.513 0.097  5.278  0.000    0.332    0.705
+## 4         Y ~~         Y           0.927 0.127  7.315  0.000    0.713    1.252
+## 5         M ~~         M           0.981 0.128  7.636  0.000    0.766    1.282
 ## 6         X ~~         X           0.827 0.000     NA     NA    0.827    0.827
-## 7         Y ~1                    -0.022 0.099 -0.221  0.825   -0.199    0.194
-## 8         M ~1                    -0.031 0.100 -0.310  0.756   -0.230    0.160
+## 7         Y ~1                    -0.022 0.097 -0.224  0.822   -0.218    0.174
+## 8         M ~1                    -0.031 0.097 -0.320  0.749   -0.210    0.183
 ## 9         X ~1                    -0.005 0.000     NA     NA   -0.005   -0.005
-## 10 indirect :=       a*b indirect  0.363 0.078  4.661  0.000    0.227    0.532
-## 11   direct :=       c_p   direct -0.107 0.108 -0.985  0.325   -0.314    0.109
-## 12  total_c := c_p+(a*b)  total_c  0.257 0.118  2.169  0.030    0.031    0.478
+## 10 indirect :=       a*b indirect  0.363 0.084  4.328  0.000    0.224    0.557
+## 11   direct :=       c_p   direct -0.107 0.112 -0.953  0.340   -0.326    0.120
+## 12  total_c := c_p+(a*b)  total_c  0.257 0.120  2.132  0.033    0.029    0.517
 ##    std.lv std.all std.nox
 ## 1   0.708   0.639   0.639
 ## 2  -0.107  -0.080  -0.088
@@ -393,10 +395,10 @@ So let's look at this step-by-step.
 *  a path = $B = 0.513, p < 0.001$
 *  b path = $0.708, p < 0.001$
 *  the indirect effect is a product of the a and b paths $(0.513 * 0.708 = 0.363)$; while we don't hand calculate it's significance, we see that it is $p < 0.001$.
-*  the direct effect (c', c prime, or c_p) is the isolated effect of X on Y when including M as a predictor.  We hope this value is *lower* than the total effect because this means that including M shared some of the variance in predicting Y:  $c' = -0.107, p = 0.346$, and it is no longer significant.
+*  the direct effect (c', c prime, or c_p) is the isolated effect of X on Y when including M as a predictor.  We hope this value is *lower* than the total effect because this means that including M shared some of the variance in predicting Y:  $c' = -0.107, p = 0.340$, and it is no longer significant.
 *  we also see the total effect; this value is 
    *  identical to the value of simply predicting Y on X (with no M it the model)
-   * the value of a(b) + c_p:  $(0.513 * 0.708) + (-0.107) =  0.257; (p = 0.035)$
+   * the value of a(b) + c_p:  $(0.513 * 0.708) + (-0.107) =  0.257; (p = 0.033)$
 
 
 Here's a demonstration that the total effect is, simply, predicting Y from X:
@@ -552,9 +554,8 @@ tidySEM::get_layout(fit)
 ```
 
 ```
-##      [,1] [,2]
-## [1,] "Y"  "X" 
-## [2,] NA   "M" 
+##      [,1] [,2] [,3]
+## [1,] "Y"  "M"  "X" 
 ## attr(,"class")
 ## [1] "layout_matrix" "matrix"        "array"
 ```
@@ -592,31 +593,31 @@ Check with your discipline's journals to see how results of mediations are repor
 
 Table 1  
 
-|Model Coefficients Assessing M as a Mediator Between X and Y                                                              |
-|:-------------------------------------------------------------------------------------------------------------------------|
+|Model Coefficients Assessing M as a Mediator Between X and Y                                
+|:-------------------------------------------------------------------------------------------|
 
 |                         
-|:------------------------|:---------------------------------------:|:-----:|:--------------------------------------------:|
-|                         |Mediator  (M)                            |       |Dependent Variable (Y)                        |
+|:------------------------|:-------------------------:|:-----:|:----------------------------:|
+|                         |Mediator  (M)              |       |Dependent Variable (Y)        |
 
 |
-|:----------------|:-----:|:------------:|:----------:|:-----------:|:-----:|:-----------:|:--------------:|:-------------:|
-|Antecedent       |path   |$B$           |$SE$        |$p$          |path   |$B$          |$SE$            |$p$            |
-|constant         |$i_{M}$|0.031         |0.098       |0.753        |$i_{Y}$|-0.022       |0.099           |0.826          |
-|Independent (X)  |$a$    |0.513         |0.100       |< 0.001      |$c'$   |-0.107       |0.113           |0.346          |
-|Mediator (M)     |       |              |            |             |$b$    |0.708        |0.085           |< 0.001        |
+|:----------------|:-----:|:------:|:------:|:-------:|:-----:|:------:|:-------:|:---------:|
+|Antecedent       |path   |$B$     |$SE$    |$p$      |path   |$B$     |$SE$     |$p$        |
+|constant         |$i_{M}$|0.031   |0.097	  |0.749    |$i_{Y}$|-0.022  |0.097	   |0.822      |
+|Independent (X)  |$a$    |0.513   |0.097   |< 0.001  |$c'$   |-0.107  |0.112    |0.340      |
+|Mediator (M)     |       |        |        |         |$b$     |0.708  |0.085    |< 0.0      |
 
 |
-|:------------------------|:-----------------------------------------------:|:-----:|:------------------------------------:|
-|                         |$R^2$ = 18%                              |       |$R^2$ = 37%                                   |                    
+|:------------------------|:-------------------------:|:-----:|:----------------------------:|
+|                         |$R^2$ = 18%                |       |$R^2$ = 37%                   |                    
 
-|                                                                                                                          |
-|:-------------------------------------------------------------------------------------------------------------------------|
-|*Note*. The value of the indirect effect was $B = 0.363, SE = 0.084, p < 0.001, 95CI(0.226,0.557)$                        |
+|                                                                                                                          
+|:-------------------------------------------------------------------------------------------|
+|*Note*. The value of the indirect effect was $B = 0.363, SE = 0.084, p < 0.001, 95CI(0.224, 0.557)$|
 
 ### Results
 
-A simple mediation model examined the degree to which M mediated the relation of X on Y.  Using the *lavaan* package (v 0.6-16) in R, coefficients for  each path, the indirect effect, and total effects were calculated. These values are presented in Table 1 and illustrated in Figure 1.  Results suggested that 18% of the variance in M and 37% of the variance in Y were accounted for in the model.  The indirect effect ($B = `0.363, SE = 0.084, p < 0.001$) was statistically significant; the direct effect ($B = -0.107, SE = 0.113, p = 0.346$) was not. Comparing the nonsignificant direct effect to the statistically significant total effect ($B = 0.257, SE = 0.121, p = 0.035$) is consistent with the notion that the effect of X on Y is explained through M. 
+A simple mediation model examined the degree to which M mediated the relation of X on Y.  Using the *lavaan* package (v 0.6-16) in R, coefficients for  each path, the indirect effect, and total effects were calculated. These values are presented in Table 1 and illustrated in Figure 1.  Results suggested that 18% of the variance in M and 37% of the variance in Y were accounted for in the model.  The indirect effect ($B = 0.363, SE = 0.084, p < 0.001$) was statistically significant; the direct effect ($B = -0.107, SE = 0.112, p = 0.340$) was not. Comparing the nonsignificant direct effect to the statistically significant total effect ($B = 0.257, SE = 0.120, p = 0.033$) is consistent with the notion that the effect of X on Y is explained through M. 
 
 
 ## Research Vignette
@@ -679,23 +680,6 @@ set.seed(230916)
 dfKim <- lavaan::simulateData(model = Kim_generating_model, model.type = "sem",
     meanstructure = T, sample.nobs = 156, standardized = FALSE)
 library(tidyverse)
-```
-
-```
-## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ lubridate 1.9.2     ✔ tibble    3.2.1
-## ✔ purrr     1.0.1     ✔ tidyr     1.3.0
-## ✔ readr     2.1.4     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ ggplot2::%+%()   masks psych::%+%()
-## ✖ ggplot2::alpha() masks psych::alpha()
-## ✖ dplyr::filter()  masks stats::filter()
-## ✖ dplyr::lag()     masks stats::lag()
-## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-```
-
-```r
 # Kim_df_latent <- Kim_df_latent %>% round(0) %>% abs()
 
 dfKim$Inf32 <- scales::rescale(dfKim$Inf32, c(0, 1))
@@ -960,7 +944,7 @@ While the patterns are similar, we can see some differences. This means that our
 
 | Comparison    |Article    |Simulation                        
 |:--------------|:---------:|:-----------:|
-|PWB mean       |3.50       |3.93         |
+|PWB mean       |3.50       |3.09         |
 |ANX mean       |2.98       |2.82         |
 |CMI mean       |3.00       |3.94         |
 |REM mean       |.34        |.51          |
@@ -1000,6 +984,7 @@ modKim <- "
 
 
 ```r
+set.seed(230916)  #necessary for reproducible results since lavaan introduces randomness in the estimation proces
 Kim_fit <- lavaan::sem(modKim, data = dfModel, se = "bootstrap", missing = "fiml")
 ```
 
@@ -1077,10 +1062,10 @@ Kim_summary
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   PWB ~                                                                 
-##     CMI        (b)   -0.189    0.050   -3.809    0.000   -0.290   -0.087
-##     REMS     (c_p)   -0.453    0.138   -3.289    0.001   -0.733   -0.180
+##     CMI        (b)   -0.189    0.052   -3.640    0.000   -0.291   -0.088
+##     REMS     (c_p)   -0.453    0.139   -3.260    0.001   -0.740   -0.194
 ##   CMI ~                                                                 
-##     REMS       (a)    1.576    0.169    9.300    0.000    1.253    1.930
+##     REMS       (a)    1.576    0.177    8.920    0.000    1.199    1.938
 ##    Std.lv  Std.all
 ##                   
 ##    -0.189   -0.323
@@ -1090,16 +1075,16 @@ Kim_summary
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .PWB               4.066    0.173   23.488    0.000    3.696    4.385
-##    .CMI               3.141    0.102   30.711    0.000    2.943    3.341
+##    .PWB               4.066    0.177   22.934    0.000    3.733    4.416
+##    .CMI               3.141    0.104   30.276    0.000    2.933    3.364
 ##    Std.lv  Std.all
 ##     4.066    9.004
 ##     3.141    4.072
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .PWB               0.144    0.017    8.591    0.000    0.109    0.176
-##    .CMI               0.392    0.041    9.659    0.000    0.311    0.473
+##    .PWB               0.144    0.017    8.248    0.000    0.109    0.176
+##    .CMI               0.392    0.041    9.557    0.000    0.312    0.473
 ##    Std.lv  Std.all
 ##     0.144    0.706
 ##     0.392    0.659
@@ -1111,9 +1096,9 @@ Kim_summary
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect         -0.298    0.087   -3.432    0.001   -0.479   -0.127
-##     direct           -0.453    0.138   -3.288    0.001   -0.733   -0.180
-##     total_c          -0.750    0.116   -6.490    0.000   -0.977   -0.517
+##     indirect         -0.298    0.092   -3.251    0.001   -0.488   -0.138
+##     direct           -0.453    0.139   -3.259    0.001   -0.740   -0.194
+##     total_c          -0.750    0.112   -6.703    0.000   -0.961   -0.524
 ##    Std.lv  Std.all
 ##    -0.298   -0.188
 ##    -0.453   -0.286
@@ -1126,18 +1111,18 @@ Kim_ParamEsts
 
 ```
 ##         lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper
-## 1       PWB  ~       CMI        b -0.189 0.050 -3.809  0.000   -0.288   -0.087
-## 2       PWB  ~      REMS      c_p -0.453 0.138 -3.289  0.001   -0.751   -0.205
-## 3       CMI  ~      REMS        a  1.576 0.169  9.300  0.000    1.252    1.926
-## 4       PWB ~~       PWB           0.144 0.017  8.591  0.000    0.114    0.182
-## 5       CMI ~~       CMI           0.392 0.041  9.659  0.000    0.326    0.487
+## 1       PWB  ~       CMI        b -0.189 0.052 -3.640  0.000   -0.284   -0.081
+## 2       PWB  ~      REMS      c_p -0.453 0.139 -3.260  0.001   -0.754   -0.207
+## 3       CMI  ~      REMS        a  1.576 0.177  8.920  0.000    1.196    1.937
+## 4       PWB ~~       PWB           0.144 0.017  8.248  0.000    0.115    0.190
+## 5       CMI ~~       CMI           0.392 0.041  9.557  0.000    0.320    0.487
 ## 6      REMS ~~      REMS           0.082 0.000     NA     NA    0.082    0.082
-## 7       PWB ~1                     4.066 0.173 23.488  0.000    3.685    4.380
-## 8       CMI ~1                     3.141 0.102 30.711  0.000    2.952    3.353
+## 7       PWB ~1                     4.066 0.177 22.934  0.000    3.722    4.389
+## 8       CMI ~1                     3.141 0.104 30.276  0.000    2.941    3.367
 ## 9      REMS ~1                     0.507 0.000     NA     NA    0.507    0.507
-## 10 indirect :=       a*b indirect -0.298 0.087 -3.432  0.001   -0.479   -0.127
-## 11   direct :=       c_p   direct -0.453 0.138 -3.288  0.001   -0.751   -0.205
-## 12  total_c := c_p+(a*b)  total_c -0.750 0.116 -6.490  0.000   -0.977   -0.517
+## 10 indirect :=       a*b indirect -0.298 0.092 -3.251  0.001   -0.485   -0.131
+## 11   direct :=       c_p   direct -0.453 0.139 -3.259  0.001   -0.754   -0.207
+## 12  total_c := c_p+(a*b)  total_c -0.750 0.112 -6.703  0.000   -0.951   -0.518
 ##    std.lv std.all std.nox
 ## 1  -0.189  -0.323  -0.323
 ## 2  -0.453  -0.286  -1.002
@@ -1160,7 +1145,7 @@ Kim_ParamEsts
 *  a path: $B = 1.576, p < 0.001$
 *  b path: $B = -0.189, p < 0.001$
 *  the indirect effect is a product of the a and b paths: $B = -0.298, p = 0.001$.
-  - The bias-corrected bootstrapped confidence intervals can sometimes be more lenient than $p$ values; it is important they don't cross zero $(95CI -0.495, -0.136	)$. If 0.00 is included in the confidence interval, then we cannot be confident that the estimate is not, itself, zero.
+  - The bias-corrected bootstrapped confidence intervals can sometimes be more lenient than $p$ values; it is important they don't cross zero $(95CI -0.485, -0.131	)$. If 0.00 is included in the confidence interval, then we cannot be confident that the estimate is not, itself, zero.
 *  the direct effect (c', c prime, or c_p) is the isolated effect of X on Y when including M.  We hope this value is lower than the total effect because it would mean that including M shared some of the variance in predicting Y. In our case the value for *c'* is: $B = -0.453, p = 0.001$. Unfortunately, they are significant and they are not markedly different from the total effect $(B = -0.750, p < 0.001)$.
 *  As a reminder, the total effect is is 
   + identical to the value of simply predicting Y on X (with no M it the model)
@@ -1188,8 +1173,9 @@ tidySEM::get_layout(Kim_fit)
 ```
 
 ```
-##      [,1]  [,2]  [,3]  
-## [1,] "PWB" "CMI" "REMS"
+##      [,1]  [,2]  
+## [1,] NA    "REMS"
+## [2,] "PWB" "CMI" 
 ## attr(,"class")
 ## [1] "layout_matrix" "matrix"        "array"
 ```
@@ -1227,31 +1213,31 @@ Here's how I might organize the data.
 Table 2  
 
 |Model Coefficients Assessing Cultural Mistrust as a Mediator Between Racial Microaggressions and Well-Being
-|:-------------------------------------------------------------------------------------------------------------------|
+|:--------------------------------------------------------------------------------------------------|
 
 |                         
-|:------------------------|:---------------------------------------:|:-----:|:--------------------------------------:|
-|                         |Cultural Mistrust (M)                    |       |Well-Being (Y)                          |
+|:---------------------|:-------------------------:|:-----:|:--------------------------------------:|
+|                      |Cultural Mistrust (M)      |       |Well-Being (Y)                          |
 
 |
-|:----------------|:-----:|:----------:|:------------:|:-----------:|:-----:|:---------:|:------------:|:-----------:|
-|Antecedent       |path   |$B$         |$SE$          |$p$          |path   |$B$        |$SE$          |$p$          |
-|constant         |$i_{M}$|3.1419      |0.103         |< 0.001      |$i_{Y}$|4.066      |0.184         |< 0.001      |
-|REMS (X)         |$a$    |1.576       |0.184         |< 0.001      |$c'$   |-0.453     |0.136         |0.001        |
-|CMI (M)          |       |            |              |             |$b$    |-0.189     |0.052         |< 0.001      |
+|:-------------|:-----:|:------:|:-----:|:--------:|:-----:|:---------:|:------------:|:-----------:|
+|Antecedent    |path   |$B$     |$SE$   |$p$       |path   |$B$        |$SE$          |$p$          |
+|constant      |$i_{M}$|3.1419  |0.103  |< 0.001   |$i_{Y}$|4.066      |0.177         |< 0.001      |
+|REMS (X)      |$a$    |1.576   |0.184  |< 0.001   |$c'$   |-0.453     |0.139         |0.001        |
+|CMI (M)       |       |        |       |          |$b$    |-0.189     |0.052         |< 0.001      |
 
 |
-|:------------------------|:---------------------------------------:|:-----:|:--------------------------------------:|
-|                         |$R^2$ = 34%                              |       |$R^2$ = 29%                             |
-
-|                                                                                                                    |
-|:-------------------------------------------------------------------------------------------------------------------|
-|*Note*. The value of the indirect effect was $B = -.298, SE = 0.093, p = 0.001, 95CI(-0.495,-0.136)$.               |
+|:---------------------|:-------------------------:|:-----:|:--------------------------------------:|
+|                      |$R^2$ = 34%                |       |$R^2$ = 29%                             |
+ 
+|                                                                                                   
+|:--------------------------------------------------------------------------------------------------|
+|*Note*. The value of the indirect effect was $B = -.298, SE = 0.092, p = 0.001, 95CI(-0.485,-0.131)$.|
 
 
 ### Results
 
-A simple mediation model examined the degree to which cultural mistrust mediated the relation of racial microaggressions on well-being.  Using the *lavaan* package (v 0.6-16) in R, coefficients for  each path, the indirect effect, and total effects were calculated. These values are presented in Table 2 and illustrated in Figure 2. Results suggested that racial/ethnic microaggressions had statistically significant effects on both cultural mistrust $(B = 1.576, p < 0.001)$ and well-being $(B = -0.453, p = 0.001)$. Further, the indirect effect from our simulated data was statistically significant ($B = -.298, SE = 0.093, p = 0.001, 95CI[-0.495,-0.136])$. Results suggested that 34% of the variance in cultural mistrust and 29% of the variance in well-being were accounted for by the model. 
+A simple mediation model examined the degree to which cultural mistrust mediated the relation of racial microaggressions on well-being.  Using the *lavaan* package (v 0.6-16) in R, coefficients for  each path, the indirect effect, and total effects were calculated. These values are presented in Table 2 and illustrated in Figure 2. Results suggested that racial/ethnic microaggressions had statistically significant effects on both cultural mistrust $(B = 1.576, p < 0.001)$ and well-being $(B = -0.453, p = 0.001)$. Further, the indirect effect from our simulated data was statistically significant ($B = -.298, SE = 0.092, p = 0.001, 95CI[-0.485,-0.131])$. Results suggested that 34% of the variance in cultural mistrust and 29% of the variance in well-being were accounted for by the model. 
 
 ## Considering Covariates
 
@@ -1274,7 +1260,9 @@ Kim_fit_covs <- "
           indirect :=  a*b
           direct  := c_p
           total_c  := c_p + (a*b)
+
           "
+set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
 Kim_fit_covs <- lavaan::sem(Kim_fit_covs, data = dfKim, se = "bootstrap",
     missing = "fiml")
 Kcov_sum <- lavaan::summary(Kim_fit_covs, standardized = T, rsq = T, fit = TRUE,
@@ -1349,13 +1337,13 @@ Kcov_sum
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   PWB ~                                                                 
-##     CMI        (b)   -0.163    0.053   -3.112    0.002   -0.269   -0.061
-##     REMS     (c_p)   -0.219    0.150   -1.461    0.144   -0.534    0.062
+##     CMI        (b)   -0.163    0.051   -3.212    0.001   -0.263   -0.068
+##     REMS     (c_p)   -0.219    0.149   -1.474    0.140   -0.519    0.071
 ##   CMI ~                                                                 
-##     REMS       (a)    1.349    0.194    6.948    0.000    0.969    1.711
-##     ANX     (covM)    0.198    0.104    1.893    0.058   -0.016    0.398
+##     REMS       (a)    1.349    0.191    7.045    0.000    0.956    1.707
+##     ANX     (covM)    0.198    0.096    2.067    0.039    0.009    0.379
 ##   PWB ~                                                                 
-##     ANX     (covY)   -0.238    0.063   -3.783    0.000   -0.362   -0.113
+##     ANX     (covY)   -0.238    0.061   -3.910    0.000   -0.349   -0.109
 ##    Std.lv  Std.all
 ##                   
 ##    -0.163   -0.279
@@ -1368,16 +1356,16 @@ Kcov_sum
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .PWB               4.521    0.213   21.196    0.000    4.088    4.946
-##    .CMI               2.697    0.263   10.267    0.000    2.189    3.268
+##    .PWB               4.521    0.209   21.595    0.000    4.111    4.936
+##    .CMI               2.697    0.245   11.004    0.000    2.236    3.182
 ##    Std.lv  Std.all
 ##     4.521   10.011
 ##     2.697    3.497
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .PWB               0.132    0.015    8.799    0.000    0.101    0.160
-##    .CMI               0.384    0.039    9.760    0.000    0.304    0.457
+##    .PWB               0.132    0.016    8.210    0.000    0.098    0.161
+##    .CMI               0.384    0.040    9.708    0.000    0.304    0.461
 ##    Std.lv  Std.all
 ##     0.132    0.648
 ##     0.384    0.645
@@ -1389,9 +1377,9 @@ Kcov_sum
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect         -0.220    0.080   -2.769    0.006   -0.381   -0.074
-##     direct           -0.219    0.150   -1.460    0.144   -0.534    0.062
-##     total_c          -0.440    0.129   -3.419    0.001   -0.702   -0.204
+##     indirect         -0.220    0.076   -2.888    0.004   -0.377   -0.082
+##     direct           -0.219    0.149   -1.473    0.141   -0.519    0.071
+##     total_c          -0.440    0.122   -3.612    0.000   -0.675   -0.209
 ##    Std.lv  Std.all
 ##    -0.220   -0.139
 ##    -0.219   -0.139
@@ -1404,23 +1392,23 @@ Kcov_ParEsts
 
 ```
 ##         lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper
-## 1       PWB  ~       CMI        b -0.163 0.053 -3.112  0.002   -0.261   -0.055
-## 2       PWB  ~      REMS      c_p -0.219 0.150 -1.461  0.144   -0.504    0.082
-## 3       CMI  ~      REMS        a  1.349 0.194  6.948  0.000    0.911    1.692
-## 4       CMI  ~       ANX     covM  0.198 0.104  1.893  0.058   -0.002    0.407
-## 5       PWB  ~       ANX     covY -0.238 0.063 -3.783  0.000   -0.368   -0.114
-## 6       PWB ~~       PWB           0.132 0.015  8.799  0.000    0.108    0.170
-## 7       CMI ~~       CMI           0.384 0.039  9.760  0.000    0.321    0.478
+## 1       PWB  ~       CMI        b -0.163 0.051 -3.212  0.001   -0.257   -0.056
+## 2       PWB  ~      REMS      c_p -0.219 0.149 -1.474  0.140   -0.528    0.062
+## 3       CMI  ~      REMS        a  1.349 0.191  7.045  0.000    0.910    1.673
+## 4       CMI  ~       ANX     covM  0.198 0.096  2.067  0.039    0.009    0.377
+## 5       PWB  ~       ANX     covY -0.238 0.061 -3.910  0.000   -0.353   -0.110
+## 6       PWB ~~       PWB           0.132 0.016  8.210  0.000    0.107    0.169
+## 7       CMI ~~       CMI           0.384 0.040  9.708  0.000    0.320    0.479
 ## 8      REMS ~~      REMS           0.082 0.000     NA     NA    0.082    0.082
 ## 9      REMS ~~       ANX           0.094 0.000     NA     NA    0.094    0.094
 ## 10      ANX ~~       ANX           0.320 0.000     NA     NA    0.320    0.320
-## 11      PWB ~1                     4.521 0.213 21.196  0.000    4.086    4.943
-## 12      CMI ~1                     2.697 0.263 10.267  0.000    2.180    3.237
+## 11      PWB ~1                     4.521 0.209 21.595  0.000    4.114    4.941
+## 12      CMI ~1                     2.697 0.245 11.004  0.000    2.232    3.180
 ## 13     REMS ~1                     0.507 0.000     NA     NA    0.507    0.507
 ## 14      ANX ~1                     2.824 0.000     NA     NA    2.824    2.824
-## 15 indirect :=       a*b indirect -0.220 0.080 -2.769  0.006   -0.386   -0.074
-## 16   direct :=       c_p   direct -0.219 0.150 -1.460  0.144   -0.504    0.082
-## 17  total_c := c_p+(a*b)  total_c -0.440 0.129 -3.419  0.001   -0.680   -0.174
+## 15 indirect :=       a*b indirect -0.220 0.076 -2.888  0.004   -0.385   -0.085
+## 16   direct :=       c_p   direct -0.219 0.149 -1.473  0.141   -0.528    0.062
+## 17  total_c := c_p+(a*b)  total_c -0.440 0.122 -3.612  0.000   -0.673   -0.206
 ##    std.lv std.all std.nox
 ## 1  -0.163  -0.279  -0.279
 ## 2  -0.219  -0.139  -0.485
@@ -1506,27 +1494,27 @@ write.csv(Kcov_ParEsts, file = "KimMedCov.csv")
 Table 3  
 
 |Model Coefficients Assessing Cultural Mistrust as a Mediator Between Racial Microaggressions and Well-Being
-|:----------------------------------------------------------------------------------------------------------|
+|:-------------------------------------------------------------------------------------|
 
 |                         
-|:------------------------|:---------------------------------:|:-----:|:-----------------------------------:|
-|                         |Cultural Mistrust (M)              |       |Well-Being (Y)                       |
+|:------------------------|:------------------------:|:-----:|:-----------------------:|
+|                         |Cultural Mistrust (M)     |       |Well-Being (Y)           |
 
 |
-|:----------------|:-----:|:---------:|:--------:|:----------:|:-----:|:--------:|:-------:|:--------------:|
-|Antecedent       |path   |$B$        |$SE$      |$p$         |path   |$B$      |$SE$      |$p$             |
-|constant         |$i_{M}$|2.697      |0.256     |<0.001      |$i_{Y}$|4.521    |0.201     |<0.001          |
-|REMS (X)         |$a$    |1.349      |0.193     |<0.001      |$c'$   |-0.219   |0.143     |0.126           |
-|CMI (M)          |       |           |          |            |$b$    |-0.163   |0.050     |0.001           |
-|ANX (Cov)        |       |0.198      |0.193     |<0.001      |       |-0.238   |0.063     |<0.001          |
+|:----------------|:-----:|:------:|:------:|:------:|:-----:|:------:|:-----:|:------:|
+|Antecedent       |path   |$B$     |$SE$    |$p$     |path   |$B$     |$SE$   |$p$     |
+|constant         |$i_{M}$|2.697   |0.245   |<0.001  |$i_{Y}$|4.521   |0.209  |<0.001  |
+|REMS (X)         |$a$    |1.349   |0.191   |<0.001  |$c'$   |-0.219  |0.149  |0.140   |
+|CMI (M)          |       |        |        |        |$b$    |-0.163  |0.051  |0.001   |
+|ANX (Cov)        |       |0.198   |0.096   |0.039   |       |-0.238  |0.061  |<0.001  |
 
 |
-|:------------------------|:---------------------------------:|:-----:|:-----------------------------------:|
-|                         |$R^2$ = 36%                        |       |$R^2$ = 35%                          | 
+|:------------------------|:------------------------:|:-----:|:-----------------------:|
+|                         |$R^2$ = 36%               |       |$R^2$ = 35%              | 
 
-|                                                                                                           |
-|:----------------------------------------------------------------------------------------------------------|
-|*Note*. The value of the indirect effect was $B = -.220, SE = 0.075, p = 0.004, 95CI(-0.383,-0.090)$.      |
+|                                                                                      |
+|:-------------------------------------------------------------------------------------|
+|*Note*. The value of the indirect effect was $B = -.220, SE = 0.076, p = 0.004, 95CI(-0.385,-0.085)$.|
 
 ### APA Style Write-up
 
@@ -1534,7 +1522,7 @@ There are varying models for reporting the results of mediation.  The Kim et al.
 
 **Results**
 
-A simple mediation model examined the degree to which cultural mistrust mediated the effect of racial microaggressions on psychological well-being.  Using the *lavaan* package (v 0.6-16) in R, coefficients for the each path, the indirect effect, and total effects were calculated. Additionally, the effect of covariate, anxiety, was mapped onto both the mediator and dependent variable.  The model accounted for 36% of the variance in cultural mistrust and 35% of the variance in well-being.  Supporting the notion of a mediated model, there was a statistically significant indirect effect $(B = -.220, SE = 0.075, p = 0.004, 95CI[-0.383,-0.090])$ in combination with a  non-significant direct effect $(B = -0.219, p = 0.126)$ and a statistically significant $(B = -0.440, p < 0.001)$. 
+A simple mediation model examined the degree to which cultural mistrust mediated the effect of racial microaggressions on psychological well-being.  Using the *lavaan* package (v 0.6-16) in R, coefficients for the each path, the indirect effect, and total effects were calculated. Additionally, the effect of covariate, anxiety, was mapped onto both the mediator and dependent variable.  The model accounted for 36% of the variance in cultural mistrust and 35% of the variance in well-being.  Supporting the notion of a mediated model, there was a statistically significant indirect effect $(B = -.220, SE = 0.076, p = 0.004, 95CI[-0.385,-0.085])$ in combination with a non-significant direct effect $(B = -0.219, p = 0.140)$ and a statistically significant total effect$(B = -0.440, p < 0.001)$. 
 
 ## STAY TUNED
 
@@ -1642,7 +1630,7 @@ babydf <- dplyr::select(raw, Centering, TradPed, SRPed)
 
 Let's check the structure of the variables:
 
-```{rtidy=TRUE, tidy.opts=list(width.cutoff=70)}
+```{ rtidy=TRUE, tidy.opts=list(width.cutoff=70)}
 str(babydf)
 ```
 
@@ -1658,6 +1646,8 @@ ReCMed <- "
           direct  := c_p
           total_c  := c_p + (a*b)
           "
+
+set.seed(231002)  #needed for reproducible results since lavaan introduced randomness into some procedures
 ReCfit <- lavaan::sem(ReCMed, data = babydf, se = "bootstrap", missing = "fiml")
 ReCsummary <- lavaan::summary(ReCfit, standardized = T, rsq = T, fit = TRUE,
     ci = TRUE)
@@ -1731,10 +1721,10 @@ ReCsummary
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   SRPed ~                                                               
-##     TradPed    (b)    0.549    0.046   11.891    0.000    0.454    0.639
-##     Centerng (c_p)    0.127    0.047    2.690    0.007    0.041    0.229
+##     TradPed    (b)    0.549    0.046   12.067    0.000    0.458    0.645
+##     Centerng (c_p)    0.127    0.047    2.684    0.007    0.036    0.219
 ##   TradPed ~                                                             
-##     Centerng   (a)   -0.101    0.085   -1.193    0.233   -0.272    0.066
+##     Centerng   (a)   -0.101    0.090   -1.121    0.262   -0.287    0.080
 ##    Std.lv  Std.all
 ##                   
 ##     0.549    0.716
@@ -1744,16 +1734,16 @@ ReCsummary
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .SRPed             2.006    0.234    8.591    0.000    1.523    2.459
-##    .TradPed           4.394    0.129   34.082    0.000    4.129    4.648
+##    .SRPed             2.006    0.231    8.689    0.000    1.543    2.442
+##    .TradPed           4.394    0.139   31.707    0.000    4.109    4.675
 ##    Std.lv  Std.all
 ##     2.006    3.440
 ##     4.394    5.778
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .SRPed             0.165    0.018    9.053    0.000    0.130    0.199
-##    .TradPed           0.576    0.074    7.789    0.000    0.434    0.724
+##    .SRPed             0.165    0.017    9.467    0.000    0.130    0.203
+##    .TradPed           0.576    0.070    8.225    0.000    0.444    0.724
 ##    Std.lv  Std.all
 ##     0.165    0.486
 ##     0.576    0.996
@@ -1765,9 +1755,9 @@ ReCsummary
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect         -0.056    0.048   -1.151    0.250   -0.159    0.033
-##     direct            0.127    0.047    2.689    0.007    0.041    0.229
-##     total_c           0.071    0.066    1.072    0.284   -0.055    0.205
+##     indirect         -0.056    0.052   -1.077    0.282   -0.168    0.042
+##     direct            0.127    0.047    2.682    0.007    0.036    0.219
+##     total_c           0.071    0.068    1.045    0.296   -0.055    0.204
 ##    Std.lv  Std.all
 ##    -0.056   -0.047
 ##     0.127    0.107
@@ -1780,18 +1770,18 @@ ReC_ParamEsts
 
 ```
 ##          lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper
-## 1      SRPed  ~   TradPed        b  0.549 0.046 11.891  0.000    0.454    0.639
-## 2      SRPed  ~ Centering      c_p  0.127 0.047  2.690  0.007    0.034    0.223
-## 3    TradPed  ~ Centering        a -0.101 0.085 -1.193  0.233   -0.272    0.066
-## 4      SRPed ~~     SRPed           0.165 0.018  9.053  0.000    0.133    0.202
-## 5    TradPed ~~   TradPed           0.576 0.074  7.789  0.000    0.440    0.732
+## 1      SRPed  ~   TradPed        b  0.549 0.046 12.067  0.000    0.459    0.645
+## 2      SRPed  ~ Centering      c_p  0.127 0.047  2.684  0.007    0.032    0.211
+## 3    TradPed  ~ Centering        a -0.101 0.090 -1.121  0.262   -0.292    0.075
+## 4      SRPed ~~     SRPed           0.165 0.017  9.467  0.000    0.135    0.209
+## 5    TradPed ~~   TradPed           0.576 0.070  8.225  0.000    0.462    0.741
 ## 6  Centering ~~ Centering           0.241 0.000     NA     NA    0.241    0.241
-## 7      SRPed ~1                     2.006 0.234  8.591  0.000    1.528    2.460
-## 8    TradPed ~1                     4.394 0.129 34.082  0.000    4.127    4.640
+## 7      SRPed ~1                     2.006 0.231  8.689  0.000    1.534    2.433
+## 8    TradPed ~1                     4.394 0.139 31.707  0.000    4.114    4.683
 ## 9  Centering ~1                     1.406 0.000     NA     NA    1.406    1.406
-## 10  indirect :=       a*b indirect -0.056 0.048 -1.151  0.250   -0.159    0.033
-## 11    direct :=       c_p   direct  0.127 0.047  2.689  0.007    0.034    0.223
-## 12   total_c := c_p+(a*b)  total_c  0.071 0.066  1.072  0.284   -0.060    0.200
+## 10  indirect :=       a*b indirect -0.056 0.052 -1.077  0.282   -0.171    0.038
+## 11    direct :=       c_p   direct  0.127 0.047  2.682  0.007    0.032    0.211
+## 12   total_c := c_p+(a*b)  total_c  0.071 0.068  1.045  0.296   -0.053    0.205
 ##    std.lv std.all std.nox
 ## 1   0.549   0.716   0.716
 ## 2   0.127   0.107   0.217
@@ -1823,9 +1813,18 @@ tidySEM::graph_sem(model = ReCfit)
 
 ![](05-SimpleMed_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
 
-```tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+
+```r
 tidySEM::get_layout(ReCfit)
 ```
+
+```
+##      [,1]    [,2]      [,3]       
+## [1,] "SRPed" "TradPed" "Centering"
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+
 We can write code to remap them
 
 ```r
@@ -1842,11 +1841,12 @@ med_map
 ## [1] "layout_matrix" "matrix"        "array"
 ```
 
+
 ```r
 tidySEM::graph_sem(ReCfit, layout=med_map,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](05-SimpleMed_files/figure-docx/unnamed-chunk-42-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-43-1.png)<!-- -->
 
 
 ### Create a table that includes regression output for the M and Y variables {-}
@@ -1858,26 +1858,26 @@ write.csv(ReC_ParamEsts, file = "ReCSimpMed.csv")
 
 Table 1  
 
-|Model Coefficients Assessing Traditional Pedagogy as a Mediator Between Centering and Socially Responsive Pedagogy        |
-|:-------------------------------------------------------------------------------------------------------------------------|
+|Model Coefficients Assessing Traditional Pedagogy as a Mediator Between Centering and Socially Responsive Pedagogy  |
+|:-------------------------------------------------------------------------------------------|
 
 |                         
-|:------------------------|:---------------------------------------:|:-----:|:--------------------------------------------:|
-|                         |Traditional Pedagogy  (M)                |       |Socially Responsive Pedagogy (Y)              |
+|:----------------|:----------------------------------:|:-----------------------------------:|
+|                 |Traditional Pedagogy  (M)           |Socially Responsive Pedagogy (Y)     |
 
 |
-|:----------------|:-----:|:------------:|:----------:|:-----------:|:-----:|:-----------:|:--------------:|:-------------:|
-|Antecedent       |path   |$B$           |$SE$        |$p$          |path   |$B$          |$SE$            |$p$            |
-|constant         |$i_{M}$|4.394         |0.133       |< 0.001      |$i_{Y}$|2.006        |0.238           |< 0.001        |
-|Centering (X)    |$a$    |-0.101        |0.088       |< 0.247      |$c'$   |0.127        |0.048           |0.008          |
-|TradPed (M)      |       |              |            |             |$b$    |0.549        |0.047           |< 0.001        |
+|:----------------|:-----:|:-------:|:------:|:-------:|:-----:|:------:|:------:|:---------:|
+|Antecedent       |path   |$B$      |$SE$    |$p$      |path   |$B$     |$SE$    |$p$        |
+|constant         |$i_{M}$|4.394    |0.139   |< 0.001  |$i_{Y}$|2.006   |0.231   |< 0.001    |
+|Centering (X)    |$a$    |-0.101   |0.090   |0.262    |$c'$   |0.127   |0.047   |0.007      |
+|TradPed (M)      |       |         |        |         |$b$    |0.549   |0.046   |< 0.001    |
 
 |
-|:------------------------|:-----------------------------------------------:|:-----:|:------------------------------------:|
-|                         |$R^2$ = 0.4%                              |       |$R^2$ = 51%                                   |                    
+|:------------------------|:--------------------------:|:-----:|:---------------------------:|
+|                         |$R^2$ = 0.4%                |       |$R^2$ = 51%                  |                    
 
-|                                                                                                                          |
-|:-------------------------------------------------------------------------------------------------------------------------|
+|
+|:-------------------------------------------------------------------------------------------|
 |*Note*. Centering:  0 = pre-centered, 1 = recentered. TradPed is traditional pedagogy. The value of the indirect effect was $B = -0.056, SE = 0.051, p = 0.272, 95CI(-0.163,0.035)$ |
 
 ### Represent your work in an APA-style write-up {-}
@@ -1927,77 +1927,5 @@ apaTables::apa.cor.table(babydf, table.number = 1, show.sig.stars = TRUE,
 
 
 
-```r
-sessionInfo()
-```
-
-```
-## R version 4.3.1 (2023-06-16 ucrt)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 11 x64 (build 22621)
-## 
-## Matrix products: default
-## 
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.utf8 
-## [2] LC_CTYPE=English_United States.utf8   
-## [3] LC_MONETARY=English_United States.utf8
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.utf8    
-## 
-## time zone: America/Los_Angeles
-## tzcode source: internal
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] lubridate_1.9.2 forcats_1.0.0   stringr_1.5.0   purrr_1.0.1    
-##  [5] readr_2.1.4     tidyr_1.3.0     tibble_3.2.1    tidyverse_2.0.0
-##  [9] tidySEM_0.2.4   OpenMx_2.21.8   ggplot2_3.4.3   dplyr_1.1.2    
-## [13] lavaan_0.6-16   psych_2.3.6    
-## 
-## loaded via a namespace (and not attached):
-##   [1] mnormt_2.1.1          gridExtra_2.3         formatR_1.14         
-##   [4] inline_0.3.19         sandwich_3.0-2        rlang_1.1.1          
-##   [7] magrittr_2.0.3        multcomp_1.4-25       matrixStats_1.0.0    
-##  [10] compiler_4.3.1        loo_2.6.0             callr_3.7.3          
-##  [13] vctrs_0.6.3           quadprog_1.5-8        pkgconfig_2.0.3      
-##  [16] crayon_1.5.2          fastmap_1.1.1         backports_1.4.1      
-##  [19] bain_0.2.8            labeling_0.4.2        pbivnorm_0.6.0       
-##  [22] pander_0.6.5          utf8_1.2.3            rmarkdown_2.24       
-##  [25] tzdb_0.4.0            nloptr_2.0.3          ps_1.7.5             
-##  [28] xfun_0.39             highr_0.10            sjmisc_2.8.9         
-##  [31] broom_1.0.5           parallel_4.3.1        prettyunits_1.1.1    
-##  [34] R6_2.5.1              stringi_1.7.12        StanHeaders_2.26.27  
-##  [37] parallelly_1.36.0     car_3.1-2             boot_1.3-28.1        
-##  [40] estimability_1.4.1    Rcpp_1.0.10           bookdown_0.34        
-##  [43] rstan_2.21.8          knitr_1.43            modelr_0.1.11        
-##  [46] future.apply_1.11.0   zoo_1.8-12            bayesplot_1.10.0     
-##  [49] splines_4.3.1         timechange_0.2.0      Matrix_1.5-4.1       
-##  [52] igraph_1.5.1          tidyselect_1.2.0      rstudioapi_0.15.0    
-##  [55] abind_1.4-5           yaml_2.3.7            sjlabelled_1.2.0     
-##  [58] codetools_0.2-19      tmvnsim_1.0-2         processx_3.8.1       
-##  [61] listenv_0.9.0         pkgbuild_1.4.2        lattice_0.21-8       
-##  [64] nonnest2_0.5-5        plyr_1.8.8            bayestestR_0.13.1    
-##  [67] withr_2.5.0           coda_0.19-4           evaluate_0.21        
-##  [70] survival_3.5-5        future_1.33.0         fastDummies_1.7.3    
-##  [73] CompQuadForm_1.4.3    RcppParallel_5.1.7    texreg_1.38.6        
-##  [76] pillar_1.9.0          carData_3.0-5         checkmate_2.2.0      
-##  [79] stats4_4.3.1          insight_0.19.3        generics_0.1.3       
-##  [82] dbscan_1.1-11         hms_1.1.3             rstantools_2.3.1     
-##  [85] munsell_0.5.0         scales_1.2.1          blavaan_0.4-8        
-##  [88] minqa_1.2.5           globals_0.16.2        xtable_1.8-4         
-##  [91] glue_1.6.2            emmeans_1.8.7         tools_4.3.1          
-##  [94] data.table_1.14.8     lme4_1.1-33           gsubfn_0.7           
-##  [97] RANN_2.6.1            mvtnorm_1.2-2         grid_4.3.1           
-## [100] MplusAutomation_1.1.0 apaTables_2.0.8       colorspace_2.1-0     
-## [103] nlme_3.1-162          performance_0.10.4    proto_1.0.0          
-## [106] cli_3.6.1             fansi_1.0.4           sjstats_0.18.2       
-## [109] gtable_0.3.3          digest_0.6.32         progressr_0.13.0     
-## [112] TH.data_1.1-2         farver_2.1.1          htmltools_0.5.5      
-## [115] lifecycle_1.0.3       httr_1.4.7            MASS_7.3-60
-```
 
 

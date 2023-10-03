@@ -2,7 +2,7 @@
 
 # Simple Moderation in OLS and MLE {#SimpMod}
 
- [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=cc098142-3693-4366-bb55-ad1d0175414e) 
+ [Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KO0A8duyLqVouSTYo1o-e9r&si=zq9bfRJxE13RogzG) 
 
 
 
@@ -13,7 +13,7 @@ The focus of this lecture is an overview of simple moderation.  Sounds simple?  
 * from null hypothesis significance testing (NHST) to modeling
 * from *ordinary least squares* (OLS) to *maximum likelihood estimation* (MLE)
 
-In making the transition we will work a moderation/interaction problem from Hayes' text with both *lm()* and *lavvan/sem()* functions. 
+In making the transition we will work a moderation/interaction problem with both *lm()* and *lavvan/sem()* functions. 
 
 ## Navigating this Lesson
 
@@ -35,7 +35,7 @@ Learning objectives from this lecture include the following:
 
 ### Planning for Practice
 
-Although I provide more complete descriptions at the end of the chapter follow these suggestions, providing an overview of them here may help you plan for what you might want to do as you work through the chapter. As is typical for this OER, the suggestions for homework are graded in complexity.  I recommend you select an option that builds on your confidence but provides a bit of stretch. I also suggest you utilize a dataset that has at least four variables that are suitable for growing into a complex moderation (additive or moderated) or moderated mediation. This will be easiest if the variables are continuous in nature. In these chapters, I do not describe how to use categorical variables in dependent (e.g., consequent or endogenous) roles.  However, dichotomous and ordered factors are suitable as independent variables and covariates.  
+As is typical for this OER, the suggestions for homework are graded in complexity.  I recommend you select an option that builds on your confidence but provides a bit of stretch. I also suggest you utilize a dataset that has at least four variables that are suitable for growing into a complex moderation (additive or moderated) or moderated mediation as well as a moderated mediation. This will be easiest if the variables are continuous in nature. In these chapters, I do not describe how to use categorical variables in dependent (e.g., consequent or endogenous) roles.  However, dichotomous and ordered factors are suitable as independent variables and covariates.  
 
 * Rework the problem in the chapter by changing the random seed in the code that simulates the data.  This should provide minor changes to the data, but the results will likely be very similar. 
 * There are a number of variables in the dataset.  Swap out one or more variables in the simple moderation and compare your solution to the one in the chapter (and/or one you mimicked in the journal article).
@@ -54,107 +54,46 @@ Regarding ordinary least squares (OLS) versus maximum likelihood estimation (MLE
 
 Regarding the topic of moderation, I drew heavily from these resources.  
 
-* Hayes, A. F. (2018). *Introduction to Mediation, Moderation, and Conditional Process Analysis, Second Edition: A Regression-Based Approach*. Guilford Publications. http://ebookcentral.proquest.com/lib/spu/detail.action?docID=5109647
-  - Chapter 7: Fundamentals of Moderation Analysis: This chapter focuses on the basics of moderation analysis.  Our goal is to transfer and apply the knowledge to models we run in lavaan.  An excellent review of centering, visualizations, and probing moderations.
-  - Chapter 8:  Extending the Fundamental Principles of Moderation Analysis (pp. 267-301):  Hayes addresses common regression concerns such as (a) hierarchical vs. simultaneous entry and (b) comparison of moderated regression with 2x2 factorial ANOVA.
-  - Chapter 9:  Some Myths and Additional Extensions of Moderation Analysis (pp. 303-347). Hayes identifies "truths and myths" about mean centering and standardization. For sure these are important topics and his take on them is clear and compelling.
-  - Appendix A:  An essential tool for PROCESS users because, even when we are in the R environment, this is the "idea book." That is, the place where all the path models are presented in figures.
+* Hayes, A. F. (2022).  *Introduction to mediation, moderation, and conditional process analysis:  A regression-based approach*. New York, NY: Guilford Press.  
+  - **Chapter 7: Fundamentals of moderation analysis**: This chapter focuses on the basics of moderation analysis.  Our goal is to transfer and apply the knowledge to models we run in lavaan.  An excellent review of centering, visualizations, and probing moderation models.
+  - **Chapter 8:  Extending the fundamental principles of moderation analysis**:  Hayes addresses common regression concerns such as (a) hierarchical vs. simultaneous entry and (b) comparison of moderated regression with 2x2 factorial ANOVA.
+  - **Chapter 9:  Some myths and additional extensions of moderation Aanalysis**. Hayes identifies "truths and myths" about mean centering and standardization. For sure these are important topics and his take on them is clear and compelling.
+  - **Appendix A Using PROCESS**:  An essential tool for PROCESS users because, even when we are in the R environment, this is the "idea book." That is, the place where all the path models are presented in figures.
 
 The research vignette for this chapter:
 
-* Kim, P. Y., Kendall, D. L., & Cheon, H.-S. (2017). Racial microaggressions, cultural mistrust, and mental health outcomes among Asian American college students. *American Journal of Orthopsychiatry, 87*(6), 663–670. https://doi-org.ezproxy.spu.edu/10.1037/ort0000203
+* Lewis, J. A., Williams, M. G., Peppers, E. J., & Gadson, C. A. (2017). Applying intersectionality to explore the relations between gendered racism and health among Black women. *Journal of Counseling Psychology*, *64*(5), 475–486. https://doi-org.ezproxy.spu.edu/10.1037/cou0000231
 
 ### Packages
 
-The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
+The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them. 
 
 ```r
 # will install the package if not already installed
 if (!require(apaTables)) {
     install.packages("apaTables")
 }
-```
-
-```
-Loading required package: apaTables
-```
-
-```r
 if (!require(lavaan)) {
     install.packages("lavaan")
 }
-```
-
-```
-Loading required package: lavaan
-```
-
-```
-This is lavaan 0.6-16
-lavaan is FREE software! Please report any bugs.
-```
-
-```r
-if (!require(semPlot)) {
-    install.packages("semPlot")
-}
-```
-
-```
-Loading required package: semPlot
-```
-
-```r
 if (!require(tidyverse)) {
     install.packages("tidyverse")
 }
-```
-
-```
-Loading required package: tidyverse
-```
-
-```
-── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-```
-
-```r
 if (!require(psych)) {
     install.packages("psych")
 }
-```
-
-```
-Loading required package: psych
-
-Attaching package: 'psych'
-
-The following objects are masked from 'package:ggplot2':
-
-    %+%, alpha
-
-The following object is masked from 'package:lavaan':
-
-    cor2cov
-```
-
-```r
 if (!require(jtools)) {
     install.packages("jtools")
 }
-```
-
-```
-Loading required package: jtools
+if (!require(broom)) {
+    install.packages("broom")
+}
+if (!require(interactions)) {
+    install.packages("interactions")
+}
+if (!require(tidySEM)) {
+    install.packages("tidySEM")
+}
 ```
 
 ## On *Modeling*:  Introductory Comments on the simultaneously invisible and paradigm-shifting transition we are making
@@ -290,9 +229,9 @@ In this table we can compare OLS and MLE in a side-by-side manner.
 
 ### Hayes and PROCESS (aka conditional process analysis)
 
-In the early 2000s, the bias-corrected, bootstrapped, confidence interval (CI) was identifed as a more powerful approach to assessing indirect effects than the classic Sobel test. Because programs did not produce them,  no one was using them. Preacher, Edwards, Lambert, Hayes, and colleagues created Excel worksheets that would calculate these (they were so painful).  Hayes turned this process into a *series* of macros to do a variety of things for SPSS and other programs.  Because of his clear, instructional, text, PROCESS is popular. In 2021, Hayes released the PROCESS macro for R. It can be downloaded at the [ProcessMacro website](https://www.processmacro.org/download.html). Documention for it is newly emerging. Although PROCESS produces bias-corrected, bootstrapped confidence intervals, for models with indirect effects, PROCESS utilizes OLS as the estimator.
+In the early 2000s, the bias-corrected, bootstrapped, confidence interval (CI) was identifed as a more powerful approach to assessing indirect effects than the classic Sobel test. Because programs did not produce them,  no one was using them. Preacher, Edwards, Lambert, Hayes, and colleagues created Excel worksheets that would calculate these (they were so painful).  Hayes turned this process into a *series* of macros to do a variety of things for SPSS and other programs.  Because of his clear, instructional, text, PROCESS is popular. In 2021, Hayes released the PROCESS macro for R. It can be downloaded at the [ProcessMacro website](https://www.processmacro.org/download.html). The 2022 of Hayes' textbook now includes instruction for using the Process Macro for R. Although PROCESS produces bias-corrected, bootstrapped confidence intervals, for models with indirect effects, PROCESS utilizes OLS as the estimator. Additionally, the Process Macro for R does not work like a typical R package. Further, at my latest review, I could not determine how to create figures (in R) that would represent the results. Thus, I am continuing to teach this topic with *lavaan*.
 
-Although most regression models can be completed with the *lm()* function in base R, it can be instructive to run a handful of these familiar models with *lavaan* (or even PROCESS) as a precurser to more complicated models.
+Although most regression models can be completed with the *lm()* function in base R, it can be instructive to run a handful of these familiar models with *lavaan* (or even PROCESS) as a precursor to more complicated models.
 
 ## Introducing the *lavaan* package
 
@@ -329,7 +268,7 @@ The image below is of a simple mediation model but the variables in the model ar
 
 ![Image of a simple mediation model with latent variables](images/SimpleMod/SimpleMedLV.jpg)
 
-**Confirmatory factor analysis** (CFA) is what we'll do in psychometrics.  Purely SEM, CFA is used to evaluate the structural validity of a scale or measure.  In pure CFA, first-order factors represent subscales and a second-order factor (not required) might provide support for a total scale score.  For example, in the above figure, the three squares represent the observed (or manifest) items to which a person respond.  In CFA, we evaluate their adequacy to represent the latent variable (circle) construct. It's a little more complicated than this, but this will get you started.  Mediation/indirect effects are not assessed in a pure CFA.
+**Confirmatory factor analysis** (CFA) is what we will do (or have done) in psychometrics. CFA is used to evaluate the structural validity of a scale or measure.  In CFA, first-order factors represent subscales and a second-order factor (not required) might provide support for a total scale score.  For example, in the above figure, the three squares represent the observed (or manifest) items to which a person respond.  In CFA, we evaluate their adequacy to represent the latent variable (circle) construct. It's a little more complicated than this, but this will get you started.  Mediation/indirect effects are not assessed in a pure CFA.
 
 **Path analysis** is a form of SEM, but without latent variables.  That is, all the variables in the model are directly observed.  They are represented by squares/rectangles and each has a corresponding column in a dataset.  PROCESS in SPSS is entirely path analysis.
 
@@ -358,71 +297,247 @@ The first equation constrains X's effect to be unconditional on W, meaning that 
 
 ## Workflow for a Simple Moderation
 
-Below is a workflow comparing the approaches to analyzing a regression model (moderators only) with OLS and MLE.
+Below is a workflow comparing the approaches to analyzing a regression model (moderators only) with OLS and MLE. Of course you would precede both options with a thorough scrubbing, scoring, and data diagnostics. Please refer to the earlier lessons for workflows for those processes.
 
 ![Image of a simple mediation in path analysis](images/SimpleMod/OLS_MLEwrkflow.jpg)
 
 The Bonus Track at the end of the chapter includes script templates with just X and Y variables.
 
-## Research Vignette
 
-The research vignette comes from the Kim, Kendall, and Cheon's [-@kim_racial_2017], "Racial Microaggressions, Cultural Mistrust, and Mental Health Outcomes Among Asian American College Students."  Participants were 156 Asian American undergraduate students in the Pacific Northwest. The researchers posited the a priori hypothesis that cultural mistrust would mediate the relationship between racial microaggressions and two sets of outcomes:  mental health (e.g., depression, anxiety, well-being) and help-seeking.
+### Research Vignette
+
+The research vignette comes from the Lewis, Williams, Peppers, and Gadson's [-@lewis_applying_2017] study titled, "Applying Intersectionality to Explore the Relations Between Gendered Racism and Health Among Black Women."  The study was published in the Journal of Counseling Psychology. Participants were 231 Black women who completed an online survey. 
 
 Variables used in the study included:
 
-* **REMS**:  Racial and Ethnic Microaggressions Scale (Nadal, 2011). The scale includes 45 items on a 2-point scale where 0 indicates no experience of a microaggressive event and 1 indicates it was experienced at least once within the past six months.  Higher scores indicate more experience of microaggressions.
-* **CMI**:  Cultural Mistrust Inventory (Terrell & Terrell, 1981). This scale was adapted to assess cultural mistrust harbored among Asian Americans toward individuals from the mainstream U.S. culture (e.g., Whites). The CMI includes 47 items on a 7-point scale where higher scores indicate a higher degree of cultural mistrust.
-* **ANX**, **DEP**, **PWB**:  Subscales of the Mental Health Inventory (Veit & Ware, 1983) that assess the mental health outcomes of anxiety (9 items), depression (4 items), and psychological well-being (14 items).  Higher scores (on a 6 point scale) indicate stronger endorsement of the mental health outcome being assessed.
-* **HlpSkg**:  The Attiudes Toward Seeking Professional Psychological Help -- Short Form (Fischer & Farina, 1995) includes 10 items on a 4-point scale (0 = disagree, 3 = agree) where higher scores indicate more favorable attitudes toward help seeking.
+* **GRMS**:  Gendered Racial Microaggressions Scale [@lewis_construction_2015] is a 26-item scale that assesses the frequency of nonverbal, verbal, and behavioral negative racial and gender slights experienced by Black women. Scaling is along six points ranging from 0 (*never*) to 5 (*once a week or more*).  Higher scores indicate a greater frequency of gendered racial microaggressions. An example item is, "Someone has tried to 'put me in my place.'"
 
-### Simulate Data from the Journal Article
+* **MntlHlth** and **PhysHlth**: Short Form Health Survey - Version 2 [@ware_comparison_1995] is a 12-item scale used to report self-reported mental (six items) and physical health (six items). Although the article did not specify, when this scale is used in other contexts [e.g., @kim_racial_2017], a 6-point scale has been reported. Higher scores indicate higher mental health (e.g., little or no psychological distress) and physical health (e.g., little or no reported symptoms in physical functioning). An example of an item assessing mental health was, "How much of the time during the last 4 weeks have you felt calm and peaceful?"; an example of a physical health item was, "During the past 4 weeks, how much did pain interfere with your normal work?"
 
-First, we simulate the data from the means, standard deviations, and correlation matrix from the journal article.
+* **Sprtlty**, **SocSup**, **Engmgt**, and **DisEngmt** are four subscales from the Brief Coping with Problems Experienced Inventory [@carver_you_1997]. The 28 items on this scale are presented on a 4-point scale ranging from 1 (*I usually do not do this at all*) to 4(*I usually do this a lot*).  Higher scores indicate a respondents' tendency to engage in a particular strategy.  Instructions were modified to ask how the female participants responded to recent experiences of racism and sexism as Black women. The four subscales included spirituality (religion, acceptance, planning), interconnectedness/social support (vent emotions, emotional support,instrumental social support), problem-oriented/engagement coping (active coping, humor, positive reinterpretation/positive reframing), and disengagement coping (behavioral disengagement, substance abuse, denial, self-blame, self-distraction).
+
+* **GRIcntlty**:  The Multidimensional Inventory of Black Identity Centrality subscale [@sellers_multidimensional_nodate] was modified to measure the intersection of racial and gender identity centrality.  The scale included 10 items scaled from 1 (*strongly disagree*) to 7 (*strongly agree*). An example item was, "Being a *Black woman* is important to my self-image."  Higher scores indicated higher levels of gendered racial identity centrality.
+
+#### Data Simulation
+
+The *lavaan::simulateData* function was used. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. For all others we specified a factor loading of 0.80. We then approximated the *measurement model* by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette  [@lewis_applying_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
 
 
 ```r
-# Entering the intercorrelations, means, and standard deviations from
-# the journal article
-mu <- c(0.34, 3, 2.98, 2.36, 3.5, 1.64)
-sd <- c(0.16, 0.83, 0.99, 0.9, 0.9, 0.53)
-r_mat <- matrix(c(1, 0.59, 0.26, 0.34, -0.25, -0.02, 0.59, 1, 0.12, 0.19,
-    -0.28, 0, 0.26, 0.12, 1, 0.66, -0.55, 0.07, 0.34, 0.19, 0.66, 1, -0.66,
-    0.05, -0.25, -0.28, -0.55, -0.66, 1, 0.08, -0.02, 0, 0.07, 0.05, 0.08,
-    1), ncol = 6)
-# Creating a covariance matrix
-cov_mat <- sd %*% t(sd) * r_mat
+#Entering the intercorrelations, means, and standard deviations from the journal article
 
-# Set random seed so that the following matrix always gets the same
-# results.
-set.seed(210409)
-library(MASS)
-Kim_df <- mvrnorm(n = 156, mu = mu, Sigma = cov_mat, empirical = TRUE)
-# renaming the variables
-as.data.frame(Kim_df, row.names = NULL, optional = FALSE, make.names = TRUE)
+Lewis_generating_model <- '
+        ##measurement model
+        GRMS  =~ .69*Ob1 + .69*Ob2 + .60*Ob3 + .59*Ob4 + .55*Ob5 + .55*Ob6 + .54*Ob7 + .50*Ob8 + .41*Ob9 + .41*Ob10 + .93*Ma1 + .81*Ma2 + .69*Ma3 + .67*Ma4 + .61*Ma5 + .58*Ma6 + .54*Ma7 + .59*St1 + .55*St2 + .54*St3 + .54*St4 + .51*St5 + .70*An1 + .69*An2 + .68*An3
+        MntlHlth  =~ .8*MH1 + .8*MH2 + .8*MH3 + .8*MH4 + .8*MH5 + .8*MH6
+        PhysHlth  =~ .8*PhH1 + .8*PhH2 + .8*PhH3 + .8*PhH4 + .8*PhH5 + .8*PhH6
+        Spirituality  =~ .8*Spirit1 + .8*Spirit2
+        SocSupport  =~ .8*SocS1 + .8*SocS2
+        Engagement  =~ .8*Eng1 + .8*Eng2
+        Disengagement  =~  .8*dEng1 + .8*dEng2
+        GRIC  =~ .8*Cntrlty1 + .8*Cntrlty2 + .8*Cntrlty3 + .8*Cntrlty4 + .8*Cntrlty5 + .8*Cntrlty6 + .8*Cntrlty7 + .8*Cntrlty8 + .8*Cntrlty9 + .8*Cntrlty10
+   
+        # Means
+         GRMS ~ 1.99*1
+         Spirituality ~2.82*1
+         SocSupport ~ 2.48*1
+         Engagement ~ 2.32*1
+         Disengagement ~ 1.75*1
+         GRIC ~ 5.71*1
+         MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
+         PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
+         
+        # Correlations (ha!)
+         GRMS ~ 0.20*Spirituality
+         GRMS ~ 0.28*SocSupport
+         GRMS ~ 0.30*Engagement
+         GRMS ~ 0.41*Disengagement
+         GRMS ~ 0.19*GRIC
+         GRMS ~ -0.32*MntlHlth
+         GRMS ~ -0.18*PhysHlth
+         
+         Spirituality ~ 0.49*SocSupport
+         Spirituality ~ 0.57*Engagement
+         Spirituality ~ 0.22*Disengagement
+         Spirituality ~ 0.12*GRIC
+         Spirituality ~ -0.06*MntlHlth
+         Spirituality ~ -0.13*PhysHlth
+         
+         SocSupport ~ 0.46*Engagement
+         SocSupport ~ 0.26*Disengagement
+         SocSupport ~ 0.38*GRIC
+         SocSupport ~ -0.18*MntlHlth
+         SocSupport ~ -0.08*PhysHlth
+         
+         Engagement ~ 0.37*Disengagement
+         Engagement ~ 0.08*GRIC
+         Engagement ~ -0.14*MntlHlth
+         Engagement ~ -0.06*PhysHlth
+         
+         Disengagement ~ 0.05*GRIC
+         Disengagement ~ -0.54*MntlHlth
+         Disengagement ~ -0.28*PhysHlth
+         
+         GRIC ~ -0.10*MntlHlth
+         GRIC ~ 0.14*PhysHlth
+     
+         MntlHlth ~ 0.47*PhysHlth         
+        '
+
+set.seed(230925)
+dfLewis <- lavaan::simulateData(model = Lewis_generating_model,
+                              model.type = "sem",
+                              meanstructure = T,
+                              sample.nobs=231,
+                              standardized=FALSE)
+
+#used to retrieve column indices used in the rescaling script below
+col_index <- as.data.frame(colnames(dfLewis))
+
+for(i in 1:ncol(dfLewis)){  # for loop to go through each column of the dataframe 
+  if(i >= 1 & i <= 25){   # apply only to GRMS variables
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(0, 5))
+  }
+  if(i >= 26 & i <= 37){   # apply only to mental and physical health variables 
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(0, 6))
+  }
+  if(i >= 38 & i <= 45){   # apply only to coping variables
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(1, 4))
+  }
+  if(i >= 46 & i <= 55){   # apply only to GRIC variables
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(1, 7))
+  }
+}
+
+#rounding to integers so that the data resembles that which was collected
 library(tidyverse)
-Kim_df <- Kim_df %>%
-    as.data.frame %>%
-    rename(REMS = V1, CMI = V2, ANX = V3, DEP = V4, PWB = V5, HlpSk = V6)
-# Checking our work against the original correlation matrix
-# round(cor(Kim_df),3)
+dfLewis <- dfLewis %>% round(0) 
+
+#quick check of my work
+#psych::describe(dfLewis) 
 ```
-We can perform a quick check of our data to check its alignment with the journal article, and also get a sense of the bivariate relations with a couple of useful tools. The package *apaTables* produces a journal-ready table with means, standard deviations, and the correlation matrix.
+The script below allows you to store the simulated data as a file on your computer. This is optional -- the entire lesson can be worked with the simulated data.
+
+If you prefer the .rds format, use this script (remove the hashtags). The .rds format has the advantage of preserving any formatting of variables. A disadvantage is that you cannot open these files outside of the R environment.
+
+Script to save the data to your computer as an .rds file.
+
+
+```r
+# saveRDS(dfLewis, 'dfLewis.rds')
+```
+
+Once saved, you could clean your environment and bring the data back in from its .csv format.
+
+```r
+# dfLewis<- readRDS('dfLewis.rds')
+```
+
+If you prefer the .csv format (think "Excel lite") use this script (remove the hashtags). An advantage of the .csv format is that you can open the data outside of the R environment. A disadvantage is that it may not retain any formatting of variables
+
+Script to save the data to your computer as a .csv file.
+
+
+```r
+# write.table(dfLewis, file = 'dfLewis.csv', sep = ',',
+# col.names=TRUE, row.names=FALSE)
+```
+
+Once saved, you could clean your environment and bring the data back in from its .csv format.
+
+```r
+# dfLewis<- read.csv ('dfLewis.csv', header = TRUE)
+```
+
+
+### Scrubbing, Scoring, and Data Diagnostics
+
+Because the focus of this lesson is on moderation, we have used simulated data (which serves to avoid problems like missingness and non-normal distributions). If this were real, raw, data, it would be important to [scrub](https://lhbikos.github.io/ReC_MultivModel/scrub.html), [score](https://lhbikos.github.io/ReC_MultivModel/score.html), and conduct [data diagnostics](https://lhbikos.github.io/ReC_MultivModel/DataDx.html) to evaluate the suitability of the data for the proposes anlayses.
+
+Because we are working with item level data we do need to score the scales used in the researcher's model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.
+
+As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we  calculate mean scores of these variables by first creating concatenated lists of variable names. Next we apply the *sjstats::mean_n* function to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
+
+Note that I am only scoring the variables used in the models demonstrated in this lesson. The remaining variables are available as practice options.
+
+
+```r
+GRMS_vars <- c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8",
+    "Ob9", "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1",
+    "St2", "St3", "St4", "St5", "An1", "An2", "An3")
+Eng_vars <- c("Eng1", "Eng2")
+dEng_vars <- c("dEng1", "dEng2")
+MntlHlth_vars <- c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6")
+Cntrlty_vars <- c("Cntrlty1", "Cntrlty2", "Cntrlty3", "Cntrlty4", "Cntrlty5",
+    "Cntrlty6", "Cntrlty7", "Cntrlty8", "Cntrlty9", "Cntrlty10")
+
+dfLewis$GRMS <- sjstats::mean_n(dfLewis[, GRMS_vars], 0.8)
+dfLewis$Engmt <- sjstats::mean_n(dfLewis[, Eng_vars], 0.8)
+dfLewis$DisEngmt <- sjstats::mean_n(dfLewis[, dEng_vars], 0.8)
+dfLewis$MntlHlth <- sjstats::mean_n(dfLewis[, MntlHlth_vars], 0.8)
+dfLewis$Centrality <- sjstats::mean_n(dfLewis[, Cntrlty_vars], 0.8)
+```
+
+Now that we have scored our data, let's trim the variables to just those we need.
+
+```r
+Lewis_df <- dplyr::select(dfLewis, GRMS, Centrality, MntlHlth)
+```
+
+Let's check a table of means, standard deviations, and correlations to see if they align with the published article.
+
+
+```r
+Lewis_table <- apaTables::apa.cor.table(Lewis_df, table.number = 1, show.sig.stars = TRUE,
+    landscape = TRUE, filename = "Lewis_Corr.doc")
+print(Lewis_table)
+```
+
+```
+
+
+Table 1 
+
+Means, standard deviations, and correlations with confidence intervals
+ 
+
+  Variable      M    SD   1            2          
+  1. GRMS       2.56 0.72                         
+                                                  
+  2. Centrality 3.94 0.76 .24**                   
+                          [.11, .36]              
+                                                  
+  3. MntlHlth   3.16 0.81 -.56**       -.09       
+                          [-.64, -.47] [-.21, .04]
+                                                  
+
+Note. M and SD are used to represent mean and standard deviation, respectively.
+Values in square brackets indicate the 95% confidence interval.
+The confidence interval is a plausible range of population correlations 
+that could have caused the sample correlation (Cumming, 2014).
+ * indicates p < .05. ** indicates p < .01.
+ 
+```
+
+The *psych::pairs.panels* function provides another view.
 
 
 ```r
 library(psych)
-psych::pairs.panels(Kim_df)
+psych::pairs.panels(Lewis_df)
 ```
 
-![](07-SimpleMod_files/figure-docx/unnamed-chunk-10-1.png)<!-- -->
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-16-1.png)<!-- -->
 
-Kim et al. [-@kim_racial_2017] did not conduct any moderation analyses in their article. Core to their analysis was predicting mental health outcomes (e.g., anxiety, depression, psychological well-being).  Their predictors were racial/ethnic microaggressions, cultural mistrust, and help-seeking behaviors. In the majority of their models, REMS was the independent variable, predicting one of the mental health outcomes, mediated by cultural mistrust. Given the strong correlation with REMS (*r* = 0.59) the choice of CMI as a mediator is sound.
+While they are not exact, they approximate the magnitude and patterns in the correlation matrix in the article [@lewis_applying_2017].
 
-In looking at the data, I will ask the question, "Does help-seeking (HlpSk) moderate the relationship between REMS and ANX?"
 
-![Conceptual diagram of a proposed simple moderation model using Kim et al. data](images/SimpleMod/KimMod.jpg)
+The Lewis et al. [-@lewis_applying_2017] article included a moderated mediation. Within this larger model were two moderated paths. As we work up to analyzing that moderated mediation, we will work a simple moderation predicting mental health from gendered racial microaggressions, moderated by gendered racial identity centrality. 
 
-![Statistical diagram of a proposed simple moderation model using Kim et al. data](images/SimpleMod/KimModStatistical.jpg)
+![Conceptual diagram of a proposed simple moderation model using Kim et al. data](images/SimpleMod/Lewis_SimpMod_Conceptual.png)
+
+![Statistical diagram of a proposed simple moderation model using Kim et al. data](images/SimpleMod/Lewis_SimpMod_Statistical.png)
+
 
 Here is the formulaic rendering:
 $$Y = i_{Y}+ b_{1}X+ b_{2}W + b_{3}XW +e_{Y}$$
@@ -431,36 +546,31 @@ $$Y = i_{Y}+ b_{1}X+ b_{2}W + b_{3}XW +e_{Y}$$
 
 ### OLS with *lm()*
 
-In this demonstration we will use the *lm()* function in base R to evaluate help seeking behaviors (HlpSK) as a moderator to the relationship between racial/ethnic microaggressions (REMS) on anxiety (ANX). Ordinary least squares is the estimator used in *lm()*. We will probe the moderating effect with both pick-a-point and Johnson-Neyman approaches.
+In this demonstration we will use the *lm()* function in base R to evaluate gendered racial identity centrality (Centrality) as a moderator to the relationship between gendered racial microaggressions (GRMS) on mental health (MntlHlth). Ordinary least squares is the estimator used in *lm()*. We will probe the moderating effect with both pick-a-point and Johnson-Neyman approaches.
 
-Let's specify this simple moderation model with base R's *lm()* function. We'll use the *jtools* package so we get that great summ function and *interactions* for an awesome plot.
+Let's specify this simple moderation model with base R's *lm()* function. We'll use the *jtools::summ* function to produce a journal-friendly table and *interactions::interaction_plot* for information rich figures.
 
 
 ```r
-library(jtools)  #the summ function creates a terrific regression table
-library(interactions)
-library(ggplot2)
-
-KimSimpMod <- lm(ANX ~ REMS * HlpSk, data = Kim_df)
-# summary(KimSimpMod)
+LewisSimpMod <- lm(MntlHlth ~ GRMS * Centrality, data = Lewis_df)
+# the base R output if you prefer this view summary(LewisSimpMod)
 ```
-
 **Table 3**
 
 ```r
-KimSimpMod_summ <- summ(KimSimpMod, digits = 3)
-KimSimpMod_summ
+LewisSimpMod_summ <- jtools::summ(LewisSimpMod, digits = 3)
+LewisSimpMod_summ
 ```
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;"> Observations </td>
-   <td style="text-align:right;"> 156 </td>
+   <td style="text-align:right;"> 231 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;"> Dependent variable </td>
-   <td style="text-align:right;"> ANX </td>
+   <td style="text-align:right;"> MntlHlth </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;"> Type </td>
@@ -470,16 +580,16 @@ KimSimpMod_summ
 </table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <tbody>
   <tr>
-   <td style="text-align:left;font-weight: bold;"> F(3,152) </td>
-   <td style="text-align:right;"> 5.047 </td>
+   <td style="text-align:left;font-weight: bold;"> F(3,227) </td>
+   <td style="text-align:right;"> 37.386 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;"> R² </td>
-   <td style="text-align:right;"> 0.091 </td>
+   <td style="text-align:right;"> 0.331 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;"> Adj. R² </td>
-   <td style="text-align:right;"> 0.073 </td>
+   <td style="text-align:right;"> 0.322 </td>
   </tr>
 </tbody>
 </table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
@@ -495,107 +605,153 @@ KimSimpMod_summ
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;"> (Intercept) </td>
-   <td style="text-align:right;"> 1.280 </td>
-   <td style="text-align:right;"> 0.618 </td>
-   <td style="text-align:right;"> 2.073 </td>
-   <td style="text-align:right;"> 0.040 </td>
+   <td style="text-align:right;"> 6.138 </td>
+   <td style="text-align:right;"> 0.767 </td>
+   <td style="text-align:right;"> 8.007 </td>
+   <td style="text-align:right;"> 0.000 </td>
   </tr>
   <tr>
-   <td style="text-align:left;font-weight: bold;"> REMS </td>
-   <td style="text-align:right;"> 4.315 </td>
-   <td style="text-align:right;"> 1.655 </td>
-   <td style="text-align:right;"> 2.607 </td>
-   <td style="text-align:right;"> 0.010 </td>
+   <td style="text-align:left;font-weight: bold;"> GRMS </td>
+   <td style="text-align:right;"> -1.248 </td>
+   <td style="text-align:right;"> 0.290 </td>
+   <td style="text-align:right;"> -4.299 </td>
+   <td style="text-align:right;"> 0.000 </td>
   </tr>
   <tr>
-   <td style="text-align:left;font-weight: bold;"> HlpSk </td>
-   <td style="text-align:right;"> 0.683 </td>
-   <td style="text-align:right;"> 0.350 </td>
-   <td style="text-align:right;"> 1.952 </td>
-   <td style="text-align:right;"> 0.053 </td>
+   <td style="text-align:left;font-weight: bold;"> Centrality </td>
+   <td style="text-align:right;"> -0.351 </td>
+   <td style="text-align:right;"> 0.199 </td>
+   <td style="text-align:right;"> -1.764 </td>
+   <td style="text-align:right;"> 0.079 </td>
   </tr>
   <tr>
-   <td style="text-align:left;font-weight: bold;"> REMS:HlpSk </td>
-   <td style="text-align:right;"> -1.596 </td>
-   <td style="text-align:right;"> 0.938 </td>
-   <td style="text-align:right;"> -1.702 </td>
-   <td style="text-align:right;"> 0.091 </td>
+   <td style="text-align:left;font-weight: bold;"> GRMS:Centrality </td>
+   <td style="text-align:right;"> 0.157 </td>
+   <td style="text-align:right;"> 0.073 </td>
+   <td style="text-align:right;"> 2.132 </td>
+   <td style="text-align:right;"> 0.034 </td>
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
 <sup></sup> Standard errors: OLS</td></tr></tfoot>
 </table>
+The following code can export the OLS regression results into a .csv. This can be opened with Excel for use in table-making. Note that this makes use of the *broom* package.
 
+```r
+LewSimpModOLS <- as.data.frame(broom::tidy(LewisSimpMod))
+write.csv(LewSimpModOLS, "LewSimpModOLS.csv")
+```
 
-
-Looking at these results we can see that the predictors account for about 10% of variance in anxiety. It appears that there is a statistically significant interaction of REMS and HlpSk on Anxiety.  The *interaction_plot()* function from the package, *interactions* can make helpful illustrations.  In the case of interactions/moderations, I like to run them "both ways" to see which makes more sense.
+Looking at these results we can see that the predictors account for about 33% of variance in anxiety. Further, there is a statistically significant interaction of GRMS and Centrality on MntlHlth  The *interaction_plot()* function from the package, *interactions* can illustrate these effects.  In the case of interactions/moderations, I like to run them "both ways" to see which makes more sense.
 
 
 ```r
-interact_plot(KimSimpMod, pred = HlpSk, modx = REMS)
+interactions::interact_plot(LewisSimpMod, pred = GRMS, modx = Centrality) +
+    ylim(1, 6)
 ```
 
-![](07-SimpleMod_files/figure-docx/unnamed-chunk-14-1.png)<!-- -->
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-20-1.png)<!-- -->
 
 ```r
-interact_plot(KimSimpMod, pred = REMS, modx = HlpSk)
+interactions::interact_plot(LewisSimpMod, pred = Centrality, modx = GRMS) +
+    ylim(1, 6)
 ```
 
-![](07-SimpleMod_files/figure-docx/unnamed-chunk-14-2.png)<!-- -->
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-20-2.png)<!-- -->
 
-The first figure (where REMS is the moderator) illustrates that for those with the highest experience of racial/ethnic microaggression, the relationship between help-seeking and anxiety is strong ad positive. Anxiety is the highest for those who are +1SD above the mean on REMS and who have sought help. This slope is far less strong for those at the mean on REMS and the slope trends negative for those at the lowest REMS.
+The first figure (where Centrality is the moderator) illustrates that the slope representing the effect of gendered racial microaggressions on mental health is steepest for those with the lowest levels of gendered racial identity centrality. In fact, those with the lowest levels of gendered racial identity centrality have the highest mental health (when gendered racial microaggressions are low) and the lowest mental health (when gendered racial microaggressions are high). In contrast, the slope is less steep for those with the highest levels of gendered racial identity centrality. 
  
-The second figure places HlpSg as the moderator. The results are the same, merely presented differently. Here we see that at all levels of help seeking, there is a positive relationship between REMS and anxiety. The relationship is the sharpest for those who are at +1SD above the mean on help-seeking. That is, the highest levels of anxiety are among those who experience the most racial and ethnic microaggressions and have the most favorable attitudes toward help-seeking.
+The second figure represents the same data, but positions gendered racial microaggressions as the moderator. Here we really see the effect of gendered racial micoaggresions as both a main effect (i.e., alone, it had a statistically significant effect on mental health) and as it interacts with gendered racial identity centrality. Those who experience the lowest levels of gendered racial microaggressions have the highest levels of mental health and there  *appears to be* (we'll need to check the simple slopes to be certain) a negative slope such that mental health scores are lower as centrality scores increase. In contrast, those reporting the highest levels of microaggresions have the highest mental health scores. However, there is a positive slope such that mental health scores increase (again we'll need to check the simple slopes to see if this is a statistically significant increase) with centrality.  
 
 Next, let's probe the interaction with simple slopes.  With these additional inferential tests we can see where in the distribution of the moderator, X has an effect on Y that is different from zero (and where it does not). There are two common approaches.
 
-The Johnson-Neyman is a *floodlight* approach and provides an indication of the places in the distribution of W (moderator) that X has an effect on Y that is different than zero. The pick-a-point is sometimes called the *analysis of simple slopes* or a *spotlight* approach, probes the distribution at specific values (often the *M* +/- 1*SD*).  
+The Johnson-Neyman is a *floodlight* approach and provides an indication of the places in the distribution of W (moderator) that X has an effect on Y that is different than zero. The *analysis of simple slopes* or a *spotlight* approach, probes the distribution at specific values (often the *M* +/- 1*SD*).  
+
+This first analysis corresponds with the first plot, where centrality is the moderator. 
 
 
 ```r
-sim_slopes(KimSimpMod, pred = REMS, modx = HlpSk)
+interactions::sim_slopes(LewisSimpMod, pred = GRMS, modx = Centrality)
 ```
 
 ```
 JOHNSON-NEYMAN INTERVAL 
 
-When HlpSk is INSIDE the interval [-4.47, 2.01], the slope of REMS is p <
-.05.
+When Centrality is OUTSIDE the interval [5.92, 58.37], the slope of GRMS is
+p < .05.
 
-Note: The range of observed values of HlpSk is [0.28, 2.90]
+Note: The range of observed values of Centrality is [1.90, 6.00]
 
 SIMPLE SLOPES ANALYSIS 
 
-Slope of REMS when HlpSk = 1.11 (- 1 SD): 
+Slope of GRMS when Centrality = 3.182522 (- 1 SD): 
 
-  Est.   S.E.   t val.      p
------- ------ -------- ------
-  2.54   0.72     3.51   0.00
+   Est.   S.E.   t val.      p
+------- ------ -------- ------
+  -0.75   0.08    -9.36   0.00
 
-Slope of REMS when HlpSk = 1.64 (Mean): 
+Slope of GRMS when Centrality = 3.938095 (Mean): 
 
-  Est.   S.E.   t val.      p
------- ------ -------- ------
-  1.70   0.48     3.53   0.00
+   Est.   S.E.   t val.      p
+------- ------ -------- ------
+  -0.63   0.06   -10.01   0.00
 
-Slope of REMS when HlpSk = 2.17 (+ 1 SD): 
+Slope of GRMS when Centrality = 4.693668 (+ 1 SD): 
 
-  Est.   S.E.   t val.      p
------- ------ -------- ------
-  0.85   0.66     1.30   0.20
+   Est.   S.E.   t val.      p
+------- ------ -------- ------
+  -0.51   0.09    -5.85   0.00
 ```
+The Johnson-Neyman in this case is a bit tricky to interpret. It tells us that the slope representing the effect of GRMS on mental health is statistically significant when the value of centrality is *outside* the values of 5.92 to 58.37. Curiously, our centrality values ranged from 1 to 6. Thus, in our sample, there would be a statistically significant effect of GRMS on mental health at nearly all levels of centrality. 
+
+I find the simple slopes analysis to be easier to read. Here, we are presented the regression coefficient representing the effect of GRMS on mental  health at three levels of centrality (i.e., mean and +/1 1SD). With all *p* values less than 0.05, GRMS has a statistically significant effect on mental health irrespective of the level of gendered racial identity centrality.
+
+If we switch the roles of the independent and moderator values, we can see the same data, differently.
+
 
 ```r
-# sim_slopes(KimSimpMod, pred=GRIcntlty, modx = GRMS) #sometimes I
-# like to look at it in reverse -- like in the plots
+interactions::sim_slopes(LewisSimpMod, pred = Centrality, modx = GRMS)
 ```
-The Johnson-Neyman suggests that the relationship between REMS and ANX is statistically significant when HlpSk is above 1.34 (the mean of help-seeking is 1.64). We see the same result in the pick-a-point approach where there is a non-significant relationship between REMS and anxiety when help-seeking is 1SD below the mean. However, there is a statistically significant relationship between help-seeking and REMS when help-seeking is at and above the mean.
+
+```
+JOHNSON-NEYMAN INTERVAL 
+
+When GRMS is OUTSIDE the interval [-2.70, 3.17], the slope of Centrality is
+p < .05.
+
+Note: The range of observed values of GRMS is [0.32, 4.24]
+
+SIMPLE SLOPES ANALYSIS 
+
+Slope of Centrality when GRMS = 1.835658 (- 1 SD): 
+
+   Est.   S.E.   t val.      p
+------- ------ -------- ------
+  -0.06   0.08    -0.78   0.44
+
+Slope of Centrality when GRMS = 2.557056 (Mean): 
+
+  Est.   S.E.   t val.      p
+------ ------ -------- ------
+  0.05   0.06     0.83   0.41
+
+Slope of Centrality when GRMS = 3.278455 (+ 1 SD): 
+
+  Est.   S.E.   t val.      p
+------ ------ -------- ------
+  0.16   0.08     2.06   0.04
+```
+Again, the Johnson-Neyman can be a little tricky to interpret. Our GRMS scores could range from 0 to 5. Keeping this range in mind, we know that centrality has a statistically significant effect on mental health when centrality scores are 3.17 or greater.
+
+This is consistent with the simple slopes results where the statistically significant effect of centrality on mental health is observed when GRMS levels are one standard deviation above the mean.
+
+To write up these results you would report the follow-up analysis that is consistend with how you stated the hypothesis. In this case we evaluated "the moderating effect of gendered racial identity centrality on the relationship between gendered racial microaggressions on mental health." Correspondingly, we would show the first figure and the first simple slopes analyses.
 
 #### An APA Style Write-up of OLS results
 
 **Method/Analytic Strategy**
 
-Data were analyzed with an ordinary least squares approach with the base R function (v. 4.0.4), *lm()*. We specified a model predicting anxiety (ANX) from the interacting effects of racial and ethnic microaggressions (REMS) and attitudes toward help-seeking (HlpSk).
+Data were analyzed with an ordinary least squares approach with the base R (v. 4.3.1) function, *lm()*. We specified a model predicting mental health (MntlHlth) from the interacting effects of gendered racial microaggressions (GRMS) and gendered racial identity centrality (Centrality).
 
 **Results**
 
@@ -607,120 +763,119 @@ Data were analyzed with an ordinary least squares approach with the base R funct
 *  Address limitations and concerns
 
 **Primary Analyses**
-A multiple regression analysis was conducted to predict anxiety from racial and ethnic microaggressions and attitudes toward help-seeking. Results supported a statistically significant interaction effect that accounted for 8% of the variance. Probing the interaction effect with Johnson-Neyman and pick-a-point approaches indicated that the relationship between REMS and anxiety is non-significant when help-seeking is 1SD below the mean, but is significant when help-seeking is at and above the mean. Results are listed in Table 3.  As illustrated in Figure 1, the relationship between REMS and anxiety is the sharpest for those who are at +1SD above the mean on help-seeking. That is, the highest levels of anxiety are among those who experience the most racial and ethnic microaggressions and have the most favorable attitudes toward help-seeking.
-
+A multiple regression analysis was conducted to predict mental health from gendered racial microaggressions, moderated by gendered racial identity centrality. Results supported a statistically significant interaction effect that accounted for 33% of the variance $(B = 0.157, SE = 0.073, t =0.034)$. Probing the interaction effect with Johnson-Neyman and analysis of simple slopes approaches indicated that the relationship between gendered racial microaggressions and mental health is statistically significant throughout the range of gendered racial identity centrality. Results are listed in Table 1 and illustrated in Figure 1.  
 
 ### MLE with *lavaan::sem()*
 
-Specifying the path analysis in lavaan
+Let's specify this same problem with a path analysis (i.e., using manifest or observed variables) in *lavaan*. There are a few things to note:
 
-Things to note:
-
-* MLE has an element of random, by setting the seed we tell it where to "start"...so we all get the same answer
 * The code below "draws our model."  It opens and close with ' marks
-* "Labels" (e.g., b1, b2) are useful for identifying the paths. But later in path analysis (mediation) we will use them to do some calculations (i.e., multiplying paths to create an indirect effect).  In SEM/CFA (latent variable modeling) we can use them to "fix and free" constraints; the asterisk makes them look like interactions, but they are not
-* Interactions are created with the colon
-* We can use hashtags internal to the code to remind ourselves (or teach others)
-* Following specification of the model, we use the lavaan function *sem()* to conduct the estimation 
+* "Labels" (e.g., b1, b2) are useful for identifying the paths. 
+  - Later, in SEM/CFA (latent variable modeling) we can use them to "fix and free" constraints; the asterisk makes them look like interactions, but they are not
+* Interactions are specified with a colon
+* We can use hashtags internal to the code to makes notes to ourselves (or, in the case where your script will be available in an open science respository, inform others of your thought process)
+* Following the specification of the model, we use the lavaan function *sem()* to conduct the estimation 
   - adding *missing = 'fiml'* is the magic we have been waiting for with regard to missing data
   - bootstraping is an MLE tool that gives us greater power (more later in mediation)
   - the *summary()* and *parameterEstimates()* functions get us the desired output
+  
 
 
 ```r
-library(lavaan)
-set.seed(210501)
-KimSimpModMLE <- "
-    ANX ~ b1*REMS + b2*HlpSk + b3*REMS:HlpSk
-    #intercept (constant) of ANX
-    ANX ~ ANX.mean*1
-    #mean of W (HlpSk, in this case) for use in simple slopes
-    HlpSk ~ HlpSk.mean*1
-    #variance of W (age, in this case) for use in simple slopes
-    HlpSk ~~HlpSk.var*HlpSk
+LewisSimpModMLE <- "
+    MntlHlth ~ b1*GRMS + b2*Centrality + b3*GRMS:Centrality
+    
+    #intercept (constant) of MntlHlth
+    MntlHlth ~ MntlHlth.mean*1
+    #mean of W (Centrality, in this case) for use in simple slopes
+    Centrality ~ Centrality.mean*1
+    #variance of W (Centrality, in this case) for use in simple slopes
+    Centrality ~~Centrality.var*Centrality
 
     #simple slopes
-    SD.below := b1 + b3*(HlpSk.mean - sqrt(HlpSk.var))
-    mean := b1 + b3*(HlpSk.mean)
-    SD.above := b1 + b3*(HlpSk.mean + sqrt(HlpSk.var))
+    SD.below := b1 + b3*(Centrality.mean - sqrt(Centrality.var))
+    mean := b1 + b3*(Centrality.mean)
+    SD.above := b1 + b3*(Centrality.mean + sqrt(Centrality.var))
 "
-kMLE_fit <- sem(KimSimpModMLE, data = Kim_df, missing = "fiml", se = "bootstrap",
-    bootstrap = 1000)
+set.seed(230925)  #needed for reproducibility especially when asking for bootstrapped confidence intervals
+LewMLEfit <- lavaan::sem(LewisSimpModMLE, data = Lewis_df, missing = "fiml",
+    se = "bootstrap", bootstrap = 1000)
 ```
 
 ```
 Warning in lav_partable_vnames(FLAT, "ov.x", warn = TRUE): lavaan WARNING:
     model syntax contains variance/covariance/intercept formulas
-    involving (an) exogenous variable(s): [HlpSk]; These variables
-    will now be treated as random introducing additional free
-    parameters. If you wish to treat those variables as fixed, remove
-    these formulas from the model syntax. Otherwise, consider adding
-    the fixed.x = FALSE option.
+    involving (an) exogenous variable(s): [Centrality]; These
+    variables will now be treated as random introducing additional
+    free parameters. If you wish to treat those variables as fixed,
+    remove these formulas from the model syntax. Otherwise, consider
+    adding the fixed.x = FALSE option.
 ```
 
 ```r
-k1summary <- summary(kMLE_fit, standardized = TRUE, fit = TRUE, ci = TRUE)
-k1ParamEsts <- parameterEstimates(kMLE_fit, boot.ci.type = "bca.simple",
+LewisMLEsummary <- lavaan::summary(LewMLEfit, standardized = TRUE, fit = TRUE,
+    ci = TRUE)
+LewisMLEParamEsts <- lavaan::parameterEstimates(LewMLEfit, boot.ci.type = "bca.simple",
     standardized = TRUE)
-k1summary
+LewisMLEsummary
 ```
 
 ```
-lavaan 0.6.16 ended normally after 9 iterations
+lavaan 0.6.16 ended normally after 14 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
   Number of model parameters                         7
 
-  Number of observations                           156
+  Number of observations                           231
   Number of missing patterns                         1
 
 Model Test User Model:
                                                       
-  Test statistic                               275.935
+  Test statistic                               567.225
   Degrees of freedom                                 2
   P-value (Chi-square)                           0.000
 
 Model Test Baseline Model:
 
-  Test statistic                               290.749
+  Test statistic                               659.975
   Degrees of freedom                                 5
   P-value                                        0.000
 
 User Model versus Baseline Model:
 
-  Comparative Fit Index (CFI)                    0.041
-  Tucker-Lewis Index (TLI)                      -1.397
+  Comparative Fit Index (CFI)                    0.137
+  Tucker-Lewis Index (TLI)                      -1.157
                                                       
-  Robust Comparative Fit Index (CFI)             0.041
-  Robust Tucker-Lewis Index (TLI)               -1.397
+  Robust Comparative Fit Index (CFI)             0.137
+  Robust Tucker-Lewis Index (TLI)               -1.157
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)               -333.690
-  Loglikelihood unrestricted model (H1)       -195.722
+  Loglikelihood user model (H0)               -494.947
+  Loglikelihood unrestricted model (H1)       -211.334
                                                       
-  Akaike (AIC)                                 681.380
-  Bayesian (BIC)                               702.728
-  Sample-size adjusted Bayesian (SABIC)        680.571
+  Akaike (AIC)                                1003.894
+  Bayesian (BIC)                              1027.991
+  Sample-size adjusted Bayesian (SABIC)       1005.805
 
 Root Mean Square Error of Approximation:
 
-  RMSEA                                          0.937
-  90 Percent confidence interval - lower         0.846
-  90 Percent confidence interval - upper         1.032
+  RMSEA                                          1.106
+  90 Percent confidence interval - lower         1.031
+  90 Percent confidence interval - upper         1.184
   P-value H_0: RMSEA <= 0.050                    0.000
   P-value H_0: RMSEA >= 0.080                    1.000
                                                       
-  Robust RMSEA                                   0.937
-  90 Percent confidence interval - lower         0.846
-  90 Percent confidence interval - upper         1.032
+  Robust RMSEA                                   1.106
+  90 Percent confidence interval - lower         1.031
+  90 Percent confidence interval - upper         1.184
   P-value H_0: Robust RMSEA <= 0.050             0.000
   P-value H_0: Robust RMSEA >= 0.080             1.000
 
 Standardized Root Mean Square Residual:
 
-  SRMR                                           0.179
+  SRMR                                           0.218
 
 Parameter Estimates:
 
@@ -730,80 +885,122 @@ Parameter Estimates:
 
 Regressions:
                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-  ANX ~                                                                 
-    REMS      (b1)    4.315    1.364    3.163    0.002    1.769    7.333
-    HlpSk     (b2)    0.683    0.291    2.350    0.019    0.129    1.320
-    REMS:HlpS (b3)   -1.596    0.821   -1.944    0.052   -3.543   -0.131
+  MntlHlth ~                                                            
+    GRMS      (b1)   -1.248    0.308   -4.052    0.000   -1.820   -0.550
+    Centralty (b2)   -0.351    0.205   -1.712    0.087   -0.713    0.097
+    GRMS:Cntr (b3)    0.157    0.079    1.984    0.047   -0.016    0.304
    Std.lv  Std.all
                   
-    4.315    0.632
-    0.683    0.332
-   -1.596   -0.485
+   -1.248   -1.033
+   -0.351   -0.304
+    0.157    0.684
 
 Intercepts:
                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-   .ANX     (ANX.)    1.280    0.498    2.573    0.010    0.240    2.272
-    HlpSk   (HlS.)    1.640    0.043   38.507    0.000    1.552    1.729
+   .MntlHlt (MnH.)    6.138    0.783    7.840    0.000    4.285    7.481
+    Cntrlty (Cnt.)    3.938    0.049   79.569    0.000    3.836    4.035
    Std.lv  Std.all
-    1.280    1.176
-    1.640    3.104
+    6.138    7.054
+    3.938    5.223
 
 Variances:
                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-    HlpSk   (HlS.)    0.279    0.029    9.506    0.000    0.221    0.338
-   .ANX               0.886    0.108    8.202    0.000    0.666    1.094
+    Cntrlty (Cnt.)    0.568    0.054   10.608    0.000    0.464    0.675
+   .MntlHlt           0.438    0.040   10.834    0.000    0.357    0.510
    Std.lv  Std.all
-    0.279    1.000
-    0.886    0.748
+    0.568    1.000
+    0.438    0.578
 
 Defined Parameters:
                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-    SD.below          2.540    0.572    4.441    0.000    1.424    3.719
-    mean              1.697    0.420    4.044    0.000    0.846    2.490
-    SD.above          0.854    0.632    1.351    0.177   -0.487    1.994
+    SD.below         -0.750    0.078   -9.605    0.000   -0.884   -0.570
+    mean             -0.632    0.059  -10.760    0.000   -0.742   -0.511
+    SD.above         -0.514    0.088   -5.812    0.000   -0.688   -0.341
    Std.lv  Std.all
-    2.540   -0.389
-    1.697   -0.875
-    0.854   -1.360
+   -0.750    1.855
+   -0.632    2.539
+   -0.514    3.223
 ```
 
 ```r
-k1ParamEsts
+LewisMLEParamEsts
 ```
 
 ```
-          lhs op                                rhs      label    est    se
-1         ANX  ~                               REMS         b1  4.315 1.364
-2         ANX  ~                              HlpSk         b2  0.683 0.291
-3         ANX  ~                         REMS:HlpSk         b3 -1.596 0.821
-4         ANX ~1                                      ANX.mean  1.280 0.498
-5       HlpSk ~1                                    HlpSk.mean  1.640 0.043
-6       HlpSk ~~                              HlpSk  HlpSk.var  0.279 0.029
-7         ANX ~~                                ANX             0.886 0.108
-8        REMS ~~                               REMS             0.025 0.000
-9        REMS ~~                         REMS:HlpSk             0.042 0.000
-10 REMS:HlpSk ~~                         REMS:HlpSk             0.110 0.000
-11       REMS ~1                                                0.340 0.000
-12 REMS:HlpSk ~1                                                0.556 0.000
-13   SD.below := b1+b3*(HlpSk.mean-sqrt(HlpSk.var))   SD.below  2.540 0.572
-14       mean :=                 b1+b3*(HlpSk.mean)       mean  1.697 0.420
-15   SD.above := b1+b3*(HlpSk.mean+sqrt(HlpSk.var))   SD.above  0.854 0.632
-        z pvalue ci.lower ci.upper std.lv std.all std.nox
-1   3.163  0.002    1.970    7.812  4.315   0.632   3.965
-2   2.350  0.019    0.151    1.395  0.683   0.332   0.100
-3  -1.944  0.052   -3.821   -0.263 -1.596  -0.485  -1.467
-4   2.573  0.010    0.226    2.169  1.280   1.176   1.176
-5  38.507  0.000    1.554    1.730  1.640   3.104   3.104
-6   9.506  0.000    0.224    0.338  0.279   1.000   1.000
-7   8.202  0.000    0.696    1.116  0.886   0.748   0.748
-8      NA     NA    0.025    0.025  0.025   1.000   0.025
-9      NA     NA    0.042    0.042  0.042   0.803   0.042
-10     NA     NA    0.110    0.110  0.110   1.000   0.110
-11     NA     NA    0.340    0.340  0.340   2.132   0.340
-12     NA     NA    0.556    0.556  0.556   1.680   0.556
-13  4.441  0.000    1.498    3.807  2.540  -0.389   0.879
-14  4.044  0.000    0.857    2.511  1.697  -0.875  -0.588
-15  1.351  0.177   -0.539    1.960  0.854  -1.360  -2.055
+               lhs op                                          rhs
+1         MntlHlth  ~                                         GRMS
+2         MntlHlth  ~                                   Centrality
+3         MntlHlth  ~                              GRMS:Centrality
+4         MntlHlth ~1                                             
+5       Centrality ~1                                             
+6       Centrality ~~                                   Centrality
+7         MntlHlth ~~                                     MntlHlth
+8             GRMS ~~                                         GRMS
+9             GRMS ~~                              GRMS:Centrality
+10 GRMS:Centrality ~~                              GRMS:Centrality
+11            GRMS ~1                                             
+12 GRMS:Centrality ~1                                             
+13        SD.below := b1+b3*(Centrality.mean-sqrt(Centrality.var))
+14            mean :=                      b1+b3*(Centrality.mean)
+15        SD.above := b1+b3*(Centrality.mean+sqrt(Centrality.var))
+             label    est    se       z pvalue ci.lower ci.upper std.lv std.all
+1               b1 -1.248 0.308  -4.052  0.000   -1.822   -0.550 -1.248  -1.033
+2               b2 -0.351 0.205  -1.712  0.087   -0.706    0.118 -0.351  -0.304
+3               b3  0.157 0.079   1.984  0.047   -0.013    0.305  0.157   0.684
+4    MntlHlth.mean  6.138 0.783   7.840  0.000    4.191    7.438  6.138   7.054
+5  Centrality.mean  3.938 0.049  79.569  0.000    3.834    4.035  3.938   5.223
+6   Centrality.var  0.568 0.054  10.608  0.000    0.469    0.682  0.568   1.000
+7                   0.438 0.040  10.834  0.000    0.372    0.536  0.438   0.578
+8                   0.518 0.000      NA     NA    0.518    0.518  0.518   1.000
+9                   2.334 0.000      NA     NA    2.334    2.334  2.334   0.853
+10                 14.446 0.000      NA     NA   14.446   14.446 14.446   1.000
+11                  2.557 0.000      NA     NA    2.557    2.557  2.557   3.552
+12                 10.199 0.000      NA     NA   10.199   10.199 10.199   2.683
+13        SD.below -0.750 0.078  -9.605  0.000   -0.887   -0.574 -0.750   1.855
+14            mean -0.632 0.059 -10.760  0.000   -0.742   -0.513 -0.632   2.539
+15        SD.above -0.514 0.088  -5.812  0.000   -0.688   -0.341 -0.514   3.223
+   std.nox
+1   -1.435
+2   -0.290
+3    0.180
+4    7.054
+5    5.223
+6    1.000
+7    0.578
+8    0.518
+9    2.334
+10  14.446
+11   2.557
+12  10.199
+13  -0.675
+14  -0.495
+15  -0.315
+```
+
+```r
+# adding rsquare=TRUE or rsq=T to both summary and parameterEstimates
+# resulted in an error related to missing values in row names; could
+# not find a solution
+```
+For reasons unknown to me, I haven't been able to use the commands to produce r-square values without receiving errors. Fortunately, there is a workaround and we can call for the r-square results directly.
+
+```r
+lavaan::lavInspect(LewMLEfit, "rsquare")
+```
+
+```
+MntlHlth 
+   0.422 
+```
+
+Our model accounts for 42% of the variance in mental health.
+
+
+To create a table outside of R, you can export these results as a .csv file (which can be opened in Excel).
+
+
+```r
+write.csv(LewisMLEParamEsts, file = "LewisMLEParamEsts.csv")
 ```
 
 
@@ -813,87 +1010,142 @@ Here is the formulaic rendering:
 $$Y = i_{Y}+ b_{1}X+ b_{2}W + b_{3}XW +e_{Y}$$
 
 Looking at our data here's what we've learned:
-$$\hat{Y} = 3.26 + (-1.57)X + (-0.52)W + 1.98XW$$
+$$\hat{Y} = 6.138 + (-1.248)X + (-0.351)W + 1.57XW$$
+While the *p* values will wiggle around, it is reassuring that the regression weights are consistent across the OLS and MLE results. It is typical for the MLE *p* values to be less significant. This is, in part, due to the large sample size nature of this approach to data analysis.
+
+We can use our *lavaan* output to create a figure that is typical of path and structural equation modeling analyses. We start by feeding the *tidySEM::graph_model* function the fit object. The function will make it's best guess for a figure. Typically, we will update it.
 
 
 ```r
-library(semPlot)
-semPaths(kMLE_fit, #must identify the model you want to map
-         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
-         #whatLabels = "stand", #"stand" changes to standardized values
-         layout = 'tree', rotation = 2, #together, puts predictors on left, IVs on right 
-         #layout = 'circle',
-         edge.label.cex = 1.00, #font size of parameter values
-         #edge.color = "black", #overwrites the green/black coloring
-         sizeMan=10, #size of squares/observed/"manifest" variables
-         fade=FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals
-         esize=2, 
-         asize=3,
-         #label.prop = .5,
-         label.font = 2.5, #controls size (I think) of font for labels
-         label.scale = TRUE, #if false, the labels will not scale to fit inside the nodes
-         nDigits = 3, #decimal places (default is 2)
-         residuals = FALSE,#excludes residuals (and variances) from the path diagram
-         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)
-         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram)
-)
-title("Help Seeking as a Moderator in the Relationship between REMS and ANX")
+# only worked when I used the library to turn on all these pkgs
+library(lavaan)
 ```
 
-![](07-SimpleMod_files/figure-docx/unnamed-chunk-17-1.png)<!-- -->
+```
+This is lavaan 0.6-16
+lavaan is FREE software! Please report any bugs.
+```
+
+```
+
+Attaching package: 'lavaan'
+```
+
+```
+The following object is masked from 'package:psych':
+
+    cor2cov
+```
+
+```r
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+```
+
+```
+Loading required package: OpenMx
+```
+
+```
+
+Attaching package: 'OpenMx'
+```
+
+```
+The following object is masked from 'package:psych':
+
+    tr
+```
+
+```
+Registered S3 method overwritten by 'tidySEM':
+  method          from  
+  predict.MxModel OpenMx
+```
+
+```r
+tidySEM::graph_sem(model = LewMLEfit)
+```
+
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-26-1.png)<!-- -->
+We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
+
+
+```r
+tidySEM::get_layout(LewMLEfit)
+```
+
+```
+     [,1]              [,2]   [,3]        
+[1,] "GRMS:Centrality" NA     "Centrality"
+[2,] "MntlHlth"        "GRMS" NA          
+attr(,"class")
+[1] "layout_matrix" "matrix"        "array"        
+```
+We can write code to remap them
+
+```r
+mod_map <- tidySEM::get_layout("GRMS", "", "Centrality", "MntlHlth", "GRMS:Centrality",
+    "", rows = 3)
+mod_map
+```
+
+```
+     [,1]              [,2]      
+[1,] "GRMS"            ""        
+[2,] "Centrality"      "MntlHlth"
+[3,] "GRMS:Centrality" ""        
+attr(,"class")
+[1] "layout_matrix" "matrix"        "array"        
+```
+We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
+
+```r
+tidySEM::graph_sem(LewMLEfit, layout = mod_map, rect_width = 1.25, rect_height = 1.25,
+    spacing_x = 2, spacing_y = 3, text_size = 4.5)
+```
+
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-29-1.png)<!-- -->
 
 If I had just run this with lavaan, I would want to plot the interaction and would do so with the OLS methods I demonstrated above.
 
 
-```
-
-Attaching package: 'formattable'
-```
-
-```
-The following object is masked from 'package:MASS':
-
-    area
-```
-
-
 ### Tabling the data
 
-In this table, I gather the output from both the OLS and MLE approaches. Youll notice below that the $B$ weights are identical to the third decimal place (shown).  The standard errors and *p* values wiggle around a bit, but are consistent with each other (and lead to the same significant/non-significant conclusion).  The $R^2$ vaues are quite divergent.
+In this table, I gather the output from both the OLS and MLE approaches. Youll notice below that the $B$ weights are identical to the third decimal place (shown).  The standard errors and *p* values wiggle around a bit, but are consistent with each other (and lead to the same significant/non-significant conclusion).  The $R^2$ values are different by nearly 10%.
 
 Further comparison shows that the OLS output provides an $F$ statistic that indicates whether or not the overall model is significant. These are commonly reported in Results. In contrast, the MLE output has a page or more of *fit statistics* (e.g., CFI, RMSEA, Chi-square goodness of fit) that are commonly reported in latent variable modeling such as SEM and CFA.  Although some researchers will report them in path analysis, I tend to preer the focus on the strength and significance of the regression weights.
 
 Table 4  
 
 |A Comparison of OLS and MLE Regression Results
-|:------------------------------------------------------------------------------------------------------|
+|:-------------------------------------------------------------------------------------|
 
 |                         
-|:--------------:|:--------------------------------------:|:------------------------------------------:|
-|                |OLS with the *lm()* in base R           |MLE with *lavaan*                           |
+|:------------------:|:------------------------------:|:------------------------------:|
+|                    |OLS with the *lm()* in base R   |MLE with *lavaan*               |
 
 |
-|:---------------|:----------:|:-------------:|:---------:|:----------:|:-------------:|:-------------:|
-|                |$B$         |$SE$           |$p$        |$B$         |$SE$           |$p$            |
-|ANX (Intercept) |1.280|0.618|0.040|1.280|0.498|0.010|
-|REMS (X)        |4.315  |1.655  |0.010|4.315   |1.364    |0.002     |
-|HlpSk (W)       |0.683  |0.350  |0.053|0.683   |0.291    |0.019     |
-|REMS:HlpSK (XY) |-1.596  |0.938  |0.091|-1.596   |0.821    |0.052     |
+|:-------------------|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|                    |$B$       |$SE$      |$p$       |$B$       |$SE$      |$p$       |
+|MntlHlth (Intercept)|6.138	    |0.767	   |0.000     |6.138     |0.783     |<0.001    |
+|GRMS (X)            |-1.248    |0.290	   |0.000     |-1.248	   |0.308	    |<0.001    |
+|Centrality (W)      |-0.351    |0.199	   |0.079     |-0.351	   |0.205     |0.087     |
+|GRMS:GRIC (XY)      |0.157	    |0.073	   |0.034     |0.157	   |0.079	    |0.047     |
 
 |
-|:---------------|:---------------------------------------|:------------------------------------------:|
-|                |$R^2$                                   |$R^2$                                       |
-|                |9.06%                             |
+|:-------------------|:-------------------------------|:------------------------------:|
+|                    |$R^2$                           |$R^2$                           |
+|                    |0.331                           |0.422                           |
 
-|
-|-------------------------------------------------------------------------------------------------------|
 
 
 ### APA Style Writeup
 
 **Method/Analytic Strategy**
 
-Data were analyzed with a maximum likelihood approach the package, *lavaan* (v. 0.6-7) We specified a model predicting anxiety (ANX) from the interacting effects of racial and ethnic microaggressions (REMS) and attitudes toward help-seeking (HlpSk).
+Data were analyzed with a maximum likelihood approach the package, *lavaan* (v. 0.6-16). We specified a model predicting mental health (MntlHlth) from the interacting effects of gendered racial microaggressions (GRMS) and gendered racial identity centrality (GRIC).
 
 **Results**
 
@@ -905,7 +1157,11 @@ Data were analyzed with a maximum likelihood approach the package, *lavaan* (v. 
 *  Address limitations and concerns
 
 **Primary Analyses**
-A multiple regression analysis was conducted to predict anxiety from racial and ethnic microaggressions and attitudes toward help-seeking. Results supported a statistically significant interaction effect that accounted for  of the variance. Probing the interaction effect with the pick-a-point approaches indicated that the relationship between REMS and anxiety is non-significant when help-seeking is 1SD below the mean, but is significant when help-seeking is at and above the mean. Results are listed in Table 4.  As illustrated in Figure 1, the relationship between REMS and anxiety is the sharpest for those who are at +1SD above the mean on help-seeking. That is, the highest levels of anxiety are among those who experience the most racial and ethnic microaggressions and have the most favorable attitudes toward help-seeking.
+A multiple regression analysis was conducted to predict anxiety from racial and ethnic microaggressions and attitudes toward help-seeking. Results supported a model with a statistically significant interaction effect that accounted for 42% of the variance. Probing the interaction effect with a simple slopes analysis indicated that the relationship between gendered racial microaggressions and mental health was significant throughout the centrality distribution (i.e., $M \pm  1SD$). Results are listed in Table 2. The effect of the significant interaction can be seen in Figure 1 where the slope of the gendered racial microaggresions and mental health relationship is sharpest for those with the lowest levels of gendered racial identity centrality.
+
+## STAY TUNED
+
+A section on power analysis is planned and coming soon! My apologies that it's not quite *R*eady.
 
 
 ## Residual and Related Questions...
@@ -925,65 +1181,41 @@ Wait.  Why did we do this?  And which would you use when?
    
 ## Practice Problems
 
-The suggested practice problem for this chapter is to conduct a simple moderation with both the OLS/*lm()* approach and the MLE/*lavaan* approach.
+The suggested practice problem for this chapter is to conduct a simple moderation with both the OLS(i.e., *lm()*) approach and the MLE(i.e., *lavaan*) approach and compare the results.  
 
 
 ### Problem #1: Rework the research vignette as demonstrated, but change the random seed
 
 If this topic feels a bit overwhelming, simply change the random seed in the data simulation, then rework the problem. This should provide minor changes to the data (maybe in the second or third decimal point), but the results will likely be very similar.
 
-|Assignment Component  
-|:-----------------------------------------------------------------------------------------|:-------------: |:------------:|
-|1. Assign each variable to the X, Y, and W roles (ok but not required  to include a cov)  |      5         |    _____     |  
-|2. Specify and run the OLS/*lm()* model                                                   |      5         |    _____     | 
-|3. Probe the interaction with the pick-a-point and Johnson-Neyman approaches              |      5         |    _____     |
-|4. Create an interaction figure                                                           |      5         |    _____     |
-|5. Create a table (a package-produced table is fine)                                      |      5         |    _____     | 
-|6. Create an APA style write-up of the results                                            |      5         |    _____     |  
-|7. Repeat the analysis in *lavaan* (specify the model to include probing the interaction) |      5         |    _____     | 
-|8. Create a model figure.                                                                 |      5         |    _____     | 
-|9. Create a table.                                                                        |      5         |    _____     | 
-|10. Represent your work in an APA-style write-up                                          |      5         |    _____     | 
-|11. Explanation to grader                                                                 |      5         |    _____     | |**Totals**                                                                                |      55        |    _____     |
-
 ### Problem #2:  Rework the research vignette, but swap one or more variables
 
-Use the simulated data, but swap out at least one of the variables in the model to conduct the simple moderation using both approaches.
+Use the simulated data, but select one of the other models that was evaluated in the Lewis et al. [-@lewis_applying_2017] study. 
 
-|Assignment Component  
-|:-----------------------------------------------------------------------------------------|:-------------: |:------------:|
-|1. Assign each variable to the X, Y, and W roles (ok but not required  to include a cov)  |      5         |    _____     |  
-|2. Specify and run the OLS/*lm()* model                                                   |      5         |    _____     | 
-|3. Probe the interaction with the pick-a-point and Johnson-Neyman approaches              |      5         |    _____     |
-|4. Create an interaction figure                                                           |      5         |    _____     |
-|5. Create a table (a package-produced table is fine)                                      |      5         |    _____     | 
-|6. Create an APA style write-up of the results                                            |      5         |    _____     |  
-|7. Repeat the analysis in *lavaan* (specify the model to include probing the interaction) |      5         |    _____     | 
-|8. Create a model figure.                                                                 |      5         |    _____     | 
-|9. Create a table.                                                                        |      5         |    _____     | 
-|10. Represent your work in an APA-style write-up                                          |      5         |    _____     | 
-|11. Explanation to grader                                                                 |      5         |    _____     | |**Totals**                                                                                |      55        |    _____     |
-             
-                                                                 
 
 ### Problem #3:  Use other data that is available to you
 
 Using data for which you have permission and access (e.g.,  IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete the simple moderation with both approaches.
 
+### Grading Rubric
+
 |Assignment Component  
 |:-----------------------------------------------------------------------------------------|:-------------: |:------------:|
-|1. Assign each variable to the X, Y, and W roles (ok but not required  to include a cov)  |      5         |    _____     |  
-|2. Specify and run the OLS/*lm()* model                                                   |      5         |    _____     | 
-|3. Probe the interaction with the pick-a-point and Johnson-Neyman approaches              |      5         |    _____     |
-|4. Create an interaction figure                                                           |      5         |    _____     |
-|5. Create a table (a package-produced table is fine)                                      |      5         |    _____     | 
-|6. Create an APA style write-up of the results                                            |      5         |    _____     |  
-|7. Repeat the analysis in *lavaan* (specify the model to include probing the interaction) |      5         |    _____     | 
-|8. Create a model figure.                                                                 |      5         |    _____     | 
-|9. Create a table.                                                                        |      5         |    _____     | 
-|10. Represent your work in an APA-style write-up                                          |      5         |    _____     | 
-|11. Explanation to grader                                                                 |      5         |    _____     | |**Totals**                                                                                |      55        |    _____     |
-   
+|1. Assign each variable to the X, Y, and W roles                                          |      5         |    _____     | 
+|2. Import the data and format the variables in the model                                  |      5         |    _____     | 
+|3. Specify and run the OLS (i.e., *lm()*) model                                                   |      5         |    _____     | 
+|4. Probe the interaction with the simple slopes and Johnson-Neyman approaches             |      5         |    _____     |
+|5. Create an interaction figure                                                           |      5         |    _____     |
+|6. Create a table (a package-produced table is fine)                                      |      5         |    _____     | 
+|7. Create an APA style write-up of the results                                            |      5         |    _____     |  
+|8. Repeat the analysis in *lavaan* (specify the model to include probing the interaction) |      5         |    _____     | 
+|9. Create a model figure                                                                  |      5         |    _____     | 
+|10. Create a table                                                                        |      5         |    _____     | 
+|11. Note similarities and differences in the OLS results                                  |      5         |    _____     | 
+|12. Represent your work in an APA-style write-up                                          |      5         |    _____     | 
+|13. Explanation to grader                                                                 |      5         |    _____     | 
+|**Totals**                                                                                |      65        |    _____     |
+  
 
 ## Bonus Track: 
 
@@ -992,23 +1224,32 @@ Using data for which you have permission and access (e.g.,  IRB approved data yo
 Below is template for a simple moderation conducted with the OLS approach using the base R function, *lm()*
 
 ```r
-library(jtools) #the summ function creates a terrific regression table
+library(jtools)  #the summ function creates a terrific regression table
+```
+
+```
+
+Attaching package: 'jtools'
+```
+
+```
+The following object is masked from 'package:tidySEM':
+
+    get_data
+```
+
+```r
 library(interactions)
 library(ggplot2)
 
-#The regression
-#OLSmodel <- lm(Y~X*W, data=my_df)
-#summary(KimSimpMod)
+# The regression OLSmodel <- lm(Y~X*W, data=my_df) summary(OLSmodel)
 
-#Cool Table
-#summ(KimSimpMod, digits = 3)
+# Cool Table summ(OLSmodel, digits = 3)
 
-#Probe Simple Slopes
-#sim_slopes(OLSmodel, pred = X, modx = W)
+# Probe Simple Slopes sim_slopes(OLSmodel, pred = X, modx = W)
 
-#Figures
-#interact_plot(OLSmodel, pred = W, modx = X)
-#interact_plot(OLSmodel, pred = X, modx = W)
+# Figures interact_plot(OLSmodel, pred = W, modx = X)
+# interact_plot(OLSmodel, pred = X, modx = W)
 ```
 
 Below is a template for a simple moderation conducted with the MLE approach using the package, *lavaan*.
@@ -1016,9 +1257,11 @@ Below is a template for a simple moderation conducted with the MLE approach usin
 
 ```r
 library(lavaan)
-# set.seed(210501) MLEmodel <- ' Y ~ b1*X + b2*W + b3*X:W intercept
-# (constant) of Y Y ~ Y.mean*1 mean of W for use in simple slopes W ~
-# W.mean*1 variance of W for use in simple slopes W ~~ W .var*W
+# set.seed(210501)#needed for reproducibility because lavaan
+# introduces randomness in the calculations MLEmodel <- ' Y ~ b1*X +
+# b2*W + b3*X:W intercept (constant) of Y Y ~ Y.mean*1 mean of W for
+# use in simple slopes W ~ W.mean*1 variance of W for use in simple
+# slopes W ~~ W .var*W
 
 # simple slopes SD.below := b1 + b3*(W.mean - sqrt(W.var)) mean := b1
 # + b3*(W.mean) SD.above := b1 + b3*(W.mean + sqrt(W.var))
@@ -1031,28 +1274,592 @@ library(lavaan)
 ```
 
 
+
+
+## Homeworked Example
+[Screencast Link](https://youtu.be/wOv4YONNytQ)
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
+
+The suggested practice problem for this chapter is to conduct a simple moderation (i.e., moderated regression) with both ordinary least squares (i.e., with the *lm()* function in base R) and maximum likelihood estimators (i.e., with the *lavaan::sem* function package) and compare the results. 
+
+### Assign each variable to the X, Y, and W roles {-}  
+
+Is the effect of centering on perceived value to the student moderated by socially responsive pedagogy?
+
+* X = Centering, pre/re (0,1)
+* W = Socially responsive pedagogy (1 to 4 scaling)
+* Y = Value to the student (1 to 4 scaling)
+
+![An image of the conceptual model of simple moderation for the homeworked example.](Worked_Examples/images/HW_SimpMod1.png)
+
+![An image of the statistical model of simple moderation for the homeworked example.](Worked_Examples/images/HW_SimpMod2.png)
+
+### Import the data and format the variables in the model  {-}
+
+
 ```r
-# library(semPlot) semPaths(MLEmod_fit, #must identify the model you
-# want to map what = 'est', #'est' plots the estimates, but keeps it
-# greyscale with no fading whatLabels = 'stand', #'stand' changes to
-# standardized values layout = 'tree', rotation = 2, #together, puts
-# predictors on left, IVs on right layout = 'circle', edge.label.cex
-# = 1.00, #font size of parameter values edge.color = 'black',
-# #overwrites the green/black coloring sizeMan=10, #size of
-# squares/observed/'manifest' variables fade=FALSE, #if TRUE, there
-# lines are faded such that weaker lines correspond with lower values
-# -- a cool effect, but tough for journals esize=2, asize=3,
-# label.prop = .5, label.font = 2.5, #controls size (I think) of font
-# for labels label.scale = TRUE, #if false, the labels will not scale
-# to fit inside the nodes nDigits = 3, #decimal places (default is 2)
-# residuals = FALSE,#excludes residuals (and variances) from the path
-# diagram nCharNodes = 0, #specifies how many characters to
-# abbreviate variable lables; default is 3.  If 0, uses your entire
-# variable label and adjusts fontsize (which could be a downside)
-# intercepts = FALSE, #gets rid of those annoying triangles
-# (intercepts) in the path diagram) ) title('Help Seeking as a
-# Moderator in the Relationship between REMS and ANX')
+raw <- readRDS("ReC.rds")
 ```
+
+The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
+
+```r
+raw <- (dplyr::filter(raw, Course == "Multivariate"))
+```
+
+I need to score the SRPed and Valued variables
+
+
+```r
+Valued_vars <- c("ValObjectives", "IncrUnderstanding", "IncrInterest")
+raw$Valued <- sjstats::mean_n(raw[, ..Valued_vars], 0.75)
+
+SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
+    "DEIintegration")
+raw$SRPed <- sjstats::mean_n(raw[, ..SRPed_vars], 0.75)
+```
+
+
+I will create a babydf.
+
+
+```r
+babydf <- dplyr::select(raw, Centering, Valued, SRPed)
+```
+
+Let's check the structure of the variables:
+
+
+```r
+str(babydf)
+```
+
+```
+Classes 'data.table' and 'data.frame':	84 obs. of  3 variables:
+ $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+ $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+```
+Quick peek at relations between variables:
+
+
+```r
+psych::pairs.panels(babydf)
+```
+
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
+
+
+
+### Specify and run the OLS/*lm()* model {-} 
+
+
+```r
+ReC_SimpMod <- lm(Valued ~ Centering * SRPed, data = babydf)
+# the base R output if you prefer this view
+summary(ReC_SimpMod)
+```
+
+```
+
+Call:
+lm(formula = Valued ~ Centering * SRPed, data = babydf)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.7173 -0.3092  0.1286  0.4027  1.1286 
+
+Coefficients:
+                  Estimate Std. Error t value    Pr(>|t|)    
+(Intercept)         1.0567     0.5631   1.876      0.0644 .  
+CenteringRe        -0.5703     1.3183  -0.433      0.6665    
+SRPed               0.7037     0.1272   5.530 0.000000422 ***
+CenteringRe:SRPed   0.1185     0.2813   0.421      0.6748    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.5606 on 77 degrees of freedom
+  (3 observations deleted due to missingness)
+Multiple R-squared:  0.3674,	Adjusted R-squared:  0.3427 
+F-statistic:  14.9 on 3 and 77 DF,  p-value: 0.00000009678
+```
+
+
+Although there is a statistically significant main effect for socially responsive pedagogy, all other effects (including the moderation effect) is non-significant. If this were "real research" we might stop, but let's continue.
+
+The following code can export the OLS regression results into a .csv. This can be opened with Excel for use in table-making. Note that this makes use of the *broom* package.
+
+```r
+ReC_SimpModOLS <- as.data.frame(broom::tidy(ReC_SimpMod))
+write.csv(ReC_SimpModOLS, "ReC_SimpModOLS.csv")
+```
+
+### Probe the interaction with the simple slopes and Johnson-Neyman approaches {-}
+
+
+```r
+interactions::sim_slopes(ReC_SimpMod, pred = SRPed, modx = Centering)
+```
+
+```
+Warning: Johnson-Neyman intervals are not available for factor moderators.
+```
+
+```
+SIMPLE SLOPES ANALYSIS 
+
+Slope of SRPed when Centering = Re: 
+
+  Est.   S.E.   t val.      p
+------ ------ -------- ------
+  0.82   0.25     3.28   0.00
+
+Slope of SRPed when Centering = Pre: 
+
+  Est.   S.E.   t val.      p
+------ ------ -------- ------
+  0.70   0.13     5.53   0.00
+```
+Consistent with the main effect of socially responsive pedagogy, it has a positive effect on value at pre- and re-centered stages.
+
+### Create an interaction figure {-}
+
+
+```r
+library(ggplot2)
+interactions::interact_plot(ReC_SimpMod, pred = SRPed, modx = Centering) +
+    ylim(1, 5)
+```
+
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-44-1.png)<!-- -->
+
+```r
+# the following code will not run because for this function, the x
+# variable cannot be a factor
+# interactions::interact_plot(ReC_SimpMod, pred = Centering, modx =
+# SRPed)
+```
+### Create a table (a package-produced table is fine) {-} 
+
+
+```r
+ReC_SimpMod_summ <- jtools::summ(ReC_SimpMod, digits = 3)
+ReC_SimpMod_summ
+```
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> Observations </td>
+   <td style="text-align:right;"> 81 (3 missing obs. deleted) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> Dependent variable </td>
+   <td style="text-align:right;"> Valued </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> Type </td>
+   <td style="text-align:right;"> OLS linear regression </td>
+  </tr>
+</tbody>
+</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> F(3,77) </td>
+   <td style="text-align:right;"> 14.904 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> R² </td>
+   <td style="text-align:right;"> 0.367 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> Adj. R² </td>
+   <td style="text-align:right;"> 0.343 </td>
+  </tr>
+</tbody>
+</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Est. </th>
+   <th style="text-align:right;"> S.E. </th>
+   <th style="text-align:right;"> t val. </th>
+   <th style="text-align:right;"> p </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> (Intercept) </td>
+   <td style="text-align:right;"> 1.057 </td>
+   <td style="text-align:right;"> 0.563 </td>
+   <td style="text-align:right;"> 1.876 </td>
+   <td style="text-align:right;"> 0.064 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> CenteringRe </td>
+   <td style="text-align:right;"> -0.570 </td>
+   <td style="text-align:right;"> 1.318 </td>
+   <td style="text-align:right;"> -0.433 </td>
+   <td style="text-align:right;"> 0.667 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> SRPed </td>
+   <td style="text-align:right;"> 0.704 </td>
+   <td style="text-align:right;"> 0.127 </td>
+   <td style="text-align:right;"> 5.530 </td>
+   <td style="text-align:right;"> 0.000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> CenteringRe:SRPed </td>
+   <td style="text-align:right;"> 0.118 </td>
+   <td style="text-align:right;"> 0.281 </td>
+   <td style="text-align:right;"> 0.421 </td>
+   <td style="text-align:right;"> 0.675 </td>
+  </tr>
+</tbody>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Standard errors: OLS</td></tr></tfoot>
+</table>
+
+### Create an APA style write-up of the results {-}  
+
+A multiple regression analysis was conducted to predict course value to the student from the centering (pre-, re-) stage, moderated by evaluation of socially responsive pedagogy. Although the model accounted for 37% of the variance, there was not a statistically significant interaction. Rather, socially responsive pedagogy had a strong main effect $(B = 0.704, SE = 0.127, p < 0.001)$ that was true for both pre- and re-centered levels. Results are listed in Table 1 and illustrated in Figure 1.  
+
+### Repeat the analysis in *lavaan* (specify the model to include probing the interaction) {-} 
+
+
+```r
+str(babydf)
+```
+
+```
+Classes 'data.table' and 'data.frame':	84 obs. of  3 variables:
+ $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+ $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+```
+
+
+
+```r
+babydf$CENTERING <- as.numeric(babydf$Centering)
+babydf$CENTERING <- (babydf$CENTERING - 1)
+str(babydf)
+```
+
+```
+Classes 'data.table' and 'data.frame':	84 obs. of  4 variables:
+ $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+ $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+ $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
+ $ CENTERING: num  1 1 1 1 1 1 1 1 1 1 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+```
+
+
+
+```r
+ReC_SimpMod_MLE <- "
+    Valued ~ b1*CENTERING + b2*SRPed + b3*CENTERING:SRPed
+    
+    #intercept (constant) of Valued
+    Valued ~ Valued.mean*1
+    #mean of W (SRPed, in this case) for use in simple slopes
+    SRPed ~ SRPed.mean*1
+    #variance of W (SRPed, in this case) for use in simple slopes
+    SRPed ~~SRPed.var*SRPed
+
+    #simple slopes evaluating effect of SCRPed on Valued at each of the levels of centering
+    Pre := b2 + b3*(0)
+    Re := b2 + b3*(1)
+"
+set.seed(231002)  #needed for reproducibility because lavaan introduces randomness in calculations
+ReCMLEfit <- lavaan::sem(ReC_SimpMod_MLE, data = babydf, missing = "fiml",
+    se = "bootstrap", bootstrap = 1000)
+```
+
+```
+Warning in lav_data_full(data = data, group = group, cluster = cluster, : lavaan WARNING: 3 cases were deleted due to missing values in 
+		  exogenous variable(s), while fixed.x = TRUE.
+```
+
+```
+Warning in lav_partable_vnames(FLAT, "ov.x", warn = TRUE): lavaan WARNING:
+    model syntax contains variance/covariance/intercept formulas
+    involving (an) exogenous variable(s): [SRPed]; These variables
+    will now be treated as random introducing additional free
+    parameters. If you wish to treat those variables as fixed, remove
+    these formulas from the model syntax. Otherwise, consider adding
+    the fixed.x = FALSE option.
+```
+
+```r
+ReCMLEsummary <- lavaan::summary(ReCMLEfit, standardized = TRUE, fit = TRUE,
+    ci = TRUE)
+ReCMLEParamEsts <- lavaan::parameterEstimates(ReCMLEfit, boot.ci.type = "bca.simple",
+    standardized = TRUE)
+ReCMLEsummary
+```
+
+```
+lavaan 0.6.16 ended normally after 12 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                         7
+
+                                                  Used       Total
+  Number of observations                            81          84
+  Number of missing patterns                         1            
+
+Model Test User Model:
+                                                      
+  Test statistic                                25.909
+  Degrees of freedom                                 2
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                                62.994
+  Degrees of freedom                                 5
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.588
+  Tucker-Lewis Index (TLI)                      -0.031
+                                                      
+  Robust Comparative Fit Index (CFI)             0.588
+  Robust Tucker-Lewis Index (TLI)               -0.031
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)               -136.024
+  Loglikelihood unrestricted model (H1)       -123.069
+                                                      
+  Akaike (AIC)                                 286.048
+  Bayesian (BIC)                               302.809
+  Sample-size adjusted Bayesian (SABIC)        280.733
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.384
+  90 Percent confidence interval - lower         0.261
+  90 Percent confidence interval - upper         0.522
+  P-value H_0: RMSEA <= 0.050                    0.000
+  P-value H_0: RMSEA >= 0.080                    1.000
+                                                      
+  Robust RMSEA                                   0.384
+  90 Percent confidence interval - lower         0.261
+  90 Percent confidence interval - upper         0.522
+  P-value H_0: Robust RMSEA <= 0.050             0.000
+  P-value H_0: Robust RMSEA >= 0.080             1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.140
+
+Parameter Estimates:
+
+  Standard errors                            Bootstrap
+  Number of requested bootstrap draws             1000
+  Number of successful bootstrap draws            1000
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+  Valued ~                                                              
+    CENTERING (b1)   -0.570    1.138   -0.501    0.616   -2.882    1.692
+    SRPed     (b2)    0.704    0.152    4.634    0.000    0.356    0.953
+    CENTERING (b3)    0.118    0.250    0.474    0.635   -0.373    0.643
+   Std.lv  Std.all
+                  
+   -0.570   -0.405
+    0.704    0.594
+    0.118    0.400
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+   .Valued  (Vld.)    1.057    0.675    1.564    0.118   -0.025    2.594
+    SRPed   (SRP.)    4.512    0.061   74.224    0.000    4.389    4.635
+   Std.lv  Std.all
+    1.057    1.553
+    4.512    7.856
+
+Variances:
+                   Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+    SRPed   (SRP.)    0.330    0.060    5.500    0.000    0.214    0.453
+   .Valued            0.299    0.055    5.428    0.000    0.182    0.391
+   Std.lv  Std.all
+    0.330    1.000
+    0.299    0.645
+
+Defined Parameters:
+                   Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+    Pre               0.704    0.152    4.632    0.000    0.356    0.953
+    Re                0.822    0.199    4.124    0.000    0.368    1.182
+   Std.lv  Std.all
+    0.704    0.594
+    0.822    0.994
+```
+
+```r
+ReCMLEParamEsts
+```
+
+```
+               lhs op             rhs       label    est    se      z pvalue
+1           Valued  ~       CENTERING          b1 -0.570 1.138 -0.501  0.616
+2           Valued  ~           SRPed          b2  0.704 0.152  4.634  0.000
+3           Valued  ~ CENTERING:SRPed          b3  0.118 0.250  0.474  0.635
+4           Valued ~1                 Valued.mean  1.057 0.675  1.564  0.118
+5            SRPed ~1                  SRPed.mean  4.512 0.061 74.224  0.000
+6            SRPed ~~           SRPed   SRPed.var  0.330 0.060  5.500  0.000
+7           Valued ~~          Valued              0.299 0.055  5.428  0.000
+8        CENTERING ~~       CENTERING              0.233 0.000     NA     NA
+9        CENTERING ~~ CENTERING:SRPed              1.104 0.000     NA     NA
+10 CENTERING:SRPed ~~ CENTERING:SRPed              5.286 0.000     NA     NA
+11       CENTERING ~1                              0.370 0.000     NA     NA
+12 CENTERING:SRPed ~1                              1.753 0.000     NA     NA
+13             Pre :=       b2+b3*(0)         Pre  0.704 0.152  4.632  0.000
+14              Re :=       b2+b3*(1)          Re  0.822 0.199  4.124  0.000
+   ci.lower ci.upper std.lv std.all std.nox
+1    -2.760    1.778 -0.570  -0.405  -0.838
+2     0.390    0.974  0.704   0.594   0.499
+3    -0.415    0.589  0.118   0.400   0.174
+4    -0.153    2.465  1.057   1.553   1.553
+5     4.373    4.620  4.512   7.856   7.856
+6     0.229    0.470  0.330   1.000   1.000
+7     0.205    0.423  0.299   0.645   0.645
+8     0.233    0.233  0.233   1.000   0.233
+9     1.104    1.104  1.104   0.994   1.104
+10    5.286    5.286  5.286   1.000   5.286
+11    0.370    0.370  0.370   0.767   0.370
+12    1.753    1.753  1.753   0.762   1.753
+13    0.390    0.974  0.704   0.594   0.499
+14    0.336    1.156  0.822   0.994   0.674
+```
+
+```r
+# adding rsquare=TRUE or rsq=T to both summary and parameterEstimates
+# resulted in an error related to missing values in row names; could
+# not find a solution
+```
+
+For reasons unknown to me, I haven't been able to use the commands to produce r-square values without receiving errors. Fortunately, there is a workaround and we can call for the r-square results directly.
+
+```r
+lavaan::lavInspect(ReCMLEfit, "rsquare")
+```
+
+```
+Valued 
+ 0.355 
+```
+Our model accounts for 36% of the variance in value to the student.
+
+To create a table outside of R, I can export these results as a .csv file (which can be opened in Excel).
+
+
+```r
+write.csv(ReCMLEParamEsts, file = "ReCMLEParamEsts.csv")
+```
+
+### Create a model figure {-} 
+
+
+```r
+#only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = ReCMLEfit)
+```
+
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-51-1.png)<!-- -->
+
+
+```r
+tidySEM::get_layout(ReCMLEfit)
+```
+
+```
+     [,1]              [,2]        [,3]   
+[1,] NA                "CENTERING" NA     
+[2,] "CENTERING:SRPed" "Valued"    "SRPed"
+attr(,"class")
+[1] "layout_matrix" "matrix"        "array"        
+```
+
+```r
+ReCmod_map <- tidySEM::get_layout("CENTERING", "", "SRPed", "Valued", "CENTERING:SRPed",
+    "", rows = 3)
+ReCmod_map
+```
+
+```
+     [,1]              [,2]    
+[1,] "CENTERING"       ""      
+[2,] "SRPed"           "Valued"
+[3,] "CENTERING:SRPed" ""      
+attr(,"class")
+[1] "layout_matrix" "matrix"        "array"        
+```
+We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
+
+```r
+tidySEM::graph_sem(ReCMLEfit, layout = ReCmod_map, rect_width = 1.25, rect_height = 1.25,
+    spacing_x = 2, spacing_y = 3, text_size = 4.25)
+```
+
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-54-1.png)<!-- -->
+
+### Create a table {-} 
+
+For a regular write-up, I would have only done the OLS or the MLE and had half of the table below. However, tabling it together will help me contrast the results.
+
+Table 4  
+
+|A Comparison of OLS and MLE Regression Results for the ReCentering Analysis
+|:-------------------------------------------------------------------------------------|
+
+|                         
+|:------------------:|:------------------------------:|:------------------------------:|
+|                    |OLS with the *lm()* in base R   |MLE with *lavaan*               |
+
+|
+|:-------------------|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|                    |$B$       |$SE$      |$p$       |$B$       |$SE$      |$p$       |
+|Valued (Intercept)  |1.057	    |0.563	   |0.064     |1.057	   |0.675	    |0.118     |
+|Centering (X)       |-0.570	  |1.318	   |0.667     |-0.570	   |1.138	    |0.616     |
+|SRPed (W)           |0.704	    |0.127	   |<0.001    |0.704 	   |0.152	    |<0.001    |
+|Centering:SRPed(XY) |0.118	    |0.281	   |0.675     |0.118	   |0.250	    |0.635     |
+ |
+
+|
+|:-------------------|:-------------------------------|:------------------------------:|
+|                    |$R^2$                           |$R^2$                           |
+|                    |0.367                           | 0.355 
+
+|
+|--------------------------------------------------------------------------------------|
+
+### Note similarities and differences in the OLS results  
+
+Regression weights are identical; *p* values of the lavaan/MLE results are more conservative and $R^2$ of lavaan results is a tad lower.
+
+### Represent your work in an APA-style write-up {-}    
+
+A multiple regression analysis was conducted to predict course value to the student from the centering (pre-, re-) stage, moderated by evaluation of socially responsive pedagogy. Although the model accounted for 36% of the variance, there was not a statistically significant interaction. Rather, socially responsive pedagogy had a strong main effect $(B = 0.704, SE = 0.163, p < 0.001)$ that was true for both pre- and re-centered levels. Results are listed in Table 1 and illustrated in Figure 1.  
+
+
+
+
+
+
 
 
 

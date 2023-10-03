@@ -1,0 +1,224 @@
+```{r include = FALSE}
+options(scipen=999)
+```
+
+## Homeworked Example
+[Screencast Link](https://youtu.be/wOv4YONNytQ)
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
+
+The suggested practice problem for this chapter is to conduct a simple moderation (i.e., moderated regression) with both ordinary least squares (i.e., with the *lm()* function in base R) and maximum likelihood estimators (i.e., with the *lavaan::sem* function package) and compare the results. 
+
+### Assign each variable to the X, Y, and W roles {-}  
+
+Is the effect of centering on perceived value to the student moderated by socially responsive pedagogy?
+
+* X = Centering, pre/re (0,1)
+* W = Socially responsive pedagogy (1 to 4 scaling)
+* Y = Value to the student (1 to 4 scaling)
+
+![An image of the conceptual model of simple moderation for the homeworked example.](Worked_Examples/images/HW_SimpMod1.png)
+
+![An image of the statistical model of simple moderation for the homeworked example.](Worked_Examples/images/HW_SimpMod2.png)
+
+### Import the data and format the variables in the model  {-}
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+raw <- readRDS("ReC.rds")
+```
+
+The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+raw <-(dplyr::filter(raw, Course == "Multivariate"))
+```
+
+I need to score the SRPed and Valued variables
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+Valued_vars <- c('ValObjectives', 'IncrUnderstanding','IncrInterest')  
+raw$Valued <- sjstats::mean_n(raw[, ..Valued_vars], .75)
+
+SRPed_vars <- c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration')  
+raw$SRPed <- sjstats::mean_n(raw[,..SRPed_vars], .75)
+```
+
+
+I will create a babydf.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+babydf <- dplyr::select(raw, Centering, Valued, SRPed)
+```
+
+Let's check the structure of the variables:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+str(babydf)
+```
+Quick peek at relations between variables:
+
+```{r}
+psych::pairs.panels(babydf)
+```
+
+
+
+### Specify and run the OLS/*lm()* model {-} 
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70), message=FALSE, warning=FALSE}
+ReC_SimpMod <- lm(Valued~Centering*SRPed, data=babydf)
+#the base R output if you prefer this view
+summary(ReC_SimpMod) 
+```
+
+
+Although there is a statistically significant main effect for socially responsive pedagogy, all other effects (including the moderation effect) is non-significant. If this were "real research" we might stop, but let's continue.
+
+The following code can export the OLS regression results into a .csv. This can be opened with Excel for use in table-making. Note that this makes use of the *broom* package.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ReC_SimpModOLS <- as.data.frame(broom::tidy(ReC_SimpMod))
+write.csv(ReC_SimpModOLS, "ReC_SimpModOLS.csv")
+```
+
+### Probe the interaction with the simple slopes and Johnson-Neyman approaches {-}
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+interactions::sim_slopes(ReC_SimpMod, pred = SRPed, modx = Centering)
+```
+Consistent with the main effect of socially responsive pedagogy, it has a positive effect on value at pre- and re-centered stages.
+
+### Create an interaction figure {-}
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+library(ggplot2)
+interactions::interact_plot(ReC_SimpMod, pred = SRPed, modx = Centering) + ylim(1, 5)
+#the following code will not run because for this function, the x variable cannot be a factor
+#interactions::interact_plot(ReC_SimpMod, pred = Centering, modx = SRPed)
+``` 
+### Create a table (a package-produced table is fine) {-} 
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ReC_SimpMod_summ <- jtools::summ(ReC_SimpMod, digits = 3)
+ReC_SimpMod_summ
+```
+
+### Create an APA style write-up of the results {-}  
+
+A multiple regression analysis was conducted to predict course value to the student from the centering (pre-, re-) stage, moderated by evaluation of socially responsive pedagogy. Although the model accounted for 37% of the variance, there was not a statistically significant interaction. Rather, socially responsive pedagogy had a strong main effect $(B = 0.704, SE = 0.127, p < 0.001)$ that was true for both pre- and re-centered levels. Results are listed in Table 1 and illustrated in Figure 1.  
+
+### Repeat the analysis in *lavaan* (specify the model to include probing the interaction) {-} 
+
+```{r}
+str(babydf)
+```
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+babydf$CENTERING <- as.numeric(babydf$Centering)
+babydf$CENTERING <- (babydf$CENTERING - 1)
+str(babydf)
+
+```
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ReC_SimpMod_MLE <- '
+    Valued ~ b1*CENTERING + b2*SRPed + b3*CENTERING:SRPed
+    
+    #intercept (constant) of Valued
+    Valued ~ Valued.mean*1
+    #mean of W (SRPed, in this case) for use in simple slopes
+    SRPed ~ SRPed.mean*1
+    #variance of W (SRPed, in this case) for use in simple slopes
+    SRPed ~~SRPed.var*SRPed
+
+    #simple slopes evaluating effect of SCRPed on Valued at each of the levels of centering
+    Pre := b2 + b3*(0)
+    Re := b2 + b3*(1)
+'
+set.seed(231002)#needed for reproducibility because lavaan introduces randomness in calculations
+ReCMLEfit <- lavaan::sem(ReC_SimpMod_MLE, data = babydf,  missing = 'fiml', se = "bootstrap", bootstrap = 1000)
+ReCMLEsummary <- lavaan::summary(ReCMLEfit, standardized = TRUE, fit=TRUE, ci=TRUE)    
+ReCMLEParamEsts <- lavaan::parameterEstimates(ReCMLEfit, boot.ci.type = "bca.simple", standardized=TRUE)
+ReCMLEsummary
+ReCMLEParamEsts
+
+#adding rsquare=TRUE or rsq=T to both summary and parameterEstimates resulted in an error related to missing values in row names; could not find a solution
+```
+
+For reasons unknown to me, I haven't been able to use the commands to produce r-square values without receiving errors. Fortunately, there is a workaround and we can call for the r-square results directly.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+lavaan::lavInspect(ReCMLEfit, "rsquare")
+```
+Our model accounts for 36% of the variance in value to the student.
+
+To create a table outside of R, I can export these results as a .csv file (which can be opened in Excel).
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+write.csv(ReCMLEParamEsts, file = "ReCMLEParamEsts.csv")
+```
+
+### Create a model figure {-} 
+
+```{r}
+#only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = ReCMLEfit)
+```
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+tidySEM::get_layout(ReCMLEfit)
+```
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ReCmod_map <- tidySEM::get_layout("CENTERING", "", 
+                               "SRPed", "Valued", 
+                               "CENTERING:SRPed", "", rows=3)
+ReCmod_map
+```
+We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+tidySEM::graph_sem(ReCMLEfit, layout=ReCmod_map,  rect_width = 1.25, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.25)
+```
+
+### Create a table {-} 
+
+For a regular write-up, I would have only done the OLS or the MLE and had half of the table below. However, tabling it together will help me contrast the results.
+
+Table 4  
+
+|A Comparison of OLS and MLE Regression Results for the ReCentering Analysis
+|:-------------------------------------------------------------------------------------|
+
+|                         
+|:------------------:|:------------------------------:|:------------------------------:|
+|                    |OLS with the *lm()* in base R   |MLE with *lavaan*               |
+
+|
+|:-------------------|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|                    |$B$       |$SE$      |$p$       |$B$       |$SE$      |$p$       |
+|Valued (Intercept)  |1.057	    |0.563	   |0.064     |1.057	   |0.675	    |0.118     |
+|Centering (X)       |-0.570	  |1.318	   |0.667     |-0.570	   |1.138	    |0.616     |
+|SRPed (W)           |0.704	    |0.127	   |<0.001    |0.704 	   |0.152	    |<0.001    |
+|Centering:SRPed(XY) |0.118	    |0.281	   |0.675     |0.118	   |0.250	    |0.635     |
+ |
+
+|
+|:-------------------|:-------------------------------|:------------------------------:|
+|                    |$R^2$                           |$R^2$                           |
+|                    |0.367                           | 0.355 
+
+|
+|--------------------------------------------------------------------------------------|
+
+### Note similarities and differences in the OLS results  
+
+Regression weights are identical; *p* values of the lavaan/MLE results are more conservative and $R^2$ of lavaan results is a tad lower.
+
+### Represent your work in an APA-style write-up {-}    
+
+A multiple regression analysis was conducted to predict course value to the student from the centering (pre-, re-) stage, moderated by evaluation of socially responsive pedagogy. Although the model accounted for 36% of the variance, there was not a statistically significant interaction. Rather, socially responsive pedagogy had a strong main effect $(B = 0.704, SE = 0.163, p < 0.001)$ that was true for both pre- and re-centered levels. Results are listed in Table 1 and illustrated in Figure 1.  
+
+
+

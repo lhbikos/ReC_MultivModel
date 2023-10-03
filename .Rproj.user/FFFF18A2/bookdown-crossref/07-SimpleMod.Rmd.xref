@@ -17,18 +17,21 @@ h2:introducing-the-lavaan-package Introducing the  package
 h3:the-fiml-magic-for-which-we-have-been-waiting The FIML magic for which we have been waiting
 h2:picking-up-with-moderation Picking up with Moderation
 h2:workflow-for-a-simple-moderation Workflow for a Simple Moderation
-h2:research-vignette Research Vignette
-h3:simulate-data-from-the-journal-article Simulate Data from the Journal Article
+h3:research-vignette Research Vignette
+h4:data-simulation Data Simulation
+h3:scrubbing-scoring-and-data-diagnostics Scrubbing, Scoring, and Data Diagnostics
 h2:working-the-simple-moderation-with-ols-and-mle Working the Simple Moderation with OLS and MLE
 h3:ols-with-lm OLS with 
 h4:an-apa-style-write-up-of-ols-results An APA Style Write-up of OLS results
 h3:mle-with-lavaansem MLE with 
 h3:tabling-the-data Tabling the data
 h3:apa-style-writeup APA Style Writeup
+h2:stay-tuned STAY TUNED
 h2:residual-and-related-questions Residual and Related Questions…
 h2:practice-problems Practice Problems
 h3:problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed Problem #1: Rework the research vignette as demonstrated, but change the random seed
 h3:problem-2-rework-the-research-vignette-but-swap-one-or-more-variables Problem #2: Rework the research vignette, but swap one or more variables
 h3:problem-3-use-other-data-that-is-available-to-you Problem #3: Use other data that is available to you
+h3:grading-rubric Grading Rubric
 h2:bonus-track Bonus Track:
 

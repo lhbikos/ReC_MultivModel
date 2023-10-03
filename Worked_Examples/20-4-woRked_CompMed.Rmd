@@ -74,7 +74,10 @@ ReCpMed <- '
           total_indirects := indirect1 + indirect2
           total_c    := c_p + (indirect1) + (indirect2)
           direct := c_p
+
           '
+
+set.seed(230916)#needed for reproducible results since lavaan includes randomness in its estimates
 ReCpMedfit <- lavaan::sem(ReCpMed, data = babydf, se="bootstrap", missing= 'fiml')
 ReCpMedsummary <- lavaan::summary(ReCpMedfit, standardized=T, rsq=T, fit=TRUE, ci=TRUE)
 ReC_pMedParamEsts <- lavaan::parameterEstimates(ReCpMedfit, boot.ci.type = "bca.simple", standardized=TRUE)
@@ -130,28 +133,28 @@ write.csv(ReC_pMedParamEsts, file = "ReC_pMedParamEsts.csv")
 
 |Traditional Pedagogy (M1)   |         |          |        |.04
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |3.870    |0.234     |<0.001  |               |
-|Centering ($a_1$)           |0.312	   |0.141 	  |0.027   |               |
+|Constant                    |3.870    |0.231     |<0.001  |               |
+|Centering ($a_1$)           |0.312	   |0.137 	  |0.022   |               |
 
 |Socially Responsive Pedagogy (M2)|    |          |        |.09       
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |4.029  	 |0.193     |<0.001  |               |
-|Centering ($a_2$)           |0.353	   |0.116	    |0.002   |               |
+|Constant                    |4.029  	 |0.186     |<0.001  |               |
+|Centering ($a_2$)           |0.353	   |0.113	    |0.002   |               |
 
 |Perceived Course Value (DV) |         |          |        |.58
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Constant                    |0.710	   |0.477	    |0.136   |               |
-|Traditional Pedagogy ($b_1$)|0.686	   |0.133     |<0.001  |               |
-|Socially Rx Pedagogy ($b_2$)|0.119	   |0.141	    |0.397   |               |
-|Centering ($c'$)            |0.015	   |0.102	    |0.885   |               |
+|Constant                    |0.710	   |0.469	    |0.130   |               |
+|Traditional Pedagogy ($b_1$)|0.686	   |0.131     |<0.001  |               |
+|Socially Rx Pedagogy ($b_2$)|0.119	   |0.146	    |0.414   |               |
+|Centering ($c'$)            |0.015	   |0.103	    |0.886   |               |
 
 |Effects                     |$B$      |$SE_{B}$  |$p$     |95% CI 
 |:---------------------------|:-------:|:--------:|:------:|:-------------:|
-|Total effect                |0.271	   |0.143	   |0.059	   |-0.024, 0.550  |
-|Indirect 1 ($a_1$ * $b_1$)  |0.214	   |0.103	   |0.037	   |0.035,	0.440  |
-|Indirect 2 ($a_2$ * $b_2$)  |0.042	   |0.053	   |0.429	   |-0.040, 0.184  |
-|Total indirects             |0.256	   |0.111	   |0.021	   |0.060,	0.489  |
-|Contrast1 (Ind1 - Ind2)     |0.172	   |0.120	   |0.152	   |-0.041, 0.423  |
+|Total effect                |0.271	   |0.142	    |0.056	 |0.003,	0.577  |
+|Indirect 1 ($a_1$ * $b_1$)  |0.214	   |0.105	    |0.041	 |0.034,	0.451  |
+|Indirect 2 ($a_2$ * $b_2$)  |0.042    |0.053	    |0.429	 |-0.044, 0.174  |
+|Total indirects             |0.256	   |0.109	    |0.019	 |0.053, 0.472   | 
+|Contrast1 (Ind1 - Ind2)     |0.172	   |0.125	    |0.170	 |-0.026,	0.456  |
 
 |
 |--------------------------------------------------------------------------|
@@ -163,7 +166,7 @@ write.csv(ReC_pMedParamEsts, file = "ReC_pMedParamEsts.csv")
 
 A model of parallel mediation analyzed the degree to which students' perceptions of traditional and socially responsive pedagogy mediated the relationship between explicit recentering of the course and course value. Hayes [-@hayes_more_2022] recommended this strategy over simple mediation models because it allows for all mediators to be examined, simultaneously.  The resultant direct and indirect values for each path account for other mediation paths.  Using the *lavaan* (v. 0.6-16) package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
 
-Results (depicted in Figure 1 and presented in Table 1) suggest that 58% of the variance in perceptions of course value is accounted for by the model. The indirect effect predicting course value from explicit recentering through traditional pedagogy was statistically significant $(B = 0.214, SE = 0.103, p = 0.037, 95CI [0.035, 0.440])$. Examining the individual paths we see that $a_{1}$ was positive and statistically significant (recentering is associated with higher evaluations of traditional pedagogy). The  $b_{1}$ path was similarly statistically significant (traditional pedagogy was associated with course valuation). The indirect effect predicting course value from recentering through socially responsive pedagogy was not statistically significant $B = 0.042, SE = 0.053, p = 0.429, 95CE [-0.040, 0.184])$.  While explicit recentering had a statistically significant effect on ratings of socially responsive pedagogy (i.e., the $a_{2}$ path), socially responsive pedagogy did not have a statistically significant effect on perceptions of course value (i.e., the $b_{2}$ path). The drop in magnitude and near-significance from the total effect $(B = 0.271, p = 0.059)$ to the direct effect $(B = 0.015, p = 0.885)$ supports the presence of mediation.  A pairwise comparison of the specific indirect effects indicated that the strength of the effects were not statistically significantly different from each other. In summary, the effects of explicit recentering on perceived value to the student appears to be mediated through students evaluation of traditional pedagogy.
+Results (depicted in Figure 1 and presented in Table 1) suggest that 58% of the variance in perceptions of course value is accounted for by the model. The indirect effect predicting course value from explicit recentering through traditional pedagogy was statistically significant $(B = 0.214, SE = 0.105, p = 0.041, 95CI [0.034, 0.451])$. Examining the individual paths we see that $a_{1}$ was positive and statistically significant (recentering is associated with higher evaluations of traditional pedagogy). The  $b_{1}$ path was similarly statistically significant (traditional pedagogy was associated with course valuation). The indirect effect predicting course value from recentering through socially responsive pedagogy was not statistically significant $B = 0.042, SE = 0.053, p = 0.429, 95CE[-0.044, 0.174])$.  While explicit recentering had a statistically significant effect on ratings of socially responsive pedagogy (i.e., the $a_{2}$ path), socially responsive pedagogy did not have a statistically significant effect on perceptions of course value (i.e., the $b_{2}$ path). The drop in magnitude and near-significance from the total effect $(B = 0.271, p = 0.056)$ to the direct effect $(B = 0.015, p = 0.886)$ supports the presence of mediation.  A pairwise comparison of the specific indirect effects indicated that the strength of the effects were not statistically significantly different from each other. In summary, the effects of explicit recentering on perceived value to the student appears to be mediated through students evaluation of traditional pedagogy.
 
 
 ### Explanation to grader {-}

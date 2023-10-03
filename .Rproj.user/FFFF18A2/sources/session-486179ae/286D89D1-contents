@@ -1,0 +1,240 @@
+```{r include = FALSE}
+options(scipen=999)
+```
+
+## Homeworked Example
+
+The dataset for this article is publicly available on the OSF:  https://osf.io/j365w/
+
+The associated paper is here:  https://psycnet.apa.org/record/2023-97860-001
+
+The suggested practice problem for this chapter is to conduct a complex (i.e., parallel or serial) mediation. 
+
+### Assign each variable to the X, Y, M1, and M2 roles {-}
+
+Serial Moderation
+
+Y = Proportion of time one wore a facemask in public (OwnWearing)
+X = Proportion of time others are wearing a facemask in public(OthersWearing)
+M1 = Perceived stigma related to wearing a facemask (ReceivedStigma)
+M2 = Expressed stigma when observing others who are wearing facemasks (ExpressedStigma) 
+cov = metric COVID case count, a transformation of COVID cases per 100,000 (mCases)
+
+In this *serial mediation*, I am hypothesizing affective well-being will be predicted by these three paths:
+
+* ExpressedStigma -->OwnWear --> FutureWear
+* ReceivedStigma --> OwnWear --> FutureWear
+* OthersWear --> ReceivedStigma --> ExpressedStigma --> OwnWearing (cov mcases)
+
+
+### Import the data and format the variables in the model  {-}
+
+```{r}
+#pick one format (.rds) or the other (.csv)
+raw <- readRDS("MADdf231001.rds")
+#raw<- read.csv("MADdf231001.csv", header=TRUE)
+
+nrow(raw)
+```
+```{r}
+library(tidyverse)
+raw <- dplyr::filter (raw, DistributionChannel != "preview")
+```
+
+I want to exclude all responses beyond the first.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+raw <-(dplyr::filter(raw, Wave == 1))
+```
+
+
+Scoring these scales:
+
+ * Received stigma (1 = *never*; 5 = *a great deal*)
+   - Others distance themselves from me when I am wearing a facemask. (1) 
+   - Others avoid talking to me when I am wearing a facemask. (2) 
+   - Others treat me as if I am seriously ill when I am wearing a facemask. (4) 
+   - I get strange looks from others when I am wearing a facemask. (5) 
+   - I feel rejected by others when I am wearing a facemask. (6) 
+   - Others seem uncomfortable with me wearing a facemask. (7) 
+   
+ * Expressed stigma (1 *not true of me*; 5 *true of me*)
+   - Seeing a person wearing a facemask (in a public setting) frightens me (ExprStig_1) 
+   - R: I would help a person who is wearing a facemask (in a public setting) (ExprStig_2) 
+   - I try to avoid people who are wearing facemasks in public settings. (ExprStig_3) 
+   - I become angry toward people when I see them wearing facemasks in public settings. (ExprStig_4) 
+   
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+StigmaFelt_vars <- c('FMreactions_1', 'FMreactions_2','FMreactions_3','FMreactions_4','FMreactions_5','FMreactions_6')
+raw$ReceivedStigma <- sjstats::mean_n(raw[, StigmaFelt_vars], .75)
+
+#Must reverse-score ExprStig_2
+library(tidyverse)
+raw <- raw %>%
+  dplyr::mutate(rExprStig_2 = 6 - ExprStig_2)
+
+ExprStig_vars <- c('ExprStig_1', 'rExprStig_2','ExprStig_3','ExprStig_4')
+raw$ExpressedStigma <- sjstats::mean_n(raw[, ExprStig_vars], .75)
+```
+
+Renaming wearing variables so they are more intuitive (hopefully).
+
+```{r}
+raw <- dplyr::rename(raw, OwnWear = "myPropFM_1", OthersWear = "OthersProp_1", FutureWear = "FutureWear_2")
+```
+
+
+I will create a babydf.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+babydf <- dplyr::select(raw, mcases, OthersWear,OwnWear, FutureWear, ReceivedStigma, ExpressedStigma, )
+```
+
+Let's check the structure of the variables:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+str(babydf)
+```
+
+### Specify and run the lavaan model  {-}
+
+* OthersWear -->ReceivedStigma --> OwnWear (cov mcases)
+* OthersWear --> ExpressedStigma --> OwnWear (cov mcases)
+* OthersWear --> ReceivedStigma --> ExpressedStigma --> OwnWear (cov mcases)
+
+Y = Proportion of time one wore a facemask in public (OwnWearing)
+X = Proportion of time others are wearing a facemask in public(OthersWearing)
+M1 = Perceived stigma related to wearing a facemask (ReceivedStigma)
+M2 = Expressed stigma when observing others who are wearing facemasks (ExpressedStigma) 
+cov = metric COVID case count, a transformation of COVID cases per 100,000 (mCases)
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+set.seed(231005)
+complex_mask <- '
+    FutureWear ~ b*OwnWear + c_p1*ExpressedStigma + c_p2*ReceivedStigma + cov*mcases
+    OwnWear ~ a1*ExpressedStigma    
+    OwnWear ~ a2*ReceivedStigma
+    
+    indirect1 := a1 * b
+    indirect2 := a2 * b
+   
+    contrast1 := indirect1 - indirect2
+    
+    total_indirects := indirect1 + indirect2 
+    total_c := c_p1 + c_p2 + indirect1 + indirect2 
+    direct1 := c_p1
+    direct2 := c_p2
+'
+set.seed(231002)#needed for reproducible results because lavaan introduces some level of randomness in its estimation procedures
+complex_mask_fit <- lavaan::sem(complex_mask, data = babydf, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
+cMask_sum <- lavaan::summary(complex_mask_fit, standardized = TRUE, rsq=T, fit=TRUE, ci=TRUE)    
+cMask_ParEsts <- lavaan::parameterEstimates(complex_mask_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+
+cMask_sum
+cMask_ParEsts
+```
+Obtaining the proportion of variance accounted for in the mediator and DV.
+```{r}
+lavaan::lavInspect(complex_mask_fit, "rsquare")
+```
+
+### Use tidySEM to create a figure that represents your results {-}
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model=complex_mask_fit)
+```
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+tidySEM::get_layout(complex_mask_fit)
+```
+To create the figure I showed at the beginning of the chapter, we will want three rows and three columns.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+complex_mask_map <- tidySEM::get_layout("ExpressedStigma", "", "",
+                                   "", "OwnWear", "FutureWear", 
+                                   "ReceivedStigma", "", "", 
+                                   "", "mcases", "", rows=4)
+complex_mask_map
+```
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+tidySEM::graph_sem(complex_mask_fit, layout=complex_mask_map,  rect_width =3, rect_height = 7, spacing_x = 5, spacing_y = 15, text_size = 4)
+```
+
+
+
+### Create a table that includes a summary of the effects (indirect, direct, total, total indirect) as well as contrasts {-}
+
+I will write my results to a .csv file.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+write.csv(cMask_ParEsts, file = "cMask_ParEsts.csv")
+```
+
+**Table 1 ** 
+
+|Model Coefficients Assessing Future Facemask Wearing Intentions from Expressed and Received  Stigma Mediated by Current Facemask Wearing (also accounting for current COVID case counts in the county of residence)
+|:-----------------------------------------------------------------------|
+
+| Predictor                  |$B$     |$SE_{B}$ |$p$    |$R^2$           |                   
+|:---------------------------|:------:|:-------:|:-----:|---------------:|
+
+|Current Facemask Wearing (M)|        |         |       |.10
+|:---------------------------|-------:|--------:|------:|---------------:|
+|Constant                    |111.186 |8.068   	|<0.001 |                |
+|Expressed Stigma ($a_1$)    |-12.324	|5.012	  |0.014  |                |
+|Received Stigma ($a_2$)     |-8.864	|3.422	  |0.010  |                |
+
+|Future Facemask Wearing     |(Y)     |         |       |.23             |
+|:---------------------------|-------:|--------:|------:|---------------:|
+|Constant                    |96.760	|5.528	  |<0.001 |                |
+|Expressed Stigma ($c_p1$)   |-5.886	|2.516	  |0.019  |                |
+|Received Stigma ($c_p2$)    |-1.229	|1.286	  |0.339  |                |
+|Current Wearing ($b$)       |0.134	  |0.045	  |0.003  |                |
+|metric COVID cases ($cov$)  |-0.130	|0.163	  |0.427  |                |
+
+|Effects                     |$B$     |$SE_{B}$ |$p$    |95% CI 
+|:---------------------------|-------:|--------:|------:|---------------:|
+|Total effect                |-9.961	|3.238	  |0.002	|-17.013,	-4.242 |
+|Indirect 1 ($a_1$ * $b$)    |-1.655	|1.026    |0.107	|-4.594,	-0.259 |
+|Indirect 2 ($b_2$ * $b_2$)  |-1.191	|0.644	  |0.065	|-2.859,	-0.258 |
+|Total indirects             |-2.846	|1.405	  |0.043	|-6.455,	-0.756 |
+|Contrast1 (Ind1 - Ind2)     |-0.465	|0.980	  |0.635	|-3.288,	1.019  |
+|Direct1                     |-5.886	|2.518	  |0.019	|-12.310,	-1.804 |
+|Direct2                     |-1.229	|1.287	  |0.339	|-4.146,	1.061  |
+  
+|
+|------------------------------------------------------------------------|
+|*Note*.  The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
+
+
+### Represent your work in an APA-style write-up {-}
+
+A model of parallel mediation analyzed the degree to which expressed (i.e., negative and hostile feelings toward others who are wearing facemasks) and received (i.e., perceived hostility and negativity from others when wearing facemask of one's own) predicted the proportion of time that one wore a facemask, and in turn, future intentions to wear a facemask. The model was specified with a covariate (i.e., metric COVID case counts) that accounted for variance in future facemask wearing. Hayes [-@hayes_more_2022] recommended complex mediation models over simple ones because they allow for multiple mediators to be examined, simultaneously.  The resultant direct and indirect values for each path account for other mediation paths.  Using the *lavaan* (v. 0.6-16) package in R, coefficients for specific indirect, total indirect, direct, and total were computed.  Path coefficients refer to regression weights, or slopes, of the expected changes in the dependent variable given a unit change in the independent variables.  
+
+Results (depicted in Figure 1 and presented in Table 1) suggest that 10% of the variance in proportion of time that one wore a facemask in public (i.e., the mediator) and 23% of the variance in future facemask wearing intentions (i.e., the dependent variable) were accounted for by the model. When bootstrapped bias corrected confidence intervals are used to determine statistical significance, both indirect effects were significant. In the case of the first indirect effect $(B = -1.655, SE =	1.026, p =	0.107, 95CI [-4.594,	-0.259])$, expressed stigma reduced one's current facemask wearing by 12%. In turn, one's current facemask wearing had a small but significant (.13%) impact on future facemask wearing intentions. In the case of the second indirect effect $(B = -1.191, SE = 0.644, p =	0.065, 95CE	[-2.859,	-0.258])$, received stigma reduced one's current facemask wearing by 9%, which, in turn, shared the small but insignificant impact on future facemask wearing intentions. Metric COVID cases in the county of the partipant's residence nearest the datestamp on the survey had a non-significant impact on future facemask wearing intentions.
+
+Examining the pattern of total and direct effects can be helpful in understanding the mechanism of the effects. The total effect of expressed and perceived stigma on future facemask wearing was strong and statistically significant $(B = -9.961, p = 0.002)$. The direct effect associated with the path from expressed stigma through one's own facemask wearing decreased in magnitude, but remained statistically significant $(B = -5.886, p = 0.019)$. In contrast, the direct effect associated with the path from received stigma through one's own facemask wearing substantially decreased in magnitude and was no longer significant $(B = -1.229, p = 0.339)$. While it would appear that this indirect effect is stronger, the contrast comparing the two indirect effects was nonsignificant $(B = -0.465, p = 0.635)$.
+
+
+### Explanation to grader {-}
+
+### Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths {-}
+
+* Indirect = a*b
+* Direct = Total minus indirect
+* Total = (a*b) + c'
+
+
+```{r}
+-12.342*.134 #indirect1
+-8.864*.134 #indirect2
+```
+
+
