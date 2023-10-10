@@ -1,0 +1,315 @@
+```{r include = FALSE}
+options(scipen=999)
+```
+
+## Homeworked Example 1: A moderation on the *a* path
+[Screencast Link](https://www.youtube.com/playlist?list=PLtz5cFLQl4KNAM2JEmXZL4wlF8EiGbgxr)
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
+
+The suggested practice problem for this chapter is to conduct a moderated mediation. At least one path (a or b) should be moderated.
+
+### Describing thy overall model hypothesis, assign each variable to the X, Y, M, and W roles {-}  
+My analysis will evaluated a moderated mediation. Specifically, I predict that the effect of centering on perceived value to the student will be moderated by the students' evaluation of socially responsive pedagogy. I further hypothesize that this indirect effect will be moderated by traditional pedagogy and that the moderation will occur on the *a* path, that is, traditional pedagogy will moderate the effect of centering on socially responsive pedagogy. 
+
+* X = Centering, pre/re (0,1)
+* W = Traditional Pedagogy (1 to 4 scaling)
+* M = Socially Responsive Pedagogy (1 to 4 scaling)
+* Y = Value to the student (1 to 4 scaling)
+
+![An image of the conceptual model of moderated mediation for the homeworked example.](Worked_Examples/images/HW_ModMed1.png)
+
+![An image of the statistical model of simple moderation for the homeworked example.](Worked_Examples/images/HW_ModMed2.png)
+
+### Import the data and format the variables in the model  {-}
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+raw <- readRDS("ReC.rds")
+```
+
+The approach we are taking to moderated mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+raw <-(dplyr::filter(raw, Course == "Multivariate"))
+```
+
+I need to score the SRPed, TradPed, and Valued variables
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')  
+raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], .75)
+
+Valued_vars <- c('ValObjectives', 'IncrUnderstanding','IncrInterest')  
+raw$Valued <- sjstats::mean_n(raw[, ..Valued_vars], .75)
+
+SRPed_vars <- c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration')  
+raw$SRPed <- sjstats::mean_n(raw[,..SRPed_vars], .75)
+```
+
+
+I will create a babydf.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+babydf <- dplyr::select(raw, Centering, TradPed, SRPed, Valued)
+```
+
+Let's check the structure of the variables:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+str(babydf)
+```
+In later analyses, it will be important that Centering is a dummy-coded numerical variable:
+
+```{r}
+babydf$CENTERING <- as.numeric(babydf$Centering)
+babydf$CENTERING <- (babydf$CENTERING - 1)
+str(babydf)
+```
+
+Quick peek at relations between variables:
+
+```{r}
+psych::pairs.panels(babydf)
+```
+
+### Using a piecewise approach, run each of the simple models in the grander design   {-} 
+
+#### Analysis #1:  A simple moderation of the *a* path {-}
+
+We are asking, "Does traditional pedagogy moderate the relationship between centering and socially responsive pedagogy?
+
+Y = socially responsive pedagogy
+X = centering
+W = traditional pedagogy 
+
+Let's specify this simple moderation model with base R's *lm()* function.  
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70), message=FALSE, warning=FALSE}
+mod_a_path <- lm(SRPed~Centering*TradPed, data=babydf)
+#the base R output if you prefer this view
+summary(mod_a_path) 
+```
+
+We'll use the *jtools* package so we get that great summ function and *interactions* for the awesome plot.
+
+Since we are just working to understand our moderations, we can run them with "regular old" ordinary least squares.  
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#library(jtools) #the summ function creates a terrific regression table
+#library(interactions)
+library(ggplot2)
+
+jtools::summ(mod_a_path, digits = 3)
+```
+
+Looking at these results we can see that the predictors account for about 54% of variance in perceived value to the student. Only the moderator (TradPed, W), traditional pedagogy is a significant predictor.  Neither the independent variable (Centering, X), nor its interaction with Centering (Centering:TradPed, XW) are significant.
+ 
+It's always helpful to graph the relationship.  The *interaction_plot()* function from the package, *interactions* can make helpful illustrations.  In the case of interactions/moderations, I like to run them "both ways" to see which makes more sense.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+interactions::interact_plot(mod_a_path, pred = TradPed, modx = Centering) + ylim (1,5)
+
+``` 
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+interactions::sim_slopes(mod_a_path, pred = TradPed, modx = Centering)
+#sim_slopes(Mod_a_path, pred=GRIcntlty, modx = GRMS) #sometimes I like to look at it in reverse -- like in the plots
+```
+Consistent with the non-signicant interation effect but the significant main effect, there was a statistically significant effect of traditional pedagogy on socially responsive pedagogy for both pre-centered and re-centered stages.
+
+Traditional pedagogy is the only significant predictor in socially responsive pedagogy. Overall, the model accounts for 54% of the variance in socially responsive pedagogy.
+
+#### Analysis #2:  A simple mediation {-}
+
+We are asking, "Does socially responsive pedagogy mediate the relationship between centering and perceived value to the student?"
+
+Y = perceived value
+X = centering
+M = socially responsive pedagogy
+
+*Note*. I switched to using the CENTERING (all caps) variable because it is 0/1, numeric (better for lavaan).
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+library(lavaan)
+
+medmodel <- '
+          Valued ~ b*SRPed + c_p*CENTERING 
+          SRPed ~a*CENTERING
+          
+          #intercepts
+          CENTERING ~ CENTERING.mean*1
+          Valued ~ Valued.mean*1
+          
+          indirect :=  a*b
+          direct  := c_p
+          total_c  := c_p + (a*b)
+          '
+set.seed(230925) #required for reproducible results because lavaan introduces randomness into the calculations
+medmodel_fit <- lavaan::sem(medmodel, data = babydf, se="bootstrap", missing = 'fiml')
+medmodel_Sum <-  lavaan::summary(medmodel_fit, standardized=T, rsq=T, ci=TRUE)
+medmodel_ParEsts<- lavaan::parameterEstimates(medmodel_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+medmodel_Sum
+medmodel_ParEsts
+```
+Our model accounts for 9% of the variance in socially responsive pedagogy and 37% of the variance in perceived value to the student. The *a* path (Centering --> SRPed), *b* path (SRPed --> Valued), and indirect effect are all statistically significant.
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = medmodel_fit)
+```
+
+We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+tidySEM::get_layout(medmodel_fit)
+```
+We can write code to remap them
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+medmap <- tidySEM::get_layout("", "SRPed", "",
+                               "CENTERING", "", "Valued",  rows=2)
+medmap
+```
+We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+tidySEM::graph_sem(medmodel_fit, layout=medmap,  rect_width = 1.25, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+```
+### Specify and run the entire lavaan model {-}
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+set.seed(230925)
+ModMedOnA <- '
+    #equations
+    SRPed ~ a1*CENTERING + a2*TradPed + a3*CENTERING:TradPed
+    Valued ~ c_p*CENTERING + b*SRPed
+
+    #intercepts
+    SRPed ~ SRPed.mean*1
+    Valued ~ Valued.mean*1
+
+    #means, variances of W for simple slopes
+    TradPed ~ TradPed.mean*1
+    TradPed ~~ TradPed.var*TradPed
+    
+    #index of moderated mediation, there will be an a and b path in the product
+    #if the a and/or b path is moderated, select the label that represents the moderation
+    
+    imm := a3*b
+
+    #Note that we first create the indirect product, then add to it the product of the imm and the W level
+    indirect.SDbelow := a1*b + imm*(TradPed.mean - sqrt(TradPed.var))
+    indirect.mean := a1*b + imm*(TradPed.mean)
+    indirect.SDabove := a1*b + imm*(TradPed.mean + sqrt(TradPed.var))
+
+ '
+set.seed(230925) #required for reproducible results because lavaan introduces randomness into the calculations
+ModMedOnA_fit <- lavaan::sem(ModMedOnA, data =babydf, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
+ModMedOnAsum <- lavaan::summary(ModMedOnA_fit, standardized = TRUE, rsq=T, ci=TRUE)    
+ModMedOnAParamEsts <- lavaan::parameterEstimates(ModMedOnA_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+ModMedOnAsum
+ModMedOnAParamEsts
+```
+### Use tidySEM to create a figure {-}
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = ModMedOnA_fit)
+```
+
+We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+tidySEM::get_layout(ModMedOnA_fit)
+```
+We can write code to remap them
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+comb_map <- tidySEM::get_layout("", "SRPed", "",
+                               "CENTERING", "", "Valued", 
+                               "TradPed", "","",
+                               "", "CENTERING:TradPed","", rows=4)
+comb_map
+```
+
+
+We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+tidySEM::graph_sem(ModMedOnA_fit, layout=comb_map,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
+```
+
+
+### Create a table that includes regression output for the M and Y variables and the moderated effects {-}
+
+Exporting the results to a .csv file will help us create a journal-ready table, outside of the R environment.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+write.csv (ModMedOnAParamEsts, file="ModMedOnAParamEsts.csv") #optional to write it to a .csv file
+```
+
+**Table 1 ** 
+
+|Analysis of Moderated Mediation for Centering, Socially Responsive Pedagogy, Traditional Pedagogy, and Perceived Value to the Student
+|:-------------------------------------------------------------------------|
+
+| Predictor                  |$B$      |$SE_{B}$  |$p$     |$R^2$          |                   
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+
+|Socially Responsive Pedagogy(M)|      |          |        |.57
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |1.865	   |0.433     |<0.001  |               |
+|Centering ($a_1$)           |1.184	   |0.915	    |0.195   |               |
+|TradPed ($a_2$)             |0.597	   |0.095     |<0.001  |               |
+|Centering:TradPed ($a_3$)   |-0.222	 |0.194	    |0.253   |               |
+
+|Perceived Value (DV)        |         |          |        |.39
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |0.900	   |0.527	    |0.088   |               |
+|Centering ($c'$)            |-0.011	 |0.122	    |0.925   |               |
+|SRPed ($b$)                 |0.737	   |0.119	    |<0.001  |               |
+
+|Summary of Effects          |$B$      |$SE_{B}$  |$p$     |95% CI
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|IMM                         |-0.164	 |0.144	    |0.256	 |-0.411,	0.196  | 
+|Indirect ($-1SD$)           |0.288	   |0.177	    |0.104	 |-0.096,	0.631  |                        
+|Indirect ($M$)              |0.171	   |0.085	    |0.045	 |0.013,	0.361  |
+|Indirect ($+1SD$)           |0.053	   |0.073	    |0.465	 |-0.100	0.184  |
+
+|
+|--------------------------------------------------------------------------|
+|*Note*. SRPed = socially responsive pedagogy; TradPed = traditional pedagogy. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
+
+### APA Style Write-up {-}
+
+
+**Method/Analytic Strategy**
+
+Data were analyzed with a maximum likelihood approach the package, *lavaan* (v. 0.6-16). We specified a moderated mediation model predicting perceived value to the student from centering stage, mediated by socially responsive pedagogy. We further predicted that the relationship between centering to socially responsive pedagogy (i.e., the *a* path) would be moderated by traditional pedagogy.
+
+**Results**
+
+**Preliminary Analyses**
+
+*  Missing data anlaysis and managing missing data
+*  Bivariate correlations, means, SDs
+*  Distributional characteristics, assumptions, etc.
+*  Address limitations and concerns
+
+**Primary Analyses**
+Our analysis evaluated a moderation mediation model perceived value to the student (Y/Valued) from centering stage (X/Centering) mediated by socially responsive pedagogy (M/SRPed).  Traditional pedagogy (W/TradPed) was our moderating variable.  We specified a moderation of path *a* (X/Centering to M/SRPed). Data were analyzed with maximum likelihood estimation in the R package *lavaan* (v. 0.6-16); the significance of effects were tested with 1000 bootstrap confidence intervals. Results of the full model are presented in Table 1 and illustrated in Figure 1.  The formula for the mediator and dependent variable are expressed below.  
+
+
+$$\hat{M} = 1.865 + (1.184)X + (0.597)W + (-0.222)XW
+$$
+$$\hat{Y} = 0.900 + (-0.011)X + (0.060)M + (0.737)X$$
+
+Regarding the presence of a moderated mediation, results were mixed. On the one hand, the index of moderated mediation was not statistically significant $(IMM = -0.164, p = 0.256)$. In contrast, the conditional indirect effect at the mean of the moderator was statistically significant $(B = 0.171, p = 0.045)$, while the conditional indirect effects at $\pm1SD$ were not. A possible explanation for the lack of statistical significance is the relative lower power (*N* = 84) for analysis of a relatively complicated model. The model accounted for 57% of the variance in socially responsive pedagogy and 37% of the variance in perceived value to the student. Figure 1 illustrates the conditional effects of traditional pedagogy on socially responsive pedagogy at pre- and re-centered stages. 
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+interactions::interact_plot(mod_a_path, pred = TradPed, modx = Centering) + ylim (1,5)
+``` 

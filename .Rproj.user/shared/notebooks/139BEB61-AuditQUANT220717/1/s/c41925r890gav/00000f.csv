@@ -1,0 +1,3 @@
+"0","write.table(scores, file=""scores.csv"", sep="","", col.names=TRUE, row.names=FALSE)"
+"2","Error: object 'scores' not found
+"

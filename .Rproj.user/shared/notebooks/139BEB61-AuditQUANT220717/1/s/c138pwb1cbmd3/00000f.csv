@@ -1,0 +1,8 @@
+"0","scores <- all%>%select (AY, CourseYear, CourseSemester, SmartEvalsCourseID, InstructorLastName, SmartEvalsInstructorNum, Dept, CourseNum, CourseNumber, CourseName, seID, Valued, TradPed, SCRPed)"
+"1","[1m[33mError[39m in `select()`:[22m
+[33m![39m Can't subset columns that don't exist.
+[31m✖[39m Column `seID` doesn't exist.
+Backtrace:
+[90m 1. [39mall %>% ...
+[90m 3. [39m[1m[94mdplyr:::select.data.frame([39m[22m...[1m[94m)[39m[22m
+"

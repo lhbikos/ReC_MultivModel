@@ -1,0 +1,4 @@
+"0","all <- all[all$Course.Name != c(""Clinical Suprvsn&Consultatn Gr""), ]"
+"0","all <- all[all$Course.Name != c(""Hacking the World of Work""), ]"
+"0","all <- all[all$Course.Name != c(""Research and Dissertation""), ]"
+"0","all <- all[all$Course.Name != c(""Practicum""), ]"

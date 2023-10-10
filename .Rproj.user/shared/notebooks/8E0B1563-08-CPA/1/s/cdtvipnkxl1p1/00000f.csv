@@ -1,0 +1,52 @@
+"0","interactions::sim_slopes(Mod_c_path, pred = GRMS, modx = Centrality)"
+"1","[1m[4mJOHNSON-NEYMAN INTERVAL[24m[22m"
+"1"," "
+"1","
+
+"
+"1","When Centrality is [7mOUTSIDE[27m the interval [5.92, 58.37], the slope of GRMS is p < .05."
+"1",""
+"1","
+
+"
+"1","[3mNote: The range of observed values of Centrality is [23m[1.90, 6.00]"
+"1",""
+"1","
+
+"
+"1","[1m[4mSIMPLE SLOPES ANALYSIS[24m[22m"
+"1"," "
+"1","
+
+"
+"1","[3mSlope of GRMS when Centrality = 3.182522 (- 1 SD): 
+
+[23m"
+"1","   Est.   S.E.   t val.      p
+------- ------ -------- ------
+  -0.75   0.08    -9.36   0.00"
+"1","
+"
+"1","
+"
+"1","[3mSlope of GRMS when Centrality = 3.938095 (Mean): 
+
+[23m"
+"1","   Est.   S.E.   t val.      p
+------- ------ -------- ------
+  -0.63   0.06   -10.01   0.00"
+"1","
+"
+"1","
+"
+"1","[3mSlope of GRMS when Centrality = 4.693668 (+ 1 SD): 
+
+[23m"
+"1","   Est.   S.E.   t val.      p
+------- ------ -------- ------
+  -0.51   0.09    -5.85   0.00"
+"1","
+"
+"1","
+"
+"0","#sim_slopes(Mod_c_path, pred=GRIcntlty, modx = GRMS) #sometimes I like to look at it in reverse -- like in the plots"

@@ -1,0 +1,10 @@
+"0","#I copied the weird characters in the first column name from here"
+"0","#str(all)"
+"0","all <- dplyr::rename(all, seID = ï..ï..SmartEvalsStudentNo)"
+"1","[1m[33mError[39m in `dplyr::rename()`:[22m
+[33m![39m Can't rename columns that don't exist.
+[31m✖[39m Column `ï..ï..SmartEvalsStudentNo` doesn't exist.
+Backtrace:
+[90m 1. [39m[1mdplyr[22m::rename(all, seID = ï..ï..SmartEvalsStudentNo)
+[90m 2. [39m[1m[94mdplyr:::rename.data.frame([39m[22mall, seID = ï..ï..SmartEvalsStudentNo[1m[94m)[39m[22m
+"

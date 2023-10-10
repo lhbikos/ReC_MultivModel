@@ -1,0 +1,2 @@
+"0","#eliminating any remaining columns that might have all missing data  "
+"0","all <- all[ , colSums(is.na(all)) < nrow(all)]"

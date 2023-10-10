@@ -1,0 +1,247 @@
+
+# CONDITIONAL PROCESS ANALYSIS {-#CPAnal}
+
+# Moderated Mediation {#ModMed}
+
+ [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=1d28d076-efad-4471-b52d-ad1601826f92) 
+
+```{r echo=FALSE }
+options(scipen=999)#eliminates scientific notation
+```
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70), warning=FALSE, message=FALSE}
+#Entering the intercorrelations, means, and standard deviations from the journal article
+
+
+Lewis_generating_model <- '
+        ##measurement model
+        GRMS  =~ .69*Ob1 + .69*Ob2 + .60*Ob3 + .59*Ob4 + .55*Ob5 + .55*Ob6 + .54*Ob7 + .50*Ob8 + .41*Ob9 + .41*Ob10 + .93*Ma1 + .81*Ma2 + .69*Ma3 + .67*Ma4 + .61*Ma5 + .58*Ma6 + .54*Ma7 + .59*St1 + .55*St2 + .54*St3 + .54*St4 + .51*St5 + .70*An1 + .69*An2 + .68*An3
+        MntlHlth  =~ .8*MH1 + .8*MH2 + .8*MH3 + .8*MH4 + .8*MH5 + .8*MH6
+        PhysHlth  =~ .8*PhH1 + .8*PhH2 + .8*PhH3 + .8*PhH4 + .8*PhH5 + .8*PhH6
+        Spirituality  =~ .8*Spirit1 + .8*Spirit2
+        SocSupport  =~ .8*SocS1 + .8*SocS2
+        Engagement  =~ .8*Eng1 + .8*Eng2
+        Disengagement  =~  .8*dEng1 + .8*dEng2
+        GRIC  =~ .8*Cntrlty1 + .8*Cntrlty2 + .8*Cntrlty3 + .8*Cntrlty4 + .8*Cntrlty5 + .8*Cntrlty6 + .8*Cntrlty7 + .8*Cntrlty8 + .8*Cntrlty9 + .8*Cntrlty10
+   
+        # Means
+         GRMS ~ 1.99*1
+         Spirituality ~2.82*1
+         SocSupport ~ 2.48*1
+         Engagement ~ 2.32*1
+         Disengagement ~ 1.75*1
+         GRIC ~ 5.71*1
+         MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
+         PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
+         
+        # Correlations (ha!)
+         GRMS ~ 0.20*Spirituality
+         GRMS ~ 0.28*SocSupport
+         GRMS ~ 0.30*Engagement
+         GRMS ~ 0.41*Disengagement
+         GRMS ~ 0.19*GRIC
+         GRMS ~ -0.32*MntlHlth
+         GRMS ~ -0.18*PhysHlth
+         
+         Spirituality ~ 0.49*SocSupport
+         Spirituality ~ 0.57*Engagement
+         Spirituality ~ 0.22*Disengagement
+         Spirituality ~ 0.12*GRIC
+         Spirituality ~ -0.06*MntlHlth
+         Spirituality ~ -0.13*PhysHlth
+         
+         SocSupport ~ 0.46*Engagement
+         SocSupport ~ 0.26*Disengagement
+         SocSupport ~ 0.38*GRIC
+         SocSupport ~ -0.18*MntlHlth
+         SocSupport ~ -0.08*PhysHlth
+         
+         Engagement ~ 0.37*Disengagement
+         Engagement ~ 0.08*GRIC
+         Engagement ~ -0.14*MntlHlth
+         Engagement ~ -0.06*PhysHlth
+         
+         Disengagement ~ 0.05*GRIC
+         Disengagement ~ -0.54*MntlHlth
+         Disengagement ~ -0.28*PhysHlth
+         
+         GRIC ~ -0.10*MntlHlth
+         GRIC ~ 0.14*PhysHlth
+     
+         MntlHlth ~ 0.47*PhysHlth         
+        '
+
+set.seed(230925)
+dfLewis <- lavaan::simulateData(model = Lewis_generating_model,
+                              model.type = "sem",
+                              meanstructure = T,
+                              sample.nobs=231,
+                              standardized=FALSE)
+
+#used to retrieve column indices used in the rescaling script below
+#col_index <- as.data.frame(colnames(dfLewis))
+
+for(i in 1:ncol(dfLewis)){  # for loop to go through each column of the dataframe 
+  if(i >= 1 & i <= 25){   # apply only to GRMS variables
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(0, 5))
+  }
+  if(i >= 26 & i <= 37){   # apply only to mental and physical health variables 
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(0, 6))
+  }
+  if(i >= 38 & i <= 45){   # apply only to coping variables
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(1, 4))
+  }
+  if(i >= 46 & i <= 55){   # apply only to GRIC variables
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(1, 7))
+  }
+}
+
+#rounding to integers so that the data resembles that which was collected
+library(tidyverse)
+dfLewis <- dfLewis %>% round(0) 
+
+#quick check of my work
+#psych::describe(dfLewis) 
+
+```
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+GRMS_vars <- c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8", "Ob9", "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1", "St2", "St3", "St4", "St5", "An1", "An2", "An3")
+Eng_vars <- c("Eng1", "Eng2")
+dEng_vars <- c("dEng1", "dEng2")
+MntlHlth_vars <- c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6")
+Cntrlty_vars <- c("Cntrlty1", "Cntrlty2", "Cntrlty3", "Cntrlty4", "Cntrlty5", "Cntrlty6", "Cntrlty7", "Cntrlty8", "Cntrlty9", "Cntrlty10")
+
+dfLewis$GRMS <- sjstats::mean_n(dfLewis[, GRMS_vars], 0.80)
+dfLewis$Engmt <- sjstats::mean_n(dfLewis[, Eng_vars], 0.80)
+dfLewis$DisEngmt <- sjstats::mean_n(dfLewis[, dEng_vars], 0.80)
+dfLewis$MntlHlth <- sjstats::mean_n(dfLewis[, MntlHlth_vars], 0.80)
+dfLewis$Centrality <- sjstats::mean_n(dfLewis[, Cntrlty_vars], 0.80)
+
+#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
+#dfLewis$GRMS <- sjstats::mean_n(dfLewis[, ..GRMS_vars], 0.80)
+```
+
+Now that we have scored our data, let's trim the variables to just those we need.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+Lewis_df <- dplyr::select(dfLewis, GRMS, Centrality, DisEngmt, MntlHlth)
+```
+
+
+
+    
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+set.seed(230925)
+Combined <- '
+    #equations
+    DisEngmt ~ a1*GRMS + a2*Centrality + a3*GRMS:Centrality
+    MntlHlth ~ c_p1*GRMS + c_p2*Centrality + c_p3*GRMS:Centrality + b*DisEngmt
+
+    #intercepts
+    DisEngmt ~ DisEngmt.mean*1
+    MntlHlth ~ MntlHlth.mean*1
+
+    #means, variances of W for simple slopes
+    Centrality ~ Centrality.mean*1
+    Centrality ~~ Centrality.var*Centrality
+    
+    #index of moderated mediation, there will be an a and b path in the product
+    #if the a and/or b path is moderated, select the label that represents the moderation
+    imm := a3*b
+
+    #Note that we first create the indirect product, then add to it the product of the imm and the W level
+    indirect.SDbelow := a1*b + imm*(Centrality.mean - sqrt(Centrality.var))
+    indirect.mean := a1*b + imm*(Centrality.mean)
+    indirect.SDabove := a1*b + imm*(Centrality.mean + sqrt(Centrality.var))
+
+    #direct effect is also moderated so calculate with c_p1 + c_p3
+    direct.SDbelow := c_p1 + c_p3*(Centrality.mean - sqrt(Centrality.var)) 
+    direct.Smean := c_p1 + c_p3*(Centrality.mean)
+    direct.SDabove := c_p1 + c_p3*(Centrality.mean + sqrt(Centrality.var))
+
+    #total effect
+    total.SDbelow := direct.SDbelow + indirect.SDbelow
+    total.mean := direct.Smean + indirect.mean
+    total.SDabove := direct.SDabove + indirect.SDabove
+ '
+set.seed(230925) #required for reproducible results because lavaan introduces randomness into the calculations
+Combined_fit <- lavaan::sem(Combined, data = Lewis_df, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
+cFITsum <- lavaan::summary(Combined_fit, standardized = TRUE, rsq=T, ci=TRUE)    
+cParamEsts <- lavaan::parameterEstimates(Combined_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+cFITsum
+cParamEsts
+```
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = Combined_fit)
+```
+We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+tidySEM::get_layout(Combined_fit)
+```
+We can write code to remap them
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+comb_map <- tidySEM::get_layout("", "DisEngmt", "",
+                               "GRMS", "", "MntlHlth", 
+                               "Centrality", "","",
+                               "", "GRMS:Centrality","", rows=4)
+comb_map
+```
+We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+tidySEM::graph_sem(Combined_fit, layout=comb_map,  rect_width = 1.25, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
+```
+
+### Tabling the data
+
+Table 1  
+
+**Table 2 ** 
+
+|Analysis of Moderated Mediation for GRMS, Gendered Racial Identity Centrality, Coping, and Mental Health
+|:-------------------------------------------------------------------------|
+
+| Predictor                  |$B$      |$SE_{B}$  |$p$     |$R^2$          |                   
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+
+|Disengagement coping (M)    |         |          |        |.31
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |1.107	   |0.521	    |0.034   |               |
+|GRMS ($a_1$)                |0.623	   |0.194	    |0.001   |               |
+|Centrality ($a_2$)          |0.093	   |0.137	    |0.497   |               |
+|GRMS:Centrality ($a_3$)     |-0.058	 |0.050	    |0.253   |               |
+
+|Mental Health (DV)          |         |          |        |.46
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |6.539	   |0.714	    |<0.001  |               |
+|GRMS ($c'_1$)               |-1.023	 |0.299	    |0.001   |               |
+|Centrality ($c'_2$)         |-0.317	 |0.190	    |0.095   |               |
+|GRMS:Centrality ($c'_3$)    |0.136	   |0.074	    |0.066   |               |
+|Disengagement ($b$)         |-0.362	 |0.091	    |<0.001  |               |
+
+|Summary of Effects          |$B$      |$SE_{B}$  |$p$     |95% CI
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|IMM                         |0.021	   |0.020	    |0.287	 |-0.017,	0.063  | 
+|Indirect ($-1SD$)           |-0.159	 |0.045	    |<0.001  |-0.253,	-0.083 |                        
+|Indirect ($M$)              |-0.143	 |0.040	    |<0.001	 |-0.226,	-0.073 |
+|Indirect ($+1SD$)           |-0.128	 |0.040	    |0.002	 |-0.229,	-0.061 |
+|Direct ($-1SD$)             |-0.591	 |0.089	    |<0.001	 |-0.754,	-0.410 |
+|Direct ($M$)                |-0.488	 |0.067	    |<0.001	 |-0.613,	-0.355 |
+|Direct ($+1SD$)             |-0.386	 |0.085	    |<0.001	 |-0.549,	-0.218 |
+
+|
+|--------------------------------------------------------------------------|
+|*Note*. GRMS = gendered racial microaggressions. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
+
+
+

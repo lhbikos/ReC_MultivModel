@@ -1,0 +1,7 @@
+"0","Valued_vars <- c('Increased_Interest', 'Increased_Understanding', 'Valuable_Objectives')"
+"0","TradPed_vars <- c('Effective_Answers', 'Clear_Responsibilities', 'Feedback', 'Clear_Organization',  'Clear_Presentations')"
+"0","SCRPed_vars <- c('Multiple_Perspectives', 'Fostered_Inclusiveness', 'DEI_integration', 'Sense_of_Community', 'Equitable_Evaluation')"
+"0",""
+"0","all$Valued <- sjstats::mean_n(all[,Valued_vars], .75)"
+"0","all$TradPed <- sjstats::mean_n(all[,TradPed_vars], .75)"
+"0","all$SCRPed <- sjstats::mean_n(all[,SCRPed_vars], .75)"

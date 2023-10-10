@@ -3,13 +3,13 @@
 
 # Moderated Mediation {#ModMed}
 
- [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=1d28d076-efad-4471-b52d-ad1601826f92) 
+[Screencasted Lecture Link](https://www.youtube.com/playlist?list=PLtz5cFLQl4KMsJkRKTsBjRDB22vsQdBif) 
 
 
 
 The focus of this lecture is the moderated mediation.  That is, are the effects of the indirect effect (sign, significance, strength, presence/absence) *conditional* on the effects of the moderator.
 
-At the outset, please note that although I rely heavily on Hayes [-@hayes_introduction_2018] text and materials, I am using the R package *lavaan* in these chapters.  Very recently, Hayes has introduced a [PROCESS macro for R](https://www.processmacro.org/index.html). Because I am not yet up-to-speed on using this macro (it is not a typical R package) and because we will use *lavaan* for confirmatory factor analysis and structural equation modeling, I have chosen to utilize the *lavaan* package.  A substantial difference is that the PROCESS macros use ordinary least squares and *lavaan* uses maximum likelihood estimators.
+At the outset, please note that although I rely heavily on Hayes [-@hayes_introduction_2022] text and materials, I am using the R package *lavaan* in these chapters.  Recently, Hayes has introduced a [PROCESS macro for R](https://www.processmacro.org/index.html). Because I am not yet up-to-speed on using this macro (it is not a typical R package) and because we will use *lavaan* for confirmatory factor analysis and structural equation modeling, I have chosen to utilize the *lavaan* package.  A substantial difference is that the PROCESS macros use ordinary least squares and *lavaan* uses maximum likelihood estimators.
 
 ## Navigating this Lesson
 
@@ -21,7 +21,7 @@ While the majority of R objects and data you will need are created within the R 
 
 Learning objectives from this lecture include the following:
 
-* Outline a process of evaluating a moderated mediation in a piecewise [@hayes_introduction_2018] approach to model building
+* Outline a process of evaluating a moderated mediation in a piecewise [@hayes_introduction_2022]  approach to model building
 * Recognize conditional process modeling from R script.
 * Using the R package *lavaan*, 
   - specify a model with indirect effects,
@@ -46,10 +46,10 @@ The suggestions for homework are graded in complexity and, if you like, can exte
 
 In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
 
-* Hayes, A. F. (2018). *Introduction to mediation, moderation, and conditional process anlaysis:  A regression-based approach*. New York, NY: Guilford Press. Available as an ebook from the SPU library:  https://ebookcentral-proquest-com.ezproxy.spu.edu/lib/spu/detail.action?docID=5109647 
-  - **Chapter 11, CPA fundamentals**:  In this chapter Hayes disentangles conditional indirect effects. 
-  - **Chapter 12, More CPA examples**:  Among the examples is one that includes covariates.  
-  - **Appendix A:  Using Process**:  An essential tool for PROCESS users because, even when we are in the R environment, this is the "idea book." That is, the place where all the path models are presented in figures.
+* Hayes, A. F. (2022).  *Introduction to mediation, moderation, and conditional process analysis:  A regression-based approach*. New York, NY: Guilford Press.  
+  - **Chapter 11, Fundamentals of conditional Process Analysis**:  In this chapter Hayes disentangles conditional indirect effects. 
+  - **Chapter 12, Further examples of conditional process analysis**:  Among the examples is one that includes covariates.
+  - **Appendix A:  Using PROCESS**:  An essential tool for PROCESS users because, even when we are in the R environment, this is the "idea book." That is, the place where all the path models are presented in figures.
 * Lewis, J. A., Williams, M. G., Peppers, E. J., & Gadson, C. A. (2017). Applying intersectionality to explore the relations between gendered racism and health among Black women. *Journal of Counseling Psychology, 64*(5), 475–486. https://doi-org.ezproxy.spu.edu/10.1037/cou0000231
 
 ### Packages
@@ -139,7 +139,7 @@ if (!require(jtools)) {
 
 ### The definitional and conceptual
 
-Hayes [-@hayes_introduction_2018] coined the term and suggests we also talk about "conditional process modeling."
+Hayes [@hayes_introduction_2022] coined the term and suggests we also talk about "conditional process modeling."
 
 **Conditional process analysis**:  used when the analytical goal is to describe and understand the conditional nature of the mechanism or mechanisms by which a variable transmits its effect on another.
 
@@ -155,11 +155,11 @@ We are integrating moderation and mediation mechanisms together into a single in
   * Moderators help establish the boundary conditions of an effect or the circumstances, stimuli, or type of people for which the effect is large v. small, present v. absent, positive v. negative, and so forth.
   * Keywords:  "it depends," interaction effect.
 
-**Why should we engage both mediators and moderators?**  Hayes [-@hayes_introduction_2018] suggest that if we have only a mediator(s) in the model that we lose information if we "reduce complex responses that no doubt differ from person to person or situation to situation" (p. 394).  He adds that "all effects are moderated by something" (p. 394). Correspondingly, he recommends we add them to a mediation anlaysis.
+**Why should we engage both mediators and moderators?**  Hayes [-@hayes_introduction_2022] suggest that if we have only a mediator(s) in the model that we lose information if we "reduce complex responses that no doubt differ from person to person or situation to situation" (p. 394).  He adds that "all effects are moderated by something" (p. 394). Correspondingly, he recommends we add them to a mediation anlaysis.
 
-Hayes [-@hayes_introduction_2018] suggests that "more complete" (p. 395) analyses model the mechanisms at work linking X to Y (mediator[s]) while simultaneously allowing those effects to be contingent on context, circumstance, or individual difference (moderator[s]).
+Hayes [-@hayes_introduction_2022] suggests that "more complete" (p. 395) analyses model the mechanisms at work linking X to Y (mediator[s]) while simultaneously allowing those effects to be contingent on context, circumstance, or individual difference (moderator[s]).
 
-**What are conditional direct and indirect effects?**.  Mediation analyses produce indirect (the product of a sequence of effects that are assumed to be causal) and direct (the unique contribution of X to Y, controlling for other variables in the model) effects.  These effects (the X-to-Y/direct and X-to-M-to-Y/indirect), can also be moderated.  This is our quest! Figure 11.2 in Hayes' text [-@hayes_introduction_2018] illustrates conceptually and statistically that we can specify moderation of any combination of direct and indirect paths/effects.
+**What are conditional direct and indirect effects?**.  Mediation analyses produce indirect (the product of a sequence of effects that are assumed to be causal) and direct (the unique contribution of X to Y, controlling for other variables in the model) effects.  These effects (the X-to-Y/direct and X-to-M-to-Y/indirect), can also be moderated.  This is our quest! Figure 11.2 in Hayes' text [-@hayes_introduction_2022] illustrates conceptually and statistically that we can specify moderation of any combination of direct and indirect paths/effects.
 
 ![Image of conditional process analysis model where the moderator is hypothesized to change the a path; the path between the IV and mediator](images/SimpleMed/CPAmodel.jpg)
 
@@ -175,29 +175,50 @@ Within the CPA framework we have lots of options that generally fall into two ca
   * mediated moderation analysis is simply a mediation analysis with the product of two variables serving as the causal agent of focus
   * An interaction between a moderator W and causal agent X on outcome Y could operate through a mediator M
 
-Hayes argues that the mediated moderation hypotheses are "regularly articulated and tested by scientists" [-@hayes_introduction_2018, p. 459].  He warns, though, that we should not confuse the "abundance of published examples of mediated moderation anlayses...with the meaningfulness of the procedure itself" (p. 460).  He later adds that mediation moderation is "neither interesting nor meaningful."  Why?  
+Hayes argues that the mediated moderation hypotheses are "regularly articulated and tested by scientists" [-@hayes_introduction_2022, p. 459].  He warns, though, that we should not confuse the "abundance of published examples of mediated moderation analyses...with the meaningfulness of the procedure itself" (p. 460).  He later adds that mediation moderation is "neither interesting nor meaningful."  Why?  
 
 *  Conceptualizing a process in terms of a mediated moderation misdirects attention toward a variable in the model that actually doesn't measure anything.
 *   Most often there are moderated mediation models that are identical in equations and resulting coefficients - the difference is in the resulting attentional focus and interpretation.
-*   Hayes [-@hayes_introduction_2018] recommends that models proposing mediated moderation be recast in terms of moderated mediation process.
-*   Consequently, we will not work a mediated moderation, but there is an example in chapter 12.
+*   Hayes [-@hayes_introduction_2022] recommends that models proposing mediated moderation be recast in terms of moderated mediation process.
+*   Consequently, we will not work a mediated moderation, but there is an example in his text.
 
-### Hayes' [-@hayes_introduction_2018] Piecewise Approach to Building Models
+## Workflow for Moderated Mediation
 
-In summarizing a strategic approach for testing structural equation models, Joreskog [@bollen_testing_1993] identified three scenarios:
+![A colorful image of a workflow for complex mediation](images/ModMed/Workflow_ModMed.jpg) 
+Conducting a moderated mediation involves the following steps:
+
+1. Conducting an a priori power analysis to determine the appropriate sample size.
+   + This will require estimates of effect that are drawn from pilot data, the literature, or both.
+2. [Scrubbing](https://lhbikos.github.io/ReC_MultivModel/scrub.html) and [scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) the data. 
+   + Guidelines for such are presented in the respective lessons.
+3. Conducting data diagnostics, this includes:
+   + item and scale level missingness,
+   + internal consistency coefficients (e.g., alphas or omegas) for scale scores,
+   + univariate and multivariate normality
+4. Beginning with a piecewise analysis of the simpler mediation and moderation(s) models in the larger model.
+   + Make note of findings in each of the smaller models.
+   + Changes in significance of results from smaller to larger models may indicate power problems and/or combinatorial effects of the variables.
+5. Specifying and run the model overall model (this lesson presumes it will with the R package, *lavaan*).
+   + The dependent variable should be predicted by the independent, mediating, and covarying (if any) variables and any of their proposed interactions.
+   + “Labels” can facilitate interpretation by naming the a, b, and c’ paths.
+   + Script should include calculations for the index of moderated mediation and conditional indirect and direct (if included in the model) effects.
+5. Conducting a post hoc power analysis.
+   + Informed by your own results, you can see if you were adequately powered to detect a statistically significant effect, if, in fact, one exists.
+6. Interpret and report the results.
+   + Interpret ALL the paths and their patterns.
+   + Report if some indirect effects are stronger than others (i.e., results of the contrasts).
+   + Create a table and figure.
+   + Prepare the results in a manner that is useful to your audience.
+   
+In this workflow I call your attention to Hayes' [-@hayes_introduction_2022] piecewise approach to building models. I embrace this approach for a number of reasons. One reason is that examining the smaller portions of the model allows us to really begin to understand the patterns in the data in a systematic way.
+
+Another reason I appreciate the piecewise approach are our historically rigid traditions around hypothesis testing.  In summarizing a strategic approach for testing structural equation models, Joreskog [@bollen_testing_1993] identified three scenarios:
 
 * *strictly confirmatory*:  the traditional NHST approach of proposing a single, theoretically derived, model, and after analyzing the data either rejects or fails to reject the model.  No further modifications are made/allowed.
 * *alternative models*:  the reseacher proposes competing (also theoretically derived) models.  Following analysis of a single set of empirical data, he or she selects one model as appropriate in representing the sample data.
 * *model generating*:  A priori, the researcher acknowledges that they may/may not find what they have theoretically proposed. So, a priori, they acknowledge that in the absence of ideal fit (which is the usual circumstance), they will proceed in an exploratory fashion to respecify/re-estimate the model.  The goal is to find a model that is both substantively meaningful and statistically well-fitting.
 
-A legacy of our field is the *strictly confirmatory* approach.  I am thrilled when I see research experts (e.g., [@byrne_structural_2016]) openly endorse a model building approach.  In Chapter 12, Hayes [-@hayes_introduction_2018] demonstrates the piecewise approach to building (and understanding) a complex model.
-
-
-## Workflow for Moderated Mediation
-
-At this point in this OER's development, I don't have a workflow graphic developed for this statistic. However, Hayes' [-@hayes_introduction_2018] *piecewise* approach to model testing/building is really the workflow.  The secret is to decompose the model into its simplest moderations and mediations and analyze them separately before assembling them. When we get to the model we will analyze with this research vignette, a series of diagrams will make this more clear.
-
-Additionally, at the end of the chapter, I offer a template of R script for the popular moderated mediation (a single moderator influencin both the *a* and *c'* paths).
+A legacy of our field is the *strictly confirmatory* approach.  I am thrilled when I see research experts (e.g., [@byrne_structural_2016]) openly endorse a model building approach. 
 
 ## Research Vignette
 
@@ -216,150 +237,158 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 
 ### Simulating the data from the journal article
 
-First, we simulate the data from the means, standard deviations, and correlation matrix from the journal article.
+The *lavaan::simulateData* function was used. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. For all others we specified a factor loading of 0.80. We then approximated the *measurement model* by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette  [@lewis_applying_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
 
 
 ```r
-# Entering the intercorrelations, means, and standard deviations from
-# the journal article
-LEWmu <- c(1.99, 2.82, 2.48, 2.32, 1.75, 5.71, 21.37, 21.07)
-LEWsd <- c(0.9, 0.7, 0.81, 0.61, 0.53, 1.03, 3.83, 4.66)
-LEWr_mat <- matrix(c(1, 0.2, 0.28, 0.3, 0.41, 0.19, -0.32, -0.18, 0.2,
-    1, 0.49, 0.57, 0.22, 0.13, -0.06, -0.13, 0.28, 0.49, 1, 0.46, 0.26,
-    0.38, -0.18, -0.08, 0.3, 0.57, 0.46, 1, 0.37, 0.08, -0.14, -0.06, 0.41,
-    0.22, 0.26, 0.37, 1, 0.05, -0.54, -0.28, 0.19, 0.13, 0.38, 0.08, 0.05,
-    1, -0.1, 0.14, -0.32, -0.06, -0.18, -0.14, -0.54, -0.1, 1, 0.47, -0.18,
-    -0.13, -0.08, -0.06, -0.28, 0.14, 0.47, 1), ncol = 8)
-# Creating a covariance matrix
-
-LEWcov_mat <- LEWsd %*% t(LEWsd) * LEWr_mat
-LEWcov_mat
-```
-
-```
-##          [,1]     [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
-## [1,]  0.81000  0.12600  0.204120  0.164700  0.195570  0.176130 -1.103040
-## [2,]  0.12600  0.49000  0.277830  0.243390  0.081620  0.093730 -0.160860
-## [3,]  0.20412  0.27783  0.656100  0.227286  0.111618  0.317034 -0.558414
-## [4,]  0.16470  0.24339  0.227286  0.372100  0.119621  0.050264 -0.327082
-## [5,]  0.19557  0.08162  0.111618  0.119621  0.280900  0.027295 -1.096146
-## [6,]  0.17613  0.09373  0.317034  0.050264  0.027295  1.060900 -0.394490
-## [7,] -1.10304 -0.16086 -0.558414 -0.327082 -1.096146 -0.394490 14.668900
-## [8,] -0.75492 -0.42406 -0.301968 -0.170556 -0.691544  0.671972  8.388466
-##           [,8]
-## [1,] -0.754920
-## [2,] -0.424060
-## [3,] -0.301968
-## [4,] -0.170556
-## [5,] -0.691544
-## [6,]  0.671972
-## [7,]  8.388466
-## [8,] 21.715600
-```
+#Entering the intercorrelations, means, and standard deviations from the journal article
 
 
-```r
-# Set random seed so that the following matrix always gets the same
-# results.
-set.seed(210403)
-library(MASS)
-```
+Lewis_generating_model <- '
+        ##measurement model
+        GRMS  =~ .69*Ob1 + .69*Ob2 + .60*Ob3 + .59*Ob4 + .55*Ob5 + .55*Ob6 + .54*Ob7 + .50*Ob8 + .41*Ob9 + .41*Ob10 + .93*Ma1 + .81*Ma2 + .69*Ma3 + .67*Ma4 + .61*Ma5 + .58*Ma6 + .54*Ma7 + .59*St1 + .55*St2 + .54*St3 + .54*St4 + .51*St5 + .70*An1 + .69*An2 + .68*An3
+        MntlHlth  =~ .8*MH1 + .8*MH2 + .8*MH3 + .8*MH4 + .8*MH5 + .8*MH6
+        PhysHlth  =~ .8*PhH1 + .8*PhH2 + .8*PhH3 + .8*PhH4 + .8*PhH5 + .8*PhH6
+        Spirituality  =~ .8*Spirit1 + .8*Spirit2
+        SocSupport  =~ .8*SocS1 + .8*SocS2
+        Engagement  =~ .8*Eng1 + .8*Eng2
+        Disengagement  =~  .8*dEng1 + .8*dEng2
+        GRIC  =~ .8*Cntrlty1 + .8*Cntrlty2 + .8*Cntrlty3 + .8*Cntrlty4 + .8*Cntrlty5 + .8*Cntrlty6 + .8*Cntrlty7 + .8*Cntrlty8 + .8*Cntrlty9 + .8*Cntrlty10
+   
+        # Means
+         GRMS ~ 1.99*1
+         Spirituality ~2.82*1
+         SocSupport ~ 2.48*1
+         Engagement ~ 2.32*1
+         Disengagement ~ 1.75*1
+         GRIC ~ 5.71*1
+         MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
+         PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
+         
+        # Correlations 
+         GRMS ~ 0.20*Spirituality
+         GRMS ~ 0.28*SocSupport
+         GRMS ~ 0.30*Engagement
+         GRMS ~ 0.41*Disengagement
+         GRMS ~ 0.19*GRIC
+         GRMS ~ -0.32*MntlHlth
+         GRMS ~ -0.18*PhysHlth
+         
+         Spirituality ~ 0.49*SocSupport
+         Spirituality ~ 0.57*Engagement
+         Spirituality ~ 0.22*Disengagement
+         Spirituality ~ 0.12*GRIC
+         Spirituality ~ -0.06*MntlHlth
+         Spirituality ~ -0.13*PhysHlth
+         
+         SocSupport ~ 0.46*Engagement
+         SocSupport ~ 0.26*Disengagement
+         SocSupport ~ 0.38*GRIC
+         SocSupport ~ -0.18*MntlHlth
+         SocSupport ~ -0.08*PhysHlth
+         
+         Engagement ~ 0.37*Disengagement
+         Engagement ~ 0.08*GRIC
+         Engagement ~ -0.14*MntlHlth
+         Engagement ~ -0.06*PhysHlth
+         
+         Disengagement ~ 0.05*GRIC
+         Disengagement ~ -0.54*MntlHlth
+         Disengagement ~ -0.28*PhysHlth
+         
+         GRIC ~ -0.10*MntlHlth
+         GRIC ~ 0.14*PhysHlth
+     
+         MntlHlth ~ 0.47*PhysHlth         
+        '
 
-```
-## 
-## Attaching package: 'MASS'
-```
+set.seed(230925)
+dfLewis <- lavaan::simulateData(model = Lewis_generating_model,
+                              model.type = "sem",
+                              meanstructure = T,
+                              sample.nobs=231,
+                              standardized=FALSE)
 
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     select
-```
+#used to retrieve column indices used in the rescaling script below
+#col_index <- as.data.frame(colnames(dfLewis))
 
-```r
-Lewis_df <- mvrnorm(n = 212, mu = LEWmu, Sigma = LEWcov_mat, empirical = TRUE)
-colMeans(Lewis_df)
-```
+for(i in 1:ncol(dfLewis)){  # for loop to go through each column of the dataframe 
+  if(i >= 1 & i <= 25){   # apply only to GRMS variables
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(0, 5))
+  }
+  if(i >= 26 & i <= 37){   # apply only to mental and physical health variables 
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(0, 6))
+  }
+  if(i >= 38 & i <= 45){   # apply only to coping variables
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(1, 4))
+  }
+  if(i >= 46 & i <= 55){   # apply only to GRIC variables
+    dfLewis[,i] <- scales::rescale(dfLewis[,i], c(1, 7))
+  }
+}
 
-```
-## [1]  1.99  2.82  2.48  2.32  1.75  5.71 21.37 21.07
-```
-
-```r
-# Checking our work against the original correlation matrix
-cor(Lewis_df)
-```
-
-```
-##       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]
-## [1,]  1.00  0.20  0.28  0.30  0.41  0.19 -0.32 -0.18
-## [2,]  0.20  1.00  0.49  0.57  0.22  0.13 -0.06 -0.13
-## [3,]  0.28  0.49  1.00  0.46  0.26  0.38 -0.18 -0.08
-## [4,]  0.30  0.57  0.46  1.00  0.37  0.08 -0.14 -0.06
-## [5,]  0.41  0.22  0.26  0.37  1.00  0.05 -0.54 -0.28
-## [6,]  0.19  0.13  0.38  0.08  0.05  1.00 -0.10  0.14
-## [7,] -0.32 -0.06 -0.18 -0.14 -0.54 -0.10  1.00  0.47
-## [8,] -0.18 -0.13 -0.08 -0.06 -0.28  0.14  0.47  1.00
-```
-
-Rename the variables
-
-```r
-as.data.frame(Lewis_df, row.names = NULL, optional = FALSE, make.names = TRUE)
+#rounding to integers so that the data resembles that which was collected
 library(tidyverse)
-Lewis_df <- Lewis_df %>%
-    as.data.frame %>%
-    rename(GRMS = V1, Sprtlty = V2, SocSup = V3, Engmgt = V4, DisEngmt = V5,
-        GRIcntlty = V6, MntlHlth = V7, PhysHlth = V8)
+dfLewis <- dfLewis %>% round(0) 
+
+#quick check of my work
+#psych::describe(dfLewis) 
 ```
+The script below allows you to store the simulated data as a file on your computer. This is optional -- the entire lesson can be worked with the simulated data.
+
+If you prefer the .rds format, use this script (remove the hashtags). The .rds format has the advantage of preserving any formatting of variables. A disadvantage is that you cannot open these files outside of the R environment.
+
+Script to save the data to your computer as an .rds file.
 
 
 ```r
-head(Lewis_df)
+# saveRDS(dfLewis, 'dfLewis.rds')
 ```
 
-```
-##        GRMS  Sprtlty   SocSup   Engmgt DisEngmt GRIcntlty MntlHlth PhysHlth
-## 1 0.7792361 2.628957 1.758948 1.691459 1.062341  5.533258 22.70042 19.42231
-## 2 1.5729406 1.943789 1.101567 2.446707 1.885076  5.806530 22.67086 22.25516
-## 3 1.9586843 3.039406 1.591625 2.428866 1.635518  5.166721 19.06958 23.23199
-## 4 0.6532324 2.624590 1.039778 1.495290 1.506393  4.276244 23.90836 18.74549
-## 5 2.8280150 3.242341 2.202956 1.553723 1.024422  5.730293 22.86224 18.80227
-## 6 1.2809196 3.052410 4.097964 2.727955 1.565009  8.474002 19.13631 24.48153
-```
-### Quick peek at the data
+Once saved, you could clean your environment and bring the data back in from its .csv format.
 
 ```r
-library(psych)
-psych::describe(Lewis_df)
+# dfLewis<- readRDS('dfLewis.rds')
 ```
 
-```
-##           vars   n  mean   sd median trimmed  mad   min   max range  skew
-## GRMS         1 212  1.99 0.90   2.01    2.00 0.93 -0.75  4.24  4.99 -0.12
-## Sprtlty      2 212  2.82 0.70   2.75    2.82 0.65  0.46  4.68  4.23 -0.06
-## SocSup       3 212  2.48 0.81   2.47    2.46 0.77 -0.32  4.68  5.00  0.11
-## Engmgt       4 212  2.32 0.61   2.33    2.32 0.57  0.37  4.08  3.71 -0.02
-## DisEngmt     5 212  1.75 0.53   1.75    1.75 0.55  0.58  3.00  2.42 -0.04
-## GRIcntlty    6 212  5.71 1.03   5.67    5.68 1.00  3.08  9.40  6.32  0.32
-## MntlHlth     7 212 21.37 3.83  21.60   21.46 4.29 11.65 31.90 20.25 -0.15
-## PhysHlth     8 212 21.07 4.66  20.79   21.03 4.68  8.43 33.71 25.28  0.07
-##           kurtosis   se
-## GRMS         -0.14 0.06
-## Sprtlty       0.34 0.05
-## SocSup        0.41 0.06
-## Engmgt        0.22 0.04
-## DisEngmt     -0.64 0.04
-## GRIcntlty     0.36 0.07
-## MntlHlth     -0.54 0.26
-## PhysHlth     -0.18 0.32
-```
+If you prefer the .csv format (think "Excel lite") use this script (remove the hashtags). An advantage of the .csv format is that you can open the data outside of the R environment. A disadvantage is that it may not retain any formatting of variables
 
-And a quick peek at a correlation matrix.
+Script to save the data to your computer as a .csv file.
 
 
 ```r
-library(apaTables)
+# write.table(dfLewis, file = 'dfLewis.csv', sep = ',',
+# col.names=TRUE, row.names=FALSE)
+```
+
+Once saved, you could clean your environment and bring the data back in from its .csv format.
+
+```r
+# dfLewis<- read.csv ('dfLewis.csv', header = TRUE)
+```
+
+### Scrubbing, Scoring, and Data Diagnostics
+
+Because the focus of this lesson is on moderation, we have used simulated data (which serves to avoid problems like missingness and non-normal distributions). If this were real, raw, data, it would be important to [scrub](https://lhbikos.github.io/ReC_MultivModel/scrub.html), [score](https://lhbikos.github.io/ReC_MultivModel/score.html), and conduct [data diagnostics](https://lhbikos.github.io/ReC_MultivModel/DataDx.html) to evaluate the suitability of the data for the proposes anlayses.
+
+Because we are working with item level data we do need to score the scales used in the researcher's model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.
+
+As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we  calculate mean scores of these variables by first creating concatenated lists of variable names. Next we apply the *sjstats::mean_n* function to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
+
+Note that I am only scoring the variables used in the models demonstrated in this lesson. The variables that are simulated but not scored could be used for the practice suggestions.
+
+
+```r
+GRMS_vars <- c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8",
+    "Ob9", "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1",
+    "St2", "St3", "St4", "St5", "An1", "An2", "An3")
+Eng_vars <- c("Eng1", "Eng2")
+dEng_vars <- c("dEng1", "dEng2")
+MntlHlth_vars <- c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6")
+Cntrlty_vars <- c("Cntrlty1", "Cntrlty2", "Cntrlty3", "Cntrlty4", "Cntrlty5",
+    "Cntrlty6", "Cntrlty7", "Cntrlty8", "Cntrlty9", "Cntrlty10")
+
+dfLewis$GRMS <- sjstats::mean_n(dfLewis[, GRMS_vars], 0.8)
 ```
 
 ```
@@ -370,68 +399,52 @@ library(apaTables)
 ```
 
 ```r
-apa.cor.table(Lewis_df, show.conf.interval = FALSE)
+dfLewis$Engmt <- sjstats::mean_n(dfLewis[, Eng_vars], 0.8)
+dfLewis$DisEngmt <- sjstats::mean_n(dfLewis[, dEng_vars], 0.8)
+dfLewis$MntlHlth <- sjstats::mean_n(dfLewis[, MntlHlth_vars], 0.8)
+dfLewis$Centrality <- sjstats::mean_n(dfLewis[, Cntrlty_vars], 0.8)
+
+# If the scoring code above does not work for you, try the format
+# below which involves inserting to periods in front of the variable
+# list. One example is provided. dfLewis$GRMS <-
+# sjstats::mean_n(dfLewis[, ..GRMS_vars], 0.80)
 ```
 
+Now that we have scored our data, let's trim the variables to just those we need.
+
+```r
+Lewis_df <- dplyr::select(dfLewis, GRMS, Centrality, DisEngmt, MntlHlth)
 ```
-## The ability to suppress reporting of reporting confidence intervals has been deprecated in this version.
-## The function argument show.conf.interval will be removed in a later version.
+
+Let's check a table of means, standard deviations, and correlations to see if they align with the published article.
+
+
+```r
+Lewis_table <- apaTables::apa.cor.table(Lewis_df, table.number = 1, show.sig.stars = TRUE,
+    landscape = TRUE, filename = "Lewis_Corr.doc")
+print(Lewis_table)
 ```
 
 ```
 ## 
+## 
+## Table 1 
 ## 
 ## Means, standard deviations, and correlations with confidence intervals
 ##  
 ## 
-##   Variable     M     SD   1            2           3            4           
-##   1. GRMS      1.99  0.90                                                   
-##                                                                             
-##   2. Sprtlty   2.82  0.70 .20**                                             
-##                           [.07, .33]                                        
-##                                                                             
-##   3. SocSup    2.48  0.81 .28**        .49**                                
-##                           [.15, .40]   [.38, .59]                           
-##                                                                             
-##   4. Engmgt    2.32  0.61 .30**        .57**       .46**                    
-##                           [.17, .42]   [.47, .65]  [.35, .56]               
-##                                                                             
-##   5. DisEngmt  1.75  0.53 .41**        .22**       .26**        .37**       
-##                           [.29, .52]   [.09, .34]  [.13, .38]   [.25, .48]  
-##                                                                             
-##   6. GRIcntlty 5.71  1.03 .19**        .13         .38**        .08         
-##                           [.06, .32]   [-.00, .26] [.26, .49]   [-.06, .21] 
-##                                                                             
-##   7. MntlHlth  21.37 3.83 -.32**       -.06        -.18**       -.14*       
-##                           [-.44, -.19] [-.19, .08] [-.31, -.05] [-.27, -.01]
-##                                                                             
-##   8. PhysHlth  21.07 4.66 -.18**       -.13        -.08         -.06        
-##                           [-.31, -.05] [-.26, .00] [-.21, .06]  [-.19, .08] 
-##                                                                             
-##   5            6           7         
-##                                      
-##                                      
-##                                      
-##                                      
-##                                      
-##                                      
-##                                      
-##                                      
-##                                      
-##                                      
-##                                      
-##                                      
-##                                      
-##                                      
-##   .05                                
-##   [-.09, .18]                        
-##                                      
-##   -.54**       -.10                  
-##   [-.63, -.44] [-.23, .04]           
-##                                      
-##   -.28**       .14*        .47**     
-##   [-.40, -.15] [.01, .27]  [.36, .57]
-##                                      
+##   Variable      M    SD   1            2           3           
+##   1. GRMS       2.56 0.72                                      
+##                                                                
+##   2. Centrality 3.94 0.76 .24**                                
+##                           [.11, .36]                           
+##                                                                
+##   3. DisEngmt   2.48 0.52 .53**        .05                     
+##                           [.43, .62]   [-.08, .18]             
+##                                                                
+##   4. MntlHlth   3.16 0.81 -.56**       -.09        -.48**      
+##                           [-.64, -.47] [-.21, .04] [-.57, -.37]
+##                                                                
 ## 
 ## Note. M and SD are used to represent mean and standard deviation, respectively.
 ## Values in square brackets indicate the 95% confidence interval.
@@ -441,6 +454,25 @@ apa.cor.table(Lewis_df, show.conf.interval = FALSE)
 ## 
 ```
 
+### Quick peek at the data
+
+```r
+library(psych)
+psych::describe(Lewis_df)
+```
+
+```
+##            vars   n mean   sd median trimmed  mad  min  max range  skew
+## GRMS          1 231 2.56 0.72   2.56    2.56 0.77 0.32 4.24  3.92 -0.08
+## Centrality    2 231 3.94 0.76   3.90    3.92 0.74 1.90 6.00  4.10  0.25
+## DisEngmt      3 231 2.48 0.52   2.50    2.47 0.74 1.00 4.00  3.00  0.11
+## MntlHlth      4 231 3.16 0.81   3.17    3.16 0.74 1.17 5.50  4.33  0.05
+##            kurtosis   se
+## GRMS          -0.14 0.05
+## Centrality    -0.08 0.05
+## DisEngmt      -0.16 0.03
+## MntlHlth      -0.20 0.05
+```
 
 ## Working the Moderated Mediation
 
@@ -448,7 +480,7 @@ The model we are testing is predicting a mental health (MntlHlth, Y) from gender
 
 ![Image of conceptual representation of the conditional process analysis model where the moderator is hypothesized to change the a and c' paths](images/ModMed/LewisModMed.jpg)
 
-Hayes' [-@hayes_introduction_2018] textbook and training materials frequently display the conceptual (above) and statistical models (below).  These help facilitate understanding.
+Hayes' [-@hayes_introduction_2022] textbook and training materials frequently display the conceptual (above) and statistical models (below).  These help facilitate understanding.
 
 ![Image of statistical reprsentation of the conditional process analysis model where the moderator is hypothesized to change the a and c' paths](images/ModMed/LewisStatistical.jpg)
 
@@ -459,7 +491,7 @@ $$M = i_{M}+a_{1}X + a_{2}W + a_{3}XW + e_{M}$$
 
 $$Y = i_{Y}+c_{1}^{'}X+ c_{2}^{'}W+c_{3}^{'}XW+ bM+e_{Y}$$
 
-When we have complicated models such as these, Hayes [-@hayes_introduction_2018] suggests a piecewise approach to model building. Specifically, he decompose the model into its aggregate parts:  a simple mediation and two simple moderation.  
+When we have complicated models such as these, Hayes [-@hayes_introduction_2022] suggests a piecewise approach to model building. Specifically, he decompose the model into its aggregate parts:  a simple mediation and two simple moderation.  
 
 ![Image of statistical reprsentation of the conditional process analysis model where the moderator is hypothesized to change the a and c' paths](images/ModMed/PiecewiseAssembly.jpg)
 
@@ -470,7 +502,7 @@ Let's start with the the simple moderations.
 
 #### Analysis #1:  A simple moderation
 
-We are asking, "Does GRI centrality moderate the relationship between gendered racial microaggressiona and disengagement coping?
+We are asking, "Does GRI centrality moderate the relationship between gendered racial microaggressions and disengagement coping?
 
 Y = disengagement coping
 X = gendered racial microaggressions
@@ -487,19 +519,18 @@ Since we are just working to understand our moderations, we can run them with "r
 
 
 ```r
-library(jtools)  #the summ function creates a terrific regression table
-library(interactions)
-library(ggplot2)
+# library(jtools) #the summ function creates a terrific regression
+# table library(interactions) library(ggplot2)
 
-Mod_a_path <- lm(DisEngmt ~ GRMS * GRIcntlty, data = Lewis_df)
-summ(Mod_a_path, digits = 3)
+Mod_a_path <- lm(DisEngmt ~ GRMS * Centrality, data = Lewis_df)
+jtools::summ(Mod_a_path, digits = 3)
 ```
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;"> Observations </td>
-   <td style="text-align:right;"> 212 </td>
+   <td style="text-align:right;"> 231 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;"> Dependent variable </td>
@@ -513,16 +544,16 @@ summ(Mod_a_path, digits = 3)
 </table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <tbody>
   <tr>
-   <td style="text-align:left;font-weight: bold;"> F(3,208) </td>
-   <td style="text-align:right;"> 14.685 </td>
+   <td style="text-align:left;font-weight: bold;"> F(3,227) </td>
+   <td style="text-align:right;"> 31.245 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;"> R² </td>
-   <td style="text-align:right;"> 0.175 </td>
+   <td style="text-align:right;"> 0.292 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;"> Adj. R² </td>
-   <td style="text-align:right;"> 0.163 </td>
+   <td style="text-align:right;"> 0.283 </td>
   </tr>
 </tbody>
 </table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
@@ -538,107 +569,113 @@ summ(Mod_a_path, digits = 3)
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;"> (Intercept) </td>
-   <td style="text-align:right;"> 1.796 </td>
-   <td style="text-align:right;"> 0.415 </td>
-   <td style="text-align:right;"> 4.325 </td>
-   <td style="text-align:right;"> 0.000 </td>
+   <td style="text-align:right;"> 1.107 </td>
+   <td style="text-align:right;"> 0.510 </td>
+   <td style="text-align:right;"> 2.169 </td>
+   <td style="text-align:right;"> 0.031 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;"> GRMS </td>
-   <td style="text-align:right;"> 0.025 </td>
-   <td style="text-align:right;"> 0.184 </td>
-   <td style="text-align:right;"> 0.138 </td>
-   <td style="text-align:right;"> 0.890 </td>
+   <td style="text-align:right;"> 0.623 </td>
+   <td style="text-align:right;"> 0.193 </td>
+   <td style="text-align:right;"> 3.220 </td>
+   <td style="text-align:right;"> 0.001 </td>
   </tr>
   <tr>
-   <td style="text-align:left;font-weight: bold;"> GRIcntlty </td>
-   <td style="text-align:right;"> -0.095 </td>
-   <td style="text-align:right;"> 0.073 </td>
-   <td style="text-align:right;"> -1.290 </td>
-   <td style="text-align:right;"> 0.199 </td>
+   <td style="text-align:left;font-weight: bold;"> Centrality </td>
+   <td style="text-align:right;"> 0.093 </td>
+   <td style="text-align:right;"> 0.132 </td>
+   <td style="text-align:right;"> 0.703 </td>
+   <td style="text-align:right;"> 0.483 </td>
   </tr>
   <tr>
-   <td style="text-align:left;font-weight: bold;"> GRMS:GRIcntlty </td>
-   <td style="text-align:right;"> 0.038 </td>
-   <td style="text-align:right;"> 0.032 </td>
-   <td style="text-align:right;"> 1.217 </td>
-   <td style="text-align:right;"> 0.225 </td>
+   <td style="text-align:left;font-weight: bold;"> GRMS:Centrality </td>
+   <td style="text-align:right;"> -0.058 </td>
+   <td style="text-align:right;"> 0.049 </td>
+   <td style="text-align:right;"> -1.179 </td>
+   <td style="text-align:right;"> 0.240 </td>
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
 <sup></sup> Standard errors: OLS</td></tr></tfoot>
 </table>
  
-Looking at these results we can see that the predictors account for about 17% of variance in disengagement coping.  However, there is no significance in the predictors.  Neither the IV variable (GRMS, [X]), nor the moderator (GRIcntlty, [Y])), nor its interaction (GRMS:GRIcntlty, [XW]) are significant.
+Looking at these results we can see that the predictors account for about 29% of variance in disengagement coping. Only the independent variable (X), GRMS is a significant predictor.  Neither the moderator (GRIcntlty, [Y])), nor its interaction with GRMS (GRMS:GRIcntlty, [XW]) are significant.
  
 It's always helpful to graph the relationship.  The *interaction_plot()* function from the package, *interactions* can make helpful illustrations.  In the case of interactions/moderations, I like to run them "both ways" to see which makes more sense.
 
 
 ```r
-interact_plot(Mod_a_path, pred = GRMS, modx = GRIcntlty)
+interactions::interact_plot(Mod_a_path, pred = GRMS, modx = Centrality) +
+    ylim(1, 4)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-10-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-13-1.png)<!-- -->
+The figure with GRIcntrlty as the moderator, shows a very similar prediction of disengagement coping from gendered racial microaggressions across all three levels of gendered racial identity centrality.
+
 
 ```r
-interact_plot(Mod_a_path, pred = GRIcntlty, modx = GRMS)
+interactions::interact_plot(Mod_a_path, pred = Centrality, modx = GRMS) +
+    ylim(1, 4)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-10-2.png)<!-- -->
-The figure with GRIcntrlty as the moderator, shows a very similar prediction of disengagement coping from gendered racial microaggressions.  The figure that uses GRMS as the moderator, visually, looks like there are big differences as a function of GRMS.  Looking at the Y axis (disengagement), though, shows that the scaling variables are not well-spaced.
- 
+![](08-CPA_files/figure-docx/unnamed-chunk-14-1.png)<!-- -->
+
+The figure that positions GRMS in the moderator role shows the significant main effect of GRMS on disengagement coping. It is clear that who experience the highest levels of gendered racial microaggressions are using a more disengaged coping style.
  
 Next, let's probe the interaction with simple slopes.  Probing the interaction is a common follow-up.  With these additional inferential tests we can see where in the distribution of the moderator, X has an effect on Y that is different from zero (and where it does not). There are two common approaches.
 
-The Johnson-Neyman is a *floodlight* approach and provides an indication of the places in the distribution of W (moderator) that X has an effect on Y that is different than zero. The pick-a-point is sometimes called the *analysis of simple slopes* or a *spotlight* approach, probes the distribution at specific values (often the *M* +/- 1*SD*).  
+The Johnson-Neyman is a *floodlight* approach and provides an indication of the places in the distribution of W (moderator) that X has an effect on Y that is different than zero. The *analysis of simple slopes* approach is thought of as a *spotlight* approach because probes the distribution at specific values (often the *M* +/- 1*SD*).  
 
 
 ```r
-sim_slopes(Mod_a_path, pred = GRMS, modx = GRIcntlty)
+interactions::sim_slopes(Mod_a_path, pred = GRMS, modx = Centrality)
 ```
 
 ```
 ## JOHNSON-NEYMAN INTERVAL 
 ## 
-## When GRIcntlty is INSIDE the interval [3.45, 15.76], the slope of GRMS is p
-## < .05.
+## When Centrality is INSIDE the interval [-6.39, 6.37], the slope of GRMS is
+## p < .05.
 ## 
-## Note: The range of observed values of GRIcntlty is [3.08, 9.40]
+## Note: The range of observed values of Centrality is [1.90, 6.00]
 ## 
 ## SIMPLE SLOPES ANALYSIS 
 ## 
-## Slope of GRMS when GRIcntlty = 4.68 (- 1 SD): 
+## Slope of GRMS when Centrality = 3.182522 (- 1 SD): 
 ## 
 ##   Est.   S.E.   t val.      p
 ## ------ ------ -------- ------
-##   0.21   0.05     4.15   0.00
+##   0.44   0.05     8.23   0.00
 ## 
-## Slope of GRMS when GRIcntlty = 5.71 (Mean): 
-## 
-##   Est.   S.E.   t val.      p
-## ------ ------ -------- ------
-##   0.25   0.04     6.49   0.00
-## 
-## Slope of GRMS when GRIcntlty = 6.74 (+ 1 SD): 
+## Slope of GRMS when Centrality = 3.938095 (Mean): 
 ## 
 ##   Est.   S.E.   t val.      p
 ## ------ ------ -------- ------
-##   0.28   0.05     5.68   0.00
+##   0.40   0.04     9.42   0.00
+## 
+## Slope of GRMS when Centrality = 4.693668 (+ 1 SD): 
+## 
+##   Est.   S.E.   t val.      p
+## ------ ------ -------- ------
+##   0.35   0.06     6.03   0.00
 ```
 
 ```r
 # sim_slopes(Mod_a_path, pred=GRIcntlty, modx = GRMS) #sometimes I
 # like to look at it in reverse -- like in the plots
 ```
-The Johnson-Neyman suggests that between the GRIcntlty values of 3.02 and 9.03, the relationship between GRMS is statistically significant. We see the same result in the pick-a-point approach where at the GRIcntlty values of 4.68, 5.71, and 6.74, X has a statistically significant effect on Y. Is this a contradiction to the non-significant interaction effect?
+The Johnson-Neyman suggests that between the GRIcntlty values of -6.39 and 6.37, the relationship between GRMS is statistically significant. We see the same result in the pick-a-point approach where at the GRIcntlty values of 3.18, 3.94, and 4.69, GRMS has a statistically significant effect on disengagement coping. Is this a contradiction to the non-significant interaction effect?
 
-No. The test of interaction is an interaction about the relationship between *W* and *X*'s effect on *Y*.  Just showing that *X* is significantly related to *Y* for a specific value does not address any dependence upon the moderator (*W*).  Hayes [-@hayes_introduction_2018] covers this well in his Chapter 14, in the section "Reporting a Moderation Analysis."
+No. The test of interaction is an interaction about the relationship between *W* and *X*'s effect on *Y*.  Just showing that *X* is significantly related to *Y* for a specific value does not address any dependence upon the moderator (*W*).  Hayes [-@hayes_introduction_2022] covers this well in his Chapter 14, in the section "Reporting a Moderation Analysis."
 
 **What have we learned in this simple moderation?**
  
-* While there are no significant predictors (neither X, W, nor XW), the model accounts for about 17% of variance in the DV.
-* Although there was a non-significant effect of GRMS on disengagement coping, analysis of simple slopes suggested a significant relationship between these variables at a given ranges of GRIcntlty.
-* We'll keep these in mind.
+* Only GRMS (X) has a statistically significant effect on disengagement coping.
+* Neither the moderator (Centrality W) nor its interaction with GRMS (WX) are statistically significant.
+While there are no significant predictors (neither X, W, nor XW)
+* The model accounts for about 29% of variance in the DV.
+
 
 #### Analysis #2:  Another simple moderation
 
@@ -656,15 +693,15 @@ $$Y=b_{0}+b_{1}X+b_{2}W+b_{3}XW+e_{Y}$$
 
 
 ```r
-Mod_c_path <- lm(MntlHlth ~ GRMS * GRIcntlty, data = Lewis_df)
-summ(Mod_c_path, digits = 3)
+Mod_c_path <- lm(MntlHlth ~ GRMS * Centrality, data = Lewis_df)
+jtools::summ(Mod_c_path, digits = 3)
 ```
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;"> Observations </td>
-   <td style="text-align:right;"> 212 </td>
+   <td style="text-align:right;"> 231 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;"> Dependent variable </td>
@@ -678,16 +715,16 @@ summ(Mod_c_path, digits = 3)
 </table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <tbody>
   <tr>
-   <td style="text-align:left;font-weight: bold;"> F(3,208) </td>
-   <td style="text-align:right;"> 8.050 </td>
+   <td style="text-align:left;font-weight: bold;"> F(3,227) </td>
+   <td style="text-align:right;"> 37.386 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;"> R² </td>
-   <td style="text-align:right;"> 0.104 </td>
+   <td style="text-align:right;"> 0.331 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;"> Adj. R² </td>
-   <td style="text-align:right;"> 0.091 </td>
+   <td style="text-align:right;"> 0.322 </td>
   </tr>
 </tbody>
 </table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
@@ -703,107 +740,106 @@ summ(Mod_c_path, digits = 3)
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;"> (Intercept) </td>
-   <td style="text-align:right;"> 25.110 </td>
-   <td style="text-align:right;"> 3.127 </td>
-   <td style="text-align:right;"> 8.030 </td>
+   <td style="text-align:right;"> 6.138 </td>
+   <td style="text-align:right;"> 0.767 </td>
+   <td style="text-align:right;"> 8.007 </td>
    <td style="text-align:right;"> 0.000 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;"> GRMS </td>
-   <td style="text-align:right;"> -1.442 </td>
-   <td style="text-align:right;"> 1.386 </td>
-   <td style="text-align:right;"> -1.041 </td>
-   <td style="text-align:right;"> 0.299 </td>
+   <td style="text-align:right;"> -1.248 </td>
+   <td style="text-align:right;"> 0.290 </td>
+   <td style="text-align:right;"> -4.299 </td>
+   <td style="text-align:right;"> 0.000 </td>
   </tr>
   <tr>
-   <td style="text-align:left;font-weight: bold;"> GRIcntlty </td>
-   <td style="text-align:right;"> -0.193 </td>
-   <td style="text-align:right;"> 0.553 </td>
-   <td style="text-align:right;"> -0.348 </td>
-   <td style="text-align:right;"> 0.728 </td>
+   <td style="text-align:left;font-weight: bold;"> Centrality </td>
+   <td style="text-align:right;"> -0.351 </td>
+   <td style="text-align:right;"> 0.199 </td>
+   <td style="text-align:right;"> -1.764 </td>
+   <td style="text-align:right;"> 0.079 </td>
   </tr>
   <tr>
-   <td style="text-align:left;font-weight: bold;"> GRMS:GRIcntlty </td>
-   <td style="text-align:right;"> 0.020 </td>
-   <td style="text-align:right;"> 0.238 </td>
-   <td style="text-align:right;"> 0.084 </td>
-   <td style="text-align:right;"> 0.933 </td>
+   <td style="text-align:left;font-weight: bold;"> GRMS:Centrality </td>
+   <td style="text-align:right;"> 0.157 </td>
+   <td style="text-align:right;"> 0.073 </td>
+   <td style="text-align:right;"> 2.132 </td>
+   <td style="text-align:right;"> 0.034 </td>
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
 <sup></sup> Standard errors: OLS</td></tr></tfoot>
 </table>
  
-In this model that is, overall, statistically significant, we account for about 11% of variance in the DV. Looking at these results we can see that there is no significance in the predictors.  Neither the IV (GRMS, [X]), nor the moderator (GRIcntlty, [Y])), nor its interaction (GRMS:GRIcntlty, [XW]) are significant.
+In this model that is, overall, statistically significant, we account for about 33% of variance in the DV. Looking at these results we can see that there is a statistically significant main effect of GRMS on mental health as well as statistically significant GRMS:Centrality interaction effect.
  
 Let's look at the plots.
 
 
 ```r
-interact_plot(Mod_c_path, pred = GRMS, modx = GRIcntlty)
+interactions::interact_plot(Mod_c_path, pred = GRMS, modx = Centrality) +
+    ylim(1, 6)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-13-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-17-1.png)<!-- -->
 
 ```r
-interact_plot(Mod_c_path, pred = GRIcntlty, modx = GRMS)
+# interactions::interact_plot(Mod_c_path, pred = GRIcntlty, modx =
+# GRMS + ylim(1,6))
 ```
-
-![](08-CPA_files/figure-docx/unnamed-chunk-13-2.png)<!-- -->
 The figure with GRIcntrlty as the moderator, shows fanning out when mental health is high and GRMS is low.
  
  
 Next, let's probe the interaction with simple slopes.  Probing the interaction is a common follow-up.  With these additional inferential tests we can see where in the distribution of the moderator, X has an effect on Y that is different from zero (and where it does not). There are two common approaches.
 
-The Johnson-Neyman is a *floodlight* approach and provides an indication of the places in the distribution of W (moderator) that X has an effect on Y that is different than zero. The pick-a-point is sometimes called the *analysis of simple slopes* or a *spotlight* approach, probes the distribution at specific values (often the *M* +/- 1*SD*).  
+The Johnson-Neyman is a *floodlight* approach and provides an indication of the places in the distribution of W (moderator) that X has an effect on Y that is different than zero. The *analysis of simple slopes* or *spotlight* approach, probes the distribution at specific values (often the *M* +/- 1*SD*).  
 
 
 ```r
-sim_slopes(Mod_c_path, pred = GRMS, modx = GRIcntlty)
+interactions::sim_slopes(Mod_c_path, pred = GRMS, modx = Centrality)
 ```
 
 ```
 ## JOHNSON-NEYMAN INTERVAL 
 ## 
-## When GRIcntlty is INSIDE the interval [3.00, 8.15], the slope of GRMS is p
-## < .05.
+## When Centrality is OUTSIDE the interval [5.92, 58.37], the slope of GRMS is
+## p < .05.
 ## 
-## Note: The range of observed values of GRIcntlty is [3.08, 9.40]
+## Note: The range of observed values of Centrality is [1.90, 6.00]
 ## 
 ## SIMPLE SLOPES ANALYSIS 
 ## 
-## Slope of GRMS when GRIcntlty = 4.68 (- 1 SD): 
+## Slope of GRMS when Centrality = 3.182522 (- 1 SD): 
 ## 
 ##    Est.   S.E.   t val.      p
 ## ------- ------ -------- ------
-##   -1.35   0.37    -3.61   0.00
+##   -0.75   0.08    -9.36   0.00
 ## 
-## Slope of GRMS when GRIcntlty = 5.71 (Mean): 
-## 
-##    Est.   S.E.   t val.      p
-## ------- ------ -------- ------
-##   -1.33   0.28    -4.67   0.00
-## 
-## Slope of GRMS when GRIcntlty = 6.74 (+ 1 SD): 
+## Slope of GRMS when Centrality = 3.938095 (Mean): 
 ## 
 ##    Est.   S.E.   t val.      p
 ## ------- ------ -------- ------
-##   -1.31   0.38    -3.46   0.00
+##   -0.63   0.06   -10.01   0.00
+## 
+## Slope of GRMS when Centrality = 4.693668 (+ 1 SD): 
+## 
+##    Est.   S.E.   t val.      p
+## ------- ------ -------- ------
+##   -0.51   0.09    -5.85   0.00
 ```
 
 ```r
 # sim_slopes(Mod_c_path, pred=GRIcntlty, modx = GRMS) #sometimes I
 # like to look at it in reverse -- like in the plots
 ```
-The Johnson-Neyman suggests that between the GRIcntlty values of 2.972 and 7.46, the relationship between GRMS is statistically significant. We see the same result in the pick-a-point approach where at the GRIcntlty values of 4.68, 5.71, and 6.74, X has a statistically significant effect on Y. Is this a contradiction to the non-significant interaction effect?
-
-Again. No. The test of interaction is an interaction about the relationship between *W* and *X*'s effect on *Y*.  Just showing that *X* is significantly related to *Y* for a specific value does not address any dependence upon the moderator (*W*).  Hayes [-@hayes_introduction_2018] covers this well in his Chapter 14, in the section "Reporting a Moderation Analysis."
+The Johnson-Neyman suggests that between the Centrality values of 5.92 and 58.37], the relationship between GRMS is and mental health statistically significant. We see the same result in the pick-a-point approach where at the Centrality values of 3.19, 3.94, and 4.69, GRMS has a statistically significant effect on mental health. Is this a contradiction to the non-significant interaction effect?
 
 **What have we learned in this simple moderation?**
 
-* As predictors to the DV, disengagement coping, the IV (X), moderator (W), and its interaction term (XW) have non-significant effects. That said, the overall model was significant and accounted for 11% of variance in the DV.
-* Although there was a non-significant effect of GRMS on mental health, analysis of simple slopes suggested a significant relationship between these variables at a given range of GRIcntlty.
-* We'll keep these in mind.
+* There was a statistically significant main effect of GRMS on mental health as well as statistically significant GRMS:Centrality interaction effect.
+* It is curious that in the presence of the statistically significant interaction effect, we did not see differences in significance in the analysis of simple slopes.
+* The overall model was significant and accounted for 33% of variance in the DV.
+
 
 #### Analysis #3:  A simple mediation
 
@@ -825,7 +861,7 @@ To conduct this analysis, I am using the guidelines in the [chapter on simple me
 
 ```r
 library(lavaan)
-set.seed(210421)  #reset in case you choose to separate these sections
+
 LMedModel <- "
           MntlHlth ~ b*DisEngmt + c_p*GRMS 
           DisEngmt ~a*GRMS
@@ -838,9 +874,10 @@ LMedModel <- "
           direct  := c_p
           total_c  := c_p + (a*b)
           "
-LMed_fit <- sem(LMedModel, data = Lewis_df, se = "bootstrap", missing = "fiml")
-LMed_Sum <- summary(LMed_fit, standardized = T, rsq = T, ci = TRUE)
-LMed_ParEsts <- parameterEstimates(LMed_fit, boot.ci.type = "bca.simple",
+set.seed(230925)  #required for reproducible results because lavaan introduces randomness into the calculations
+LMed_fit <- lavaan::sem(LMedModel, data = Lewis_df, se = "bootstrap", missing = "fiml")
+LMed_Sum <- lavaan::summary(LMed_fit, standardized = T, rsq = T, ci = TRUE)
+LMed_ParEsts <- lavaan::parameterEstimates(LMed_fit, boot.ci.type = "bca.simple",
     standardized = TRUE)
 LMed_Sum
 ```
@@ -852,7 +889,7 @@ LMed_Sum
 ##   Optimization method                           NLMINB
 ##   Number of model parameters                         7
 ## 
-##   Number of observations                           212
+##   Number of observations                           231
 ##   Number of missing patterns                         1
 ## 
 ## Model Test User Model:
@@ -869,47 +906,47 @@ LMed_Sum
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   MntlHlth ~                                                            
-##     DisEngmt   (b)   -3.551    0.438   -8.101    0.000   -4.395   -2.649
-##     GRMS     (c_p)   -0.504    0.238   -2.123    0.034   -0.981   -0.043
+##     DisEngmt   (b)   -0.381    0.089   -4.262    0.000   -0.547   -0.206
+##     GRMS     (c_p)   -0.483    0.066   -7.271    0.000   -0.607   -0.354
 ##   DisEngmt ~                                                            
-##     GRMS       (a)    0.241    0.035    6.884    0.000    0.170    0.305
+##     GRMS       (a)    0.386    0.038   10.096    0.000    0.301    0.456
 ##    Std.lv  Std.all
 ##                   
-##    -3.551   -0.491
-##    -0.504   -0.119
+##    -0.381   -0.247
+##    -0.483   -0.430
 ##                   
-##     0.241    0.410
+##     0.386    0.531
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .DsEngmt (DsE.)    1.270    0.078   16.330    0.000    1.117    1.432
-##    .MntlHlt (MnH.)   28.588    0.692   41.330    0.000   27.231   29.910
+##    .DsEngmt (DsE.)    1.490    0.100   14.935    0.000    1.307    1.709
+##    .MntlHlt (MnH.)    5.342    0.195   27.390    0.000    4.953    5.721
 ##    Std.lv  Std.all
-##     1.270    2.401
-##    28.588    7.482
+##     1.490    2.845
+##     5.342    6.604
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .MntlHlth         10.172    0.843   12.059    0.000    8.375   11.723
-##    .DisEngmt          0.233    0.021   10.883    0.000    0.189    0.274
+##    .MntlHlth          0.420    0.040   10.544    0.000    0.343    0.496
+##    .DisEngmt          0.197    0.016   11.967    0.000    0.163    0.229
 ##    Std.lv  Std.all
-##    10.172    0.697
-##     0.233    0.832
+##     0.420    0.641
+##     0.197    0.718
 ## 
 ## R-Square:
 ##                    Estimate
-##     MntlHlth          0.303
-##     DisEngmt          0.168
+##     MntlHlth          0.359
+##     DisEngmt          0.282
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect         -0.857    0.169   -5.073    0.000   -1.217   -0.544
-##     direct           -0.504    0.238   -2.122    0.034   -0.981   -0.043
-##     total_c          -1.362    0.250   -5.443    0.000   -1.830   -0.858
+##     indirect         -0.147    0.039   -3.824    0.000   -0.226   -0.075
+##     direct           -0.483    0.067   -7.268    0.000   -0.607   -0.354
+##     total_c          -0.631    0.058  -10.789    0.000   -0.742   -0.513
 ##    Std.lv  Std.all
-##    -0.857   -0.201
-##    -0.504   -0.119
-##    -1.362   -0.320
+##    -0.147   -0.131
+##    -0.483   -0.430
+##    -0.631   -0.561
 ```
 
 ```r
@@ -917,32 +954,32 @@ LMed_ParEsts
 ```
 
 ```
-##         lhs op       rhs         label    est    se      z pvalue ci.lower
-## 1  MntlHlth  ~  DisEngmt             b -3.551 0.438 -8.101  0.000   -4.466
-## 2  MntlHlth  ~      GRMS           c_p -0.504 0.238 -2.123  0.034   -1.044
-## 3  DisEngmt  ~      GRMS             a  0.241 0.035  6.884  0.000    0.176
-## 4  DisEngmt ~1           DisEngmt.mean  1.270 0.078 16.330  0.000    1.113
-## 5  MntlHlth ~1           MntlHlth.mean 28.588 0.692 41.330  0.000   27.255
-## 6  MntlHlth ~~  MntlHlth               10.172 0.843 12.059  0.000    8.730
-## 7  DisEngmt ~~  DisEngmt                0.233 0.021 10.883  0.000    0.193
-## 8      GRMS ~~      GRMS                0.806 0.000     NA     NA    0.806
-## 9      GRMS ~1                          1.990 0.000     NA     NA    1.990
-## 10 indirect :=       a*b      indirect -0.857 0.169 -5.073  0.000   -1.247
-## 11   direct :=       c_p        direct -0.504 0.238 -2.122  0.034   -1.044
-## 12  total_c := c_p+(a*b)       total_c -1.362 0.250 -5.443  0.000   -1.865
+##         lhs op       rhs         label    est    se       z pvalue ci.lower
+## 1  MntlHlth  ~  DisEngmt             b -0.381 0.089  -4.262      0   -0.547
+## 2  MntlHlth  ~      GRMS           c_p -0.483 0.066  -7.271      0   -0.606
+## 3  DisEngmt  ~      GRMS             a  0.386 0.038  10.096      0    0.311
+## 4  DisEngmt ~1           DisEngmt.mean  1.490 0.100  14.935      0    1.297
+## 5  MntlHlth ~1           MntlHlth.mean  5.342 0.195  27.390      0    4.900
+## 6  MntlHlth ~~  MntlHlth                0.420 0.040  10.544      0    0.352
+## 7  DisEngmt ~~  DisEngmt                0.197 0.016  11.967      0    0.166
+## 8      GRMS ~~      GRMS                0.518 0.000      NA     NA    0.518
+## 9      GRMS ~1                          2.557 0.000      NA     NA    2.557
+## 10 indirect :=       a*b      indirect -0.147 0.039  -3.824      0   -0.234
+## 11   direct :=       c_p        direct -0.483 0.067  -7.268      0   -0.606
+## 12  total_c := c_p+(a*b)       total_c -0.631 0.058 -10.789      0   -0.739
 ##    ci.upper std.lv std.all std.nox
-## 1    -2.687 -3.551  -0.491  -0.491
-## 2    -0.076 -0.504  -0.119  -0.132
-## 3     0.313  0.241   0.410   0.457
-## 4     1.427  1.270   2.401   2.401
-## 5    29.923 28.588   7.482   7.482
-## 6    12.180 10.172   0.697   0.697
-## 7     0.277  0.233   0.832   0.832
-## 8     0.806  0.806   1.000   0.806
-## 9     1.990  1.990   2.216   1.990
-## 10   -0.568 -0.857  -0.201  -0.224
-## 11   -0.076 -0.504  -0.119  -0.132
-## 12   -0.891 -1.362  -0.320  -0.356
+## 1    -0.206 -0.381  -0.247  -0.247
+## 2    -0.347 -0.483  -0.430  -0.597
+## 3     0.465  0.386   0.531   0.738
+## 4     1.698  1.490   2.845   2.845
+## 5     5.699  5.342   6.604   6.604
+## 6     0.513  0.420   0.641   0.641
+## 7     0.234  0.197   0.718   0.718
+## 8     0.518  0.518   1.000   0.518
+## 9     2.557  2.557   3.552   2.557
+## 10   -0.079 -0.147  -0.131  -0.182
+## 11   -0.347 -0.483  -0.430  -0.597
+## 12   -0.505 -0.631  -0.561  -0.780
 ```
 
 **In this simple mediation we learn***:
@@ -950,39 +987,96 @@ LMed_ParEsts
 * The *a* path (GRMS --> DisEngmt) is statistically significant.
 * The *b* path (DisEngmt --> MntlHlth) is statistically significant.
 * The total effect (GRMS --> MntlHlth) is statistically significant.
-* The direct effect (GRMS --> MntlHlth when DisEngmt is in the model) falls out of significance.
+* The direct effect (GRMS --> MntlHlth when DisEngmt is in the model) is still significant.
 * The indirect effect is statistically significant.
-* The model accounts for 30% of the variance in mental health (DV) and 17% of the variance in disengagement coping (M).
+* The model accounts for 36% of the variance in mental health (DV) and 28% of the variance in disengagement coping (M).
 
 Recall how the bootstrapped, bias-corrected confidence intervals can be different?  It's always good to check.  In this case, CI95s and the $p$ values are congruent.
 
 
 ```r
-set.seed(210421)
-library(semPlot)
-semPaths(LMed_fit, #must identiy the model you want to map
-         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
-         #whatLabels = "stand", #"stand" changes to standardized values
-         layout = 'tree', rotation = 2, #together, puts predictors on left, IVs on right 
-         #layout = 'circle',
-         edge.label.cex = 1.00, #font size of parameter values
-         #edge.color = "black", #overwrites the green/black coloring
-         sizeMan=10, #size of squares/observed/"manifest" variables
-         fade=FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals
-         esize=2, 
-         asize=3,
-         #label.prop = .5,
-         label.font = 2.5, #controls size (I think) of font for labels
-         label.scale = TRUE, #if false, the labels will not scale to fit inside the nodes
-         nDigits = 3, #decimal places (default is 2)
-         residuals = FALSE,#excludes residuals (and variances) from the path diagram
-         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)
-         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram)
-)
-title("Disengagement Coping as Mediator between GRMS and Mental Health")
+# only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-16-1.png)<!-- -->
+```
+## Loading required package: OpenMx
+```
+
+```
+## 
+## Attaching package: 'OpenMx'
+```
+
+```
+## The following object is masked from 'package:psych':
+## 
+##     tr
+```
+
+```
+## Registered S3 method overwritten by 'tidySEM':
+##   method          from  
+##   predict.MxModel OpenMx
+```
+
+```
+## 
+## Attaching package: 'tidySEM'
+```
+
+```
+## The following object is masked from 'package:jtools':
+## 
+##     get_data
+```
+
+```r
+tidySEM::graph_sem(model = LMed_fit)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-20-1.png)<!-- -->
+We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
+
+
+```r
+tidySEM::get_layout(LMed_fit)
+```
+
+```
+##      [,1]       [,2]      
+## [1,] NA         "GRMS"    
+## [2,] "MntlHlth" "DisEngmt"
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can write code to remap them
+
+```r
+Lmedmap <- tidySEM::get_layout("", "DisEngmt", "", "GRMS", "", "MntlHlth",
+    rows = 2)
+Lmedmap
+```
+
+```
+##      [,1]   [,2]       [,3]      
+## [1,] ""     "DisEngmt" ""        
+## [2,] "GRMS" ""         "MntlHlth"
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
+
+```r
+tidySEM::graph_sem(LMed_fit, layout = Lmedmap, rect_width = 1.25, rect_height = 1.25,
+    spacing_x = 2, spacing_y = 3, text_size = 4.5)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-23-1.png)<!-- -->
+
 
 ## The Moderated Mediation:  A Combined analysis
 
@@ -1027,101 +1121,287 @@ In the code below
 
 
 ```r
-set.seed(190505)
 Combined <- '
     #equations
-    DisEngmt ~ a1*GRMS + a2*GRIcntlty + a3*GRMS:GRIcntlty
-    MntlHlth ~ c_p1*GRMS + c_p2*GRIcntlty + c_p3*GRMS:GRIcntlty + b*DisEngmt
+    DisEngmt ~ a1*GRMS + a2*Centrality + a3*GRMS:Centrality
+    MntlHlth ~ c_p1*GRMS + c_p2*Centrality + c_p3*GRMS:Centrality + b*DisEngmt
 
     #intercepts
     DisEngmt ~ DisEngmt.mean*1
     MntlHlth ~ MntlHlth.mean*1
 
     #means, variances of W for simple slopes
-    GRIcntlty ~ GRIcntlty.mean*1
-    GRIcntlty ~~ GRIcntlty.var*GRIcntlty
+    Centrality ~ Centrality.mean*1
+    Centrality ~~ Centrality.var*Centrality
     
     #index of moderated mediation, there will be an a and b path in the product
     #if the a and/or b path is moderated, select the label that represents the moderation
+    
     imm := a3*b
 
     #Note that we first create the indirect product, then add to it the product of the imm and the W level
-    indirect.SDbelow := a1*b + imm*(GRIcntlty.mean - sqrt(GRIcntlty.var))
-    indirect.mean := a1*b + imm*(GRIcntlty.mean)
-    indirect.SDabove := a1*b + imm*(GRIcntlty.mean + sqrt(GRIcntlty.var))
+    indirect.SDbelow := a1*b + imm*(Centrality.mean - sqrt(Centrality.var))
+    indirect.mean := a1*b + imm*(Centrality.mean)
+    indirect.SDabove := a1*b + imm*(Centrality.mean + sqrt(Centrality.var))
 
     #direct effect is also moderated so calculate with c_p1 + c_p3
-    direct.SDbelow := c_p1 + c_p3*(GRIcntlty.mean - sqrt(GRIcntlty.var)) 
-    direct.Smean := c_p1 + c_p3*(GRIcntlty.mean)
-    direct.SDabove := c_p1 + c_p3*(GRIcntlty.mean + sqrt(GRIcntlty.var))
+    direct.SDbelow := c_p1 + c_p3*(Centrality.mean - sqrt(Centrality.var)) 
+    direct.Smean := c_p1 + c_p3*(Centrality.mean)
+    direct.SDabove := c_p1 + c_p3*(Centrality.mean + sqrt(Centrality.var))
 
-    #total effect
-    total.SDbelow := direct.SDbelow + indirect.SDbelow
-    total.mean := direct.Smean + indirect.mean
-    total.SDabove := direct.SDabove + indirect.SDabove
  '
-Combined_fit <- sem(Combined, data = Lewis_df, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
+set.seed(230925) #required for reproducible results because lavaan introduces randomness into the calculations
+Combined_fit <- lavaan::sem(Combined, data = Lewis_df, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
 ```
 
 ```
 ## Warning in lav_partable_vnames(FLAT, "ov.x", warn = TRUE): lavaan WARNING:
 ##     model syntax contains variance/covariance/intercept formulas
-##     involving (an) exogenous variable(s): [GRIcntlty]; These variables
-##     will now be treated as random introducing additional free
-##     parameters. If you wish to treat those variables as fixed, remove
-##     these formulas from the model syntax. Otherwise, consider adding
-##     the fixed.x = FALSE option.
+##     involving (an) exogenous variable(s): [Centrality]; These
+##     variables will now be treated as random introducing additional
+##     free parameters. If you wish to treat those variables as fixed,
+##     remove these formulas from the model syntax. Otherwise, consider
+##     adding the fixed.x = FALSE option.
 ```
 
 ```r
-cFITsum <- summary(Combined_fit, standardized = TRUE, rsq=T, ci=TRUE)    
-cParamEsts <- parameterEstimates(Combined_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+cFITsum <- lavaan::summary(Combined_fit, standardized = TRUE, rsq=T, ci=TRUE)    
+cParamEsts <- lavaan::parameterEstimates(Combined_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+cFITsum
 ```
-### A quick plot
+
+```
+## lavaan 0.6.16 ended normally after 20 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        13
+## 
+##   Number of observations                           231
+##   Number of missing patterns                         1
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                               567.225
+##   Degrees of freedom                                 2
+##   P-value (Chi-square)                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                            Bootstrap
+##   Number of requested bootstrap draws             1000
+##   Number of successful bootstrap draws            1000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##   DisEngmt ~                                                            
+##     GRMS      (a1)    0.623    0.194    3.212    0.001    0.166    0.942
+##     Cntrlty   (a2)    0.093    0.137    0.680    0.497   -0.215    0.335
+##     GRMS:Cn   (a3)   -0.058    0.050   -1.142    0.253   -0.147    0.055
+##   MntlHlth ~                                                            
+##     GRMS    (c_p1)   -1.023    0.299   -3.417    0.001   -1.572   -0.389
+##     Cntrlty (c_p2)   -0.317    0.190   -1.671    0.095   -0.669    0.070
+##     GRMS:Cn (c_p3)    0.136    0.074    1.841    0.066   -0.017    0.274
+##     DsEngmt    (b)   -0.362    0.091   -3.965    0.000   -0.530   -0.176
+##    Std.lv  Std.all
+##                   
+##     0.623    0.846
+##     0.093    0.133
+##    -0.058   -0.414
+##                   
+##    -1.023   -0.846
+##    -0.317   -0.275
+##     0.136    0.593
+##    -0.362   -0.220
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##    .DsEngmt (DsE.)    1.107    0.521    2.126    0.034    0.276    2.325
+##    .MntlHlt (MnH.)    6.539    0.714    9.155    0.000    4.946    7.863
+##     Cntrlty (Cnt.)    3.938    0.049   79.569    0.000    3.836    4.035
+##    Std.lv  Std.all
+##     1.107    2.090
+##     6.539    7.515
+##     3.938    5.223
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##     Cntrlty (Cnt.)    0.568    0.054   10.608    0.000    0.464    0.675
+##    .DsEngmt           0.194    0.016   12.001    0.000    0.160    0.224
+##    .MntlHlt           0.412    0.040   10.379    0.000    0.333    0.482
+##    Std.lv  Std.all
+##     0.568    1.000
+##     0.194    0.692
+##     0.412    0.545
+## 
+## R-Square:
+##                    Estimate
+##     DisEngmt          0.308
+##     MntlHlth          0.455
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##     imm               0.021    0.020    1.064    0.287   -0.022    0.060
+##     indirect.SDblw   -0.159    0.045   -3.574    0.000   -0.247   -0.075
+##     indirect.mean    -0.143    0.040   -3.600    0.000   -0.219   -0.064
+##     indirect.SDabv   -0.128    0.040   -3.163    0.002   -0.209   -0.050
+##     direct.SDbelow   -0.591    0.089   -6.661    0.000   -0.750   -0.404
+##     direct.Smean     -0.488    0.067   -7.251    0.000   -0.613   -0.356
+##     direct.SDabove   -0.386    0.085   -4.521    0.000   -0.546   -0.216
+##    Std.lv  Std.all
+##     0.021    0.091
+##    -0.159    0.199
+##    -0.143    0.290
+##    -0.128    0.381
+##    -0.591    1.657
+##    -0.488    2.249
+##    -0.386    2.842
+```
+
+```r
+cParamEsts
+```
+
+```
+##                 lhs op                                              rhs
+## 1          DisEngmt  ~                                             GRMS
+## 2          DisEngmt  ~                                       Centrality
+## 3          DisEngmt  ~                                  GRMS:Centrality
+## 4          MntlHlth  ~                                             GRMS
+## 5          MntlHlth  ~                                       Centrality
+## 6          MntlHlth  ~                                  GRMS:Centrality
+## 7          MntlHlth  ~                                         DisEngmt
+## 8          DisEngmt ~1                                                 
+## 9          MntlHlth ~1                                                 
+## 10       Centrality ~1                                                 
+## 11       Centrality ~~                                       Centrality
+## 12         DisEngmt ~~                                         DisEngmt
+## 13         MntlHlth ~~                                         MntlHlth
+## 14             GRMS ~~                                             GRMS
+## 15             GRMS ~~                                  GRMS:Centrality
+## 16  GRMS:Centrality ~~                                  GRMS:Centrality
+## 17             GRMS ~1                                                 
+## 18  GRMS:Centrality ~1                                                 
+## 19              imm :=                                             a3*b
+## 20 indirect.SDbelow :=  a1*b+imm*(Centrality.mean-sqrt(Centrality.var))
+## 21    indirect.mean :=                       a1*b+imm*(Centrality.mean)
+## 22 indirect.SDabove :=  a1*b+imm*(Centrality.mean+sqrt(Centrality.var))
+## 23   direct.SDbelow := c_p1+c_p3*(Centrality.mean-sqrt(Centrality.var))
+## 24     direct.Smean :=                      c_p1+c_p3*(Centrality.mean)
+## 25   direct.SDabove := c_p1+c_p3*(Centrality.mean+sqrt(Centrality.var))
+##               label    est    se      z pvalue ci.lower ci.upper std.lv std.all
+## 1                a1  0.623 0.194  3.212  0.001    0.159    0.937  0.623   0.846
+## 2                a2  0.093 0.137  0.680  0.497   -0.244    0.317  0.093   0.133
+## 3                a3 -0.058 0.050 -1.142  0.253   -0.143    0.060 -0.058  -0.414
+## 4              c_p1 -1.023 0.299 -3.417  0.001   -1.601   -0.420 -1.023  -0.846
+## 5              c_p2 -0.317 0.190 -1.671  0.095   -0.669    0.070 -0.317  -0.275
+## 6              c_p3  0.136 0.074  1.841  0.066   -0.009    0.281  0.136   0.593
+## 7                 b -0.362 0.091 -3.965  0.000   -0.527   -0.171 -0.362  -0.220
+## 8     DisEngmt.mean  1.107 0.521  2.126  0.034    0.328    2.410  1.107   2.090
+## 9     MntlHlth.mean  6.539 0.714  9.155  0.000    4.983    7.866  6.539   7.515
+## 10  Centrality.mean  3.938 0.049 79.569  0.000    3.832    4.035  3.938   5.223
+## 11   Centrality.var  0.568 0.054 10.608  0.000    0.469    0.682  0.568   1.000
+## 12                   0.194 0.016 12.001  0.000    0.166    0.235  0.194   0.692
+## 13                   0.412 0.040 10.379  0.000    0.345    0.510  0.412   0.545
+## 14                   0.518 0.000     NA     NA    0.518    0.518  0.518   1.000
+## 15                   2.334 0.000     NA     NA    2.334    2.334  2.334   0.853
+## 16                  14.446 0.000     NA     NA   14.446   14.446 14.446   1.000
+## 17                   2.557 0.000     NA     NA    2.557    2.557  2.557   3.552
+## 18                  10.199 0.000     NA     NA   10.199   10.199 10.199   2.683
+## 19              imm  0.021 0.020  1.064  0.287   -0.017    0.063  0.021   0.091
+## 20 indirect.SDbelow -0.159 0.045 -3.574  0.000   -0.253   -0.083 -0.159   0.199
+## 21    indirect.mean -0.143 0.040 -3.600  0.000   -0.226   -0.073 -0.143   0.290
+## 22 indirect.SDabove -0.128 0.040 -3.163  0.002   -0.229   -0.061 -0.128   0.381
+## 23   direct.SDbelow -0.591 0.089 -6.661  0.000   -0.754   -0.410 -0.591   1.657
+## 24     direct.Smean -0.488 0.067 -7.251  0.000   -0.613   -0.355 -0.488   2.249
+## 25   direct.SDabove -0.386 0.085 -4.521  0.000   -0.549   -0.218 -0.386   2.842
+##    std.nox
+## 1    1.176
+## 2    0.127
+## 3   -0.109
+## 4   -1.175
+## 5   -0.262
+## 6    0.156
+## 7   -0.220
+## 8    2.090
+## 9    7.515
+## 10   5.223
+## 11   1.000
+## 12   0.692
+## 13   0.545
+## 14   0.518
+## 15   2.334
+## 16  14.446
+## 17   2.557
+## 18  10.199
+## 19   0.024
+## 20  -0.158
+## 21  -0.134
+## 22  -0.110
+## 23  -0.517
+## 24  -0.361
+## 25  -0.205
+```
+
 
 
 ```r
-library(semPlot)
-semPaths(Combined_fit, #must identiy the model you want to map
-         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
-         #whatLabels = "stand", #"stand" changes to standardized values
-         layout = 'tree', rotation = 2, #together, puts predictors on left, IVs on right 
-         #layout = 'circle',
-         edge.label.cex = 1.00, #font size of parameter values
-         #edge.color = "black", #overwrites the green/black coloring
-         sizeMan=10, #size of squares/observed/"manifest" variables
-         fade=FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values -- a cool effect, but tough for journals
-         esize=2, 
-         asize=3,
-         #label.prop = .5,
-         label.font = 2.5, #controls size (I think) of font for labels
-         label.scale = TRUE, #if false, the labels will not scale to fit inside the nodes
-         nDigits = 3, #decimal places (default is 2)
-         residuals = FALSE,#excludes residuals (and variances) from the path diagram
-         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize (which could be a downside)
-         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram)
-)
-title("Moderated Mediation")
+# only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = Combined_fit)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-18-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-25-1.png)<!-- -->
+We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
+
+
+```r
+tidySEM::get_layout(Combined_fit)
+```
+
+```
+##      [,1]              [,2]         [,3]      
+## [1,] NA                "Centrality" "GRMS"    
+## [2,] "GRMS:Centrality" "MntlHlth"   "DisEngmt"
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can write code to remap them
+
+```r
+comb_map <- tidySEM::get_layout("", "DisEngmt", "", "GRMS", "", "MntlHlth",
+    "Centrality", "", "", "", "GRMS:Centrality", "", rows = 4)
+comb_map
+```
+
+```
+##      [,1]         [,2]              [,3]      
+## [1,] ""           "DisEngmt"        ""        
+## [2,] "GRMS"       ""                "MntlHlth"
+## [3,] "Centrality" ""                ""        
+## [4,] ""           "GRMS:Centrality" ""        
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
+
+```r
+tidySEM::graph_sem(Combined_fit, layout = comb_map, rect_width = 1.25,
+    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-28-1.png)<!-- -->
+
+
 
 
 ```r
 write.csv(cParamEsts, file = "Combined_fit.csv")  #optional to write it to a .csv file
 ```
 
-
-```
-## 
-## Attaching package: 'formattable'
-```
-
-```
-## The following object is masked from 'package:MASS':
-## 
-##     area
-```
 
 ### Beginning the interpretation
 
@@ -1139,87 +1419,954 @@ $$\hat{Y} = 31.703 + (-1.4115)X + (-0.556)W + 0.164XW + (-3.567)M$$
 
 ### Tabling the data
 
-Table 1  
+**Table 1 ** 
 
 |Analysis of Moderated Mediation for GRMS, Gendered Racial Identity Centrality, Coping, and Mental Health
-|:----------------------------------------------------------------------------------------------------------------------------|
+|:-------------------------------------------------------------------------|
 
-|                         
-|:------------------|:--------------------------------------------------:|:--------------------------------------------------:|
-|                   |Disengagement Coping (M)                            |Mental Health (Y)                                   |
+| Predictor                  |$B$      |$SE_{B}$  |$p$     |$R^2$          |                   
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
 
-|
-|:------------------|:-----:|:-----------:|:-------------:|:------------:|:-----:|:----------:|:-------------:|:-------------:|
-|Antecedent         |path   |$B$          |$SE$           |$p$           |path   |$B$         |$SE$           |$p$            |
-|constant           |$i_{M}$|1.796 |0.406|0.000|$i_{Y}$|31.564|2.483|0.000 |
-|GRMS (X)           |$a_{1}$|0.025     |0.174    |0.884    |$c_{1}$|-1.351  |0.994  |0.174   |
-|GRIcntrlty (W)     |$a_{2}$|-0.095     |0.073    |0.196    |$c_{2}$|-0.533  |0.419  |0.203   |
-|GRMS*GRIcntrlty(XW)|$a_{3}$|0.038     |0.031    |0.208    |$c_{3}$|0.158  |0.168  |0.347   |
-|DisEngmt (M)       |       |             |               |              |$b$    |-3.593     |0.424     |0.000      |
+|Disengagement coping (M)    |         |          |        |.31
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |1.107	   |0.521	    |0.034   |               |
+|GRMS ($a_1$)                |0.623	   |0.194	    |0.001   |               |
+|Centrality ($a_2$)          |0.093	   |0.137	    |0.497   |               |
+|GRMS:Centrality ($a_3$)     |-0.058	 |0.050	    |0.253   |               |
 
-|
-|:------------------|:--------------------------------------------------:|:--------------------------------------------------:|
-|                   |$R^2$ =                                 |$R^2$ =                                 |
+|Mental Health (DV)          |         |          |        |.46
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |6.539	   |0.714	    |<0.001  |               |
+|GRMS ($c'_1$)               |-1.023	 |0.299	    |0.001   |               |
+|Centrality ($c'_2$)         |-0.317	 |0.190	    |0.095   |               |
+|GRMS:Centrality ($c'_3$)    |0.136	   |0.074	    |0.066   |               |
+|Disengagement ($b$)         |-0.362	 |0.091	    |<0.001  |               |
 
-|                         
-|:---------------------------------------------------------------------------------------------------------------------------:|
-|Conditional Indirect, Direct, and Total Effects at Gendered Racial Identity Centrality Values                                |       
-
-|                         
-|:----------------------------|:--------------:|:-----------:|:--------------:|:---------------------------------------------:|
-|                             |Boot effect     |Boot SE      |Boot CI95 lower |Boot CI95 upper                                |
-|Index of moderated mediation |-0.138       |0.110 |-0.360 |0.074                                |
-|Indirect                     |                |             |                |                                               |
-|-1 *SD*                      |-0.739      |0.184|-1.161 |-0.412                                |
-|Mean                         |-0.881      |0.165|-1.281 |-0.606                                |
-|+1 *SD*                      |-1.023      |0.212|-1.467 |-0.632                                |
-|Direct                       |                |             |                |                                               |
-|-1 *SD*                      |-0.610      |0.298|-1.211 |-0.026                                |
-|Mean                         |-0.447      |0.241|-0.896 |0.034                                |
-|+1 *SD*                      |-0.285      |0.292|-0.852 |0.323                                |
-|Total                        |                |             |                |                                               |
-|-1 *SD*                      |-1.349      |0.310|-1.972 |-0.785                                |
-|Mean                         |-1.329      |0.255|-1.846 |-0.839                                |
-|+1 *SD*                      |-1.308      |0.338|-1.922 |-0.591                                |
+|Summary of Effects          |$B$      |$SE_{B}$  |$p$     |95% CI
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|IMM                         |0.021	   |0.020	    |0.287	 |-0.017,	0.063  | 
+|Indirect ($-1SD$)           |-0.159	 |0.045	    |<0.001  |-0.253,	-0.083 |                        
+|Indirect ($M$)              |-0.143	 |0.040	    |<0.001	 |-0.226,	-0.073 |
+|Indirect ($+1SD$)           |-0.128	 |0.040	    |0.002	 |-0.229,	-0.061 |
+|Direct ($-1SD$)             |-0.591	 |0.089	    |<0.001	 |-0.754,	-0.410 |
+|Direct ($M$)                |-0.488	 |0.067	    |<0.001	 |-0.613,	-0.355 |
+|Direct ($+1SD$)             |-0.386	 |0.085	    |<0.001	 |-0.549,	-0.218 |
 
 |
-|-----------------------------------------------------------------------------------------------------------------------------|
-*Note*. IV(X) = gendered racial microaggressions; M = disengagement coping; W; gendered racial identity centrality; Y = mental health. The significance of the indirect and direct effects were calculated with bias-corrected confidence intervals (.95) bootstrap analysis.
+|--------------------------------------------------------------------------|
+|*Note*. GRMS = gendered racial microaggressions. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
 
 
- of the variance in disengagement coping (mediator) and  of the variance in mental health (DV) are predicted by their respective models.
+Thirty one percent of the variance in disengagement coping (mediator) and 46% of the variance in mental health (DV) are predicted by their respective models.
 
-The model we tested suggested that both the indirect and direct effects should be moderated. Hayes provides a more detailed and elaborate explanation of this on pp. 447 - 458.
+The model we tested suggested that both the indirect and direct effects should be moderated. 
 
 #### Conditional Indirect effects 
 
-* An indirect effect can be moderated if either the *a* or *b* path (or both) is(are) moderated. 
-* If at least one of the indirect paths is part of a moderation, then the whole indirect (axb) path would be moderated.
-    + In this model, we specified a moderation of the *a* path. 
-* We know if the *a* path is moderated if the moderation term is statistically significant.  
-    + In our case, $a_{3}$ GRMS:GRIcntlty was not statistically significant ($B$ = 0.038, $p$ = 0.208).
-* We also look at the *Index of Moderated Mediation*. The IMM is the product of the moderated path (in this case, the value of $a_{3}$) and *b*.  If this index is 0, then the slope of the line for the indirect effect is flat. The bootstrap confidence interval associated with this test is the way to determine whether/not this slope is statistically significant from zero. In our case, IMM = -0.138, CI095 = -0.360 to 0.074. This suggests that we do not have a moderated mediation.  Hayes claims the IMM saves us from formally comparing (think "contrasts" pairs of conditional indirect effects)
-*  We can even get more information about the potentially moderated indirect effect  by *probing the conditional indirect effect*.  Because an indirect effect is not normally distributed, Hayes discourages using a Johnson-Neyman approach and suggests that we use the pick-a-point.  He usually selects the 16th, 50th, and 84th percentiles of the distribution. However, many researchers commonly report the mean+/-1SD.
-  * at 1SD below the mean $B$ =  -0.739, CI95 -1.161 to -0.412; 
-  * at the mean $B$ = -0.881, CI95 -1.281 to -0.606).  
-  * at 1SD above the mean, the conditional indirect effect was significant ($B$ = -1.023, CI95 -1.467 to -0.632).  
-  * Looking at the relative consistency of the $B$ weights and the consistently significant $p$ values, we see that there was an indirect effect throughout the varying levels of the moderator, gendered racial identity centrality.  Thus, it makes sense that this was not a moderated mediation.
+An indirect effect can be moderated if either the *a* or *b* path (or both) is(are) moderated.  If at least one of the indirect paths is part of a moderation, then the whole indirect (axb) path would be moderated. In this model, we specified a moderation of the *a* path. We know the *a* path is moderated if the moderation term is statistically significant.  
+
+In our case, $a_{3}$ GRMS:Centrality was not statistically significant $(B = -0.058, p = 0.253)$. We also inspect the *Index of Moderated Mediation*. The IMM is the product of the moderated path (in this case, the value of $a_{3}$) and *b*.  If this index is 0, then the slope of the line for the indirect effect is flat. The bootstrap confidence interval associated with this test is the way to determine whether/not this slope is statistically significant from zero. In our case, IMM = 0.021 ($p = 0.287%) with the 95% confidence interval ranging from  CI095 = -0.017 to	0.063. This suggests that we do not have a moderated mediation.  Hayes claims the IMM saves us from formally comparing (think "contrasts" pairs of conditional indirect effects).
+
+We can obtain more information about the potentially moderated indirect effect  by *probing the conditional indirect effect*.  Because an indirect effect is not normally distributed, Hayes discourages using a Johnson-Neyman approach and suggests that we use a pick-a-point.  He usually selects the 16th, 50th, and 84th percentiles of the distribution. However, many researchers commonly report the mean+/-1SD.
+
+  * at 1SD below the mean $B = -0.159, p <0.001, 95CI(-0.253,	-0.083)$; 
+  * at the mean $B = -0.488, p <0.001, 95CI(-0.613,	-0.355)$;  
+  * at 1SD above the mean, $B = -0.128, p = 0.002, 95CI(-0.229,	-0.061)$.  
+
+Examining the relative consistency of the $B$ weights and the consistently significant $p$ values, we see that there was an indirect effect throughout the varying levels of the moderator, gendered racial identity centrality.  Thus, it makes sense that this was not a *moderated mediation*.
 
 
 #### Conditional Direct effect
 
-* The direct effect of X to Y estimates how differences in X relate to differences in Y holding constant the proposed mediator(s).
-* We know the direct effect is moderated if the interaction term (c_p3)is statistically significant.  In our case, it was not (*B* = 0.158, *p* = 0.347). 
-* Probing a conditional direct effect is straightforward...we typically use the same points as we did in the probing of the conditional indirect effect.
-  + For both my values (mean and +/- 1SD) and Hayes values (16th, 50th, 84th percentiles), the direct effect (e.g., the effect of skepticism on willingness to donate) was not statistically significant from zero at any level of the moderator.
+The direct effect of X to Y estimates how differences in X relate to differences in Y holding constant the proposed mediator(s). We know the direct effect is moderated if the interaction term $(c'_p3)$is statistically significant.  In our case, it was not $B = 0.136, p = 0.066$.  Probing a conditional direct effect is straightforward -- we typically use the same points as we did in the probing of the conditional indirect effect.
+
+  * at 1SD below the mean $B = -0.591, p <0.001, 95CI(-0.754,	-0.410)$; 
+  * at the mean $B-0.143, p <0.001, 95CI(-0.226,	-0.073)$;  
+  * at 1SD above the mean, $B = -0.386, p <0.001, 95CI(-0.549,	-0.218)$.  
+  
+The statistically significant effect of GRMS on mental health at the three levels of gendered racial identity centrality is consistent with the non-significant interaction effect.
 
 ### Model trimming
 
-Hayes terms it *pruning*, but suggests that when there is no moderation of an effect, the researcher may want to delete that interaction term.  In our case, neither the direct nor indirect effect was moderated (although the +1*SD* was close ($B$ = -0.285, $p$ = 0.323).  Deleting these paths one at a time is typical practice because the small boost of power with each deleted path may "turn on" significance elsewhere. If I were to engage in model trimming, I would start with the indirect effect to see if the direct effect became moderated. This is consistent with the simple moderation we ran earlier where we saw a fanning out at one end of the distribution.
+Hayes terms it *pruning* when he suggests that when there is no moderation of an effect, the researcher may want to delete that interaction term.  In our case, neither the direct nor indirect effect was moderated (although the +1*SD* was close ($B = 0.136, p = 0.066$).  Deleting these paths one at a time is typical practice because the small boost of power with each deleted path may "turn on" significance elsewhere. If I were to engage in model trimming, I would start with the indirect effect to see if the interaction term associated with the direct effect became statistically significant. This is consistent with the simple moderation we ran earlier where we saw a fanning out at one end of the distribution.
 
 ### APA Style Write-up
 
-*Note*:  Make sure to look at the write-up in the Lewis et al. [@lewis_applying_2017] manuscript. I am a little confused in that Figure 2 of their manuscript suggests there was a moderation of both the *a* and *c'* paths. However, the results in Table 4 do not provide information about the moderation to the *c'* path. The Lewis et al. write-up is an efficient one, simultaneously presenting the results of two outcome variables -- mental and physical health. While our *B* weights from our simulated data map similarly onto those reported in the Lewis et al. manuscript, we do not get get the statistically significant moderated mediation that they get.
+As we look to write up our own results I encourage you to review the manuscript that sources our research vignette. The Lewis et al. [-@lewis_applying_2017] write-up is an efficient one, simultaneously presenting the results of two outcome variables -- mental and physical health. While our *B* weights from our simulated data map similarly onto those reported in the Lewis et al. manuscript, we do not get get the statistically significant moderated mediation reported in the article.
+
+**Method/Analytic Strategy**
+
+Data were analyzed with a maximum likelihood approach the package, *lavaan* (v. 0.6-16). We specified a moderated mediation model predicting mental health from gendered racial microaggressions, mediated by disengagement coping. We further predicted that the relationships between gendered racial microaggressions to disengagement coping (i.e., the *a* path) and between gendered racial microaggressions to mental health (i.e., the $c^1$ path) would be moderated by gendered racial identity centrality.
+
+**Results**
+
+**Preliminary Analyses**
+
+*  Missing data analysis and managing missing data
+*  Bivariate correlations, means, SDs
+*  Distributional characteristics, assumptions, etc.
+*  Address limitations and concerns
+
+**Primary Analyses**
+Our analysis evaluated a moderation mediation model predicting mental health (Y/MntlHlth) from gendered racial microaggressions (X/GRMS) mediated by disengagement coping (M/DisEngmt).  Gendered racial identity centrality (W/GRIcntrlty) was our moderating variable.  We specified a moderation of path *a* (X/GRMS to M/DisEngmt) and the direct path, *c'* (X/GRMS to Y/MntlHlth). Data were analyzed with maximum likelihood estimation in the R package *lavaan* (v. 0.6-7); the significance of effects were tested with 1000 bootstrap confidence intervals. Results of the full model are presented in Table 1 and illustrated in Figure 1 (*a variation of the semPlot or Hayes style representation*).  The formula for the mediator and dependent variable are expressed below.  
+
+
+$$\hat{M} = 1.107 + 0.623X + (0.093) W + -0.058XW$$
+$$\hat{Y} = 6.539 + (-1.023)X + (-0.317)W +0.136XW + (-0.362)M$$
+
+Results suggested a negative effect of gendered racial microaggressions on mental health that is mediated through disengagement coping. That is, in the presence of gendered racial microaggressions, participants increased disengagement coping which, in turn, had negative effects on mental health. The index of moderated mediation was not significant $(B = 0.021, p = 0.287, 95CI(-0.017,	0.063)$, suggesting that the indirect effects were not conditional on the values of the moderator. While there was no evidence of moderation on the indirect or direct paths, there was a statistically significant, and consistently strong, mediation throughout the range of the gendered racial identity centrality (moderator).  *Because we did not have a moderated mediation, I would probably not include the rest of this paragraph (nor include the moderation figure).  I just wanted to demonstrate how to talk about findings if they were significant (although I acnowledg throughat that these are non-significant).* Figure 2 illustrates the conditional effects (non-significant) of GRMS (X) on mental health (Y) among those at the traditional levels of $M \pm 1SD$.  Our model accounted for 31% of the variance in the mediator (disengagement coping) and 46% of the variance in the dependent variable (mental health).
+
+
+
+```r
+interactions::interact_plot(Mod_c_path, pred = GRMS, modx = Centrality) +
+    ylim(1, 6)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-30-1.png)<!-- -->
+
+```r
+# interactions::interact_plot(Mod_c_path, pred = GRIcntlty, modx =
+# GRMS + ylim(1,6))
+```
+## STAY TUNED
+
+A section on power analysis is planned and coming soon! My apologies that it's not quite *R*eady.
+
+## Residual and Related Questions...
+
+..that you might have; or at least I had, but if had answered them earlier it would have disrupt the flow.
+
+1. Would you stop here?  Or keep tinkering?
+   * I am tempted to delete moderation of the indirect effect to see if I can get a moderated direct effect. My choice would also depend on to what I committed in any kind of pre-registration. My approach to science tends to be *model generating* [@bollen_testing_1993] and in his text, Hayes [-@hayes_introduction_2022] advised authors to write about what they found -- not all the things they tried. This *tinkering* remains strongly in the vein of theoretically driven analyses.
+2. The output we get is different from the output in the journal article being used as the research vignette.  Why?  And should we worry about it? 
+   * We are simulating data.  This gives us some advantages in that (unless we specify it), we never have missingness and our variables should be normally distributed. Because we are working from means and correlations, our data will never be the same as the original researcher.  
+3. Some of the statistics you are reporting are different than the ones in Hayes and the ones that use the PROCESS macro (e.g., what happened to the *F* test)?
+   *  The default estimator for *lavaan* is maximum likelihood (ML) and Hayes uses ordinary least squares (OLS).  This affects both the values of coefficients, standard errors, AND the type of statistics that are reported. 
+   *  You can ask for OLS regression by adding the statement "estimator = "GLS". Even with this option, I have not discovered a way to obtain the *F* tests for the overall model.  Researchers seem to be comfortable with this, even asking for less than we did (e.g., many do not request R square).
+   * Best I can tell, researchers who do want this might use a combination of packages, using GLS estimators in *lavaan* (this easily gets them the bootstrapped CIs) and the move to a different regression package to get the intercepts and *F* tests.  If I did this I would triple check to make sure that all the output really lined up.
+4. Why did you run the two simple moderations with the base R *lm()* function (in OLS) and the moderated mediation in *lavaan* (using MLE)?
+   * As demonstrated in the prior chapter on simple moderation, the regression weights associated with the OLS and MLE analyses should be the same. Given that I'm conducting the simple mediations and moderations with a primary purpose of understanding the simpler elements of the larger model, either approach will be useful in helping me understand the smaller sets of relations.
+   * Very practically, using the base R *lm()* approach will help me create interaction plots that will be useful in presenting the results.
+5. Why did we ignore the traditional fit statistics associated with structural equation modeling (e.g., CFI, RMSEA). 
+   * I hesitate to do this with models that do not include latent variables.  Therefore, we asked for an "in-between" amount of info that should be sufficient for publication submission (any editor may have their own preferences and ask for more).
+6. What if I have missing data?
+   *  When we enter the *lavaan* world we do get options other than multiple imputation.  In today's example we used the "sem" fitting function. Unless otherwise specified, listwise deletion (deleting the entire case when one of its variables is used to estimate the model) is the default in *lavaan*.  If data are MCAR or MAR, you can add the argument *missing = "ml"* (or its alias *missing = "fiml"*).  More here https://users.ugent.be/~yrosseel/lavaan/lavaan2.pdf on the 1.7/Missing data in lavaan slide.
+   * That said, the type of estimator matters.  If you estimate your data with GLS (generalized least squares) or WLS (weighted least squares), you are required to have complete data (however you got it).  We used maximum likelihood and, even though we had non-missing data, I used the *missing = "fiml"* code.
+
+   
+## Practice Problems
+
+The three problems described below were designed to grow during the series of chapters on simple and complex mediation, complex moderation, and conditional process analysis (i.e,. this chapter). I have recommended that you select a dataset that includes at least four variables. If you are new to this topic, you may wish to select variables that are all continuously scaled.  The IV and moderator (next chapters) could be categorical (if they are dichotomous, please use 0/1 coding; if they have more than one category it is best if they are ordered).  You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.
+
+The suggested practice problem for this chapter is to conduct a moderated mediation. At least one path (a or b) should be moderated.
+
+### Problem #1: Rework the research vignette as demonstrated, but change the random seed
+
+If this topic feels a bit overwhelming, simply change the random seed in the data simulation, then rework the problem. This should provide minor changes to the data (maybe in the second or third decimal point), but the results will likely be very similar.
+
+
+### Problem #2:  Rework the research vignette, but swap one or more variables
+
+Use the simulated data, but select one of the other models that was evaluated in the Lewis et al. [-@lewis_applying_2017] study. For example, physical health was also used as a dependent variable in a separate but otherwise parallel analysis.  Compare your results to those reported in the mansucript.
+
+
+### Problem #3:  Use other data that is available to you
+
+Using data for which you have permission and access (e.g.,  IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete a simple mediation.
+
+### Grading Rubric
+
+|Assignment Component  
+|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
+|1. Describing the overall model hypothesis, assign each variable to the X, Y, M, or W roles |      5         |    _____     |
+|2. Import and format the variables in the model                                               |      5         |    _____     |
+|3. Using a piecewise approach, run each of the simple models in the grander design            |      5         |    _____     |
+|4. Specify and run the entire lavaan model                                                    |      5         |    _____     |
+|5. Use tidySEM to create a figure                                                             |      5         |    _____     |
+|6. Create a table that includes regression output for the M and Y variables and the moderated effects |5       |    _____     |  
+|7. Represent your work in an APA-style write-up                                               |      5         |    _____     |          
+|8. Explanation to grader                                                                      |      5         |    _____     |   
+|9. Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths|      5         |    _____     |
+|**Totals**                                                                                    |      45        |    _____     |
+   
+
+
+
+## Homeworked Example 1: A moderation on the *a* path
+[Screencast Link](https://www.youtube.com/playlist?list=PLtz5cFLQl4KNAM2JEmXZL4wlF8EiGbgxr)
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
+
+The suggested practice problem for this chapter is to conduct a moderated mediation. At least one path (a or b) should be moderated.
+
+### Describing thy overall model hypothesis, assign each variable to the X, Y, M, and W roles {-}  
+My analysis will evaluated a moderated mediation. Specifically, I predict that the effect of centering on perceived value to the student will be moderated by the students' evaluation of socially responsive pedagogy. I further hypothesize that this indirect effect will be moderated by traditional pedagogy and that the moderation will occur on the *a* path, that is, traditional pedagogy will moderate the effect of centering on socially responsive pedagogy. 
+
+* X = Centering, pre/re (0,1)
+* W = Traditional Pedagogy (1 to 4 scaling)
+* M = Socially Responsive Pedagogy (1 to 4 scaling)
+* Y = Value to the student (1 to 4 scaling)
+
+![An image of the conceptual model of moderated mediation for the homeworked example.](Worked_Examples/images/HW_ModMed1.png)
+
+![An image of the statistical model of simple moderation for the homeworked example.](Worked_Examples/images/HW_ModMed2.png)
+
+### Import the data and format the variables in the model  {-}
+
+
+```r
+raw <- readRDS("ReC.rds")
+```
+
+The approach we are taking to moderated mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
+
+```r
+raw <- (dplyr::filter(raw, Course == "Multivariate"))
+```
+
+I need to score the SRPed, TradPed, and Valued variables
+
+
+```r
+TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
+    "ClearOrganization", "ClearPresentation")
+raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], 0.75)
+
+Valued_vars <- c("ValObjectives", "IncrUnderstanding", "IncrInterest")
+raw$Valued <- sjstats::mean_n(raw[, ..Valued_vars], 0.75)
+
+SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
+    "DEIintegration")
+raw$SRPed <- sjstats::mean_n(raw[, ..SRPed_vars], 0.75)
+```
+
+
+I will create a babydf.
+
+
+```r
+babydf <- dplyr::select(raw, Centering, TradPed, SRPed, Valued)
+```
+
+Let's check the structure of the variables:
+
+
+```r
+str(babydf)
+```
+
+```
+## Classes 'data.table' and 'data.frame':	84 obs. of  4 variables:
+##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ TradPed  : num  3.8 5 4.8 4 4.2 3 5 4.6 4 4.8 ...
+##  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
+##  $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+```
+In later analyses, it will be important that Centering is a dummy-coded numerical variable:
+
+
+```r
+babydf$CENTERING <- as.numeric(babydf$Centering)
+babydf$CENTERING <- (babydf$CENTERING - 1)
+str(babydf)
+```
+
+```
+## Classes 'data.table' and 'data.frame':	84 obs. of  5 variables:
+##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ TradPed  : num  3.8 5 4.8 4 4.2 3 5 4.6 4 4.8 ...
+##  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
+##  $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+##  $ CENTERING: num  1 1 1 1 1 1 1 1 1 1 ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+```
+
+Quick peek at relations between variables:
+
+
+```r
+psych::pairs.panels(babydf)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
+
+### Using a piecewise approach, run each of the simple models in the grander design   {-} 
+
+#### Analysis #1:  A simple moderation of the *a* path {-}
+
+We are asking, "Does traditional pedagogy moderate the relationship between centering and socially responsive pedagogy?
+
+Y = socially responsive pedagogy
+X = centering
+W = traditional pedagogy 
+
+Let's specify this simple moderation model with base R's *lm()* function.  
+
+
+```r
+mod_a_path <- lm(SRPed ~ Centering * TradPed, data = babydf)
+# the base R output if you prefer this view
+summary(mod_a_path)
+```
+
+```
+## 
+## Call:
+## lm(formula = SRPed ~ Centering * TradPed, data = babydf)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.30064 -0.24549  0.07396  0.15007  1.21341 
+## 
+## Coefficients:
+##                     Estimate Std. Error t value         Pr(>|t|)    
+## (Intercept)          1.89621    0.30253   6.268 0.00000001948738 ***
+## CenteringRe          1.15285    0.73720   1.564            0.122    
+## TradPed              0.59074    0.07064   8.362 0.00000000000204 ***
+## CenteringRe:TradPed -0.21535    0.16486  -1.306            0.195    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.399 on 77 degrees of freedom
+##   (3 observations deleted due to missingness)
+## Multiple R-squared:  0.5413,	Adjusted R-squared:  0.5235 
+## F-statistic: 30.29 on 3 and 77 DF,  p-value: 0.0000000000004875
+```
+
+We'll use the *jtools* package so we get that great summ function and *interactions* for the awesome plot.
+
+Since we are just working to understand our moderations, we can run them with "regular old" ordinary least squares.  
+
+
+```r
+# library(jtools) #the summ function creates a terrific regression
+# table library(interactions)
+library(ggplot2)
+
+jtools::summ(mod_a_path, digits = 3)
+```
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> Observations </td>
+   <td style="text-align:right;"> 81 (3 missing obs. deleted) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> Dependent variable </td>
+   <td style="text-align:right;"> SRPed </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> Type </td>
+   <td style="text-align:right;"> OLS linear regression </td>
+  </tr>
+</tbody>
+</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> F(3,77) </td>
+   <td style="text-align:right;"> 30.294 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> R² </td>
+   <td style="text-align:right;"> 0.541 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> Adj. R² </td>
+   <td style="text-align:right;"> 0.523 </td>
+  </tr>
+</tbody>
+</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Est. </th>
+   <th style="text-align:right;"> S.E. </th>
+   <th style="text-align:right;"> t val. </th>
+   <th style="text-align:right;"> p </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> (Intercept) </td>
+   <td style="text-align:right;"> 1.896 </td>
+   <td style="text-align:right;"> 0.303 </td>
+   <td style="text-align:right;"> 6.268 </td>
+   <td style="text-align:right;"> 0.000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> CenteringRe </td>
+   <td style="text-align:right;"> 1.153 </td>
+   <td style="text-align:right;"> 0.737 </td>
+   <td style="text-align:right;"> 1.564 </td>
+   <td style="text-align:right;"> 0.122 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> TradPed </td>
+   <td style="text-align:right;"> 0.591 </td>
+   <td style="text-align:right;"> 0.071 </td>
+   <td style="text-align:right;"> 8.362 </td>
+   <td style="text-align:right;"> 0.000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> CenteringRe:TradPed </td>
+   <td style="text-align:right;"> -0.215 </td>
+   <td style="text-align:right;"> 0.165 </td>
+   <td style="text-align:right;"> -1.306 </td>
+   <td style="text-align:right;"> 0.195 </td>
+  </tr>
+</tbody>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Standard errors: OLS</td></tr></tfoot>
+</table>
+
+Looking at these results we can see that the predictors account for about 54% of variance in perceived value to the student. Only the moderator (TradPed, W), traditional pedagogy is a significant predictor.  Neither the independent variable (Centering, X), nor its interaction with Centering (Centering:TradPed, XW) are significant.
+ 
+It's always helpful to graph the relationship.  The *interaction_plot()* function from the package, *interactions* can make helpful illustrations.  In the case of interactions/moderations, I like to run them "both ways" to see which makes more sense.
+
+
+```r
+interactions::interact_plot(mod_a_path, pred = TradPed, modx = Centering) +
+    ylim(1, 5)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-43-1.png)<!-- -->
+
+
+```r
+interactions::sim_slopes(mod_a_path, pred = TradPed, modx = Centering)
+```
+
+```
+## Warning: Johnson-Neyman intervals are not available for factor moderators.
+```
+
+```
+## SIMPLE SLOPES ANALYSIS 
+## 
+## Slope of TradPed when Centering = Re: 
+## 
+##   Est.   S.E.   t val.      p
+## ------ ------ -------- ------
+##   0.38   0.15     2.52   0.01
+## 
+## Slope of TradPed when Centering = Pre: 
+## 
+##   Est.   S.E.   t val.      p
+## ------ ------ -------- ------
+##   0.59   0.07     8.36   0.00
+```
+
+```r
+# sim_slopes(Mod_a_path, pred=GRIcntlty, modx = GRMS) #sometimes I
+# like to look at it in reverse -- like in the plots
+```
+Consistent with the non-signicant interation effect but the significant main effect, there was a statistically significant effect of traditional pedagogy on socially responsive pedagogy for both pre-centered and re-centered stages.
+
+Traditional pedagogy is the only significant predictor in socially responsive pedagogy. Overall, the model accounts for 54% of the variance in socially responsive pedagogy.
+
+#### Analysis #2:  A simple mediation {-}
+
+We are asking, "Does socially responsive pedagogy mediate the relationship between centering and perceived value to the student?"
+
+Y = perceived value
+X = centering
+M = socially responsive pedagogy
+
+*Note*. I switched to using the CENTERING (all caps) variable because it is 0/1, numeric (better for lavaan).
+
+```r
+library(lavaan)
+
+medmodel <- "
+          Valued ~ b*SRPed + c_p*CENTERING 
+          SRPed ~a*CENTERING
+          
+          #intercepts
+          CENTERING ~ CENTERING.mean*1
+          Valued ~ Valued.mean*1
+          
+          indirect :=  a*b
+          direct  := c_p
+          total_c  := c_p + (a*b)
+          "
+set.seed(230925)  #required for reproducible results because lavaan introduces randomness into the calculations
+medmodel_fit <- lavaan::sem(medmodel, data = babydf, se = "bootstrap",
+    missing = "fiml")
+medmodel_Sum <- lavaan::summary(medmodel_fit, standardized = T, rsq = T,
+    ci = TRUE)
+medmodel_ParEsts <- lavaan::parameterEstimates(medmodel_fit, boot.ci.type = "bca.simple",
+    standardized = TRUE)
+medmodel_Sum
+```
+
+```
+## lavaan 0.6.16 ended normally after 25 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                         9
+## 
+##   Number of observations                            84
+##   Number of missing patterns                         2
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                            Bootstrap
+##   Number of requested bootstrap draws             1000
+##   Number of successful bootstrap draws            1000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##   Valued ~                                                              
+##     SRPed      (b)    0.728    0.124    5.877    0.000    0.455    0.933
+##     CENTERIN (c_p)    0.004    0.124    0.032    0.974   -0.225    0.257
+##   SRPed ~                                                               
+##     CENTERIN   (a)    0.367    0.114    3.225    0.001    0.148    0.601
+##    Std.lv  Std.all
+##                   
+##     0.728    0.608
+##     0.004    0.003
+##                   
+##     0.367    0.307
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##     CENTERI (CENT)    0.369    0.054    6.872    0.000    0.274    0.476
+##    .Valued  (Vld.)    0.935    0.548    1.707    0.088    0.018    2.136
+##    .SRPed             4.371    0.086   50.597    0.000    4.187    4.527
+##    Std.lv  Std.all
+##     0.369    0.765
+##     0.935    1.355
+##     4.371    7.580
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##    .Valued            0.299    0.055    5.453    0.000    0.186    0.408
+##    .SRPed             0.301    0.058    5.157    0.000    0.196    0.413
+##     CENTERING         0.233    0.014   16.390    0.000    0.199    0.249
+##    Std.lv  Std.all
+##     0.299    0.629
+##     0.301    0.906
+##     0.233    1.000
+## 
+## R-Square:
+##                    Estimate
+##     Valued            0.371
+##     SRPed             0.094
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##     indirect          0.267    0.100    2.665    0.008    0.095    0.488
+##     direct            0.004    0.124    0.032    0.974   -0.225    0.257
+##     total_c           0.271    0.144    1.886    0.059   -0.014    0.551
+##    Std.lv  Std.all
+##     0.267    0.187
+##     0.004    0.003
+##     0.271    0.190
+```
+
+```r
+medmodel_ParEsts
+```
+
+```
+##          lhs op       rhs          label   est    se      z pvalue ci.lower
+## 1     Valued  ~     SRPed              b 0.728 0.124  5.877  0.000    0.464
+## 2     Valued  ~ CENTERING            c_p 0.004 0.124  0.032  0.974   -0.225
+## 3      SRPed  ~ CENTERING              a 0.367 0.114  3.225  0.001    0.131
+## 4  CENTERING ~1           CENTERING.mean 0.369 0.054  6.872  0.000    0.262
+## 5     Valued ~1              Valued.mean 0.935 0.548  1.707  0.088   -0.040
+## 6     Valued ~~    Valued                0.299 0.055  5.453  0.000    0.213
+## 7      SRPed ~~     SRPed                0.301 0.058  5.157  0.000    0.205
+## 8  CENTERING ~~ CENTERING                0.233 0.014 16.390  0.000    0.199
+## 9      SRPed ~1                          4.371 0.086 50.597  0.000    4.189
+## 10  indirect :=       a*b       indirect 0.267 0.100  2.665  0.008    0.109
+## 11    direct :=       c_p         direct 0.004 0.124  0.032  0.974   -0.225
+## 12   total_c := c_p+(a*b)        total_c 0.271 0.144  1.886  0.059   -0.025
+##    ci.upper std.lv std.all std.nox
+## 1     0.939  0.728   0.608   0.608
+## 2     0.250  0.004   0.003   0.003
+## 3     0.587  0.367   0.307   0.307
+## 4     0.476  0.369   0.765   0.765
+## 5     2.084  0.935   1.355   1.355
+## 6     0.454  0.299   0.629   0.629
+## 7     0.424  0.301   0.906   0.906
+## 8     0.249  0.233   1.000   1.000
+## 9     4.528  4.371   7.580   7.580
+## 10    0.528  0.267   0.187   0.187
+## 11    0.250  0.004   0.003   0.003
+## 12    0.546  0.271   0.190   0.190
+```
+Our model accounts for 9% of the variance in socially responsive pedagogy and 37% of the variance in perceived value to the student. The *a* path (Centering --> SRPed), *b* path (SRPed --> Valued), and indirect effect are all statistically significant.
+
+
+
+```r
+# only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = medmodel_fit)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-46-1.png)<!-- -->
+
+We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
+
+
+```r
+tidySEM::get_layout(medmodel_fit)
+```
+
+```
+##      [,1]        [,2]    
+## [1,] "CENTERING" NA      
+## [2,] "SRPed"     "Valued"
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can write code to remap them
+
+```r
+medmap <- tidySEM::get_layout("", "SRPed", "", "CENTERING", "", "Valued",
+    rows = 2)
+medmap
+```
+
+```
+##      [,1]        [,2]    [,3]    
+## [1,] ""          "SRPed" ""      
+## [2,] "CENTERING" ""      "Valued"
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
+
+```r
+tidySEM::graph_sem(medmodel_fit, layout = medmap, rect_width = 1.25, rect_height = 1.25,
+    spacing_x = 2, spacing_y = 3, text_size = 4.5)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-49-1.png)<!-- -->
+### Specify and run the entire lavaan model {-}
+
+
+```r
+set.seed(230925)
+ModMedOnA <- "
+    #equations
+    SRPed ~ a1*CENTERING + a2*TradPed + a3*CENTERING:TradPed
+    Valued ~ c_p*CENTERING + b*SRPed
+
+    #intercepts
+    SRPed ~ SRPed.mean*1
+    Valued ~ Valued.mean*1
+
+    #means, variances of W for simple slopes
+    TradPed ~ TradPed.mean*1
+    TradPed ~~ TradPed.var*TradPed
+    
+    #index of moderated mediation, there will be an a and b path in the product
+    #if the a and/or b path is moderated, select the label that represents the moderation
+    
+    imm := a3*b
+
+    #Note that we first create the indirect product, then add to it the product of the imm and the W level
+    indirect.SDbelow := a1*b + imm*(TradPed.mean - sqrt(TradPed.var))
+    indirect.mean := a1*b + imm*(TradPed.mean)
+    indirect.SDabove := a1*b + imm*(TradPed.mean + sqrt(TradPed.var))
+
+ "
+set.seed(230925)  #required for reproducible results because lavaan introduces randomness into the calculations
+ModMedOnA_fit <- lavaan::sem(ModMedOnA, data = babydf, se = "bootstrap",
+    missing = "fiml", bootstrap = 1000)
+```
+
+```
+## Warning in lav_data_full(data = data, group = group, cluster = cluster, : lavaan WARNING: 1 cases were deleted due to missing values in 
+## 		  exogenous variable(s), while fixed.x = TRUE.
+```
+
+```
+## Warning in lav_partable_vnames(FLAT, "ov.x", warn = TRUE): lavaan WARNING:
+##     model syntax contains variance/covariance/intercept formulas
+##     involving (an) exogenous variable(s): [TradPed]; These variables
+##     will now be treated as random introducing additional free
+##     parameters. If you wish to treat those variables as fixed, remove
+##     these formulas from the model syntax. Otherwise, consider adding
+##     the fixed.x = FALSE option.
+```
+
+```r
+ModMedOnAsum <- lavaan::summary(ModMedOnA_fit, standardized = TRUE, rsq = T,
+    ci = TRUE)
+ModMedOnAParamEsts <- lavaan::parameterEstimates(ModMedOnA_fit, boot.ci.type = "bca.simple",
+    standardized = TRUE)
+ModMedOnAsum
+```
+
+```
+## lavaan 0.6.16 ended normally after 36 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        11
+## 
+##                                                   Used       Total
+##   Number of observations                            83          84
+##   Number of missing patterns                         2            
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                60.195
+##   Degrees of freedom                                 4
+##   P-value (Chi-square)                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                            Bootstrap
+##   Number of requested bootstrap draws             1000
+##   Number of successful bootstrap draws            1000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##   SRPed ~                                                               
+##     CENTERIN  (a1)    1.184    0.915    1.295    0.195   -1.022    2.719
+##     TradPed   (a2)    0.597    0.095    6.304    0.000    0.451    0.819
+##     CENTERIN  (a3)   -0.222    0.194   -1.143    0.253   -0.543    0.246
+##   Valued ~                                                              
+##     CENTERIN (c_p)   -0.011    0.122   -0.094    0.925   -0.234    0.243
+##     SRPed      (b)    0.737    0.119    6.189    0.000    0.481    0.939
+##    Std.lv  Std.all
+##                   
+##     1.184    0.965
+##     0.597    0.728
+##    -0.222   -0.819
+##                   
+##    -0.011   -0.008
+##     0.737    0.625
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##    .SRPed   (SRP.)    1.865    0.433    4.308    0.000    0.826    2.538
+##    .Valued  (Vld.)    0.900    0.527    1.708    0.088   -0.011    2.024
+##     TradPed (TrP.)    4.292    0.078   55.116    0.000    4.130    4.443
+##    Std.lv  Std.all
+##     1.865    3.164
+##     0.900    1.294
+##     4.292    5.977
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##     TradPed (TrP.)    0.516    0.142    3.627    0.000    0.263    0.839
+##    .SRPed             0.151    0.029    5.119    0.000    0.089    0.206
+##    .Valued            0.296    0.054    5.489    0.000    0.182    0.399
+##    Std.lv  Std.all
+##     0.516    1.000
+##     0.151    0.434
+##     0.296    0.611
+## 
+## R-Square:
+##                    Estimate
+##     SRPed             0.566
+##     Valued            0.389
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##     imm              -0.164    0.144   -1.136    0.256   -0.416    0.185
+##     indirect.SDblw    0.288    0.177    1.625    0.104   -0.107    0.602
+##     indirect.mean     0.171    0.085    2.002    0.045    0.000    0.337
+##     indirect.SDabv    0.053    0.073    0.730    0.465   -0.093    0.190
+##    Std.lv  Std.all
+##    -0.164   -0.512
+##     0.288   -1.944
+##     0.171   -2.456
+##     0.053   -2.967
+```
+
+```r
+ModMedOnAParamEsts
+```
+
+```
+##                  lhs op                                       rhs
+## 1              SRPed  ~                                 CENTERING
+## 2              SRPed  ~                                   TradPed
+## 3              SRPed  ~                         CENTERING:TradPed
+## 4             Valued  ~                                 CENTERING
+## 5             Valued  ~                                     SRPed
+## 6              SRPed ~1                                          
+## 7             Valued ~1                                          
+## 8            TradPed ~1                                          
+## 9            TradPed ~~                                   TradPed
+## 10             SRPed ~~                                     SRPed
+## 11            Valued ~~                                    Valued
+## 12         CENTERING ~~                                 CENTERING
+## 13         CENTERING ~~                         CENTERING:TradPed
+## 14 CENTERING:TradPed ~~                         CENTERING:TradPed
+## 15         CENTERING ~1                                          
+## 16 CENTERING:TradPed ~1                                          
+## 17               imm :=                                      a3*b
+## 18  indirect.SDbelow := a1*b+imm*(TradPed.mean-sqrt(TradPed.var))
+## 19     indirect.mean :=                   a1*b+imm*(TradPed.mean)
+## 20  indirect.SDabove := a1*b+imm*(TradPed.mean+sqrt(TradPed.var))
+##               label    est    se      z pvalue ci.lower ci.upper std.lv std.all
+## 1                a1  1.184 0.915  1.295  0.195   -1.175    2.630  1.184   0.965
+## 2                a2  0.597 0.095  6.304  0.000    0.448    0.806  0.597   0.728
+## 3                a3 -0.222 0.194 -1.143  0.253   -0.523    0.287 -0.222  -0.819
+## 4               c_p -0.011 0.122 -0.094  0.925   -0.236    0.237 -0.011  -0.008
+## 5                 b  0.737 0.119  6.189  0.000    0.487    0.946  0.737   0.625
+## 6        SRPed.mean  1.865 0.433  4.308  0.000    0.894    2.551  1.865   3.164
+## 7       Valued.mean  0.900 0.527  1.708  0.088   -0.027    1.985  0.900   1.294
+## 8      TradPed.mean  4.292 0.078 55.116  0.000    4.129    4.434  4.292   5.977
+## 9       TradPed.var  0.516 0.142  3.627  0.000    0.272    0.850  0.516   1.000
+## 10                   0.151 0.029  5.119  0.000    0.103    0.219  0.151   0.434
+## 11                   0.296 0.054  5.489  0.000    0.203    0.425  0.296   0.611
+## 12                   0.231 0.000     NA     NA    0.231    0.231  0.231   1.000
+## 13                   1.036 0.000     NA     NA    1.036    1.036  1.036   0.991
+## 14                   4.733 0.000     NA     NA    4.733    4.733  4.733   1.000
+## 15                   0.361 0.000     NA     NA    0.361    0.361  0.361   0.752
+## 16                   1.622 0.000     NA     NA    1.622    1.622  1.622   0.745
+## 17              imm -0.164 0.144 -1.136  0.256   -0.411    0.196 -0.164  -0.512
+## 18 indirect.SDbelow  0.288 0.177  1.625  0.104   -0.096    0.631  0.288  -1.944
+## 19    indirect.mean  0.171 0.085  2.002  0.045    0.013    0.361  0.171  -2.456
+## 20 indirect.SDabove  0.053 0.073  0.730  0.465   -0.100    0.184  0.053  -2.967
+##    std.nox
+## 1    2.010
+## 2    0.487
+## 3   -0.377
+## 4   -0.016
+## 5    0.625
+## 6    3.164
+## 7    1.294
+## 8    5.977
+## 9    1.000
+## 10   0.434
+## 11   0.611
+## 12   0.231
+## 13   1.036
+## 14   4.733
+## 15   0.361
+## 16   1.622
+## 17  -0.235
+## 18   0.084
+## 19  -0.151
+## 20  -0.386
+```
+### Use tidySEM to create a figure {-}
+
+
+```r
+# only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = ModMedOnA_fit)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-51-1.png)<!-- -->
+
+We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
+
+
+```r
+tidySEM::get_layout(ModMedOnA_fit)
+```
+
+```
+##      [,1]     [,2]                [,3]        [,4]     
+## [1,] NA       "CENTERING:TradPed" NA          NA       
+## [2,] NA       NA                  NA          NA       
+## [3,] "Valued" "SRPed"             "CENTERING" "TradPed"
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can write code to remap them
+
+```r
+comb_map <- tidySEM::get_layout("", "SRPed", "", "CENTERING", "", "Valued",
+    "TradPed", "", "", "", "CENTERING:TradPed", "", rows = 4)
+comb_map
+```
+
+```
+##      [,1]        [,2]                [,3]    
+## [1,] ""          "SRPed"             ""      
+## [2,] "CENTERING" ""                  "Valued"
+## [3,] "TradPed"   ""                  ""      
+## [4,] ""          "CENTERING:TradPed" ""      
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+
+
+We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
+
+```r
+tidySEM::graph_sem(ModMedOnA_fit, layout = comb_map, rect_width = 1.5,
+    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-54-1.png)<!-- -->
+
+
+### Create a table that includes regression output for the M and Y variables and the moderated effects {-}
+
+Exporting the results to a .csv file will help us create a journal-ready table, outside of the R environment.
+
+
+```r
+write.csv(ModMedOnAParamEsts, file = "ModMedOnAParamEsts.csv")  #optional to write it to a .csv file
+```
+
+**Table 1 ** 
+
+|Analysis of Moderated Mediation for Centering, Socially Responsive Pedagogy, Traditional Pedagogy, and Perceived Value to the Student
+|:-------------------------------------------------------------------------|
+
+| Predictor                  |$B$      |$SE_{B}$  |$p$     |$R^2$          |                   
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+
+|Socially Responsive Pedagogy(M)|      |          |        |.57
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |1.865	   |0.433     |<0.001  |               |
+|Centering ($a_1$)           |1.184	   |0.915	    |0.195   |               |
+|TradPed ($a_2$)             |0.597	   |0.095     |<0.001  |               |
+|Centering:TradPed ($a_3$)   |-0.222	 |0.194	    |0.253   |               |
+
+|Perceived Value (DV)        |         |          |        |.39
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |0.900	   |0.527	    |0.088   |               |
+|Centering ($c'$)            |-0.011	 |0.122	    |0.925   |               |
+|SRPed ($b$)                 |0.737	   |0.119	    |<0.001  |               |
+
+|Summary of Effects          |$B$      |$SE_{B}$  |$p$     |95% CI
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|IMM                         |-0.164	 |0.144	    |0.256	 |-0.411,	0.196  | 
+|Indirect ($-1SD$)           |0.288	   |0.177	    |0.104	 |-0.096,	0.631  |                        
+|Indirect ($M$)              |0.171	   |0.085	    |0.045	 |0.013,	0.361  |
+|Indirect ($+1SD$)           |0.053	   |0.073	    |0.465	 |-0.100	0.184  |
+
+|
+|--------------------------------------------------------------------------|
+|*Note*. SRPed = socially responsive pedagogy; TradPed = traditional pedagogy. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
+
+### APA Style Write-up {-}
+
+
+**Method/Analytic Strategy**
+
+Data were analyzed with a maximum likelihood approach the package, *lavaan* (v. 0.6-16). We specified a moderated mediation model predicting perceived value to the student from centering stage, mediated by socially responsive pedagogy. We further predicted that the relationship between centering to socially responsive pedagogy (i.e., the *a* path) would be moderated by traditional pedagogy.
 
 **Results**
 
@@ -1231,159 +2378,845 @@ Hayes terms it *pruning*, but suggests that when there is no moderation of an ef
 *  Address limitations and concerns
 
 **Primary Analyses**
-Our analysis evaluated a moderation mediation model predicting mental health (Y/MntlHlth) from gendered racial microaggressions (X/GRMS) mediated by disengagement coping (M/DisEngmt).  Gendered racial identity centrality (W/GRIcntrlty) was our moderating variable.  We specified a moderation of path *a* (X/GRMS to M/DisEngmt) and the direct path, *c'* (X/GRMS to Y/MntlHlth). Data were analyzed with maximum likelihood estimation in the R package *lavaan* (v. 0.6-7); the significance of effects were tested with 1000 bootstrap confidence intervals. Results of the full model are presented in Table 1 and illustrated in Figure 1 (*a variation of the semPlot or Hayes style representation*).  The formula for the mediator and dependent variable are expressed below.  
+Our analysis evaluated a moderation mediation model perceived value to the student (Y/Valued) from centering stage (X/Centering) mediated by socially responsive pedagogy (M/SRPed).  Traditional pedagogy (W/TradPed) was our moderating variable.  We specified a moderation of path *a* (X/Centering to M/SRPed). Data were analyzed with maximum likelihood estimation in the R package *lavaan* (v. 0.6-16); the significance of effects were tested with 1000 bootstrap confidence intervals. Results of the full model are presented in Table 1 and illustrated in Figure 1.  The formula for the mediator and dependent variable are expressed below.  
 
 
-$$\hat{M} = 1.417 + 0.212X + (-0.027) W + 0.006XW$$
-$$\hat{Y} = 31.703 + (-1.4115)X + (-0.556)W + 0.164XW + (-3.567)M$$
+$$\hat{M} = 1.865 + (1.184)X + (0.597)W + (-0.222)XW
+$$
+$$\hat{Y} = 0.900 + (-0.011)X + (0.060)M + (0.737)X$$
 
-Results suggested a strong and negative total effect of gendered racial microaggressions on mental health that is mediated through disengagement coping. That is, in the presence of gendered racial microaggressions, participants increased disengagement coping which, in turn, had negative effects on mental health. The index of moderated mediation was -0.138 (CI95 -0.360 to 0.074) and suggested that the indirect effects were not conditional on the values of the moderator. While there was no evidence of moderation on the indirect or direct paths, there was a statistically significant, and consistently strong, mediation throughout the range of the gendered racial identity centrality (moderator).  **Because we did not have a moderated mediation, I would probably not include the rest of this paragraph (nor include the moderation figure).  I just wanted to demonstrate how to talk about findings if they were significant (although I acnowledg throughat that these are non-significant).* Figure 2 illustrates the conditional effects (non-significant) of GRMS (X) on mental health (Y) among those at the traditional levels of mean and +/- 1 *SD* where there is a fanning out of the effect of GRMS on when the presence of gendered racial microaggressions is low and mental health is at its highest. In this combination, mental health is even more positive in the presence of positive gendered racial identity centrality. Our model accounted for  of the variance in the mediator (disengagement coping) and  of the variance in the dependent variable (mental health).
+Regarding the presence of a moderated mediation, results were mixed. On the one hand, the index of moderated mediation was not statistically significant $(IMM = -0.164, p = 0.256)$. In contrast, the conditional indirect effect at the mean of the moderator was statistically significant $(B = 0.171, p = 0.045)$, while the conditional indirect effects at $\pm1SD$ were not. A possible explanation for the lack of statistical significance is the relative lower power (*N* = 84) for analysis of a relatively complicated model. The model accounted for 57% of the variance in socially responsive pedagogy and 37% of the variance in perceived value to the student. Figure 1 illustrates the conditional effects of traditional pedagogy on socially responsive pedagogy at pre- and re-centered stages. 
 
-![Figure 2. The non-significant moderating effect of gendered racial identity centrality on the relationship between gendered racial microaggressions and mental health](images/Modmed/GRMS_MH_GRIC.jpg)
-
-
-## Residual and Related Questions...
-
-..that you might have; or at least I had, but if had answered them earlier it would have disrupt the flow.
-
-1. Would you stop here?  Or keep tinkering?
-   * I am tempted (but out of time, at least today, so stay tuned) to delete moderation of the indirect effect to see if I can get a moderated direct effect. My choice would also depend on to what I committed in any kind of pre-registration. My approach to science tends to be *model generating* [@bollen_testing_1993] and in his text, Hayes [-@hayes_introduction_2018] advised authors to write about what they found -- not all the things they tried. This *tinkering* remains strongly in the vein of theoretically driven analyses.
-2. The output we get is different from the output in the journal article being used as the research vignette.  Why?  And should we worry about it? 
-   * We are simulating data.  This gives us some advantages in that (unless we specify it), we never have missingness and our variables should be normally distributed. Because we are working from means, standard deviations, and correlations, our data will never be the same as the original researcher.  That said, we can compare our results to the journal to *check out work.*  I am somewhat reassured that our $B$ weights align and somewhat concerned that the index of moderated moderation was so far off.  I suppose I will always doubt myself, and will therefore be open to anyone who finds an error in the specification of the model. 
-3. Some of the statistics you are reporting are different than the ones in Hayes and the ones that use the PROCESS macro (e.g., what happened to the *F* test)?
-   *  The default estimator for *lavaan* is maximum likelihood (ML) and Hayes uses ordinary least squares (OLS).  This affects both the values of coefficients, standard errors, AND the type of statistics that are reported. 
-   *  You can ask for OLS regression by adding the statement "estimator = "GLS". Even with this option, I have not discovered a way to obtain the *F* tests for the overall model.  Researchers seem to be comfortable with this, even asking for less than we did (e.g., many do not request R square).
-   * Best I can tell, researchers who do want this might use a combination of packages, using GLS estimators in *lavaan* (this easily gets them the bootstrapped CIs) and the move to a different regression package to get the intercepts and *F* tests.  If I did this I would triple check to make sure that all the output really lined up.
-4. Why did we ignore the traditional fit statistics associated with structural equation modeling (e.g., CFI, RMSEA). 
-   * I hesitate to do this with models that do not include latent variables.  Therefore, we asked for an "in-between" amount of info that should be sufficient for publication submission (any editor may have their own preferences and ask for more).
-5. What if I have missing data?
-   *  When we enter the *lavaan* world we do get options other than multiple imputation.  In today's example we used the "sem" fitting function. Unless otherwise specified, listwise deletion (deleting the entire case when one of its variables is used to estimate the model) is the default in *lavaan*.  If data are MCAR or MAR, you can add the argument *missing = "ml"* (or its alias *missing = "fiml"*).  More here https://users.ugent.be/~yrosseel/lavaan/lavaan2.pdf on the 1.7/Missing data in lavaan slide.
-   * That said, the type of estimator matters.  If you estimate your data with GLS (generalized least squares) or WLS (weighted least squares), you are required to have complete data (however you got it).  We used maximum likelihood and, even though we had non-missing data, I used the *missing = "fiml"* code.
-
-   
-## Practice Problems
-
-The three problems described below were designed to grow during the series of chapters on simple and complex mediation, complex moderation, and conditional process analysis (i.e,. this chapter). I have recommended that you select a dataset that includes at least four variables. If you are new to this topic, you may wish to select variables that are all continuously scaled.  The IV and moderator (next chapters) could be categorical (if they are dichotomous, please use 0/1 coding; if they have more than one category it is best if they are ordered).  You will likely encounter challenges that were not covered in this chapter. Search for and try out solutions, knowing that there are multiple paths through the analysis.
-
-The suggested practice problem for this chapter is to conduct a simple mediation.
-
-* There are a number of variables in the dataset.  Swap out one or more variables in the model of simple mediation and compare your solution to the one in the chapter.
-* Conduct a simple mediation with data to which you have access. This could include data you simulate on your own or from a published article.
-
-### Problem #1: Rework the research vignette as demonstrated, but change the random seed
-
-If this topic feels a bit overwhelming, simply change the random seed in the data simulation, then rework the problem. This should provide minor changes to the data (maybe in the second or third decimal point), but the results will likely be very similar.
-
-|Assignment Component  
-|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
-|1. Assign each variable to the X, Y, M, or W roles (ok but not required  to include a cov)    |      5         |    _____     |      
-|2. Specify and run the lavaan model                                                           |      5         |    _____     |
-|3. Use semPlot to create a figure                                                             |      5         |    _____     |
-|4. Create a table that includes regression output for the M and Y variables and the moderated effects| 5       |    _____     |  
-|5. Represent your work in an APA-style write-up                                               |      5         |    _____     |          
-|6. Explanation to grader                                                                      |      5         |    _____     |   
-|7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths|      5         |    _____     |
-|**Totals**                                                                                    |      35        |    _____     |
-
-### Problem #2:  Rework the research vignette, but swap one or more variables
-
-Use the simulated data, but select one of the other models that was evaluated in the Lewis et al. [@lewis_applying_2017] study.  Compare your results to those reported in the mansucript.
-
-|Assignment Component  
-|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
-|1. Assign each variable to the X, Y, M, or W roles (ok but not required  to include a cov)    |      5         |    _____     |      
-|2. Specify and run the lavaan model                                                           |      5         |    _____     |
-|3. Use semPlot to create a figure                                                             |      5         |    _____     |
-|4. Create a table that includes regression output for the M and Y variables and the moderated effects|      5  |    _____     |  
-|5. Represent your work in an APA-style write-up                                               |      5         |    _____     |          
-|6. Explanation to grader                                                                      |      5         |    _____     |   
-|7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths|      5         |    _____     |
-|**Totals**                                                                                    |      35        |    _____     |
-             
-                                                                 
-
-### Problem #3:  Use other data that is available to you
-
-Using data for which you have permission and access (e.g.,  IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER), complete a simple mediation.
-
-|Assignment Component  
-|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
-|1. Assign each variable to the X, Y, M, or W roles (ok but not required  to include a cov)   |      5          |    _____     |      
-|2. Specify and run the lavaan model                                                           |      5         |    _____     |
-|3. Use semPlot to create a figure                                                             |      5         |    _____     |
-|4. Create a table that includes regression output for the M and Y variables and the moderated effects |5       |    _____     |  
-|5. Represent your work in an APA-style write-up                                               |      5         |    _____     |          
-|6. Explanation to grader                                                                      |      5         |    _____     |   
-|7. Be able to hand-calculate the indirect, direct, and total effects from the a, b, & c' paths|      5         |    _____     |
-|**Totals**                                                                                    |      35        |    _____     |
-   
-
-## Bonus Track: 
-
-![Image of a filmstrip](images/film-strip-1.jpg){#id .class width=620 height=211}
-
-I find it useful to have script with the variables labeled merely by their role.  Below, I quickly create an ModMeddemo_df from the Lewis et al. [@lewis_applying_2017] simulated data and then run the analysis with the variables named in their roles.  
 
 
 ```r
-library(tidyverse)
-ModMedDemo_df <- rename(Lewis_df, X = GRMS, Y = MntlHlth, W = GRIcntlty,
-    M = DisEngmt)
+interactions::interact_plot(mod_a_path, pred = TradPed, modx = Centering) +
+    ylim(1, 5)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-56-1.png)<!-- -->
+
+
+
+## Homeworked Example 2: A moderation on the *b* path
+[Screencast Link](https://youtu.be/f3YWUPHyeHs)
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
+
+The suggested practice problem for this chapter is to conduct a moderated mediation. At least one path (a or b) should be moderated.
+
+### Describing they overall model hypothesis, assign each variable to the X, Y, M, and W roles {-}  
+
+My analysis will evaluated a moderated mediation. Specifically, I predict that the effect of centering on perceived value to the student will be moderated by the students' evaluation of socially responsive pedagogy. I further hypothesize that this indirect effect will be moderated by traditional pedagogy and that the moderation will occur on the *b* path, that is, traditional pedagogy will moderate the relationship between socially responsive pedagogy and perceived value to the student. 
+
+* X = Centering, pre/re (0,1)
+* W = Traditional Pedagogy (1 to 4 scaling)
+* M = Socially Responsive Pedagogy (1 to 4 scaling)
+* Y = Value to the student (1 to 4 scaling)
+
+![An image of the conceptual model of moderated mediation for the homeworked example.](Worked_Examples/images/HWModMed1b.png)
+
+![An image of the statistical model of simple moderation for the homeworked example.](Worked_Examples/images/HW_ModMed2b.png)
+
+### Import the data and format the variables in the model {-}
+
+
+```r
+raw <- readRDS("ReC.rds")
+```
+
+The approach we are taking to moderated mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
+
+```r
+raw <- (dplyr::filter(raw, Course == "Multivariate"))
+```
+
+I need to score the SRPed, TradPed, and Valued variables
+
+
+```r
+TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
+    "ClearOrganization", "ClearPresentation")
+raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], 0.75)
+
+Valued_vars <- c("ValObjectives", "IncrUnderstanding", "IncrInterest")
+raw$Valued <- sjstats::mean_n(raw[, ..Valued_vars], 0.75)
+
+SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
+    "DEIintegration")
+raw$SRPed <- sjstats::mean_n(raw[, ..SRPed_vars], 0.75)
 ```
 
 
+I will create a babydf.
+
+
+```r
+babydf <- dplyr::select(raw, Centering, TradPed, SRPed, Valued)
+```
+
+Let's check the structure of the variables:
+
+
+```r
+str(babydf)
+```
+
+```
+## Classes 'data.table' and 'data.frame':	84 obs. of  4 variables:
+##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ TradPed  : num  3.8 5 4.8 4 4.2 3 5 4.6 4 4.8 ...
+##  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
+##  $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+```
+In later analyses, it will be important that Centering is a dummy-coded numerical variable:
+
+
+```r
+babydf$CENTERING <- as.numeric(babydf$Centering)
+babydf$CENTERING <- (babydf$CENTERING - 1)
+str(babydf)
+```
+
+```
+## Classes 'data.table' and 'data.frame':	84 obs. of  5 variables:
+##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ TradPed  : num  3.8 5 4.8 4 4.2 3 5 4.6 4 4.8 ...
+##  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
+##  $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+##  $ CENTERING: num  1 1 1 1 1 1 1 1 1 1 ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+```
+
+Quick peek at relations between variables:
+
+
+```r
+psych::pairs.panels(babydf)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-64-1.png)<!-- -->
+
+### Using a piecewise approach, run each of the simple models in the grander design {-} 
+
+#### Analysis #1:  A simple moderation {-}
+
+We are asking, "Does traditional pedagogy moderate the relationship between socially responsive pedagogy and perceived value to the student?
+
+Y = perceived value to the student
+X = socially responsive pedagogy
+W = traditional pedagogy 
+
+Let's specify this simple moderation model with base R's *lm()* function.  
+
+
+```r
+Mod_b_path <- lm(Valued ~ SRPed * TradPed, data = babydf)
+# the base R output if you prefer this view
+summary(Mod_b_path)
+```
+
+```
+## 
+## Call:
+## lm(formula = Valued ~ SRPed * TradPed, data = babydf)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.06146 -0.26683  0.08376  0.19957  0.94852 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)
+## (Intercept)    1.97179    1.29638   1.521    0.132
+## SRPed         -0.19009    0.33922  -0.560    0.577
+## TradPed        0.35774    0.32949   1.086    0.281
+## SRPed:TradPed  0.07962    0.07850   1.014    0.314
+## 
+## Residual standard error: 0.4393 on 77 degrees of freedom
+##   (3 observations deleted due to missingness)
+## Multiple R-squared:  0.6114,	Adjusted R-squared:  0.5963 
+## F-statistic: 40.39 on 3 and 77 DF,  p-value: 0.0000000000000008713
+```
+
+We'll use the *jtools* package so we get that great summ function and *interactions* for the awesome plot.
+
+Since we are just working to understand our moderation, we can run them with "regular old" ordinary least squares.  
+
+
+```r
+# library(jtools) #the summ function creates a terrific regression
+# table library(interactions)
+library(ggplot2)
+
+jtools::summ(Mod_b_path, digits = 3)
+```
+
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> Observations </td>
+   <td style="text-align:right;"> 81 (3 missing obs. deleted) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> Dependent variable </td>
+   <td style="text-align:right;"> Valued </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> Type </td>
+   <td style="text-align:right;"> OLS linear regression </td>
+  </tr>
+</tbody>
+</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> F(3,77) </td>
+   <td style="text-align:right;"> 40.389 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> R² </td>
+   <td style="text-align:right;"> 0.611 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> Adj. R² </td>
+   <td style="text-align:right;"> 0.596 </td>
+  </tr>
+</tbody>
+</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Est. </th>
+   <th style="text-align:right;"> S.E. </th>
+   <th style="text-align:right;"> t val. </th>
+   <th style="text-align:right;"> p </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> (Intercept) </td>
+   <td style="text-align:right;"> 1.972 </td>
+   <td style="text-align:right;"> 1.296 </td>
+   <td style="text-align:right;"> 1.521 </td>
+   <td style="text-align:right;"> 0.132 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> SRPed </td>
+   <td style="text-align:right;"> -0.190 </td>
+   <td style="text-align:right;"> 0.339 </td>
+   <td style="text-align:right;"> -0.560 </td>
+   <td style="text-align:right;"> 0.577 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> TradPed </td>
+   <td style="text-align:right;"> 0.358 </td>
+   <td style="text-align:right;"> 0.329 </td>
+   <td style="text-align:right;"> 1.086 </td>
+   <td style="text-align:right;"> 0.281 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> SRPed:TradPed </td>
+   <td style="text-align:right;"> 0.080 </td>
+   <td style="text-align:right;"> 0.078 </td>
+   <td style="text-align:right;"> 1.014 </td>
+   <td style="text-align:right;"> 0.314 </td>
+  </tr>
+</tbody>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Standard errors: OLS</td></tr></tfoot>
+</table>
+
+Looking at these results we can see that the predictors account for about 61% of variance in disengagement coping. Only the moderator (W), traditional pedagogy is a significant predictor.  Neither the independent variable (Centering, [X])), nor its interaction with Centering (Centering:TradPed, [XW]) are significant.
+ 
+It's always helpful to graph the relationship.  The *interaction_plot()* function from the package, *interactions* can make helpful illustrations. This plot represents the model we specified with each of the variables in their respective roles.
+
+
+```r
+interactions::interact_plot(Mod_b_path, pred = SRPed, modx = TradPed) +
+    ylim(1, 5)
+```
+
+```
+## Warning: 5.02351626747081 is outside the observed range of TradPed
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-67-1.png)<!-- -->
+Even though this graphs looks as though socially responsive pedagogy leads to higher perceived value (a gentle, positive slope) the non-significant main effect indicates this slope is not statistically significant.
+
+Further, even though it *appears* that higher ratings of traditional pedagogy are associated with greater perceived value, this main effect was also non-significant.
+
+Consistent with the non-significant interaction effect, there is no evidence of an interaction effect in the figure.
+
+
+
+```r
+interactions::sim_slopes(Mod_b_path, pred = SRPed, modx = TradPed)
+```
+
+```
+## Warning: 5.02351626747081 is outside the observed range of TradPed
+```
+
+```
+## JOHNSON-NEYMAN INTERVAL 
+## 
+## The Johnson-Neyman interval could not be found. Is the p value for your
+## interaction term below the specified alpha?
+## 
+## SIMPLE SLOPES ANALYSIS 
+## 
+## Slope of SRPed when TradPed = 3.599941 (- 1 SD): 
+## 
+##   Est.   S.E.   t val.      p
+## ------ ------ -------- ------
+##   0.10   0.13     0.77   0.44
+## 
+## Slope of SRPed when TradPed = 4.311728 (Mean): 
+## 
+##   Est.   S.E.   t val.      p
+## ------ ------ -------- ------
+##   0.15   0.12     1.25   0.22
+## 
+## Slope of SRPed when TradPed = 5.023516 (+ 1 SD): 
+## 
+##   Est.   S.E.   t val.      p
+## ------ ------ -------- ------
+##   0.21   0.14     1.46   0.15
+```
+
+```r
+# interactions::sim_slopes(Mod_b_path, pred=TradPed, modx = SRPed)
+# #sometimes I like to look at it in reverse -- like in the plots
+```
+Consistent with both the non-significant interaction term and the the non-significant main effect of socially responsive pedagogy, there was not statistically significant effect of socially responsive pedagogy on perceived value to the student at the traditional values of the mean (4.31) and $\pm1SD$ (3.60, 5.02) of the moderator, traditional pedagogy.
+
+
+#### Analysis #2:  A simple mediation {-}
+
+We are asking, "Does socially responsive pedagogy mediate the relationship between centering and perceived value to the student?"
+
+Y = perceived value
+X = centering
+M = socially responsive pedagogy
+
+*Note*. I switched to using the CENTERING (all caps) variable because it is 0/1, numeric (better for lavaan).
 
 ```r
 library(lavaan)
-set.seed(190505)
-ModMedDemo <- '
+
+medmodel <- "
+          Valued ~ b*SRPed + c_p*CENTERING 
+          SRPed ~a*CENTERING
+          
+          #intercepts
+          CENTERING ~ CENTERING.mean*1
+          Valued ~ Valued.mean*1
+          
+          indirect :=  a*b
+          direct  := c_p
+          total_c  := c_p + (a*b)
+          "
+set.seed(230925)  #required for reproducible results because lavaan introduces randomness into the calculations
+medmodel_fit <- lavaan::sem(medmodel, data = babydf, se = "bootstrap",
+    missing = "fiml")
+medmodel_Sum <- lavaan::summary(medmodel_fit, standardized = T, rsq = T,
+    ci = TRUE)
+medmodel_ParEsts <- lavaan::parameterEstimates(medmodel_fit, boot.ci.type = "bca.simple",
+    standardized = TRUE)
+medmodel_Sum
+```
+
+```
+## lavaan 0.6.16 ended normally after 25 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                         9
+## 
+##   Number of observations                            84
+##   Number of missing patterns                         2
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 0.000
+##   Degrees of freedom                                 0
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                            Bootstrap
+##   Number of requested bootstrap draws             1000
+##   Number of successful bootstrap draws            1000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##   Valued ~                                                              
+##     SRPed      (b)    0.728    0.124    5.877    0.000    0.455    0.933
+##     CENTERIN (c_p)    0.004    0.124    0.032    0.974   -0.225    0.257
+##   SRPed ~                                                               
+##     CENTERIN   (a)    0.367    0.114    3.225    0.001    0.148    0.601
+##    Std.lv  Std.all
+##                   
+##     0.728    0.608
+##     0.004    0.003
+##                   
+##     0.367    0.307
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##     CENTERI (CENT)    0.369    0.054    6.872    0.000    0.274    0.476
+##    .Valued  (Vld.)    0.935    0.548    1.707    0.088    0.018    2.136
+##    .SRPed             4.371    0.086   50.597    0.000    4.187    4.527
+##    Std.lv  Std.all
+##     0.369    0.765
+##     0.935    1.355
+##     4.371    7.580
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##    .Valued            0.299    0.055    5.453    0.000    0.186    0.408
+##    .SRPed             0.301    0.058    5.157    0.000    0.196    0.413
+##     CENTERING         0.233    0.014   16.390    0.000    0.199    0.249
+##    Std.lv  Std.all
+##     0.299    0.629
+##     0.301    0.906
+##     0.233    1.000
+## 
+## R-Square:
+##                    Estimate
+##     Valued            0.371
+##     SRPed             0.094
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##     indirect          0.267    0.100    2.665    0.008    0.095    0.488
+##     direct            0.004    0.124    0.032    0.974   -0.225    0.257
+##     total_c           0.271    0.144    1.886    0.059   -0.014    0.551
+##    Std.lv  Std.all
+##     0.267    0.187
+##     0.004    0.003
+##     0.271    0.190
+```
+
+```r
+medmodel_ParEsts
+```
+
+```
+##          lhs op       rhs          label   est    se      z pvalue ci.lower
+## 1     Valued  ~     SRPed              b 0.728 0.124  5.877  0.000    0.464
+## 2     Valued  ~ CENTERING            c_p 0.004 0.124  0.032  0.974   -0.225
+## 3      SRPed  ~ CENTERING              a 0.367 0.114  3.225  0.001    0.131
+## 4  CENTERING ~1           CENTERING.mean 0.369 0.054  6.872  0.000    0.262
+## 5     Valued ~1              Valued.mean 0.935 0.548  1.707  0.088   -0.040
+## 6     Valued ~~    Valued                0.299 0.055  5.453  0.000    0.213
+## 7      SRPed ~~     SRPed                0.301 0.058  5.157  0.000    0.205
+## 8  CENTERING ~~ CENTERING                0.233 0.014 16.390  0.000    0.199
+## 9      SRPed ~1                          4.371 0.086 50.597  0.000    4.189
+## 10  indirect :=       a*b       indirect 0.267 0.100  2.665  0.008    0.109
+## 11    direct :=       c_p         direct 0.004 0.124  0.032  0.974   -0.225
+## 12   total_c := c_p+(a*b)        total_c 0.271 0.144  1.886  0.059   -0.025
+##    ci.upper std.lv std.all std.nox
+## 1     0.939  0.728   0.608   0.608
+## 2     0.250  0.004   0.003   0.003
+## 3     0.587  0.367   0.307   0.307
+## 4     0.476  0.369   0.765   0.765
+## 5     2.084  0.935   1.355   1.355
+## 6     0.454  0.299   0.629   0.629
+## 7     0.424  0.301   0.906   0.906
+## 8     0.249  0.233   1.000   1.000
+## 9     4.528  4.371   7.580   7.580
+## 10    0.528  0.267   0.187   0.187
+## 11    0.250  0.004   0.003   0.003
+## 12    0.546  0.271   0.190   0.190
+```
+
+
+```r
+# only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = medmodel_fit)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-70-1.png)<!-- -->
+
+We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
+
+
+```r
+tidySEM::get_layout(medmodel_fit)
+```
+
+```
+##      [,1]        [,2]    
+## [1,] "CENTERING" NA      
+## [2,] "SRPed"     "Valued"
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can write code to remap them
+
+```r
+medmap <- tidySEM::get_layout("", "SRPed", "", "CENTERING", "", "Valued",
+    rows = 2)
+medmap
+```
+
+```
+##      [,1]        [,2]    [,3]    
+## [1,] ""          "SRPed" ""      
+## [2,] "CENTERING" ""      "Valued"
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
+
+```r
+tidySEM::graph_sem(medmodel_fit, layout = medmap, rect_width = 1.25, rect_height = 1.25,
+    spacing_x = 2, spacing_y = 3, text_size = 4.5)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-73-1.png)<!-- -->
+### Specify and run the entire lavaan model {-}
+
+
+```r
+set.seed(230925)
+ModMedOnB <- "
     #equations
-    M ~ a1*X + a2*W + a3*X:W
-    Y ~ c_p1*X + c_p2*W + c_p3*X:W + b*M
+    SRPed ~ a*CENTERING
+    Valued ~ cp*CENTERING + b1*SRPed + b2*TradPed + b3*SRPed:TradPed
 
     #intercepts
-    M ~ M.mean*1
-    Y ~ Y.mean*1
+    SRPed ~ SRPed.mean*1
+    Valued ~ Valued.mean*1
 
     #means, variances of W for simple slopes
-    W ~ W.mean*1
-    W ~~ W.var*W
+    TradPed ~ TradPed.mean*1
+    TradPed ~~ TradPed.var*TradPed
     
     #index of moderated mediation, there will be an a and b path in the product
     #if the a and/or b path is moderated, select the label that represents the moderation
-    imm := a3*b
+    
+    imm := a*b3
 
     #Note that we first create the indirect product, then add to it the product of the imm and the W level
-    indirect.SDbelow := a1*b + imm*(W.mean - sqrt(W.var))
-    indirect.mean := a1*b + imm*(W.mean)
-    indirect.SDabove := a1*b + imm*(W.mean + sqrt(W.var))
+    indirect.SDbelow := a*b1 + imm*(TradPed.mean - sqrt(TradPed.var))
+    indirect.mean := a*b1 + imm*(TradPed.mean)
+    indirect.SDabove := a*b1 + imm*(TradPed.mean + sqrt(TradPed.var))
 
-    #direct effect is also moderated so calculate with c_p1 + c_p3
-    direct.SDbelow := c_p1 + c_p3*(W.mean - sqrt(W.var)) 
-    direct.Smean := c_p1 + c_p3*(W.mean)
-    direct.SDabove := c_p1 + c_p3*(W.mean + sqrt(W.var))
-
-    #total effect
-    total.SDbelow := direct.SDbelow + indirect.SDbelow
-    total.mean := direct.Smean + indirect.mean
-    total.SDabove := direct.SDabove + indirect.SDabove
- '
-ModMedDemo_fit <- sem(ModMedDemo, data = ModMedDemo_df, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
+ "
+set.seed(230925)  #required for reproducible results because lavaan introduces randomness into the calculations
+ModMedOnB_fit <- lavaan::sem(ModMedOnB, data = babydf, se = "bootstrap",
+    missing = "fiml", bootstrap = 1000)
 ```
 
 ```
 ## Warning in lav_partable_vnames(FLAT, "ov.x", warn = TRUE): lavaan WARNING:
 ##     model syntax contains variance/covariance/intercept formulas
-##     involving (an) exogenous variable(s): [W]; These variables will
-##     now be treated as random introducing additional free parameters.
-##     If you wish to treat those variables as fixed, remove these
-##     formulas from the model syntax. Otherwise, consider adding the
-##     fixed.x = FALSE option.
+##     involving (an) exogenous variable(s): [TradPed]; These variables
+##     will now be treated as random introducing additional free
+##     parameters. If you wish to treat those variables as fixed, remove
+##     these formulas from the model syntax. Otherwise, consider adding
+##     the fixed.x = FALSE option.
 ```
 
 ```r
-ModMed_FitSum <- summary(ModMedDemo_fit, standardized = TRUE, rsq=T, ci=TRUE)    
-ModMed_ParamEsts <- parameterEstimates(ModMedDemo_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+ModMedOnBsum <- lavaan::summary(ModMedOnB_fit, standardized = TRUE, rsq = T,
+    ci = TRUE)
+ModMedOnBParamEsts <- lavaan::parameterEstimates(ModMedOnB_fit, boot.ci.type = "bca.simple",
+    standardized = TRUE)
+ModMedOnBsum
+```
+
+```
+## lavaan 0.6.16 ended normally after 29 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        13
+## 
+##   Number of observations                            84
+##   Number of missing patterns                         3
+## 
+## Model Test User Model:
+##                                                       
+##   Test statistic                               390.225
+##   Degrees of freedom                                 5
+##   P-value (Chi-square)                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                            Bootstrap
+##   Number of requested bootstrap draws             1000
+##   Number of successful bootstrap draws            1000
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##   SRPed ~                                                               
+##     CENTERING  (a)    0.352    0.114    3.077    0.002    0.133    0.590
+##   Valued ~                                                              
+##     CENTERING (cp)    0.019    0.108    0.174    0.862   -0.195    0.225
+##     SRPed     (b1)    0.060    0.528    0.114    0.909   -1.726    0.436
+##     TradPed   (b2)    0.633    0.497    1.274    0.203   -0.894    0.977
+##     SRPd:TrdP (b3)    0.014    0.113    0.126    0.900   -0.032    0.396
+##    Std.lv  Std.all
+##                   
+##     0.352    0.296
+##                   
+##     0.019    0.014
+##     0.060    0.055
+##     0.633    0.723
+##     0.014    0.110
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##    .SRPed   (SRP.)    4.382    0.087   50.609    0.000    4.196    4.537
+##    .Valued  (Vld.)    0.939    2.160    0.435    0.664   -0.148    8.017
+##     TradPed (TrP.)    4.296    0.076   56.560    0.000    4.142    4.434
+##     SRPd:TP          19.741    0.524   37.679    0.000   18.697   20.707
+##    Std.lv  Std.all
+##     4.382    7.627
+##     0.939    1.497
+##     4.296    5.993
+##    19.741    4.104
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##     TradPed (TrP.)    0.514    0.140    3.681    0.000    0.272    0.803
+##    .SRPed             0.301    0.059    5.110    0.000    0.195    0.416
+##    .Valued            0.181    0.029    6.327    0.000    0.111    0.223
+##     SRPd:TP          23.133    4.269    5.419    0.000   15.303   32.150
+##    Std.lv  Std.all
+##     0.514    1.000
+##     0.301    0.912
+##     0.181    0.461
+##    23.133    1.000
+## 
+## R-Square:
+##                    Estimate
+##     SRPed             0.088
+##     Valued            0.539
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
+##     imm               0.005    0.040    0.125    0.901   -0.012    0.145
+##     indirect.SDblw    0.039    0.066    0.593    0.553   -0.122    0.151
+##     indirect.mean     0.043    0.055    0.784    0.433   -0.074    0.156
+##     indirect.SDabv    0.046    0.057    0.809    0.418   -0.065    0.165
+##    Std.lv  Std.all
+##     0.005    0.032
+##     0.039    0.178
+##     0.043    0.210
+##     0.046    0.243
+```
+
+```r
+ModMedOnBParamEsts
+```
+
+```
+##                 lhs op                                       rhs
+## 1             SRPed  ~                                 CENTERING
+## 2            Valued  ~                                 CENTERING
+## 3            Valued  ~                                     SRPed
+## 4            Valued  ~                                   TradPed
+## 5            Valued  ~                             SRPed:TradPed
+## 6             SRPed ~1                                          
+## 7            Valued ~1                                          
+## 8           TradPed ~1                                          
+## 9           TradPed ~~                                   TradPed
+## 10            SRPed ~~                                     SRPed
+## 11           Valued ~~                                    Valued
+## 12    SRPed:TradPed ~~                             SRPed:TradPed
+## 13        CENTERING ~~                                 CENTERING
+## 14    SRPed:TradPed ~1                                          
+## 15        CENTERING ~1                                          
+## 16              imm :=                                      a*b3
+## 17 indirect.SDbelow := a*b1+imm*(TradPed.mean-sqrt(TradPed.var))
+## 18    indirect.mean :=                   a*b1+imm*(TradPed.mean)
+## 19 indirect.SDabove := a*b1+imm*(TradPed.mean+sqrt(TradPed.var))
+##               label    est    se      z pvalue ci.lower ci.upper std.lv std.all
+## 1                 a  0.352 0.114  3.077  0.002    0.117    0.573  0.352   0.296
+## 2                cp  0.019 0.108  0.174  0.862   -0.201    0.223  0.019   0.014
+## 3                b1  0.060 0.528  0.114  0.909   -1.264    0.564  0.060   0.055
+## 4                b2  0.633 0.497  1.274  0.203   -0.889    0.982  0.633   0.723
+## 5                b3  0.014 0.113  0.126  0.900   -0.032    0.396  0.014   0.110
+## 6        SRPed.mean  4.382 0.087 50.609  0.000    4.191    4.537  4.382   7.627
+## 7       Valued.mean  0.939 2.160  0.435  0.664   -0.117    8.165  0.939   1.497
+## 8      TradPed.mean  4.296 0.076 56.560  0.000    4.137    4.431  4.296   5.993
+## 9       TradPed.var  0.514 0.140  3.681  0.000    0.275    0.811  0.514   1.000
+## 10                   0.301 0.059  5.110  0.000    0.205    0.430  0.301   0.912
+## 11                   0.181 0.029  6.327  0.000    0.141    0.281  0.181   0.461
+## 12                  23.133 4.269  5.419  0.000   15.792   33.016 23.133   1.000
+## 13                   0.233 0.000     NA     NA    0.233    0.233  0.233   1.000
+## 14                  19.741 0.524 37.679  0.000   18.724   20.761 19.741   4.104
+## 15                   0.369 0.000     NA     NA    0.369    0.369  0.369   0.765
+## 16              imm  0.005 0.040  0.125  0.901   -0.011    0.147  0.005   0.032
+## 17 indirect.SDbelow  0.039 0.066  0.593  0.553   -0.056    0.197  0.039   0.178
+## 18    indirect.mean  0.043 0.055  0.784  0.433   -0.046    0.179  0.043   0.210
+## 19 indirect.SDabove  0.046 0.057  0.809  0.418   -0.063    0.167  0.046   0.243
+##    std.nox
+## 1    0.613
+## 2    0.030
+## 3    0.055
+## 4    0.487
+## 5    0.110
+## 6    7.627
+## 7    1.497
+## 8    5.993
+## 9    1.000
+## 10   0.912
+## 11   0.461
+## 12   1.000
+## 13   0.233
+## 14   4.104
+## 15   0.369
+## 16   0.067
+## 17   0.369
+## 18   0.436
+## 19   0.503
+```
+
+### Use tidySEM to create a figure {-}
+
+
+```r
+# only worked when I used the library to turn on all these pkgs
+library(lavaan)
+library(dplyr)
+library(ggplot2)
+library(tidySEM)
+tidySEM::graph_sem(model = ModMedOnB_fit)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-75-1.png)<!-- -->
+
+We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
+
+
+```r
+tidySEM::get_layout(ModMedOnB_fit)
+```
+
+```
+##      [,1]    [,2]        [,3]      [,4]           
+## [1,] NA      "CENTERING" "TradPed" "SRPed:TradPed"
+## [2,] "SRPed" NA          "Valued"  NA             
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+We can write code to remap them
+
+```r
+comb_map <- tidySEM::get_layout("", "SRPed", "TradPed", "SRPed:TradPed",
+    "CENTERING", "", "Valued", "", rows = 2)
+comb_map
+```
+
+```
+##      [,1]        [,2]    [,3]      [,4]           
+## [1,] ""          "SRPed" "TradPed" "SRPed:TradPed"
+## [2,] "CENTERING" ""      "Valued"  ""             
+## attr(,"class")
+## [1] "layout_matrix" "matrix"        "array"
+```
+
+
+We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
+
+```r
+tidySEM::graph_sem(ModMedOnB_fit, layout = comb_map, rect_width = 1.25,
+    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-78-1.png)<!-- -->
+
+
+### Create a table that includes regression output for the M and Y variables and the moderated effects {-}
+
+Exporting the results to a .csv file will help us create a journal-ready table, outside of the R environment.
+
+
+```r
+write.csv(ModMedOnBParamEsts, file = "ModMedOnBParamEsts.csv")  #optional to write it to a .csv file
+```
+
+**Table 1 ** 
+
+|Analysis of Moderated Mediation for Centering, Socially Responsive Pedagogy, Traditional Pedagogy, and Perceived Value to the Student
+|:-------------------------------------------------------------------------|
+
+| Predictor                  |$B$      |$SE_{B}$  |$p$     |$R^2$          |                   
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+
+|Socially Responsive Pedagogy(M)|      |          |        |.09
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |4.382	   |0.087     |<0.001  |               |
+|Centering ($a$)             |0.352	   |0.114  	  |0.002   |               |
+
+|Perceived Value (DV)        |         |          |        |.54
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|Constant                    |0.939	   |2.160	    |0.664   |               |
+|Centering ($c'$)            |0.019	   |0.108	    |0.862   |               |
+|SRPed ($b_1$)               |0.060	   |0.528	    |0.909   |               |
+|TradPed ($b_2$)             |0.633	   |0.497	    |0.203   |               |
+|SRPed:TradPed ($b_3$)       |0.014	   |0.113	    |0.900   |               |
+
+|Summary of Effects          |$B$      |$SE_{B}$  |$p$     |95% CI
+|:---------------------------|:-------:|:--------:|:------:|:-------------:|
+|IMM                         |0.005	   |0.040	    |0.901	 |-0.011,	0.147  | 
+|Indirect ($-1SD$)           |0.039	   |0.066	    |0.553	 |-0.056,	0.197  |                        
+|Indirect ($M$)              |0.043	   |0.055	    |0.433	 |-0.046,	0.179  |
+|Indirect ($+1SD$)           |0.046	   |0.057	    |0.418	 |-0.063	0.167  |
+
+|
+|--------------------------------------------------------------------------|
+|*Note*. SRPed = socially responsive pedagogy; TradPed = traditional pedagogy. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
+
+### APA Style Write-up {-}
+
+
+**Method/Analytic Strategy**
+
+Data were analyzed with a maximum likelihood approach the package, *lavaan* (v. 0.6-16). We specified a moderated mediation model predicting perceived value to the student from centering stage, mediated by socially responsive pedagogy. We further predicted that the relationship between socially responsive pedagogy to perceived value (i.e., the *b* path) would be moderated by traditional pedagogy.
+
+**Results**
+
+**Preliminary Analyses**
+
+*  Missing data anlaysis and managing missing data
+*  Bivariate correlations, means, SDs
+*  Distributional characteristics, assumptions, etc.
+*  Address limitations and concerns
+
+**Primary Analyses**
+Our analysis evaluated a moderation mediation model perceived value to the student (Y/Valued) from centering stage (X/Centering) mediated by socially responsive pedagogy (M/SRPed).  Traditional pedagogy (W/TradPed) was our moderating variable.  We specified a moderation of path *b* (M/SRPed to Y/Valued). Data were analyzed with maximum likelihood estimation in the R package *lavaan* (v. 0.6-16); the significance of effects were tested with 1000 bootstrap confidence intervals. Results of the full model are presented in Table 1 and illustrated in Figure 1.  The formula for the mediator and dependent variable are expressed below.  
+
+
+$$\hat{M} = 4.382 + 0.352X$$
+$$\hat{Y} = 0.939 + (0.019)X + (0.060)M + (0.633)W  + 0.014MW $$
+
+Although the model accounted for 9% of variance in socially responsive pedagogy (mediator) and 54% of variance in the perceived value to the student (dependent variable), results suggested non significant main, interaction, and mediated effects. Correspondingly, the index of moderated mediation was not significant $(B = 0.005, p = 0.901, 95CI(-0.011,	0.147)$, suggesting that the indirect effects were not conditional on the values of the moderator.  Figure 1 illustrates the conditional effects (all non-significant) of socially responsive pedagogy (M) on perceived value to the student (Y) among across the $M \pm 1SD$ of the moderator, traditional pedagogy. Complete results are found in Table 1.
+
+
+
+```r
+interactions::interact_plot(Mod_b_path, pred = SRPed, modx = TradPed) +
+    ylim(1, 5)
+```
+
+```
+## Warning: 5.02351626747081 is outside the observed range of TradPed
+```
+
+![](08-CPA_files/figure-docx/unnamed-chunk-80-1.png)<!-- -->
+
+```r
+# interactions::interact_plot(Mod_c_path, pred = TradPed, modx =
+# SRPed + ylim(1,5))
 ```
 
 

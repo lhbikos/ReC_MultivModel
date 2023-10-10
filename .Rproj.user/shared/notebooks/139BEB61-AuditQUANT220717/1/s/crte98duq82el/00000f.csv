@@ -1,0 +1,6 @@
+"0","Accessible_vars <- c('Instructor.accessible.outside.class','Instructor.accessible')"
+"0","all$Accessible <- sjstats::mean_n(all[,Accessible_vars], .50)"
+"0","accessible <- all%>% select(Instructor.accessible.outside.class, Instructor.accessible, Accessible)"
+"0","#deleting extra vars"
+"0","all <- all %>%"
+"0","  dplyr::select (-c(""Instructor.accessible.outside.class"", ""Instructor.accessible""))"

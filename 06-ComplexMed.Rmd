@@ -325,7 +325,7 @@ Lewis_generating_model <- '
          MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
          PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
          
-        # Correlations (ha!)
+        # Correlations 
          GRMS ~ 0.20*Spirituality
          GRMS ~ 0.28*SocSupport
          GRMS ~ 0.30*Engagement
@@ -444,6 +444,9 @@ dfLewis$GRMS <- sjstats::mean_n(dfLewis[, GRMS_vars], 0.80)
 dfLewis$Engmt <- sjstats::mean_n(dfLewis[, Eng_vars], 0.80)
 dfLewis$DisEngmt <- sjstats::mean_n(dfLewis[, dEng_vars], 0.80)
 dfLewis$MntlHlth <- sjstats::mean_n(dfLewis[, MntlHlth_vars], 0.80)
+
+#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
+#dfLewis$GRMS <- sjstats::mean_n(dfLewis[, ..GRMS_vars], 0.80)
 ```
 
 Now that we have scored our data, let's trim the variables to just those we need.

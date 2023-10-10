@@ -1,0 +1,5 @@
+"0","all <- read.csv (""CourseEvals_ALL220630.csv"",  header = TRUE, sep = "","")"
+"0","#all <- read.csv (""CourseEvals_ALL220614.csv"",  header = TRUE, sep = "","")"
+"0","all <- subset(all, Dept == ""CPY"" | Dept == ""ORG"") #multiple conditions"
+"0","#eliminating the columns with all missing data"
+"0","all <- all[ , colSums(is.na(all)) < nrow(all)]"

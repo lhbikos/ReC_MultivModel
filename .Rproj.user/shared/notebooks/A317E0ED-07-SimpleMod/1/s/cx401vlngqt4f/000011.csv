@@ -1,6 +1,0 @@
-"0","#only worked when I used the library to turn on all these pkgs"
-"0","library(lavaan)"
-"0","library(dplyr)"
-"0","library(ggplot2)"
-"0","library(tidySEM)"
-"0","tidySEM::graph_sem(model = LewMLEfit)"

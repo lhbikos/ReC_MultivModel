@@ -1,0 +1,7 @@
+"0","all <- transform (all, Observations = pmax(Decolonization_observations, Decolonization_observations.1, SPFC.Decolonize.Appearence, na.rm=TRUE))"
+"0","all <- transform (all, Impacts = pmax(SPFC.Decolonize.Impact, Decolonization_impacts, Decolonization_impacts.1, na.rm=TRUE))"
+"0","all <- transform (all, Recommendations = pmax(Decolonization_input, Decolonization_input.1, SPFC.Decolonize.Ideas, na.rm=TRUE))"
+"0",""
+"0","#then deleting the source variables"
+"0","all <- all %>%"
+"0","  dplyr::select (-c(""Decolonization_observations"", ""Decolonization_observations.1"", ""SPFC.Decolonize.Appearence"", ""Decolonization_impacts"", ""Decolonization_impacts.1"", ""SPFC.Decolonize.Appearence"", ""Decolonization_input"", ""Decolonization_input.1"", ""SPFC.Decolonize.Ideas"", ""SPFC.Decolonize.Impact""))"

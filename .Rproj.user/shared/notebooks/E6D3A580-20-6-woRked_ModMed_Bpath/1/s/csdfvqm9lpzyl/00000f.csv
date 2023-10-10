@@ -1,0 +1,49 @@
+"0","interactions::sim_slopes(Mod_b_path, pred = SRPed, modx = TradPed)"
+"2","Warning: 5.02351626747081 is outside the observed range of TradPed"
+"1","[1m[4mJOHNSON-NEYMAN INTERVAL[24m[22m"
+"1"," "
+"1","
+
+"
+"1","The Johnson-Neyman interval could not be found. Is the p value for your interaction term below the specified
+alpha?"
+"1",""
+"1","
+
+"
+"1","[1m[4mSIMPLE SLOPES ANALYSIS[24m[22m"
+"1"," "
+"1","
+
+"
+"1","[3mSlope of SRPed when TradPed = 3.599941 (- 1 SD): 
+
+[23m"
+"1","  Est.   S.E.   t val.      p
+------ ------ -------- ------
+  0.10   0.13     0.77   0.44"
+"1","
+"
+"1","
+"
+"1","[3mSlope of SRPed when TradPed = 4.311728 (Mean): 
+
+[23m"
+"1","  Est.   S.E.   t val.      p
+------ ------ -------- ------
+  0.15   0.12     1.25   0.22"
+"1","
+"
+"1","
+"
+"1","[3mSlope of SRPed when TradPed = 5.023516 (+ 1 SD): 
+
+[23m"
+"1","  Est.   S.E.   t val.      p
+------ ------ -------- ------
+  0.21   0.14     1.46   0.15"
+"1","
+"
+"1","
+"
+"0","#interactions::sim_slopes(Mod_b_path, pred=TradPed, modx = SRPed) #sometimes I like to look at it in reverse -- like in the plots"

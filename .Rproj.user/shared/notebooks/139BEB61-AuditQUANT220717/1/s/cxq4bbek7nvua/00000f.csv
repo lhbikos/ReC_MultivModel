@@ -1,0 +1,14 @@
+"0","evals3f <- '"
+"0","  Trad =~ Effective_Answers + Clear_Responsibilities + Feedback + Clear_Organization + Clear_Presentations "
+"0","  ValuedByMe =~ Increased_Interest + Increased_Understanding + Valuable_Objectives"
+"0","  SCR =~ Multiple_Perspectives + Fostered_Inclusiveness + DEI_integration + Sense_of_Community + Equitable_Evaluation"
+"0","'"
+"0","Trad~~ValuedByMe"
+"1","Trad ~ ~ValuedByMe
+"
+"0","ValuedByMe~~SCR"
+"1","ValuedByMe ~ ~SCR
+"
+"0","Trad~~SCR"
+"1","Trad ~ ~SCR
+"

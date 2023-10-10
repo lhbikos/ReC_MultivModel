@@ -1,0 +1,3 @@
+"0","library(tidyverse)"
+"0","all <- all %>%"
+"0","  dplyr::select (-c(""Decolonization_observations"", ""Decolonization_observations.1"", ""SPFC.Decolonize.Appearence"", ""Decolonization_impacts"", ""Decolonization_impacts.1"", ""SPFC.Decolonize.Appearence"", ""Decolonization_input"", ""Decolonization_input.1"", ""SPFC.Decolonize.Ideas"", ""SPFC.Decolonize.Impact""))"

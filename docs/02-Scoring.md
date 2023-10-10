@@ -598,6 +598,11 @@ scrub_df$Belonging <- sjstats::mean_n(scrub_df[, Belonging_vars], 0.65)
 scrub_df$ResponseBL <- sjstats::mean_n(scrub_df[, ResponseBL_vars], 0.8)
 scrub_df$StigmaBL <- sjstats::mean_n(scrub_df[, StigmaBL_vars], 0.8)
 scrub_df$ClimateBL <- sjstats::mean_n(scrub_df[, ClimateBL_vars], 0.8)
+
+# If the scoring code above does not work for you, try the format
+# below which involves inserting to periods in front of the variable
+# list. One example is provided. dfLewis$Belonging <-
+# sjstats::mean_n(dfLewis[, ..Belonging_vars], 0.80)
 ```
 
 Later it will be helpful to have a df with the item and scale-level variables.  It will also be helpful if there is an ID for each case.

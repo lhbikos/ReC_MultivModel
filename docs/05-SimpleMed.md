@@ -895,6 +895,11 @@ dfKim$PWB <- sjstats::mean_n(dfKim[, PWB_vars], 0.8)
 dfKim$ANX <- sjstats::mean_n(dfKim[, ANX_vars], 0.8)
 dfKim$CMI <- sjstats::mean_n(dfKim[, CMI_vars], 0.8)
 dfKim$REMS <- sjstats::mean_n(dfKim[, REMS_vars], 0.8)
+
+# If the scoring code above does not work for you, try the format
+# below which involves inserting to periods in front of the variable
+# list. One example is provided. dfLewis$GRMS <-
+# sjstats::mean_n(dfLewis[, ..GRMS_vars], 0.80)
 ```
 
 Now that we have scored our data, let's trim the variables to just those we need.

@@ -392,7 +392,7 @@ dfLewis <- lavaan::simulateData(model = Lewis_generating_model,
                               standardized=FALSE)
 
 #used to retrieve column indices used in the rescaling script below
-col_index <- as.data.frame(colnames(dfLewis))
+#col_index <- as.data.frame(colnames(dfLewis))
 
 for(i in 1:ncol(dfLewis)){  # for loop to go through each column of the dataframe 
   if(i >= 1 & i <= 25){   # apply only to GRMS variables
@@ -476,6 +476,11 @@ dfLewis$Engmt <- sjstats::mean_n(dfLewis[, Eng_vars], 0.8)
 dfLewis$DisEngmt <- sjstats::mean_n(dfLewis[, dEng_vars], 0.8)
 dfLewis$MntlHlth <- sjstats::mean_n(dfLewis[, MntlHlth_vars], 0.8)
 dfLewis$Centrality <- sjstats::mean_n(dfLewis[, Cntrlty_vars], 0.8)
+
+# If the scoring code above does not work for you, try the format
+# below which involves inserting to periods in front of the variable
+# list. One example is provided. dfLewis$GRMS <-
+# sjstats::mean_n(dfLewis[, ..GRMS_vars], 0.80)
 ```
 
 Now that we have scored our data, let's trim the variables to just those we need.
