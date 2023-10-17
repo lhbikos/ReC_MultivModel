@@ -1,0 +1,4 @@
+"0","pwCwiP <- TwoWayDF %>%"
+"0","    dplyr::group_by(Party) %>%"
+"0","    rstatix::emmeans_test(OwnWearing ~ Condition, p.adjust.method = ""holm"")"
+"0","pwCwiP"

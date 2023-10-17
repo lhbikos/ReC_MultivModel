@@ -792,11 +792,13 @@ Using data for which you have permission and access (e.g.,  IRB approved data yo
 
 ### Grading Rubric
 
+Regardless of your choic(es) complete all the elements listed in the grading rubric.
+
 |Assignment Component  
 |:-----------------------------------------------------------------------------------------|:-------------: |:------------:|
 |1. Assign each variable to the X, Y, and W roles                                          |      5         |    _____     | 
 |2. Import the data and format the variables in the model                                  |      5         |    _____     | 
-|3. Specify and run the OLS (i.e., *lm()*) model                                                   |      5         |    _____     | 
+|3. Specify and run the OLS (i.e., *lm()*) model                                           |      5         |    _____     | 
 |4. Probe the interaction with the simple slopes and Johnson-Neyman approaches             |      5         |    _____     |
 |5. Create an interaction figure                                                           |      5         |    _____     |
 |6. Create a table (a package-produced table is fine)                                      |      5         |    _____     | 

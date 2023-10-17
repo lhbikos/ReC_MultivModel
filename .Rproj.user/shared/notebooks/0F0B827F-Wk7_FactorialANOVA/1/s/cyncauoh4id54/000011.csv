@@ -1,0 +1,5 @@
+"0","pwCwiP <- pwCwiP %>%"
+"0","    rstatix::add_xy_position(x = ""Party"")  #x should be whatever the variable was used in the group_by argument "
+"0","box <- box + ggpubr::stat_pvalue_manual(pwCwiP, label = ""p.adj.signif"", tip.length = 0.02, hide.ns = FALSE"
+"0","                                        , y.position = c(105, 105, 105))"
+"0","box"

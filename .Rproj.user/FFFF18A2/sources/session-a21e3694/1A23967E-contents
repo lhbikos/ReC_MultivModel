@@ -1,0 +1,628 @@
+---
+title: "First Order CFA"
+author: "Lynette H. Bikos, PhD, ABPP"
+date: "10/27/2019"
+output: word_document
+always_allow_html: yes
+csl: apa-single-spaced.csl
+bibliography: CFA.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA) #keeps out the hashtags in the knits
+```
+
+![Image of PhD Comicstrip--the strip suggest this is the "clueless undergrad" in reality it's the "clueless me"](gotit.jpg){#id .class width=1000 height=400px}
+
+**Screencast Playlist link:** https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=670f3f13-82f5-41e1-9205-aaf500299158 
+
+
+## navigating this lectuRette
+
+About 1 hour and 20 minutes.  Add another 2 hours to work through and digest the materials.
+
+This is the first in our series on confirmatory factor analysis (CFA).  
+
+Our goal is:
+
+* Comparison of CFA and EFA/PAF
+* Identify issues in specifying models
+* First order models -- specification and running
+  + unidimensional
+  + multidimensional
+* Interpreting output
+* Comparing two versions (unidimensional, multidimensional) of a first-order model
+
+### quiz pRep
+
+Be able to respond to quiz items about:
+
+* Broad similarities/differences between EFA and CFA
+* The components of item-level variance in CFA
+* Specifying CFA measurement models -- how many items per factor, minimum?
+* Interpreting fit indices (e.g., Chi-square, CFI, RMSEA)
+* Statistics used to compare two CFA models
+
+HOWEVER...your "comps-not-so-lite" quiz is likely to ask you objective and one essay item about a prompt (abstract, some method/results, tables, figures) from an actual journal article.  The prompt will be made available in the folder (as soon as I select it).  You may print it and bring it to class with highlights and a max of 30 written words.  Because the screenshot of the prompt may be difficult to read, I will also include the full PDF, but you will ONLY BE QUIZZED on the prompt (so don't go crazy trying to digest the entire article).
+
+### planning for youR homewoRk
+
+A new combo assignment spanning a couple of weeks.  At this moment it's under construction, but will likely have you evaluate and compare a couple of models, writing it all up APA style.
+
+### Readings & ResouRces
+
+Kline, R. (2016). Principles and practice of structural equation modeling (Fourth ed., Methodology in the social sciences). New York: The Guilford Press.
+
+* From  Chapter 9:  Specification and Identification of Confirmatory Factor Analysis Models
+  + pp. 189 (bottom) to 202 (stop at "Rules for Nonstandard CFA Models")
+  + "Other CFA Specification Issues":
+* From Chapter 13:  Analysis of Confirmatory Factor Analysis Models
+  + pp. 300 - 312 (stop at "Special Topics and Tests")
+* From Chapter 12:  Global Fit Testing
+  + pp. 262 - 283 (stop at "Empirical versus Theoretical Respecification")
+  
+Rosseel, Y. (2019). The *lavaan* tutorial. Belgium:  Department of Data Analysis, Ghent University. http://lavaan.ugent.be/tutorial/tutorial.pdf 
+
+* "The model syntax" pp. 3 - 4
+* "A first example:  confirmatory factor analysis (CFA)" pp. 4-8.
+
+# Two Broad Categories of Factor Analysis: Exploratory and Confirmatory
+
+Kline [-@kline_principles_2015] describes confirmatory factor analysis as "exactly half that of SEM -- the other half comes from regression analysis" (p. 189).
+
+## Common to Both Exploratory and Confirmatory Approaches
+
+In both exploratory and confirmatory approaches, the variance of each indicator/item is divided into **common** and **unique** variance. When we assume that variance is 1.0, the common variance becomes the communality.  If we have 8 items, we will have 8 communalities and this represents the common variance explained by the factors or components.
+
+* **Common variance** is shared among the indicators and serves as a basis for observed covariances among them that depart, meaningfully, from zero.  We generally assume that
+  + common variance is due to the factors, and
+  + the number of factors will be less than the number of indicators/items (after all, there is no point in retaining as many factors [explanatory entities] as there are entities to be explained [indicators/items])
+  + the proportion of total variance that is shared is the **communality** (estimated by $h^2$); if $h^2$ =.70, then 70% of the total indicator variance is common and potentially explained by the factors
+* **Unique variance** consists of 
+  + **specific variance**:  systematic variance that is not explained by any factor in the model
+  * **random measurement error**
+  * **method variance** is not pictured, but could be another source of unique variance
+* In factor analysis, summing the communalities represents the total common variance (a portion of the total variance), but not the total variance. 
+  + Factor analysis, then, aligns well with classic test theory and classic approaches to understanding reliability (Observed score = True Score + Error).
+  + The inclusion of error is illustrated well in Kline's 9.3, where each item/indicator includes common variance (from the factor) and error variance.
+  
+*Recall that principal components analysis (PCA is not factor analysis) one of the key distinctions is that all variance is common variance (there is no unique variance).  Total common variance is equal to the total variance explained, which in turn is equal to the total variance.*
+
+![Image of Figure 9.2 from Kline's text illustrating partioning of item variance in common factor analysis](KlineFig9_2.jpg){#id .class width=900 height=300px}
+
+## Differences between EFA and CFA
+
+* **A priori specification of the number of factors**
+  + EFA requires no a priori specification; prior to extraction an EFA program will extract as many factors as indicators.  Typically, in subsequent analyses, the researchers specifies how many factors to extract.
+  + CFA requires researchers to specify the exact number of factors.
+
+* **The degree of "exact correspondence" between indicators/items and factors/scales**
+  + EFA is an **unrestricted measurement model**.  That is, indicators/items  depend on (theoretically, measure) all factors. The direct effects from factors to indicators are *pattern coefficients* (Kline says that most refer to these as *factor loadings* or just *loadings* but because he believes these terms are ambiguous, he refers to the direct effects as *pattern coefficients*). *And we just assign them to factors based on highest loadings (and hopefully no cross-loadings)*.  Depending on whether we select an orthogonal or oblique relationship, there may be an identified correlation between factors.
+  + CFA is a **restricted measurement model**. The researcher specifies which on factor(s) each indicator/item(s) depends (recall, causal direction in CFA is from factor to indicators/items.)
+
+* **Identification status**.  The *identification* of a model has to do with whether it is theoretically possible for a computer to derive a unique set of model parameter estimates.  With regard to model degrees of freedom, we will later further explore under-, just-, and over-identified models.  For now...
+  + EFA models with multiple factors are *unidentified* because they will have more free parameters than observations.  Thus, there is no unique set of statistical estimates for the multifactor EFA model.  This concerns the rotation phase in EFA.
+  + CFA models must be identified before they can be analyzed so there is only one unique set of parmeter estimates.  Correspondingly, there is no rotation phase in CFA.
+
+* **Sharing variances**.
+  + In EFA the specific variance of each indicator is not shared with that of any other indicator.
+  + In CFA, the researchers can specify if variance is shared between certain pairs of indicators (i.e., error covariances).
+  
+### On the relationship between EFA and CFA
+
+* Kline [-@kline_principles_2015] admonishes us to not overinterpret the labels "exploratory" and "confirmatory".  Why?
+  + EFA requires no a priori hypotheses about relationship between indicators/items and factors, BUT researchers often expect to specify a predetermined number of factors.
+  + CFA is not strictly confirmatory.  After initial runs, many researchers modify models and hypotheses. 
+
+* CFA is not a verification or confirmation of EFA results for the same data and number of factors.  Kline [-@kline_principles_2015] does not recommend that researchers follow a model retained from EFA.  Why?
+  + It is possible that the CFA model will be rejected.  Oftetimes this is because the secondary coefficients (i.e., non-primary pattern coefficients) accounted for a signifciant proportion of variance in the model.  When they are constrained to 0.0 in the CFA model, the model fit will suffer.
+  + If the CFA model is retained, then it is possible that both EFA and CFA capitalized on chance variation.  Thus, if verification via CFA is desired, it should be evaluated through a replication sample.
+
+
+  
+![Image of Figure 9.3 from Kline's text comparing EFA and CFA models](KlineFig9_3.jpg){#id .class width=900 height=900px}
+
+## Exploring a Standard CFA Model
+
+Kline's Figure 9.3(b) represents the hypothesis that $X_1 - X_3$ and $X_4 - X_6$ measure, respectively, factors A and B, which are assumed to covary.  Specifically,in this model:
+
+1. Each indicator is continuous with two causes:  $A$ --> $X_1$ <-- $E_1$
+   * a single factor that the indicator is supposed to measure, and
+   * all unique sources of influence represented by the error term
+2. The error terms are independent of each other and of the factors
+3. All associations are linear and the factors covary.
+   * hence, the symbol for an unanalyzed association is a solid line (upgraded from the dashed one in the EFA)
+4. Each item has a single *pattern coefficient* (i.e., what others casually term the "factor loading)
+   * All other potential pattern coeficients are set to "0.00."  This is a *hard hypothesis* and are specified by their absence (i.e., not specified in the code or in the diagram).
+5. *Structure coefficents* are the Pearson correlations between factors and continuous indicators.  They reflect any source of association, causal or noncausal. Sometimes the association is an undirected, back-door path.  There is no pattern coefficient for $X_2$ <-> $B$.  BUT, there is a connection from $X_2$ to $B$ via the $A$ <--> $B$ covariance.
+6.  *Scaling constants* (aka *unit loading identification [ULI] constraints*) are necessary to scale the factors in a metric related to that of the explained (common) variance of the corresponding indicator, or *reference (marker) variable*. In Figure 9.3b, these are the paths from $A$ --> $X_1$ and $B$ --> $X_4$.
+   * Selecting the reference marker variable is usually aribtrary and selected by the computer program as the first (or last) variable in the code/path.  So long as all the indicator variables of the same factor have equally reliable scores, this works satisfactorily.
+   * Additional scaling constants are found for each of the errors and indicators.
+   
+## Model Identification for CFA
+
+SEM, in general, requires that all models be *identified.*  Measurement models analyzed in CFA share this requirement, but identification is more straightforward than in other models.  
+
+**Standard CFA models are sufficiently identifed when:**
+
+1. A single factor model has at least three indicators, or
+2. In a model with two or more factors, each factor has two or more indicators.
+   * Note:  It is better to have at least three to five indicators per factor to prevent technical problems with statistical identification.
+   
+Identification becomes much more complicated than this...but for today's models this instruction is sufficent.
+
+## Selecting Indicators/Items for a Reflective Measurement
+
+*Reflective measurement* is another term to describe the circumstance where latent variables are assumed to cause observed variables.  Observed variables in reflective measurement are called *effect (reflective) indicators*.
+
+* At least three for a unidimensional model; at least two per factor for a multidimensional model (but more is safer).
+* The items/indicators should have reasonable internal consistency, they should correlate with each other, and correlate more with themselves than with items on other factors (if multidimensional).
+* Negative correlations reduce the reliability of factor measurement, so they should be reverse coded pior to analysis.
+* Do not be tempted to specify a factor with indicators that do not measure something.  A common mistake is to create a "background " factor and include indicators such as gender, ethnicity, and level of education.  *Just what is the predicted relationship between gender and ethnicity?*
+
+# CFA in *lavaan* Requires Fluency with the Syntax
+
+* It's really just regression
+  + tilda (~, *is regressed on*) is regression operator 
+  + place DV (y) on left of operator
+  + place IVs, separate by + on the right
+* f is a latent variable (LV)
+* Example:  y ~ f1 + f2 + x1 + x2
+
+* LVs must be *defined* by their manifest or latent indicators.  
+  + the special operator (=~, *is measured/defined by*) is used for this
+  + Example:  f1 =~ y1 + y2 + y3
+  
+* Variances and covariances are specified with a double tilde operator (~~, *is correlated with*)
+  + Example of variance:  y1 ~~ y1 (the relationship with itself)
+  + Example of covariance:  y1 ~~ y2 (relationship with another variable)
+  + Example of covariance of a factor:  f1 ~~ f2
+  
+*Intercepts (~ 1) for observed and LVs are simple, intercept-only regression formulas
+  + Example of variable intercept:  y1 ~ 1
+  + Example of factor intercept:  f1 ~ 1
+  
+A complete lavaan model is a combination of these formula types, enclosed between single quotation models. Readibility of model syntax is improved by:
+
+* splitting formulas over multiple lines
+* using blank lines within single quote
+* labeling with the hashtag
+
+myModel <- '# regressions
+            y1 + y2 ~ f1 + f2 + x1 + x2
+            f1 ~ f2 + f3
+            f2 ~ f3 + x1 + x2
+            
+            # latent variable definitions
+            f1 =~ y1 + y2 + y3
+            f2 =~ y4 + y5 + y6
+            f3 =~ y7 + y8 + y9 + y10
+            
+            # variances and covariances
+            y1 ~~ y1
+            y2 ~~ y2
+            f1 ~~ f2
+            
+            # intercepts
+            y1 ~ 1
+            fa ~ 1
+
+# Differing Factor Structures
+
+All models worked in this lecture are *first-order* (or single-order) models.  The image taken from an instructional article on bifactor models and rotations, taken from the NIH website [@reise_bifactor_2010] is helpful.
+
+Models A and B are first-order models.  Note that all factors are on a single plane.
+
+* Model A is undimensional, each item is influenced by a single common factor and a term that includes systematic and random error. Note that there is only one *systematic* source of variance for each item AND it is from a single source:  F1.
+* Model B is often referred to as a "correlated traits" model.  Here, the larger construct is separated into distinct-yet-correlated elements.  The variance of each item is assumed to be a weighted linear function of two or more common factors.  
+
+Models C is a second-order factor structure.  Rather than merely being correlated, factors are related because they share a common cause.  In this model, the second order factor *explains* why three or more traits are correlated.  Note that here is no direct relationship between the item and the target construct.  Rather, the relationship between the second-order factor and each item is mediated through the primary factor (yes, an indirect effect!).
+
+Model D is a bifactor structure.  Here each item loads on a general factor.  This general factor (on right) reflects what is common among the items and represents the individual differences on the target dimension that a researcher is most interested in. Group factors on the right are now specified as *orthogonal*.  The group factors represent common factors measured by the items that explain item response variation not accounted for by the general factor.  In some research scenarios, the group factors are termed "nuisance" dimensions.  That is, that which they have in common interferes with measuring the primary target of interest.
+
+![Image of first-order, second-order, and bifactor factor structures](dimensions.jpg){#id .class width=900 height=1200px}
+Image source:  [@reise_bifactor_2010]
+
+# Modeling Field's RAQ as Unidimensional
+
+Let's start simply, taking the Research Anxiety Questionnaire data and seeing about its fit as a unidimensional instrument. First evaluating multi-dimensional measures as unidimensional is a common pratice.  And there are two reasons:
+
+*  Operationally, it's a check to see that data, script, etc. are all working.
+*  If you can't reject a single-factor model (e.g., if there is a strong support for such), then it makes little sense to evaluate models with more factors ([@kline_principles_2015]).
+
+A quick dataprep, reverse coding Q03.
+```{r}
+library(psych)
+raqData <- read.delim("raq.dat", header = TRUE)
+describe(raqData)
+```
+
+```{r}
+library(tidyverse) #needed to mutate
+raqDat_r <- mutate(raqData, Q03 = 6 - Q03) #the simple subtraction converts 5 to 1, 4 to 2, 3 to 3, 2 to 4, 1 to 5.
+describe(raqDat_r) #going forward, we will use raqDat_r as our dataset
+```
+
+```{r}
+library(lavaan)
+```
+
+
+With a single factor model:
+
+* RAQ is a latent variable and can be named anything.  We know this because it is folowed by: =~
+* All the items follow and are "added" with the plus sign
+  +  Don't let this fool you...the assumption behind SEM/CFA is that the LV *causes* the score on the item/indicator.  Recall, item/indicator scores are influenced by the LV and error.
+* The entire model is enclosed in tic marks (' and ')
+
+```{r}
+RAQ1mod  <- 'RAQ =~ Q01 + Q02 + Q03 + Q04 + Q05 + Q06 + Q07 + Q08 + Q09 + Q10 + Q11 + Q12 + Q13 + Q14 + Q15 + Q16 + Q17 + Q18 + Q19 + Q20 + Q21 + Q22 + Q23'
+RAQ1mod
+```
+
+The object representing the model is then included in the *lavaan* function *cfa()* along with the dataset.
+
+We can ask for a summary of the object representing the results.
+```{r}
+RAQ1fit <- cfa (RAQ1mod, data = raqDat_r)
+summary(RAQ1fit, fit.measures=TRUE, standardized=TRUE, rsquare = TRUE)
+```
+
+I find it super helpful to immediately plot what we did.  A quick look alerts me to errors.  This output is standardized, if you prefer unstandardized (see next model) you can delete "stand=TRUE" or change it to "FALSE".
+
+```{r}
+library(lavaanPlot)
+lavaanPlot::lavaanPlot(model = RAQ1fit, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE, stand=TRUE, sig=.05, covs=TRUE, stars= list("regress", "covs"))
+```
+
+
+```{r}
+#library(lavaanPlot)
+lavaanPlot::lavaanPlot(model = RAQ1fit, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE, stand=FALSE, sig=.05, covs=TRUE, stars= list("regress", "covs"))
+```
+
+With a quick look at the plot, let's work through the results.  Rosseel's (2019) *lavaan* tutorial is a useful resource in walking through the output.
+
+
+## The *header* is the first few lines of the information. It contains:
+
+* the *lavaan* version number (0.6-5 that I'm using on 10/28/2019)
+* maximum likelihood (ML) was used as the estimator
+* confirmation that the specification converged normally after 33 iterations
+* 2751 cases were used in this analysis (would be less if some were skipped because of missing data)
+* the model test statistic, df, and corresponding p value:  $\chi ^{2}(230) = 4477.97, p < .001$
+
+**Fit statistics** are included in the second section.  They are only shown when the argument "fit.measures = TRUE" is in the script. Standardized values are not the default, they require the argument, "standardized = TRUE".  We'll come back to these shortly...
+
+## *Parameter estimates* is the last section.  
+For now we are interested in the Latent Variables section.
+
+* *Estimate* contains the estimated or fixed parameter value for each model parameter;
+* *Std. err* is the standard error for each estimated parameter;
+* *Z-value* is the Wald statistic (the parameter divided by its SE)
+* *P(>|z|)* is the p value for testing the null hypothesis that the parameter equals zero in the population
+* *Std.lv* standardizes only the LVs
+* *Std.all* both latent and observed variables are standardized; this is considered the "completely standardized solution"
+
+Note that Q01 might seem incomplete -- there is only a 1.000 and a value for the Std.lv.  Recall we used this to scale the single factor by fixing its value to 1.000.  Coefficients that are fixed to 1.0 to scale a factor have no standard errors and therefore no significance test.
+
+The SE and associated *$p$ values are associated with the unstandardized estimates.  All pattern coefficients are significant at $p$ < .001.  Intuitively, it is easiest for me to understand the relative magnitude of the pattern coefficients by looking at the Std.all column.  Among those that are positively valenced, all are greater than .400.
+
+The negatively valenced items ar curious.  To facilitate interpretation, I added the $B$, $SE$, $p-value$, and $\beta$ to the RAQ tables document.  Most comparable to our previous work is the last column "Std.all" (think of as Beta.  We can see that these follow the same general trends as the *g* column in our Omega (EFA with PAF) analysis.  The only difference is that the items on the Peer Eval factor "went negative" and were less strong (ranging from -.122 to -.388).
+
+## Let's return to the middle set metrics which assess *global fit*.
+
+CFA falls into a *modeling* approach to evaluating results.  While it provides some flexibility (we get away from the strict, NHST appproach of $p$ < .05) there is greater interpretive ambiguity.
+
+Fit statistics tend to be clustered together based on their approach to summarizing the *goodness* or *badness* of fit.
+
+### Model Test *User* Model: 
+
+the chi-square statistic that evaluates the *exact-fit hypothesis* that there is no difference between the covariances predicted by the model, given the parameter estimates, and the population covariance matrix.  Rejecting the hypothesis says that, 
+
+* the data contain covariance information that speak against the model, and
+* the researcher should explain model-data discrepancies that exceed those expected by sampling error.
+
+Traditional interpretion of the chi-square is an *accept-support test* where the null hypothesis represents the researchers' believe that the model is correct.  This means that the absence of statistical significance ($p$ > .05) that supports the model.  This is backwards from our usual *reject-support test* approach.
+
+The $\chi^2$ is frequently criticized:
+
+* *accept-support test* approaches are logically weaker because the failure to disprove an assertation (the exact-fit hypothesis) does not prove that the assertion is true;
+* too small a sample size (low power) makes it more likely that the model will be retained;
+* CFA/SEM, though, requires large samples and so the $\chi^2$ is frequently statistically significant -- which rejects the researchers' model;
+
+Kline [-@kline_principles_2015] recommends that we treat the $\chi^2$ like a smoke alarm -- if the alarm sounds, there may or may not be a fire (a serious model-data discrepancy), but we should treat the alarm seriously and further inspect issues of fit.
+
+For our unidimensional RAQ CFA  $\chi ^{2}(230)=4477.97, p < .001$, this significant value is not what we want because it says that our specified model is different than the covariances in the model.
+
+
+### Model Test *Baseline* Model
+
+This model is the *independence* model.  That is, there is complete independence of of all variables in the model (i.e., in which all correlations among variables are zero).  This is the most restricted model.  It is typical for chi-quare values to be quite high (as it is in our example:  19406.199).  On its own, this model is not useful to us.  It is used, though, in comparisons of *incremental fit*.  
+
+
+### Incremental Fit Indices (User versus Baseline Models)  
+
+Incremental fit indices ask the question, how much better is the fit of our specified model to the data then the baseline model (where it is assumed no relations between the variables).
+
+The Comparative Fit Index (CFI) and Tucker-Lewis Index (TLI) are *goodness of fit* statistics, ranging from 0 to 1.0 where 1.0 is best.
+
+**CFI**:  compares the amount of departure from close fit for the researcher's model against that of the independence/baseline (null) model. 
+
+$$CFI = 1-\frac{\hat{\Delta_{M}}}{\hat{\Delta_{B}}}$$
+We can actually calculate this using the baseline and chi-square values from our own data (4477.966/19406.199 = .2307; 1 - .2307 = .7692)
+
+Where there is no departure from close fit, then CFI will equal 1.0.  We interpret the value of the CFI as a % of how much better the researcher's model is than the baseline model.  While .77% sounds good -- Hu and Bentler (1999) stated that "acceptable fit" is achieved when the $CFI \geqslant .95$ and $SRMR \leq .08$; the **combination rule**.  HOWEVER, later simulation studies did not support those thresholds.
+
+**TLI**:  aka the **non-normed fit index (NNFI)** controls for $df_M$ from the researcher's model and $df_B$ from the baseline model.  As such, it imposes a greater relative penalty for model complexity than the CFI. A bit squirmy -- the TLI values can exceed 1.0.  
+
+Because the two measures are so related, only one should be reported (I typically see the CFI).
+
+For our unidimensional RAQ CFA, CFI = .78 and TLI = .76.  While these predict around 77% better than the baseline/independence model, it does not come close to the standard of $\geqslant .95$.
+
+
+### Loglikelihood and Information Criteria
+
+The **Aikaike Information Criterion (AIC)** and the **Bayesian Information Criterion (BIC)** utilize an information theory approach to data analysis by combing statistical estimation and model selection into a single framework. The BIC augments the AIC by taking sample size into consideration.
+
+The AIC and BIC are usually used to select among competing nonhierarchical models.  The model with the smallest value of the predictive fit index is chosen as the one that is most likely to replicate.  It means that this model has relatively better fit and fewer free parameters than competing models.
+
+For our unidimensional RAQ CFA we'll come back to these for comparison with the a correlated, four-factor solution.
+
+### Root Mean Square Error of Approximation
+
+The RMSEA is an absolute fit index scaled as a *badness-of-fit* statistic where a value of 0.00 is the best fit. The RMSEA favors models with more degrees of freedom and larger sample sizes.  A unique aspect of the RMSEA is its 90% confidence interval. 
+
+While there is chatter/controversy about what constitutes an acceptable value, there is general consensus that $RMSEA \geqslant .10$ points to serious problems.  An $RMSEA\leq .05$ is desired.  Watching the upper bound of the confidence interval is important to see that it isn't sneaking into the danger zone.
+
+For our unidimensional RAQ CFA, $RMSEA 90% CI = .085 (.083, .087).  It's good news that the CI is relatively tight, but this value falls between the .05 (acceptable) and .10 (serious problems).
+
+
+### Standardized Root Mean Square Residual
+
+The SRMR is an absolute fit index that is a *badness-of-fit* statistic (i.e., perfect model fit is when the value = 0.00 and increasingly higher values indicate the "badness").
+
+The SRMR is a standardized version of the **root mean square residual (RMR)**, which is a measure of the mean absolute covariance residual.  Standardizing the value facilitates interpretation.
+
+Poor fit is indicated when $SRMR \geqslant .10$. 
+
+Recall, Hu and Bentler's **combination rule** (which is somewhat contested) suggested that the SRMR be interpreted along with the CFI such that:   $CFI \geqslant .95$ and $SRMR \leq .05$.
+
+For our unidimensional RAQ CFA, SRMR = .063.  meh
+
+Inspecting the residuals may help understand the source of poor fit, so let's do that.  
+
+```{r}
+fitted(RAQ1fit)
+#residuals(RAQ1fit, type = "raw")
+#residuals(RAQ1fit, type = "standardized")
+
+#will hashtag out for knitted file
+residuals(RAQ1fit, type = "cor")
+modindices(RAQ1fit)
+```
+
+Kline recommends evaluating the "cor" residuals.  In our output, these seem to be the "cor.bollen" and are near the bottom.  He recommends that residuals > .10 may be possible sources for misfit.  He also indicated that patterns may be helpful (is there an item that has consistently high residuals).
+
+Kline also cautions that there is no dependable or trustworthy connection between the size of the residual and the type or degree of model misspecification.  
+
+The *semTable* package can help us extract the values into a .csv file which will make it easier to create an APA style table.  It takes some tinkering...
+
+```{r}
+library(semTable)
+v1 <- c(Q01 = "Statistics makes me cry", Q02 = "My friends will think I'm stupid for not being able to cope with R", Q03 = "Standard deviations excite me", Q04 = "I dream that Pearson is attacking me with correlation coefficients", Q05 = "I don't understand statistics", Q06 = "I have little experience of computers", Q07 = "All computers hate me", Q08 = "I have never been good at mathematics", Q09 = "My friends are better at statistics than me", Q10 = "Computers are useful only for playing games", Q11 = "I did badly at mathematics at school", Q12 = "People try to tell you that R makes statistics easier to understand but it doesn't", Q13 = "I worry that I will cause irreparable damage because of my incompetence with computers", Q14 = "Computers have minds of their own and deliberately go wrong whenever I use them", Q15 = "Computers are out to get me", Q16 = "I weep openly at the mention of central tendancy", Q17 = "I slip into a coma whenver I see an equation", Q18 = "R always crashes when I try to use it", Q19 = "Everybody looks at me when I use R", Q20 = "I can't sleep for thoughts of eigenvectors", Q21 = "I wake up under my duvet thinking that I am trapped under a normal distribution", Q22 = "My friends are better at R than I am", Q23 = "If I am good at statistics people will t hink I am a nerd")
+
+RAQ1table <- semTable(RAQ1fit, columns = c("eststars", "se", "p"), columnLabels = c(eststars = "Estimate", se = "SE", p = "p-value"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"),  varLabels = v1, file = "RAQ1table", type = "csv",  print.results = TRUE)
+```
+Cool, but it doesn't contain standardized estimates. One way to get them is to create an updated model with the standardized output:
+
+```{r}
+RAQ1stdzd <- update (RAQ1fit, std.lv = TRUE, std.ov = TRUE, meanstructure = TRUE)
+```
+
+Now request both models in the semTable
+
+```{r}
+RAQ1table <- semTable(list ("Ordinary" = RAQ1fit, "Standardized" = RAQ1stdzd), columns = list ("Ordinary" = c("eststars", "se", "p"), "Standardized" = c("est")), columnLabels = c(eststars = "Estimate", se = "SE", p = "p-value"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"),  varLabels = v1, file = "RAQ1table", type = "csv",  print.results = TRUE)
+```
+
+
+*Lifesaver*  If, while working with this function you get the error, "Error in file(file, ifelse(append, "a", "w")) : cannot open the connection" it's because the .csv file that received your table is still open.  R is just trying to write over it.  A similar error happens when knitting.
+
+**APA Style Results from the RAQ1 model**
+
+**Model testing**.  To evaluate the models we, we used confirmatory factor analysis (CFA) in the R package, *lavaan* (v.0-6.5) with maximum likelihood estimation. Our sample size of 2571 was adequate to test our CFA model **METHODS FOR DETERMINING ADEQUACY OF SAMPLE SIZE AND APPROPRIATE CITATION ARE FORTHCOMING**.  We selected fit criteria for their capacity to assess different aspects of the statistical analysis.  As is common among SEM researchers, we reported the Chi-square goodness of fit ($\chi^2$).  This evaluates the discrepancy between the unrestricted sample matrix and the restricted covariance matrix.  Although the associated $p$ value indicates adequate fit when the value is non-significant, it is widely recognized that large sample size can result in a statistically significant p value (Byrne, 2010).  The comparative fit index (CFI) is an incremental index, comparing the hypothesized modelat least .90 and perhaps higher than .95 (Kline, 2016 *but need to check and see if he gave more specific citations*).  The root mean square error of approximation (RMSEA) takes into account the error of approximation in the population and expresses it per degree of freedom.  As such, the fit indicator considers the complexity of the model. Ideal values are equal to or less than .05, values less than .08 represent reasonable fit, and values between .08 and .10 represent mediocre fit. The standardized root mean residual is a standardized measure of the mean absolute covariance residual -- the overall difference between the observed and predicted correlations. Values greater than .10 may indicate poor fit and inspection of residuals is then advised. Kline (2016) advised researchers to be cautious when using these criteria as strict cut-offs.  Elements such as sample size and model complexity should be considered when evaluating fit.
+
+Our first model was unidimensional where each of the 23 items loaded onto a single factor representing overall, R, anxiety. The Chi-square index was statistically signficant ($\chi ^{2}(230)=4477.97, p < .001$), indicating poor fit. The CFI value of .78 indicated poor fit. The RMSEA = .08 (90% CI [.08, .09]) suggested mediocre fit.  The SRMR value of .06 fell below the warning criteria of .10.  The AIC and BIC values were 150858.70 and 151127.9, respectively, and will become useful in comparing subsequent models.
+
+
+# Modeling Field's RAQ as a First-Order, 4-factor model
+
+### Specifying and Running the Model
+
+Field never claimed that his RAQ was unidimensional.  So let's respecify it with the four factors.
+
+**Model identification** is always a consideration.  In a multi-dimensional model, each factor requires a minimum of two items/indicators.  Our smallest factor is Math, with 3 items, so we are OK!
+
+We will be using the *cfa()* function in lavaan.  When we do this, it does three things by default:
+
+1. The factor loading of the first indicator of a latent variable is fixed to 1.0; this fixes the scale of the LV
+2. Residual variances are added automatically.
+3. All exogenous LVs are correlated.  IF YOU ARE SPECIFYING AN ORTHOGONAL MODEL YOU WILL WANT TO SWITCH THE DEFAULT BEHAVIOR OFF IN YOUR SCRIPT.
+
+```{r}
+RAQ4mod  <- 'Computers =~ Q06 + Q07 + Q10 + Q13 + Q14 + Q15 + Q18
+             Math =~ Q08 + Q11 + Q17 
+             Statistics =~ Q01 + Q03 + Q04 + Q05 + Q12 + Q16 + Q20 + Q21
+             PeerEval =~ Q02 + Q09 + Q19 + Q22 + Q23'
+RAQ4mod
+```
+
+```{r}
+#This code is identical to the one we ran above -- in this code below, we are just clearly specifying the covariances -- but the default of lavaan is to correlate latent variables when the cfa() function is used.
+
+#RAQ4mod  <- 'Computers =~ Q06 + Q07 + Q10 + Q13 + Q14 + Q15 + Q18
+             #Math =~ Q08 + Q11 + Q17 
+             #Statistics =~ Q01 + Q03 + Q04 + Q05 + Q12 + Q16 + Q20 + Q21
+             #PeerEval =~ Q02 + Q09 + Q19 + Q22 + Q23'
+#covariances in our oblique model
+  #Computers ~~ Math
+  #Computers ~~ Statistics
+  #Computers ~~ PeerEval
+  #Math ~~ Statistics
+  #Math ~~ PeerEval
+  #Statistics ~~ PeerEval
+```
+
+
+
+```{r}
+RAQ4fit <- cfa (RAQ4mod, data = raqDat_r)
+summary(RAQ4fit, fit.measures=TRUE, standardized=TRUE, rsquare = TRUE)
+```
+
+```{r}
+#library(lavaanPlot)
+lavaanPlot::lavaanPlot(model = RAQ4fit, node_options = list(shape = "box", fontname = "Helvetica"), edge_options = list(color = "grey"), coefs = TRUE, stand=TRUE, sig=.05, covs=TRUE, stars= list("regress", "covs"))
+```
+
+The table
+
+First an update to get the standardized results:
+```{r}
+RAQ4stdzd <- update (RAQ4fit, std.lv = TRUE, std.ov = TRUE, meanstructure = TRUE)
+```
+
+```{r eval = FALSE}
+RAQ4table <- semTable(list ("Ordinary" =RAQ4fit, "Standardized" = RAQ4stdzd), columns = list ("Ordinary" = c("eststars", "se", "p"), "Standardized" = c("est")), columnLabels = c(eststars = "Estimate", se = "SE", p = "p-value"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"), varLabels = v1, file = "RAQ4table", type = "csv", print.results = TRUE)
+```
+
+
+### Interpretation
+
+Our model converged, normally, with 55 iterations.  The estimator was the lavaan default, maximum likelihood (ML).  All 2571 cases were used in the analysis.
+
+I mapped our pattern coefficients into the RAQ Tables.  All pattern coefficients are strong, signifciant, and stably connected to their respective factor.
+
+A multidimensional factor structure also includes correlations/covariances between factors.  We can see that the correlation (look at the Std.all column) shows the following correlations:
+
+Computers & Math:  0.648
+Computers & Statistics:  0.837
+Computers & Peer Eval:  -0.507
+Math & Statistics:  0.679
+Statistics & Peer Eval:  -0.571
+
+For our multi-dimensional RAQ CFA  $\chi ^{2}(224)=2273.27, p < .001$, this significant value is not what we want because it says that our specified model is different than the covariances in the model.
+
+The CFI and TLI compare user (the 4-dimensional model we specified) and baseline (where no relations would exist between variables) models.  These values will always be close together because the only difference is that the TLI imposes a penalty for any model complexity.  The CFI seems to be more commonly reported and its value is 0.893.  This means our model perormed 89% better than a model with no relations, BUT, it does not achieve the threshold of .95.
+
+Stay Tuned:  we'll come back to the AIC and BIC...
+
+RMSEA 90% CI = .060 (.057, .062). It's good news that the CI is relatively tight and that the value is closer to the target .05.
+
+Our SRMR = .047 and is below the .05 thresshold.  Even though this means the discrepancy between our model and the sample covariances is low, it's a good practice to take a peek.
+
+```{r}
+fitted(RAQ4fit)
+#residuals(RAQ4fit, type = "raw")
+#residuals(RAQ4fit, type = "standardized")
+#residuals(RAQ4fit, type = "cor")
+#modindices(RAQ4fit)
+```
+
+
+# Model Comparison
+
+We compared two models, which one is better? Sure, we have the narrative comparison (and would create a table with the comparisons) where the four-dimensional fit values (CFI = 0.89, RMSEA = 0.06, and SRMR = .047) outperformed the unidimensional ones (CFI = 0.78, RMSEA = .085, and SRMR = .063). 
+
+Even better are statistical comparisons of the models!
+
+Easy are AIC and BIC comparisons where "smaller value wins."
+
+AIC RAQ1d: 150858.708
+AIC RAQ4d: 148666.015
+
+BIC RAQ1d: 151127.902
+BIC RAQ4d: 148970.322
+
+In both cases, the smaller values are for the more complex, 4-dimensional model.  The interpretation is that the model with the smaller AIC/BIC values is most likely to replicate.
+
+Additionally, the **chi-square difference test**, $\chi_{D}^{2}$ can be used to compare nested models. Single-factor CFA models are nested under any other CFA model with two or more factors *for the same indicators*.  This is because a one-factor model is a restricted version of any model with multiple factors.  Our unidimensional RAQ was nested under the 4-factor RAQ model.
+
+To calculate the chi-square difference test, we first grab the chi-square test values:
+
+RAQ1d: $\chi ^{2}(230) = 4477.97, p < .001$
+RAQ4d:$\chi ^{2}(224)= 2273.27, p < .001$
+
+Given both sets of results we calculate: $\chi ^{2}(6)= 2,204.7, p < .001$
+
+How'd I do that?  
+
+* Subtract the df
+* Subtract the chi-square values
+* Use a chi-square difference table to look up the chi-square critical value for a 6df test
+  + https://www.itl.nist.gov/div898/handbook/eda/section3/eda3674.htm
+  + the critical value for our test is 12.592
+* We conclude that the two models are statistically significantly different; our 4-factor model is preferred.
+
+Of course, there is a function for something this easy:
+
+```{r}
+lavTestLRT(RAQ1fit, RAQ4fit)
+```
+
+And we get the same result:  $\chi ^{2}(6)= 2,204.7, p < .001$ 
+
+And now a table with estimates and fit indices from both models.
+
+```{r eval = FALSE}
+#All the requested data gets transferred over, but the pattern coefficients do not end up side-by-side.  This is because one is unidimensional, the other multidimensional. More instructions here:  http://www.crmda.dept.ku.edu/timeline/archives/193
+
+RAQtables <- semTable(list("Single Dimension" = RAQ1fit, "Multidimensional" = RAQ4fit), columns = c("eststars", "se", "p"),  columnLabels = c(eststars = "Estimate", se = "SE", p = "p-value"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"), varLabels = v1, file = "RAQtables", type = "csv", print.results = TRUE)
+```
+Let's try it with standardized output:
+
+```{r}
+RAQstdzd <- semTable(list("Single Dimension" = RAQ1stdzd, "Multidimensional" = RAQ4stdzd), columns = c("eststars"),  columnLabels = c(eststars = "Estimate"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"), varLabels = v1, file = "RAQstzd", type = "csv", print.results = TRUE)
+```
+
+Can we get all 4 columns?  Not yet...a work in progress.
+```{r}
+#RAQ4cols <- semTable(list("Undimensional" = RAQ1fit, "Uni Standardized" = RAQ1stdzd, "Multidimensional" = RAQ4fit, "Mult Standardized" = RAQ4stdzd), columns = list ("Unidimensional" =c("eststars", "se", "p"), "Uni Standardized" = c("est"), "Multidimensional" = c("eststars", "se", "p"), "Mult Standardized" =c("est")),  columnLabels = c(eststars = "Estimate", se = "SE", p = "p-value", est = "Standardized"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"), varLabels = v1, file = "RAQ4cols", type = "csv", print.results = TRUE)
+```
+
+
+**Final APA Results Section:**  
+
+**Model testing**.  To evaluate the models we, we used confirmatory factor analysis (CFA) in the R package, *lavaan* (v.0-6.5) with maximum likelihood estimation. Our sample size of 2571 was adequate to test our CFA model **METHODS FOR DETERMINING ADEQUACY OF SAMPLE SIZE AND APPROPRIATE CITATION ARE FORTHCOMING**.  We selected fit criteria for their capacity to assess different aspects of the statistical analysis.  As is common among SEM researchers, we reported the Chi-square goodness of fit ($\chi^2$).  This evaluates the discrepancy between the unrestricted sample matrix and the restricted covariance matrix.  Although the associated $p$ value indicates adequate fit when the value is non-significant, it is widely recognized that large sample size can result in a statistically significant p value (Byrne, 2010).  The comparative fit index (CFI) is an incremental index, comparing the hypothesized modelat least .90 and perhaps higher than .95 (Kline, 2016 *but need to check and see if he gave more specific citations*).  The root mean square error of approximation (RMSEA) takes into account the error of approximation in the population and expresses it per degree of freedom.  As such, the fit indicator considers the complexity of the model. Ideal values are equal to or less than .05, values less than .08 represent reasonable fit, and values between .08 and .10 represent mediocre fit. The standardized root mean residual is a standardized measure of the mean absolute covariance residual -- the overall difference between the observed and predicted correlations. Values greater than .10 may indicate poor fit and inspection of residuals is then advised. Because we were interested in comparing nested models we used the Chi-square difference test where a significant chi-square indicates statistically significant differences in models.  Additionally we used Akaike’s Information Criterion (AIC) and the Bayesian Information Criterion (BIC) that take model complexity and sample size into consideration. Models with lower values on each are considered to be superior. Kline (2016) advised researchers to be cautious when using these criteria as strict cut-offs.  Elements such as sample size and model complexity should be considered when evaluating fit. Table 1 provides a side-by-side comparison of the resulting parameter estimates and fit statistics; Figures 1 and 2 provide a graphic representation of the models tested.
+
+Our first model was unidimensional where each of the 23 items loaded onto a single factor representing overall, R, anxiety. Standardized pattern coefficients ranged between -.39 and .66 and all were statistically significant.  The Chi-square index was statistically signficant ($\chi ^{2}(230)=4477.97, p < .001$), indicating poor fit. The CFI value of .78 indicated poor fit. The RMSEA = .08 (90% CI [.08, .09]) suggested mediocre fit.  The SRMR value of .06 fell below the warning criteria of .10.  The AIC and BIC values were 150858.70 and 151127.9, respectively, and will become useful in comparing subsequent models.
+
+Our second model was a single-order, multidimensional model where each of the 23 items loaded onto one of four factors. Standardized pattern coefficients ranged between .38 and .78 on the fear of computers factor, between .77 and .70 on the fear of math factor, between .46 and .67 on the fear of statistics factor, and between .29 and .69 on the fear of peer evaluation factor.  The Chi-square index was statistically signficant ($\chi ^{2}(224)= 2273.27, p < .001$), still indicating poor fit. The CFI value of .89, though improved, still fell below the threshold of .90. The RMSEA = .06 (90% CI [.06, .06]) fell between the ranges of acceptable and mediocre.  The SRMR value of .05 remained below the warning criteria of .10.  The AIC and BIC values were 148666.02 and 148970.32, respectively.
+
+The Chi-square difference test ($\chi ^{2}(6)= 2,204.7, p < .001$) was statistically significant and AIC and BIC values of the multidimensional value were lowest.  Thus, we conclude that while the model continues to fall below some thresholds, the multidimensional model is superior and acceptable for use in preliminary research and evaluation.
+
+**Were this my model and I wanted to continue to improve the fit?**  And I haven't done this yet...I would probably remove the Peer Evaluation factor altogether to see what would happen.
+
+## A concluding thought
+
+Much like *Don't Break the Ice* we start with a full, saturated, matrix of sample data where every indicator/item is allowed to correlate/covary (you choose your term) with every other.
+
+As researchers, we specify a more parsimonious model where we fix some relations to zero and allow others to relate.  In our RAQ example, we allowed 
+
+* the computer fear items to relate via their relationship to the computer fear factor; 
+* the stats fear items to relate via their relationship to the stats fear factor; 
+* the math anxiety items to relate via their relationship to the math anxiety factor; and
+* the peer evaluation items to relate via their relationship to the anxiety related to peer evaluation.
+* we did not allow any of the items on any given factor to relate to the items on any other factor; these are *hard hypotheses* where we fix the relation to zero.
+
+Our goal (especially via the chi-square test) is that we account for as much variance as possible through the specified relations that remain.  Harkening to the *Don't Break the Ice* metaphor, we want the ice matrix to remain stable with as many ice cubes deleted as possible.
+
+
+![Image of children playing "Don't Break the Ice"](breakice.jpg){#id .class width=600 height=400px}
+
+Source:  https://www.flickr.com/photos/arfsb/4407495674
+
+
+

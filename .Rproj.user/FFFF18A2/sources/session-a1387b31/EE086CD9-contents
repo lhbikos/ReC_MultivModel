@@ -1,0 +1,1354 @@
+---
+title: "SCASEE_190213"
+author: "Lynette H. Bikos, PhD, ABPP"
+date: "12/13/2019"
+output: word_document
+csl: apa-single-spaced.csl
+bibliography: CFA.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Initial Sample
+
+# Can skip ahead to "START HERE" if recreating the df is not needed
+
+## Importing Data, Naming Variables 
+
+```{r Upload data}
+#original data in SPSS, couldn't upload it (maybe an old version of SPSS?)
+#Saved from SPSS to a .csv 
+#The SPSS .csv didn't upload properly (first variable had an odd symbol as first character).  Must resave as an MS_DOS.csv
+#init_raw <- read.csv("initial.csv", head = TRUE, sep = ",")
+```
+
+```{r Import raw data}
+#original data in SPSS, couldn't upload it (maybe an old version of SPSS?)
+#Saved from SPSS to a .csv then uploaded the .csv
+Init_raw_df <- read.csv("InitialRaw.csv", head = TRUE, sep = ",")
+```
+
+###Renaming all the variables
+
+```{r Rename variables}
+library(tidyverse)
+Init_named_df <- rename(Init_raw_df, date=q0001_0001, travelplans_1=q0002, noplans_country=q0003, no_ready=q0004, plans_countries=q0005_0001, traveldates=q0005_0002, yes_ready=q0006, SCASEE1=q0007_0001, SCASEE2=q0007_0002, SCASEE3=q0007_0003, SCASEE4=q0007_0004, SCASEE5=q0007_0005, SCASEE6=q0008_0001, SCASEE7=q0008_0002, SCASEE8=q0008_0003, SCASEE9=q0008_0004, SCASEE10=q0008_0005, SCASEE11=q0009_0001, SCASEE12=q0009_0002, SCASEE13=q0009_0003, SCASEE14=q0009_0004, SCASEE15=q0009_0005, SCASEE16=q0010_0001, SCASEE17=q0010_0002, SCASEE18=q0010_0003, SCASEE19=q0010_0004, SCASEE20=q0010_0005, SCASEE21=q0011_0001, SCASEE22=q0011_0002, SCASEE23=q0011_0003, SCASEE24=q0011_0004, SCASEE25=q0011_0005, SCASEE26=q0012_0001, SCASEE27=q0012_0002, SCASEE28=q0012_0003, SCASEE29=q0012_0004, SCASEE30=q0012_0005, SCASEE31=q0013_0001, SCASEE32=q0013_0002, SCASEE33=q0013_0003, SCASEE34=q0013_0004, SCASEE35=q0013_0005, SCASEE36=q0014_0001, SCASEE37=q0014_0002, SCASEE38=q0014_0003, SCASEE39=q0014_0004, SCASEE40=q0014_0005, SCASEE41=q0015_0001, SCASEE42=q0015_0002, SCASEE43=q0015_0003, SCASEE44=q0015_0004, SCASEE45=q0015_0005, SCASEE46=q0016_0001, SCASEE47=q0016_0002, SCASEE48=q0016_0003, SCASEE49=q0016_0004, SCASEE50=q0016_0005, SCASEE51=q0017_0001, SCASEE52=q0017_0002, SCASEE53=q0017_0003, SCASEE54=q0017_0004, SCASEE55=q0017_0005, SCASEE56=q0018_0001, SCASEE57=q0018_0002, SCASEE58=q0018_0003, SCASEE59=q0018_0004, SCASEE60=q0018_0005, IASE1=q0019_0001, IASE2=q0019_0002, IASE3=q0019_0003, IASE4=q0019_0004, IASE5=q0019_0005, IASE6=q0019_0006, IASE7=q0019_0007, IASE8=q0019_0008, IASE9=q0019_0009, IASE10=q0020_0001, IASE11=q0020_0002, IASE12=q0020_0003, IASE13=q0020_0004, IASE14=q0020_0005, IASE15=q0020_0006, IASE16=q0020_0007, IASE17=q0020_0008, IASE18=q0020_0009, IASE19=q0021_0001, IASE20=q0021_0002, IASE21=q0021_0003, IASE22=q0021_0004, IASE23=q0021_0005, IASE24=q0021_0006, IASE25=q0021_0007, IASE26=q0021_0008, IASE27=q0021_0009, NGSE1=q0022_0001, NGSE2=q0022_0002, NGSE3=q0022_0003, NGSE4=q0022_0004, NGSE5=q0022_0005, NGSE6=q0022_0006, NGSE7=q0022_0007, NGSE8=q0022_0008, AGLII1=q0023_0001, AGLII2=q0023_0002, AGLII3=q0023_0003, AGLII4=q0023_0004, AGLII5=q0023_0005, AGLII6=q0023_0006, AGLII7=q0023_0007, AGLII8=q0024_0001, AGLII9=q0024_0002, AGLII10=q0024_0003, AGLII11=q0024_0004, AGLII12=q0024_0005, AGLII13=q0024_0006, AGLII14=q0024_0007, PWB1=q0025, PWB2=q0026, PWB3=q0027_0001, PWB4=q0027_0002, PWB5=q0027_0003, PWB6=q0027_0004, PWB7=q0028_0001, PWB8=q0028_0002, PWB9=q0028_0003, PWB10=q0029, HomeState=q0030_0001, HomeCntr=q0030_0002, Abroad1=q0031_0001, Abroad2=q0031_0002, Abroad3=q0031_0003, Abroad4=q0031_0004, Abroad5=q0031_0005, Gender=q0032, RaceEth=q0033, BrthYr=q0034, Educ=q0035, Prfssn=q0036, Part2=q0037, UniqueID=q0038 )
+
+#str(y2pr_named)
+```
+
+## Analyzing Missingness & Managing Missing Data
+
+The *available item analysis* (AIA, [@parent_handling_2013] guided our approach to analyzing and managing missing data. The AIA approach recommends analyzing missinngness for each each scale or subscale (whatever the level of analysis), separately. Further each analysis utilizes whatever data is *available*; thus the *n* differ from analysis to analysis.  
+
+### Determining missingness for SCASEE
+
+```{r SCASEE missingness}
+#Create a variable (n_miss) that counts the number missing
+Init_named_df$SCASEEn_miss <- Init_named_df %>%
+select(SCASEE1:SCASEE60) %>% 
+is.na %>% 
+rowSums
+
+#Create a proportion missing by dividing n_miss by the total number of variables (80)
+#Pipe to sort in order of descending frequency to get a sense of the missingness
+Init_named_df<- Init_named_df%>%
+mutate(SCASEEprop_miss = (SCASEEn_miss/60)*100)%>%
+  arrange(desc(SCASEEn_miss))
+
+#Looking at the data, we see that once we drop below 20% missing, individuals are missing between 1 and 7 items.
+
+SCASEEcfa_df1 <- filter(Init_named_df, SCASEEprop_miss <= 20)  #update df to have only those with at least 80% of complete data
+SCASEEcfa_df1 <- (select (SCASEEcfa_df1, SCASEE1:SCASEE60)) #further update to include only the SCASEE items
+
+#Writing an outfile to import and immediately start modeling if I don't want to repeat this whole thing
+write.table(SCASEEcfa_df1, file="SCASEEcfa_df1.csv", sep=",", col.names=TRUE, row.names=FALSE)
+```
+
+
+# START HERE if recreating the df is not needed
+```{r}
+SCASEEcfa_df1 <- read.csv ("SCASEEcfa_df1.csv", head = TRUE, sep = ",")
+library(psych)
+library(tidyverse)
+library(lavaan)
+library(semTable)
+library(semPlot)
+```
+
+In the initial sample, 263 individuals began the survey. For the analyses involving only the SCASEE items, we eliminated cases where more than 20% of the SCASEE items were missing [@parent_handling_2013]. This left a sample size of 227.
+
+
+```{r df and case/row missingness}
+mean(is.na(SCASEEcfa_df1))#what proportion of cells missing across entire dataset
+mean(complete.cases(SCASEEcfa_df1))#what proportion of cases (rows) are complete (nonmissing)
+```
+
+Within our sample of 227 participants, 88% (*n* = 199) had complete data; the number of SCASEE items missing range from 1 to 7.  Missing values represented less than 1% of the dataset.  
+
+```{r MCAR test}
+library(MissMech)
+
+#Note -- make sure that when you run this you do not have extraneous variables in the mix (e.g,. num_miss, prop_miss)
+#TestMCARNormality(SCASEEcfa_df1)
+#Wouldn't run by simply specifying the dataset. From Jamshidian et al 2014 I llearned you could include the del.lesscases command.  They recommend 3 (but this throws out all cases for the MCAR analysis with 3 or more missing -- have no idea why this is ok.)
+#i got this to run with del.lesscases=1
+
+TestMCARNormality(data=SCASEEcfa_df1, del.lesscases = 1)
+```
+
+
+## Item analysis to Refine Item Pool
+
+### First must calculate means for the subscales for the subscale item-total correlations
+
+```{r Subscale scores}
+#library(dplyr) #should already be on because it is part of tidyverse
+#Creating means
+#na.rm=TRUE means that it will create the mean even if some of the item-level data is missing and adjust the denominator to represet the number of scores included; can switch to FALSE and it will listwise delete that scale or subscale
+SCASEEcfa_df1 <- SCASEEcfa_df1 %>%
+  rowwise()%>%
+  mutate(AE = mean (c(SCASEE1, SCASEE2, SCASEE3, SCASEE4, SCASEE5, SCASEE6, SCASEE7, SCASEE8), na.rm=TRUE))%>%
+  mutate(BE = mean (c(SCASEE9, SCASEE10, SCASEE11, SCASEE12, SCASEE13, SCASEE14, SCASEE15, SCASEE16, SCASEE17, SCASEE18), na.rm=TRUE))%>%
+  mutate(CE = mean (c(SCASEE19, SCASEE20, SCASEE21, SCASEE22, SCASEE23, SCASEE24, SCASEE25, SCASEE26, SCASEE27, SCASEE28, SCASEE29), na.rm=TRUE))%>%
+  mutate(AI = mean (c(SCASEE30, SCASEE31, SCASEE32, SCASEE33, SCASEE34, SCASEE35, SCASEE36, SCASEE37, SCASEE38, SCASEE39), na.rm=TRUE))%>%
+  mutate(BI = mean (c(SCASEE40, SCASEE41, SCASEE42, SCASEE43, SCASEE44, SCASEE45, SCASEE46, SCASEE47, SCASEE48, SCASEE49), na.rm=TRUE))%>%
+  mutate(CI = mean (c(SCASEE50, SCASEE51, SCASEE52, SCASEE53, SCASEE54, SCASEE55, SCASEE56, SCASEE57, SCASEE58, SCASEE59, SCASEE60), na.rm=TRUE))
+  
+#Note there are some "NaN"s in the scored data, especially for CI.  These were at the end of the scale.  It shouldn't be a problem, but we'll make a mental note of this ad keep moving forward.
+```
+
+We'll need to use the alpha function in the *psych* package to get the corrected item-total correlations.  This requires creating keys.
+
+### And make keys for getting the (within-subscale) corrected item-total correlations
+```{r Keys}
+#STEP 1:make a list of the keys
+SCASEE60_keys_list <- list(AE = c("SCASEE1", "SCASEE2", "SCASEE3", "SCASEE4", "SCASEE5", "SCASEE6", "SCASEE7", "SCASEE8"), BE = c("SCASEE9", "SCASEE10", "SCASEE11", "SCASEE12", "SCASEE13", "SCASEE14", "SCASEE15", "SCASEE16", "SCASEE17", "SCASEE18"), CE = c("SCASEE19", "SCASEE20", "SCASEE21", "SCASEE22", "SCASEE23", "SCASEE24", "SCASEE25", "SCASEE26", "SCASEE27", "SCASEE28", "SCASEE29"), AI = c("SCASEE30", "SCASEE31", "SCASEE32", "SCASEE33", "SCASEE34", "SCASEE35", "SCASEE36", "SCASEE37", "SCASEE38", "SCASEE39"), BI = c("SCASEE40", "SCASEE41", "SCASEE42", "SCASEE43", "SCASEE44", "SCASEE45", "SCASEE46", "SCASEE47", "SCASEE48", "SCASEE49"), CI=c("SCASEE50", "SCASEE51", "SCASEE52", "SCASEE53", "SCASEE54", "SCASEE55", "SCASEE56", "SCASEE57", "SCASEE58", "SCASEE59", "SCASEE60"), AFF = c("SCASEE1", "SCASEE2", "SCASEE3", "SCASEE4", "SCASEE5", "SCASEE6", "SCASEE7", "SCASEE8", "SCASEE30", "SCASEE31", "SCASEE32", "SCASEE33", "SCASEE34", "SCASEE35", "SCASEE36", "SCASEE37", "SCASEE38", "SCASEE39"), BEH=c("SCASEE9", "SCASEE10", "SCASEE11", "SCASEE12", "SCASEE13", "SCASEE14", "SCASEE15", "SCASEE16", "SCASEE17", "SCASEE18"), COG=c("SCASEE19", "SCASEE20", "SCASEE21", "SCASEE22", "SCASEE23", "SCASEE24", "SCASEE25", "SCASEE26", "SCASEE27", "SCASEE28", "SCASEE29", "SCASEE50", "SCASEE51", "SCASEE52", "SCASEE53", "SCASEE54", "SCASEE55", "SCASEE56", "SCASEE57", "SCASEE58", "SCASEE59", "SCASEE60"), ENV=c("SCASEE1", "SCASEE2", "SCASEE3", "SCASEE4", "SCASEE5", "SCASEE6", "SCASEE7", "SCASEE8","SCASEE9", "SCASEE10", "SCASEE11", "SCASEE12", "SCASEE13", "SCASEE14", "SCASEE15", "SCASEE16", "SCASEE17", "SCASEE18","SCASEE19", "SCASEE20", "SCASEE21", "SCASEE22", "SCASEE23", "SCASEE24", "SCASEE25", "SCASEE26", "SCASEE27", "SCASEE28", "SCASEE29"), INT=c("SCASEE30", "SCASEE31", "SCASEE32", "SCASEE33", "SCASEE34", "SCASEE35", "SCASEE36", "SCASEE37", "SCASEE38", "SCASEE39", "SCASEE40", "SCASEE41", "SCASEE42", "SCASEE43", "SCASEE44", "SCASEE45", "SCASEE46", "SCASEE47", "SCASEE48", "SCASEE49", "SCASEE50", "SCASEE51", "SCASEE52", "SCASEE53", "SCASEE54", "SCASEE55", "SCASEE56", "SCASEE57", "SCASEE58", "SCASEE59", "SCASEE60"), SCASEE60=c("SCASEE1", "SCASEE2", "SCASEE3", "SCASEE4", "SCASEE5", "SCASEE6", "SCASEE7", "SCASEE8", "SCASEE9", "SCASEE10", "SCASEE11", "SCASEE12", "SCASEE13", "SCASEE14", "SCASEE15", "SCASEE16", "SCASEE17", "SCASEE18","SCASEE19", "SCASEE20", "SCASEE21", "SCASEE22", "SCASEE23", "SCASEE24", "SCASEE25", "SCASEE26", "SCASEE27", "SCASEE28", "SCASEE29","SCASEE30", "SCASEE31", "SCASEE32", "SCASEE33", "SCASEE34", "SCASEE35", "SCASEE36", "SCASEE37", "SCASEE38", "SCASEE39",  "SCASEE40", "SCASEE41", "SCASEE42", "SCASEE43", "SCASEE44", "SCASEE45", "SCASEE46", "SCASEE47", "SCASEE48", "SCASEE49", "SCASEE50", "SCASEE51", "SCASEE52", "SCASEE53", "SCASEE54", "SCASEE55", "SCASEE56", "SCASEE57", "SCASEE58", "SCASEE59", "SCASEE60"))
+
+#STEP 2
+#extract an object for each subscale and scale to source each key
+AEkey_source <- SCASEE60_keys_list$AE
+BEkey_source <- SCASEE60_keys_list$BE
+CEkey_source <- SCASEE60_keys_list$CE
+AIkey_source <- SCASEE60_keys_list$AI
+BIkey_source <- SCASEE60_keys_list$BI
+CIkey_source <- SCASEE60_keys_list$CI
+
+AFFkey_source <- SCASEE60_keys_list$AFF
+BEHkey_source <- SCASEE60_keys_list$BEH
+COGkey_source <- SCASEE60_keys_list$COG
+
+ENVkey_source <- SCASEE60_keys_list$ENV
+INTkey_source <- SCASEE60_keys_list$INT
+
+SCASEE60key_source <- SCASEE60_keys_list$SCASEE60
+
+library(psych)
+#STEP 3:  apply the selectFromKeys function to christen it as a key; use this one in commands like alpha
+AEkey <- selectFromKeys(AEkey_source)
+BEkey <- selectFromKeys(BEkey_source)
+CEkey <- selectFromKeys(CEkey_source)
+AIkey <- selectFromKeys(AIkey_source)
+BIkey <- selectFromKeys(BIkey_source)
+CIkey <- selectFromKeys(CIkey_source)
+
+AFFkey <- selectFromKeys(AFFkey_source)
+BEHkey <- selectFromKeys(BEHkey_source)
+COGkey <- selectFromKeys(COGkey_source)
+
+ENVkey <- selectFromKeys(ENVkey_source)
+INTkey <- selectFromKeys(INTkey_source)
+
+SCASEE60key <- selectFromKeys(SCASEE60key_source)
+```
+
+
+### Running the alpha function for the corrected item-total correlations
+
+Creating an object from the alpha output and using the *write.csv()* function, specifically identifying the element (item.stats) from the output lets me copy it from a .csv file and drop it directly into the table.  In the .csv I specify the number of decimal places (3) that I want, copy the column (or row) and then select the past option "overwrite text."  Took some practice, but slick.
+
+If the write.csv function doesn't work it's because the pander package needs to be open (I'm not 100% sure about this and haven't tested it yet).
+
+See demo of the *str()* function below on how to identify what page of output you want
+```{r Alpha SCASEE60}
+SCASEE60_ItTot <- psych::alpha(SCASEEcfa_df1[SCASEE60key])
+write.csv (SCASEE60_ItTot$item.stats, file="SCASEE60_ItTot.csv")
+```
+
+
+```{r}
+#To see structure
+str(SCASEE60_ItTot)
+```
+
+
+```{r Alpha AE}
+AE60_ItTot <- psych::alpha(SCASEEcfa_df1[AEkey])
+write.csv (AE60_ItTot$item.stats, file = "AE60_ItTot.csv") #writes the specified results (in this case the item stats, because I wanted the r.dop, to a csv file in the project folder)
+AE60_ItTot #prints results in the RMD file
+```
+
+```{r Alpha BE}
+BE60_ItTot <- psych::alpha(SCASEEcfa_df1[BEkey])
+write.csv (BE60_ItTot$item.stats, file = "BE60_ItTot.csv")
+BE60_ItTot
+```
+
+```{r Alpha CE}
+CE60_ItTot <- psych::alpha(SCASEEcfa_df1[CEkey])
+write.csv (CE60_ItTot$item.stats, file = "CE60_ItTot.csv")
+CE60_ItTot
+```
+
+```{r Alpha AI}
+AIalpha <- psych::alpha(SCASEEcfa_df1[AIkey])
+write.csv (AIalpha$item.stats, file="AIalpha.csv")
+AIalpha
+```
+
+```{r Alpha BI}
+BIalpha <- psych::alpha(SCASEEcfa_df1[BIkey])
+write.csv (BIalpha$item.stats, file="BIalpha.csv")
+BIalpha
+```
+
+
+```{r Alpha CI}
+CIalpha <- psych::alpha(SCASEEcfa_df1[CIkey])
+write.csv (CIalpha$item.stats, file="CIalpha.csv")
+CIalpha
+```
+
+## Correlations between Individual Items and Other Subscale Scores
+
+Helpful website to write a correlation matrix to a csv:  https://benwhalley.github.io/just-enough-r/correlations.html
+
+```{r Corr AE items w other subcales}
+library(pander)
+AEcorr <- psych::corr.test(SCASEEcfa_df1[c("SCASEE1", "SCASEE2", "SCASEE3", "SCASEE4", "SCASEE5", "SCASEE6", "SCASEE7", "SCASEE8", "BE", "CE", "AI", "BI", "CI")])
+AEcorr$r %>%
+  pander()
+write.csv (AEcorr$r, file="AEcorr.csv")
+```
+
+
+```{r Corr BE items w other subscales }
+BEcorr <- corr.test(SCASEEcfa_df1[c("SCASEE9", "SCASEE10", "SCASEE11", "SCASEE12", "SCASEE13", "SCASEE14", "SCASEE15", "SCASEE16", "SCASEE17", "SCASEE18", "AE", "CE", "AI", "BI", "CI")])
+write.csv (BEcorr$r, file="BEcorr.csv")
+BEcorr
+```
+
+```{r Corr CE items w other subscales}
+CEcorr <- corr.test(SCASEEcfa_df1[c("SCASEE19", "SCASEE20", "SCASEE21", "SCASEE22", "SCASEE23", "SCASEE24", "SCASEE25", "SCASEE26", "SCASEE27", "SCASEE28", "SCASEE29", "AE", "BE", "AI", "BI", "CI")])
+write.csv (CEcorr$r, file="CEcorr.csv")
+CEcorr
+```
+
+```{r Corr AI items w other subscales}
+AIcorr <- corr.test(SCASEEcfa_df1[c("SCASEE30", "SCASEE31", "SCASEE32", "SCASEE33", "SCASEE34", "SCASEE35", "SCASEE36", "SCASEE37", "SCASEE38", "SCASEE39", "AE", "BE", "CE", "BI", "CI")])
+write.csv (AIcorr$r, file="AIcorr.csv")
+AIcorr
+```
+
+```{r Corr BI items w other subscales}
+BIcorr <- corr.test(SCASEEcfa_df1[c("SCASEE40", "SCASEE41", "SCASEE42", "SCASEE43", "SCASEE44", "SCASEE45", "SCASEE46", "SCASEE47", "SCASEE48", "SCASEE49", "AE", "BE", "CE", "AI", "CI")])
+write.csv (BIcorr$r, file="BIcorr.csv")
+BIcorr
+```
+
+```{r Corr CI items w other subscales}
+CIcorr <- corr.test(SCASEEcfa_df1[c("SCASEE50", "SCASEE51", "SCASEE52", "SCASEE53", "SCASEE54", "SCASEE55", "SCASEE56", "SCASEE57", "SCASEE58", "SCASEE59", "SCASEE60", "AE", "BE", "CE", "AI", "BI")])
+write.csv (CIcorr$r, file="CIcorr.csv")
+CIcorr
+```
+
+# M0:  60 items, 6 correlated factors
+
+This is just a baseline from which more sophisticated models will emerge.
+
+```{r M0, 60 items, 6 corr fs}
+#M0 is a 1st order model with all 60 items.  Six factors representing the combinations of ABC and IE are allowed to correlate. 
+
+M0 <- ' 
+  #latent variable definitions
+  AE =~ SCASEE1 + SCASEE2 + SCASEE3 + SCASEE4 + SCASEE5 + SCASEE6 + SCASEE7 + SCASEE8
+  BE =~ SCASEE9 + SCASEE10 + SCASEE11 + SCASEE12 + SCASEE13 + SCASEE14 + SCASEE15 + SCASEE16 + SCASEE17 + SCASEE18
+  CE =~ SCASEE19 + SCASEE20 + SCASEE21 + SCASEE22 + SCASEE23 + SCASEE24 + SCASEE25 + SCASEE26 + SCASEE27 + SCASEE28 + SCASEE29
+  AI =~ SCASEE30 + SCASEE31 + SCASEE32 + SCASEE33 + SCASEE34 + SCASEE35 + SCASEE36 + SCASEE37 + SCASEE38 + SCASEE39
+  BI =~ SCASEE40 + SCASEE41 + SCASEE42 + SCASEE43 + SCASEE44 + SCASEE45 + SCASEE46 + SCASEE47 + SCASEE48 + SCASEE49
+  CI =~ SCASEE50 + SCASEE51 + SCASEE52 + SCASEE53 + SCASEE54 + SCASEE55 + SCASEE56 + SCASEE57 + SCASEE58 + SCASEE59 + SCASEE60
+   '
+```
+
+
+```{r M0 fit}
+library(lavaan)
+M0_fit <- cfa(M0, data = SCASEEcfa_df1, missing = 'fiml')
+summary(M0_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+fitMeasures(M0_fit)
+
+```
+ 
+ 
+```{r}
+zM0_fit <- update (M0_fit, std.lv = TRUE, std.ov = TRUE, meanstructure = TRUE)
+```
+
+ 
+```{r MO model plot}
+library(semPlot)
+semPaths(M0_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+          
+```
+
+
+```{r eval = FALSE}
+library(semTable)
+v1 <- c(SCASEE1 = "1. Enjoying the local food", SCASEE2 = "2. Accepting homesickness while being away from my home culture", SCASEE3 = "3. Accepting feelings of disorientation", SCASEE4 = "4. Accepting feelings of discomfort with the overseas experience", SCASEE5 = "5. Accepting feelings of isolation", SCASEE6 = "6. Feeling comfortable in my surroundings", SCASEE7 = "7. Valuing rules and regulations in the host country", SCASEE8 = "8. Feeling comfortable with the local environment", SCASEE9 = "9. Finding my way around", SCASEE10 = "10. Using the local transport system", SCASEE11 = "11. Obtaining community services I require", SCASEE12 = "12. Dressing according to social norms", SCASEE13 = "13. Using the local currency", SCASEE14 = "14. Buying health and hygiene products at a local store", SCASEE15 = "15. Ordering food at a local restaurant", SCASEE16 = "16. Replacing lost or stolen important documents", SCASEE17 = "17. Obtaining medical attention when needed", SCASEE18 = "18. Shopping for food at a local market or grocery", SCASEE19 = "19. Understanding how to calculate exchange rates", SCASEE20 = "20. Identifying officers in uniform", SCASEE21 = "21. Remembering routes to important locations", SCASEE22 = "22. Understanding the foreign country’s political system", SCASEE23 = "23. Interpreting symbols for services", SCASEE24 = "24. Acclimating to the population density", SCASEE25 = "25. Interpreting attention associated with being recognized as a foreigner", SCASEE26 = "26. Coping with waits to obtain services", SCASEE27 = "27. Processing challenges associated with local accommodations", SCASEE28 = "28. Recognizing feelings of culture shock", SCASEE29 = "29. Recognizing needs for self-care", SCASEE30 = "30. Feeling comfortable with the local people", SCASEE31 = "31. Valuing local etiquette", SCASEE32 = "32. Valuing the locals' worldview", SCASEE33 = "33. Accepting feelings of discomfort during uncomfortable intercultural interactions", SCASEE34 = "34. Valuing assistance offered by local people", SCASEE35 = "35. Valuing the locals’ impressions of me", SCASEE36 = "36. Experiencing emotions with local people", SCASEE37 = "37. Experiencing feelings of being misunderstood", SCASEE38 = "38. Accepting homesickness from being away from social support", SCASEE39 = "39. Respecting cultural norms that are inconsistent with my own", SCASEE40 = "40. Interacting with others at social events/gatherings /functions", SCASEE41 = "41. Introducing myself to local people", SCASEE42 = "42. Managing conflict with a host national", SCASEE43 = "43. Interacting with people in authority", SCASEE44 = "44. Interacting with people of different social status", SCASEE45 = "45. Expressing myself clearly to local people", SCASEE46 = "46. Socializing with the local people", SCASEE47 = "47. Discussing political views with local people", SCASEE48 = "48. Maintaining relationships with local people", SCASEE49 = "49. Initiating relationships with local people", SCASEE50 = "50. Understanding cultural differences", SCASEE51 = "51. Understanding how to interact with host nationals of the opposite sex", SCASEE52 = "52. Understanding local jokes and humor", SCASEE53 = "53. Seeing things from the locals' point of view", SCASEE54 = "54. Interpreting nonverbal cues", SCASEE55 = "55. Interpreting attention from locals", SCASEE56 = "56. Recognizing opportunities to initiate relationships with local people", SCASEE57 = "57. Knowing when to use humor with local people", SCASEE58 = "58. Recognize when to ask for help from local people", SCASEE59 = "59. Understanding the local's worldview", SCASEE60 = "60. Processing uncomfortable interactions with host nationals")
+
+M0tab <- semTable(list("Model 0" = M0_fit, "z Model 0" = zM0_fit), columns = c("eststars"),  columnLabels = c(eststars = "Estimate"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"), varLabels = v1, file = "M0tab", type = "csv", print.results = TRUE)
+
+```
+
+
+# M1 First Order Model with 30 items
+
+## 30 items
+
+## M1a_6f30 allowing all LVs to correlate
+
+```{r M1a_6f30, 30 items, 6 corr fs}
+#M1 is a 1st order model with 30 items.  Six factors representing the combinations of ABC and IE are allowed to correlate.
+M1a_6f30 <- ' 
+  #latent variable definitions
+  AE =~ SCASEE2 + SCASEE3 + SCASEE4 + SCASEE5  + SCASEE8
+  BE =~ SCASEE10 + SCASEE13 + SCASEE14 + SCASEE15 + SCASEE17 
+  CE =~ SCASEE20 + SCASEE21 + SCASEE22 + SCASEE23 + SCASEE28 
+  AI =~ SCASEE31 + SCASEE33 + SCASEE35 + SCASEE37 + SCASEE39
+  BI =~ SCASEE42 + SCASEE44 + SCASEE45 + SCASEE46 +  SCASEE49
+  CI =~ SCASEE54 + SCASEE55 + SCASEE57 + SCASEE59 + SCASEE60
+  
+   '
+```
+
+```{r M1a_6f30 fit}
+library(lavaan)
+M1a_6f30_fit <- cfa(M1a_6f30, data = SCASEEcfa_df1, missing = 'fiml')
+summary(M1a_6f30_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+M1a_6f30_mi <- modindices(M1a_6f30_fit, sort=TRUE)
+M1a_6f30_mi[M1a_6f30_mi$op == "~~",]
+```
+
+```{r M1a_6f30 model plot}
+#library(semPlot)
+semPaths(M1a_6f30_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         #what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         #whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+   
+```
+
+```{r zM1a_6f30}
+zM1a_6f30 <- update (M1a_6f30_fit, std.lv = TRUE, std.ov = TRUE, meanstructure = TRUE)
+```
+
+
+```{r}
+#library(semTable)
+w30 <- semTable(list("M1_6fb" = M1a_6f30_fit, "zM1_6fb" = zM1a_6f30), columns = c("eststars"),  columnLabels = c(eststars = "Estimate"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"), varLabels = v1, file = "M1w30tab", type = "csv", print.results = TRUE)
+```
+
+
+## M1b_6f30 restricting only the task and context LVs to correlate
+
+```{r M1b_6f30b, 30 items, 6 corr fs}
+#M1 is a 1st order model with 30 items.  Six factors representing the combinations of ABC and IE are allowed to correlate.
+M1b_6f30 <- ' 
+  #latent variable definitions
+  AE =~ SCASEE2 + SCASEE3 + SCASEE4 + SCASEE5  + SCASEE8
+  BE =~ SCASEE10 + SCASEE13 + SCASEE14 + SCASEE15 + SCASEE17 
+  CE =~ SCASEE20 + SCASEE21 + SCASEE22 + SCASEE23 + SCASEE28 
+  AI =~ SCASEE31 + SCASEE33 + SCASEE35 + SCASEE37 + SCASEE39
+  BI =~ SCASEE42 + SCASEE44 + SCASEE45 + SCASEE46 +  SCASEE49
+  CI =~ SCASEE54 + SCASEE55 + SCASEE57 + SCASEE59 + SCASEE60
+  
+  AE ~~AI
+  BE ~~ BI
+  CE ~~ CI
+  
+  AE ~~ BE
+  BE ~~ CE
+  CE ~~ AE
+  
+  AI ~~ BI
+  BI ~~ CI
+  CI ~~ AI
+   '
+```
+
+```{r M1b_6f30 fit}
+library(lavaan)
+M1b_6f30_fit <- cfa(M1b_6f30, data = SCASEEcfa_df1, missing = 'fiml', orthogonal = TRUE)
+summary(M1b_6f30_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+M1b_6f30_mi <- modindices(M1b_6f30_fit, sort=TRUE)
+M1b_6f30_mi[M1b_6f30_mi$op == "~~",]
+```
+
+```{r M1b_6f30 model plot}
+#library(semPlot)
+semPaths(M1b_6f30_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         #what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         #whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+   
+```
+
+```{r zM1b_6f30}
+zM1b_6f30 <- update (M1b_6f30_fit, std.lv = TRUE, std.ov = TRUE, meanstructure = TRUE)
+```
+
+
+```{r}
+#library(semTable)
+w30 <- semTable(list("M1_6fb" = M1b_6f30_fit, "zM1_6fb" = zM1b_6f30), columns = c("eststars"),  columnLabels = c(eststars = "Estimate"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"), varLabels = v1, file = "M1w30tab", type = "csv", print.results = TRUE)
+```
+
+### comparing the two models
+
+```{r}
+lavTestLRT(M1a_6f30_fit, M1b_6f30_fit)
+```
+
+## M1a_6f18 allowing all task and context LVs to covary
+```{r M1a_6f18, 18 items, 6 corr fs}
+#M1 is a 1st order model with 18 items.  Six factors representing the combinations of ABC and IE are allowed to correlate.
+M1a_6f18 <- ' 
+  #latent variable definitions
+  AE =~ SCASEE2 + SCASEE4 + SCASEE8
+  BE =~ SCASEE13 + SCASEE15 + SCASEE17 
+  CE =~ SCASEE20 + SCASEE21 + SCASEE23  
+  AI =~ SCASEE31 + SCASEE33 + SCASEE39
+  BI =~ SCASEE44 + SCASEE45 + SCASEE46 
+  CI =~ SCASEE55 + SCASEE59 + SCASEE60
+  
+   '
+```
+
+
+```{r M1a_6f18 fit}
+#library(lavaan)
+M1a_6f18_fit <- cfa(M1a_6f18, data = SCASEEcfa_df1, missing = 'fiml')
+summary(M1a_6f18_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+```
+
+```{r zM1a_6f18}
+zM1a_6f18 <- update (M1a_6f18_fit, std.lv = TRUE, std.ov = TRUE, meanstructure = TRUE)
+```
+
+
+```{r}
+#library(semTable)
+w18 <- semTable(list("M1a_6f18" = M1a_6f18_fit, "zM1a_6f18" = zM1a_6f18), columns = c("eststars"),  columnLabels = c(eststars = "Estimate"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"), varLabels = v1, file = "M1w18tab", type = "csv", print.results = TRUE)
+```
+
+```{r M1a_6f18 model plot}
+
+semPaths(M1a_6f18_fit, 
+         sizeMan = 2, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         #what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         #whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+          
+```
+
+
+## M1b_6f18 restricting covariances to related tasks and contexts
+
+```{r M1b_6f18, 18 items, 6 corr fs}
+#M1 is a 1st order model with 18 items.  Six factors representing the combinations of ABC and IE are allowed to correlate.
+M1b_6f18 <- ' 
+  #latent variable definitions
+  AE =~ SCASEE2 + SCASEE4 + SCASEE8
+  BE =~ SCASEE13 + SCASEE15 + SCASEE17 
+  CE =~ SCASEE20 + SCASEE21 + SCASEE23  
+  AI =~ SCASEE31 + SCASEE33 + SCASEE39
+  BI =~ SCASEE44 + SCASEE45 + SCASEE46 
+  CI =~ SCASEE55 + SCASEE59 + SCASEE60
+  
+  AE ~~AI
+  BE ~~ BI
+  CE ~~ CI
+  
+  AE ~~ BE
+  BE ~~ CE
+  CE ~~ AE
+  
+  AI ~~ BI
+  BI ~~ CI
+  CI ~~ AI
+   '
+```
+
+
+```{r M1b_6f18 fit}
+#library(lavaan)
+M1b_6f18_fit <- cfa(M1b_6f18, data = SCASEEcfa_df1, missing = 'fiml', orthogonal = TRUE)
+summary(M1b_6f18_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+```
+
+```{r zM1b_6f18}
+zM1b_6f18 <- update (M1b_6f18_fit, std.lv = TRUE, std.ov = TRUE, meanstructure = TRUE)
+```
+
+
+```{r}
+#library(semTable)
+w18 <- semTable(list("M1b_6f18" = M1b_6f18_fit, "zM1b_6f18" = zM1b_6f18), columns = c("eststars"),  columnLabels = c(eststars = "Estimate"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"), varLabels = v1, file = "M1w18tab", type = "csv", print.results = TRUE)
+```
+
+```{r M1b_6f18 model plot}
+
+semPaths(M1b_6f18_fit, 
+         sizeMan = 2, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         #what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         #whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+          
+```
+
+### comparing the two models
+```{r}
+lavTestLRT(M1a_6f18_fit, M1b_6f18_fit)
+```
+
+
+## M2_1f30
+
+```{r M2_1f30, 30 items, unidimensional}
+#M1 is a unidimensional model with 30 items.  
+M2_1f30 <- ' 
+  #latent variable definitions
+  SCASEE30 =~ SCASEE2 + SCASEE3 + SCASEE4 + SCASEE5  + SCASEE8 + SCASEE10 + SCASEE13 + SCASEE14 + SCASEE15 + SCASEE17 + SCASEE20 + SCASEE21 + SCASEE22 + SCASEE23 + SCASEE28 +  SCASEE31 + SCASEE33 + SCASEE35 + SCASEE37 + SCASEE39 +  SCASEE42 + SCASEE44 + SCASEE45 + SCASEE46 +  SCASEE49 + SCASEE54 + SCASEE55 + SCASEE57 + SCASEE59 + SCASEE60
+   '
+```
+
+```{r M2_1f30 fit}
+library(lavaan)
+M2_1f30_fit <- cfa(M2_1f30, data = SCASEEcfa_df1, missing = 'fiml')
+summary(M2_1f30_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+M2_1f30_mi <- modindices(M2_1f30_fit, sort=TRUE)
+M2_1f30_mi[M2_1f30_mi$op == "~~",]
+```
+
+```{r M2_1f30 model plot}
+
+semPaths(M2_1f30_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+          
+```
+
+```{r}
+w30 <- semTable(list("M1_6f" = M1_6f30_fit, "M2_1f" = M2_1f30_fit), columns = c("eststars"),  columnLabels = c(eststars = "Estimate"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"), varLabels = v1, file = "30items", type = "csv", print.results = TRUE)
+```
+
+## M2_1f18
+
+```{r M2_1f18, 18 items, unidimensional}
+#M2 is a unidimensional model with 18 items.  
+
+M2_1f18 <- ' 
+  #latent variable definitions
+  SCASEE =~ SCASEE2 + SCASEE4 + SCASEE8 + SCASEE13 + SCASEE15 + SCASEE17 + SCASEE20 + SCASEE21 + SCASEE23 +  SCASEE31 + SCASEE33 + SCASEE39 + SCASEE44 + SCASEE45 + SCASEE46 + SCASEE55 + SCASEE59 + SCASEE60
+   '
+```
+
+```{r M2_1f18 fit}
+library(lavaan)
+M2_1f18_fit <- cfa(M2_1f18, data = SCASEEcfa_df1, missing = 'fiml')
+summary(M2_1f18_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+```
+
+```{r M2_1f18 model plot}
+semPaths(M2_1f18_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         #what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         #whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+          
+```
+
+## M3_3f30
+```{r M3_3f30, 30 items, 3 correlated factors}
+#M3 is a single order model with three (A,B,C) correlated factors.  
+
+M3_3f30 <- ' 
+  #latent variable definitions
+  AFF =~ SCASEE2 + SCASEE3 + SCASEE4 + SCASEE5  + SCASEE8 + SCASEE31 + SCASEE33 + SCASEE35 + SCASEE37 + SCASEE39
+  BEH =~ SCASEE10 + SCASEE13 + SCASEE14 + SCASEE15 + SCASEE17 + SCASEE42 + SCASEE44 + SCASEE45 + SCASEE46 +  SCASEE49
+  COG =~ SCASEE20 + SCASEE21 + SCASEE22 + SCASEE23 + SCASEE28 + SCASEE54 + SCASEE55 + SCASEE57 + SCASEE59 + SCASEE60
+   '
+```
+
+
+```{r M3_3f30 fit}
+
+M3_3f30_fit <- cfa(M3_3f30, data = SCASEEcfa_df1, missing = 'fiml')
+summary(M3_3f30_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+M3_3f30_mi <- modindices(M3_3f30_fit, sort=TRUE)
+M3_3f30_mi[M3_3f30_mi$op == "~~",]
+```
+
+```{r M3_3f30 model plot}
+semPaths(M3_3f30_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+          
+```
+
+```{r M3_3f30 table}
+M3_30tab <- semTable(list("M3_3f30" = M3_3f30_fit), columns = c("eststars"),  columnLabels = c(eststars = "Estimate"), fits = c("chisq", "df", "pvalue", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper", "srmr", "aic", "bic"), varLabels = v1, file = "M3_30tab", type = "csv", print.results = TRUE)
+```
+
+
+```{r M3_3f18, 18 items, 3 corr fs}
+M3_3f18 <- ' 
+  #latent variable definitions
+  AFF =~ SCASEE2 + SCASEE4 + SCASEE8 + SCASEE31 + SCASEE33 + SCASEE39
+  BEH =~ SCASEE13 + SCASEE15 + SCASEE17 + SCASEE44 + SCASEE45 + SCASEE46
+  COG =~ SCASEE20 + SCASEE21 + SCASEE23 + SCASEE55 + SCASEE59 + SCASEE60 
+   '
+```
+
+
+```{r M3_3f18 fit}
+library(lavaan)
+M3_3f18_fit <- cfa(M3_3f18, data = SCASEEcfa_df1, missing = 'fiml')
+summary(M3_3f18_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+```
+
+```{r M3_3f18 model plot}
+semPaths(M3_3f18_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         #what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         #whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+```
+
+## M4_2f30
+
+```{r M4_2f30, 30 items, 2 corr fs}
+#M1 is a 1st order model with 30 items.  Two factors (Environmental and Interpersonal Contexts) are allowed to correlate.
+M4_2f30 <- ' 
+  #latent variable definitions
+  ENV =~ SCASEE2 + SCASEE3 + SCASEE4 + SCASEE5  + SCASEE8 + SCASEE10 + SCASEE13 + SCASEE14 + SCASEE15 + SCASEE17 + SCASEE20 + SCASEE21 + SCASEE22 + SCASEE23 + SCASEE28 
+  INT =~ SCASEE31 + SCASEE33 + SCASEE35 + SCASEE37 + SCASEE39 + SCASEE42 + SCASEE44 + SCASEE45 + SCASEE46 +  SCASEE49 + SCASEE54 + SCASEE55 + SCASEE57 + SCASEE59 + SCASEE60
+   '
+```
+
+```{r M4_2f30 fit}
+
+M4_2f30_fit <- cfa(M4_2f30, data = SCASEEcfa_df1, missing = 'fiml')
+summary(M4_2f30_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+M4_2f30_mi <- modindices(M4_2f30_fit, sort=TRUE)
+M4_2f30_mi[M4_2f30_mi$op == "~~",]
+```
+
+```{r M4_2f30 model plot}
+semPaths(M4_2f30_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+```
+
+
+## M4_2f18
+```{r M4_2f18, 18 items, 2 corr fs}
+#M1 is a 1st order model with 30 items.  Two factors (Environmental and Interpersonal Contexts) are allowed to correlate.
+M4_2f18 <- ' 
+  #latent variable definitions
+  ENV =~ SCASEE2 + SCASEE4 + SCASEE8 + SCASEE13 + SCASEE15 + SCASEE17 + SCASEE20 + SCASEE21 + SCASEE23  
+  INT =~ SCASEE31 + SCASEE33 + SCASEE39 + SCASEE44 + SCASEE45 + SCASEE46 + SCASEE55 + SCASEE59 + SCASEE60
+   '
+```
+
+```{r M4_2f18 fit}
+library(lavaan)
+M4_2f18_fit <- cfa(M4_2f18, data = SCASEEcfa_df1, missing = 'fiml')
+summary(M4_2f18_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+```
+
+
+```{r M4_2f18 model plot}
+semPaths(M4_2f18_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         #what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         #whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+```
+
+## M5_2nd3f30
+
+```{r M5_2nd3f30}
+#M5_2nd3f30 is a second order model with three (A,B,C) correlated factors, 30 items.  
+
+M5_2nd3f30 <- ' 
+  #latent variable definitions
+  AFF =~ SCASEE2 + SCASEE3 + SCASEE4 + SCASEE5  + SCASEE8 + SCASEE31 + SCASEE33 + SCASEE35 + SCASEE37 + SCASEE39
+  BEH =~ SCASEE10 + SCASEE13 + SCASEE14 + SCASEE15 + SCASEE17 + SCASEE42 + SCASEE44 + SCASEE45 + SCASEE46 +  SCASEE49
+  COG =~ SCASEE20 + SCASEE21 + SCASEE22 + SCASEE23 + SCASEE28 + SCASEE54 + SCASEE55 + SCASEE57 + SCASEE59 + SCASEE60
+  SCASEE =~ AFF + BEH + COG
+   '
+```
+
+
+```{r M5_2nd3f30 fit}
+
+M5_2nd3f30_fit <- cfa(M5_2nd3f30, data = SCASEEcfa_df1, missing = 'fiml')
+summary(M5_2nd3f30_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+M5_2nd3f30_mi <- modindices(M5_2nd3f30_fit, sort=TRUE)
+M5_2nd3f30_mi[M5_2nd3f30_mi$op == "~~",]
+```
+
+
+```{r M5_2nd3f30 model plot}
+semPaths(M5_2nd3f30_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+```
+
+
+# M5_2nd3f18
+
+```{r M5_2nd3f18}
+#M5_2nd3f18 is a second order model with three (A,B,C) correlated factors, 18 items.  
+
+M5_2nd3f18 <- ' 
+  #latent variable definitions
+  AFF =~ SCASEE2 + SCASEE4 + SCASEE8 + SCASEE31 + SCASEE33 + SCASEE39
+  BEH =~ SCASEE13 + SCASEE15 + SCASEE17 + SCASEE44 + SCASEE45 + SCASEE46
+  COG =~ SCASEE20 + SCASEE21 + SCASEE23 + SCASEE55 + SCASEE59 + SCASEE60 
+  SCASEE =~ AFF + BEH + COG
+   '
+```
+
+```{r M5_2nd3f18 fit}
+library(lavaan)
+M5_2nd3f18_fit <- cfa(M5_2nd3f18, data = SCASEEcfa_df1, missing = 'fiml')
+summary(M5_2nd3f18_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+```
+
+
+```{r M5_2nd3f18 model plot}
+semPaths(M5_2nd3f18_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         #what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         #whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+```
+
+
+#M6 M6_biABCg30
+
+```{r M6_biABCg30}
+#M6_biABCg30 is a bifactor model with three (A,B,C) correlated factors on one side and the SCASEE (g) on the other, 30 items.  
+
+#The model would not converge, I tried to remove the "missing = 'fiml'" statement, but it didn't help
+#--Increasing max.iter hasn't been helpful
+#--I also tried to change the estimators; most require complete data only and wouldn't work with the imputed data and I'm not sure I did it correctly
+#--Relatedly, I tried to relax the tolerances, but that didn't seem to help (still an option); but info here under "Optimization options":  https://rdrr.io/cran/lavaan/man/lavOptions.html 
+#---I have not yet tried changing the optimizer (still an option); more in the link above
+#-- most are saying to try to find starting values close to what I think the parameters (factor loadings) will be ; syntax example here:  http://lavaan.ugent.be/tutorial/syntax2.html  (under heading "Starting Values )
+
+#The first set of start values I am trying are for the ABC factors.  While I have some AMOS data with a final solution (since I won't always), I will first grab the parameters for the ABC factors from M3 and see if those help.
+#---it looks like you don't put a starting value on the first variable since it is the constant
+
+
+M6_biABCg30 <- ' 
+  #latent variable definitions
+  SCASEE =~ SCASEE2 + SCASEE3 + SCASEE4 + SCASEE5  + SCASEE8 + SCASEE31 + SCASEE33 + SCASEE35 + SCASEE37 + SCASEE39 + SCASEE10 + SCASEE13 + SCASEE14 + SCASEE15 + SCASEE17 + SCASEE42 + SCASEE44 + SCASEE45 + SCASEE46 +  SCASEE49 + SCASEE20 + SCASEE21 + SCASEE22 + SCASEE23 + SCASEE28 + SCASEE54 + SCASEE55 + SCASEE57 + SCASEE59 + SCASEE60
+  AFF =~ SCASEE2 + start(1.51)*SCASEE3 + start(1.35)*SCASEE4 + start(1.28)*SCASEE5  + start(1.70)*SCASEE8 + start(1.70)*SCASEE31 + start(2.13)*SCASEE33 + start(1.79)*SCASEE35 + start(2.17)*SCASEE37 + start(1.74)*SCASEE39
+  BEH =~ SCASEE10 + start(0.71)*SCASEE13 + start(0.90)*SCASEE14 + start(0.89)*SCASEE15 + start(0.97)*SCASEE17 + start(1.10)*SCASEE42 + start(0.98)*SCASEE44 + start(1.23)*SCASEE45 + start(1.00)*SCASEE46 +  start(1.05)*SCASEE49
+  COG =~ SCASEE20 + start(0.92)*SCASEE21 + start(1.23)*SCASEE22 + start(1.29)*SCASEE23 + start(0.81)*SCASEE28 + start(1.23)*SCASEE54 + start(1.26)*SCASEE55 + start(1.30)*SCASEE57 + start(1.27)*SCASEE59 + start(1.28)*SCASEE60
+  
+ #Note the additional syntax that ensures that factors will not correlate
+ #Alternatively I could omit these and add the statement "orthogonal = TRUE" to the cfa wrapper that runs the model (which I do, later)
+    SCASEE ~~ 0*AFF
+    SCASEE ~~ 0*BEH
+    SCASEE ~~ 0*COG
+    AFF ~~ 0*BEH
+    AFF ~~ 0*COG
+    BEH ~~ 0*COG
+   '
+```
+
+
+```{r M6_biABCg30b from AMOS}
+#The original anlayses were conducted in AMOS and the model ran.  Therefore, I ran the model in AMOS and grabbed the AMOS estimates (unstandardized) as starting values to see if they get conergence
+
+M6_biABCg30b <- ' 
+  #latent variable definitions
+  SCASEE =~ SCASEE2 + start(1.497)*SCASEE3 + start(1.385)*SCASEE4 + start(1.351)*SCASEE5  + start(2.345)*SCASEE8 + start(2.209)*SCASEE31 + start(2.773)*SCASEE33 + start(2.105)*SCASEE35 + start(2.753)*SCASEE37 + start(2.025)*SCASEE39 + start(2.897)*SCASEE10 + start(2.106)*SCASEE13 + start(2.504)*SCASEE14 + start(2.461)*SCASEE15 + start(2.745)*SCASEE17 + start(3.12)*SCASEE42 + start(2.784)*SCASEE44 + start(3.461)*SCASEE45 + start(2.756)*SCASEE46 +  start(2.836)*SCASEE49 + start(2.428)*SCASEE20 + start(2.284)*SCASEE21 + start(2.843)*SCASEE22 + start(3.098)*SCASEE23 + start(1.968)*SCASEE28 + start(2.456)*SCASEE54 + start(2.677)*SCASEE55 + start(2.797)*SCASEE57 +start(2.81)*SCASEE59 + start(2.919)*SCASEE60
+  AFF =~ SCASEE2 + start(1.334)*SCASEE3 + start(1.439)*SCASEE4 + start(1.356)*SCASEE5  + start(0.497)*SCASEE8 + start(-0.064)*SCASEE31 + start(0.056)*SCASEE33 + start(0.043)*SCASEE35 + start(0.177)*SCASEE37 + start(0.215)*SCASEE39
+  BEH =~ SCASEE10 + start(1.228)*SCASEE13 + start(1.996)*SCASEE14 + start(1.404)*SCASEE15 + start(0.885)*SCASEE17 + start(-0.086)*SCASEE42 + start(-0.646)*SCASEE44 + start(-0.21)*SCASEE45 + start(-0.542)*SCASEE46 +  start(-0.459)*SCASEE49
+  COG =~ SCASEE20 + start(1.321)*SCASEE21 + start(-1.17)*SCASEE22 + start(-0.808)*SCASEE23 + start(0.626)*SCASEE28 + start(-10.93)*SCASEE54 + start(-8.443)*SCASEE55 + start(-5.459)*SCASEE57 + start(-4.379)*SCASEE59 + start(-4.429)*SCASEE60
+  
+ #Note the additional syntax that ensures that factors will not correlate
+ #Alternatively I could omit these and add the statement "orthogonal = TRUE" to the cfa wrapper that runs the model (which I do, later)
+    SCASEE ~~ 0*AFF
+    SCASEE ~~ 0*BEH
+    SCASEE ~~ 0*COG
+    #AFF ~~ 0*BEH
+    #AFF ~~ 0*COG
+    #BEH ~~ 0*COG
+   '
+#Relative to the correlated factors model, the fit took a hit, so I deleted these and ran as correlated
+```
+
+
+```{r M6_biABCg30b fit}
+library(lavaan)
+M6_biABCg30b_fit <- cfa(M6_biABCg30b,  data = SCASEEcfa_df1, missing = 'fiml',  control=list(iter.max=2000, optim.method="BFGS", optim.force.converged=TRUE, optim.dx.tol = .04))
+summary(M6_biABCg30b_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+#Things I tried to get it to converge
+#--Using start values from the 3 correlated factors model
+#--Using start values from this exact model that worked in AMOS
+
+#M6_biABCg30b_mi <- modindices(M6_biABCg30b_fit, sort=TRUE)
+#M6_biABCg30b_mi[M6_biABCg30b_mi$op == "~~",]
+
+```
+
+
+```{r}
+#here we can see the start values and confirmed they are what I typed in
+inspect (M6_biABCg30b_fit, what="start")
+```
+
+
+```{r M6_biABCg30b model plot}
+semPaths(M6_biABCg30b_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+```
+
+## M6_biABCg18
+
+```{r M6_biABCg18}
+#M6_biABCg18 is a bifactor model with three (A,B,C) correlated factors on one side and the SCASEE (g) on the other, 18 items.  
+
+#This failed to converge. I am going to try to copy the model above with the original AMOS start values and delete the variables not used; hopefully that will result in a converging model.
+
+M6_biABCg18 <- ' 
+  #latent variable definitions
+  SCASEE =~ SCASEE2 + SCASEE4 + SCASEE8 + SCASEE13 + SCASEE15 + SCASEE17 + SCASEE20 + SCASEE21 + SCASEE23 +  SCASEE31 + SCASEE33 + SCASEE39 + SCASEE44 + SCASEE45 + SCASEE46 + SCASEE55 + SCASEE59 + SCASEE60
+   AFF =~ SCASEE2 + SCASEE4 + SCASEE8 + SCASEE31 + SCASEE33 + SCASEE39
+  BEH =~ SCASEE13 + SCASEE15 + SCASEE17 + SCASEE44 + SCASEE45 + SCASEE46
+  COG =~ SCASEE20 + SCASEE21 + SCASEE23 + SCASEE55 + SCASEE59 + SCASEE60 
+#Note the additional syntax that ensures that factors are not correlated in this bifactor model
+    SCASEE ~~ 0*AFF
+    SCASEE ~~ 0*BEH
+    SCASEE ~~ 0*COG
+    #AFF ~~ 0*BEH
+    #AFF ~~ 0*COG
+    #BEH ~~ 0*COG
+   '
+```
+
+
+```{r M6_biABCg18b model}
+#Insallah, to save time, I have copied the converging M6_biABCg30b and am deleting the variables not used in the 18 item model
+#And it did not work...will run AMOS model and try in version "c"
+
+M6_biABCg18b <- ' 
+  #latent variable definitions
+  SCASEE =~ SCASEE2 + start(1.385)*SCASEE4 + start(2.345)*SCASEE8 + start(2.209)*SCASEE31 + start(2.773)*SCASEE33 + start(2.025)*SCASEE39  + start(2.106)*SCASEE13  + start(2.461)*SCASEE15 + start(2.745)*SCASEE17 + start(2.784)*SCASEE44 + start(3.461)*SCASEE45 + start(2.756)*SCASEE46 +   start(2.428)*SCASEE20 + start(2.284)*SCASEE21  + start(3.098)*SCASEE23  + start(2.677)*SCASEE55 + start(2.81)*SCASEE59 + start(2.919)*SCASEE60
+  AFF =~ SCASEE2 + start(1.439)*SCASEE4 + start(0.497)*SCASEE8 + start(-0.064)*SCASEE31 + start(0.056)*SCASEE33 + start(0.215)*SCASEE39
+  BEH =~ SCASEE13 + start(1.404)*SCASEE15 + start(0.885)*SCASEE17 +  start(-0.646)*SCASEE44 + start(-0.21)*SCASEE45 + start(-0.542)*SCASEE46 
+  COG =~ SCASEE20 + start(1.321)*SCASEE21 + start(-0.808)*SCASEE23  + start(-8.443)*SCASEE55  + start(-4.379)*SCASEE59 + start(-4.429)*SCASEE60
+  
+ #Note the additional syntax that ensures that factors will not correlate
+ #Alternatively I could omit these and add the statement "orthogonal = TRUE" to the cfa wrapper that runs the model (which I do, later)
+    SCASEE ~~ 0*AFF
+    SCASEE ~~ 0*BEH
+    SCASEE ~~ 0*COG
+    AFF ~~ 0*BEH
+    AFF ~~ 0*COG
+    BEH ~~ 0*COG
+   '
+M6_biABCg18b
+```
+
+
+```{r M6_biABCg18c model}
+#Will try first by just putting in the ABC values, if they aren't sufficient, I will include the SCASEE values as well
+#Did not work so I ran whole model an dinput values but that still is not working.
+
+M6_biABCg18c <- ' 
+  #latent variable definitions
+  SCASEE =~ SCASEE2 + start(1.368)*SCASEE4 + start(2.572)*SCASEE8 + start(2.464)*SCASEE31 + start(2.929)*SCASEE33 + start(2.172)*SCASEE39  + start(2.378)*SCASEE13  + start(2.84)*SCASEE15 + start(3.069)*SCASEE17 + start(2.913)*SCASEE44 + start(3.86)*SCASEE45 + start(2.948)*SCASEE46 + start(2.825)*SCASEE20 + start(2.58)*SCASEE21  + start(3.585)*SCASEE23  + start(3.02)*SCASEE55 + start(3.179)*SCASEE59 + start(3.151)*SCASEE60
+  AFF =~ SCASEE2 + start(0.914)*SCASEE4 + start(0.304)*SCASEE8 + start(-0.031)*SCASEE31 + start(0.076)*SCASEE33 + start(0.243)*SCASEE39
+  BEH =~ SCASEE13 + start(0.984)*SCASEE15 + start(0.863)*SCASEE17 +  start(-1.204)*SCASEE44 + start(-0.786)*SCASEE45 + start(-0.921)*SCASEE46 
+  COG =~ SCASEE20 + start(0.556)*SCASEE21 + start(0.989)*SCASEE23  + start(-1.148)*SCASEE55  + start(-1.123)*SCASEE59 + start(-2.843)*SCASEE60
+  
+ #Note the additional syntax that ensures that factors will not correlate
+ #Alternatively I could omit these and add the statement "orthogonal = TRUE" to the cfa wrapper that runs the model (which I do, later)
+    #SCASEE ~~ 0*AFF
+    #SCASEE ~~ 0*BEH
+    #SCASEE ~~ 0*COG
+    AFF ~~ BEH
+    AFF ~~ COG
+    BEH ~~ COG
+   '
+
+```
+
+
+```{r M6_biABCg18c fit}
+library(lavaan)
+M6_biABCg18c_fit <- cfa(M6_biABCg18c,  data = SCASEEcfa_df1, missing = 'fiml', orthogonal=TRUE, control=list(iter.max=2000))
+summary(M6_biABCg18c_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+```
+
+
+```{r M6_biABCg18 model plot}
+semPaths(M6_biABCg18c_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         #what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         #whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+```
+
+## M7_biEIg30
+
+```{r M7_biEIg30}
+#M7_biEIg30 is a bifactor model with two (E,I) correlated factors on one side and the SCASEE (g) on the other, 30 items.  
+
+#Happily, this one ran without alterations!
+
+M7_biEIg30 <- ' 
+  #latent variable definitions
+  SCASEE =~ SCASEE2 + SCASEE3 + SCASEE4 + SCASEE5  + SCASEE8 + SCASEE31 + SCASEE33 + SCASEE35 + SCASEE37 + SCASEE39 + SCASEE10 + SCASEE13 + SCASEE14 + SCASEE15 + SCASEE17 + SCASEE42 + SCASEE44 + SCASEE45 + SCASEE46 +  SCASEE49 + SCASEE20 + SCASEE21 + SCASEE22 + SCASEE23 + SCASEE28 + SCASEE54 + SCASEE55 + SCASEE57 + SCASEE59 + SCASEE60
+  ENV =~ SCASEE2 + SCASEE3 + SCASEE4 + SCASEE5  + SCASEE8 + SCASEE10 + SCASEE13 + SCASEE14 + SCASEE15 + SCASEE17 + SCASEE20 + SCASEE21 + SCASEE22 + SCASEE23 + SCASEE28 
+  INT =~ SCASEE31 + SCASEE33 + SCASEE35 + SCASEE37 + SCASEE39 + SCASEE42 + SCASEE44 + SCASEE45 + SCASEE46 +  SCASEE49 + SCASEE54 + SCASEE55 + SCASEE57 + SCASEE59 + SCASEE60
+
+#Note this additional syntax that ensures that factors are not correlated in this bifactor model
+    SCASEE ~~ 0*ENV
+    SCASEE ~~ 0*INT
+    #ENV ~~ 0*INT
+   '
+```
+
+
+```{r M7_biEIg30 fit}
+library(lavaan)
+M7_biEIg30_fit <- cfa(M7_biEIg30,  data = SCASEEcfa_df1, missing = 'fiml',  control=list(iter.max=2000))
+summary(M7_biEIg30_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+M7_biEIg30_mi <- modindices(M7_biEIg30_fit, sort=TRUE)
+M7_biEIg30_mi[M7_biEIg30_mi$op == "~~",]
+
+```
+
+
+```{r M7_biEIg30 model plot}
+semPaths(M7_biEIg30_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+```
+
+## M7_biEIg18
+```{r M7_biEIg18}
+#M7_biEIg18 is a bifactor model with two (E,I) correlated factors on one side and the SCASEE (g) on the other, 18 items. 
+
+#Failed to converge so I used the AMOS results as starting values.  
+#--Like before, I tried it with ust the ENV and INT vars first and not the SCASEE factor, but there was a negative variance (a Heywood case) so I added the SCASEE ones
+
+
+M7_biEIg18 <- ' 
+  #latent variable definitions
+  SCASEE =~ SCASEE2 + start(1.435)*SCASEE4 + start(2.774)*SCASEE8 + start(2.799)*SCASEE13 + start(3.326)*SCASEE15 + start(3.503)*SCASEE17 + start(3.273)*SCASEE20 + start(2.903)*SCASEE21 + start(4.111)*SCASEE23 +  start(2.404)*SCASEE31 + start(2.687)*SCASEE33 + start(1.834)*SCASEE39 + start(2.523)*SCASEE44 + start(3.975)*SCASEE45 + start(2.867)*SCASEE46 + start(2.857)*SCASEE55 + start(3.003)*SCASEE59 + start(2.669)*SCASEE60
+  ENV =~ SCASEE2 + start(0.558)*SCASEE4 + start(0.213)*SCASEE8 + start(0.202)*SCASEE13 + start(0.072)*SCASEE15 + start(-0.02)*SCASEE17 + start(0.095)*SCASEE20 + start(0.031)*SCASEE21 + start(0.016)*SCASEE23  
+  INT =~ SCASEE31 + start(1.573)*SCASEE33 + start(1.527)*SCASEE39 + start(1.894)*SCASEE44 + start(1.03)*SCASEE45 + start(1.15)*SCASEE46 + start(1.538)*SCASEE55 + start(1.631)*SCASEE59 + start(2.274)*SCASEE60
+  
+  #Thisadditional syntax that ensures that factors are not correlated in this bifactor model
+    SCASEE ~~ 0*ENV
+    SCASEE ~~ 0*INT
+    #ENV ~~ 0*INT
+    
+    #Had a heywood case on SCASEE2, am taking the negative variance and multiplying it back to the variable; source https://s3.amazonaws.com/assets.datacamp.com/production/course_6419/slides/chapter3.pdf
+    SCASEE2 ~~0.139*SCASEE2
+   '
+```
+
+
+```{r M7_biEIg18 fit}
+library(lavaan)
+M7_biEIg18_fit <- cfa(M7_biEIg18,  data = SCASEEcfa_df1, missing = 'fiml',  control=list(iter.max=2000,optim.method="BFGS", optim.force.converged=TRUE, optim.dx.tol = .04))
+summary(M7_biEIg18_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+
+```
+
+Ideas for fixing convergence problems:
+
+* set start values for parameters based on what I expect them to be (use the AMOS output)
+* relax tolerances
+* increasing max.iter hasn't been helpful
+
+
+
+```{r M7_biEIg18 model plot}
+semPaths(M7_biEIg18_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         #what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         #whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+```
+
+
+```{r M8_MTMM30}
+#M8_MTMM30 is multitrait/method model with ABC on one side and EI on the other.  
+
+#Original model failed to converge.  
+#--1st revision will be to grab the AMOS output for the ABC factors, only; if this fails then will also include the EI factors.
+
+
+M8_MTMM30 <- ' 
+  #latent variable definitions
+  AFF =~ SCASEE2 + start(1.371)*SCASEE3 + start(1.47)*SCASEE4 + start(1.436)*SCASEE5  + start(0.197)*SCASEE8 + start(-0.029)*SCASEE31 + start(0.144)*SCASEE33 + start(0.167)*SCASEE35 + start(0.287)*SCASEE37 + start(0.324)*SCASEE39
+  BEH =~ SCASEE10 + start(7.069)*SCASEE13 + start(3.531)*SCASEE14 + start(21.665)*SCASEE15 + start(18.131)*SCASEE17 + start(27.784)*SCASEE42 + start(33.678)*SCASEE44 + start(61.305)*SCASEE45 + start(93.272)*SCASEE46 +  start(83.394)*SCASEE49
+  COG =~ SCASEE20 + start(0.525)*SCASEE21 + start(2.151)*SCASEE22 + start(2.255)*SCASEE23 + start(-0.591)*SCASEE28 + start(3.977)*SCASEE54 + start(3.515)*SCASEE55 + start(3.086)*SCASEE57 + start(1.977)*SCASEE59 + start(1.389)*SCASEE60
+  
+  ENV =~ SCASEE2 + start(1.355)*SCASEE3 + start(1.255)*SCASEE4 + start(1.069)*SCASEE5  + start(1.933)*SCASEE8 + start(3.009)*SCASEE10 + start(2.304)*SCASEE13 + start(2.704)*SCASEE14 + start(2.415)*SCASEE15 + start(2.391)*SCASEE17 + start(2.196)*SCASEE20 + start(2.175)*SCASEE21 + start(2.331)*SCASEE22 + start(2.697)*SCASEE23 + start(1.653)*SCASEE28 
+  INT =~ SCASEE31 + start(1.293)*SCASEE33 + start(1.049)*SCASEE35 + start(1.286)*SCASEE37 + start(0.961)*SCASEE39 + start(1.313)*SCASEE42 + start(1.203)*SCASEE44 + start(1.264)*SCASEE45 + start(0.98)*SCASEE46 +  start(1.042)*SCASEE49 + start(1.036)*SCASEE54 + start(1.095)*SCASEE55 + start(1.058)*SCASEE57 + start(1.197)*SCASEE59 + start(1.341)*SCASEE60
+
+#Note the additional syntax that ensures that factors are not correlated in this bifactor model
+#Removing these and allowing the factors to covary kicks up the fit indices meaningfully, but holy heck is that a lot of saturation.
+    #AFF ~~ 0*BEH
+    #AFF ~~ 0*COG
+    AFF ~~ 0*ENV
+    AFF ~~ 0*INT
+    
+    #BEH ~~ 0*COG
+    BEH ~~ 0*ENV
+    BEH ~~ 0*INT
+    
+    COG ~~ 0*ENV
+    COG ~~ 0*INT
+    
+    #ENV ~~ 0*INT
+    
+   '
+```
+
+
+```{r M8_MTMM30 fit}
+#lots of struggles to converge, am playing around with optimization options on this webpage:  https://rdrr.io/cran/lavaan/man/lavOptions.html 
+
+library(lavaan)
+M8_MTMM30_fit <- cfa(M8_MTMM30,  data = SCASEEcfa_df1, missing = 'fiml', control=list(iter.max=2000,optim.method="BFGS", optim.force.converged=TRUE, optim.dx.tol = .04))
+summary(M8_MTMM30_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+#canot compute mis
+#M8_MTMM30_mi <- modindices(M8_MTMM30_fit, sort=TRUE)
+#M8_MTMM30_mi[M8_MTMM30_mi$op == "~~",]
+
+```
+
+Ideas for fixing convergence problems:
+
+* set start values for parameters based on what I expect them to be (use the AMOS output)
+* relax tolerances
+* increasing max.iter hasn't been helpful
+
+
+
+```{r M8_MTMM30 model plot}
+semPaths(M8_MTMM30_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+```
+
+## M8_MTMM18
+
+```{r M8_MTMM18}
+#M8_MTMM18 is a bifactor model with two (E,I) correlated factors on one side and the SCASEE (g) on the other, 18 items.  
+
+#Note the additional syntax that ensures that factors aren't correlated in this bifactor model
+
+M8_MTMM18 <- ' 
+  #latent variable definitions
+  AFF =~ SCASEE2 + start(1.09)*SCASEE4 + start(0.335)*SCASEE8 + start(0.06)*SCASEE31 + start(0.197)*SCASEE33 + start(0.413)*SCASEE39
+  BEH =~ SCASEE13 + start(1.34)*SCASEE15 + start(0.511)*SCASEE17 + start(2.882)*SCASEE44 + start(5.091)*SCASEE45 + start(11.636)*SCASEE46
+  COG =~ SCASEE20 + start(1226.112)*SCASEE21 + start(-1362.64)*SCASEE23 + start(-8914.856)*SCASEE55 + start(-717.685)*SCASEE59 + start(-1577.77)*SCASEE60 
+  ENV =~ SCASEE2 + start(1.209)*SCASEE4 + start(2.03)*SCASEE8 + start(2.388)*SCASEE13 + start(2.64)*SCASEE15 + start(2.699)*SCASEE17 + start(2.66)*SCASEE20 + start(2.389)*SCASEE21 + start(3.082)*SCASEE23  
+  INT =~ SCASEE31 + start(1.237)*SCASEE33 + start(0.967)*SCASEE39 + start(1.212)*SCASEE44 + start(1.361)*SCASEE45 + start(1.03)*SCASEE46 + start(1.189)*SCASEE55 + start(1.327)*SCASEE59 + start(1.369)*SCASEE60
+  
+   #AFF ~~ 0*BEH
+    #AFF ~~ 0*COG
+    AFF ~~ 0*ENV
+    AFF ~~ 0*INT
+    
+    #BEH ~~ 0*COG
+    BEH ~~ 0*ENV
+    BEH ~~ 0*INT
+    
+    COG ~~ 0*ENV
+    COG ~~ 0*INT
+    
+    #ENV ~~ 0*INT
+  
+  #Had a heywood case on SCASEE55, am taking the negative variance and multiplying it back to the variable; source https://s3.amazonaws.com/assets.datacamp.com/production/course_6419/slides/chapter3.pdf
+    SCASEE55 ~~0.107*SCASEE55
+    
+   '
+```
+
+
+```{r M8_MTMM18 fit}
+
+M8_MTMM18_fit <- cfa(M8_MTMM18,  data = SCASEEcfa_df1,control=list(iter.max=2000, optim.method="BFGS", optim.force.converged=TRUE, optim.dx.tol = .04))
+summary(M8_MTMM18_fit, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+
+#ran when I deleted:  missing = 'fiml'
+#Note, this failed to converge until I took the "missing = 'fiml'" command out of the cfa command.
+```
+
+Ideas for fixing convergence problems:
+
+* set start values for parameters based on what I expect them to be (use the AMOS output)
+* relax tolerances
+* increasing max.iter hasn't been helpful
+
+
+
+```{r M8_MTMM18 model plot}
+semPaths(M8_MTMM18_fit, 
+         sizeMan = 1, #size of squares/observed/"manifest" variables
+         sizeLat = 8, #size of circles/latent variables
+         style = "lisrel", # the classic style of the Lisrel SEM program
+         layout = "tree", rotation = 2, #together, puts predictors on left, IVs on right
+         intercepts = FALSE, #gets rid of those annoying triangles (intercepts) in the path diagram
+         residuals = FALSE,#excludes residuals (and variances) from the path diagram
+         #what = "est", #"est" plots the estimates, but keeps it greyscale with no fading
+         #whatLabels = "stand", #"stand" changes to standardized values
+         edge.color = "black", #overwrites the green/black coloring
+         curvePivot = FALSE, #if TRUE, it replaces a semicircular covariance with ones that have corners
+         fade = FALSE, #if TRUE, there lines are faded such that weaker lines correspond with lower values
+         nCharNodes = 0, #specifies how many characters to abbreviate variable lables; default is 3.  If 0, uses your entire variable label and adjusts fontsize.
+         edge.label.cex = .65,#font size of parameter values
+         equalizeManifests = FALSE) #doesn't require the manifest variables to be the same distance from the LVs; default is TRUE
+```

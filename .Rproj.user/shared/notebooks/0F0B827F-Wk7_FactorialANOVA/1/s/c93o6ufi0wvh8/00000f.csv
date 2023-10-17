@@ -1,0 +1,2 @@
+"0","TwoWay_df <-(dplyr::select (MADdf, myPropFM_1, PercentRepublican, Group))"
+"2","Adding missing grouping variables: `caseID`"

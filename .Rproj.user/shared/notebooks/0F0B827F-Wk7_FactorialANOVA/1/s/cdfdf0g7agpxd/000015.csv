@@ -1,0 +1,5 @@
+"0","library(ggplot2)"
+"0","box <- ggpubr::ggboxplot(TwoWayDF, x = ""Party"", y = ""OwnWearing"", add = ""jitter"","
+"0","    color = ""Condition"", title = ""Figure 1. Evaluations of Wearing Facemasks as a Result of Information Condition and Presidential Voting"") #"
+"0","#p <- p+scale_color_manual(values=c(""#000099"", ""#5353FF"", ""#FF0000""))"
+"0","box"

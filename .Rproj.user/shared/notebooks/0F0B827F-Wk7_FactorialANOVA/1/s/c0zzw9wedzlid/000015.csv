@@ -1,0 +1,2 @@
+"0",""
+"0","psych::describeBy(OwnWearing ~ Party + Condition, data = TwoWayDF, mat=TRUE, digits = 2)"
