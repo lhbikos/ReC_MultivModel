@@ -1,0 +1,3 @@
+"0","#Code to plot the theoretical model (in case you don't want to print the results on the graph):"
+"0","p_msmt_diag <- semPlot::semPaths(msmt_fit)"
+"0",""

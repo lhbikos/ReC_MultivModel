@@ -35,7 +35,7 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 * Enders, C. K. (2010). Applied missing data analysis (2010-13190-000). Guilford Press.
   - Enders' text continues to be the comprehensive "go-to" source for examining and managing missing data.
 
-* Kline, R. B. (2015). Data preparation and psychometrics review. In Principles and Practice of Structural Equation Modeling, Fourth Edition. Guilford Publications. http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663
+* Kline, R. B. (2016). Data preparation and psychometrics review. In Principles and Practice of Structural Equation Modeling, Fourth Edition. Guilford Publications. http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4000663
   - Kline's chapter is my "go-to" for making decisions about preparing data for analysis.
   
 * Parent, M. C. (2013). Handling item-level missing data: Simpler is just as good. The Counseling Psychologist, 41(4), 568–600. https://doi.org/10.1177/0011000012445176

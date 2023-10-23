@@ -1,0 +1,8 @@
+"0","ReC1_theo <-semptools::set_sem_layout(ReC1_theo,"
+"0","                                indicator_order = m1_indicator_order,"
+"0","                                indicator_factor = m1_indicator_factor,"
+"0","                                factor_layout = m1_msmt,"
+"0","                                factor_point_to = m1_point_to,"
+"0","                                indicator_push = m1_indicator_push,"
+"0","                                indicator_spread = m1_indicator_spread)"
+"0","plot(ReC1_theo)"

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.8)  16 OCT 2023 21:39
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.8)  23 OCT 2023 07:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -872,11 +872,13 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 7.66417pt on input line 2.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.47441pt on input line 2.
-[3] [4] [5] [6] [7] [8] [9] [10] [11])
+[3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
 \tf@toc=\write5
 \openout5 = `ReC_MultMod.toc'.
 
-[12]
+[13] [14
+
+]
 File: images/ReC_multivariate_bkcvr.png Graphic file (type bmp)
 <images/ReC_multivariate_bkcvr.png>
 
@@ -887,53 +889,47 @@ Underfull \hbox (badness 10000) in paragraph at lines 158--159
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[13
-
-]
+[15]
 Overfull \vbox (155.12541pt too high) has occurred while \output is active []
 
-[14] [15] [16
+[16] [17] [18
 
-] [17] [18]
+] [19] [20] [21
 
-Package natbib Warning: Citation `green_using_2014' on page 19 undefined on input line 216.
+] [22] [23
 
-[19
-
-] [20] [21
-
-] [22
+] [24
 
 ]
 Chapter 1.
-[23]
+[25]
 File: images/Ch02/scrubscore_wrkflow.jpg Graphic file (type bmp)
 <images/Ch02/scrubscore_wrkflow.jpg>
-[24] [25] [26] [27]
+[26] [27] [28] [29]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 504.
-[28] [29] [30] [31]
+[30] [31] [32] [33]
 File: images/Ch02/wrkflow_prelim.jpg Graphic file (type bmp)
 <images/Ch02/wrkflow_prelim.jpg>
-[32] [33] [34]
+[34] [35] [36]
 Overfull \hbox (110.8686pt too wide) in paragraph at lines 778--778
 []\TU/lmtt/m/n/10.95 i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
  []
 
-[35] [36] [37]
+[37] [38] [39]
 File: images/film-strip-1.jpg Graphic file (type bmp)
 <images/film-strip-1.jpg>
-[38] [39] [40]
+[40] [41] [42]
 Chapter 2.
-[41
+[43
 
-] [42]
+] [44]
 File: images/Ch02/wrkflow_prelim.jpg Graphic file (type bmp)
 <images/Ch02/wrkflow_prelim.jpg>
-[43]
+[45]
 File: images/Ch03/BlStuMed.jpg Graphic file (type bmp)
 <images/Ch03/BlStuMed.jpg>
-[44] [45] [46] [47] [48]
+[46] [47] [48] [49] [50]
 Overfull \hbox (346.5673pt too wide) in paragraph at lines 1428--1428
 []\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "1 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
  []
@@ -988,7 +984,7 @@ Overfull \hbox (478.78853pt too wide) in paragraph at lines 1428--1428
 []\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to "| __truncated__[] 
  []
 
-[49]
+[51]
 Overfull \hbox (467.29103pt too wide) in paragraph at lines 1428--1428
 []\TU/lmtt/m/n/10.95 ##   ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - Black"[] 
  []
@@ -1076,12 +1072,12 @@ Overfull \hbox (30.38612pt too wide) in paragraph at lines 1428--1428
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[50]
+[52]
 Overfull \hbox (329.32106pt too wide) in paragraph at lines 1486--1486
 []\TU/lmtt/m/n/10.95 ##  - attr(*, "label")= Named chr "1 - From your perspective as a student, which of the following best describes the [Field-2] instructor."[] 
  []
 
-[51]
+[53]
 Overfull \hbox (7.39113pt too wide) in paragraph at lines 1538--1538
 []\TU/lmtt/m/n/10.95 ## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --[] 
  []
@@ -1111,7 +1107,7 @@ Overfull \hbox (1.64238pt too wide) in paragraph at lines 1584--1584
 []\TU/lmtt/m/n/10.95 ## $ iRace2    <dbl> 1, NA, 1, 1, NA, NA, 3, NA, NA, 0, NA, NA, 3, NA, 3, 3, NA, ~[] 
  []
 
-[52]
+[54]
 Overfull \hbox (1.64238pt too wide) in paragraph at lines 1584--1584
 []\TU/lmtt/m/n/10.95 ## $ iRace3    <dbl> 3, NA, NA, 3, NA, NA, NA, NA, NA, 3, NA, NA, NA, NA, 3, 1, N~[] 
  []
@@ -1271,37 +1267,37 @@ Overfull \hbox (1.64238pt too wide) in paragraph at lines 1584--1584
 []\TU/lmtt/m/n/10.95 ## $ tRace10   <fct> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~[] 
  []
 
-[53]
+[55]
 File: images/Ch02/wrkflow_item_lvl.jpg Graphic file (type bmp)
 <images/Ch02/wrkflow_item_lvl.jpg>
-[54] [55] [56] [57] [58]
+[56] [57] [58] [59] [60]
 File: images/Ch02/wrkflow_scale_lvl.jpg Graphic file (type bmp)
 <images/Ch02/wrkflow_scale_lvl.jpg>
-[59] [60] [61]
+[61] [62] [63]
 File: 02-Scoring_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type pdf)
 <use 02-Scoring_files/figure-latex/unnamed-chunk-26-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[62]
+[64]
 Underfull \vbox (badness 1163) has occurred while \output is active []
 
-[63]
+[65]
 File: images/Ch02/wrkflow_AIAready.jpg Graphic file (type bmp)
 <images/Ch02/wrkflow_AIAready.jpg>
-[64] [65] [66] [67] [68
+[66] [67] [68] [69] [70
 
 ]
 Chapter 3.
-[69] [70]
+[71] [72]
 File: images/Ch04/wrkflow_dx.jpg Graphic file (type bmp)
 <images/Ch04/wrkflow_dx.jpg>
-[71]
+[73]
 File: images/Ch04/BlStuMed.jpg Graphic file (type bmp)
 <images/Ch04/BlStuMed.jpg>
 File: images/Ch04/BlStuRegression.jpg Graphic file (type bmp)
 <images/Ch04/BlStuRegression.jpg>
-[72] [73] [74] [75] [76]
+[74] [75] [76] [77] [78]
 Overfull \hbox (450.04478pt too wide) in paragraph at lines 2675--2675
 []  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Regarding race, what proportion of students were from each broad classification.  Your responses should add to 100%. - Black"[] 
  []
@@ -1311,7 +1307,7 @@ Overfull \hbox (461.54228pt too wide) in paragraph at lines 2675--2675
 []  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__[] 
  []
 
-[77]
+[79]
 Overfull \hbox (461.54228pt too wide) in paragraph at lines 2675--2675
 []  \TU/lmtt/m/n/10.95 ..- attr(*, "label")= Named chr "Please indicate the degree to which you agree with the following questions about the course. Please skip the it"| __truncated__[] 
  []
@@ -1379,7 +1375,7 @@ Overfull \hbox (13.13988pt too wide) in paragraph at lines 2675--2675
 
 Underfull \vbox (badness 1097) has occurred while \output is active []
 
-[78] [79]
+[80] [81]
 Underfull \hbox (badness 10000) in paragraph at lines 2791--2793
 
  []
@@ -1389,24 +1385,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 2793--2795
 
  []
 
-[80]
+[82]
 File: 03-DataDx_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf)
 <use 03-DataDx_files/figure-latex/unnamed-chunk-11-1.pdf>
-[81]
+[83]
 File: 03-DataDx_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
 <use 03-DataDx_files/figure-latex/unnamed-chunk-12-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[82] [83]
+[84] [85]
 Overfull \hbox (110.8686pt too wide) in paragraph at lines 2901--2901
 []\TU/lmtt/m/n/10.95 i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
  []
 
-[84] [85]
+[86] [87]
 File: images/Ch04/BlStuRegression.jpg Graphic file (type bmp)
 <images/Ch04/BlStuRegression.jpg>
-[86]
+[88]
 Underfull \hbox (badness 2213) in paragraph at lines 3036--3037
 \TU/lmr/m/n/10.95 of campus climate for Black students indicated that neither contri-
  []
@@ -1421,7 +1417,7 @@ Underfull \hbox (badness 1077) in paragraph at lines 3036--3037
 [][][][][]$\TU/lmr/m/n/10.95 ), the proportion of BIPOC instructional staff ($[] [] [][][][][][] [] []
  []
 
-[87] [88]
+[89] [90]
 Overfull \hbox (133.8636pt too wide) in paragraph at lines 3114--3114
 []\TU/lmtt/m/n/10.95 Note. A significant b-weight indicates the beta-weight and semi-partial correlation are also significant.[] 
  []
@@ -1444,30 +1440,30 @@ Overfull \hbox (36.13487pt too wide) in paragraph at lines 3114--3114
 
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
-[89] [90]
+[91] [92]
 File: Worked_Examples/images/homeworked_model.jpg Graphic file (type bmp)
 <Worked_Examples/images/homeworked_model.jpg>
-[91] [92] [93] [94] [95] [96] [97] [98]
+[93] [94] [95] [96] [97] [98] [99] [100]
 File: 03-DataDx_files/figure-latex/unnamed-chunk-43-1.pdf Graphic file (type pdf)
 <use 03-DataDx_files/figure-latex/unnamed-chunk-43-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[99]
+[101]
 Underfull \vbox (badness 2608) has occurred while \output is active []
 
-[100] [101] [102] [103] [104]
+[102] [103] [104] [105] [106]
 File: 03-DataDx_files/figure-latex/unnamed-chunk-48-1.pdf Graphic file (type pdf)
 <use 03-DataDx_files/figure-latex/unnamed-chunk-48-1.pdf>
-[105]
+[107]
 File: 03-DataDx_files/figure-latex/unnamed-chunk-49-1.pdf Graphic file (type pdf)
 <use 03-DataDx_files/figure-latex/unnamed-chunk-49-1.pdf>
-[106] [107] [108]
+[108] [109] [110]
 Overfull \hbox (448.18521pt too wide) in paragraph at lines 4127--4128
 \TU/lmr/m/n/10.95 ($[] [] [][][][][][] [] [] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$B
  []
 
-[109] [110]
+[111] [112]
 Overfull \hbox (36.13487pt too wide) in paragraph at lines 4190--4190
 []\TU/lmtt/m/n/10.95 Note. A significant b-weight indicates the semi-partial correlation is also significant.[] 
  []
@@ -1477,19 +1473,19 @@ Overfull \hbox (36.13487pt too wide) in paragraph at lines 4190--4190
 []\TU/lmtt/m/n/10.95 Square brackets are used to enclose the lower and upper limits of a confidence interval.[] 
  []
 
-[111] [112
+[113] [114
 
 ]
 Chapter 4.
-[113] [114]
+[115] [116]
 File: images/Ch05/scrubscore_mimp_itemlvl.jpg Graphic file (type bmp)
 <images/Ch05/scrubscore_mimp_itemlvl.jpg>
-[115] [116]
+[117] [118]
 File: images/Ch04/BlStuMed.jpg Graphic file (type bmp)
 <images/Ch04/BlStuMed.jpg>
 File: images/Ch04/BlStuRegression.jpg Graphic file (type bmp)
 <images/Ch04/BlStuRegression.jpg>
-[117]
+[119]
 Underfull \hbox (badness 10000) in paragraph at lines 4392--4393
 
  []
@@ -1501,12 +1497,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 4397--4399
 
 File: images/Ch05/KatitasMimpFig.jpg Graphic file (type bmp)
 <images/Ch05/KatitasMimpFig.jpg>
-[118] [119] [120] [121] [122] [123] [124] [125] [126]
+[120] [121] [122] [123] [124] [125] [126] [127] [128]
 Overfull \hbox (18.88863pt too wide) in paragraph at lines 4906--4906
 []\TU/lmtt/m/n/10.95 Climate_fit <- lm(ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)[] 
  []
 
-[127]
+[129]
 Underfull \hbox (badness 2753) in paragraph at lines 4996--4997
 []\TU/lmr/m/n/10.95 Results of a multiple regression predicting the respondents’ percep-
  []
@@ -1516,7 +1512,7 @@ Underfull \hbox (badness 1147) in paragraph at lines 4996--4997
 \TU/lmr/m/n/10.95 tributions of the respondents’ personal belonging ($[] [] [][][][][][][] [] []
  []
 
-[128]
+[130]
 Underfull \hbox (badness 2753) in paragraph at lines 5041--5042
 []\TU/lmr/m/n/10.95 Results of a multiple regression predicting the respondents’ percep-
  []
@@ -1526,30 +1522,30 @@ Underfull \hbox (badness 1147) in paragraph at lines 5041--5042
 \TU/lmr/m/n/10.95 tributions of the respondents’ personal belonging ($[] [] [][][][][][][] [] []
  []
 
-[129] [130] [131]
+[131] [132] [133]
 
 Package hyperref Warning: Suppressing link with empty target on input line 5170.
 
-[132]
+[134]
 File: Worked_Examples/images/homeworked_model.jpg Graphic file (type bmp)
 <Worked_Examples/images/homeworked_model.jpg>
-[133] [134] [135] [136] [137] [138]
+[135] [136] [137] [138] [139] [140]
 Overfull \hbox (448.04286pt too wide) in paragraph at lines 5588--5589
 \TU/lmr/m/n/10.95 ($[] [] [][][][][][] [] [] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$B
  []
 
-[139] [140]
+[141] [142]
 Overfull \hbox (448.04286pt too wide) in paragraph at lines 5632--5633
 \TU/lmr/m/n/10.95 ($[] [] [][][][][][] [] [] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$B
  []
 
-[141] [142
+[143] [144
 
-] [143] [144
+] [145] [146
 
 ]
 Chapter 5.
-[145] [146]
+[147] [148]
 Underfull \hbox (badness 1173) in paragraph at lines 5759--5759
 []\TU/lmr/bx/n/14.4 Estimating Indirect Effects (the analytic approach often
  []
@@ -1558,10 +1554,10 @@ File: images/SimpleMed/ModConcStat.jpg Graphic file (type bmp)
 <images/SimpleMed/ModConcStat.jpg>
 
 Overfull \hbox (76.71696pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 5.2.  ESTIMATING INDIRECT EFFECTS (THE ANALYTIC APPROACH OFTEN TERMED \TU/lmr/m/n/10.95 MEDIATION\TU/lmr/m/sl/10.95 ) \TU/lmr/m/n/10.95 147
+\TU/lmr/m/sl/10.95 5.2.  ESTIMATING INDIRECT EFFECTS (THE ANALYTIC APPROACH OFTEN TERMED \TU/lmr/m/n/10.95 MEDIATION\TU/lmr/m/sl/10.95 ) \TU/lmr/m/n/10.95 149
  []
 
-[147]
+[149]
 File: images/SimpleMed/SimpleInteraction.jpg Graphic file (type bmp)
 <images/SimpleMed/SimpleInteraction.jpg>
 
@@ -1574,7 +1570,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 5807--5809
 
  []
 
-[148]
+[150]
 File: images/SimpleMed/SimpleMed.jpg Graphic file (type bmp)
 <images/SimpleMed/SimpleMed.jpg>
 
@@ -1586,40 +1582,40 @@ File: images/SimpleMed/CPAmodel.jpg Graphic file (type bmp)
 <images/SimpleMed/CPAmodel.jpg>
 File: images/SimpleMed/SimpMed_Workflow.jpg Graphic file (type bmp)
 <images/SimpleMed/SimpMed_Workflow.jpg>
-[149] [150]
+[151] [152]
 File: images/SimpleMed/MedRationale.jpg Graphic file (type bmp)
 <images/SimpleMed/MedRationale.jpg>
-[151] [152] [153]
+[153] [154] [155]
 Underfull \hbox (badness 10000) in paragraph at lines 6028--6030
 
  []
 
-[154]
+[156]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[155]
+[157]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[156] [157]
+[158] [159]
 Overfull \hbox (7.39113pt too wide) in paragraph at lines 6290--6290
 []\TU/lmtt/m/n/10.95 ## Probability values (Entries above the diagonal are adjusted for multiple tests.)[] 
  []
 
-[158]
+[160]
 Overfull \hbox (24.63737pt too wide) in paragraph at lines 6290--6290
 []\TU/lmtt/m/n/10.95 ##  To see confidence intervals of the correlations, print with the short=FALSE option[] 
  []
 
-[159]
+[161]
 File: 05-SimpleMed_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use 05-SimpleMed_files/figure-latex/unnamed-chunk-6-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[160] [161]
+[162] [163]
 File: 05-SimpleMed_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use 05-SimpleMed_files/figure-latex/unnamed-chunk-9-1.pdf>
-[162] [163] [164]
+[164] [165] [166]
 Underfull \vbox (badness 10000) detected at line 6737
  []
 
@@ -1627,7 +1623,7 @@ Underfull \vbox (badness 10000) detected at line 6737
 Underfull \vbox (badness 10000) detected at line 6737
  []
 
-[165]
+[167]
 Underfull \vbox (badness 10000) detected at line 6737
  []
 
@@ -1635,7 +1631,7 @@ Underfull \vbox (badness 10000) detected at line 6737
 Underfull \vbox (badness 10000) detected at line 6737
  []
 
-[166]
+[168]
 Underfull \vbox (badness 10000) detected at line 6737
  []
 
@@ -1643,50 +1639,50 @@ Underfull \vbox (badness 10000) detected at line 6737
 Underfull \vbox (badness 10000) detected at line 6737
  []
 
-[167] [168] [169]
+[169] [170] [171]
 Overfull \hbox (1.64238pt too wide) in paragraph at lines 6863--6863
 []\TU/lmtt/m/n/10.95 ## Note. M and SD are used to represent mean and standard deviation, respectively.[] 
  []
 
-[170]
+[172]
 File: images/SimpleMed/Kim_SimpMed.jpg Graphic file (type bmp)
 <images/SimpleMed/Kim_SimpMed.jpg>
-[171] [172]
+[173] [174]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[173] [174]
+[175] [176]
 File: 05-SimpleMed_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type pdf)
 <use 05-SimpleMed_files/figure-latex/unnamed-chunk-22-1.pdf>
-[175] [176]
+[177] [178]
 File: 05-SimpleMed_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (type pdf)
 <use 05-SimpleMed_files/figure-latex/unnamed-chunk-25-1.pdf>
-[177]
+[179]
 File: images/SimpleMed/Kim_wCovs.jpg Graphic file (type bmp)
 <images/SimpleMed/Kim_wCovs.jpg>
-[178] [179]
+[180] [181]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[180]
+[182]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[181] [182]
+[183] [184]
 File: 05-SimpleMed_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (type pdf)
 <use 05-SimpleMed_files/figure-latex/unnamed-chunk-28-1.pdf>
-[183]
+[185]
 File: 05-SimpleMed_files/figure-latex/unnamed-chunk-31-1.pdf Graphic file (type pdf)
 <use 05-SimpleMed_files/figure-latex/unnamed-chunk-31-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[184] [185]
+[186] [187]
 Underfull \hbox (badness 10000) in paragraph at lines 7615--7616
 
  []
 
-[186] [187] [188] [189] [190]
+[188] [189] [190] [191] [192]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[191]
+[193]
 Overfull \hbox (1.64238pt too wide) in paragraph at lines 7933--7933
 []\TU/lmtt/m/n/10.95 ##          lhs op       rhs    label    est    se      z pvalue ci.lower ci.upper[] 
  []
@@ -1731,7 +1727,7 @@ Overfull \hbox (1.64238pt too wide) in paragraph at lines 7933--7933
 []\TU/lmtt/m/n/10.95 ## 8    TradPed ~1                     4.394 0.139 31.707  0.000    4.114    4.683[] 
  []
 
-[192]
+[194]
 Overfull \hbox (1.64238pt too wide) in paragraph at lines 7933--7933
 []\TU/lmtt/m/n/10.95 ## 9  Centering ~1                     1.406 0.000     NA     NA    1.406    1.406[] 
  []
@@ -1756,15 +1752,15 @@ File: 05-SimpleMed_files/figure-latex/unnamed-chunk-40-1.pdf Graphic file (type 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[193] [194]
+[195] [196]
 File: 05-SimpleMed_files/figure-latex/unnamed-chunk-43-1.pdf Graphic file (type pdf)
 <use 05-SimpleMed_files/figure-latex/unnamed-chunk-43-1.pdf>
-[195]
+[197]
 Overfull \hbox (1.64238pt too wide) in paragraph at lines 8101--8101
 []\TU/lmtt/m/n/10.95 ## Note. M and SD are used to represent mean and standard deviation, respectively.[] 
  []
 
-[196] [197] [198
+[198] [199] [200
 
 ]
 Chapter 6.
@@ -1773,25 +1769,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 8151--8153
 
  []
 
-[199] [200]
+[201] [202]
 File: images/CompMed/CompMedWorkflow.jpg Graphic file (type bmp)
 <images/CompMed/CompMedWorkflow.jpg>
-[201] [202]
+[203] [204]
 File: images/CompMed/ParaMed.jpg Graphic file (type bmp)
 <images/CompMed/ParaMed.jpg>
-[203] [204] [205]
+[205] [206] [207]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[206]
+[208]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[207] [208]
+[209] [210]
 File: 06-ComplexMed_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/unnamed-chunk-6-1.pdf>
-[209] [210]
+[211] [212]
 File: 06-ComplexMed_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/unnamed-chunk-9-1.pdf>
-[211] [212] [213] [214]
+[213] [214] [215] [216]
 Underfull \vbox (badness 10000) detected at line 9000
  []
 
@@ -1799,102 +1795,102 @@ Underfull \vbox (badness 10000) detected at line 9000
 Underfull \vbox (badness 10000) detected at line 9000
  []
 
-[215] [216] [217]
+[217] [218] [219]
 Overfull \hbox (1.64238pt too wide) in paragraph at lines 9118--9118
 []\TU/lmtt/m/n/10.95 ## Note. M and SD are used to represent mean and standard deviation, respectively.[] 
  []
 
-[218]
+[220]
 File: images/CompMed/LewisParaMed.jpg Graphic file (type bmp)
 <images/CompMed/LewisParaMed.jpg>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[219]
+[221]
 File: 06-ComplexMed_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/unnamed-chunk-20-1.pdf>
-[220]
+[222]
 File: 06-ComplexMed_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/unnamed-chunk-23-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[221] [222]
+[223] [224]
 Underfull \hbox (badness 1097) in paragraph at lines 9402--9404
 []\TU/lmr/m/n/10.95 Indirect effect #1 (a1 x b1 or GRMS through engagement coping) is 0.055 ($[] []
  []
 
-[223]
+[225]
 Underfull \hbox (badness 10000) in paragraph at lines 9435--9437
 
  []
 
-[224]
+[226]
 Underfull \hbox (badness 10000) in paragraph at lines 9465--9467
 
  []
 
-[225]
+[227]
 File: images/CompMed/LewisSerialMed.jpg Graphic file (type bmp)
 <images/CompMed/LewisSerialMed.jpg>
-[226] [227]
+[228] [229]
 File: 06-ComplexMed_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/unnamed-chunk-26-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[228] [229]
+[230] [231]
 File: 06-ComplexMed_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/unnamed-chunk-29-1.pdf>
-[230] [231] [232] [233]
+[232] [233] [234] [235]
 Underfull \hbox (badness 10000) in paragraph at lines 9915--9917
 
  []
 
-[234] [235]
+[236] [237]
 File: Worked_Examples/images/CompMedHWfig.jpg Graphic file (type bmp)
 <Worked_Examples/images/CompMedHWfig.jpg>
-[236] [237] [238]
+[238] [239] [240]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[239] [240]
+[241] [242]
 File: 06-ComplexMed_files/figure-latex/unnamed-chunk-39-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/unnamed-chunk-39-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[241] [242]
+[243] [244]
 File: 06-ComplexMed_files/figure-latex/unnamed-chunk-42-1.pdf Graphic file (type pdf)
 <use 06-ComplexMed_files/figure-latex/unnamed-chunk-42-1.pdf>
-[243] [244] [245] [246
+[245] [246] [247] [248
 
-] [247] [248
+] [249] [250
 
 ]
 Chapter 7.
-[249] [250] [251] [252]
+[251] [252] [253] [254]
 Overfull \hbox (347.91074pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 7.2.  ON \TU/lmr/m/n/10.95 MODELING\TU/lmr/m/sl/10.95 : INTRODUCTORY COMMENTS ON THE SIMULTANEOUSLY INVISIBLE AND PARADIGM-SHIFTING TRANSITION WE ARE MAKING \TU/lmr/m/n/10.95 253
+\TU/lmr/m/sl/10.95 7.2.  ON \TU/lmr/m/n/10.95 MODELING\TU/lmr/m/sl/10.95 : INTRODUCTORY COMMENTS ON THE SIMULTANEOUSLY INVISIBLE AND PARADIGM-SHIFTING TRANSITION WE ARE MAKING \TU/lmr/m/n/10.95 255
  []
 
-[253]
+[255]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-6-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[254] [255] [256] [257]
+[256] [257] [258] [259]
 File: images/SimpleMod/SimpleMedLV.jpg Graphic file (type bmp)
 <images/SimpleMod/SimpleMedLV.jpg>
-[258] [259]
+[260] [261]
 File: images/SimpleMod/SimpleMed.jpg Graphic file (type bmp)
 <images/SimpleMod/SimpleMed.jpg>
 File: images/SimpleMod/HybridMed.jpg Graphic file (type bmp)
 <images/SimpleMod/HybridMed.jpg>
-[260] [261]
+[262] [263]
 File: images/SimpleMod/OLS_MLEwrkflow.jpg Graphic file (type bmp)
 <images/SimpleMod/OLS_MLEwrkflow.jpg>
-[262] [263]
+[264] [265]
 Underfull \vbox (badness 10000) detected at line 11157
  []
 
@@ -1902,14 +1898,14 @@ Underfull \vbox (badness 10000) detected at line 11157
 Underfull \vbox (badness 10000) detected at line 11157
  []
 
-[264] [265] [266] [267]
+[266] [267] [268] [269]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-16-1.pdf>
 File: images/SimpleMod/Lewis_SimpMod_Conceptual.png Graphic file (type bmp)
 <images/SimpleMod/Lewis_SimpMod_Conceptual.png>
 File: images/SimpleMod/Lewis_SimpMod_Statistical.png Graphic file (type bmp)
 <images/SimpleMod/Lewis_SimpMod_Statistical.png>
-[268] [269] [270]
+[270] [271] [272]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-20-1.pdf>
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-20-2.pdf Graphic file (type pdf)
@@ -1917,63 +1913,63 @@ File: 07-SimpleMod_files/figure-latex/unnamed-chunk-20-2.pdf Graphic file (type 
 
 Underfull \vbox (badness 1067) has occurred while \output is active []
 
-[271] [272] [273] [274] [275] [276]
+[273] [274] [275] [276] [277] [278]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[277] [278] [279] [280]
+[279] [280] [281] [282]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-26-1.pdf>
-[281]
+[283]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-29-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[282] [283] [284] [285]
+[284] [285] [286] [287]
 File: images/film-strip-1.jpg Graphic file (type bmp)
 <images/film-strip-1.jpg>
-[286] [287]
+[288] [289]
 File: Worked_Examples/images/HW_SimpMod1.png Graphic file (type bmp)
 <Worked_Examples/images/HW_SimpMod1.png>
 File: Worked_Examples/images/HW_SimpMod2.png Graphic file (type bmp)
 <Worked_Examples/images/HW_SimpMod2.png>
-[288]
+[290]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-40-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-40-1.pdf>
 
 Underfull \vbox (badness 7522) has occurred while \output is active []
 
-[289] [290] [291]
+[291] [292] [293]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-44-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-44-1.pdf>
-[292] [293]
+[294] [295]
 Overfull \hbox (306.32607pt too wide) in paragraph at lines 12466--12466
 []\TU/lmtt/m/n/10.95 Warning in lav_data_full(data = data, group = group, cluster = cluster, : lavaan WARNING: 3 cases were deleted due to missing values in[] 
  []
 
-[294]
+[296]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[295]
+[297]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[296] [297]
+[298] [299]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-51-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-51-1.pdf>
-[298]
+[300]
 File: 07-SimpleMod_files/figure-latex/unnamed-chunk-54-1.pdf Graphic file (type pdf)
 <use 07-SimpleMod_files/figure-latex/unnamed-chunk-54-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[299]
+[301]
 Overfull \hbox (7.36752pt too wide) in paragraph at lines 12765--12765
 []|\TU/lmr/m/n/10.95 Centering:SRPed(XY)|  
  []
 
-[300] [301] [302
+[302] [303] [304
 
-] [303] [304
+] [305] [306
 
 ]
 Chapter 8.
@@ -1982,7 +1978,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 12839--12841
 
  []
 
-[305] [306]
+[307] [308]
 Overfull \hbox (7.39113pt too wide) in paragraph at lines 12957--12957
 []\TU/lmtt/m/n/10.95 ## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --[] 
  []
@@ -1997,18 +1993,18 @@ Overfull \hbox (128.11485pt too wide) in paragraph at lines 12957--12957
 []\TU/lmtt/m/n/10.95 ## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
  []
 
-[307]
+[309]
 Underfull \hbox (badness 10000) in paragraph at lines 13027--13029
 
  []
 
-[308]
+[310]
 File: images/SimpleMed/CPAmodel.jpg Graphic file (type bmp)
 <images/SimpleMed/CPAmodel.jpg>
-[309]
+[311]
 File: images/ModMed/Workflow_ModMed.jpg Graphic file (type bmp)
 <images/ModMed/Workflow_ModMed.jpg>
-[310] [311] [312] [313]
+[312] [313] [314] [315]
 Underfull \vbox (badness 10000) detected at line 13307
  []
 
@@ -2016,19 +2012,19 @@ Underfull \vbox (badness 10000) detected at line 13307
 Underfull \vbox (badness 10000) detected at line 13307
  []
 
-[314] [315] [316]
+[316] [317] [318]
 Overfull \hbox (1.64238pt too wide) in paragraph at lines 13440--13440
 []\TU/lmtt/m/n/10.95 ## Note. M and SD are used to represent mean and standard deviation, respectively.[] 
  []
 
-[317]
+[319]
 File: images/ModMed/LewisModMed.jpg Graphic file (type bmp)
 <images/ModMed/LewisModMed.jpg>
 File: images/ModMed/LewisStatistical.jpg Graphic file (type bmp)
 <images/ModMed/LewisStatistical.jpg>
 File: images/ModMed/PiecewiseAssembly.jpg Graphic file (type bmp)
 <images/ModMed/PiecewiseAssembly.jpg>
-[318]
+[320]
 File: images/ModMed/LewisMod1.jpg Graphic file (type bmp)
 <images/ModMed/LewisMod1.jpg>
 
@@ -2040,47 +2036,47 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[319] [320]
+[321] [322]
 File: 08-CPA_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-13-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[321]
+[323]
 File: 08-CPA_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-14-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[322] [323]
+[324] [325]
 File: images/ModMed/LewisMod2.jpg Graphic file (type bmp)
 <images/ModMed/LewisMod2.jpg>
-[324]
+[326]
 Underfull \hbox (badness 10000) in paragraph at lines 13668--13669
 
  []
 
-[325]
+[327]
 File: 08-CPA_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-17-1.pdf>
-[326] [327]
+[328] [329]
 File: images/ModMed/LewisMed.jpg Graphic file (type bmp)
 <images/ModMed/LewisMed.jpg>
-[328]
+[330]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[329] [330]
+[331] [332]
 File: 08-CPA_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-20-1.pdf>
-[331] [332]
+[333] [334]
 File: 08-CPA_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-23-1.pdf>
 File: images/ModMed/LewisStatistical.jpg Graphic file (type bmp)
 <images/ModMed/LewisStatistical.jpg>
-[333] [334] [335] [336]
+[335] [336] [337] [338]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[337]
+[339]
 Overfull \hbox (1.64238pt too wide) in paragraph at lines 14365--14365
 []\TU/lmtt/m/n/10.95 ##               label    est    se      z pvalue ci.lower ci.upper std.lv std.all[] 
  []
@@ -2175,7 +2171,7 @@ Overfull \hbox (1.64238pt too wide) in paragraph at lines 14365--14365
 []\TU/lmtt/m/n/10.95 ## 18                  10.199 0.000     NA     NA   10.199   10.199 10.199   2.683[] 
  []
 
-[338]
+[340]
 Overfull \hbox (1.64238pt too wide) in paragraph at lines 14365--14365
 []\TU/lmtt/m/n/10.95 ## 19              imm  0.021 0.020  1.064  0.287   -0.017    0.063  0.021   0.091[] 
  []
@@ -2215,42 +2211,42 @@ File: 08-CPA_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[339] [340]
+[341] [342]
 File: 08-CPA_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-28-1.pdf>
-[341] [342]
+[343] [344]
 Underfull \hbox (badness 10000) in paragraph at lines 14594--14596
 
  []
 
-[343]
+[345]
 Underfull \hbox (badness 10000) in paragraph at lines 14611--14613
 
  []
 
-[344]
+[346]
 File: 08-CPA_files/figure-latex/unnamed-chunk-30-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-30-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[345] [346]
+[347] [348]
 Underfull \hbox (badness 10000) in paragraph at lines 14697--14698
 
  []
 
-[347] [348]
+[349] [350]
 File: Worked_Examples/images/HW_ModMed1.png Graphic file (type bmp)
 <Worked_Examples/images/HW_ModMed1.png>
 File: Worked_Examples/images/HW_ModMed2.png Graphic file (type bmp)
 <Worked_Examples/images/HW_ModMed2.png>
-[349] [350] [351]
+[351] [352] [353]
 File: 08-CPA_files/figure-latex/unnamed-chunk-40-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-40-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[352]
+[354]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -2260,30 +2256,30 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[353]
+[355]
 File: 08-CPA_files/figure-latex/unnamed-chunk-43-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-43-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[354] [355] [356]
+[356] [357] [358]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[357] [358]
+[359] [360]
 File: 08-CPA_files/figure-latex/unnamed-chunk-46-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-46-1.pdf>
-[359]
+[361]
 File: 08-CPA_files/figure-latex/unnamed-chunk-49-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-49-1.pdf>
-[360]
+[362]
 Overfull \hbox (323.57231pt too wide) in paragraph at lines 15307--15307
 []\TU/lmtt/m/n/10.95 ## Warning in lav_data_full(data = data, group = group, cluster = cluster, : lavaan WARNING: 1 cases were deleted due to missing values in[] 
  []
 
-[361]
+[363]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[362] [363]
+[364] [365]
 Overfull \hbox (1.64238pt too wide) in paragraph at lines 15478--15478
 []\TU/lmtt/m/n/10.95 ##               label    est    se      z pvalue ci.lower ci.upper std.lv std.all[] 
  []
@@ -2391,52 +2387,52 @@ Overfull \hbox (1.64238pt too wide) in paragraph at lines 15478--15478
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[364]
+[366]
 File: 08-CPA_files/figure-latex/unnamed-chunk-51-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-51-1.pdf>
-[365]
+[367]
 File: 08-CPA_files/figure-latex/unnamed-chunk-54-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-54-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[366] [367] [368]
+[368] [369] [370]
 File: 08-CPA_files/figure-latex/unnamed-chunk-56-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-56-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[369] [370]
+[371] [372]
 File: Worked_Examples/images/HWModMed1b.png Graphic file (type bmp)
 <Worked_Examples/images/HWModMed1b.png>
 File: Worked_Examples/images/HW_ModMed2b.png Graphic file (type bmp)
 <Worked_Examples/images/HW_ModMed2b.png>
-[371] [372]
+[373] [374]
 File: 08-CPA_files/figure-latex/unnamed-chunk-64-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-64-1.pdf>
-[373]
+[375]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[374]
+[376]
 File: 08-CPA_files/figure-latex/unnamed-chunk-67-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-67-1.pdf>
-[375] [376] [377]
+[377] [378] [379]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[378]
+[380]
 File: 08-CPA_files/figure-latex/unnamed-chunk-70-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-70-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[379] [380]
+[381] [382]
 File: 08-CPA_files/figure-latex/unnamed-chunk-73-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-73-1.pdf>
-[381] [382]
+[383] [384]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[383]
+[385]
 Overfull \hbox (1.64238pt too wide) in paragraph at lines 16415--16415
 []\TU/lmtt/m/n/10.95 ##               label    est    se      z pvalue ci.lower ci.upper std.lv std.all[] 
  []
@@ -2446,7 +2442,7 @@ Overfull \hbox (1.64238pt too wide) in paragraph at lines 16415--16415
 []\TU/lmtt/m/n/10.95 ## 1                 a  0.352 0.114  3.077  0.002    0.117    0.573  0.352   0.296[] 
  []
 
-[384]
+[386]
 Overfull \hbox (1.64238pt too wide) in paragraph at lines 16415--16415
 []\TU/lmtt/m/n/10.95 ## 2                cp  0.019 0.108  0.174  0.862   -0.201    0.223  0.019   0.014[] 
  []
@@ -2536,20 +2532,18 @@ Overfull \hbox (1.64238pt too wide) in paragraph at lines 16415--16415
 []\TU/lmtt/m/n/10.95 ## 19 indirect.SDabove  0.046 0.057  0.809  0.418   -0.063    0.167  0.046   0.243[] 
  []
 
-[385]
+[387]
 File: 08-CPA_files/figure-latex/unnamed-chunk-75-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-75-1.pdf>
-[386]
+[388]
 File: 08-CPA_files/figure-latex/unnamed-chunk-78-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-78-1.pdf>
-[387] [388]
+[389] [390]
 File: 08-CPA_files/figure-latex/unnamed-chunk-80-1.pdf Graphic file (type pdf)
 <use 08-CPA_files/figure-latex/unnamed-chunk-80-1.pdf>
-[389] [390] [391
+[391] [392] [393
 
-] [392
-
-] [393] [394
+] [394
 
 ]
 Chapter 9.
@@ -2563,11 +2557,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: images/SimpleMed/Kim_SimpMed.jpg Graphic file (type bmp)
 <images/SimpleMed/Kim_SimpMed.jpg>
 [403] [404]
-Underfull \vbox (badness 10000) detected at line 17110
+Underfull \vbox (badness 10000) detected at line 17114
  []
 
 
-Underfull \vbox (badness 10000) detected at line 17110
+Underfull \vbox (badness 10000) detected at line 17114
  []
 
 [405] [406] [407] [408]
@@ -2583,22 +2577,22 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [412] [413]
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 17575--17575
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 17579--17579
 []\TU/lmtt/m/n/10.95 ##   baseline.df baseline.pvalue       cfi       tli      nnfi       rfi       nfi[] 
  []
 
 
-Overfull \hbox (1.64238pt too wide) in paragraph at lines 17575--17575
+Overfull \hbox (1.64238pt too wide) in paragraph at lines 17579--17579
 []\TU/lmtt/m/n/10.95 ## 1        5253               0 0.7441408 0.7388715 0.7388715 0.4525554 0.4636022[] 
  []
 
 
-Overfull \hbox (64.87862pt too wide) in paragraph at lines 17575--17575
+Overfull \hbox (64.87862pt too wide) in paragraph at lines 17579--17579
 []\TU/lmtt/m/n/10.95 ##                                                                      rmsea.notclose.pvalue[] 
  []
 
 
-Overfull \hbox (64.87856pt too wide) in paragraph at lines 17575--17575
+Overfull \hbox (64.87856pt too wide) in paragraph at lines 17579--17579
 []\TU/lmtt/m/n/10.95 ## 1 0.00000000000000000000000000000000000000000000000000000000000000000000000000000002002323[] 
  []
 
@@ -2630,22 +2624,22 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: 09_SEM_MeasMod_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
 <use 09_SEM_MeasMod_files/figure-latex/unnamed-chunk-13-1.pdf>
 [424] [425] [426] [427] [428]
-Underfull \hbox (badness 10000) in paragraph at lines 18238--18240
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 18240--18242
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 18242--18244
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 18244--18246
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18246--18248
+
+ []
+
 [429]
-Underfull \hbox (badness 10000) in paragraph at lines 18265--18267
+Underfull \hbox (badness 10000) in paragraph at lines 18269--18271
 
  []
 
@@ -2665,32 +2659,26 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: 09_SEM_MeasMod_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (type pdf)
 <use 09_SEM_MeasMod_files/figure-latex/unnamed-chunk-25-1.pdf>
 [445] [446] [447] [448] [449]
-Underfull \hbox (badness 2269) in paragraph at lines 19182--19183
+Underfull \hbox (badness 2269) in paragraph at lines 19198--19199
 \TU/lmr/m/n/10.95 ClearPresentation SRPed has 4 items: InclusvClassrm, EquitableEval, MultPerspectives,
  []
 
 
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 19215--19215
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 19231--19231
 []\TU/lmtt/m/n/10.95 ##  $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...[] 
  []
 
-
-Overfull \hbox (7.39113pt too wide) in paragraph at lines 19241--19241
+[450]
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 19257--19257
 []\TU/lmtt/m/n/10.95 ##  $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...[] 
  []
 
-[450] [451]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[452]
+[451] [452]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [453]
 File: 09_SEM_MeasMod_files/figure-latex/unnamed-chunk-36-1.pdf Graphic file (type pdf)
 <use 09_SEM_MeasMod_files/figure-latex/unnamed-chunk-36-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 [454]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -2700,148 +2688,412 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [458] [459]
 File: 09_SEM_MeasMod_files/figure-latex/unnamed-chunk-41-1.pdf Graphic file (type pdf)
 <use 09_SEM_MeasMod_files/figure-latex/unnamed-chunk-41-1.pdf>
-[460] [461] (./ReC_MultMod.bbl [462]
+[460] [461] [462]
+Chapter 10.
+[463
+
+] [464]
+File: images/IntroSEM/StructuralModelWorkflow.png Graphic file (type bmp)
+<images/IntroSEM/StructuralModelWorkflow.png>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[465] [466] [467] [468]
+Underfull \vbox (badness 10000) detected at line 20122
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 20122
+ []
+
+[469] [470] [471]
+File: images/IntroSEM/MsmtMod_NoResults.png Graphic file (type bmp)
+<images/IntroSEM/MsmtMod_NoResults.png>
+[472] [473] [474] [475] [476] [477]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[478] [479]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-15-1.pdf>
+[480]
+File: images/IntroSEM/PlotKimTheoretical.jpg Graphic file (type bmp)
+<images/IntroSEM/PlotKimTheoretical.jpg>
+[481]
+Underfull \hbox (badness 10000) in paragraph at lines 20683--20685
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20685--20687
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20687--20689
+
+ []
+
+[482]
+File: images/IntroSEM/KimTheoreticalStructural.jpg Graphic file (type bmp)
+<images/IntroSEM/KimTheoreticalStructural.jpg>
+[483] [484] [485] [486]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[487]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[488] [489] [490]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-21-1.pdf>
+
+Underfull \hbox (badness 1983) in paragraph at lines 21179--21180
+[]\TU/lmr/m/n/10.95 We place these values along with the names of our latent variables in to the \TU/lmr/m/it/10.95 semp-
+ []
+
+[491]
+Underfull \hbox (badness 1783) in paragraph at lines 21217--21218
+[]\TU/lmr/m/n/10.95 The next two sets of codes provide some guidance about how far away the indicator
+ []
+
+
+Overfull \hbox (8.25848pt too wide) in paragraph at lines 21231--21232
+[]\TU/lmr/m/n/10.95 Finally, we can feed all of the objects that whole these instructions into the \TU/lmr/m/it/10.95 semptools::sem_set_layout
+ []
+
+[492]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-26-1.pdf>
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-27-1.pdf>
+[493]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-27-2.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-27-2.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[494] [495]
+Underfull \hbox (badness 2689) in paragraph at lines 21310--21311
+[]\TU/lmr/m/n/10.95 Our structural model was a simple mediation, predicting psychological well-
+ []
+
+
+Underfull \hbox (badness 1824) in paragraph at lines 21310--21311
+\TU/lmr/m/n/10.95 being (PWB) from racial microaggressions (REM), mediated by cultural mis-
+ []
+
+
+Underfull \hbox (badness 1168) in paragraph at lines 21310--21311
+\TU/lmr/m/n/10.95 trust (CMI). Given the just-identified nature (i.e., zero degrees of freedom in
+ []
+
+
+Underfull \hbox (badness 1881) in paragraph at lines 21310--21311
+\TU/lmr/m/n/10.95 the structural portion), the global fit indices were identical to those of the
+ []
+
+
+Underfull \hbox (badness 1184) in paragraph at lines 21310--21311
+\TU/lmr/m/n/10.95 measurement model ($[][][][][][] [] [][][][][][][] [] [] [][][][][][] [][][] [] [][][][][][] [][][][][] []
+ []
+
+File: images/IntroSEM/AltMed.png Graphic file (type bmp)
+<images/IntroSEM/AltMed.png>
+[496] [497]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[498]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[499] [500]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-30-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-30-1.pdf>
+
+Underfull \hbox (badness 1983) in paragraph at lines 21535--21536
+[]\TU/lmr/m/n/10.95 We place these values along with the names of our latent variables in to the \TU/lmr/m/it/10.95 semp-
+ []
+
+[501]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-31-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-31-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[502] [503]
+File: images/IntroSEM/TwoDVs.png Graphic file (type bmp)
+<images/IntroSEM/TwoDVs.png>
+[504] [505]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[506]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[507]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-35-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-35-1.pdf>
+[508]
+Underfull \hbox (badness 1983) in paragraph at lines 21942--21943
+[]\TU/lmr/m/n/10.95 We place these values along with the names of our latent variables in to the \TU/lmr/m/it/10.95 semp-
+ []
+
+[509]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-36-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-36-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[510]
+File: images/IntroSEM/TwoCorrDVs.png Graphic file (type bmp)
+<images/IntroSEM/TwoCorrDVs.png>
+[511] [512]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[513]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[514] [515]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-40-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-40-1.pdf>
+[516]
+Underfull \hbox (badness 1983) in paragraph at lines 22266--22267
+[]\TU/lmr/m/n/10.95 We place these values along with the names of our latent variables in to the \TU/lmr/m/it/10.95 semp-
+ []
+
+[517]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-41-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-41-1.pdf>
+[518] [519] [520]
+File: Worked_Examples/images/HW_ReC1_theo_plot.png Graphic file (type bmp)
+<Worked_Examples/images/HW_ReC1_theo_plot.png>
+
+Underfull \vbox (badness 2717) has occurred while \output is active []
+
+[521]
+Underfull \hbox (badness 2269) in paragraph at lines 22459--22460
+\TU/lmr/m/n/10.95 ClearPresentation SRPed has 4 items: InclusvClassrm, EquitableEval, MultPerspectives,
+ []
+
+
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 22492--22492
+[]\TU/lmtt/m/n/10.95 ##  $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...[] 
+ []
+
+
+Overfull \hbox (7.39113pt too wide) in paragraph at lines 22518--22518
+[]\TU/lmtt/m/n/10.95 ##  $ Centering            : Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...[] 
+ []
+
+[522]
+File: Worked_Examples/images/ReC_msmt_diag.png Graphic file (type bmp)
+<Worked_Examples/images/ReC_msmt_diag.png>
+[523] [524]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[525]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[526] [527]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-53-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-53-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[528]
+File: Worked_Examples/images/HW_ReC1_theo_plot.png Graphic file (type bmp)
+<Worked_Examples/images/HW_ReC1_theo_plot.png>
+[529] [530]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[531]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[532] [533] [534]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-57-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-57-1.pdf>
+[535]
+Underfull \hbox (badness 1983) in paragraph at lines 23103--23104
+[]\TU/lmr/m/n/10.95 We place these values along with the names of our latent variables in to the \TU/lmr/m/it/10.95 semp-
+ []
+
+
+Overfull \hbox (8.25848pt too wide) in paragraph at lines 23149--23150
+[]\TU/lmr/m/n/10.95 Finally, we can feed all of the objects that whole these instructions into the \TU/lmr/m/it/10.95 semptools::sem_set_layout
+ []
+
+[536]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-59-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-59-1.pdf>
+File: Worked_Examples/images/HW_ReC1_alt_plot.png Graphic file (type bmp)
+<Worked_Examples/images/HW_ReC1_alt_plot.png>
+[537]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[538]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[539]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[540] [541] [542]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-63-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-63-1.pdf>
+
+Underfull \hbox (badness 1983) in paragraph at lines 23467--23468
+[]\TU/lmr/m/n/10.95 We place these values along with the names of our latent variables in to the \TU/lmr/m/it/10.95 semp-
+ []
+
+[543]
+Overfull \hbox (8.25848pt too wide) in paragraph at lines 23513--23514
+[]\TU/lmr/m/n/10.95 Finally, we can feed all of the objects that whole these instructions into the \TU/lmr/m/it/10.95 semptools::sem_set_layout
+ []
+
+[544]
+File: 10_SEM_StructMod_files/figure-latex/unnamed-chunk-65-1.pdf Graphic file (type pdf)
+<use 10_SEM_StructMod_files/figure-latex/unnamed-chunk-65-1.pdf>
+[545]
+Underfull \hbox (badness 2096) in paragraph at lines 23574--23575
+\TU/lmr/m/n/10.95 (SRPed) from centering status (Centering), mediated by traditional pedagogy
+ []
+
+[546] [547] [548
+
+] (./ReC_MultMod.bbl [549] [550
+
+]
 Underfull \hbox (badness 1112) in paragraph at lines 45--52
 []\TU/lmr/m/n/10.95 Kenneth A. Bollen and Rick H. Hoyle.  Perceived cohesion: A conceptual and empiri-
  []
 
-[463
-
-]
+[551]
 Underfull \hbox (badness 10000) in paragraph at lines 76--83
 [] [] [][][][][][] [] [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][][][][][][][][][][][] [] [][][][][] [] [][][][][][][] [] [][][][] [][] [][][][][] [][]
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 153--160
+[552]
+Underfull \hbox (badness 10000) in paragraph at lines 159--166
 [] [] [][][][][][] [] [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][][][][][][][][][][][] [] [][][][][] [] [][][][][][][] [] [][][][] [][] [][][][][] [][]
  []
 
-[464]
-Underfull \hbox (badness 1558) in paragraph at lines 162--169
+
+Underfull \hbox (badness 1558) in paragraph at lines 168--175
 []\TU/lmr/m/n/10.95 Sylvia Hurtado.  Linking Diversity with the Educational and Civic Missions of Higher
  []
 
 
-Underfull \hbox (badness 1609) in paragraph at lines 162--169
+Underfull \hbox (badness 1609) in paragraph at lines 168--175
 \TU/lmr/m/n/10.95 Education.  \TU/lmr/m/it/10.95 Review of Higher Education: Journal of the Association for the Study
  []
 
 
-Underfull \hbox (badness 1596) in paragraph at lines 162--169
+Underfull \hbox (badness 1596) in paragraph at lines 168--175
 \TU/lmr/m/it/10.95 of Higher Education\TU/lmr/m/n/10.95 , 30(2):185–196, 2007.  ISSN 0162-5748.  doi: $[][] [] [][][][] [] [][][] [] [][][][] []
  []
 
 
-Underfull \hbox (badness 2961) in paragraph at lines 171--177
+Underfull \hbox (badness 2961) in paragraph at lines 177--183
 []\TU/lmr/m/n/10.95 Sylvia Hurtado and Deborah Faye Carter.  Effects of college transition and percep-
  []
 
 
-Underfull \hbox (badness 2772) in paragraph at lines 171--177
+Underfull \hbox (badness 2772) in paragraph at lines 177--183
 \TU/lmr/m/it/10.95 ciology of Education\TU/lmr/m/n/10.95 , 70:324–345, October 1997.  ISSN 00380407.  doi: $[][] [] [][][][] []
  []
 
 
-Underfull \hbox (badness 2088) in paragraph at lines 171--177
+Underfull \hbox (badness 2088) in paragraph at lines 177--183
 [][][][][][][]$\TU/lmr/m/n/10.95 .  URL [][]$[][][][][] [] [] [] [][][][][][][] [] [][][] [] [][][] [] [][][][][] [] [][][] [] [][][][] [] [] [] [][][][][][] [] [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] []
  []
 
 
-Underfull \hbox (badness 3861) in paragraph at lines 214--217
+Underfull \hbox (badness 3861) in paragraph at lines 220--223
 []\TU/lmr/m/n/10.95 Paul Y. Kim.  Guest Post: Anti-Asian Racism during the Pandemic: How Fac-
  []
 
 
-Underfull \hbox (badness 1005) in paragraph at lines 214--217
+Underfull \hbox (badness 1005) in paragraph at lines 220--223
 \TU/lmr/m/n/10.95 ulty on Christian Campuses Can Support Asian and Asian American Students, March
  []
 
-[465]
-Underfull \hbox (badness 10000) in paragraph at lines 228--235
+[553]
+Underfull \hbox (badness 10000) in paragraph at lines 234--241
 [][][] [] [][][][] [] [] [] [][][][][][] [] [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][][][][][][][][][][][] [] [][][][][] [] [][][][][][][] [] [][][][] [][]
  []
 
 
-Underfull \hbox (badness 4752) in paragraph at lines 251--258
+Underfull \hbox (badness 4752) in paragraph at lines 257--264
 []\TU/lmr/m/n/10.95 Jioni A. Lewis and Helen A. Neville.  Construction and initial validation of the
  []
 
 
-Underfull \hbox (badness 6204) in paragraph at lines 251--258
+Underfull \hbox (badness 6204) in paragraph at lines 257--264
 \TU/lmr/m/n/10.95 Gendered Racial Microaggressions Scale for Black women.  \TU/lmr/m/it/10.95 Journal of Counsel-
  []
 
 
-Underfull \hbox (badness 7397) in paragraph at lines 251--258
+Underfull \hbox (badness 7397) in paragraph at lines 257--264
 \TU/lmr/m/it/10.95 ing Psychology\TU/lmr/m/n/10.95 , 62(2):289–302, April 2015.  ISSN 0022-0167.  doi: $[][] [] [][][][] []
  []
 
 
-Underfull \hbox (badness 1014) in paragraph at lines 269--276
+Underfull \hbox (badness 1014) in paragraph at lines 275--282
 []\TU/lmr/m/n/10.95 Kaleea R. Lewis and Payal P. Shah.  Black students’ narratives of diversity and inclu-
  []
 
-[466]
-Underfull \hbox (badness 1052) in paragraph at lines 306--313
+[554]
+Underfull \hbox (badness 1052) in paragraph at lines 312--319
 []\TU/lmr/m/n/10.95 R. Duncan Luce.  Four tensions concerning mathematical modeling in psychology.  \TU/lmr/m/it/10.95 An-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 315--322
+Underfull \hbox (badness 10000) in paragraph at lines 321--328
 [] [] [][][][][][] [] [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][][][][][][][][][][][] [] [][][][][] [] [][][][][][][] [] [][][][] [][] [][][][][] [][]
  []
 
 
-Underfull \hbox (badness 2913) in paragraph at lines 324--331
+Underfull \hbox (badness 2913) in paragraph at lines 330--337
 \TU/lmr/m/it/10.95 chology\TU/lmr/m/n/10.95 , 53(3):372–378, July 2006.  ISSN 0022-0167.  doi: $[][] [] [][][][] [] [][][][] [][] [][][][] [] [][] [] [] []
  []
 
 
-Underfull \hbox (badness 1558) in paragraph at lines 350--357
+Underfull \hbox (badness 1558) in paragraph at lines 356--363
 []\TU/lmr/m/n/10.95 Della V. Mosley, Candice N. Hargons, Carolyn Meiller, Blanka Angyal, Paris Wheeler,
  []
 
 
-Underfull \hbox (badness 4699) in paragraph at lines 350--357
+Underfull \hbox (badness 4699) in paragraph at lines 356--363
 \TU/lmr/m/n/10.95 Candice Davis, and Danelle Stevens-Watkins.  Critical consciousness of anti-Black
  []
 
 
-Underfull \hbox (badness 1817) in paragraph at lines 350--357
+Underfull \hbox (badness 1817) in paragraph at lines 356--363
 \TU/lmr/m/n/10.95 racism: A practical model to prevent and resist racial trauma.  \TU/lmr/m/it/10.95 Journal of Coun-
  []
 
 
-Underfull \hbox (badness 5504) in paragraph at lines 350--357
+Underfull \hbox (badness 5504) in paragraph at lines 356--363
 \TU/lmr/m/it/10.95 seling Psychology\TU/lmr/m/n/10.95 , 68(1):1–16, January 2021.  ISSN 0022-0167.  doi: $[][] [] [][][][] []
  []
 
-[467]
-Underfull \hbox (badness 2547) in paragraph at lines 443--449
+[555]
+Underfull \hbox (badness 2547) in paragraph at lines 449--455
 \TU/lmr/m/n/10.95 Blacks.  \TU/lmr/m/it/10.95 The Western Journal of Black Studies\TU/lmr/m/n/10.95 , 5(3):180–184, 1981.  ISSN 0197-
  []
 
-
-Underfull \hbox (badness 4621) in paragraph at lines 464--471
+[556]
+Underfull \hbox (badness 4621) in paragraph at lines 470--477
 []\TU/lmr/m/n/10.95 Clairice T. Veit and John E. Ware.  The structure of psychological distress and
  []
 
 
-Underfull \hbox (badness 6461) in paragraph at lines 464--471
+Underfull \hbox (badness 6461) in paragraph at lines 470--477
 \TU/lmr/m/n/10.95 well-being in general populations.  \TU/lmr/m/it/10.95 Journal of Consulting and Clinical Psychol-
  []
 
 
-Underfull \hbox (badness 2384) in paragraph at lines 464--471
+Underfull \hbox (badness 2384) in paragraph at lines 470--477
 \TU/lmr/m/it/10.95 ogy\TU/lmr/m/n/10.95 , 51(5):730–742, October 1983.  ISSN 0022-006X.  doi: $[][] [] [][][][] [] [][][][] [][] [][][][] [] [][] [] [] []
  []
 
-[468])
-
-Package natbib Warning: There were undefined citations.
-
-[469] (./ReC_MultMod.aux)
+) [557] (./ReC_MultMod.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
@@ -2850,15 +3102,15 @@ L3 programming layer <2023-08-29>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `ReC_MultMod.out' has not changed.
-(rerunfilecheck)             Checksum: EDDF7B8FC99B58B8CD1D59FC92EB3DC5;66292.
+(rerunfilecheck)             Checksum: F4EBAD380A0C84C2C95743E6833EB965;73861.
  ) 
 Here is how much of TeX's memory you used:
- 21449 strings out of 477590
- 421125 string characters out of 5817186
+ 21753 strings out of 477590
+ 434967 string characters out of 5817186
  1969416 words of memory out of 5000000
- 42244 multiletter control sequences out of 15000+600000
+ 42528 multiletter control sequences out of 15000+600000
  564680 words of font info for 97 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,11n,120p,2365b,623s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,11n,120p,2361b,625s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ReC_MultMod.pdf (469 pages).
+Output written on ReC_MultMod.pdf (557 pages).

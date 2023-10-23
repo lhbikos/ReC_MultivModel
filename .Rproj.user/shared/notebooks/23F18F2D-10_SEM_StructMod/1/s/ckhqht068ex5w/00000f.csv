@@ -1,0 +1,8 @@
+"0","#next set of code pushes the indicator variables away from the factor"
+"0","m1_indicator_push <- c(REM = .5, "
+"0","                    CMI = 1,"
+"0","                    PWB = 1)"
+"0","m1_indicator_spread <- c(REM = 1, #spreading the boxes away from each other"
+"0","                    CMI = 1,"
+"0","                    PWB = 1)"
+"0",""

@@ -1,0 +1,8 @@
+"0","ReC_ALT <-semptools::set_sem_layout(ReC_ALT,"
+"0","                                indicator_order = m2_indicator_order,"
+"0","                                indicator_factor = m2_indicator_factor,"
+"0","                                factor_layout = m2_msmt,"
+"0","                                factor_point_to = m2_point_to,"
+"0","                                indicator_push = m2_indicator_push,"
+"0","                                indicator_spread = m2_indicator_spread)"
+"0","plot(ReC_ALT)"

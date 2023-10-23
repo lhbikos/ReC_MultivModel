@@ -9,7 +9,7 @@ This lesson opens a series on structural equation modeling devoted to the full l
 
 ## Navigating this Lesson
 
-There is about 1 hour and ?? minutes of lecture.  If you work through the materials with me it would be plan for an additional ____________.
+There is about two hours of lecture.  If you work through the materials with me it would be plan for an additional two hours.
 
 While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://https://github.com/lhbikos/ReC_MultivModel) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
 
@@ -26,7 +26,9 @@ Learning objectives from this lecture include the following:
 
 ### Planning for Practice
 
-The suggestions for homework are graded in complexity and, if you like, can extend from the prior lessons were path analytic models were analyzed and continue into the next lesson. This lesson is designed as a two-part lesson. In this lesson we specify and evaluate the *measurement model* that precedes evaluating a full *structural model*. This means that you will want to have a structural model in mind. For the practice, this should involve a minimum of three variables.
+This is the first of a two-part lesson on structural equation modeling. In this lesson we specify and evaluate the *measurement model* that precedes evaluating a full *structural model*. This means that you will want to have a structural model in mind. For the practice, this should involve a minimum of three variables. 
+
+The suggestions for homework are graded in complexity. If you have completed one or more of the prior lessons where path analysis (i.e., no latent variables) were used, you might consider recycling those for this set of practice problems.  
 
 * Rework the problem in the chapter by changing the random seed in the code that simulates the data.  This should provide minor changes to the data, but the results will likely be very similar.
 * Use the research data from the chapter, but evaluate a different set of variables.
@@ -84,7 +86,7 @@ In this lesson we start on the journey toward evaluating a full latent variable 
 
 The following workflow is one that provides an overview of the entire process of evaluating a structural model.
 
-![A colorful image of a workflow for complex mediation](images/IntroSEM/StructuralModelWorkflow.png) 
+![A colorful image of a workflow for evaluating structural models.](images/IntroSEM/StructuralModelWorkflow.png) 
 Evaluating a structural model involves the following steps:
 
 * A Priori Power Analysis
@@ -101,27 +103,31 @@ Evaluating a structural model involves the following steps:
   - Evaluate univariate normality (i.e., one variable at a time) with Shapiro-Wilks tests; p < .05 indicates a violation of univariate normality.
   - Evaluate multivariate normality (i.e., all continuously scaled variables simultaneously) with Mahalanobis test. Identify outliers (e.g., cases with Mahal values > 3 SDs from the centroid). Consider deleting (or transforming if there is an extreme-ish “jump” in the sorted values.
   - Evaluate internal consistency of the scaled scores with Cronbach’s alpha or omega; the latter is increasingly preferred.
-* Specify and evaluate a measurement model
+Specify and evaluate a measurement model
   - In this just-identified (saturated) model, all latent variables are specified as covarying
     + For LVs with 3 items or more, remember to set a marker/reference variable.
     + For LVs with 2 items, constrain the loadings to be equal
     + For single-item indicators fix the error variance to zero (or a non-zero estimate of unreliability)
-  - Evaluate results with global fit indices (e.g., X2, CFI, RMSEA, SRMR), comparative fit indices (if needed; e.g., AIC, BIC), and strength and significance of the factor loadings and covariances.
+  - Evaluate results with global (e.g., X2, CFI, RMSEA, SRMR) and local (i.e., factor loadings and covariances) fit indices
   - In the event of poor fit, respecify LVs with multiple indicators with parcels.
+  - Nested alternative measurement models can be compared with Χ2 difference, ΔCFI tests; non-nested models with AIC, and BIC tests 
 * Specify and evaluate a structural model
   - Replace the covariances with paths that represent the a priori hypotheses
     + These models could take a variety of forms.
     + It is possible to respecify models through trimming or building approaches.
-  - Evaluate results with global fit indices (e.g., X2, CFI, RMSEA, SRMS), comparative fit indices (if needed; e.g., AIC, BIC), and strength and significance of the factor loadings and covariances.
+  - Evaluate results using
+    + *global* fit indices (e.g., X2, CFI, RMSEA, SRMS)
+    + *local* fit indices (i.e., strength and significance of factor loadings, covariances, and additional model parameters [e.g., indirect effects])
   - Nested models can be compared with Χ2 difference and ΔCFI tests.
 * Quick Guide for Global and Comparative Fit Statistics
-  - $\chi^2$, p > .05; this test is sensitive to sample size and this value can be difficult to attain
+  - $\chi^2$, p < .05; this test is sensitive to sample size and this value can be difficult to attain
   - CFI > .95 (or at least .90)
   - RMSEA (and associated 90%CI) are < .05 ( < .08, or at least < .10)
   - SRMR < .08 (or at least <.10)
   - Combination rule:  CFI < .95 and SRMR < .08
   - AIC and BIC are compared; the lowest values suggest better models
   - $\chi^2\Delta$ is statistically significant; the model with the superior fit is the better model
+  - $\delta CFI$ is greater than 0.01; the model with CFI values closest to 1.0 has better fit
   
 The focus of this lesson in on the specification, evaluation, and respecification of the measurement model.
 
@@ -129,7 +135,7 @@ The focus of this lesson in on the specification, evaluation, and respecificatio
 
 Structural models include both *measurement* and *structural* portions. The **measurement model** has two primary purposes. First the measurement model **specifies the latent variables**. That is, CFA-like models (i.e., one per latent variable) define each latent variable (i.e., scale score -- but not "scored") by its observed indicators (i.e., survey items). Resulting factor loadings indicate the strength of the relationships between the observed items and their latent variable.
 
-Second, the measurement model allows the researchers to **assess the goodness of model fit**. A well-fitting model is required for accurately interpreting the relationships between the latent variables in the structural model. Additionally, the fit of the structural model will never surpass that of the measurement model. Stated another way -- if the fit of the measurement model is inferior, the structural model is likely to be worse.
+Second, the measurement model allows the researchers to **assess the goodness of model fit**. A well-fitting model is required for accurately interpreting the relationships between the latent variables in the structural model. Additionally, the fit of the structural model will never surpass that of the measurement model. Stated another way -- if the fit of the measurement model is inferior, the structural model is likely to be worse. There is at least one exception -- when both the structural and measurement models are just-identified (i.e., fully saturated with zero degrees of freedom) model fit will be identical.
 
 The specification of the measurement model involves:
 
@@ -1929,16 +1935,16 @@ How do the results of the measurement model created by three parcels, created by
 
 Criteria                                            | Our Results                         | Criteria met?|
 |:--------------------------------------------------|:-----------------------------------:|:------------:|
-|Factor loadings significant, strong, proper valence|all $p < 0.001$, lowest = .635(pwb)   |Yes           | 
+|Factor loadings significant, strong, proper valence|all $p < 0.001$, lowest = .635(pwb)  |Yes           | 
 |Non-significant chi-square                         |$\chi ^{2}(24) = 15.965, p = 0.889$  |Yes           |  
 |$CFI\geq .95$ (or at least .90)                    |CFI = 1.000                          |Yes           |  
-|$RMSEA\leq .05$ (or < .08, at least < .10, also 90CI)|RMSEA = 0.000, 90CI[0.000,	 0.031]   |Yes           |  
+|$RMSEA\leq .05$ (or < .08, at least < .10, also 90CI)|RMSEA = 0.000, 90CI[0.000,	 0.031] |Yes           |  
 |$SRMR\leq .08$ (at least < .10)                    |SRMR = 0.017                         |Yes           | 
 |Combination rule: $CFI \geq .95$ & $SRMR \leq .08$ |CFI = 1.000, SRMR = 0.017            |Yes           |
 
 The measurement model created by three parcels, created by random assignment of indicators to each has improved, even further:  $\chi^2(24) = 15.965, p = 0.889, CFI = 1.000, RMSEA = 0.000, 90CI[0.000,	 0.031], SRMR =  0.017$ 
 
-Results of the evaluation of the measurement model can be exported as .csv files with the following code. These produce output that inglude global fit indices, parameter estimates, and correlations between the latent variables, respetively. 
+Results of the evaluation of the measurement model can be exported as .csv files with the following code. These produce output that include global fit indices, parameter estimates, and correlations between the latent variables, respectively. 
 The *tidySEM::table_fit* function will display all of the global fit indices.
 
 
@@ -1972,25 +1978,22 @@ semPlot::semPaths(rp3_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5,
 
 Earlier in its history, researchers would spend considerable time describing their measurement model and, if they had used it, defending their use of parceling. One of my favorite write-ups occurs in Mallinckrodt et al.'s 2005 article[-@mallinckrodt_attachment_2005]. Because it is one of the most complete descriptions I have seen, I have consulted it again and again as I have made decisions about my own models. More recent articles describe [@autin_basic_2022; @tokar_test_2020] generally offer less narration. This is likely because (a) the use of parceling in measurement models is more routine and familiar to the reader/reviewer and (b) in journal articles with limited space, more is allocated for the results and their meaning.
 
-**Method/Analytic Strategy**
+>**Method/Analytic Strategy**
 
-Data were analyzed with a maximum likelihood approach the package, *lavaan* (v. 0.6-16). We specified a model predicting psychological wellbeing from racial ethnic microaggressions, mediated by cultural mistrust.  
+>We specified a model predicting psychological wellbeing from racial ethnic microaggressions, mediated by cultural mistrust. Our primary analysis occurred in two stages. In the first stage we specified and evaluated a measurement model. Our three latent variables (REM, CMI, PWB) were each indicated by three parcels where items were randomly assigned to each parcel. The latent variables were all allowed to covary with each other. In the second stage we specified and evaluated the structural model. Data were analyzed with a maximum likelihood approach the package, *lavaan* (v. 0.6-16).   
 
-**Results**
+>**Results**
 
-**Preliminary Analyses**
+>**Preliminary Analyses**
 
-*  Missing data analyses and managing missing data
+>*  Missing data analyses and managing missing data
 *  Bivariate correlations, means, SDs
 *  Distributional characteristics, assumptions, etc.
 *  Address limitations and concerns
 
-**Primary Analyses**
+>**Primary Analyses**
 
-Analyzing our proposed mediation model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Following recommendations by Little et al. [@little_parcel_2002; @little_why_2013], each latent variable was represented by three parcels. Parcels were created by randomly assigning scale items to the parcels and then calculating the mean, if at least 65% of the items were non-missing.  Factor loadings were all strong, statistically significant, and properly valenced. Global fit statistics were within acceptable thresholds ($\chi^2(24) = 15.965, p = 0.889, CFI = 1.000, RMSEA = 0.000, 90CI[0.000,	 0.031], SRMR =  0.017$). Thus, we proceeded to testing the structural model.
-
-STAY TUNED: the analysis of the structural model is coming in the next lesson.
-
+>Analyzing our proposed mediation model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Following recommendations by Little et al. [@little_parcel_2002; @little_why_2013], each latent variable was represented by three parcels. Parcels were created by randomly assigning scale items to the parcels and then calculating the mean, if at least 65% of the items were non-missing.  Factor loadings were all strong, statistically significant, and properly valenced. Global fit statistics were within acceptable thresholds ($\chi^2(24) = 15.965, p = 0.889, CFI = 1.000, RMSEA = 0.000, 90CI[0.000,	 0.031], SRMR =  0.017$). Thus, we proceeded to testing the structural model.
 
 Table 1  
 
@@ -2021,7 +2024,7 @@ Table 1
 
 ### Wait!  Why did we do this?
 
-Evaluating a structural model involves two steps. The first is the evaluation of the measurement model. This model allows all of the latent variables to freely covary (i.e., to correlate with each other). If this model has poor fit, the structural model will be worse. Therefore, evaluating the measurement model, and potentially respecifying it with parceled indicators can be a helpful step prior to evaluating the structural model. In fact, it is a step I highly recommend, because, as we saw, it generally improves model fit. And the just-identified solution better accounts for the measurement error.
+Evaluating a structural model involves two steps. The first is the evaluation of the measurement model. This model allows all of the latent variables to freely covary (i.e., to correlate with each other). If this model has poor fit, the structural model will likely be worse. Therefore, evaluating the measurement model, and potentially respecifying it with parceled indicators can be a helpful step prior to evaluating the structural model. In fact, it is a step I highly recommend, because, as we saw, it generally improves model fit. And the just-identified solution better accounts for the measurement error.
 
 ### What if one of my variables only has one or two indicators? 
 
