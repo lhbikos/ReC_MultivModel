@@ -1,0 +1,561 @@
+```{r include = FALSE}
+options(scipen=999)
+```
+
+## Homeworked Example
+[Screencast Link](https://youtu.be/QEfCqc7KUNI)
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
+
+The suggested practice problem for this chapter is to evaluate the measurement model that would precede the evaluation of a structural model. And actually, we will need to evaluate two measurement models -- an "all items" on indicators model and a parceled model.
+
+
+###  Identify the structural model you will evaluate {-} 
+
+It should have a minimum of four variables and could be one of the prior path-level models you already examined.  
+ 
+X = Centering: explicit recentering (0 = precentered; 1 = recentered)
+M1 = TradPed: traditional pedagogy (continuously scaled with higher scores being more favorable)
+M2 = SRPed:  socially responsive pedagogy (continuously scaled with higher scores being more favorable)
+Y = Valued: valued by me (continuously scaled with higher scores being more favorable)
+
+In this *parallel mediation*, I am hypothesizing that the perceived course value to the students is predicted by intentional recentering through their assessments of traditional and socially responsive pedagogy.
+
+It helps me to make a quick sketch:
+
+![An image of the parallel mediation model for the homeworked example](Worked_Examples/images/HWrecpec.png)
+
+### Import the data and format the variables in the model. {-}
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+raw <- readRDS("ReC.rds")
+```
+
+The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+raw <-(dplyr::filter(raw, Course == "Multivariate"))
+```
+
+Although this dataset is overall small, I will go ahead and make a babydf with the item-level variables.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+babydf <- dplyr::select(raw, Centering, ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, ValObjectives, IncrUnderstanding, IncrInterest, InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration)
+```
+
+Let's check the structure of the variables:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+str(babydf)
+```
+All of the item-level variables are integers (i.e., numerical). This is fine. 
+
+The centering variable will need to be dummy coded as 0/1:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+babydf$CEN <- as.numeric(babydf$Centering)
+babydf$CEN <- (babydf$CEN - 1)
+str(babydf)
+```
+
+### Specify and evaluate a *measurement* model that you have established.{-}
+
+As noted in the [homeworked example](https://lhbikos.github.io/ReC_MultivModel/MeasMod.html#homeworked-example-5) establishing a measurement model for this dataset may seem tricky.  That is, with five, four, and three items on each of the constructs, it seems odd to parcel. Previous researchers have parceled scales that have more than three items, even when some parcels will have one item each [@spengler_beyond_2023]. Correspondingly, I will randomly assign the scales with more than three items each to three parcels.  
+
+Here I assign the TradPed items to the 3 parcels.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+set.seed(230916)
+items <- c('ClearResponsibilities', 'EffectiveAnswers', 'Feedback', 'ClearOrganization', 'ClearPresentation')
+parcels <- c("p1_TR", "p2_TR","p3_TR")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
+```
+I can now create the parcels using the traditional scoring procedure. Given that we will allow single-item representations, I will sore the 2-item variables if at least one is present (i.e., .5).
+
+As a variable, *ClearResponsibilities* will stand alone (i.e., the scoring mechanism won't work on a single variable). Therefore, I will 
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+TRp1_vars <- c('ClearPresentation','EffectiveAnswers')
+TRp2_vars <- c('Feedback','ClearOrganization')
+
+babydf$p1T <- sjstats::mean_n(babydf[, ..TRp1_vars], .5)
+babydf$p2T <- sjstats::mean_n(babydf[, ..TRp2_vars], .5)
+
+#for consistency, I will create a third parcel from the ClearResponsibilities variable by duplicating and renaming it
+
+babydf$p3T <- babydf$ClearResponsibilities
+
+#If the scoring code above does not work for you, try the format below which involves removing the periods in front of the variable list. One example is provided.
+#babydf$p2T <- sjstats::mean_n(babydf[, TRp1_vars], .5)
+```
+
+Here I assign the socially responsive pedagogy items to three parcels.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+set.seed(230916)
+items <- c('InclusvClassrm', 'EquitableEval', 'MultPerspectives', 'DEIintegration')
+parcels <- c("p1_SR", "p2_SR","p3_SR")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
+```
+
+Only parcel one needs to be scored; the remaining are the single items.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+SRp1_vars <- c('InclusvClassrm','EquitableEval')
+
+babydf$p1S <- sjstats::mean_n(babydf[, ..SRp1_vars], .5)
+
+#Here I create the second and third parcels from the individual items by duplicating and naming them
+
+babydf$p2S <- babydf$MultPerspectives
+babydf$p3S <- babydf$DEIintegration
+
+#If the scoring code above does not work for you, try the format below which involves removing the periods in front of the variable list. One example is provided.
+#babydf$p1S <- sjstats::mean_n(babydf[, SRp1_vars], .5)
+```
+
+I will create "parcels" for the three valued items by naming and duplicating.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+babydf$p1V <- babydf$ValObjectives
+babydf$p2V <- babydf$IncrUnderstanding
+babydf$p3V <- babydf$IncrInterest
+```
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+msmt_mod <- "
+        ##measurement model
+         CTR =~ CEN #this is a single item indicator, I had to add code below to set the variance
+
+         TrP =~ p1T + p2T + p3T
+         
+         SRP =~ p1S + p2S + p3S
+         
+         Val =~ p1V + p2V + p3V
+    
+         
+        # Variance of the single item indicator
+         CTR ~~ 0*CEN
+        
+        # Covariances
+         CTR ~~ TrP
+         CTR ~~ SRP
+         CTR ~~ Val
+         TrP ~~ SRP
+         TrP ~~ Val
+         SRP ~~ Val
+        "
+
+set.seed(230916)
+msmt_fit <- lavaan::cfa(msmt_mod, data = babydf, missing = "fiml")
+msmt_fit_sum <- lavaan::summary(msmt_fit, fit.measures = TRUE, standardized = TRUE)
+msmt_fit_sum
+msmt_fit_pEsts <- lavaan::parameterEstimates(msmt_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+#msmt_fit_pEsts #To reduce redundancy in the book, I did not print the parameter estimates. Their object is used in exporting a .csv file.
+
+```
+
+Below is script that will export the global fit indices (via *tidySEM::table_fit*) and the parameter estimates (e.g., factor loadings, structural regression weights, and parameters we requested such as the indirect effect) to .csv files that you can manipulate outside of R.  
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#global fit indices
+msmt_globalfit <- tidySEM::table_fit(msmt_fit)
+write.csv(msmt_globalfit, file = "msmt_globalfit.csv")
+#the code below writes the parameter estimates into a .csv file
+write.csv(msmt_fit_pEsts, file = "msmt_fit_pEsts.csv")
+```
+
+
+Here is how I wrote up the results:
+
+>Analyzing our proposed parallel mediation followed the two-step procedure of first establishing a measurement model with acceptable fit to the data and then proceeding to test the structural model. Given that different researchers recommend somewhat differing thresholds to determine the adequacy of fit, We used the following as evidence of good fit: comparative fit indix (CFI) $\geq 0.95$, root-mean-square error of approximation (RMSEA) $\leq 0.06$, and the standard root-mean-square residual (SRMR) $\leq 0.08$. To establish aceptable fit, we used CFI $\geq 0.90$, RMSEA $\leq 0.10$, and SRMR $\leq 0.10$ [@weston_brief_2006].
+
+>We evaluated the measurement model by following recommendations by Little et al. [@little_parcel_2002; @little_why_2013]. The three course evaluation scales representing traditional pedagogy (5 items), socially responsive pedagogy (4 items), and perceived value to the student (3) were each represented by a combination of parcels and single items that created just-identified factors (i.e., the five items of traditional pedagogy were randomly assigned across three parcels and mean scores were used). For the centering variable -- a single item indicator -- we constrained the variance to zero. 
+
+>With the exception of the statistically significant chi-square, fit statistics evidenced a mix of good and acceptable thresholds $(\chi^2(30) = 51.639, p = 0.004, CFI = 0.958, RMSEA = 0.093, 90CI[0.047,	 0.134], SRMR =  0.052)$. Thus, we proceeded to testing the structural model. The strong, statistically significant, and properly valanced factor loadings are presented in Table 1.
+
+
+Table 1  
+|Factor Loadings for the Measurement Model 
+|:-------------------------------------------------------------|
+
+|                         
+|:----------------------------:|:-----:|:----:|:-----:|:------:|
+| Latent variable and indicator|est    |SE    | *p*   |est_std |
+
+|
+|:-----------------------------|:-----:|:----:|:-----:|:------:|
+|**Traditional Pedagogy**      |       |      |       |        |
+|Parcel 1                      |1.000	 |0.000	|      	|0.912   |
+|Parcel 2                      |0.963	 |0.090	|<0.001	|0.850   |
+|Parcel 3                      |0.952	 |0.108	|<0.001	|0.757   |
+|**Socially Responsive Pedagogy**|     |      |       |        |
+|Parcel 1       	             |1.000	 |0.000	|       |0.936   |
+|Parcel 2                      |1.061	 |0.134	|<0.001	|0.761   |
+|Parcel 3                      |1.408	 |0.179	|<0.001	|0.807   |
+|**Perceived Value to the Student**|   |      |       |        |
+|Item 1                        |1.000	 |0.000	|      	|0.562   |
+|Item 2                        |2.238	 |0.399	|<0.001	|0.925   |
+|Item 3                        |2.200	 |0.400	|<0.001	|0.852   |
+|**CENTERING**	               |1.000	 |0.000	|       |1.000   |
+
+
+Although it likely would not appear in an article (no space), here is a figure of my measurement model. We can use it to clarify our conceptual understanding of what we specified and check our work.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+semPlot::semPaths(msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(2,2,2,2))
+```
+
+### Specify and evaluate a *structural* model {-}
+
+As a reminder, I am hypothesizing a *parallel mediation* where the perceived course value to the students is predicted by intentional recentering through their assessments of traditional and socially responsive pedagogy.
+
+X = Centering: explicit recentering (0 = precentered; 1 = recentered)
+M1 = TradPed: traditional pedagogy (continuously scaled with higher scores being more favorable)
+M2 = SRPed:  socially responsive pedagogy (continuously scaled with higher scores being more favorable)
+Y = Valued: valued by me (continuously scaled with higher scores being more favorable)
+
+![An image of the parallel mediation model for the homeworked example](Worked_Examples/images/HWrecpec.png)
+
+For the purpose of this exercise, the structural model should be over-identified, that is, should have positive degrees of freedom. How many degrees of freedom does your structural model have?
+
+**Knowns::: $\frac{k(k+1)}{2}$ where *k* is the number of *constructs* 
+
+```{r}
+(4*(4+1))/2
+```
+There are 10 knowns.
+
+**Unknowns**:
+
+  - Exogenous (predictor) variables (1 variance estimated for each):  we have 1 (CTR) 
+  - Endogenous (predicted) variables (1 disturbance variance for each):  we have 3 (TrP, SRP, Val)
+  - Correlations between variables (1 covariance for each pairing): we have 0
+  - Regression paths (arrows linking exogenous variables to endogenous variables): we have 5  
+    
+With 10 knowns and 9 unknowns, we have 1 degree of freedom in the structural portion of the model. This is an *over-identified* model.
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ReC_struct_mod1 <- "
+        #measurement model
+         CTR =~ CEN #this is a single item indicator, I had to add code below to set the variance
+         TrP =~ p1T + p2T + p3T
+         SRP =~ p1S + p2S + p3S
+         Val =~ p1V + p2V + p3V
+    
+        # Variance of the single item indicator
+         CTR ~~ 0*CEN
+        
+        #structural model
+          Val ~ b1*TrP + b2*SRP + c_p*CTR
+          TrP ~ a1*CTR
+          SRP ~ a2*CTR
+          
+          indirect1 := a1 * b1
+          indirect2 := a2 * b2
+          contrast := indirect1 - indirect2
+          total_indirects := indirect1 + indirect2
+          total_c    := c_p + (indirect1) + (indirect2)
+          direct := c_p
+         
+          "
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+ReC_struct_fit1 <- lavaan::sem(ReC_struct_mod1, data = babydf, missing= 'fiml', fixed.x=FALSE) 
+ReC_struct_summary1 <- lavaan::summary(ReC_struct_fit1, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+ReC_struct_pEsts1 <- lavaan::parameterEstimates(ReC_struct_fit1, boot.ci.type = "bca.simple", standardized=TRUE)
+ReC_struct_summary1
+#ReC_struct_pEsts1 #although creating the object is useful to export as a .csv I didn't ask it to print into the book
+
+```
+$(\chi^2(31) = 105.390, p < 0.001, CFI = 0.856, RMSEA = 0.169, 90CI[0.134, 0.205], SRMR =  0.226)$.
+
+Below is script that will export the global fit indices (via *tidySEM::table_fit*) and the parameter estimates (e.g., factor loadings, structural regression weights, and parameters we requested such as the indirect effect) to .csv files that you can manipulate outside of R.  
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#global fit indices
+ReC_globalfit1 <- tidySEM::table_fit(ReC_struct_fit1)
+write.csv(ReC_globalfit1, file = "ReC_globalfit1.csv")
+#the code below writes the parameter estimates into a .csv file
+write.csv(ReC_struct_pEsts1, file = "ReC_struct_pEsts1.csv")
+```
+
+Let's work up a figure
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+plot_ReC_struct1 <- semPlot::semPaths(ReC_struct_fit1, what = "col", whatLabels = "stand", sizeMan = 3, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(2,2,2,2), structural = FALSE, curve=FALSE, intercepts=FALSE)
+```
+
+
+|Grid for Plotting semplot::sempath  
+|:-------------|:-------------|:------------|
+|(1,1) empty   |(1,2) TrP     |(1,3) empty  | 
+|(2,1) CTR     |(2,2) empty   |(2,3) Val    |
+|(3,1) empty   |(3,2) SRP     |(3,3) empty  |
+
+
+We place these values along with the names of our latent variables in to the *semptools::layout_matrix* function.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
+#You can change them as the last thing
+m1_msmt <- semptools::layout_matrix(CTR = c(2,1),
+                                  TrP = c(1,2),
+                                  SRP = c(3,2),
+                                  Val = c(2,3))
+```
+
+Next we provide instruction on the direction (up, down, left, right) we want the indicator/observed variables to face. We identify the direction by the location of each of our latent variables. For example, in the code below we want the indicators for the REM variable (2,1) to face left.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#tell where you want the indicators to face
+m1_point_to <- semptools::layout_matrix (left = c(2,1),
+                                      up = c(1,2),
+                                      down = c(3,2),
+                                       right = c(2,3))
+
+```
+
+The next two sets of code work together to specify the order of the observed variables for each factor. in the top set of code the variable names indicate the order in which they will appear (i.e., p1R, p2R, p3R). In the second set of code, the listing the variable name three times (i.e., REM, REM, REM) serves as a placeholder for each of the indicators.
+
+It is critical to note that we need to use the abbreviated variable names assigned by *semTools::semPaths* and not necessarily the names that are in the dataframe.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
+m1_indicator_order <- c("CEN",
+                     "p1T", "p2T", "p3T",
+                     "p1S", "p2S", "p3S",
+                     "p1V", "p2V", "p3V")
+
+m1_indicator_factor <- c("CTR",
+                      "TrP", "TrP", "TrP",
+                      "SRP", "SRP", "SRP",
+                      "Val", "Val", "Val")
+```
+
+
+The next two sets of codes provide some guidance about how far away the indicator (square/rectangular) variables should be away from the latent (oval/circular) variables. Subsequently, the next set of values indicate how far away each of the indicator (square/rectangular) variables should be spread apart.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#next set of code pushes the indicator variables away from the factor
+m1_indicator_push <- c(CTR = 1, 
+                    TrP = 1,
+                    SRP = 1, 
+                    Val = 1)
+
+
+#spreading the boxes away from each other
+m1_indicator_spread <- c(CTR = .5, 
+                    TrP = 2.5,
+                    SRP = 2.5, 
+                    Val = 1)
+
+```
+
+Finally, we can feed all of the objects that whole these instructions into the *semptools::sem_set_layout* function. If desired, we can use the *semptools::change_node_label* function to rename the latent variables. Again, make sure to use the variable names that *semPlot::semPaths* has assigned.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70), eval=FALSE}
+plot1 <- semptools::set_sem_layout(plot_ReC_struct1,
+                                indicator_order = m1_indicator_order,
+                                indicator_factor = m1_indicator_factor,
+                                factor_layout = m1_msmt,
+                                factor_point_to = m1_point_to,
+                                indicator_push = m1_indicator_push,
+                                indicator_spread = m1_indicator_spread)
+
+#changing node labels
+#plot1 <- semptools::change_node_label(plot1,
+                                   #c(CTR = "CTRing",
+                                     #TrP = "TradPed",
+                                     #SRP = "SRPed",
+                                     #Val = "Valued"),
+                                   #label.cex = 1.1)
+
+#adding stars to indicate significant paths
+plot1 <- semptools::mark_sig(plot1, ReC_struct_fit1)
+
+plot(plot1)
+```
+
+If we table the results, here's what we have:
+
+**Table 2 ** 
+
+|Model Coefficients Assessing the Effect of Perceived Value from Recentering through Socially Responsive and Traditional Pedagogies
+|:--------------------------------------------------------------------------------------|
+
+| Predictor                        |$B$     |$SE_{B}$|$p$      |$\beta$ |$R^2$          |                   
+|:---------------------------------|:------:|:------:|:-------:|:-------|:-------------:|
+|**Traditional Pedagogy** (M1)     |        |        |         |        |.05            |  
+|Centering ($a_1$)                 |0.319	  |0.158	 |0.044	   |0.228   |               |
+|**Socially Responsive Pedagogy** (M2)|     |        |         |        |.10            | 
+|Centering ($a_2$)                 |0.311	  |0.109	 |0.004	   |0.321   |               |
+|**Perceived Value** (DV)          |        |        |         |        |.80            |
+|Traditional Pedagogy ($b_1$)      |0.595	  |0.050	 |0.000	   |0.865   |               |
+|Socially Responsive Pedagogy ($b_2$)|0.087	|0.079	 |0.275	   |0.121   |               |
+|Centering ($c'$)                  |-0.029	|0.053	 |0.587	   |-0.042  |               |
+
+|Effects                           |$B$     |$SE_{B}$|$p$      |        |95% CI 
+|:---------------------------------|:------:|:------:|:-------:|:------:|:-------------:|
+|Indirect($a_1*b_1$)               |0.140	  |0.075	 |0.062	   |0.202	  |-0.007, 0.287  |
+|Indirect($a_2*b_2$)               |0.027	  |0.026	 |0.306	   |0.039	  |-0.025, 0.078  |
+|Contrast                          |0.113	  |0.082	 |0.166	   |0.163	  |-0.047, 0.273  |
+|Total indirects                   |0.167	  |0.077	 |0.031	   |0.241	  |0.016,	0.318   |
+|Total effect                      |0.138	  |0.083	 |0.095	   |0.199	  |-0.024, 0.300  |
+
+|
+|---------------------------------------------------------------------------------------|
+|*Note*. The significance of the indirect effects was calculated with bootstrapped, bias-corrected, confidence intervals (.95).|
+
+>Our structural model was a parallel mediation, predicting perceived value to the student directly from centering and indirectly through traditional and socially responsive pedagogy. Results of the global fit indices all fell below the thresholds of acceptability $(\chi^2(31) = 105.390, p < 0.001, CFI = 0.856, RMSEA = 0.169, 90CI[0.134, 0.205, SRMR =  0.226)$. As shown in Table 2, although the model accounted for 95% of the variance in perceived value, neither of the indirect effects were statistically significant. Only traditional and socially responsive pedagogy appeared to have significant influence on perceived value. Thus, we considered the possibility of forward searching to build the model.
+
+### Use modification indices to add at least one path or covariance {-}
+
+Normally, we would use the *lavaan::modindices()* function to retrieve the modification indices. Unfortunately, it is not working and I cannot understand why. This error does not make sense to me. I wonder if this error and the inability to plot the result is related to the dichotomous predictor variable? Who knows. If anyone discovers a solution, please let me know!
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70), eval=FALSE}
+lavaan::modindices(ReC_struct_fit1, sort=TRUE, minimum.value=4)
+```
+
+I planned this problem knowing that the the only logical path would be to add a path from traditional pedagogy to socially responsive pedagogy, turning this into a serial mediation. Let's do that!
+
+Before even conducting the statistic, adding this path will make the structural model *just-identified*. As such, it will have the identical strong fit of the measurement model. This means we probably should not favor this model if the serial indirect effect is not statistically significant.
+
+![An image of the parallel mediation model for the homeworked exampl.](Worked_Examples/images/HWrespec_serial.png)
+
+### Conduct a formal comparison of *global* fit between the original and respecified model{-}
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ReC_struct_mod2 <- "
+        #measurement model
+         CTR =~ CEN #this is a single item indicator, I had to add code below to set the variance
+         TrP =~ p1T + p2T + p3T
+         SRP =~ p1S + p2S + p3S
+         Val =~ p1V + p2V + p3V
+    
+        # Variance of the single item indicator
+         CTR ~~ 0*CEN
+        
+        #structural model
+          Val ~ b1*TrP + b2*SRP + c_p*CTR
+          TrP ~ a1*CTR
+          SRP ~ a2*CTR + d1*TrP
+          
+          
+          indirect1 := a1 * b1
+          indirect2 := a2 * b2
+          indirect3 := a1 * d1 * b2
+          contrast1 := indirect1 - indirect2
+          contrast2 := indirect1 - indirect3
+          contrast3 := indirect2 - indirect3
+          total_indirects := indirect1 + indirect2 + indirect3
+          total_c    := c_p + (indirect1) + (indirect2) + (indirect3)
+          direct := c_p
+         
+          "
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+ReC_struct_fit2 <- lavaan::sem(ReC_struct_mod2, data = babydf, missing= 'fiml')
+ReC_struct_summary2 <- lavaan::summary(ReC_struct_fit2, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+ReC_struct_pEsts2 <- lavaan::parameterEstimates(ReC_struct_fit2, boot.ci.type = "bca.simple", standardized=TRUE)
+ReC_struct_summary2
+#ReC_struct_pEsts1 #although creating the object is useful to export as a .csv I didn't ask it to print into the book
+
+```
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#global fit indices
+ReC_globalfit2 <- tidySEM::table_fit(ReC_struct_fit2)
+write.csv(ReC_globalfit2, file = "ReC_globalfit2.csv")
+#the code below writes the parameter estimates into a .csv file
+write.csv(ReC_struct_pEsts2, file = "ReC_struct_pEsts2.csv")
+```
+
+Here is the global fit indices:  $(\chi^2(30) = 51.639, p = 0.004, CFI = 0.958, RMSEA = 0.093, 90CI[0.047, 0.134], SRMR =  0.052)$. As I noted before we ran it, they are identical to those of the just-identified measurement model.
+
+We can compare the difference between the originally hypothsized fit and this fit.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+lavaan::lavTestLRT(ReC_struct_fit1, ReC_struct_fit2)
+```
+Given that these models are nested (i.e., same variables, same sample, only the paths change), we can use the $(\Delta\chi^2(1) = 53.751, p < 0.001$ to see that there is a statistically significant difference favoring the model with the serial mediation. If we examine the regression weights and parameters, we see that none of the indirect effects, including the serial mediation $(B = -0.008, SE = 0.019, \beta =	-0.012, p =	0.661, 95CI[-0.046,	0.029])$.
+are non-significant. Thus, I would favor retaining the originally hypothesized model.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+plot_struct2 <- semPlot::semPaths(ReC_struct_fit2, what = "col", whatLabels = "stand", sizeMan = 3, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(2,2,2,2), structural = FALSE, curve=FALSE, intercepts=FALSE)
+```
+
+### Using the strength and significance of regression weights as a guide, trim at least path or covariance {-}
+
+Given my rejection of the model that resulted from adding the serial mediation, I will inspect the strength, direction, and significance of my regression weights to see about deleting a path.
+
+This is tricky, the "most-nonsignificant" path is the direct path from centering to perceived value $(B = 0.029, p = 0.587)$. That path, however, is involved in the indirect effects (and I would sue like the indirect effect through traditional pedagogy $[B = 0.140, p = 0.061, 95CI(-0.007, 0.287)]$ to pass into statistical significance).The next most non-significant path is $b_2$, from socially responsive pedagogy to perceived value $(B = 0.087, p = 0.275))$. Let's trim it.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ReC_struct_mod3 <- "
+        #measurement model
+         CTR =~ CEN #this is a single item indicator, I had to add code below to set the variance
+         TrP =~ p1T + p2T + p3T
+         SRP =~ p1S + p2S + p3S
+         Val =~ p1V + p2V + p3V
+    
+        # Variance of the single item indicator
+         CTR ~~ 0*CEN
+        
+        #structural model
+          Val ~ b1*TrP + c_p*CTR #trimmed + b2*SRP 
+          TrP ~ a1*CTR
+          SRP ~ a2*CTR
+          
+          indirect1 := a1 * b1
+          #indirect2 := a2 * b2 #trimmed because the b2 path was trimmed
+          #contrast := indirect1 - indirect2
+          #total_indirects := indirect1 + indirect2
+          total_c    := c_p + (indirect1) #trimmed + (indirect2)
+          direct := c_p
+         
+          "
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+ReC_struct_fit3 <- lavaan::sem(ReC_struct_mod3, data = babydf, missing= 'fiml', fixed.x=FALSE) 
+ReC_struct_summary3 <- lavaan::summary(ReC_struct_fit3, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+ReC_struct_pEsts3 <- lavaan::parameterEstimates(ReC_struct_fit3, boot.ci.type = "bca.simple", standardized=TRUE)
+ReC_struct_summary3
+#ReC_struct_pEsts1 #although creating the object is useful to export as a .csv I didn't ask it to print into the book
+
+```
+Exporting results to .csv files:
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#global fit indices
+ReC_globalfit3 <- tidySEM::table_fit(ReC_struct_fit3)
+write.csv(ReC_globalfit3, file = "ReC_globalfit3.csv")
+#the code below writes the parameter estimates into a .csv file
+write.csv(ReC_struct_pEsts3, file = "ReC_struct_pEsts3.csv")
+```
+
+
+Curiously, the global fit indices are identical to the originally hypothesized model. Given that we trimmed a path, I'm a little confused by this: $(\chi^2(31) = 105.390, p < 0.001, CFI = 0.856, RMSEA = 0.169, 90CI[0.134, 0.205, SRMR =  0.226)$. Additionally, the indirect effect through traditional pedagogy is not statistically significant $(B = 0.140, SE = 0.075, p = 0.062, 95CI[-0.007,	0.287]).
+
+
+### Conduct a formal comparison of *global* fit between the original (or built) and trimmed model {-}
+
+None-the-less, I can formally compare the two tests: (\Delta\chi^2(1) = 53.751, p < 0.001$
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+lavaan::lavTestLRT(ReC_struct_fit1, ReC_struct_fit3)
+```
+
+
+
+### APA style results with table(s) and figure(s) {-}
+
+>Analyzing our proposed parallel mediation followed the two-step procedure of first establishing a measurement model with acceptable fit to the data and then proceeding to test the structural model. Given that different researchers recommend somewhat differing thresholds to determine the adequacy of fit, We used the following as evidence of good fit: comparative fit indix (CFI) $\geq 0.95$, root-mean-square error of approximation (RMSEA) $\leq 0.06$, and the standard root-mean-square residual (SRMR) $\leq 0.08$. To establish aceptable fit, we used CFI $\geq 0.90$, RMSEA $\leq 0.10$, and SRMR $\leq 0.10$ [@weston_brief_2006].
+
+>We evaluated the measurement model by following recommendations by Little et al. [@little_parcel_2002; @little_why_2013]. The three course evaluation scales representing traditional pedagogy (5 items), socially responsive pedagogy (4 items), and perceived value to the student (3) were each represented by a combination of parcels and single items that created just-identified factors (i.e., the five items of traditional pedagogy were randomly assigned across three parcels and mean scores were used). For the centering variable -- a single item indicator -- we constrained the variance to zero. 
+
+>With the exception of the statistically significant chi-square, fit statistics evidenced a mix of good and acceptable thresholds $(\chi^2(30) = 51.639, p = 0.004, CFI = 0.958, RMSEA = 0.093, 90CI[0.047,	 0.134], SRMR =  0.052)$. Thus, we proceeded to testing the structural model. The strong, statistically significant, and properly valanced factor loadings are presented in Table 1.
+
+>Our structural model was a parallel mediation, predicting perceived value to the student directly from centering and indirectly through traditional and socially responsive pedagogy. Results of the global fit indices all fell below the thresholds of acceptability $(\chi^2(31) = 105.390, p < 0.001, CFI = 0.856, RMSEA = 0.169, 90CI[0.134, 0.205, SRMR =  0.226)$. As shown in Table 2, although the model acocunted for 95% of the variance in perceived value, neither of the indirect effects were statistically significant. Only traditional and socially responsive pedagogy appeared to have significant influence on perceived value. Thus, we considered both building and trimming approaches.
+
+>I would have liked to use modification indices. However, R errors prevented me from doing so. None-the-less, the only available path to add to the model was from traditional pedagogy to socially responsive pedagogy, turning the parallel mediation into a serial mediation. Given that these models are nested (i.e., same variables, same sample, only the paths change), it was possible test for a statistically significant differences. Results $(\Delta\chi^2(1) = 53.751, p < 0.001)$ indicated a statistically significant difference favoring the model with the serial mediation. Inspection of the regression weights and parameters, suggested that none of the indirect effects, including the serial mediation $(B = -0.008, SE = 0.019, \beta =	-0.012, p =	0.661, 95CI[-0.046,	0.029])$.
+were non-significant. Thus, I would favored retaining the originally hypothesized model.
+
+>Next, I engaged in backward searching and trimmed the $b_2$ path from socially responsive pedagogy to perceived value. Because the global fit indices were identical to the originally hypothesized model $(\chi^2(31) = 105.390, p < 0.001, CFI = 0.856, RMSEA = 0.169, 90CI[0.134, 0.205, SRMR =  0.226)$, it was not possible to conduct a $(\Delta\chi^2$). Additionally, the indirect effect through traditional pedagogy was not statistically significant $(B = 0.140, SE = 0.075, p = 0.062, 95CI[-0.007,	0.287]). Thus, I retained and interpreted the originally hypothesized parallel mediation.
+
+
+### Explanation to grader {-}            
+
+
+

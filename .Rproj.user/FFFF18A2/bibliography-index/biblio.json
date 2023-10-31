@@ -16237,6 +16237,388 @@
             "title": "A Test of the Career Construction Theory Model of Adaptation in Adult Workers With Chiari Malformation",
             "type": "article-journal",
             "volume": "28"
+        },
+        {
+            "DOI": "10.1037/cou0000657.supp",
+            "ISSN": "0022-0167",
+            "URL": "https://ezproxy.spu.edu/login?url=https://search.ebscohost.com/login.aspx?direct=true&AuthType=ip&db=psyh&AN=2023-36794-001&site=ehost-live",
+            "abstract": "Sexual minorities report more psychological distress, unmet mental health needs, and barriers to mental health care compared with heterosexuals, yet little is known about their barriers to seeking out mental health care. The present study reports the factors that influence intentions to seek out mental health care of a national survey of 398 sexual minorities. Structural equation modeling identified structural barriers, such as cost, time, and knowing how to access services, as the strongest predictor of sexual minorities’ help-seeking intentions. Latent moderators indicated sexual minorities’ help-seeking intentions varied depending upon their degree of psychological distress. This revealed a pattern where the most vulnerable participants (i.e., those with high structural barriers and negative help-seeking attitudes) were willing to pursue mental health care only when they were experiencing significant distress. Furthermore, nearly 40% of participants reported unmet mental health needs, and structural barriers were the primary reasons for this deficit. Findings from this study contrast with previous mental health help-seeking research by emphasizing the importance of structural vulnerability, which refers to the external forces that frame and constrain choices, thereby impeding decision-making and limiting life options for those who are in systemically disadvantaged social positions. These findings are discussed in terms of counseling psychology training, practice, social justice advocacy, and future health care research. (PsycInfo Database Record (c) 2023 APA, all rights reserved)",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        10,
+                        17
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Spengler",
+                    "given": "Elliot S."
+                },
+                {
+                    "family": "Tierney",
+                    "given": "David"
+                },
+                {
+                    "family": "Elledge",
+                    "given": "L. Christian"
+                },
+                {
+                    "family": "Grzanka",
+                    "given": "Patrick R."
+                }
+            ],
+            "container-title": "Journal of Counseling Psychology",
+            "id": "spengler_beyond_2023",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023,
+                        3
+                    ]
+                ]
+            },
+            "keyword": "Humans, Equity, health equity, Mental Health, Sexual and Gender Minorities, sexual minority, Sexual Minority Groups, Distress, Intention, Counseling, Help Seeking Behavior, Patient Acceptance of Health Care, Health Care Seeking Behavior, Health Service Needs, help-seeking, mental health care, Mental Health Services, treatment gap",
+            "note": "Publisher: American Psychological Association",
+            "page": "133-145",
+            "title": "Beyond the individual: Sexual minority help-seeking and the consequences of structural barriers",
+            "title-short": "Beyond the individual",
+            "type": "article-journal",
+            "volume": "70"
+        },
+        {
+            "URL": "https://centerstat.org/equivalent-models/",
+            "abstract": "An equivalent model can be thought of as a re-parameterization of the original model. In other words, it is just a different way of “packaging” the same information in the data and no equivalent model can be distinguished from another based on fit alone. If you were to fit a series of equivalent models to the same sample data you obtain exactly the same chi-square test statistic, RMSEA, CFI, TLI, and any other omnibus measure of fit.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        10,
+                        22
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Bauer",
+                    "given": "Patrick Curran and Dan"
+                }
+            ],
+            "container-title": "CenterStat",
+            "id": "bauer_reviewer_2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021,
+                        3
+                    ]
+                ]
+            },
+            "title": "A reviewer recently asked me to comment on the issue of equivalent models in my structural equation model. What is the difference between alternative models and equivalent models within an SEM?",
+            "type": ""
+        },
+        {
+            "DOI": "10.3390/psych3030024",
+            "ISSN": "2624-8611",
+            "URL": "https://www.mdpi.com/2624-8611/3/3/24",
+            "abstract": "Examining interactions among predictors is an important part of a developing research program. Estimating interactions using latent variables provides additional power to detect effects over testing interactions in regression. However, when predictors are modeled as latent variables, estimating and testing interactions requires additional steps beyond the models used for regression. We review methods of estimating and testing latent variable interactions with a focus on product indicator methods. Product indicator methods of examining latent interactions provide an accurate method to estimate and test latent interactions and can be implemented in any latent variable modeling software package. Significant latent interactions require additional steps (plotting and probing) to interpret interaction effects. We demonstrate how these methods can be easily implemented using functions in the semTools package with models fit using the lavaan package in R, and we illustrate how these methods work using an applied example concerning teacher stress and testing.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        10,
+                        26
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Schoemann",
+                    "given": "Alexander M."
+                },
+                {
+                    "family": "Jorgensen",
+                    "given": "Terrence D."
+                }
+            ],
+            "container-title": "Psych",
+            "id": "schoemann_testing_2021",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021,
+                        7
+                    ]
+                ]
+            },
+            "page": "322-335",
+            "title": "Testing and Interpreting Latent Variable Interactions Using the semTools Package",
+            "type": "article-journal",
+            "volume": "3"
+        },
+        {
+            "DOI": "10.1016/j.childyouth.2021.106250",
+            "ISSN": "1873-7765",
+            "abstract": "Introduction: There is a well-documented relationship between perceived discrimination and internalizing symptoms among Latinx adolescents. However, few studies have examined how this psychosocial stressor relates to multiple domains of functioning in rural Latinx adolescents simultaneously. This study tested a spillover model of internalizing symptom development, where the negative effects of perceived discrimination are experienced through peer and family relationships. Methods: Rural Latinx adolescents (n = 639; Mage = 15.62, SDage = 1.09; 53% female) provided information on social, familial, and individual risk and resilience factors that affect adolescents’ mental health. A serial mediation model was conducted using structural equation modeling. Exploratory analyses examined whether these effects varied based on adolescents’ age, gender, and acculturation level. Results: Perceived discrimination was significantly associated with peer victimization. In turn, higher peer victimization was significantly associated with lower familism, where higher familism was significantly associated with lower internalizing symptoms. The serial indirect effect (i.e., perceived discrimination → peer victimization → familism → internalizing symptoms) was statistically significant, indicating a pathway through which perceived discrimination affects peer and family domains of functioning. Age emerged as a significant moderator of the indirect effect specifically by moderating the discrimination → peer victimization path. Conclusions: The results are consistent with a spillover model where perceived discrimination increases risk for peer victimization, which in turn erodes protective family-oriented values such as familism, especially among older adolescents. These findings highlight a potential etiological model by which experiences of discrimination may lead to the development of internalizing symptomatology. (PsycInfo Database Record (c) 2022 APA, all rights reserved)",
+            "author": [
+                {
+                    "family": "Ramos",
+                    "given": "Giovanni"
+                },
+                {
+                    "family": "Delgadillo",
+                    "given": "Desiree"
+                },
+                {
+                    "family": "Fossum",
+                    "given": "Jessica"
+                },
+                {
+                    "family": "Montoya",
+                    "given": "Amanda K."
+                },
+                {
+                    "family": "Thamrin",
+                    "given": "Hardian"
+                },
+                {
+                    "family": "Rapp",
+                    "given": "Amy"
+                },
+                {
+                    "family": "Escovar",
+                    "given": "Emily"
+                },
+                {
+                    "family": "Chavira",
+                    "given": "Denise April"
+                }
+            ],
+            "container-title": "Children and Youth Services Review",
+            "id": "ramos_discrimination_2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021
+                    ]
+                ]
+            },
+            "keyword": "Latinos/Latinas, Victimization, Discrimination, Peer Relations, Risk Factors, Etiology, Internalizing Symptoms, Rural Environments",
+            "note": "Place: Netherlands Publisher: Elsevier Science",
+            "title": "Discrimination and internalizing symptoms in rural latinx adolescents: An ecological model of etiology",
+            "title-short": "Discrimination and internalizing symptoms in rural latinx adolescents",
+            "type": "article-journal",
+            "volume": "130"
+        },
+        {
+            "URL": "https://osf.io/https://osf.io/y39z6",
+            "abstract": "Presented by OSF",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        10,
+                        26
+                    ]
+                ]
+            },
+            "id": "noauthor_example_modr_2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021,
+                        5
+                    ]
+                ]
+            },
+            "note": "Publisher: Open Science Framework",
+            "title": "Example_mod.R",
+            "type": "article-journal"
+        },
+        {
+            "DOI": "10.1016/S0167-9473(02)00097-X",
+            "ISSN": "0167-9473",
+            "URL": "https://www.sciencedirect.com/science/article/pii/S016794730200097X",
+            "abstract": "Two approaches for model modification, or specification search, in structural equation modeling are: releasing constraints (e.g., adding free parameters) and imposing constraints (e.g., deleting free parameters). These two approaches can be considered as “forward search” and “backward search”, respectively. The forward search approach, which starts with a more limited model to find a more general model by adding free parameters, is very frequently utilized in practice. However, the success rate of the forward approach in obtaining the correct model is usually low. The forward search also has been found to depend very highly on the initial model selected in the modification process. The farther the initial model differs from the true model, the less likely is the proper modification to occur. This study illustrates the backward search approach, which starts with a more general model and improves the model by imposing constraints, using the z and Wald (W) tests. Assuming a correct measurement model, this study focuses on the model modification of structural relationships among factors. The results showed that with correct specification of the causal order of latent factors the correct model may be located with higher than 60% accuracy, using the incremental univariate Wald test, or the z test. With more cautious, or restricted, search, the success rates are even higher.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        10,
+                        27
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Chou",
+                    "given": "Chih-Ping"
+                },
+                {
+                    "family": "Bentler",
+                    "given": "P. M"
+                }
+            ],
+            "container-title": "Computational Statistics & Data Analysis",
+            "id": "chou_model_2002",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2002,
+                        12
+                    ]
+                ]
+            },
+            "keyword": "Backward search, Model modification, Structural equation model",
+            "page": "271-287",
+            "title": "Model modification in structural equation modeling by imposing constraints",
+            "type": "article-journal",
+            "volume": "41"
+        },
+        {
+            "DOI": "10.1177/0011000006286345",
+            "ISSN": "0011-0000, 1552-3861",
+            "URL": "http://journals.sagepub.com/doi/10.1177/0011000006286345",
+            "abstract": "To complement recent articles in this journal on structural equation modeling (SEM) practice and principles by Martens and by Quintana and Maxwell, respectively, the authors offer a consumer’s guide to SEM. Using an example derived from theory and research on vocational psychology, the authors outline six steps in SEM: model specification, identification, data preparation and screening, estimation, evaluation of fit, and modification. In addition, the authors summarize the debates surrounding some aspects of SEM (e.g., acceptable sample size, fit indices), with recommendations for application. They also discuss the need for considering and testing alternative models and present an example, with details on determining whether alternative models result in a significant improvement in fit to the observed data.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        10,
+                        27
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Weston",
+                    "given": "Rebecca"
+                },
+                {
+                    "family": "Gore",
+                    "given": "Paul A."
+                }
+            ],
+            "container-title": "The Counseling Psychologist",
+            "id": "weston_brief_2006",
+            "issue": "5",
+            "issued": {
+                "date-parts": [
+                    [
+                        2006,
+                        9
+                    ]
+                ]
+            },
+            "page": "719-751",
+            "title": "A Brief Guide to Structural Equation Modeling",
+            "type": "article-journal",
+            "volume": "34"
+        },
+        {
+            "DOI": "10.1080/0142159X.2023.2263233",
+            "ISSN": "0142-159X",
+            "PMID": "37813119",
+            "URL": "https://doi.org/10.1080/0142159X.2023.2263233",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        10,
+                        27
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Stoffels",
+                    "given": "Malou"
+                },
+                {
+                    "family": "Torre",
+                    "given": "Dario M."
+                },
+                {
+                    "family": "Sturgis",
+                    "given": "Paul"
+                },
+                {
+                    "family": "Koster",
+                    "given": "Andries S."
+                },
+                {
+                    "family": "Westein",
+                    "given": "Marnix P. D."
+                },
+                {
+                    "family": "Kusurkar",
+                    "given": "Rashmi A."
+                }
+            ],
+            "container-title": "Medical Teacher",
+            "id": "stoffels_steps_2023",
+            "issue": "0",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "note": "Publisher: Taylor & Francis _eprint: https://doi.org/10.1080/0142159X.2023.2263233",
+            "page": "1-3",
+            "title": "Steps and decisions involved when conducting structural equation modeling (SEM) analysis",
+            "type": "article-journal",
+            "volume": "0"
+        },
+        {
+            "URL": "https://psu-psychology.github.io/psy-597-SEM/12_best_practices/best_practices.html",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        10,
+                        27
+                    ]
+                ]
+            },
+            "id": "noauthor_best_nodate",
+            "title": "Best practices in SEM",
+            "type": ""
+        },
+        {
+            "ISBN": "978-1-60623-077-0 978-1-4625-0447-3",
+            "abstract": "The purpose of this chapter is to describe the model modification step in structural equation modeling (SEM). In the following section, the concept of nested models in which the likelihood ratio (likelihood ratio, i.e., chi-square difference test), Ward, and Lagrange multiplier tests can be applied is introduced. Statistical theory of the likelihood ratio, Ward, and Lagrange multiplier tests is discussed. Two examples from MacCallum (1990) and Chou and Bentler (1990) illustrate the model modification process to highlight information needed to obtain adequate models. Stepwise approaches for the Lagrange multiplier and Ward tests and the multiple sample approach for the Lagrange multiplier test are also discussed. Recommendations based on results of two simulation studies are used to demonstrate how to conduct a successful search. (PsycINFO Database Record (c) 2019 APA, all rights reserved)",
+            "author": [
+                {
+                    "family": "Chou",
+                    "given": "Chih-Ping"
+                },
+                {
+                    "family": "Huh",
+                    "given": "Jimi"
+                }
+            ],
+            "container-title": "Handbook of structural equation modeling",
+            "id": "chou_model_2012",
+            "issued": {
+                "date-parts": [
+                    [
+                        2012
+                    ]
+                ]
+            },
+            "keyword": "Maximum Likelihood, Models, Simulation, Statistical Analysis, Statistical Tests, Structural Equation Modeling",
+            "page": "232-246",
+            "publisher": "The Guilford Press",
+            "publisher-place": "New York, NY, US",
+            "title": "Model modification in structural equation modeling",
+            "type": "chapter"
         }
     ],
     "project_biblios": [

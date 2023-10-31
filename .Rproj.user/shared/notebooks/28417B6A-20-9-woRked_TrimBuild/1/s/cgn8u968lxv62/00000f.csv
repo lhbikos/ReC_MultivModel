@@ -1,0 +1,5 @@
+"0","set.seed(230916)"
+"0","items <- c('InclusvClassrm', 'EquitableEval', 'MultPerspectives', 'DEIintegration')"
+"0","parcels <- c(""p1_SR"", ""p2_SR"",""p3_SR"")"
+"0","data.frame(items = sample(items),"
+"0","           parcel = rep(parcels, length = length(items)))  "

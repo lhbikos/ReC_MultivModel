@@ -86,22 +86,27 @@ Evaluating a structural model involves the following steps:
   - Evaluate multivariate normality (i.e., all continuously scaled variables simultaneously) with Mahalanobis test. Identify outliers (e.g., cases with Mahal values > 3 SDs from the centroid). Consider deleting (or transforming if there is an extreme-ish “jump” in the sorted values.
   - Evaluate internal consistency of the scaled scores with Cronbach’s alpha or omega; the latter is increasingly preferred.
 Specify and evaluate a measurement model
-  - In this just-identified (saturated) model, all latent variables are specified as covarying
-    + For LVs with 3 items or more, remember to set a marker/reference variable.
-    + For LVs with 2 items, constrain the loadings to be equal
-    + For single-item indicators fix the error variance to zero (or a non-zero estimate of unreliability)
-  - Evaluate results with global (e.g., X2, CFI, RMSEA, SRMR) and local (i.e., factor loadings and covariances) fit indices
+  - In this just-identified (saturated) model, all latent variables are specified as covarying.
+    + For LVs with 3 items or more, remember to set a marker/reference variable,
+    + For LVs with 2 items, constrain the loadings to be equal,
+    + For single-item indicators fix the error variance to zero (or a non-zero estimate of unreliability).
+  - Evaluate results with global (e.g., X2, CFI, RMSEA, SRMR) and local (i.e., factor loadings and covariances) fit indices.
   - In the event of poor fit, respecify LVs with multiple indicators with parcels.
-  - Nested alternative measurement models can be compared with Χ2 difference, ΔCFI tests; non-nested models with AIC, and BIC tests 
-* Specify and evaluate a structural model
-  - Replace the covariances with paths that represent the a priori hypotheses
+  - Nested alternative measurement models can be compared with Χ2 difference, ΔCFI tests; non-nested models with AIC, and BIC tests .
+* Specify and evaluate a structural model.
+  - Replace the covariances with paths that represent the a priori hypotheses.
     + These models could take a variety of forms.
     + It is possible to respecify models through trimming or building approaches.
   - Evaluate results using
-    + *global* fit indices (e.g., X2, CFI, RMSEA, SRMS)
-    + *local* fit indices (i.e., strength and significance of factor loadings, covariances, and additional model parameters [e.g., indirect effects])
-  - Nested models can be compared with Χ2 difference and ΔCFI tests.
-* Quick Guide for Global and Comparative Fit Statistics
+    + *global* fit indices (e.g., X2, CFI, RMSEA, SRMS),
+    + *local* fit indices (i.e., strength and significance of factor loadings, covariances, and additional model parameters [e.g., indirect effects]).
+  - Consider respecifying and evaluating one or more *alternative* models.
+    + *Forward searching* involves freeing parameters (adding paths or covariances) and can use modification indices as a guide.
+    + *Backward searching* involves restraining parameters (deleting paths or covariances) and can use low and non-significant paths as a guide.
+  - Compare the fit of the alternate models.
+    + Nested models can be compared with Χ2 difference and ΔCFI tests.
+    + Non-nested models can be compared with AIC and BIC (lower values suggest better fit).
+* Quick Guide for Global and Comparative Fit Statistics.
   - $\chi^2$, p < .05; this test is sensitive to sample size and this value can be difficult to attain
   - CFI > .95 (or at least .90)
   - RMSEA (and associated 90%CI) are < .05 ( < .08, or at least < .10)
@@ -134,6 +139,7 @@ We used the *lavaan::simulateData* function for the simulation. If you have take
 ```r
 # Entering the intercorrelations, means, and standard deviations from
 # the journal article
+
 Kim_generating_model <- "
         ##measurement model
          REMS =~ .82*Inf32 + .75*Inf38 + .74*Inf21 + .72*Inf17 + .69*Inf9 + .61*Inf36 + .51*Inf5 + .49*Inf22 + .81*SClass6 + .81*SClass31 + .74*SClass8 + .74*SClass40 + .72*SClass2 + .65*SClass34 + .55*SClass11 + .84*mInv27 + .84*mInv30 + .80*mInv39 + .72*mInv7 + .62*mInv26 + .61*mInv33 + .53*mInv4 + .47*mInv14 + .47*mInv10 + .74*Exot3 + .74*Exot29 + .71*Exot45 + .69*Exot35 + .60*Exot42 + .59*Exot23 + .51*Exot13 + .51*Exot20 + .49*Exot43 + .84*mEnv37 + .85*mEnv24 + .78*mEnv19 + .70*mEnv28 + .69*mEnv18 + .55*mEnv41 + .55*mEnv12 + .76*mWork25 + .67*mWork15 + .65*mWork1 + .64*mWork16 + .62*mWork44
@@ -202,15 +208,6 @@ for (i in 1:ncol(dfKim)) {
 library(tidyverse)
 dfKim <- dfKim %>%
     round(0)
-
-# I tested the rescaling the correlation between original and
-# rescaled variables is 1.0 Kim_df_latent$INF32 <-
-# scales::rescale(Kim_df_latent$Inf32, c(0, 1))
-# cor.test(Kim_df_latent$Inf32, Kim_df_latent$INF32,
-# method='pearson')
-
-# Checking our work against the original correlation matrix
-# round(cor(Kim_df),3)
 ```
 
 The script below allows you to store the simulated data as a file on your computer. This is optional -- the entire lesson can be worked with the simulated data.
@@ -278,7 +275,7 @@ A complete lavaan model is a combination of these formula types, enclosed betwee
 * using blank lines within single quote
 * labeling with the hashtag
 
-## Quick Respecification of the Measurement Model
+## Quick Specification of the Measurement Model
 
 Recall that the first step in establishing a structural model is to specify, evaluate, and if necessary re-specify the measurement model. In the prior lesson I decided to randomly assigning items to three indicators per parcel. Because our data simulation produced item-level data, I will briefly repeat the code for the solution we chose. For more information on this process please revisit the lesson on [establishing the measurement model](https://lhbikos.github.io/ReC_MultivModel/MeasMod.html). Here is a representation of the measurement model we are specifying.
 
@@ -1025,7 +1022,7 @@ The statistical string for the global fit indices can be represented this way: $
 
 As I predicted, the global fit indices of the measurement model are identical to the structural model. Recall that in terms of model both models are *just-identified*. This means there are zero degrees of freedom in the structural model. That is, there are no additional paths (directional or bidirectional) that could be drawn between the latent variables.
 
-Plotting the results can be useful in checking our work and, if correct, understanding the relations between the variables.  The *semPlot::semPaths* function will produce an intial guess at what we might like that can be further tweaked.
+Plotting the results can be useful in checking our work and, if correct, understanding the relations between the variables.  The *semPlot::semPaths* function will produce an initial guess at what we might like that can be further tweaked.
 
 
 ```r
@@ -1140,7 +1137,9 @@ With tables and figures prepared, we can write up the results.
 >*  Address limitations and concerns
 
 >**Primary Analyses**
->Analyzing our proposed mediation model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Following recommendations by Little et al. [@little_parcel_2002; @little_why_2013], each latent variable was represented by three parcels. Parcels were created by randomly assigning scale items to the parcels and then calculating the mean, if at least 65% of the items were non-missing.  Factor loadings were all strong, statistically significant, and properly valenced. Global fit statistics were within acceptable thresholds ($\chi^2(24) = 15.965, p = 0.889, CFI = 1.000, RMSEA = 0.000, 90CI[0.000, 0.031], SRMR =  0.017$). Factor loadings associated with the parcelled measurement model are presented in Table 1 (i.e., [in the previous lesson](https://lhbikos.github.io/ReC_MultivModel/MeasMod.html#measurement-model-with-just-identified-random-parcels)). Thus, we proceeded to testing the structural model.
+>Analyzing our proposed multiple mediator model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Given that different researchers recommend somewhat differing thresholds to determine the adequacy of fit, We used the following as evidence of good fit: comparative fit indix (CFI) $\geq 0.95$, root-mean-square error of approximation (RMSEA) $\leq 0.06$, and the standard root-mean-square residual (SRMR) $\leq 0.08$. To establish aceptable fit, we used CFI $\geq 0.90$, RMSEA $\leq 0.10$, and SRMR $\leq 0.10$ [@weston_brief_2006].
+
+>We evaluated the measurement model by following recommendations by Little et al. [@little_parcel_2002; @little_why_2013]. Specifically,each each latent variable was represented by three parcels. Parcels were created by randomly assigning scale items to the parcels and then calculating the mean, if at least 65% of the items were non-missing.  Factor loadings were all strong, statistically significant, and properly valenced. Global fit statistics were within acceptable thresholds ($\chi^2(24) = 15.965, p = 0.889, CFI = 1.000, RMSEA = 0.000, 90CI[0.000, 0.031], SRMR =  0.017$). Factor loadings associated with the parcelled measurement model are presented in Table 1 (i.e., [in the previous lesson](https://lhbikos.github.io/ReC_MultivModel/MeasMod.html#measurement-model-with-just-identified-random-parcels)). Thus, we proceeded to testing the structural model.
 
 >Our structural model was a simple mediation, predicting psychological well-being (PWB) from racial microaggressions (REM), mediated by cultural mistrust (CMI). Given the just-identified nature (i.e., zero degrees of freedom in the structural portion), the global fit indices were identical to those of the measurement model ($\chi^2(24) = 15.965, p = 0.889, CFI = 1.000, RMSEA = 0.000, 90CI[0.000,	 0.031], SRMR =  0.017$). As shown in Table 2, all regression weights were statistically significant. Further, there was a statistically significant indirect effect $(B =-0.236, p = 0.002)$, supporting the hypothesis that cultural mistrust is a mediating mechanism for racial microaggressions' negative impact on psychological well-being. That is, racial microaggressions increase cultural mistrust $(B = 1.732, p < 0.001)$ which in turn has a negative impact on psychological well-being $(B = -0.136, p = 0.001)$. Results are illustrated in Figure 1.
 
@@ -2311,7 +2310,9 @@ write.csv(msmt_fit_pEsts, file = "msmt_fit_pEsts.csv")
 
 Here is how I wrote up the results:
 
->Analyzing our proposed mediation model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Each latent variable was represented by each of the items on its subscale. Given that TradPed and SRPed had 5 and 4 items, respectively, we did not parcel items. The Centering variable with two levels (pre-centered, re-centered) was recoded as a dummy variable with 0, 1 coding. In the specification, its measurement error was fixed at zero. While all factor loadings were strong, statistically significant, and properly valanced, global fit statistics were mixed: $\chi^2(33)= 178.307, p < 0.001, CFI =  0.911, RMSEA = 0.119, 90CI[0.102, 0.137], SRMR = 0.060$. Factor loadings of each of the parcels are presented in Table 1. We proceeded to testing the strutural model with caution.
+>Analyzing our proposed multiple mediator model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Given that different researchers recommend somewhat differing thresholds to determine the adequacy of fit, We used the following as evidence of good fit: comparative fit indix (CFI) $\geq 0.95$, root-mean-square error of approximation (RMSEA) $\leq 0.06$, and the standard root-mean-square residual (SRMR) $\leq 0.08$. To establish aceptable fit, we used CFI $\geq 0.90$, RMSEA $\leq 0.10$, and SRMR $\leq 0.10$ [@weston_brief_2006].
+
+>We evaluated the measurement model by following recommendations by Little et al. [@little_parcel_2002; @little_why_2013]. Specifically,each latent variable was represented by each of the items on its subscale. Given that TradPed and SRPed had 5 and 4 items, respectively, we did not parcel items. The Centering variable with two levels (pre-centered, re-centered) was recoded as a dummy variable with 0, 1 coding. In the specification, its measurement error was fixed at zero. While all factor loadings were strong, statistically significant, and properly valanced, global fit statistics were mixed: $\chi^2(33)= 178.307, p < 0.001, CFI =  0.911, RMSEA = 0.119, 90CI[0.102, 0.137], SRMR = 0.060$. Factor loadings of each of the parcels are presented in Table 1. We proceeded to testing the strutural model with caution.
 
 
 Table 1  
@@ -3000,7 +3001,9 @@ As predicted, the fit of the measurement and first structural models are identic
 >*  Address limitations and concerns
 
 >**Primary Analyses**
->Analyzing our proposed mediation model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Each latent variable was represented by each of the items on its subscale. Given that TradPed and SRPed had 5 and 4 items, respectively, we did not parcel items. The Centering variable with two levels (pre-centered, re-centered) was recoded as a dummy variable with 0, 1 coding. In the specification, its measurement error was fixed at zero. While all factor loadings were strong, statistically significant, and properly valanced, global fit statistics were mixed: $\chi^2(33)= 178.307, p < 0.001, CFI =  0.911, RMSEA = 0.119, 90CI[0.102, 0.137], SRMR = 0.060$. Factor loadings of each of the parcels are presented in Table 1. We proceeded to testing the strutural model with caution.
+>Analyzing our proposed multiple mediator model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Given that different researchers recommend somewhat differing thresholds to determine the adequacy of fit, We used the following as evidence of good fit: comparative fit indix (CFI) $\geq 0.95$, root-mean-square error of approximation (RMSEA) $\leq 0.06$, and the standard root-mean-square residual (SRMR) $\leq 0.08$. To establish aceptable fit, we used CFI $\geq 0.90$, RMSEA $\leq 0.10$, and SRMR $\leq 0.10$ [@weston_brief_2006].
+
+>We evaluated the measurement model by following recommendations by Little et al. [@little_parcel_2002; @little_why_2013]. Specifically,each latent variable was represented by each of the items on its subscale. Given that TradPed and SRPed had 5 and 4 items, respectively, we did not parcel items. The Centering variable with two levels (pre-centered, re-centered) was recoded as a dummy variable with 0, 1 coding. In the specification, its measurement error was fixed at zero. While all factor loadings were strong, statistically significant, and properly valanced, global fit statistics were mixed: $\chi^2(33)= 178.307, p < 0.001, CFI =  0.911, RMSEA = 0.119, 90CI[0.102, 0.137], SRMR = 0.060$. Factor loadings of each of the parcels are presented in Table 1. We proceeded to testing the strutural model with caution.
 
 > Like our measurement model, our structural model is just-identified with zero degrees of freedom. Consequently, the global fit indices are identical and provided an inconsistent evaluation of fit: $\chi^2(33)= 178.307, p < 0.001, CFI =  0.911, RMSEA = 0.119, 90CI[0.102, 0.137], SRMR = 0.060$. Indices of local fit (e.g., regression weights, parameter estimates) are presented in Table 2 and Figure 1 provides a graphical representation of our results. While results suggest that Centering $(B = 0.095, p = 0.025)$ traditional pedagogy $(B = 0.595, p < 0.001)$ had statistically significant effects on socially responsive pedagogy, there was no evidence of an indirect effect $(B = -0.062, SE = 0.050, p = 0.216)$. The model accounted for only 1% of the variance in traditional pedagogy and 75% of the variance in socially responsive pedagogy.  
 

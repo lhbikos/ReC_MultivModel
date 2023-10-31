@@ -1,0 +1,4 @@
+"0","lavaan::modindices(ReC_struct_fit1, sort=TRUE, minimum.value=4)"
+"2","Error in lav_model(lavpartable = lavpartable, lavpta = lavpta, lavoptions = lavoptions,  : 
+  lavaan ERROR: parameter is not defined: CEN ~~ p1T
+"

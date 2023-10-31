@@ -1,0 +1,6 @@
+"0","SimpleWave <- Murrar_df %>% "
+"0","  group_by(Wave) %>% "
+"0","  rstatix::t_test(Diff ~ COND, detailed=TRUE, p.adjust.method = ""bonferroni"")%>%"
+"0","  rstatix::add_significance()"
+"0","  #rstatix::adjust_pvalue(method = ""bonferroni"") #this displays the adjusted Bonferroni values"
+"0","SimpleWave"

@@ -1,0 +1,2 @@
+"0","ggpubr::ggline(Murrar_df, x = ""COND"", y = ""Diff"", color = ""Wave"", xlab = ""Study Condition"","
+"0","             ylab = ""Difference in Attitudes toward Arab and White People"", add = c(""mean_se"", ""dotplot""), title = ""Lineplots: Wave within Condition"")"

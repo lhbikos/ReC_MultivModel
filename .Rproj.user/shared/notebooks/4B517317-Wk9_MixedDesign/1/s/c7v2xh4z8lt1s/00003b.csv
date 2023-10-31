@@ -1,0 +1,18 @@
+"0","library(tidyverse)"
+"0","mx_df %>% "
+"0","  group_by(Wave, COND)%>%"
+"0","  rstatix::levene_test(OwnWearing)"
+"1","[1m[33mError[39m in `mutate()`:[22m
+[38;5;232m[36mℹ[38;5;232m In argument: `data = map(.data$data, .f, ...)`.[39m
+[1mCaused by error in `map()`:[22m
+[38;5;232m[36mℹ[38;5;232m In index: 1.[39m
+[1mCaused by error:[22m
+[33m![39m object 'OwnWearing' not found
+Backtrace:
+[90m  1. [39mmx_df %>% group_by(Wave, COND) %>% ...
+[90m 13. [39m[1m[94mpurrr::map([39m[22m.data$data, .f, ...[1m[94m)[39m[22m
+[90m 14. [39mpurrr:::map_(""list"", .x, .f, ..., .progress = .progress)
+[90m 18. [39m[1mrstatix[22m (local) .f(.x[[i]], ...)
+[90m 19. [39mrstatix::levene_test(., formula = formula, center = center)
+[90m 20. [39m[1mcar[22m::leveneTest(formula, data, center = center)
+"

@@ -104,22 +104,27 @@ Evaluating a structural model involves the following steps:
   - Evaluate multivariate normality (i.e., all continuously scaled variables simultaneously) with Mahalanobis test. Identify outliers (e.g., cases with Mahal values > 3 SDs from the centroid). Consider deleting (or transforming if there is an extreme-ish “jump” in the sorted values.
   - Evaluate internal consistency of the scaled scores with Cronbach’s alpha or omega; the latter is increasingly preferred.
 Specify and evaluate a measurement model
-  - In this just-identified (saturated) model, all latent variables are specified as covarying
-    + For LVs with 3 items or more, remember to set a marker/reference variable.
-    + For LVs with 2 items, constrain the loadings to be equal
-    + For single-item indicators fix the error variance to zero (or a non-zero estimate of unreliability)
-  - Evaluate results with global (e.g., X2, CFI, RMSEA, SRMR) and local (i.e., factor loadings and covariances) fit indices
+  - In this just-identified (saturated) model, all latent variables are specified as covarying.
+    + For LVs with 3 items or more, remember to set a marker/reference variable,
+    + For LVs with 2 items, constrain the loadings to be equal,
+    + For single-item indicators fix the error variance to zero (or a non-zero estimate of unreliability).
+  - Evaluate results with global (e.g., X2, CFI, RMSEA, SRMR) and local (i.e., factor loadings and covariances) fit indices.
   - In the event of poor fit, respecify LVs with multiple indicators with parcels.
-  - Nested alternative measurement models can be compared with Χ2 difference, ΔCFI tests; non-nested models with AIC, and BIC tests 
-* Specify and evaluate a structural model
-  - Replace the covariances with paths that represent the a priori hypotheses
+  - Nested alternative measurement models can be compared with Χ2 difference, ΔCFI tests; non-nested models with AIC, and BIC tests .
+* Specify and evaluate a structural model.
+  - Replace the covariances with paths that represent the a priori hypotheses.
     + These models could take a variety of forms.
     + It is possible to respecify models through trimming or building approaches.
   - Evaluate results using
-    + *global* fit indices (e.g., X2, CFI, RMSEA, SRMS)
-    + *local* fit indices (i.e., strength and significance of factor loadings, covariances, and additional model parameters [e.g., indirect effects])
-  - Nested models can be compared with Χ2 difference and ΔCFI tests.
-* Quick Guide for Global and Comparative Fit Statistics
+    + *global* fit indices (e.g., X2, CFI, RMSEA, SRMS),
+    + *local* fit indices (i.e., strength and significance of factor loadings, covariances, and additional model parameters [e.g., indirect effects]).
+  - Consider respecifying and evaluating one or more *alternative* models.
+    + *Forward searching* involves freeing parameters (adding paths or covariances) and can use modification indices as a guide.
+    + *Backward searching* involves restraining parameters (deleting paths or covariances) and can use low and non-significant paths as a guide.
+  - Compare the fit of the alternate models.
+    + Nested models can be compared with Χ2 difference and ΔCFI tests.
+    + Non-nested models can be compared with AIC and BIC (lower values suggest better fit).
+* Quick Guide for Global and Comparative Fit Statistics.
   - $\chi^2$, p < .05; this test is sensitive to sample size and this value can be difficult to attain
   - CFI > .95 (or at least .90)
   - RMSEA (and associated 90%CI) are < .05 ( < .08, or at least < .10)
@@ -1993,7 +1998,9 @@ Earlier in its history, researchers would spend considerable time describing the
 
 >**Primary Analyses**
 
->Analyzing our proposed mediation model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Following recommendations by Little et al. [@little_parcel_2002; @little_why_2013], each latent variable was represented by three parcels. Parcels were created by randomly assigning scale items to the parcels and then calculating the mean, if at least 65% of the items were non-missing.  Factor loadings were all strong, statistically significant, and properly valenced. Global fit statistics were within acceptable thresholds ($\chi^2(24) = 15.965, p = 0.889, CFI = 1.000, RMSEA = 0.000, 90CI[0.000,	 0.031], SRMR =  0.017$). Thus, we proceeded to testing the structural model.
+>Analyzing our proposed multiple mediator model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Given that different researchers recommend somewhat differing thresholds to determine the adequacy of fit, We used the following as evidence of good fit: comparative fit indix (CFI) $\geq 0.95$, root-mean-square error of approximation (RMSEA) $\leq 0.06$, and the standard root-mean-square residual (SRMR) $\leq 0.08$. To establish aceptable fit, we used CFI $\geq 0.90$, RMSEA $\leq 0.10$, and SRMR $\leq 0.10$ [@weston_brief_2006].
+
+>We evaluated the measurement model by following recommendations by Little et al. [@little_parcel_2002; @little_why_2013]. Specificaly, each latent variable was represented by three parcels. Parcels were created by randomly assigning scale items to the parcels and then calculating the mean, if at least 65% of the items were non-missing.  Factor loadings were all strong, statistically significant, and properly valenced. Global fit statistics were within acceptable thresholds ($\chi^2(24) = 15.965, p = 0.889, CFI = 1.000, RMSEA = 0.000, 90CI[0.000,	 0.031], SRMR =  0.017$). Thus, we proceeded to testing the structural model.
 
 Table 1  
 
@@ -2606,7 +2613,9 @@ Given that I didn't really have enough items to parcel and the fit worsened for 
 
 ### APA style results with table and figure {-}
 
-Analyzing our proposed mediation model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Each latent variable was represented by each of the items on its subscale. Given that TradPed and SRPed had 5 and 4 items, respectively, we did not parcel items. The Centering variable with two levels (pre-centered, re-centered) was recoded as a dummy variable with 0, 1 coding. In the specification, its measurement error was fixed at zero. While all factor loadings were strong, statistically significant, and properly valanced, global fit statistics were mixed: $\chi^2(33)= 178.307, p < 0.001, CFI =  0.911, RMSEA = 0.119, 90CI[0.102, 0.137], SRMR = 0.060$. We proceeded to testing the strutural model with caution.
+>Analyzing our proposed multiple mediator model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Given that different researchers recommend somewhat differing thresholds to determine the adequacy of fit, We used the following as evidence of good fit: comparative fit indix (CFI) $\geq 0.95$, root-mean-square error of approximation (RMSEA) $\leq 0.06$, and the standard root-mean-square residual (SRMR) $\leq 0.08$. To establish aceptable fit, we used CFI $\geq 0.90$, RMSEA $\leq 0.10$, and SRMR $\leq 0.10$ [@weston_brief_2006].
+
+>We evaluated the measurement model by following recommendations by Little et al. [@little_parcel_2002; @little_why_2013]. Specificaly, each latent variable was represented by each of the items on its subscale. Given that TradPed and SRPed had 5 and 4 items, respectively, we did not parcel items. The Centering variable with two levels (pre-centered, re-centered) was recoded as a dummy variable with 0, 1 coding. In the specification, its measurement error was fixed at zero. While all factor loadings were strong, statistically significant, and properly valanced, global fit statistics were mixed: $\chi^2(33)= 178.307, p < 0.001, CFI =  0.911, RMSEA = 0.119, 90CI[0.102, 0.137], SRMR = 0.060$. We proceeded to testing the strutural model with caution.
 
 
 Table 1  

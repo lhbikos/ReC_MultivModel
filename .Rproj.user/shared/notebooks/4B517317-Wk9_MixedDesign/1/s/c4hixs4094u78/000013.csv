@@ -1,0 +1,8 @@
+"0","mx_df <- as.data.frame(mx_df)"
+"0",""
+"0","#make caseID a factor"
+"0","mx_df[,'caseID'] <- as.factor(mx_df[,'caseID'])"
+"0","#make Wave an ordered factor"
+"0","mx_df$Wave <- as.factor(mx_df$Wave)"
+"0","#make COND an ordered factor"
+"0","mx_df$COND <- factor(mx_df$Group, levels = c(""Goodbye"", ""Information""))"

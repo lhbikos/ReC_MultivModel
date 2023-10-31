@@ -1,0 +1,4 @@
+"0","SimpleWave_d <- Murrar_df %>% "
+"0","  group_by(Wave) %>% "
+"0","  rstatix::cohens_d(Diff~COND)"
+"0","SimpleWave_d "

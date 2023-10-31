@@ -1,0 +1,2 @@
+"0","Diff.descripts <- psych::describeBy(Diff ~ COND + Wave, mat = TRUE, data = Murrar_df, digits = 3) #digits allows us to round the output"
+"0","Diff.descripts"
