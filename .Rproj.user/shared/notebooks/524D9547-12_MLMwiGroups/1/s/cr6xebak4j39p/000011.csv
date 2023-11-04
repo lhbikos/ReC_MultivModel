@@ -1,0 +1,6 @@
+"0","# MODEL 4"
+"0","CrossLevelInt <- lmer(ATSS ~ AttendL2 + AttendL1*Homogeneity +(1 | church), REML=FALSE, data = Lefevor2020)"
+"0",""
+"0","tab_model(Empty, Level1, Level2, CrossLevelInt, p.style = ""numeric"", show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.se = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c(""Empty"", ""Adding Level 1"", ""Adding Level 2"", ""Adding CrossLevel Interaction""), string.est = ""est"", string.se = ""se"", string.std = ""Beta"", string.std_se = ""std se"", string.p = ""p"", show.std = TRUE, file = ""TabMod_Table.doc"")"
+"0","#can swap this statement with the ""file = ""TabMod_Table"""" to get Viewer output or the outfile that you can open in Word"
+"0","#file = ""TabMod_Table.doc"""

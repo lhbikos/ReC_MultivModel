@@ -10127,69 +10127,6 @@
             "type": "book"
         },
         {
-            "DOI": "10.1073/pnas.1816076116",
-            "ISSN": "0027-8424, 1091-6490",
-            "PMID": "30936313",
-            "URL": "https://www.pnas.org/content/116/16/7778",
-            "abstract": "We present results from a large (n = 3,016) field experiment at a global organization testing whether a brief science-based online diversity training can change attitudes and behaviors toward women in the workplace. Our preregistered field experiment included an active placebo control and measured participants’ attitudes and real workplace decisions up to 20 weeks postintervention. Among groups whose average untreated attitudes—whereas still supportive of women—were relatively less supportive of women than other groups, our diversity training successfully produced attitude change but not behavior change. On the other hand, our diversity training successfully generated some behavior change among groups whose average untreated attitudes were already strongly supportive of women before training. This paper extends our knowledge about the pathways to attitude and behavior change in the context of bias reduction. However, the results suggest that the one-off diversity trainings that are commonplace in organizations are unlikely to be stand-alone solutions for promoting equality in the workplace, particularly given their limited efficacy among those groups whose behaviors policymakers are most eager to influence.",
-            "accessed": {
-                "date-parts": [
-                    [
-                        2021,
-                        4,
-                        22
-                    ]
-                ]
-            },
-            "author": [
-                {
-                    "family": "Chang",
-                    "given": "Edward H."
-                },
-                {
-                    "family": "Milkman",
-                    "given": "Katherine L."
-                },
-                {
-                    "family": "Gromet",
-                    "given": "Dena M."
-                },
-                {
-                    "family": "Rebele",
-                    "given": "Robert W."
-                },
-                {
-                    "family": "Massey",
-                    "given": "Cade"
-                },
-                {
-                    "family": "Duckworth",
-                    "given": "Angela L."
-                },
-                {
-                    "family": "Grant",
-                    "given": "Adam M."
-                }
-            ],
-            "container-title": "Proceedings of the National Academy of Sciences",
-            "id": "chang_mixed_2019",
-            "issue": "16",
-            "issued": {
-                "date-parts": [
-                    [
-                        2019,
-                        4
-                    ]
-                ]
-            },
-            "keyword": "race, gender, bias, diversity training, field experiment",
-            "note": "Publisher: National Academy of Sciences Section: Social Sciences",
-            "page": "7778-7783",
-            "title": "The mixed effects of online diversity training",
-            "type": "article-journal",
-            "volume": "116"
-        },
-        {
             "DOI": "10.1146/annurev-psych-071620-030619",
             "ISSN": "0066-4308, 1545-2085",
             "URL": "https://www.annualreviews.org/doi/10.1146/annurev-psych-071620-030619",
@@ -13462,7 +13399,7 @@
                 }
             ],
             "container-title": "Proceedings of the National Academy of Sciences",
-            "id": "chang_mixed_2019-1",
+            "id": "chang_mixed_2019",
             "issue": "16",
             "issued": {
                 "date-parts": [
@@ -15385,6 +15322,49 @@
             "volume": "5"
         },
         {
+            "DOI": "10.1037/met0000195",
+            "ISSN": "1082-989X",
+            "URL": "https://ezproxy.spu.edu/login?url=https://search.ebscohost.com/login.aspx?direct=true&AuthType=ip&db=psyh&AN=2018-48374-001&site=ehost-live",
+            "abstract": "The estimation of power in two-level models used to analyze data that are hierarchically structured is particularly complex because the outcome contains variance at two levels that is regressed on predictors at two levels. Methods for the estimation of power in two-level models have been based on formulas and Monte Carlo simulation. We provide a hands-on tutorial illustrating how a priori and post hoc power analyses for the most frequently used two-level models are conducted. We describe how a population model for the power analysis can be specified by using standardized input parameters and how the power analysis is implemented in SIMR, a very flexible power estimation method based on Monte Carlo simulation. Finally, we provide case-sensitive rules of thumb for deriving sufficient sample sizes as well as minimum detectable effect sizes that yield a power ≥ .80 for the effects and input parameters most frequently analyzed by psychologists. For medium variance components, the results indicate that with lower level (L1) sample sizes up to 30 and higher level (L2) sample sizes up to 200, medium and large fixed effects can be detected. However, small L2 direct- or cross-level interaction effects cannot be detected with up to 200 clusters. The tutorial and guidelines should be of help to researchers dealing with multilevel study designs such as individuals clustered within groups or repeated measurements clustered within individuals. (PsycINFO Database Record (c) 2019 APA, all rights reserved)",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        4,
+                        25
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Arend",
+                    "given": "Matthias G."
+                },
+                {
+                    "family": "Schäfer",
+                    "given": "Thomas"
+                }
+            ],
+            "container-title": "Psychological Methods",
+            "id": "arend_statistical_2019",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        2
+                    ]
+                ]
+            },
+            "keyword": "Estimation, hierarchical linear model (HLM), mixed effect models, multilevel modeling, Population, power analysis, Sample Size, sample size determination, Simulation, Statistical Power",
+            "note": "Publisher: American Psychological Association",
+            "page": "1-19",
+            "title": "Statistical power in two-level models: A tutorial based on Monte Carlo simulation",
+            "title-short": "Statistical power in two-level models",
+            "type": "article-journal",
+            "volume": "24"
+        },
+        {
             "DOI": "10.1111/2041-210X.12504",
             "ISSN": "2041-210X",
             "URL": "https://onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.12504",
@@ -16613,12 +16593,67 @@
                     ]
                 ]
             },
-            "keyword": "Maximum Likelihood, Models, Simulation, Statistical Analysis, Statistical Tests, Structural Equation Modeling",
+            "keyword": "Statistical Tests, Models, Maximum Likelihood, Statistical Analysis, Structural Equation Modeling, Simulation",
             "page": "232-246",
             "publisher": "The Guilford Press",
             "publisher-place": "New York, NY, US",
             "title": "Model modification in structural equation modeling",
             "type": "chapter"
+        },
+        {
+            "DOI": "10.1037/cou0000347",
+            "ISSN": "0022-0167",
+            "URL": "https://ezproxy.spu.edu/login?url=https://search.ebscohost.com/login.aspx?direct=true&AuthType=ip&db=psyh&AN=2019-20537-001&site=ehost-live",
+            "abstract": "Dignifying the colonizer and depreciating the colonized is a reflection of internalized colonial oppression (i.e., colonial mentality). The current study examined the effect of colonial mentality on depression symptoms in a sample of mainland Puerto Ricans (N = 352). A structural equation model was examined, in which colonial mentality was hypothesized to be directly and positively associated with depression symptoms. The proposed model also tested the indirect effect of colonial mentality on depression symptoms via acculturative stress. Results indicated that a full mediation structural equation model (SEM) had a better fit to the data than our hypothesized partial mediation model. Bias-corrected bootstrapping indicated that the effect of colonial mentality on depressive symptoms was mediated by acculturative stress. That is, colonial mentality increased the risk of experiencing depression symptoms in Puerto Ricans when they felt pressured to maintaining a connection with Puerto Rican culture and society and when they experienced rejection by the society they want to emulate (acculturative stress). The current results underscore the need for researchers and clinicians to consider and assess colonial mentality when conceptualizing depression symptoms among mainland Puerto Ricans. (PsycInfo Database Record (c) 2020 APA, all rights reserved)",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2023,
+                        11,
+                        1
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Capielo Rosario",
+                    "given": "Cristalís"
+                },
+                {
+                    "family": "Schaefer",
+                    "given": "Amber"
+                },
+                {
+                    "family": "Ballesteros",
+                    "given": "Jorge"
+                },
+                {
+                    "family": "Rentería",
+                    "given": "Roberto"
+                },
+                {
+                    "family": "David",
+                    "given": "E. J. R."
+                }
+            ],
+            "container-title": "Journal of Counseling Psychology",
+            "id": "capielo_rosario_caballo_2019",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        7
+                    ]
+                ]
+            },
+            "keyword": "Depression, Society, Humans, Latinos/Latinas, Stress, Test Construction, Colonialism, Acculturation, Structural Equation Modeling, Major Depression, depression, Hispanic Americans, acculturative stress, colonial mentality, mainland Puerto Ricans, Puerto Rico",
+            "note": "Publisher: American Psychological Association",
+            "page": "396-408",
+            "title": "A caballo regalao no se le mira el colmillo: Colonial mentality and Puerto Rican depression",
+            "title-short": "A caballo regalao no se le mira el colmillo",
+            "type": "article-journal",
+            "volume": "66"
         }
     ],
     "project_biblios": [

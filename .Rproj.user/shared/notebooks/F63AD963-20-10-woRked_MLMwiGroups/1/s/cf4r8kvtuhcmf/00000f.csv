@@ -1,0 +1,3 @@
+"0","CrossLevel <- lme4::lmer(SRPed ~ TrP_L1*StatsPkg + TrP_L1*Centering + TrP_L2*StatsPkg + TrP_L2*Centering + (1 | CourseID), babydf, REML = FALSE)"
+"0",""
+"0","sjPlot::tab_model(empty, Level1, Level2, CrossLevel, p.style = ""numeric"", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c(""Empty"", ""Level1"", ""Level2"", ""CrossLevel""), string.est = ""est"", string.se = ""se"", string.std = ""Beta"", string.std_se = ""std se"", string.p = ""p"", show.std = TRUE)"

@@ -1,0 +1,226 @@
+```{r include = FALSE}
+options(scipen=999)
+```
+
+## Homeworked Example
+[Screencast Link](https://youtu.be/x3ffa5B50-s)
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
+
+The suggested practice problem for this chapter is to test a multilevel model that is nested within groups. I am predicting socially responsive course evaluations from traditional pedagogy (L1), statistics package (L2), and centering status (L2). An option for homework might be to swap the perceived value to the student variable (L1) as the dependent variable and/or move the socially responsive variable (L1) to a predictor.
+
+###  Identify the multilevel model you will evaluate and assign each predictor variable to the L1 or L2 roles. {-}
+
+When I designed the Grad Psych Stats Recentered project, I intended a *cross-classified* multilevel analysis where data were nested within students (i.e., up to 3 observations across the 3 classes) and simultaneously nested within the classes (i.e., students in relationship with each other for a a quarter-long class). Why?
+
+* There would clearly be dependency (i.e., consistent patterns of responding) across the student each time they completed the course evaluation, and
+* Through the direct interaction between students, there could dependency in the data for students within the same classroom.
+
+The analysis in original submission of the manuscript followed this cross-classified design. The reviewers/editor suggested that that the "nested within the classroom" wasn't likely needed and might be taking up too much power. Their review and  suggestion of removing it was useful in clarifying the results and streamlining the story of the data.
+
+None-the-less, because this is the data set I have been using for the *homewoRked examples*, I will use it for the demonstration of multilevel analysis that is nested within groups. While the form of the data works -- this is not the best way to analyze the data.
+
+Specifically, I will predict students' evaluation of the *social responsivity* (SRPed) of the course from their ratings of *traditional pedagogy* (TradPed; level 1 [L1]), *statistics package* (SPSS, R; level 2 [L2]) used in the course, *centering status* (Pre, Re [L2]) of the course, and cross-level interactions between *traditional pedagogy (L1) x stats package (L2)*, and *traditional pedagogy (L1) x centering status (L2)*.
+
+In understanding which is L1 and which is L2, it may be useful for me to consistently define "course" as ANOVA, psychometrics, or multivariate broadly. Across the 2017 to 2021 these *courses* were taught multiple times. Thus, I will use the term "class" as the term to represent the clustering unit which holds a specific group of students. 
+
+In this design, the course evaluation ratings (SRPed, TradPed) are L1 because all students in each class (the L2 clustering variable) took them. Thus, each class has a rating of each from every student. In contrast, the StatsPkg and Centering variables are L2 because each class was taught with in either SPSS or R and the class was in the pre- or re-centered state.
+
+An image of the design may be useful in understanding what we are doing:
+
+![An image of the parallel mediation model for the homeworked example.](Worked_Examples/images/MLMxs_model.png)
+
+###  Import the data and format the variables in the model. {-}
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+raw <- readRDS("ReC.rds")
+```
+
+Because students could complete up to three course evaluations across ANOVA, psychometrics, and multivariate -- ideally I should select ONE of the courses. However, when I did this, the sample size became so small that my multilevel correlations would not converge. For the purpose of demonstration, I will use the entire dataset. Please know that even though we are using multilevel modeling, we are not controlling for the repeated measures dependency in the dataset. We'll do that in the next lesson!
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#raw <-(dplyr::filter(raw, Course == "ANOVA"))
+```
+
+Scoring the variables. 
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')  
+raw$TradPed <- sjstats::mean_n(raw[, TradPed_vars], .75)
+
+SRPed_vars <- c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration')  
+raw$SRPed <- sjstats::mean_n(raw[, SRPed_vars], .75)
+
+#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
+#raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], .75))
+```
+
+I will create a babydf to include only the variables in the analysis.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+babydf <- dplyr::select(raw, CourseID, Centering, StatsPkg, TradPed, SRPed)
+```
+
+### Produce multilevel descriptives and a multilevel correlation matrix.
+
+Using the multilevel descriptives and correlations function in *misty* requires dummy coding (i.e., 0,1) of my dichotomous variables.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+babydf$CEN <- as.numeric(babydf$Centering)
+babydf$CEN <- (babydf$CEN - 1)
+str(babydf)
+```
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+babydf$SPkg <- as.numeric(babydf$StatsPkg)
+babydf$SPkg <- (babydf$SPkg - 1)
+str(babydf)
+```
+Below is script for obtaining multilevel descriptive statistics.
+```{r}
+misty::multilevel.descript(babydf[, c("CEN", "SPkg", "TradPed", "SRPed")],
+               cluster = babydf$CourseID)
+```
+Results of these are reported either in the Method or preliminary analyses (we'll have to see which).  Essentially we say something like:
+
+>Participants included 299 students enrolled in 25 classes. The average number of students in each class was 11.96 ($SD = 7.14)
+
+Unfortunately, the dummy coded variables caused my multilevel correlation matrix to fail to converge. Thus, it only includes the continuously scaled variables.
+```{r}
+corrmatrix <- misty::multilevel.cor(babydf[, c("TradPed", "SRPed")],
+               cluster = babydf$CourseID, split=FALSE, output = TRUE, write = "MLMcorr.xlsx", print = c("cor", "p"), digits = 3, missing = "listwise")
+corrmatrix
+```
+>The within-class correlation between traditional pedagogy and socially responsive pedagogy was 0.725 (*p* < 0.001) and the between class correlation was 0.674 (*p* = 0.024).
+
+###  Use a compositional effects approach to centering to group-mean center the L1 variables and then "bring back" their aggregate as an L2 variable {-}
+
+Below is the code for creating the level 1 and level 2 versions of the level 1 predictor, traditional pedagogy. This results in three versions of this variable in our dataset: natural/raw, centered within the classroom (where the mean = 0), and the classroom mean.
+
+```{r  warning=FALSE}
+babydf$TrP_L1 <- as.numeric(robumeta::group.center(babydf$TradPed, babydf$CourseID))#centered within context (group mean centering)
+babydf$TrP_L2 <- as.numeric(robumeta::group.mean(babydf$TradPed, babydf$CourseID))#aggregated at group mean
+```
+
+If we look at the dataframe, we can see that TrPL1 centers the mean of traditional pedagogy within each classroom. That is, the student whose traditional pedagogy evaluation is at the mean within that particular classroom has a score of zero. The TrPL2 variable provides the classroom mean for all students in that classroom.
+
+
+###  Model 1:  empty model {-}
+
+Our first is the empty model where the DV and clustering variable are the only ones in the script.
+```{r}
+empty <- lme4::lmer(SRPed ~ 1 + (1 | CourseID), babydf, REML = FALSE)
+
+sjPlot::tab_model(empty, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
+```
+
+Here we see that across all students in all classes, the mean socially responsive pedagogy score is 4.53. Further, the ICC (only interpreted in this empty model) indicates that 3% of the variance is between classes (the balance, 97% is within classes). This is not a lot of dependency as a function of classroom. Thus, as my reviewers/editors suggested, it really isn't necessary to nest within the classroom (but for sure it will be important to nest within the person...stay tuned).
+
+###  Model 2:  Add L1 predictors {-}
+
+```{r}
+Level1 <- lme4::lmer(SRPed ~ TrP_L1 +  (1 | CourseID), babydf, REML = FALSE)
+
+sjPlot::tab_model(empty, Level1, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Level1"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
+```
+
+Here we learn that there is a significant L1 effect of traditional pedagogy. Within the classroom, as traditional pedagogy scores increase by 1 unit, socially responsive pedagogy increases by 0.59 units. This is consistent with the L1 correlation we saw earlier. Neither statistics package nor centering had main effects on evaluations of socially responsive pedagogy.
+
+Further, our deviance and AIC values are lower for the Level 1 model and the marginal (fixed effects) and conditional (random effects) $R^2$ values suggested that the model explained 47% and 55% of the variance, respectively.
+
+###  Model 3: Add L2 predictors {-} 
+
+```{r}
+Level2 <- lme4::lmer(SRPed ~ TrP_L1 + TrP_L2 + StatsPkg + Centering +(1 | CourseID), babydf, REML = FALSE)
+
+sjPlot::tab_model(empty, Level1, Level2, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Level1", "Level2"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
+```
+
+Here we learn that there are both statistically significant L1 and L2 effects of traditional pedagogy. The deviance and AIC values continue to decrease and the marginal and conditional $R^2$ values continue to increase.
+
+###  Model 4: Add a cross-level interaction {-}  
+
+```{r}
+CrossLevel <- lme4::lmer(SRPed ~ TrP_L1*StatsPkg + TrP_L1*Centering + TrP_L2*StatsPkg + TrP_L2*Centering + (1 | CourseID), babydf, REML = FALSE)
+
+sjPlot::tab_model(empty, Level1, Level2, CrossLevel, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Level1", "Level2", "CrossLevel"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
+```
+
+Here we see that in addition to the L1 and L2 effects of traditional pedagogy, that the interaction between L1 traditional pedagogy and the stats package is statistically significant.
+
+The deviance and AIC are starting to show some inconsistent results. We could consider trimming out the non-significant effects, but for now I will stop here.
+
+###  Create a tab_model table with the final set of models {-}  
+
+Created in the chunk above.
+
+### Use Arend & Schäfer's [-@arend_statistical_2019] power tables to determine the power of the L1, L2, and cross-level interactions in your model 
+
+See section in APA style write-up.
+
+###  Create a figure to represent the result {-}
+
+```{r}
+sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), show.data = TRUE, terms =c("TrP_L1", "StatsPkg"))
+```
+
+The above graph can be a little confusing. Recall that L1 variables are centered within their cluster. In this case, socially responsive pedagogy is clustered within each class and the mean is zero.
+
+Earlier we learned that the SRPed mean was 4.53 on a 5.0 scale. In this data with substantial negative skew, there simply is not data much above the centered mean of zero.
+
+What happens if we include a representation of the L2 (classroom average) of traditional pedagogy?
+
+```{r}
+sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), terms =c("TrP_L1", "StatsPkg", "TrP_L2"))
+```
+Above the facets represent the $M \pm1SD$ of the classroom averages of traditional pedagogy. While there was an L2 main effect of traditional pedagogy on ratings of socially responsive pedagogy (i.e., if the classroom average of traditional pedagogy was higher, so were individual student ratings of socially responsive pedagogy), there was a non-significant interaction effect. Thus, the L1 interaction is fairly consistent across all three facets.
+
+The effect of centering was non-significant. Here are the plots:
+
+```{r}
+sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), show.data = TRUE, terms =c("TrP_L1", "Centering"))
+```
+
+```{r}
+sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), terms =c("TrP_L1", "Centering", "TrP_L2"))
+```
+
+###  APA Style writeup {-} 
+
+**METHOD**
+
+**Method/Analytic Strategy**
+For the nested structure of our data (students [L1] nested within classrooms [L2]), multilevel modeling was appropriate because it allows for (a) the dependent nature of the students within their classrooms and (b) varying numbers of students within each class.  We analyzed the data with the *lme4* (v. 1.1-33) in R (v. 4.3.1) using full maximum likelihood. We used a compositional effect [@enders_centering_2007] approach to center our variables.  Specifically, we used group-mean centering (centering within context) for our L1 variables.  Calculating their group aggregate, we entered them back into the model as L2 predictors. This allowed each predictor to completely capture within- and between-group variance.
+
+Model development and evaluation was approached in a systematic and sequential manner. This exploratory approach is consistent with recommendations to pursue  model generating approaches in complex models [@bollen_testing_1993] by first understanding the relatively simpler relations between the variables [e.g., @hancock_hierarchical_2010; @petscher_linear_2013] and assessing the viability of more complexity based on the results. Accordingly, we began with an intercept-only model.  We followed sequentially by entering L1 (model 2), L2 (model 3), and a cross-level interaction (model 4). Throughout we monitored variance components and fit decisions to determine our final model.
+
+**Sample Size, Power, and Precision**
+
+Sample size is a critical yet complex issue in multilevel models. In response to controversial and overly simplistic rules of thumb that have often guided the design and justification of sample sizes in multilevel models, Arend and Schäfer [-@arend_statistical_2019] used Monte Carlo simulations for understanding the relations between (a) Level 2 (L2; N; the number of clustering units) and Level 1 (L1; n; the number of observations per cluster) sample sizes, (b) a study’s intraclass correlation coefficient (ICC), and (c) minimum detectable effect sizes that yield a power greater than .80. One result of Arend and Schäfer’s work is a set of power tables that allow researchers to use project-specific parameters to understand the power in their own study.
+
+With socially responsive pedagogy as the dependent variable, the ICC of our empty model was 0.03 (small), we had 25 classes (L2, *N*), and an average of 11.96 measures per class (L1, *n*). Utilizing Arend and Schäfer's [-@arend_statistical_2019] table of minimum detectable effect sizes for L1 direct effects, our study may have had sufficient power (> 0.80) to detect a standardized effect size of .22 for L1 predictors (i.e., traditional pedagogy L1), .62 for L2 predictors (i.e., traditional pedagogy L2, statistics package, centering), and insufficient power for cross-level interactions. The value of these standardized coefficients are on the high end, meaning that it our sample size is likely too small to identify smaller effect sizes as statistically significant.
+
+While a benefit of Arend and Schäfer’s [-@arend_statistical_2019] guidelines is the use of sample-specific characteristics, a limitation is that our model is more complex than the models used to develop their guidelines. Further, Arend and Schäfer indicated that L1 sample sizes of up to 30 and L2 sample sizes of up to 200 would not be large enough to study small standardized L2 direct effects and cross-level interaction effects (or medium cross-level interaction effects with a small variance component); as noted above, this applies to our model.
+
+**RESULTS**
+
+**Preliminary Analyses**
+
+*  Missing data analysis and managing missing data
+*  Bivariate correlations, means, SDs
+*  Address assumptions; in MLM this includes
+   * linearity
+   * homogeneity of variance
+   * normal distribution of the model's residuals
+*  Address any apriorily known limitations and concerns
+
+**Primary Analyses**
+
+Table 1 reports the the within (L1) and between (L2) correlations between socially responsive pedagogy and traditional pedagogy.  Our first model was an intercept-only, "empty", model with socially responsive pedagogy as the dependent variable and no predictors in the model. The intraclass correlation (ICC) suggested that 3% of the variance in evaluations of socially responsive teaching was between classes; correspondingly, 97% was within classes (i.e., between individuals).
+
+We added the L1 predictor of traditional pedagogy in the second model. As shown in Table 2, there was a significant effect such that as an individual's evaluation of traditional pedagogy increased, so did socially responsive pedagogy. To our third model, we added the L2 variables of the aggregate form of traditional pedagogy as well as statistics package used and centering status. Both L1 and L2 forms of traditional pedagogy had statistically significant effects. The effects of statistics package and centering were non-significant. Our fourth model included two cross-level interactions (L1 traditional pedagogy with statistics package and centering, separately) and two L2 interactions (L2 traditional pedagogy with statistics package and centering, respectively). Only the L1 traditional pedagogy * statistics package interaction was significant. As shown in Figure 1,courses tended taught with R tended to be viewed as more socially responsive, however that perception was more pronounced at lower levels of traditional pedagogy. As evaluations of traditional pedagogy increased, the difference between appraisals of socially responsive pedagogy in the courses taught in SPSS and R disappeared.  Further support for this model is noted by the corresponding decreases in $\sigma^{2}$ and $\tau _{00}$ when L1 and L2 variables were added, respectively. Additionally, marginal and conditional $R^2$ increased and formal evaluation of the deviance statistic suggested that each addition was a statistically significant improvement.
+
+
+###  Explanation to grader {-}
+
+
+

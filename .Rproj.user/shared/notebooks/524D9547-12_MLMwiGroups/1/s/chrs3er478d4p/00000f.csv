@@ -1,0 +1,2 @@
+"0","write.table(Lefevor2020, file=""Lefevor2020.csv"", sep="","", col.names=TRUE, row.names=FALSE)"
+"0","Lefevor2020 <- read.csv (""Lefevor2020.csv"", head = TRUE, sep = "","")"

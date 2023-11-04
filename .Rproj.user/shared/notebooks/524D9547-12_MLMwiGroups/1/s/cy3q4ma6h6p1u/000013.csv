@@ -1,0 +1,2 @@
+"0","library(psych)"
+"0","psych::pairs.panels(Lefevor2020[c(""ATSS"", ""Attendance"", ""Homogeneity"")], stars = TRUE)"
