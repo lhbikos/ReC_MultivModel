@@ -1,0 +1,4 @@
+"0","#fitting the linear model by ID, HET = 0 only"
+"0","HET <- filter(RndmLong, Het0==""0"")"
+"0","fitmlist <- by(HET, HET$ClientID, function(bydata) fitted.values(lm(Anxiety ~ Session0, data=bydata)))"
+"0","fitHET <- unlist(fitmlist)"

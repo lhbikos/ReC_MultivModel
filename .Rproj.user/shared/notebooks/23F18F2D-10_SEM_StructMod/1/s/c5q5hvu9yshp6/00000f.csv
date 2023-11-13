@@ -1,5 +1,0 @@
-"0","set.seed(230916)"
-"0","items <- c('pwb1', 'pwb2', 'pwb3', 'pwb4', 'pwb5', 'pwb6', 'pwb7', 'pwb8', 'pwb9', 'pwb10', 'pwb11')"
-"0","parcels <- c(""PWB_p1"", ""PWB_p_2"",""PWB_p3"")"
-"0","data.frame(items = sample(items),"
-"0","           parcel = rep(parcels, length = length(items)))  "

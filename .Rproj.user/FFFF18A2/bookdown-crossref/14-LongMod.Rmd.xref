@@ -1,0 +1,40 @@
+h1:LongMod A Basic Longitudinal Model
+h2:navigating-this-lesson Navigating this Lesson
+h3:learning-objectives Learning Objectives
+h3:planning-for-practice Planning for Practice
+h3:readings-resources Readings & Resources
+h3:packages Packages
+h2:the-basic-longitudinal-multilevel-model The Basic, Longitudinal, Multilevel Model
+h3:the-definitional-and-conceptual The definitional and conceptual
+h2:workflow-for-a-basic-longitudinal-multilevel-model Workflow for a Basic, Longitudinal, Multilevel Model
+h2:research-vignette Research Vignette
+h3:simulating-the-data-from-the-journal-article Simulating the data from the journal article
+h2:working-the-longitudinal-multilevel-model Working the Longitudinal, Multilevel Model
+h3:a-moment-on-estimators A Moment on Estimators
+h4:full-maximum-likelihood Full maximum likelihood**
+h4:restricted-maximum-likelihood Restricted maximum likelihood
+h3:two-unconditional-multilevel-models-for-change Two Unconditional Multilevel Models for Change
+h2:analysis Analysis
+h3:model-1-the-unconditional-means-model-aka-the-empty-model-or-intercept-only-model Model 1: The  means model (aka the  or intercept-only model)
+h3:a-moment-on-lmer-syntax A moment on  syntax
+h3:model-2-the-unconditional-growth-model Model 2: The unconditional growth model
+h3:another-moment-on-lmer-syntax Another moment on  syntax
+h3:a-taxonomy-of-statistical-models A Taxonomy of Statistical Models
+h3:model-3-the-uncontrolled-effects-of-sexual-identity Model 3: The uncontrolled effects of sexual identity
+h3:model-4-the-effects-of-religious-affiliation Model 4: The effects of religious affiliation
+h3:model-5-model-trimming Model 5: Model trimming
+h2:evaluating-the-tenability-quality-of-the-final-model Evaluating the  (quality) of the Final Model
+h3:the-deviance-statistics The Deviance Statistics
+h3:comparing-nonnested-models-with-information-criteria Comparing Nonnested Models with Information Criteria
+h3:evaluating-the-models-assumptions Evaluating the Model’s Assumptions
+h4:checking-functional-form Checking functional form
+h4:checking-normality Checking normality
+h4:checking-homoscedasticity Checking homoscedasticity
+h2:apa-style-writeup APA Style Writeup
+h2:residual-and-related-questions Residual and Related Questions…
+h2:practice-problems Practice Problems
+h3:problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed Problem #1: Rework the research vignette as demonstrated, but change the random seed
+h3:problem-2-rework-the-research-vignette-but-use-the-depression-variable-as-an-outcome Problem #2: Rework the research vignette, but use the depression variable as an outcome
+h3:problem-3-use-other-data-that-is-available-to-you Problem #3: Use other data that is available to you
+h3:grading-rubric Grading Rubric
+

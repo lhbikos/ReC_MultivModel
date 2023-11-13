@@ -1,5 +1,0 @@
-"0","#global fit indices"
-"0","Kim_2dvs_fitstats <- tidySEM::table_fit(Kim_2dvs_fit)"
-"0","write.csv(Kim_2dvs_fitstats, file = ""Kim_2dvs_fitstats.csv"")"
-"0","#the code below writes the parameter estimates into a .csv file"
-"0","write.csv(Kim_2dvs_pEsts, file = ""Kim_2dvs_pEsts.csv"")"

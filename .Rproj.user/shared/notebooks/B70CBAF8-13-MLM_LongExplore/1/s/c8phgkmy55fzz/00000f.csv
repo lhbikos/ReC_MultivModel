@@ -1,0 +1,4 @@
+"0","#fitting the linear model by ID, DR only"
+"0","LGBQQ <- filter(RndmLong, Het0==""1"")"
+"0","fitmlist <- by(LGBQQ, LGBQQ$ClientID, function(bydata) fitted.values(lm(Anxiety ~ Session0, data=bydata)))"
+"0","fitLGBQQ <- unlist(fitmlist)"

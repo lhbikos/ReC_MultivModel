@@ -1,0 +1,3 @@
+"0","#Using the slopes and intercepts from the linear model fitted by id"
+"0","#generated for use in table 2.3"
+"0","plot(RndmSmpl30$DRel0, ints1, xlab=""Religion"", ylab=""Fitted initial status"")"

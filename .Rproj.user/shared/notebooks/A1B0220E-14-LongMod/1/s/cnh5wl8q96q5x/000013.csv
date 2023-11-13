@@ -1,0 +1,2 @@
+"0","#plot_model (Mod3a, type=""int"", terms = c(""SesNum"", ""Het0 [0,1]"")) #this produces the same result, I included it as an example of how to add further specifications"
+"0","#sjPlot::plot_model (Mod4a, type=""pred"",terms=c(""SesNum"", ""Het0"", ""DRel0""))"

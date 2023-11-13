@@ -1,5 +1,0 @@
-"0","Empty <- lme4::lmer(ATSS ~ 1 + (1 | church), REML = FALSE, data = Lefevor2020)"
-"0",""
-"0","sjPlot::tab_model(Empty,  p.style = ""numeric"", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c(""Empty""), string.est = ""est"", string.se = ""se"", string.std = ""Beta"", string.std_se = ""std se"", string.p = ""p"", show.std = TRUE)"
-"0","#can swap this statement with the ""file = ""TabMod_Table"""" to get Viewer output or the outfile that you can open in Word"
-"0","#file = ""TabMod_Table.doc"""

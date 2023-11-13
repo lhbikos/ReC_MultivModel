@@ -1,0 +1,4 @@
+"0","#fitting the linear model by ID"
+"0","fit <- by(RndmLong, RndmLong$ClientID, "
+"0","          function(bydata) fitted.values(lm(Anxiety ~ Session0, data=bydata)))"
+"0","fit <- unlist(fit)"

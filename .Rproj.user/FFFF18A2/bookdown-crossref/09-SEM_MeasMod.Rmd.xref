@@ -1,0 +1,48 @@
+h1:SEM STRUCTURAL EQUATION MODELING
+h1:MeasMod Establishing the Measurement Model
+h2:navigating-this-lesson Navigating this Lesson
+h3:learning-objectives Learning Objectives
+h3:planning-for-practice Planning for Practice
+h3:readings-resources Readings & Resources
+h3:packages Packages
+h2:introduction-to-structural-equation-modeling-sem Introduction to Structural Equation Modeling (SEM)
+h2:workflow-for-evaluating-a-structural-model Workflow for Evaluating a Structural Model
+h2:the-measurement-model-specification-and-evaluation The Measurement Model: Specification and Evaluation
+h3:degrees-of-freedom-and-model-identification Degrees of Freedom and Model Identification
+h2:research-vignette Research Vignette
+h3:simulating-the-data-from-the-journal-article Simulating the data from the journal article
+h2:scrubbing-scoring-and-data-diagnostics Scrubbing, Scoring, and Data Diagnostics
+h2:specifying-the-measurement-model-in-lavaan Specifying the Measurement Model in 
+h2:interpreting-the-output Interpreting the Output
+h3:global-fit-indices Global Fit Indices
+h4:model-test-user-model Model Test  Model:
+h4:model-test-baseline-model Model Test  Model
+h4:incremental-fit-indices-located-in-the-user-versus-baseline-models-section Incremental Fit Indices (Located in the  section)
+h4:loglikelihood-and-information-criteria Loglikelihood and Information Criteria
+h4:root-mean-square-error-of-approximation Root Mean Square Error of Approximation
+h4:standardized-root-mean-square-residual Standardized Root Mean Square Residual
+h4:factor-loadings Factor Loadings
+h4:adequacy-of-the-initial-measurement-model Adequacy of the Initial Measurement Model
+h2:parceling Parceling
+h3:the-pros-and-cons-of-parceling The Pros and Cons of Parceling
+h4:philosophical-arguments Philosophical Arguments
+h4:psychometric-arguments Psychometric Arguments
+h4:modelers-arguments Modelers’ Arguments
+h3:practical-procedures-for-parceling Practical Procedures for Parceling
+h4:purposive-approaches-to-parceling Purposive Approaches to Parceling
+h4:random-approaches-to-parceling Random Approaches to Parceling
+h2:parceling-with-subscale-scores Parceling with Subscale Scores
+h3:measurement-model-with-subscale-parcels Measurement Model with Subscale Parcels
+h3:measurement-model-with-just-identified-random-parcels Measurement Model with Just-Identified Random Parcels
+h4:evaluating-the-randomly-identified-measurement-model Evaluating the Randomly Identified Measurement Model
+h3:apa-style-write-up-of-the-results APA Style Write-up of the Results
+h2:residual-and-related-questions Residual and Related Questions…
+h3:wait-why-did-we-do-this Wait! Why did we do this?
+h3:what-if-one-of-my-variables-only-has-one-or-two-indicators What if one of my variables only has one or two indicators?
+h3:what-if-i-have-missing-data What if I have missing data?
+h2:practice-problems Practice Problems
+h3:problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed Problem #1: Rework the research vignette as demonstrated, but change the random seed
+h3:problem-2-rework-the-research-vignette-but-swap-one-or-more-variables Problem #2: Rework the research vignette, but swap one or more variables
+h3:problem-3-try-something-entirely-new. Problem #3: Try something entirely new.
+h3:grading-rubric Grading Rubric
+

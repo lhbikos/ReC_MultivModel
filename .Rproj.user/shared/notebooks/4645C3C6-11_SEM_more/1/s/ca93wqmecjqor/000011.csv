@@ -1,5 +1,0 @@
-"0","set.seed(230916)"
-"0","items <- c('PhH1', 'PhH2', 'PhH3', 'PhH4', 'PhH5', 'PhH6')"
-"0","parcels <- c(""PhH_p1"", ""PhH_p2"",""PhH_p3"")"
-"0","data.frame(items = sample(items),"
-"0","           parcel = rep(parcels, length = length(items)))  "

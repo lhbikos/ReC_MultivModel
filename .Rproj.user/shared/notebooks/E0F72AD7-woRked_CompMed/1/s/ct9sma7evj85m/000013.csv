@@ -1,2 +1,0 @@
-"0","StigmaFelt_vars <- c('FMreactions_1', 'FMreactions_2','FMreactions_3','FMreactions_4','FMreactions_5','FMreactions_6')"
-"0","raw$StigmaFelt <- sjstats::mean_n(raw[, StigmaFelt_vars], .65)"

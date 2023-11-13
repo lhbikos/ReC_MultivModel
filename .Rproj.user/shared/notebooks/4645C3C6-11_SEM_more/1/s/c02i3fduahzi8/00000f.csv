@@ -1,5 +1,0 @@
-"0","#global fit indices"
-"0","msmt_fitstats <- tidySEM::table_fit(msmt_fit)"
-"0","write.csv(msmt_fitstats, file = ""msmt_fitstats.csv"")"
-"0","#the code below writes the parameter estimates into a .csv file"
-"0","write.csv(msmt_fit_pEsts, file = ""msmt_pEsts.csv"")"

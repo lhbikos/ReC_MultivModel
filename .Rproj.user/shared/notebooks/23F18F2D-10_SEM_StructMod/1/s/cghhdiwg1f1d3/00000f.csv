@@ -1,2 +1,0 @@
-"0","#Code to plot the theoretical model (in case you don't want to print the results on the graph):"
-"0","p4_theoretical <- semPlot::semPaths(Kim_2CorrDVs_fit)"

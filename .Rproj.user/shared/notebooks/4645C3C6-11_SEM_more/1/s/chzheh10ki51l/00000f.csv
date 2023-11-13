@@ -1,5 +1,0 @@
-"0","#global fit indices"
-"0","struct_fitstats <- tidySEM::table_fit(struct_fit1)"
-"0","write.csv(struct_fitstats, file = ""struct_fitstats.csv"")"
-"0","#the code below writes the parameter estimates into a .csv file"
-"0","write.csv(struct_pEsts1, file = ""struct_pEsts1.csv"")"

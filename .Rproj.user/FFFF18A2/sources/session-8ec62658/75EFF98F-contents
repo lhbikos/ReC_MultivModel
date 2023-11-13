@@ -1,0 +1,444 @@
+---
+title: "ModMedMasks220201"
+author: "anonymized for review"
+date: "1/12/2021"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+TO THE READER/REVIEWER:  These are the analyses reported in the manuscript. The data is in the .rds format and is available for analyzing in R.
+
+```{r}
+MADdf <- readRDS('MADdf.rds')
+```
+
+
+
+```{r}
+#removing all rows after vaccines had been administered
+MADdf <- subset(MADdf, is.na(MADdf$initial_vaccines))
+```
+
+
+In a prior version of this file I did a bundle of re-centering of L1 variables so that they were centered within context (group mean centered;(L1) and brought back in as an aggregate (L2). Given the complexity of our data (and after confusing myself with a myriad of models), I am ok with not doing this, and rather centering our variables for a simplistic sensible interpretation.
+
+The resultant version of dfl4.rds will be simpler, creating newly recentered variables of the ones we decided to use.
+
+In our data, if people did not wear masks, they were scored as NA I want to create a variable that has 0 for proportion of FM wearing instead of an NA
+```{r}
+library(tidyverse)
+MADdf$myFMprop0 <- replace_na(MADdf$myFMprop, 0)
+```
+
+```{r grand mean centering}
+#as.numeric(as.character(MADdf$PctRblcn)) #an attempt to get the PctRblcn variable to center properly, did not work
+
+MADdf$StigmaFelt0 <- MADdf$StigmaFelt - 1 #Centering around 0 so that 0 (instead of 1) means felt no stigma
+#Centering PctRblcn around the mean.
+MADdf <- MADdf %>% 
+  dplyr::mutate(cPctRblcn = PctRblcn - 36.65262) #would not compute with centering command so I manually put in the number  
+
+#Quick check to see that it worked as expected
+head(MADdf[,c('StigmaFelt0','StigmaFelt', 'cPctRblcn', 'PctRblcn')])
+```
+
+Variable recap:
+
+**PANAS** was initially scored as means, ranging from 1 to 5. There is support for two factors, but we are using a 1-factor score with higher scores indicating greater overall well-being. Items 3, 4, 7, 8, 9 were reverse-scored. PANAS is the DV, we will not center it.
+
+**StigmaFelt0** is a 5-point scale (0 to 4; where zero means no stigma felt). Nothing needed to reverse-scored. Higher scores indicate more perceived stigma about wearing the facemask. Leaving 0 as "no stigma" was consistent with the data because some participants reported no perceived stigma associated with wearing a facemask.
+
+**myFMprop0** is the proportion of time the respondent wore a facemask in the preceding week. Zero means that the respondent did not wear a facemask in the preceding week. 
+
+**cPctRblcn** is the proportion of voters in the county of the participant's resident who voted Republican in the 2020 Presidential election. This grand-mean centered so that 0 represents the average % who voted Republican.
+
+We are trying to model, this:
+
+![Image of hypothesized model](ModMedFig.png)
+```{r}
+MADdf <- MADdf[complete.cases(MADdf[,c("PANAS", "StigmaFelt", "mCases", "PctRblcn", "myFMprop0")]),]
+```
+
+What proportion of people never wore a facemask?
+```{r}
+MADdf$myFMpropL2 <- as.numeric(robumeta::group.mean(MADdf$myFMprop, MADdf$caseID))#aggregated at group mean
+```
+
+
+
+Running again after deleting rows with missing values (where we cannot have missing values).
+```{r}
+misty::multilevel.descript(MADdf[, c("PANAS", "myFMprop0", "StigmaFelt0", "mCases", "cPctRblcn")],
+               cluster = MADdf$caseID)
+```
+Results of these are reported either in the Method or preliminary analyses (we'll have to see which).  Essentially we say something like:  
+
+PRIOR THIS WE WILL REPORT HOW WE DETERMINED WHO WAS INCLUDED BASED ON MISSINGNESS.
+Data included in the analyses were from 193 individuals who completed between 1 and 24 waves each (*M* = 8.11, *SD* = 5.72), for a total of 1566 waves.
+
+```{r}
+corrmatrix <- misty::multilevel.cor(MADdf[, c("PANAS", "myFMprop0", "StigmaFelt0", "mCases", "cPctRblcn")],
+               cluster = MADdf$caseID, split=FALSE, output = TRUE, write = "MLMcorr.xlsx")
+
+```
+We'll want this r matrix in the preliminary analyses. Note that on the within-group correlations (lower matrix), the cPctRblcn values are all 0.00.  This is because this variable is an L2 variable, and therefore would not have any variability (to correlate, or not) at L1.
+
+
+## Descriptives
+```{r}
+str(MADdf$Index)
+```
+
+```{r}
+jmv::descriptives(
+    data = MADdf,
+    vars = c(
+        "Index"),
+    freq = TRUE,
+    #hist = TRUE,
+    #dens = TRUE,
+    #bar = TRUE,
+    #barCounts = TRUE,
+    #box = TRUE,
+    #sd = TRUE,
+    #variance = TRUE,
+    #range = TRUE,
+    #se = TRUE,
+    #skew = TRUE,
+    #kurt = TRUE,
+    #quart = TRUE,
+    #pcEqGr = TRUE,
+    #pcNEqGr = 10
+)
+```
+```{r}
+1458/24
+```
+
+
+```{r}
+w1 <- subset(MADdf, Index == "1")
+w2 <- subset(MADdf, Index == "2")
+w3 <- subset(MADdf, Index == "3")
+w4 <- subset(MADdf, Index == "4")
+w5 <- subset(MADdf, Index == "5")
+w6 <- subset(MADdf, Index == "6")
+w7 <- subset(MADdf, Index == "7")
+w8 <- subset(MADdf, Index == "8")
+w9 <- subset(MADdf, Index == "9")
+w10 <- subset(MADdf, Index == "10")
+w11 <- subset(MADdf, Index == "11")
+w12 <- subset(MADdf, Index == "12")
+w13 <- subset(MADdf, Index == "13")
+w14 <- subset(MADdf, Index == "14")
+w15 <- subset(MADdf, Index == "15")
+w16 <- subset(MADdf, Index == "16")
+w17 <- subset(MADdf, Index == "17")
+w18 <- subset(MADdf, Index == "18")
+w19 <- subset(MADdf, Index == "19")
+w20 <- subset(MADdf, Index == "20")
+w21 <- subset(MADdf, Index == "21")
+w22 <- subset(MADdf, Index == "22")
+w23 <- subset(MADdf, Index == "23")
+w24 <- subset(MADdf, Index == "24")
+```
+
+
+```{r}
+vars <- dplyr::select(w1, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w2, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+
+```{r}
+vars <- dplyr::select(w3, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+
+```{r}
+vars <- dplyr::select(w4, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+
+```{r}
+vars <- dplyr::select(w5, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+
+```{r}
+vars <- dplyr::select(w6, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w7, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w8, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w9, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w10, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w11, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w12, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w13, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w14, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w15, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w16, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w17, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w18, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w19, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w20, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w21, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w22, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w23, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+```{r}
+vars <- dplyr::select(w24, "PANAS", "myFMprop0", "StigmaFelt0", "mCases", "PctRblcn")
+psych::describe(vars)
+```
+
+
+
+## Participant demographics
+
+Getting an accurate count of participant demographics was tricky. This is because not every participant had complete data on the first wave. Therefore, we created a secondary index that assigned the first completed wave as with an Index of 1. This allowed us to count each incluced participant one time. 
+
+```{r}
+MADdf <- MADdf%>%
+group_by(caseID)%>%
+mutate(newindex = order(order(Index, decreasing = FALSE)))
+```
+
+```{r}
+MADdf$State <- stringr::str_extract(MADdf$County_FIPS, "^\\d{2}")
+str(MADdf$State)
+MADdf$State <- as.factor(MADdf$State)
+```
+
+
+```{r}
+demogs<-subset(MADdf, newindex==("1"))
+```
+
+```{r}
+psych::describe(demogs)
+```
+
+Determining the proportion of those enrolled in the maskmaker study vs. just the wearing study. In our initial download, we gave maskmakers the caseID values from 1 to 88; wearers were coded 90 onward.
+```{r}
+library(tidyverse)
+demogs$Study <- case_when(demogs$caseID %in% 1:88 ~ "Maker",
+                         demogs$caseID %in% 89:201 ~"Wearer")
+demogs$Study <- as.factor(demogs$Study)
+str(demogs$Study)
+```
+
+```{r}
+jmv::descriptives(
+    data = demogs,
+    vars = c(
+        "Race",
+        "Ethnicity",
+        "BioSex",
+        "Gender",
+        "State", 
+        "Study"),
+    freq = TRUE,
+    #hist = TRUE,
+    #dens = TRUE,
+    #bar = TRUE,
+    #barCounts = TRUE,
+    #box = TRUE,
+    #sd = TRUE,
+    #variance = TRUE,
+    #range = TRUE,
+    #se = TRUE,
+    #skew = TRUE,
+    #kurt = TRUE,
+    #quart = TRUE,
+    #pcEqGr = TRUE,
+    #pcNEqGr = 10
+)
+```
+```{r}
+jmv::descriptives(
+    data = MADdf,
+    vars = c(
+        "Index"),
+    freq = TRUE,
+    #hist = TRUE,
+    #dens = TRUE,
+    #bar = TRUE,
+    #barCounts = TRUE,
+    #box = TRUE,
+    #sd = TRUE,
+    #variance = TRUE,
+    #range = TRUE,
+    #se = TRUE,
+    #skew = TRUE,
+    #kurt = TRUE,
+    #quart = TRUE,
+    #pcEqGr = TRUE,
+    #pcNEqGr = 10
+)
+```
+
+
+```{r}
+demogs %>%
+  count(Race)
+```
+
+## Primary Analyses
+
+```{r}
+#MRP model w mCases and %Repub as interaction term using myFMprop0 and all predictors are grand mean centered 
+EmptyMedFM0d <- lme4::lmer(myFMprop0 ~1 + (1|caseID), MADdf, REML = FALSE)
+MedFM0Fitd <- lme4::lmer(myFMprop0 ~ StigmaFelt0*mCases + StigmaFelt0*cPctRblcn +(1|caseID), MADdf, REML = FALSE)
+
+EmptyDVFM0d <- lme4::lmer(PANAS ~1 + (1|caseID), MADdf, REML = FALSE)
+DVRFM0Fitd <- lme4::lmer(PANAS ~ StigmaFelt0*mCases + StigmaFelt0*cPctRblcn + myFMprop0 +(1|caseID), MADdf, REML = FALSE)
+
+sjPlot::tab_model(EmptyMedFM0d, MedFM0Fitd, EmptyDVFM0d, DVRFM0Fitd)
+
+sjPlot::tab_model(EmptyMedFM0d, MedFM0Fitd, EmptyDVFM0d, DVRFM0Fitd, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, show.std = TRUE,  digits = 3, use.viewer = TRUE, dv.labels = c("Model 1", "Model 2", "Model 3", "Model 4"), string.est = "est",  string.ci = "CI 95%)", string.p = "p",string.se = "se", pred.labels = c("Intercept", "Perceived Stigma", "COVID-19 cases (metric)", "Republican Voting%", "Stigma*COVID cases", "Stigma*Republican%", "Facemask Wearing %"))
+#file = "MaskMadMLMtabe.doc" #include this in the statement to print the results to a word file
+
+#dv.labels = c("Mod1", "Mod2")
+MedBOTH.evald = mediation::mediate(MedFM0Fitd, DVRFM0Fitd, treat="StigmaFelt0", mediator="myFMprop0") 
+print(summary(MedBOTH.evald)) 
+```
+
+```{r}
+psych::describe(MADdf)
+```
+
+
+```{r}
+77.25+34.38
+77.25-34.38
+```
+
+```{r}
+#graphing metric cases at 0, M, M+1SD
+9.39 + 14.05
+```
+## Plots
+
+```{r}
+sjPlot::plot_model(MedFM0Fitd, type = "pred", axis.lim = c(1, 100),terms = c("StigmaFelt0", "mCases[0, 9.39, 23.44]", "cPctRblcn"), axis.title = c("Perceived Facemask Stigma", "Mask-wearing Proportion"),  title = "", legend.title = "Metric COVID Cases")
+
+#mdrt.values = "meansd"
+
+```
+```{r}
+plot1 <- sjPlot::plot_model(MedFM0Fitd, type = "pred", axis.lim = c(1, 100),terms = c("StigmaFelt0", "mCases[0, 9.39, 23.44]", "cPctRblcn"), axis.title = c("Perceived Facemask Stigma", "Mask-wearing Proportion"),  title = "", colors = "bw", legend.title = "Metric COVID Cases")
+
+plot1
+
+#mdrt.values = "meansd"
+
+```
+
+Instructions for changing the facet labels:  https://stackoverflow.com/questions/67445723/change-variable-labels-in-plot-model-for-random-effects-with-sjplot 
+```{r}
+plot1b <- plot1
+plot1b$data$facet
+```
+
+```{r}
+plot1b$data$facet <- factor(plot1b$data$facet)
+levels(plot1b$data$facet)
+```
+
+```{r}
+levels(plot1b$data$facet) <- c("Republican Voting (-1SD)", "Republican Voting (M)", "Republican Voting (+1SD)")
+plot1b
+```
+
+
+
+Predicting the DV, PANAS
+
+```{r}
+#Calculating M +/- 1SD for facemask proportion wearing
+86.99-22.47
+86.99+22.47
+```
+
+
+```{r}
+plot2 <- sjPlot::plot_model(DVRFM0Fitd, type = "pred", mdrt.values = "meansd", axis.lim = c(1, 5), terms = c("StigmaFelt0", "myFMprop0 [64.52, 86.99, 100]", "mCases[0, 9.39, 23.05]"), axis.title = c("Perceived Facemask Stigma", "Affective Well-Being"), legend.title = "%Mask-wearing", title = "", colors = "bw",)
+
+plot2
+```
+
+```{r}
+plot2b <- plot2
+plot2b$data$facet
+```
+```{r}
+plot2b$data$facet <- factor(plot2b$data$facet)
+levels(plot2b$data$facet)
+```
+```{r}
+levels(plot2b$data$facet) <- c("Metric COVID Cases = 0", "Metric COVID Cases = 9.39", "Metric COVID Cases = 23.05")
+plot2b
+
+```
+
+```{r}
+sjPlot::plot_model(DVRFM0Fitd, type = "pred", mdrt.values = "meansd", axis.lim = c(1, 5), terms = c("StigmaFelt0", "myFMprop0 [64.52, 86.99, 100]", "cPctRblcn"),axis.title = c("Perceived Facemask Stigma", "Affective Well-Being"), legend.title = "%Mask-wearing", title = "")
+#
+```

@@ -1,5 +1,0 @@
-"0","set.seed(230916)"
-"0","items <- c('Ob1', 'Ob2', 'Ob3', 'Ob4', 'Ob5', 'Ob6', 'Ob7', 'Ob8', 'Ob9', 'Ob10', 'Ma1', 'Ma2', 'Ma3', 'Ma4', 'Ma5', 'Ma6', 'Ma7', 'St1', 'St2', 'St3', 'St4', 'St5', 'An1', 'An2')"
-"0","parcels <- c(""GRMS_p1"", ""GRMS_p_2"",""GRMS_p3"")"
-"0","data.frame(items = sample(items),"
-"0","           parcel = rep(parcels, length = length(items)))  "

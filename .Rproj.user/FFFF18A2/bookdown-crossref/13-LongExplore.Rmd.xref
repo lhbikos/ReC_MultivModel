@@ -1,0 +1,31 @@
+h1:MLMexplore Preliminary (OLS style) Exploration of Longitudinal Growth
+h2:navigating-this-lesson Navigating this Lesson
+h3:learning-objectives Learning Objectives
+h3:planning-for-practice Planning for Practice
+h3:readings-resources Readings & Resources
+h3:packages Packages
+h2:change-over-time-analytics Change-Over-Time Analytics
+h2:workflow-for-longitudinal-mlm Workflow for Longitudinal MLM
+h2:research-vignette Research Vignette
+h3:simulating-the-data-from-the-journal-article Simulating the data from the journal article
+h2:longitudinal-exploration Longitudinal Exploration
+h3:the-structure-of-the-data-file-as-the-first-step-in-understanding-longitudinal-modeling The Structure of the Data File as the First Step in Understanding Longitudinal Modeling
+h3:job1-is-to-get-our-data-from-person-level-into-person-period Job#1 is to get our data from person-level into person-period
+h3:empirical-growth-plots Empirical Growth Plots
+h3:plotting-a-trajectory-as-summary-of-each-persons-empirical-growth-record Plotting a Trajectory as Summary of Each Person’s Empirical Growth Record
+h4:nonparametrical-smoothing-of-the-empirical-growth-trajectory Nonparametrical Smoothing of the Empirical Growth Trajectory**
+h4:parametric-smoothing-of-the-empirical-growth-trajectory-w-ols-regression Parametric Smoothing of the Empirical Growth Trajectory w OLS Regression**
+h4:snapshot-of-the-entire-set-of-smooth-trajectories Snapshot of the Entire Set of Smooth Trajectories**
+h3:examining-intercepts-slopes-and-their-relationship Examining intercepts, slopes, and their relationship
+h3:exploring-the-relationship-between-change-and-time-invariant-predictors Exploring the relationship between Change and Time-Invariant Predictors
+h3:the-relationship-between-ols-estimated-trajectories-and-substantive-predictors The Relationship between OLS-Estimated Trajectories and Substantive Predictors
+h3:apa-style-writeup APA Style Writeup
+h2:observations-about-the-social-and-cultural-responsivity-of-the-project Observations about the Social and Cultural Responsivity of the Project
+h2:residual-and-related-questions Residual and Related Questions…
+h2:practice-problems Practice Problems
+h3:problem-1-rework-the-research-vignette-as-demonstrated-but-change-the-random-seed Problem #1: Rework the research vignette as demonstrated, but change the random seed
+h3:problem-2-rework-the-research-vignette-using-the-second-set-of-simulated-data-where-depression-is-the-outcome-variable Problem #2: Rework the research vignette using the second set of simulated data where depression is the outcome variable
+h3:problem-3-use-other-data-that-is-available-to-you Problem #3: Use other data that is available to you
+h2:bonus-track Bonus Track:
+h3:simulated-data-when-depression-is-the-outcome Simulated Data when Depression is the Outcome
+

@@ -1,0 +1,4 @@
+"0","#fitting the linear model by ID, DR only"
+"0","NDR <- filter(RndmLong, DRel0==""1"")"
+"0","fitmlist <- by(NDR, NDR$ClientID, function(bydata) fitted.values(lm(Anxiety ~ Session0, data=bydata)))"
+"0","fitNDR <- unlist(fitmlist)"

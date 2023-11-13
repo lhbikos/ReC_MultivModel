@@ -1,0 +1,3 @@
+"0","#plotting the linear fit by id, males"
+"0","#id.m=111 denotes the average value for males"
+"0","interaction.plot(Sess1.HET, id.HET, fit.HET, ylim=c(-2, 8), xlab=""Sessions"", ylab=""Anxiety"", lwd=1)"

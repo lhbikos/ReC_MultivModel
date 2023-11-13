@@ -1,5 +1,0 @@
-"0","set.seed(230916)"
-"0","items <- c('Inf32', 'Inf38', 'Inf21', 'Inf17', 'Inf9', 'Inf36', 'Inf5', 'Inf22', 'SClass6', 'SClass31', 'SClass8', 'SClass40', 'SClass2', 'SClass34', 'SClass11', 'mInv27', 'mInv30', 'mInv39', 'mInv7', 'mInv26', 'mInv33', 'mInv4', 'mInv14', 'mInv10', 'Exot3', 'Exot29', 'Exot45', 'Exot35', 'Exot42', 'Exot23', 'Exot13', 'Exot20', 'Exot43', 'mEnv37', 'mEnv24', 'mEnv19', 'mEnv28', 'mEnv18', 'mEnv41', 'mEnv12', 'mWork25', 'mWork15', 'mWork1', 'mWork16', 'mWork44')"
-"0","parcels <- c(""REMS_p1"", ""REMS_p2"",""REMS_p3"")"
-"0","data.frame(items = sample(items),"
-"0","           parcel = rep(parcels, length = length(items)))  "
