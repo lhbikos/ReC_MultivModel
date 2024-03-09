@@ -1,6 +1,0 @@
-"0","#appending the average for the whole group of males"
-"0","lm.NDR <- fitted( lm(Anxiety ~ Session0, data=NDR) )"
-"0","names(lm.NDR) <- NULL"
-"0","fit.NDR2 <- c(fitNDR, lm.NDR[1:5])"
-"0","Sess1.NDR <- c(NDR$Index, seq(1,5))#Note that I used Session0 to create the lm, but plotted by Index0"
-"0","id.NDR <- c(NDR$ClientID, rep(30, 5))"

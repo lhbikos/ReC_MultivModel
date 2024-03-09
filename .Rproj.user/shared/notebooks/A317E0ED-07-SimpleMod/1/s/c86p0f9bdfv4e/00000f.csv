@@ -1,2 +1,0 @@
-"0","LewSimpModOLS <- as.data.frame(broom::tidy(LewisSimpMod))"
-"0","write.csv(LewSimpModOLS, ""LewSimpModOLS.csv"")"

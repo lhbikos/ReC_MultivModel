@@ -6,13 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Moderated Mediation | ReCentering Psych Stats: Multivariate Modeling</title>
   <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Moderated Mediation | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
   <meta property="og:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="github-repo" content="lhbikos/extRas" />
+  <meta name="github-repo" content="lhbikos/ReC_MultivModel" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 8 Moderated Mediation | ReCentering Psych Stats: Multivariate Modeling" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2023-11-12" />
+<meta name="date" content="2024-03-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -829,6 +829,18 @@ div.csl-indent {
 <li class="chapter" data-level="13.7.4" data-path="MLMexplore.html"><a href="MLMexplore.html#grading-rubric-11"><i class="fa fa-check"></i><b>13.7.4</b> Grading Rubric</a></li>
 </ul></li>
 <li class="chapter" data-level="13.8" data-path="MLMexplore.html"><a href="MLMexplore.html#simulated-data-when-depression-is-the-outcome"><i class="fa fa-check"></i><b>13.8</b> Simulated Data when Depression is the Outcome</a></li>
+<li class="chapter" data-level="13.9" data-path="MLMexplore.html"><a href="MLMexplore.html#homeworked-example-9"><i class="fa fa-check"></i><b>13.9</b> Homeworked Example</a>
+<ul>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#identify-and-describe-the-variables-in-the-model-there-should-be-a-time-varying-dv-and-predictor-as-well-as-an-l2-predictor"><i class="fa fa-check"></i>Identify and describe the variables in the model; there should be a time-varying DV and predictor as well as an L2 predictor</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#import-the-data-and-format-the-variables-in-the-model-7"><i class="fa fa-check"></i>### Import the data and format the variables in the model</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#restructure-the-dataset-from-wide-to-long-or-from-long-to-wide"><i class="fa fa-check"></i>Restructure the dataset from wide to long (or from long to wide)</a></li>
+<li class="chapter" data-level="13.9.1" data-path="MLMexplore.html"><a href="MLMexplore.html#produce-multilevel-descriptive-statistics-and-correlation-matrix"><i class="fa fa-check"></i><b>13.9.1</b> Produce multilevel descriptive statistics and correlation matrix</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-an-unfitted-model"><i class="fa fa-check"></i>Explore data with an unfitted model</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-a-model-fitted-with-a-linear-growth-trajectory"><i class="fa fa-check"></i>Explore data with a model fitted with a linear growth trajectory</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-the-fitted-or-unfitted-data-identified-by-the-l2-predictor"><i class="fa fa-check"></i>Explore data with the fitted (or unfitted) data identified by the L2 predictor</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#provide-a-write-up-of-what-you-found-in-this-process"><i class="fa fa-check"></i>Provide a write-up of what you found in this process</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explanation-to-grader-6"><i class="fa fa-check"></i>Explanation to grader</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="LongMod.html"><a href="LongMod.html"><i class="fa fa-check"></i><b>14</b> A Basic Longitudinal Model</a>
 <ul>
@@ -878,6 +890,47 @@ div.csl-indent {
 <li class="chapter" data-level="14.10.2" data-path="LongMod.html"><a href="LongMod.html#problem-2-rework-the-research-vignette-but-use-the-depression-variable-as-an-outcome"><i class="fa fa-check"></i><b>14.10.2</b> Problem #2: Rework the research vignette, but use the depression variable as an outcome</a></li>
 <li class="chapter" data-level="14.10.3" data-path="LongMod.html"><a href="LongMod.html#problem-3-use-other-data-that-is-available-to-you-6"><i class="fa fa-check"></i><b>14.10.3</b> Problem #3: Use other data that is available to you</a></li>
 <li class="chapter" data-level="14.10.4" data-path="LongMod.html"><a href="LongMod.html#grading-rubric-12"><i class="fa fa-check"></i><b>14.10.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="TimeLord.html"><a href="TimeLord.html"><i class="fa fa-check"></i><b>15</b> Calendrical Time (and Missingness) in MLMs</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="TimeLord.html"><a href="TimeLord.html#navigating-this-lesson-14"><i class="fa fa-check"></i><b>15.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="TimeLord.html"><a href="TimeLord.html#learning-objectives-14"><i class="fa fa-check"></i><b>15.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="15.1.2" data-path="TimeLord.html"><a href="TimeLord.html#planning-for-practice-14"><i class="fa fa-check"></i><b>15.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="15.1.3" data-path="TimeLord.html"><a href="TimeLord.html#readings-resources-14"><i class="fa fa-check"></i><b>15.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="15.1.4" data-path="TimeLord.html"><a href="TimeLord.html#packages-14"><i class="fa fa-check"></i><b>15.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="TimeLord.html"><a href="TimeLord.html#exploring-variants-of-time-and-balance"><i class="fa fa-check"></i><b>15.2</b> Exploring Variants of Time and Balance</a></li>
+<li class="chapter" data-level="15.3" data-path="TimeLord.html"><a href="TimeLord.html#research-vignette-14"><i class="fa fa-check"></i><b>15.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="TimeLord.html"><a href="TimeLord.html#simulating-the-data-from-the-journal-article-7"><i class="fa fa-check"></i><b>15.3.1</b> Simulating the data from the journal article</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="TimeLord.html"><a href="TimeLord.html#more-simulation-appointment-dates"><i class="fa fa-check"></i><b>15.4</b> More Simulation – Appointment Dates</a></li>
+<li class="chapter" data-level="15.5" data-path="TimeLord.html"><a href="TimeLord.html#reworking-lefevor-et-al.-using-calendrical-time-and-unbalanced-data"><i class="fa fa-check"></i><b>15.5</b> Reworking Lefevor et al. using Calendrical Time (and Unbalanced Data)</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="TimeLord.html"><a href="TimeLord.html#creating-time-intervals"><i class="fa fa-check"></i><b>15.5.1</b> Creating Time Intervals</a></li>
+<li class="chapter" data-level="15.5.2" data-path="TimeLord.html"><a href="TimeLord.html#wide-to-long"><i class="fa fa-check"></i><b>15.5.2</b> Wide to Long</a></li>
+<li class="chapter" data-level="15.5.3" data-path="TimeLord.html"><a href="TimeLord.html#mlm-is-for-unbalanced-designs"><i class="fa fa-check"></i><b>15.5.3</b> MLM is for unbalanced designs</a></li>
+<li class="chapter" data-level="15.5.4" data-path="TimeLord.html"><a href="TimeLord.html#abbreviated-ols-style-exploration"><i class="fa fa-check"></i><b>15.5.4</b> Abbreviated OLS Style Exploration</a></li>
+<li class="chapter" data-level="15.5.5" data-path="TimeLord.html"><a href="TimeLord.html#rebuilding-the-model-unstructured-time-unbalanced-design"><i class="fa fa-check"></i><b>15.5.5</b> Rebuilding the Model (Unstructured Time, Unbalanced Design)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="TimeLord.html"><a href="TimeLord.html#structured-time-reworking-the-vignette-with-index"><i class="fa fa-check"></i><b>15.6</b> Structured Time: Reworking the Vignette with Index</a></li>
+<li class="chapter" data-level="15.7" data-path="TimeLord.html"><a href="TimeLord.html#apa-style-writeup-8"><i class="fa fa-check"></i><b>15.7</b> APA Style Writeup</a></li>
+<li class="chapter" data-level="15.8" data-path="TimeLord.html"><a href="TimeLord.html#residual-and-related-questions-5"><i class="fa fa-check"></i><b>15.8</b> Residual and Related Questions…</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="TimeLord.html"><a href="TimeLord.html#what-did-we-gainlose-by-using-weeks-or-sessnum-unstructured-versus-index-structured-to-mark-time"><i class="fa fa-check"></i><b>15.8.1</b> What did we gain/lose by using Weeks or SessNum (unstructured) versus Index (structured) to mark time?</a></li>
+<li class="chapter" data-level="15.8.2" data-path="TimeLord.html"><a href="TimeLord.html#how-did-the-unbalanced-time-impact-the-analysis-and-results"><i class="fa fa-check"></i><b>15.8.2</b> How did the unbalanced time impact the analysis and results?</a></li>
+</ul></li>
+<li class="chapter" data-level="15.9" data-path="TimeLord.html"><a href="TimeLord.html#practice-problems-14"><i class="fa fa-check"></i><b>15.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="TimeLord.html"><a href="TimeLord.html#problem-1-rework-this-lessons-example-by-changing-the-time-metric-to-days-or-months"><i class="fa fa-check"></i><b>15.9.1</b> Problem #1: Rework this Lesson’s Example by Changing the Time Metric to Days or Months</a></li>
+<li class="chapter" data-level="15.9.2" data-path="TimeLord.html"><a href="TimeLord.html#problem-2-compare-balanced-and-unbalanced-designs"><i class="fa fa-check"></i><b>15.9.2</b> Problem #2: Compare balanced and unbalanced designs</a></li>
+<li class="chapter" data-level="15.9.3" data-path="TimeLord.html"><a href="TimeLord.html#problem-3-experiment-with-time-and-balanceunbalance-in-data-that-is-available-to-you"><i class="fa fa-check"></i><b>15.9.3</b> Problem #3: Experiment with time and balance/unbalance in data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="TimeLord.html"><a href="TimeLord.html#bonus-track-2"><i class="fa fa-check"></i><b>15.10</b> Bonus Track:</a>
+<ul>
+<li class="chapter" data-level="15.10.1" data-path="TimeLord.html"><a href="TimeLord.html#faqs"><i class="fa fa-check"></i><b>15.10.1</b> FAQs</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="REFS.html"><a href="REFS.html"><i class="fa fa-check"></i>REFERENCES</a></li>
@@ -963,7 +1016,7 @@ div.csl-indent {
 <span id="cb461-3"><a href="ModMed.html#cb461-3" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;lavaan&quot;</span>)</span>
 <span id="cb461-4"><a href="ModMed.html#cb461-4" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## Loading required package: lavaan</code></pre>
-<pre><code>## This is lavaan 0.6-16
+<pre><code>## This is lavaan 0.6-17
 ## lavaan is FREE software! Please report any bugs.</code></pre>
 <div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="ModMed.html#cb464-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(semPlot)) {</span>
 <span id="cb464-2"><a href="ModMed.html#cb464-2" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;semPlot&quot;</span>)</span>
@@ -975,8 +1028,8 @@ div.csl-indent {
 <pre><code>## Loading required package: tidyverse</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ## ✔ purrr     1.0.1     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -1126,7 +1179,7 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 <span id="cb473-2"><a href="ModMed.html#cb473-2" tabindex="-1"></a></span>
 <span id="cb473-3"><a href="ModMed.html#cb473-3" tabindex="-1"></a></span>
 <span id="cb473-4"><a href="ModMed.html#cb473-4" tabindex="-1"></a>Lewis_generating_model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb473-5"><a href="ModMed.html#cb473-5" tabindex="-1"></a><span class="st">        ##measurement model</span></span>
+<span id="cb473-5"><a href="ModMed.html#cb473-5" tabindex="-1"></a><span class="st">        #measurement model</span></span>
 <span id="cb473-6"><a href="ModMed.html#cb473-6" tabindex="-1"></a><span class="st">        GRMS  =~ .69*Ob1 + .69*Ob2 + .60*Ob3 + .59*Ob4 + .55*Ob5 + .55*Ob6 + .54*Ob7 + .50*Ob8 + .41*Ob9 + .41*Ob10 + .93*Ma1 + .81*Ma2 + .69*Ma3 + .67*Ma4 + .61*Ma5 + .58*Ma6 + .54*Ma7 + .59*St1 + .55*St2 + .54*St3 + .54*St4 + .51*St5 + .70*An1 + .69*An2 + .68*An3</span></span>
 <span id="cb473-7"><a href="ModMed.html#cb473-7" tabindex="-1"></a><span class="st">        MntlHlth  =~ .8*MH1 + .8*MH2 + .8*MH3 + .8*MH4 + .8*MH5 + .8*MH6</span></span>
 <span id="cb473-8"><a href="ModMed.html#cb473-8" tabindex="-1"></a><span class="st">        PhysHlth  =~ .8*PhH1 + .8*PhH2 + .8*PhH3 + .8*PhH4 + .8*PhH5 + .8*PhH6</span></span>
@@ -1136,7 +1189,7 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 <span id="cb473-12"><a href="ModMed.html#cb473-12" tabindex="-1"></a><span class="st">        Disengagement  =~  .8*dEng1 + .8*dEng2</span></span>
 <span id="cb473-13"><a href="ModMed.html#cb473-13" tabindex="-1"></a><span class="st">        GRIC  =~ .8*Cntrlty1 + .8*Cntrlty2 + .8*Cntrlty3 + .8*Cntrlty4 + .8*Cntrlty5 + .8*Cntrlty6 + .8*Cntrlty7 + .8*Cntrlty8 + .8*Cntrlty9 + .8*Cntrlty10</span></span>
 <span id="cb473-14"><a href="ModMed.html#cb473-14" tabindex="-1"></a><span class="st">   </span></span>
-<span id="cb473-15"><a href="ModMed.html#cb473-15" tabindex="-1"></a><span class="st">        # Means</span></span>
+<span id="cb473-15"><a href="ModMed.html#cb473-15" tabindex="-1"></a><span class="st">        #Means</span></span>
 <span id="cb473-16"><a href="ModMed.html#cb473-16" tabindex="-1"></a><span class="st">         GRMS ~ 1.99*1</span></span>
 <span id="cb473-17"><a href="ModMed.html#cb473-17" tabindex="-1"></a><span class="st">         Spirituality ~2.82*1</span></span>
 <span id="cb473-18"><a href="ModMed.html#cb473-18" tabindex="-1"></a><span class="st">         SocSupport ~ 2.48*1</span></span>
@@ -1146,7 +1199,7 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 <span id="cb473-22"><a href="ModMed.html#cb473-22" tabindex="-1"></a><span class="st">         MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation</span></span>
 <span id="cb473-23"><a href="ModMed.html#cb473-23" tabindex="-1"></a><span class="st">         PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation</span></span>
 <span id="cb473-24"><a href="ModMed.html#cb473-24" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb473-25"><a href="ModMed.html#cb473-25" tabindex="-1"></a><span class="st">        # Correlations </span></span>
+<span id="cb473-25"><a href="ModMed.html#cb473-25" tabindex="-1"></a><span class="st">        #Correlations </span></span>
 <span id="cb473-26"><a href="ModMed.html#cb473-26" tabindex="-1"></a><span class="st">         GRMS ~ 0.20*Spirituality</span></span>
 <span id="cb473-27"><a href="ModMed.html#cb473-27" tabindex="-1"></a><span class="st">         GRMS ~ 0.28*SocSupport</span></span>
 <span id="cb473-28"><a href="ModMed.html#cb473-28" tabindex="-1"></a><span class="st">         GRMS ~ 0.30*Engagement</span></span>
@@ -1796,7 +1849,7 @@ Looking at the diagram, with two consequent variables (i.e., those with arrows p
 <span id="cb498-18"><a href="ModMed.html#cb498-18" tabindex="-1"></a>LMed_ParEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(LMed_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb498-19"><a href="ModMed.html#cb498-19" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb498-20"><a href="ModMed.html#cb498-20" tabindex="-1"></a>LMed_Sum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 1 iteration
+<pre><code>## lavaan 0.6.17 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2031,7 +2084,7 @@ M = GRIcntlty</p>
 <div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="ModMed.html#cb517-1" tabindex="-1"></a>cFITsum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(Combined_fit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">rsq=</span>T, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span>
 <span id="cb517-2"><a href="ModMed.html#cb517-2" tabindex="-1"></a>cParamEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(Combined_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
 <span id="cb517-3"><a href="ModMed.html#cb517-3" tabindex="-1"></a>cFITsum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 20 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 20 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2695,7 +2748,7 @@ Our analysis evaluated a moderation mediation model predicting mental health (Y/
 ##  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</code></pre>
 <p>Quick peek at relations between variables:</p>
 <div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="ModMed.html#cb538-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(babydf)</span></code></pre></div>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
 </div>
 <div id="using-a-piecewise-approach-run-each-of-the-simple-models-in-the-grander-design" class="section level3 unnumbered hasAnchor">
 <h3>Using a piecewise approach, run each of the simple models in the grander design<a href="ModMed.html#using-a-piecewise-approach-run-each-of-the-simple-models-in-the-grander-design" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -2894,7 +2947,7 @@ CenteringRe:TradPed
 <p>It’s always helpful to graph the relationship. The <em>interaction_plot()</em> function from the package, <em>interactions</em> can make helpful illustrations. In the case of interactions/moderations, I like to run them “both ways” to see which makes more sense.</p>
 <div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="ModMed.html#cb542-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">interact_plot</span>(mod_a_path, <span class="at">pred =</span> TradPed, <span class="at">modx =</span> Centering) <span class="sc">+</span></span>
 <span id="cb542-2"><a href="ModMed.html#cb542-2" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="dv">1</span>, <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 <div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="ModMed.html#cb543-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">sim_slopes</span>(mod_a_path, <span class="at">pred =</span> TradPed, <span class="at">modx =</span> Centering)</span></code></pre></div>
 <pre><code>## Warning: Johnson-Neyman intervals are not available for factor moderators.</code></pre>
 <pre><code>## SIMPLE SLOPES ANALYSIS 
@@ -2944,7 +2997,7 @@ M = socially responsive pedagogy</p>
 <span id="cb547-20"><a href="ModMed.html#cb547-20" tabindex="-1"></a>medmodel_ParEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(medmodel_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb547-21"><a href="ModMed.html#cb547-21" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb547-22"><a href="ModMed.html#cb547-22" tabindex="-1"></a>medmodel_Sum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 25 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 25 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3046,7 +3099,7 @@ M = socially responsive pedagogy</p>
 <span id="cb551-4"><a href="ModMed.html#cb551-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb551-5"><a href="ModMed.html#cb551-5" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
 <span id="cb551-6"><a href="ModMed.html#cb551-6" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> medmodel_fit)</span></code></pre></div>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
 <p>We can use the <em>tidySEM::get_layout</em> function to understand how our model is being mapped.</p>
 <div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="ModMed.html#cb552-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(medmodel_fit)</span></code></pre></div>
 <pre><code>##      [,1]        [,2]    
@@ -3066,7 +3119,7 @@ M = socially responsive pedagogy</p>
 <p>We can update the <em>tidySEM::graph_sem</em> function with our new model to produce something that will better convey our analyses and its results.</p>
 <div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="ModMed.html#cb556-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(medmodel_fit, <span class="at">layout =</span> medmap, <span class="at">rect_width =</span> <span class="fl">1.25</span>, <span class="at">rect_height =</span> <span class="fl">1.25</span>,</span>
 <span id="cb556-2"><a href="ModMed.html#cb556-2" tabindex="-1"></a>    <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">4.5</span>)</span></code></pre></div>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-49-1.png" width="672" />
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-80-1.png" width="672" />
 ### Specify and run the entire lavaan model {-}</p>
 <div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="ModMed.html#cb557-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230925</span>)</span>
 <span id="cb557-2"><a href="ModMed.html#cb557-2" tabindex="-1"></a>ModMedOnA <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
@@ -3110,7 +3163,7 @@ M = socially responsive pedagogy</p>
 <span id="cb560-3"><a href="ModMed.html#cb560-3" tabindex="-1"></a>ModMedOnAParamEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(ModMedOnA_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb560-4"><a href="ModMed.html#cb560-4" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb560-5"><a href="ModMed.html#cb560-5" tabindex="-1"></a>ModMedOnAsum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 36 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 36 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3260,7 +3313,7 @@ M = socially responsive pedagogy</p>
 <span id="cb564-4"><a href="ModMed.html#cb564-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb564-5"><a href="ModMed.html#cb564-5" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
 <span id="cb564-6"><a href="ModMed.html#cb564-6" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> ModMedOnA_fit)</span></code></pre></div>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 <p>We can use the <em>tidySEM::get_layout</em> function to understand how our model is being mapped.</p>
 <div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="ModMed.html#cb565-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(ModMedOnA_fit)</span></code></pre></div>
 <pre><code>##      [,1]     [,2]                [,3]        [,4]     
@@ -3283,7 +3336,7 @@ M = socially responsive pedagogy</p>
 <p>We can update the <em>tidySEM::graph_sem</em> function with our new model to produce something that will better convey our analyses and its results.</p>
 <div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="ModMed.html#cb569-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(ModMedOnA_fit, <span class="at">layout =</span> comb_map, <span class="at">rect_width =</span> <span class="fl">1.5</span>,</span>
 <span id="cb569-2"><a href="ModMed.html#cb569-2" tabindex="-1"></a>    <span class="at">rect_height =</span> <span class="fl">1.25</span>, <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">3.5</span>)</span></code></pre></div>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
 </div>
 <div id="create-a-table-that-includes-regression-output-for-the-m-and-y-variables-and-the-moderated-effects" class="section level3 unnumbered hasAnchor">
 <h3>Create a table that includes regression output for the M and Y variables and the moderated effects<a href="ModMed.html#create-a-table-that-includes-regression-output-for-the-m-and-y-variables-and-the-moderated-effects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -3490,7 +3543,7 @@ Our analysis evaluated a moderation mediation model perceived value to the stude
 <p>Regarding the presence of a moderated mediation, results were mixed. On the one hand, the index of moderated mediation was not statistically significant <span class="math inline">\((IMM = -0.164, p = 0.256)\)</span>. In contrast, the conditional indirect effect at the mean of the moderator was statistically significant <span class="math inline">\((B = 0.171, p = 0.045)\)</span>, while the conditional indirect effects at <span class="math inline">\(\pm1SD\)</span> were not. A possible explanation for the lack of statistical significance is the relative lower power (<em>N</em> = 84) for analysis of a relatively complicated model. The model accounted for 57% of the variance in socially responsive pedagogy and 37% of the variance in perceived value to the student. Figure 1 illustrates the conditional effects of traditional pedagogy on socially responsive pedagogy at pre- and re-centered stages.</p>
 <div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="ModMed.html#cb571-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">interact_plot</span>(mod_a_path, <span class="at">pred =</span> TradPed, <span class="at">modx =</span> Centering) <span class="sc">+</span></span>
 <span id="cb571-2"><a href="ModMed.html#cb571-2" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="dv">1</span>, <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 </div>
 </div>
 <div id="homeworked-example-2-a-moderation-on-the-b-path" class="section level2 hasAnchor" number="8.11">
@@ -3555,7 +3608,7 @@ Our analysis evaluated a moderation mediation model perceived value to the stude
 ##  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</code></pre>
 <p>Quick peek at relations between variables:</p>
 <div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="ModMed.html#cb580-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(babydf)</span></code></pre></div>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
 </div>
 <div id="using-a-piecewise-approach-run-each-of-the-simple-models-in-the-grander-design-1" class="section level3 unnumbered hasAnchor">
 <h3>Using a piecewise approach, run each of the simple models in the grander design<a href="ModMed.html#using-a-piecewise-approach-run-each-of-the-simple-models-in-the-grander-design-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -3753,7 +3806,7 @@ SRPed:TradPed
 <div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="ModMed.html#cb584-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">interact_plot</span>(Mod_b_path, <span class="at">pred =</span> SRPed, <span class="at">modx =</span> TradPed) <span class="sc">+</span></span>
 <span id="cb584-2"><a href="ModMed.html#cb584-2" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="dv">1</span>, <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## Warning: 5.02351626747081 is outside the observed range of TradPed</code></pre>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-67-1.png" width="672" />
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-121-1.png" width="672" />
 Even though this graphs looks as though socially responsive pedagogy leads to higher perceived value (a gentle, positive slope) the non-significant main effect indicates this slope is not statistically significant.</p>
 <p>Further, even though it <em>appears</em> that higher ratings of traditional pedagogy are associated with greater perceived value, this main effect was also non-significant.</p>
 <p>Consistent with the non-significant interaction effect, there is no evidence of an interaction effect in the figure.</p>
@@ -3816,7 +3869,7 @@ M = socially responsive pedagogy</p>
 <span id="cb590-20"><a href="ModMed.html#cb590-20" tabindex="-1"></a>medmodel_ParEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(medmodel_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb590-21"><a href="ModMed.html#cb590-21" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb590-22"><a href="ModMed.html#cb590-22" tabindex="-1"></a>medmodel_Sum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 25 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 25 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3917,7 +3970,7 @@ M = socially responsive pedagogy</p>
 <span id="cb594-4"><a href="ModMed.html#cb594-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb594-5"><a href="ModMed.html#cb594-5" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
 <span id="cb594-6"><a href="ModMed.html#cb594-6" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> medmodel_fit)</span></code></pre></div>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
 <p>We can use the <em>tidySEM::get_layout</em> function to understand how our model is being mapped.</p>
 <div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="ModMed.html#cb595-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(medmodel_fit)</span></code></pre></div>
 <pre><code>##      [,1]        [,2]    
@@ -3937,7 +3990,7 @@ M = socially responsive pedagogy</p>
 <p>We can update the <em>tidySEM::graph_sem</em> function with our new model to produce something that will better convey our analyses and its results.</p>
 <div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="ModMed.html#cb599-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(medmodel_fit, <span class="at">layout =</span> medmap, <span class="at">rect_width =</span> <span class="fl">1.25</span>, <span class="at">rect_height =</span> <span class="fl">1.25</span>,</span>
 <span id="cb599-2"><a href="ModMed.html#cb599-2" tabindex="-1"></a>    <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">4.5</span>)</span></code></pre></div>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-73-1.png" width="672" />
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-127-1.png" width="672" />
 ### Specify and run the entire lavaan model {-}</p>
 <div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="ModMed.html#cb600-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230925</span>)</span>
 <span id="cb600-2"><a href="ModMed.html#cb600-2" tabindex="-1"></a>ModMedOnB <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
@@ -3979,7 +4032,7 @@ M = socially responsive pedagogy</p>
 <span id="cb602-3"><a href="ModMed.html#cb602-3" tabindex="-1"></a>ModMedOnBParamEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(ModMedOnB_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb602-4"><a href="ModMed.html#cb602-4" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb602-5"><a href="ModMed.html#cb602-5" tabindex="-1"></a>ModMedOnBsum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 29 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 29 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -4129,7 +4182,7 @@ M = socially responsive pedagogy</p>
 <span id="cb606-4"><a href="ModMed.html#cb606-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb606-5"><a href="ModMed.html#cb606-5" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
 <span id="cb606-6"><a href="ModMed.html#cb606-6" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> ModMedOnB_fit)</span></code></pre></div>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <p>We can use the <em>tidySEM::get_layout</em> function to understand how our model is being mapped.</p>
 <div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="ModMed.html#cb607-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(ModMedOnB_fit)</span></code></pre></div>
 <pre><code>##      [,1]    [,2]        [,3]      [,4]           
@@ -4149,7 +4202,7 @@ M = socially responsive pedagogy</p>
 <p>We can update the <em>tidySEM::graph_sem</em> function with our new model to produce something that will better convey our analyses and its results.</p>
 <div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="ModMed.html#cb611-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(ModMedOnB_fit, <span class="at">layout =</span> comb_map, <span class="at">rect_width =</span> <span class="fl">1.25</span>,</span>
 <span id="cb611-2"><a href="ModMed.html#cb611-2" tabindex="-1"></a>    <span class="at">rect_height =</span> <span class="fl">1.25</span>, <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">3.5</span>)</span></code></pre></div>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 </div>
 <div id="create-a-table-that-includes-regression-output-for-the-m-and-y-variables-and-the-moderated-effects-1" class="section level3 unnumbered hasAnchor">
 <h3>Create a table that includes regression output for the M and Y variables and the moderated effects<a href="ModMed.html#create-a-table-that-includes-regression-output-for-the-m-and-y-variables-and-the-moderated-effects-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -4356,7 +4409,7 @@ Our analysis evaluated a moderation mediation model perceived value to the stude
 <div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="ModMed.html#cb613-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">interact_plot</span>(Mod_b_path, <span class="at">pred =</span> SRPed, <span class="at">modx =</span> TradPed) <span class="sc">+</span></span>
 <span id="cb613-2"><a href="ModMed.html#cb613-2" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="dv">1</span>, <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## Warning: 5.02351626747081 is outside the observed range of TradPed</code></pre>
-<p><img src="08-CPA_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<p><img src="08-CPA_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 <div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="ModMed.html#cb615-1" tabindex="-1"></a><span class="co"># interactions::interact_plot(Mod_c_path, pred = TradPed, modx =</span></span>
 <span id="cb615-2"><a href="ModMed.html#cb615-2" tabindex="-1"></a><span class="co"># SRPed + ylim(1,5))</span></span></code></pre></div>
 

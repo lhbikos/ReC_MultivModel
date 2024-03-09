@@ -1,8 +1,0 @@
-"0",""
-"0","xyplot(Anxiety~Index | ClientID, data=RndmLong,"
-"0","  prepanel = function(x, y) prepanel.loess(x, y, family=""gaussian""),"
-"0","  xlab = ""Index"", ylab = ""Anxiety"","
-"0","  panel = function(x, y) {"
-"0","  panel.xyplot(x, y)"
-"0","  panel.loess(x,y, family=""gaussian"") },"
-"0","   as.table=T)"

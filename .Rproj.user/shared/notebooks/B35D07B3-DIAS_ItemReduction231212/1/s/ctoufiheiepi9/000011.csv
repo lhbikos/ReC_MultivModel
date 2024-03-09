@@ -1,0 +1,13 @@
+"0","gayPAF1 <- psych::fa(df_r[, g_vars], nfactors = 10, fm = ""pa"", max.iter, rotate = ""none"")"
+"0","gayPAF1"
+"1","Factor Analysis using method = "
+"1"," "
+"1","pa"
+"1","
+Call: "
+"1","psych::fa(r = df_r[, g_vars], nfactors = 10, n.obs = max.iter, 
+"
+"1","    rotate = ""none"", fm = ""pa"")
+"
+"1","Standardized loadings (pattern matrix) based upon correlation matrix
+"

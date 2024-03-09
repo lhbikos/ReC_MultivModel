@@ -5,7 +5,7 @@ options(scipen=999)#eliminates scientific notation
 
 # A Basic Longitudinal Model {#LongMod}
 
-[Screencasted Lecture Link](https://www.youtube.com/playlist?list=PLtz5cFLQl4KMEunyxNyuzmwlsM83jqUaf) 
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KODTFLNXoWGsvo-wsrLiQzP&si=dJivrcSO8CNR01lB) 
  
 The focus of this lecture is to introduce longitudinal modeling with the multilevel modeling approach. Longitudinal MLM is a complicated statistic with decisions-to-be-made at every point. We will continue with the Lefevor et al. [-@lefevor_religious_2017] example that served as the research vignette for the preliminary investigation that preceded model building. In this lesson's example, we will engage in model building that sequentially specifies and analyzes a within-persons (Level 1 [L1]) predictor of time, two between-persons (Level 2 [L2]) predictors of sexual identity and religious affiliation, and cross-level actions.  We will also trim non-significant effects.  In-so-doing, we examine the conceptual and technical aspects of multilevel modeling and assemble the model (and explore the data) in a systematic and sequential manner.
 
@@ -121,6 +121,23 @@ Let's take a look at the variables in the study
 
 
 ```r
+library(tidyverse)
+```
+
+```
+## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+```
+
+```r
 set.seed(200513)
 n_client = 12825
 n_session = 5
@@ -154,32 +171,11 @@ sd = 1  #this is the observation-level random effect variance that we set at 1
 (dat = data.frame(client, clienteff, sessioneff, Session, SexualIdentity,
     Religion1, Religion2, Anxiety))
 
-library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 dat <- dat %>%
-    mutate(ID = row_number())
+    dplyr::mutate(ID = row_number())
 # moving the ID number to the first column; requires
 dat <- dat %>%
-    select(ID, everything())
+    dplyr::select(ID, everything())
 
 Lefevor2017 <- dat %>%
     select(ID, client, Session, SexualIdentity, Religion1, Religion2, Anxiety)
@@ -188,12 +184,14 @@ Lefevor2017$ClientID <- rep(c(1:12825), each = 5)
 # rounded Sexual Identity into dichotomous variable 85% were
 # heterosexual,
 
-library(robumeta)
 # The following variables should be L2, but were simulated as if they
 # were L1
-Lefevor2017$Rel1 <- as.numeric(group.mean(Lefevor2017$Religion1, Lefevor2017$ClientID))  #aggregated at group mean
-Lefevor2017$Rel2 <- as.numeric(group.mean(Lefevor2017$Religion2, Lefevor2017$ClientID))  #aggregated at group mean
-Lefevor2017$SxID <- as.numeric(group.mean(Lefevor2017$SexualIdentity, Lefevor2017$ClientID))  #aggregated at group mean
+Lefevor2017$Rel1 <- as.numeric(robumeta::group.mean(Lefevor2017$Religion1,
+    Lefevor2017$ClientID))  #aggregated at group mean
+Lefevor2017$Rel2 <- as.numeric(robumeta::group.mean(Lefevor2017$Religion2,
+    Lefevor2017$ClientID))  #aggregated at group mean
+Lefevor2017$SxID <- as.numeric(robumeta::group.mean(Lefevor2017$SexualIdentity,
+    Lefevor2017$ClientID))  #aggregated at group mean
 
 # Rel2 has contrast codes for dominant religion (DR, 0), nondominant
 # religious (NDR, 1) and nondominant unspecified (NDU, -1) Strategy
@@ -235,7 +233,7 @@ Lefevor2017$Het0 <- plyr::mapvalues(Lefevor2017$SexID, from = c(-1, 1),
 # creating a variable representing the session number for each
 # client, in the article up to 20 sessions were allowed.
 # install.packages('scales')
-library(scales)
+
 # Right from the beginning I centered this so that 0 would represent
 # intake
 Lefevor2017$Session0 <- as.integer(scales::rescale(Lefevor2017$Session,
@@ -244,10 +242,9 @@ Lefevor2017$Session0 <- as.integer(scales::rescale(Lefevor2017$Session,
 # creating session waves (1 thru 5) by rank ordering within each
 # person's variable the continuous variable Session that was created
 # in the original simulation
-library(dplyr)
 Lefevor2017 <- Lefevor2017 %>%
     dplyr::group_by(ClientID) %>%
-    mutate(Index = rank(Session))
+    dplyr::mutate(Index = rank(Session))
 
 # selecting the simulated variables
 Lefevor2017_sim <- Lefevor2017 %>%
@@ -265,12 +262,19 @@ library(data.table)
 ```
 ## 
 ## Attaching package: 'data.table'
-```
-
-```
+## 
+## The following objects are masked from 'package:lubridate':
+## 
+##     hour, isoweek, mday, minute, month, quarter, second, wday, week,
+##     yday, year
+## 
 ## The following objects are masked from 'package:dplyr':
 ## 
 ##     between, first, last
+## 
+## The following object is masked from 'package:purrr':
+## 
+##     transpose
 ```
 
 ```r
@@ -444,27 +448,42 @@ RML is the default for *lme4*, we switch to FML with the statement, "REML = FALS
 
 
 ```r
-library(lme4)
+Mod1a <- lme4::lmer(Anxiety ~ 1 + (1 | ClientID), LfvrLong, REML = FALSE)
+summary(Mod1a)
 ```
 
 ```
-## Loading required package: Matrix
-```
-
-```r
-Mod1a <- lmer(Anxiety ~ 1 + (1 | ClientID), LfvrLong, REML = FALSE)
-
-library(sjPlot)
-```
-
-```
-## Learn more about sjPlot with 'browseVignettes("sjPlot")'.
+## Linear mixed model fit by maximum likelihood  ['lmerMod']
+## Formula: Anxiety ~ 1 + (1 | ClientID)
+##    Data: LfvrLong
+## 
+##       AIC       BIC    logLik  deviance  df.resid 
+##  243113.5  243140.7 -121553.7  243107.5     64122 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.6752 -0.6104  0.0018  0.6120  3.9085 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  ClientID (Intercept) 5.118    2.262   
+##  Residual             1.444    1.202   
+## Number of obs: 64125, groups:  ClientID, 12825
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)  2.07564    0.02053   101.1
 ```
 
 ```r
 sjPlot::tab_model(Mod1a, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
     show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
     use.viewer = TRUE, dv.labels = c("Mod1"))
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -535,13 +554,6 @@ With an intercept only, there is not much to plot. We can, though, look at the r
 
 ```r
 sjPlot::plot_model(Mod1a, type = "diag")
-```
-
-```
-## Warning in checkMatrixPackageVersion(): Package version inconsistency detected.
-## TMB was built with Matrix version 1.6.1.1
-## Current Matrix version is 1.5.4.1
-## Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package
 ```
 
 ```
@@ -640,7 +652,7 @@ Mod1a <- lmer(Anxiety ~1 +(1 | ClientID), LfvrLong, REML = FALSE)
 
 ```r
 # with lme4 package
-Mod2a <- lmer(Anxiety ~ SesNum + (SesNum | ClientID), LfvrLong, REML = FALSE)
+Mod2a <- lme4::lmer(Anxiety ~ SesNum + (SesNum | ClientID), LfvrLong, REML = FALSE)
 ```
 
 ```
@@ -648,9 +660,54 @@ Mod2a <- lmer(Anxiety ~ SesNum + (SesNum | ClientID), LfvrLong, REML = FALSE)
 ```
 
 ```r
-tab_model(Mod1a, Mod2a, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
+summary(Mod2a)
+```
+
+```
+## Linear mixed model fit by maximum likelihood  ['lmerMod']
+## Formula: Anxiety ~ SesNum + (SesNum | ClientID)
+##    Data: LfvrLong
+## 
+##       AIC       BIC    logLik  deviance  df.resid 
+##  236029.0  236083.4 -118008.5  236017.0     64119 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.8724 -0.6074 -0.0034  0.6132  3.5660 
+## 
+## Random effects:
+##  Groups   Name        Variance    Std.Dev. Corr 
+##  ClientID (Intercept) 5.181154023 2.27621       
+##           SesNum      0.000001932 0.00139  -1.00
+##  Residual             1.259247013 1.12216       
+## Number of obs: 64125, groups:  ClientID, 12825
+## 
+## Fixed effects:
+##               Estimate Std. Error t value
+## (Intercept)  2.7787360  0.0221083  125.69
+## SesNum      -0.0782356  0.0008979  -87.13
+## 
+## Correlation of Fixed Effects:
+##        (Intr)
+## SesNum -0.377
+## optimizer (nloptwrap) convergence code: 0 (OK)
+## boundary (singular) fit: see help('isSingular')
+```
+
+```r
+sjPlot::tab_model(Mod1a, Mod2a, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
     show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
     use.viewer = TRUE, dv.labels = c("Mod1", "Mod2"))
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -748,15 +805,10 @@ tab_model(Mod1a, Mod2a, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
 # Viewer output or the outfile that you can open in Word file =
 # 'TabMod_Table.doc'
 ```
-
 A plot of predicted values illustrates the decrease in anxiety as sessions continue.
 
 ```r
-sjPlot::plot_model(Mod2a, type = "pred", vars = "SesNum")
-```
-
-```
-## $SesNum
+sjPlot::plot_model(Mod2a, type = "pred", terms = c("SesNum"))
 ```
 
 ![](14-LongMod_files/figure-docx/unnamed-chunk-13-1.png)<!-- -->
@@ -931,14 +983,13 @@ Mod2a <- lmer(Anxiety ~ SesNum +(SesNum | ClientID), LfvrLong, REML = FALSE)
 
 
 ```r
-# with lme4 package
-Mod3a <- lmer(Anxiety ~ SesNum * Het0 + (SesNum | ClientID), LfvrLong,
+Mod3a <- lme4::lmer(Anxiety ~ SesNum * Het0 + (SesNum | ClientID), LfvrLong,
     REML = FALSE)
 ```
 
 ```
 ## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv, :
-## Model failed to converge with max|grad| = 0.0985672 (tol = 0.002, component 1)
+## Model failed to converge with max|grad| = 0.0355667 (tol = 0.002, component 1)
 ```
 
 ```
@@ -947,9 +998,59 @@ Mod3a <- lmer(Anxiety ~ SesNum * Het0 + (SesNum | ClientID), LfvrLong,
 ```
 
 ```r
-tab_model(Mod1a, Mod2a, Mod3a, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
-    show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
-    use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3"))
+summary(Mod3a)
+```
+
+```
+## Linear mixed model fit by maximum likelihood  ['lmerMod']
+## Formula: Anxiety ~ SesNum * Het0 + (SesNum | ClientID)
+##    Data: LfvrLong
+## 
+##       AIC       BIC    logLik  deviance  df.resid 
+##  235991.7  236064.3 -117987.9  235975.7     64117 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.8707 -0.6073 -0.0033  0.6135  3.5664 
+## 
+## Random effects:
+##  Groups   Name        Variance    Std.Dev. Corr 
+##  ClientID (Intercept) 5.165055539 2.272676      
+##           SesNum      0.000002437 0.001561 -0.91
+##  Residual             1.259220839 1.122150      
+## Number of obs: 64125, groups:  ClientID, 12825
+## 
+## Fixed effects:
+##              Estimate Std. Error t value
+## (Intercept)  2.700371   0.025993 103.888
+## SesNum      -0.078559   0.001058 -74.284
+## Het0         0.281412   0.049260   5.713
+## SesNum:Het0  0.001143   0.002002   0.571
+## 
+## Correlation of Fixed Effects:
+##             (Intr) SesNum Het0  
+## SesNum      -0.378              
+## Het0        -0.528  0.199       
+## SesNum:Het0  0.200 -0.528 -0.379
+## optimizer (nloptwrap) convergence code: 0 (OK)
+## Model failed to converge with max|grad| = 0.0355667 (tol = 0.002, component 1)
+## Model is nearly unidentifiable: very large eigenvalue
+##  - Rescale variables?
+```
+
+```r
+sjPlot::tab_model(Mod1a, Mod2a, Mod3a, p.style = "numeric", show.ci = FALSE,
+    show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
+    show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3"))
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -1046,7 +1147,7 @@ tab_model(Mod1a, Mod2a, Mod3a, p.style = "numeric", show.ci = FALSE, show.se = T
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">&rho;<sub>01</sub></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">&nbsp;</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">-1.00 <sub>ClientID</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">-0.92 <sub>ClientID</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">-0.91 <sub>ClientID</sub></td>
 
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">ICC</td>
@@ -1141,8 +1242,7 @@ sjPlot::plot_model(Mod3a, type = "diag")
 
 
 ```r
-library(sjPlot)
-plot_model(Mod3a, type = "int", terms = c("SesNum", "Het0 [0,1]"))
+sjPlot::plot_model(Mod3a, type = "int", terms = c("SesNum", "Het0 [0,1]"))
 ```
 
 ![](14-LongMod_files/figure-docx/unnamed-chunk-20-1.png)<!-- -->
@@ -1198,8 +1298,8 @@ Another troubleshooting solution would be to trim the model of the non-significa
 
 ```r
 # with lme4 package
-Mod4a <- lmer(Anxiety ~ SesNum * Het0 + SesNum * DRel0 + Het0 * DRel0 +
-    (SesNum | ClientID), LfvrLong, REML = FALSE, control = lmerControl(optimizer = "bobyqa"))
+Mod4a <- lme4::lmer(Anxiety ~ SesNum * Het0 + SesNum * DRel0 + Het0 * DRel0 +
+    (SesNum | ClientID), LfvrLong, REML = FALSE, control = lme4::lmerControl(optimizer = "bobyqa"))
 ```
 
 ```
@@ -1207,10 +1307,71 @@ Mod4a <- lmer(Anxiety ~ SesNum * Het0 + SesNum * DRel0 + Het0 * DRel0 +
 ```
 
 ```r
-tab_model(Mod1a, Mod2a, Mod3a, Mod4a, p.style = "numeric", show.ci = FALSE,
+summary(Mod4a)
+```
+
+```
+## Linear mixed model fit by maximum likelihood  ['lmerMod']
+## Formula: Anxiety ~ SesNum * Het0 + SesNum * DRel0 + Het0 * DRel0 + (SesNum |  
+##     ClientID)
+##    Data: LfvrLong
+## Control: lme4::lmerControl(optimizer = "bobyqa")
+## 
+##       AIC       BIC    logLik  deviance  df.resid 
+##  235995.6  236095.3 -117986.8  235973.6     64114 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.8761 -0.6073 -0.0032  0.6131  3.5787 
+## 
+## Random effects:
+##  Groups   Name        Variance   Std.Dev. Corr 
+##  ClientID (Intercept) 5.16506288 2.272677      
+##           SesNum      0.00000201 0.001418 -1.00
+##  Residual             1.25918683 1.122135      
+## Number of obs: 64125, groups:  ClientID, 12825
+## 
+## Fixed effects:
+##               Estimate Std. Error t value
+## (Intercept)   2.676170   0.040708  65.741
+## SesNum       -0.077048   0.001528 -50.438
+## Het0          0.309204   0.074189   4.168
+## DRel0         0.040209   0.052031   0.773
+## SesNum:Het0   0.001122   0.002002   0.561
+## SesNum:DRel0 -0.002512   0.001832  -1.371
+## Het0:DRel0   -0.046310   0.092939  -0.498
+## 
+## Correlation of Fixed Effects:
+##             (Intr) SesNum Het0   DRel0  SsN:H0 SN:DR0
+## SesNum      -0.349                                   
+## Het0        -0.514  0.092                            
+## DRel0       -0.770  0.236  0.377                     
+## SesNum:Het0  0.129 -0.371 -0.252 -0.002              
+## SesNum:DRl0  0.252 -0.722  0.000 -0.327  0.007       
+## Het0:DRel0   0.384  0.001 -0.748 -0.500  0.001 -0.001
+## optimizer (bobyqa) convergence code: 0 (OK)
+## boundary (singular) fit: see help('isSingular')
+```
+
+```r
+sjPlot::tab_model(Mod1a, Mod2a, Mod3a, Mod4a, p.style = "numeric", show.ci = FALSE,
     show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
     show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3",
         "Mod4"))
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -1371,7 +1532,7 @@ tab_model(Mod1a, Mod2a, Mod3a, Mod4a, p.style = "numeric", show.ci = FALSE,
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">&rho;<sub>01</sub></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">&nbsp;</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">-1.00 <sub>ClientID</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">-0.92 <sub>ClientID</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">-0.91 <sub>ClientID</sub></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">-1.00 <sub>ClientID</sub></td>
 
 <tr>
@@ -1474,8 +1635,8 @@ sjPlot::plot_model(Mod4a, type = "diag")
 A plot of predicted values illustrates that anxiety continues decrease as sessions increase, even though we have added additional predictors. So far, this suggests stability in that result.
 
 ```r
-library(sjPlot)
-plot_model(Mod4a, type = "int", terms = c("SesNum", "Het0 [0,1]", "DRel[0,1]"))
+sjPlot::plot_model(Mod4a, type = "int", terms = c("SesNum", "Het0 [0,1]",
+    "DRel[0,1]"))
 ```
 
 ```
@@ -1551,8 +1712,8 @@ Mod4a <- lmer(Anxiety ~ SesNum*Het0 + SesNum*DRel0 + Het0*DRel0 + (SesNum | Clie
 # lmer(Anxiety ~ Het0 + SesNum + DRel0 + (SesNum | ClientID),
 # LfvrLong, REML = FALSE, control = lmerControl(optimizer= 'bobyqa'))
 
-Mod5a <- lmer(Anxiety ~ SesNum + Het0 + (SesNum | ClientID), LfvrLong,
-    REML = FALSE, control = lmerControl(optimizer = "bobyqa"))
+Mod5a <- lme4::lmer(Anxiety ~ SesNum + Het0 + (SesNum | ClientID), LfvrLong,
+    REML = FALSE, control = lme4::lmerControl(optimizer = "bobyqa"))
 ```
 
 ```
@@ -1560,12 +1721,64 @@ Mod5a <- lmer(Anxiety ~ SesNum + Het0 + (SesNum | ClientID), LfvrLong,
 ```
 
 ```r
-# summary(Mod5a)
+summary(Mod5a)
+```
 
-tab_model(Mod1a, Mod2a, Mod3a, Mod4a, Mod5a, p.style = "numeric", show.ci = FALSE,
-    show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
-    show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3",
-        "Mod4", "Mod5"))
+```
+## Linear mixed model fit by maximum likelihood  ['lmerMod']
+## Formula: Anxiety ~ SesNum + Het0 + (SesNum | ClientID)
+##    Data: LfvrLong
+## Control: lme4::lmerControl(optimizer = "bobyqa")
+## 
+##       AIC       BIC    logLik  deviance  df.resid 
+##  235990.0  236053.5 -117988.0  235976.0     64118 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.8692 -0.6073 -0.0039  0.6137  3.5690 
+## 
+## Random effects:
+##  Groups   Name        Variance   Std.Dev. Corr 
+##  ClientID (Intercept) 5.16509523 2.272685      
+##           SesNum      0.00000201 0.001418 -1.00
+##  Residual             1.25924462 1.122161      
+## Number of obs: 64125, groups:  ClientID, 12825
+## 
+## Fixed effects:
+##               Estimate Std. Error t value
+## (Intercept)  2.6974082  0.0254699 105.906
+## SesNum      -0.0782400  0.0008979 -87.136
+## Het0         0.2920587  0.0455930   6.406
+## 
+## Correlation of Fixed Effects:
+##        (Intr) SesNum
+## SesNum -0.327       
+## Het0   -0.498 -0.001
+## optimizer (bobyqa) convergence code: 0 (OK)
+## boundary (singular) fit: see help('isSingular')
+```
+
+```r
+sjPlot::tab_model(Mod1a, Mod2a, Mod3a, Mod4a, Mod5a, p.style = "numeric",
+    show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE,
+    show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1",
+        "Mod2", "Mod3", "Mod4", "Mod5"))
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -1754,7 +1967,7 @@ tab_model(Mod1a, Mod2a, Mod3a, Mod4a, Mod5a, p.style = "numeric", show.ci = FALS
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">&rho;<sub>01</sub></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">&nbsp;</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">-1.00 <sub>ClientID</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">-0.92 <sub>ClientID</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">-0.91 <sub>ClientID</sub></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">-1.00 <sub>ClientID</sub></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">-1.00 <sub>ClientID</sub></td>
 
@@ -1958,8 +2171,8 @@ devALL
 ## Mod1a    3 243113 243141 -121554   243107                                   
 ## Mod2a    6 236029 236083 -118009   236017 7090.4634  3 < 0.00000000000000022
 ## Mod5a    7 235990 236054 -117988   235976   40.9677  1       0.0000000001548
-## Mod3a    8 235992 236064 -117988   235976    0.3253  1                0.5684
-## Mod4a   11 235996 236095 -117987   235974    2.1375  3                0.5444
+## Mod3a    8 235992 236064 -117988   235976    0.3253  1                0.5685
+## Mod4a   11 235996 236095 -117987   235974    2.1376  3                0.5443
 ##          
 ## Mod1a    
 ## Mod2a ***
@@ -2063,7 +2276,6 @@ If this topic feels a bit overwhelming, simply change the random seed in the dat
 ### Problem #2:  Rework the research vignette, but use the depression variable as an outcome
 
 In the Bonus Track of the prior [lesson](#MLMexplore) I provided the code to simulate this data where depression was the  dependent variable. Repeat this analysis with that data.
-
 
 
 ### Problem #3:  Use other data that is available to you

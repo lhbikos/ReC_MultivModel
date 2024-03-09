@@ -1,0 +1,4 @@
+"0","corrmatrix <- misty::multilevel.cor(longdf[, c(""TradPed"", ""SRPed"")],"
+"0","               cluster = longdf$deID, split=FALSE, output = TRUE, write = ""MLMcorr.xlsx"", print = c(""cor"", ""p""), digits = 3, missing = ""listwise"")"
+"1"," Within-Group and Between-Group Correlation Matrix
+"

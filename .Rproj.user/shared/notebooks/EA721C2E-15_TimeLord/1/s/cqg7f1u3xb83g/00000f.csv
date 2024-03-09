@@ -1,0 +1,1 @@
+"0","rndm30time <- subset(TIMElong, ClientID %in% sample(unique(TIMElong$ClientID), 30))"

@@ -5,7 +5,7 @@ options(scipen=999)#eliminates scientific notation
 
 # Preliminary (OLS style) Exploration of Longitudinal Growth {#MLMexplore}
 
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=36075f1d-b805-40b9-92da-ad2b0053f46c) 
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KMEunyxNyuzmwlsM83jqUaf&si=aKeUiY6aiuZW5Lb_) 
 
 This lesson is an introduction to longitudinal modeling when time is a factor. In this lecture we explore the longitudinal data using OLS tools.  Doing so provides the proper screening/vetting of the data to ensure that it is appropriate for multilevel analysis.  Simultaneously, it provides an orientation to the types of questions that MLM will address.
 
@@ -51,7 +51,7 @@ FROM SUBSEQUENT LESSONS
 3.  Write up the Results as demonstrated in the lecture
 4.  Table (use the tab_model outfile) and Figure are required
 
-* Rework the problem in the chapter by changing the random seed in the code that simulates the data.  This should provide minor changes to the data, but the results will likely be very similar. SINCE I'M NOT CONVINCED THAT CHANGING THE RANDOM SEED DOES MUCH, I MAY CHANGE THIS ONE TO AN EXAMPLE I WORK WITH ANSWERS AT THE END.
+* Rework the problem in the chapter by changing the random seed in the code that simulates the data.  This should provide minor changes to the data, but the results will likely be very similar. 
 * Data from a second MLM analysis from the research vignette are provided at the end. The only difference in the scenario is that the outcome variable changes from anxiety to depression. Use this data.
 * Conduct a multi-level analysis with data to which you have access. This could include data you simulate on your own or from a published article. It is quite possible the conditions of your data will necessitate deviations from this approach. Investigate what they are and apply them.
 
@@ -60,10 +60,9 @@ FROM SUBSEQUENT LESSONS
 In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
 
 * Singer, J. D., & Willett, J. B. (2003). A framework for investigating change over time/Chapter 1 and Exporing longitudinal data on change/Chapter 2 in *Applied longitudinal data analysis: Modeling change and event occurrence.* Oxford University Press. https://doi-org.ezproxy.spu.edu/10.1093/acprof:oso/9780195152968.001.0001
-  * The [UCLA IDRE website](https://stats.idre.ucla.edu/other/examples/alda/) hosts R solutions (as well as SPSS, SAS, MPlus, and HLM) to many of the examples in this text.
+  - I love the Singer and Willett [-@singer_applied_2003] text for so many reasons. Singer and Willet have published a number of articles together. In the Preface of their text they indicated that they were hired at Harvard at about he same time. Their colleagues expected them to voracious competitors. In contrast, they became great collaborators and made decisions about authorship early on. Their agreement was that in any collaboration they would randomly select who was first author, and they have (including for their text).
+* The [UCLA IDRE website](https://stats.idre.ucla.edu/other/examples/alda/) hosts R solutions (as well as SPSS, SAS, MPlus, and HLM) to many of the examples in this text.
 * Lefevor, G. T., Janis, R. A., & Park, S. Y. (2017). Religious and sexual identities: An intersectional, longitudinal examination of change in therapy. *The Counseling Psychologist, 45*(3), 387–413. https://doi-org.ezproxy.spu.edu/10.1177/0011000017702721
-
-I love the Singer and Willett [-@singer_applied_2003] text for so many reasons. Singer and Willet have published a number of articles together. In the Preface of their text they indicated that they were hired at Harvard at about he same time. Their colleagues expected them to voracious competitors. In contrast, they became great collaborators and made decisions about authorship early on. Their agreement was that in any collaboration they would randomly select who was first author, and they have (including for their text).
 
 ### Packages
 
@@ -120,7 +119,7 @@ Asking these questions requires three criteria of the research design/data:
     + *How many waves?*  Within cost and logistical constraints, "more waves are always better."  More allows more complex modeling.  The statistical rule is that you need one-more-wave than the shape you wish to model.  For example, you need 2 waves for a straight line (linear model), 3 waves for a quadratic (1 hump) model, 4 waves for a cubic (2 curves) model, and so forth.
 
 2.  **A substantively meaningful metric for time**
-    + "Time is the fundamental predictor in every study of change; it must be measured reliably and validly in a sensible metric" (p. 10).  
+    + "Time is the fundamental predictor in every study of change; it must be measured reliably and validly in a sensible metric" (p. 10).
     + What is sensible?  ages, grades, months-since-intake, miles, etc.  The choice of metric affects related decisions including number and spacing of waves.
     + Consider the *cadence* you expect in the outcome.  Weeks or number of sessions is sensible for psychotherapy studies.  Grade or age is sensible for education.  Parental or child age might make sense for parenting.
     + "The temporal variable can change only monotonically" (p. 12), that is, it cannot *reverse* diretions.  This means you can have height as a temporal variable, but not weight.
@@ -366,7 +365,6 @@ LfvrWp3 <- rename(LfvrWp3, Sess1 = "1", Sess2 = "2", Sess3 = "3", Sess4 = "4",
 LfvrWide <- dplyr::full_join(LfvrWp1, LfvrWp2, by = c("ClientID"))
 LfvrWide <- dplyr::full_join(LfvrWide, LfvrWp3, by = c("ClientID"))
 ```
-
 
 To increase the portability of the OER, this chapter uses simulated data. Here is script for exporting/downloading the data as a .csv file to your local computer and then importing/uploading it again. I find that saving the .csv file (data) in the same place as the .rmd file(s) is essential for R to connect the two.
 
@@ -674,25 +672,27 @@ misty::multilevel.descript(LfvrLong[, c("SesNum", "Anxiety", "DRel0", "Het0")],
 ```
 ##  Multilevel Descriptive Statistics
 ## 
-##                           SesNum  Anxiety DRel0  Het0
-##   No. of cases             64125    64125 64125 64125
-##   No. of missing values        0        0     0     0
-##                                                      
-##   No. of clusters          12825    12825 12825 12825
-##   Average cluster size      5.00     5.00  5.00  5.00
-##   SD cluster size           0.00     0.00  0.00  0.00
-##   Min cluster size             5        5     5     5
-##   Max cluster size             5        5     5     5
-##                                                      
-##   Mean                      8.99     2.08  0.60  0.28
-##   Variance Within          29.97     1.44            
-##   Variance Between          0.00     5.12  0.24  0.20
-##   ICC(1)                   0.000    0.780            
-##   ICC(2)                   0.000    0.947            
-##                                                      
-##   Design effect             1.00     4.12            
-##   Design effect sqrt        1.00     2.03            
-##   Effective sample size 64125.00 15564.63
+##                            SesNum  Anxiety DRel0  Het0
+##   Level 1                                             
+##    No. of cases             64125    64125            
+##    No. of missing values        0        0            
+##                                                       
+##    Variance Within          29.97     1.44            
+##                                                       
+##   Level 2                                             
+##    No. of clusters          12825    12825 12825 12825
+##    Average cluster size      5.00     5.00            
+##    Min cluster size             5        5            
+##    Max cluster size             5        5            
+##                                                       
+##    Mean                      8.99     2.08  0.60  0.28
+##    Variance Between          0.00     5.12  0.24  0.20
+##    ICC(1)                   0.000    0.780            
+##    ICC(2)                   0.000    0.947            
+##                                                       
+##   Design effect              1.00     4.12            
+##   Design effect sqrt         1.00     2.03            
+##   Effective sample size  64125.00 15564.63
 ```
 Here we learn that we have 64125 observations provided by 12825 clients. Each client has provided data from 5 counseling sessions (with no variability around that -- the beauty of simulated data). We can see the mean for anxiety (*M* = 2.08); since the dominant religion and heterosexual variables are dichotomous, the values in the "mean" row indicate the proportion of clients that are part of a non-dominant religion (60%) and who are LGBQQ (28%). These descriptive statistics also provide a preliminary indication of the intraclass correlation (ICC), which quantifies the proportion of total variance in a dataset that is due to variability between groups (i.e., clusters, levels) relative to total variance. The *official* ICC we will use will come from our empty model. This preliminary value associated with our dependent variable (0.780) indicates that a substantial amount of variance is between subjects. Therefore, we cannot ignore the dependency introduced by the longitudinal nature of the data and we should use a procedure like multilevel modeling.
 
@@ -713,7 +713,7 @@ corrmatrix <- misty::multilevel.cor(LfvrLong[, c("SesNum", "Anxiety")],
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                             
-##   lavaan 0.6.16                             
+##   lavaan 0.6.17                             
 ##                                             
 ##    Estimator                        ML      
 ##    Standard Errors        Conventional      
@@ -746,7 +746,7 @@ corrmatrix
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                             
-##   lavaan 0.6.16                             
+##   lavaan 0.6.17                             
 ##                                             
 ##    Estimator                        ML      
 ##    Standard Errors        Conventional      
@@ -810,9 +810,7 @@ Singer and Willett [-@singer_applied_2003] suggest that we do this two ways:
 
 While our multilevel modeling will use maximum likelihood, these individual plots are fitted with OLS regression models.
 
-A better "group-by" tool:  
-http://r4stats.com/2017/04/18/group-by-modeling-in-r-made-easy/ 
-
+Below I take a "longer path" through this process. This [stats blog](http://r4stats.com/2017/04/18/group-by-modeling-in-r-made-easy/) suggests another option that seems a little more efficient/elegant for achieving "group-by". Users might find it to be a useful alternative.
 
 #### Nonparametrical Smoothing of the Empirical Growth Trajectory**
 
@@ -1922,13 +1920,17 @@ Using data for which you have permission and access (e.g.,  IRB approved data yo
 Regardless of your choic(es) complete all the elements listed in the grading rubric.
 
 |Assignment Component  
-|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
-|1. Restructure the dataset from wide to long (or from long to wide)                           |      5         |    _____     |      
-|2. Provide three examples of data exploration:  an unfitted model, a model fitted with a linear growth trajectory, and the fitted (or unfitted) data identified by the L2 predictor                                                                 |      5         |    _____     |
-|3. Provide a write-up of what you found in this process                                       |      5         |    _____     |
-|6. Explanation to grader                                                                      |      5         |    _____     |   
-|**Totals**      
-
+|:---------------------------------------------------------------------------------------------|:-------------:|:------------:|
+|1. Identify and describe the variables in the model; there should be a time-varying DV and predictor as well as an L2 predictor |   5         |    _____     |
+|2. Import the data and format the variables in the model                                      |      5        |    _____     |
+|3. Restructure the dataset from wide to long (or from long to wide)                           |      5        |    _____     |    
+|4. Produce multilevel descriptive statistics and correlation matrix                           |      5        |    _____     |
+|5. Explore data with an unfitted model                                                        |      5         |    _____     |
+|6. Explore data with a model fitted with a linear growth trajectory                           |      5         |    _____     |
+|7. Explore data with the fitted (or unfitted) data identified by the L2 predictor             |      5         |    _____     |
+|8. Provide a write-up of what you found in this process                                       |      5         |    _____     |
+|9. Explanation to grader                                                                      |      5         |    _____     |   
+|**Totals**                                                                                    |      45        |    _____     |   
 
 ## Simulated Data when Depression is the Outcome
 
@@ -2027,7 +2029,7 @@ Lefevor2017D$Het0 <- plyr::mapvalues(Lefevor2017D$SexID, from = c(-1, 1),
 # creating a variable representing the session number for each
 # client, in the article up to 20 sessions were allowed.
 # install.packages('scales')
-library(scales)
+
 # Right from the beginning I centered this so that 0 would represent
 # intake
 Lefevor2017D$Session0 <- as.integer(scales::rescale(Lefevor2017D$Session,
@@ -2036,14 +2038,13 @@ Lefevor2017D$Session0 <- as.integer(scales::rescale(Lefevor2017D$Session,
 # creating session waves (1 thru 5) by rank ordering within each
 # person's variable the continuous variable Session that was created
 # in the original simulation
-library(dplyr)
 Lefevor2017D <- Lefevor2017D %>%
     dplyr::group_by(ClientID) %>%
-    mutate(Index = rank(Session))
+    dplyr::mutate(Index = rank(Session))
 
 # selecting the simulated variables
 Lefevor2017D_sim <- Lefevor2017D %>%
-    select(ClientID, Index, Session0, Depression, DRel0, Het0)
+    dplyr::select(ClientID, Index, Session0, Depression, DRel0, Het0)
 
 # In the transition from long-to-wide, it seems like you can only do
 # one L1 variable at a time When there are multiple L1 and L2 vars,
@@ -2083,6 +2084,349 @@ DLfvrWide <- read.csv("DLfvrWide.csv", head = TRUE, sep = ",")
 
 
 
-*Note to self:*
 
-* need recording for multilevel descriptives and correlations
+
+## Homeworked Example
+
+[Screencast Link]()
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
+
+The suggested practice problem for this chapter is to explore longitudinal data by (a) restructurin the data and (b) providing three examples of data exploration.
+
+### Identify and describe the variables in the model; there should be a time-varying DV and predictor as well as an L2 predictor {-}
+
+* Time-varying-dependent variable: socially repsonsive pedagogy
+* Time-varying predictor: traditional pedagogy
+* L2 predictor: centering (pre, re)
+
+
+An image of the design may be useful in understanding what we are doing:
+
+![An image of the parallel mediation model for the homeworked example.](Worked_Examples/images/MLMxs_model.png)
+
+###  ###  Import the data and format the variables in the model {-}
+
+
+```r
+raw <- readRDS("ReC.rds")
+```
+
+Scoring the variables. 
+
+```r
+TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
+    "ClearOrganization", "ClearPresentation")
+raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], 0.75)
+
+SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
+    "DEIintegration")
+raw$SRPed <- sjstats::mean_n(raw[, ..SRPed_vars], 0.75)
+
+# If the scoring code above does not work for you, try the format
+# below which involves inserting to periods in front of the variable
+# list. One example is provided. raw$TradPed <- sjstats::mean_n(raw[,
+# ..TradPed_vars], .75))
+```
+
+I will create a babydf to include only the variables in the analysis.
+
+
+```r
+longdf <- dplyr::select(raw, deID, Course, Centering, TradPed, SRPed)
+```
+
+###  Restructure the dataset from wide to long (or from long to wide) {-}
+
+My data is long, so I will make it wide. I first need to give it an Index variable. In this data, students took ANOVA first, multivariate second, and psychometrics third.
+
+
+```r
+longdf$Course <- factor(longdf$Course,levels = c("ANOVA", "Multivariate", "Psychometrics"))
+str(longdf$Course)
+```
+
+```
+##  Factor w/ 3 levels "ANOVA","Multivariate",..: 1 1 1 1 1 1 1 1 1 1 ...
+```
+
+
+
+```r
+longdf$Index <- plyr::mapvalues(longdf$Course, from = c('ANOVA', 'Multivariate', 'Psychometrics'), to = c(1, 2, 3))
+```
+
+It seems like we can only do one L1 variable at a time.
+
+
+```r
+library(data.table)
+W1<-reshape2::dcast(longdf, deID + Centering ~ Index, value.var = c("Index"))
+#rename the anxiety variable
+W1<-  dplyr::rename(W1, Index1 = "1", Index2 = "2", Index3 = "3")
+W2<-reshape2::dcast(longdf, deID ~ Index, value.var = c("TradPed"))
+#rename the anxiety variable
+W2<-  dplyr::rename(W2, TrP1 = "1", TrP2 = "2",TrP3 = "3")
+#For remaining L1 variable, do them one at a time -- key them from the person-level ID and the wave/index.
+W3<-reshape2::dcast(longdf, deID ~ Index, value.var = c("SRPed"))
+W3<-  dplyr::rename(W3, SRP1 = "1", SRP2 = "2", SRP3 = "3")
+#Next, join the dataframes by the person-level ID
+#Only two can be joined at a time
+widedf <- dplyr::full_join(W1, W2, by = c("deID"))
+widedf <- dplyr::full_join(widedf, W3,  by = c("deID"))
+```
+
+
+### Produce multilevel descriptive statistics and correlation matrix
+
+
+```r
+misty::multilevel.descript(longdf[, c("TradPed", "SRPed")], cluster = longdf$deID)
+```
+
+```
+##  Multilevel Descriptive Statistics
+## 
+##                          TradPed  SRPed
+##   Level 1                              
+##    No. of cases              307    299
+##    No. of missing values       3     11
+##                                        
+##    Variance Within          0.27   0.16
+##                                        
+##   Level 2                              
+##    No. of clusters           141    140
+##    Average cluster size     2.18   2.14
+##    Min cluster size            1      1
+##    Max cluster size            3      3
+##                                        
+##    Mean                     4.23   4.52
+##    Variance Between         0.34   0.19
+##    ICC(1)                  0.555  0.545
+##    ICC(2)                  0.732  0.724
+##                                        
+##   Design effect             1.65   1.62
+##   Design effect sqrt        1.29   1.27
+##   Effective sample size   185.64 184.65
+```
+
+
+```r
+corrmatrix <- misty::multilevel.cor(longdf[, c("TradPed", "SRPed")], cluster = longdf$deID,
+    split = FALSE, output = TRUE, write = "MLMcorr.xlsx", print = c("cor",
+        "p"), digits = 3, missing = "listwise")
+```
+
+```
+##  Within-Group and Between-Group Correlation Matrix
+##                                                  
+##   lavaan 0.6.17                                  
+##                                                  
+##    Estimator                             ML      
+##    Standard Errors             Conventional      
+##    Missing Data           Listwise Deletion      
+##                                                  
+##                                        Used Total
+##    Number of Observations               298   310
+##    Number of Clusters                   140      
+## 
+##            TradPed SRPed
+##    TradPed         0.836
+##    SRPed     0.561      
+## 
+##  Significance Value (p-value)
+## 
+##            TradPed SRPed
+##    TradPed         0.000
+##    SRPed     0.000      
+## 
+##   Adjustment for multiple testing: none
+## 
+##  Note. n(within) = 298, n(between) = 140 
+##        Lower triangular: Within-Group, Upper triangular: Between-Group
+```
+
+```r
+corrmatrix
+```
+
+```
+##  Within-Group and Between-Group Correlation Matrix
+##                                                  
+##   lavaan 0.6.17                                  
+##                                                  
+##    Estimator                             ML      
+##    Standard Errors             Conventional      
+##    Missing Data           Listwise Deletion      
+##                                                  
+##                                        Used Total
+##    Number of Observations               298   310
+##    Number of Clusters                   140      
+## 
+##            TradPed SRPed
+##    TradPed         0.836
+##    SRPed     0.561      
+## 
+##  Significance Value (p-value)
+## 
+##            TradPed SRPed
+##    TradPed         0.000
+##    SRPed     0.000      
+## 
+##   Adjustment for multiple testing: none
+## 
+##  Note. n(within) = 298, n(between) = 140 
+##        Lower triangular: Within-Group, Upper triangular: Between-Group
+```
+
+
+###  Explore data with an unfitted model  {-}
+
+Quick way to obtain a random set from the long file.
+
+```r
+str(longdf)
+```
+
+```
+## Classes 'data.table' and 'data.frame':	310 obs. of  6 variables:
+##  $ deID     : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ Course   : Factor w/ 3 levels "ANOVA","Multivariate",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
+##  $ TradPed  : num  4.4 3.8 4 3 4.8 3.5 4.6 3.8 3.6 4.6 ...
+##  $ SRPed    : num  5 5 4.25 5 5 3.75 5 5 4.25 5 ...
+##  $ Index    : Factor w/ 3 levels "1","2","3": 1 1 1 1 1 1 1 1 1 1 ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+```
+The exploratory plots I want to create require at least 3 pieces of data per person, so I will first create a sample of data where each person contributes 3 waves and data is non-missing. Please note -- this is NOT the final set I will analyze. Rather, this will allow me a preview into the data to see if my "occular anlysis" (i.e., "just looking at it") identifies any particular trends.
+
+
+```r
+library(tidyverse) #needed for pipes used in chunk
+```
+
+```
+## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ lubridate 1.9.2     ✔ tibble    3.2.1
+## ✔ purrr     1.0.1     ✔ tidyr     1.3.0
+## ✔ readr     2.1.4     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ ggplot2::%+%()        masks psych::%+%()
+## ✖ ggplot2::alpha()      masks psych::alpha(), scales::alpha()
+## ✖ data.table::between() masks dplyr::between()
+## ✖ readr::col_factor()   masks scales::col_factor()
+## ✖ purrr::discard()      masks scales::discard()
+## ✖ dplyr::filter()       masks stats::filter()
+## ✖ data.table::first()   masks dplyr::first()
+## ✖ lubridate::hour()     masks data.table::hour()
+## ✖ lubridate::isoweek()  masks data.table::isoweek()
+## ✖ dplyr::lag()          masks stats::lag()
+## ✖ data.table::last()    masks dplyr::last()
+## ✖ lubridate::mday()     masks data.table::mday()
+## ✖ lubridate::minute()   masks data.table::minute()
+## ✖ lubridate::month()    masks data.table::month()
+## ✖ lubridate::quarter()  masks data.table::quarter()
+## ✖ lubridate::second()   masks data.table::second()
+## ✖ purrr::transpose()    masks data.table::transpose()
+## ✖ lubridate::wday()     masks data.table::wday()
+## ✖ lubridate::week()     masks data.table::week()
+## ✖ lubridate::yday()     masks data.table::yday()
+## ✖ lubridate::year()     masks data.table::year()
+## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+```
+
+```r
+rndm30 <-na.omit(longdf)
+
+rndm30 <- rndm30%>%
+  dplyr::group_by(deID)%>%
+  dplyr::filter(n()==3)
+```
+From this complete set of data, I will creat a subsample of 30 sets of data.
+
+```r
+#setting the random seed will mean that the same 30 are always pulled (even though the process is otherwise "random")
+set.seed(20231113)
+
+rndm30 <- subset(rndm30, deID %in% sample(unique(rndm30$deID), 30))
+```
+
+
+```r
+str(rndm30$Index)
+```
+
+```
+##  Factor w/ 3 levels "1","2","3": 3 3 3 3 3 3 3 3 3 3 ...
+```
+
+```r
+rndm30$Index <- as.numeric(rndm30$Index)
+```
+
+
+
+```r
+ggplot(data = rndm30, aes(x = Index, y = SRPed)) + geom_point() + geom_line() +
+    facet_wrap(~deID)
+```
+
+![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-116-1.png)<!-- -->
+
+###  Explore data with a model fitted with a linear growth trajectory  {-}
+
+
+```r
+ggplot(data = rndm30, aes(x = Index, y = SRPed)) + geom_point() + stat_smooth(method = "lm",
+    se = FALSE) + facet_wrap(~deID)
+```
+
+```
+## `geom_smooth()` using formula = 'y ~ x'
+```
+
+![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-117-1.png)<!-- -->
+
+###  Explore data with the fitted (or unfitted) data identified by the L2 predictor {-}
+
+
+
+```r
+ggplot(data = rndm30, aes(x = Index, y = SRPed, linetype = Centering)) +
+    geom_point() + geom_line() + facet_wrap(~deID)
+```
+
+![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-118-1.png)<!-- -->
+
+
+
+```r
+ggplot(data = rndm30, aes(x = Index, y = SRPed, linetype = Centering)) +
+    geom_point() + stat_smooth(method = "lm", se = FALSE) + facet_wrap(~deID)
+```
+
+```
+## `geom_smooth()` using formula = 'y ~ x'
+```
+
+![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-119-1.png)<!-- -->
+
+
+```r
+ggplot(data = rndm30) + geom_line(aes(x = Index, y = SRPed, color = as.factor(Centering), group = deID))
+```
+
+![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-120-1.png)<!-- -->
+
+###  Provide a write-up of what you found in this process {-}
+### Explanation to grader {-}
+
+
+
+
+
+
+
+
+

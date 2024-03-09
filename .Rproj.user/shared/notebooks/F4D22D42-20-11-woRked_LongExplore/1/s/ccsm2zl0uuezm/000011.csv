@@ -1,0 +1,6 @@
+"0","library(tidyverse) #needed for pipes used in chunk"
+"0","rndm30 <-na.omit(longdf)"
+"0",""
+"0","rndm30 <- rndm30%>%"
+"0","  dplyr::group_by(deID)%>%"
+"0","  dplyr::filter(n()==3)"

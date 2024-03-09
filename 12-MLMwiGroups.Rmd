@@ -186,6 +186,7 @@ Simulating the data gives us some information about the nature of MLM.  You can 
 
 Further down in the code, we feed R the regression equation.
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70), results='hide'}
+library(tidyverse)
 set.seed(200407)
 n_church = 15
 n_mbrs = 15
@@ -212,10 +213,10 @@ sd = 1 #this is the observation-level random effect variance that we set at 1
 ( ATSS = b0 + b1*Gender + b2*Age + b3*Education + b4*Attendance + b5*Homogeneity + churcheff + mbrseff)
 ( dat = data.frame(church, churcheff, mbrseff, Gender, Age, Education, Attendance, Homogeneity, ATSS) )
 
-library(dplyr)
-dat <- dat %>% mutate(ID = row_number())
+
+dat <- dat %>% dplyr::mutate(ID = row_number())
 #moving the ID number to the first column; requires 
-dat <- dat%>%select(ID, everything())
+dat <- dat%>%dplyr::select(ID, everything())
 
 Lefevor2020 <- dat%>%
   select(ID, church, Gender, Age, Education, Attendance, Homogeneity, ATSS)
@@ -251,7 +252,6 @@ Because I cover strategies for evaluating these assumptions in the [Data Dx](htt
 We should, though take a look at the relations between the variables in our model in their *natural* form.  In this case *natural* refers to their scored, ready-to-be-analyzed (but not further centered).
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-library(psych)
 psych::pairs.panels(Lefevor2020[c("ATSS", "Attendance", "Homogeneity")], stars = TRUE)
 ```
 What do we observe in this preliminary, zero-ordered relationship?
@@ -359,9 +359,8 @@ Following the Lefevor and colleagues' [-@lefevor_homonegativity_2020] example, w
 Similarly, *robumeta*'s *group.mean* function will aggregate variables at the group's mean.  
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70), warning=FALSE}
-library(robumeta)
-Lefevor2020$AttendL1 <- as.numeric(group.center(Lefevor2020$Attendance, Lefevor2020$church))#centered within context (group mean centering)
-Lefevor2020$AttendL2 <- as.numeric(group.mean(Lefevor2020$Attendance, Lefevor2020$church))#aggregated at group mean
+Lefevor2020$AttendL1 <- as.numeric(robumeta::group.center(Lefevor2020$Attendance, Lefevor2020$church))#centered within context (group mean centering)
+Lefevor2020$AttendL2 <- as.numeric(robumeta::group.mean(Lefevor2020$Attendance, Lefevor2020$church))#aggregated at group mean
 ```
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
@@ -422,6 +421,7 @@ There are two packages (*lme4*, *nlme*) that are primarily used for MLM. Because
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 Empty <- lme4::lmer(ATSS ~ 1 + (1 | church), REML = FALSE, data = Lefevor2020)
+summary(Empty)
 
 sjPlot::tab_model(Empty,  p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
 #can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
@@ -477,6 +477,7 @@ We update our script by:
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 # MODEL 2
 Level1 <- lme4::lmer(ATSS ~ AttendL1 + (1 | church), REML=FALSE, data = Lefevor2020)
+summary(Level1)
 
 sjPlot::tab_model(Empty, Level1, p.style = "numeric", show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, show.se = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Adding Level1"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
 #can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
@@ -533,6 +534,7 @@ Although Lefevor and colleagues [-@lefevor_homonegativity_2020] included more L1
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 # MODEL 3
 Level2 <- lme4::lmer(ATSS ~ AttendL1 + AttendL2 + Homogeneity + (1 | church), REML=FALSE, data = Lefevor2020)
+summary(Level2)
 
 sjPlot::tab_model(Empty, Level1, Level2, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Adding Level1", "Adding Level2"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
 #can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
@@ -566,9 +568,20 @@ Let's look at plots. With three predictors, we can examine each of their relatio
 * overall church attendance has no apparent effect on homonegativity, and
 * as racial homogeneity increases, homonegativity decreases.
 
+sjPlot::plot_model (Level1, type="pred", terms= c("AttendL1"))
+
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-sjPlot::plot_model (Level2, type="pred")
+sjPlot::plot_model (Level2, type="pred", terms = c("Homogeneity"))
 ```
+
+```{r}
+sjPlot::plot_model (Level2, type="pred", terms = c("AttendL1"))
+```
+
+```{r}
+sjPlot::plot_model (Level2, type="pred", terms = c("AttendL2"))
+```
+
 
 Because the next phase of model building will include cross-level interactions, let's display this mode by examining the relationship between individual attendance and homonegativity, chunked into clusters that let us also examine the influene of church-level attendance and racial homogeneity.  This is not a formal test of an interaction; however, I don't sense that there will be interacting effects.
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
@@ -591,6 +604,7 @@ In multilevel modeling, we have the opportunity to cross the levels (individual,
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 # MODEL 4
 CrossLevelInt <- lme4::lmer(ATSS ~ AttendL2 + AttendL1*Homogeneity +(1 | church), REML=FALSE, data = Lefevor2020)
+summary(CrossLevelInt)
 
 sjPlot::tab_model(Empty, Level1, Level2, CrossLevelInt, p.style = "numeric", show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.se = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Adding Level 1", "Adding Level 2", "Adding CrossLevel Interaction"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE, file = "TabMod_Table.doc")
 #can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
@@ -722,37 +736,38 @@ Using these numbers we refer to the three tables in Arend and Schäfer [-@arend_
 
 In this write-up, please presume that the *apa.cor.table* of L1 and L2 variables and the *tab_model()* table (Level3) we created will serve as the basis for the APA style tables.  I would use one of the Level3 predictions as the graph.
 
-**Method/Analytic Strategy**
-For the nested structure of our data (congregants [L1] nested within churches [L2]), multilevel modeling was appropriate because it allows for (a) the dependent nature of the congregants within their churches and (b) varying numbers of church members within each church. We analyzed the data with the *lme4* (v. 1.1-26) in R (v. 4.0.5) using full maximum likelihood. We used a compositional effect [@enders_centering_2007] approach to center our variables.  Specifically, we used group-mean centering (centering within context) for our L1 variables.  Calculating their group aggregate, we entered them back into the model as L2 predictors. This allowed each predictor to completely capture within- and between-group variance.
+>**Method/Analytic Strategy**
 
-Model development and evaluation waas approached in a systematic and sequential manner. This exploratory approach is consistent with recommendations to pursue  model generating approaches in complex models [@bollen_testing_1993] by first understanding the relatively simpler relations between the variables [e.g., @hancock_hierarchical_2010; @petscher_linear_2013] and assessing the viability of more complexity based on the results. Accordingly, we began with an intercept-only model.  We followed sequentially by entering L1 (Model 2), L2 (Model 3), and a cross-level interaction (Model 4). Throughout we monitored variance components and fit decisions to determine our final model.
+>For the nested structure of our data (congregants [L1] nested within churches [L2]), multilevel modeling was appropriate because it allows for (a) the dependent nature of the congregants within their churches and (b) varying numbers of church members within each church. We analyzed the data with the *lme4* (v. 1.1-26) in R (v. 4.0.5) using full maximum likelihood. We used a compositional effect [@enders_centering_2007] approach to center our variables.  Specifically, we used group-mean centering (centering within context) for our L1 variables.  Calculating their group aggregate, we entered them back into the model as L2 predictors. This allowed each predictor to completely capture within- and between-group variance.
 
-**Sample Size, Power, and Precision**
+>Model development and evaluation was approached in a systematic and sequential manner. This exploratory approach is consistent with recommendations to pursue  model generating approaches in complex models [@bollen_testing_1993] by first understanding the relatively simpler relations between the variables [e.g., @hancock_hierarchical_2010; @petscher_linear_2013] and assessing the viability of more complexity based on the results. Accordingly, we began with an intercept-only model.  We followed sequentially by entering L1 (Model 2), L2 (Model 3), and a cross-level interaction (Model 4). Throughout we monitored variance components and fit decisions to determine our final model.
 
-Sample size is a critical yet complex issue in multilevel models. In response to controversial and overly simplistic rules of thumb that have often guided the design and justification of sample sizes in multilevel models, Arend and Schäfer [-@arend_statistical_2019] used Monte Carlo simulations for understanding the relations between (a) Level 2 (L2; N; the number of clustering units) and Level 1 (L1; n; the number of observations per cluster) sample sizes, (b) a study’s intraclass correlation coefficient (ICC), and (c) minimum detectable effect sizes that yield a power greater than .80. One result of Arend and Schäfer’s work is a set of power tables that allow researchers to use project-specific parameters to understand the power in their own study.
+>**Sample Size, Power, and Precision**
 
-With ATSS/homonegativity as the dependent variable, the ICC of our empty model was 0.19 (small-to-medium), we had 15 churchess (L2, *N*), and an average of 15 congregants per church (L1, *n*). Utilizing Arend and Schäfer's [-@arend_statistical_2019] table of minimum detectable effect sizes for L1 direct effects, if we had had a sample size of 30, our study would have had sufficient power (> 0.80) to detect a standardized effect size of .22 for L1 predictors (i.e., attendance L1), .59 for L2 predictors (i.e., attendance L2, homogeneity), and insufficient power for cross-level interactions. The magnitude of these minimally detectable effect sizes are large, this means that our sample size is likely too small to identify smaller effect sizes as statistically significant.
+>Sample size is a critical yet complex issue in multilevel models. In response to controversial and overly simplistic rules of thumb that have often guided the design and justification of sample sizes in multilevel models, Arend and Schäfer [-@arend_statistical_2019] used Monte Carlo simulations for understanding the relations between (a) Level 2 (L2; N; the number of clustering units) and Level 1 (L1; n; the number of observations per cluster) sample sizes, (b) a study’s intraclass correlation coefficient (ICC), and (c) minimum detectable effect sizes that yield a power greater than .80. One result of Arend and Schäfer’s work is a set of power tables that allow researchers to use project-specific parameters to understand the power in their own study.
 
-While a benefit of Arend and Schäfer’s [-@arend_statistical_2019] guidelines is the use of sample-specific characteristics, a limitation is that our model is more complex than the models used to develop their guidelines. Further, Arend and Schäfer indicated that L1 sample sizes of up to 30 and L2 sample sizes of up to 200 would not be large enough to study small standardized L2 direct effects and cross-level interaction effects (or medium cross-level interaction effects with a small variance component); as noted above, this applies to our model.
+>With ATSS/homonegativity as the dependent variable, the ICC of our empty model was 0.19 (small-to-medium), we had 15 churchess (L2, *N*), and an average of 15 congregants per church (L1, *n*). Utilizing Arend and Schäfer's [-@arend_statistical_2019] table of minimum detectable effect sizes for L1 direct effects, if we had had a sample size of 30, our study would have had sufficient power (> 0.80) to detect a standardized effect size of .22 for L1 predictors (i.e., attendance L1), .59 for L2 predictors (i.e., attendance L2, homogeneity), and insufficient power for cross-level interactions. The magnitude of these minimally detectable effect sizes are large, this means that our sample size is likely too small to identify smaller effect sizes as statistically significant.
+
+>While a benefit of Arend and Schäfer’s [-@arend_statistical_2019] guidelines is the use of sample-specific characteristics, a limitation is that our model is more complex than the models used to develop their guidelines. Further, Arend and Schäfer indicated that L1 sample sizes of up to 30 and L2 sample sizes of up to 200 would not be large enough to study small standardized L2 direct effects and cross-level interaction effects (or medium cross-level interaction effects with a small variance component); as noted above, this applies to our model.
 
 
-**Results**
+>**Results**
 
-**Preliminary Analyses**
+>**Preliminary Analyses**
 
-*  Missing data analysis and managing missing data
-*  Bivariate correlations, means, SDs
-*  Address assumptions; in MLM this includes
-   * linearity
-   * homogeneity of variance
-   * normal distribution of the model's residuals
-*  Address any apriorily known limitations and concerns
+>*  Missing data analysis and managing missing data
+>*  Bivariate correlations, means, SDs
+>*  Address assumptions; in MLM this includes
+>   * linearity
+>   * homogeneity of variance
+>   * normal distribution of the model's residuals
+>*  Address any apriorily known limitations and concerns
 
-**Primary Analyses**
+>**Primary Analyses**
 
-Table # reports the the bivariate correlations between ATSS/homonegative attitudes and the L1 and L2 predictors.  Our first model was an intercept-only, "empty", model with ATSS/homonegative attitudes as the dependent variable and no predictors in the model. The intraclass correlation (ICC) suggested that 19% of the variance in homonegative attitudes was between congregations; correspondingly, 81% was within congregations (i.e., between individuals).
+>Table # reports the the bivariate correlations between ATSS/homonegative attitudes and the L1 and L2 predictors.  Our first model was an intercept-only, "empty", model with ATSS/homonegative attitudes as the dependent variable and no predictors in the model. The intraclass correlation (ICC) suggested that 19% of the variance in homonegative attitudes was between congregations; correspondingly, 81% was within congregations (i.e., between individuals).
 
-We added the L1 predictor of individual church attendance in the second model. As shown in Table #, there was a significant effect such that as individual church attendance increased, so did homonegative attitudes. We added the L2 variables of the aggregate form of church attendance and racial homogeneity in our third model. The L2 form of church attendance had a non-significant effect, however racial homogeneity was significant. Specifically, as homogeneity increased, homonegativity decreased; this relationship is illustrated in Figure #. Our fourth model (not shown) included a cross-level interaction between individual church attendance and homogeneity. Because it was non-significant, made no changes in the variance components, and caused the AIC to increase, we trimmed it from the model. Thus, Model 3 is our final model.  Further support for this model is noted by the corresponding decreases in $\sigma^{2}$ and $\tau _{00}$ when L1 and L2 variables were added, respectively. Additionally, marginal and conditional $R^2$ increased and formal evaluation of the deviance statistic suggested that each addition was a statistically significant improvement.
+>We added the L1 predictor of individual church attendance in the second model. As shown in Table #, there was a significant effect such that as individual church attendance increased, so did homonegative attitudes. We added the L2 variables of the aggregate form of church attendance and racial homogeneity in our third model. The L2 form of church attendance had a non-significant effect, however racial homogeneity was significant. Specifically, as homogeneity increased, homonegativity decreased; this relationship is illustrated in Figure #. Our fourth model (not shown) included a cross-level interaction between individual church attendance and homogeneity. Because it was non-significant, made no changes in the variance components, and caused the AIC to increase, we trimmed it from the model. Thus, Model 3 is our final model.  Further support for this model is noted by the corresponding decreases in $\sigma^{2}$ and $\tau _{00}$ when L1 and L2 variables were added, respectively. Additionally, marginal and conditional $R^2$ increased and formal evaluation of the deviance statistic suggested that each addition was a statistically significant improvement.
 
 ## A Conversation with Dr. Lefevor
 

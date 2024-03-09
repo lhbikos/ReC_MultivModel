@@ -6,13 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Establishing the Measurement Model | ReCentering Psych Stats: Multivariate Modeling</title>
   <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Establishing the Measurement Model | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
   <meta property="og:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="github-repo" content="lhbikos/extRas" />
+  <meta name="github-repo" content="lhbikos/ReC_MultivModel" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 9 Establishing the Measurement Model | ReCentering Psych Stats: Multivariate Modeling" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2023-11-12" />
+<meta name="date" content="2024-03-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -829,6 +829,18 @@ div.csl-indent {
 <li class="chapter" data-level="13.7.4" data-path="MLMexplore.html"><a href="MLMexplore.html#grading-rubric-11"><i class="fa fa-check"></i><b>13.7.4</b> Grading Rubric</a></li>
 </ul></li>
 <li class="chapter" data-level="13.8" data-path="MLMexplore.html"><a href="MLMexplore.html#simulated-data-when-depression-is-the-outcome"><i class="fa fa-check"></i><b>13.8</b> Simulated Data when Depression is the Outcome</a></li>
+<li class="chapter" data-level="13.9" data-path="MLMexplore.html"><a href="MLMexplore.html#homeworked-example-9"><i class="fa fa-check"></i><b>13.9</b> Homeworked Example</a>
+<ul>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#identify-and-describe-the-variables-in-the-model-there-should-be-a-time-varying-dv-and-predictor-as-well-as-an-l2-predictor"><i class="fa fa-check"></i>Identify and describe the variables in the model; there should be a time-varying DV and predictor as well as an L2 predictor</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#import-the-data-and-format-the-variables-in-the-model-7"><i class="fa fa-check"></i>### Import the data and format the variables in the model</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#restructure-the-dataset-from-wide-to-long-or-from-long-to-wide"><i class="fa fa-check"></i>Restructure the dataset from wide to long (or from long to wide)</a></li>
+<li class="chapter" data-level="13.9.1" data-path="MLMexplore.html"><a href="MLMexplore.html#produce-multilevel-descriptive-statistics-and-correlation-matrix"><i class="fa fa-check"></i><b>13.9.1</b> Produce multilevel descriptive statistics and correlation matrix</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-an-unfitted-model"><i class="fa fa-check"></i>Explore data with an unfitted model</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-a-model-fitted-with-a-linear-growth-trajectory"><i class="fa fa-check"></i>Explore data with a model fitted with a linear growth trajectory</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-the-fitted-or-unfitted-data-identified-by-the-l2-predictor"><i class="fa fa-check"></i>Explore data with the fitted (or unfitted) data identified by the L2 predictor</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#provide-a-write-up-of-what-you-found-in-this-process"><i class="fa fa-check"></i>Provide a write-up of what you found in this process</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explanation-to-grader-6"><i class="fa fa-check"></i>Explanation to grader</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="LongMod.html"><a href="LongMod.html"><i class="fa fa-check"></i><b>14</b> A Basic Longitudinal Model</a>
 <ul>
@@ -878,6 +890,47 @@ div.csl-indent {
 <li class="chapter" data-level="14.10.2" data-path="LongMod.html"><a href="LongMod.html#problem-2-rework-the-research-vignette-but-use-the-depression-variable-as-an-outcome"><i class="fa fa-check"></i><b>14.10.2</b> Problem #2: Rework the research vignette, but use the depression variable as an outcome</a></li>
 <li class="chapter" data-level="14.10.3" data-path="LongMod.html"><a href="LongMod.html#problem-3-use-other-data-that-is-available-to-you-6"><i class="fa fa-check"></i><b>14.10.3</b> Problem #3: Use other data that is available to you</a></li>
 <li class="chapter" data-level="14.10.4" data-path="LongMod.html"><a href="LongMod.html#grading-rubric-12"><i class="fa fa-check"></i><b>14.10.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="TimeLord.html"><a href="TimeLord.html"><i class="fa fa-check"></i><b>15</b> Calendrical Time (and Missingness) in MLMs</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="TimeLord.html"><a href="TimeLord.html#navigating-this-lesson-14"><i class="fa fa-check"></i><b>15.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="TimeLord.html"><a href="TimeLord.html#learning-objectives-14"><i class="fa fa-check"></i><b>15.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="15.1.2" data-path="TimeLord.html"><a href="TimeLord.html#planning-for-practice-14"><i class="fa fa-check"></i><b>15.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="15.1.3" data-path="TimeLord.html"><a href="TimeLord.html#readings-resources-14"><i class="fa fa-check"></i><b>15.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="15.1.4" data-path="TimeLord.html"><a href="TimeLord.html#packages-14"><i class="fa fa-check"></i><b>15.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="TimeLord.html"><a href="TimeLord.html#exploring-variants-of-time-and-balance"><i class="fa fa-check"></i><b>15.2</b> Exploring Variants of Time and Balance</a></li>
+<li class="chapter" data-level="15.3" data-path="TimeLord.html"><a href="TimeLord.html#research-vignette-14"><i class="fa fa-check"></i><b>15.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="TimeLord.html"><a href="TimeLord.html#simulating-the-data-from-the-journal-article-7"><i class="fa fa-check"></i><b>15.3.1</b> Simulating the data from the journal article</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="TimeLord.html"><a href="TimeLord.html#more-simulation-appointment-dates"><i class="fa fa-check"></i><b>15.4</b> More Simulation – Appointment Dates</a></li>
+<li class="chapter" data-level="15.5" data-path="TimeLord.html"><a href="TimeLord.html#reworking-lefevor-et-al.-using-calendrical-time-and-unbalanced-data"><i class="fa fa-check"></i><b>15.5</b> Reworking Lefevor et al. using Calendrical Time (and Unbalanced Data)</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="TimeLord.html"><a href="TimeLord.html#creating-time-intervals"><i class="fa fa-check"></i><b>15.5.1</b> Creating Time Intervals</a></li>
+<li class="chapter" data-level="15.5.2" data-path="TimeLord.html"><a href="TimeLord.html#wide-to-long"><i class="fa fa-check"></i><b>15.5.2</b> Wide to Long</a></li>
+<li class="chapter" data-level="15.5.3" data-path="TimeLord.html"><a href="TimeLord.html#mlm-is-for-unbalanced-designs"><i class="fa fa-check"></i><b>15.5.3</b> MLM is for unbalanced designs</a></li>
+<li class="chapter" data-level="15.5.4" data-path="TimeLord.html"><a href="TimeLord.html#abbreviated-ols-style-exploration"><i class="fa fa-check"></i><b>15.5.4</b> Abbreviated OLS Style Exploration</a></li>
+<li class="chapter" data-level="15.5.5" data-path="TimeLord.html"><a href="TimeLord.html#rebuilding-the-model-unstructured-time-unbalanced-design"><i class="fa fa-check"></i><b>15.5.5</b> Rebuilding the Model (Unstructured Time, Unbalanced Design)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="TimeLord.html"><a href="TimeLord.html#structured-time-reworking-the-vignette-with-index"><i class="fa fa-check"></i><b>15.6</b> Structured Time: Reworking the Vignette with Index</a></li>
+<li class="chapter" data-level="15.7" data-path="TimeLord.html"><a href="TimeLord.html#apa-style-writeup-8"><i class="fa fa-check"></i><b>15.7</b> APA Style Writeup</a></li>
+<li class="chapter" data-level="15.8" data-path="TimeLord.html"><a href="TimeLord.html#residual-and-related-questions-5"><i class="fa fa-check"></i><b>15.8</b> Residual and Related Questions…</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="TimeLord.html"><a href="TimeLord.html#what-did-we-gainlose-by-using-weeks-or-sessnum-unstructured-versus-index-structured-to-mark-time"><i class="fa fa-check"></i><b>15.8.1</b> What did we gain/lose by using Weeks or SessNum (unstructured) versus Index (structured) to mark time?</a></li>
+<li class="chapter" data-level="15.8.2" data-path="TimeLord.html"><a href="TimeLord.html#how-did-the-unbalanced-time-impact-the-analysis-and-results"><i class="fa fa-check"></i><b>15.8.2</b> How did the unbalanced time impact the analysis and results?</a></li>
+</ul></li>
+<li class="chapter" data-level="15.9" data-path="TimeLord.html"><a href="TimeLord.html#practice-problems-14"><i class="fa fa-check"></i><b>15.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="TimeLord.html"><a href="TimeLord.html#problem-1-rework-this-lessons-example-by-changing-the-time-metric-to-days-or-months"><i class="fa fa-check"></i><b>15.9.1</b> Problem #1: Rework this Lesson’s Example by Changing the Time Metric to Days or Months</a></li>
+<li class="chapter" data-level="15.9.2" data-path="TimeLord.html"><a href="TimeLord.html#problem-2-compare-balanced-and-unbalanced-designs"><i class="fa fa-check"></i><b>15.9.2</b> Problem #2: Compare balanced and unbalanced designs</a></li>
+<li class="chapter" data-level="15.9.3" data-path="TimeLord.html"><a href="TimeLord.html#problem-3-experiment-with-time-and-balanceunbalance-in-data-that-is-available-to-you"><i class="fa fa-check"></i><b>15.9.3</b> Problem #3: Experiment with time and balance/unbalance in data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="TimeLord.html"><a href="TimeLord.html#bonus-track-2"><i class="fa fa-check"></i><b>15.10</b> Bonus Track:</a>
+<ul>
+<li class="chapter" data-level="15.10.1" data-path="TimeLord.html"><a href="TimeLord.html#faqs"><i class="fa fa-check"></i><b>15.10.1</b> FAQs</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="REFS.html"><a href="REFS.html"><i class="fa fa-check"></i>REFERENCES</a></li>
@@ -1114,28 +1167,28 @@ The unique solution is <em>a</em> = 4, <em>b</em> = 2.</p>
 <div id="simulating-the-data-from-the-journal-article-1" class="section level3 hasAnchor" number="9.5.1">
 <h3><span class="header-section-number">9.5.1</span> Simulating the data from the journal article<a href="MeasMod.html#simulating-the-data-from-the-journal-article-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We used the <em>lavaan::simulateData</em> function for the simulation. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures <span class="citation">(<a href="#ref-nadal_racial_2011">Nadal, 2011</a>; <a href="#ref-veit_structure_1983">Veit &amp; Ware, 1983</a>)</span>. For all others we specified a factor loading of 0.80. We then approximated the <em>measurement model</em> by specifying the correlations between all of the latent variable. We sourced these from the correlation matrix from the research vignette <span class="citation">(<a href="#ref-kim_racial_2017">Paul Youngbin Kim et al., 2017</a>)</span>. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).</p>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="MeasMod.html#cb617-1" tabindex="-1"></a><span class="co"># Entering the intercorrelations, means, and standard deviations from</span></span>
-<span id="cb617-2"><a href="MeasMod.html#cb617-2" tabindex="-1"></a><span class="co"># the journal article</span></span>
-<span id="cb617-3"><a href="MeasMod.html#cb617-3" tabindex="-1"></a>Kim_generating_model <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
-<span id="cb617-4"><a href="MeasMod.html#cb617-4" tabindex="-1"></a><span class="st">        ##measurement model</span></span>
-<span id="cb617-5"><a href="MeasMod.html#cb617-5" tabindex="-1"></a><span class="st">         REMS =~ .82*Inf32 + .75*Inf38 + .74*Inf21 + .72*Inf17 + .69*Inf9 + .61*Inf36 + .51*Inf5 + .49*Inf22 + .81*SClass6 + .81*SClass31 + .74*SClass8 + .74*SClass40 + .72*SClass2 + .65*SClass34 + .55*SClass11 + .84*mInv27 + .84*mInv30 + .80*mInv39 + .72*mInv7 + .62*mInv26 + .61*mInv33 + .53*mInv4 + .47*mInv14 + .47*mInv10 + .74*Exot3 + .74*Exot29 + .71*Exot45 + .69*Exot35 + .60*Exot42 + .59*Exot23 + .51*Exot13 + .51*Exot20 + .49*Exot43 + .84*mEnv37 + .85*mEnv24 + .78*mEnv19 + .70*mEnv28 + .69*mEnv18 + .55*mEnv41 + .55*mEnv12 + .76*mWork25 + .67*mWork15 + .65*mWork1 + .64*mWork16 + .62*mWork44</span></span>
-<span id="cb617-6"><a href="MeasMod.html#cb617-6" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb617-7"><a href="MeasMod.html#cb617-7" tabindex="-1"></a><span class="st">         CMI =~ .8*cmi1 + .8*cmi2 + .8*cmi3 + .8*cmi4 + .8*cmi5 + .8*cmi6 + .8*cmi7 + .8*cmi8 + .8*cmi9 + .8*cmi10 + .8*cmi11 + .8*cmi12 + .8*cmi13 + .8*cmi14 + .8*cmi15 + .8*cmi16 + .8*cmi17 + .8*cmi18 + .8*cmi19 + .8*cmi20 + .8*cmi21 + .8*cmi22 + .8*cmi23 + .8*cmi24 + .8*cmi25 + .8*cmi26 + .8*cmi27 + .8*cmi28 + .8*cmi29 + .8*cmi30 + .8*cmi31 + .8*cmi32 + .8*cmi33 + .8*cmi34 + .8*cmi35 + .8*cmi36 + .8*cmi37 + .8*cmi38 + .8*cmi39 + .8*cmi40 + .8*cmi41 + .8*cmi42 + .8*cmi43 + .8*cmi44 + .8*cmi45 + .8*cmi46 + .8*cmi47</span></span>
-<span id="cb617-8"><a href="MeasMod.html#cb617-8" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb617-9"><a href="MeasMod.html#cb617-9" tabindex="-1"></a><span class="st">         ANX =~ .80*Anx1 + .80*Anx2 + .77*Anx3 + .74*Anx4 + .74*Anx5 + .69*Anx6 + .69*Anx7 + .68*Anx8 + .50*Anx9  </span></span>
-<span id="cb617-10"><a href="MeasMod.html#cb617-10" tabindex="-1"></a><span class="st">         DEP =~ .74*Dep1 + .83*Dep2 + .82*Dep3 + .74*Dep4</span></span>
-<span id="cb617-11"><a href="MeasMod.html#cb617-11" tabindex="-1"></a><span class="st">         PWB =~ .83*pwb1 + .72*pwb2 + .67*pwb3 + .79*pwb4 + .77*pwb5 + .75*pwb6 + .74*pwb7 +.71*pwb8 +.67*pwb9 +.61*pwb10 +.58*pwb11</span></span>
-<span id="cb617-12"><a href="MeasMod.html#cb617-12" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb617-13"><a href="MeasMod.html#cb617-13" tabindex="-1"></a><span class="st">         HlpSkg =~ .8*hlpskg1 + .8*hlpskg2 + .8*hlpskg3 + .8*hlpskg4 + .8*hlpskg5 + .8*hlpskg6 + .8*hlpskg7 + .8*hlpskg8 + .8*hlpskg9 + .8*hlpskg10 </span></span>
-<span id="cb617-14"><a href="MeasMod.html#cb617-14" tabindex="-1"></a><span class="st">   </span></span>
-<span id="cb617-15"><a href="MeasMod.html#cb617-15" tabindex="-1"></a><span class="st">        # Means</span></span>
-<span id="cb617-16"><a href="MeasMod.html#cb617-16" tabindex="-1"></a><span class="st">         REMS ~ 0.34*1</span></span>
-<span id="cb617-17"><a href="MeasMod.html#cb617-17" tabindex="-1"></a><span class="st">         CMI ~ 3*1</span></span>
-<span id="cb617-18"><a href="MeasMod.html#cb617-18" tabindex="-1"></a><span class="st">         ANX ~ 2.98*1</span></span>
-<span id="cb617-19"><a href="MeasMod.html#cb617-19" tabindex="-1"></a><span class="st">         DEP ~ 2.36*1</span></span>
-<span id="cb617-20"><a href="MeasMod.html#cb617-20" tabindex="-1"></a><span class="st">         PWB ~ 3.5*1</span></span>
-<span id="cb617-21"><a href="MeasMod.html#cb617-21" tabindex="-1"></a><span class="st">         HlpSkg ~ 1.64*1</span></span>
-<span id="cb617-22"><a href="MeasMod.html#cb617-22" tabindex="-1"></a><span class="st">        # Correlations (ha!)</span></span>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="MeasMod.html#cb617-1" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
+<span id="cb617-2"><a href="MeasMod.html#cb617-2" tabindex="-1"></a>Kim_generating_model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb617-3"><a href="MeasMod.html#cb617-3" tabindex="-1"></a><span class="st">        #measurement model</span></span>
+<span id="cb617-4"><a href="MeasMod.html#cb617-4" tabindex="-1"></a><span class="st">         REMS =~ .82*Inf32 + .75*Inf38 + .74*Inf21 + .72*Inf17 + .69*Inf9 + .61*Inf36 + .51*Inf5 + .49*Inf22 + .81*SClass6 + .81*SClass31 + .74*SClass8 + .74*SClass40 + .72*SClass2 + .65*SClass34 + .55*SClass11 + .84*mInv27 + .84*mInv30 + .80*mInv39 + .72*mInv7 + .62*mInv26 + .61*mInv33 + .53*mInv4 + .47*mInv14 + .47*mInv10 + .74*Exot3 + .74*Exot29 + .71*Exot45 + .69*Exot35 + .60*Exot42 + .59*Exot23 + .51*Exot13 + .51*Exot20 + .49*Exot43 + .84*mEnv37 + .85*mEnv24 + .78*mEnv19 + .70*mEnv28 + .69*mEnv18 + .55*mEnv41 + .55*mEnv12 + .76*mWork25 + .67*mWork15 + .65*mWork1 + .64*mWork16 + .62*mWork44</span></span>
+<span id="cb617-5"><a href="MeasMod.html#cb617-5" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb617-6"><a href="MeasMod.html#cb617-6" tabindex="-1"></a><span class="st">         CMI =~ .8*cmi1 + .8*cmi2 + .8*cmi3 + .8*cmi4 + .8*cmi5 + .8*cmi6 + .8*cmi7 + .8*cmi8 + .8*cmi9 + .8*cmi10 + .8*cmi11 + .8*cmi12 + .8*cmi13 + .8*cmi14 + .8*cmi15 + .8*cmi16 + .8*cmi17 + .8*cmi18 + .8*cmi19 + .8*cmi20 + .8*cmi21 + .8*cmi22 + .8*cmi23 + .8*cmi24 + .8*cmi25 + .8*cmi26 + .8*cmi27 + .8*cmi28 + .8*cmi29 + .8*cmi30 + .8*cmi31 + .8*cmi32 + .8*cmi33 + .8*cmi34 + .8*cmi35 + .8*cmi36 + .8*cmi37 + .8*cmi38 + .8*cmi39 + .8*cmi40 + .8*cmi41 + .8*cmi42 + .8*cmi43 + .8*cmi44 + .8*cmi45 + .8*cmi46 + .8*cmi47</span></span>
+<span id="cb617-7"><a href="MeasMod.html#cb617-7" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb617-8"><a href="MeasMod.html#cb617-8" tabindex="-1"></a><span class="st">         ANX =~ .80*Anx1 + .80*Anx2 + .77*Anx3 + .74*Anx4 + .74*Anx5 + .69*Anx6 + .69*Anx7 + .68*Anx8 + .50*Anx9  </span></span>
+<span id="cb617-9"><a href="MeasMod.html#cb617-9" tabindex="-1"></a><span class="st">         DEP =~ .74*Dep1 + .83*Dep2 + .82*Dep3 + .74*Dep4</span></span>
+<span id="cb617-10"><a href="MeasMod.html#cb617-10" tabindex="-1"></a><span class="st">         PWB =~ .83*pwb1 + .72*pwb2 + .67*pwb3 + .79*pwb4 + .77*pwb5 + .75*pwb6 + .74*pwb7 +.71*pwb8 +.67*pwb9 +.61*pwb10 +.58*pwb11</span></span>
+<span id="cb617-11"><a href="MeasMod.html#cb617-11" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb617-12"><a href="MeasMod.html#cb617-12" tabindex="-1"></a><span class="st">         HlpSkg =~ .8*hlpskg1 + .8*hlpskg2 + .8*hlpskg3 + .8*hlpskg4 + .8*hlpskg5 + .8*hlpskg6 + .8*hlpskg7 + .8*hlpskg8 + .8*hlpskg9 + .8*hlpskg10 </span></span>
+<span id="cb617-13"><a href="MeasMod.html#cb617-13" tabindex="-1"></a><span class="st">   </span></span>
+<span id="cb617-14"><a href="MeasMod.html#cb617-14" tabindex="-1"></a><span class="st">        #Means</span></span>
+<span id="cb617-15"><a href="MeasMod.html#cb617-15" tabindex="-1"></a><span class="st">         REMS ~ 0.34*1</span></span>
+<span id="cb617-16"><a href="MeasMod.html#cb617-16" tabindex="-1"></a><span class="st">         CMI ~ 3*1</span></span>
+<span id="cb617-17"><a href="MeasMod.html#cb617-17" tabindex="-1"></a><span class="st">         ANX ~ 2.98*1</span></span>
+<span id="cb617-18"><a href="MeasMod.html#cb617-18" tabindex="-1"></a><span class="st">         DEP ~ 2.36*1</span></span>
+<span id="cb617-19"><a href="MeasMod.html#cb617-19" tabindex="-1"></a><span class="st">         PWB ~ 3.5*1</span></span>
+<span id="cb617-20"><a href="MeasMod.html#cb617-20" tabindex="-1"></a><span class="st">         HlpSkg ~ 1.64*1</span></span>
+<span id="cb617-21"><a href="MeasMod.html#cb617-21" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb617-22"><a href="MeasMod.html#cb617-22" tabindex="-1"></a><span class="st">        #Correlations</span></span>
 <span id="cb617-23"><a href="MeasMod.html#cb617-23" tabindex="-1"></a><span class="st">         REMS ~ 0.58*CMI</span></span>
 <span id="cb617-24"><a href="MeasMod.html#cb617-24" tabindex="-1"></a><span class="st">         REMS ~ 0.26*ANX</span></span>
 <span id="cb617-25"><a href="MeasMod.html#cb617-25" tabindex="-1"></a><span class="st">         REMS ~ 0.34*DEP</span></span>
@@ -1151,50 +1204,45 @@ The unique solution is <em>a</em> = 4, <em>b</em> = 2.</p>
 <span id="cb617-35"><a href="MeasMod.html#cb617-35" tabindex="-1"></a><span class="st">         DEP ~ -0.66*PWB</span></span>
 <span id="cb617-36"><a href="MeasMod.html#cb617-36" tabindex="-1"></a><span class="st">         DEP ~ 0.05*HlpSkg</span></span>
 <span id="cb617-37"><a href="MeasMod.html#cb617-37" tabindex="-1"></a><span class="st">         PWB ~ 0.08*HlpSkg</span></span>
-<span id="cb617-38"><a href="MeasMod.html#cb617-38" tabindex="-1"></a><span class="st">        &quot;</span></span>
+<span id="cb617-38"><a href="MeasMod.html#cb617-38" tabindex="-1"></a><span class="st">        &#39;</span></span>
 <span id="cb617-39"><a href="MeasMod.html#cb617-39" tabindex="-1"></a></span>
 <span id="cb617-40"><a href="MeasMod.html#cb617-40" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230916</span>)</span>
-<span id="cb617-41"><a href="MeasMod.html#cb617-41" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">simulateData</span>(<span class="at">model =</span> Kim_generating_model, <span class="at">model.type =</span> <span class="st">&quot;sem&quot;</span>,</span>
-<span id="cb617-42"><a href="MeasMod.html#cb617-42" tabindex="-1"></a>    <span class="at">meanstructure =</span> T, <span class="at">sample.nobs =</span> <span class="dv">156</span>, <span class="at">standardized =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb617-43"><a href="MeasMod.html#cb617-43" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb617-44"><a href="MeasMod.html#cb617-44" tabindex="-1"></a></span>
-<span id="cb617-45"><a href="MeasMod.html#cb617-45" tabindex="-1"></a><span class="co"># used to retrieve column indices used in the rescaling script below</span></span>
-<span id="cb617-46"><a href="MeasMod.html#cb617-46" tabindex="-1"></a>col_index <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">colnames</span>(dfKim))</span>
+<span id="cb617-41"><a href="MeasMod.html#cb617-41" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">simulateData</span>(<span class="at">model =</span> Kim_generating_model,</span>
+<span id="cb617-42"><a href="MeasMod.html#cb617-42" tabindex="-1"></a>                              <span class="at">model.type =</span> <span class="st">&quot;sem&quot;</span>,</span>
+<span id="cb617-43"><a href="MeasMod.html#cb617-43" tabindex="-1"></a>                              <span class="at">meanstructure =</span> T,</span>
+<span id="cb617-44"><a href="MeasMod.html#cb617-44" tabindex="-1"></a>                              <span class="at">sample.nobs=</span><span class="dv">156</span>,</span>
+<span id="cb617-45"><a href="MeasMod.html#cb617-45" tabindex="-1"></a>                              <span class="at">standardized=</span><span class="cn">FALSE</span>)</span>
+<span id="cb617-46"><a href="MeasMod.html#cb617-46" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb617-47"><a href="MeasMod.html#cb617-47" tabindex="-1"></a></span>
-<span id="cb617-48"><a href="MeasMod.html#cb617-48" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dfKim)) {</span>
-<span id="cb617-49"><a href="MeasMod.html#cb617-49" tabindex="-1"></a>    <span class="co"># for loop to go through each column of the dataframe apply only</span></span>
-<span id="cb617-50"><a href="MeasMod.html#cb617-50" tabindex="-1"></a>    <span class="co"># to REMS variables</span></span>
-<span id="cb617-51"><a href="MeasMod.html#cb617-51" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">45</span>) {</span>
-<span id="cb617-52"><a href="MeasMod.html#cb617-52" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb617-53"><a href="MeasMod.html#cb617-53" tabindex="-1"></a>    }</span>
-<span id="cb617-54"><a href="MeasMod.html#cb617-54" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">46</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>) {</span>
-<span id="cb617-55"><a href="MeasMod.html#cb617-55" tabindex="-1"></a>        <span class="co"># apply only to CMI variables</span></span>
-<span id="cb617-56"><a href="MeasMod.html#cb617-56" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
-<span id="cb617-57"><a href="MeasMod.html#cb617-57" tabindex="-1"></a>    }</span>
-<span id="cb617-58"><a href="MeasMod.html#cb617-58" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">93</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>) {</span>
-<span id="cb617-59"><a href="MeasMod.html#cb617-59" tabindex="-1"></a>        <span class="co"># apply only to mental health variables</span></span>
-<span id="cb617-60"><a href="MeasMod.html#cb617-60" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))</span>
-<span id="cb617-61"><a href="MeasMod.html#cb617-61" tabindex="-1"></a>    }</span>
-<span id="cb617-62"><a href="MeasMod.html#cb617-62" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">117</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">126</span>) {</span>
-<span id="cb617-63"><a href="MeasMod.html#cb617-63" tabindex="-1"></a>        <span class="co"># apply only to HlpSkng variables</span></span>
-<span id="cb617-64"><a href="MeasMod.html#cb617-64" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</span>
-<span id="cb617-65"><a href="MeasMod.html#cb617-65" tabindex="-1"></a>    }</span>
-<span id="cb617-66"><a href="MeasMod.html#cb617-66" tabindex="-1"></a>}</span>
+<span id="cb617-48"><a href="MeasMod.html#cb617-48" tabindex="-1"></a><span class="co">#used to retrieve column indices used in the rescaling script below</span></span>
+<span id="cb617-49"><a href="MeasMod.html#cb617-49" tabindex="-1"></a>col_index <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">colnames</span>(dfKim))</span>
+<span id="cb617-50"><a href="MeasMod.html#cb617-50" tabindex="-1"></a></span>
+<span id="cb617-51"><a href="MeasMod.html#cb617-51" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dfKim)){  </span>
+<span id="cb617-52"><a href="MeasMod.html#cb617-52" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">45</span>){   </span>
+<span id="cb617-53"><a href="MeasMod.html#cb617-53" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb617-54"><a href="MeasMod.html#cb617-54" tabindex="-1"></a>  }</span>
+<span id="cb617-55"><a href="MeasMod.html#cb617-55" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">46</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>){  </span>
+<span id="cb617-56"><a href="MeasMod.html#cb617-56" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
+<span id="cb617-57"><a href="MeasMod.html#cb617-57" tabindex="-1"></a>  }</span>
+<span id="cb617-58"><a href="MeasMod.html#cb617-58" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">93</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>){   </span>
+<span id="cb617-59"><a href="MeasMod.html#cb617-59" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))</span>
+<span id="cb617-60"><a href="MeasMod.html#cb617-60" tabindex="-1"></a>  }</span>
+<span id="cb617-61"><a href="MeasMod.html#cb617-61" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">117</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">126</span>){   </span>
+<span id="cb617-62"><a href="MeasMod.html#cb617-62" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</span>
+<span id="cb617-63"><a href="MeasMod.html#cb617-63" tabindex="-1"></a>  }</span>
+<span id="cb617-64"><a href="MeasMod.html#cb617-64" tabindex="-1"></a>}</span>
+<span id="cb617-65"><a href="MeasMod.html#cb617-65" tabindex="-1"></a></span>
+<span id="cb617-66"><a href="MeasMod.html#cb617-66" tabindex="-1"></a><span class="co">#psych::describe(dfKim)+</span></span>
 <span id="cb617-67"><a href="MeasMod.html#cb617-67" tabindex="-1"></a></span>
-<span id="cb617-68"><a href="MeasMod.html#cb617-68" tabindex="-1"></a><span class="co"># psych::describe(dfKim)+</span></span>
-<span id="cb617-69"><a href="MeasMod.html#cb617-69" tabindex="-1"></a></span>
-<span id="cb617-70"><a href="MeasMod.html#cb617-70" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb617-71"><a href="MeasMod.html#cb617-71" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> dfKim <span class="sc">%&gt;%</span></span>
-<span id="cb617-72"><a href="MeasMod.html#cb617-72" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">0</span>)</span>
-<span id="cb617-73"><a href="MeasMod.html#cb617-73" tabindex="-1"></a></span>
-<span id="cb617-74"><a href="MeasMod.html#cb617-74" tabindex="-1"></a><span class="co"># I tested the rescaling the correlation between original and</span></span>
-<span id="cb617-75"><a href="MeasMod.html#cb617-75" tabindex="-1"></a><span class="co"># rescaled variables is 1.0 Kim_df_latent$INF32 &lt;-</span></span>
-<span id="cb617-76"><a href="MeasMod.html#cb617-76" tabindex="-1"></a><span class="co"># scales::rescale(Kim_df_latent$Inf32, c(0, 1))</span></span>
-<span id="cb617-77"><a href="MeasMod.html#cb617-77" tabindex="-1"></a><span class="co"># cor.test(Kim_df_latent$Inf32, Kim_df_latent$INF32,</span></span>
-<span id="cb617-78"><a href="MeasMod.html#cb617-78" tabindex="-1"></a><span class="co"># method=&#39;pearson&#39;)</span></span>
-<span id="cb617-79"><a href="MeasMod.html#cb617-79" tabindex="-1"></a></span>
-<span id="cb617-80"><a href="MeasMod.html#cb617-80" tabindex="-1"></a><span class="co"># Checking our work against the original correlation matrix</span></span>
-<span id="cb617-81"><a href="MeasMod.html#cb617-81" tabindex="-1"></a><span class="co"># round(cor(Kim_df),3)</span></span></code></pre></div>
+<span id="cb617-68"><a href="MeasMod.html#cb617-68" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb617-69"><a href="MeasMod.html#cb617-69" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> dfKim <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">0</span>) </span>
+<span id="cb617-70"><a href="MeasMod.html#cb617-70" tabindex="-1"></a></span>
+<span id="cb617-71"><a href="MeasMod.html#cb617-71" tabindex="-1"></a><span class="co">#I tested the rescaling the correlation between original and rescaled variables is 1.0</span></span>
+<span id="cb617-72"><a href="MeasMod.html#cb617-72" tabindex="-1"></a><span class="co">#Kim_df_latent$INF32 &lt;- scales::rescale(Kim_df_latent$Inf32, c(0, 1))</span></span>
+<span id="cb617-73"><a href="MeasMod.html#cb617-73" tabindex="-1"></a><span class="co">#cor.test(Kim_df_latent$Inf32, Kim_df_latent$INF32, method=&quot;pearson&quot;)</span></span>
+<span id="cb617-74"><a href="MeasMod.html#cb617-74" tabindex="-1"></a></span>
+<span id="cb617-75"><a href="MeasMod.html#cb617-75" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
+<span id="cb617-76"><a href="MeasMod.html#cb617-76" tabindex="-1"></a><span class="co">#round(cor(Kim_df),3)</span></span></code></pre></div>
 <p>The script below allows you to store the simulated data as a file on your computer. This is optional – the entire lesson can be worked with the simulated data.</p>
 <p>If you prefer the .rds format, use this script (remove the hashtags). The .rds format has the advantage of preserving any formatting of variables. A disadvantage is that you cannot open these files outside of the R environment.</p>
 <p>Script to save the data to your computer as an .rds file.</p>
@@ -1271,7 +1319,7 @@ The unique solution is <em>a</em> = 4, <em>b</em> = 2.</p>
 <span id="cb622-20"><a href="MeasMod.html#cb622-20" tabindex="-1"></a>init_msmt_fit_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(init_msmt_fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb622-21"><a href="MeasMod.html#cb622-21" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb622-22"><a href="MeasMod.html#cb622-22" tabindex="-1"></a>init_msmt_fit_sum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 118 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 118 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2308,7 +2356,7 @@ The unique solution is <em>a</em> = 4, <em>b</em> = 2.</p>
 <span id="cb639-20"><a href="MeasMod.html#cb639-20" tabindex="-1"></a>subsc_msmt_fit_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(subsc_msmt_fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb639-21"><a href="MeasMod.html#cb639-21" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb639-22"><a href="MeasMod.html#cb639-22" tabindex="-1"></a>subsc_msmt_fit_sum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 127 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 127 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2412,9 +2460,6 @@ The unique solution is <em>a</em> = 4, <em>b</em> = 2.</p>
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##     CMI               0.000                               0.000    0.000
-##     PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -2661,7 +2706,7 @@ The unique solution is <em>a</em> = 4, <em>b</em> = 2.</p>
 <span id="cb647-18"><a href="MeasMod.html#cb647-18" tabindex="-1"></a>rp3_msmt_fit_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(rp3_msmt_fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb647-19"><a href="MeasMod.html#cb647-19" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb647-20"><a href="MeasMod.html#cb647-20" tabindex="-1"></a>rp3_msmt_fit_sum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 106 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 106 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2757,9 +2802,6 @@ The unique solution is <em>a</em> = 4, <em>b</em> = 2.</p>
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##     CMI               0.000                               0.000    0.000
-##     PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -3178,7 +3220,7 @@ Centering is 1 item – it’s a factor with two levels pre, re.</p>
 <span id="cb659-20"><a href="MeasMod.html#cb659-20" tabindex="-1"></a>init_msmt_fit_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(init_msmt_fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb659-21"><a href="MeasMod.html#cb659-21" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb659-22"><a href="MeasMod.html#cb659-22" tabindex="-1"></a>init_msmt_fit_sum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 63 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 63 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3276,9 +3318,6 @@ Centering is 1 item – it’s a factor with two levels pre, re.</p>
 ##    .EquitableEval     4.572    0.036  126.725    0.000    4.572    7.216
 ##    .MultPerspectvs    4.391    0.048   92.287    0.000    4.391    5.265
 ##    .DEIintegration    4.512    0.044  102.435    0.000    4.512    6.105
-##     CTR               0.000                               0.000    0.000
-##     TradPed           0.000                               0.000    0.000
-##     SRPed             0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -3348,7 +3387,7 @@ Centering is 1 item – it’s a factor with two levels pre, re.</p>
 <div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="MeasMod.html#cb661-1" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(init_msmt_fit, <span class="at">what =</span> <span class="st">&quot;col&quot;</span>, <span class="at">whatLabels =</span> <span class="st">&quot;stand&quot;</span>, <span class="at">sizeMan =</span> <span class="dv">5</span>,</span>
 <span id="cb661-2"><a href="MeasMod.html#cb661-2" tabindex="-1"></a>    <span class="at">node.width =</span> <span class="dv">1</span>, <span class="at">edge.label.cex =</span> <span class="fl">0.75</span>, <span class="at">style =</span> <span class="st">&quot;lisrel&quot;</span>, <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>,</span>
 <span id="cb661-3"><a href="MeasMod.html#cb661-3" tabindex="-1"></a>        <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span></code></pre></div>
-<p><img src="09-SEM_MeasMod_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="09-SEM_MeasMod_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <p>Results of the evaluation of the measurement model can be exported as .csv files with the following code. These produce output that inglude global fit indices, parameter estimates, and correlations between the latent variables, respetively.
 The <em>tidySEM::table_fit</em> function will display all of the global fit indices.</p>
 <div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="MeasMod.html#cb662-1" tabindex="-1"></a><span class="co"># global fit indices</span></span>
@@ -3418,7 +3457,7 @@ The <em>tidySEM::table_fit</em> function will display all of the global fit indi
 <span id="cb666-20"><a href="MeasMod.html#cb666-20" tabindex="-1"></a>parc_msmt_fit_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(parc_msmt_fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb666-21"><a href="MeasMod.html#cb666-21" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb666-22"><a href="MeasMod.html#cb666-22" tabindex="-1"></a>parc_msmt_fit_sum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 59 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 59 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3512,9 +3551,6 @@ The <em>tidySEM::table_fit</em> function will display all of the global fit indi
 ##    .EquitableEval     4.572    0.036  126.727    0.000    4.572    7.216
 ##    .MultPerspectvs    4.391    0.048   92.290    0.000    4.391    5.265
 ##    .DEIintegration    4.512    0.044  102.459    0.000    4.512    6.106
-##     CTR               0.000                               0.000    0.000
-##     TradPed           0.000                               0.000    0.000
-##     SRPed             0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -3582,7 +3618,7 @@ The <em>tidySEM::table_fit</em> function will display all of the global fit indi
 <div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="MeasMod.html#cb668-1" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(parc_msmt_fit, <span class="at">what =</span> <span class="st">&quot;col&quot;</span>, <span class="at">whatLabels =</span> <span class="st">&quot;stand&quot;</span>, <span class="at">sizeMan =</span> <span class="dv">5</span>,</span>
 <span id="cb668-2"><a href="MeasMod.html#cb668-2" tabindex="-1"></a>    <span class="at">node.width =</span> <span class="dv">1</span>, <span class="at">edge.label.cex =</span> <span class="fl">0.75</span>, <span class="at">style =</span> <span class="st">&quot;lisrel&quot;</span>, <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>,</span>
 <span id="cb668-3"><a href="MeasMod.html#cb668-3" tabindex="-1"></a>        <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span></code></pre></div>
-<p><img src="09-SEM_MeasMod_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p><img src="09-SEM_MeasMod_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
 <div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="MeasMod.html#cb669-1" tabindex="-1"></a><span class="co"># global fit indices</span></span>
 <span id="cb669-2"><a href="MeasMod.html#cb669-2" tabindex="-1"></a>parc_msmt_fitstats <span class="ot">&lt;-</span> tidySEM<span class="sc">::</span><span class="fu">table_fit</span>(parc_msmt_fit)</span>
 <span id="cb669-3"><a href="MeasMod.html#cb669-3" tabindex="-1"></a><span class="fu">write.csv</span>(parc_msmt_fitstats, <span class="at">file =</span> <span class="st">&quot;parc_msmt_fitstats.csv&quot;</span>)</span>

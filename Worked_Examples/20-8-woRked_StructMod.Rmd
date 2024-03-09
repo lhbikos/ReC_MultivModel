@@ -277,7 +277,9 @@ m1_indicator_factor <- c("TrP", "TrP", "TrP", "TrP", "TrP",
 m1_indicator_push <- c(CTR = 1, 
                     TrP = 2,
                     SRP = 5)
-m1_indicator_spread <- c(CTR = 1, #spreading the boxes away from each other
+
+#spreading the boxes away from each other
+m1_indicator_spread <- c(CTR = 1, 
                     TrP = 3,
                     SRP = 5)
 
@@ -433,7 +435,9 @@ m2_indicator_factor <- c("TrP", "TrP", "TrP", "TrP", "TrP",
 m2_indicator_push <- c(CTR = 1, 
                     TrP = 2,
                     SRP = 5)
-m2_indicator_spread <- c(CTR = 1, #spreading the boxes away from each other
+
+#spreading the boxes away from each other
+m2_indicator_spread <- c(CTR = 1, 
                     TrP = 3,
                     SRP = 5)
 

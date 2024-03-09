@@ -4,7 +4,7 @@ options(scipen=999)#eliminates scientific notation
 
 # Preliminary (OLS style) Exploration of Longitudinal Growth {#MLMexplore}
 
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=36075f1d-b805-40b9-92da-ad2b0053f46c) 
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KMEunyxNyuzmwlsM83jqUaf&si=aKeUiY6aiuZW5Lb_) 
 
 This lesson is an introduction to longitudinal modeling when time is a factor. In this lecture we explore the longitudinal data using OLS tools.  Doing so provides the proper screening/vetting of the data to ensure that it is appropriate for multilevel analysis.  Simultaneously, it provides an orientation to the types of questions that MLM will address.
 
@@ -50,7 +50,7 @@ FROM SUBSEQUENT LESSONS
 3.  Write up the Results as demonstrated in the lecture
 4.  Table (use the tab_model outfile) and Figure are required
 
-* Rework the problem in the chapter by changing the random seed in the code that simulates the data.  This should provide minor changes to the data, but the results will likely be very similar. SINCE I'M NOT CONVINCED THAT CHANGING THE RANDOM SEED DOES MUCH, I MAY CHANGE THIS ONE TO AN EXAMPLE I WORK WITH ANSWERS AT THE END.
+* Rework the problem in the chapter by changing the random seed in the code that simulates the data.  This should provide minor changes to the data, but the results will likely be very similar. 
 * Data from a second MLM analysis from the research vignette are provided at the end. The only difference in the scenario is that the outcome variable changes from anxiety to depression. Use this data.
 * Conduct a multi-level analysis with data to which you have access. This could include data you simulate on your own or from a published article. It is quite possible the conditions of your data will necessitate deviations from this approach. Investigate what they are and apply them.
 
@@ -59,10 +59,9 @@ FROM SUBSEQUENT LESSONS
 In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
 
 * Singer, J. D., & Willett, J. B. (2003). A framework for investigating change over time/Chapter 1 and Exporing longitudinal data on change/Chapter 2 in *Applied longitudinal data analysis: Modeling change and event occurrence.* Oxford University Press. https://doi-org.ezproxy.spu.edu/10.1093/acprof:oso/9780195152968.001.0001
-  * The [UCLA IDRE website](https://stats.idre.ucla.edu/other/examples/alda/) hosts R solutions (as well as SPSS, SAS, MPlus, and HLM) to many of the examples in this text.
+  - I love the Singer and Willett [-@singer_applied_2003] text for so many reasons. Singer and Willet have published a number of articles together. In the Preface of their text they indicated that they were hired at Harvard at about he same time. Their colleagues expected them to voracious competitors. In contrast, they became great collaborators and made decisions about authorship early on. Their agreement was that in any collaboration they would randomly select who was first author, and they have (including for their text).
+* The [UCLA IDRE website](https://stats.idre.ucla.edu/other/examples/alda/) hosts R solutions (as well as SPSS, SAS, MPlus, and HLM) to many of the examples in this text.
 * Lefevor, G. T., Janis, R. A., & Park, S. Y. (2017). Religious and sexual identities: An intersectional, longitudinal examination of change in therapy. *The Counseling Psychologist, 45*(3), 387–413. https://doi-org.ezproxy.spu.edu/10.1177/0011000017702721
-
-I love the Singer and Willett [-@singer_applied_2003] text for so many reasons. Singer and Willet have published a number of articles together. In the Preface of their text they indicated that they were hired at Harvard at about he same time. Their colleagues expected them to voracious competitors. In contrast, they became great collaborators and made decisions about authorship early on. Their agreement was that in any collaboration they would randomly select who was first author, and they have (including for their text).
 
 ### Packages
 
@@ -119,7 +118,7 @@ Asking these questions requires three criteria of the research design/data:
     + *How many waves?*  Within cost and logistical constraints, "more waves are always better."  More allows more complex modeling.  The statistical rule is that you need one-more-wave than the shape you wish to model.  For example, you need 2 waves for a straight line (linear model), 3 waves for a quadratic (1 hump) model, 4 waves for a cubic (2 curves) model, and so forth.
 
 2.  **A substantively meaningful metric for time**
-    + "Time is the fundamental predictor in every study of change; it must be measured reliably and validly in a sensible metric" (p. 10).  
+    + "Time is the fundamental predictor in every study of change; it must be measured reliably and validly in a sensible metric" (p. 10).
     + What is sensible?  ages, grades, months-since-intake, miles, etc.  The choice of metric affects related decisions including number and spacing of waves.
     + Consider the *cadence* you expect in the outcome.  Weeks or number of sessions is sensible for psychotherapy studies.  Grade or age is sensible for education.  Parental or child age might make sense for parenting.
     + "The temporal variable can change only monotonically" (p. 12), that is, it cannot *reverse* diretions.  This means you can have height as a temporal variable, but not weight.
@@ -317,7 +316,6 @@ LfvrWide <- dplyr::full_join(LfvrWp1, LfvrWp2, by = c("ClientID"))
 LfvrWide <- dplyr::full_join(LfvrWide, LfvrWp3,  by = c("ClientID"))
 ```
 
-
 To increase the portability of the OER, this chapter uses simulated data. Here is script for exporting/downloading the data as a .csv file to your local computer and then importing/uploading it again. I find that saving the .csv file (data) in the same place as the .rmd file(s) is essential for R to connect the two.
 
 Because this simulation can take a few minutes, you may wish to do this, even as you work through this chapter, so that resimulations take less time and comuting resources.
@@ -478,9 +476,7 @@ Singer and Willett [-@singer_applied_2003] suggest that we do this two ways:
 
 While our multilevel modeling will use maximum likelihood, these individual plots are fitted with OLS regression models.
 
-A better "group-by" tool:  
-http://r4stats.com/2017/04/18/group-by-modeling-in-r-made-easy/ 
-
+Below I take a "longer path" through this process. This [stats blog](http://r4stats.com/2017/04/18/group-by-modeling-in-r-made-easy/) suggests another option that seems a little more efficient/elegant for achieving "group-by". Users might find it to be a useful alternative.
 
 #### Nonparametrical Smoothing of the Empirical Growth Trajectory**
 
@@ -879,13 +875,17 @@ Using data for which you have permission and access (e.g.,  IRB approved data yo
 Regardless of your choic(es) complete all the elements listed in the grading rubric.
 
 |Assignment Component  
-|:---------------------------------------------------------------------------------------------|:-------------: |:------------:|
-|1. Restructure the dataset from wide to long (or from long to wide)                           |      5         |    _____     |      
-|2. Provide three examples of data exploration:  an unfitted model, a model fitted with a linear growth trajectory, and the fitted (or unfitted) data identified by the L2 predictor                                                                 |      5         |    _____     |
-|3. Provide a write-up of what you found in this process                                       |      5         |    _____     |
-|6. Explanation to grader                                                                      |      5         |    _____     |   
-|**Totals**      
-
+|:---------------------------------------------------------------------------------------------|:-------------:|:------------:|
+|1. Identify and describe the variables in the model; there should be a time-varying DV and predictor as well as an L2 predictor |   5         |    _____     |
+|2. Import the data and format the variables in the model                                      |      5        |    _____     |
+|3. Restructure the dataset from wide to long (or from long to wide)                           |      5        |    _____     |    
+|4. Produce multilevel descriptive statistics and correlation matrix                           |      5        |    _____     |
+|5. Explore data with an unfitted model                                                        |      5         |    _____     |
+|6. Explore data with a model fitted with a linear growth trajectory                           |      5         |    _____     |
+|7. Explore data with the fitted (or unfitted) data identified by the L2 predictor             |      5         |    _____     |
+|8. Provide a write-up of what you found in this process                                       |      5         |    _____     |
+|9. Explanation to grader                                                                      |      5         |    _____     |   
+|**Totals**                                                                                    |      45        |    _____     |   
 
 ## Simulated Data when Depression is the Outcome
 
@@ -995,19 +995,18 @@ Lefevor2017D$Het0 <- plyr::mapvalues(Lefevor2017D$SexID, from = c(-1,1), to = c(
 
 #creating a variable representing the session number for each client, in the article up to 20 sessions were allowed. 
 #install.packages("scales")
-library(scales)
+
 #Right from the beginning I centered this so that 0 would represent intake
 Lefevor2017D$Session0 <- as.integer(scales::rescale(Lefevor2017D$Session, to = c(0, 19)))
 
 #creating session waves (1 thru 5) by rank ordering within each person's variable the continuous variable Session that was created in the original simulation
-library(dplyr)
 Lefevor2017D <- Lefevor2017D%>%
   dplyr::group_by(ClientID) %>%
-  mutate(Index = rank(Session))
+  dplyr::mutate(Index = rank(Session))
 
 #selecting the simulated variables
 Lefevor2017D_sim <- Lefevor2017D%>%
-  select(ClientID, Index, Session0, Depression, DRel0, Het0)
+  dplyr::select(ClientID, Index, Session0, Depression, DRel0, Het0)
 
 #In the transition from long-to-wide, it seems like you can only do one L1 variable at a time
 #When there are multiple L1 and L2 vars, put all L2 vars on left of tilde
@@ -1036,10 +1035,11 @@ write.table(DLfvrWide, file="DLfvrWide.csv", sep=",", col.names=TRUE, row.names=
 DLfvrWide <- read.csv ("DLfvrWide.csv", head = TRUE, sep = ",")
 ```
 
+
+```{r, child= 'Worked_Examples/20-11-woRked_LongExplore.Rmd'}
+``` 
+
 ```{r include=FALSE}
 sessionInfo()
 ```
 
-*Note to self:*
-
-* need recording for multilevel descriptives and correlations

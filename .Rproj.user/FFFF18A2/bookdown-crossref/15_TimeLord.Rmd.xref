@@ -1,0 +1,35 @@
+h1:TimeLord Calendrical Time (and Missingness) in MLMs
+h2:navigating-this-lesson Navigating this Lesson
+h3:learning-objectives Learning Objectives
+h3:planning-for-practice Planning for Practice
+h3:readings-resources Readings & Resources
+h3:packages Packages
+h2:exploring-variants-of-time-and-balance Exploring Variants of Time and Balance
+h2:research-vignette Research Vignette
+h3:simulating-the-data-from-the-journal-article Simulating the data from the journal article
+h2:more-simulation-appointment-dates More Simulation – Appointment Dates
+h2:reworking-lefevor-et-al.-using-calendrical-time-and-unbalanced-data Reworking Lefevor et al. using Calendrical Time (and Unbalanced Data)
+h3:creating-time-intervals Creating Time Intervals
+h3:wide-to-long Wide to Long
+h3:mlm-is-for-unbalanced-designs MLM is for unbalanced designs
+h3:abbreviated-ols-style-exploration Abbreviated OLS Style Exploration
+h3:rebuilding-the-model-unstructured-time-unbalanced-design Rebuilding the Model (Unstructured Time, Unbalanced Design)
+h4:model-1-unconditional-means-model Model 1: Unconditional means model
+h4:model-2-unconditional-growth-model Model 2: Unconditional growth model
+h4:model-3-the-uncontrolled-effects-of-sexual-identity Model 3: The uncontrolled effects of sexual identity
+h4:model-4-the-controlled-effects-of-religious-affiliation Model 4: The controlled effects of religious affiliation
+h4:model-5-trimming-non-signifcant-effects Model 5: Trimming non-signifcant effects
+h2:structured-time-reworking-the-vignette-with-index Structured Time: Reworking the Vignette with Index
+h2:apa-style-writeup APA Style Writeup
+h2:residual-and-related-questions Residual and Related Questions…
+h3:what-did-we-gainlose-by-using-weeks-or-sessnum-unstructured-versus-index-structured-to-mark-time What did we gain/lose by using Weeks or SessNum (unstructured) versus Index (structured) to mark time?
+h3:how-did-the-unbalanced-time-impact-the-analysis-and-results How did the unbalanced time impact the analysis and results?
+h2:practice-problems Practice Problems
+h3:problem-1-rework-this-lessons-example-by-changing-the-time-metric-to-days-or-months Problem #1: Rework this Lesson’s Example by Changing the Time Metric to Days or Months
+h3:problem-2-compare-balanced-and-unbalanced-designs Problem #2: Compare balanced and unbalanced designs
+h3:problem-3-experiment-with-time-and-balanceunbalance-in-data-that-is-available-to-you Problem #3: Experiment with time and balance/unbalance in data that is available to you
+h2:bonus-track Bonus Track:
+h3:faqs FAQs
+h4:what-if-this-was-a-qualtrics-datestamp What if this was a Qualtrics datestamp?
+h4:what-if-i-care-about-time-zones What if I care about time zones?
+

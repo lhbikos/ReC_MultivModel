@@ -1,0 +1,4 @@
+"0","#setting the random seed will mean that the same 30 are always pulled (even though the process is otherwise ""random"")"
+"0","set.seed(20231113)"
+"0",""
+"0","rndm30 <- subset(rndm30, deID %in% sample(unique(rndm30$deID), 30))"

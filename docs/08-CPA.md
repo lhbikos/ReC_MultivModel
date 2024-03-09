@@ -68,7 +68,7 @@ if (!require(lavaan)) {
 ```
 
 ```
-## This is lavaan 0.6-16
+## This is lavaan 0.6-17
 ## lavaan is FREE software! Please report any bugs.
 ```
 
@@ -95,8 +95,8 @@ if (!require(tidyverse)) {
 ```
 ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ## ✔ purrr     1.0.1     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -245,7 +245,7 @@ The *lavaan::simulateData* function was used. If you have taken psychometrics, y
 
 
 Lewis_generating_model <- '
-        ##measurement model
+        #measurement model
         GRMS  =~ .69*Ob1 + .69*Ob2 + .60*Ob3 + .59*Ob4 + .55*Ob5 + .55*Ob6 + .54*Ob7 + .50*Ob8 + .41*Ob9 + .41*Ob10 + .93*Ma1 + .81*Ma2 + .69*Ma3 + .67*Ma4 + .61*Ma5 + .58*Ma6 + .54*Ma7 + .59*St1 + .55*St2 + .54*St3 + .54*St4 + .51*St5 + .70*An1 + .69*An2 + .68*An3
         MntlHlth  =~ .8*MH1 + .8*MH2 + .8*MH3 + .8*MH4 + .8*MH5 + .8*MH6
         PhysHlth  =~ .8*PhH1 + .8*PhH2 + .8*PhH3 + .8*PhH4 + .8*PhH5 + .8*PhH6
@@ -255,7 +255,7 @@ Lewis_generating_model <- '
         Disengagement  =~  .8*dEng1 + .8*dEng2
         GRIC  =~ .8*Cntrlty1 + .8*Cntrlty2 + .8*Cntrlty3 + .8*Cntrlty4 + .8*Cntrlty5 + .8*Cntrlty6 + .8*Cntrlty7 + .8*Cntrlty8 + .8*Cntrlty9 + .8*Cntrlty10
    
-        # Means
+        #Means
          GRMS ~ 1.99*1
          Spirituality ~2.82*1
          SocSupport ~ 2.48*1
@@ -265,7 +265,7 @@ Lewis_generating_model <- '
          MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
          PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
          
-        # Correlations 
+        #Correlations 
          GRMS ~ 0.20*Spirituality
          GRMS ~ 0.28*SocSupport
          GRMS ~ 0.30*Engagement
@@ -883,7 +883,7 @@ LMed_Sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 1 iteration
+## lavaan 0.6.17 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1171,7 +1171,7 @@ cFITsum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 20 iterations
+## lavaan 0.6.17 ended normally after 20 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1690,7 +1690,7 @@ Quick peek at relations between variables:
 psych::pairs.panels(babydf)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-71-1.png)<!-- -->
 
 ### Using a piecewise approach, run each of the simple models in the grander design   {-} 
 
@@ -1832,7 +1832,7 @@ interactions::interact_plot(mod_a_path, pred = TradPed, modx = Centering) +
     ylim(1, 5)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-43-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-74-1.png)<!-- -->
 
 
 ```r
@@ -1903,7 +1903,7 @@ medmodel_Sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 25 iterations
+## lavaan 0.6.17 ended normally after 25 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2018,7 +2018,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = medmodel_fit)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-46-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-77-1.png)<!-- -->
 
 We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
 
@@ -2056,7 +2056,7 @@ tidySEM::graph_sem(medmodel_fit, layout = medmap, rect_width = 1.25, rect_height
     spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-49-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-80-1.png)<!-- -->
 ### Specify and run the entire lavaan model {-}
 
 
@@ -2115,7 +2115,7 @@ ModMedOnAsum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 36 iterations
+## lavaan 0.6.17 ended normally after 36 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2274,7 +2274,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = ModMedOnA_fit)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-51-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-82-1.png)<!-- -->
 
 We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
 
@@ -2317,7 +2317,7 @@ tidySEM::graph_sem(ModMedOnA_fit, layout = comb_map, rect_width = 1.5,
     rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-54-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-85-1.png)<!-- -->
 
 
 ### Create a table that includes regression output for the M and Y variables and the moderated effects {-}
@@ -2394,7 +2394,7 @@ interactions::interact_plot(mod_a_path, pred = TradPed, modx = Centering) +
     ylim(1, 5)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-56-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-87-1.png)<!-- -->
 
 
 
@@ -2496,7 +2496,7 @@ Quick peek at relations between variables:
 psych::pairs.panels(babydf)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-64-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-118-1.png)<!-- -->
 
 ### Using a piecewise approach, run each of the simple models in the grander design {-} 
 
@@ -2640,7 +2640,7 @@ interactions::interact_plot(Mod_b_path, pred = SRPed, modx = TradPed) +
 ## Warning: 5.02351626747081 is outside the observed range of TradPed
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-67-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-121-1.png)<!-- -->
 Even though this graphs looks as though socially responsive pedagogy leads to higher perceived value (a gentle, positive slope) the non-significant main effect indicates this slope is not statistically significant.
 
 Further, even though it *appears* that higher ratings of traditional pedagogy are associated with greater perceived value, this main effect was also non-significant.
@@ -2727,7 +2727,7 @@ medmodel_Sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 25 iterations
+## lavaan 0.6.17 ended normally after 25 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2840,7 +2840,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = medmodel_fit)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-70-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-124-1.png)<!-- -->
 
 We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
 
@@ -2878,7 +2878,7 @@ tidySEM::graph_sem(medmodel_fit, layout = medmap, rect_width = 1.25, rect_height
     spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-73-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-127-1.png)<!-- -->
 ### Specify and run the entire lavaan model {-}
 
 
@@ -2932,7 +2932,7 @@ ModMedOnBsum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 29 iterations
+## lavaan 0.6.17 ended normally after 29 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3092,7 +3092,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = ModMedOnB_fit)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-75-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-129-1.png)<!-- -->
 
 We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
 
@@ -3132,7 +3132,7 @@ tidySEM::graph_sem(ModMedOnB_fit, layout = comb_map, rect_width = 1.25,
     rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-78-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-132-1.png)<!-- -->
 
 
 ### Create a table that includes regression output for the M and Y variables and the moderated effects {-}
@@ -3212,7 +3212,7 @@ interactions::interact_plot(Mod_b_path, pred = SRPed, modx = TradPed) +
 ## Warning: 5.02351626747081 is outside the observed range of TradPed
 ```
 
-![](08-CPA_files/figure-docx/unnamed-chunk-80-1.png)<!-- -->
+![](08-CPA_files/figure-docx/unnamed-chunk-134-1.png)<!-- -->
 
 ```r
 # interactions::interact_plot(Mod_c_path, pred = TradPed, modx =

@@ -1,7 +1,0 @@
-"0","set.seed(210515)"
-"0","RndmSmpl30 <- LfvrWide[sample(1:nrow(LfvrWide), 30,"
-"0","   replace=FALSE),] "
-"0","RndmLong <- (data.table::melt(setDT(RndmSmpl30), id.vars = c(""ClientID"", ""DRel0"", ""Het0""), measure.vars =list(c(""Anx1"", ""Anx2"", ""Anx3"", ""Anx4"", ""Anx5""), c(""Sess1"", ""Sess2"", ""Sess3"", ""Sess4"", ""Sess5""))))"
-"0","RndmLong<-  rename(RndmLong<-  rename(RndmLong<-  rename(RndmLong, Index = variable, Anxiety = ""value1"", Session0 = ""value2"")))"
-"0","#resorting data so that each person is together"
-"0","RndmLong <- arrange(RndmLong, ClientID, Index)"

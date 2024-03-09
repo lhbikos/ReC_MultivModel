@@ -1,2 +1,0 @@
-"0","set.seed(230916)#necessary for reproducible results since lavaan introduces randomness in the estimation proces"
-"0","Kim_fit <- lavaan::sem(modKim, data = dfModel, se=""bootstrap"", missing= 'fiml')"

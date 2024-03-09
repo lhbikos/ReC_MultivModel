@@ -1,21 +1,21 @@
 --- 
 title: "ReCentering Psych Stats: Multivariate Modeling"
 author: "Lynette H. Bikos, PhD, ABPP"
-date: "12 Nov 2023" 
+date: "08 Mar 2024" 
 site: bookdown::bookdown_site
 documentclass: book
+bibliography: STATSnMETH.bib #This is my own bibtex file from my Zotero account. If this file is not in the project folder there will be an error and the book will not build.
+citation-style: apa-single-spaced.csl #if you want APA style
+link-citations: yes
+urlcolor: blue #without this the links in the PDF do not show
 fontsize: 11pt
 geometry: margin=1in
 highlight: tango
-urlcolor: blue #without this the links in the PDF do not show
-citation-style: apa-single-spaced.csl #if you want APA style
-bibliography: STATSnMETH.bib #This is my own bibtex file from my Zotero account. If this file is not in the project folder there will be an error and the book will not build.
-link-citations: yes
 url: https://lhbikos.github.io/ReC_MultivModel/ #a link to the GitHub pages where it is rendered
 cover-image: images/ReC_multivariate_bkcvr.png #link to the image for the book shows up in previews
 description: |
   "Multivariate Modeling" is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation.
-github-repo: lhbikos/extRas
+github-repo: lhbikos/ReC_MultivModel
 ---
 
 # BOOK COVER {-}
@@ -33,7 +33,7 @@ All materials used in creating this OER are available at its [GitHub repo](https
 
 # PREFACE {-}
 
-**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 12 Nov 2023**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
+**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 08 Mar 2024**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
 
 [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a)
 
@@ -67,6 +67,8 @@ As a doctoral student at the University of Kansas (1992-2005), I learned that "a
 The inspiration for training materials that re*center statistics and research methods came from the [Academics for Black Survival and Wellness Initiative](https://www.academics4blacklives.com/). This project, co-founded by Della V. Mosley, Ph.D., and Pearis L. Bellamy, M.S., made clear the necessity and urgency for change in higher education and the profession of psychology. 
 
 At very practical levels, I am indebted to SPU's Library, and more specifically, SPU's Education, Technology, and Media Department.  Assistant Dean for Instructional Design and Emerging Technologies, R. John Robertson, MSc, MCS, has offered unlimited consultation, support, and connection. Senior Instructional Designer in Graphics & Illustrations, Dominic Wilkinson, designed the logo and bookcover.  Psychology and Scholarly Communications Librarian, Kristin Hoffman, MLIS, has provided consultation on topics ranging from OERS to citations. I am alo indebted to Associate Vice President, Teaching and Learning at Kwantlen Polytechnic University, Rajiv Jhangiani, PhD. Dr. Jhangiani's text [-@jhangiani_research_2019] was the first OER I ever used and I was grateful for his encouraging conversation.
+
+The creation of this OER has relied on strong peer and student support. Students have served as editorial assistants in copyediting the text and correcting the text captions. Students who have held the Editorial Assistant role include Octavia Bettger, Daisjha Ramey, Nika Yermakova, Wesley Suit, Ruth Tekle, and emma Anaminyi.
 
 Financial support for this project has been provided the following:
 

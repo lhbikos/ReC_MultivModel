@@ -6,13 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 SEM: Model Respecifications | ReCentering Psych Stats: Multivariate Modeling</title>
   <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 SEM: Model Respecifications | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
   <meta property="og:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="github-repo" content="lhbikos/extRas" />
+  <meta name="github-repo" content="lhbikos/ReC_MultivModel" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 11 SEM: Model Respecifications | ReCentering Psych Stats: Multivariate Modeling" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2023-11-12" />
+<meta name="date" content="2024-03-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -829,6 +829,18 @@ div.csl-indent {
 <li class="chapter" data-level="13.7.4" data-path="MLMexplore.html"><a href="MLMexplore.html#grading-rubric-11"><i class="fa fa-check"></i><b>13.7.4</b> Grading Rubric</a></li>
 </ul></li>
 <li class="chapter" data-level="13.8" data-path="MLMexplore.html"><a href="MLMexplore.html#simulated-data-when-depression-is-the-outcome"><i class="fa fa-check"></i><b>13.8</b> Simulated Data when Depression is the Outcome</a></li>
+<li class="chapter" data-level="13.9" data-path="MLMexplore.html"><a href="MLMexplore.html#homeworked-example-9"><i class="fa fa-check"></i><b>13.9</b> Homeworked Example</a>
+<ul>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#identify-and-describe-the-variables-in-the-model-there-should-be-a-time-varying-dv-and-predictor-as-well-as-an-l2-predictor"><i class="fa fa-check"></i>Identify and describe the variables in the model; there should be a time-varying DV and predictor as well as an L2 predictor</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#import-the-data-and-format-the-variables-in-the-model-7"><i class="fa fa-check"></i>### Import the data and format the variables in the model</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#restructure-the-dataset-from-wide-to-long-or-from-long-to-wide"><i class="fa fa-check"></i>Restructure the dataset from wide to long (or from long to wide)</a></li>
+<li class="chapter" data-level="13.9.1" data-path="MLMexplore.html"><a href="MLMexplore.html#produce-multilevel-descriptive-statistics-and-correlation-matrix"><i class="fa fa-check"></i><b>13.9.1</b> Produce multilevel descriptive statistics and correlation matrix</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-an-unfitted-model"><i class="fa fa-check"></i>Explore data with an unfitted model</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-a-model-fitted-with-a-linear-growth-trajectory"><i class="fa fa-check"></i>Explore data with a model fitted with a linear growth trajectory</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-the-fitted-or-unfitted-data-identified-by-the-l2-predictor"><i class="fa fa-check"></i>Explore data with the fitted (or unfitted) data identified by the L2 predictor</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#provide-a-write-up-of-what-you-found-in-this-process"><i class="fa fa-check"></i>Provide a write-up of what you found in this process</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explanation-to-grader-6"><i class="fa fa-check"></i>Explanation to grader</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="LongMod.html"><a href="LongMod.html"><i class="fa fa-check"></i><b>14</b> A Basic Longitudinal Model</a>
 <ul>
@@ -878,6 +890,47 @@ div.csl-indent {
 <li class="chapter" data-level="14.10.2" data-path="LongMod.html"><a href="LongMod.html#problem-2-rework-the-research-vignette-but-use-the-depression-variable-as-an-outcome"><i class="fa fa-check"></i><b>14.10.2</b> Problem #2: Rework the research vignette, but use the depression variable as an outcome</a></li>
 <li class="chapter" data-level="14.10.3" data-path="LongMod.html"><a href="LongMod.html#problem-3-use-other-data-that-is-available-to-you-6"><i class="fa fa-check"></i><b>14.10.3</b> Problem #3: Use other data that is available to you</a></li>
 <li class="chapter" data-level="14.10.4" data-path="LongMod.html"><a href="LongMod.html#grading-rubric-12"><i class="fa fa-check"></i><b>14.10.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="TimeLord.html"><a href="TimeLord.html"><i class="fa fa-check"></i><b>15</b> Calendrical Time (and Missingness) in MLMs</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="TimeLord.html"><a href="TimeLord.html#navigating-this-lesson-14"><i class="fa fa-check"></i><b>15.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="TimeLord.html"><a href="TimeLord.html#learning-objectives-14"><i class="fa fa-check"></i><b>15.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="15.1.2" data-path="TimeLord.html"><a href="TimeLord.html#planning-for-practice-14"><i class="fa fa-check"></i><b>15.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="15.1.3" data-path="TimeLord.html"><a href="TimeLord.html#readings-resources-14"><i class="fa fa-check"></i><b>15.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="15.1.4" data-path="TimeLord.html"><a href="TimeLord.html#packages-14"><i class="fa fa-check"></i><b>15.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="TimeLord.html"><a href="TimeLord.html#exploring-variants-of-time-and-balance"><i class="fa fa-check"></i><b>15.2</b> Exploring Variants of Time and Balance</a></li>
+<li class="chapter" data-level="15.3" data-path="TimeLord.html"><a href="TimeLord.html#research-vignette-14"><i class="fa fa-check"></i><b>15.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="TimeLord.html"><a href="TimeLord.html#simulating-the-data-from-the-journal-article-7"><i class="fa fa-check"></i><b>15.3.1</b> Simulating the data from the journal article</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="TimeLord.html"><a href="TimeLord.html#more-simulation-appointment-dates"><i class="fa fa-check"></i><b>15.4</b> More Simulation – Appointment Dates</a></li>
+<li class="chapter" data-level="15.5" data-path="TimeLord.html"><a href="TimeLord.html#reworking-lefevor-et-al.-using-calendrical-time-and-unbalanced-data"><i class="fa fa-check"></i><b>15.5</b> Reworking Lefevor et al. using Calendrical Time (and Unbalanced Data)</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="TimeLord.html"><a href="TimeLord.html#creating-time-intervals"><i class="fa fa-check"></i><b>15.5.1</b> Creating Time Intervals</a></li>
+<li class="chapter" data-level="15.5.2" data-path="TimeLord.html"><a href="TimeLord.html#wide-to-long"><i class="fa fa-check"></i><b>15.5.2</b> Wide to Long</a></li>
+<li class="chapter" data-level="15.5.3" data-path="TimeLord.html"><a href="TimeLord.html#mlm-is-for-unbalanced-designs"><i class="fa fa-check"></i><b>15.5.3</b> MLM is for unbalanced designs</a></li>
+<li class="chapter" data-level="15.5.4" data-path="TimeLord.html"><a href="TimeLord.html#abbreviated-ols-style-exploration"><i class="fa fa-check"></i><b>15.5.4</b> Abbreviated OLS Style Exploration</a></li>
+<li class="chapter" data-level="15.5.5" data-path="TimeLord.html"><a href="TimeLord.html#rebuilding-the-model-unstructured-time-unbalanced-design"><i class="fa fa-check"></i><b>15.5.5</b> Rebuilding the Model (Unstructured Time, Unbalanced Design)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="TimeLord.html"><a href="TimeLord.html#structured-time-reworking-the-vignette-with-index"><i class="fa fa-check"></i><b>15.6</b> Structured Time: Reworking the Vignette with Index</a></li>
+<li class="chapter" data-level="15.7" data-path="TimeLord.html"><a href="TimeLord.html#apa-style-writeup-8"><i class="fa fa-check"></i><b>15.7</b> APA Style Writeup</a></li>
+<li class="chapter" data-level="15.8" data-path="TimeLord.html"><a href="TimeLord.html#residual-and-related-questions-5"><i class="fa fa-check"></i><b>15.8</b> Residual and Related Questions…</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="TimeLord.html"><a href="TimeLord.html#what-did-we-gainlose-by-using-weeks-or-sessnum-unstructured-versus-index-structured-to-mark-time"><i class="fa fa-check"></i><b>15.8.1</b> What did we gain/lose by using Weeks or SessNum (unstructured) versus Index (structured) to mark time?</a></li>
+<li class="chapter" data-level="15.8.2" data-path="TimeLord.html"><a href="TimeLord.html#how-did-the-unbalanced-time-impact-the-analysis-and-results"><i class="fa fa-check"></i><b>15.8.2</b> How did the unbalanced time impact the analysis and results?</a></li>
+</ul></li>
+<li class="chapter" data-level="15.9" data-path="TimeLord.html"><a href="TimeLord.html#practice-problems-14"><i class="fa fa-check"></i><b>15.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="TimeLord.html"><a href="TimeLord.html#problem-1-rework-this-lessons-example-by-changing-the-time-metric-to-days-or-months"><i class="fa fa-check"></i><b>15.9.1</b> Problem #1: Rework this Lesson’s Example by Changing the Time Metric to Days or Months</a></li>
+<li class="chapter" data-level="15.9.2" data-path="TimeLord.html"><a href="TimeLord.html#problem-2-compare-balanced-and-unbalanced-designs"><i class="fa fa-check"></i><b>15.9.2</b> Problem #2: Compare balanced and unbalanced designs</a></li>
+<li class="chapter" data-level="15.9.3" data-path="TimeLord.html"><a href="TimeLord.html#problem-3-experiment-with-time-and-balanceunbalance-in-data-that-is-available-to-you"><i class="fa fa-check"></i><b>15.9.3</b> Problem #3: Experiment with time and balance/unbalance in data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="TimeLord.html"><a href="TimeLord.html#bonus-track-2"><i class="fa fa-check"></i><b>15.10</b> Bonus Track:</a>
+<ul>
+<li class="chapter" data-level="15.10.1" data-path="TimeLord.html"><a href="TimeLord.html#faqs"><i class="fa fa-check"></i><b>15.10.1</b> FAQs</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="REFS.html"><a href="REFS.html"><i class="fa fa-check"></i>REFERENCES</a></li>
@@ -1119,7 +1172,7 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 <span id="cb759-2"><a href="respecify.html#cb759-2" tabindex="-1"></a></span>
 <span id="cb759-3"><a href="respecify.html#cb759-3" tabindex="-1"></a></span>
 <span id="cb759-4"><a href="respecify.html#cb759-4" tabindex="-1"></a>Lewis_generating_model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb759-5"><a href="respecify.html#cb759-5" tabindex="-1"></a><span class="st">        ##measurement model</span></span>
+<span id="cb759-5"><a href="respecify.html#cb759-5" tabindex="-1"></a><span class="st">        #measurement model</span></span>
 <span id="cb759-6"><a href="respecify.html#cb759-6" tabindex="-1"></a><span class="st">        GRMS  =~ .69*Ob1 + .69*Ob2 + .60*Ob3 + .59*Ob4 + .55*Ob5 + .55*Ob6 + .54*Ob7 + .50*Ob8 + .41*Ob9 + .41*Ob10 + .93*Ma1 + .81*Ma2 + .69*Ma3 + .67*Ma4 + .61*Ma5 + .58*Ma6 + .54*Ma7 + .59*St1 + .55*St2 + .54*St3 + .54*St4 + .51*St5 + .70*An1 + .69*An2 + .68*An3</span></span>
 <span id="cb759-7"><a href="respecify.html#cb759-7" tabindex="-1"></a><span class="st">        MntlHlth  =~ .8*MH1 + .8*MH2 + .8*MH3 + .8*MH4 + .8*MH5 + .8*MH6</span></span>
 <span id="cb759-8"><a href="respecify.html#cb759-8" tabindex="-1"></a><span class="st">        PhysHlth  =~ .8*PhH1 + .8*PhH2 + .8*PhH3 + .8*PhH4 + .8*PhH5 + .8*PhH6</span></span>
@@ -1129,7 +1182,7 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 <span id="cb759-12"><a href="respecify.html#cb759-12" tabindex="-1"></a><span class="st">        Disengagement  =~  .8*dEng1 + .8*dEng2</span></span>
 <span id="cb759-13"><a href="respecify.html#cb759-13" tabindex="-1"></a><span class="st">        GRIC  =~ .8*Cntrlty1 + .8*Cntrlty2 + .8*Cntrlty3 + .8*Cntrlty4 + .8*Cntrlty5 + .8*Cntrlty6 + .8*Cntrlty7 + .8*Cntrlty8 + .8*Cntrlty9 + .8*Cntrlty10</span></span>
 <span id="cb759-14"><a href="respecify.html#cb759-14" tabindex="-1"></a><span class="st">   </span></span>
-<span id="cb759-15"><a href="respecify.html#cb759-15" tabindex="-1"></a><span class="st">        # Means</span></span>
+<span id="cb759-15"><a href="respecify.html#cb759-15" tabindex="-1"></a><span class="st">        #Means</span></span>
 <span id="cb759-16"><a href="respecify.html#cb759-16" tabindex="-1"></a><span class="st">         GRMS ~ 1.99*1</span></span>
 <span id="cb759-17"><a href="respecify.html#cb759-17" tabindex="-1"></a><span class="st">         Spirituality ~2.82*1</span></span>
 <span id="cb759-18"><a href="respecify.html#cb759-18" tabindex="-1"></a><span class="st">         SocSupport ~ 2.48*1</span></span>
@@ -1139,7 +1192,7 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 <span id="cb759-22"><a href="respecify.html#cb759-22" tabindex="-1"></a><span class="st">         MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation</span></span>
 <span id="cb759-23"><a href="respecify.html#cb759-23" tabindex="-1"></a><span class="st">         PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation</span></span>
 <span id="cb759-24"><a href="respecify.html#cb759-24" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb759-25"><a href="respecify.html#cb759-25" tabindex="-1"></a><span class="st">        # Correlations </span></span>
+<span id="cb759-25"><a href="respecify.html#cb759-25" tabindex="-1"></a><span class="st">        #Correlations </span></span>
 <span id="cb759-26"><a href="respecify.html#cb759-26" tabindex="-1"></a><span class="st">         GRMS ~ 0.20*Spirituality</span></span>
 <span id="cb759-27"><a href="respecify.html#cb759-27" tabindex="-1"></a><span class="st">         GRMS ~ 0.28*SocSupport</span></span>
 <span id="cb759-28"><a href="respecify.html#cb759-28" tabindex="-1"></a><span class="st">         GRMS ~ 0.30*Engagement</span></span>
@@ -1411,7 +1464,7 @@ To proceed with this approach, I first need to create parcels for the GRMS, MH, 
 <span id="cb773-40"><a href="respecify.html#cb773-40" tabindex="-1"></a>msmt_fit_pEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(msmt_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb773-41"><a href="respecify.html#cb773-41" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb773-42"><a href="respecify.html#cb773-42" tabindex="-1"></a>msmt_fit_sum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 106 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 106 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1549,13 +1602,6 @@ To proceed with this approach, I first need to create parcels for the GRMS, MH, 
 ##    .Eng2              2.515    0.038   65.479    0.000    2.515    4.308
 ##    .dEng1             2.502    0.039   63.518    0.000    2.502    4.179
 ##    .dEng2             2.455    0.041   59.357    0.000    2.455    3.905
-##     GRMS              0.000                               0.000    0.000
-##     MH                0.000                               0.000    0.000
-##     PhH               0.000                               0.000    0.000
-##     Spr               0.000                               0.000    0.000
-##     SSp               0.000                               0.000    0.000
-##     Eng               0.000                               0.000    0.000
-##     dEng              0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -1894,7 +1940,7 @@ To proceed with this approach, I first need to create parcels for the GRMS, MH, 
 <span id="cb785-45"><a href="respecify.html#cb785-45" tabindex="-1"></a>struct_pEsts1 <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(struct_fit1, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb785-46"><a href="respecify.html#cb785-46" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb785-47"><a href="respecify.html#cb785-47" tabindex="-1"></a>struct_summary1</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 117 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 117 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2030,13 +2076,6 @@ To proceed with this approach, I first need to create parcels for the GRMS, MH, 
 ##    .Eng2              2.515    0.038   65.524    0.000    2.515    4.311
 ##    .dEng1             2.502    0.040   63.179    0.000    2.502    4.157
 ##    .dEng2             2.455    0.041   59.610    0.000    2.455    3.922
-##     GRMS              0.000                               0.000    0.000
-##    .MH                0.000                               0.000    0.000
-##    .PhH               0.000                               0.000    0.000
-##    .Spr               0.000                               0.000    0.000
-##    .SSp               0.000                               0.000    0.000
-##    .Eng               0.000                               0.000    0.000
-##    .dEng              0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -2188,21 +2227,14 @@ Although the code below may look daunting, I find it to be a fairly straightforw
 <span id="cb792-7"><a href="respecify.html#cb792-7" tabindex="-1"></a>m1_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;GRM&quot;</span>, <span class="st">&quot;GRM&quot;</span>, <span class="st">&quot;GRM&quot;</span>, <span class="st">&quot;MH&quot;</span>, <span class="st">&quot;MH&quot;</span>, <span class="st">&quot;MH&quot;</span>, <span class="st">&quot;PhH&quot;</span>,</span>
 <span id="cb792-8"><a href="respecify.html#cb792-8" tabindex="-1"></a>    <span class="st">&quot;PhH&quot;</span>, <span class="st">&quot;PhH&quot;</span>, <span class="st">&quot;Spr&quot;</span>, <span class="st">&quot;Spr&quot;</span>, <span class="st">&quot;SSp&quot;</span>, <span class="st">&quot;SSp&quot;</span>, <span class="st">&quot;Eng&quot;</span>, <span class="st">&quot;Eng&quot;</span>, <span class="st">&quot;dEn&quot;</span>, <span class="st">&quot;dEn&quot;</span>)</span></code></pre></div>
 <p>The next two sets of codes provide some guidance about how far away the indicator (square/rectangular) variables should be away from the latent (oval/circular) variables. Subsequently, the next set of values indicate how far away each of the indicator (square/rectangular) variables should be spread apart.</p>
-<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="respecify.html#cb793-1" tabindex="-1"></a><span class="co">#next set of code pushes the indicator variables away from the factor</span></span>
-<span id="cb793-2"><a href="respecify.html#cb793-2" tabindex="-1"></a>m1_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">GRM =</span> .<span class="dv">5</span>, </span>
-<span id="cb793-3"><a href="respecify.html#cb793-3" tabindex="-1"></a>                    <span class="at">MH =</span> <span class="dv">1</span>,</span>
-<span id="cb793-4"><a href="respecify.html#cb793-4" tabindex="-1"></a>                    <span class="at">PhH =</span> <span class="dv">1</span>, </span>
-<span id="cb793-5"><a href="respecify.html#cb793-5" tabindex="-1"></a>                    <span class="at">Spr =</span> <span class="dv">2</span>,</span>
-<span id="cb793-6"><a href="respecify.html#cb793-6" tabindex="-1"></a>                    <span class="at">SSp =</span> <span class="fl">1.5</span>,</span>
-<span id="cb793-7"><a href="respecify.html#cb793-7" tabindex="-1"></a>                    <span class="at">Eng =</span> <span class="fl">1.5</span>,</span>
-<span id="cb793-8"><a href="respecify.html#cb793-8" tabindex="-1"></a>                    <span class="at">dEn =</span> <span class="dv">2</span>)</span>
-<span id="cb793-9"><a href="respecify.html#cb793-9" tabindex="-1"></a>m1_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">GRM =</span> .<span class="dv">5</span>, <span class="co">#spreading the boxes away from each other</span></span>
-<span id="cb793-10"><a href="respecify.html#cb793-10" tabindex="-1"></a>                    <span class="at">MH =</span> <span class="fl">2.5</span>,</span>
-<span id="cb793-11"><a href="respecify.html#cb793-11" tabindex="-1"></a>                    <span class="at">PhH =</span> <span class="fl">2.5</span>, </span>
-<span id="cb793-12"><a href="respecify.html#cb793-12" tabindex="-1"></a>                    <span class="at">Spr =</span> <span class="dv">1</span>,</span>
-<span id="cb793-13"><a href="respecify.html#cb793-13" tabindex="-1"></a>                    <span class="at">SSp =</span> <span class="dv">1</span>,</span>
-<span id="cb793-14"><a href="respecify.html#cb793-14" tabindex="-1"></a>                    <span class="at">Eng =</span> <span class="dv">1</span>,</span>
-<span id="cb793-15"><a href="respecify.html#cb793-15" tabindex="-1"></a>                    <span class="at">dEn =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="respecify.html#cb793-1" tabindex="-1"></a><span class="co"># next set of code pushes the indicator variables away from the</span></span>
+<span id="cb793-2"><a href="respecify.html#cb793-2" tabindex="-1"></a><span class="co"># factor</span></span>
+<span id="cb793-3"><a href="respecify.html#cb793-3" tabindex="-1"></a>m1_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">GRM =</span> <span class="fl">0.5</span>, <span class="at">MH =</span> <span class="dv">1</span>, <span class="at">PhH =</span> <span class="dv">1</span>, <span class="at">Spr =</span> <span class="dv">2</span>, <span class="at">SSp =</span> <span class="fl">1.5</span>,</span>
+<span id="cb793-4"><a href="respecify.html#cb793-4" tabindex="-1"></a>    <span class="at">Eng =</span> <span class="fl">1.5</span>, <span class="at">dEn =</span> <span class="dv">2</span>)</span>
+<span id="cb793-5"><a href="respecify.html#cb793-5" tabindex="-1"></a></span>
+<span id="cb793-6"><a href="respecify.html#cb793-6" tabindex="-1"></a><span class="co"># spreading the boxes away from each other</span></span>
+<span id="cb793-7"><a href="respecify.html#cb793-7" tabindex="-1"></a>m1_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">GRM =</span> <span class="fl">0.5</span>, <span class="at">MH =</span> <span class="fl">2.5</span>, <span class="at">PhH =</span> <span class="fl">2.5</span>, <span class="at">Spr =</span> <span class="dv">1</span>, <span class="at">SSp =</span> <span class="dv">1</span>,</span>
+<span id="cb793-8"><a href="respecify.html#cb793-8" tabindex="-1"></a>    <span class="at">Eng =</span> <span class="dv">1</span>, <span class="at">dEn =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Finally, we can feed all of the objects that whole these instructions into the <em>semptools::sem_set_layout</em> function. If desired, we can use the <em>semptools::change_node_label</em> function to rename the latent variables. Again, make sure to use the variable names that <em>semPlot::semPaths</em> has assigned.</p>
 <div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="respecify.html#cb794-1" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">set_sem_layout</span>(plot_struct1, <span class="at">indicator_order =</span> m1_indicator_order,</span>
 <span id="cb794-2"><a href="respecify.html#cb794-2" tabindex="-1"></a>    <span class="at">indicator_factor =</span> m1_indicator_factor, <span class="at">factor_layout =</span> m1_msmt, <span class="at">factor_point_to =</span> m1_point_to,</span>
@@ -2662,7 +2694,7 @@ The statistical string for the global fit indices can be represented this way: <
 <span id="cb799-52"><a href="respecify.html#cb799-52" tabindex="-1"></a>struct_pEsts2 <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(struct_fit2, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb799-53"><a href="respecify.html#cb799-53" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb799-54"><a href="respecify.html#cb799-54" tabindex="-1"></a>struct_summary2</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 121 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 121 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2800,13 +2832,6 @@ The statistical string for the global fit indices can be represented this way: <
 ##    .Eng2              2.515    0.038   65.530    0.000    2.515    4.312
 ##    .dEng1             2.502    0.040   63.177    0.000    2.502    4.157
 ##    .dEng2             2.455    0.041   59.612    0.000    2.455    3.922
-##     GRMS              0.000                               0.000    0.000
-##    .MH                0.000                               0.000    0.000
-##    .PhH               0.000                               0.000    0.000
-##    .Spr               0.000                               0.000    0.000
-##    .SSp               0.000                               0.000    0.000
-##    .Eng               0.000                               0.000    0.000
-##    .dEng              0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -2973,7 +2998,7 @@ Because we haven’t added or deleted variables (only 1 path) and we want them t
 <span id="cb806-44"><a href="respecify.html#cb806-44" tabindex="-1"></a>struct_pEsts3 <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(struct_fit3, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb806-45"><a href="respecify.html#cb806-45" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb806-46"><a href="respecify.html#cb806-46" tabindex="-1"></a>struct_summary3</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 113 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 113 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3110,13 +3135,6 @@ Because we haven’t added or deleted variables (only 1 path) and we want them t
 ##    .Eng2              2.515    0.038   65.524    0.000    2.515    4.311
 ##    .dEng1             2.502    0.040   63.179    0.000    2.502    4.157
 ##    .dEng2             2.455    0.041   59.610    0.000    2.455    3.922
-##     GRMS              0.000                               0.000    0.000
-##    .MH                0.000                               0.000    0.000
-##    .PhH               0.000                               0.000    0.000
-##    .Spr               0.000                               0.000    0.000
-##    .SSp               0.000                               0.000    0.000
-##    .Eng               0.000                               0.000    0.000
-##    .dEng              0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -3274,7 +3292,7 @@ Close inspection shows that there are no longer <em>b</em> paths from social sup
 <span id="cb815-44"><a href="respecify.html#cb815-44" tabindex="-1"></a>struct_pEsts4 <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(struct_fit4, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb815-45"><a href="respecify.html#cb815-45" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb815-46"><a href="respecify.html#cb815-46" tabindex="-1"></a>struct_summary4</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 64 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 64 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3392,11 +3410,6 @@ Close inspection shows that there are no longer <em>b</em> paths from social sup
 ##    .Eng2              2.515    0.038   65.523    0.000    2.515    4.311
 ##    .dEng1             2.502    0.040   63.148    0.000    2.502    4.155
 ##    .dEng2             2.455    0.041   59.634    0.000    2.455    3.924
-##     GRMS              0.000                               0.000    0.000
-##    .MH                0.000                               0.000    0.000
-##    .PhH               0.000                               0.000    0.000
-##    .Eng               0.000                               0.000    0.000
-##    .dEng              0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -3494,67 +3507,44 @@ Although the code below may look daunting, I find it to be a fairly straightforw
 </tbody>
 </table>
 <p>We place these values along with the names of our latent variables in to the <em>semptools::layout_matrix</em> function.</p>
-<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="respecify.html#cb819-1" tabindex="-1"></a><span class="co">#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot</span></span>
-<span id="cb819-2"><a href="respecify.html#cb819-2" tabindex="-1"></a><span class="co">#You can change them as the last thing</span></span>
-<span id="cb819-3"><a href="respecify.html#cb819-3" tabindex="-1"></a>m4_msmt <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">GRM =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>),</span>
-<span id="cb819-4"><a href="respecify.html#cb819-4" tabindex="-1"></a>                                  <span class="at">Eng =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb819-5"><a href="respecify.html#cb819-5" tabindex="-1"></a>                                  <span class="at">dEn =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">2</span>),</span>
-<span id="cb819-6"><a href="respecify.html#cb819-6" tabindex="-1"></a>                                  <span class="at">MH =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>),</span>
-<span id="cb819-7"><a href="respecify.html#cb819-7" tabindex="-1"></a>                                  <span class="at">PhH =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>))</span>
-<span id="cb819-8"><a href="respecify.html#cb819-8" tabindex="-1"></a></span>
-<span id="cb819-9"><a href="respecify.html#cb819-9" tabindex="-1"></a><span class="co">#tell where you want the indicators to face</span></span>
-<span id="cb819-10"><a href="respecify.html#cb819-10" tabindex="-1"></a>m4_point_to <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span> (<span class="at">left =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>),</span>
-<span id="cb819-11"><a href="respecify.html#cb819-11" tabindex="-1"></a>                                      <span class="at">up =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb819-12"><a href="respecify.html#cb819-12" tabindex="-1"></a>                                      <span class="at">down =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">2</span>),</span>
-<span id="cb819-13"><a href="respecify.html#cb819-13" tabindex="-1"></a>                                       <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>),</span>
-<span id="cb819-14"><a href="respecify.html#cb819-14" tabindex="-1"></a>                                       <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>))</span>
+<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="respecify.html#cb819-1" tabindex="-1"></a><span class="co"># IMPORTANT: Must use the node names (take directly from the SemPlot)</span></span>
+<span id="cb819-2"><a href="respecify.html#cb819-2" tabindex="-1"></a><span class="co"># assigned by SemPlot You can change them as the last thing</span></span>
+<span id="cb819-3"><a href="respecify.html#cb819-3" tabindex="-1"></a>m4_msmt <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">GRM =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>), <span class="at">Eng =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">dEn =</span> <span class="fu">c</span>(<span class="dv">5</span>,</span>
+<span id="cb819-4"><a href="respecify.html#cb819-4" tabindex="-1"></a>    <span class="dv">2</span>), <span class="at">MH =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="at">PhH =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">3</span>))</span>
+<span id="cb819-5"><a href="respecify.html#cb819-5" tabindex="-1"></a></span>
+<span id="cb819-6"><a href="respecify.html#cb819-6" tabindex="-1"></a><span class="co"># tell where you want the indicators to face</span></span>
+<span id="cb819-7"><a href="respecify.html#cb819-7" tabindex="-1"></a>m4_point_to <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">left =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>), <span class="at">up =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">down =</span> <span class="fu">c</span>(<span class="dv">5</span>,</span>
+<span id="cb819-8"><a href="respecify.html#cb819-8" tabindex="-1"></a>    <span class="dv">2</span>), <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">3</span>))</span>
+<span id="cb819-9"><a href="respecify.html#cb819-9" tabindex="-1"></a></span>
+<span id="cb819-10"><a href="respecify.html#cb819-10" tabindex="-1"></a><span class="co"># the next two codes -- indicator_order and indicator_factor are</span></span>
+<span id="cb819-11"><a href="respecify.html#cb819-11" tabindex="-1"></a><span class="co"># paired together, they specify the order of observed variables for</span></span>
+<span id="cb819-12"><a href="respecify.html#cb819-12" tabindex="-1"></a><span class="co"># each factor</span></span>
+<span id="cb819-13"><a href="respecify.html#cb819-13" tabindex="-1"></a>m4_indicator_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;p1G&quot;</span>, <span class="st">&quot;p2G&quot;</span>, <span class="st">&quot;p3G&quot;</span>, <span class="st">&quot;p1M&quot;</span>, <span class="st">&quot;p2M&quot;</span>, <span class="st">&quot;p3M&quot;</span>, <span class="st">&quot;p1P&quot;</span>,</span>
+<span id="cb819-14"><a href="respecify.html#cb819-14" tabindex="-1"></a>    <span class="st">&quot;p2P&quot;</span>, <span class="st">&quot;p3P&quot;</span>, <span class="st">&quot;En1&quot;</span>, <span class="st">&quot;En2&quot;</span>, <span class="st">&quot;dE1&quot;</span>, <span class="st">&quot;dE2&quot;</span>)</span>
 <span id="cb819-15"><a href="respecify.html#cb819-15" tabindex="-1"></a></span>
-<span id="cb819-16"><a href="respecify.html#cb819-16" tabindex="-1"></a><span class="co">#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor</span></span>
-<span id="cb819-17"><a href="respecify.html#cb819-17" tabindex="-1"></a>m4_indicator_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;p1G&quot;</span>, <span class="st">&quot;p2G&quot;</span>, <span class="st">&quot;p3G&quot;</span>,</span>
-<span id="cb819-18"><a href="respecify.html#cb819-18" tabindex="-1"></a>                     <span class="st">&quot;p1M&quot;</span>, <span class="st">&quot;p2M&quot;</span>, <span class="st">&quot;p3M&quot;</span>,</span>
-<span id="cb819-19"><a href="respecify.html#cb819-19" tabindex="-1"></a>                     <span class="st">&quot;p1P&quot;</span>, <span class="st">&quot;p2P&quot;</span>, <span class="st">&quot;p3P&quot;</span>,</span>
-<span id="cb819-20"><a href="respecify.html#cb819-20" tabindex="-1"></a>                     <span class="st">&quot;En1&quot;</span>, <span class="st">&quot;En2&quot;</span>,</span>
-<span id="cb819-21"><a href="respecify.html#cb819-21" tabindex="-1"></a>                     <span class="st">&quot;dE1&quot;</span>, <span class="st">&quot;dE2&quot;</span>)</span>
+<span id="cb819-16"><a href="respecify.html#cb819-16" tabindex="-1"></a>m4_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;GRM&quot;</span>, <span class="st">&quot;GRM&quot;</span>, <span class="st">&quot;GRM&quot;</span>, <span class="st">&quot;MH&quot;</span>, <span class="st">&quot;MH&quot;</span>, <span class="st">&quot;MH&quot;</span>, <span class="st">&quot;PhH&quot;</span>,</span>
+<span id="cb819-17"><a href="respecify.html#cb819-17" tabindex="-1"></a>    <span class="st">&quot;PhH&quot;</span>, <span class="st">&quot;PhH&quot;</span>, <span class="st">&quot;Eng&quot;</span>, <span class="st">&quot;Eng&quot;</span>, <span class="st">&quot;dEn&quot;</span>, <span class="st">&quot;dEn&quot;</span>)</span>
+<span id="cb819-18"><a href="respecify.html#cb819-18" tabindex="-1"></a></span>
+<span id="cb819-19"><a href="respecify.html#cb819-19" tabindex="-1"></a><span class="co"># next set of code pushes the indicator variables away from the</span></span>
+<span id="cb819-20"><a href="respecify.html#cb819-20" tabindex="-1"></a><span class="co"># factor</span></span>
+<span id="cb819-21"><a href="respecify.html#cb819-21" tabindex="-1"></a>m4_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">GRM =</span> <span class="fl">0.5</span>, <span class="at">MH =</span> <span class="dv">1</span>, <span class="at">PhH =</span> <span class="dv">1</span>, <span class="at">Eng =</span> <span class="fl">1.5</span>, <span class="at">dEn =</span> <span class="dv">2</span>)</span>
 <span id="cb819-22"><a href="respecify.html#cb819-22" tabindex="-1"></a></span>
-<span id="cb819-23"><a href="respecify.html#cb819-23" tabindex="-1"></a>m4_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;GRM&quot;</span>, <span class="st">&quot;GRM&quot;</span>, <span class="st">&quot;GRM&quot;</span>,</span>
-<span id="cb819-24"><a href="respecify.html#cb819-24" tabindex="-1"></a>                      <span class="st">&quot;MH&quot;</span>, <span class="st">&quot;MH&quot;</span>, <span class="st">&quot;MH&quot;</span>,</span>
-<span id="cb819-25"><a href="respecify.html#cb819-25" tabindex="-1"></a>                      <span class="st">&quot;PhH&quot;</span>, <span class="st">&quot;PhH&quot;</span>, <span class="st">&quot;PhH&quot;</span>,</span>
-<span id="cb819-26"><a href="respecify.html#cb819-26" tabindex="-1"></a>                      <span class="st">&quot;Eng&quot;</span>, <span class="st">&quot;Eng&quot;</span>,</span>
-<span id="cb819-27"><a href="respecify.html#cb819-27" tabindex="-1"></a>                      <span class="st">&quot;dEn&quot;</span>, <span class="st">&quot;dEn&quot;</span>)</span>
-<span id="cb819-28"><a href="respecify.html#cb819-28" tabindex="-1"></a></span>
-<span id="cb819-29"><a href="respecify.html#cb819-29" tabindex="-1"></a><span class="co">#next set of code pushes the indicator variables away from the factor</span></span>
-<span id="cb819-30"><a href="respecify.html#cb819-30" tabindex="-1"></a>m4_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">GRM =</span> .<span class="dv">5</span>, </span>
-<span id="cb819-31"><a href="respecify.html#cb819-31" tabindex="-1"></a>                    <span class="at">MH =</span> <span class="dv">1</span>,</span>
-<span id="cb819-32"><a href="respecify.html#cb819-32" tabindex="-1"></a>                    <span class="at">PhH =</span> <span class="dv">1</span>,</span>
-<span id="cb819-33"><a href="respecify.html#cb819-33" tabindex="-1"></a>                    <span class="at">Eng =</span> <span class="fl">1.5</span>,</span>
-<span id="cb819-34"><a href="respecify.html#cb819-34" tabindex="-1"></a>                    <span class="at">dEn =</span> <span class="dv">2</span>)</span>
-<span id="cb819-35"><a href="respecify.html#cb819-35" tabindex="-1"></a>m4_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">GRM =</span> .<span class="dv">5</span>, <span class="co">#spreading the boxes away from each other</span></span>
-<span id="cb819-36"><a href="respecify.html#cb819-36" tabindex="-1"></a>                    <span class="at">MH =</span> <span class="dv">1</span>,</span>
-<span id="cb819-37"><a href="respecify.html#cb819-37" tabindex="-1"></a>                    <span class="at">PhH =</span> <span class="dv">1</span>, </span>
-<span id="cb819-38"><a href="respecify.html#cb819-38" tabindex="-1"></a>                    <span class="at">Eng =</span> <span class="dv">1</span>,</span>
-<span id="cb819-39"><a href="respecify.html#cb819-39" tabindex="-1"></a>                    <span class="at">dEn =</span> <span class="dv">1</span>)</span>
-<span id="cb819-40"><a href="respecify.html#cb819-40" tabindex="-1"></a></span>
-<span id="cb819-41"><a href="respecify.html#cb819-41" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">set_sem_layout</span>(plot_struct4,</span>
-<span id="cb819-42"><a href="respecify.html#cb819-42" tabindex="-1"></a>                                <span class="at">indicator_order =</span> m4_indicator_order,</span>
-<span id="cb819-43"><a href="respecify.html#cb819-43" tabindex="-1"></a>                                <span class="at">indicator_factor =</span> m4_indicator_factor,</span>
-<span id="cb819-44"><a href="respecify.html#cb819-44" tabindex="-1"></a>                                <span class="at">factor_layout =</span> m4_msmt,</span>
-<span id="cb819-45"><a href="respecify.html#cb819-45" tabindex="-1"></a>                                <span class="at">factor_point_to =</span> m4_point_to,</span>
-<span id="cb819-46"><a href="respecify.html#cb819-46" tabindex="-1"></a>                                <span class="at">indicator_push =</span> m4_indicator_push,</span>
-<span id="cb819-47"><a href="respecify.html#cb819-47" tabindex="-1"></a>                                <span class="at">indicator_spread =</span> m4_indicator_spread)</span>
-<span id="cb819-48"><a href="respecify.html#cb819-48" tabindex="-1"></a></span>
-<span id="cb819-49"><a href="respecify.html#cb819-49" tabindex="-1"></a><span class="co">#changing node labels -- throwing an error and I&#39;m not sure why, it worked above</span></span>
-<span id="cb819-50"><a href="respecify.html#cb819-50" tabindex="-1"></a><span class="co">#plot4 &lt;- semptools::change_node_label(plot4,</span></span>
-<span id="cb819-51"><a href="respecify.html#cb819-51" tabindex="-1"></a>                                   <span class="co">#c(GRM = &quot;GRMS&quot;,</span></span>
-<span id="cb819-52"><a href="respecify.html#cb819-52" tabindex="-1"></a>                                     <span class="co">#MH = &quot;mHealth&quot;,</span></span>
-<span id="cb819-53"><a href="respecify.html#cb819-53" tabindex="-1"></a>                                    <span class="co"># PhH = &quot;phHealth&quot;,</span></span>
-<span id="cb819-54"><a href="respecify.html#cb819-54" tabindex="-1"></a>                                     <span class="co">#Eng = &quot;Engmt&quot;,</span></span>
-<span id="cb819-55"><a href="respecify.html#cb819-55" tabindex="-1"></a>                                     <span class="co">#dEn = &quot;dEngmt&quot;,</span></span>
-<span id="cb819-56"><a href="respecify.html#cb819-56" tabindex="-1"></a>                                     <span class="co">#label.cex = 1.1))</span></span>
-<span id="cb819-57"><a href="respecify.html#cb819-57" tabindex="-1"></a></span>
-<span id="cb819-58"><a href="respecify.html#cb819-58" tabindex="-1"></a><span class="co">#adding stars to indicate significant paths</span></span>
-<span id="cb819-59"><a href="respecify.html#cb819-59" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">mark_sig</span>(plot4, struct_fit4)</span>
-<span id="cb819-60"><a href="respecify.html#cb819-60" tabindex="-1"></a></span>
-<span id="cb819-61"><a href="respecify.html#cb819-61" tabindex="-1"></a><span class="fu">plot</span>(plot4)</span></code></pre></div>
+<span id="cb819-23"><a href="respecify.html#cb819-23" tabindex="-1"></a><span class="co"># spreading the boxes away from each other</span></span>
+<span id="cb819-24"><a href="respecify.html#cb819-24" tabindex="-1"></a>m4_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">GRM =</span> <span class="fl">0.5</span>, <span class="at">MH =</span> <span class="dv">1</span>, <span class="at">PhH =</span> <span class="dv">1</span>, <span class="at">Eng =</span> <span class="dv">1</span>, <span class="at">dEn =</span> <span class="dv">1</span>)</span>
+<span id="cb819-25"><a href="respecify.html#cb819-25" tabindex="-1"></a></span>
+<span id="cb819-26"><a href="respecify.html#cb819-26" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">set_sem_layout</span>(plot_struct4, <span class="at">indicator_order =</span> m4_indicator_order,</span>
+<span id="cb819-27"><a href="respecify.html#cb819-27" tabindex="-1"></a>    <span class="at">indicator_factor =</span> m4_indicator_factor, <span class="at">factor_layout =</span> m4_msmt, <span class="at">factor_point_to =</span> m4_point_to,</span>
+<span id="cb819-28"><a href="respecify.html#cb819-28" tabindex="-1"></a>    <span class="at">indicator_push =</span> m4_indicator_push, <span class="at">indicator_spread =</span> m4_indicator_spread)</span>
+<span id="cb819-29"><a href="respecify.html#cb819-29" tabindex="-1"></a></span>
+<span id="cb819-30"><a href="respecify.html#cb819-30" tabindex="-1"></a><span class="co"># changing node labels -- throwing an error and I&#39;m not sure why, it</span></span>
+<span id="cb819-31"><a href="respecify.html#cb819-31" tabindex="-1"></a><span class="co"># worked above plot4 &lt;- semptools::change_node_label(plot4, c(GRM =</span></span>
+<span id="cb819-32"><a href="respecify.html#cb819-32" tabindex="-1"></a><span class="co"># &#39;GRMS&#39;, MH = &#39;mHealth&#39;, PhH = &#39;phHealth&#39;, Eng = &#39;Engmt&#39;, dEn =</span></span>
+<span id="cb819-33"><a href="respecify.html#cb819-33" tabindex="-1"></a><span class="co"># &#39;dEngmt&#39;, label.cex = 1.1))</span></span>
+<span id="cb819-34"><a href="respecify.html#cb819-34" tabindex="-1"></a></span>
+<span id="cb819-35"><a href="respecify.html#cb819-35" tabindex="-1"></a><span class="co"># adding stars to indicate significant paths</span></span>
+<span id="cb819-36"><a href="respecify.html#cb819-36" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">mark_sig</span>(plot4, struct_fit4)</span>
+<span id="cb819-37"><a href="respecify.html#cb819-37" tabindex="-1"></a></span>
+<span id="cb819-38"><a href="respecify.html#cb819-38" tabindex="-1"></a><span class="fu">plot</span>(plot4)</span></code></pre></div>
 <p><img src="11-SEM_TrimBuild_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <p>Our global fit indices were strong, <span class="math inline">\(\chi^2(59) = 59.999, p = 0.439, CFI = 0.999, RMSEA = 0.009, 90CI[0.000, 0.042], SRMR = 0.043\)</span>. Yet the indirect effects for engagement remained non-significant. When mental health was the dependent variable, <span class="math inline">\(B = 0.145, p = 0.098\)</span>; when physical health was the dependent variable, <span class="math inline">\(B = 0.140, p = 0.152\)</span>.</p>
 <p>If we formally compare the results, we can only use the AIC and BIC with lower values indicating better fit.</p>
@@ -3858,7 +3848,7 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 <span id="cb837-25"><a href="respecify.html#cb837-25" tabindex="-1"></a>msmt_fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(msmt_mod, <span class="at">data =</span> babydf, <span class="at">missing =</span> <span class="st">&quot;fiml&quot;</span>)</span>
 <span id="cb837-26"><a href="respecify.html#cb837-26" tabindex="-1"></a>msmt_fit_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(msmt_fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb837-27"><a href="respecify.html#cb837-27" tabindex="-1"></a>msmt_fit_sum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 82 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 82 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3962,10 +3952,6 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 ##    .p1V               4.464    0.068   65.385    0.000    4.464    7.134
 ##    .p2V               4.190    0.093   45.087    0.000    4.190    4.919
 ##    .p3V               3.986    0.099   40.142    0.000    3.986    4.389
-##     CTR               0.000                               0.000    0.000
-##     TrP               0.000                               0.000    0.000
-##     SRP               0.000                               0.000    0.000
-##     Val               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -4117,7 +4103,7 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 <div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="respecify.html#cb841-1" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(msmt_fit, <span class="at">what =</span> <span class="st">&quot;col&quot;</span>, <span class="at">whatLabels =</span> <span class="st">&quot;stand&quot;</span>, <span class="at">sizeMan =</span> <span class="dv">5</span>,</span>
 <span id="cb841-2"><a href="respecify.html#cb841-2" tabindex="-1"></a>    <span class="at">node.width =</span> <span class="dv">1</span>, <span class="at">edge.label.cex =</span> <span class="fl">0.75</span>, <span class="at">style =</span> <span class="st">&quot;lisrel&quot;</span>, <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">2</span>,</span>
 <span id="cb841-3"><a href="respecify.html#cb841-3" tabindex="-1"></a>        <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span></code></pre></div>
-<p><img src="11-SEM_TrimBuild_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="11-SEM_TrimBuild_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 </div>
 <div id="specify-and-evaluate-a-structural-model-1" class="section level3 unnumbered hasAnchor">
 <h3>Specify and evaluate a <em>structural</em> model<a href="respecify.html#specify-and-evaluate-a-structural-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -4174,7 +4160,7 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 <span id="cb844-29"><a href="respecify.html#cb844-29" tabindex="-1"></a>ReC_struct_pEsts1 <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(ReC_struct_fit1, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb844-30"><a href="respecify.html#cb844-30" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb844-31"><a href="respecify.html#cb844-31" tabindex="-1"></a>ReC_struct_summary1</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 72 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 72 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -4281,10 +4267,6 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 ##    .p1V               4.464    0.067   66.486    0.000    4.464    7.254
 ##    .p2V               4.190    0.089   47.193    0.000    4.190    5.149
 ##    .p3V               3.986    0.096   41.739    0.000    3.986    4.564
-##     CTR               0.000                               0.000    0.000
-##    .TrP               0.000                               0.000    0.000
-##    .SRP               0.000                               0.000    0.000
-##    .Val               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -4340,7 +4322,7 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 <div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="respecify.html#cb848-1" tabindex="-1"></a>plot_ReC_struct1 <span class="ot">&lt;-</span> semPlot<span class="sc">::</span><span class="fu">semPaths</span>(ReC_struct_fit1, <span class="at">what =</span> <span class="st">&quot;col&quot;</span>, <span class="at">whatLabels =</span> <span class="st">&quot;stand&quot;</span>,</span>
 <span id="cb848-2"><a href="respecify.html#cb848-2" tabindex="-1"></a>    <span class="at">sizeMan =</span> <span class="dv">3</span>, <span class="at">node.width =</span> <span class="dv">1</span>, <span class="at">edge.label.cex =</span> <span class="fl">0.75</span>, <span class="at">style =</span> <span class="st">&quot;lisrel&quot;</span>,</span>
 <span id="cb848-3"><a href="respecify.html#cb848-3" tabindex="-1"></a>    <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="at">structural =</span> <span class="cn">FALSE</span>, <span class="at">curve =</span> <span class="cn">FALSE</span>, <span class="at">intercepts =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="11-SEM_TrimBuild_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="11-SEM_TrimBuild_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
 <table>
 <thead>
 <tr class="header">
@@ -4630,7 +4612,7 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 <span id="cb855-32"><a href="respecify.html#cb855-32" tabindex="-1"></a>ReC_struct_pEsts2 <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(ReC_struct_fit2, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb855-33"><a href="respecify.html#cb855-33" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb855-34"><a href="respecify.html#cb855-34" tabindex="-1"></a>ReC_struct_summary2</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 75 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 75 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -4738,10 +4720,6 @@ Y = Valued: valued by me (continuously scaled with higher scores being more favo
 ##    .p1V               4.464    0.068   65.385    0.000    4.464    7.134
 ##    .p2V               4.190    0.093   45.087    0.000    4.190    4.919
 ##    .p3V               3.986    0.099   40.142    0.000    3.986    4.389
-##     CTR               0.000                               0.000    0.000
-##    .TrP               0.000                               0.000    0.000
-##    .SRP               0.000                               0.000    0.000
-##    .Val               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -4813,7 +4791,7 @@ are non-significant. Thus, I would favor retaining the originally hypothesized m
 <div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="respecify.html#cb861-1" tabindex="-1"></a>plot_struct2 <span class="ot">&lt;-</span> semPlot<span class="sc">::</span><span class="fu">semPaths</span>(ReC_struct_fit2, <span class="at">what =</span> <span class="st">&quot;col&quot;</span>, <span class="at">whatLabels =</span> <span class="st">&quot;stand&quot;</span>,</span>
 <span id="cb861-2"><a href="respecify.html#cb861-2" tabindex="-1"></a>    <span class="at">sizeMan =</span> <span class="dv">3</span>, <span class="at">node.width =</span> <span class="dv">1</span>, <span class="at">edge.label.cex =</span> <span class="fl">0.75</span>, <span class="at">style =</span> <span class="st">&quot;lisrel&quot;</span>,</span>
 <span id="cb861-3"><a href="respecify.html#cb861-3" tabindex="-1"></a>    <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="at">structural =</span> <span class="cn">FALSE</span>, <span class="at">curve =</span> <span class="cn">FALSE</span>, <span class="at">intercepts =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="11-SEM_TrimBuild_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p><img src="11-SEM_TrimBuild_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 </div>
 <div id="using-the-strength-and-significance-of-regression-weights-as-a-guide-trim-at-least-path-or-covariance" class="section level3 unnumbered hasAnchor">
 <h3>Using the strength and significance of regression weights as a guide, trim at least path or covariance<a href="respecify.html#using-the-strength-and-significance-of-regression-weights-as-a-guide-trim-at-least-path-or-covariance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -4850,7 +4828,7 @@ are non-significant. Thus, I would favor retaining the originally hypothesized m
 <span id="cb862-29"><a href="respecify.html#cb862-29" tabindex="-1"></a>ReC_struct_pEsts3 <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(ReC_struct_fit3, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb862-30"><a href="respecify.html#cb862-30" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb862-31"><a href="respecify.html#cb862-31" tabindex="-1"></a>ReC_struct_summary3</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 71 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 71 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -4958,10 +4936,6 @@ are non-significant. Thus, I would favor retaining the originally hypothesized m
 ##    .p1V               4.464    0.067   66.486    0.000    4.464    7.254
 ##    .p2V               4.190    0.089   47.193    0.000    4.190    5.149
 ##    .p3V               3.986    0.096   41.739    0.000    3.986    4.564
-##     CTR               0.000                               0.000    0.000
-##    .TrP               0.000                               0.000    0.000
-##    .SRP               0.000                               0.000    0.000
-##    .Val               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all

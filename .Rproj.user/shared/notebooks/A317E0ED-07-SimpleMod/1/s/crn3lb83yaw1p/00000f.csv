@@ -1,3 +1,0 @@
-"0","LewisSimpMod <- lm(MntlHlth~GRMS*Centrality, data=Lewis_df)"
-"0","#the base R output if you prefer this view"
-"0","#summary(LewisSimpMod) "

@@ -6,13 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Specifying and Evaluating the Structural Model | ReCentering Psych Stats: Multivariate Modeling</title>
   <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Specifying and Evaluating the Structural Model | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
   <meta property="og:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="github-repo" content="lhbikos/extRas" />
+  <meta name="github-repo" content="lhbikos/ReC_MultivModel" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 10 Specifying and Evaluating the Structural Model | ReCentering Psych Stats: Multivariate Modeling" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2023-11-12" />
+<meta name="date" content="2024-03-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -829,6 +829,18 @@ div.csl-indent {
 <li class="chapter" data-level="13.7.4" data-path="MLMexplore.html"><a href="MLMexplore.html#grading-rubric-11"><i class="fa fa-check"></i><b>13.7.4</b> Grading Rubric</a></li>
 </ul></li>
 <li class="chapter" data-level="13.8" data-path="MLMexplore.html"><a href="MLMexplore.html#simulated-data-when-depression-is-the-outcome"><i class="fa fa-check"></i><b>13.8</b> Simulated Data when Depression is the Outcome</a></li>
+<li class="chapter" data-level="13.9" data-path="MLMexplore.html"><a href="MLMexplore.html#homeworked-example-9"><i class="fa fa-check"></i><b>13.9</b> Homeworked Example</a>
+<ul>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#identify-and-describe-the-variables-in-the-model-there-should-be-a-time-varying-dv-and-predictor-as-well-as-an-l2-predictor"><i class="fa fa-check"></i>Identify and describe the variables in the model; there should be a time-varying DV and predictor as well as an L2 predictor</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#import-the-data-and-format-the-variables-in-the-model-7"><i class="fa fa-check"></i>### Import the data and format the variables in the model</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#restructure-the-dataset-from-wide-to-long-or-from-long-to-wide"><i class="fa fa-check"></i>Restructure the dataset from wide to long (or from long to wide)</a></li>
+<li class="chapter" data-level="13.9.1" data-path="MLMexplore.html"><a href="MLMexplore.html#produce-multilevel-descriptive-statistics-and-correlation-matrix"><i class="fa fa-check"></i><b>13.9.1</b> Produce multilevel descriptive statistics and correlation matrix</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-an-unfitted-model"><i class="fa fa-check"></i>Explore data with an unfitted model</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-a-model-fitted-with-a-linear-growth-trajectory"><i class="fa fa-check"></i>Explore data with a model fitted with a linear growth trajectory</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-the-fitted-or-unfitted-data-identified-by-the-l2-predictor"><i class="fa fa-check"></i>Explore data with the fitted (or unfitted) data identified by the L2 predictor</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#provide-a-write-up-of-what-you-found-in-this-process"><i class="fa fa-check"></i>Provide a write-up of what you found in this process</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explanation-to-grader-6"><i class="fa fa-check"></i>Explanation to grader</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="LongMod.html"><a href="LongMod.html"><i class="fa fa-check"></i><b>14</b> A Basic Longitudinal Model</a>
 <ul>
@@ -878,6 +890,47 @@ div.csl-indent {
 <li class="chapter" data-level="14.10.2" data-path="LongMod.html"><a href="LongMod.html#problem-2-rework-the-research-vignette-but-use-the-depression-variable-as-an-outcome"><i class="fa fa-check"></i><b>14.10.2</b> Problem #2: Rework the research vignette, but use the depression variable as an outcome</a></li>
 <li class="chapter" data-level="14.10.3" data-path="LongMod.html"><a href="LongMod.html#problem-3-use-other-data-that-is-available-to-you-6"><i class="fa fa-check"></i><b>14.10.3</b> Problem #3: Use other data that is available to you</a></li>
 <li class="chapter" data-level="14.10.4" data-path="LongMod.html"><a href="LongMod.html#grading-rubric-12"><i class="fa fa-check"></i><b>14.10.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="TimeLord.html"><a href="TimeLord.html"><i class="fa fa-check"></i><b>15</b> Calendrical Time (and Missingness) in MLMs</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="TimeLord.html"><a href="TimeLord.html#navigating-this-lesson-14"><i class="fa fa-check"></i><b>15.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="TimeLord.html"><a href="TimeLord.html#learning-objectives-14"><i class="fa fa-check"></i><b>15.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="15.1.2" data-path="TimeLord.html"><a href="TimeLord.html#planning-for-practice-14"><i class="fa fa-check"></i><b>15.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="15.1.3" data-path="TimeLord.html"><a href="TimeLord.html#readings-resources-14"><i class="fa fa-check"></i><b>15.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="15.1.4" data-path="TimeLord.html"><a href="TimeLord.html#packages-14"><i class="fa fa-check"></i><b>15.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="TimeLord.html"><a href="TimeLord.html#exploring-variants-of-time-and-balance"><i class="fa fa-check"></i><b>15.2</b> Exploring Variants of Time and Balance</a></li>
+<li class="chapter" data-level="15.3" data-path="TimeLord.html"><a href="TimeLord.html#research-vignette-14"><i class="fa fa-check"></i><b>15.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="TimeLord.html"><a href="TimeLord.html#simulating-the-data-from-the-journal-article-7"><i class="fa fa-check"></i><b>15.3.1</b> Simulating the data from the journal article</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="TimeLord.html"><a href="TimeLord.html#more-simulation-appointment-dates"><i class="fa fa-check"></i><b>15.4</b> More Simulation – Appointment Dates</a></li>
+<li class="chapter" data-level="15.5" data-path="TimeLord.html"><a href="TimeLord.html#reworking-lefevor-et-al.-using-calendrical-time-and-unbalanced-data"><i class="fa fa-check"></i><b>15.5</b> Reworking Lefevor et al. using Calendrical Time (and Unbalanced Data)</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="TimeLord.html"><a href="TimeLord.html#creating-time-intervals"><i class="fa fa-check"></i><b>15.5.1</b> Creating Time Intervals</a></li>
+<li class="chapter" data-level="15.5.2" data-path="TimeLord.html"><a href="TimeLord.html#wide-to-long"><i class="fa fa-check"></i><b>15.5.2</b> Wide to Long</a></li>
+<li class="chapter" data-level="15.5.3" data-path="TimeLord.html"><a href="TimeLord.html#mlm-is-for-unbalanced-designs"><i class="fa fa-check"></i><b>15.5.3</b> MLM is for unbalanced designs</a></li>
+<li class="chapter" data-level="15.5.4" data-path="TimeLord.html"><a href="TimeLord.html#abbreviated-ols-style-exploration"><i class="fa fa-check"></i><b>15.5.4</b> Abbreviated OLS Style Exploration</a></li>
+<li class="chapter" data-level="15.5.5" data-path="TimeLord.html"><a href="TimeLord.html#rebuilding-the-model-unstructured-time-unbalanced-design"><i class="fa fa-check"></i><b>15.5.5</b> Rebuilding the Model (Unstructured Time, Unbalanced Design)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="TimeLord.html"><a href="TimeLord.html#structured-time-reworking-the-vignette-with-index"><i class="fa fa-check"></i><b>15.6</b> Structured Time: Reworking the Vignette with Index</a></li>
+<li class="chapter" data-level="15.7" data-path="TimeLord.html"><a href="TimeLord.html#apa-style-writeup-8"><i class="fa fa-check"></i><b>15.7</b> APA Style Writeup</a></li>
+<li class="chapter" data-level="15.8" data-path="TimeLord.html"><a href="TimeLord.html#residual-and-related-questions-5"><i class="fa fa-check"></i><b>15.8</b> Residual and Related Questions…</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="TimeLord.html"><a href="TimeLord.html#what-did-we-gainlose-by-using-weeks-or-sessnum-unstructured-versus-index-structured-to-mark-time"><i class="fa fa-check"></i><b>15.8.1</b> What did we gain/lose by using Weeks or SessNum (unstructured) versus Index (structured) to mark time?</a></li>
+<li class="chapter" data-level="15.8.2" data-path="TimeLord.html"><a href="TimeLord.html#how-did-the-unbalanced-time-impact-the-analysis-and-results"><i class="fa fa-check"></i><b>15.8.2</b> How did the unbalanced time impact the analysis and results?</a></li>
+</ul></li>
+<li class="chapter" data-level="15.9" data-path="TimeLord.html"><a href="TimeLord.html#practice-problems-14"><i class="fa fa-check"></i><b>15.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="TimeLord.html"><a href="TimeLord.html#problem-1-rework-this-lessons-example-by-changing-the-time-metric-to-days-or-months"><i class="fa fa-check"></i><b>15.9.1</b> Problem #1: Rework this Lesson’s Example by Changing the Time Metric to Days or Months</a></li>
+<li class="chapter" data-level="15.9.2" data-path="TimeLord.html"><a href="TimeLord.html#problem-2-compare-balanced-and-unbalanced-designs"><i class="fa fa-check"></i><b>15.9.2</b> Problem #2: Compare balanced and unbalanced designs</a></li>
+<li class="chapter" data-level="15.9.3" data-path="TimeLord.html"><a href="TimeLord.html#problem-3-experiment-with-time-and-balanceunbalance-in-data-that-is-available-to-you"><i class="fa fa-check"></i><b>15.9.3</b> Problem #3: Experiment with time and balance/unbalance in data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="TimeLord.html"><a href="TimeLord.html#bonus-track-2"><i class="fa fa-check"></i><b>15.10</b> Bonus Track:</a>
+<ul>
+<li class="chapter" data-level="15.10.1" data-path="TimeLord.html"><a href="TimeLord.html#faqs"><i class="fa fa-check"></i><b>15.10.1</b> FAQs</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="REFS.html"><a href="REFS.html"><i class="fa fa-check"></i>REFERENCES</a></li>
@@ -1056,7 +1109,7 @@ Specify and evaluate a measurement model</li>
 <span id="cb671-2"><a href="StructMod.html#cb671-2" tabindex="-1"></a><span class="co"># the journal article</span></span>
 <span id="cb671-3"><a href="StructMod.html#cb671-3" tabindex="-1"></a></span>
 <span id="cb671-4"><a href="StructMod.html#cb671-4" tabindex="-1"></a>Kim_generating_model <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
-<span id="cb671-5"><a href="StructMod.html#cb671-5" tabindex="-1"></a><span class="st">        ##measurement model</span></span>
+<span id="cb671-5"><a href="StructMod.html#cb671-5" tabindex="-1"></a><span class="st">        #measurement model</span></span>
 <span id="cb671-6"><a href="StructMod.html#cb671-6" tabindex="-1"></a><span class="st">         REMS =~ .82*Inf32 + .75*Inf38 + .74*Inf21 + .72*Inf17 + .69*Inf9 + .61*Inf36 + .51*Inf5 + .49*Inf22 + .81*SClass6 + .81*SClass31 + .74*SClass8 + .74*SClass40 + .72*SClass2 + .65*SClass34 + .55*SClass11 + .84*mInv27 + .84*mInv30 + .80*mInv39 + .72*mInv7 + .62*mInv26 + .61*mInv33 + .53*mInv4 + .47*mInv14 + .47*mInv10 + .74*Exot3 + .74*Exot29 + .71*Exot45 + .69*Exot35 + .60*Exot42 + .59*Exot23 + .51*Exot13 + .51*Exot20 + .49*Exot43 + .84*mEnv37 + .85*mEnv24 + .78*mEnv19 + .70*mEnv28 + .69*mEnv18 + .55*mEnv41 + .55*mEnv12 + .76*mWork25 + .67*mWork15 + .65*mWork1 + .64*mWork16 + .62*mWork44</span></span>
 <span id="cb671-7"><a href="StructMod.html#cb671-7" tabindex="-1"></a><span class="st">         </span></span>
 <span id="cb671-8"><a href="StructMod.html#cb671-8" tabindex="-1"></a><span class="st">         CMI =~ .8*cmi1 + .8*cmi2 + .8*cmi3 + .8*cmi4 + .8*cmi5 + .8*cmi6 + .8*cmi7 + .8*cmi8 + .8*cmi9 + .8*cmi10 + .8*cmi11 + .8*cmi12 + .8*cmi13 + .8*cmi14 + .8*cmi15 + .8*cmi16 + .8*cmi17 + .8*cmi18 + .8*cmi19 + .8*cmi20 + .8*cmi21 + .8*cmi22 + .8*cmi23 + .8*cmi24 + .8*cmi25 + .8*cmi26 + .8*cmi27 + .8*cmi28 + .8*cmi29 + .8*cmi30 + .8*cmi31 + .8*cmi32 + .8*cmi33 + .8*cmi34 + .8*cmi35 + .8*cmi36 + .8*cmi37 + .8*cmi38 + .8*cmi39 + .8*cmi40 + .8*cmi41 + .8*cmi42 + .8*cmi43 + .8*cmi44 + .8*cmi45 + .8*cmi46 + .8*cmi47</span></span>
@@ -1067,62 +1120,63 @@ Specify and evaluate a measurement model</li>
 <span id="cb671-13"><a href="StructMod.html#cb671-13" tabindex="-1"></a><span class="st">         </span></span>
 <span id="cb671-14"><a href="StructMod.html#cb671-14" tabindex="-1"></a><span class="st">         HlpSkg =~ .8*hlpskg1 + .8*hlpskg2 + .8*hlpskg3 + .8*hlpskg4 + .8*hlpskg5 + .8*hlpskg6 + .8*hlpskg7 + .8*hlpskg8 + .8*hlpskg9 + .8*hlpskg10 </span></span>
 <span id="cb671-15"><a href="StructMod.html#cb671-15" tabindex="-1"></a><span class="st">   </span></span>
-<span id="cb671-16"><a href="StructMod.html#cb671-16" tabindex="-1"></a><span class="st">        # Means</span></span>
+<span id="cb671-16"><a href="StructMod.html#cb671-16" tabindex="-1"></a><span class="st">        #Means</span></span>
 <span id="cb671-17"><a href="StructMod.html#cb671-17" tabindex="-1"></a><span class="st">         REMS ~ 0.34*1</span></span>
 <span id="cb671-18"><a href="StructMod.html#cb671-18" tabindex="-1"></a><span class="st">         CMI ~ 3*1</span></span>
 <span id="cb671-19"><a href="StructMod.html#cb671-19" tabindex="-1"></a><span class="st">         ANX ~ 2.98*1</span></span>
 <span id="cb671-20"><a href="StructMod.html#cb671-20" tabindex="-1"></a><span class="st">         DEP ~ 2.36*1</span></span>
 <span id="cb671-21"><a href="StructMod.html#cb671-21" tabindex="-1"></a><span class="st">         PWB ~ 3.5*1</span></span>
 <span id="cb671-22"><a href="StructMod.html#cb671-22" tabindex="-1"></a><span class="st">         HlpSkg ~ 1.64*1</span></span>
-<span id="cb671-23"><a href="StructMod.html#cb671-23" tabindex="-1"></a><span class="st">        # Correlations </span></span>
-<span id="cb671-24"><a href="StructMod.html#cb671-24" tabindex="-1"></a><span class="st">         REMS ~ 0.58*CMI</span></span>
-<span id="cb671-25"><a href="StructMod.html#cb671-25" tabindex="-1"></a><span class="st">         REMS ~ 0.26*ANX</span></span>
-<span id="cb671-26"><a href="StructMod.html#cb671-26" tabindex="-1"></a><span class="st">         REMS ~ 0.34*DEP</span></span>
-<span id="cb671-27"><a href="StructMod.html#cb671-27" tabindex="-1"></a><span class="st">         REMS ~ -0.25*PWB</span></span>
-<span id="cb671-28"><a href="StructMod.html#cb671-28" tabindex="-1"></a><span class="st">         REMS ~ -0.02*HlpSkg</span></span>
-<span id="cb671-29"><a href="StructMod.html#cb671-29" tabindex="-1"></a><span class="st">         CMI ~ 0.12*ANX</span></span>
-<span id="cb671-30"><a href="StructMod.html#cb671-30" tabindex="-1"></a><span class="st">         CMI ~ 0.19*DEP</span></span>
-<span id="cb671-31"><a href="StructMod.html#cb671-31" tabindex="-1"></a><span class="st">         CMI ~ -0.28*PWB</span></span>
-<span id="cb671-32"><a href="StructMod.html#cb671-32" tabindex="-1"></a><span class="st">         CMI ~ 0*HlpSkg</span></span>
-<span id="cb671-33"><a href="StructMod.html#cb671-33" tabindex="-1"></a><span class="st">         ANX ~ 0.66*DEP</span></span>
-<span id="cb671-34"><a href="StructMod.html#cb671-34" tabindex="-1"></a><span class="st">         ANX ~ -0.55*PWB</span></span>
-<span id="cb671-35"><a href="StructMod.html#cb671-35" tabindex="-1"></a><span class="st">         ANX ~ 0.07*HlpSkg</span></span>
-<span id="cb671-36"><a href="StructMod.html#cb671-36" tabindex="-1"></a><span class="st">         DEP ~ -0.66*PWB</span></span>
-<span id="cb671-37"><a href="StructMod.html#cb671-37" tabindex="-1"></a><span class="st">         DEP ~ 0.05*HlpSkg</span></span>
-<span id="cb671-38"><a href="StructMod.html#cb671-38" tabindex="-1"></a><span class="st">         PWB ~ 0.08*HlpSkg</span></span>
-<span id="cb671-39"><a href="StructMod.html#cb671-39" tabindex="-1"></a><span class="st">        &quot;</span></span>
-<span id="cb671-40"><a href="StructMod.html#cb671-40" tabindex="-1"></a></span>
-<span id="cb671-41"><a href="StructMod.html#cb671-41" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230916</span>)</span>
-<span id="cb671-42"><a href="StructMod.html#cb671-42" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">simulateData</span>(<span class="at">model =</span> Kim_generating_model, <span class="at">model.type =</span> <span class="st">&quot;sem&quot;</span>,</span>
-<span id="cb671-43"><a href="StructMod.html#cb671-43" tabindex="-1"></a>    <span class="at">meanstructure =</span> T, <span class="at">sample.nobs =</span> <span class="dv">156</span>, <span class="at">standardized =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb671-44"><a href="StructMod.html#cb671-44" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb671-45"><a href="StructMod.html#cb671-45" tabindex="-1"></a></span>
-<span id="cb671-46"><a href="StructMod.html#cb671-46" tabindex="-1"></a><span class="co"># used to retrieve column indices used in the rescaling script below</span></span>
-<span id="cb671-47"><a href="StructMod.html#cb671-47" tabindex="-1"></a><span class="co"># col_index &lt;- as.data.frame(colnames(dfKim))</span></span>
-<span id="cb671-48"><a href="StructMod.html#cb671-48" tabindex="-1"></a></span>
-<span id="cb671-49"><a href="StructMod.html#cb671-49" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dfKim)) {</span>
-<span id="cb671-50"><a href="StructMod.html#cb671-50" tabindex="-1"></a>    <span class="co"># for loop to go through each column of the dataframe apply only</span></span>
-<span id="cb671-51"><a href="StructMod.html#cb671-51" tabindex="-1"></a>    <span class="co"># to REMS variables</span></span>
-<span id="cb671-52"><a href="StructMod.html#cb671-52" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">45</span>) {</span>
-<span id="cb671-53"><a href="StructMod.html#cb671-53" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb671-54"><a href="StructMod.html#cb671-54" tabindex="-1"></a>    }</span>
-<span id="cb671-55"><a href="StructMod.html#cb671-55" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">46</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>) {</span>
-<span id="cb671-56"><a href="StructMod.html#cb671-56" tabindex="-1"></a>        <span class="co"># apply only to CMI variables</span></span>
-<span id="cb671-57"><a href="StructMod.html#cb671-57" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
-<span id="cb671-58"><a href="StructMod.html#cb671-58" tabindex="-1"></a>    }</span>
-<span id="cb671-59"><a href="StructMod.html#cb671-59" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">93</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>) {</span>
-<span id="cb671-60"><a href="StructMod.html#cb671-60" tabindex="-1"></a>        <span class="co"># apply only to mental health variables</span></span>
-<span id="cb671-61"><a href="StructMod.html#cb671-61" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))</span>
-<span id="cb671-62"><a href="StructMod.html#cb671-62" tabindex="-1"></a>    }</span>
-<span id="cb671-63"><a href="StructMod.html#cb671-63" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">117</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">126</span>) {</span>
-<span id="cb671-64"><a href="StructMod.html#cb671-64" tabindex="-1"></a>        <span class="co"># apply only to HlpSkng variables</span></span>
-<span id="cb671-65"><a href="StructMod.html#cb671-65" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</span>
-<span id="cb671-66"><a href="StructMod.html#cb671-66" tabindex="-1"></a>    }</span>
-<span id="cb671-67"><a href="StructMod.html#cb671-67" tabindex="-1"></a>}</span>
-<span id="cb671-68"><a href="StructMod.html#cb671-68" tabindex="-1"></a></span>
-<span id="cb671-69"><a href="StructMod.html#cb671-69" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb671-70"><a href="StructMod.html#cb671-70" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> dfKim <span class="sc">%&gt;%</span></span>
-<span id="cb671-71"><a href="StructMod.html#cb671-71" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">0</span>)</span></code></pre></div>
+<span id="cb671-23"><a href="StructMod.html#cb671-23" tabindex="-1"></a><span class="st">        </span></span>
+<span id="cb671-24"><a href="StructMod.html#cb671-24" tabindex="-1"></a><span class="st">        #Correlations </span></span>
+<span id="cb671-25"><a href="StructMod.html#cb671-25" tabindex="-1"></a><span class="st">         REMS ~ 0.58*CMI</span></span>
+<span id="cb671-26"><a href="StructMod.html#cb671-26" tabindex="-1"></a><span class="st">         REMS ~ 0.26*ANX</span></span>
+<span id="cb671-27"><a href="StructMod.html#cb671-27" tabindex="-1"></a><span class="st">         REMS ~ 0.34*DEP</span></span>
+<span id="cb671-28"><a href="StructMod.html#cb671-28" tabindex="-1"></a><span class="st">         REMS ~ -0.25*PWB</span></span>
+<span id="cb671-29"><a href="StructMod.html#cb671-29" tabindex="-1"></a><span class="st">         REMS ~ -0.02*HlpSkg</span></span>
+<span id="cb671-30"><a href="StructMod.html#cb671-30" tabindex="-1"></a><span class="st">         CMI ~ 0.12*ANX</span></span>
+<span id="cb671-31"><a href="StructMod.html#cb671-31" tabindex="-1"></a><span class="st">         CMI ~ 0.19*DEP</span></span>
+<span id="cb671-32"><a href="StructMod.html#cb671-32" tabindex="-1"></a><span class="st">         CMI ~ -0.28*PWB</span></span>
+<span id="cb671-33"><a href="StructMod.html#cb671-33" tabindex="-1"></a><span class="st">         CMI ~ 0*HlpSkg</span></span>
+<span id="cb671-34"><a href="StructMod.html#cb671-34" tabindex="-1"></a><span class="st">         ANX ~ 0.66*DEP</span></span>
+<span id="cb671-35"><a href="StructMod.html#cb671-35" tabindex="-1"></a><span class="st">         ANX ~ -0.55*PWB</span></span>
+<span id="cb671-36"><a href="StructMod.html#cb671-36" tabindex="-1"></a><span class="st">         ANX ~ 0.07*HlpSkg</span></span>
+<span id="cb671-37"><a href="StructMod.html#cb671-37" tabindex="-1"></a><span class="st">         DEP ~ -0.66*PWB</span></span>
+<span id="cb671-38"><a href="StructMod.html#cb671-38" tabindex="-1"></a><span class="st">         DEP ~ 0.05*HlpSkg</span></span>
+<span id="cb671-39"><a href="StructMod.html#cb671-39" tabindex="-1"></a><span class="st">         PWB ~ 0.08*HlpSkg</span></span>
+<span id="cb671-40"><a href="StructMod.html#cb671-40" tabindex="-1"></a><span class="st">        &quot;</span></span>
+<span id="cb671-41"><a href="StructMod.html#cb671-41" tabindex="-1"></a></span>
+<span id="cb671-42"><a href="StructMod.html#cb671-42" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230916</span>)</span>
+<span id="cb671-43"><a href="StructMod.html#cb671-43" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">simulateData</span>(<span class="at">model =</span> Kim_generating_model, <span class="at">model.type =</span> <span class="st">&quot;sem&quot;</span>,</span>
+<span id="cb671-44"><a href="StructMod.html#cb671-44" tabindex="-1"></a>    <span class="at">meanstructure =</span> T, <span class="at">sample.nobs =</span> <span class="dv">156</span>, <span class="at">standardized =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb671-45"><a href="StructMod.html#cb671-45" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb671-46"><a href="StructMod.html#cb671-46" tabindex="-1"></a></span>
+<span id="cb671-47"><a href="StructMod.html#cb671-47" tabindex="-1"></a><span class="co"># used to retrieve column indices used in the rescaling script below</span></span>
+<span id="cb671-48"><a href="StructMod.html#cb671-48" tabindex="-1"></a><span class="co"># col_index &lt;- as.data.frame(colnames(dfKim))</span></span>
+<span id="cb671-49"><a href="StructMod.html#cb671-49" tabindex="-1"></a></span>
+<span id="cb671-50"><a href="StructMod.html#cb671-50" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dfKim)) {</span>
+<span id="cb671-51"><a href="StructMod.html#cb671-51" tabindex="-1"></a>    <span class="co"># for loop to go through each column of the dataframe apply only</span></span>
+<span id="cb671-52"><a href="StructMod.html#cb671-52" tabindex="-1"></a>    <span class="co"># to REMS variables</span></span>
+<span id="cb671-53"><a href="StructMod.html#cb671-53" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">45</span>) {</span>
+<span id="cb671-54"><a href="StructMod.html#cb671-54" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb671-55"><a href="StructMod.html#cb671-55" tabindex="-1"></a>    }</span>
+<span id="cb671-56"><a href="StructMod.html#cb671-56" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">46</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>) {</span>
+<span id="cb671-57"><a href="StructMod.html#cb671-57" tabindex="-1"></a>        <span class="co"># apply only to CMI variables</span></span>
+<span id="cb671-58"><a href="StructMod.html#cb671-58" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
+<span id="cb671-59"><a href="StructMod.html#cb671-59" tabindex="-1"></a>    }</span>
+<span id="cb671-60"><a href="StructMod.html#cb671-60" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">93</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>) {</span>
+<span id="cb671-61"><a href="StructMod.html#cb671-61" tabindex="-1"></a>        <span class="co"># apply only to mental health variables</span></span>
+<span id="cb671-62"><a href="StructMod.html#cb671-62" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))</span>
+<span id="cb671-63"><a href="StructMod.html#cb671-63" tabindex="-1"></a>    }</span>
+<span id="cb671-64"><a href="StructMod.html#cb671-64" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">117</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">126</span>) {</span>
+<span id="cb671-65"><a href="StructMod.html#cb671-65" tabindex="-1"></a>        <span class="co"># apply only to HlpSkng variables</span></span>
+<span id="cb671-66"><a href="StructMod.html#cb671-66" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</span>
+<span id="cb671-67"><a href="StructMod.html#cb671-67" tabindex="-1"></a>    }</span>
+<span id="cb671-68"><a href="StructMod.html#cb671-68" tabindex="-1"></a>}</span>
+<span id="cb671-69"><a href="StructMod.html#cb671-69" tabindex="-1"></a></span>
+<span id="cb671-70"><a href="StructMod.html#cb671-70" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb671-71"><a href="StructMod.html#cb671-71" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> dfKim <span class="sc">%&gt;%</span></span>
+<span id="cb671-72"><a href="StructMod.html#cb671-72" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">0</span>)</span></code></pre></div>
 <p>The script below allows you to store the simulated data as a file on your computer. This is optional – the entire lesson can be worked with the simulated data.</p>
 <p>If you prefer the .rds format, use this script (remove the hashtags). The .rds format has the advantage of preserving any formatting of variables. A disadvantage is that you cannot open these files outside of the R environment.</p>
 <p>Script to save the data to your computer as an .rds file.</p>
@@ -1390,7 +1444,7 @@ Specify and evaluate a measurement model</li>
 <span id="cb685-18"><a href="StructMod.html#cb685-18" tabindex="-1"></a>rp3_msmt_fit_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(rp3_msmt_fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb685-19"><a href="StructMod.html#cb685-19" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb685-20"><a href="StructMod.html#cb685-20" tabindex="-1"></a>rp3_msmt_fit_sum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 106 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 106 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1486,9 +1540,6 @@ Specify and evaluate a measurement model</li>
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##     CMI               0.000                               0.000    0.000
-##     PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -1634,7 +1685,7 @@ The unique solution is <em>a</em> = 4, <em>b</em> = 2.</p>
 <span id="cb695-20"><a href="StructMod.html#cb695-20" tabindex="-1"></a>Kim_struct_pEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(Kim_struct_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb695-21"><a href="StructMod.html#cb695-21" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb695-22"><a href="StructMod.html#cb695-22" tabindex="-1"></a>Kim_struct_summary</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 95 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 95 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1730,9 +1781,6 @@ The unique solution is <em>a</em> = 4, <em>b</em> = 2.</p>
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##    .CMI               0.000                               0.000    0.000
-##    .PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -2004,13 +2052,12 @@ Although the code below may look daunting, I find it to be a fairly straightforw
 <span id="cb704-7"><a href="StructMod.html#cb704-7" tabindex="-1"></a>m1_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;PWB&quot;</span>,</span>
 <span id="cb704-8"><a href="StructMod.html#cb704-8" tabindex="-1"></a>    <span class="st">&quot;PWB&quot;</span>, <span class="st">&quot;PWB&quot;</span>)</span></code></pre></div>
 <p>The next two sets of codes provide some guidance about how far away the indicator (square/rectangular) variables should be away from the latent (oval/circular) variables. Subsequently, the next set of values indicate how far away each of the indicator (square/rectangular) variables should be spread apart.</p>
-<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="StructMod.html#cb705-1" tabindex="-1"></a><span class="co">#next set of code pushes the indicator variables away from the factor</span></span>
-<span id="cb705-2"><a href="StructMod.html#cb705-2" tabindex="-1"></a>m1_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> .<span class="dv">5</span>, </span>
-<span id="cb705-3"><a href="StructMod.html#cb705-3" tabindex="-1"></a>                    <span class="at">CMI =</span> <span class="dv">1</span>,</span>
-<span id="cb705-4"><a href="StructMod.html#cb705-4" tabindex="-1"></a>                    <span class="at">PWB =</span> <span class="dv">1</span>)</span>
-<span id="cb705-5"><a href="StructMod.html#cb705-5" tabindex="-1"></a>m1_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> <span class="dv">1</span>, <span class="co">#spreading the boxes away from each other</span></span>
-<span id="cb705-6"><a href="StructMod.html#cb705-6" tabindex="-1"></a>                    <span class="at">CMI =</span> <span class="dv">1</span>,</span>
-<span id="cb705-7"><a href="StructMod.html#cb705-7" tabindex="-1"></a>                    <span class="at">PWB =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="StructMod.html#cb705-1" tabindex="-1"></a><span class="co"># next set of code pushes the indicator variables away from the</span></span>
+<span id="cb705-2"><a href="StructMod.html#cb705-2" tabindex="-1"></a><span class="co"># factor</span></span>
+<span id="cb705-3"><a href="StructMod.html#cb705-3" tabindex="-1"></a>m1_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> <span class="fl">0.5</span>, <span class="at">CMI =</span> <span class="dv">1</span>, <span class="at">PWB =</span> <span class="dv">1</span>)</span>
+<span id="cb705-4"><a href="StructMod.html#cb705-4" tabindex="-1"></a></span>
+<span id="cb705-5"><a href="StructMod.html#cb705-5" tabindex="-1"></a><span class="co"># spreading the boxes away from each other</span></span>
+<span id="cb705-6"><a href="StructMod.html#cb705-6" tabindex="-1"></a>m1_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> <span class="dv">1</span>, <span class="at">CMI =</span> <span class="dv">1</span>, <span class="at">PWB =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Finally, we can feed all of the objects that whole these instructions into the <em>semptools::sem_set_layout</em> function. If desired, we can use the <em>semptools::change_node_label</em> function to rename the latent variables. Again, make sure to use the variable names that <em>semPlot::semPaths</em> has assigned.</p>
 <div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="StructMod.html#cb706-1" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">set_sem_layout</span>(plot_Kim_struct, <span class="at">indicator_order =</span> m1_indicator_order,</span>
 <span id="cb706-2"><a href="StructMod.html#cb706-2" tabindex="-1"></a>    <span class="at">indicator_factor =</span> m1_indicator_factor, <span class="at">factor_layout =</span> m1_msmt, <span class="at">factor_point_to =</span> m1_point_to,</span>
@@ -2102,7 +2149,7 @@ Analyzing our proposed multiple mediator model followed the two-step procedure o
 <span id="cb709-20"><a href="StructMod.html#cb709-20" tabindex="-1"></a>Kim_swap_pEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(Kim_swap_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb709-21"><a href="StructMod.html#cb709-21" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb709-22"><a href="StructMod.html#cb709-22" tabindex="-1"></a>Kim_swap_summary</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 100 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 100 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2198,9 +2245,6 @@ Analyzing our proposed multiple mediator model followed the two-step procedure o
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##    .CMI               0.000                               0.000    0.000
-##    .PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -2270,50 +2314,39 @@ Below is the column/row mapping of my variables in their desired position.</p>
 </tbody>
 </table>
 <p>We place these values along with the names of our latent variables in to the <em>semptools::layout_matrix</em> function.</p>
-<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="StructMod.html#cb714-1" tabindex="-1"></a><span class="co">#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot</span></span>
-<span id="cb714-2"><a href="StructMod.html#cb714-2" tabindex="-1"></a><span class="co">#You can change them as the last thing</span></span>
-<span id="cb714-3"><a href="StructMod.html#cb714-3" tabindex="-1"></a>m2_msmt <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">REM =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),</span>
-<span id="cb714-4"><a href="StructMod.html#cb714-4" tabindex="-1"></a>                                  <span class="at">CMI =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>),</span>
-<span id="cb714-5"><a href="StructMod.html#cb714-5" tabindex="-1"></a>                                  <span class="at">PWB =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb714-6"><a href="StructMod.html#cb714-6" tabindex="-1"></a><span class="co">#tell where you want the indicators to face</span></span>
-<span id="cb714-7"><a href="StructMod.html#cb714-7" tabindex="-1"></a>m2_point_to <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span> (<span class="at">left =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),</span>
-<span id="cb714-8"><a href="StructMod.html#cb714-8" tabindex="-1"></a>                                      <span class="at">up =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb714-9"><a href="StructMod.html#cb714-9" tabindex="-1"></a>                                      <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb714-10"><a href="StructMod.html#cb714-10" tabindex="-1"></a></span>
-<span id="cb714-11"><a href="StructMod.html#cb714-11" tabindex="-1"></a><span class="co">#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor</span></span>
-<span id="cb714-12"><a href="StructMod.html#cb714-12" tabindex="-1"></a>m2_indicator_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;p1R&quot;</span>, <span class="st">&quot;p2R&quot;</span>, <span class="st">&quot;p3R&quot;</span>,</span>
-<span id="cb714-13"><a href="StructMod.html#cb714-13" tabindex="-1"></a>                     <span class="st">&quot;p1C&quot;</span>, <span class="st">&quot;p2C&quot;</span>, <span class="st">&quot;p3C&quot;</span>,</span>
-<span id="cb714-14"><a href="StructMod.html#cb714-14" tabindex="-1"></a>                     <span class="st">&quot;p1P&quot;</span>, <span class="st">&quot;p2P&quot;</span>, <span class="st">&quot;p3P&quot;</span>)</span>
-<span id="cb714-15"><a href="StructMod.html#cb714-15" tabindex="-1"></a></span>
-<span id="cb714-16"><a href="StructMod.html#cb714-16" tabindex="-1"></a>m2_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>,</span>
-<span id="cb714-17"><a href="StructMod.html#cb714-17" tabindex="-1"></a>                      <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>,</span>
-<span id="cb714-18"><a href="StructMod.html#cb714-18" tabindex="-1"></a>                      <span class="st">&quot;PWB&quot;</span>, <span class="st">&quot;PWB&quot;</span>, <span class="st">&quot;PWB&quot;</span>)</span>
-<span id="cb714-19"><a href="StructMod.html#cb714-19" tabindex="-1"></a></span>
-<span id="cb714-20"><a href="StructMod.html#cb714-20" tabindex="-1"></a><span class="co">#next set of code pushes the indicator variables away from the factor</span></span>
-<span id="cb714-21"><a href="StructMod.html#cb714-21" tabindex="-1"></a>m2_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> .<span class="dv">5</span>, </span>
-<span id="cb714-22"><a href="StructMod.html#cb714-22" tabindex="-1"></a>                    <span class="at">CMI =</span> <span class="dv">1</span>,</span>
-<span id="cb714-23"><a href="StructMod.html#cb714-23" tabindex="-1"></a>                    <span class="at">PWB =</span> <span class="dv">1</span>)</span>
-<span id="cb714-24"><a href="StructMod.html#cb714-24" tabindex="-1"></a>m2_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> <span class="dv">1</span>, <span class="co">#spreading the boxes away from each other</span></span>
-<span id="cb714-25"><a href="StructMod.html#cb714-25" tabindex="-1"></a>                    <span class="at">CMI =</span> <span class="dv">1</span>,</span>
-<span id="cb714-26"><a href="StructMod.html#cb714-26" tabindex="-1"></a>                    <span class="at">PWB =</span> <span class="dv">1</span>)</span>
-<span id="cb714-27"><a href="StructMod.html#cb714-27" tabindex="-1"></a></span>
-<span id="cb714-28"><a href="StructMod.html#cb714-28" tabindex="-1"></a><span class="co">#assemble all the instructions</span></span>
-<span id="cb714-29"><a href="StructMod.html#cb714-29" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">set_sem_layout</span>(plot_Kim_swap,</span>
-<span id="cb714-30"><a href="StructMod.html#cb714-30" tabindex="-1"></a>                                <span class="at">indicator_order =</span> m2_indicator_order,</span>
-<span id="cb714-31"><a href="StructMod.html#cb714-31" tabindex="-1"></a>                                <span class="at">indicator_factor =</span> m2_indicator_factor,</span>
-<span id="cb714-32"><a href="StructMod.html#cb714-32" tabindex="-1"></a>                                <span class="at">factor_layout =</span> m2_msmt,</span>
-<span id="cb714-33"><a href="StructMod.html#cb714-33" tabindex="-1"></a>                                <span class="at">factor_point_to =</span> m2_point_to,</span>
-<span id="cb714-34"><a href="StructMod.html#cb714-34" tabindex="-1"></a>                                <span class="at">indicator_push =</span> m2_indicator_push,</span>
-<span id="cb714-35"><a href="StructMod.html#cb714-35" tabindex="-1"></a>                                <span class="at">indicator_spread =</span> m2_indicator_spread)</span>
-<span id="cb714-36"><a href="StructMod.html#cb714-36" tabindex="-1"></a></span>
-<span id="cb714-37"><a href="StructMod.html#cb714-37" tabindex="-1"></a><span class="co">#changing node labels</span></span>
-<span id="cb714-38"><a href="StructMod.html#cb714-38" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">change_node_label</span>(plot2,</span>
-<span id="cb714-39"><a href="StructMod.html#cb714-39" tabindex="-1"></a>                                   <span class="fu">c</span>(<span class="at">REM =</span> <span class="st">&quot;mAggress&quot;</span>,</span>
-<span id="cb714-40"><a href="StructMod.html#cb714-40" tabindex="-1"></a>                                     <span class="at">CMI =</span> <span class="st">&quot;cMistrust&quot;</span>,</span>
-<span id="cb714-41"><a href="StructMod.html#cb714-41" tabindex="-1"></a>                                     <span class="at">PWB =</span> <span class="st">&quot;Wellbeing&quot;</span>),</span>
-<span id="cb714-42"><a href="StructMod.html#cb714-42" tabindex="-1"></a>                                   <span class="at">label.cex =</span> <span class="fl">1.1</span>)</span>
-<span id="cb714-43"><a href="StructMod.html#cb714-43" tabindex="-1"></a></span>
-<span id="cb714-44"><a href="StructMod.html#cb714-44" tabindex="-1"></a><span class="fu">plot</span>(plot2)</span></code></pre></div>
+<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="StructMod.html#cb714-1" tabindex="-1"></a><span class="co"># IMPORTANT: Must use the node names (take directly from the SemPlot)</span></span>
+<span id="cb714-2"><a href="StructMod.html#cb714-2" tabindex="-1"></a><span class="co"># assigned by SemPlot You can change them as the last thing</span></span>
+<span id="cb714-3"><a href="StructMod.html#cb714-3" tabindex="-1"></a>m2_msmt <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">REM =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">CMI =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="at">PWB =</span> <span class="fu">c</span>(<span class="dv">1</span>,</span>
+<span id="cb714-4"><a href="StructMod.html#cb714-4" tabindex="-1"></a>    <span class="dv">2</span>))</span>
+<span id="cb714-5"><a href="StructMod.html#cb714-5" tabindex="-1"></a><span class="co"># tell where you want the indicators to face</span></span>
+<span id="cb714-6"><a href="StructMod.html#cb714-6" tabindex="-1"></a>m2_point_to <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">left =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">up =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">2</span>,</span>
+<span id="cb714-7"><a href="StructMod.html#cb714-7" tabindex="-1"></a>    <span class="dv">3</span>))</span>
+<span id="cb714-8"><a href="StructMod.html#cb714-8" tabindex="-1"></a></span>
+<span id="cb714-9"><a href="StructMod.html#cb714-9" tabindex="-1"></a><span class="co"># the next two codes -- indicator_order and indicator_factor are</span></span>
+<span id="cb714-10"><a href="StructMod.html#cb714-10" tabindex="-1"></a><span class="co"># paired together, they specify the order of observed variables for</span></span>
+<span id="cb714-11"><a href="StructMod.html#cb714-11" tabindex="-1"></a><span class="co"># each factor</span></span>
+<span id="cb714-12"><a href="StructMod.html#cb714-12" tabindex="-1"></a>m2_indicator_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;p1R&quot;</span>, <span class="st">&quot;p2R&quot;</span>, <span class="st">&quot;p3R&quot;</span>, <span class="st">&quot;p1C&quot;</span>, <span class="st">&quot;p2C&quot;</span>, <span class="st">&quot;p3C&quot;</span>, <span class="st">&quot;p1P&quot;</span>,</span>
+<span id="cb714-13"><a href="StructMod.html#cb714-13" tabindex="-1"></a>    <span class="st">&quot;p2P&quot;</span>, <span class="st">&quot;p3P&quot;</span>)</span>
+<span id="cb714-14"><a href="StructMod.html#cb714-14" tabindex="-1"></a></span>
+<span id="cb714-15"><a href="StructMod.html#cb714-15" tabindex="-1"></a>m2_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;PWB&quot;</span>,</span>
+<span id="cb714-16"><a href="StructMod.html#cb714-16" tabindex="-1"></a>    <span class="st">&quot;PWB&quot;</span>, <span class="st">&quot;PWB&quot;</span>)</span>
+<span id="cb714-17"><a href="StructMod.html#cb714-17" tabindex="-1"></a></span>
+<span id="cb714-18"><a href="StructMod.html#cb714-18" tabindex="-1"></a><span class="co"># next set of code pushes the indicator variables away from the</span></span>
+<span id="cb714-19"><a href="StructMod.html#cb714-19" tabindex="-1"></a><span class="co"># factor</span></span>
+<span id="cb714-20"><a href="StructMod.html#cb714-20" tabindex="-1"></a>m2_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> <span class="fl">0.5</span>, <span class="at">CMI =</span> <span class="dv">1</span>, <span class="at">PWB =</span> <span class="dv">1</span>)</span>
+<span id="cb714-21"><a href="StructMod.html#cb714-21" tabindex="-1"></a><span class="co"># spreading the boxes away from each other</span></span>
+<span id="cb714-22"><a href="StructMod.html#cb714-22" tabindex="-1"></a>m2_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> <span class="dv">1</span>, <span class="at">CMI =</span> <span class="dv">1</span>, <span class="at">PWB =</span> <span class="dv">1</span>)</span>
+<span id="cb714-23"><a href="StructMod.html#cb714-23" tabindex="-1"></a></span>
+<span id="cb714-24"><a href="StructMod.html#cb714-24" tabindex="-1"></a><span class="co"># assemble all the instructions</span></span>
+<span id="cb714-25"><a href="StructMod.html#cb714-25" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">set_sem_layout</span>(plot_Kim_swap, <span class="at">indicator_order =</span> m2_indicator_order,</span>
+<span id="cb714-26"><a href="StructMod.html#cb714-26" tabindex="-1"></a>    <span class="at">indicator_factor =</span> m2_indicator_factor, <span class="at">factor_layout =</span> m2_msmt, <span class="at">factor_point_to =</span> m2_point_to,</span>
+<span id="cb714-27"><a href="StructMod.html#cb714-27" tabindex="-1"></a>    <span class="at">indicator_push =</span> m2_indicator_push, <span class="at">indicator_spread =</span> m2_indicator_spread)</span>
+<span id="cb714-28"><a href="StructMod.html#cb714-28" tabindex="-1"></a></span>
+<span id="cb714-29"><a href="StructMod.html#cb714-29" tabindex="-1"></a><span class="co"># changing node labels</span></span>
+<span id="cb714-30"><a href="StructMod.html#cb714-30" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">change_node_label</span>(plot2, <span class="fu">c</span>(<span class="at">REM =</span> <span class="st">&quot;mAggress&quot;</span>, <span class="at">CMI =</span> <span class="st">&quot;cMistrust&quot;</span>,</span>
+<span id="cb714-31"><a href="StructMod.html#cb714-31" tabindex="-1"></a>    <span class="at">PWB =</span> <span class="st">&quot;Wellbeing&quot;</span>), <span class="at">label.cex =</span> <span class="fl">1.1</span>)</span>
+<span id="cb714-32"><a href="StructMod.html#cb714-32" tabindex="-1"></a></span>
+<span id="cb714-33"><a href="StructMod.html#cb714-33" tabindex="-1"></a><span class="fu">plot</span>(plot2)</span></code></pre></div>
 <p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p><strong>Table 3 </strong></p>
 <table>
@@ -2472,7 +2505,7 @@ Below is the column/row mapping of my variables in their desired position.</p>
 <span id="cb715-18"><a href="StructMod.html#cb715-18" tabindex="-1"></a>Kim_2dvs_pEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(Kim_2dvs_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb715-19"><a href="StructMod.html#cb715-19" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb715-20"><a href="StructMod.html#cb715-20" tabindex="-1"></a>Kim_2dvs_summary</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 101 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 101 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2572,9 +2605,6 @@ Below is the column/row mapping of my variables in their desired position.</p>
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##    .CMI               0.000                               0.000    0.000
-##    .PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -2709,50 +2739,40 @@ Below is the column/row mapping of my variables in their desired position.</p>
 </tbody>
 </table>
 <p>We place these values along with the names of our latent variables in to the <em>semptools::layout_matrix</em> function.</p>
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="StructMod.html#cb720-1" tabindex="-1"></a><span class="co">#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot</span></span>
-<span id="cb720-2"><a href="StructMod.html#cb720-2" tabindex="-1"></a><span class="co">#You can change them as the last thing</span></span>
-<span id="cb720-3"><a href="StructMod.html#cb720-3" tabindex="-1"></a>m3_msmt <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">REM =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),</span>
-<span id="cb720-4"><a href="StructMod.html#cb720-4" tabindex="-1"></a>                                  <span class="at">CMI =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb720-5"><a href="StructMod.html#cb720-5" tabindex="-1"></a>                                  <span class="at">PWB =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb720-6"><a href="StructMod.html#cb720-6" tabindex="-1"></a><span class="co">#tell where you want the indicators to face</span></span>
-<span id="cb720-7"><a href="StructMod.html#cb720-7" tabindex="-1"></a>m3_point_to <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span> (<span class="at">left =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),</span>
-<span id="cb720-8"><a href="StructMod.html#cb720-8" tabindex="-1"></a>                                      <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb720-9"><a href="StructMod.html#cb720-9" tabindex="-1"></a>                                      <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb720-10"><a href="StructMod.html#cb720-10" tabindex="-1"></a></span>
-<span id="cb720-11"><a href="StructMod.html#cb720-11" tabindex="-1"></a><span class="co">#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor</span></span>
-<span id="cb720-12"><a href="StructMod.html#cb720-12" tabindex="-1"></a>m3_indicator_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;p1R&quot;</span>, <span class="st">&quot;p2R&quot;</span>, <span class="st">&quot;p3R&quot;</span>,</span>
-<span id="cb720-13"><a href="StructMod.html#cb720-13" tabindex="-1"></a>                     <span class="st">&quot;p1C&quot;</span>, <span class="st">&quot;p2C&quot;</span>, <span class="st">&quot;p3C&quot;</span>,</span>
-<span id="cb720-14"><a href="StructMod.html#cb720-14" tabindex="-1"></a>                     <span class="st">&quot;p1P&quot;</span>, <span class="st">&quot;p2P&quot;</span>, <span class="st">&quot;p3P&quot;</span>)</span>
-<span id="cb720-15"><a href="StructMod.html#cb720-15" tabindex="-1"></a></span>
-<span id="cb720-16"><a href="StructMod.html#cb720-16" tabindex="-1"></a>m3_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>,</span>
-<span id="cb720-17"><a href="StructMod.html#cb720-17" tabindex="-1"></a>                      <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>,</span>
-<span id="cb720-18"><a href="StructMod.html#cb720-18" tabindex="-1"></a>                      <span class="st">&quot;PWB&quot;</span>, <span class="st">&quot;PWB&quot;</span>, <span class="st">&quot;PWB&quot;</span>)</span>
-<span id="cb720-19"><a href="StructMod.html#cb720-19" tabindex="-1"></a></span>
-<span id="cb720-20"><a href="StructMod.html#cb720-20" tabindex="-1"></a><span class="co">#next set of code pushes the indicator variables away from the factor</span></span>
-<span id="cb720-21"><a href="StructMod.html#cb720-21" tabindex="-1"></a>m3_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> .<span class="dv">5</span>, </span>
-<span id="cb720-22"><a href="StructMod.html#cb720-22" tabindex="-1"></a>                    <span class="at">CMI =</span> <span class="dv">1</span>,</span>
-<span id="cb720-23"><a href="StructMod.html#cb720-23" tabindex="-1"></a>                    <span class="at">PWB =</span> <span class="dv">1</span>)</span>
-<span id="cb720-24"><a href="StructMod.html#cb720-24" tabindex="-1"></a>m3_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> <span class="dv">1</span>, <span class="co">#spreading the boxes away from each other</span></span>
-<span id="cb720-25"><a href="StructMod.html#cb720-25" tabindex="-1"></a>                    <span class="at">CMI =</span> <span class="dv">1</span>,</span>
-<span id="cb720-26"><a href="StructMod.html#cb720-26" tabindex="-1"></a>                    <span class="at">PWB =</span> <span class="dv">1</span>)</span>
-<span id="cb720-27"><a href="StructMod.html#cb720-27" tabindex="-1"></a></span>
-<span id="cb720-28"><a href="StructMod.html#cb720-28" tabindex="-1"></a><span class="co">#assemble all the instructions</span></span>
-<span id="cb720-29"><a href="StructMod.html#cb720-29" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">set_sem_layout</span>(plot_Kim_2dvs,</span>
-<span id="cb720-30"><a href="StructMod.html#cb720-30" tabindex="-1"></a>                                <span class="at">indicator_order =</span> m3_indicator_order,</span>
-<span id="cb720-31"><a href="StructMod.html#cb720-31" tabindex="-1"></a>                                <span class="at">indicator_factor =</span> m3_indicator_factor,</span>
-<span id="cb720-32"><a href="StructMod.html#cb720-32" tabindex="-1"></a>                                <span class="at">factor_layout =</span> m3_msmt,</span>
-<span id="cb720-33"><a href="StructMod.html#cb720-33" tabindex="-1"></a>                                <span class="at">factor_point_to =</span> m3_point_to,</span>
-<span id="cb720-34"><a href="StructMod.html#cb720-34" tabindex="-1"></a>                                <span class="at">indicator_push =</span> m3_indicator_push,</span>
-<span id="cb720-35"><a href="StructMod.html#cb720-35" tabindex="-1"></a>                                <span class="at">indicator_spread =</span> m3_indicator_spread)</span>
-<span id="cb720-36"><a href="StructMod.html#cb720-36" tabindex="-1"></a></span>
-<span id="cb720-37"><a href="StructMod.html#cb720-37" tabindex="-1"></a><span class="co">#changing node labels</span></span>
-<span id="cb720-38"><a href="StructMod.html#cb720-38" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">change_node_label</span>(plot3,</span>
-<span id="cb720-39"><a href="StructMod.html#cb720-39" tabindex="-1"></a>                                   <span class="fu">c</span>(<span class="at">REM =</span> <span class="st">&quot;mAggress&quot;</span>,</span>
-<span id="cb720-40"><a href="StructMod.html#cb720-40" tabindex="-1"></a>                                     <span class="at">CMI =</span> <span class="st">&quot;cMistrust&quot;</span>,</span>
-<span id="cb720-41"><a href="StructMod.html#cb720-41" tabindex="-1"></a>                                     <span class="at">PWB =</span> <span class="st">&quot;Wellbeing&quot;</span>),</span>
-<span id="cb720-42"><a href="StructMod.html#cb720-42" tabindex="-1"></a>                                   <span class="at">label.cex =</span> <span class="fl">1.1</span>)</span>
-<span id="cb720-43"><a href="StructMod.html#cb720-43" tabindex="-1"></a></span>
-<span id="cb720-44"><a href="StructMod.html#cb720-44" tabindex="-1"></a><span class="fu">plot</span>(plot3)</span></code></pre></div>
+<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="StructMod.html#cb720-1" tabindex="-1"></a><span class="co"># IMPORTANT: Must use the node names (take directly from the SemPlot)</span></span>
+<span id="cb720-2"><a href="StructMod.html#cb720-2" tabindex="-1"></a><span class="co"># assigned by SemPlot You can change them as the last thing</span></span>
+<span id="cb720-3"><a href="StructMod.html#cb720-3" tabindex="-1"></a>m3_msmt <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">REM =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">CMI =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">PWB =</span> <span class="fu">c</span>(<span class="dv">3</span>,</span>
+<span id="cb720-4"><a href="StructMod.html#cb720-4" tabindex="-1"></a>    <span class="dv">2</span>))</span>
+<span id="cb720-5"><a href="StructMod.html#cb720-5" tabindex="-1"></a><span class="co"># tell where you want the indicators to face</span></span>
+<span id="cb720-6"><a href="StructMod.html#cb720-6" tabindex="-1"></a>m3_point_to <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">left =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb720-7"><a href="StructMod.html#cb720-7" tabindex="-1"></a>    <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb720-8"><a href="StructMod.html#cb720-8" tabindex="-1"></a></span>
+<span id="cb720-9"><a href="StructMod.html#cb720-9" tabindex="-1"></a><span class="co"># the next two codes -- indicator_order and indicator_factor are</span></span>
+<span id="cb720-10"><a href="StructMod.html#cb720-10" tabindex="-1"></a><span class="co"># paired together, they specify the order of observed variables for</span></span>
+<span id="cb720-11"><a href="StructMod.html#cb720-11" tabindex="-1"></a><span class="co"># each factor</span></span>
+<span id="cb720-12"><a href="StructMod.html#cb720-12" tabindex="-1"></a>m3_indicator_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;p1R&quot;</span>, <span class="st">&quot;p2R&quot;</span>, <span class="st">&quot;p3R&quot;</span>, <span class="st">&quot;p1C&quot;</span>, <span class="st">&quot;p2C&quot;</span>, <span class="st">&quot;p3C&quot;</span>, <span class="st">&quot;p1P&quot;</span>,</span>
+<span id="cb720-13"><a href="StructMod.html#cb720-13" tabindex="-1"></a>    <span class="st">&quot;p2P&quot;</span>, <span class="st">&quot;p3P&quot;</span>)</span>
+<span id="cb720-14"><a href="StructMod.html#cb720-14" tabindex="-1"></a></span>
+<span id="cb720-15"><a href="StructMod.html#cb720-15" tabindex="-1"></a>m3_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;PWB&quot;</span>,</span>
+<span id="cb720-16"><a href="StructMod.html#cb720-16" tabindex="-1"></a>    <span class="st">&quot;PWB&quot;</span>, <span class="st">&quot;PWB&quot;</span>)</span>
+<span id="cb720-17"><a href="StructMod.html#cb720-17" tabindex="-1"></a></span>
+<span id="cb720-18"><a href="StructMod.html#cb720-18" tabindex="-1"></a><span class="co"># next set of code pushes the indicator variables away from the</span></span>
+<span id="cb720-19"><a href="StructMod.html#cb720-19" tabindex="-1"></a><span class="co"># factor</span></span>
+<span id="cb720-20"><a href="StructMod.html#cb720-20" tabindex="-1"></a>m3_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> <span class="fl">0.5</span>, <span class="at">CMI =</span> <span class="dv">1</span>, <span class="at">PWB =</span> <span class="dv">1</span>)</span>
+<span id="cb720-21"><a href="StructMod.html#cb720-21" tabindex="-1"></a></span>
+<span id="cb720-22"><a href="StructMod.html#cb720-22" tabindex="-1"></a><span class="co"># spreading the boxes away from each other</span></span>
+<span id="cb720-23"><a href="StructMod.html#cb720-23" tabindex="-1"></a>m3_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> <span class="dv">1</span>, <span class="at">CMI =</span> <span class="dv">1</span>, <span class="at">PWB =</span> <span class="dv">1</span>)</span>
+<span id="cb720-24"><a href="StructMod.html#cb720-24" tabindex="-1"></a></span>
+<span id="cb720-25"><a href="StructMod.html#cb720-25" tabindex="-1"></a><span class="co"># assemble all the instructions</span></span>
+<span id="cb720-26"><a href="StructMod.html#cb720-26" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">set_sem_layout</span>(plot_Kim_2dvs, <span class="at">indicator_order =</span> m3_indicator_order,</span>
+<span id="cb720-27"><a href="StructMod.html#cb720-27" tabindex="-1"></a>    <span class="at">indicator_factor =</span> m3_indicator_factor, <span class="at">factor_layout =</span> m3_msmt, <span class="at">factor_point_to =</span> m3_point_to,</span>
+<span id="cb720-28"><a href="StructMod.html#cb720-28" tabindex="-1"></a>    <span class="at">indicator_push =</span> m3_indicator_push, <span class="at">indicator_spread =</span> m3_indicator_spread)</span>
+<span id="cb720-29"><a href="StructMod.html#cb720-29" tabindex="-1"></a></span>
+<span id="cb720-30"><a href="StructMod.html#cb720-30" tabindex="-1"></a><span class="co"># changing node labels</span></span>
+<span id="cb720-31"><a href="StructMod.html#cb720-31" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">change_node_label</span>(plot3, <span class="fu">c</span>(<span class="at">REM =</span> <span class="st">&quot;mAggress&quot;</span>, <span class="at">CMI =</span> <span class="st">&quot;cMistrust&quot;</span>,</span>
+<span id="cb720-32"><a href="StructMod.html#cb720-32" tabindex="-1"></a>    <span class="at">PWB =</span> <span class="st">&quot;Wellbeing&quot;</span>), <span class="at">label.cex =</span> <span class="fl">1.1</span>)</span>
+<span id="cb720-33"><a href="StructMod.html#cb720-33" tabindex="-1"></a></span>
+<span id="cb720-34"><a href="StructMod.html#cb720-34" tabindex="-1"></a><span class="fu">plot</span>(plot3)</span></code></pre></div>
 <p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 </div>
 <div id="what-if-we-allowed-pwb-and-cmi-to-co-vary" class="section level3 hasAnchor" number="10.9.3">
@@ -2782,7 +2802,7 @@ Below is the column/row mapping of my variables in their desired position.</p>
 <span id="cb721-17"><a href="StructMod.html#cb721-17" tabindex="-1"></a>Kim_2CorrDVs_pEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(Kim_2CorrDVs_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb721-18"><a href="StructMod.html#cb721-18" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb721-19"><a href="StructMod.html#cb721-19" tabindex="-1"></a>Kim_2CorrDVs_summary</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 99 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 99 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2882,9 +2902,6 @@ Below is the column/row mapping of my variables in their desired position.</p>
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##    .CMI               0.000                               0.000    0.000
-##    .PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -3029,50 +3046,40 @@ Below is the column/row mapping of my variables in their desired position.</p>
 </tbody>
 </table>
 <p>We place these values along with the names of our latent variables in to the <em>semptools::layout_matrix</em> function.</p>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="StructMod.html#cb726-1" tabindex="-1"></a><span class="co">#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot</span></span>
-<span id="cb726-2"><a href="StructMod.html#cb726-2" tabindex="-1"></a><span class="co">#You can change them as the last thing</span></span>
-<span id="cb726-3"><a href="StructMod.html#cb726-3" tabindex="-1"></a>m4_msmt <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">REM =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),</span>
-<span id="cb726-4"><a href="StructMod.html#cb726-4" tabindex="-1"></a>                                  <span class="at">CMI =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb726-5"><a href="StructMod.html#cb726-5" tabindex="-1"></a>                                  <span class="at">PWB =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb726-6"><a href="StructMod.html#cb726-6" tabindex="-1"></a><span class="co">#tell where you want the indicators to face</span></span>
-<span id="cb726-7"><a href="StructMod.html#cb726-7" tabindex="-1"></a>m4_point_to <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span> (<span class="at">left =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),</span>
-<span id="cb726-8"><a href="StructMod.html#cb726-8" tabindex="-1"></a>                                      <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb726-9"><a href="StructMod.html#cb726-9" tabindex="-1"></a>                                      <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb726-10"><a href="StructMod.html#cb726-10" tabindex="-1"></a></span>
-<span id="cb726-11"><a href="StructMod.html#cb726-11" tabindex="-1"></a><span class="co">#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor</span></span>
-<span id="cb726-12"><a href="StructMod.html#cb726-12" tabindex="-1"></a>m4_indicator_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;p1R&quot;</span>, <span class="st">&quot;p2R&quot;</span>, <span class="st">&quot;p3R&quot;</span>,</span>
-<span id="cb726-13"><a href="StructMod.html#cb726-13" tabindex="-1"></a>                     <span class="st">&quot;p1C&quot;</span>, <span class="st">&quot;p2C&quot;</span>, <span class="st">&quot;p3C&quot;</span>,</span>
-<span id="cb726-14"><a href="StructMod.html#cb726-14" tabindex="-1"></a>                     <span class="st">&quot;p1P&quot;</span>, <span class="st">&quot;p2P&quot;</span>, <span class="st">&quot;p3P&quot;</span>)</span>
-<span id="cb726-15"><a href="StructMod.html#cb726-15" tabindex="-1"></a></span>
-<span id="cb726-16"><a href="StructMod.html#cb726-16" tabindex="-1"></a>m4_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>,</span>
-<span id="cb726-17"><a href="StructMod.html#cb726-17" tabindex="-1"></a>                      <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>,</span>
-<span id="cb726-18"><a href="StructMod.html#cb726-18" tabindex="-1"></a>                      <span class="st">&quot;PWB&quot;</span>, <span class="st">&quot;PWB&quot;</span>, <span class="st">&quot;PWB&quot;</span>)</span>
-<span id="cb726-19"><a href="StructMod.html#cb726-19" tabindex="-1"></a></span>
-<span id="cb726-20"><a href="StructMod.html#cb726-20" tabindex="-1"></a><span class="co">#next set of code pushes the indicator variables away from the factor</span></span>
-<span id="cb726-21"><a href="StructMod.html#cb726-21" tabindex="-1"></a>m4_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> .<span class="dv">5</span>, </span>
-<span id="cb726-22"><a href="StructMod.html#cb726-22" tabindex="-1"></a>                    <span class="at">CMI =</span> <span class="dv">1</span>,</span>
-<span id="cb726-23"><a href="StructMod.html#cb726-23" tabindex="-1"></a>                    <span class="at">PWB =</span> <span class="dv">1</span>)</span>
-<span id="cb726-24"><a href="StructMod.html#cb726-24" tabindex="-1"></a>m4_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> <span class="dv">1</span>, <span class="co">#spreading the boxes away from each other</span></span>
-<span id="cb726-25"><a href="StructMod.html#cb726-25" tabindex="-1"></a>                    <span class="at">CMI =</span> <span class="dv">1</span>,</span>
-<span id="cb726-26"><a href="StructMod.html#cb726-26" tabindex="-1"></a>                    <span class="at">PWB =</span> <span class="dv">1</span>)</span>
-<span id="cb726-27"><a href="StructMod.html#cb726-27" tabindex="-1"></a></span>
-<span id="cb726-28"><a href="StructMod.html#cb726-28" tabindex="-1"></a><span class="co">#assemble all the instructions</span></span>
-<span id="cb726-29"><a href="StructMod.html#cb726-29" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">set_sem_layout</span>(plot_Kim_2CorrDVs,</span>
-<span id="cb726-30"><a href="StructMod.html#cb726-30" tabindex="-1"></a>                                <span class="at">indicator_order =</span> m4_indicator_order,</span>
-<span id="cb726-31"><a href="StructMod.html#cb726-31" tabindex="-1"></a>                                <span class="at">indicator_factor =</span> m4_indicator_factor,</span>
-<span id="cb726-32"><a href="StructMod.html#cb726-32" tabindex="-1"></a>                                <span class="at">factor_layout =</span> m4_msmt,</span>
-<span id="cb726-33"><a href="StructMod.html#cb726-33" tabindex="-1"></a>                                <span class="at">factor_point_to =</span> m4_point_to,</span>
-<span id="cb726-34"><a href="StructMod.html#cb726-34" tabindex="-1"></a>                                <span class="at">indicator_push =</span> m4_indicator_push,</span>
-<span id="cb726-35"><a href="StructMod.html#cb726-35" tabindex="-1"></a>                                <span class="at">indicator_spread =</span> m4_indicator_spread)</span>
-<span id="cb726-36"><a href="StructMod.html#cb726-36" tabindex="-1"></a></span>
-<span id="cb726-37"><a href="StructMod.html#cb726-37" tabindex="-1"></a><span class="co">#changing node labels</span></span>
-<span id="cb726-38"><a href="StructMod.html#cb726-38" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">change_node_label</span>(plot4,</span>
-<span id="cb726-39"><a href="StructMod.html#cb726-39" tabindex="-1"></a>                                   <span class="fu">c</span>(<span class="at">REM =</span> <span class="st">&quot;mAggress&quot;</span>,</span>
-<span id="cb726-40"><a href="StructMod.html#cb726-40" tabindex="-1"></a>                                     <span class="at">CMI =</span> <span class="st">&quot;cMistrust&quot;</span>,</span>
-<span id="cb726-41"><a href="StructMod.html#cb726-41" tabindex="-1"></a>                                     <span class="at">PWB =</span> <span class="st">&quot;Wellbeing&quot;</span>),</span>
-<span id="cb726-42"><a href="StructMod.html#cb726-42" tabindex="-1"></a>                                   <span class="at">label.cex =</span> <span class="fl">1.1</span>)</span>
-<span id="cb726-43"><a href="StructMod.html#cb726-43" tabindex="-1"></a></span>
-<span id="cb726-44"><a href="StructMod.html#cb726-44" tabindex="-1"></a><span class="fu">plot</span>(plot4)</span></code></pre></div>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="StructMod.html#cb726-1" tabindex="-1"></a><span class="co"># IMPORTANT: Must use the node names (take directly from the SemPlot)</span></span>
+<span id="cb726-2"><a href="StructMod.html#cb726-2" tabindex="-1"></a><span class="co"># assigned by SemPlot You can change them as the last thing</span></span>
+<span id="cb726-3"><a href="StructMod.html#cb726-3" tabindex="-1"></a>m4_msmt <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">REM =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">CMI =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">PWB =</span> <span class="fu">c</span>(<span class="dv">3</span>,</span>
+<span id="cb726-4"><a href="StructMod.html#cb726-4" tabindex="-1"></a>    <span class="dv">2</span>))</span>
+<span id="cb726-5"><a href="StructMod.html#cb726-5" tabindex="-1"></a><span class="co"># tell where you want the indicators to face</span></span>
+<span id="cb726-6"><a href="StructMod.html#cb726-6" tabindex="-1"></a>m4_point_to <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">left =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb726-7"><a href="StructMod.html#cb726-7" tabindex="-1"></a>    <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb726-8"><a href="StructMod.html#cb726-8" tabindex="-1"></a></span>
+<span id="cb726-9"><a href="StructMod.html#cb726-9" tabindex="-1"></a><span class="co"># the next two codes -- indicator_order and indicator_factor are</span></span>
+<span id="cb726-10"><a href="StructMod.html#cb726-10" tabindex="-1"></a><span class="co"># paired together, they specify the order of observed variables for</span></span>
+<span id="cb726-11"><a href="StructMod.html#cb726-11" tabindex="-1"></a><span class="co"># each factor</span></span>
+<span id="cb726-12"><a href="StructMod.html#cb726-12" tabindex="-1"></a>m4_indicator_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;p1R&quot;</span>, <span class="st">&quot;p2R&quot;</span>, <span class="st">&quot;p3R&quot;</span>, <span class="st">&quot;p1C&quot;</span>, <span class="st">&quot;p2C&quot;</span>, <span class="st">&quot;p3C&quot;</span>, <span class="st">&quot;p1P&quot;</span>,</span>
+<span id="cb726-13"><a href="StructMod.html#cb726-13" tabindex="-1"></a>    <span class="st">&quot;p2P&quot;</span>, <span class="st">&quot;p3P&quot;</span>)</span>
+<span id="cb726-14"><a href="StructMod.html#cb726-14" tabindex="-1"></a></span>
+<span id="cb726-15"><a href="StructMod.html#cb726-15" tabindex="-1"></a>m4_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>, <span class="st">&quot;REM&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;CMI&quot;</span>, <span class="st">&quot;PWB&quot;</span>,</span>
+<span id="cb726-16"><a href="StructMod.html#cb726-16" tabindex="-1"></a>    <span class="st">&quot;PWB&quot;</span>, <span class="st">&quot;PWB&quot;</span>)</span>
+<span id="cb726-17"><a href="StructMod.html#cb726-17" tabindex="-1"></a></span>
+<span id="cb726-18"><a href="StructMod.html#cb726-18" tabindex="-1"></a><span class="co"># next set of code pushes the indicator variables away from the</span></span>
+<span id="cb726-19"><a href="StructMod.html#cb726-19" tabindex="-1"></a><span class="co"># factor</span></span>
+<span id="cb726-20"><a href="StructMod.html#cb726-20" tabindex="-1"></a>m4_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> <span class="fl">0.5</span>, <span class="at">CMI =</span> <span class="dv">1</span>, <span class="at">PWB =</span> <span class="dv">1</span>)</span>
+<span id="cb726-21"><a href="StructMod.html#cb726-21" tabindex="-1"></a></span>
+<span id="cb726-22"><a href="StructMod.html#cb726-22" tabindex="-1"></a><span class="co"># spreading the boxes away from each other</span></span>
+<span id="cb726-23"><a href="StructMod.html#cb726-23" tabindex="-1"></a>m4_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">REM =</span> <span class="dv">1</span>, <span class="at">CMI =</span> <span class="dv">1</span>, <span class="at">PWB =</span> <span class="dv">1</span>)</span>
+<span id="cb726-24"><a href="StructMod.html#cb726-24" tabindex="-1"></a></span>
+<span id="cb726-25"><a href="StructMod.html#cb726-25" tabindex="-1"></a><span class="co"># assemble all the instructions</span></span>
+<span id="cb726-26"><a href="StructMod.html#cb726-26" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">set_sem_layout</span>(plot_Kim_2CorrDVs, <span class="at">indicator_order =</span> m4_indicator_order,</span>
+<span id="cb726-27"><a href="StructMod.html#cb726-27" tabindex="-1"></a>    <span class="at">indicator_factor =</span> m4_indicator_factor, <span class="at">factor_layout =</span> m4_msmt, <span class="at">factor_point_to =</span> m4_point_to,</span>
+<span id="cb726-28"><a href="StructMod.html#cb726-28" tabindex="-1"></a>    <span class="at">indicator_push =</span> m4_indicator_push, <span class="at">indicator_spread =</span> m4_indicator_spread)</span>
+<span id="cb726-29"><a href="StructMod.html#cb726-29" tabindex="-1"></a></span>
+<span id="cb726-30"><a href="StructMod.html#cb726-30" tabindex="-1"></a><span class="co"># changing node labels</span></span>
+<span id="cb726-31"><a href="StructMod.html#cb726-31" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">change_node_label</span>(plot4, <span class="fu">c</span>(<span class="at">REM =</span> <span class="st">&quot;mAggress&quot;</span>, <span class="at">CMI =</span> <span class="st">&quot;cMistrust&quot;</span>,</span>
+<span id="cb726-32"><a href="StructMod.html#cb726-32" tabindex="-1"></a>    <span class="at">PWB =</span> <span class="st">&quot;Wellbeing&quot;</span>), <span class="at">label.cex =</span> <span class="fl">1.1</span>)</span>
+<span id="cb726-33"><a href="StructMod.html#cb726-33" tabindex="-1"></a></span>
+<span id="cb726-34"><a href="StructMod.html#cb726-34" tabindex="-1"></a><span class="fu">plot</span>(plot4)</span></code></pre></div>
 <p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 </div>
 <div id="model-comparisons" class="section level3 hasAnchor" number="10.9.4">
@@ -3282,7 +3289,7 @@ Centering is 1 item – it’s a factor with two levels pre, re.</p>
 <span id="cb736-19"><a href="StructMod.html#cb736-19" tabindex="-1"></a>msmt_fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(msmt_mod, <span class="at">data =</span> babydf, <span class="at">missing =</span> <span class="st">&quot;fiml&quot;</span>)</span>
 <span id="cb736-20"><a href="StructMod.html#cb736-20" tabindex="-1"></a>msmt_fit_sum <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(msmt_fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb736-21"><a href="StructMod.html#cb736-21" tabindex="-1"></a>msmt_fit_sum</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 63 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 63 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3380,9 +3387,6 @@ Centering is 1 item – it’s a factor with two levels pre, re.</p>
 ##    .EquitableEval     4.572    0.036  126.725    0.000    4.572    7.216
 ##    .MultPerspectvs    4.391    0.048   92.287    0.000    4.391    5.265
 ##    .DEIintegration    4.512    0.044  102.435    0.000    4.512    6.105
-##     CTR               0.000                               0.000    0.000
-##     TradPed           0.000                               0.000    0.000
-##     SRPed             0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -3530,7 +3534,7 @@ Centering is 1 item – it’s a factor with two levels pre, re.</p>
 <div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="StructMod.html#cb740-1" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(msmt_fit, <span class="at">what =</span> <span class="st">&quot;col&quot;</span>, <span class="at">whatLabels =</span> <span class="st">&quot;stand&quot;</span>, <span class="at">sizeMan =</span> <span class="dv">5</span>,</span>
 <span id="cb740-2"><a href="StructMod.html#cb740-2" tabindex="-1"></a>    <span class="at">node.width =</span> <span class="dv">1</span>, <span class="at">edge.label.cex =</span> <span class="fl">0.75</span>, <span class="at">style =</span> <span class="st">&quot;lisrel&quot;</span>, <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>,</span>
 <span id="cb740-3"><a href="StructMod.html#cb740-3" tabindex="-1"></a>        <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span></code></pre></div>
-<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
 </div>
 <div id="specify-and-evaluate-a-structural-model" class="section level3 unnumbered hasAnchor">
 <h3>Specify and evaluate a <em>structural</em> model<a href="StructMod.html#specify-and-evaluate-a-structural-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -3567,7 +3571,7 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 <span id="cb741-23"><a href="StructMod.html#cb741-23" tabindex="-1"></a>ReC_struct_pEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(ReC_struct_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb741-24"><a href="StructMod.html#cb741-24" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb741-25"><a href="StructMod.html#cb741-25" tabindex="-1"></a>ReC_struct_summary</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 61 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 61 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3665,9 +3669,6 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 ##    .EquitableEval     4.572    0.036  126.725    0.000    4.572    7.216
 ##    .MultPerspectvs    4.391    0.048   92.287    0.000    4.391    5.265
 ##    .DEIintegration    4.512    0.044  102.435    0.000    4.512    6.105
-##     CTR               0.000                               0.000    0.000
-##    .TradPed           0.000                               0.000    0.000
-##    .SRPed             0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -3888,7 +3889,7 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 <div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="StructMod.html#cb745-1" tabindex="-1"></a>plot_ReC_struct <span class="ot">&lt;-</span> semPlot<span class="sc">::</span><span class="fu">semPaths</span>(ReC_struct_fit, <span class="at">what =</span> <span class="st">&quot;col&quot;</span>, <span class="at">whatLabels =</span> <span class="st">&quot;stand&quot;</span>,</span>
 <span id="cb745-2"><a href="StructMod.html#cb745-2" tabindex="-1"></a>    <span class="at">sizeMan =</span> <span class="dv">5</span>, <span class="at">node.width =</span> <span class="dv">1</span>, <span class="at">edge.label.cex =</span> <span class="fl">0.75</span>, <span class="at">style =</span> <span class="st">&quot;lisrel&quot;</span>,</span>
 <span id="cb745-3"><a href="StructMod.html#cb745-3" tabindex="-1"></a>    <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span></code></pre></div>
-<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <table>
 <thead>
 <tr class="header">
@@ -3917,33 +3918,30 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 <li>because in the <em>m1_indicator_factor</em> code I did not list the latent variables enough time to match the number of indicators in the <em>m1_indicator_order</em></li>
 </ul>
 <p>After traversing several rabbit trails, taking a break, and returning, I could see my errors. That’s just R.</p>
-<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="StructMod.html#cb746-1" tabindex="-1"></a><span class="co">#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot</span></span>
-<span id="cb746-2"><a href="StructMod.html#cb746-2" tabindex="-1"></a><span class="co">#You can change them as the last thing</span></span>
-<span id="cb746-3"><a href="StructMod.html#cb746-3" tabindex="-1"></a>m1_msmt <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">CTR =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),</span>
-<span id="cb746-4"><a href="StructMod.html#cb746-4" tabindex="-1"></a>                                  <span class="at">TrP =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb746-5"><a href="StructMod.html#cb746-5" tabindex="-1"></a>                                  <span class="at">SRP =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb746-6"><a href="StructMod.html#cb746-6" tabindex="-1"></a></span>
-<span id="cb746-7"><a href="StructMod.html#cb746-7" tabindex="-1"></a><span class="co">#tell where you want the indicators to face</span></span>
-<span id="cb746-8"><a href="StructMod.html#cb746-8" tabindex="-1"></a>m1_point_to <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span> (<span class="at">left =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),</span>
-<span id="cb746-9"><a href="StructMod.html#cb746-9" tabindex="-1"></a>                                      <span class="at">up =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb746-10"><a href="StructMod.html#cb746-10" tabindex="-1"></a>                                      <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb746-11"><a href="StructMod.html#cb746-11" tabindex="-1"></a></span>
-<span id="cb746-12"><a href="StructMod.html#cb746-12" tabindex="-1"></a><span class="co">#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor</span></span>
-<span id="cb746-13"><a href="StructMod.html#cb746-13" tabindex="-1"></a>m1_indicator_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ClR&quot;</span>, <span class="st">&quot;EfA&quot;</span>, <span class="st">&quot;Fdb&quot;</span>, <span class="st">&quot;ClO&quot;</span>, <span class="st">&quot;ClP&quot;</span>,</span>
-<span id="cb746-14"><a href="StructMod.html#cb746-14" tabindex="-1"></a>                     <span class="st">&quot;InC&quot;</span>, <span class="st">&quot;EqE&quot;</span>, <span class="st">&quot;MlP&quot;</span>, <span class="st">&quot;DEI&quot;</span>,</span>
-<span id="cb746-15"><a href="StructMod.html#cb746-15" tabindex="-1"></a>                    <span class="st">&quot;CEN&quot;</span>)</span>
-<span id="cb746-16"><a href="StructMod.html#cb746-16" tabindex="-1"></a></span>
-<span id="cb746-17"><a href="StructMod.html#cb746-17" tabindex="-1"></a>m1_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>,</span>
-<span id="cb746-18"><a href="StructMod.html#cb746-18" tabindex="-1"></a>                      <span class="st">&quot;SRP&quot;</span>, <span class="st">&quot;SRP&quot;</span>, <span class="st">&quot;SRP&quot;</span>, <span class="st">&quot;SRP&quot;</span>,</span>
-<span id="cb746-19"><a href="StructMod.html#cb746-19" tabindex="-1"></a>                      <span class="st">&quot;CTR&quot;</span>)</span>
-<span id="cb746-20"><a href="StructMod.html#cb746-20" tabindex="-1"></a></span>
-<span id="cb746-21"><a href="StructMod.html#cb746-21" tabindex="-1"></a><span class="co">#next set of code pushes the indicator variables away from the factor</span></span>
-<span id="cb746-22"><a href="StructMod.html#cb746-22" tabindex="-1"></a>m1_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">CTR =</span> <span class="dv">1</span>, </span>
-<span id="cb746-23"><a href="StructMod.html#cb746-23" tabindex="-1"></a>                    <span class="at">TrP =</span> <span class="dv">2</span>,</span>
-<span id="cb746-24"><a href="StructMod.html#cb746-24" tabindex="-1"></a>                    <span class="at">SRP =</span> <span class="dv">5</span>)</span>
-<span id="cb746-25"><a href="StructMod.html#cb746-25" tabindex="-1"></a>m1_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">CTR =</span> <span class="dv">1</span>, <span class="co">#spreading the boxes away from each other</span></span>
-<span id="cb746-26"><a href="StructMod.html#cb746-26" tabindex="-1"></a>                    <span class="at">TrP =</span> <span class="dv">3</span>,</span>
-<span id="cb746-27"><a href="StructMod.html#cb746-27" tabindex="-1"></a>                    <span class="at">SRP =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="StructMod.html#cb746-1" tabindex="-1"></a><span class="co"># IMPORTANT: Must use the node names (take directly from the SemPlot)</span></span>
+<span id="cb746-2"><a href="StructMod.html#cb746-2" tabindex="-1"></a><span class="co"># assigned by SemPlot You can change them as the last thing</span></span>
+<span id="cb746-3"><a href="StructMod.html#cb746-3" tabindex="-1"></a>m1_msmt <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">CTR =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">TrP =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">SRP =</span> <span class="fu">c</span>(<span class="dv">2</span>,</span>
+<span id="cb746-4"><a href="StructMod.html#cb746-4" tabindex="-1"></a>    <span class="dv">3</span>))</span>
+<span id="cb746-5"><a href="StructMod.html#cb746-5" tabindex="-1"></a></span>
+<span id="cb746-6"><a href="StructMod.html#cb746-6" tabindex="-1"></a><span class="co"># tell where you want the indicators to face</span></span>
+<span id="cb746-7"><a href="StructMod.html#cb746-7" tabindex="-1"></a>m1_point_to <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">left =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">up =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">2</span>,</span>
+<span id="cb746-8"><a href="StructMod.html#cb746-8" tabindex="-1"></a>    <span class="dv">3</span>))</span>
+<span id="cb746-9"><a href="StructMod.html#cb746-9" tabindex="-1"></a></span>
+<span id="cb746-10"><a href="StructMod.html#cb746-10" tabindex="-1"></a><span class="co"># the next two codes -- indicator_order and indicator_factor are</span></span>
+<span id="cb746-11"><a href="StructMod.html#cb746-11" tabindex="-1"></a><span class="co"># paired together, they specify the order of observed variables for</span></span>
+<span id="cb746-12"><a href="StructMod.html#cb746-12" tabindex="-1"></a><span class="co"># each factor</span></span>
+<span id="cb746-13"><a href="StructMod.html#cb746-13" tabindex="-1"></a>m1_indicator_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ClR&quot;</span>, <span class="st">&quot;EfA&quot;</span>, <span class="st">&quot;Fdb&quot;</span>, <span class="st">&quot;ClO&quot;</span>, <span class="st">&quot;ClP&quot;</span>, <span class="st">&quot;InC&quot;</span>, <span class="st">&quot;EqE&quot;</span>,</span>
+<span id="cb746-14"><a href="StructMod.html#cb746-14" tabindex="-1"></a>    <span class="st">&quot;MlP&quot;</span>, <span class="st">&quot;DEI&quot;</span>, <span class="st">&quot;CEN&quot;</span>)</span>
+<span id="cb746-15"><a href="StructMod.html#cb746-15" tabindex="-1"></a></span>
+<span id="cb746-16"><a href="StructMod.html#cb746-16" tabindex="-1"></a>m1_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;SRP&quot;</span>, <span class="st">&quot;SRP&quot;</span>,</span>
+<span id="cb746-17"><a href="StructMod.html#cb746-17" tabindex="-1"></a>    <span class="st">&quot;SRP&quot;</span>, <span class="st">&quot;SRP&quot;</span>, <span class="st">&quot;CTR&quot;</span>)</span>
+<span id="cb746-18"><a href="StructMod.html#cb746-18" tabindex="-1"></a></span>
+<span id="cb746-19"><a href="StructMod.html#cb746-19" tabindex="-1"></a><span class="co"># next set of code pushes the indicator variables away from the</span></span>
+<span id="cb746-20"><a href="StructMod.html#cb746-20" tabindex="-1"></a><span class="co"># factor</span></span>
+<span id="cb746-21"><a href="StructMod.html#cb746-21" tabindex="-1"></a>m1_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">CTR =</span> <span class="dv">1</span>, <span class="at">TrP =</span> <span class="dv">2</span>, <span class="at">SRP =</span> <span class="dv">5</span>)</span>
+<span id="cb746-22"><a href="StructMod.html#cb746-22" tabindex="-1"></a></span>
+<span id="cb746-23"><a href="StructMod.html#cb746-23" tabindex="-1"></a><span class="co"># spreading the boxes away from each other</span></span>
+<span id="cb746-24"><a href="StructMod.html#cb746-24" tabindex="-1"></a>m1_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">CTR =</span> <span class="dv">1</span>, <span class="at">TrP =</span> <span class="dv">3</span>, <span class="at">SRP =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>Finally, we can feed all of the objects that whole these instructions into the <em>semptools::sem_set_layout</em> function. If desired, we can use the <em>semptools::change_node_label</em> function to rename the latent variables. Again, make sure to use the variable names that <em>semPlot::semPaths</em> has assigned.</p>
 <div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb747-1"><a href="StructMod.html#cb747-1" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">set_sem_layout</span>(plot_ReC_struct, <span class="at">indicator_order =</span> m1_indicator_order,</span>
 <span id="cb747-2"><a href="StructMod.html#cb747-2" tabindex="-1"></a>    <span class="at">indicator_factor =</span> m1_indicator_factor, <span class="at">factor_layout =</span> m1_msmt, <span class="at">factor_point_to =</span> m1_point_to,</span>
@@ -3954,7 +3952,7 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 <span id="cb747-7"><a href="StructMod.html#cb747-7" tabindex="-1"></a>    <span class="at">SRP =</span> <span class="st">&quot;SRPed&quot;</span>), <span class="at">label.cex =</span> <span class="fl">1.1</span>)</span>
 <span id="cb747-8"><a href="StructMod.html#cb747-8" tabindex="-1"></a></span>
 <span id="cb747-9"><a href="StructMod.html#cb747-9" tabindex="-1"></a><span class="fu">plot</span>(plot1)</span></code></pre></div>
-<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 </div>
 <div id="respecify-and-evaluate-an-alternative-structural-model" class="section level3 unnumbered hasAnchor">
 <h3>Respecify and evaluate an <em>alternative</em> structural model<a href="StructMod.html#respecify-and-evaluate-an-alternative-structural-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -3986,7 +3984,7 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 <span id="cb748-21"><a href="StructMod.html#cb748-21" tabindex="-1"></a>ReC_ALT_pEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(ReC_ALT_fit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
 <span id="cb748-22"><a href="StructMod.html#cb748-22" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb748-23"><a href="StructMod.html#cb748-23" tabindex="-1"></a>ReC_ALT_summary</span></code></pre></div>
-<pre><code>## lavaan 0.6.16 ended normally after 61 iterations
+<pre><code>## lavaan 0.6.17 ended normally after 61 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -4088,9 +4086,6 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 ##    .EquitableEval     4.573    0.036  126.851    0.000    4.573    7.224
 ##    .MultPerspectvs    4.393    0.048   92.171    0.000    4.393    5.265
 ##    .DEIintegration    4.508    0.044  102.473    0.000    4.508    6.075
-##     CTR               0.000                               0.000    0.000
-##    .TradPed           0.000                               0.000    0.000
-##    .SRPed             0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -4248,7 +4243,7 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 <div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="StructMod.html#cb752-1" tabindex="-1"></a>plot_ReC_ALT <span class="ot">&lt;-</span> semPlot<span class="sc">::</span><span class="fu">semPaths</span>(ReC_ALT_fit, <span class="at">what =</span> <span class="st">&quot;col&quot;</span>, <span class="at">whatLabels =</span> <span class="st">&quot;stand&quot;</span>,</span>
 <span id="cb752-2"><a href="StructMod.html#cb752-2" tabindex="-1"></a>    <span class="at">sizeMan =</span> <span class="dv">5</span>, <span class="at">node.width =</span> <span class="dv">1</span>, <span class="at">edge.label.cex =</span> <span class="fl">0.75</span>, <span class="at">style =</span> <span class="st">&quot;lisrel&quot;</span>,</span>
 <span id="cb752-3"><a href="StructMod.html#cb752-3" tabindex="-1"></a>    <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span></code></pre></div>
-<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 <table>
 <thead>
 <tr class="header">
@@ -4278,33 +4273,30 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 <li>because in the <em>m1_indicator_factor</em> code I did not list the latent variables enough time to match the number of indicators in the <em>m1_indicator_order</em></li>
 </ul>
 <p>After traversing several rabbit trails, taking a break, and returning, I could see my errors. That’s just R.</p>
-<div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb753-1"><a href="StructMod.html#cb753-1" tabindex="-1"></a><span class="co">#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot</span></span>
-<span id="cb753-2"><a href="StructMod.html#cb753-2" tabindex="-1"></a><span class="co">#You can change them as the last thing</span></span>
-<span id="cb753-3"><a href="StructMod.html#cb753-3" tabindex="-1"></a>m2_msmt <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">CTR =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),</span>
-<span id="cb753-4"><a href="StructMod.html#cb753-4" tabindex="-1"></a>                                  <span class="at">TrP =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb753-5"><a href="StructMod.html#cb753-5" tabindex="-1"></a>                                  <span class="at">SRP =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb753-6"><a href="StructMod.html#cb753-6" tabindex="-1"></a></span>
-<span id="cb753-7"><a href="StructMod.html#cb753-7" tabindex="-1"></a><span class="co">#tell where you want the indicators to face</span></span>
-<span id="cb753-8"><a href="StructMod.html#cb753-8" tabindex="-1"></a>m2_point_to <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span> (<span class="at">left =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),</span>
-<span id="cb753-9"><a href="StructMod.html#cb753-9" tabindex="-1"></a>                                      <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb753-10"><a href="StructMod.html#cb753-10" tabindex="-1"></a>                                      <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb753-11"><a href="StructMod.html#cb753-11" tabindex="-1"></a></span>
-<span id="cb753-12"><a href="StructMod.html#cb753-12" tabindex="-1"></a><span class="co">#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor</span></span>
-<span id="cb753-13"><a href="StructMod.html#cb753-13" tabindex="-1"></a>m2_indicator_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ClR&quot;</span>, <span class="st">&quot;EfA&quot;</span>, <span class="st">&quot;Fdb&quot;</span>, <span class="st">&quot;ClO&quot;</span>, <span class="st">&quot;ClP&quot;</span>,</span>
-<span id="cb753-14"><a href="StructMod.html#cb753-14" tabindex="-1"></a>                     <span class="st">&quot;InC&quot;</span>, <span class="st">&quot;EqE&quot;</span>, <span class="st">&quot;MlP&quot;</span>, <span class="st">&quot;DEI&quot;</span>,</span>
-<span id="cb753-15"><a href="StructMod.html#cb753-15" tabindex="-1"></a>                    <span class="st">&quot;CEN&quot;</span>)</span>
-<span id="cb753-16"><a href="StructMod.html#cb753-16" tabindex="-1"></a></span>
-<span id="cb753-17"><a href="StructMod.html#cb753-17" tabindex="-1"></a>m2_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>,</span>
-<span id="cb753-18"><a href="StructMod.html#cb753-18" tabindex="-1"></a>                      <span class="st">&quot;SRP&quot;</span>, <span class="st">&quot;SRP&quot;</span>, <span class="st">&quot;SRP&quot;</span>, <span class="st">&quot;SRP&quot;</span>,</span>
-<span id="cb753-19"><a href="StructMod.html#cb753-19" tabindex="-1"></a>                      <span class="st">&quot;CTR&quot;</span>)</span>
-<span id="cb753-20"><a href="StructMod.html#cb753-20" tabindex="-1"></a></span>
-<span id="cb753-21"><a href="StructMod.html#cb753-21" tabindex="-1"></a><span class="co">#next set of code pushes the indicator variables away from the factor</span></span>
-<span id="cb753-22"><a href="StructMod.html#cb753-22" tabindex="-1"></a>m2_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">CTR =</span> <span class="dv">1</span>, </span>
-<span id="cb753-23"><a href="StructMod.html#cb753-23" tabindex="-1"></a>                    <span class="at">TrP =</span> <span class="dv">2</span>,</span>
-<span id="cb753-24"><a href="StructMod.html#cb753-24" tabindex="-1"></a>                    <span class="at">SRP =</span> <span class="dv">5</span>)</span>
-<span id="cb753-25"><a href="StructMod.html#cb753-25" tabindex="-1"></a>m2_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">CTR =</span> <span class="dv">1</span>, <span class="co">#spreading the boxes away from each other</span></span>
-<span id="cb753-26"><a href="StructMod.html#cb753-26" tabindex="-1"></a>                    <span class="at">TrP =</span> <span class="dv">3</span>,</span>
-<span id="cb753-27"><a href="StructMod.html#cb753-27" tabindex="-1"></a>                    <span class="at">SRP =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb753-1"><a href="StructMod.html#cb753-1" tabindex="-1"></a><span class="co"># IMPORTANT: Must use the node names (take directly from the SemPlot)</span></span>
+<span id="cb753-2"><a href="StructMod.html#cb753-2" tabindex="-1"></a><span class="co"># assigned by SemPlot You can change them as the last thing</span></span>
+<span id="cb753-3"><a href="StructMod.html#cb753-3" tabindex="-1"></a>m2_msmt <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">CTR =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">TrP =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">SRP =</span> <span class="fu">c</span>(<span class="dv">3</span>,</span>
+<span id="cb753-4"><a href="StructMod.html#cb753-4" tabindex="-1"></a>    <span class="dv">2</span>))</span>
+<span id="cb753-5"><a href="StructMod.html#cb753-5" tabindex="-1"></a></span>
+<span id="cb753-6"><a href="StructMod.html#cb753-6" tabindex="-1"></a><span class="co"># tell where you want the indicators to face</span></span>
+<span id="cb753-7"><a href="StructMod.html#cb753-7" tabindex="-1"></a>m2_point_to <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">layout_matrix</span>(<span class="at">left =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb753-8"><a href="StructMod.html#cb753-8" tabindex="-1"></a>    <span class="at">right =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb753-9"><a href="StructMod.html#cb753-9" tabindex="-1"></a></span>
+<span id="cb753-10"><a href="StructMod.html#cb753-10" tabindex="-1"></a><span class="co"># the next two codes -- indicator_order and indicator_factor are</span></span>
+<span id="cb753-11"><a href="StructMod.html#cb753-11" tabindex="-1"></a><span class="co"># paired together, they specify the order of observed variables for</span></span>
+<span id="cb753-12"><a href="StructMod.html#cb753-12" tabindex="-1"></a><span class="co"># each factor</span></span>
+<span id="cb753-13"><a href="StructMod.html#cb753-13" tabindex="-1"></a>m2_indicator_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ClR&quot;</span>, <span class="st">&quot;EfA&quot;</span>, <span class="st">&quot;Fdb&quot;</span>, <span class="st">&quot;ClO&quot;</span>, <span class="st">&quot;ClP&quot;</span>, <span class="st">&quot;InC&quot;</span>, <span class="st">&quot;EqE&quot;</span>,</span>
+<span id="cb753-14"><a href="StructMod.html#cb753-14" tabindex="-1"></a>    <span class="st">&quot;MlP&quot;</span>, <span class="st">&quot;DEI&quot;</span>, <span class="st">&quot;CEN&quot;</span>)</span>
+<span id="cb753-15"><a href="StructMod.html#cb753-15" tabindex="-1"></a></span>
+<span id="cb753-16"><a href="StructMod.html#cb753-16" tabindex="-1"></a>m2_indicator_factor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;TrP&quot;</span>, <span class="st">&quot;SRP&quot;</span>, <span class="st">&quot;SRP&quot;</span>,</span>
+<span id="cb753-17"><a href="StructMod.html#cb753-17" tabindex="-1"></a>    <span class="st">&quot;SRP&quot;</span>, <span class="st">&quot;SRP&quot;</span>, <span class="st">&quot;CTR&quot;</span>)</span>
+<span id="cb753-18"><a href="StructMod.html#cb753-18" tabindex="-1"></a></span>
+<span id="cb753-19"><a href="StructMod.html#cb753-19" tabindex="-1"></a><span class="co"># next set of code pushes the indicator variables away from the</span></span>
+<span id="cb753-20"><a href="StructMod.html#cb753-20" tabindex="-1"></a><span class="co"># factor</span></span>
+<span id="cb753-21"><a href="StructMod.html#cb753-21" tabindex="-1"></a>m2_indicator_push <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">CTR =</span> <span class="dv">1</span>, <span class="at">TrP =</span> <span class="dv">2</span>, <span class="at">SRP =</span> <span class="dv">5</span>)</span>
+<span id="cb753-22"><a href="StructMod.html#cb753-22" tabindex="-1"></a></span>
+<span id="cb753-23"><a href="StructMod.html#cb753-23" tabindex="-1"></a><span class="co"># spreading the boxes away from each other</span></span>
+<span id="cb753-24"><a href="StructMod.html#cb753-24" tabindex="-1"></a>m2_indicator_spread <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">CTR =</span> <span class="dv">1</span>, <span class="at">TrP =</span> <span class="dv">3</span>, <span class="at">SRP =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>Finally, we can feed all of the objects that whole these instructions into the <em>semptools::sem_set_layout</em> function. If desired, we can use the <em>semptools::change_node_label</em> function to rename the latent variables. Again, make sure to use the variable names that <em>semPlot::semPaths</em> has assigned.</p>
 <div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="StructMod.html#cb754-1" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> semptools<span class="sc">::</span><span class="fu">set_sem_layout</span>(plot_ReC_ALT, <span class="at">indicator_order =</span> m2_indicator_order,</span>
 <span id="cb754-2"><a href="StructMod.html#cb754-2" tabindex="-1"></a>    <span class="at">indicator_factor =</span> m2_indicator_factor, <span class="at">factor_layout =</span> m2_msmt, <span class="at">factor_point_to =</span> m2_point_to,</span>
@@ -4315,7 +4307,7 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 <span id="cb754-7"><a href="StructMod.html#cb754-7" tabindex="-1"></a>    <span class="at">SRP =</span> <span class="st">&quot;SRPed&quot;</span>), <span class="at">label.cex =</span> <span class="fl">1.1</span>)</span>
 <span id="cb754-8"><a href="StructMod.html#cb754-8" tabindex="-1"></a></span>
 <span id="cb754-9"><a href="StructMod.html#cb754-9" tabindex="-1"></a><span class="fu">plot</span>(plot2)</span></code></pre></div>
-<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
 </div>
 <div id="conduct-a-formal-comparison-of-global-fit." class="section level3 hasAnchor" number="10.12.1">
 <h3><span class="header-section-number">10.12.1</span> Conduct a formal comparison of <em>global</em> fit.<a href="StructMod.html#conduct-a-formal-comparison-of-global-fit." class="anchor-section" aria-label="Anchor link to header"></a></h3>

@@ -1,8 +1,0 @@
-"0","modKim <- '"
-"0","          PWB ~ b*CMI + c_p*REMS "
-"0","          CMI ~a*REMS"
-"0","          "
-"0","          indirect :=  a*b"
-"0","          direct  := c_p"
-"0","          total_c  := c_p + (a*b)"
-"0","          '"

@@ -1,3 +1,0 @@
-"0","Level2 <- lme4::lmer(SRPed ~ TrP_L1 + TrP_L2 + StatsPkg + Centering +(1 | CourseID), babydf, REML = FALSE)"
-"0",""
-"0","sjPlot::tab_model(empty, Level1, Level2, p.style = ""numeric"", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c(""Empty"", ""Level1"", ""Level2""), string.est = ""est"", string.se = ""se"", string.std = ""Beta"", string.std_se = ""std se"", string.p = ""p"", show.std = TRUE)"

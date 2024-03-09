@@ -1,0 +1,8 @@
+"0","TIMEwide <- TIMEwide%>%"
+"0","  dplyr::mutate (Weeks1 = Intake + lubridate::dweeks(Sess1))%>%"
+"0","  dplyr::mutate (Weeks2 = Intake + lubridate::dweeks(Sess2))%>%"
+"0","  dplyr::mutate (Weeks3 = Intake + lubridate::dweeks(Sess3))%>%"
+"0","  dplyr::mutate (Weeks4 = Intake + lubridate::dweeks(Sess4))%>%"
+"0","  dplyr::mutate (Weeks5 = Intake + lubridate::dweeks(Sess5))"
+"0",""
+"0","head(TIMEwide)"

@@ -243,7 +243,7 @@ FDsummary
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 1 iteration
+## lavaan 0.6.17 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -466,7 +466,7 @@ library(lavaan)
 ```
 
 ```
-## This is lavaan 0.6-16
+## This is lavaan 0.6-17
 ## lavaan is FREE software! Please report any bugs.
 ```
 
@@ -1003,7 +1003,7 @@ Kim_summary
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 1 iteration
+## lavaan 0.6.17 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1278,7 +1278,7 @@ Kcov_sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 1 iteration
+## lavaan 0.6.17 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1662,7 +1662,7 @@ ReCsummary
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 14 iterations
+## lavaan 0.6.17 ended normally after 14 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1816,7 +1816,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = ReCfit)
 ```
 
-![](05-SimpleMed_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-73-1.png)<!-- -->
 
 
 ```r
@@ -1851,7 +1851,7 @@ med_map
 tidySEM::graph_sem(ReCfit, layout=med_map,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](05-SimpleMed_files/figure-docx/unnamed-chunk-43-1.png)<!-- -->
+![](05-SimpleMed_files/figure-docx/unnamed-chunk-76-1.png)<!-- -->
 
 
 ### Create a table that includes regression output for the M and Y variables {-}

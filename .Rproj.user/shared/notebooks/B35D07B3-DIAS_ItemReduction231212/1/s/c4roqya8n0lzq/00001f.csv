@@ -1,0 +1,17 @@
+"0","allPAF1 <- psych::fa(df_r[, most_vars], nfactors = 10, fm = ""pa"", max.iter, rotate = ""none"")"
+"2","In smc, smcs > 1 were set to 1.0
+"
+"2","Warning: Matrix was not positive definite, smoothing was done"
+"2","Warning: The estimated weights for the factor scores are probably incorrect.  Try a different factor score estimation method."
+"0","allPAF1"
+"1","Factor Analysis using method = "
+"1"," "
+"1","pa"
+"1","
+Call: "
+"1","psych::fa(r = df_r[, most_vars], nfactors = 10, n.obs = max.iter, 
+"
+"1","    rotate = ""none"", fm = ""pa"")
+"
+"1","Standardized loadings (pattern matrix) based upon correlation matrix
+"

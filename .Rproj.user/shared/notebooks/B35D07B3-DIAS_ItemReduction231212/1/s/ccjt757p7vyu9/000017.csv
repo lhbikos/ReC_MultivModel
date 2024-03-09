@@ -1,0 +1,3 @@
+"0","allitems_table <- round(allPAF2$loadings,3)"
+"0","write.table(allitems_table, file=""allitems_table.csv"", sep="","", col.names=TRUE, row.names=TRUE)"
+"0",""

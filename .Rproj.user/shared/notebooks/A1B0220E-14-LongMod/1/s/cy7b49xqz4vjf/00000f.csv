@@ -1,8 +1,0 @@
-"0","#with lme4 package"
-"0","Mod3a <- lmer(Anxiety ~ SesNum*Het0 +(SesNum | ClientID), LfvrLong, REML = FALSE)"
-"2","Warning: Model failed to converge with max|grad| = 0.0985672 (tol = 0.002, component 1)"
-"2","Warning: Model is nearly unidentifiable: very large eigenvalue
- - Rescale variables?"
-"0","tab_model(Mod1a, Mod2a,Mod3a, p.style = ""numeric"", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c(""Mod1"", ""Mod2"", ""Mod3""))"
-"0","#can swap this statement with the ""file = ""TabMod_Table"""" to get Viewer output or the outfile that you can open in Word"
-"0","#file = ""TabMod_Table.doc"""

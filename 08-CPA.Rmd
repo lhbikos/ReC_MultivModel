@@ -175,7 +175,7 @@ The *lavaan::simulateData* function was used. If you have taken psychometrics, y
 
 
 Lewis_generating_model <- '
-        ##measurement model
+        #measurement model
         GRMS  =~ .69*Ob1 + .69*Ob2 + .60*Ob3 + .59*Ob4 + .55*Ob5 + .55*Ob6 + .54*Ob7 + .50*Ob8 + .41*Ob9 + .41*Ob10 + .93*Ma1 + .81*Ma2 + .69*Ma3 + .67*Ma4 + .61*Ma5 + .58*Ma6 + .54*Ma7 + .59*St1 + .55*St2 + .54*St3 + .54*St4 + .51*St5 + .70*An1 + .69*An2 + .68*An3
         MntlHlth  =~ .8*MH1 + .8*MH2 + .8*MH3 + .8*MH4 + .8*MH5 + .8*MH6
         PhysHlth  =~ .8*PhH1 + .8*PhH2 + .8*PhH3 + .8*PhH4 + .8*PhH5 + .8*PhH6
@@ -185,7 +185,7 @@ Lewis_generating_model <- '
         Disengagement  =~  .8*dEng1 + .8*dEng2
         GRIC  =~ .8*Cntrlty1 + .8*Cntrlty2 + .8*Cntrlty3 + .8*Cntrlty4 + .8*Cntrlty5 + .8*Cntrlty6 + .8*Cntrlty7 + .8*Cntrlty8 + .8*Cntrlty9 + .8*Cntrlty10
    
-        # Means
+        #Means
          GRMS ~ 1.99*1
          Spirituality ~2.82*1
          SocSupport ~ 2.48*1
@@ -195,7 +195,7 @@ Lewis_generating_model <- '
          MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
          PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
          
-        # Correlations 
+        #Correlations 
          GRMS ~ 0.20*Spirituality
          GRMS ~ 0.28*SocSupport
          GRMS ~ 0.30*Engagement

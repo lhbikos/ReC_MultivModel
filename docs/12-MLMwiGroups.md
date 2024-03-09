@@ -172,6 +172,23 @@ Simulating the data gives us some information about the nature of MLM.  You can 
 Further down in the code, we feed R the regression equation.
 
 ```r
+library(tidyverse)
+```
+
+```
+## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+```
+
+```r
 set.seed(200407)
 n_church = 15
 n_mbrs = 15
@@ -200,32 +217,12 @@ sd = 1  #this is the observation-level random effect variance that we set at 1
 (dat = data.frame(church, churcheff, mbrseff, Gender, Age, Education, Attendance,
     Homogeneity, ATSS))
 
-library(dplyr)
-```
 
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 dat <- dat %>%
-    mutate(ID = row_number())
+    dplyr::mutate(ID = row_number())
 # moving the ID number to the first column; requires
 dat <- dat %>%
-    select(ID, everything())
+    dplyr::select(ID, everything())
 
 Lefevor2020 <- dat %>%
     select(ID, church, Gender, Age, Education, Attendance, Homogeneity,
@@ -265,7 +262,6 @@ We should, though take a look at the relations between the variables in our mode
 
 
 ```r
-library(psych)
 psych::pairs.panels(Lefevor2020[c("ATSS", "Attendance", "Homogeneity")],
     stars = TRUE)
 ```
@@ -308,25 +304,27 @@ misty::multilevel.descript(Lefevor2020[, c("ATSS", "Attendance", "Homogeneity")]
 ```
 ##  Multilevel Descriptive Statistics
 ## 
-##                          ATSS Attendance Homogeneity
-##   No. of cases            225        225         225
-##   No. of missing values     0          0           0
-##                                                     
-##   No. of clusters          15         15          15
-##   Average cluster size  15.00      15.00       15.00
-##   SD cluster size        0.00       0.00        0.00
-##   Min cluster size         15         15          15
-##   Max cluster size         15         15          15
-##                                                     
-##   Mean                   3.32       7.52        1.04
-##   Variance Within        1.13       2.30            
-##   Variance Between       0.29       0.00        0.07
-##   ICC(1)                0.205      0.000            
-##   ICC(2)                0.795      0.000            
-##                                                     
-##   Design effect          3.87       1.00            
-##   Design effect sqrt     1.97       1.00            
-##   Effective sample size 58.09     225.00
+##                           ATSS Attendance Homogeneity
+##   Level 1                                            
+##    No. of cases            225        225            
+##    No. of missing values     0          0            
+##                                                      
+##    Variance Within        1.13       2.30            
+##                                                      
+##   Level 2                                            
+##    No. of clusters          15         15          15
+##    Average cluster size  15.00      15.00            
+##    Min cluster size         15         15            
+##    Max cluster size         15         15            
+##                                                      
+##    Mean                   3.32       7.52        1.04
+##    Variance Between       0.29       0.00        0.07
+##    ICC(1)                0.205      0.000            
+##    ICC(2)                0.795      0.000            
+##                                                      
+##   Design effect           3.87       1.00            
+##   Design effect sqrt      1.97       1.00            
+##   Effective sample size  58.09     225.00
 ```
 From this table of descriptives we learn that we have 225 congregants who were affiliated with 15 churches, for an average of 15 individuals per cluster.  We can also see the means for our three variables:  ATSS, Attendance, Homogeneity.
 
@@ -346,7 +344,7 @@ corrmatrix <- misty::multilevel.cor(Lefevor2020[, c("ATSS", "Attendance")],
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                             
-##   lavaan 0.6.16                             
+##   lavaan 0.6.17                             
 ##                                             
 ##    Estimator                        ML      
 ##    Standard Errors        Conventional      
@@ -379,7 +377,7 @@ corrmatrix
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                             
-##   lavaan 0.6.16                             
+##   lavaan 0.6.17                             
 ##                                             
 ##    Estimator                        ML      
 ##    Standard Errors        Conventional      
@@ -517,10 +515,10 @@ Similarly, *robumeta*'s *group.mean* function will aggregate variables at the gr
 
 
 ```r
-library(robumeta)
-Lefevor2020$AttendL1 <- as.numeric(group.center(Lefevor2020$Attendance,
+Lefevor2020$AttendL1 <- as.numeric(robumeta::group.center(Lefevor2020$Attendance,
     Lefevor2020$church))  #centered within context (group mean centering)
-Lefevor2020$AttendL2 <- as.numeric(group.mean(Lefevor2020$Attendance, Lefevor2020$church))  #aggregated at group mean
+Lefevor2020$AttendL2 <- as.numeric(robumeta::group.mean(Lefevor2020$Attendance,
+    Lefevor2020$church))  #aggregated at group mean
 ```
 
 
@@ -890,11 +888,42 @@ There are two packages (*lme4*, *nlme*) that are primarily used for MLM. Because
 
 ```r
 Empty <- lme4::lmer(ATSS ~ 1 + (1 | church), REML = FALSE, data = Lefevor2020)
+summary(Empty)
+```
 
+```
+## Linear mixed model fit by maximum likelihood  ['lmerMod']
+## Formula: ATSS ~ 1 + (1 | church)
+##    Data: Lefevor2020
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    694.7    705.0   -344.4    688.7      222 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.9130 -0.6410  0.0392  0.5764  2.5252 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  church   (Intercept) 0.2673   0.5171  
+##  Residual             1.1299   1.0630  
+## Number of obs: 225, groups:  church, 15
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)   3.3214     0.1511   21.98
+```
+
+```r
 sjPlot::tab_model(Empty, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
     show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
     use.viewer = TRUE, dv.labels = c("Empty"), string.est = "est", string.se = "se",
     string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -971,13 +1000,6 @@ With the *plot_model()* function in *sjPlot*, we can plot the random effects.  F
 sjPlot::plot_model(Empty, type = "re")
 ```
 
-```
-## Warning in checkMatrixPackageVersion(): Package version inconsistency detected.
-## TMB was built with Matrix version 1.6.1.1
-## Current Matrix version is 1.5.4.1
-## Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package
-```
-
 ![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-17-1.png)<!-- -->
 
 Focusing on the information in viewer, we can first check to see if things look right.  We know we have 15 churches, each with 15 observations (225), so our data is reading correctly.
@@ -1033,12 +1055,50 @@ We update our script by:
 ```r
 # MODEL 2
 Level1 <- lme4::lmer(ATSS ~ AttendL1 + (1 | church), REML = FALSE, data = Lefevor2020)
+summary(Level1)
+```
 
+```
+## Linear mixed model fit by maximum likelihood  ['lmerMod']
+## Formula: ATSS ~ AttendL1 + (1 | church)
+##    Data: Lefevor2020
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    692.5    706.2   -342.3    684.5      221 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -4.1385 -0.6440  0.0700  0.6112  2.4747 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  church   (Intercept) 0.2688   0.5185  
+##  Residual             1.1075   1.0524  
+## Number of obs: 225, groups:  church, 15
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)  3.32137    0.15115  21.975
+## AttendL1     0.09763    0.04738   2.061
+## 
+## Correlation of Fixed Effects:
+##          (Intr)
+## AttendL1 0.000
+```
+
+```r
 sjPlot::tab_model(Empty, Level1, p.style = "numeric", show.ci = FALSE,
     show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
     show.se = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Adding Level1"),
     string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se",
     string.p = "p", show.std = TRUE)
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -1249,12 +1309,56 @@ Although Lefevor and colleagues [-@lefevor_homonegativity_2020] included more L1
 # MODEL 3
 Level2 <- lme4::lmer(ATSS ~ AttendL1 + AttendL2 + Homogeneity + (1 | church),
     REML = FALSE, data = Lefevor2020)
+summary(Level2)
+```
 
+```
+## Linear mixed model fit by maximum likelihood  ['lmerMod']
+## Formula: ATSS ~ AttendL1 + AttendL2 + Homogeneity + (1 | church)
+##    Data: Lefevor2020
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    687.5    708.0   -337.8    675.5      219 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -4.4350 -0.6238  0.0782  0.6362  2.2297 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  church   (Intercept) 0.1141   0.3378  
+##  Residual             1.1075   1.0524  
+## Number of obs: 225, groups:  church, 15
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)  4.85555    2.70843   1.793
+## AttendL1     0.09763    0.04738   2.061
+## AttendL2     0.01658    0.37518   0.044
+## Homogeneity -1.59347    0.47613  -3.347
+## 
+## Correlation of Fixed Effects:
+##             (Intr) AttnL1 AttnL2
+## AttendL1     0.000              
+## AttendL2    -0.984  0.000       
+## Homogeneity  0.147  0.000 -0.317
+```
+
+```r
 sjPlot::tab_model(Empty, Level1, Level2, p.style = "numeric", show.ci = FALSE,
     show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
     show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Adding Level1",
         "Adding Level2"), string.est = "est", string.se = "se", string.std = "Beta",
     string.std_se = "std se", string.p = "p", show.std = TRUE)
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -1296,7 +1400,7 @@ sjPlot::tab_model(Empty, Level1, Level2, p.style = "numeric", show.ci = FALSE,
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1"><strong>&lt;0.001</strong></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">4.86</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">2.71</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  4">0.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  4">&#45;0.00</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  5">0.09</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  6">0.074</td>
 </tr>
@@ -1457,30 +1561,29 @@ Let's look at plots. With three predictors, we can examine each of their relatio
 * overall church attendance has no apparent effect on homonegativity, and
 * as racial homogeneity increases, homonegativity decreases.
 
+sjPlot::plot_model (Level1, type="pred", terms= c("AttendL1"))
+
 
 ```r
-sjPlot::plot_model(Level2, type = "pred")
-```
-
-```
-## $AttendL1
+sjPlot::plot_model(Level2, type = "pred", terms = c("Homogeneity"))
 ```
 
 ![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-26-1.png)<!-- -->
 
-```
-## 
-## $AttendL2
+
+```r
+sjPlot::plot_model (Level2, type="pred", terms = c("AttendL1"))
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-26-2.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-27-1.png)<!-- -->
 
-```
-## 
-## $Homogeneity
+
+```r
+sjPlot::plot_model (Level2, type="pred", terms = c("AttendL2"))
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-26-3.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-28-1.png)<!-- -->
+
 
 Because the next phase of model building will include cross-level interactions, let's display this mode by examining the relationship between individual attendance and homonegativity, chunked into clusters that let us also examine the influene of church-level attendance and racial homogeneity.  This is not a formal test of an interaction; however, I don't sense that there will be interacting effects.
 
@@ -1489,7 +1592,7 @@ sjPlot::plot_model(Level2, type = "pred", terms = c("AttendL1", "Homogeneity",
     "AttendL2"))
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-27-1.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-29-1.png)<!-- -->
 
 Our diagnostic plots continue to support our modeling. In the QQ plots, the points generally track along the lines. In the non-normality of residuals, our distribution approximates the superimposed normal curve. In the homoscedasticity plot, the points are scattered above/blow the line in a reasonably equal amounts with random spread.
 
@@ -1505,7 +1608,7 @@ sjPlot::plot_model(Empty, type = "diag")
 ## `geom_smooth()` using formula = 'y ~ x'
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-28-1.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-30-1.png)<!-- -->
 
 ```
 ## 
@@ -1517,7 +1620,7 @@ sjPlot::plot_model(Empty, type = "diag")
 ## `geom_smooth()` using formula = 'y ~ x'
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-28-2.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-30-2.png)<!-- -->
 
 ```
 ## 
@@ -1525,7 +1628,7 @@ sjPlot::plot_model(Empty, type = "diag")
 ## [[3]]
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-28-3.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-30-3.png)<!-- -->
 
 ```
 ## 
@@ -1536,7 +1639,7 @@ sjPlot::plot_model(Empty, type = "diag")
 ## `geom_smooth()` using formula = 'y ~ x'
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-28-4.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-30-4.png)<!-- -->
 
 Lefevor and colleagues [@lefevor_homonegativity_2020] had intended to include interaction terms. However, because only one predictor was significant at each of the individual and congregational levels, their final model did not include interaction effects. I am guessing they tried it and trimmed it out. 
 
@@ -1551,13 +1654,61 @@ In multilevel modeling, we have the opportunity to cross the levels (individual,
 # MODEL 4
 CrossLevelInt <- lme4::lmer(ATSS ~ AttendL2 + AttendL1 * Homogeneity +
     (1 | church), REML = FALSE, data = Lefevor2020)
+summary(CrossLevelInt)
+```
 
+```
+## Linear mixed model fit by maximum likelihood  ['lmerMod']
+## Formula: ATSS ~ AttendL2 + AttendL1 * Homogeneity + (1 | church)
+##    Data: Lefevor2020
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    689.5    713.4   -337.7    675.5      218 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -4.4652 -0.6250  0.0838  0.6268  2.2495 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  church   (Intercept) 0.1141   0.3378  
+##  Residual             1.1073   1.0523  
+## Number of obs: 225, groups:  church, 15
+## 
+## Fixed effects:
+##                      Estimate Std. Error t value
+## (Intercept)           4.85555    2.70843   1.793
+## AttendL2              0.01658    0.37518   0.044
+## AttendL1              0.14098    0.21674   0.650
+## Homogeneity          -1.59347    0.47613  -3.347
+## AttendL1:Homogeneity -0.04061    0.19816  -0.205
+## 
+## Correlation of Fixed Effects:
+##             (Intr) AttnL2 AttnL1 Hmgnty
+## AttendL2    -0.984                     
+## AttendL1     0.000  0.000              
+## Homogeneity  0.147 -0.317  0.000       
+## AttndL1:Hmg  0.000  0.000 -0.976  0.000
+```
+
+```r
 sjPlot::tab_model(Empty, Level1, Level2, CrossLevelInt, p.style = "numeric",
     show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.se = TRUE,
     show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty",
         "Adding Level 1", "Adding Level 2", "Adding CrossLevel Interaction"),
     string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se",
     string.p = "p", show.std = TRUE, file = "TabMod_Table.doc")
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -1606,12 +1757,12 @@ sjPlot::tab_model(Empty, Level1, Level2, CrossLevelInt, p.style = "numeric",
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1"><strong>&lt;0.001</strong></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">4.86</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">2.71</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  4">0.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  4">&#45;0.00</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  5">0.09</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  6">0.074</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  7">4.86</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  8">2.71</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  9">0.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  9">&#45;0.00</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">0.09</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">0.074</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">1.000</td>
@@ -1817,7 +1968,7 @@ sjPlot::plot_model(CrossLevelInt, type = "pred", terms = c("AttendL1",
     "Homogeneity", "AttendL2"), mdrt.values = "meansd")
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-31-1.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-33-1.png)<!-- -->
 Another way to view this is to request the "int" (interaction) model type.
 
 ```r
@@ -1825,7 +1976,7 @@ sjPlot::plot_model(CrossLevelInt, type = "int", terms = c("AttendL1", "AttendL2"
     "Homogeneity"), mdrt.values = "meansd")
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-32-1.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-34-1.png)<!-- -->
 Even though the addition of the interaction term did not improve our model, it does not look like it harmed it. These diagnostics remain consistent with those we saw before.
 
 ```r
@@ -1840,7 +1991,7 @@ sjPlot::plot_model(CrossLevelInt, type = "diag")
 ## `geom_smooth()` using formula = 'y ~ x'
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-33-1.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-35-1.png)<!-- -->
 
 ```
 ## 
@@ -1852,7 +2003,7 @@ sjPlot::plot_model(CrossLevelInt, type = "diag")
 ## `geom_smooth()` using formula = 'y ~ x'
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-33-2.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-35-2.png)<!-- -->
 
 ```
 ## 
@@ -1860,7 +2011,7 @@ sjPlot::plot_model(CrossLevelInt, type = "diag")
 ## [[3]]
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-33-3.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-35-3.png)<!-- -->
 
 ```
 ## 
@@ -1871,7 +2022,7 @@ sjPlot::plot_model(CrossLevelInt, type = "diag")
 ## `geom_smooth()` using formula = 'y ~ x'
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-33-4.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-35-4.png)<!-- -->
 
 ### Final Model
 
@@ -1973,37 +2124,38 @@ Using these numbers we refer to the three tables in Arend and Schäfer [-@arend_
 
 In this write-up, please presume that the *apa.cor.table* of L1 and L2 variables and the *tab_model()* table (Level3) we created will serve as the basis for the APA style tables.  I would use one of the Level3 predictions as the graph.
 
-**Method/Analytic Strategy**
-For the nested structure of our data (congregants [L1] nested within churches [L2]), multilevel modeling was appropriate because it allows for (a) the dependent nature of the congregants within their churches and (b) varying numbers of church members within each church. We analyzed the data with the *lme4* (v. 1.1-26) in R (v. 4.0.5) using full maximum likelihood. We used a compositional effect [@enders_centering_2007] approach to center our variables.  Specifically, we used group-mean centering (centering within context) for our L1 variables.  Calculating their group aggregate, we entered them back into the model as L2 predictors. This allowed each predictor to completely capture within- and between-group variance.
+>**Method/Analytic Strategy**
 
-Model development and evaluation waas approached in a systematic and sequential manner. This exploratory approach is consistent with recommendations to pursue  model generating approaches in complex models [@bollen_testing_1993] by first understanding the relatively simpler relations between the variables [e.g., @hancock_hierarchical_2010; @petscher_linear_2013] and assessing the viability of more complexity based on the results. Accordingly, we began with an intercept-only model.  We followed sequentially by entering L1 (Model 2), L2 (Model 3), and a cross-level interaction (Model 4). Throughout we monitored variance components and fit decisions to determine our final model.
+>For the nested structure of our data (congregants [L1] nested within churches [L2]), multilevel modeling was appropriate because it allows for (a) the dependent nature of the congregants within their churches and (b) varying numbers of church members within each church. We analyzed the data with the *lme4* (v. 1.1-26) in R (v. 4.0.5) using full maximum likelihood. We used a compositional effect [@enders_centering_2007] approach to center our variables.  Specifically, we used group-mean centering (centering within context) for our L1 variables.  Calculating their group aggregate, we entered them back into the model as L2 predictors. This allowed each predictor to completely capture within- and between-group variance.
 
-**Sample Size, Power, and Precision**
+>Model development and evaluation was approached in a systematic and sequential manner. This exploratory approach is consistent with recommendations to pursue  model generating approaches in complex models [@bollen_testing_1993] by first understanding the relatively simpler relations between the variables [e.g., @hancock_hierarchical_2010; @petscher_linear_2013] and assessing the viability of more complexity based on the results. Accordingly, we began with an intercept-only model.  We followed sequentially by entering L1 (Model 2), L2 (Model 3), and a cross-level interaction (Model 4). Throughout we monitored variance components and fit decisions to determine our final model.
 
-Sample size is a critical yet complex issue in multilevel models. In response to controversial and overly simplistic rules of thumb that have often guided the design and justification of sample sizes in multilevel models, Arend and Schäfer [-@arend_statistical_2019] used Monte Carlo simulations for understanding the relations between (a) Level 2 (L2; N; the number of clustering units) and Level 1 (L1; n; the number of observations per cluster) sample sizes, (b) a study’s intraclass correlation coefficient (ICC), and (c) minimum detectable effect sizes that yield a power greater than .80. One result of Arend and Schäfer’s work is a set of power tables that allow researchers to use project-specific parameters to understand the power in their own study.
+>**Sample Size, Power, and Precision**
 
-With ATSS/homonegativity as the dependent variable, the ICC of our empty model was 0.19 (small-to-medium), we had 15 churchess (L2, *N*), and an average of 15 congregants per church (L1, *n*). Utilizing Arend and Schäfer's [-@arend_statistical_2019] table of minimum detectable effect sizes for L1 direct effects, if we had had a sample size of 30, our study would have had sufficient power (> 0.80) to detect a standardized effect size of .22 for L1 predictors (i.e., attendance L1), .59 for L2 predictors (i.e., attendance L2, homogeneity), and insufficient power for cross-level interactions. The magnitude of these minimally detectable effect sizes are large, this means that our sample size is likely too small to identify smaller effect sizes as statistically significant.
+>Sample size is a critical yet complex issue in multilevel models. In response to controversial and overly simplistic rules of thumb that have often guided the design and justification of sample sizes in multilevel models, Arend and Schäfer [-@arend_statistical_2019] used Monte Carlo simulations for understanding the relations between (a) Level 2 (L2; N; the number of clustering units) and Level 1 (L1; n; the number of observations per cluster) sample sizes, (b) a study’s intraclass correlation coefficient (ICC), and (c) minimum detectable effect sizes that yield a power greater than .80. One result of Arend and Schäfer’s work is a set of power tables that allow researchers to use project-specific parameters to understand the power in their own study.
 
-While a benefit of Arend and Schäfer’s [-@arend_statistical_2019] guidelines is the use of sample-specific characteristics, a limitation is that our model is more complex than the models used to develop their guidelines. Further, Arend and Schäfer indicated that L1 sample sizes of up to 30 and L2 sample sizes of up to 200 would not be large enough to study small standardized L2 direct effects and cross-level interaction effects (or medium cross-level interaction effects with a small variance component); as noted above, this applies to our model.
+>With ATSS/homonegativity as the dependent variable, the ICC of our empty model was 0.19 (small-to-medium), we had 15 churchess (L2, *N*), and an average of 15 congregants per church (L1, *n*). Utilizing Arend and Schäfer's [-@arend_statistical_2019] table of minimum detectable effect sizes for L1 direct effects, if we had had a sample size of 30, our study would have had sufficient power (> 0.80) to detect a standardized effect size of .22 for L1 predictors (i.e., attendance L1), .59 for L2 predictors (i.e., attendance L2, homogeneity), and insufficient power for cross-level interactions. The magnitude of these minimally detectable effect sizes are large, this means that our sample size is likely too small to identify smaller effect sizes as statistically significant.
+
+>While a benefit of Arend and Schäfer’s [-@arend_statistical_2019] guidelines is the use of sample-specific characteristics, a limitation is that our model is more complex than the models used to develop their guidelines. Further, Arend and Schäfer indicated that L1 sample sizes of up to 30 and L2 sample sizes of up to 200 would not be large enough to study small standardized L2 direct effects and cross-level interaction effects (or medium cross-level interaction effects with a small variance component); as noted above, this applies to our model.
 
 
-**Results**
+>**Results**
 
-**Preliminary Analyses**
+>**Preliminary Analyses**
 
-*  Missing data analysis and managing missing data
-*  Bivariate correlations, means, SDs
-*  Address assumptions; in MLM this includes
-   * linearity
-   * homogeneity of variance
-   * normal distribution of the model's residuals
-*  Address any apriorily known limitations and concerns
+>*  Missing data analysis and managing missing data
+>*  Bivariate correlations, means, SDs
+>*  Address assumptions; in MLM this includes
+>   * linearity
+>   * homogeneity of variance
+>   * normal distribution of the model's residuals
+>*  Address any apriorily known limitations and concerns
 
-**Primary Analyses**
+>**Primary Analyses**
 
-Table # reports the the bivariate correlations between ATSS/homonegative attitudes and the L1 and L2 predictors.  Our first model was an intercept-only, "empty", model with ATSS/homonegative attitudes as the dependent variable and no predictors in the model. The intraclass correlation (ICC) suggested that 19% of the variance in homonegative attitudes was between congregations; correspondingly, 81% was within congregations (i.e., between individuals).
+>Table # reports the the bivariate correlations between ATSS/homonegative attitudes and the L1 and L2 predictors.  Our first model was an intercept-only, "empty", model with ATSS/homonegative attitudes as the dependent variable and no predictors in the model. The intraclass correlation (ICC) suggested that 19% of the variance in homonegative attitudes was between congregations; correspondingly, 81% was within congregations (i.e., between individuals).
 
-We added the L1 predictor of individual church attendance in the second model. As shown in Table #, there was a significant effect such that as individual church attendance increased, so did homonegative attitudes. We added the L2 variables of the aggregate form of church attendance and racial homogeneity in our third model. The L2 form of church attendance had a non-significant effect, however racial homogeneity was significant. Specifically, as homogeneity increased, homonegativity decreased; this relationship is illustrated in Figure #. Our fourth model (not shown) included a cross-level interaction between individual church attendance and homogeneity. Because it was non-significant, made no changes in the variance components, and caused the AIC to increase, we trimmed it from the model. Thus, Model 3 is our final model.  Further support for this model is noted by the corresponding decreases in $\sigma^{2}$ and $\tau _{00}$ when L1 and L2 variables were added, respectively. Additionally, marginal and conditional $R^2$ increased and formal evaluation of the deviance statistic suggested that each addition was a statistically significant improvement.
+>We added the L1 predictor of individual church attendance in the second model. As shown in Table #, there was a significant effect such that as individual church attendance increased, so did homonegative attitudes. We added the L2 variables of the aggregate form of church attendance and racial homogeneity in our third model. The L2 form of church attendance had a non-significant effect, however racial homogeneity was significant. Specifically, as homogeneity increased, homonegativity decreased; this relationship is illustrated in Figure #. Our fourth model (not shown) included a cross-level interaction between individual church attendance and homogeneity. Because it was non-significant, made no changes in the variance components, and caused the AIC to increase, we trimmed it from the model. Thus, Model 3 is our final model.  Further support for this model is noted by the corresponding decreases in $\sigma^{2}$ and $\tau _{00}$ when L1 and L2 variables were added, respectively. Additionally, marginal and conditional $R^2$ increased and formal evaluation of the deviance statistic suggested that each addition was a statistically significant improvement.
 
 ## A Conversation with Dr. Lefevor
 
@@ -2174,25 +2326,27 @@ misty::multilevel.descript(babydf[, c("CEN", "SPkg", "TradPed", "SRPed")],
 ```
 ##  Multilevel Descriptive Statistics
 ## 
-##                           CEN  SPkg TradPed  SRPed
-##   No. of cases            310   310     307    299
-##   No. of missing values     0     0       3     11
-##                                                   
-##   No. of clusters          25    25      25     25
-##   Average cluster size  12.40 12.40   12.28  11.96
-##   SD cluster size        7.16  7.16    7.20   7.14
-##   Min cluster size          4     4       4      4
-##   Max cluster size         26    26      26     26
-##                                                   
-##   Mean                   0.40  0.80    4.26   4.53
-##   Variance Within                      0.50   0.33
-##   Variance Between       0.25  0.17    0.08   0.01
-##   ICC(1)                              0.137  0.034
-##   ICC(2)                              0.660  0.299
-##                                                   
-##   Design effect                        2.54   1.38
-##   Design effect sqrt                   1.59   1.17
-##   Effective sample size              120.76 217.03
+##                           CEN SPkg TradPed  SRPed
+##   Level 1                                        
+##    No. of cases                        307    299
+##    No. of missing values                 3     11
+##                                                  
+##    Variance Within                    0.50   0.33
+##                                                  
+##   Level 2                                        
+##    No. of clusters         25   25      25     25
+##    Average cluster size              12.28  11.96
+##    Min cluster size                      4      4
+##    Max cluster size                     26     26
+##                                                  
+##    Mean                  0.40 0.80    4.26   4.53
+##    Variance Between      0.25 0.17    0.08   0.01
+##    ICC(1)                            0.137  0.034
+##    ICC(2)                            0.663  0.307
+##                                                  
+##   Design effect                       2.54   1.38
+##   Design effect sqrt                  1.59   1.17
+##   Effective sample size             120.76 217.03
 ```
 Results of these are reported either in the Method or preliminary analyses (we'll have to see which).  Essentially we say something like:
 
@@ -2209,7 +2363,7 @@ corrmatrix <- misty::multilevel.cor(babydf[, c("TradPed", "SRPed")], cluster = b
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                                  
-##   lavaan 0.6.16                                  
+##   lavaan 0.6.17                                  
 ##                                                  
 ##    Estimator                             ML      
 ##    Standard Errors             Conventional      
@@ -2242,7 +2396,7 @@ corrmatrix
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                                  
-##   lavaan 0.6.16                                  
+##   lavaan 0.6.17                                  
 ##                                                  
 ##    Estimator                             ML      
 ##    Standard Errors             Conventional      
@@ -2293,6 +2447,11 @@ sjPlot::tab_model(empty, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
     show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
     use.viewer = TRUE, dv.labels = c("Empty"), string.est = "est", string.se = "se",
     string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -2368,6 +2527,13 @@ sjPlot::tab_model(empty, Level1, p.style = "numeric", show.ci = FALSE,
     show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Level1"),
     string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se",
     string.p = "p", show.std = TRUE)
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -2478,6 +2644,15 @@ sjPlot::tab_model(empty, Level1, Level2, p.style = "numeric", show.ci = FALSE,
     show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Level1",
         "Level2"), string.est = "est", string.se = "se", string.std = "Beta",
     string.std_se = "std se", string.p = "p", show.std = TRUE)
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -2664,6 +2839,17 @@ sjPlot::tab_model(empty, Level1, Level2, CrossLevel, p.style = "numeric",
     show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty",
         "Level1", "Level2", "CrossLevel"), string.est = "est", string.se = "se",
     string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
+```
+
+```
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
+## Model was not fitted with REML, however, `estimator = "REML"`. Set
+##   `estimator = "ML"` to obtain identical results as from `AIC()`.
 ```
 
 <table style="border-collapse:collapse; border:none;">
@@ -2998,15 +3184,21 @@ sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), show.data = TR
 ```
 
 ```
+## Data points may overlap. Use the `jitter` argument to add some amount of
+##   random variation to the location of data points and avoid overplotting.
+```
+
+```
 ## Scale for y is already present.
 ## Adding another scale for y, which will replace the existing scale.
 ```
 
 ```
-## Warning: Removed 4 rows containing missing values (`geom_line()`).
+## Warning: Removed 4 rows containing missing values or values outside the scale range
+## (`geom_line()`).
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-50-1.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-88-1.png)<!-- -->
 
 The above graph can be a little confusing. Recall that L1 variables are centered within their cluster. In this case, socially responsive pedagogy is clustered within each class and the mean is zero.
 
@@ -3026,10 +3218,11 @@ sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), terms = c("TrP
 ```
 
 ```
-## Warning: Removed 4 rows containing missing values (`geom_line()`).
+## Warning: Removed 4 rows containing missing values or values outside the scale range
+## (`geom_line()`).
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-51-1.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-89-1.png)<!-- -->
 Above the facets represent the $M \pm1SD$ of the classroom averages of traditional pedagogy. While there was an L2 main effect of traditional pedagogy on ratings of socially responsive pedagogy (i.e., if the classroom average of traditional pedagogy was higher, so were individual student ratings of socially responsive pedagogy), there was a non-significant interaction effect. Thus, the L1 interaction is fairly consistent across all three facets.
 
 The effect of centering was non-significant. Here are the plots:
@@ -3041,15 +3234,21 @@ sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), show.data = TR
 ```
 
 ```
+## Data points may overlap. Use the `jitter` argument to add some amount of
+##   random variation to the location of data points and avoid overplotting.
+```
+
+```
 ## Scale for y is already present.
 ## Adding another scale for y, which will replace the existing scale.
 ```
 
 ```
-## Warning: Removed 4 rows containing missing values (`geom_line()`).
+## Warning: Removed 4 rows containing missing values or values outside the scale range
+## (`geom_line()`).
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-52-1.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-90-1.png)<!-- -->
 
 
 ```r
@@ -3063,10 +3262,11 @@ sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), terms = c("TrP
 ```
 
 ```
-## Warning: Removed 4 rows containing missing values (`geom_line()`).
+## Warning: Removed 4 rows containing missing values or values outside the scale range
+## (`geom_line()`).
 ```
 
-![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-53-1.png)<!-- -->
+![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-91-1.png)<!-- -->
 
 ###  APA Style writeup {-} 
 

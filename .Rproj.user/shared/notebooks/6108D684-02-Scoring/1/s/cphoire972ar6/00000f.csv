@@ -1,1 +1,0 @@
-"0","scrub_df$count.nMiss <- apply(scrub_df[c(""tRace1"", ""tRace2"", ""tRace3"", ""tRace4"", ""tRace5"", ""tRace6"", ""tRace7"", ""tRace8"", ""tRace9"", ""tRace10"")], 1, function(x) sum(!is.na(x)))"

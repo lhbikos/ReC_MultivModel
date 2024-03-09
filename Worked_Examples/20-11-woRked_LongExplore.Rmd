@@ -1,0 +1,164 @@
+```{r include = FALSE}
+options(scipen=999)
+```
+
+## Homeworked Example
+
+[Screencast Link]()
+
+For more information about the data used in this homeworked example, please refer to the description and codebook located at the end of the [introductory lesson](https://lhbikos.github.io/ReCenterPsychStats/ReCintro.html#introduction-to-the-data-set-used-for-homeworked-examples) in [ReCentering Psych Stats](https://lhbikos.github.io/ReCenterPsychStats/). An .rds file which holds the data is located in the [Worked Examples](https://github.com/lhbikos/ReC_MultivModel/tree/main/Worked_Examples) folder at the GitHub site the hosts the OER. The file name is *ReC.rds*.
+
+The suggested practice problem for this chapter is to explore longitudinal data by (a) restructurin the data and (b) providing three examples of data exploration.
+
+### Identify and describe the variables in the model; there should be a time-varying DV and predictor as well as an L2 predictor {-}
+
+* Time-varying-dependent variable: socially repsonsive pedagogy
+* Time-varying predictor: traditional pedagogy
+* L2 predictor: centering (pre, re)
+
+
+An image of the design may be useful in understanding what we are doing:
+
+![An image of the parallel mediation model for the homeworked example.](Worked_Examples/images/MLMxs_model.png)
+
+###  ###  Import the data and format the variables in the model {-}
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+raw <- readRDS("ReC.rds")
+```
+
+Scoring the variables. 
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')  
+raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], .75)
+
+SRPed_vars <- c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration')  
+raw$SRPed <- sjstats::mean_n(raw[, ..SRPed_vars], .75)
+
+#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
+#raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], .75))
+```
+
+I will create a babydf to include only the variables in the analysis.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+longdf <- dplyr::select(raw, deID, Course, Centering, TradPed, SRPed)
+```
+
+###  Restructure the dataset from wide to long (or from long to wide) {-}
+
+My data is long, so I will make it wide. I first need to give it an Index variable. In this data, students took ANOVA first, multivariate second, and psychometrics third.
+
+```{r}
+longdf$Course <- factor(longdf$Course,levels = c("ANOVA", "Multivariate", "Psychometrics"))
+str(longdf$Course)
+```
+
+
+```{r}
+longdf$Index <- plyr::mapvalues(longdf$Course, from = c('ANOVA', 'Multivariate', 'Psychometrics'), to = c(1, 2, 3))
+```
+
+It seems like we can only do one L1 variable at a time.
+
+```{r}
+library(data.table)
+W1<-reshape2::dcast(longdf, deID + Centering ~ Index, value.var = c("Index"))
+#rename the anxiety variable
+W1<-  dplyr::rename(W1, Index1 = "1", Index2 = "2", Index3 = "3")
+W2<-reshape2::dcast(longdf, deID ~ Index, value.var = c("TradPed"))
+#rename the anxiety variable
+W2<-  dplyr::rename(W2, TrP1 = "1", TrP2 = "2",TrP3 = "3")
+#For remaining L1 variable, do them one at a time -- key them from the person-level ID and the wave/index.
+W3<-reshape2::dcast(longdf, deID ~ Index, value.var = c("SRPed"))
+W3<-  dplyr::rename(W3, SRP1 = "1", SRP2 = "2", SRP3 = "3")
+#Next, join the dataframes by the person-level ID
+#Only two can be joined at a time
+widedf <- dplyr::full_join(W1, W2, by = c("deID"))
+widedf <- dplyr::full_join(widedf, W3,  by = c("deID"))
+```
+
+
+### Produce multilevel descriptive statistics and correlation matrix
+
+```{r}
+misty::multilevel.descript(longdf[, c("TradPed", "SRPed")], cluster = longdf$deID)
+```
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+corrmatrix <- misty::multilevel.cor(longdf[, c("TradPed", "SRPed")],
+               cluster = longdf$deID, split=FALSE, output = TRUE, write = "MLMcorr.xlsx", print = c("cor", "p"), digits = 3, missing = "listwise")
+corrmatrix
+```
+
+
+###  Explore data with an unfitted model  {-}
+
+Quick way to obtain a random set from the long file.
+```{r}
+str(longdf)
+```
+The exploratory plots I want to create require at least 3 pieces of data per person, so I will first create a sample of data where each person contributes 3 waves and data is non-missing. Please note -- this is NOT the final set I will analyze. Rather, this will allow me a preview into the data to see if my "occular anlysis" (i.e., "just looking at it") identifies any particular trends.
+
+```{r}
+library(tidyverse) #needed for pipes used in chunk
+rndm30 <-na.omit(longdf)
+
+rndm30 <- rndm30%>%
+  dplyr::group_by(deID)%>%
+  dplyr::filter(n()==3)
+```
+From this complete set of data, I will creat a subsample of 30 sets of data.
+```{r}
+#setting the random seed will mean that the same 30 are always pulled (even though the process is otherwise "random")
+set.seed(20231113)
+
+rndm30 <- subset(rndm30, deID %in% sample(unique(rndm30$deID), 30))
+```
+
+```{r}
+str(rndm30$Index)
+```
+```{r}
+rndm30$Index <- as.numeric(rndm30$Index)
+```
+
+
+```{r warning=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ggplot(data = rndm30, aes(x = Index, y = SRPed)) + geom_point() + geom_line() +
+    facet_wrap(~deID)
+```
+
+###  Explore data with a model fitted with a linear growth trajectory  {-}
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ggplot(data = rndm30, aes(x = Index, y = SRPed)) + geom_point() +
+    stat_smooth(method = "lm", se = FALSE) + facet_wrap(~deID)
+```
+
+###  Explore data with the fitted (or unfitted) data identified by the L2 predictor {-}
+
+
+```{r warning=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ggplot(data = rndm30, aes(x = Index, y = SRPed, linetype = Centering)) + geom_point() + geom_line() +
+    facet_wrap(~deID)
+```
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+ggplot(data = rndm30, aes(x = Index, y = SRPed, linetype = Centering)) + geom_point() +
+    stat_smooth(method = "lm", se = FALSE) + facet_wrap(~deID) 
+```
+
+```{r}
+ggplot(data = rndm30) + geom_line(aes(x = Index, y = SRPed, color = as.factor(Centering), group = deID))
+```
+
+###  Provide a write-up of what you found in this process {-}
+### Explanation to grader {-}
+
+
+
+
+
+

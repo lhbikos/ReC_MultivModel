@@ -1,4 +1,0 @@
-"0","#we can assign more than one value to the same factor by repeating the label"
-"0","mimp_df$format = factor(mimp_df$format,"
-"0","                        levels = c(1,2,3,4,5),"
-"0","                        labels = c(""InPerson"", ""Blend"", ""Blend"", ""Online"", is.na(5)))"

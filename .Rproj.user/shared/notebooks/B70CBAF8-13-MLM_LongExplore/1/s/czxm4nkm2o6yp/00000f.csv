@@ -1,7 +1,0 @@
-"0","library(data.table) #the package for melting (better than reshape2 because it can accommodate multiple repeated measures variables)"
-"0",""
-"0","#add the name of the wide df after ""setDT"""
-"0","#id.vars are L2 variables that do not change over time"
-"0","#measure.vars are those that change over time; if there is more than one that is time-covarying, add a comma followed by another another concatonated list."
-"0",""
-"0","LfvrLong <- (data.table::melt(setDT(LfvrWide), id.vars = c(""ClientID"", ""DRel0"", ""Het0""), measure.vars =list(c(""Anx1"", ""Anx2"", ""Anx3"", ""Anx4"", ""Anx5""), c(""Sess1"", ""Sess2"", ""Sess3"", ""Sess4"", ""Sess5""))))"

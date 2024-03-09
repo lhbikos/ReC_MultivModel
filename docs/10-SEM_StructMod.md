@@ -141,7 +141,7 @@ We used the *lavaan::simulateData* function for the simulation. If you have take
 # the journal article
 
 Kim_generating_model <- "
-        ##measurement model
+        #measurement model
          REMS =~ .82*Inf32 + .75*Inf38 + .74*Inf21 + .72*Inf17 + .69*Inf9 + .61*Inf36 + .51*Inf5 + .49*Inf22 + .81*SClass6 + .81*SClass31 + .74*SClass8 + .74*SClass40 + .72*SClass2 + .65*SClass34 + .55*SClass11 + .84*mInv27 + .84*mInv30 + .80*mInv39 + .72*mInv7 + .62*mInv26 + .61*mInv33 + .53*mInv4 + .47*mInv14 + .47*mInv10 + .74*Exot3 + .74*Exot29 + .71*Exot45 + .69*Exot35 + .60*Exot42 + .59*Exot23 + .51*Exot13 + .51*Exot20 + .49*Exot43 + .84*mEnv37 + .85*mEnv24 + .78*mEnv19 + .70*mEnv28 + .69*mEnv18 + .55*mEnv41 + .55*mEnv12 + .76*mWork25 + .67*mWork15 + .65*mWork1 + .64*mWork16 + .62*mWork44
          
          CMI =~ .8*cmi1 + .8*cmi2 + .8*cmi3 + .8*cmi4 + .8*cmi5 + .8*cmi6 + .8*cmi7 + .8*cmi8 + .8*cmi9 + .8*cmi10 + .8*cmi11 + .8*cmi12 + .8*cmi13 + .8*cmi14 + .8*cmi15 + .8*cmi16 + .8*cmi17 + .8*cmi18 + .8*cmi19 + .8*cmi20 + .8*cmi21 + .8*cmi22 + .8*cmi23 + .8*cmi24 + .8*cmi25 + .8*cmi26 + .8*cmi27 + .8*cmi28 + .8*cmi29 + .8*cmi30 + .8*cmi31 + .8*cmi32 + .8*cmi33 + .8*cmi34 + .8*cmi35 + .8*cmi36 + .8*cmi37 + .8*cmi38 + .8*cmi39 + .8*cmi40 + .8*cmi41 + .8*cmi42 + .8*cmi43 + .8*cmi44 + .8*cmi45 + .8*cmi46 + .8*cmi47
@@ -152,14 +152,15 @@ Kim_generating_model <- "
          
          HlpSkg =~ .8*hlpskg1 + .8*hlpskg2 + .8*hlpskg3 + .8*hlpskg4 + .8*hlpskg5 + .8*hlpskg6 + .8*hlpskg7 + .8*hlpskg8 + .8*hlpskg9 + .8*hlpskg10 
    
-        # Means
+        #Means
          REMS ~ 0.34*1
          CMI ~ 3*1
          ANX ~ 2.98*1
          DEP ~ 2.36*1
          PWB ~ 3.5*1
          HlpSkg ~ 1.64*1
-        # Correlations 
+        
+        #Correlations 
          REMS ~ 0.58*CMI
          REMS ~ 0.26*ANX
          REMS ~ 0.34*DEP
@@ -523,7 +524,7 @@ rp3_msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 106 iterations
+## lavaan 0.6.17 ended normally after 106 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -619,9 +620,6 @@ rp3_msmt_fit_sum
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##     CMI               0.000                               0.000    0.000
-##     PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -815,7 +813,7 @@ Kim_struct_summary
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 95 iterations
+## lavaan 0.6.17 ended normally after 95 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -911,9 +909,6 @@ Kim_struct_summary
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##    .CMI               0.000                               0.000    0.000
-##    .PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -1075,13 +1070,12 @@ m1_indicator_factor <- c("REM", "REM", "REM", "CMI", "CMI", "CMI", "PWB",
 The next two sets of codes provide some guidance about how far away the indicator (square/rectangular) variables should be away from the latent (oval/circular) variables. Subsequently, the next set of values indicate how far away each of the indicator (square/rectangular) variables should be spread apart.
 
 ```r
-#next set of code pushes the indicator variables away from the factor
-m1_indicator_push <- c(REM = .5, 
-                    CMI = 1,
-                    PWB = 1)
-m1_indicator_spread <- c(REM = 1, #spreading the boxes away from each other
-                    CMI = 1,
-                    PWB = 1)
+# next set of code pushes the indicator variables away from the
+# factor
+m1_indicator_push <- c(REM = 0.5, CMI = 1, PWB = 1)
+
+# spreading the boxes away from each other
+m1_indicator_spread <- c(REM = 1, CMI = 1, PWB = 1)
 ```
 
 Finally, we can feed all of the objects that whole these instructions into the *semptools::sem_set_layout* function. If desired, we can use the *semptools::change_node_label* function to rename the latent variables. Again, make sure to use the variable names that *semPlot::semPaths* has assigned.
@@ -1182,7 +1176,7 @@ Kim_swap_summary
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 100 iterations
+## lavaan 0.6.17 ended normally after 100 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1278,9 +1272,6 @@ Kim_swap_summary
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##    .CMI               0.000                               0.000    0.000
-##    .PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -1349,48 +1340,37 @@ Below is the column/row mapping of my variables in their desired position.
 We place these values along with the names of our latent variables in to the *semptools::layout_matrix* function.
 
 ```r
-#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
-#You can change them as the last thing
-m2_msmt <- semptools::layout_matrix(REM = c(2,1),
-                                  CMI = c(2,3),
-                                  PWB = c(1,2))
-#tell where you want the indicators to face
-m2_point_to <- semptools::layout_matrix (left = c(2,1),
-                                      up = c(1,2),
-                                      right = c(2,3))
+# IMPORTANT: Must use the node names (take directly from the SemPlot)
+# assigned by SemPlot You can change them as the last thing
+m2_msmt <- semptools::layout_matrix(REM = c(2, 1), CMI = c(2, 3), PWB = c(1,
+    2))
+# tell where you want the indicators to face
+m2_point_to <- semptools::layout_matrix(left = c(2, 1), up = c(1, 2), right = c(2,
+    3))
 
-#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
-m2_indicator_order <- c("p1R", "p2R", "p3R",
-                     "p1C", "p2C", "p3C",
-                     "p1P", "p2P", "p3P")
+# the next two codes -- indicator_order and indicator_factor are
+# paired together, they specify the order of observed variables for
+# each factor
+m2_indicator_order <- c("p1R", "p2R", "p3R", "p1C", "p2C", "p3C", "p1P",
+    "p2P", "p3P")
 
-m2_indicator_factor <- c("REM", "REM", "REM",
-                      "CMI", "CMI", "CMI",
-                      "PWB", "PWB", "PWB")
+m2_indicator_factor <- c("REM", "REM", "REM", "CMI", "CMI", "CMI", "PWB",
+    "PWB", "PWB")
 
-#next set of code pushes the indicator variables away from the factor
-m2_indicator_push <- c(REM = .5, 
-                    CMI = 1,
-                    PWB = 1)
-m2_indicator_spread <- c(REM = 1, #spreading the boxes away from each other
-                    CMI = 1,
-                    PWB = 1)
+# next set of code pushes the indicator variables away from the
+# factor
+m2_indicator_push <- c(REM = 0.5, CMI = 1, PWB = 1)
+# spreading the boxes away from each other
+m2_indicator_spread <- c(REM = 1, CMI = 1, PWB = 1)
 
-#assemble all the instructions
-plot2 <- semptools::set_sem_layout(plot_Kim_swap,
-                                indicator_order = m2_indicator_order,
-                                indicator_factor = m2_indicator_factor,
-                                factor_layout = m2_msmt,
-                                factor_point_to = m2_point_to,
-                                indicator_push = m2_indicator_push,
-                                indicator_spread = m2_indicator_spread)
+# assemble all the instructions
+plot2 <- semptools::set_sem_layout(plot_Kim_swap, indicator_order = m2_indicator_order,
+    indicator_factor = m2_indicator_factor, factor_layout = m2_msmt, factor_point_to = m2_point_to,
+    indicator_push = m2_indicator_push, indicator_spread = m2_indicator_spread)
 
-#changing node labels
-plot2 <- semptools::change_node_label(plot2,
-                                   c(REM = "mAggress",
-                                     CMI = "cMistrust",
-                                     PWB = "Wellbeing"),
-                                   label.cex = 1.1)
+# changing node labels
+plot2 <- semptools::change_node_label(plot2, c(REM = "mAggress", CMI = "cMistrust",
+    PWB = "Wellbeing"), label.cex = 1.1)
 
 plot(plot2)
 ```
@@ -1463,7 +1443,7 @@ Kim_2dvs_summary
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 101 iterations
+## lavaan 0.6.17 ended normally after 101 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1563,9 +1543,6 @@ Kim_2dvs_summary
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##    .CMI               0.000                               0.000    0.000
-##    .PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -1647,48 +1624,38 @@ Below is the column/row mapping of my variables in their desired position.
 We place these values along with the names of our latent variables in to the *semptools::layout_matrix* function.
 
 ```r
-#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
-#You can change them as the last thing
-m3_msmt <- semptools::layout_matrix(REM = c(2,1),
-                                  CMI = c(1,2),
-                                  PWB = c(3,2))
-#tell where you want the indicators to face
-m3_point_to <- semptools::layout_matrix (left = c(2,1),
-                                      right = c(1,2),
-                                      right = c(3,2))
+# IMPORTANT: Must use the node names (take directly from the SemPlot)
+# assigned by SemPlot You can change them as the last thing
+m3_msmt <- semptools::layout_matrix(REM = c(2, 1), CMI = c(1, 2), PWB = c(3,
+    2))
+# tell where you want the indicators to face
+m3_point_to <- semptools::layout_matrix(left = c(2, 1), right = c(1, 2),
+    right = c(3, 2))
 
-#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
-m3_indicator_order <- c("p1R", "p2R", "p3R",
-                     "p1C", "p2C", "p3C",
-                     "p1P", "p2P", "p3P")
+# the next two codes -- indicator_order and indicator_factor are
+# paired together, they specify the order of observed variables for
+# each factor
+m3_indicator_order <- c("p1R", "p2R", "p3R", "p1C", "p2C", "p3C", "p1P",
+    "p2P", "p3P")
 
-m3_indicator_factor <- c("REM", "REM", "REM",
-                      "CMI", "CMI", "CMI",
-                      "PWB", "PWB", "PWB")
+m3_indicator_factor <- c("REM", "REM", "REM", "CMI", "CMI", "CMI", "PWB",
+    "PWB", "PWB")
 
-#next set of code pushes the indicator variables away from the factor
-m3_indicator_push <- c(REM = .5, 
-                    CMI = 1,
-                    PWB = 1)
-m3_indicator_spread <- c(REM = 1, #spreading the boxes away from each other
-                    CMI = 1,
-                    PWB = 1)
+# next set of code pushes the indicator variables away from the
+# factor
+m3_indicator_push <- c(REM = 0.5, CMI = 1, PWB = 1)
 
-#assemble all the instructions
-plot3 <- semptools::set_sem_layout(plot_Kim_2dvs,
-                                indicator_order = m3_indicator_order,
-                                indicator_factor = m3_indicator_factor,
-                                factor_layout = m3_msmt,
-                                factor_point_to = m3_point_to,
-                                indicator_push = m3_indicator_push,
-                                indicator_spread = m3_indicator_spread)
+# spreading the boxes away from each other
+m3_indicator_spread <- c(REM = 1, CMI = 1, PWB = 1)
 
-#changing node labels
-plot3 <- semptools::change_node_label(plot3,
-                                   c(REM = "mAggress",
-                                     CMI = "cMistrust",
-                                     PWB = "Wellbeing"),
-                                   label.cex = 1.1)
+# assemble all the instructions
+plot3 <- semptools::set_sem_layout(plot_Kim_2dvs, indicator_order = m3_indicator_order,
+    indicator_factor = m3_indicator_factor, factor_layout = m3_msmt, factor_point_to = m3_point_to,
+    indicator_push = m3_indicator_push, indicator_spread = m3_indicator_spread)
+
+# changing node labels
+plot3 <- semptools::change_node_label(plot3, c(REM = "mAggress", CMI = "cMistrust",
+    PWB = "Wellbeing"), label.cex = 1.1)
 
 plot(plot3)
 ```
@@ -1730,7 +1697,7 @@ Kim_2CorrDVs_summary
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 99 iterations
+## lavaan 0.6.17 ended normally after 99 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1830,9 +1797,6 @@ Kim_2CorrDVs_summary
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##    .CMI               0.000                               0.000    0.000
-##    .PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -1917,48 +1881,38 @@ Below is the column/row mapping of my variables in their desired position.
 We place these values along with the names of our latent variables in to the *semptools::layout_matrix* function.
 
 ```r
-#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
-#You can change them as the last thing
-m4_msmt <- semptools::layout_matrix(REM = c(2,1),
-                                  CMI = c(1,2),
-                                  PWB = c(3,2))
-#tell where you want the indicators to face
-m4_point_to <- semptools::layout_matrix (left = c(2,1),
-                                      right = c(1,2),
-                                      right = c(3,2))
+# IMPORTANT: Must use the node names (take directly from the SemPlot)
+# assigned by SemPlot You can change them as the last thing
+m4_msmt <- semptools::layout_matrix(REM = c(2, 1), CMI = c(1, 2), PWB = c(3,
+    2))
+# tell where you want the indicators to face
+m4_point_to <- semptools::layout_matrix(left = c(2, 1), right = c(1, 2),
+    right = c(3, 2))
 
-#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
-m4_indicator_order <- c("p1R", "p2R", "p3R",
-                     "p1C", "p2C", "p3C",
-                     "p1P", "p2P", "p3P")
+# the next two codes -- indicator_order and indicator_factor are
+# paired together, they specify the order of observed variables for
+# each factor
+m4_indicator_order <- c("p1R", "p2R", "p3R", "p1C", "p2C", "p3C", "p1P",
+    "p2P", "p3P")
 
-m4_indicator_factor <- c("REM", "REM", "REM",
-                      "CMI", "CMI", "CMI",
-                      "PWB", "PWB", "PWB")
+m4_indicator_factor <- c("REM", "REM", "REM", "CMI", "CMI", "CMI", "PWB",
+    "PWB", "PWB")
 
-#next set of code pushes the indicator variables away from the factor
-m4_indicator_push <- c(REM = .5, 
-                    CMI = 1,
-                    PWB = 1)
-m4_indicator_spread <- c(REM = 1, #spreading the boxes away from each other
-                    CMI = 1,
-                    PWB = 1)
+# next set of code pushes the indicator variables away from the
+# factor
+m4_indicator_push <- c(REM = 0.5, CMI = 1, PWB = 1)
 
-#assemble all the instructions
-plot4 <- semptools::set_sem_layout(plot_Kim_2CorrDVs,
-                                indicator_order = m4_indicator_order,
-                                indicator_factor = m4_indicator_factor,
-                                factor_layout = m4_msmt,
-                                factor_point_to = m4_point_to,
-                                indicator_push = m4_indicator_push,
-                                indicator_spread = m4_indicator_spread)
+# spreading the boxes away from each other
+m4_indicator_spread <- c(REM = 1, CMI = 1, PWB = 1)
 
-#changing node labels
-plot4 <- semptools::change_node_label(plot4,
-                                   c(REM = "mAggress",
-                                     CMI = "cMistrust",
-                                     PWB = "Wellbeing"),
-                                   label.cex = 1.1)
+# assemble all the instructions
+plot4 <- semptools::set_sem_layout(plot_Kim_2CorrDVs, indicator_order = m4_indicator_order,
+    indicator_factor = m4_indicator_factor, factor_layout = m4_msmt, factor_point_to = m4_point_to,
+    indicator_push = m4_indicator_push, indicator_spread = m4_indicator_spread)
+
+# changing node labels
+plot4 <- semptools::change_node_label(plot4, c(REM = "mAggress", CMI = "cMistrust",
+    PWB = "Wellbeing"), label.cex = 1.1)
 
 plot(plot4)
 ```
@@ -2173,7 +2127,7 @@ msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 63 iterations
+## lavaan 0.6.17 ended normally after 63 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2271,9 +2225,6 @@ msmt_fit_sum
 ##    .EquitableEval     4.572    0.036  126.725    0.000    4.572    7.216
 ##    .MultPerspectvs    4.391    0.048   92.287    0.000    4.391    5.265
 ##    .DEIintegration    4.512    0.044  102.435    0.000    4.512    6.105
-##     CTR               0.000                               0.000    0.000
-##     TradPed           0.000                               0.000    0.000
-##     SRPed             0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -2351,7 +2302,7 @@ semPlot::semPaths(msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5,
         5, 5, 5))
 ```
 
-![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-53-1.png)<!-- -->
+![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-94-1.png)<!-- -->
 
 ### Specify and evaluate a *structural* model {-}
 
@@ -2394,7 +2345,7 @@ ReC_struct_summary
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 61 iterations
+## lavaan 0.6.17 ended normally after 61 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2492,9 +2443,6 @@ ReC_struct_summary
 ##    .EquitableEval     4.572    0.036  126.725    0.000    4.572    7.216
 ##    .MultPerspectvs    4.391    0.048   92.287    0.000    4.391    5.265
 ##    .DEIintegration    4.512    0.044  102.435    0.000    4.512    6.105
-##     CTR               0.000                               0.000    0.000
-##    .TradPed           0.000                               0.000    0.000
-##    .SRPed             0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -2597,7 +2545,7 @@ plot_ReC_struct <- semPlot::semPaths(ReC_struct_fit, what = "col", whatLabels = 
     mar = c(5, 5, 5, 5))
 ```
 
-![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-57-1.png)<!-- -->
+![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-98-1.png)<!-- -->
 
 
 |Grid for Plotting semplot::sempath  
@@ -2616,33 +2564,30 @@ Lots of things can go wrong in the code below. In preparing this example I lost 
 After traversing several rabbit trails, taking a break, and returning, I could see my errors.  That's just R.
 
 ```r
-#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
-#You can change them as the last thing
-m1_msmt <- semptools::layout_matrix(CTR = c(2,1),
-                                  TrP = c(1,2),
-                                  SRP = c(2,3))
+# IMPORTANT: Must use the node names (take directly from the SemPlot)
+# assigned by SemPlot You can change them as the last thing
+m1_msmt <- semptools::layout_matrix(CTR = c(2, 1), TrP = c(1, 2), SRP = c(2,
+    3))
 
-#tell where you want the indicators to face
-m1_point_to <- semptools::layout_matrix (left = c(2,1),
-                                      up = c(1,2),
-                                      right = c(2,3))
+# tell where you want the indicators to face
+m1_point_to <- semptools::layout_matrix(left = c(2, 1), up = c(1, 2), right = c(2,
+    3))
 
-#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
-m1_indicator_order <- c("ClR", "EfA", "Fdb", "ClO", "ClP",
-                     "InC", "EqE", "MlP", "DEI",
-                    "CEN")
+# the next two codes -- indicator_order and indicator_factor are
+# paired together, they specify the order of observed variables for
+# each factor
+m1_indicator_order <- c("ClR", "EfA", "Fdb", "ClO", "ClP", "InC", "EqE",
+    "MlP", "DEI", "CEN")
 
-m1_indicator_factor <- c("TrP", "TrP", "TrP", "TrP", "TrP",
-                      "SRP", "SRP", "SRP", "SRP",
-                      "CTR")
+m1_indicator_factor <- c("TrP", "TrP", "TrP", "TrP", "TrP", "SRP", "SRP",
+    "SRP", "SRP", "CTR")
 
-#next set of code pushes the indicator variables away from the factor
-m1_indicator_push <- c(CTR = 1, 
-                    TrP = 2,
-                    SRP = 5)
-m1_indicator_spread <- c(CTR = 1, #spreading the boxes away from each other
-                    TrP = 3,
-                    SRP = 5)
+# next set of code pushes the indicator variables away from the
+# factor
+m1_indicator_push <- c(CTR = 1, TrP = 2, SRP = 5)
+
+# spreading the boxes away from each other
+m1_indicator_spread <- c(CTR = 1, TrP = 3, SRP = 5)
 ```
 
 Finally, we can feed all of the objects that whole these instructions into the *semptools::sem_set_layout* function. If desired, we can use the *semptools::change_node_label* function to rename the latent variables. Again, make sure to use the variable names that *semPlot::semPaths* has assigned.
@@ -2659,7 +2604,7 @@ plot1 <- semptools::change_node_label(plot1, c(CTR = "Centering", TrP = "TradPed
 plot(plot1)
 ```
 
-![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-59-1.png)<!-- -->
+![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-100-1.png)<!-- -->
 
 
 
@@ -2698,7 +2643,7 @@ ReC_ALT_summary
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 61 iterations
+## lavaan 0.6.17 ended normally after 61 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2800,9 +2745,6 @@ ReC_ALT_summary
 ##    .EquitableEval     4.573    0.036  126.851    0.000    4.573    7.224
 ##    .MultPerspectvs    4.393    0.048   92.171    0.000    4.393    5.265
 ##    .DEIintegration    4.508    0.044  102.473    0.000    4.508    6.075
-##     CTR               0.000                               0.000    0.000
-##    .TradPed           0.000                               0.000    0.000
-##    .SRPed             0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -2889,7 +2831,7 @@ plot_ReC_ALT <- semPlot::semPaths(ReC_ALT_fit, what = "col", whatLabels = "stand
     mar = c(5, 5, 5, 5))
 ```
 
-![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-63-1.png)<!-- -->
+![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-104-1.png)<!-- -->
 
 
 |Grid for Plotting semplot::sempath  
@@ -2909,33 +2851,30 @@ Lots of things can go wrong in the code below. In preparing this example I lost 
 After traversing several rabbit trails, taking a break, and returning, I could see my errors.  That's just R.
 
 ```r
-#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
-#You can change them as the last thing
-m2_msmt <- semptools::layout_matrix(CTR = c(2,1),
-                                  TrP = c(1,2),
-                                  SRP = c(3,2))
+# IMPORTANT: Must use the node names (take directly from the SemPlot)
+# assigned by SemPlot You can change them as the last thing
+m2_msmt <- semptools::layout_matrix(CTR = c(2, 1), TrP = c(1, 2), SRP = c(3,
+    2))
 
-#tell where you want the indicators to face
-m2_point_to <- semptools::layout_matrix (left = c(2,1),
-                                      right = c(1,2),
-                                      right = c(3,2))
+# tell where you want the indicators to face
+m2_point_to <- semptools::layout_matrix(left = c(2, 1), right = c(1, 2),
+    right = c(3, 2))
 
-#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
-m2_indicator_order <- c("ClR", "EfA", "Fdb", "ClO", "ClP",
-                     "InC", "EqE", "MlP", "DEI",
-                    "CEN")
+# the next two codes -- indicator_order and indicator_factor are
+# paired together, they specify the order of observed variables for
+# each factor
+m2_indicator_order <- c("ClR", "EfA", "Fdb", "ClO", "ClP", "InC", "EqE",
+    "MlP", "DEI", "CEN")
 
-m2_indicator_factor <- c("TrP", "TrP", "TrP", "TrP", "TrP",
-                      "SRP", "SRP", "SRP", "SRP",
-                      "CTR")
+m2_indicator_factor <- c("TrP", "TrP", "TrP", "TrP", "TrP", "SRP", "SRP",
+    "SRP", "SRP", "CTR")
 
-#next set of code pushes the indicator variables away from the factor
-m2_indicator_push <- c(CTR = 1, 
-                    TrP = 2,
-                    SRP = 5)
-m2_indicator_spread <- c(CTR = 1, #spreading the boxes away from each other
-                    TrP = 3,
-                    SRP = 5)
+# next set of code pushes the indicator variables away from the
+# factor
+m2_indicator_push <- c(CTR = 1, TrP = 2, SRP = 5)
+
+# spreading the boxes away from each other
+m2_indicator_spread <- c(CTR = 1, TrP = 3, SRP = 5)
 ```
 
 Finally, we can feed all of the objects that whole these instructions into the *semptools::sem_set_layout* function. If desired, we can use the *semptools::change_node_label* function to rename the latent variables. Again, make sure to use the variable names that *semPlot::semPaths* has assigned.
@@ -2952,7 +2891,7 @@ plot21 <- semptools::change_node_label(plot2, c(CTR = "Centering", TrP = "TradPe
 plot(plot2)
 ```
 
-![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-65-1.png)<!-- -->
+![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-106-1.png)<!-- -->
 
 
 

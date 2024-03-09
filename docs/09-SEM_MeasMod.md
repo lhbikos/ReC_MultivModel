@@ -1,3 +1,8 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
 
 # STRUCTURAL EQUATION MODELING {-#SEM}
 
@@ -203,10 +208,9 @@ We used the *lavaan::simulateData* function for the simulation. If you have take
 
 
 ```r
-# Entering the intercorrelations, means, and standard deviations from
-# the journal article
-Kim_generating_model <- "
-        ##measurement model
+#Entering the intercorrelations, means, and standard deviations from the journal article
+Kim_generating_model <- '
+        #measurement model
          REMS =~ .82*Inf32 + .75*Inf38 + .74*Inf21 + .72*Inf17 + .69*Inf9 + .61*Inf36 + .51*Inf5 + .49*Inf22 + .81*SClass6 + .81*SClass31 + .74*SClass8 + .74*SClass40 + .72*SClass2 + .65*SClass34 + .55*SClass11 + .84*mInv27 + .84*mInv30 + .80*mInv39 + .72*mInv7 + .62*mInv26 + .61*mInv33 + .53*mInv4 + .47*mInv14 + .47*mInv10 + .74*Exot3 + .74*Exot29 + .71*Exot45 + .69*Exot35 + .60*Exot42 + .59*Exot23 + .51*Exot13 + .51*Exot20 + .49*Exot43 + .84*mEnv37 + .85*mEnv24 + .78*mEnv19 + .70*mEnv28 + .69*mEnv18 + .55*mEnv41 + .55*mEnv12 + .76*mWork25 + .67*mWork15 + .65*mWork1 + .64*mWork16 + .62*mWork44
          
          CMI =~ .8*cmi1 + .8*cmi2 + .8*cmi3 + .8*cmi4 + .8*cmi5 + .8*cmi6 + .8*cmi7 + .8*cmi8 + .8*cmi9 + .8*cmi10 + .8*cmi11 + .8*cmi12 + .8*cmi13 + .8*cmi14 + .8*cmi15 + .8*cmi16 + .8*cmi17 + .8*cmi18 + .8*cmi19 + .8*cmi20 + .8*cmi21 + .8*cmi22 + .8*cmi23 + .8*cmi24 + .8*cmi25 + .8*cmi26 + .8*cmi27 + .8*cmi28 + .8*cmi29 + .8*cmi30 + .8*cmi31 + .8*cmi32 + .8*cmi33 + .8*cmi34 + .8*cmi35 + .8*cmi36 + .8*cmi37 + .8*cmi38 + .8*cmi39 + .8*cmi40 + .8*cmi41 + .8*cmi42 + .8*cmi43 + .8*cmi44 + .8*cmi45 + .8*cmi46 + .8*cmi47
@@ -217,14 +221,15 @@ Kim_generating_model <- "
          
          HlpSkg =~ .8*hlpskg1 + .8*hlpskg2 + .8*hlpskg3 + .8*hlpskg4 + .8*hlpskg5 + .8*hlpskg6 + .8*hlpskg7 + .8*hlpskg8 + .8*hlpskg9 + .8*hlpskg10 
    
-        # Means
+        #Means
          REMS ~ 0.34*1
          CMI ~ 3*1
          ANX ~ 2.98*1
          DEP ~ 2.36*1
          PWB ~ 3.5*1
          HlpSkg ~ 1.64*1
-        # Correlations (ha!)
+         
+        #Correlations
          REMS ~ 0.58*CMI
          REMS ~ 0.26*ANX
          REMS ~ 0.34*DEP
@@ -240,50 +245,45 @@ Kim_generating_model <- "
          DEP ~ -0.66*PWB
          DEP ~ 0.05*HlpSkg
          PWB ~ 0.08*HlpSkg
-        "
+        '
 
 set.seed(230916)
-dfKim <- lavaan::simulateData(model = Kim_generating_model, model.type = "sem",
-    meanstructure = T, sample.nobs = 156, standardized = FALSE)
+dfKim <- lavaan::simulateData(model = Kim_generating_model,
+                              model.type = "sem",
+                              meanstructure = T,
+                              sample.nobs=156,
+                              standardized=FALSE)
 library(tidyverse)
 
-# used to retrieve column indices used in the rescaling script below
+#used to retrieve column indices used in the rescaling script below
 col_index <- as.data.frame(colnames(dfKim))
 
-for (i in 1:ncol(dfKim)) {
-    # for loop to go through each column of the dataframe apply only
-    # to REMS variables
-    if (i >= 1 & i <= 45) {
-        dfKim[, i] <- scales::rescale(dfKim[, i], c(0, 1))
-    }
-    if (i >= 46 & i <= 116) {
-        # apply only to CMI variables
-        dfKim[, i] <- scales::rescale(dfKim[, i], c(1, 7))
-    }
-    if (i >= 93 & i <= 116) {
-        # apply only to mental health variables
-        dfKim[, i] <- scales::rescale(dfKim[, i], c(1, 5))
-    }
-    if (i >= 117 & i <= 126) {
-        # apply only to HlpSkng variables
-        dfKim[, i] <- scales::rescale(dfKim[, i], c(0, 3))
-    }
+for(i in 1:ncol(dfKim)){  
+  if(i >= 1 & i <= 45){   
+    dfKim[,i] <- scales::rescale(dfKim[,i], c(0, 1))
+  }
+  if(i >= 46 & i <= 116){  
+    dfKim[,i] <- scales::rescale(dfKim[,i], c(1, 7))
+  }
+  if(i >= 93 & i <= 116){   
+    dfKim[,i] <- scales::rescale(dfKim[,i], c(1, 5))
+  }
+  if(i >= 117 & i <= 126){   
+    dfKim[,i] <- scales::rescale(dfKim[,i], c(0, 3))
+  }
 }
 
-# psych::describe(dfKim)+
+#psych::describe(dfKim)+
 
 library(tidyverse)
-dfKim <- dfKim %>%
-    round(0)
+dfKim <- dfKim %>% round(0) 
 
-# I tested the rescaling the correlation between original and
-# rescaled variables is 1.0 Kim_df_latent$INF32 <-
-# scales::rescale(Kim_df_latent$Inf32, c(0, 1))
-# cor.test(Kim_df_latent$Inf32, Kim_df_latent$INF32,
-# method='pearson')
+#I tested the rescaling the correlation between original and rescaled variables is 1.0
+#Kim_df_latent$INF32 <- scales::rescale(Kim_df_latent$Inf32, c(0, 1))
+#cor.test(Kim_df_latent$Inf32, Kim_df_latent$INF32, method="pearson")
 
-# Checking our work against the original correlation matrix
-# round(cor(Kim_df),3)
+#Checking our work against the original correlation matrix
+#round(cor(Kim_df),3)
 ```
 
 The script below allows you to store the simulated data as a file on your computer. This is optional -- the entire lesson can be worked with the simulated data.
@@ -380,7 +380,7 @@ init_msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 118 iterations
+## lavaan 0.6.17 ended normally after 118 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1471,7 +1471,7 @@ subsc_msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 127 iterations
+## lavaan 0.6.17 ended normally after 127 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1575,9 +1575,6 @@ subsc_msmt_fit_sum
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##     CMI               0.000                               0.000    0.000
-##     PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -1821,7 +1818,7 @@ rp3_msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 106 iterations
+## lavaan 0.6.17 ended normally after 106 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1917,9 +1914,6 @@ rp3_msmt_fit_sum
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
 ##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
 ##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
-##     REMS              0.000                               0.000    0.000
-##     CMI               0.000                               0.000    0.000
-##     PWB               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -2222,7 +2216,7 @@ init_msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 63 iterations
+## lavaan 0.6.17 ended normally after 63 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2320,9 +2314,6 @@ init_msmt_fit_sum
 ##    .EquitableEval     4.572    0.036  126.725    0.000    4.572    7.216
 ##    .MultPerspectvs    4.391    0.048   92.287    0.000    4.391    5.265
 ##    .DEIintegration    4.512    0.044  102.435    0.000    4.512    6.105
-##     CTR               0.000                               0.000    0.000
-##     TradPed           0.000                               0.000    0.000
-##     SRPed             0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -2362,7 +2353,7 @@ semPlot::semPaths(init_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5
         5, 5, 5))
 ```
 
-![](09-SEM_MeasMod_files/figure-docx/unnamed-chunk-36-1.png)<!-- -->
+![](09-SEM_MeasMod_files/figure-docx/unnamed-chunk-64-1.png)<!-- -->
 
 Results of the evaluation of the measurement model can be exported as .csv files with the following code. These produce output that inglude global fit indices, parameter estimates, and correlations between the latent variables, respetively. 
 The *tidySEM::table_fit* function will display all of the global fit indices.
@@ -2453,7 +2444,7 @@ parc_msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 59 iterations
+## lavaan 0.6.17 ended normally after 59 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2547,9 +2538,6 @@ parc_msmt_fit_sum
 ##    .EquitableEval     4.572    0.036  126.727    0.000    4.572    7.216
 ##    .MultPerspectvs    4.391    0.048   92.290    0.000    4.391    5.265
 ##    .DEIintegration    4.512    0.044  102.459    0.000    4.512    6.106
-##     CTR               0.000                               0.000    0.000
-##     TradPed           0.000                               0.000    0.000
-##     SRPed             0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -2589,7 +2577,7 @@ semPlot::semPaths(parc_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5
         5, 5, 5))
 ```
 
-![](09-SEM_MeasMod_files/figure-docx/unnamed-chunk-41-1.png)<!-- -->
+![](09-SEM_MeasMod_files/figure-docx/unnamed-chunk-69-1.png)<!-- -->
 
 ```r
 # global fit indices

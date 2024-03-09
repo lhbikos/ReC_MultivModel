@@ -176,7 +176,7 @@ The *lavaan::simulateData* function was used. If you have taken psychometrics, y
 
 
 Lewis_generating_model <- '
-        ##measurement model
+        #measurement model
         GRMS  =~ .69*Ob1 + .69*Ob2 + .60*Ob3 + .59*Ob4 + .55*Ob5 + .55*Ob6 + .54*Ob7 + .50*Ob8 + .41*Ob9 + .41*Ob10 + .93*Ma1 + .81*Ma2 + .69*Ma3 + .67*Ma4 + .61*Ma5 + .58*Ma6 + .54*Ma7 + .59*St1 + .55*St2 + .54*St3 + .54*St4 + .51*St5 + .70*An1 + .69*An2 + .68*An3
         MntlHlth  =~ .8*MH1 + .8*MH2 + .8*MH3 + .8*MH4 + .8*MH5 + .8*MH6
         PhysHlth  =~ .8*PhH1 + .8*PhH2 + .8*PhH3 + .8*PhH4 + .8*PhH5 + .8*PhH6
@@ -186,7 +186,7 @@ Lewis_generating_model <- '
         Disengagement  =~  .8*dEng1 + .8*dEng2
         GRIC  =~ .8*Cntrlty1 + .8*Cntrlty2 + .8*Cntrlty3 + .8*Cntrlty4 + .8*Cntrlty5 + .8*Cntrlty6 + .8*Cntrlty7 + .8*Cntrlty8 + .8*Cntrlty9 + .8*Cntrlty10
    
-        # Means
+        #Means
          GRMS ~ 1.99*1
          Spirituality ~2.82*1
          SocSupport ~ 2.48*1
@@ -196,7 +196,7 @@ Lewis_generating_model <- '
          MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
          PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
          
-        # Correlations 
+        #Correlations 
          GRMS ~ 0.20*Spirituality
          GRMS ~ 0.28*SocSupport
          GRMS ~ 0.30*Engagement
@@ -519,7 +519,7 @@ msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 106 iterations
+## lavaan 0.6.17 ended normally after 106 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -657,13 +657,6 @@ msmt_fit_sum
 ##    .Eng2              2.515    0.038   65.479    0.000    2.515    4.308
 ##    .dEng1             2.502    0.039   63.518    0.000    2.502    4.179
 ##    .dEng2             2.455    0.041   59.357    0.000    2.455    3.905
-##     GRMS              0.000                               0.000    0.000
-##     MH                0.000                               0.000    0.000
-##     PhH               0.000                               0.000    0.000
-##     Spr               0.000                               0.000    0.000
-##     SSp               0.000                               0.000    0.000
-##     Eng               0.000                               0.000    0.000
-##     dEng              0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -897,7 +890,7 @@ struct_summary1
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 117 iterations
+## lavaan 0.6.17 ended normally after 117 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1033,13 +1026,6 @@ struct_summary1
 ##    .Eng2              2.515    0.038   65.524    0.000    2.515    4.311
 ##    .dEng1             2.502    0.040   63.179    0.000    2.502    4.157
 ##    .dEng2             2.455    0.041   59.610    0.000    2.455    3.922
-##     GRMS              0.000                               0.000    0.000
-##    .MH                0.000                               0.000    0.000
-##    .PhH               0.000                               0.000    0.000
-##    .Spr               0.000                               0.000    0.000
-##    .SSp               0.000                               0.000    0.000
-##    .Eng               0.000                               0.000    0.000
-##    .dEng              0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -1185,21 +1171,14 @@ m1_indicator_factor <- c("GRM", "GRM", "GRM", "MH", "MH", "MH", "PhH",
 The next two sets of codes provide some guidance about how far away the indicator (square/rectangular) variables should be away from the latent (oval/circular) variables. Subsequently, the next set of values indicate how far away each of the indicator (square/rectangular) variables should be spread apart.
 
 ```r
-#next set of code pushes the indicator variables away from the factor
-m1_indicator_push <- c(GRM = .5, 
-                    MH = 1,
-                    PhH = 1, 
-                    Spr = 2,
-                    SSp = 1.5,
-                    Eng = 1.5,
-                    dEn = 2)
-m1_indicator_spread <- c(GRM = .5, #spreading the boxes away from each other
-                    MH = 2.5,
-                    PhH = 2.5, 
-                    Spr = 1,
-                    SSp = 1,
-                    Eng = 1,
-                    dEn = 1)
+# next set of code pushes the indicator variables away from the
+# factor
+m1_indicator_push <- c(GRM = 0.5, MH = 1, PhH = 1, Spr = 2, SSp = 1.5,
+    Eng = 1.5, dEn = 2)
+
+# spreading the boxes away from each other
+m1_indicator_spread <- c(GRM = 0.5, MH = 2.5, PhH = 2.5, Spr = 1, SSp = 1,
+    Eng = 1, dEn = 1)
 ```
 
 Finally, we can feed all of the objects that whole these instructions into the *semptools::sem_set_layout* function. If desired, we can use the *semptools::change_node_label* function to rename the latent variables. Again, make sure to use the variable names that *semPlot::semPaths* has assigned.
@@ -1418,7 +1397,7 @@ struct_summary2
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 121 iterations
+## lavaan 0.6.17 ended normally after 121 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1556,13 +1535,6 @@ struct_summary2
 ##    .Eng2              2.515    0.038   65.530    0.000    2.515    4.312
 ##    .dEng1             2.502    0.040   63.177    0.000    2.502    4.157
 ##    .dEng2             2.455    0.041   59.612    0.000    2.455    3.922
-##     GRMS              0.000                               0.000    0.000
-##    .MH                0.000                               0.000    0.000
-##    .PhH               0.000                               0.000    0.000
-##    .Spr               0.000                               0.000    0.000
-##    .SSp               0.000                               0.000    0.000
-##    .Eng               0.000                               0.000    0.000
-##    .dEng              0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -1765,7 +1737,7 @@ struct_summary3
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 113 iterations
+## lavaan 0.6.17 ended normally after 113 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1902,13 +1874,6 @@ struct_summary3
 ##    .Eng2              2.515    0.038   65.524    0.000    2.515    4.311
 ##    .dEng1             2.502    0.040   63.179    0.000    2.502    4.157
 ##    .dEng2             2.455    0.041   59.610    0.000    2.455    3.922
-##     GRMS              0.000                               0.000    0.000
-##    .MH                0.000                               0.000    0.000
-##    .PhH               0.000                               0.000    0.000
-##    .Spr               0.000                               0.000    0.000
-##    .SSp               0.000                               0.000    0.000
-##    .Eng               0.000                               0.000    0.000
-##    .dEng              0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -2105,7 +2070,7 @@ struct_summary4
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 64 iterations
+## lavaan 0.6.17 ended normally after 64 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2223,11 +2188,6 @@ struct_summary4
 ##    .Eng2              2.515    0.038   65.523    0.000    2.515    4.311
 ##    .dEng1             2.502    0.040   63.148    0.000    2.502    4.155
 ##    .dEng2             2.455    0.041   59.634    0.000    2.455    3.924
-##     GRMS              0.000                               0.000    0.000
-##    .MH                0.000                               0.000    0.000
-##    .PhH               0.000                               0.000    0.000
-##    .Eng               0.000                               0.000    0.000
-##    .dEng              0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -2314,64 +2274,41 @@ Although the code below may look daunting, I find it to be a fairly straightforw
 We place these values along with the names of our latent variables in to the *semptools::layout_matrix* function.
 
 ```r
-#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
-#You can change them as the last thing
-m4_msmt <- semptools::layout_matrix(GRM = c(3,1),
-                                  Eng = c(1,2),
-                                  dEn = c(5,2),
-                                  MH = c(2,3),
-                                  PhH = c(4,3))
+# IMPORTANT: Must use the node names (take directly from the SemPlot)
+# assigned by SemPlot You can change them as the last thing
+m4_msmt <- semptools::layout_matrix(GRM = c(3, 1), Eng = c(1, 2), dEn = c(5,
+    2), MH = c(2, 3), PhH = c(4, 3))
 
-#tell where you want the indicators to face
-m4_point_to <- semptools::layout_matrix (left = c(3,1),
-                                      up = c(1,2),
-                                      down = c(5,2),
-                                       right = c(2,3),
-                                       right = c(4,3))
+# tell where you want the indicators to face
+m4_point_to <- semptools::layout_matrix(left = c(3, 1), up = c(1, 2), down = c(5,
+    2), right = c(2, 3), right = c(4, 3))
 
-#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
-m4_indicator_order <- c("p1G", "p2G", "p3G",
-                     "p1M", "p2M", "p3M",
-                     "p1P", "p2P", "p3P",
-                     "En1", "En2",
-                     "dE1", "dE2")
+# the next two codes -- indicator_order and indicator_factor are
+# paired together, they specify the order of observed variables for
+# each factor
+m4_indicator_order <- c("p1G", "p2G", "p3G", "p1M", "p2M", "p3M", "p1P",
+    "p2P", "p3P", "En1", "En2", "dE1", "dE2")
 
-m4_indicator_factor <- c("GRM", "GRM", "GRM",
-                      "MH", "MH", "MH",
-                      "PhH", "PhH", "PhH",
-                      "Eng", "Eng",
-                      "dEn", "dEn")
+m4_indicator_factor <- c("GRM", "GRM", "GRM", "MH", "MH", "MH", "PhH",
+    "PhH", "PhH", "Eng", "Eng", "dEn", "dEn")
 
-#next set of code pushes the indicator variables away from the factor
-m4_indicator_push <- c(GRM = .5, 
-                    MH = 1,
-                    PhH = 1,
-                    Eng = 1.5,
-                    dEn = 2)
-m4_indicator_spread <- c(GRM = .5, #spreading the boxes away from each other
-                    MH = 1,
-                    PhH = 1, 
-                    Eng = 1,
-                    dEn = 1)
+# next set of code pushes the indicator variables away from the
+# factor
+m4_indicator_push <- c(GRM = 0.5, MH = 1, PhH = 1, Eng = 1.5, dEn = 2)
 
-plot4 <- semptools::set_sem_layout(plot_struct4,
-                                indicator_order = m4_indicator_order,
-                                indicator_factor = m4_indicator_factor,
-                                factor_layout = m4_msmt,
-                                factor_point_to = m4_point_to,
-                                indicator_push = m4_indicator_push,
-                                indicator_spread = m4_indicator_spread)
+# spreading the boxes away from each other
+m4_indicator_spread <- c(GRM = 0.5, MH = 1, PhH = 1, Eng = 1, dEn = 1)
 
-#changing node labels -- throwing an error and I'm not sure why, it worked above
-#plot4 <- semptools::change_node_label(plot4,
-                                   #c(GRM = "GRMS",
-                                     #MH = "mHealth",
-                                    # PhH = "phHealth",
-                                     #Eng = "Engmt",
-                                     #dEn = "dEngmt",
-                                     #label.cex = 1.1))
+plot4 <- semptools::set_sem_layout(plot_struct4, indicator_order = m4_indicator_order,
+    indicator_factor = m4_indicator_factor, factor_layout = m4_msmt, factor_point_to = m4_point_to,
+    indicator_push = m4_indicator_push, indicator_spread = m4_indicator_spread)
 
-#adding stars to indicate significant paths
+# changing node labels -- throwing an error and I'm not sure why, it
+# worked above plot4 <- semptools::change_node_label(plot4, c(GRM =
+# 'GRMS', MH = 'mHealth', PhH = 'phHealth', Eng = 'Engmt', dEn =
+# 'dEngmt', label.cex = 1.1))
+
+# adding stars to indicate significant paths
 plot4 <- semptools::mark_sig(plot4, struct_fit4)
 
 plot(plot4)
@@ -2697,7 +2634,7 @@ msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 82 iterations
+## lavaan 0.6.17 ended normally after 82 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2801,10 +2738,6 @@ msmt_fit_sum
 ##    .p1V               4.464    0.068   65.385    0.000    4.464    7.134
 ##    .p2V               4.190    0.093   45.087    0.000    4.190    4.919
 ##    .p3V               3.986    0.099   40.142    0.000    3.986    4.389
-##     CTR               0.000                               0.000    0.000
-##     TrP               0.000                               0.000    0.000
-##     SRP               0.000                               0.000    0.000
-##     Val               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -2886,7 +2819,7 @@ semPlot::semPaths(msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5,
         2, 2, 2))
 ```
 
-![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-57-1.png)<!-- -->
+![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-98-1.png)<!-- -->
 
 ### Specify and evaluate a *structural* model {-}
 
@@ -2959,7 +2892,7 @@ ReC_struct_summary1
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 72 iterations
+## lavaan 0.6.17 ended normally after 72 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3066,10 +2999,6 @@ ReC_struct_summary1
 ##    .p1V               4.464    0.067   66.486    0.000    4.464    7.254
 ##    .p2V               4.190    0.089   47.193    0.000    4.190    5.149
 ##    .p3V               3.986    0.096   41.739    0.000    3.986    4.564
-##     CTR               0.000                               0.000    0.000
-##    .TrP               0.000                               0.000    0.000
-##    .SRP               0.000                               0.000    0.000
-##    .Val               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -3138,7 +3067,7 @@ plot_ReC_struct1 <- semPlot::semPaths(ReC_struct_fit1, what = "col", whatLabels 
     mar = c(2, 2, 2, 2), structural = FALSE, curve = FALSE, intercepts = FALSE)
 ```
 
-![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-61-1.png)<!-- -->
+![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-102-1.png)<!-- -->
 
 
 |Grid for Plotting semplot::sempath  
@@ -3300,7 +3229,7 @@ ReC_struct_summary2
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 75 iterations
+## lavaan 0.6.17 ended normally after 75 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3408,10 +3337,6 @@ ReC_struct_summary2
 ##    .p1V               4.464    0.068   65.385    0.000    4.464    7.134
 ##    .p2V               4.190    0.093   45.087    0.000    4.190    4.919
 ##    .p3V               3.986    0.099   40.142    0.000    3.986    4.389
-##     CTR               0.000                               0.000    0.000
-##    .TrP               0.000                               0.000    0.000
-##    .SRP               0.000                               0.000    0.000
-##    .Val               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -3504,7 +3429,7 @@ plot_struct2 <- semPlot::semPaths(ReC_struct_fit2, what = "col", whatLabels = "s
     mar = c(2, 2, 2, 2), structural = FALSE, curve = FALSE, intercepts = FALSE)
 ```
 
-![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-71-1.png)<!-- -->
+![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-112-1.png)<!-- -->
 
 ### Using the strength and significance of regression weights as a guide, trim at least path or covariance {-}
 
@@ -3548,7 +3473,7 @@ ReC_struct_summary3
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 71 iterations
+## lavaan 0.6.17 ended normally after 71 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3656,10 +3581,6 @@ ReC_struct_summary3
 ##    .p1V               4.464    0.067   66.486    0.000    4.464    7.254
 ##    .p2V               4.190    0.089   47.193    0.000    4.190    5.149
 ##    .p3V               3.986    0.096   41.739    0.000    3.986    4.564
-##     CTR               0.000                               0.000    0.000
-##    .TrP               0.000                               0.000    0.000
-##    .SRP               0.000                               0.000    0.000
-##    .Val               0.000                               0.000    0.000
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all

@@ -1,6 +1,0 @@
-"0","#appending the average for the whole group of DR"
-"0","lm.DR <- fitted( lm(Anxiety ~ Session0, data=DR) )"
-"0","names(lm.DR) <- NULL"
-"0","fit.DR2 <- c(fitDR, lm.DR[1:5])"
-"0","Sess1.DR <- c(DR$Index, seq(1,5))#Note that I used Session0 to create the lm, but plotted by Index0"
-"0","id.DR <- c(DR$ClientID, rep(30, 5))"

@@ -5496,6 +5496,12 @@
                     "given": "Clara"
                 }
             ],
+            "container-title": "Consensual qualitative research: A practical resources for investigating social science phenomena",
+            "editor": [
+                {
+                    "family": "Hill"
+                }
+            ],
             "id": "spangler_consensual_2012",
             "issued": {
                 "date-parts": [
@@ -5505,7 +5511,9 @@
                     ]
                 ]
             },
-            "page": "269-283",
+            "page": "269-284",
+            "publisher": "APA",
+            "publisher-place": "Washington, DC",
             "title": "Consensual Qualitative Research for Simple Qualitative Data An Introduction to CQR-M",
             "type": "chapter"
         },
@@ -15356,7 +15364,7 @@
                     ]
                 ]
             },
-            "keyword": "Estimation, hierarchical linear model (HLM), mixed effect models, multilevel modeling, Population, power analysis, Sample Size, sample size determination, Simulation, Statistical Power",
+            "keyword": "Sample Size, Simulation, Statistical Power, power analysis, Estimation, hierarchical linear model (HLM), mixed effect models, multilevel modeling, Population, sample size determination",
             "note": "Publisher: American Psychological Association",
             "page": "1-19",
             "title": "Statistical power in two-level models: A tutorial based on Monte Carlo simulation",
@@ -16654,6 +16662,454 @@
             "title-short": "A caballo regalao no se le mira el colmillo",
             "type": "article-journal",
             "volume": "66"
+        },
+        {
+            "URL": "https://apastyle.apa.org/jars/rec-table-1.pdf",
+            "id": "noauthor_jarsrace_2023",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "publisher": "American Psychological Association",
+            "title": "JARS–Race, Ethnicity, and Culture: Table 1",
+            "title-short": "JARS–Race, Ethnicity, and Culture",
+            "type": ""
+        },
+        {
+            "DOI": "10.3758/s13428-022-01996-0",
+            "ISSN": "1554-3528",
+            "URL": "https://doi.org/10.3758/s13428-022-01996-0",
+            "abstract": "Conceptual and statistical models that include conditional indirect effects (i.e., so-called “moderated mediation” models) are increasingly popular in the behavioral sciences. Although there is ample guidance in the literature for how to specify and test such models, there is scant advice regarding how to best design studies for such purposes, and this especially includes techniques for sample size planning (i.e., “power analysis”). In this paper, we discuss challenges in sample size planning for moderated mediation models and offer a tutorial for conducting Monte Carlo simulations in the specific case where one has categorical exogenous variables. Such a scenario is commonly faced when one is considering testing conditional indirect effects in experimental research, wherein the (assumed) predictor and moderator variables are manipulated factors and the (assumed) mediator and outcome variables are observed/measured variables. To support this effort, we offer example data and reproducible R code that constitutes a “toolkit” to make up for limitations in other software and aid researchers in the design of research to test moderated mediation models.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        1,
+                        27
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Donnelly",
+                    "given": "Samuel"
+                },
+                {
+                    "family": "Jorgensen",
+                    "given": "Terrence D."
+                },
+                {
+                    "family": "Rudolph",
+                    "given": "Cort W."
+                }
+            ],
+            "container-title": "Behavior Research Methods",
+            "id": "donnelly_power_2023",
+            "issue": "7",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023,
+                        10
+                    ]
+                ]
+            },
+            "keyword": "Mediation, Moderation, Moderated mediation, Monte Carlo simulation, Power analysis",
+            "page": "3892-3909",
+            "title": "Power analysis for conditional indirect effects: A tutorial for conducting Monte Carlo simulations with categorical exogenous variables",
+            "title-short": "Power analysis for conditional indirect effects",
+            "type": "article-journal",
+            "volume": "55"
+        },
+        {
+            "DOI": "10.1080/10691898.2016.1246953",
+            "ISSN": "null",
+            "URL": "https://doi.org/10.1080/10691898.2016.1246953",
+            "abstract": "Monte Carlo simulations (MCSs) provide important information about statistical phenomena that would be impossible to assess otherwise. This article introduces MCS methods and their applications to research and statistical pedagogy using a novel software package for the R Project for Statistical Computing constructed to lessen the often steep learning curve when organizing simulation code. A primary goal of this article is to demonstrate how well-suited MCS designs are to classroom demonstrations, and how they provide a hands-on method for students to become acquainted with complex statistical concepts. In this article, essential programming aspects for writing MCS code in R are overviewed, multiple applied examples with relevant code are provided, and the benefits of using a generate–analyze–summarize coding structure over the typical “for-loop” strategy are discussed.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        1,
+                        27
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Sigal",
+                    "given": "Matthew J."
+                },
+                {
+                    "family": "Chalmers",
+                    "given": "R. Philip"
+                }
+            ],
+            "container-title": "Journal of Statistics Education",
+            "id": "sigal_play_2016",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016,
+                        9
+                    ]
+                ]
+            },
+            "keyword": "R, Simulation, Active learning, Statistical computing",
+            "note": "Publisher: Taylor & Francis _eprint: https://doi.org/10.1080/10691898.2016.1246953",
+            "page": "136-156",
+            "title": "Play It Again: Teaching Statistics With Monte Carlo Simulation",
+            "title-short": "Play It Again",
+            "type": "article-journal",
+            "volume": "24"
+        },
+        {
+            "DOI": "10.1080/10705511.2010.489379",
+            "ISSN": "1070-5511",
+            "PMID": "23935262",
+            "URL": "https://www.tandfonline.com/doi/abs/10.1080/10705511.2010.489379",
+            "abstract": "Applied researchers often include mediation effects in applications of advanced methods such as latent variable models and linear growth curve models. Guidance on how to estimate statistical power to detect mediation for these models has not yet been addressed in the literature. We describe a general framework for power analyses for complex mediational models. The approach is based on the well-known technique of generating a large number of samples in a Monte Carlo study, and estimating power as the percentage of cases in which an estimate of interest is significantly different from zero. Examples of power calculation for commonly used mediational models are provided. Power analyses for the single mediator, multiple mediators, 3-path mediation, mediation with latent variables, moderated mediation, and mediation in longitudinal designs are described. Annotated sample syntax for Mplus is appended and tabled values of required sample sizes are shown for some models.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        1,
+                        27
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Thoemmes",
+                    "given": "Felix"
+                },
+                {
+                    "family": "MacKinnon",
+                    "given": "David P."
+                },
+                {
+                    "family": "Reiser",
+                    "given": "Mark R."
+                }
+            ],
+            "container-title": "Structural Equation Modeling: A Multidisciplinary Journal",
+            "id": "thoemmes_power_2010",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2010,
+                        7
+                    ]
+                ]
+            },
+            "note": "Publisher: Routledge _eprint: https://www.tandfonline.com/doi/pdf/10.1080/10705511.2010.489379",
+            "page": "510-534",
+            "title": "Power Analysis for Complex Mediational Designs Using Monte Carlo Methods",
+            "type": "article-journal",
+            "volume": "17"
+        },
+        {
+            "DOI": "10.1046/j.1525-1497.2001.016009606.x",
+            "ISSN": "0884-8734",
+            "PMCID": "PMC1495268",
+            "PMID": "11556941",
+            "abstract": "OBJECTIVE: While considerable attention has focused on improving the detection of depression, assessment of severity is also important in guiding treatment decisions. Therefore, we examined the validity of a brief, new measure of depression severity. MEASUREMENTS: The Patient Health Questionnaire (PHQ) is a self-administered version of the PRIME-MD diagnostic instrument for common mental disorders. The PHQ-9 is the depression module, which scores each of the 9 DSM-IV criteria as \"0\" (not at all) to \"3\" (nearly every day). The PHQ-9 was completed by 6,000 patients in 8 primary care clinics and 7 obstetrics-gynecology clinics. Construct validity was assessed using the 20-item Short-Form General Health Survey, self-reported sick days and clinic visits, and symptom-related difficulty. Criterion validity was assessed against an independent structured mental health professional (MHP) interview in a sample of 580 patients. RESULTS: As PHQ-9 depression severity increased, there was a substantial decrease in functional status on all 6 SF-20 subscales. Also, symptom-related difficulty, sick days, and health care utilization increased. Using the MHP reinterview as the criterion standard, a PHQ-9 score > or =10 had a sensitivity of 88% and a specificity of 88% for major depression. PHQ-9 scores of 5, 10, 15, and 20 represented mild, moderate, moderately severe, and severe depression, respectively. Results were similar in the primary care and obstetrics-gynecology samples. CONCLUSION: In addition to making criteria-based diagnoses of depressive disorders, the PHQ-9 is also a reliable and valid measure of depression severity. These characteristics plus its brevity make the PHQ-9 a useful clinical and research tool.",
+            "author": [
+                {
+                    "family": "Kroenke",
+                    "given": "K."
+                },
+                {
+                    "family": "Spitzer",
+                    "given": "R. L."
+                },
+                {
+                    "family": "Williams",
+                    "given": "J. B."
+                }
+            ],
+            "container-title": "Journal of General Internal Medicine",
+            "id": "kroenke_phq-9_2001",
+            "issue": "9",
+            "issued": {
+                "date-parts": [
+                    [
+                        2001,
+                        9
+                    ]
+                ]
+            },
+            "keyword": "Depression, Humans, Female, Male, Surveys and Questionnaires, Middle Aged, Reproducibility of Results, Adult, Psychological Tests, Severity of Illness Index",
+            "page": "606-613",
+            "title": "The PHQ-9: Validity of a brief depression severity measure",
+            "title-short": "The PHQ-9",
+            "type": "article-journal",
+            "volume": "16"
+        },
+        {
+            "DOI": "10.1016/j.jad.2008.06.026",
+            "ISSN": "1573-2517",
+            "PMID": "18752852",
+            "abstract": "BACKGROUND: The eight-item Patient Health Questionnaire depression scale (PHQ-8) is established as a valid diagnostic and severity measure for depressive disorders in large clinical studies. Our objectives were to assess the PHQ-8 as a depression measure in a large, epidemiological population-based study, and to determine the comparability of depression as defined by the PHQ-8 diagnostic algorithm vs. a PHQ-8 cutpoint > or = 10. METHODS: Random-digit-dialed telephone survey of 198,678 participants in the 2006 Behavioral Risk Factor Surveillance Survey (BRFSS), a population-based survey in the United States. Current depression as defined by either the DSM-IV based diagnostic algorithm (i.e., major depressive or other depressive disorder) of the PHQ-8 or a PHQ-8 score > or = 10; respondent sociodemographic characteristics; number of days of impairment in the past 30 days in multiple domains of health-related quality of life (HRQoL). RESULTS: The prevalence of current depression was similar whether defined by the diagnostic algorithm or a PHQ-8 score > or = 10 (9.1% vs. 8.6%). Depressed patients had substantially more days of impairment across multiple domains of HRQoL, and the impairment was nearly identical in depressed groups defined by either method. Of the 17,040 respondents with a PHQ-8 score > or = 10, major depressive disorder was present in 49.7%, other depressive disorder in 23.9%, depressed mood or anhedonia in another 22.8%, and no evidence of depressive disorder or depressive symptoms in only 3.5%. LIMITATIONS: The PHQ-8 diagnostic algorithm rather than an independent structured psychiatric interview was used as the criterion standard. CONCLUSIONS: The PHQ-8 is a useful depression measure for population-based studies, and either its diagnostic algorithm or a cutpoint > or = 10 can be used for defining current depression.",
+            "author": [
+                {
+                    "family": "Kroenke",
+                    "given": "Kurt"
+                },
+                {
+                    "family": "Strine",
+                    "given": "Tara W."
+                },
+                {
+                    "family": "Spitzer",
+                    "given": "Robert L."
+                },
+                {
+                    "family": "Williams",
+                    "given": "Janet B. W."
+                },
+                {
+                    "family": "Berry",
+                    "given": "Joyce T."
+                },
+                {
+                    "family": "Mokdad",
+                    "given": "Ali H."
+                }
+            ],
+            "container-title": "Journal of Affective Disorders",
+            "id": "kroenke_phq-8_2009",
+            "issue": "1-3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2009,
+                        4
+                    ]
+                ]
+            },
+            "keyword": "Depression, Humans, Female, United States, Adolescent, Male, Surveys and Questionnaires, Psychometrics, Aged, Middle Aged, Adult, Aged, 80 and over, Young Adult, Quality of Life, Factor Analysis, Statistical, Algorithms, Severity of Illness Index, Age Factors, Behavioral Risk Factor Surveillance System, Depressive Disorder, Depressive Disorder, Major, Diagnostic and Statistical Manual of Mental Disorders, Population Groups, Prevalence, Psychiatric Status Rating Scales",
+            "page": "163-173",
+            "title": "The PHQ-8 as a measure of current depression in the general population",
+            "type": "article-journal",
+            "volume": "114"
+        },
+        {
+            "DOI": "10.1300/J082v25n04_02",
+            "ISSN": "0091-8369",
+            "PMID": "8106738",
+            "abstract": "College and university communities recently have begun to confront the problems of harassment, discrimination, and violence against lesbians, gay men, and bisexual people on campus. A first step in responding to attacks against gay and bisexual people is to document their frequency and the forms that they take. The present article reports the methodology and results of a survey conducted at Yale University in 1986, which subsequently has been replicated on several other campuses. The Yale survey revealed that many lesbians, gay men, and bisexual people on campus lived in a world of secretiveness and fear. Although experiences of physical assault on campus were relatively infrequent, many respondents reported other forms of discrimination and harassment. A majority reported that they feared antigay violence and harassment on campus, and that such fears affected their behavior. Replications on other campuses have yielded similar results. Suggestions are offered for researchers who wish to conduct such a survey on their own campus.",
+            "author": [
+                {
+                    "family": "Herek",
+                    "given": "G. M."
+                }
+            ],
+            "container-title": "Journal of Homosexuality",
+            "id": "herek_documenting_1993",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        1993
+                    ]
+                ]
+            },
+            "keyword": "Humans, Female, Male, Surveys and Questionnaires, Students, Prejudice, Social Support, Social Environment, Homosexuality, Sexual Harassment, Violence, Connecticut",
+            "page": "15-30",
+            "title": "Documenting prejudice against lesbians and gay men on campus: The Yale Sexual Orientation Survey",
+            "title-short": "Documenting prejudice against lesbians and gay men on campus",
+            "type": "article-journal",
+            "volume": "25"
+        },
+        {
+            "DOI": "10.1186/s12888-022-04101-z",
+            "ISSN": "1471-244X",
+            "URL": "https://doi.org/10.1186/s12888-022-04101-z",
+            "abstract": "The aim of this study was to test factor structure, measurement invariance, and concurrent validity of the nine item Patient Health Questionnaire-9 (PHQ-9) and the seven item Generalized Anxiety Disorder scale-7 (GAD-7) in a heterogeneous outpatient sample.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        3,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Brattmyr",
+                    "given": "Martin"
+                },
+                {
+                    "family": "Lindberg",
+                    "given": "Martin Schevik"
+                },
+                {
+                    "family": "Solem",
+                    "given": "Stian"
+                },
+                {
+                    "family": "Hjemdal",
+                    "given": "Odin"
+                },
+                {
+                    "family": "Havnen",
+                    "given": "Audun"
+                }
+            ],
+            "container-title": "BMC Psychiatry",
+            "id": "brattmyr_factor_2022",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022,
+                        7
+                    ]
+                ]
+            },
+            "keyword": "Measurement invariance, Reliability, Validity, Factor structure, GAD-7, PHQ-9",
+            "page": "461",
+            "title": "Factor structure, measurement invariance, and concurrent validity of the Patient Health Questionnaire-9 and the Generalized Anxiety Disorder scale-7 in a Norwegian psychiatric outpatient sample",
+            "type": "article-journal",
+            "volume": "22"
+        },
+        {
+            "DOI": "10.1001/archinte.166.10.1092",
+            "ISSN": "0003-9926",
+            "URL": "http://archinte.jamanetwork.com/article.aspx?doi=10.1001/archinte.166.10.1092",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        3,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Spitzer",
+                    "given": "Robert L."
+                },
+                {
+                    "family": "Kroenke",
+                    "given": "Kurt"
+                },
+                {
+                    "family": "Williams",
+                    "given": "Janet B. W."
+                },
+                {
+                    "family": "Löwe",
+                    "given": "Bernd"
+                }
+            ],
+            "container-title": "Archives of Internal Medicine",
+            "id": "spitzer_brief_2006",
+            "issue": "10",
+            "issued": {
+                "date-parts": [
+                    [
+                        2006,
+                        5
+                    ]
+                ]
+            },
+            "page": "1092",
+            "title": "A Brief Measure for Assessing Generalized Anxiety Disorder: The GAD-7",
+            "title-short": "A Brief Measure for Assessing Generalized Anxiety Disorder",
+            "type": "article-journal",
+            "volume": "166"
+        },
+        {
+            "DOI": "10.1080/00221546.1980.11780030",
+            "ISSN": "0022-1546, 1538-4640",
+            "URL": "https://www.tandfonline.com/doi/full/10.1080/00221546.1980.11780030",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        3,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Pascarella",
+                    "given": "Ernest T."
+                },
+                {
+                    "family": "Terenzini",
+                    "given": "Patrick T."
+                }
+            ],
+            "container-title": "The Journal of Higher Education",
+            "id": "pascarella_predicting_1980",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        1980,
+                        1
+                    ]
+                ]
+            },
+            "page": "60-75",
+            "title": "Predicting Freshman Persistence and Voluntary Dropout Decisions from a Theoretical Model",
+            "type": "article-journal",
+            "volume": "51"
+        },
+        {
+            "DOI": "10.1002/j.2161-1882.1998.tb00130.x",
+            "ISSN": "1099-0399, 2161-1882",
+            "URL": "https://onlinelibrary.wiley.com/doi/10.1002/j.2161-1882.1998.tb00130.x",
+            "abstract": "First‐ and 3rd‐year university students were surveyed regarding cultural attitudes and climate. Comfort in cross‐cultural situations and respect for other cultures correlated with overall satisfaction for all students. However, the more Asian Americans, Hispanic Americans, and Whites were aware of diversity and changing their behavior accordingly, the less satisfied they were. Awareness of diversity was not related to overall satisfaction for African Americans.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        3,
+                        2
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Helm",
+                    "given": "Edward G."
+                },
+                {
+                    "family": "Sedlacek",
+                    "given": "William E."
+                },
+                {
+                    "family": "Prieto",
+                    "given": "Dario O."
+                }
+            ],
+            "container-title": "Journal of College Counseling",
+            "id": "helm_relationship_1998",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        1998,
+                        9
+                    ]
+                ]
+            },
+            "page": "111-120",
+            "title": "The Relationship Between Attitudes Toward Diversity and Overall Satisfaction of University Students by Race",
+            "type": "article-journal",
+            "volume": "1"
         }
     ],
     "project_biblios": [

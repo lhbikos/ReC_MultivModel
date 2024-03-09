@@ -1,0 +1,12 @@
+"0","lesPAF2loadings <- psych::print.psych(lesPAF2, cut = 0.3, sort=TRUE)"
+"1","Factor Analysis using method = "
+"1"," "
+"1","pa"
+"1","
+Call: "
+"1","psych::fa(r = df_r[, l_vars], nfactors = 5, n.obs = max.iter, 
+"
+"1","    rotate = ""varimax"", fm = ""pa"")
+"
+"1","Standardized loadings (pattern matrix) based upon correlation matrix
+"

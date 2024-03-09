@@ -1,2 +1,0 @@
-"0","write.table(LfvrLong, file=""LfvrLong.csv"", sep="","", col.names=TRUE, row.names=FALSE)"
-"0","LfvrLong <- read.csv (""LfvrLong.csv"", head = TRUE, sep = "","")"

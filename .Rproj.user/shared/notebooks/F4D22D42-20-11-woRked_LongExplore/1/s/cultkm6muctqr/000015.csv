@@ -1,0 +1,2 @@
+"0","ggplot(data = rndm30, aes(x = Index, y = SRPed)) + geom_point() +"
+"0","    stat_smooth(method = ""lm"", se = FALSE) + facet_wrap(~deID)"

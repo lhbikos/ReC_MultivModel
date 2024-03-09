@@ -1,6 +1,0 @@
-"0","#appending the average for the whole group of males"
-"0","lm.LGBQQ <- fitted( lm(Anxiety ~ Session0, data=LGBQQ) )"
-"0","names(lm.LGBQQ) <- NULL"
-"0","fit.LGBQQ <- c(fitLGBQQ, lm.LGBQQ[1:5])"
-"0","Sess1.LGBQQ <- c(LGBQQ$Index, seq(1,5)) #Note that I used Session0 to create the lm, but plotted by Index0"
-"0","id.LGBQQ <- c(LGBQQ$ClientID, rep(30, 5))"

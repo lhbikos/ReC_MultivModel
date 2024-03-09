@@ -6,13 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Data Dx | ReCentering Psych Stats: Multivariate Modeling</title>
   <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Data Dx | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://lhbikos.github.io/ReC_MultivModel/images/ReC_multivariate_bkcvr.png" />
   <meta property="og:description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="github-repo" content="lhbikos/extRas" />
+  <meta name="github-repo" content="lhbikos/ReC_MultivModel" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 Data Dx | ReCentering Psych Stats: Multivariate Modeling" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2023-11-12" />
+<meta name="date" content="2024-03-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -829,6 +829,18 @@ div.csl-indent {
 <li class="chapter" data-level="13.7.4" data-path="MLMexplore.html"><a href="MLMexplore.html#grading-rubric-11"><i class="fa fa-check"></i><b>13.7.4</b> Grading Rubric</a></li>
 </ul></li>
 <li class="chapter" data-level="13.8" data-path="MLMexplore.html"><a href="MLMexplore.html#simulated-data-when-depression-is-the-outcome"><i class="fa fa-check"></i><b>13.8</b> Simulated Data when Depression is the Outcome</a></li>
+<li class="chapter" data-level="13.9" data-path="MLMexplore.html"><a href="MLMexplore.html#homeworked-example-9"><i class="fa fa-check"></i><b>13.9</b> Homeworked Example</a>
+<ul>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#identify-and-describe-the-variables-in-the-model-there-should-be-a-time-varying-dv-and-predictor-as-well-as-an-l2-predictor"><i class="fa fa-check"></i>Identify and describe the variables in the model; there should be a time-varying DV and predictor as well as an L2 predictor</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#import-the-data-and-format-the-variables-in-the-model-7"><i class="fa fa-check"></i>### Import the data and format the variables in the model</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#restructure-the-dataset-from-wide-to-long-or-from-long-to-wide"><i class="fa fa-check"></i>Restructure the dataset from wide to long (or from long to wide)</a></li>
+<li class="chapter" data-level="13.9.1" data-path="MLMexplore.html"><a href="MLMexplore.html#produce-multilevel-descriptive-statistics-and-correlation-matrix"><i class="fa fa-check"></i><b>13.9.1</b> Produce multilevel descriptive statistics and correlation matrix</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-an-unfitted-model"><i class="fa fa-check"></i>Explore data with an unfitted model</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-a-model-fitted-with-a-linear-growth-trajectory"><i class="fa fa-check"></i>Explore data with a model fitted with a linear growth trajectory</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explore-data-with-the-fitted-or-unfitted-data-identified-by-the-l2-predictor"><i class="fa fa-check"></i>Explore data with the fitted (or unfitted) data identified by the L2 predictor</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#provide-a-write-up-of-what-you-found-in-this-process"><i class="fa fa-check"></i>Provide a write-up of what you found in this process</a></li>
+<li class="chapter" data-level="" data-path="MLMexplore.html"><a href="MLMexplore.html#explanation-to-grader-6"><i class="fa fa-check"></i>Explanation to grader</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="LongMod.html"><a href="LongMod.html"><i class="fa fa-check"></i><b>14</b> A Basic Longitudinal Model</a>
 <ul>
@@ -878,6 +890,47 @@ div.csl-indent {
 <li class="chapter" data-level="14.10.2" data-path="LongMod.html"><a href="LongMod.html#problem-2-rework-the-research-vignette-but-use-the-depression-variable-as-an-outcome"><i class="fa fa-check"></i><b>14.10.2</b> Problem #2: Rework the research vignette, but use the depression variable as an outcome</a></li>
 <li class="chapter" data-level="14.10.3" data-path="LongMod.html"><a href="LongMod.html#problem-3-use-other-data-that-is-available-to-you-6"><i class="fa fa-check"></i><b>14.10.3</b> Problem #3: Use other data that is available to you</a></li>
 <li class="chapter" data-level="14.10.4" data-path="LongMod.html"><a href="LongMod.html#grading-rubric-12"><i class="fa fa-check"></i><b>14.10.4</b> Grading Rubric</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="TimeLord.html"><a href="TimeLord.html"><i class="fa fa-check"></i><b>15</b> Calendrical Time (and Missingness) in MLMs</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="TimeLord.html"><a href="TimeLord.html#navigating-this-lesson-14"><i class="fa fa-check"></i><b>15.1</b> Navigating this Lesson</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="TimeLord.html"><a href="TimeLord.html#learning-objectives-14"><i class="fa fa-check"></i><b>15.1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="15.1.2" data-path="TimeLord.html"><a href="TimeLord.html#planning-for-practice-14"><i class="fa fa-check"></i><b>15.1.2</b> Planning for Practice</a></li>
+<li class="chapter" data-level="15.1.3" data-path="TimeLord.html"><a href="TimeLord.html#readings-resources-14"><i class="fa fa-check"></i><b>15.1.3</b> Readings &amp; Resources</a></li>
+<li class="chapter" data-level="15.1.4" data-path="TimeLord.html"><a href="TimeLord.html#packages-14"><i class="fa fa-check"></i><b>15.1.4</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="TimeLord.html"><a href="TimeLord.html#exploring-variants-of-time-and-balance"><i class="fa fa-check"></i><b>15.2</b> Exploring Variants of Time and Balance</a></li>
+<li class="chapter" data-level="15.3" data-path="TimeLord.html"><a href="TimeLord.html#research-vignette-14"><i class="fa fa-check"></i><b>15.3</b> Research Vignette</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="TimeLord.html"><a href="TimeLord.html#simulating-the-data-from-the-journal-article-7"><i class="fa fa-check"></i><b>15.3.1</b> Simulating the data from the journal article</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="TimeLord.html"><a href="TimeLord.html#more-simulation-appointment-dates"><i class="fa fa-check"></i><b>15.4</b> More Simulation – Appointment Dates</a></li>
+<li class="chapter" data-level="15.5" data-path="TimeLord.html"><a href="TimeLord.html#reworking-lefevor-et-al.-using-calendrical-time-and-unbalanced-data"><i class="fa fa-check"></i><b>15.5</b> Reworking Lefevor et al. using Calendrical Time (and Unbalanced Data)</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="TimeLord.html"><a href="TimeLord.html#creating-time-intervals"><i class="fa fa-check"></i><b>15.5.1</b> Creating Time Intervals</a></li>
+<li class="chapter" data-level="15.5.2" data-path="TimeLord.html"><a href="TimeLord.html#wide-to-long"><i class="fa fa-check"></i><b>15.5.2</b> Wide to Long</a></li>
+<li class="chapter" data-level="15.5.3" data-path="TimeLord.html"><a href="TimeLord.html#mlm-is-for-unbalanced-designs"><i class="fa fa-check"></i><b>15.5.3</b> MLM is for unbalanced designs</a></li>
+<li class="chapter" data-level="15.5.4" data-path="TimeLord.html"><a href="TimeLord.html#abbreviated-ols-style-exploration"><i class="fa fa-check"></i><b>15.5.4</b> Abbreviated OLS Style Exploration</a></li>
+<li class="chapter" data-level="15.5.5" data-path="TimeLord.html"><a href="TimeLord.html#rebuilding-the-model-unstructured-time-unbalanced-design"><i class="fa fa-check"></i><b>15.5.5</b> Rebuilding the Model (Unstructured Time, Unbalanced Design)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="TimeLord.html"><a href="TimeLord.html#structured-time-reworking-the-vignette-with-index"><i class="fa fa-check"></i><b>15.6</b> Structured Time: Reworking the Vignette with Index</a></li>
+<li class="chapter" data-level="15.7" data-path="TimeLord.html"><a href="TimeLord.html#apa-style-writeup-8"><i class="fa fa-check"></i><b>15.7</b> APA Style Writeup</a></li>
+<li class="chapter" data-level="15.8" data-path="TimeLord.html"><a href="TimeLord.html#residual-and-related-questions-5"><i class="fa fa-check"></i><b>15.8</b> Residual and Related Questions…</a>
+<ul>
+<li class="chapter" data-level="15.8.1" data-path="TimeLord.html"><a href="TimeLord.html#what-did-we-gainlose-by-using-weeks-or-sessnum-unstructured-versus-index-structured-to-mark-time"><i class="fa fa-check"></i><b>15.8.1</b> What did we gain/lose by using Weeks or SessNum (unstructured) versus Index (structured) to mark time?</a></li>
+<li class="chapter" data-level="15.8.2" data-path="TimeLord.html"><a href="TimeLord.html#how-did-the-unbalanced-time-impact-the-analysis-and-results"><i class="fa fa-check"></i><b>15.8.2</b> How did the unbalanced time impact the analysis and results?</a></li>
+</ul></li>
+<li class="chapter" data-level="15.9" data-path="TimeLord.html"><a href="TimeLord.html#practice-problems-14"><i class="fa fa-check"></i><b>15.9</b> Practice Problems</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="TimeLord.html"><a href="TimeLord.html#problem-1-rework-this-lessons-example-by-changing-the-time-metric-to-days-or-months"><i class="fa fa-check"></i><b>15.9.1</b> Problem #1: Rework this Lesson’s Example by Changing the Time Metric to Days or Months</a></li>
+<li class="chapter" data-level="15.9.2" data-path="TimeLord.html"><a href="TimeLord.html#problem-2-compare-balanced-and-unbalanced-designs"><i class="fa fa-check"></i><b>15.9.2</b> Problem #2: Compare balanced and unbalanced designs</a></li>
+<li class="chapter" data-level="15.9.3" data-path="TimeLord.html"><a href="TimeLord.html#problem-3-experiment-with-time-and-balanceunbalance-in-data-that-is-available-to-you"><i class="fa fa-check"></i><b>15.9.3</b> Problem #3: Experiment with time and balance/unbalance in data that is available to you</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="TimeLord.html"><a href="TimeLord.html#bonus-track-2"><i class="fa fa-check"></i><b>15.10</b> Bonus Track:</a>
+<ul>
+<li class="chapter" data-level="15.10.1" data-path="TimeLord.html"><a href="TimeLord.html#faqs"><i class="fa fa-check"></i><b>15.10.1</b> FAQs</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="REFS.html"><a href="REFS.html"><i class="fa fa-check"></i>REFERENCES</a></li>
@@ -1013,7 +1066,7 @@ Reliability analysis
 Call: psych::alpha(x = item_scores_df[c(&quot;Belong_1&quot;, &quot;Belong_2&quot;, &quot;Belong_3&quot;)])
 
   raw_alpha std.alpha G6(smc) average_r S/N    ase mean  sd median_r
-      0.95      0.95    0.93      0.87  21 0.0099    4 1.5     0.88
+      0.95      0.95    0.93      0.87  20 0.0099    4 1.5     0.88
 
     95% confidence boundaries 
          lower alpha upper
@@ -1022,9 +1075,9 @@ Duhachek  0.93  0.95  0.97
 
  Reliability if an item is dropped:
          raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-Belong_1      0.94      0.94    0.88      0.88  15    0.016    NA  0.88
+Belong_1      0.94      0.93    0.88      0.88  14    0.016    NA  0.88
 Belong_2      0.92      0.92    0.85      0.85  11    0.020    NA  0.85
-Belong_3      0.94      0.94    0.89      0.89  16    0.015    NA  0.89
+Belong_3      0.94      0.94    0.88      0.88  15    0.015    NA  0.88
 
  Item statistics 
           n raw.r std.r r.cor r.drop mean  sd
@@ -1052,7 +1105,7 @@ Call: psych::alpha(x = item_scores_df[c(&quot;rBlst_1&quot;, &quot;Blst_2&quot;,
     &quot;Blst_4&quot;, &quot;Blst_5&quot;, &quot;Blst_6&quot;)])
 
   raw_alpha std.alpha G6(smc) average_r S/N  ase mean  sd median_r
-      0.85      0.87    0.87      0.52 6.5 0.03  2.5 1.1     0.52
+      0.85      0.87    0.87      0.52 6.5 0.03  2.5 1.1     0.51
 
     95% confidence boundaries 
          lower alpha upper
@@ -1061,21 +1114,21 @@ Duhachek  0.79  0.85  0.91
 
  Reliability if an item is dropped:
         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-rBlst_1      0.85      0.87    0.87      0.57 6.5    0.031 0.029  0.57
-Blst_2       0.87      0.88    0.87      0.59 7.1    0.026 0.019  0.56
+rBlst_1      0.85      0.87    0.87      0.57 6.6    0.031 0.029  0.58
+Blst_2       0.87      0.88    0.87      0.59 7.2    0.026 0.019  0.57
 Blst_3       0.83      0.85    0.85      0.54 5.8    0.034 0.029  0.50
 Blst_4       0.80      0.82    0.82      0.48 4.6    0.041 0.027  0.48
-Blst_5       0.79      0.81    0.81      0.46 4.3    0.042 0.024  0.47
-Blst_6       0.80      0.82    0.81      0.48 4.6    0.040 0.021  0.50
+Blst_5       0.79      0.81    0.80      0.46 4.3    0.042 0.023  0.46
+Blst_6       0.80      0.82    0.82      0.48 4.6    0.040 0.023  0.50
 
  Item statistics 
          n raw.r std.r r.cor r.drop mean  sd
 rBlst_1 60  0.69  0.67  0.56   0.52  3.4 1.6
 Blst_2  64  0.68  0.62  0.51   0.46  3.0 1.8
-Blst_3  63  0.71  0.74  0.66   0.59  2.0 1.2
-Blst_4  62  0.85  0.86  0.84   0.77  2.5 1.3
-Blst_5  63  0.89  0.89  0.89   0.82  2.0 1.2
-Blst_6  63  0.83  0.86  0.86   0.77  2.1 1.3
+Blst_3  63  0.71  0.74  0.67   0.59  2.0 1.2
+Blst_4  62  0.85  0.86  0.85   0.77  2.5 1.3
+Blst_5  63  0.89  0.90  0.90   0.82  2.0 1.2
+Blst_6  63  0.83  0.86  0.85   0.77  2.1 1.3
 
 Non missing response frequency for each item
            1    2    3    4    5    6    7 miss
@@ -1099,7 +1152,7 @@ Reliability analysis
 Call: psych::alpha(x = item_scores_df[c(&quot;Blst_3&quot;, &quot;Blst_2&quot;, &quot;Blst_5&quot;)])
 
   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-      0.69      0.73    0.69      0.47 2.7 0.065  2.3 1.2     0.54
+      0.69      0.73     0.7      0.48 2.7 0.065  2.3 1.2     0.54
 
     95% confidence boundaries 
          lower alpha upper
@@ -1108,15 +1161,15 @@ Duhachek  0.57  0.69  0.82
 
  Reliability if an item is dropped:
        raw_alpha std.alpha G6(smc) average_r  S/N alpha se var.r med.r
-Blst_3      0.67      0.70    0.54      0.54 2.35    0.074    NA  0.54
-Blst_2      0.75      0.75    0.60      0.60 3.03    0.061    NA  0.60
-Blst_5      0.41      0.43    0.28      0.28 0.76    0.135    NA  0.28
+Blst_3      0.67      0.70    0.54      0.54 2.33    0.074    NA  0.54
+Blst_2      0.75      0.77    0.62      0.62 3.31    0.061    NA  0.62
+Blst_5      0.41      0.43    0.27      0.27 0.75    0.135    NA  0.27
 
  Item statistics 
         n raw.r std.r r.cor r.drop mean  sd
-Blst_3 63  0.72  0.78  0.62   0.46    2 1.2
+Blst_3 63  0.72  0.78  0.64   0.46    2 1.2
 Blst_2 64  0.82  0.75  0.55   0.46    3 1.8
-Blst_5 63  0.87  0.89  0.83   0.70    2 1.2
+Blst_5 63  0.87  0.89  0.84   0.70    2 1.2
 
 Non missing response frequency for each item
           1    2    3    4    5    6    7 miss
@@ -1136,7 +1189,7 @@ Reliability analysis
 Call: psych::alpha(x = item_scores_df[c(&quot;rBlst_1&quot;, &quot;Blst_4&quot;, &quot;Blst_6&quot;)])
 
   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-      0.79      0.81    0.76      0.58 4.2 0.045  2.7 1.2     0.52
+      0.79       0.8    0.76      0.58 4.1 0.045  2.7 1.2     0.51
 
     95% confidence boundaries 
          lower alpha upper
@@ -1145,13 +1198,13 @@ Duhachek  0.71  0.79  0.88
 
  Reliability if an item is dropped:
         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-rBlst_1      0.86      0.86    0.75      0.75 6.0    0.035    NA  0.75
-Blst_4       0.64      0.65    0.48      0.48 1.8    0.087    NA  0.48
-Blst_6       0.68      0.68    0.52      0.52 2.1    0.078    NA  0.52
+rBlst_1      0.86      0.85    0.75      0.75 5.9    0.035    NA  0.75
+Blst_4       0.64      0.64    0.47      0.47 1.8    0.087    NA  0.47
+Blst_6       0.68      0.68    0.51      0.51 2.1    0.078    NA  0.51
 
  Item statistics 
          n raw.r std.r r.cor r.drop mean  sd
-rBlst_1 60  0.81  0.78  0.58   0.53  3.4 1.6
+rBlst_1 60  0.81  0.78  0.57   0.53  3.4 1.6
 Blst_4  62  0.88  0.89  0.84   0.72  2.5 1.3
 Blst_6  63  0.85  0.87  0.81   0.69  2.1 1.3
 
@@ -1341,8 +1394,8 @@ X1    1 66 3.81 2.24   3.68    3.62 2.36 0.2 11.25 11.05 0.86     0.82 0.28</cod
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="DataDx.html#cb96-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
 ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ✔ purrr     1.0.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -1860,7 +1913,7 @@ X1    1 84 0.79 4.41      0       0   0   0 33.33 33.33 5.89    36.31 0.48</code
 <p>Returning to the <em>mice</em> package, we can use the <em>md.pattern()</em> function to examine a matrix with the number of columns 1 in which each row corresponds to a missing data pattern (0 = observed, 0 = missing). The rows and columns are sorted in increasing amounts of missing information. The last column and row contain row and column counts, respectively.</p>
 <p>The corresponding figure shows non-missing data in blue; missing data in red.</p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="DataDx.html#cb142-1" tabindex="-1"></a>mice_ScaleLvl <span class="ot">&lt;-</span> mice<span class="sc">::</span><span class="fu">md.pattern</span>(scored, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">rotate.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="03-DataDx_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><img src="03-DataDx_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="DataDx.html#cb143-1" tabindex="-1"></a>mice_ScaleLvl</span></code></pre></div>
 <pre><code>   StatsPkg Centering TradPed SRPed  
 81        1         1       1     1 0
@@ -1910,25 +1963,25 @@ Duhachek  0.83  0.87  0.92
 
  Reliability if an item is dropped:
                       raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
-ClearResponsibilities      0.84      0.84    0.82      0.57 5.3    0.029 0.0110
-EffectiveAnswers           0.84      0.84    0.81      0.57 5.2    0.029 0.0088
+ClearResponsibilities      0.84      0.84    0.82      0.57 5.3    0.029 0.0113
+EffectiveAnswers           0.84      0.84    0.82      0.57 5.3    0.029 0.0095
 Feedback                   0.87      0.87    0.86      0.64 7.0    0.023 0.0053
-ClearOrganization          0.86      0.86    0.83      0.60 6.1    0.025 0.0067
-ClearPresentation          0.83      0.84    0.81      0.57 5.3    0.030 0.0074
+ClearOrganization          0.86      0.86    0.83      0.61 6.2    0.025 0.0067
+ClearPresentation          0.83      0.84    0.81      0.58 5.4    0.030 0.0078
                       med.r
-ClearResponsibilities  0.55
+ClearResponsibilities  0.56
 EffectiveAnswers       0.58
 Feedback               0.63
-ClearOrganization      0.59
+ClearOrganization      0.60
 ClearPresentation      0.57
 
  Item statistics 
                        n raw.r std.r r.cor r.drop mean   sd
-ClearResponsibilities 83  0.85  0.85  0.80   0.74  4.5 0.87
-EffectiveAnswers      84  0.84  0.85  0.82   0.76  4.4 0.79
-Feedback              82  0.74  0.75  0.65   0.60  4.3 0.81
+ClearResponsibilities 83  0.85  0.85  0.81   0.74  4.5 0.87
+EffectiveAnswers      84  0.84  0.85  0.81   0.76  4.4 0.79
+Feedback              82  0.74  0.76  0.66   0.60  4.3 0.81
 ClearOrganization     84  0.82  0.80  0.74   0.68  4.1 1.04
-ClearPresentation     84  0.85  0.85  0.81   0.76  4.2 0.87
+ClearPresentation     84  0.85  0.84  0.81   0.76  4.2 0.87
 
 Non missing response frequency for each item
                          1    2    3    4    5 miss
@@ -1956,7 +2009,7 @@ Call: psych::alpha(x = scrub_df[c(&quot;InclusvClassrm&quot;, &quot;EquitableEva
     &quot;DEIintegration&quot;, &quot;DEIintegration&quot;)])
 
   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
-      0.85      0.85     0.7      0.58 5.6 0.025  4.5 0.62     0.55
+      0.85      0.87    0.73      0.63 6.9 0.025  4.5 0.62      0.6
 
     95% confidence boundaries 
          lower alpha upper
@@ -1964,23 +2017,23 @@ Feldt     0.79  0.85   0.9
 Duhachek  0.80  0.85   0.9
 
  Reliability if an item is dropped:
-                 raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
-InclusvClassrm        0.84      0.83    0.58      0.61 4.8    0.027 0.1115
-EquitableEval         0.88      0.88    0.63      0.71 7.3    0.025 0.0640
-DEIintegration        0.74      0.75    0.68      0.50 3.1    0.046 0.0054
-DEIintegration.1      0.74      0.75    0.68      0.50 3.1    0.046 0.0054
+                 raw_alpha std.alpha G6(smc) average_r  S/N alpha se var.r
+InclusvClassrm        0.84      0.84    0.59      0.64  5.3    0.027 0.097
+EquitableEval         0.88      0.92    0.67      0.79 11.1    0.025 0.034
+DEIintegration        0.74      0.79    0.73      0.56  3.8    0.046 0.013
+DEIintegration.1      0.74      0.79    0.73      0.56  3.8    0.046 0.013
                  med.r
-InclusvClassrm    0.42
-EquitableEval     0.56
+InclusvClassrm    0.46
+EquitableEval     0.68
 DEIintegration    0.53
 DEIintegration.1  0.53
 
  Item statistics 
                   n raw.r std.r r.cor r.drop mean   sd
-InclusvClassrm   80  0.85  0.80  0.75   0.62  4.6 0.72
+InclusvClassrm   80  0.85  0.85  0.83   0.62  4.6 0.72
 EquitableEval    84  0.71  0.72  0.60   0.51  4.7 0.50
-DEIintegration   70  0.96  0.90  0.71   0.85  4.5 0.79
-DEIintegration.1 70  0.96  0.90  0.71   0.85  4.5 0.79
+DEIintegration   70  0.96  0.92  0.74   0.85  4.5 0.79
+DEIintegration.1 70  0.96  0.92  0.74   0.85  4.5 0.79
 
 Non missing response frequency for each item
                     1    3    4    5 miss
@@ -2038,7 +2091,7 @@ W = 0.81782, p-value = 0.0000000134</code></pre>
 </ul>
 <p>Obtaining a quick <em>psych::pairs.panel</em> can provide a quick glimpse of the distribution.</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="DataDx.html#cb157-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(scored, <span class="at">stars =</span> <span class="cn">TRUE</span>, <span class="at">lm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="03-DataDx_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p><img src="03-DataDx_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <p>CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:</p>
 <blockquote>
 <blockquote>
@@ -2051,7 +2104,7 @@ W = 0.81782, p-value = 0.0000000134</code></pre>
 <p>In more complex models, multivariate normality is probably a more useful analysis. Although I am teaching this evaluation in advance of the formal analysis, as demonstrated in many of <a href="https://lhbikos.github.io/ReCenterPsychStats/analysis-of-variance.html">ReCentering Psych Stats ANOVA chapters</a>, this can also be assessed by examining the distribution of residuals after the analysis is complete.</p>
 <p>Multivariate normality can be assessed with the continuously scaled variables. The code below includes the only two continuously scaled variables. The code simultaneously (a) appends the df with a Mahalanobis value and (b) creates a QQ plot. Dots that stray from the line are the scores that are contributing to multivariate non-normality.</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="DataDx.html#cb158-1" tabindex="-1"></a>scored<span class="sc">$</span>Mahal <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">outlier</span>(scored[<span class="fu">c</span>(<span class="st">&quot;TradPed&quot;</span>, <span class="st">&quot;SRPed&quot;</span>)])</span></code></pre></div>
-<p><img src="03-DataDx_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="03-DataDx_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 <p>We can analyze the distributional characteristics of the Mahalanobis values with <em>psych::describe</em>.
 It is possible, then to analyze the Mahalanobis distance values.</p>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="DataDx.html#cb159-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(scored<span class="sc">$</span>Mahal)</span></code></pre></div>

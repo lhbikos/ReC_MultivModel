@@ -1,0 +1,2 @@
+"0","ggplot(data = rndm30time, aes(x = Weeks, y = Anxiety)) + geom_point() +"
+"0","    stat_smooth(method = ""lm"", se = FALSE) + facet_wrap(~ClientID)"

@@ -123,7 +123,7 @@ Reliability analysis
 Call: psych::alpha(x = item_scores_df[c("Belong_1", "Belong_2", "Belong_3")])
 
   raw_alpha std.alpha G6(smc) average_r S/N    ase mean  sd median_r
-      0.95      0.95    0.93      0.87  21 0.0099    4 1.5     0.88
+      0.95      0.95    0.93      0.87  20 0.0099    4 1.5     0.88
 
     95% confidence boundaries 
          lower alpha upper
@@ -132,9 +132,9 @@ Duhachek  0.93  0.95  0.97
 
  Reliability if an item is dropped:
          raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-Belong_1      0.94      0.94    0.88      0.88  15    0.016    NA  0.88
+Belong_1      0.94      0.93    0.88      0.88  14    0.016    NA  0.88
 Belong_2      0.92      0.92    0.85      0.85  11    0.020    NA  0.85
-Belong_3      0.94      0.94    0.89      0.89  16    0.015    NA  0.89
+Belong_3      0.94      0.94    0.88      0.88  15    0.015    NA  0.88
 
  Item statistics 
           n raw.r std.r r.cor r.drop mean  sd
@@ -166,7 +166,7 @@ Call: psych::alpha(x = item_scores_df[c("rBlst_1", "Blst_2", "Blst_3",
     "Blst_4", "Blst_5", "Blst_6")])
 
   raw_alpha std.alpha G6(smc) average_r S/N  ase mean  sd median_r
-      0.85      0.87    0.87      0.52 6.5 0.03  2.5 1.1     0.52
+      0.85      0.87    0.87      0.52 6.5 0.03  2.5 1.1     0.51
 
     95% confidence boundaries 
          lower alpha upper
@@ -175,21 +175,21 @@ Duhachek  0.79  0.85  0.91
 
  Reliability if an item is dropped:
         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-rBlst_1      0.85      0.87    0.87      0.57 6.5    0.031 0.029  0.57
-Blst_2       0.87      0.88    0.87      0.59 7.1    0.026 0.019  0.56
+rBlst_1      0.85      0.87    0.87      0.57 6.6    0.031 0.029  0.58
+Blst_2       0.87      0.88    0.87      0.59 7.2    0.026 0.019  0.57
 Blst_3       0.83      0.85    0.85      0.54 5.8    0.034 0.029  0.50
 Blst_4       0.80      0.82    0.82      0.48 4.6    0.041 0.027  0.48
-Blst_5       0.79      0.81    0.81      0.46 4.3    0.042 0.024  0.47
-Blst_6       0.80      0.82    0.81      0.48 4.6    0.040 0.021  0.50
+Blst_5       0.79      0.81    0.80      0.46 4.3    0.042 0.023  0.46
+Blst_6       0.80      0.82    0.82      0.48 4.6    0.040 0.023  0.50
 
  Item statistics 
          n raw.r std.r r.cor r.drop mean  sd
 rBlst_1 60  0.69  0.67  0.56   0.52  3.4 1.6
 Blst_2  64  0.68  0.62  0.51   0.46  3.0 1.8
-Blst_3  63  0.71  0.74  0.66   0.59  2.0 1.2
-Blst_4  62  0.85  0.86  0.84   0.77  2.5 1.3
-Blst_5  63  0.89  0.89  0.89   0.82  2.0 1.2
-Blst_6  63  0.83  0.86  0.86   0.77  2.1 1.3
+Blst_3  63  0.71  0.74  0.67   0.59  2.0 1.2
+Blst_4  62  0.85  0.86  0.85   0.77  2.5 1.3
+Blst_5  63  0.89  0.90  0.90   0.82  2.0 1.2
+Blst_6  63  0.83  0.86  0.85   0.77  2.1 1.3
 
 Non missing response frequency for each item
            1    2    3    4    5    6    7 miss
@@ -217,7 +217,7 @@ Reliability analysis
 Call: psych::alpha(x = item_scores_df[c("Blst_3", "Blst_2", "Blst_5")])
 
   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-      0.69      0.73    0.69      0.47 2.7 0.065  2.3 1.2     0.54
+      0.69      0.73     0.7      0.48 2.7 0.065  2.3 1.2     0.54
 
     95% confidence boundaries 
          lower alpha upper
@@ -226,15 +226,15 @@ Duhachek  0.57  0.69  0.82
 
  Reliability if an item is dropped:
        raw_alpha std.alpha G6(smc) average_r  S/N alpha se var.r med.r
-Blst_3      0.67      0.70    0.54      0.54 2.35    0.074    NA  0.54
-Blst_2      0.75      0.75    0.60      0.60 3.03    0.061    NA  0.60
-Blst_5      0.41      0.43    0.28      0.28 0.76    0.135    NA  0.28
+Blst_3      0.67      0.70    0.54      0.54 2.33    0.074    NA  0.54
+Blst_2      0.75      0.77    0.62      0.62 3.31    0.061    NA  0.62
+Blst_5      0.41      0.43    0.27      0.27 0.75    0.135    NA  0.27
 
  Item statistics 
         n raw.r std.r r.cor r.drop mean  sd
-Blst_3 63  0.72  0.78  0.62   0.46    2 1.2
+Blst_3 63  0.72  0.78  0.64   0.46    2 1.2
 Blst_2 64  0.82  0.75  0.55   0.46    3 1.8
-Blst_5 63  0.87  0.89  0.83   0.70    2 1.2
+Blst_5 63  0.87  0.89  0.84   0.70    2 1.2
 
 Non missing response frequency for each item
           1    2    3    4    5    6    7 miss
@@ -257,7 +257,7 @@ Reliability analysis
 Call: psych::alpha(x = item_scores_df[c("rBlst_1", "Blst_4", "Blst_6")])
 
   raw_alpha std.alpha G6(smc) average_r S/N   ase mean  sd median_r
-      0.79      0.81    0.76      0.58 4.2 0.045  2.7 1.2     0.52
+      0.79       0.8    0.76      0.58 4.1 0.045  2.7 1.2     0.51
 
     95% confidence boundaries 
          lower alpha upper
@@ -266,13 +266,13 @@ Duhachek  0.71  0.79  0.88
 
  Reliability if an item is dropped:
         raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
-rBlst_1      0.86      0.86    0.75      0.75 6.0    0.035    NA  0.75
-Blst_4       0.64      0.65    0.48      0.48 1.8    0.087    NA  0.48
-Blst_6       0.68      0.68    0.52      0.52 2.1    0.078    NA  0.52
+rBlst_1      0.86      0.85    0.75      0.75 5.9    0.035    NA  0.75
+Blst_4       0.64      0.64    0.47      0.47 1.8    0.087    NA  0.47
+Blst_6       0.68      0.68    0.51      0.51 2.1    0.078    NA  0.51
 
  Item statistics 
          n raw.r std.r r.cor r.drop mean  sd
-rBlst_1 60  0.81  0.78  0.58   0.53  3.4 1.6
+rBlst_1 60  0.81  0.78  0.57   0.53  3.4 1.6
 Blst_4  62  0.88  0.89  0.84   0.72  2.5 1.3
 Blst_6  63  0.85  0.87  0.81   0.69  2.1 1.3
 
@@ -539,8 +539,8 @@ library(tidyverse)
 ```
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
 ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ✔ purrr     1.0.1     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -1149,7 +1149,7 @@ The corresponding figure shows non-missing data in blue; missing data in red.
 mice_ScaleLvl <- mice::md.pattern(scored, plot = TRUE, rotate.names = TRUE)
 ```
 
-![](03-DataDx_files/figure-docx/unnamed-chunk-43-1.png)<!-- -->
+![](03-DataDx_files/figure-docx/unnamed-chunk-61-1.png)<!-- -->
 
 ```r
 mice_ScaleLvl
@@ -1201,25 +1201,25 @@ Duhachek  0.83  0.87  0.92
 
  Reliability if an item is dropped:
                       raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
-ClearResponsibilities      0.84      0.84    0.82      0.57 5.3    0.029 0.0110
-EffectiveAnswers           0.84      0.84    0.81      0.57 5.2    0.029 0.0088
+ClearResponsibilities      0.84      0.84    0.82      0.57 5.3    0.029 0.0113
+EffectiveAnswers           0.84      0.84    0.82      0.57 5.3    0.029 0.0095
 Feedback                   0.87      0.87    0.86      0.64 7.0    0.023 0.0053
-ClearOrganization          0.86      0.86    0.83      0.60 6.1    0.025 0.0067
-ClearPresentation          0.83      0.84    0.81      0.57 5.3    0.030 0.0074
+ClearOrganization          0.86      0.86    0.83      0.61 6.2    0.025 0.0067
+ClearPresentation          0.83      0.84    0.81      0.58 5.4    0.030 0.0078
                       med.r
-ClearResponsibilities  0.55
+ClearResponsibilities  0.56
 EffectiveAnswers       0.58
 Feedback               0.63
-ClearOrganization      0.59
+ClearOrganization      0.60
 ClearPresentation      0.57
 
  Item statistics 
                        n raw.r std.r r.cor r.drop mean   sd
-ClearResponsibilities 83  0.85  0.85  0.80   0.74  4.5 0.87
-EffectiveAnswers      84  0.84  0.85  0.82   0.76  4.4 0.79
-Feedback              82  0.74  0.75  0.65   0.60  4.3 0.81
+ClearResponsibilities 83  0.85  0.85  0.81   0.74  4.5 0.87
+EffectiveAnswers      84  0.84  0.85  0.81   0.76  4.4 0.79
+Feedback              82  0.74  0.76  0.66   0.60  4.3 0.81
 ClearOrganization     84  0.82  0.80  0.74   0.68  4.1 1.04
-ClearPresentation     84  0.85  0.85  0.81   0.76  4.2 0.87
+ClearPresentation     84  0.85  0.84  0.81   0.76  4.2 0.87
 
 Non missing response frequency for each item
                          1    2    3    4    5 miss
@@ -1257,7 +1257,7 @@ Call: psych::alpha(x = scrub_df[c("InclusvClassrm", "EquitableEval",
     "DEIintegration", "DEIintegration")])
 
   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
-      0.85      0.85     0.7      0.58 5.6 0.025  4.5 0.62     0.55
+      0.85      0.87    0.73      0.63 6.9 0.025  4.5 0.62      0.6
 
     95% confidence boundaries 
          lower alpha upper
@@ -1265,23 +1265,23 @@ Feldt     0.79  0.85   0.9
 Duhachek  0.80  0.85   0.9
 
  Reliability if an item is dropped:
-                 raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r
-InclusvClassrm        0.84      0.83    0.58      0.61 4.8    0.027 0.1115
-EquitableEval         0.88      0.88    0.63      0.71 7.3    0.025 0.0640
-DEIintegration        0.74      0.75    0.68      0.50 3.1    0.046 0.0054
-DEIintegration.1      0.74      0.75    0.68      0.50 3.1    0.046 0.0054
+                 raw_alpha std.alpha G6(smc) average_r  S/N alpha se var.r
+InclusvClassrm        0.84      0.84    0.59      0.64  5.3    0.027 0.097
+EquitableEval         0.88      0.92    0.67      0.79 11.1    0.025 0.034
+DEIintegration        0.74      0.79    0.73      0.56  3.8    0.046 0.013
+DEIintegration.1      0.74      0.79    0.73      0.56  3.8    0.046 0.013
                  med.r
-InclusvClassrm    0.42
-EquitableEval     0.56
+InclusvClassrm    0.46
+EquitableEval     0.68
 DEIintegration    0.53
 DEIintegration.1  0.53
 
  Item statistics 
                   n raw.r std.r r.cor r.drop mean   sd
-InclusvClassrm   80  0.85  0.80  0.75   0.62  4.6 0.72
+InclusvClassrm   80  0.85  0.85  0.83   0.62  4.6 0.72
 EquitableEval    84  0.71  0.72  0.60   0.51  4.7 0.50
-DEIintegration   70  0.96  0.90  0.71   0.85  4.5 0.79
-DEIintegration.1 70  0.96  0.90  0.71   0.85  4.5 0.79
+DEIintegration   70  0.96  0.92  0.74   0.85  4.5 0.79
+DEIintegration.1 70  0.96  0.92  0.74   0.85  4.5 0.79
 
 Non missing response frequency for each item
                     1    3    4    5 miss
@@ -1364,7 +1364,7 @@ Obtaining a quick *psych::pairs.panel* can provide a quick glimpse of the distri
 psych::pairs.panels(scored, stars = TRUE, lm = TRUE)
 ```
 
-![](03-DataDx_files/figure-docx/unnamed-chunk-48-1.png)<!-- -->
+![](03-DataDx_files/figure-docx/unnamed-chunk-66-1.png)<!-- -->
 
 CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:  
 
@@ -1380,7 +1380,7 @@ Multivariate normality can be assessed with the continuously scaled variables. T
 scored$Mahal <- psych::outlier(scored[c("TradPed", "SRPed")])
 ```
 
-![](03-DataDx_files/figure-docx/unnamed-chunk-49-1.png)<!-- -->
+![](03-DataDx_files/figure-docx/unnamed-chunk-67-1.png)<!-- -->
 
 We can analyze the distributional characteristics of the Mahalanobis values with *psych::describe*.
 It is possible, then to analyze the Mahalanobis distance values.

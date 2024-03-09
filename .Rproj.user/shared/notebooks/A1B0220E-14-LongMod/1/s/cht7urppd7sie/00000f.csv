@@ -1,7 +1,0 @@
-"0","#with lme4 package"
-"0","Mod2a <- lmer(Anxiety ~ SesNum +(SesNum | ClientID), LfvrLong, REML = FALSE)"
-"2","boundary (singular) fit: see help('isSingular')
-"
-"0","tab_model(Mod1a, Mod2a, p.style = ""numeric"", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c(""Mod1"", ""Mod2""))"
-"0","#can swap this statement with the ""file = ""TabMod_Table"""" to get Viewer output or the outfile that you can open in Word"
-"0","#file = ""TabMod_Table.doc"""

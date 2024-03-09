@@ -327,7 +327,7 @@ The *lavaan::simulateData* function was used. If you have taken psychometrics, y
 #Entering the intercorrelations, means, and standard deviations from the journal article
 
 Lewis_generating_model <- '
-        ##measurement model
+        #measurement model
         GRMS  =~ .69*Ob1 + .69*Ob2 + .60*Ob3 + .59*Ob4 + .55*Ob5 + .55*Ob6 + .54*Ob7 + .50*Ob8 + .41*Ob9 + .41*Ob10 + .93*Ma1 + .81*Ma2 + .69*Ma3 + .67*Ma4 + .61*Ma5 + .58*Ma6 + .54*Ma7 + .59*St1 + .55*St2 + .54*St3 + .54*St4 + .51*St5 + .70*An1 + .69*An2 + .68*An3
         MntlHlth  =~ .8*MH1 + .8*MH2 + .8*MH3 + .8*MH4 + .8*MH5 + .8*MH6
         PhysHlth  =~ .8*PhH1 + .8*PhH2 + .8*PhH3 + .8*PhH4 + .8*PhH5 + .8*PhH6
@@ -337,7 +337,7 @@ Lewis_generating_model <- '
         Disengagement  =~  .8*dEng1 + .8*dEng2
         GRIC  =~ .8*Cntrlty1 + .8*Cntrlty2 + .8*Cntrlty3 + .8*Cntrlty4 + .8*Cntrlty5 + .8*Cntrlty6 + .8*Cntrlty7 + .8*Cntrlty8 + .8*Cntrlty9 + .8*Cntrlty10
    
-        # Means
+        #Means
          GRMS ~ 1.99*1
          Spirituality ~2.82*1
          SocSupport ~ 2.48*1
@@ -347,7 +347,7 @@ Lewis_generating_model <- '
          MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
          PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation
          
-        # Correlations (ha!)
+        #Correlations 
          GRMS ~ 0.20*Spirituality
          GRMS ~ 0.28*SocSupport
          GRMS ~ 0.30*Engagement
@@ -826,7 +826,7 @@ LewisMLEsummary
 ```
 
 ```
-lavaan 0.6.16 ended normally after 14 iterations
+lavaan 0.6.17 ended normally after 14 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -1027,7 +1027,7 @@ library(lavaan)
 ```
 
 ```
-This is lavaan 0.6-16
+This is lavaan 0.6-17
 lavaan is FREE software! Please report any bugs.
 ```
 
@@ -1356,7 +1356,7 @@ Quick peek at relations between variables:
 psych::pairs.panels(babydf)
 ```
 
-![](07-SimpleMod_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-72-1.png)<!-- -->
 
 
 
@@ -1440,7 +1440,7 @@ interactions::interact_plot(ReC_SimpMod, pred = SRPed, modx = Centering) +
     ylim(1, 5)
 ```
 
-![](07-SimpleMod_files/figure-docx/unnamed-chunk-44-1.png)<!-- -->
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-76-1.png)<!-- -->
 
 ```r
 # the following code will not run because for this function, the x
@@ -1612,7 +1612,7 @@ ReCMLEsummary
 ```
 
 ```
-lavaan 0.6.16 ended normally after 12 iterations
+lavaan 0.6.17 ended normally after 12 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -1786,7 +1786,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = ReCMLEfit)
 ```
 
-![](07-SimpleMod_files/figure-docx/unnamed-chunk-51-1.png)<!-- -->
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-83-1.png)<!-- -->
 
 
 ```r
@@ -1822,7 +1822,7 @@ tidySEM::graph_sem(ReCMLEfit, layout = ReCmod_map, rect_width = 1.25, rect_heigh
     spacing_x = 2, spacing_y = 3, text_size = 4.25)
 ```
 
-![](07-SimpleMod_files/figure-docx/unnamed-chunk-54-1.png)<!-- -->
+![](07-SimpleMod_files/figure-docx/unnamed-chunk-86-1.png)<!-- -->
 
 ### Create a table {-} 
 

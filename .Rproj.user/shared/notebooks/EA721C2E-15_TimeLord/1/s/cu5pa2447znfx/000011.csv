@@ -1,0 +1,3 @@
+"0","library(ggplot2)"
+"0","ggplot(data = rndm30time, aes(x = Index, y = Anxiety)) + geom_point() + geom_line() +"
+"0","    facet_wrap(~ClientID)"

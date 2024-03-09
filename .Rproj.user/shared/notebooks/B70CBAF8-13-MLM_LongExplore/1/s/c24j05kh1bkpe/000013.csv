@@ -1,5 +1,0 @@
-"0","corrmatrix <- misty::multilevel.cor(LfvrLong[, c(""SesNum"", ""Anxiety"")],"
-"0","               cluster = LfvrLong$ClientID, split=FALSE, output = TRUE, write = ""MLMcorr.xlsx"", print = c(""cor"", ""p""), digits = 3, missing = ""listwise"")"
-"2","Warning: Some estimated variances of the observed variables at the Between level are negative."
-"1"," Within-Group and Between-Group Correlation Matrix
-"

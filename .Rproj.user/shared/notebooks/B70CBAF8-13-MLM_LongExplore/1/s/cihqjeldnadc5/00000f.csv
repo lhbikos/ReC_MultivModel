@@ -1,6 +1,0 @@
-"0","#appending the average for the whole group of males"
-"0","lm.HET <- fitted( lm(Anxiety ~ Session0, data=HET) )"
-"0","names(lm.HET) <- NULL"
-"0","fit.HET <- c(fitHET, lm.HET[1:5])"
-"0","Sess1.HET <- c(HET$Index, seq(1,5))#Note that I used Session0 to create the lm, but plotted by Index0"
-"0","id.HET <- c(HET$ClientID, rep(30, 5))"

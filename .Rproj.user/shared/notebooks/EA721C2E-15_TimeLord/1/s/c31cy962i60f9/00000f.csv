@@ -1,0 +1,8 @@
+"0","TIMEwide <- TIMEwide %>%"
+"0","  dplyr::mutate(Wks1 = as.duration(TimeInterval1)/dweeks(x=1))%>%"
+"0","  dplyr::mutate(Wks2 = as.duration(TimeInterval2)/dweeks(x=1))%>%"
+"0","  dplyr::mutate(Wks3 = as.duration(TimeInterval3)/dweeks(x=1))%>%"
+"0","  dplyr::mutate(Wks4 = as.duration(TimeInterval4)/dweeks(x=1))%>%"
+"0","  dplyr::mutate(Wks5 = as.duration(TimeInterval5)/dweeks(x=1))"
+"0",""
+"0","head(TIMEwide)"

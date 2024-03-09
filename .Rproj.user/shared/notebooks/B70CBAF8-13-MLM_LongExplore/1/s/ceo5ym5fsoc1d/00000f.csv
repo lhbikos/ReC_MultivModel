@@ -1,5 +1,0 @@
-"0","xyplot(Anxiety ~ Session0 | ClientID, data=RndmLong,"
-"0","  panel = function(x, y){"
-"0","    panel.xyplot(x, y)"
-"0","    panel.lmline(x, y)"
-"0","  },  as.table=T)"

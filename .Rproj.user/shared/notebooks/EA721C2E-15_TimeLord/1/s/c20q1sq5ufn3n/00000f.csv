@@ -1,0 +1,2 @@
+"0","set.seed(210529)"
+"0","TIMElong <- TIMElong[-sample(1:nrow(TIMElong), 5000),]"

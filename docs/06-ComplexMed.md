@@ -199,7 +199,7 @@ pfit_sum
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 1 iteration
+## lavaan 0.6.17 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1305,7 +1305,7 @@ ReCpMedsummary
 ```
 
 ```
-## lavaan 0.6.16 ended normally after 23 iterations
+## lavaan 0.6.17 ended normally after 23 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1490,7 +1490,7 @@ library(tidySEM)
 tidySEM::graph_sem(model = ReCpMedfit)
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-39-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-68-1.png)<!-- -->
 
 
 
@@ -1528,7 +1528,7 @@ tidySEM::graph_sem(ReCpMedfit, layout = ReCpMed_map, rect_width = 1.5,
     rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
-![](06-ComplexMed_files/figure-docx/unnamed-chunk-42-1.png)<!-- -->
+![](06-ComplexMed_files/figure-docx/unnamed-chunk-71-1.png)<!-- -->
 
 
 
