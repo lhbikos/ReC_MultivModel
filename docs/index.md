@@ -1,7 +1,7 @@
 --- 
 title: "ReCentering Psych Stats: Multivariate Modeling"
 author: "Lynette H. Bikos, PhD, ABPP"
-date: "08 Mar 2024" 
+date: "09 Mar 2024" 
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: STATSnMETH.bib #This is my own bibtex file from my Zotero account. If this file is not in the project folder there will be an error and the book will not build.
@@ -33,7 +33,7 @@ All materials used in creating this OER are available at its [GitHub repo](https
 
 # PREFACE {-}
 
-**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 08 Mar 2024**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
+**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 09 Mar 2024**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
 
 [Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a)
 
@@ -68,7 +68,8 @@ The inspiration for training materials that re*center statistics and research me
 
 At very practical levels, I am indebted to SPU's Library, and more specifically, SPU's Education, Technology, and Media Department.  Assistant Dean for Instructional Design and Emerging Technologies, R. John Robertson, MSc, MCS, has offered unlimited consultation, support, and connection. Senior Instructional Designer in Graphics & Illustrations, Dominic Wilkinson, designed the logo and bookcover.  Psychology and Scholarly Communications Librarian, Kristin Hoffman, MLIS, has provided consultation on topics ranging from OERS to citations. I am alo indebted to Associate Vice President, Teaching and Learning at Kwantlen Polytechnic University, Rajiv Jhangiani, PhD. Dr. Jhangiani's text [-@jhangiani_research_2019] was the first OER I ever used and I was grateful for his encouraging conversation.
 
-The creation of this OER has relied on strong peer and student support. Students have served as editorial assistants in copyediting the text and correcting the text captions. Students who have held the Editorial Assistant role include Octavia Bettger, Daisjha Ramey, Nika Yermakova, Wesley Suit, Ruth Tekle, and emma Anaminyi.
+The creation of this OER has relied on strong peer and student support. Students have served as editorial assistants in copyediting the text and correcting the text captions. Students who have held the Editorial Assistant role include Octavia Bettger, Daisjha Ramey, Nika Yermakova, Wesley Sui
+, Ruth Tekle, and emma Anaminyi.
 
 Financial support for this project has been provided the following:
 

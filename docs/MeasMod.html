@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2024-03-08" />
+<meta name="date" content="2024-03-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1217,32 +1217,37 @@ The unique solution is <em>a</em> = 4, <em>b</em> = 2.</p>
 <span id="cb617-48"><a href="MeasMod.html#cb617-48" tabindex="-1"></a><span class="co">#used to retrieve column indices used in the rescaling script below</span></span>
 <span id="cb617-49"><a href="MeasMod.html#cb617-49" tabindex="-1"></a>col_index <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">colnames</span>(dfKim))</span>
 <span id="cb617-50"><a href="MeasMod.html#cb617-50" tabindex="-1"></a></span>
-<span id="cb617-51"><a href="MeasMod.html#cb617-51" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dfKim)){  </span>
-<span id="cb617-52"><a href="MeasMod.html#cb617-52" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">45</span>){   </span>
-<span id="cb617-53"><a href="MeasMod.html#cb617-53" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb617-54"><a href="MeasMod.html#cb617-54" tabindex="-1"></a>  }</span>
-<span id="cb617-55"><a href="MeasMod.html#cb617-55" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">46</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>){  </span>
-<span id="cb617-56"><a href="MeasMod.html#cb617-56" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
-<span id="cb617-57"><a href="MeasMod.html#cb617-57" tabindex="-1"></a>  }</span>
-<span id="cb617-58"><a href="MeasMod.html#cb617-58" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">93</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>){   </span>
-<span id="cb617-59"><a href="MeasMod.html#cb617-59" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))</span>
-<span id="cb617-60"><a href="MeasMod.html#cb617-60" tabindex="-1"></a>  }</span>
-<span id="cb617-61"><a href="MeasMod.html#cb617-61" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">117</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">126</span>){   </span>
-<span id="cb617-62"><a href="MeasMod.html#cb617-62" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</span>
-<span id="cb617-63"><a href="MeasMod.html#cb617-63" tabindex="-1"></a>  }</span>
-<span id="cb617-64"><a href="MeasMod.html#cb617-64" tabindex="-1"></a>}</span>
-<span id="cb617-65"><a href="MeasMod.html#cb617-65" tabindex="-1"></a></span>
-<span id="cb617-66"><a href="MeasMod.html#cb617-66" tabindex="-1"></a><span class="co">#psych::describe(dfKim)+</span></span>
-<span id="cb617-67"><a href="MeasMod.html#cb617-67" tabindex="-1"></a></span>
-<span id="cb617-68"><a href="MeasMod.html#cb617-68" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb617-69"><a href="MeasMod.html#cb617-69" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> dfKim <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">0</span>) </span>
+<span id="cb617-51"><a href="MeasMod.html#cb617-51" tabindex="-1"></a><span class="co">#for loop to go through each column of the dataframe </span></span>
+<span id="cb617-52"><a href="MeasMod.html#cb617-52" tabindex="-1"></a><span class="co">#1 thru 45 apply only to REMS variables</span></span>
+<span id="cb617-53"><a href="MeasMod.html#cb617-53" tabindex="-1"></a><span class="co">#46 thru 92 apply only to CMI variables</span></span>
+<span id="cb617-54"><a href="MeasMod.html#cb617-54" tabindex="-1"></a><span class="co">#93 thru 116 apply only to mental health variables</span></span>
+<span id="cb617-55"><a href="MeasMod.html#cb617-55" tabindex="-1"></a><span class="co">#117 thru 126 apply only to HlpSkng variables</span></span>
+<span id="cb617-56"><a href="MeasMod.html#cb617-56" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dfKim)){  </span>
+<span id="cb617-57"><a href="MeasMod.html#cb617-57" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">45</span>){   </span>
+<span id="cb617-58"><a href="MeasMod.html#cb617-58" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb617-59"><a href="MeasMod.html#cb617-59" tabindex="-1"></a>  }</span>
+<span id="cb617-60"><a href="MeasMod.html#cb617-60" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">46</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">92</span>){    </span>
+<span id="cb617-61"><a href="MeasMod.html#cb617-61" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
+<span id="cb617-62"><a href="MeasMod.html#cb617-62" tabindex="-1"></a>  }</span>
+<span id="cb617-63"><a href="MeasMod.html#cb617-63" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">93</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>){   </span>
+<span id="cb617-64"><a href="MeasMod.html#cb617-64" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))</span>
+<span id="cb617-65"><a href="MeasMod.html#cb617-65" tabindex="-1"></a>  }</span>
+<span id="cb617-66"><a href="MeasMod.html#cb617-66" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">117</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">126</span>){   </span>
+<span id="cb617-67"><a href="MeasMod.html#cb617-67" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</span>
+<span id="cb617-68"><a href="MeasMod.html#cb617-68" tabindex="-1"></a>  }</span>
+<span id="cb617-69"><a href="MeasMod.html#cb617-69" tabindex="-1"></a>}</span>
 <span id="cb617-70"><a href="MeasMod.html#cb617-70" tabindex="-1"></a></span>
-<span id="cb617-71"><a href="MeasMod.html#cb617-71" tabindex="-1"></a><span class="co">#I tested the rescaling the correlation between original and rescaled variables is 1.0</span></span>
-<span id="cb617-72"><a href="MeasMod.html#cb617-72" tabindex="-1"></a><span class="co">#Kim_df_latent$INF32 &lt;- scales::rescale(Kim_df_latent$Inf32, c(0, 1))</span></span>
-<span id="cb617-73"><a href="MeasMod.html#cb617-73" tabindex="-1"></a><span class="co">#cor.test(Kim_df_latent$Inf32, Kim_df_latent$INF32, method=&quot;pearson&quot;)</span></span>
-<span id="cb617-74"><a href="MeasMod.html#cb617-74" tabindex="-1"></a></span>
-<span id="cb617-75"><a href="MeasMod.html#cb617-75" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
-<span id="cb617-76"><a href="MeasMod.html#cb617-76" tabindex="-1"></a><span class="co">#round(cor(Kim_df),3)</span></span></code></pre></div>
+<span id="cb617-71"><a href="MeasMod.html#cb617-71" tabindex="-1"></a><span class="co">#psych::describe(dfKim)+</span></span>
+<span id="cb617-72"><a href="MeasMod.html#cb617-72" tabindex="-1"></a></span>
+<span id="cb617-73"><a href="MeasMod.html#cb617-73" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb617-74"><a href="MeasMod.html#cb617-74" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> dfKim <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">0</span>) </span>
+<span id="cb617-75"><a href="MeasMod.html#cb617-75" tabindex="-1"></a></span>
+<span id="cb617-76"><a href="MeasMod.html#cb617-76" tabindex="-1"></a><span class="co">#I tested the rescaling the correlation between original and rescaled variables is 1.0</span></span>
+<span id="cb617-77"><a href="MeasMod.html#cb617-77" tabindex="-1"></a><span class="co">#Kim_df_latent$INF32 &lt;- scales::rescale(Kim_df_latent$Inf32, c(0, 1))</span></span>
+<span id="cb617-78"><a href="MeasMod.html#cb617-78" tabindex="-1"></a><span class="co">#cor.test(Kim_df_latent$Inf32, Kim_df_latent$INF32, method=&quot;pearson&quot;)</span></span>
+<span id="cb617-79"><a href="MeasMod.html#cb617-79" tabindex="-1"></a></span>
+<span id="cb617-80"><a href="MeasMod.html#cb617-80" tabindex="-1"></a><span class="co">#Checking our work against the original correlation matrix</span></span>
+<span id="cb617-81"><a href="MeasMod.html#cb617-81" tabindex="-1"></a><span class="co">#round(cor(Kim_df),3)</span></span></code></pre></div>
 <p>The script below allows you to store the simulated data as a file on your computer. This is optional – the entire lesson can be worked with the simulated data.</p>
 <p>If you prefer the .rds format, use this script (remove the hashtags). The .rds format has the advantage of preserving any formatting of variables. A disadvantage is that you cannot open these files outside of the R environment.</p>
 <p>Script to save the data to your computer as an .rds file.</p>

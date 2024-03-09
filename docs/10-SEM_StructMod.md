@@ -1,3 +1,8 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
 
 
 # Specifying and Evaluating the Structural Model {#StructMod}
@@ -137,10 +142,9 @@ We used the *lavaan::simulateData* function for the simulation. If you have take
 
 
 ```r
-# Entering the intercorrelations, means, and standard deviations from
-# the journal article
+#Entering the intercorrelations, means, and standard deviations from the journal article
 
-Kim_generating_model <- "
+Kim_generating_model <- '
         #measurement model
          REMS =~ .82*Inf32 + .75*Inf38 + .74*Inf21 + .72*Inf17 + .69*Inf9 + .61*Inf36 + .51*Inf5 + .49*Inf22 + .81*SClass6 + .81*SClass31 + .74*SClass8 + .74*SClass40 + .72*SClass2 + .65*SClass34 + .55*SClass11 + .84*mInv27 + .84*mInv30 + .80*mInv39 + .72*mInv7 + .62*mInv26 + .61*mInv33 + .53*mInv4 + .47*mInv14 + .47*mInv10 + .74*Exot3 + .74*Exot29 + .71*Exot45 + .69*Exot35 + .60*Exot42 + .59*Exot23 + .51*Exot13 + .51*Exot20 + .49*Exot43 + .84*mEnv37 + .85*mEnv24 + .78*mEnv19 + .70*mEnv28 + .69*mEnv18 + .55*mEnv41 + .55*mEnv12 + .76*mWork25 + .67*mWork15 + .65*mWork1 + .64*mWork16 + .62*mWork44
          
@@ -176,39 +180,41 @@ Kim_generating_model <- "
          DEP ~ -0.66*PWB
          DEP ~ 0.05*HlpSkg
          PWB ~ 0.08*HlpSkg
-        "
+        '
 
 set.seed(230916)
-dfKim <- lavaan::simulateData(model = Kim_generating_model, model.type = "sem",
-    meanstructure = T, sample.nobs = 156, standardized = FALSE)
+dfKim <- lavaan::simulateData(model = Kim_generating_model,
+                              model.type = "sem",
+                              meanstructure = T,
+                              sample.nobs=156,
+                              standardized=FALSE)
 library(tidyverse)
 
-# used to retrieve column indices used in the rescaling script below
-# col_index <- as.data.frame(colnames(dfKim))
+#used to retrieve column indices used in the rescaling script below
+col_index <- as.data.frame(colnames(dfKim))
 
-for (i in 1:ncol(dfKim)) {
-    # for loop to go through each column of the dataframe apply only
-    # to REMS variables
-    if (i >= 1 & i <= 45) {
-        dfKim[, i] <- scales::rescale(dfKim[, i], c(0, 1))
-    }
-    if (i >= 46 & i <= 116) {
-        # apply only to CMI variables
-        dfKim[, i] <- scales::rescale(dfKim[, i], c(1, 7))
-    }
-    if (i >= 93 & i <= 116) {
-        # apply only to mental health variables
-        dfKim[, i] <- scales::rescale(dfKim[, i], c(1, 5))
-    }
-    if (i >= 117 & i <= 126) {
-        # apply only to HlpSkng variables
-        dfKim[, i] <- scales::rescale(dfKim[, i], c(0, 3))
-    }
+#for loop to go through each column of the dataframe 
+#1 thru 45 apply only to REMS variables
+#46 thru 92 apply only to CMI variables
+#93 thru 116 apply only to mental health variables
+#117 thru 126 apply only to HlpSkng variables
+for(i in 1:ncol(dfKim)){  
+  if(i >= 1 & i <= 45){   
+    dfKim[,i] <- scales::rescale(dfKim[,i], c(0, 1))
+  }
+  if(i >= 46 & i <= 92){    
+    dfKim[,i] <- scales::rescale(dfKim[,i], c(1, 7))
+  }
+  if(i >= 93 & i <= 116){   
+    dfKim[,i] <- scales::rescale(dfKim[,i], c(1, 5))
+  }
+  if(i >= 117 & i <= 126){   
+    dfKim[,i] <- scales::rescale(dfKim[,i], c(0, 3))
+  }
 }
 
 library(tidyverse)
-dfKim <- dfKim %>%
-    round(0)
+dfKim <- dfKim %>% round(0) 
 ```
 
 The script below allows you to store the simulated data as a file on your computer. This is optional -- the entire lesson can be worked with the simulated data.
@@ -2302,7 +2308,7 @@ semPlot::semPaths(msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5,
         5, 5, 5))
 ```
 
-![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-94-1.png)<!-- -->
+![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-95-1.png)<!-- -->
 
 ### Specify and evaluate a *structural* model {-}
 
@@ -2545,7 +2551,7 @@ plot_ReC_struct <- semPlot::semPaths(ReC_struct_fit, what = "col", whatLabels = 
     mar = c(5, 5, 5, 5))
 ```
 
-![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-98-1.png)<!-- -->
+![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-99-1.png)<!-- -->
 
 
 |Grid for Plotting semplot::sempath  
@@ -2604,7 +2610,7 @@ plot1 <- semptools::change_node_label(plot1, c(CTR = "Centering", TrP = "TradPed
 plot(plot1)
 ```
 
-![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-100-1.png)<!-- -->
+![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-101-1.png)<!-- -->
 
 
 
@@ -2831,7 +2837,7 @@ plot_ReC_ALT <- semPlot::semPaths(ReC_ALT_fit, what = "col", whatLabels = "stand
     mar = c(5, 5, 5, 5))
 ```
 
-![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-104-1.png)<!-- -->
+![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-105-1.png)<!-- -->
 
 
 |Grid for Plotting semplot::sempath  
@@ -2891,7 +2897,7 @@ plot21 <- semptools::change_node_label(plot2, c(CTR = "Centering", TrP = "TradPe
 plot(plot2)
 ```
 
-![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-106-1.png)<!-- -->
+![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-107-1.png)<!-- -->
 
 
 

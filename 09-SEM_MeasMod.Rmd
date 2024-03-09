@@ -258,11 +258,16 @@ library(tidyverse)
 #used to retrieve column indices used in the rescaling script below
 col_index <- as.data.frame(colnames(dfKim))
 
+#for loop to go through each column of the dataframe 
+#1 thru 45 apply only to REMS variables
+#46 thru 92 apply only to CMI variables
+#93 thru 116 apply only to mental health variables
+#117 thru 126 apply only to HlpSkng variables
 for(i in 1:ncol(dfKim)){  
   if(i >= 1 & i <= 45){   
     dfKim[,i] <- scales::rescale(dfKim[,i], c(0, 1))
   }
-  if(i >= 46 & i <= 116){  
+  if(i >= 46 & i <= 92){    
     dfKim[,i] <- scales::rescale(dfKim[,i], c(1, 7))
   }
   if(i >= 93 & i <= 116){   

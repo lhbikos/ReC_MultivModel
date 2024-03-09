@@ -143,7 +143,7 @@
 
 \title{ReCentering Psych Stats: Multivariate Modeling}
 \author{Lynette H. Bikos, PhD, ABPP}
-\date{08 Mar 2024}
+\date{09 Mar 2024}
 
 \begin{document}
 \maketitle
@@ -177,7 +177,7 @@ All materials used in creating this OER are available at its \href{https://githu
 \chapter*{PREFACE}\label{preface}}
 
 
-\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 08 Mar 2024}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
+\textbf{If you are viewing this document, you should know that this is a book-in-progress. Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on 09 Mar 2024}. Emerging volumes on other statistics are posted on the \href{https://lhbikos.github.io/BikosRVT/ReCenter.html}{ReCentering Psych Stats} page at my research team's website.
 
 \href{https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a}{Screencasted Lecture Link}
 
@@ -221,7 +221,7 @@ The inspiration for training materials that re*center statistics and research me
 
 At very practical levels, I am indebted to SPU's Library, and more specifically, SPU's Education, Technology, and Media Department. Assistant Dean for Instructional Design and Emerging Technologies, R. John Robertson, MSc, MCS, has offered unlimited consultation, support, and connection. Senior Instructional Designer in Graphics \& Illustrations, Dominic Wilkinson, designed the logo and bookcover. Psychology and Scholarly Communications Librarian, Kristin Hoffman, MLIS, has provided consultation on topics ranging from OERS to citations. I am alo indebted to Associate Vice President, Teaching and Learning at Kwantlen Polytechnic University, Rajiv Jhangiani, PhD. Dr.~Jhangiani's text \citeyearpar{jhangiani_research_2019} was the first OER I ever used and I was grateful for his encouraging conversation.
 
-The creation of this OER has relied on strong peer and student support. Students have served as editorial assistants in copyediting the text and correcting the text captions. Students who have held the Editorial Assistant role include Octavia Bettger, Daisjha Ramey, Nika Yermakova, Wesley Suit, Ruth Tekle, and emma Anaminyi.
+The creation of this OER has relied on strong peer and student support. Students have served as editorial assistants in copyediting the text and correcting the text captions. Students who have held the Editorial Assistant role include Octavia Bettger, Daisjha Ramey, Nika Yermakova, Wesley Sui , Ruth Tekle, and emma Anaminyi.
 
 Financial support for this project has been provided the following:
 
@@ -17101,11 +17101,16 @@ We used the \emph{lavaan::simulateData} function for the simulation. If you have
 \CommentTok{\#used to retrieve column indices used in the rescaling script below}
 \NormalTok{col\_index }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{colnames}\NormalTok{(dfKim))}
 
+\CommentTok{\#for loop to go through each column of the dataframe }
+\CommentTok{\#1 thru 45 apply only to REMS variables}
+\CommentTok{\#46 thru 92 apply only to CMI variables}
+\CommentTok{\#93 thru 116 apply only to mental health variables}
+\CommentTok{\#117 thru 126 apply only to HlpSkng variables}
 \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(dfKim))\{  }
   \ControlFlowTok{if}\NormalTok{(i }\SpecialCharTok{\textgreater{}=} \DecValTok{1} \SpecialCharTok{\&}\NormalTok{ i }\SpecialCharTok{\textless{}=} \DecValTok{45}\NormalTok{)\{   }
 \NormalTok{    dfKim[,i] }\OtherTok{\textless{}{-}}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{rescale}\NormalTok{(dfKim[,i], }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
 \NormalTok{  \}}
-  \ControlFlowTok{if}\NormalTok{(i }\SpecialCharTok{\textgreater{}=} \DecValTok{46} \SpecialCharTok{\&}\NormalTok{ i }\SpecialCharTok{\textless{}=} \DecValTok{116}\NormalTok{)\{  }
+  \ControlFlowTok{if}\NormalTok{(i }\SpecialCharTok{\textgreater{}=} \DecValTok{46} \SpecialCharTok{\&}\NormalTok{ i }\SpecialCharTok{\textless{}=} \DecValTok{92}\NormalTok{)\{    }
 \NormalTok{    dfKim[,i] }\OtherTok{\textless{}{-}}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{rescale}\NormalTok{(dfKim[,i], }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{7}\NormalTok{))}
 \NormalTok{  \}}
   \ControlFlowTok{if}\NormalTok{(i }\SpecialCharTok{\textgreater{}=} \DecValTok{93} \SpecialCharTok{\&}\NormalTok{ i }\SpecialCharTok{\textless{}=} \DecValTok{116}\NormalTok{)\{   }
@@ -20072,10 +20077,9 @@ We used the \emph{lavaan::simulateData} function for the simulation. If you have
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Entering the intercorrelations, means, and standard deviations from}
-\CommentTok{\# the journal article}
+\CommentTok{\#Entering the intercorrelations, means, and standard deviations from the journal article}
 
-\NormalTok{Kim\_generating\_model }\OtherTok{\textless{}{-}} \StringTok{"}
+\NormalTok{Kim\_generating\_model }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}}
 \StringTok{        \#measurement model}
 \StringTok{         REMS =\textasciitilde{} .82*Inf32 + .75*Inf38 + .74*Inf21 + .72*Inf17 + .69*Inf9 + .61*Inf36 + .51*Inf5 + .49*Inf22 + .81*SClass6 + .81*SClass31 + .74*SClass8 + .74*SClass40 + .72*SClass2 + .65*SClass34 + .55*SClass11 + .84*mInv27 + .84*mInv30 + .80*mInv39 + .72*mInv7 + .62*mInv26 + .61*mInv33 + .53*mInv4 + .47*mInv14 + .47*mInv10 + .74*Exot3 + .74*Exot29 + .71*Exot45 + .69*Exot35 + .60*Exot42 + .59*Exot23 + .51*Exot13 + .51*Exot20 + .49*Exot43 + .84*mEnv37 + .85*mEnv24 + .78*mEnv19 + .70*mEnv28 + .69*mEnv18 + .55*mEnv41 + .55*mEnv12 + .76*mWork25 + .67*mWork15 + .65*mWork1 + .64*mWork16 + .62*mWork44}
 \StringTok{         }
@@ -20111,39 +20115,41 @@ We used the \emph{lavaan::simulateData} function for the simulation. If you have
 \StringTok{         DEP \textasciitilde{} {-}0.66*PWB}
 \StringTok{         DEP \textasciitilde{} 0.05*HlpSkg}
 \StringTok{         PWB \textasciitilde{} 0.08*HlpSkg}
-\StringTok{        "}
+\StringTok{        \textquotesingle{}}
 
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{230916}\NormalTok{)}
-\NormalTok{dfKim }\OtherTok{\textless{}{-}}\NormalTok{ lavaan}\SpecialCharTok{::}\FunctionTok{simulateData}\NormalTok{(}\AttributeTok{model =}\NormalTok{ Kim\_generating\_model, }\AttributeTok{model.type =} \StringTok{"sem"}\NormalTok{,}
-    \AttributeTok{meanstructure =}\NormalTok{ T, }\AttributeTok{sample.nobs =} \DecValTok{156}\NormalTok{, }\AttributeTok{standardized =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{dfKim }\OtherTok{\textless{}{-}}\NormalTok{ lavaan}\SpecialCharTok{::}\FunctionTok{simulateData}\NormalTok{(}\AttributeTok{model =}\NormalTok{ Kim\_generating\_model,}
+                              \AttributeTok{model.type =} \StringTok{"sem"}\NormalTok{,}
+                              \AttributeTok{meanstructure =}\NormalTok{ T,}
+                              \AttributeTok{sample.nobs=}\DecValTok{156}\NormalTok{,}
+                              \AttributeTok{standardized=}\ConstantTok{FALSE}\NormalTok{)}
 \FunctionTok{library}\NormalTok{(tidyverse)}
 
-\CommentTok{\# used to retrieve column indices used in the rescaling script below}
-\CommentTok{\# col\_index \textless{}{-} as.data.frame(colnames(dfKim))}
+\CommentTok{\#used to retrieve column indices used in the rescaling script below}
+\NormalTok{col\_index }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{colnames}\NormalTok{(dfKim))}
 
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(dfKim)) \{}
-    \CommentTok{\# for loop to go through each column of the dataframe apply only}
-    \CommentTok{\# to REMS variables}
-    \ControlFlowTok{if}\NormalTok{ (i }\SpecialCharTok{\textgreater{}=} \DecValTok{1} \SpecialCharTok{\&}\NormalTok{ i }\SpecialCharTok{\textless{}=} \DecValTok{45}\NormalTok{) \{}
-\NormalTok{        dfKim[, i] }\OtherTok{\textless{}{-}}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{rescale}\NormalTok{(dfKim[, i], }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
-\NormalTok{    \}}
-    \ControlFlowTok{if}\NormalTok{ (i }\SpecialCharTok{\textgreater{}=} \DecValTok{46} \SpecialCharTok{\&}\NormalTok{ i }\SpecialCharTok{\textless{}=} \DecValTok{116}\NormalTok{) \{}
-        \CommentTok{\# apply only to CMI variables}
-\NormalTok{        dfKim[, i] }\OtherTok{\textless{}{-}}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{rescale}\NormalTok{(dfKim[, i], }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{7}\NormalTok{))}
-\NormalTok{    \}}
-    \ControlFlowTok{if}\NormalTok{ (i }\SpecialCharTok{\textgreater{}=} \DecValTok{93} \SpecialCharTok{\&}\NormalTok{ i }\SpecialCharTok{\textless{}=} \DecValTok{116}\NormalTok{) \{}
-        \CommentTok{\# apply only to mental health variables}
-\NormalTok{        dfKim[, i] }\OtherTok{\textless{}{-}}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{rescale}\NormalTok{(dfKim[, i], }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{))}
-\NormalTok{    \}}
-    \ControlFlowTok{if}\NormalTok{ (i }\SpecialCharTok{\textgreater{}=} \DecValTok{117} \SpecialCharTok{\&}\NormalTok{ i }\SpecialCharTok{\textless{}=} \DecValTok{126}\NormalTok{) \{}
-        \CommentTok{\# apply only to HlpSkng variables}
-\NormalTok{        dfKim[, i] }\OtherTok{\textless{}{-}}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{rescale}\NormalTok{(dfKim[, i], }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{))}
-\NormalTok{    \}}
+\CommentTok{\#for loop to go through each column of the dataframe }
+\CommentTok{\#1 thru 45 apply only to REMS variables}
+\CommentTok{\#46 thru 92 apply only to CMI variables}
+\CommentTok{\#93 thru 116 apply only to mental health variables}
+\CommentTok{\#117 thru 126 apply only to HlpSkng variables}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(dfKim))\{  }
+  \ControlFlowTok{if}\NormalTok{(i }\SpecialCharTok{\textgreater{}=} \DecValTok{1} \SpecialCharTok{\&}\NormalTok{ i }\SpecialCharTok{\textless{}=} \DecValTok{45}\NormalTok{)\{   }
+\NormalTok{    dfKim[,i] }\OtherTok{\textless{}{-}}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{rescale}\NormalTok{(dfKim[,i], }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\NormalTok{  \}}
+  \ControlFlowTok{if}\NormalTok{(i }\SpecialCharTok{\textgreater{}=} \DecValTok{46} \SpecialCharTok{\&}\NormalTok{ i }\SpecialCharTok{\textless{}=} \DecValTok{92}\NormalTok{)\{    }
+\NormalTok{    dfKim[,i] }\OtherTok{\textless{}{-}}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{rescale}\NormalTok{(dfKim[,i], }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{7}\NormalTok{))}
+\NormalTok{  \}}
+  \ControlFlowTok{if}\NormalTok{(i }\SpecialCharTok{\textgreater{}=} \DecValTok{93} \SpecialCharTok{\&}\NormalTok{ i }\SpecialCharTok{\textless{}=} \DecValTok{116}\NormalTok{)\{   }
+\NormalTok{    dfKim[,i] }\OtherTok{\textless{}{-}}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{rescale}\NormalTok{(dfKim[,i], }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+\NormalTok{  \}}
+  \ControlFlowTok{if}\NormalTok{(i }\SpecialCharTok{\textgreater{}=} \DecValTok{117} \SpecialCharTok{\&}\NormalTok{ i }\SpecialCharTok{\textless{}=} \DecValTok{126}\NormalTok{)\{   }
+\NormalTok{    dfKim[,i] }\OtherTok{\textless{}{-}}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{rescale}\NormalTok{(dfKim[,i], }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+\NormalTok{  \}}
 \NormalTok{\}}
 
 \FunctionTok{library}\NormalTok{(tidyverse)}
-\NormalTok{dfKim }\OtherTok{\textless{}{-}}\NormalTok{ dfKim }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{round}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\NormalTok{dfKim }\OtherTok{\textless{}{-}}\NormalTok{ dfKim }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{round}\NormalTok{(}\DecValTok{0}\NormalTok{) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -22740,7 +22746,7 @@ Here is a figure of my measurement model:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{10-SEM_StructMod_files/figure-latex/unnamed-chunk-94-1.pdf}
+\includegraphics{10-SEM_StructMod_files/figure-latex/unnamed-chunk-95-1.pdf}
 
 \hypertarget{specify-and-evaluate-a-structural-model}{%
 \subsection*{\texorpdfstring{Specify and evaluate a \emph{structural} model}{Specify and evaluate a structural model}}\label{specify-and-evaluate-a-structural-model}}
@@ -23071,7 +23077,7 @@ Let's work up a figure
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{10-SEM_StructMod_files/figure-latex/unnamed-chunk-98-1.pdf}
+\includegraphics{10-SEM_StructMod_files/figure-latex/unnamed-chunk-99-1.pdf}
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule\noalign{}
@@ -23143,7 +23149,7 @@ Finally, we can feed all of the objects that whole these instructions into the \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{10-SEM_StructMod_files/figure-latex/unnamed-chunk-100-1.pdf}
+\includegraphics{10-SEM_StructMod_files/figure-latex/unnamed-chunk-101-1.pdf}
 
 \hypertarget{respecify-and-evaluate-an-alternative-structural-model}{%
 \subsection*{\texorpdfstring{Respecify and evaluate an \emph{alternative} structural model}{Respecify and evaluate an alternative structural model}}\label{respecify-and-evaluate-an-alternative-structural-model}}
@@ -23428,7 +23434,7 @@ Let's work up a figure
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{10-SEM_StructMod_files/figure-latex/unnamed-chunk-104-1.pdf}
+\includegraphics{10-SEM_StructMod_files/figure-latex/unnamed-chunk-105-1.pdf}
 
 \begin{longtable}[]{@{}ll@{}}
 \toprule\noalign{}
@@ -23501,7 +23507,7 @@ Finally, we can feed all of the objects that whole these instructions into the \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{10-SEM_StructMod_files/figure-latex/unnamed-chunk-106-1.pdf}
+\includegraphics{10-SEM_StructMod_files/figure-latex/unnamed-chunk-107-1.pdf}
 
 \hypertarget{conduct-a-formal-comparison-of-global-fit.}{%
 \subsection{\texorpdfstring{Conduct a formal comparison of \emph{global} fit.}{Conduct a formal comparison of global fit.}}\label{conduct-a-formal-comparison-of-global-fit.}}

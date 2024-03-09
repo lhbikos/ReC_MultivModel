@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2024-03-08" />
+<meta name="date" content="2024-03-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1105,78 +1105,79 @@ Specify and evaluate a measurement model</li>
 <div id="simulating-the-data-from-the-journal-article-2" class="section level3 hasAnchor" number="10.4.1">
 <h3><span class="header-section-number">10.4.1</span> Simulating the data from the journal article<a href="StructMod.html#simulating-the-data-from-the-journal-article-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We used the <em>lavaan::simulateData</em> function for the simulation. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures <span class="citation">(<a href="#ref-nadal_racial_2011">Nadal, 2011</a>; <a href="#ref-veit_structure_1983">Veit &amp; Ware, 1983</a>)</span>. For all others we specified a factor loading of 0.80. We then approximated the <em>measurement model</em> by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette <span class="citation">(<a href="#ref-kim_racial_2017">Paul Youngbin Kim et al., 2017</a>)</span>. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).</p>
-<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="StructMod.html#cb671-1" tabindex="-1"></a><span class="co"># Entering the intercorrelations, means, and standard deviations from</span></span>
-<span id="cb671-2"><a href="StructMod.html#cb671-2" tabindex="-1"></a><span class="co"># the journal article</span></span>
-<span id="cb671-3"><a href="StructMod.html#cb671-3" tabindex="-1"></a></span>
-<span id="cb671-4"><a href="StructMod.html#cb671-4" tabindex="-1"></a>Kim_generating_model <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
-<span id="cb671-5"><a href="StructMod.html#cb671-5" tabindex="-1"></a><span class="st">        #measurement model</span></span>
-<span id="cb671-6"><a href="StructMod.html#cb671-6" tabindex="-1"></a><span class="st">         REMS =~ .82*Inf32 + .75*Inf38 + .74*Inf21 + .72*Inf17 + .69*Inf9 + .61*Inf36 + .51*Inf5 + .49*Inf22 + .81*SClass6 + .81*SClass31 + .74*SClass8 + .74*SClass40 + .72*SClass2 + .65*SClass34 + .55*SClass11 + .84*mInv27 + .84*mInv30 + .80*mInv39 + .72*mInv7 + .62*mInv26 + .61*mInv33 + .53*mInv4 + .47*mInv14 + .47*mInv10 + .74*Exot3 + .74*Exot29 + .71*Exot45 + .69*Exot35 + .60*Exot42 + .59*Exot23 + .51*Exot13 + .51*Exot20 + .49*Exot43 + .84*mEnv37 + .85*mEnv24 + .78*mEnv19 + .70*mEnv28 + .69*mEnv18 + .55*mEnv41 + .55*mEnv12 + .76*mWork25 + .67*mWork15 + .65*mWork1 + .64*mWork16 + .62*mWork44</span></span>
-<span id="cb671-7"><a href="StructMod.html#cb671-7" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb671-8"><a href="StructMod.html#cb671-8" tabindex="-1"></a><span class="st">         CMI =~ .8*cmi1 + .8*cmi2 + .8*cmi3 + .8*cmi4 + .8*cmi5 + .8*cmi6 + .8*cmi7 + .8*cmi8 + .8*cmi9 + .8*cmi10 + .8*cmi11 + .8*cmi12 + .8*cmi13 + .8*cmi14 + .8*cmi15 + .8*cmi16 + .8*cmi17 + .8*cmi18 + .8*cmi19 + .8*cmi20 + .8*cmi21 + .8*cmi22 + .8*cmi23 + .8*cmi24 + .8*cmi25 + .8*cmi26 + .8*cmi27 + .8*cmi28 + .8*cmi29 + .8*cmi30 + .8*cmi31 + .8*cmi32 + .8*cmi33 + .8*cmi34 + .8*cmi35 + .8*cmi36 + .8*cmi37 + .8*cmi38 + .8*cmi39 + .8*cmi40 + .8*cmi41 + .8*cmi42 + .8*cmi43 + .8*cmi44 + .8*cmi45 + .8*cmi46 + .8*cmi47</span></span>
-<span id="cb671-9"><a href="StructMod.html#cb671-9" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb671-10"><a href="StructMod.html#cb671-10" tabindex="-1"></a><span class="st">         ANX =~ .80*Anx1 + .80*Anx2 + .77*Anx3 + .74*Anx4 + .74*Anx5 + .69*Anx6 + .69*Anx7 + .68*Anx8 + .50*Anx9  </span></span>
-<span id="cb671-11"><a href="StructMod.html#cb671-11" tabindex="-1"></a><span class="st">         DEP =~ .74*Dep1 + .83*Dep2 + .82*Dep3 + .74*Dep4</span></span>
-<span id="cb671-12"><a href="StructMod.html#cb671-12" tabindex="-1"></a><span class="st">         PWB =~ .83*pwb1 + .72*pwb2 + .67*pwb3 + .79*pwb4 + .77*pwb5 + .75*pwb6 + .74*pwb7 +.71*pwb8 +.67*pwb9 +.61*pwb10 +.58*pwb11</span></span>
-<span id="cb671-13"><a href="StructMod.html#cb671-13" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb671-14"><a href="StructMod.html#cb671-14" tabindex="-1"></a><span class="st">         HlpSkg =~ .8*hlpskg1 + .8*hlpskg2 + .8*hlpskg3 + .8*hlpskg4 + .8*hlpskg5 + .8*hlpskg6 + .8*hlpskg7 + .8*hlpskg8 + .8*hlpskg9 + .8*hlpskg10 </span></span>
-<span id="cb671-15"><a href="StructMod.html#cb671-15" tabindex="-1"></a><span class="st">   </span></span>
-<span id="cb671-16"><a href="StructMod.html#cb671-16" tabindex="-1"></a><span class="st">        #Means</span></span>
-<span id="cb671-17"><a href="StructMod.html#cb671-17" tabindex="-1"></a><span class="st">         REMS ~ 0.34*1</span></span>
-<span id="cb671-18"><a href="StructMod.html#cb671-18" tabindex="-1"></a><span class="st">         CMI ~ 3*1</span></span>
-<span id="cb671-19"><a href="StructMod.html#cb671-19" tabindex="-1"></a><span class="st">         ANX ~ 2.98*1</span></span>
-<span id="cb671-20"><a href="StructMod.html#cb671-20" tabindex="-1"></a><span class="st">         DEP ~ 2.36*1</span></span>
-<span id="cb671-21"><a href="StructMod.html#cb671-21" tabindex="-1"></a><span class="st">         PWB ~ 3.5*1</span></span>
-<span id="cb671-22"><a href="StructMod.html#cb671-22" tabindex="-1"></a><span class="st">         HlpSkg ~ 1.64*1</span></span>
-<span id="cb671-23"><a href="StructMod.html#cb671-23" tabindex="-1"></a><span class="st">        </span></span>
-<span id="cb671-24"><a href="StructMod.html#cb671-24" tabindex="-1"></a><span class="st">        #Correlations </span></span>
-<span id="cb671-25"><a href="StructMod.html#cb671-25" tabindex="-1"></a><span class="st">         REMS ~ 0.58*CMI</span></span>
-<span id="cb671-26"><a href="StructMod.html#cb671-26" tabindex="-1"></a><span class="st">         REMS ~ 0.26*ANX</span></span>
-<span id="cb671-27"><a href="StructMod.html#cb671-27" tabindex="-1"></a><span class="st">         REMS ~ 0.34*DEP</span></span>
-<span id="cb671-28"><a href="StructMod.html#cb671-28" tabindex="-1"></a><span class="st">         REMS ~ -0.25*PWB</span></span>
-<span id="cb671-29"><a href="StructMod.html#cb671-29" tabindex="-1"></a><span class="st">         REMS ~ -0.02*HlpSkg</span></span>
-<span id="cb671-30"><a href="StructMod.html#cb671-30" tabindex="-1"></a><span class="st">         CMI ~ 0.12*ANX</span></span>
-<span id="cb671-31"><a href="StructMod.html#cb671-31" tabindex="-1"></a><span class="st">         CMI ~ 0.19*DEP</span></span>
-<span id="cb671-32"><a href="StructMod.html#cb671-32" tabindex="-1"></a><span class="st">         CMI ~ -0.28*PWB</span></span>
-<span id="cb671-33"><a href="StructMod.html#cb671-33" tabindex="-1"></a><span class="st">         CMI ~ 0*HlpSkg</span></span>
-<span id="cb671-34"><a href="StructMod.html#cb671-34" tabindex="-1"></a><span class="st">         ANX ~ 0.66*DEP</span></span>
-<span id="cb671-35"><a href="StructMod.html#cb671-35" tabindex="-1"></a><span class="st">         ANX ~ -0.55*PWB</span></span>
-<span id="cb671-36"><a href="StructMod.html#cb671-36" tabindex="-1"></a><span class="st">         ANX ~ 0.07*HlpSkg</span></span>
-<span id="cb671-37"><a href="StructMod.html#cb671-37" tabindex="-1"></a><span class="st">         DEP ~ -0.66*PWB</span></span>
-<span id="cb671-38"><a href="StructMod.html#cb671-38" tabindex="-1"></a><span class="st">         DEP ~ 0.05*HlpSkg</span></span>
-<span id="cb671-39"><a href="StructMod.html#cb671-39" tabindex="-1"></a><span class="st">         PWB ~ 0.08*HlpSkg</span></span>
-<span id="cb671-40"><a href="StructMod.html#cb671-40" tabindex="-1"></a><span class="st">        &quot;</span></span>
-<span id="cb671-41"><a href="StructMod.html#cb671-41" tabindex="-1"></a></span>
-<span id="cb671-42"><a href="StructMod.html#cb671-42" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230916</span>)</span>
-<span id="cb671-43"><a href="StructMod.html#cb671-43" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">simulateData</span>(<span class="at">model =</span> Kim_generating_model, <span class="at">model.type =</span> <span class="st">&quot;sem&quot;</span>,</span>
-<span id="cb671-44"><a href="StructMod.html#cb671-44" tabindex="-1"></a>    <span class="at">meanstructure =</span> T, <span class="at">sample.nobs =</span> <span class="dv">156</span>, <span class="at">standardized =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb671-45"><a href="StructMod.html#cb671-45" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb671-46"><a href="StructMod.html#cb671-46" tabindex="-1"></a></span>
-<span id="cb671-47"><a href="StructMod.html#cb671-47" tabindex="-1"></a><span class="co"># used to retrieve column indices used in the rescaling script below</span></span>
-<span id="cb671-48"><a href="StructMod.html#cb671-48" tabindex="-1"></a><span class="co"># col_index &lt;- as.data.frame(colnames(dfKim))</span></span>
-<span id="cb671-49"><a href="StructMod.html#cb671-49" tabindex="-1"></a></span>
-<span id="cb671-50"><a href="StructMod.html#cb671-50" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dfKim)) {</span>
-<span id="cb671-51"><a href="StructMod.html#cb671-51" tabindex="-1"></a>    <span class="co"># for loop to go through each column of the dataframe apply only</span></span>
-<span id="cb671-52"><a href="StructMod.html#cb671-52" tabindex="-1"></a>    <span class="co"># to REMS variables</span></span>
-<span id="cb671-53"><a href="StructMod.html#cb671-53" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">45</span>) {</span>
-<span id="cb671-54"><a href="StructMod.html#cb671-54" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb671-55"><a href="StructMod.html#cb671-55" tabindex="-1"></a>    }</span>
-<span id="cb671-56"><a href="StructMod.html#cb671-56" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">46</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>) {</span>
-<span id="cb671-57"><a href="StructMod.html#cb671-57" tabindex="-1"></a>        <span class="co"># apply only to CMI variables</span></span>
-<span id="cb671-58"><a href="StructMod.html#cb671-58" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
-<span id="cb671-59"><a href="StructMod.html#cb671-59" tabindex="-1"></a>    }</span>
-<span id="cb671-60"><a href="StructMod.html#cb671-60" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">93</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>) {</span>
-<span id="cb671-61"><a href="StructMod.html#cb671-61" tabindex="-1"></a>        <span class="co"># apply only to mental health variables</span></span>
-<span id="cb671-62"><a href="StructMod.html#cb671-62" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))</span>
-<span id="cb671-63"><a href="StructMod.html#cb671-63" tabindex="-1"></a>    }</span>
-<span id="cb671-64"><a href="StructMod.html#cb671-64" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">117</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">126</span>) {</span>
-<span id="cb671-65"><a href="StructMod.html#cb671-65" tabindex="-1"></a>        <span class="co"># apply only to HlpSkng variables</span></span>
-<span id="cb671-66"><a href="StructMod.html#cb671-66" tabindex="-1"></a>        dfKim[, i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[, i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</span>
-<span id="cb671-67"><a href="StructMod.html#cb671-67" tabindex="-1"></a>    }</span>
-<span id="cb671-68"><a href="StructMod.html#cb671-68" tabindex="-1"></a>}</span>
-<span id="cb671-69"><a href="StructMod.html#cb671-69" tabindex="-1"></a></span>
-<span id="cb671-70"><a href="StructMod.html#cb671-70" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb671-71"><a href="StructMod.html#cb671-71" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> dfKim <span class="sc">%&gt;%</span></span>
-<span id="cb671-72"><a href="StructMod.html#cb671-72" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="StructMod.html#cb671-1" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
+<span id="cb671-2"><a href="StructMod.html#cb671-2" tabindex="-1"></a></span>
+<span id="cb671-3"><a href="StructMod.html#cb671-3" tabindex="-1"></a>Kim_generating_model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb671-4"><a href="StructMod.html#cb671-4" tabindex="-1"></a><span class="st">        #measurement model</span></span>
+<span id="cb671-5"><a href="StructMod.html#cb671-5" tabindex="-1"></a><span class="st">         REMS =~ .82*Inf32 + .75*Inf38 + .74*Inf21 + .72*Inf17 + .69*Inf9 + .61*Inf36 + .51*Inf5 + .49*Inf22 + .81*SClass6 + .81*SClass31 + .74*SClass8 + .74*SClass40 + .72*SClass2 + .65*SClass34 + .55*SClass11 + .84*mInv27 + .84*mInv30 + .80*mInv39 + .72*mInv7 + .62*mInv26 + .61*mInv33 + .53*mInv4 + .47*mInv14 + .47*mInv10 + .74*Exot3 + .74*Exot29 + .71*Exot45 + .69*Exot35 + .60*Exot42 + .59*Exot23 + .51*Exot13 + .51*Exot20 + .49*Exot43 + .84*mEnv37 + .85*mEnv24 + .78*mEnv19 + .70*mEnv28 + .69*mEnv18 + .55*mEnv41 + .55*mEnv12 + .76*mWork25 + .67*mWork15 + .65*mWork1 + .64*mWork16 + .62*mWork44</span></span>
+<span id="cb671-6"><a href="StructMod.html#cb671-6" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb671-7"><a href="StructMod.html#cb671-7" tabindex="-1"></a><span class="st">         CMI =~ .8*cmi1 + .8*cmi2 + .8*cmi3 + .8*cmi4 + .8*cmi5 + .8*cmi6 + .8*cmi7 + .8*cmi8 + .8*cmi9 + .8*cmi10 + .8*cmi11 + .8*cmi12 + .8*cmi13 + .8*cmi14 + .8*cmi15 + .8*cmi16 + .8*cmi17 + .8*cmi18 + .8*cmi19 + .8*cmi20 + .8*cmi21 + .8*cmi22 + .8*cmi23 + .8*cmi24 + .8*cmi25 + .8*cmi26 + .8*cmi27 + .8*cmi28 + .8*cmi29 + .8*cmi30 + .8*cmi31 + .8*cmi32 + .8*cmi33 + .8*cmi34 + .8*cmi35 + .8*cmi36 + .8*cmi37 + .8*cmi38 + .8*cmi39 + .8*cmi40 + .8*cmi41 + .8*cmi42 + .8*cmi43 + .8*cmi44 + .8*cmi45 + .8*cmi46 + .8*cmi47</span></span>
+<span id="cb671-8"><a href="StructMod.html#cb671-8" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb671-9"><a href="StructMod.html#cb671-9" tabindex="-1"></a><span class="st">         ANX =~ .80*Anx1 + .80*Anx2 + .77*Anx3 + .74*Anx4 + .74*Anx5 + .69*Anx6 + .69*Anx7 + .68*Anx8 + .50*Anx9  </span></span>
+<span id="cb671-10"><a href="StructMod.html#cb671-10" tabindex="-1"></a><span class="st">         DEP =~ .74*Dep1 + .83*Dep2 + .82*Dep3 + .74*Dep4</span></span>
+<span id="cb671-11"><a href="StructMod.html#cb671-11" tabindex="-1"></a><span class="st">         PWB =~ .83*pwb1 + .72*pwb2 + .67*pwb3 + .79*pwb4 + .77*pwb5 + .75*pwb6 + .74*pwb7 +.71*pwb8 +.67*pwb9 +.61*pwb10 +.58*pwb11</span></span>
+<span id="cb671-12"><a href="StructMod.html#cb671-12" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb671-13"><a href="StructMod.html#cb671-13" tabindex="-1"></a><span class="st">         HlpSkg =~ .8*hlpskg1 + .8*hlpskg2 + .8*hlpskg3 + .8*hlpskg4 + .8*hlpskg5 + .8*hlpskg6 + .8*hlpskg7 + .8*hlpskg8 + .8*hlpskg9 + .8*hlpskg10 </span></span>
+<span id="cb671-14"><a href="StructMod.html#cb671-14" tabindex="-1"></a><span class="st">   </span></span>
+<span id="cb671-15"><a href="StructMod.html#cb671-15" tabindex="-1"></a><span class="st">        #Means</span></span>
+<span id="cb671-16"><a href="StructMod.html#cb671-16" tabindex="-1"></a><span class="st">         REMS ~ 0.34*1</span></span>
+<span id="cb671-17"><a href="StructMod.html#cb671-17" tabindex="-1"></a><span class="st">         CMI ~ 3*1</span></span>
+<span id="cb671-18"><a href="StructMod.html#cb671-18" tabindex="-1"></a><span class="st">         ANX ~ 2.98*1</span></span>
+<span id="cb671-19"><a href="StructMod.html#cb671-19" tabindex="-1"></a><span class="st">         DEP ~ 2.36*1</span></span>
+<span id="cb671-20"><a href="StructMod.html#cb671-20" tabindex="-1"></a><span class="st">         PWB ~ 3.5*1</span></span>
+<span id="cb671-21"><a href="StructMod.html#cb671-21" tabindex="-1"></a><span class="st">         HlpSkg ~ 1.64*1</span></span>
+<span id="cb671-22"><a href="StructMod.html#cb671-22" tabindex="-1"></a><span class="st">        </span></span>
+<span id="cb671-23"><a href="StructMod.html#cb671-23" tabindex="-1"></a><span class="st">        #Correlations </span></span>
+<span id="cb671-24"><a href="StructMod.html#cb671-24" tabindex="-1"></a><span class="st">         REMS ~ 0.58*CMI</span></span>
+<span id="cb671-25"><a href="StructMod.html#cb671-25" tabindex="-1"></a><span class="st">         REMS ~ 0.26*ANX</span></span>
+<span id="cb671-26"><a href="StructMod.html#cb671-26" tabindex="-1"></a><span class="st">         REMS ~ 0.34*DEP</span></span>
+<span id="cb671-27"><a href="StructMod.html#cb671-27" tabindex="-1"></a><span class="st">         REMS ~ -0.25*PWB</span></span>
+<span id="cb671-28"><a href="StructMod.html#cb671-28" tabindex="-1"></a><span class="st">         REMS ~ -0.02*HlpSkg</span></span>
+<span id="cb671-29"><a href="StructMod.html#cb671-29" tabindex="-1"></a><span class="st">         CMI ~ 0.12*ANX</span></span>
+<span id="cb671-30"><a href="StructMod.html#cb671-30" tabindex="-1"></a><span class="st">         CMI ~ 0.19*DEP</span></span>
+<span id="cb671-31"><a href="StructMod.html#cb671-31" tabindex="-1"></a><span class="st">         CMI ~ -0.28*PWB</span></span>
+<span id="cb671-32"><a href="StructMod.html#cb671-32" tabindex="-1"></a><span class="st">         CMI ~ 0*HlpSkg</span></span>
+<span id="cb671-33"><a href="StructMod.html#cb671-33" tabindex="-1"></a><span class="st">         ANX ~ 0.66*DEP</span></span>
+<span id="cb671-34"><a href="StructMod.html#cb671-34" tabindex="-1"></a><span class="st">         ANX ~ -0.55*PWB</span></span>
+<span id="cb671-35"><a href="StructMod.html#cb671-35" tabindex="-1"></a><span class="st">         ANX ~ 0.07*HlpSkg</span></span>
+<span id="cb671-36"><a href="StructMod.html#cb671-36" tabindex="-1"></a><span class="st">         DEP ~ -0.66*PWB</span></span>
+<span id="cb671-37"><a href="StructMod.html#cb671-37" tabindex="-1"></a><span class="st">         DEP ~ 0.05*HlpSkg</span></span>
+<span id="cb671-38"><a href="StructMod.html#cb671-38" tabindex="-1"></a><span class="st">         PWB ~ 0.08*HlpSkg</span></span>
+<span id="cb671-39"><a href="StructMod.html#cb671-39" tabindex="-1"></a><span class="st">        &#39;</span></span>
+<span id="cb671-40"><a href="StructMod.html#cb671-40" tabindex="-1"></a></span>
+<span id="cb671-41"><a href="StructMod.html#cb671-41" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230916</span>)</span>
+<span id="cb671-42"><a href="StructMod.html#cb671-42" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">simulateData</span>(<span class="at">model =</span> Kim_generating_model,</span>
+<span id="cb671-43"><a href="StructMod.html#cb671-43" tabindex="-1"></a>                              <span class="at">model.type =</span> <span class="st">&quot;sem&quot;</span>,</span>
+<span id="cb671-44"><a href="StructMod.html#cb671-44" tabindex="-1"></a>                              <span class="at">meanstructure =</span> T,</span>
+<span id="cb671-45"><a href="StructMod.html#cb671-45" tabindex="-1"></a>                              <span class="at">sample.nobs=</span><span class="dv">156</span>,</span>
+<span id="cb671-46"><a href="StructMod.html#cb671-46" tabindex="-1"></a>                              <span class="at">standardized=</span><span class="cn">FALSE</span>)</span>
+<span id="cb671-47"><a href="StructMod.html#cb671-47" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb671-48"><a href="StructMod.html#cb671-48" tabindex="-1"></a></span>
+<span id="cb671-49"><a href="StructMod.html#cb671-49" tabindex="-1"></a><span class="co">#used to retrieve column indices used in the rescaling script below</span></span>
+<span id="cb671-50"><a href="StructMod.html#cb671-50" tabindex="-1"></a>col_index <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">colnames</span>(dfKim))</span>
+<span id="cb671-51"><a href="StructMod.html#cb671-51" tabindex="-1"></a></span>
+<span id="cb671-52"><a href="StructMod.html#cb671-52" tabindex="-1"></a><span class="co">#for loop to go through each column of the dataframe </span></span>
+<span id="cb671-53"><a href="StructMod.html#cb671-53" tabindex="-1"></a><span class="co">#1 thru 45 apply only to REMS variables</span></span>
+<span id="cb671-54"><a href="StructMod.html#cb671-54" tabindex="-1"></a><span class="co">#46 thru 92 apply only to CMI variables</span></span>
+<span id="cb671-55"><a href="StructMod.html#cb671-55" tabindex="-1"></a><span class="co">#93 thru 116 apply only to mental health variables</span></span>
+<span id="cb671-56"><a href="StructMod.html#cb671-56" tabindex="-1"></a><span class="co">#117 thru 126 apply only to HlpSkng variables</span></span>
+<span id="cb671-57"><a href="StructMod.html#cb671-57" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dfKim)){  </span>
+<span id="cb671-58"><a href="StructMod.html#cb671-58" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">45</span>){   </span>
+<span id="cb671-59"><a href="StructMod.html#cb671-59" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb671-60"><a href="StructMod.html#cb671-60" tabindex="-1"></a>  }</span>
+<span id="cb671-61"><a href="StructMod.html#cb671-61" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">46</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">92</span>){    </span>
+<span id="cb671-62"><a href="StructMod.html#cb671-62" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
+<span id="cb671-63"><a href="StructMod.html#cb671-63" tabindex="-1"></a>  }</span>
+<span id="cb671-64"><a href="StructMod.html#cb671-64" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">93</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">116</span>){   </span>
+<span id="cb671-65"><a href="StructMod.html#cb671-65" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>))</span>
+<span id="cb671-66"><a href="StructMod.html#cb671-66" tabindex="-1"></a>  }</span>
+<span id="cb671-67"><a href="StructMod.html#cb671-67" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">117</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">126</span>){   </span>
+<span id="cb671-68"><a href="StructMod.html#cb671-68" tabindex="-1"></a>    dfKim[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfKim[,i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</span>
+<span id="cb671-69"><a href="StructMod.html#cb671-69" tabindex="-1"></a>  }</span>
+<span id="cb671-70"><a href="StructMod.html#cb671-70" tabindex="-1"></a>}</span>
+<span id="cb671-71"><a href="StructMod.html#cb671-71" tabindex="-1"></a></span>
+<span id="cb671-72"><a href="StructMod.html#cb671-72" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb671-73"><a href="StructMod.html#cb671-73" tabindex="-1"></a>dfKim <span class="ot">&lt;-</span> dfKim <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">0</span>) </span></code></pre></div>
 <p>The script below allows you to store the simulated data as a file on your computer. This is optional – the entire lesson can be worked with the simulated data.</p>
 <p>If you prefer the .rds format, use this script (remove the hashtags). The .rds format has the advantage of preserving any formatting of variables. A disadvantage is that you cannot open these files outside of the R environment.</p>
 <p>Script to save the data to your computer as an .rds file.</p>
@@ -3534,7 +3535,7 @@ Centering is 1 item – it’s a factor with two levels pre, re.</p>
 <div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="StructMod.html#cb740-1" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(msmt_fit, <span class="at">what =</span> <span class="st">&quot;col&quot;</span>, <span class="at">whatLabels =</span> <span class="st">&quot;stand&quot;</span>, <span class="at">sizeMan =</span> <span class="dv">5</span>,</span>
 <span id="cb740-2"><a href="StructMod.html#cb740-2" tabindex="-1"></a>    <span class="at">node.width =</span> <span class="dv">1</span>, <span class="at">edge.label.cex =</span> <span class="fl">0.75</span>, <span class="at">style =</span> <span class="st">&quot;lisrel&quot;</span>, <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>,</span>
 <span id="cb740-3"><a href="StructMod.html#cb740-3" tabindex="-1"></a>        <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span></code></pre></div>
-<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 </div>
 <div id="specify-and-evaluate-a-structural-model" class="section level3 unnumbered hasAnchor">
 <h3>Specify and evaluate a <em>structural</em> model<a href="StructMod.html#specify-and-evaluate-a-structural-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -3889,7 +3890,7 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 <div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="StructMod.html#cb745-1" tabindex="-1"></a>plot_ReC_struct <span class="ot">&lt;-</span> semPlot<span class="sc">::</span><span class="fu">semPaths</span>(ReC_struct_fit, <span class="at">what =</span> <span class="st">&quot;col&quot;</span>, <span class="at">whatLabels =</span> <span class="st">&quot;stand&quot;</span>,</span>
 <span id="cb745-2"><a href="StructMod.html#cb745-2" tabindex="-1"></a>    <span class="at">sizeMan =</span> <span class="dv">5</span>, <span class="at">node.width =</span> <span class="dv">1</span>, <span class="at">edge.label.cex =</span> <span class="fl">0.75</span>, <span class="at">style =</span> <span class="st">&quot;lisrel&quot;</span>,</span>
 <span id="cb745-3"><a href="StructMod.html#cb745-3" tabindex="-1"></a>    <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span></code></pre></div>
-<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 <table>
 <thead>
 <tr class="header">
@@ -3952,7 +3953,7 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 <span id="cb747-7"><a href="StructMod.html#cb747-7" tabindex="-1"></a>    <span class="at">SRP =</span> <span class="st">&quot;SRPed&quot;</span>), <span class="at">label.cex =</span> <span class="fl">1.1</span>)</span>
 <span id="cb747-8"><a href="StructMod.html#cb747-8" tabindex="-1"></a></span>
 <span id="cb747-9"><a href="StructMod.html#cb747-9" tabindex="-1"></a><span class="fu">plot</span>(plot1)</span></code></pre></div>
-<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 </div>
 <div id="respecify-and-evaluate-an-alternative-structural-model" class="section level3 unnumbered hasAnchor">
 <h3>Respecify and evaluate an <em>alternative</em> structural model<a href="StructMod.html#respecify-and-evaluate-an-alternative-structural-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -4243,7 +4244,7 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 <div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="StructMod.html#cb752-1" tabindex="-1"></a>plot_ReC_ALT <span class="ot">&lt;-</span> semPlot<span class="sc">::</span><span class="fu">semPaths</span>(ReC_ALT_fit, <span class="at">what =</span> <span class="st">&quot;col&quot;</span>, <span class="at">whatLabels =</span> <span class="st">&quot;stand&quot;</span>,</span>
 <span id="cb752-2"><a href="StructMod.html#cb752-2" tabindex="-1"></a>    <span class="at">sizeMan =</span> <span class="dv">5</span>, <span class="at">node.width =</span> <span class="dv">1</span>, <span class="at">edge.label.cex =</span> <span class="fl">0.75</span>, <span class="at">style =</span> <span class="st">&quot;lisrel&quot;</span>,</span>
 <span id="cb752-3"><a href="StructMod.html#cb752-3" tabindex="-1"></a>    <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span></code></pre></div>
-<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
 <table>
 <thead>
 <tr class="header">
@@ -4307,7 +4308,7 @@ Y = SRPed: socially responsive pedagogy (continuously scaled with higher scores 
 <span id="cb754-7"><a href="StructMod.html#cb754-7" tabindex="-1"></a>    <span class="at">SRP =</span> <span class="st">&quot;SRPed&quot;</span>), <span class="at">label.cex =</span> <span class="fl">1.1</span>)</span>
 <span id="cb754-8"><a href="StructMod.html#cb754-8" tabindex="-1"></a></span>
 <span id="cb754-9"><a href="StructMod.html#cb754-9" tabindex="-1"></a><span class="fu">plot</span>(plot2)</span></code></pre></div>
-<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p><img src="10-SEM_StructMod_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
 </div>
 <div id="conduct-a-formal-comparison-of-global-fit." class="section level3 hasAnchor" number="10.12.1">
 <h3><span class="header-section-number">10.12.1</span> Conduct a formal comparison of <em>global</em> fit.<a href="StructMod.html#conduct-a-formal-comparison-of-global-fit." class="anchor-section" aria-label="Anchor link to header"></a></h3>
