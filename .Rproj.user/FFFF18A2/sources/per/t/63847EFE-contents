@@ -1,0 +1,936 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
+```{r echo=FALSE }
+options(scipen=999)#eliminates scientific notation
+```
+# STRUCTURAL EQUATION MODELING {-#SEM}
+
+# Establishing the Measurement Model {#MeasMod}
+
+[Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KOAtGOkf5gWtT7Yk5EUpsuN&si=D2BXJmIBH7kaVZRZ) 
+
+This lesson opens a series on structural equation modeling devoted to the full latent variable model. Full latent variable models test the directional linkages between variables in the model and they contain both (a) measurement and (b) structural components. Thus, evaluating a full latent variable model is completed in two larger steps which establish the measurement model first and then proceed to evaluating the structural model. The focus of this lesson is on the first step -- establishing the measurement model.
+
+## Navigating this Lesson
+
+There is about two hours of lecture.  If you work through the materials with me it would be plan for an additional two hours.
+
+While the majority of R objects and data you will need are created within the R script that sources the chapter, occasionally there are some that cannot be created from within the R framework. Additionally, sometimes links fail.  All original materials are provided at the [Github site](https://https://github.com/lhbikos/ReC_MultivModel) that hosts the book. More detailed guidelines for ways to access all these materials are provided in the OER's [introduction](#ReCintro)
+
+### Learning Objectives
+
+Learning objectives from this lecture include the following:
+
+* Specify a measurement model with item-level indicators. 
+* Respecify a measurement model with parceled indicators.
+* Interpret goodness-of-fit indices (e.g., Chi-square, CFI, RMSEA) associated with the model.
+* Interpret the regression weights associated with the model.
+* List pros and cons of using parcels in measurement models.
+
+
+### Planning for Practice
+
+This is the first of a two-part lesson on structural equation modeling. In this lesson we specify and evaluate the *measurement model* that precedes evaluating a full *structural model*. This means that you will want to have a structural model in mind. For the practice, this should involve a minimum of three variables. 
+
+The suggestions for homework are graded in complexity. If you have completed one or more of the prior lessons where path analysis (i.e., no latent variables) were used, you might consider recycling those for this set of practice problems.  
+
+* Rework the problem in the chapter by changing the random seed in the code that simulates the data.  This should provide minor changes to the data, but the results will likely be very similar.
+* Use the research data from the chapter, but evaluate a different set of variables.
+* Use data from another lesson or data that is available to you.
+
+### Readings & Resources
+
+In preparing this chapter, I drew heavily from the following resource(s). Other resources are cited (when possible, linked) in the text with complete citations in the reference list.
+
+* Byrne, B. M. (2016). Structural equation modeling with AMOS: Basic concepts, applications, and programming (3rd ed.). Routledge. http://ebookcentral.proquest.com/lib/spu/detail.action?docID=4556523
+  - Chapter 1, Structural Equation Modeling: The basics
+  - Chapter 6, Application 4:  Testing the Factorial Validity of a Causal Structure
+* Kline, R. (2016). Principles and practice of structural equation modeling (Fourth ed., Methodology in the social sciences). New York: The Guilford Press.
+  - Chapter 4, Data Preparation and Psychometrics Review
+  - Chapter 10, Specification and Identification of Structural Regression Models
+  - Chapter 11, Estimation and Local Fit Testing 
+* Little, T. D., Rhemtulla, M., Gibson, K., & Schoemann, A. M. (2013). Why the items versus parcels controversy needn’t be one. Psychological Methods, 18(3), 285–300. https://doi.org/10.1037/a0033266
+  - I conducted a brief literature search for updated information on parceling, this one continues to be at the top of articles considered to be authoritative.
+* Kim, P. Y., Kendall, D. L., & Cheon, H.-S. (2017). Racial microaggressions, cultural mistrust, and mental health outcomes among Asian American college students. *American Journal of Orthopsychiatry, 87*(6), 663–670. https://doi-org.ezproxy.spu.edu/10.1037/ort0000203
+  - This is the research vignette for this lesson.
+
+### Packages
+
+The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them. You may wish to remove the hashtags and run this chunk if this is the first time you are conducting analyses such as these.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#will install the package if not already installed
+#if(!require(lavaan)){install.packages("lavaan")}
+#if(!require(semPlot)){install.packages("semPlot")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(jtools)){install.packages("jtools")}
+```
+
+## Introduction to Structural Equation Modeling (SEM)
+
+In the lesson progression in Recentering Psych Stats, we used ordinary least squares (OLS) approaches as we learned analysis of variance (and hopefully coming soon multiple regression). As we entered more complex modeling, we began to use maximum likelihood estimators (MLE). A comparison of these two approaches was provided in the lesson on [Simple Moderation in OLS and MLE](https://lhbikos.github.io/ReC_MultivModel/SimpMod.html#ols-to-ml-for-estimation).
+
+SEM is yet another progression in regression and it has several distinguishing aspects.
+
+* SEM uses **latent variables**. Latent variables are not directly observed or measured (i.e., they do not exist as a column in your data). Rather, they are *inferred* from other observed variables. The latent variable (i.e., depression) is presumed to *cause* scores on the observed (sometimes termed *manifest*) variables. In these lessons, we can easily think of latent variables as the factor (or scale) and the observed/manifest variables as its items.
+  - To clarify, SEM models can incorporate latent (unobserved) and manifest (observed) in the same model.
+* SEM evaluates *causal processes* through a series of structural (i.e., regression) equations.
+* SEM provides **global fit indices** that provide an overall evaluation of the *goodness of fit* of the model. State another way, they indicate how closely the model's predictions align with the actual data.
+* SEM tests **multiple hypotheses, simultaneously**. That is, we can easily combine separate smaller models (e.g., simple mediation, simple moderation) into a grander model (e.g., moderated mediation).
+* SEM permits **multiple dependent variables**. Actually, in SEM we typically refer to variables as *exogenous* (variables that only serve as predictors) and *endogenous* (variables that are predicted [even if they also predict]). 
+* In contrast to traditional multivariate procedures that can neither assess nor correct for measurement error, SEM provides **explicit estimates of error variance parameters**.
+* SEM models have a long history of being **represented pictorially** and the conventions of these figures make it possible for them to efficiently convey the findings.
+
+With all of these advantages, SEM is widely used for nonexperimental research.
+
+In this lesson we start on the journey toward evaluating a full latent variable model; sometimes these are called hybrid models [@noauthor_sem_nodate] because they are a mix of path analysis and confirmatory factor analysis (CFA). Today we focus on the CFA portion because we will specify (and likely respecify) the *measurement model.*  In evaluating the measurement model we will specify a model where each of the constructs (factors) is represent in its latent form. That is each construct is represented as a factor (a latent variable) by its manifest, item-level, variables. In our measurement model we will allow all of the factors to covary with each other. It is important to note that this model will have the best fit of all because all of the structural paths are saturated. Stated another way, the subsequent test of the structural model will have worse fit. This means that if the fit of the measurement model is below our thresholds, we will investigate options for improving it before moving to evaluation of the structural model.
+
+## Workflow for Evaluating a Structural Model
+
+The following workflow is one that provides an overview of the entire process of evaluating a structural model.
+
+![A colorful image of a workflow for evaluating structural models.](images/IntroSEM/StructuralModelWorkflow.png) 
+Evaluating a structural model involves the following steps:
+
+* A Priori Power Analysis
+  - Conduct an a priori power analysis to determine the appropriate sample size.
+  _ Draw estimates of effect from pilot data and/or the literature.
+* Scrubbing & Scoring
+  - Import data and format (i.e., variable naming, reverse-scoring) item level variables.
+  - Analyze item-level missingness.
+  - If using scales, create the mean scores of the scales.
+  - Determine and execute approach for managing missingness. Popular choices are available item analysis (e.g., Parent, 2013) and multiple imputation.
+  - Analyze scale-level missingness.
+  - Create a df with only the items (scaled in the proper direction).
+* Data Diagnostics
+  - Evaluate univariate normality (i.e., one variable at a time) with Shapiro-Wilks tests; p < .05 indicates a violation of univariate normality.
+  - Evaluate multivariate normality (i.e., all continuously scaled variables simultaneously) with Mahalanobis test. Identify outliers (e.g., cases with Mahal values > 3 SDs from the centroid). Consider deleting (or transforming if there is an extreme-ish “jump” in the sorted values.
+  - Evaluate internal consistency of the scaled scores with Cronbach’s alpha or omega; the latter is increasingly preferred.
+Specify and evaluate a measurement model
+  - In this just-identified (saturated) model, all latent variables are specified as covarying.
+    + For LVs with 3 items or more, remember to set a marker/reference variable,
+    + For LVs with 2 items, constrain the loadings to be equal,
+    + For single-item indicators fix the error variance to zero (or a non-zero estimate of unreliability).
+  - Evaluate results with global (e.g., X2, CFI, RMSEA, SRMR) and local (i.e., factor loadings and covariances) fit indices.
+  - In the event of poor fit, respecify LVs with multiple indicators with parcels.
+  - Nested alternative measurement models can be compared with Χ2 difference, ΔCFI tests; non-nested models with AIC, and BIC tests .
+* Specify and evaluate a structural model.
+  - Replace the covariances with paths that represent the a priori hypotheses.
+    + These models could take a variety of forms.
+    + It is possible to respecify models through trimming or building approaches.
+  - Evaluate results using
+    + *global* fit indices (e.g., X2, CFI, RMSEA, SRMS),
+    + *local* fit indices (i.e., strength and significance of factor loadings, covariances, and additional model parameters [e.g., indirect effects]).
+  - Consider respecifying and evaluating one or more *alternative* models.
+    + *Forward searching* involves freeing parameters (adding paths or covariances) and can use modification indices as a guide.
+    + *Backward searching* involves restraining parameters (deleting paths or covariances) and can use low and non-significant paths as a guide.
+  - Compare the fit of the alternate models.
+    + Nested models can be compared with Χ2 difference and ΔCFI tests.
+    + Non-nested models can be compared with AIC and BIC (lower values suggest better fit).
+* Quick Guide for Global and Comparative Fit Statistics.
+  - $\chi^2$, p < .05; this test is sensitive to sample size and this value can be difficult to attain
+  - CFI > .95 (or at least .90)
+  - RMSEA (and associated 90%CI) are < .05 ( < .08, or at least < .10)
+  - SRMR < .08 (or at least <.10)
+  - Combination rule:  CFI < .95 and SRMR < .08
+  - AIC and BIC are compared; the lowest values suggest better models
+  - $\chi^2\Delta$ is statistically significant; the model with the superior fit is the better model
+  - $\delta CFI$ is greater than 0.01; the model with CFI values closest to 1.0 has better fit
+  
+The focus of this lesson in on the specification, evaluation, and respecification of the measurement model.
+
+## The Measurement Model: Specification and Evaluation
+
+Structural models include both *measurement* and *structural* portions. The **measurement model** has two primary purposes. First the measurement model **specifies the latent variables**. That is, CFA-like models (i.e., one per latent variable) define each latent variable (i.e., scale score -- but not "scored") by its observed indicators (i.e., survey items). Resulting factor loadings indicate the strength of the relationships between the observed items and their latent variable.
+
+Second, the measurement model allows the researchers to **assess the goodness of model fit**. A well-fitting model is required for accurately interpreting the relationships between the latent variables in the structural model. Additionally, the fit of the structural model will never surpass that of the measurement model. Stated another way -- if the fit of the measurement model is inferior, the structural model is likely to be worse. There is at least one exception -- when both the structural and measurement models are just-identified (i.e., fully saturated with zero degrees of freedom) model fit will be identical.
+
+The specification of the measurement model involves:
+
+* **Identifying** each latent variable with its prescribed observed variables (i.e., scale items). Note that the latent variable will not exist in the dataset. When we engaged in OLS regression and path analysis we created scale and subscale scores. In SEM, we do not do this. Rather we allow the latent variable to be defined by items (but they are not averaged or summed in any way).
+* Specifying a **saturated** model such that $df = 0$ and it is *just-identified*. You might think of the measurement model as a *correlated factors model* because covariances will be allowed between all latent variables.
+  - The structural model is typically more parsimonious (i.e., not saturated) than the measurement model and will be characterized by directional paths or the explicit absence of paths between some of the variables.
+* **Respecifying the measurement model** is optional (but frequent). This may involve addressing ill-fitting or poorly specified models by 
+  - correcting any mistakes in model specification,
+  - *parceling* multiple-item factors,
+  - attending to issues like *Heywood cases* (e.g., a negative effor variance) 
+
+Compared to the measurement model, the *structural model* (i.e., the model that represents your hypotheses) will be parsimonious. Whereas the measurement model is *saturated* with 0 degrees of freedom, the structural model is often *overidentified* (i.e., with positive degrees of freedom; not saturated) and characterized by directional paths (not covariances) between some of the variables. This leads to a necessary discussion of degrees of freedom in the context of SEM.
+
+### Degrees of Freedom and Model Identification
+
+When running statistics with ordinary least squares, degrees of freedom was associated with the number of data points (i.e., cases, sample size) and the number of predictors (i.e., regression coefficients) in the model. In OLS models, degrees of freedom as involved in the calculation of statistical tests such as the *t*-test and *F*-Test; that is, they help assess whether the model fits the data well and whether the estimated coefficients are statistically significant. Consistent with Fisher's notion that degrees of freedom are a form of statistical currency [@rodgers_epistemology_2010], a larger degree degrees of freedom allows for greater percision in parameter estimates. 
+
+In SEM, degrees of freedom in the numerator represents the number of *independent pieces of information* such as the number of obsered *variables* (not cases) minus the number of estimated parameters. The degrees of freedom in the denominator represent the number of restrictions or constraints placed upon the model, taking into account its complexity, the number of latent variables, and the pattern of relationships. Whether degrees of freedom are positive, negative, or zero determines the identification status of the model.
+
+**Underidentified or undetermined** models have fewer observations (knowns) than free model parameters (unknowns). This results in negative degrees of freedom ($df_{M}\leq 0$). This means that it is impossible to find a unique set of estimates. The classic example for this is:  $a + b = 6$ where there are an infinite number of solutions.
+
+**Just-identified or just-determined** models have an equal number of observations (knowns) as free parameters (unknowns). This results in zero degrees of freedom ($df_{M}= 0$). Just-identified scenarios will result in a unique solution. The classic example for this is
+
+$$a + b = 6$$
+$$2a + b = 10$$
+The unique solution is *a* = 4, *b* = 2.
+
+**Over-identified or overdetermined** models have more observations (knowns) than free parameters (unknowns). This results in positive degrees of freedom ($df_{M}> 0$). In this circumstance, there is no single solution, but one can be calculated when a statistical criterion is applied. For example, there is no single solution that satisfies all three of these formulas:
+
+$$a + b = 6$$
+$$2a + b = 10$$
+$$3a + b = 12$$
+
+When we add this instruction "Find value of *a* and *b* that yield total scores such that the sum of squared differences between the observations (6, 10, 12) and these total scores is as small as possible."  Curious about the answer?  An excellent description is found in Kline [-@kline_principles_2016]. Model identification is an incredibly complex topic. For example, it is possible to have theoretically identified models and yet they are statistically unidentified and then the researcher must hunt for the source of the problem. As we work through a handful of SEM lessons, we will return to degrees of freedom and model identification again (and again).
+
+For this lesson on measurement models, we are primarily concerned about the identification of each of our measurement models. Little has argued that [-@little_why_2013] each latent variable in an SEM model should be defined by a just-identified solution; that is, three indicators per construct. Why? Just-identified latent variables provide precise definitions of the construct. When latent variables are defined with four or more indicators (i.e., they are locally over-identified), the degrees of freedom generated from the measurement model for each construct (as well as the between-construct relations) introduces two sources of model fit. Thus, it introduces a statistical confound. When there are only two indicators per construct (i.e., they are locally under-identified) models are more likely to fail to converge and they may result in improper solutions. There are circumstances where one- and two-item indicators are necessary and there are statistical work-arounds for these circumstances.
+
+As we work through this lesson, I will demonstrate several scenarios of the measurement model. The purpose of this demonstration is to show how the different approaches result in different results, particularly around model fit. At the outset, let me underscore Little's [-@little_why_2013] is admonishment that the representation of the measurement model should be determined a priorily.
+
+There are many more nuances of SEM. Let's get some of these practically in place by working the vignette. As I designed this series of lessons, my plan is to rework some of the examples we did with path analysis (with maximum likelihood). This will hopefully (a) reduce the cognitive load by having familiar examples and (b) a direct comparison of results from both approaches.
+
+## Research Vignette
+
+The research vignette comes from the Kim, Kendall, and Cheon's [-@kim_racial_2017], "Racial Microaggressions, Cultural Mistrust, and Mental Health Outcomes Among Asian American College Students."  Participants were 156 Asian American undergraduate students in the Pacific Northwest. The researchers posited the a priori hypothesis that cultural mistrust would mediate the relationship between racial microaggressions and two sets of outcomes:  mental health (e.g., depression, anxiety, well-being) and help-seeking.
+
+Variables used in the study included:
+
+* **REMS**:  Racial and Ethnic Microaggressions Scale (Nadal, 2011). The scale includes 45 items on a 2-point scale where 0 indicates no experience of a microaggressive event and 1 indicates it was experienced at least once within the past six months.  Higher scores indicate more experience of microaggressions.
+* **CMI**:  Cultural Mistrust Inventory (Terrell & Terrell, 1981). This scale was adapted to assess cultural mistrust harbored among Asian Americans toward individuals from the mainstream U.S. culture (e.g., Whites). The CMI includes 47 items on a 7-point scale where higher scores indicate a higher degree of cultural mistrust.
+* **ANX**, **DEP**, **PWB**:  Subscales of the Mental Health Inventory (Veit & Ware, 1983) that assess the mental health outcomes of anxiety (9 items), depression (4 items), and psychological well-being (14 items).  Higher scores (on a 6 point scale) indicate stronger endorsement of the mental health outcome being assessed.
+* **HlpSkg**:  The Attiudes Toward Seeking Professional Psychological Help -- Short Form (Fischer & Farina, 1995) includes 10 items on a 4-point scale (0 = disagree, 3 = agree) where higher scores indicate more favorable attitudes toward help seeking.
+
+For the lessons on measurement and structural models, we will evaluate a simple mediation model, predicting psychological well-being from racial ethnic microaggressions through cultural mistrust.
+
+![Image of the proposed statistical model](images/SimpleMed/Kim_SimpMed.jpg)
+
+### Simulating the data from the journal article
+
+We used the *lavaan::simulateData* function for the simulation. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. For all others we specified a factor loading of 0.80. We then approximated the *measurement model* by specifying the correlations between all of the latent variable. We sourced these from the correlation matrix from the research vignette [@kim_racial_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70), warning = FALSE, message = FALSE}
+#Entering the intercorrelations, means, and standard deviations from the journal article
+Kim_generating_model <- '
+        #measurement model
+         REMS =~ .82*Inf32 + .75*Inf38 + .74*Inf21 + .72*Inf17 + .69*Inf9 + .61*Inf36 + .51*Inf5 + .49*Inf22 + .81*SClass6 + .81*SClass31 + .74*SClass8 + .74*SClass40 + .72*SClass2 + .65*SClass34 + .55*SClass11 + .84*mInv27 + .84*mInv30 + .80*mInv39 + .72*mInv7 + .62*mInv26 + .61*mInv33 + .53*mInv4 + .47*mInv14 + .47*mInv10 + .74*Exot3 + .74*Exot29 + .71*Exot45 + .69*Exot35 + .60*Exot42 + .59*Exot23 + .51*Exot13 + .51*Exot20 + .49*Exot43 + .84*mEnv37 + .85*mEnv24 + .78*mEnv19 + .70*mEnv28 + .69*mEnv18 + .55*mEnv41 + .55*mEnv12 + .76*mWork25 + .67*mWork15 + .65*mWork1 + .64*mWork16 + .62*mWork44
+         
+         CMI =~ .8*cmi1 + .8*cmi2 + .8*cmi3 + .8*cmi4 + .8*cmi5 + .8*cmi6 + .8*cmi7 + .8*cmi8 + .8*cmi9 + .8*cmi10 + .8*cmi11 + .8*cmi12 + .8*cmi13 + .8*cmi14 + .8*cmi15 + .8*cmi16 + .8*cmi17 + .8*cmi18 + .8*cmi19 + .8*cmi20 + .8*cmi21 + .8*cmi22 + .8*cmi23 + .8*cmi24 + .8*cmi25 + .8*cmi26 + .8*cmi27 + .8*cmi28 + .8*cmi29 + .8*cmi30 + .8*cmi31 + .8*cmi32 + .8*cmi33 + .8*cmi34 + .8*cmi35 + .8*cmi36 + .8*cmi37 + .8*cmi38 + .8*cmi39 + .8*cmi40 + .8*cmi41 + .8*cmi42 + .8*cmi43 + .8*cmi44 + .8*cmi45 + .8*cmi46 + .8*cmi47
+         
+         ANX =~ .80*Anx1 + .80*Anx2 + .77*Anx3 + .74*Anx4 + .74*Anx5 + .69*Anx6 + .69*Anx7 + .68*Anx8 + .50*Anx9  
+         DEP =~ .74*Dep1 + .83*Dep2 + .82*Dep3 + .74*Dep4
+         PWB =~ .83*pwb1 + .72*pwb2 + .67*pwb3 + .79*pwb4 + .77*pwb5 + .75*pwb6 + .74*pwb7 +.71*pwb8 +.67*pwb9 +.61*pwb10 +.58*pwb11
+         
+         HlpSkg =~ .8*hlpskg1 + .8*hlpskg2 + .8*hlpskg3 + .8*hlpskg4 + .8*hlpskg5 + .8*hlpskg6 + .8*hlpskg7 + .8*hlpskg8 + .8*hlpskg9 + .8*hlpskg10 
+   
+        #Means
+         REMS ~ 0.34*1
+         CMI ~ 3*1
+         ANX ~ 2.98*1
+         DEP ~ 2.36*1
+         PWB ~ 3.5*1
+         HlpSkg ~ 1.64*1
+         
+        #Correlations
+         REMS ~ 0.58*CMI
+         REMS ~ 0.26*ANX
+         REMS ~ 0.34*DEP
+         REMS ~ -0.25*PWB
+         REMS ~ -0.02*HlpSkg
+         CMI ~ 0.12*ANX
+         CMI ~ 0.19*DEP
+         CMI ~ -0.28*PWB
+         CMI ~ 0*HlpSkg
+         ANX ~ 0.66*DEP
+         ANX ~ -0.55*PWB
+         ANX ~ 0.07*HlpSkg
+         DEP ~ -0.66*PWB
+         DEP ~ 0.05*HlpSkg
+         PWB ~ 0.08*HlpSkg
+        '
+
+set.seed(230916)
+dfKim <- lavaan::simulateData(model = Kim_generating_model,
+                              model.type = "sem",
+                              meanstructure = T,
+                              sample.nobs=156,
+                              standardized=FALSE)
+library(tidyverse)
+
+#used to retrieve column indices used in the rescaling script below
+col_index <- as.data.frame(colnames(dfKim))
+
+#for loop to go through each column of the dataframe 
+#1 thru 45 apply only to REMS variables
+#46 thru 92 apply only to CMI variables
+#93 thru 116 apply only to mental health variables
+#117 thru 126 apply only to HlpSkng variables
+for(i in 1:ncol(dfKim)){  
+  if(i >= 1 & i <= 45){   
+    dfKim[,i] <- scales::rescale(dfKim[,i], c(0, 1))
+  }
+  if(i >= 46 & i <= 92){    
+    dfKim[,i] <- scales::rescale(dfKim[,i], c(1, 7))
+  }
+  if(i >= 93 & i <= 116){   
+    dfKim[,i] <- scales::rescale(dfKim[,i], c(1, 5))
+  }
+  if(i >= 117 & i <= 126){   
+    dfKim[,i] <- scales::rescale(dfKim[,i], c(0, 3))
+  }
+}
+
+#psych::describe(dfKim)+
+
+library(tidyverse)
+dfKim <- dfKim %>% round(0) 
+
+#I tested the rescaling the correlation between original and rescaled variables is 1.0
+#Kim_df_latent$INF32 <- scales::rescale(Kim_df_latent$Inf32, c(0, 1))
+#cor.test(Kim_df_latent$Inf32, Kim_df_latent$INF32, method="pearson")
+
+#Checking our work against the original correlation matrix
+#round(cor(Kim_df),3)
+
+```
+
+The script below allows you to store the simulated data as a file on your computer. This is optional -- the entire lesson can be worked with the simulated data.
+
+If you prefer the .rds format, use this script (remove the hashtags). The .rds format has the advantage of preserving any formatting of variables. A disadvantage is that you cannot open these files outside of the R environment.
+
+Script to save the data to your computer as an .rds file.
+
+```{r}
+#saveRDS(dfKim, 'dfKim.rds')  
+```
+
+Once saved, you could clean your environment and bring the data back in from its .csv format.
+```{r}
+#dfKim<- readRDS('dfKim.rds')
+```
+
+If you prefer the .csv format (think "Excel lite") use this script (remove the hashtags). An advantage of the .csv format is that you can open the data outside of the R environment. A disadvantage is that it may not retain any formatting of variables
+
+Script to save the data to your computer as a .csv file.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#write.table(dfKim, file = 'dfKim.csv', sep = ',', col.names=TRUE, row.names=FALSE) 
+```
+
+Once saved, you could clean your environment and bring the data back in from its .csv format.
+```{r}
+# dfKim<- read.csv ('dfKim.csv', header = TRUE)
+```
+
+
+## Scrubbing, Scoring, and Data Diagnostics
+
+Because the focus of this lesson is on the specific topic of establishing a measurement model for SEM and have used simulated data, we can skip many of the steps in scrubbing, scoring and data diagnostics. If this were real, raw, data, it would be important to [scrub](https://lhbikos.github.io/ReC_MultivModel/scrub.html), if needed [score](https://lhbikos.github.io/ReC_MultivModel/score.html), and conduct [data diagnostics](https://lhbikos.github.io/ReC_MultivModel/DataDx.html) to evaluate the suitability of the data for the proposes anlayses.
+
+## Specifying the Measurement Model in *lavaan*
+
+SEM in *lavaan* requires fluency with the R script:
+
+* Latent variables (factors) must be *defined* by their manifest or latent indicators.  
+  + the special operator (=~, *is measured/defined by*) is used for this
+  + Example:  f1 =~ y1 + y2 + y3
+* Regression equations use the single tilda (~, *is regressed on*)
+  + place DV (y) on left of operator
+  + place IVs, separate by + on the right
+  + Example:  y ~ f1 + f2 + x1 + x2
+    - *f* is a latent variable in this example
+    - *y*, *x1*, and *x2* are observed variables in this example
+  + An asterisk can affix a label in subsequent calculations and in interpreting output
+* Variances and covariances are specified with a double tilde operator (~~, *is correlated with*)
+  + Example of variance:  y1 ~~ y1 (the relationship with itself)
+  + Example of covariance:  y1 ~~ y2 (relationship with another variable)
+  + Example of covariance of a factor:  f1 ~~ f2
+*Intercepts (~ 1) for observed and LVs are simple, intercept-only regression formulas
+  + Example of variable intercept:  y1 ~ 1
+  + Example of factor intercept:  f1 ~ 1
+
+A complete lavaan model is a combination of these formula types, enclosed between single quotation models. Readibility of model syntax is improved by:
+
+* splitting formulas over multiple lines
+* using blank lines within single quote
+* labeling with the hashtag
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+init_msmt_mod <- "
+        ##measurement model
+         REMS =~ Inf32 + Inf38 + Inf21 + Inf17 + Inf9 + Inf36 + Inf5 + Inf22 + SClass6 + SClass31 + SClass8 + SClass40 + SClass2 + SClass34 + SClass11 + mInv27 + mInv30 + mInv39 + mInv7 + mInv26 + mInv33 + mInv4 + mInv14 + mInv10 + Exot3 + Exot29 + Exot45 + Exot35 + Exot42 + Exot23 + Exot13 + Exot20 + Exot43 + mEnv37 + mEnv24 + mEnv19 + mEnv28 + mEnv18 + mEnv41 + mEnv12 + mWork25 + mWork15 + mWork1 + mWork16 + mWork44
+         
+         CMI =~ cmi1 + cmi2 + cmi3 + cmi4 + cmi5 + cmi6 + cmi7 + cmi8 + cmi9 + cmi10 + cmi11 + cmi12 + cmi13 + cmi14 + cmi15 + cmi16 + cmi17 + cmi18 + cmi19 + cmi20 + cmi21 + cmi22 + cmi23 + cmi24 + cmi25 + cmi26 + cmi27 + cmi28 + cmi29 + cmi30 + cmi31 + cmi32 + cmi33 + cmi34 + cmi35 + cmi36 + cmi37 + cmi38 + cmi39 + cmi40 + cmi41 + cmi42 + cmi43 + cmi44 + cmi45 + cmi46 + cmi47
+         
+         PWB =~ pwb1 + pwb2 + pwb3 + pwb4 + pwb5 + pwb6 + pwb7 + pwb8 + pwb9 + pwb10 + pwb11
+         
+        
+        # Covariances
+         REMS ~~ CMI
+         REMS ~~ PWB
+         CMI ~~ PWB
+        "
+
+set.seed(230916)
+init_msmt_fit <- lavaan::cfa(init_msmt_mod, data = dfKim)
+#you can add missing = "fiml" to the code; I deleted it because it was really slowing down the run
+init_msmt_fit_sum <- lavaan::summary(init_msmt_fit, fit.measures = TRUE, standardized = TRUE)
+init_msmt_fit_sum
+```
+
+Evaluating our measurement model involves inspection of (a)  the strength, significance, and direction of each of the indicators on their respective factors, (b) the global fit indices, and (c) the direction and degree to which the factors are correlated. While these three are the big buckets of evaluation, the *lavaan::cfa* output is rich with information.
+
+If you wish to export the results for creation of tables, *tidySEM* has a number of functions that make this helpful. When you feed them to an object, the object can be downloaded as a .csv file
+
+The *tidySEM::table_fit* function will display all of the global fit indices.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+init_msmt_fitstats <- tidySEM::table_fit(init_msmt_fit)
+init_msmt_fitstats
+```
+
+The *tidySEM::table_results* function produces all of the factor loadings, covariances, and variances, 
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+init_msmt_pEsts <- tidySEM::table_results(init_msmt_fit, digits=3, columns = NULL)
+init_msmt_pEsts
+```
+
+The *tidySEM::table_cors* function will return a correlation matrix of the latent variables.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+init_msmt_LVcorr <- tidySEM::table_cors(init_msmt_fit, digits=3)
+init_msmt_LVcorr
+```
+
+The *write.csv* function can export each of these objects to .csv files.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+write.csv(init_msmt_fitstats, file = "init_msmt_fitstats.csv")
+write.csv(init_msmt_pEsts, file = "init_msmt_pEsts.csv")
+write.csv(init_msmt_LVcorr, file = "init_msmt_LVcorr.csv")
+```
+
+Before we interpret the output, let's also create a figure. This will help us conceptualize what we have just modeled and check our work. At this stage our model has a bazillion variables. Having tried both tidySEM and semPlot, I've gone with a quick semPlot::semPaths for this illustration.It at least allows us to see that we have allowed the latent variables to co-vary, that the first of each indicator variables was set to 1.0, and there were no unintentional cross-loadings.
+
+This is not our structural prediction. Rather this is the pre-prediction. The fit of our structural model will, very likely be worse than this fit. 
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+semPlot::semPaths(init_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
+```
+
+## Interpreting the Output
+
+Now that we've had a quick look at the plot, let's work through the results. Rosseel's (2019) *lavaan* tutorial is a useful resource in walking through the output.
+
+The *header* is the first few lines of the information. It contains:
+
+* the *lavaan* version number (0.6.16 that I'm using on 10/15/2023),
+* maximum likelihood (ML) was used as the estimator,
+* confirmation that the specification converged normally after 118 iterations,
+* 156 cases were used in this analysis,
+
+### Global Fit Indices
+
+CFA falls into a *modeling* approach to evaluating results.  While it provides some flexibility (we get away from the strict, NHST approach of $p < .05$) there can be more ambiguity and challenge to interpreting these results. Consequently, researchers will often report a handful of measures that draw from *goodness* and *badness* of fit options.
+
+* *goodness* of fit indices are those where values closer to 1.00 are better
+* *badness* of fit indices are those where values closer to 0.00 are better
+ 
+
+#### Model Test *User* Model: 
+
+The chi-square statistic that evaluates the *exact-fit hypothesis* that there is no difference between the covariances predicted by the model, given the parameter estimates, and the population covariance matrix.  Rejecting the hypothesis says that, 
+
+* the data contain covariance information that speak against the model, and
+* the researcher should explain model-data discrepancies that exceed those expected by sampling error.
+
+Traditional interpretion of the chi-square is an *accept-support test* where the null hypothesis represents the researchers' believe that the model is correct.  This means that the absence of statistical significance $ (p > .05) $ that supports the model. This is backwards from our usual *reject-support test* approach. Kline [-@kline_principles_2016] recommends that we treat the $\chi^2$ like a smoke alarm -- if the alarm sounds, there may or may not be a fire (a serious model-data discrepancy), but we should treat the alarm seriously and further inspect issues of fit. The $\chi^2$ is frequently criticized because:
+
+* *accept-support test* approaches are logically weaker because the failure to disprove an assertion (the exact-fit hypothesis) does not prove that the assertion is true;
+* low power (i.e., small sample sizes) makes it more likely that the model will be retained;
+* CFA and SEM models require large samples and so the $\chi^2$ is frequently statistically significant -- which rejects the researchers' model;
+
+For our initial measurement model CFA  $\chi ^{2}(5147)= 7271.391, p < .001$, this significant value is not what we want because it says that our specified model is different than the covariances in the model. At this stage of evaluating the *measurement model*, this is really critical information. Even though we have freed our latent variables to all covary which each other (which is like the natural state of the covariance matrix to which the model is being compared), the two are statistically significantly different.
+
+#### Model Test *Baseline* Model
+
+This model is the *independence* model.  That is, there is complete independence of of all variables in the model (i.e., in which all correlations among variables are zero).  This is the most restricted model.  It is typical for chi-quare values to be quite high (as it is in our example:  13555.967).  On its own, this model is not useful to us.  It is used, though, in comparisons of *incremental fit*.  
+
+
+#### Incremental Fit Indices (Located in the *User versus Baseline Models* section)  
+
+Incremental fit indices ask the question, how much better is the fit of our specified model to the data then the baseline model (where it is assumed no relations between the variables). The Comparative Fit Index (CFI) and Tucker-Lewis Index (TLI) are *goodness of fit* statistics, ranging from 0 to 1.0 where 1.0 is best. Because the two measures are so related, only one should be reported (I typically see the CFI).
+
+**CFI**:  compares the amount of departure from close fit for the researcher's model against that of the independence/baseline (null) model. When the User and Baseline fits are identical the CFI will equal 1.0.  We interpret the value of the CFI as a percent of how much better the researcher's model is than the baseline model.  While 74% sounds like an improvement -- Hu and Bentler (1999) stated that "acceptable fit" is achieved when the $CFI \geq .95$ and $SRMR \leq .08$; the **combination rule**.  It is important to note that later simulation studies have not supported those thresholds.
+
+**TLI**:  aka the **non-normed fit index (NNFI)** controls for $df_M$ from the researcher's model and $df_B$ from the baseline model.  As such, it imposes a greater relative penalty for model complexity than the CFI. The TLI is a bit unstable in that the values can exceed 1.0.  
+
+For our initial measurement model CFA, CFI = 0.744 and TLI = 0.739.  While these predict around 74% better than the baseline/independence model, it does not come close to the standard of $\geq .95$.
+
+#### Loglikelihood and Information Criteria
+
+The **Akaike Information Criterion (AIC)** and the **Bayesian Information Criterion (BIC)** utilize an information theory approach to data analysis by combing statistical estimation and model selection into a single framework. The BIC augments the AIC by taking sample size into consideration.
+
+The AIC and BIC are usually used to select among competing nonhierarchical models and are only used in comparison with each other.  Thus our current values of 31007.915 (AIC) and 31645.335 (BIC) are meaningless on their own.  The model with the smallest value of the predictive fit index is chosen as the one that is most likely to replicate.  It means that this model has relatively better fit and fewer free parameters than competing models.
+
+#### Root Mean Square Error of Approximation
+
+The RMSEA is an absolute fit index scaled as a *badness-of-fit* statistic where a value of 0.00 is the best fit. The RMSEA favors models with more degrees of freedom and larger sample sizes.  A unique aspect of the RMSEA is its 90% confidence interval. 
+
+While there is chatter/controversy about what constitutes an acceptable value, there is general consensus that $RMSEA \geq .10$ points to serious problems.  An $RMSEA\leq .05$ is ideal.  Watching the upper bound of the confidence interval is important to see that it isn't sneaking into the danger zone.
+
+For our initial measurement model RMSEA = 0.051, 90% CI(0.049, 0.054). This value is within the accepted thessholds.
+
+#### Standardized Root Mean Square Residual
+
+The SRMR is an absolute fit index that is another *badness-of-fit* statistic (i.e., perfect model fit is when the value = 0.00 and increasingly higher values indicate the "badness"). The SRMR is a standardized version of the **root mean square residual (RMR)**, which is a measure of the mean absolute covariance residual.  Standardizing the value facilitates interpretation. Poor fit is indicated when $SRMR \geq .10$. For our initial measurement model, SRMR = 0.061. This is within the thressholds of acceptability.
+
+Hu and Bentler [-@hu_cutoff_1999] have suggested **combination rule** (which is somewhat contested) suggested that the SRMR be interpreted along with the CFI such that:   $CFI \geqslant .95$ and $SRMR \leq .05$. Our initial measurement model does not pass this test:  CFI = 0.744, SRMR = 0.061.
+
+
+#### Factor Loadings
+
+Let's inspect the *latent variables* section.
+
+* *Estimate* contains the estimated or fixed parameter value for each model parameter;
+* *Std. err* is the standard error for each estimated parameter;
+* *Z-value* is the Wald statistic (the parameter divided by its SE)
+* *P(>|z|)* is the p value for testing the null hypothesis that the parameter equals zero in the population
+* *Std.lv* standardizes only the LVs
+* *Std.all* both latent and observed variables are standardized; this is considered the "completely standardized solution"
+
+Note that item Inf32 might seem incomplete -- there is only a 1.000 and a value for the Std.lv.  Recall that specifying items on a latent variable requires one item to be fixed to 1.000. This “sets the scale” of each latent variable. The default in *lavaan::cfa* and *lavaan::sem* is to assign the first of the items used to define the latent variable to this role. Coefficients that are fixed to 1.0 to scale a factor have no standard errors and therefore no significance test. If we looked at the *semPlot::sempath** we can see that arrow line to each of the first indicators per latent variable is different than the others. This is a pictoral representation of setting the scaling on one of the indicator variables.
+
+The SE and associated $p$ values are associated with the unstandardized estimates. Intuitively, it is easiest for me to understand the relative magnitude of the pattern coefficients by looking at the *Std.all* column. We can see that the items associated with each of our factors (i.e., REMS, CMI, PWB) are all strong, positive, and statistically significant $(p < 0.001)$ and positive. 
+
+
+#### Adequacy of the Initial Measurement Model
+
+I've created a table that allows me to compare our results to the threshholds. I will report the chi-square, CFI, RMSEA, and SRMR. Researchers have different preferences (and different data may be better analyzed by certain indices), so you might find that an editor, professor, or reviewer will ask for something else.
+
+|Criteria                                           | Our Results                         | Criteria met?
+|:--------------------------------------------------|:-----------------------------------:|:------------:|
+|Factor loadings significant, strong, proper valence|all $p < 0.001$, lowest = .357(pwb)   |Yes           | 
+|Non-significant chi-square                         |$\chi ^{2}(5147)= 7271.391, p < .001$|No            |  
+|$CFI\geq .95$ (or at least .90)                    |CFI = 0.744                          |No            |  
+|$RMSEA\leq .05$ (or < .08, at least < .10, also 90CI)|RMSEA = 0.051, 90CI[0.049,	0.054]    |Yes           |  
+|$SRMR\leq .08$ (at least < .10)                    |SRMR = 0.061                         |No            | 
+|Combination rule: $CFI \geq .95$ & $SRMR \leq .08$ |CFI = 0.744, SRMR = 0.061            |No            |
+
+ Our initial measurement model that was defined by all items used as individual indicators for the latent variables and that freed the latent variables to covary had mixed results. While the factor loadins were significant, strong, and properly valanced and the RMSEA and SRMR were within acceptable limits, the chi-square was statistically significant and the CFI was well below 0.95: $\chi ^{2}(5147)= 7271.391, p < .001, CFI = 0.744, RMSEA = 0.051, 90CI[0.049,	0.054], SRMR = 0.061$. The statistically significant chi-square is not what we want, but also not surprising. While the RMSEA and SRMR are within reasonable limits, the CFI is really substandard.
+
+Concerned about poor model fit associated with the CFI, some researchers might choose to abandon a latent variable approach. After all, the [simple mediation](https://lhbikos.github.io/ReC_MultivModel/SimpleMed.html#research-vignette-4) we conducted with observed/manifest variables earlier in this text was fine, right? Given the benefits that SEM offers, particularly around the ability to assess measurement error, I suggest that it is worth our time to consider the contribution of *parceling* to see if we can improve the fit of our measurement model. 
+
+## Parceling
+
+In the context of SEM, parceling can reduce the complexity in latent variables by creating composites or *parcels* of observed variables. For latent variables with numerous indicators, *parceling* can be an option that simplifies the model and can improve fit. A *parcel* is an aggregate-level indicator comprised of the sum (or average) of two or more items, responses, or behaviors. Parcels represent the *manifest (observed)* variables. 
+
+Little et al. [-@little_parcel_2002] outlined the pros and cons of parceling and provided a practical guidelines for doing so.  Although parceling has become more common place, it remains controversial.  Kline [-@kline_principles_2016] is not a huge fan (see pp. 331-332) and Byrne [@byrne_application_2016-3] merely provided a general description of the process without demonstrating it in the examples wshe provided.  Little, remains a proponent and has updated the rationale and circumstances when parceling is appropriate [@little_why_2013]. 
+
+### The Pros and Cons of Parceling
+
+The Little et al. [-@little_parcel_2002] article reviewed the rather heated arguments for and against parcels on from three perspectives: philosophical, psychometric, modelers. Below I highlight each.
+
+#### Philosophical Arguments
+
+**Empiricist-conservativists** claim that modeled data should be (or be as close to possible) as the original individual responses of the research participants. Re-modeling data risks mis-representation and could be considered to be "cheating." Further, they claim that parceling items “fundamentally undermines the objective empirical purpose of the techniques that have been developed to model multivariate data”  (Little et al., 2002, p. 152).  
+
+**Pragmatic-liberals** suggest that representing each and every source of variance for each item is impossible.  At best, we hope that our models represent the important common sources of variance across samples of items. Consequently, our goal is to build replicable models based on stable, meaningful indicators of core constructs. Correspondingly, pragmatic-liberals suggest that using parcels as the lowest level of data to be modeled is acceptable if the research project utilized a strict, rule-bound system of data collection and reporting. Further, it is essential for the researcher to describe what they have done and provide a rationale for doing so. As always, editors/reviewers have the right to reject the work and subsequent researchers can refute it.  
+
+#### Psychometric Arguments
+
+Psychometricians point out that, compared to parcels, items have fewer, larger, and less equal intervals between scale points. Consequently, models built on item-level data tend to have lower reliability, lower communality, smaller ratio of common-to-unique factor variance, and increased likelihood of distributional violations. Additionally, because parcels permit factors to be defined with fewer constructs, they are preferred -- especially when sample size is an issue. In short, models built on parceled data:  
+
+* Are more parsimonious (i.e., have fewer estimated parameters)  
+* Have fewer chances for residuals to be correlated or cross-loadings (b/c fewer indicators are needed and unique variances are smaller)  
+* Lead to reductions in various sources of sampling error  
+* Provide greater representation of the construct because aggregate scores are used 
+* Provide a more consistent and reliable representation of the construct because aggregate scores are used 
+* Reduce the problems associated when latent variables have a large number of indicators   
+
+Psychomtricians do offer one significant caution -- parceling should only be used with unidimensional constructs and not with multidimensional ones. Practically, this could mean that the latent variable has a confirmatory factor analysis that supports a unidimensional, second order, or *g* scale in a bifactor structure. If unidimensionality is uncertain, preliminary psychometric evaluation could be in order.There seems to be some controversy about "how unidimensional" it should be. Little [-@little_why_2013] seems to acknowledge that multidimensional instruments are sometimes used.  
+
+Further, parceling is completely inappropriate when establishing the psychometric properties of an instrument. The use of parceling should be reserved for utilizing that instrument to testa theoretical model.
+
+#### Modelers' Arguments
+
+Modeling at the item level increases the likelihood that subsets of items will share specific sources of variance (which, themselves, represent latent variables). Because they are unlikely to be hypothesized by the researcher, they will lead to systematic sources of common variance that were not specified a priori. In contrast, parceling eliminates or at least reduces unwanted sources of variance and leads to better initial model fit and reduces the likelihood of misspecification. Further, because parceling improves the psychometric characteristics of items, solutions are more stable (i.e., requiring more iterations to converge, yielding relatively large standard errors of the measurement model, poorer fit).  
+
+Modelers have pointed out that item-level modeling inflates Type I error. Here's how:
+
+* If we assume that 5% of all correlations are error (*p* < .05), a model with 3 constructs – each measured with 10 variables – would result in 22 spurious correlations.  
+* In contrast, a structural model with 3 constructs, each measured with 3 parcels each, would yield ~ 2 spurious correlations.  The nature of which would be evidenced with a failure to replicate.  
+
+Modelers do point out issues related to model identification. Representing a latent variable with one or two items is possible, but is suboptimal because the latent variable is underidentified.  A just-identified latent contains 3 indicators; 4 or more leads to an overidentified latent variable. In arguments made more than a decade after the 2002 article, Little and colleagues [-@little_why_2013] recommend using 3 indicators (which could be parcels) per construct.  
+
+Modelers who caution against modeling suggest that parcel-based models attempt to cancel out random and systematic error by aggregrating across these errors. While the typical improvement in model fit is desirable, some argue is that it changes the reality of the data, and therefore misrepresents it. In-so-doing, it can hide mis-specification of the model. Some have argued that parceling should be reserved for theoretical work and is probably not appropriate for applied work when norms based on established measures are used.  
+
+
+### Practical Procedures for Parceling
+
+There are several approaches to creating parcels. Byrne [-@byrne_application_2016-3] distinguished between *purposive* and *random* approaches to parceling. 
+
+#### Purposive Approaches to Parceling
+
+Utilizing *subscale scores* as parcels is, perhaps, the most common (and intuitively appealing) example of a purposive approach to parceling.  This approach can be appropriate in certain circumstances if (a) it is theoretically justified and (b) if the psychometric properties of the scales are sound. This approach can be problematic if (a) the factor loadings of the subscales are unequal and/or (b) if there aren't at least three subscales. While it is possible to have a factor with just two loadings, these are more likely to havce improper solutions such as Heywood cases.  
+
+The *item-to-construct balance* is another purposive approach. The goal is to derive parcels that are equally balanced in terms of difficulty and discrimination (i.e., intercept and slope). If the researcher were creating a latent variable with three parcels (i.e., three indicators), the researcher would obtain and rank order the factor loadings. The three items with the highest loadings would be assigned to the three parcels first (let's call them A, B, C), the next three highest loadings would be added to the parcels in a reversed order (C, B, A), the next three reversed again (A, B, C), continuing back and forth until all items are assigned. In some conditions, parcels may have differential numbers of items in order to achieve a reasonable balance.  
+
+#### Random Approaches to Parceling
+
+*Random assignment* is, perhaps, the most common way that parcels are created. Little et al. [-@little_why_2013] has recommended that each construct in an SEM model should be *just-identified* with three indicators per construct. Because this provides a precise definition of the construct, it is seen to be a super test. Thus, who engage in this practice will assign indicators, randomly (without replacement) to th three parcels. The result should be parcels with roughly equal common factor variance.  
+
+To illustrate the similarities and differences between approaches, I will evaluate two measurement models: one by using subscale scores and another with random assignment to three parcels per construct.
+
+## Parceling with Subscale Scores
+
+Parceling with subscale scores means that you simply include the items that belong to each subscale in a parcel. Thus, it is often necessary to consult the journal articles and/or test manuals that provide information about the instrument. When simulating the data from the journal article, I was able to retrieve information about the psychometric development and evaluation of the REMS [@nadal_racial_2011], but not the CMI [@terrell_inventory_1981] or the MHI/PwB [@veit_structure_1983]. Thus, in working the subscale example, I will make some incorrect assumptions about the relations between the items and measures.
+
+The 45 items of the REMS are divided between six subscales; thus, parceling by subscale will result in six indicators for the REMS factor. In simulating the data, I was able to use the factor loadings from each item as it relates to each scale. To facilitate subsequent analyses, I provided abbreviations of the scale names. Practically speaking, creating parcels is to score the subscales. In the script below, I create first create concatonated lists of the variables. Second, I calculate mean scores if 80% of the items for each respondent are non-missing. You may recognize this as being consistent with Parent's [-@parent_handling_2013] available information analysis (AIA) approach to managing missingness. I have written more on the [AIA approach](https://lhbikos.github.io/ReC_MultivModel/score.html#available-information-analysis-aia) in a lesson on [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html#available-information-analysis-aia) data.
+
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+Inf_vars <- c('Inf32', 'Inf38', 'Inf21', 'Inf17', 'Inf9', 'Inf36', 'Inf5', 'Inf22')
+SClass_vars <- c('SClass8', 'SClass40', 'SClass2',  'SClass34',  'SClass11')
+mInv_vars <- c('mInv27', 'mInv39', 'mInv7', 'mInv26', 'mInv33', 'mInv4', 'mInv14', 'mInv10')
+Exot_vars <- c('Exot3', 'Exot29', 'Exot45', 'Exot35', 'Exot42', 'Exot23', 'Exot13', 'Exot20', 'Exot43')
+mEnv_vars <- c('mEnv37', 'mEnv24', 'mEnv19', 'mEnv28', 'mEnv18', 'mEnv41', 'mEnv12')
+mWork_vars <- c('mWork25', 'mWork15', 'mWork1', 'mWork16', 'mWork44')
+
+dfKim$Inf_P <- sjstats::mean_n(dfKim[, Inf_vars], .80)
+dfKim$SClass_P <- sjstats::mean_n(dfKim[, SClass_vars], .80)
+dfKim$mInv_P <- sjstats::mean_n(dfKim[, mInv_vars], .80)
+dfKim$Exot_P <- sjstats::mean_n(dfKim[, Exot_vars], .80)
+dfKim$mEnv_P <- sjstats::mean_n(dfKim[, mEnv_vars], .80)
+dfKim$mWork_P <- sjstats::mean_n(dfKim[, mWork_vars], .80)
+
+#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
+#dfKim$mWork_P <- sjstats::mean_n(dfKim[,.. mWork_vars], .80)
+```
+
+We learn from Kim et al's description [@kim_racial_2017] that the CMI has four factors. Because I could not retrieve an article with original psychometrics, I was not able to provide factor correlations and my variable names do not reflect scale membership. Let's pretend that the items are in order of the scales. i will assign 12 items each to the first three scales and 11 items to the fourth scale.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+IntRel_vars <- c('cmi1', 'cmi2', 'cmi3', 'cmi4', 'cmi5', 'cmi6', 'cmi7', 'cmi8', 'cmi9', 'cmi10', 'cmi11', 'cmi12')
+EdTrain_vars <- c('cmi13', 'cmi14', 'cmi15', 'cmi16', 'cmi17', 'cmi18', 'cmi19', 'cmi20', 'cmi21', 'cmi22', 'cmi23', 'cmi24')
+BusWrk_vars <-c('cmi25', 'cmi26', 'cmi27', 'cmi28', 'cmi29', 'cmi30', 'cmi31', 'cmi32', 'cmi33', 'cmi34', 'cmi35', 'cmi36')
+PolLaw_vars <-c('cmi37', 'cmi38', 'cmi39', 'cmi40', 'cmi41', 'cmi42', 'cmi43', 'cmi44', 'cmi45', 'cmi46', 'cmi47')
+
+dfKim$IntRel <- sjstats::mean_n(dfKim[, IntRel_vars], .80)
+dfKim$EdTrain <- sjstats::mean_n(dfKim[, EdTrain_vars], .80)
+dfKim$BusWrk <- sjstats::mean_n(dfKim[, BusWrk_vars], .80)
+dfKim$PolLaw <- sjstats::mean_n(dfKim[, PolLaw_vars], .80)
+
+#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
+#dfKim$PolLaw <- sjstats::mean_n(dfKim[, ..PolLaw_vars], .80)
+```
+
+The description of the MHI only indicates that there are items on the PWB scale (and not that there are further subscales). This gives us some choice about how to divide the items. I would likely be inclined to randomly divide them across three scales.
+
+The following code will provide random assignments.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+set.seed(230916)
+items <- c('pwb1', 'pwb2', 'pwb3', 'pwb4', 'pwb5', 'pwb6', 'pwb7', 'pwb8', 'pwb9', 'pwb10', 'pwb11')
+parcels <- c("PWB_p1", "PWB_p_2","PWB_p3")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
+```
+We can now create the parcels using the same scoring procedure as we did for the REMS and CMI instruments.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+PWB_p1_vars <- c('pwb7','pwb11', 'pwb4', 'pwb8')
+PWB_p2_vars <- c('pwb9','pwb2', 'pwb10', 'pwb2')
+PWB_p3_vars <- c('pwb1','pwb3', 'pwb5')
+
+dfKim$p1PWB <- sjstats::mean_n(dfKim[, PWB_p1_vars], .75)
+dfKim$p2PWB <- sjstats::mean_n(dfKim[, PWB_p2_vars], .75)
+dfKim$p3PWB <- sjstats::mean_n(dfKim[, PWB_p3_vars], .75)
+
+#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
+#dfKim$p3PWB <- sjstats::mean_n(dfKim[, ..PWB_p3_vars], .75)
+```
+
+Before we continue to respecifying the measurement model, let me point out that a downside of using subscales as parcels is that it Little et al's [-@little_why_2013] recommendation is that each latent variable be represented with a just-identified (i.e., 3-parcel) solution. Like our circumstance where the REMS has six subscales and the CMI has four, it is frequently the case where measures have differing numbers of solutions. When there are more than three parcels, the fit of the measurement model is likely to be worse than if there were three parcels per latent variable.
+
+### Measurement Model with Subscale Parcels
+
+Let's respecify our measurement model with parcels created from subscale means.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+subsc_msmt_mod <- "
+        ##measurement model
+         REMS =~ Inf_P + SClass_P + mInv_P + Exot_P + mEnv_P + mWork_P
+         
+         CMI =~ IntRel + EdTrain + BusWrk + PolLaw 
+         
+         PWB =~ p1PWB + p2PWB + p3PWB 
+         
+        
+        # Covariances
+         REMS ~~ CMI
+         REMS ~~ PWB
+         CMI ~~ PWB
+        "
+
+set.seed(230916)
+subsc_msmt_fit <- lavaan::cfa(subsc_msmt_mod, data = dfKim, missing="fiml")
+#, missing = "fiml" #deleted this from the above code because it seemed to be slowing it down
+subsc_msmt_fit_sum <- lavaan::summary(subsc_msmt_fit, fit.measures = TRUE, standardized = TRUE)
+subsc_msmt_fit_sum
+
+
+```
+
+As we look at the results we can easily see the benefits to the model. The factor loadings are strong, significant, and all scoring in the correct (positive) direction. The fit indices are much improved. Let's take a look according to the criteria we are using:
+
+Criteria                                            | Our Results                         | Criteria met?|
+|:--------------------------------------------------|:-----------------------------------:|:------------:|
+|Factor loadings significant, strong, proper valence|all $p < 0.001$, lowest = .634(pwb)  |Yes           | 
+|Non-significant chi-square                         |$\chi ^{2}(62)= 71.488, p = 0.192$   |Yes           |  
+|$CFI\geq .95$ (or at least .90)                    |CFI = 0.995                          |Yes           |  
+|$RMSEA\leq .05$ (or < .08, at least < .10, also 90CI)|RMSEA = 0.031, 90CI[0.000,	0.060]  |Yes           |  
+|$SRMR\leq .08$ (at least < .10)                    |SRMR = 0.024                         |Yes           | 
+|Combination rule: $CFI \geq .95$ & $SRMR \leq .08$ |CFI = 0.995, SRMR = 0.024            |Yes           |
+
+The measurement model created by parcels that represent subscales of the instruments (i.e., defined by prior psychometric evaluation) has dramatically improved. The chi-square is no longer statistically significant and the CFI is > 0.95: $\chi^2(62) = 71.488, p = 0.192, CFI = 0.995, RMSEA = 0.031, 90CI[0.000,	0.060], SRMR = 0.024$. This might be a sufficient solution. An option that is more consistent with Little et al's [@little_why_2013] recommendation for factors that are just-identified, is one that is constructed randomly.
+
+### Measurement Model with Just-Identified Random Parcels
+
+In the prior example, we created three parcels through random assignment for the PWB scale. We can use those same parcels. We repeat those steps for the REMS and CMI scales. This code randomly assigns the 45 REMS items across the three parcels.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+set.seed(230916)
+items <- c('Inf32', 'Inf38', 'Inf21', 'Inf17', 'Inf9', 'Inf36', 'Inf5', 'Inf22', 'SClass6', 'SClass31', 'SClass8', 'SClass40', 'SClass2', 'SClass34', 'SClass11', 'mInv27', 'mInv30', 'mInv39', 'mInv7', 'mInv26', 'mInv33', 'mInv4', 'mInv14', 'mInv10', 'Exot3', 'Exot29', 'Exot45', 'Exot35', 'Exot42', 'Exot23', 'Exot13', 'Exot20', 'Exot43', 'mEnv37', 'mEnv24', 'mEnv19', 'mEnv28', 'mEnv18', 'mEnv41', 'mEnv12', 'mWork25', 'mWork15', 'mWork1', 'mWork16', 'mWork44')
+parcels <- c("REMS_p1", "REMS_p2","REMS_p3")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
+```
+
+This code provides means for each of the three REMS parcels.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+REMS_p1_vars <- c('mWork44','Exot20', 'SClass8', 'Exot43', 'mInv4', 'SClass31', 'SClass40', 'mWork16', 'Exot45', 'SClass2', 'Exot3', 'mEnv24', 'Exot35', 'mInv7', 'Exot13')
+REMS_p2_vars <- c('mEnv41','SClass11', 'Inf5', 'mEnv19', 'mInv39', 'Inf22', 'mEnv18', 'mInv30', 'Inf32', 'SClass34', 'Exot29', 'mInv27', 'mInv10', 'mWork1', 'mWork15')
+REMS_p3_vars <- c('mWork25','Inf38', 'Inf17', 'Exot23', 'mInv33',  'mEnv28', 'Inf36', 'mInv14', 'mEnv37', 'Inf21', 'mEnv12', 'Exot42', 'SClass6', 'Inf9', 'mInv26')
+
+dfKim$p1REMS <- sjstats::mean_n(dfKim[, REMS_p1_vars], .80)
+dfKim$p2REMS <- sjstats::mean_n(dfKim[, REMS_p2_vars], .80)
+dfKim$p3REMS <- sjstats::mean_n(dfKim[, REMS_p3_vars], .80)
+
+#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
+#dfKim$p3REMS <- sjstats::mean_n(dfKim[, ..REMS_p3_vars], .80)
+```
+
+We can repeat the process for the CMI. First, we assign the 47 CMI items to the three parcels.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+set.seed(230916)
+items <- c(IntRel_vars <- c('cmi1', 'cmi2', 'cmi3', 'cmi4', 'cmi5', 'cmi6', 'cmi7', 'cmi8', 'cmi9', 'cmi10', 'cmi11', 'cmi12', 'cmi13', 'cmi14', 'cmi15', 'cmi16', 'cmi17', 'cmi18', 'cmi19', 'cmi20', 'cmi21', 'cmi22', 'cmi23', 'cmi24', 'cmi25', 'cmi26', 'cmi27', 'cmi28', 'cmi29', 'cmi30', 'cmi31', 'cmi32', 'cmi33', 'cmi34', 'cmi35', 'cmi36', 'cmi37', 'cmi38', 'cmi39', 'cmi40', 'cmi41', 'cmi42', 'cmi43', 'cmi44', 'cmi45', 'cmi46', 'cmi47'))
+parcels <- c("CMI_p1", "CMI_p2","CMI_p3")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
+```
+This code provides means for each of the three CMI parcels.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+CMI_p1_vars <- c('cmi45', 'cmi32', 'cmi11',	'cmi33', 'cmi22', 'cmi12', 'cmi26', 'cmi25', 'cmi44', 'cmi13', 'cmi31', 'cmi34', 'cmi37', 'cmi43', 'cmi24', 'cmi9')
+CMI_p2_vars <- c('cmi39', 'cmi15', 'cmi7', 'cmi38', 'cmi18', 'cmi40', 'cmi47', 'cmi27', 'cmi1', 'cmi14', 'cmi42', 'cmi8', 'cmi19', 'cmi20', 'cmi5', 'cmi16')
+CMI_p3_vars <- c('cmi41', 'cmi2', 'cmi4', 'cmi30', 'cmi46', 'cmi6', 'cmi17', 'cmi23', 'cmi10', 'cmi3', 'cmi29', 'cmi28', 'cmi21', 'cmi35', 'cmi36')
+
+dfKim$p1CMI <- sjstats::mean_n(dfKim[, CMI_p1_vars], .80)
+dfKim$p2CMI <- sjstats::mean_n(dfKim[, CMI_p2_vars], .80)
+dfKim$p3CMI <- sjstats::mean_n(dfKim[, CMI_p3_vars], .80)
+
+#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
+#dfKim$p3CMI <- sjstats::mean_n(dfKim[, ..CMI_p3_vars], .80)
+```
+
+
+
+#### Evaluating the Randomly Identified Measurement Model
+
+We can now evaluate the measurement model that is defined by each scale's items that were randomly assigned to three parcels, each.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+rp3_msmt_mod <- "
+        ##measurement model
+         REMS =~ p1REMS + p2REMS + p3REMS
+         
+         CMI =~ p1CMI + p2CMI + p3CMI  
+         
+         PWB =~ p1PWB + p2PWB + p3PWB 
+         
+        
+        # Covariances
+         REMS ~~ CMI
+         REMS ~~ PWB
+         CMI ~~ PWB
+        "
+
+set.seed(230916)
+rp3_msmt_fit <- lavaan::cfa(rp3_msmt_mod, data = dfKim, missing = "fiml")
+rp3_msmt_fit_sum <- lavaan::summary(rp3_msmt_fit, fit.measures = TRUE, standardized = TRUE)
+rp3_msmt_fit_sum
+
+
+```
+How do the results of the measurement model created by three parcels, created by random assignment of indicators to each, fare?
+
+Criteria                                            | Our Results                         | Criteria met?|
+|:--------------------------------------------------|:-----------------------------------:|:------------:|
+|Factor loadings significant, strong, proper valence|all $p < 0.001$, lowest = .635(pwb)  |Yes           | 
+|Non-significant chi-square                         |$\chi ^{2}(24) = 15.965, p = 0.889$  |Yes           |  
+|$CFI\geq .95$ (or at least .90)                    |CFI = 1.000                          |Yes           |  
+|$RMSEA\leq .05$ (or < .08, at least < .10, also 90CI)|RMSEA = 0.000, 90CI[0.000,	 0.031] |Yes           |  
+|$SRMR\leq .08$ (at least < .10)                    |SRMR = 0.017                         |Yes           | 
+|Combination rule: $CFI \geq .95$ & $SRMR \leq .08$ |CFI = 1.000, SRMR = 0.017            |Yes           |
+
+The measurement model created by three parcels, created by random assignment of indicators to each has improved, even further:  $\chi^2(24) = 15.965, p = 0.889, CFI = 1.000, RMSEA = 0.000, 90CI[0.000,	 0.031], SRMR =  0.017$ 
+
+Results of the evaluation of the measurement model can be exported as .csv files with the following code. These produce output that include global fit indices, parameter estimates, and correlations between the latent variables, respectively. 
+The *tidySEM::table_fit* function will display all of the global fit indices.
+
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+#global fit indices
+rp3_msmt_fitstats <- tidySEM::table_fit(rp3_msmt_fit)
+write.csv(rp3_msmt_fitstats, file = "rp3_msmt_fitstats.csv")
+#parameter estimates
+rp3_msmt_pEsts <- tidySEM::table_results(rp3_msmt_fit, digits=3, columns = NULL)
+write.csv(rp3_msmt_pEsts, file = "rp3_msmt_pEsts.csv")
+#correlations between latent variables
+rp3_msmt_LVcorr <- tidySEM::table_cors(rp3_msmt_fit, digits=3)
+write.csv(rp3_msmt_LVcorr, file = "rp3_msmt_LVcorr.csv")
+
+```
+
+
+The diagramming function *semPlot::semPaths* can make a pretty good "guess" at simple models such as these. Given that it is unlikely that there would be room for displaying the measurement model in a journal article, there is generally no need to tinker with it too much.
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+semPlot::semPaths(rp3_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
+```
+
+
+
+
+### APA Style Write-up of the Results
+
+Earlier in its history, researchers would spend considerable time describing their measurement model and, if they had used it, defending their use of parceling. One of my favorite write-ups occurs in Mallinckrodt et al.'s 2005 article[-@mallinckrodt_attachment_2005]. Because it is one of the most complete descriptions I have seen, I have consulted it again and again as I have made decisions about my own models. More recent articles describe [@autin_basic_2022; @tokar_test_2020] generally offer less narration. This is likely because (a) the use of parceling in measurement models is more routine and familiar to the reader/reviewer and (b) in journal articles with limited space, more is allocated for the results and their meaning.
+
+>**Method/Analytic Strategy**
+
+>We specified a model predicting psychological wellbeing from racial ethnic microaggressions, mediated by cultural mistrust. Our primary analysis occurred in two stages. In the first stage we specified and evaluated a measurement model. Our three latent variables (REM, CMI, PWB) were each indicated by three parcels where items were randomly assigned to each parcel. The latent variables were all allowed to covary with each other. In the second stage we specified and evaluated the structural model. Data were analyzed with a maximum likelihood approach the package, *lavaan* (v. 0.6-16).   
+
+>**Results**
+
+>**Preliminary Analyses**
+
+>*  Missing data analyses and managing missing data
+*  Bivariate correlations, means, SDs
+*  Distributional characteristics, assumptions, etc.
+*  Address limitations and concerns
+
+>**Primary Analyses**
+
+>Analyzing our proposed multiple mediator model followed the two-step procedure of first evaluating a measurement model with acceptable fit to the data and then proceeding to test the structural model. Given that different researchers recommend somewhat differing thresholds to determine the adequacy of fit, We used the following as evidence of good fit: comparative fit indix (CFI) $\geq 0.95$, root-mean-square error of approximation (RMSEA) $\leq 0.06$, and the standard root-mean-square residual (SRMR) $\leq 0.08$. To establish aceptable fit, we used CFI $\geq 0.90$, RMSEA $\leq 0.10$, and SRMR $\leq 0.10$ [@weston_brief_2006].
+
+>We evaluated the measurement model by following recommendations by Little et al. [@little_parcel_2002; @little_why_2013]. Specificaly, each latent variable was represented by three parcels. Parcels were created by randomly assigning scale items to the parcels and then calculating the mean, if at least 65% of the items were non-missing.  Factor loadings were all strong, statistically significant, and properly valenced. Global fit statistics were within acceptable thresholds ($\chi^2(24) = 15.965, p = 0.889, CFI = 1.000, RMSEA = 0.000, 90CI[0.000,	 0.031], SRMR =  0.017$). Thus, we proceeded to testing the structural model.
+
+Table 1  
+
+|Factor Loadings for the Measurement Model              
+|:-------------------------------------------------------------|
+
+|                         
+|:----------------------------:|:-----:|:----:|:-----:|:------:|
+| Latent variable and indicator|est    |SE    | *p*   |est_std |
+
+|
+|:-----------------------------|:-----:|:----:|:-----:|:------:|
+|**Racial/Ethnic Microaggressions**|   |      |       |        |
+|Parcel 1                      |1.000	 |0.000	|       |0.944   |
+|Parcel 2                      |1.055	 |0.044	|<0.001	|0.946   |
+|Parcel 3                      |1.031	 |0.046	|<0.001	|0.929   |
+|**Cultura Mistrust**          |       |      |       |        |
+|Parcel 1                      |1.000	 |0.000	|     	|0.963   |
+|Parcel 2                      |1.006	 |0.035	|<0.001	|0.957   |
+|Parcel 3                      |0.937	 |0.034	|<0.001	|0.948   |
+|**Psychological Well-Being**          |      |       |        | 
+|Parcel 1                      |1.000	 |0.000	|     	|0.635   |
+|Parcel 2                      |1.606	 |0.228	|<0.001	|0.801   |
+|Parcel 3                      |1.372	 |0.206	|<0.001	|0.709   |
+
+
+## Residual and Related Questions...
+
+### Wait!  Why did we do this?
+
+Evaluating a structural model involves two steps. The first is the evaluation of the measurement model. This model allows all of the latent variables to freely covary (i.e., to correlate with each other). If this model has poor fit, the structural model will likely be worse. Therefore, evaluating the measurement model, and potentially respecifying it with parceled indicators can be a helpful step prior to evaluating the structural model. In fact, it is a step I highly recommend, because, as we saw, it generally improves model fit. And the just-identified solution better accounts for the measurement error.
+
+### What if one of my variables only has one or two indicators? 
+
+There will be times when we have fewer than three indicators per latent variable (i.e., construct). These can still be represented as latent variables
+
+For two-indicator latent variables, Little et al. [-@little_statistical_2002] recommended placing an equality constraint on the two loadings associated with the construct because this would locate the construct at the true intersection of the two selected indicators.  Procedurally this is fairly straightforward. We simply affix the same label to both items. Recall that in factor definitions, labels are assigned with the asterisk.
+
+```{r eval=FALSE}
+#TwoItemFactor =~ v1*Item1 + v1*Item2
+```
+  
+In the case of the one-indicator construct, Little et al. [-@little_statistical_2002] wrote, “a single-indicator latent variable is essentially equivalent to a manifest variable.  In this case, the error of measurement is either fixed at zero or fixed at a non-zero estimate of unreliability; additionally a second corresponding parameter would also need to be fixed because of issue of identification.” 
+
+This would be accomplished by two lines of code. The first occurs in the latent variable definitions. The second specifies the error variance of the single observed variable to be 0.00.
+
+```{r eval=FALSE}
+# OneItemFactor =~ OneItem
+# OneItem ~~ 0*OneItem
+```
+
+### What if I have missing data? 
+
+If the data contain missing values, the default behavior in *lavaan* is listwise deletion.  If we can presume that the missing mechanism is MCAR or MAR (e.g., there is no systematic missingness), we can specify a *full information maximum likelihood* (FIML) estimation procedure with the argument *missing = "ml"* (or its alias *missing = "fiml"*). Recall that we retained cases if they had 20% or less missing. Usin the "fiml" option is part of the AIA approach [@parent_handling_2013].  
+
+In the first set of code (i.e., the measurement model with all items as indicators) you may have noticed that I left a hashtagged comment in the code about the *missing = "fiml"* statement. Specifically, the script was taking forever to run. If this were real research, I would have willingly waited. In the parceled, more parsimonious, measurement models, including the code worked fine. Adding this statement also nets an indication of how many missing patterns are found in the data used for the analysis This is found in the introductory matter of the output.
+
+
+## Practice Problems
+   
+The suggested practice for this lesson is to evaluate the measurement model (i.e., all latent variables freed to covary) that precedes an evaluation of the structural (i.e., hypothesized relations only and therefore more restrictive) model.
+
+If your data allows it, perhaps reanalyze one of your previously worked practice problems in its latent variable form. This would involved both this lesson's measurement model and the next lesson's structural model.
+
+### Problem #1: Rework the research vignette as demonstrated, but change the random seed
+
+If this topic feels a bit overwhelming, simply change the random seed in the data simulation, then rework the problem. This should provide minor changes to the data (maybe in the second or third decimal point), but the results will likely be very similar. 
+
+### Problem #2: Rework the research vignette, but swap one or more variables
+
+Use the simulated data, but swap out one or more variables. 
+
+### Problem #3:  Try something entirely new.
+
+Evaluate a measurement model for which you have permission and access (e.g.,  IRB approved data you have collected or from your lab; data you simulate from a published article; data from an open science repository; data from other chapters in this OER).
+
+### Grading Rubric
+
+Regardless of your choic(es) complete all the elements listed in the grading rubric.
+
+Using the lecture and workflow (chart) as a guide, please work through all the steps listed in the proposed assignment/grading rubric.
+
+|Assignment Component                    | Points Possible   | Points Earned|
+|:-------------------------------------- |:----------------: |:------------:|
+|1. Identify the structural model you will evaluate. It should have a minimum of three variables and could be one of the prior path-level models you already examined. |5 |_____ |  
+|2. Import the data and format the variables in the model.|      5            |_____         |           
+|3. Specify and evaluate a measurement model with all items as indicators. |10 | _____ |  
+|4. Interpret the results.| 5 |_____  |               
+|5. Specify and evaluate a measurement model with either the subscale or randomly assigned to 3 parcels approaches.|    10        |_____  |   
+|6. Interpret the results.|    5        |_____  |  
+|7. Make notes about similarities and differences in the all-items and parceled approaches.|    5        |_____  |   
+|8. APA style results with table and figure.|    5        |_____  |       
+|9. Explanation to grader.                 |      5        |_____  |
+|**Totals**                               |      55       |_____  |          
+
+```{r, child= 'Worked_Examples/20-7-woRked_MsmtMod.Rmd'}
+```  
+
+```{r include=FALSE}
+sessionInfo()
+```
+
+
+
