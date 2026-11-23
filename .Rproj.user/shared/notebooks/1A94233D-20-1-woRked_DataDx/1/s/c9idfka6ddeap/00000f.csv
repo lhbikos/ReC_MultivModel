@@ -1,0 +1,4 @@
+"0","#alpha for the traditional pedagogy scale"
+"0","psych::alpha(scrub_df[c(""ClearResponsibilities"", ""EffectiveAnswers"",""Feedback"", ""ClearOrganization"",""ClearPresentation"")])"
+"2","Error: When i is a data.table (or character vector), the columns to join by must be specified using 'on=' argument (see ?data.table), by keying x (i.e. sorted, and, marked as sorted, see ?setkey), or by sharing column names between x and i (i.e., a natural join). Keyed joins might have further speed benefits on very large data due to x being sorted in RAM.
+"

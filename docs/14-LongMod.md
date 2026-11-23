@@ -1,5 +1,5 @@
 
-```r
+``` r
 options(scipen=999)#eliminates scientific notation
 ```
 
@@ -49,17 +49,16 @@ In preparing this lesson, I drew heavily from the following resource(s). Other r
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# will install the package if not already installed
-# if(!require(lme4)){install.packages('lme4')}
-# if(!require(sjStats)){install.packages('sjStats')}
-# if(!require(sjPlot)){install.packages('sjPlot')}
-# if(!require(formattable)){install.packages('formattable')}
-# if(!require(tidyverse)){install.packages('tidyverse')}
-# if(!require(robumeta)){install.packages('robumeta')}
-# if(!require(scales)){install.packages('scales')}
-# if(!require(psych)){install.packages('psych')}
-# if(!require(data.table)){install.packages('data.table')}
+``` r
+#will install the package if not already installed
+#if(!require(lme4)){install.packages("lme4")}
+#if(!require(sjPlot)){install.packages("sjPlot")}
+#if(!require(formattable)){install.packages("formattable")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(robumeta)){install.packages("robumeta")}
+#if(!require(scales)){install.packages("scales")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(data.table)){install.packages("data.table")}
 ```
 
 ## The Basic, Longitudinal, Multilevel Model
@@ -120,142 +119,128 @@ Let's take a look at the variables in the study
 
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
 ```
 ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
-```r
+``` r
 set.seed(200513)
 n_client = 12825
 n_session = 5
-b0 = 2.03  #intercept for anxiety
-b1 = -0.22  #b weight for L1 session
-b2 = 0.13  #b weight for L2 sexual identity
-b3 = -0.03  #b weight for L2 Rel1 (D-R vs ND-R & ND-U)
-b4 = 0.01  #b weight for the L2 Rel2 (ND-R vs ND-U)
-# the values used below are the +/- 3SD they produce continuous
-# variables which later need to be transformed to categorical ones;
-# admittedly this introduces a great deal of error/noise into the
-# simulation the article didn't include a correlation matrix or M/SDs
-# so this was a clunky process
-(Session = runif(n_client * n_session, -3.61, 3.18))  #calc L1 Session, values are the +/3 3SD
-(SexualIdentity = runif(n_client * Session, -6.66, 6.92))  #calc L2 Sexual Identity, values are the +/3 3SD
-(Religion1 = runif(n_client * Session, -3.43, 3.37))  #calc L2 Religion1, values are the +/3 3SD
-(Religion2 = rep(runif(n_session, -3.38, 3.41), each = n_session))  #calc L2 Religion2, values are the +/3 3SD
-mu = 1.76  #intercept of empty model 
-sds = 2.264  #this is the SD of the DV
-sd = 1  #this is the observation-level random effect variance that we set at 1
+b0 = 2.03 #intercept for anxiety
+b1 = -.22 #b weight for L1 session
+b2 = .13 #b weight for L2 sexual identity
+b3 =  -.03 #b weight for L2 Rel1 (D-R vs ND-R & ND-U)
+b4 = .01 #b weight for the L2 Rel2 (ND-R vs ND-U)
+#the values used below are the +/- 3SD they produce continuous variables which later need to be transformed to categorical ones; admittedly this introduces a great deal of error/noise into the simulation
+#the article didn't include a correlation matrix or M/SDs so this was a clunky process 
+( Session = runif(n_client*n_session, -3.61, 3.18)) #calc L1 Session, values are the +/3 3SD
+( SexualIdentity = runif(n_client*Session, -6.66, 6.92)) #calc L2 Sexual Identity, values are the +/3 3SD
+( Religion1 = runif(n_client*Session, -3.43, 3.37)) #calc L2 Religion1, values are the +/3 3SD
+( Religion2 = rep (runif(n_session, -3.38, 3.41), each = n_session)) #calc L2 Religion2, values are the +/3 3SD
+mu = 1.76 #intercept of empty model 
+sds = 2.264 #this is the SD of the DV
+sd = 1 #this is the observation-level random effect variance that we set at 1
 
-# ( church = rep(LETTERS[1:n_church], each = n_mbrs) ) #this worked
-# in the prior
-(client = rep(LETTERS[1:n_client], each = n_session))
-# ( session = numbers[1:(n_client*n_session)] )
-(clienteff = rnorm(n_client, 0, sds))
-(clienteff = rep(clienteff, each = n_session))
-(sessioneff = rnorm(n_client * n_session, 0, sd))
-(Anxiety = b0 + b1 * Session + b2 * SexualIdentity + b3 * Religion1 + b4 *
-    Religion2 + clienteff + sessioneff)
-(dat = data.frame(client, clienteff, sessioneff, Session, SexualIdentity,
-    Religion1, Religion2, Anxiety))
+#( church = rep(LETTERS[1:n_church], each = n_mbrs) ) #this worked in the prior
+( client = rep(LETTERS[1:n_client], each = n_session) )
+#( session = numbers[1:(n_client*n_session)] )
+( clienteff = rnorm(n_client, 0, sds) )
+( clienteff = rep(clienteff, each = n_session) )
+( sessioneff = rnorm(n_client*n_session, 0, sd) )
+( Anxiety = b0 + b1*Session + b2*SexualIdentity + b3*Religion1 + b4*Religion2 + clienteff + sessioneff)
+( dat = data.frame(client, clienteff, sessioneff, Session, SexualIdentity, Religion1, Religion2, Anxiety) )
 
-dat <- dat %>%
-    dplyr::mutate(ID = row_number())
-# moving the ID number to the first column; requires
-dat <- dat %>%
-    dplyr::select(ID, everything())
+dat <- dat %>% dplyr::mutate(ID = row_number())
+#moving the ID number to the first column; requires 
+dat <- dat%>%dplyr::select(ID, everything())
 
-Lefevor2017 <- dat %>%
-    select(ID, client, Session, SexualIdentity, Religion1, Religion2, Anxiety)
+Lefevor2017 <- dat%>%
+  select(ID, client, Session, SexualIdentity, Religion1, Religion2, Anxiety)
 
 Lefevor2017$ClientID <- rep(c(1:12825), each = 5)
-# rounded Sexual Identity into dichotomous variable 85% were
-# heterosexual,
+#rounded Sexual Identity into dichotomous variable
+#85% were heterosexual, 
 
-# The following variables should be L2, but were simulated as if they
-# were L1
-Lefevor2017$Rel1 <- as.numeric(robumeta::group.mean(Lefevor2017$Religion1,
-    Lefevor2017$ClientID))  #aggregated at group mean
-Lefevor2017$Rel2 <- as.numeric(robumeta::group.mean(Lefevor2017$Religion2,
-    Lefevor2017$ClientID))  #aggregated at group mean
-Lefevor2017$SxID <- as.numeric(robumeta::group.mean(Lefevor2017$SexualIdentity,
-    Lefevor2017$ClientID))  #aggregated at group mean
+#The following variables should be L2, but were simulated as if they were L1
+Lefevor2017$Rel1 <- as.numeric(robumeta::group.mean(Lefevor2017$Religion1,Lefevor2017$ClientID))#aggregated at group mean
+Lefevor2017$Rel2 <- as.numeric(robumeta::group.mean(Lefevor2017$Religion2,Lefevor2017$ClientID))#aggregated at group mean
+Lefevor2017$SxID <- as.numeric(robumeta::group.mean(Lefevor2017$SexualIdentity,Lefevor2017$ClientID))#aggregated at group mean
 
-# Rel2 has contrast codes for dominant religion (DR, 0), nondominant
-# religious (NDR, 1) and nondominant unspecified (NDU, -1) Strategy
-# is to figure out the raw score associated with the percentile rank
-# of -1 and 0, to set the breakpoints for the coding NDU coded as -1
-# 19.2+13.5+9.6 NDU has bottom 42.3 percent
+#Rel2 has contrast codes for dominant religion (DR, 0), nondominant religious (NDR, 1) and nondominant unspecified (NDU, -1)
+#Strategy is to figure out the raw score associated with the percentile rank of  -1 and 0, to set the breakpoints for the coding
+#NDU coded as -1
+#19.2+13.5+9.6
+#NDU has bottom 42.3 percent
 
-# DR coded as 0, so quantile cut will be 42.3 + 52.7 = 95th 33.4 +
-# 19.3 52.7% of sample (according to article) was DR must look up
-# percentile ranks for 5% and 57.5%
+#DR coded as 0, so quantile cut will be 42.3 + 52.7 = 95th
+#33.4 + 19.3
+#52.7% of sample (according to article) was DR
+#must look up percentile ranks for 5% and 57.5%
 
-# NDR 2.3+1+1+.7 NDR has 5% of sample 42.3+52.7
-# quantile(Lefevor2017$Religion2, probs = c(.423, .95)) effects
-# coding the second Religion variable so that NDU = -1, DR = 0, NDR =
-# 1
-Lefevor2017$Rel2L2 <- ifelse(Lefevor2017$Religion2 <= -3.0877087, -1, ifelse(Lefevor2017$Religion2 >=
-    -3.0877087 & Lefevor2017$Religion2 <= 0.9299491, 0, 1))
+#NDR
+#2.3+1+1+.7
+#NDR has 5% of sample
+#42.3+52.7
+#quantile(Lefevor2017$Religion2, probs = c(.423, .95))
+#effects coding the second Religion variable so that NDU = -1, DR = 0, NDR = 1
+Lefevor2017$Rel2L2 <- ifelse(Lefevor2017$Religion2 <= -3.0877087, -1, 
+                             ifelse(Lefevor2017$Religion2 >= -3.0877087 & Lefevor2017$Religion2 <= 0.9299491, 0,1))
 
-# checking work Rel2L2_table <- table(Lefevor2017$Rel2L2)
-# prop.table(Rel2L2_table) Lefevor2017 %>% count(Rel2L2)
+#checking work
+#Rel2L2_table <- table(Lefevor2017$Rel2L2)
+#prop.table(Rel2L2_table)
+#Lefevor2017 %>%
+#count(Rel2L2)
 
-# creating the first religion variable where DR is 2 and NDR and NDU
-# are both -1
-Lefevor2017$Rel1L2 <- plyr::mapvalues(Lefevor2017$Rel2L2, from = c(-1,
-    0, 1), to = c(-1, 2, -1))
-Lefevor2017$DRel0 <- plyr::mapvalues(Lefevor2017$Rel2L2, from = c(-1, 0,
-    1), to = c(1, 0, 1))
+#creating the first religion variable where DR is 2 and NDR and NDU are both -1
+Lefevor2017$Rel1L2 <- plyr::mapvalues(Lefevor2017$Rel2L2, from = c(-1, 0, 1), to = c(-1, 2, -1))
+Lefevor2017$DRel0 <- plyr::mapvalues(Lefevor2017$Rel2L2, from = c(-1, 0, 1), to = c(1, 0, 1))
 
-# checking to make sure that 52.7% are coded 2 (DR) Rel1L2_table <-
-# table(Lefevor2017$Rel1L2) prop.table(Rel1L2_table)
+#checking to make sure that 52.7% are coded 2 (DR)
+#Rel1L2_table <- table(Lefevor2017$Rel1L2)
+#prop.table(Rel1L2_table)
 
-# heterosexual is -1 LGBTQIA+ is 1 quantile(Lefevor2017$SxID, probs =
-# c(.85))
-Lefevor2017$SexID <- ifelse(Lefevor2017$SxID <= 1.203468, -1, 1)
-Lefevor2017$Het0 <- plyr::mapvalues(Lefevor2017$SexID, from = c(-1, 1),
-    to = c(0, 1))
-# SexID_table <- table(Lefevor2017$SexID) prop.table(SexID_table)
+#heterosexual is -1
+#LGBTQIA+ is 1
+#quantile(Lefevor2017$SxID, probs = c(.85))
+Lefevor2017$SexID <- ifelse(Lefevor2017$SxID <= 1.203468, -1,1)
+Lefevor2017$Het0 <- plyr::mapvalues(Lefevor2017$SexID, from = c(-1,1), to = c(0,1))
+#SexID_table <- table(Lefevor2017$SexID)
+#prop.table(SexID_table)
 
-# creating a variable representing the session number for each
-# client, in the article up to 20 sessions were allowed.
-# install.packages('scales')
+#creating a variable representing the session number for each client, in the article up to 20 sessions were allowed. 
+#install.packages("scales")
 
-# Right from the beginning I centered this so that 0 would represent
-# intake
-Lefevor2017$Session0 <- as.integer(scales::rescale(Lefevor2017$Session,
-    to = c(0, 19)))
+#Right from the beginning I centered this so that 0 would represent intake
+Lefevor2017$Session0 <- as.integer(scales::rescale(Lefevor2017$Session, to = c(0, 19)))
 
-# creating session waves (1 thru 5) by rank ordering within each
-# person's variable the continuous variable Session that was created
-# in the original simulation
-Lefevor2017 <- Lefevor2017 %>%
-    dplyr::group_by(ClientID) %>%
-    dplyr::mutate(Index = rank(Session))
+#creating session waves (1 thru 5) by rank ordering within each person's variable the continuous variable Session that was created in the original simulation
+Lefevor2017 <- Lefevor2017%>%
+  dplyr::group_by(ClientID) %>%
+  dplyr::mutate(Index = rank(Session))
 
-# selecting the simulated variables
-Lefevor2017_sim <- Lefevor2017 %>%
-    select(ClientID, Index, Session0, Anxiety, DRel0, Het0)
+#selecting the simulated variables
+Lefevor2017_sim <- Lefevor2017%>%
+  select(ClientID, Index, Session0, Anxiety, DRel0, Het0)
 
-# In the transition from long-to-wide, it seems like you can only do
-# one L1 variable at a time When there are multiple L1 and L2 vars,
-# put all L2 vars on left of tilde The wave/index function should
-# come next; this should be finite (like integers of 1,2,3,4) with a
-# maximum Put the name of the SINGLE L1 variable in the concatonated
-# list
+#In the transition from long-to-wide, it seems like you can only do one L1 variable at a time
+#When there are multiple L1 and L2 vars, put all L2 vars on left of tilde
+#The wave/index function should come next; this should be finite (like integers of 1,2,3,4) with a maximum
+#Put the name of the SINGLE L1 variable in the concatonated list
 library(data.table)
 ```
 
@@ -277,64 +262,53 @@ library(data.table)
 ##     transpose
 ```
 
-```r
-LfvrWp1 <- reshape2::dcast(Lefevor2017_sim, ClientID + DRel0 + Het0 ~ Index,
-    value.var = c("Index"))
-# rename the anxiety variable
-LfvrWp1 <- rename(LfvrWp1, Index1 = "1", Index2 = "2", Index3 = "3", Index4 = "4",
-    Index5 = "5")
-LfvrWp2 <- reshape2::dcast(Lefevor2017_sim, ClientID ~ Index, value.var = c("Anxiety"))
-# rename the anxiety variable
-LfvrWp2 <- rename(LfvrWp2, Anx1 = "1", Anx2 = "2", Anx3 = "3", Anx4 = "4",
-    Anx5 = "5")
-# For remaining L1 variable, do them one at a time -- key them from
-# the person-level ID and the wave/index.
-LfvrWp3 <- reshape2::dcast(Lefevor2017_sim, ClientID ~ Index, value.var = c("Session0"))
-LfvrWp3 <- rename(LfvrWp3, Sess1 = "1", Sess2 = "2", Sess3 = "3", Sess4 = "4",
-    Sess5 = "5")
-# Next, join the dataframes by the person-level ID Only two can be
-# joined at a time
+``` r
+LfvrWp1<-reshape2::dcast(Lefevor2017_sim, ClientID + DRel0 + Het0 ~ Index, value.var = c("Index"))
+#rename the anxiety variable
+LfvrWp1<-  rename(LfvrWp1, Index1 = "1", Index2 = "2", Index3 = "3", Index4 = "4", Index5 = "5")
+LfvrWp2<-reshape2::dcast(Lefevor2017_sim, ClientID ~ Index, value.var = c("Anxiety"))
+#rename the anxiety variable
+LfvrWp2<-  rename(LfvrWp2, Anx1 = "1", Anx2 = "2", Anx3 = "3", Anx4 = "4", Anx5 = "5")
+#For remaining L1 variable, do them one at a time -- key them from the person-level ID and the wave/index.
+LfvrWp3<-reshape2::dcast(Lefevor2017_sim, ClientID ~ Index, value.var = c("Session0"))
+LfvrWp3<-  rename(LfvrWp3, Sess1 = "1", Sess2 = "2", Sess3 = "3", Sess4 = "4", Sess5 = "5")
+#Next, join the dataframes by the person-level ID
+#Only two can be joined at a time
 LfvrWide <- dplyr::full_join(LfvrWp1, LfvrWp2, by = c("ClientID"))
-LfvrWide <- dplyr::full_join(LfvrWide, LfvrWp3, by = c("ClientID"))
+LfvrWide <- dplyr::full_join(LfvrWide, LfvrWp3,  by = c("ClientID"))
 ```
 
 To increase the portability of the OER, this lesson uses simulated data. Here is script for exporting/downloading the data as a .csv file to your local computer and then importing/uploading it again. I find that saving the .csv file (data) in the same place as the .rmd file(s) is essential for R to connect the two.
 
 Because this simulation can take a few minutes, you may wish to do this, even as you work through this lesson, so that resimulations take less time and comuting resources.
 
-```r
-# Exporting and importing the wide df
-write.table(LfvrWide, file = "LefevorWide.csv", sep = ",", col.names = TRUE,
-    row.names = FALSE)
-LfvrWide <- read.csv("LefevorWide.csv", head = TRUE, sep = ",")
+``` r
+#Exporting and importing the wide df
+write.table(LfvrWide, file="LefevorWide.csv", sep=",", col.names=TRUE, row.names=FALSE)
+LfvrWide <- read.csv ("LefevorWide.csv", head = TRUE, sep = ",")
 ```
 
 As before we need to restructure it into a long format.
 
 
-```r
-LfvrLong <- (data.table::melt(setDT(LfvrWide), id.vars = c("ClientID",
-    "DRel0", "Het0"), measure.vars = list(c("Anx1", "Anx2", "Anx3", "Anx4",
-    "Anx5"), c("Sess1", "Sess2", "Sess3", "Sess4", "Sess5"))))
-# This process does not preserve the variable names, so we need to
-# rename them
-LfvrLong <- rename(LfvrLong <- rename(LfvrLong <- rename(LfvrLong, Index = variable,
-    Anxiety = "value1", SesNum = "value2")))
+``` r
+LfvrLong <- (data.table::melt(setDT(LfvrWide), id.vars = c("ClientID", "DRel0", "Het0"), measure.vars =list(c("Anx1", "Anx2", "Anx3", "Anx4", "Anx5"), c("Sess1", "Sess2", "Sess3", "Sess4", "Sess5"))))
+#This process  does not preserve the variable names, so we need to rename them
+LfvrLong<-  rename(LfvrLong<-  rename(LfvrLong<-  rename(LfvrLong, Index = variable, Anxiety = "value1", SesNum = "value2")))
 
-# rearanging variables so that IDs are together
-LfvrLong <- LfvrLong %>%
-    select(ClientID, Index, SesNum, Anxiety, DRel0, Het0)
-# resorting data so that each person is together
+#rearanging variables so that IDs are together
+LfvrLong <- LfvrLong%>%
+  select(ClientID, Index, SesNum, Anxiety, DRel0, Het0)
+#resorting data so that each person is together
 LfvrLong <- arrange(LfvrLong, ClientID, Index)
 ```
 
 And here is code for writing it as an outfile and bringing it back in.  This means that you can just import the file and start working from here (without taking time to resimulate the data and convert it again).
 
 
-```r
-write.table(LfvrLong, file = "LfvrLong.csv", sep = ",", col.names = TRUE,
-    row.names = FALSE)
-LfvrLong <- read.csv("LfvrLong.csv", head = TRUE, sep = ",")
+``` r
+write.table(LfvrLong, file="LfvrLong.csv", sep=",", col.names=TRUE, row.names=FALSE)
+LfvrLong <- read.csv ("LfvrLong.csv", head = TRUE, sep = ",")
 ```
 
 ## Working the Longitudinal, Multilevel Model
@@ -447,8 +421,8 @@ In the model below (the goal of which is really to just get a mean and understan
 RML is the default for *lme4*, we switch to FML with the statement, "REML = FALSE".
 
 
-```r
-Mod1a <- lme4::lmer(Anxiety ~ 1 + (1 | ClientID), LfvrLong, REML = FALSE)
+``` r
+Mod1a <- lme4::lmer(Anxiety ~1 +(1 | ClientID), LfvrLong, REML = FALSE)
 summary(Mod1a)
 ```
 
@@ -475,10 +449,8 @@ summary(Mod1a)
 ## (Intercept)  2.07564    0.02053   101.1
 ```
 
-```r
-sjPlot::tab_model(Mod1a, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
-    show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
-    use.viewer = TRUE, dv.labels = c("Mod1"))
+``` r
+sjPlot::tab_model(Mod1a, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1"))
 ```
 
 ```
@@ -542,18 +514,17 @@ sjPlot::tab_model(Mod1a, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 With the *plot_model()* function in *sjPlot*, we can plot the random effects.  For this intercept-only model, we see the mean and range of the anxiety variable
 
 With an intercept only, there is not much to plot. We can, though, look at the residuals to see about outliers, non-normality, and heteroscedasticity. They look reasonable to me.
 
 
-```r
-sjPlot::plot_model(Mod1a, type = "diag")
+``` r
+sjPlot::plot_model (Mod1a, type="diag")
 ```
 
 ```
@@ -610,7 +581,7 @@ The *intraclass correlation coeffient (ICC)*, $\rho $, describes the proportion 
 $$\rho =\frac{\tau_{00}}{\sigma^{2}+\tau_{00}}$$
 
 
-```r
+``` r
 5.12/(5.12+1.44)
 ```
 
@@ -650,16 +621,16 @@ To model a random slope we use:  DV ~ IV + (rand.slope | rand.int).
 Mod1a <- lmer(Anxiety ~1 +(1 | ClientID), LfvrLong, REML = FALSE)
 
 
-```r
-# with lme4 package
-Mod2a <- lme4::lmer(Anxiety ~ SesNum + (SesNum | ClientID), LfvrLong, REML = FALSE)
+``` r
+#with lme4 package
+Mod2a <- lme4::lmer(Anxiety ~ SesNum +(SesNum | ClientID), LfvrLong, REML = FALSE)
 ```
 
 ```
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
+``` r
 summary(Mod2a)
 ```
 
@@ -694,10 +665,8 @@ summary(Mod2a)
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
-sjPlot::tab_model(Mod1a, Mod2a, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
-    show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
-    use.viewer = TRUE, dv.labels = c("Mod1", "Mod2"))
+``` r
+sjPlot::tab_model(Mod1a, Mod2a, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2"))
 ```
 
 ```
@@ -800,23 +769,22 @@ sjPlot::tab_model(Mod1a, Mod2a, p.style = "numeric", show.ci = FALSE, show.se = 
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 A plot of predicted values illustrates the decrease in anxiety as sessions continue.
 
-```r
-sjPlot::plot_model(Mod2a, type = "pred", terms = c("SesNum"))
+``` r
+sjPlot::plot_model (Mod2a, type="pred", terms=c("SesNum"))
 ```
 
 ![](14-LongMod_files/figure-docx/unnamed-chunk-13-1.png)<!-- -->
 
 Diagnostic plots continue to check for outliers, non-normality, and heteroscedasticity. In my mind they continue to look reasonable.
 
-```r
-sjPlot::plot_model(Mod2a, type = "diag")
+``` r
+sjPlot::plot_model (Mod2a, type="diag")
 ```
 
 ```
@@ -919,7 +887,7 @@ $$Pseudo R_{\varepsilon }^{2} = \frac{\sigma^{2}(unconditional. means. model) - 
 We calculate it manually:
 
 
-```r
+``` r
 (1.44 - 1.26)/1.44
 ```
 
@@ -982,9 +950,8 @@ Mod1a <- lmer(Anxiety ~1 +(1 | ClientID), LfvrLong, REML = FALSE)
 Mod2a <- lmer(Anxiety ~ SesNum +(SesNum | ClientID), LfvrLong, REML = FALSE)
 
 
-```r
-Mod3a <- lme4::lmer(Anxiety ~ SesNum * Het0 + (SesNum | ClientID), LfvrLong,
-    REML = FALSE)
+``` r
+Mod3a <- lme4::lmer(Anxiety ~ SesNum*Het0 +(SesNum | ClientID), LfvrLong, REML = FALSE)
 ```
 
 ```
@@ -997,7 +964,7 @@ Mod3a <- lme4::lmer(Anxiety ~ SesNum * Het0 + (SesNum | ClientID), LfvrLong,
 ##  - Rescale variables?
 ```
 
-```r
+``` r
 summary(Mod3a)
 ```
 
@@ -1038,10 +1005,8 @@ summary(Mod3a)
 ##  - Rescale variables?
 ```
 
-```r
-sjPlot::tab_model(Mod1a, Mod2a, Mod3a, p.style = "numeric", show.ci = FALSE,
-    show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
-    show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3"))
+``` r
+sjPlot::tab_model(Mod1a, Mod2a,Mod3a, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3"))
 ```
 
 ```
@@ -1187,16 +1152,15 @@ sjPlot::tab_model(Mod1a, Mod2a, Mod3a, p.style = "numeric", show.ci = FALSE,
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 
 Diagnostic plots continue to check for outliers, non-normality, and heteroscedasticity. In my mind they continue to look reasonable.
 
-```r
-sjPlot::plot_model(Mod3a, type = "diag")
+``` r
+sjPlot::plot_model (Mod3a, type="diag")
 ```
 
 ```
@@ -1241,8 +1205,8 @@ sjPlot::plot_model(Mod3a, type = "diag")
 ![](14-LongMod_files/figure-docx/unnamed-chunk-19-4.png)<!-- -->
 
 
-```r
-sjPlot::plot_model(Mod3a, type = "int", terms = c("SesNum", "Het0 [0,1]"))
+``` r
+sjPlot::plot_model (Mod3a, type="int", terms = c("SesNum", "Het0 [0,1]"))
 ```
 
 ![](14-LongMod_files/figure-docx/unnamed-chunk-20-1.png)<!-- -->
@@ -1263,7 +1227,7 @@ $\tau _{00}$ decreased from 5.18 (Mod2a) to 5.17 (Mod3a). We can apply the propo
 $$Pseudo R_{\zeta }^{2} = \frac{\tau _{00} (unconditional. growth. model) - \tau _{00}(subsequent. model)}{\tau _{00}(unconditional. growth. model)}$$
 
 
-```r
+``` r
 (5.18-5.17)/5.18
 ```
 
@@ -1296,17 +1260,16 @@ Note that in this *lmer()* specification, I have added a control statement:  *co
 Another troubleshooting solution would be to trim the model of the non-significant effects. At this point, I will try to get the full model to run and then trim at the end.
 
 
-```r
-# with lme4 package
-Mod4a <- lme4::lmer(Anxiety ~ SesNum * Het0 + SesNum * DRel0 + Het0 * DRel0 +
-    (SesNum | ClientID), LfvrLong, REML = FALSE, control = lme4::lmerControl(optimizer = "bobyqa"))
+``` r
+#with lme4 package
+Mod4a <- lme4::lmer(Anxiety ~ SesNum*Het0 + SesNum*DRel0 + Het0*DRel0 + (SesNum | ClientID), LfvrLong, REML = FALSE, control = lme4::lmerControl(optimizer= "bobyqa"))
 ```
 
 ```
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
+``` r
 summary(Mod4a)
 ```
 
@@ -1353,11 +1316,8 @@ summary(Mod4a)
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
-sjPlot::tab_model(Mod1a, Mod2a, Mod3a, Mod4a, p.style = "numeric", show.ci = FALSE,
-    show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
-    show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3",
-        "Mod4"))
+``` r
+sjPlot::tab_model(Mod1a, Mod2a, Mod3a, Mod4a, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3", "Mod4"))
 ```
 
 ```
@@ -1579,15 +1539,14 @@ sjPlot::tab_model(Mod1a, Mod2a, Mod3a, Mod4a, p.style = "numeric", show.ci = FAL
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 Diagnostic plots continue to check for outliers, non-normality, and heteroscedasticity. In my mind they continue to look reasonable.
 
-```r
-sjPlot::plot_model(Mod4a, type = "diag")
+``` r
+sjPlot::plot_model (Mod4a, type="diag")
 ```
 
 ```
@@ -1634,9 +1593,8 @@ sjPlot::plot_model(Mod4a, type = "diag")
 
 A plot of predicted values illustrates that anxiety continues decrease as sessions increase, even though we have added additional predictors. So far, this suggests stability in that result.
 
-```r
-sjPlot::plot_model(Mod4a, type = "int", terms = c("SesNum", "Het0 [0,1]",
-    "DRel[0,1]"))
+``` r
+sjPlot::plot_model (Mod4a, type="int", terms = c("SesNum", "Het0 [0,1]", "DRel[0,1]"))
 ```
 
 ```
@@ -1659,16 +1617,14 @@ sjPlot::plot_model(Mod4a, type = "int", terms = c("SesNum", "Het0 [0,1]",
 
 ![](14-LongMod_files/figure-docx/unnamed-chunk-25-3.png)<!-- -->
 
-```r
-# plot_model (Mod3a, type='int', terms = c('SesNum', 'Het0 [0,1]'))
-# #this produces the same result, I included it as an example of how
-# to add further specifications sjPlot::plot_model (Mod4a,
-# type='pred',terms=c('SesNum', 'Het0', 'DRel0'))
+``` r
+#plot_model (Mod3a, type="int", terms = c("SesNum", "Het0 [0,1]")) #this produces the same result, I included it as an example of how to add further specifications
+#sjPlot::plot_model (Mod4a, type="pred",terms=c("SesNum", "Het0", "DRel0"))
 ```
 
 
-```r
-sjPlot::plot_model(Mod4a, type = "pred", terms = c("SesNum", "Het0", "DRel0"))
+``` r
+sjPlot::plot_model (Mod4a, type="pred",terms=c("SesNum", "Het0", "DRel0"))
 ```
 
 ![](14-LongMod_files/figure-docx/unnamed-chunk-26-1.png)<!-- -->
@@ -1699,28 +1655,20 @@ Mod3a <- lmer(Anxiety ~ SesNum*Het0 +(SesNum | ClientID), LfvrLong, REML = FALSE
 Mod4a <- lmer(Anxiety ~ SesNum*Het0 + SesNum*DRel0 + Het0*DRel0 + (SesNum | ClientID), LfvrLong, REML = FALSE, control = lmerControl(optimizer= "bobyqa"))
 
 
-```r
-# Mod5a<- lmer(Anxiety ~ SesNum*DRel0 + Het0*DRel0 + (SesNum |
-# ClientID), LfvrLong, REML = FALSE, control = lmerControl(optimizer=
-# 'bobyqa')) Mod5a<- lmer(Anxiety ~ SesNum*Het0 + Het0*DRel0 +
-# (SesNum | ClientID), LfvrLong, REML = FALSE, control =
-# lmerControl(optimizer= 'bobyqa'))#Mod5a<- lmer(Anxiety ~
-# SesNum*Het0 + SesNum*DRel0 + (SesNum | ClientID), LfvrLong, REML =
-# FALSE, control = lmerControl(optimizer= 'bobyqa')) Mod5a<-
-# lmer(Anxiety ~ SesNum + Het0*DRel0 + (SesNum | ClientID), LfvrLong,
-# REML = FALSE, control = lmerControl(optimizer= 'bobyqa')) Mod5a <-
-# lmer(Anxiety ~ Het0 + SesNum + DRel0 + (SesNum | ClientID),
-# LfvrLong, REML = FALSE, control = lmerControl(optimizer= 'bobyqa'))
+``` r
+#Mod5a<- lmer(Anxiety ~  SesNum*DRel0 + Het0*DRel0 + (SesNum | ClientID), LfvrLong, REML = FALSE, control = lmerControl(optimizer= "bobyqa"))
+#Mod5a<- lmer(Anxiety ~ SesNum*Het0 +  Het0*DRel0 + (SesNum | ClientID), LfvrLong, REML = FALSE, control = lmerControl(optimizer= "bobyqa"))#Mod5a<- lmer(Anxiety ~ SesNum*Het0 + SesNum*DRel0 + (SesNum | ClientID), LfvrLong, REML = FALSE, control = lmerControl(optimizer= "bobyqa"))
+#Mod5a<- lmer(Anxiety ~ SesNum + Het0*DRel0 + (SesNum | ClientID), LfvrLong, REML = FALSE, control = lmerControl(optimizer= "bobyqa"))
+#Mod5a <- lmer(Anxiety ~ Het0 + SesNum + DRel0 + (SesNum | ClientID), LfvrLong, REML = FALSE, control = lmerControl(optimizer= "bobyqa"))
 
-Mod5a <- lme4::lmer(Anxiety ~ SesNum + Het0 + (SesNum | ClientID), LfvrLong,
-    REML = FALSE, control = lme4::lmerControl(optimizer = "bobyqa"))
+Mod5a<- lme4::lmer(Anxiety ~ SesNum + Het0 + (SesNum | ClientID), LfvrLong, REML = FALSE, control = lme4::lmerControl(optimizer= "bobyqa"))
 ```
 
 ```
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
+``` r
 summary(Mod5a)
 ```
 
@@ -1758,11 +1706,8 @@ summary(Mod5a)
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
-sjPlot::tab_model(Mod1a, Mod2a, Mod3a, Mod4a, Mod5a, p.style = "numeric",
-    show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE,
-    show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1",
-        "Mod2", "Mod3", "Mod4", "Mod5"))
+``` r
+sjPlot::tab_model(Mod1a, Mod2a, Mod3a, Mod4a, Mod5a, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3", "Mod4", "Mod5"))
 ```
 
 ```
@@ -2021,16 +1966,15 @@ sjPlot::tab_model(Mod1a, Mod2a, Mod3a, Mod4a, Mod5a, p.style = "numeric",
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 Diagnostic plots continue to check for outliers, non-normality, and heteroscedasticity. In my mind they continue to look reasonable.
 
 
-```r
-sjPlot::plot_model(Mod5a, type = "diag")
+``` r
+sjPlot::plot_model (Mod5a, type="diag")
 ```
 
 ```
@@ -2076,8 +2020,8 @@ sjPlot::plot_model(Mod5a, type = "diag")
 Because of the significant trimming (of non-significant interaction effects), our plot resemble those we have observed throughout the model building process. 
 
 
-```r
-sjPlot::plot_model(Mod5a, type = "pred", terms = c("SesNum", "Het0"))
+``` r
+sjPlot::plot_model (Mod5a, type="pred",terms=c("SesNum", "Het0"))
 ```
 
 ![](14-LongMod_files/figure-docx/unnamed-chunk-29-1.png)<!-- -->
@@ -2094,7 +2038,7 @@ $$Pseudo R^{2} = \frac{\sigma^2 (unconditional. means(or.growth)model) - \sigma^
 
 First we assess the relative proportion of within-persons variance accounted for by the final model. Using the $\sigma ^{2}$ (L1/Within-subjects variance) we compare Mod5a (final, trimmed model) compared to Mod1a (unconditioned means model). In calculating this (all of these, actually), I recognize it did not decrease after Mod2a, but I want to demonstrate it as practice.  
 
-```r
+``` r
 #for within-subjects variance
 (1.44-1.26)/1.44
 ```
@@ -2106,7 +2050,7 @@ Relative to the empty model, the final, trimmed model (Mod5a) explains 13% of th
 
 Next we assess the relative proportion of between-persons intercept variance accounted for by the final model. Using the $\tau _{00}$ (L2/intercept variance) we compare Mod5a (final, trimmed model) to Mod2a (unconditional growth model).
 
-```r
+``` r
 #for bewteen subjects intercept
 (5.18-5.17)/5.18
 ```
@@ -2118,7 +2062,7 @@ Relative to the unconditional growth model (Mod2a), the final model (Mod5a) expl
 
 Finally, we assess the relative proportion of between-persons slope variance accounted for by the final model.  Using the $\tau _{11}$ (L2/slope variance), we compare Mod5a (final, trimmed model) to Mod2a (unconditional growth model).
 
-```r
+``` r
 #for for between subjects slope
 0-0/(0)
 ```
@@ -2154,8 +2098,8 @@ Two requirements to use the deviance statistic:
 We can see the deviance values in the tab-Model and observe if they increase or decrease. The *anova()* function can formally conduct a Chi-square difference test to tell us if the models are statistically significantly different from each other.
 
 
-```r
-devALL <- anova(Mod1a, Mod2a, Mod3a, Mod4a, Mod5a)
+``` r
+devALL <- anova(Mod1a, Mod2a, Mod3a, Mod4a, Mod5a) 
 devALL
 ```
 
@@ -2185,8 +2129,8 @@ devALL
 In a manner consistent with the fixed effects, we see that models 2a and 5a are improvements over the more simple models that precede them.  If we wanted specific comparisons we could list pairs, for example:
 
 
-```r
-devM4M5 <- anova(Mod4a, Mod5a)
+``` r
+devM4M5 <- anova(Mod4a, Mod5a) 
 devM4M5
 ```
 

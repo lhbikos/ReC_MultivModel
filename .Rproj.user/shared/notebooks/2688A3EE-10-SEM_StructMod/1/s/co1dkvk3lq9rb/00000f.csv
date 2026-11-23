@@ -1,0 +1,5 @@
+"0","#global fit indices"
+"0","Kim_struct_fitstats <- tidySEM::table_fit(Kim_struct_fit)"
+"0","write.csv(Kim_struct_fitstats, file = ""Kim_struct_fitstats.csv"")"
+"0","#the code below writes the parameter estimates into a .csv file"
+"0","write.csv(Kim_struct_pEsts, file = ""Kim_struct_pEsts.csv"")"

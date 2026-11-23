@@ -53,13 +53,14 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# will install the package if not already installed
-# if(!require(lavaan)){install.packages('lavaan')}
-# if(!require(semPlot)){install.packages('semPlot')}
-# if(!require(tidyverse)){install.packages('tidyverse')}
-# if(!require(psych)){install.packages('psych')}
-# if(!require(jtools)){install.packages('jtools')}
+``` r
+#will install the package if not already installed
+#if(!require(lavaan)){install.packages("lavaan")}
+#if(!require(semPlot)){install.packages("semPlot")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(jtools)){install.packages("jtools")}
+#if(!require(datawizard)){install.packages("datawizard")}
 ```
 
 ## Evaluating Structural Models
@@ -141,7 +142,7 @@ Below is a figure of the model that we will be using structural equation modelin
 We used the *lavaan::simulateData* function for the simulation. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. For all others we specified a factor loading of 0.80. We then approximated the *measurement model* by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette [@kim_racial_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
 
 
-```r
+``` r
 #Entering the intercorrelations, means, and standard deviations from the journal article
 
 Kim_generating_model <- '
@@ -224,13 +225,13 @@ If you prefer the .rds format, use this script (remove the hashtags). The .rds f
 Script to save the data to your computer as an .rds file.
 
 
-```r
+``` r
 #saveRDS(dfKim, 'dfKim.rds')  
 ```
 
 Once saved, you could clean your environment and bring the data back in from its .csv format.
 
-```r
+``` r
 #dfKim<- readRDS('dfKim.rds')
 ```
 
@@ -239,14 +240,13 @@ If you prefer the .csv format (think "Excel lite") use this script (remove the h
 Script to save the data to your computer as a .csv file.
 
 
-```r
-# write.table(dfKim, file = 'dfKim.csv', sep = ',', col.names=TRUE,
-# row.names=FALSE)
+``` r
+#write.table(dfKim, file = 'dfKim.csv', sep = ',', col.names=TRUE, row.names=FALSE) 
 ```
 
 Once saved, you could clean your environment and bring the data back in from its .csv format.
 
-```r
+``` r
 # dfKim<- read.csv ('dfKim.csv', header = TRUE)
 ```
 
@@ -290,12 +290,12 @@ Recall that the first step in establishing a structural model is to specify, eva
 
 This code randomly assigns the PWB items to three parcels.
 
-```r
+``` r
 set.seed(230916)
-items <- c("pwb1", "pwb2", "pwb3", "pwb4", "pwb5", "pwb6", "pwb7", "pwb8",
-    "pwb9", "pwb10", "pwb11")
-parcels <- c("PWB_p1", "PWB_p_2", "PWB_p3")
-data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
+items <- c('pwb1', 'pwb2', 'pwb3', 'pwb4', 'pwb5', 'pwb6', 'pwb7', 'pwb8', 'pwb9', 'pwb10', 'pwb11')
+parcels <- c("PWB_p1", "PWB_p_2","PWB_p3")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
 ```
 
 ```
@@ -314,34 +314,20 @@ data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
 ```
 We can now create the parcels using the same scoring procedure as we did for the REMS and CMI instruments.
 
-```r
-PWB_p1_vars <- c("pwb7", "pwb11", "pwb4", "pwb8")
-PWB_p2_vars <- c("pwb9", "pwb2", "pwb10", "pwb2")
-PWB_p3_vars <- c("pwb1", "pwb3", "pwb5")
-
-dfKim$p1PWB <- sjstats::mean_n(dfKim[, PWB_p1_vars], 0.75)
-dfKim$p2PWB <- sjstats::mean_n(dfKim[, PWB_p2_vars], 0.75)
-dfKim$p3PWB <- sjstats::mean_n(dfKim[, PWB_p3_vars], 0.75)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfKim$p3PWB <-
-# sjstats::mean_n(dfKim[, ..PWB_p3_vars], .75)
+``` r
+dfKim$p1PWB <- datawizard::row_means(dfKim, select = c('pwb7','pwb11', 'pwb4', 'pwb8'), min_valid = .80)
+dfKim$p2PWB <- datawizard::row_means(dfKim, select = c('pwb9','pwb2', 'pwb10', 'pwb2'), min_valid = .80)
+dfKim$p3PWB <- datawizard::row_means(dfKim, select = c('pwb1','pwb3', 'pwb5'), min_valid = .80)
 ```
 
 This code randomly assigns the REMS items to three parcels.
 
-```r
+``` r
 set.seed(230916)
-items <- c("Inf32", "Inf38", "Inf21", "Inf17", "Inf9", "Inf36", "Inf5",
-    "Inf22", "SClass6", "SClass31", "SClass8", "SClass40", "SClass2", "SClass34",
-    "SClass11", "mInv27", "mInv30", "mInv39", "mInv7", "mInv26", "mInv33",
-    "mInv4", "mInv14", "mInv10", "Exot3", "Exot29", "Exot45", "Exot35",
-    "Exot42", "Exot23", "Exot13", "Exot20", "Exot43", "mEnv37", "mEnv24",
-    "mEnv19", "mEnv28", "mEnv18", "mEnv41", "mEnv12", "mWork25", "mWork15",
-    "mWork1", "mWork16", "mWork44")
-parcels <- c("REMS_p1", "REMS_p2", "REMS_p3")
-data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
+items <- c('Inf32', 'Inf38', 'Inf21', 'Inf17', 'Inf9', 'Inf36', 'Inf5', 'Inf22', 'SClass6', 'SClass31', 'SClass8', 'SClass40', 'SClass2', 'SClass34', 'SClass11', 'mInv27', 'mInv30', 'mInv39', 'mInv7', 'mInv26', 'mInv33', 'mInv4', 'mInv14', 'mInv10', 'Exot3', 'Exot29', 'Exot45', 'Exot35', 'Exot42', 'Exot23', 'Exot13', 'Exot20', 'Exot43', 'mEnv37', 'mEnv24', 'mEnv19', 'mEnv28', 'mEnv18', 'mEnv41', 'mEnv12', 'mWork25', 'mWork15', 'mWork1', 'mWork16', 'mWork44')
+parcels <- c("REMS_p1", "REMS_p2","REMS_p3")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
 ```
 
 ```
@@ -395,41 +381,21 @@ data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
 
 This code provides means for each of the three REMS parcels.
 
-```r
-REMS_p1_vars <- c("mWork44", "Exot20", "SClass8", "Exot43", "mInv4", "SClass31",
-    "SClass40", "mWork16", "Exot45", "SClass2", "Exot3", "mEnv24", "Exot35",
-    "mInv7", "Exot13")
-REMS_p2_vars <- c("mEnv41", "SClass11", "Inf5", "mEnv19", "mInv39", "Inf22",
-    "mEnv18", "mInv30", "Inf32", "SClass34", "Exot29", "mInv27", "mInv10",
-    "mWork1", "mWork15")
-REMS_p3_vars <- c("mWork25", "Inf38", "Inf17", "Exot23", "mInv33", "mEnv28",
-    "Inf36", "mInv14", "mEnv37", "Inf21", "mEnv12", "Exot42", "SClass6",
-    "Inf9", "mInv26")
-
-dfKim$p1REMS <- sjstats::mean_n(dfKim[, REMS_p1_vars], 0.8)
-dfKim$p2REMS <- sjstats::mean_n(dfKim[, REMS_p2_vars], 0.8)
-dfKim$p3REMS <- sjstats::mean_n(dfKim[, REMS_p3_vars], 0.8)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfKim$p3REMS <-
-# sjstats::mean_n(dfKim[, ..REMS_p3_vars], .80)
+``` r
+dfKim$p1REMS <- datawizard::row_means(dfKim, select = c('mWork44','Exot20', 'SClass8', 'Exot43', 'mInv4', 'SClass31', 'SClass40', 'mWork16', 'Exot45', 'SClass2', 'Exot3', 'mEnv24', 'Exot35', 'mInv7', 'Exot13'), min_valid = .80)
+dfKim$p2REMS <- datawizard::row_means(dfKim, select = c('mEnv41','SClass11', 'Inf5', 'mEnv19', 'mInv39', 'Inf22', 'mEnv18', 'mInv30', 'Inf32', 'SClass34', 'Exot29', 'mInv27', 'mInv10', 'mWork1', 'mWork15'), min_valid = .80)
+dfKim$p3REMS <- datawizard::row_means(dfKim, select = c('mWork25','Inf38', 'Inf17', 'Exot23', 'mInv33',  'mEnv28', 'Inf36', 'mInv14', 'mEnv37', 'Inf21', 'mEnv12', 'Exot42', 'SClass6', 'Inf9', 'mInv26'), min_valid = .80)
 ```
 
 We can repeat the process for the CMI. First, we assign the 47 CMI items to the three parcels.
 
 
-```r
+``` r
 set.seed(230916)
-items <- c(IntRel_vars <- c("cmi1", "cmi2", "cmi3", "cmi4", "cmi5", "cmi6",
-    "cmi7", "cmi8", "cmi9", "cmi10", "cmi11", "cmi12", "cmi13", "cmi14",
-    "cmi15", "cmi16", "cmi17", "cmi18", "cmi19", "cmi20", "cmi21", "cmi22",
-    "cmi23", "cmi24", "cmi25", "cmi26", "cmi27", "cmi28", "cmi29", "cmi30",
-    "cmi31", "cmi32", "cmi33", "cmi34", "cmi35", "cmi36", "cmi37", "cmi38",
-    "cmi39", "cmi40", "cmi41", "cmi42", "cmi43", "cmi44", "cmi45", "cmi46",
-    "cmi47"))
-parcels <- c("CMI_p1", "CMI_p2", "CMI_p3")
-data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
+items <- c(IntRel_vars <- c('cmi1', 'cmi2', 'cmi3', 'cmi4', 'cmi5', 'cmi6', 'cmi7', 'cmi8', 'cmi9', 'cmi10', 'cmi11', 'cmi12', 'cmi13', 'cmi14', 'cmi15', 'cmi16', 'cmi17', 'cmi18', 'cmi19', 'cmi20', 'cmi21', 'cmi22', 'cmi23', 'cmi24', 'cmi25', 'cmi26', 'cmi27', 'cmi28', 'cmi29', 'cmi30', 'cmi31', 'cmi32', 'cmi33', 'cmi34', 'cmi35', 'cmi36', 'cmi37', 'cmi38', 'cmi39', 'cmi40', 'cmi41', 'cmi42', 'cmi43', 'cmi44', 'cmi45', 'cmi46', 'cmi47'))
+parcels <- c("CMI_p1", "CMI_p2","CMI_p3")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
 ```
 
 ```
@@ -484,29 +450,15 @@ data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
 ```
 This code provides means for each of the three CMI parcels.
 
-```r
-CMI_p1_vars <- c("cmi45", "cmi32", "cmi11", "cmi33", "cmi22", "cmi12",
-    "cmi26", "cmi25", "cmi44", "cmi13", "cmi31", "cmi34", "cmi37", "cmi43",
-    "cmi24", "cmi9")
-CMI_p2_vars <- c("cmi39", "cmi15", "cmi7", "cmi38", "cmi18", "cmi40", "cmi47",
-    "cmi27", "cmi1", "cmi14", "cmi42", "cmi8", "cmi19", "cmi20", "cmi5",
-    "cmi16")
-CMI_p3_vars <- c("cmi41", "cmi2", "cmi4", "cmi30", "cmi46", "cmi6", "cmi17",
-    "cmi23", "cmi10", "cmi3", "cmi29", "cmi28", "cmi21", "cmi35", "cmi36")
-
-dfKim$p1CMI <- sjstats::mean_n(dfKim[, CMI_p1_vars], 0.8)
-dfKim$p2CMI <- sjstats::mean_n(dfKim[, CMI_p2_vars], 0.8)
-dfKim$p3CMI <- sjstats::mean_n(dfKim[, CMI_p3_vars], 0.8)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfKim$p3CMI <-
-# sjstats::mean_n(dfKim[, ..CMI_p3_vars], .80)
+``` r
+dfKim$p1CMI <- datawizard::row_means(dfKim, select = c('cmi45', 'cmi32', 'cmi11',	'cmi33', 'cmi22', 'cmi12', 'cmi26', 'cmi25', 'cmi44', 'cmi13', 'cmi31', 'cmi34', 'cmi37', 'cmi43', 'cmi24', 'cmi9'), min_valid = .80)
+dfKim$p2CMI <- datawizard::row_means(dfKim, select = c('cmi39', 'cmi15', 'cmi7', 'cmi38', 'cmi18', 'cmi40', 'cmi47', 'cmi27', 'cmi1', 'cmi14', 'cmi42', 'cmi8', 'cmi19', 'cmi20', 'cmi5', 'cmi16'), min_valid = .80)
+dfKim$p3CMI <- datawizard::row_means(dfKim, select = c('cmi41', 'cmi2', 'cmi4', 'cmi30', 'cmi46', 'cmi6', 'cmi17', 'cmi23', 'cmi10', 'cmi3', 'cmi29', 'cmi28', 'cmi21', 'cmi35', 'cmi36'), min_valid = .80)
 ```
 
 Below is code for specifying the measurement model. Each of the latent variables/factors (REMS, CMI, PWB) is identified by three parcels. Each of the latent variables is allowed to covary with the others.
 
-```r
+``` r
 rp3_msmt_mod <- "
         ##measurement model
          REMS =~ p1REMS + p2REMS + p3REMS
@@ -524,13 +476,12 @@ rp3_msmt_mod <- "
 
 set.seed(230916)
 rp3_msmt_fit <- lavaan::cfa(rp3_msmt_mod, data = dfKim, missing = "fiml")
-rp3_msmt_fit_sum <- lavaan::summary(rp3_msmt_fit, fit.measures = TRUE,
-    standardized = TRUE)
+rp3_msmt_fit_sum <- lavaan::summary(rp3_msmt_fit, fit.measures = TRUE, standardized = TRUE)
 rp3_msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 106 iterations
+## lavaan 0.6-18 ended normally after 109 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -541,50 +492,50 @@ rp3_msmt_fit_sum
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                15.965
+##   Test statistic                                18.691
 ##   Degrees of freedom                                24
-##   P-value (Chi-square)                           0.889
+##   P-value (Chi-square)                           0.768
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                              1366.804
+##   Test statistic                              1366.485
 ##   Degrees of freedom                                36
 ##   P-value                                        0.000
 ## 
 ## User Model versus Baseline Model:
 ## 
 ##   Comparative Fit Index (CFI)                    1.000
-##   Tucker-Lewis Index (TLI)                       1.009
+##   Tucker-Lewis Index (TLI)                       1.006
 ##                                                       
 ##   Robust Comparative Fit Index (CFI)             1.000
-##   Robust Tucker-Lewis Index (TLI)                1.009
+##   Robust Tucker-Lewis Index (TLI)                1.006
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)               -368.149
-##   Loglikelihood unrestricted model (H1)       -360.166
+##   Loglikelihood user model (H0)               -365.241
+##   Loglikelihood unrestricted model (H1)       -355.896
 ##                                                       
-##   Akaike (AIC)                                 796.297
-##   Bayesian (BIC)                               887.793
-##   Sample-size adjusted Bayesian (SABIC)        792.834
+##   Akaike (AIC)                                 790.482
+##   Bayesian (BIC)                               881.977
+##   Sample-size adjusted Bayesian (SABIC)        787.018
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
 ##   RMSEA                                          0.000
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.031
-##   P-value H_0: RMSEA <= 0.050                    0.988
-##   P-value H_0: RMSEA >= 0.080                    0.000
+##   90 Percent confidence interval - upper         0.046
+##   P-value H_0: RMSEA <= 0.050                    0.964
+##   P-value H_0: RMSEA >= 0.080                    0.001
 ##                                                       
 ##   Robust RMSEA                                   0.000
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.031
-##   P-value H_0: Robust RMSEA <= 0.050             0.988
-##   P-value H_0: Robust RMSEA >= 0.080             0.000
+##   90 Percent confidence interval - upper         0.046
+##   P-value H_0: Robust RMSEA <= 0.050             0.964
+##   P-value H_0: Robust RMSEA >= 0.080             0.001
 ## 
 ## Standardized Root Mean Square Residual:
 ## 
-##   SRMR                                           0.017
+##   SRMR                                           0.019
 ## 
 ## Parameter Estimates:
 ## 
@@ -596,51 +547,51 @@ rp3_msmt_fit_sum
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   REMS =~                                                               
 ##     p1REMS            1.000                               0.271    0.944
-##     p2REMS            1.055    0.044   23.770    0.000    0.286    0.946
-##     p3REMS            1.031    0.046   22.399    0.000    0.280    0.929
+##     p2REMS            1.054    0.044   23.701    0.000    0.286    0.945
+##     p3REMS            1.033    0.046   22.380    0.000    0.280    0.929
 ##   CMI =~                                                                
-##     p1CMI             1.000                               0.773    0.963
-##     p2CMI             1.006    0.035   28.780    0.000    0.778    0.957
-##     p3CMI             0.937    0.034   27.373    0.000    0.724    0.948
+##     p1CMI             1.000                               0.774    0.963
+##     p2CMI             1.006    0.035   28.812    0.000    0.779    0.957
+##     p3CMI             0.936    0.034   27.373    0.000    0.724    0.948
 ##   PWB =~                                                                
-##     p1PWB             1.000                               0.306    0.635
-##     p2PWB             1.606    0.228    7.055    0.000    0.491    0.801
-##     p3PWB             1.372    0.206    6.662    0.000    0.420    0.709
+##     p1PWB             1.000                               0.304    0.632
+##     p2PWB             1.553    0.224    6.934    0.000    0.472    0.794
+##     p3PWB             1.383    0.209    6.615    0.000    0.421    0.710
 ## 
 ## Covariances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   REMS ~~                                                               
-##     CMI               0.128    0.021    6.199    0.000    0.608    0.608
-##     PWB              -0.047    0.010   -4.712    0.000   -0.562   -0.562
+##     CMI               0.127    0.021    6.192    0.000    0.607    0.607
+##     PWB              -0.046    0.010   -4.632    0.000   -0.553   -0.553
 ##   CMI ~~                                                                
-##     PWB              -0.132    0.028   -4.763    0.000   -0.559   -0.559
+##     PWB              -0.134    0.028   -4.799    0.000   -0.569   -0.569
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1REMS            0.494    0.023   21.448    0.000    0.494    1.717
-##    .p2REMS            0.504    0.024   20.790    0.000    0.504    1.665
-##    .p3REMS            0.522    0.024   21.642    0.000    0.522    1.733
-##    .p1CMI             3.888    0.064   60.479    0.000    3.888    4.842
-##    .p2CMI             3.886    0.065   59.667    0.000    3.886    4.777
-##    .p3CMI             4.051    0.061   66.190    0.000    4.051    5.299
+##    .p1REMS            0.494    0.023   21.435    0.000    0.494    1.716
+##    .p2REMS            0.503    0.024   20.777    0.000    0.503    1.663
+##    .p3REMS            0.522    0.024   21.630    0.000    0.522    1.732
+##    .p1CMI             3.888    0.064   60.468    0.000    3.888    4.841
+##    .p2CMI             3.886    0.065   59.663    0.000    3.886    4.777
+##    .p3CMI             4.051    0.061   66.212    0.000    4.051    5.301
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
-##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
-##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
+##    .p2PWB             3.171    0.048   66.568    0.000    3.171    5.330
+##    .p3PWB             3.141    0.047   66.268    0.000    3.141    5.306
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1REMS            0.009    0.002    5.466    0.000    0.009    0.109
-##    .p2REMS            0.010    0.002    5.330    0.000    0.010    0.106
-##    .p3REMS            0.012    0.002    6.278    0.000    0.012    0.137
-##    .p1CMI             0.047    0.009    5.046    0.000    0.047    0.072
-##    .p2CMI             0.056    0.010    5.597    0.000    0.056    0.084
+##    .p1REMS            0.009    0.002    5.467    0.000    0.009    0.110
+##    .p2REMS            0.010    0.002    5.343    0.000    0.010    0.107
+##    .p3REMS            0.012    0.002    6.259    0.000    0.012    0.136
+##    .p1CMI             0.047    0.009    5.054    0.000    0.047    0.072
+##    .p2CMI             0.056    0.010    5.596    0.000    0.056    0.084
 ##    .p3CMI             0.060    0.009    6.292    0.000    0.060    0.102
-##    .p1PWB             0.138    0.019    7.309    0.000    0.138    0.597
-##    .p2PWB             0.135    0.029    4.646    0.000    0.135    0.358
-##    .p3PWB             0.174    0.028    6.320    0.000    0.174    0.498
-##     REMS              0.074    0.009    7.838    0.000    1.000    1.000
+##    .p1PWB             0.139    0.019    7.304    0.000    0.139    0.601
+##    .p2PWB             0.131    0.028    4.737    0.000    0.131    0.370
+##    .p3PWB             0.174    0.028    6.242    0.000    0.174    0.495
+##     REMS              0.074    0.009    7.834    0.000    1.000    1.000
 ##     CMI               0.598    0.073    8.171    0.000    1.000    1.000
-##     PWB               0.093    0.024    3.963    0.000    1.000    1.000
+##     PWB               0.092    0.024    3.924    0.000    1.000    1.000
 ```
 
 As we determined in the prior lesson, the factor loadings were all strong, statistically significant, and properly valenced. Further, global fit statistics were within acceptable thresholds ($\chi^2(24) = 15.965, p = 0.889, CFI = 1.000, RMSEA = 0.000, 90CI[0.000,	 0.031], SRMR =  0.017$).
@@ -648,17 +599,14 @@ As we determined in the prior lesson, the factor loadings were all strong, stati
 The figure below is an illustration of our measurement model with its results. It also conveys that each latent variable is indicated by three parcels and all of the latent variables are allowed to covary.
 
 
-```r
-semPlot::semPaths(rp3_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5,
-    node.width = 1, edge.label.cex = 0.75, style = "lisrel", mar = c(5,
-        5, 5, 5))
+``` r
+semPlot::semPaths(rp3_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
 ![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-15-1.png)<!-- -->
 
-```r
-# semPlot::semPaths(rp3_msmt_fit) #ignore -- used to create a
-# no-results figure earlier in the chapter
+``` r
+#semPlot::semPaths(rp3_msmt_fit) #ignore -- used to create a no-results figure earlier in the chapter
 ```
 
 ## The Structural Model:  Specification and Evaluation
@@ -726,7 +674,7 @@ Lets calculate this for our model.
   - We have a total of: 20 unknowns
   
 
-```r
+``` r
 (9*(9+1))/2
 ```
 
@@ -736,7 +684,7 @@ Lets calculate this for our model.
 Our overall model is overidentified with  $df_M = 20$. We know this because subtracted the unknowns (20) from the knowns (45). If we calculated this correctly, 25 will be the degrees of freedom associated with the chi-square test.
 
 
-```r
+``` r
 45-20
 ```
 
@@ -756,7 +704,7 @@ Especially for the structural portion of the model, statistical packages are not
 **Knowns**: $\frac{k(k+1)}{2}$ where *k* is the number of *constructs* (humoR:  konstructs?)in the model.  In our case, we have three constructs:  3(3+1)/2 = 6
 
 
-```r
+``` r
 (3*(3+1))/2
 ```
 
@@ -793,7 +741,7 @@ In the *lavaan::summary* function, we will want to retrieve the global fit indic
 In the *lavaan::parameterEstimates* we can obtain *lavaan*'s version of bias-corrected bootstrapped confidence intervals (they aren't quite the same) by including *boot.ci.type = "bca.simple"*.
 
 
-```r
+``` r
 Kim_struct_mod <- "
         ##measurement model
          REMS =~ p1REMS + p2REMS + p3REMS
@@ -809,17 +757,15 @@ Kim_struct_mod <- "
          direct  := c_p
          total_c  := c_p + (a*b)
           "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-Kim_struct_fit <- lavaan::sem(Kim_struct_mod, data = dfKim, missing = "fiml")
-Kim_struct_summary <- lavaan::summary(Kim_struct_fit, fit.measures = TRUE,
-    standardized = TRUE, rsq = TRUE)
-Kim_struct_pEsts <- lavaan::parameterEstimates(Kim_struct_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+Kim_struct_fit <- lavaan::sem(Kim_struct_mod, data = dfKim, missing= 'fiml')
+Kim_struct_summary <- lavaan::summary(Kim_struct_fit, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+Kim_struct_pEsts <- lavaan::parameterEstimates(Kim_struct_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 Kim_struct_summary
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 95 iterations
+## lavaan 0.6-18 ended normally after 100 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -830,50 +776,50 @@ Kim_struct_summary
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                15.965
+##   Test statistic                                18.691
 ##   Degrees of freedom                                24
-##   P-value (Chi-square)                           0.889
+##   P-value (Chi-square)                           0.768
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                              1366.804
+##   Test statistic                              1366.485
 ##   Degrees of freedom                                36
 ##   P-value                                        0.000
 ## 
 ## User Model versus Baseline Model:
 ## 
 ##   Comparative Fit Index (CFI)                    1.000
-##   Tucker-Lewis Index (TLI)                       1.009
+##   Tucker-Lewis Index (TLI)                       1.006
 ##                                                       
 ##   Robust Comparative Fit Index (CFI)             1.000
-##   Robust Tucker-Lewis Index (TLI)                1.009
+##   Robust Tucker-Lewis Index (TLI)                1.006
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)               -368.149
-##   Loglikelihood unrestricted model (H1)       -360.166
+##   Loglikelihood user model (H0)               -365.241
+##   Loglikelihood unrestricted model (H1)       -355.896
 ##                                                       
-##   Akaike (AIC)                                 796.297
-##   Bayesian (BIC)                               887.793
-##   Sample-size adjusted Bayesian (SABIC)        792.834
+##   Akaike (AIC)                                 790.482
+##   Bayesian (BIC)                               881.977
+##   Sample-size adjusted Bayesian (SABIC)        787.018
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
 ##   RMSEA                                          0.000
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.031
-##   P-value H_0: RMSEA <= 0.050                    0.988
-##   P-value H_0: RMSEA >= 0.080                    0.000
+##   90 Percent confidence interval - upper         0.046
+##   P-value H_0: RMSEA <= 0.050                    0.964
+##   P-value H_0: RMSEA >= 0.080                    0.001
 ##                                                       
 ##   Robust RMSEA                                   0.000
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.031
-##   P-value H_0: Robust RMSEA <= 0.050             0.988
-##   P-value H_0: Robust RMSEA >= 0.080             0.000
+##   90 Percent confidence interval - upper         0.046
+##   P-value H_0: Robust RMSEA <= 0.050             0.964
+##   P-value H_0: Robust RMSEA >= 0.080             0.001
 ## 
 ## Standardized Root Mean Square Residual:
 ## 
-##   SRMR                                           0.017
+##   SRMR                                           0.019
 ## 
 ## Parameter Estimates:
 ## 
@@ -885,82 +831,81 @@ Kim_struct_summary
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   REMS =~                                                               
 ##     p1REMS            1.000                               0.271    0.944
-##     p2REMS            1.055    0.044   23.770    0.000    0.286    0.946
-##     p3REMS            1.031    0.046   22.399    0.000    0.280    0.929
+##     p2REMS            1.054    0.044   23.701    0.000    0.286    0.945
+##     p3REMS            1.033    0.046   22.380    0.000    0.280    0.929
 ##   CMI =~                                                                
-##     p1CMI             1.000                               0.773    0.963
-##     p2CMI             1.006    0.035   28.780    0.000    0.778    0.957
-##     p3CMI             0.937    0.034   27.373    0.000    0.724    0.948
+##     p1CMI             1.000                               0.774    0.963
+##     p2CMI             1.006    0.035   28.812    0.000    0.779    0.957
+##     p3CMI             0.936    0.034   27.373    0.000    0.724    0.948
 ##   PWB =~                                                                
-##     p1PWB             1.000                               0.306    0.635
-##     p2PWB             1.606    0.228    7.055    0.000    0.491    0.801
-##     p3PWB             1.372    0.206    6.662    0.000    0.420    0.709
+##     p1PWB             1.000                               0.304    0.632
+##     p2PWB             1.553    0.224    6.934    0.000    0.472    0.794
+##     p3PWB             1.383    0.209    6.615    0.000    0.421    0.710
 ## 
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   PWB ~                                                                 
-##     CMI        (b)   -0.136    0.042   -3.267    0.001   -0.345   -0.345
-##     REMS     (c_p)   -0.396    0.122   -3.250    0.001   -0.352   -0.352
+##     CMI        (b)   -0.145    0.042   -3.452    0.001   -0.369   -0.369
+##     REMS     (c_p)   -0.368    0.122   -3.020    0.003   -0.329   -0.329
 ##   CMI ~                                                                 
-##     REMS       (a)    1.732    0.199    8.698    0.000    0.608    0.608
+##     REMS       (a)    1.730    0.199    8.682    0.000    0.607    0.607
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1REMS            0.494    0.023   21.448    0.000    0.494    1.717
-##    .p2REMS            0.504    0.024   20.790    0.000    0.504    1.665
-##    .p3REMS            0.522    0.024   21.642    0.000    0.522    1.733
-##    .p1CMI             3.888    0.064   60.479    0.000    3.888    4.842
-##    .p2CMI             3.886    0.065   59.667    0.000    3.886    4.777
-##    .p3CMI             4.051    0.061   66.190    0.000    4.051    5.299
+##    .p1REMS            0.494    0.023   21.435    0.000    0.494    1.716
+##    .p2REMS            0.503    0.024   20.777    0.000    0.503    1.663
+##    .p3REMS            0.522    0.024   21.630    0.000    0.522    1.732
+##    .p1CMI             3.888    0.064   60.468    0.000    3.888    4.841
+##    .p2CMI             3.886    0.065   59.663    0.000    3.886    4.777
+##    .p3CMI             4.051    0.061   66.212    0.000    4.051    5.301
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
-##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
-##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
+##    .p2PWB             3.171    0.048   66.568    0.000    3.171    5.330
+##    .p3PWB             3.141    0.047   66.268    0.000    3.141    5.306
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1REMS            0.009    0.002    5.466    0.000    0.009    0.109
-##    .p2REMS            0.010    0.002    5.330    0.000    0.010    0.106
-##    .p3REMS            0.012    0.002    6.278    0.000    0.012    0.137
-##    .p1CMI             0.047    0.009    5.046    0.000    0.047    0.072
-##    .p2CMI             0.056    0.010    5.597    0.000    0.056    0.084
+##    .p1REMS            0.009    0.002    5.467    0.000    0.009    0.110
+##    .p2REMS            0.010    0.002    5.343    0.000    0.010    0.107
+##    .p3REMS            0.012    0.002    6.259    0.000    0.012    0.136
+##    .p1CMI             0.047    0.009    5.054    0.000    0.047    0.072
+##    .p2CMI             0.056    0.010    5.596    0.000    0.056    0.084
 ##    .p3CMI             0.060    0.009    6.292    0.000    0.060    0.102
-##    .p1PWB             0.138    0.019    7.309    0.000    0.138    0.597
-##    .p2PWB             0.135    0.029    4.646    0.000    0.135    0.358
-##    .p3PWB             0.174    0.028    6.320    0.000    0.174    0.498
-##     REMS              0.074    0.009    7.838    0.000    1.000    1.000
-##    .CMI               0.377    0.048    7.871    0.000    0.631    0.631
-##    .PWB               0.057    0.015    3.716    0.000    0.610    0.610
+##    .p1PWB             0.139    0.019    7.304    0.000    0.139    0.601
+##    .p2PWB             0.131    0.028    4.737    0.000    0.131    0.370
+##    .p3PWB             0.174    0.028    6.242    0.000    0.174    0.495
+##     REMS              0.074    0.009    7.834    0.000    1.000    1.000
+##    .CMI               0.378    0.048    7.871    0.000    0.632    0.632
+##    .PWB               0.056    0.015    3.677    0.000    0.608    0.608
 ## 
 ## R-Square:
 ##                    Estimate
-##     p1REMS            0.891
-##     p2REMS            0.894
-##     p3REMS            0.863
+##     p1REMS            0.890
+##     p2REMS            0.893
+##     p3REMS            0.864
 ##     p1CMI             0.928
 ##     p2CMI             0.916
 ##     p3CMI             0.898
-##     p1PWB             0.403
-##     p2PWB             0.642
-##     p3PWB             0.502
-##     CMI               0.369
-##     PWB               0.390
+##     p1PWB             0.399
+##     p2PWB             0.630
+##     p3PWB             0.505
+##     CMI               0.368
+##     PWB               0.392
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##     indirect         -0.236    0.077   -3.085    0.002   -0.210   -0.210
-##     direct           -0.396    0.122   -3.250    0.001   -0.352   -0.352
-##     total_c          -0.633    0.114   -5.557    0.000   -0.562   -0.562
+##     indirect         -0.251    0.078   -3.237    0.001   -0.224   -0.224
+##     direct           -0.368    0.122   -3.020    0.003   -0.329   -0.329
+##     total_c          -0.619    0.114   -5.425    0.000   -0.553   -0.553
 ```
 
-```r
-# Kim_struct_pEsts #although creating the object is useful to export
-# as a .csv I didn't ask it to print into the book
+``` r
+#Kim_struct_pEsts #although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 
 Below is script that will export the global fit indices (via *tidySEM::table_fit*) and the parameter estimates (e.g., factor loadings, structural regression weights, and parameters we requested such as the indirect effect) to .csv files that you can manipulate outside of R.  
 
-```r
-# global fit indices
+``` r
+#global fit indices
 Kim_struct_fitstats <- tidySEM::table_fit(Kim_struct_fit)
 ```
 
@@ -970,9 +915,9 @@ Kim_struct_fitstats <- tidySEM::table_fit(Kim_struct_fit)
 ##   predict.MxModel OpenMx
 ```
 
-```r
+``` r
 write.csv(Kim_struct_fitstats, file = "Kim_struct_fitstats.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(Kim_struct_pEsts, file = "Kim_struct_pEsts.csv")
 ```
 
@@ -1026,10 +971,8 @@ As I predicted, the global fit indices of the measurement model are identical to
 Plotting the results can be useful in checking our work and, if correct, understanding the relations between the variables.  The *semPlot::semPaths* function will produce an initial guess at what we might like that can be further tweaked.
 
 
-```r
-plot_Kim_struct <- semPlot::semPaths(Kim_struct_fit, what = "col", whatLabels = "stand",
-    sizeMan = 5, node.width = 1, edge.label.cex = 0.75, style = "lisrel",
-    mar = c(5, 5, 5, 5))
+``` r
+plot_Kim_struct <- semPlot::semPaths(Kim_struct_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
 ![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-21-1.png)<!-- -->
@@ -1042,58 +985,70 @@ Although the code below may look daunting, I find it to be a fairly straightforw
 
 We place these values along with the names of our latent variables in to the *semptools::layout_matrix* function.
 
-```r
-# IMPORTANT: Must use the node names (take directly from the SemPlot)
-# assigned by SemPlot You can change them as the last thing
-m1_msmt <- semptools::layout_matrix(REM = c(2, 1), CMI = c(1, 2), PWB = c(2,
-    3))
+``` r
+#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
+#You can change them as the last thing
+m1_msmt <- semptools::layout_matrix(REM = c(2,1),
+                                  CMI = c(1,2),
+                                  PWB = c(2,3))
 ```
 
 Next we provide instruction on the direction (up, down, left, right) we want the indicator/observed variables to face. We identify the direction by the location of each of our latent variables. For example, in the code below we want the indicators for the REM variable (2,1) to face left.
 
-```r
-# tell where you want the indicators to face
-m1_point_to <- semptools::layout_matrix(left = c(2, 1), up = c(1, 2), right = c(2,
-    3))
+``` r
+#tell where you want the indicators to face
+m1_point_to <- semptools::layout_matrix (left = c(2,1),
+                                      up = c(1,2),
+                                      right = c(2,3))
 ```
 
 The next two sets of code work together to specify the order of the observed variables for each factor. in the top set of code the variable names indicate the order in which they will appear (i.e., p1R, p2R, p3R). In the second set of code, the listing the variable name three times (i.e., REM, REM, REM) serves as a placeholder for each of the indicators.
 
 It is critical to note that we need to use the abbreviated variable names assigned by *semTools::semPaths* and not necessarily the names that are in the dataframe.
 
-```r
-# the next two codes -- indicator_order and indicator_factor are
-# paired together, they specify the order of observed variables for
-# each factor
-m1_indicator_order <- c("p1R", "p2R", "p3R", "p1C", "p2C", "p3C", "p1P",
-    "p2P", "p3P")
+``` r
+#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
+m1_indicator_order <- c("p1R", "p2R", "p3R",
+                     "p1C", "p2C", "p3C",
+                     "p1P", "p2P", "p3P")
 
-m1_indicator_factor <- c("REM", "REM", "REM", "CMI", "CMI", "CMI", "PWB",
-    "PWB", "PWB")
+m1_indicator_factor <- c("REM", "REM", "REM",
+                      "CMI", "CMI", "CMI",
+                      "PWB", "PWB", "PWB")
 ```
 
 
 The next two sets of codes provide some guidance about how far away the indicator (square/rectangular) variables should be away from the latent (oval/circular) variables. Subsequently, the next set of values indicate how far away each of the indicator (square/rectangular) variables should be spread apart.
 
-```r
-# next set of code pushes the indicator variables away from the
-# factor
-m1_indicator_push <- c(REM = 0.5, CMI = 1, PWB = 1)
+``` r
+#next set of code pushes the indicator variables away from the factor
+m1_indicator_push <- c(REM = .5, 
+                    CMI = 1,
+                    PWB = 1)
 
-# spreading the boxes away from each other
-m1_indicator_spread <- c(REM = 1, CMI = 1, PWB = 1)
+#spreading the boxes away from each other
+m1_indicator_spread <- c(REM = 1, 
+                    CMI = 1,
+                    PWB = 1)
 ```
 
 Finally, we can feed all of the objects that whole these instructions into the *semptools::sem_set_layout* function. If desired, we can use the *semptools::change_node_label* function to rename the latent variables. Again, make sure to use the variable names that *semPlot::semPaths* has assigned.
 
-```r
-plot1 <- semptools::set_sem_layout(plot_Kim_struct, indicator_order = m1_indicator_order,
-    indicator_factor = m1_indicator_factor, factor_layout = m1_msmt, factor_point_to = m1_point_to,
-    indicator_push = m1_indicator_push, indicator_spread = m1_indicator_spread)
+``` r
+plot1 <- semptools::set_sem_layout(plot_Kim_struct,
+                                indicator_order = m1_indicator_order,
+                                indicator_factor = m1_indicator_factor,
+                                factor_layout = m1_msmt,
+                                factor_point_to = m1_point_to,
+                                indicator_push = m1_indicator_push,
+                                indicator_spread = m1_indicator_spread)
 
-# changing node labels
-plot1 <- semptools::change_node_label(plot1, c(REM = "mAggress", CMI = "cMistrust",
-    PWB = "Wellbeing"), label.cex = 1.1)
+#changing node labels
+plot1 <- semptools::change_node_label(plot1,
+                                   c(REM = "mAggress",
+                                     CMI = "cMistrust",
+                                     PWB = "Wellbeing"),
+                                   label.cex = 1.1)
 
 plot(plot1)
 ```
@@ -1102,18 +1057,21 @@ plot(plot1)
 It can be useful to have a representation of the model without the results. This set of code produces those results. It does so by including only the name of the fitted object into the *semPlot::semPaths* function. Then it uses all the objects we just created as instructions for the figure's appearance.
 
 
-```r
-# Code to plot the theoretical model (in case you don't want to print
-# the results on the graph):
+``` r
+#Code to plot the theoretical model (in case you don't want to print the results on the graph):
 p_theoretical <- semPlot::semPaths(Kim_struct_fit)
 ```
 
 ![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-27-1.png)<!-- -->
 
-```r
-p_theoretical <- semptools::set_sem_layout(p_theoretical, indicator_order = m1_indicator_order,
-    indicator_factor = m1_indicator_factor, factor_layout = m1_msmt, factor_point_to = m1_point_to,
-    indicator_push = m1_indicator_push, indicator_spread = m1_indicator_spread)
+``` r
+p_theoretical <- semptools::set_sem_layout(p_theoretical,
+                                indicator_order = m1_indicator_order,
+                                indicator_factor = m1_indicator_factor,
+                                factor_layout = m1_msmt,
+                                factor_point_to = m1_point_to,
+                                indicator_push = m1_indicator_push,
+                                indicator_spread = m1_indicator_spread)
 plot(p_theoretical)
 ```
 
@@ -1156,7 +1114,7 @@ The first alternative model predicted cultural mistrust from racial microaggress
 ![Image of the proposed alternative -- a simple mediation that swaps PWB and CMI](images/IntroSEM/AltMed.png)
 
 
-```r
+``` r
 Kim_swap_mod <- "
         ##measurement model
          REMS =~ p1REMS + p2REMS + p3REMS
@@ -1172,17 +1130,15 @@ Kim_swap_mod <- "
          direct  := c_p
          total_c  := c_p + (a*b)
           "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-Kim_swap_fit <- lavaan::sem(Kim_swap_mod, data = dfKim, missing = "fiml")
-Kim_swap_summary <- lavaan::summary(Kim_swap_fit, fit.measures = TRUE,
-    standardized = TRUE, rsq = TRUE)
-Kim_swap_pEsts <- lavaan::parameterEstimates(Kim_swap_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+Kim_swap_fit <- lavaan::sem(Kim_swap_mod, data = dfKim, missing= 'fiml')
+Kim_swap_summary <- lavaan::summary(Kim_swap_fit, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+Kim_swap_pEsts <- lavaan::parameterEstimates(Kim_swap_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 Kim_swap_summary
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 100 iterations
+## lavaan 0.6-18 ended normally after 93 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1193,50 +1149,50 @@ Kim_swap_summary
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                15.965
+##   Test statistic                                18.691
 ##   Degrees of freedom                                24
-##   P-value (Chi-square)                           0.889
+##   P-value (Chi-square)                           0.768
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                              1366.804
+##   Test statistic                              1366.485
 ##   Degrees of freedom                                36
 ##   P-value                                        0.000
 ## 
 ## User Model versus Baseline Model:
 ## 
 ##   Comparative Fit Index (CFI)                    1.000
-##   Tucker-Lewis Index (TLI)                       1.009
+##   Tucker-Lewis Index (TLI)                       1.006
 ##                                                       
 ##   Robust Comparative Fit Index (CFI)             1.000
-##   Robust Tucker-Lewis Index (TLI)                1.009
+##   Robust Tucker-Lewis Index (TLI)                1.006
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)               -368.149
-##   Loglikelihood unrestricted model (H1)       -360.166
+##   Loglikelihood user model (H0)               -365.241
+##   Loglikelihood unrestricted model (H1)       -355.896
 ##                                                       
-##   Akaike (AIC)                                 796.297
-##   Bayesian (BIC)                               887.793
-##   Sample-size adjusted Bayesian (SABIC)        792.834
+##   Akaike (AIC)                                 790.482
+##   Bayesian (BIC)                               881.977
+##   Sample-size adjusted Bayesian (SABIC)        787.018
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
 ##   RMSEA                                          0.000
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.031
-##   P-value H_0: RMSEA <= 0.050                    0.988
-##   P-value H_0: RMSEA >= 0.080                    0.000
+##   90 Percent confidence interval - upper         0.046
+##   P-value H_0: RMSEA <= 0.050                    0.964
+##   P-value H_0: RMSEA >= 0.080                    0.001
 ##                                                       
 ##   Robust RMSEA                                   0.000
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.031
-##   P-value H_0: Robust RMSEA <= 0.050             0.988
-##   P-value H_0: Robust RMSEA >= 0.080             0.000
+##   90 Percent confidence interval - upper         0.046
+##   P-value H_0: Robust RMSEA <= 0.050             0.964
+##   P-value H_0: Robust RMSEA >= 0.080             0.001
 ## 
 ## Standardized Root Mean Square Residual:
 ## 
-##   SRMR                                           0.017
+##   SRMR                                           0.019
 ## 
 ## Parameter Estimates:
 ## 
@@ -1248,90 +1204,89 @@ Kim_swap_summary
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   REMS =~                                                               
 ##     p1REMS            1.000                               0.271    0.944
-##     p2REMS            1.055    0.044   23.770    0.000    0.286    0.946
-##     p3REMS            1.031    0.046   22.399    0.000    0.280    0.929
+##     p2REMS            1.054    0.044   23.701    0.000    0.286    0.945
+##     p3REMS            1.033    0.046   22.380    0.000    0.280    0.929
 ##   CMI =~                                                                
-##     p1CMI             1.000                               0.773    0.963
-##     p2CMI             1.006    0.035   28.780    0.000    0.778    0.957
-##     p3CMI             0.937    0.034   27.373    0.000    0.724    0.948
+##     p1CMI             1.000                               0.774    0.963
+##     p2CMI             1.006    0.035   28.812    0.000    0.779    0.957
+##     p3CMI             0.936    0.034   27.373    0.000    0.724    0.948
 ##   PWB =~                                                                
-##     p1PWB             1.000                               0.306    0.635
-##     p2PWB             1.606    0.228    7.055    0.000    0.491    0.801
-##     p3PWB             1.372    0.206    6.662    0.000    0.420    0.709
+##     p1PWB             1.000                               0.304    0.632
+##     p2PWB             1.553    0.224    6.934    0.000    0.472    0.794
+##     p3PWB             1.383    0.209    6.615    0.000    0.421    0.710
 ## 
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   CMI ~                                                                 
-##     PWB        (b)   -0.804    0.252   -3.197    0.001   -0.318   -0.318
-##     REMS     (c_p)    1.223    0.243    5.027    0.000    0.429    0.429
+##     PWB        (b)   -0.854    0.254   -3.358    0.001   -0.336   -0.336
+##     REMS     (c_p)    1.201    0.240    4.994    0.000    0.421    0.421
 ##   PWB ~                                                                 
-##     REMS       (a)   -0.633    0.114   -5.557    0.000   -0.562   -0.562
+##     REMS       (a)   -0.619    0.114   -5.425    0.000   -0.553   -0.553
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1REMS            0.494    0.023   21.448    0.000    0.494    1.717
-##    .p2REMS            0.504    0.024   20.790    0.000    0.504    1.665
-##    .p3REMS            0.522    0.024   21.642    0.000    0.522    1.733
-##    .p1CMI             3.888    0.064   60.479    0.000    3.888    4.842
-##    .p2CMI             3.886    0.065   59.667    0.000    3.886    4.777
-##    .p3CMI             4.051    0.061   66.190    0.000    4.051    5.299
+##    .p1REMS            0.494    0.023   21.435    0.000    0.494    1.716
+##    .p2REMS            0.503    0.024   20.777    0.000    0.503    1.663
+##    .p3REMS            0.522    0.024   21.630    0.000    0.522    1.732
+##    .p1CMI             3.888    0.064   60.468    0.000    3.888    4.841
+##    .p2CMI             3.886    0.065   59.663    0.000    3.886    4.777
+##    .p3CMI             4.051    0.061   66.212    0.000    4.051    5.301
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
-##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
-##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
+##    .p2PWB             3.171    0.048   66.568    0.000    3.171    5.330
+##    .p3PWB             3.141    0.047   66.268    0.000    3.141    5.306
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1REMS            0.009    0.002    5.466    0.000    0.009    0.109
-##    .p2REMS            0.010    0.002    5.330    0.000    0.010    0.106
-##    .p3REMS            0.012    0.002    6.278    0.000    0.012    0.137
-##    .p1CMI             0.047    0.009    5.046    0.000    0.047    0.072
-##    .p2CMI             0.056    0.010    5.597    0.000    0.056    0.084
+##    .p1REMS            0.009    0.002    5.467    0.000    0.009    0.110
+##    .p2REMS            0.010    0.002    5.343    0.000    0.010    0.107
+##    .p3REMS            0.012    0.002    6.259    0.000    0.012    0.136
+##    .p1CMI             0.047    0.009    5.054    0.000    0.047    0.072
+##    .p2CMI             0.056    0.010    5.596    0.000    0.056    0.084
 ##    .p3CMI             0.060    0.009    6.292    0.000    0.060    0.102
-##    .p1PWB             0.138    0.019    7.309    0.000    0.138    0.597
-##    .p2PWB             0.135    0.029    4.646    0.000    0.135    0.358
-##    .p3PWB             0.174    0.028    6.320    0.000    0.174    0.498
-##     REMS              0.074    0.009    7.838    0.000    1.000    1.000
-##    .CMI               0.336    0.044    7.557    0.000    0.562    0.562
-##    .PWB               0.064    0.017    3.778    0.000    0.685    0.685
+##    .p1PWB             0.139    0.019    7.304    0.000    0.139    0.601
+##    .p2PWB             0.131    0.028    4.737    0.000    0.131    0.370
+##    .p3PWB             0.174    0.028    6.242    0.000    0.174    0.495
+##     REMS              0.074    0.009    7.834    0.000    1.000    1.000
+##    .CMI               0.331    0.044    7.495    0.000    0.553    0.553
+##    .PWB               0.064    0.017    3.754    0.000    0.694    0.694
 ## 
 ## R-Square:
 ##                    Estimate
-##     p1REMS            0.891
-##     p2REMS            0.894
-##     p3REMS            0.863
+##     p1REMS            0.890
+##     p2REMS            0.893
+##     p3REMS            0.864
 ##     p1CMI             0.928
 ##     p2CMI             0.916
 ##     p3CMI             0.898
-##     p1PWB             0.403
-##     p2PWB             0.642
-##     p3PWB             0.502
-##     CMI               0.438
-##     PWB               0.315
+##     p1PWB             0.399
+##     p2PWB             0.630
+##     p3PWB             0.505
+##     CMI               0.447
+##     PWB               0.306
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##     indirect          0.509    0.166    3.066    0.002    0.179    0.179
-##     direct            1.223    0.243    5.027    0.000    0.429    0.429
-##     total_c           1.732    0.199    8.698    0.000    0.608    0.608
+##     indirect          0.529    0.165    3.203    0.001    0.186    0.186
+##     direct            1.201    0.240    4.994    0.000    0.421    0.421
+##     total_c           1.730    0.199    8.682    0.000    0.607    0.607
 ```
 
-```r
-# Kim_swap_pEsts #although creating the object is useful to export as
-# a .csv I didn't ask it to print into the book
+``` r
+#Kim_swap_pEsts #although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 Here is the script to export results to .csv files.
 
-```r
-# global fit indices
+``` r
+#global fit indices
 Kim_swap_fitstats <- tidySEM::table_fit(Kim_swap_fit)
 write.csv(Kim_swap_fitstats, file = "Kim_swap_fitstats.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(Kim_swap_pEsts, file = "Kim_swap_pEsts.csv")
 ```
 
 Let's immediately plot this so we have a visual to assist our conceptualization.
 
-```r
+``` r
 plot_Kim_swap <- semPlot::semPaths(Kim_swap_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
@@ -1345,38 +1300,50 @@ Below is the column/row mapping of my variables in their desired position.
 
 We place these values along with the names of our latent variables in to the *semptools::layout_matrix* function.
 
-```r
-# IMPORTANT: Must use the node names (take directly from the SemPlot)
-# assigned by SemPlot You can change them as the last thing
-m2_msmt <- semptools::layout_matrix(REM = c(2, 1), CMI = c(2, 3), PWB = c(1,
-    2))
-# tell where you want the indicators to face
-m2_point_to <- semptools::layout_matrix(left = c(2, 1), up = c(1, 2), right = c(2,
-    3))
+``` r
+#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
+#You can change them as the last thing
+m2_msmt <- semptools::layout_matrix(REM = c(2,1),
+                                  CMI = c(2,3),
+                                  PWB = c(1,2))
+#tell where you want the indicators to face
+m2_point_to <- semptools::layout_matrix (left = c(2,1),
+                                      up = c(1,2),
+                                      right = c(2,3))
 
-# the next two codes -- indicator_order and indicator_factor are
-# paired together, they specify the order of observed variables for
-# each factor
-m2_indicator_order <- c("p1R", "p2R", "p3R", "p1C", "p2C", "p3C", "p1P",
-    "p2P", "p3P")
+#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
+m2_indicator_order <- c("p1R", "p2R", "p3R",
+                     "p1C", "p2C", "p3C",
+                     "p1P", "p2P", "p3P")
 
-m2_indicator_factor <- c("REM", "REM", "REM", "CMI", "CMI", "CMI", "PWB",
-    "PWB", "PWB")
+m2_indicator_factor <- c("REM", "REM", "REM",
+                      "CMI", "CMI", "CMI",
+                      "PWB", "PWB", "PWB")
 
-# next set of code pushes the indicator variables away from the
-# factor
-m2_indicator_push <- c(REM = 0.5, CMI = 1, PWB = 1)
-# spreading the boxes away from each other
-m2_indicator_spread <- c(REM = 1, CMI = 1, PWB = 1)
+#next set of code pushes the indicator variables away from the factor
+m2_indicator_push <- c(REM = .5, 
+                    CMI = 1,
+                    PWB = 1)
+#spreading the boxes away from each other
+m2_indicator_spread <- c(REM = 1, 
+                    CMI = 1,
+                    PWB = 1)
 
-# assemble all the instructions
-plot2 <- semptools::set_sem_layout(plot_Kim_swap, indicator_order = m2_indicator_order,
-    indicator_factor = m2_indicator_factor, factor_layout = m2_msmt, factor_point_to = m2_point_to,
-    indicator_push = m2_indicator_push, indicator_spread = m2_indicator_spread)
+#assemble all the instructions
+plot2 <- semptools::set_sem_layout(plot_Kim_swap,
+                                indicator_order = m2_indicator_order,
+                                indicator_factor = m2_indicator_factor,
+                                factor_layout = m2_msmt,
+                                factor_point_to = m2_point_to,
+                                indicator_push = m2_indicator_push,
+                                indicator_spread = m2_indicator_spread)
 
-# changing node labels
-plot2 <- semptools::change_node_label(plot2, c(REM = "mAggress", CMI = "cMistrust",
-    PWB = "Wellbeing"), label.cex = 1.1)
+#changing node labels
+plot2 <- semptools::change_node_label(plot2,
+                                   c(REM = "mAggress",
+                                     CMI = "cMistrust",
+                                     PWB = "Wellbeing"),
+                                   label.cex = 1.1)
 
 plot(plot2)
 ```
@@ -1425,7 +1392,7 @@ The default in *lavaan::sem* is to allow all variables to covary if they aren't 
 In this model, fixing the relationship between CMI and REMS to zero will allow us to have an unsaturated, over-identified, model with +1 degrees of freedom. A priorily we know that the fit will be worse in this model than in the saturated measurement models and simple mediations.
 
 
-```r
+``` r
 Kim_2dvs_mod <- "
         ##measurement model
          REMS =~ p1REMS + p2REMS + p3REMS
@@ -1438,18 +1405,15 @@ Kim_2dvs_mod <- "
          
          CMI ~~ 0*PWB
           "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-Kim_2dvs_fit <- lavaan::sem(Kim_2dvs_mod, data = dfKim, missing = "fiml",
-    fixed.x = FALSE)
-Kim_2dvs_summary <- lavaan::summary(Kim_2dvs_fit, fit.measures = TRUE,
-    standardized = TRUE, rsq = TRUE)
-Kim_2dvs_pEsts <- lavaan::parameterEstimates(Kim_2dvs_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+Kim_2dvs_fit <- lavaan::sem(Kim_2dvs_mod, data = dfKim, missing= 'fiml', fixed.x = FALSE)
+Kim_2dvs_summary <- lavaan::summary(Kim_2dvs_fit, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+Kim_2dvs_pEsts <- lavaan::parameterEstimates(Kim_2dvs_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 Kim_2dvs_summary
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 101 iterations
+## lavaan 0.6-18 ended normally after 91 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1460,50 +1424,50 @@ Kim_2dvs_summary
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                27.398
+##   Test statistic                                31.493
 ##   Degrees of freedom                                25
-##   P-value (Chi-square)                           0.336
+##   P-value (Chi-square)                           0.173
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                              1366.804
+##   Test statistic                              1366.485
 ##   Degrees of freedom                                36
 ##   P-value                                        0.000
 ## 
 ## User Model versus Baseline Model:
 ## 
-##   Comparative Fit Index (CFI)                    0.998
-##   Tucker-Lewis Index (TLI)                       0.997
+##   Comparative Fit Index (CFI)                    0.995
+##   Tucker-Lewis Index (TLI)                       0.993
 ##                                                       
-##   Robust Comparative Fit Index (CFI)             0.998
-##   Robust Tucker-Lewis Index (TLI)                0.997
+##   Robust Comparative Fit Index (CFI)             0.995
+##   Robust Tucker-Lewis Index (TLI)                0.993
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)               -373.865
-##   Loglikelihood unrestricted model (H1)       -360.166
+##   Loglikelihood user model (H0)               -371.642
+##   Loglikelihood unrestricted model (H1)       -355.896
 ##                                                       
-##   Akaike (AIC)                                 805.731
-##   Bayesian (BIC)                               894.177
-##   Sample-size adjusted Bayesian (SABIC)        802.382
+##   Akaike (AIC)                                 801.284
+##   Bayesian (BIC)                               889.730
+##   Sample-size adjusted Bayesian (SABIC)        797.935
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
-##   RMSEA                                          0.025
+##   RMSEA                                          0.041
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.070
-##   P-value H_0: RMSEA <= 0.050                    0.773
-##   P-value H_0: RMSEA >= 0.080                    0.018
+##   90 Percent confidence interval - upper         0.080
+##   P-value H_0: RMSEA <= 0.050                    0.606
+##   P-value H_0: RMSEA >= 0.080                    0.050
 ##                                                       
-##   Robust RMSEA                                   0.025
+##   Robust RMSEA                                   0.041
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.070
-##   P-value H_0: Robust RMSEA <= 0.050             0.773
-##   P-value H_0: Robust RMSEA >= 0.080             0.018
+##   90 Percent confidence interval - upper         0.080
+##   P-value H_0: Robust RMSEA <= 0.050             0.606
+##   P-value H_0: Robust RMSEA >= 0.080             0.050
 ## 
 ## Standardized Root Mean Square Residual:
 ## 
-##   SRMR                                           0.059
+##   SRMR                                           0.063
 ## 
 ## Parameter Estimates:
 ## 
@@ -1515,23 +1479,23 @@ Kim_2dvs_summary
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   REMS =~                                                               
 ##     p1REMS            1.000                               0.271    0.943
-##     p2REMS            1.056    0.044   23.765    0.000    0.286    0.946
-##     p3REMS            1.031    0.046   22.339    0.000    0.280    0.929
+##     p2REMS            1.055    0.045   23.694    0.000    0.286    0.945
+##     p3REMS            1.033    0.046   22.317    0.000    0.280    0.929
 ##   CMI =~                                                                
 ##     p1CMI             1.000                               0.774    0.963
-##     p2CMI             1.006    0.035   28.748    0.000    0.778    0.957
-##     p3CMI             0.936    0.034   27.395    0.000    0.724    0.948
+##     p2CMI             1.006    0.035   28.787    0.000    0.778    0.957
+##     p3CMI             0.936    0.034   27.378    0.000    0.724    0.948
 ##   PWB =~                                                                
-##     p1PWB             1.000                               0.308    0.640
-##     p2PWB             1.561    0.223    6.988    0.000    0.481    0.785
-##     p3PWB             1.387    0.211    6.583    0.000    0.427    0.721
+##     p1PWB             1.000                               0.307    0.638
+##     p2PWB             1.488    0.216    6.885    0.000    0.457    0.769
+##     p3PWB             1.406    0.216    6.510    0.000    0.432    0.730
 ## 
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   CMI ~                                                                 
-##     REMS              1.750    0.199    8.806    0.000    0.613    0.613
+##     REMS              1.748    0.199    8.792    0.000    0.613    0.613
 ##   PWB ~                                                                 
-##     REMS             -0.652    0.114   -5.696    0.000   -0.574   -0.574
+##     REMS             -0.643    0.115   -5.609    0.000   -0.568   -0.568
 ## 
 ## Covariances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -1540,57 +1504,56 @@ Kim_2dvs_summary
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1REMS            0.494    0.023   21.448    0.000    0.494    1.717
-##    .p2REMS            0.504    0.024   20.790    0.000    0.504    1.665
-##    .p3REMS            0.522    0.024   21.642    0.000    0.522    1.733
-##    .p1CMI             3.888    0.064   60.479    0.000    3.888    4.842
-##    .p2CMI             3.886    0.065   59.667    0.000    3.886    4.777
-##    .p3CMI             4.051    0.061   66.190    0.000    4.051    5.299
+##    .p1REMS            0.494    0.023   21.435    0.000    0.494    1.716
+##    .p2REMS            0.503    0.024   20.777    0.000    0.503    1.663
+##    .p3REMS            0.522    0.024   21.630    0.000    0.522    1.732
+##    .p1CMI             3.888    0.064   60.468    0.000    3.888    4.841
+##    .p2CMI             3.886    0.065   59.663    0.000    3.886    4.777
+##    .p3CMI             4.051    0.061   66.212    0.000    4.051    5.301
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
-##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
-##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
+##    .p2PWB             3.171    0.048   66.568    0.000    3.171    5.330
+##    .p3PWB             3.141    0.047   66.268    0.000    3.141    5.306
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1REMS            0.009    0.002    5.557    0.000    0.009    0.111
-##    .p2REMS            0.010    0.002    5.356    0.000    0.010    0.105
-##    .p3REMS            0.012    0.002    6.319    0.000    0.012    0.137
-##    .p1CMI             0.046    0.009    5.001    0.000    0.046    0.072
-##    .p2CMI             0.056    0.010    5.616    0.000    0.056    0.085
-##    .p3CMI             0.060    0.010    6.267    0.000    0.060    0.102
-##    .p1PWB             0.137    0.019    7.169    0.000    0.137    0.591
-##    .p2PWB             0.145    0.030    4.827    0.000    0.145    0.385
-##    .p3PWB             0.168    0.028    5.972    0.000    0.168    0.479
-##     REMS              0.074    0.009    7.829    0.000    1.000    1.000
-##    .CMI               0.373    0.047    7.864    0.000    0.624    0.624
-##    .PWB               0.064    0.017    3.748    0.000    0.671    0.671
+##    .p1REMS            0.009    0.002    5.566    0.000    0.009    0.111
+##    .p2REMS            0.010    0.002    5.368    0.000    0.010    0.106
+##    .p3REMS            0.012    0.002    6.300    0.000    0.012    0.137
+##    .p1CMI             0.046    0.009    5.013    0.000    0.046    0.072
+##    .p2CMI             0.056    0.010    5.597    0.000    0.056    0.084
+##    .p3CMI             0.060    0.010    6.274    0.000    0.060    0.102
+##    .p1PWB             0.137    0.019    7.121    0.000    0.137    0.592
+##    .p2PWB             0.145    0.028    5.079    0.000    0.145    0.409
+##    .p3PWB             0.164    0.028    5.776    0.000    0.164    0.468
+##     REMS              0.074    0.009    7.824    0.000    1.000    1.000
+##    .CMI               0.374    0.048    7.863    0.000    0.625    0.625
+##    .PWB               0.064    0.017    3.720    0.000    0.678    0.678
 ## 
 ## R-Square:
 ##                    Estimate
 ##     p1REMS            0.889
-##     p2REMS            0.895
+##     p2REMS            0.894
 ##     p3REMS            0.863
 ##     p1CMI             0.928
-##     p2CMI             0.915
+##     p2CMI             0.916
 ##     p3CMI             0.898
-##     p1PWB             0.409
-##     p2PWB             0.615
-##     p3PWB             0.521
-##     CMI               0.376
-##     PWB               0.329
+##     p1PWB             0.408
+##     p2PWB             0.591
+##     p3PWB             0.532
+##     CMI               0.375
+##     PWB               0.322
 ```
 
-```r
-# Kim_2dvs_pEsts#although creating the object is useful to export as
-# a .csv I didn't ask it to print into the book
+``` r
+#Kim_2dvs_pEsts#although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 Here is the script to export results to .csv files.
 
-```r
-# global fit indices
+``` r
+#global fit indices
 Kim_2dvs_fitstats <- tidySEM::table_fit(Kim_2dvs_fit)
 write.csv(Kim_2dvs_fitstats, file = "Kim_2dvs_fitstats.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(Kim_2dvs_pEsts, file = "Kim_2dvs_pEsts.csv")
 ```
 
@@ -1612,10 +1575,8 @@ Our string of global fit indices is: $\chi^2(25) = 27.398, p = 0.336, CFI = 0.99
 I will use the techniques explained above to create a figure.
 
 
-```r
-plot_Kim_2dvs <- semPlot::semPaths(Kim_2dvs_fit, what = "col", whatLabels = "stand",
-    sizeMan = 5, node.width = 1, edge.label.cex = 0.75, style = "lisrel",
-    mar = c(5, 5, 5, 5))
+``` r
+plot_Kim_2dvs <- semPlot::semPaths(Kim_2dvs_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
 ![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-35-1.png)<!-- -->
@@ -1629,39 +1590,51 @@ Below is the column/row mapping of my variables in their desired position.
 
 We place these values along with the names of our latent variables in to the *semptools::layout_matrix* function.
 
-```r
-# IMPORTANT: Must use the node names (take directly from the SemPlot)
-# assigned by SemPlot You can change them as the last thing
-m3_msmt <- semptools::layout_matrix(REM = c(2, 1), CMI = c(1, 2), PWB = c(3,
-    2))
-# tell where you want the indicators to face
-m3_point_to <- semptools::layout_matrix(left = c(2, 1), right = c(1, 2),
-    right = c(3, 2))
+``` r
+#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
+#You can change them as the last thing
+m3_msmt <- semptools::layout_matrix(REM = c(2,1),
+                                  CMI = c(1,2),
+                                  PWB = c(3,2))
+#tell where you want the indicators to face
+m3_point_to <- semptools::layout_matrix (left = c(2,1),
+                                      right = c(1,2),
+                                      right = c(3,2))
 
-# the next two codes -- indicator_order and indicator_factor are
-# paired together, they specify the order of observed variables for
-# each factor
-m3_indicator_order <- c("p1R", "p2R", "p3R", "p1C", "p2C", "p3C", "p1P",
-    "p2P", "p3P")
+#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
+m3_indicator_order <- c("p1R", "p2R", "p3R",
+                     "p1C", "p2C", "p3C",
+                     "p1P", "p2P", "p3P")
 
-m3_indicator_factor <- c("REM", "REM", "REM", "CMI", "CMI", "CMI", "PWB",
-    "PWB", "PWB")
+m3_indicator_factor <- c("REM", "REM", "REM",
+                      "CMI", "CMI", "CMI",
+                      "PWB", "PWB", "PWB")
 
-# next set of code pushes the indicator variables away from the
-# factor
-m3_indicator_push <- c(REM = 0.5, CMI = 1, PWB = 1)
+#next set of code pushes the indicator variables away from the factor
+m3_indicator_push <- c(REM = .5, 
+                    CMI = 1,
+                    PWB = 1)
 
-# spreading the boxes away from each other
-m3_indicator_spread <- c(REM = 1, CMI = 1, PWB = 1)
+#spreading the boxes away from each other
+m3_indicator_spread <- c(REM = 1, 
+                    CMI = 1,
+                    PWB = 1)
 
-# assemble all the instructions
-plot3 <- semptools::set_sem_layout(plot_Kim_2dvs, indicator_order = m3_indicator_order,
-    indicator_factor = m3_indicator_factor, factor_layout = m3_msmt, factor_point_to = m3_point_to,
-    indicator_push = m3_indicator_push, indicator_spread = m3_indicator_spread)
+#assemble all the instructions
+plot3 <- semptools::set_sem_layout(plot_Kim_2dvs,
+                                indicator_order = m3_indicator_order,
+                                indicator_factor = m3_indicator_factor,
+                                factor_layout = m3_msmt,
+                                factor_point_to = m3_point_to,
+                                indicator_push = m3_indicator_push,
+                                indicator_spread = m3_indicator_spread)
 
-# changing node labels
-plot3 <- semptools::change_node_label(plot3, c(REM = "mAggress", CMI = "cMistrust",
-    PWB = "Wellbeing"), label.cex = 1.1)
+#changing node labels
+plot3 <- semptools::change_node_label(plot3,
+                                   c(REM = "mAggress",
+                                     CMI = "cMistrust",
+                                     PWB = "Wellbeing"),
+                                   label.cex = 1.1)
 
 plot(plot3)
 ```
@@ -1680,7 +1653,7 @@ Let's try one last model. In this last model predicting two dependent variables,
 To uncorrelate the DVs. I am removing the code that fixed the two variables to be uncorrelated. I am also changing "fixed.x = FALSE" to "fixed.x = TRUE" (which is the *lavaan* default).
 
 
-```r
+``` r
 Kim_2CorrDVs_mod <- "
         ##measurement model
          REMS =~ p1REMS + p2REMS + p3REMS
@@ -1692,18 +1665,15 @@ Kim_2CorrDVs_mod <- "
          PWB ~ REMS
          
          "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-Kim_2CorrDVs_fit <- lavaan::sem(Kim_2CorrDVs_mod, data = dfKim, missing = "fiml",
-    fixed.x = TRUE)
-Kim_2CorrDVs_summary <- lavaan::summary(Kim_2CorrDVs_fit, fit.measures = TRUE,
-    standardized = TRUE, rsq = TRUE)
-Kim_2CorrDVs_pEsts <- lavaan::parameterEstimates(Kim_2CorrDVs_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+Kim_2CorrDVs_fit <- lavaan::sem(Kim_2CorrDVs_mod, data = dfKim, missing= 'fiml', fixed.x = TRUE)
+Kim_2CorrDVs_summary <- lavaan::summary(Kim_2CorrDVs_fit, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+Kim_2CorrDVs_pEsts <- lavaan::parameterEstimates(Kim_2CorrDVs_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 Kim_2CorrDVs_summary
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 99 iterations
+## lavaan 0.6-18 ended normally after 93 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1714,50 +1684,50 @@ Kim_2CorrDVs_summary
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                15.965
+##   Test statistic                                18.691
 ##   Degrees of freedom                                24
-##   P-value (Chi-square)                           0.889
+##   P-value (Chi-square)                           0.768
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                              1366.804
+##   Test statistic                              1366.485
 ##   Degrees of freedom                                36
 ##   P-value                                        0.000
 ## 
 ## User Model versus Baseline Model:
 ## 
 ##   Comparative Fit Index (CFI)                    1.000
-##   Tucker-Lewis Index (TLI)                       1.009
+##   Tucker-Lewis Index (TLI)                       1.006
 ##                                                       
 ##   Robust Comparative Fit Index (CFI)             1.000
-##   Robust Tucker-Lewis Index (TLI)                1.009
+##   Robust Tucker-Lewis Index (TLI)                1.006
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)               -368.149
-##   Loglikelihood unrestricted model (H1)       -360.166
+##   Loglikelihood user model (H0)               -365.241
+##   Loglikelihood unrestricted model (H1)       -355.896
 ##                                                       
-##   Akaike (AIC)                                 796.297
-##   Bayesian (BIC)                               887.793
-##   Sample-size adjusted Bayesian (SABIC)        792.834
+##   Akaike (AIC)                                 790.482
+##   Bayesian (BIC)                               881.977
+##   Sample-size adjusted Bayesian (SABIC)        787.018
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
 ##   RMSEA                                          0.000
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.031
-##   P-value H_0: RMSEA <= 0.050                    0.988
-##   P-value H_0: RMSEA >= 0.080                    0.000
+##   90 Percent confidence interval - upper         0.046
+##   P-value H_0: RMSEA <= 0.050                    0.964
+##   P-value H_0: RMSEA >= 0.080                    0.001
 ##                                                       
 ##   Robust RMSEA                                   0.000
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.031
-##   P-value H_0: Robust RMSEA <= 0.050             0.988
-##   P-value H_0: Robust RMSEA >= 0.080             0.000
+##   90 Percent confidence interval - upper         0.046
+##   P-value H_0: Robust RMSEA <= 0.050             0.964
+##   P-value H_0: Robust RMSEA >= 0.080             0.001
 ## 
 ## Standardized Root Mean Square Residual:
 ## 
-##   SRMR                                           0.017
+##   SRMR                                           0.019
 ## 
 ## Parameter Estimates:
 ## 
@@ -1769,82 +1739,81 @@ Kim_2CorrDVs_summary
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   REMS =~                                                               
 ##     p1REMS            1.000                               0.271    0.944
-##     p2REMS            1.055    0.044   23.770    0.000    0.286    0.946
-##     p3REMS            1.031    0.046   22.399    0.000    0.280    0.929
+##     p2REMS            1.054    0.044   23.701    0.000    0.286    0.945
+##     p3REMS            1.033    0.046   22.380    0.000    0.280    0.929
 ##   CMI =~                                                                
-##     p1CMI             1.000                               0.773    0.963
-##     p2CMI             1.006    0.035   28.780    0.000    0.778    0.957
-##     p3CMI             0.937    0.034   27.373    0.000    0.724    0.948
+##     p1CMI             1.000                               0.774    0.963
+##     p2CMI             1.006    0.035   28.812    0.000    0.779    0.957
+##     p3CMI             0.936    0.034   27.373    0.000    0.724    0.948
 ##   PWB =~                                                                
-##     p1PWB             1.000                               0.306    0.635
-##     p2PWB             1.606    0.228    7.055    0.000    0.491    0.801
-##     p3PWB             1.372    0.206    6.662    0.000    0.420    0.709
+##     p1PWB             1.000                               0.304    0.632
+##     p2PWB             1.553    0.224    6.934    0.000    0.472    0.794
+##     p3PWB             1.383    0.209    6.615    0.000    0.421    0.710
 ## 
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   CMI ~                                                                 
-##     REMS              1.732    0.199    8.698    0.000    0.608    0.608
+##     REMS              1.730    0.199    8.682    0.000    0.607    0.607
 ##   PWB ~                                                                 
-##     REMS             -0.633    0.114   -5.557    0.000   -0.562   -0.562
+##     REMS             -0.619    0.114   -5.425    0.000   -0.553   -0.553
 ## 
 ## Covariances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##  .CMI ~~                                                                
-##    .PWB              -0.051    0.017   -3.039    0.002   -0.331   -0.331
+##    .PWB              -0.055    0.017   -3.189    0.001   -0.352   -0.352
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1REMS            0.494    0.023   21.448    0.000    0.494    1.717
-##    .p2REMS            0.504    0.024   20.790    0.000    0.504    1.665
-##    .p3REMS            0.522    0.024   21.642    0.000    0.522    1.733
-##    .p1CMI             3.888    0.064   60.479    0.000    3.888    4.842
-##    .p2CMI             3.886    0.065   59.667    0.000    3.886    4.777
-##    .p3CMI             4.051    0.061   66.190    0.000    4.051    5.299
+##    .p1REMS            0.494    0.023   21.435    0.000    0.494    1.716
+##    .p2REMS            0.503    0.024   20.777    0.000    0.503    1.663
+##    .p3REMS            0.522    0.024   21.630    0.000    0.522    1.732
+##    .p1CMI             3.888    0.064   60.468    0.000    3.888    4.841
+##    .p2CMI             3.886    0.065   59.663    0.000    3.886    4.777
+##    .p3CMI             4.051    0.061   66.212    0.000    4.051    5.301
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
-##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
-##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
+##    .p2PWB             3.171    0.048   66.568    0.000    3.171    5.330
+##    .p3PWB             3.141    0.047   66.268    0.000    3.141    5.306
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1REMS            0.009    0.002    5.466    0.000    0.009    0.109
-##    .p2REMS            0.010    0.002    5.330    0.000    0.010    0.106
-##    .p3REMS            0.012    0.002    6.278    0.000    0.012    0.137
-##    .p1CMI             0.047    0.009    5.046    0.000    0.047    0.072
-##    .p2CMI             0.056    0.010    5.597    0.000    0.056    0.084
+##    .p1REMS            0.009    0.002    5.467    0.000    0.009    0.110
+##    .p2REMS            0.010    0.002    5.343    0.000    0.010    0.107
+##    .p3REMS            0.012    0.002    6.259    0.000    0.012    0.136
+##    .p1CMI             0.047    0.009    5.054    0.000    0.047    0.072
+##    .p2CMI             0.056    0.010    5.596    0.000    0.056    0.084
 ##    .p3CMI             0.060    0.009    6.292    0.000    0.060    0.102
-##    .p1PWB             0.138    0.019    7.309    0.000    0.138    0.597
-##    .p2PWB             0.135    0.029    4.646    0.000    0.135    0.358
-##    .p3PWB             0.174    0.028    6.320    0.000    0.174    0.498
-##     REMS              0.074    0.009    7.838    0.000    1.000    1.000
-##    .CMI               0.377    0.048    7.871    0.000    0.631    0.631
-##    .PWB               0.064    0.017    3.778    0.000    0.685    0.685
+##    .p1PWB             0.139    0.019    7.304    0.000    0.139    0.601
+##    .p2PWB             0.131    0.028    4.737    0.000    0.131    0.370
+##    .p3PWB             0.174    0.028    6.242    0.000    0.174    0.495
+##     REMS              0.074    0.009    7.834    0.000    1.000    1.000
+##    .CMI               0.378    0.048    7.871    0.000    0.632    0.632
+##    .PWB               0.064    0.017    3.754    0.000    0.694    0.694
 ## 
 ## R-Square:
 ##                    Estimate
-##     p1REMS            0.891
-##     p2REMS            0.894
-##     p3REMS            0.863
+##     p1REMS            0.890
+##     p2REMS            0.893
+##     p3REMS            0.864
 ##     p1CMI             0.928
 ##     p2CMI             0.916
 ##     p3CMI             0.898
-##     p1PWB             0.403
-##     p2PWB             0.642
-##     p3PWB             0.502
-##     CMI               0.369
-##     PWB               0.315
+##     p1PWB             0.399
+##     p2PWB             0.630
+##     p3PWB             0.505
+##     CMI               0.368
+##     PWB               0.306
 ```
 
-```r
-# Kim_2CorrDVs_pEsts#although creating the object is useful to export
-# as a .csv I didn't ask it to print into the book
+``` r
+#Kim_2CorrDVs_pEsts#although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 Here is the script to export results to .csv files.
 
-```r
-# global fit indices
+``` r
+#global fit indices
 Kim_2CorrDVs_fitstats <- tidySEM::table_fit(Kim_2CorrDVs_fit)
 write.csv(Kim_2CorrDVs_fitstats, file = "Kim_2CorrDVs_fitstats.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(Kim_2CorrDVs_pEsts, file = "Kim_2CorrDVs_pEsts.csv")
 ```
 
@@ -1869,10 +1838,8 @@ Our string of global fit indices has returned to the same values as the previous
 I will use the techniques explained above to create a figure.
 
 
-```r
-plot_Kim_2CorrDVs <- semPlot::semPaths(Kim_2CorrDVs_fit, what = "col",
-    whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = 0.75,
-    style = "lisrel", mar = c(5, 5, 5, 5))
+``` r
+plot_Kim_2CorrDVs <- semPlot::semPaths(Kim_2CorrDVs_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
 ![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
@@ -1886,39 +1853,51 @@ Below is the column/row mapping of my variables in their desired position.
 
 We place these values along with the names of our latent variables in to the *semptools::layout_matrix* function.
 
-```r
-# IMPORTANT: Must use the node names (take directly from the SemPlot)
-# assigned by SemPlot You can change them as the last thing
-m4_msmt <- semptools::layout_matrix(REM = c(2, 1), CMI = c(1, 2), PWB = c(3,
-    2))
-# tell where you want the indicators to face
-m4_point_to <- semptools::layout_matrix(left = c(2, 1), right = c(1, 2),
-    right = c(3, 2))
+``` r
+#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
+#You can change them as the last thing
+m4_msmt <- semptools::layout_matrix(REM = c(2,1),
+                                  CMI = c(1,2),
+                                  PWB = c(3,2))
+#tell where you want the indicators to face
+m4_point_to <- semptools::layout_matrix (left = c(2,1),
+                                      right = c(1,2),
+                                      right = c(3,2))
 
-# the next two codes -- indicator_order and indicator_factor are
-# paired together, they specify the order of observed variables for
-# each factor
-m4_indicator_order <- c("p1R", "p2R", "p3R", "p1C", "p2C", "p3C", "p1P",
-    "p2P", "p3P")
+#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
+m4_indicator_order <- c("p1R", "p2R", "p3R",
+                     "p1C", "p2C", "p3C",
+                     "p1P", "p2P", "p3P")
 
-m4_indicator_factor <- c("REM", "REM", "REM", "CMI", "CMI", "CMI", "PWB",
-    "PWB", "PWB")
+m4_indicator_factor <- c("REM", "REM", "REM",
+                      "CMI", "CMI", "CMI",
+                      "PWB", "PWB", "PWB")
 
-# next set of code pushes the indicator variables away from the
-# factor
-m4_indicator_push <- c(REM = 0.5, CMI = 1, PWB = 1)
+#next set of code pushes the indicator variables away from the factor
+m4_indicator_push <- c(REM = .5, 
+                    CMI = 1,
+                    PWB = 1)
 
-# spreading the boxes away from each other
-m4_indicator_spread <- c(REM = 1, CMI = 1, PWB = 1)
+#spreading the boxes away from each other
+m4_indicator_spread <- c(REM = 1, 
+                    CMI = 1,
+                    PWB = 1)
 
-# assemble all the instructions
-plot4 <- semptools::set_sem_layout(plot_Kim_2CorrDVs, indicator_order = m4_indicator_order,
-    indicator_factor = m4_indicator_factor, factor_layout = m4_msmt, factor_point_to = m4_point_to,
-    indicator_push = m4_indicator_push, indicator_spread = m4_indicator_spread)
+#assemble all the instructions
+plot4 <- semptools::set_sem_layout(plot_Kim_2CorrDVs,
+                                indicator_order = m4_indicator_order,
+                                indicator_factor = m4_indicator_factor,
+                                factor_layout = m4_msmt,
+                                factor_point_to = m4_point_to,
+                                indicator_push = m4_indicator_push,
+                                indicator_spread = m4_indicator_spread)
 
-# changing node labels
-plot4 <- semptools::change_node_label(plot4, c(REM = "mAggress", CMI = "cMistrust",
-    PWB = "Wellbeing"), label.cex = 1.1)
+#changing node labels
+plot4 <- semptools::change_node_label(plot4,
+                                   c(REM = "mAggress",
+                                     CMI = "cMistrust",
+                                     PWB = "Wellbeing"),
+                                   label.cex = 1.1)
 
 plot(plot4)
 ```
@@ -1931,14 +1910,13 @@ plot(plot4)
 Because these models all use the same data and same variables, they are nested. That is, they add and delete paths (or change directional paths to bidirectional covariances). As a result we can compare their fit.  I have used the *lavaan::lavTestLRT* function to demonstrate that with the exception of the "Kim_2dvs_fit" (the model that predicted CMI and PWB from REMS and did not allow PWB and REMS to covary), all model fit was the same. This is because of the just-identified, fully saturated nature of these models. 
 
 
-```r
-lavaan::lavTestLRT(rp3_msmt_fit, Kim_struct_fit, Kim_swap_fit, Kim_2dvs_fit,
-    Kim_2CorrDVs_fit)
+``` r
+lavaan::lavTestLRT(rp3_msmt_fit, Kim_struct_fit, Kim_swap_fit, Kim_2dvs_fit, Kim_2CorrDVs_fit)
 ```
 
 ```
-## Warning in lavaan::lavTestLRT(rp3_msmt_fit, Kim_struct_fit, Kim_swap_fit, :
-## lavaan WARNING: some models have the same degrees of freedom
+## Warning: lavaan->lavTestLRT():  
+##    some models have the same degrees of freedom
 ```
 
 ```
@@ -1946,11 +1924,11 @@ lavaan::lavTestLRT(rp3_msmt_fit, Kim_struct_fit, Kim_swap_fit, Kim_2dvs_fit,
 ## Chi-Squared Difference Test
 ## 
 ##                  Df    AIC    BIC  Chisq Chisq diff   RMSEA Df diff Pr(>Chisq)
-## rp3_msmt_fit     24 796.30 887.79 15.965                                      
-## Kim_struct_fit   24 796.30 887.79 15.965      0.000 0.00000       0           
-## Kim_swap_fit     24 796.30 887.79 15.965      0.000 0.00000       0           
-## Kim_2CorrDVs_fit 24 796.30 887.79 15.965      0.000 0.00000       0           
-## Kim_2dvs_fit     25 805.73 894.18 27.398     11.433 0.25861       1  0.0007214
+## rp3_msmt_fit     24 790.48 881.98 18.691                                      
+## Kim_struct_fit   24 790.48 881.98 18.691      0.000 0.00000       0           
+## Kim_swap_fit     24 790.48 881.98 18.691      0.000 0.00000       0           
+## Kim_2CorrDVs_fit 24 790.48 881.98 18.691      0.000 0.00000       0           
+## Kim_2dvs_fit     25 801.28 889.73 31.493     12.802 0.27505       1  0.0003462
 ##                     
 ## rp3_msmt_fit        
 ## Kim_struct_fit      
@@ -2033,7 +2011,7 @@ I am hypothesizing that the evaluation of social responsive pedagogy is predicte
 ### Import the data and format the variables in the model {-}
 
 
-```r
+``` r
 raw <- readRDS("ReC.rds")
 ```
 
@@ -2046,16 +2024,14 @@ Centering is 1 item -- it's a factor with two levels pre, re.
 I can create a babydf with just those items.
 
 
-```r
-babydf <- dplyr::select(raw, Centering, ClearResponsibilities, EffectiveAnswers,
-    Feedback, ClearOrganization, ClearPresentation, InclusvClassrm, EquitableEval,
-    MultPerspectives, DEIintegration)
+``` r
+babydf <- dplyr::select(raw, Centering, ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration)
 ```
 
 Let's check the structure of the variables:
 
 
-```r
+``` r
 str(babydf)
 ```
 
@@ -2076,7 +2052,7 @@ str(babydf)
 The centering variable will need to be dummy coded as 0/1:
 
 
-```r
+``` r
 babydf$CENTERING <- as.numeric(babydf$Centering)
 babydf$CENTERING <- (babydf$CENTERING - 1)
 str(babydf)
@@ -2108,7 +2084,7 @@ As shown below, the centering variable is a single item indicator.
 
 
 
-```r
+``` r
 msmt_mod <- "
         ##measurement model
          CTR =~ CENTERING #this is a single item indicator, I had to add code below to set the variance
@@ -2133,7 +2109,7 @@ msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 63 iterations
+## lavaan 0.6-18 ended normally after 63 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2249,21 +2225,18 @@ msmt_fit_sum
 ##     SRPed             0.228    0.035    6.557    0.000    1.000    1.000
 ```
 
-```r
-msmt_fit_pEsts <- lavaan::parameterEstimates(msmt_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
-# msmt_fit_pEsts #To reduce redundancy in the book, I did not print
-# the parameter estimates. Their object is used in exporting a .csv
-# file.
+``` r
+msmt_fit_pEsts <- lavaan::parameterEstimates(msmt_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+#msmt_fit_pEsts #To reduce redundancy in the book, I did not print the parameter estimates. Their object is used in exporting a .csv file.
 ```
 
 Below is script that will export the global fit indices (via *tidySEM::table_fit*) and the parameter estimates (e.g., factor loadings, structural regression weights, and parameters we requested such as the indirect effect) to .csv files that you can manipulate outside of R.  
 
-```r
-# global fit indices
+``` r
+#global fit indices
 msmt_globalfit <- tidySEM::table_fit(msmt_fit)
 write.csv(msmt_globalfit, file = "msmt_globalfit.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(msmt_fit_pEsts, file = "msmt_fit_pEsts.csv")
 ```
 
@@ -2302,10 +2275,8 @@ Table 1
 Here is a figure of my measurement model:
 
 
-```r
-semPlot::semPaths(msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5,
-    node.width = 1, edge.label.cex = 0.75, style = "lisrel", mar = c(5,
-        5, 5, 5))
+``` r
+semPlot::semPaths(msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
 ![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-95-1.png)<!-- -->
@@ -2322,7 +2293,7 @@ Y = SRPed:  socially responsive pedagogy (continuously scaled with higher scores
 
 
 
-```r
+``` r
 ReC_struct_mod <- "
         #measurement model
         CTR =~ CENTERING #this is a single item indicator, I had to add code below to set the variance
@@ -2341,17 +2312,15 @@ ReC_struct_mod <- "
          direct  := c_p
          total_c  := c_p + (a*b)
           "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-ReC_struct_fit <- lavaan::sem(ReC_struct_mod, data = babydf, missing = "fiml")
-ReC_struct_summary <- lavaan::summary(ReC_struct_fit, fit.measures = TRUE,
-    standardized = TRUE, rsq = TRUE)
-ReC_struct_pEsts <- lavaan::parameterEstimates(ReC_struct_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+ReC_struct_fit <- lavaan::sem(ReC_struct_mod, data = babydf, missing= 'fiml')
+ReC_struct_summary <- lavaan::summary(ReC_struct_fit, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+ReC_struct_pEsts <- lavaan::parameterEstimates(ReC_struct_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 ReC_struct_summary
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 61 iterations
+## lavaan 0.6-18 ended normally after 61 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2488,18 +2457,17 @@ ReC_struct_summary
 ##     total_c           0.033    0.061    0.531    0.595    0.034    0.034
 ```
 
-```r
-# ReC_struct_pEsts #although creating the object is useful to export
-# as a .csv I didn't ask it to print into the book
+``` r
+#ReC_struct_pEsts #although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 
 Below is script that will export the global fit indices (via *tidySEM::table_fit*) and the parameter estimates (e.g., factor loadings, structural regression weights, and parameters we requested such as the indirect effect) to .csv files that you can manipulate outside of R.  
 
-```r
-# global fit indices
+``` r
+#global fit indices
 ReC_globalfit <- tidySEM::table_fit(ReC_struct_fit)
 write.csv(ReC_globalfit, file = "ReC_globalfit.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(ReC_struct_pEsts, file = "ReC_struct_pEsts.csv")
 ```
 
@@ -2545,10 +2513,8 @@ Here's how I might write up this section of the results:
 
 Let's work up a figure
 
-```r
-plot_ReC_struct <- semPlot::semPaths(ReC_struct_fit, what = "col", whatLabels = "stand",
-    sizeMan = 5, node.width = 1, edge.label.cex = 0.75, style = "lisrel",
-    mar = c(5, 5, 5, 5))
+``` r
+plot_ReC_struct <- semPlot::semPaths(ReC_struct_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
 ![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-99-1.png)<!-- -->
@@ -2569,43 +2535,55 @@ Lots of things can go wrong in the code below. In preparing this example I lost 
 
 After traversing several rabbit trails, taking a break, and returning, I could see my errors.  That's just R.
 
-```r
-# IMPORTANT: Must use the node names (take directly from the SemPlot)
-# assigned by SemPlot You can change them as the last thing
-m1_msmt <- semptools::layout_matrix(CTR = c(2, 1), TrP = c(1, 2), SRP = c(2,
-    3))
+``` r
+#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
+#You can change them as the last thing
+m1_msmt <- semptools::layout_matrix(CTR = c(2,1),
+                                  TrP = c(1,2),
+                                  SRP = c(2,3))
 
-# tell where you want the indicators to face
-m1_point_to <- semptools::layout_matrix(left = c(2, 1), up = c(1, 2), right = c(2,
-    3))
+#tell where you want the indicators to face
+m1_point_to <- semptools::layout_matrix (left = c(2,1),
+                                      up = c(1,2),
+                                      right = c(2,3))
 
-# the next two codes -- indicator_order and indicator_factor are
-# paired together, they specify the order of observed variables for
-# each factor
-m1_indicator_order <- c("ClR", "EfA", "Fdb", "ClO", "ClP", "InC", "EqE",
-    "MlP", "DEI", "CEN")
+#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
+m1_indicator_order <- c("ClR", "EfA", "Fdb", "ClO", "ClP",
+                     "InC", "EqE", "MlP", "DEI",
+                    "CEN")
 
-m1_indicator_factor <- c("TrP", "TrP", "TrP", "TrP", "TrP", "SRP", "SRP",
-    "SRP", "SRP", "CTR")
+m1_indicator_factor <- c("TrP", "TrP", "TrP", "TrP", "TrP",
+                      "SRP", "SRP", "SRP", "SRP",
+                      "CTR")
 
-# next set of code pushes the indicator variables away from the
-# factor
-m1_indicator_push <- c(CTR = 1, TrP = 2, SRP = 5)
+#next set of code pushes the indicator variables away from the factor
+m1_indicator_push <- c(CTR = 1, 
+                    TrP = 2,
+                    SRP = 5)
 
-# spreading the boxes away from each other
-m1_indicator_spread <- c(CTR = 1, TrP = 3, SRP = 5)
+#spreading the boxes away from each other
+m1_indicator_spread <- c(CTR = 1, 
+                    TrP = 3,
+                    SRP = 5)
 ```
 
 Finally, we can feed all of the objects that whole these instructions into the *semptools::sem_set_layout* function. If desired, we can use the *semptools::change_node_label* function to rename the latent variables. Again, make sure to use the variable names that *semPlot::semPaths* has assigned.
 
-```r
-plot1 <- semptools::set_sem_layout(plot_ReC_struct, indicator_order = m1_indicator_order,
-    indicator_factor = m1_indicator_factor, factor_layout = m1_msmt, factor_point_to = m1_point_to,
-    indicator_push = m1_indicator_push, indicator_spread = m1_indicator_spread)
+``` r
+plot1 <- semptools::set_sem_layout(plot_ReC_struct,
+                                indicator_order = m1_indicator_order,
+                                indicator_factor = m1_indicator_factor,
+                                factor_layout = m1_msmt,
+                                factor_point_to = m1_point_to,
+                                indicator_push = m1_indicator_push,
+                                indicator_spread = m1_indicator_spread)
 
-# changing node labels
-plot1 <- semptools::change_node_label(plot1, c(CTR = "Centering", TrP = "TradPed",
-    SRP = "SRPed"), label.cex = 1.1)
+#changing node labels
+plot1 <- semptools::change_node_label(plot1,
+                                   c(CTR = "Centering",
+                                     TrP = "TradPed",
+                                     SRP = "SRPed"),
+                                   label.cex = 1.1)
 
 plot(plot1)
 ```
@@ -2622,7 +2600,7 @@ Having worked with this data quite a bit, traditional and socially responsive pe
 ![An image of the our alternative structural model](Worked_Examples/images/HW_ReC1_alt_plot.png) 
 
 
-```r
+``` r
 ReC_ALT_mod <- "
         #measurement model
         CTR =~ CENTERING #this is a single item indicator, I had to add code below to set the variance
@@ -2638,18 +2616,15 @@ ReC_ALT_mod <- "
          TradPed ~ CTR
           
           "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-ReC_ALT_fit <- lavaan::sem(ReC_ALT_mod, data = babydf, missing = "fiml",
-    fixed.x = FALSE)
-ReC_ALT_summary <- lavaan::summary(ReC_ALT_fit, fit.measures = TRUE, standardized = TRUE,
-    rsq = TRUE)
-ReC_ALT_pEsts <- lavaan::parameterEstimates(ReC_ALT_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+ReC_ALT_fit <- lavaan::sem(ReC_ALT_mod, data = babydf, missing= 'fiml', fixed.x= FALSE)
+ReC_ALT_summary <- lavaan::summary(ReC_ALT_fit, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+ReC_ALT_pEsts <- lavaan::parameterEstimates(ReC_ALT_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 ReC_ALT_summary
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 61 iterations
+## lavaan 0.6-18 ended normally after 61 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2784,18 +2759,17 @@ ReC_ALT_summary
 ##     SRPed             0.005
 ```
 
-```r
-# ReC_ALT_pEsts #although creating the object is useful to export as
-# a .csv I didn't ask it to print into the book
+``` r
+#ReC_ALT_pEsts #although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 
 Below is script that will export the global fit indices (via *tidySEM::table_fit*) and the parameter estimates (e.g., factor loadings, structural regression weights, and parameters we requested such as the indirect effect) to .csv files that you can manipulate outside of R.  
 
-```r
-# global fit indices
+``` r
+#global fit indices
 ReC_ALT_globalfit <- tidySEM::table_fit(ReC_ALT_fit)
 write.csv(ReC_ALT_globalfit, file = "ReC_ALT_globalfit.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(ReC_ALT_pEsts, file = "ReC_ALT_pEsts.csv")
 ```
 
@@ -2831,10 +2805,8 @@ Here's how I might write up this section of the results:
 
 Let's work up a figure
 
-```r
-plot_ReC_ALT <- semPlot::semPaths(ReC_ALT_fit, what = "col", whatLabels = "stand",
-    sizeMan = 5, node.width = 1, edge.label.cex = 0.75, style = "lisrel",
-    mar = c(5, 5, 5, 5))
+``` r
+plot_ReC_ALT <- semPlot::semPaths(ReC_ALT_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
 ![](10-SEM_StructMod_files/figure-docx/unnamed-chunk-105-1.png)<!-- -->
@@ -2856,43 +2828,55 @@ Lots of things can go wrong in the code below. In preparing this example I lost 
 
 After traversing several rabbit trails, taking a break, and returning, I could see my errors.  That's just R.
 
-```r
-# IMPORTANT: Must use the node names (take directly from the SemPlot)
-# assigned by SemPlot You can change them as the last thing
-m2_msmt <- semptools::layout_matrix(CTR = c(2, 1), TrP = c(1, 2), SRP = c(3,
-    2))
+``` r
+#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
+#You can change them as the last thing
+m2_msmt <- semptools::layout_matrix(CTR = c(2,1),
+                                  TrP = c(1,2),
+                                  SRP = c(3,2))
 
-# tell where you want the indicators to face
-m2_point_to <- semptools::layout_matrix(left = c(2, 1), right = c(1, 2),
-    right = c(3, 2))
+#tell where you want the indicators to face
+m2_point_to <- semptools::layout_matrix (left = c(2,1),
+                                      right = c(1,2),
+                                      right = c(3,2))
 
-# the next two codes -- indicator_order and indicator_factor are
-# paired together, they specify the order of observed variables for
-# each factor
-m2_indicator_order <- c("ClR", "EfA", "Fdb", "ClO", "ClP", "InC", "EqE",
-    "MlP", "DEI", "CEN")
+#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
+m2_indicator_order <- c("ClR", "EfA", "Fdb", "ClO", "ClP",
+                     "InC", "EqE", "MlP", "DEI",
+                    "CEN")
 
-m2_indicator_factor <- c("TrP", "TrP", "TrP", "TrP", "TrP", "SRP", "SRP",
-    "SRP", "SRP", "CTR")
+m2_indicator_factor <- c("TrP", "TrP", "TrP", "TrP", "TrP",
+                      "SRP", "SRP", "SRP", "SRP",
+                      "CTR")
 
-# next set of code pushes the indicator variables away from the
-# factor
-m2_indicator_push <- c(CTR = 1, TrP = 2, SRP = 5)
+#next set of code pushes the indicator variables away from the factor
+m2_indicator_push <- c(CTR = 1, 
+                    TrP = 2,
+                    SRP = 5)
 
-# spreading the boxes away from each other
-m2_indicator_spread <- c(CTR = 1, TrP = 3, SRP = 5)
+#spreading the boxes away from each other
+m2_indicator_spread <- c(CTR = 1, 
+                    TrP = 3,
+                    SRP = 5)
 ```
 
 Finally, we can feed all of the objects that whole these instructions into the *semptools::sem_set_layout* function. If desired, we can use the *semptools::change_node_label* function to rename the latent variables. Again, make sure to use the variable names that *semPlot::semPaths* has assigned.
 
-```r
-plot2 <- semptools::set_sem_layout(plot_ReC_ALT, indicator_order = m2_indicator_order,
-    indicator_factor = m2_indicator_factor, factor_layout = m2_msmt, factor_point_to = m2_point_to,
-    indicator_push = m2_indicator_push, indicator_spread = m2_indicator_spread)
+``` r
+plot2 <- semptools::set_sem_layout(plot_ReC_ALT,
+                                indicator_order = m2_indicator_order,
+                                indicator_factor = m2_indicator_factor,
+                                factor_layout = m2_msmt,
+                                factor_point_to = m2_point_to,
+                                indicator_push = m2_indicator_push,
+                                indicator_spread = m2_indicator_spread)
 
-# changing node labels
-plot21 <- semptools::change_node_label(plot2, c(CTR = "Centering", TrP = "TradPed",
-    SRP = "SRPed"), label.cex = 1.1)
+#changing node labels
+plot21 <- semptools::change_node_label(plot2,
+                                   c(CTR = "Centering",
+                                     TrP = "TradPed",
+                                     SRP = "SRPed"),
+                                   label.cex = 1.1)
 
 plot(plot2)
 ```
@@ -2906,13 +2890,13 @@ plot(plot2)
 We can use the *lavaan::lavTestLRT* to compare the global fit of the models.
 
 
-```r
+``` r
 lavaan::lavTestLRT(msmt_fit, ReC_struct_fit, ReC_ALT_fit)
 ```
 
 ```
-## Warning in lavaan::lavTestLRT(msmt_fit, ReC_struct_fit, ReC_ALT_fit): lavaan
-## WARNING: some models have the same degrees of freedom
+## Warning: lavaan->lavTestLRT():  
+##    some models have the same degrees of freedom
 ```
 
 ```

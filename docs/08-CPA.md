@@ -56,83 +56,14 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# will install the package if not already installed
-if (!require(lavaan)) {
-    install.packages("lavaan")
-}
-```
-
-```
-## Loading required package: lavaan
-```
-
-```
-## This is lavaan 0.6-17
-## lavaan is FREE software! Please report any bugs.
-```
-
-```r
-if (!require(semPlot)) {
-    install.packages("semPlot")
-}
-```
-
-```
-## Loading required package: semPlot
-```
-
-```r
-if (!require(tidyverse)) {
-    install.packages("tidyverse")
-}
-```
-
-```
-## Loading required package: tidyverse
-```
-
-```
-## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-```
-
-```r
-if (!require(psych)) {
-    install.packages("psych")
-}
-```
-
-```
-## Loading required package: psych
-## 
-## Attaching package: 'psych'
-## 
-## The following objects are masked from 'package:ggplot2':
-## 
-##     %+%, alpha
-## 
-## The following object is masked from 'package:lavaan':
-## 
-##     cor2cov
-```
-
-```r
-if (!require(jtools)) {
-    install.packages("jtools")
-}
-```
-
-```
-## Loading required package: jtools
+``` r
+#will install the package if not already installed
+#if(!require(lavaan)){install.packages("lavaan")}
+#if(!require(semPlot)){install.packages("semPlot")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(jtools)){install.packages("jtools")}
+#if(!require(datawizard)){install.packages("datawizard")}
 ```
 
 ## Conditional Process Analysis
@@ -240,7 +171,7 @@ Higher scores indicate higher mental health (e.g., little or no psychological ld
 The *lavaan::simulateData* function was used. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. For all others we specified a factor loading of 0.80. We then approximated the *measurement model* by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette  [@lewis_applying_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
 
 
-```r
+``` r
 #Entering the intercorrelations, means, and standard deviations from the journal article
 
 
@@ -341,14 +272,14 @@ If you prefer the .rds format, use this script (remove the hashtags). The .rds f
 Script to save the data to your computer as an .rds file.
 
 
-```r
-# saveRDS(dfLewis, 'dfLewis.rds')
+``` r
+#saveRDS(dfLewis, 'dfLewis.rds')  
 ```
 
 Once saved, you could clean your environment and bring the data back in from its .csv format.
 
-```r
-# dfLewis<- readRDS('dfLewis.rds')
+``` r
+#dfLewis<- readRDS('dfLewis.rds')
 ```
 
 If you prefer the .csv format (think "Excel lite") use this script (remove the hashtags). An advantage of the .csv format is that you can open the data outside of the R environment. A disadvantage is that it may not retain any formatting of variables
@@ -356,15 +287,14 @@ If you prefer the .csv format (think "Excel lite") use this script (remove the h
 Script to save the data to your computer as a .csv file.
 
 
-```r
-# write.table(dfLewis, file = 'dfLewis.csv', sep = ',',
-# col.names=TRUE, row.names=FALSE)
+``` r
+#write.table(dfLewis, file = 'dfLewis.csv', sep = ',', col.names=TRUE, row.names=FALSE) 
 ```
 
 Once saved, you could clean your environment and bring the data back in from its .csv format.
 
-```r
-# dfLewis<- read.csv ('dfLewis.csv', header = TRUE)
+``` r
+#dfLewis<- read.csv ('dfLewis.csv', header = TRUE)
 ```
 
 ### Scrubbing, Scoring, and Data Diagnostics
@@ -373,55 +303,31 @@ Because the focus of this lesson is on moderation, we have used simulated data (
 
 Because we are working with item level data we do need to score the scales used in the researcher's model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.
 
-As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we  calculate mean scores of these variables by first creating concatenated lists of variable names. Next we apply the *sjstats::mean_n* function to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
+
+As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we the *datawizard::row_means()* function to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
 
 Note that I am only scoring the variables used in the models demonstrated in this lesson. The variables that are simulated but not scored could be used for the practice suggestions.
 
 
-```r
-GRMS_vars <- c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8",
-    "Ob9", "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1",
-    "St2", "St3", "St4", "St5", "An1", "An2", "An3")
-Eng_vars <- c("Eng1", "Eng2")
-dEng_vars <- c("dEng1", "dEng2")
-MntlHlth_vars <- c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6")
-Cntrlty_vars <- c("Cntrlty1", "Cntrlty2", "Cntrlty3", "Cntrlty4", "Cntrlty5",
-    "Cntrlty6", "Cntrlty7", "Cntrlty8", "Cntrlty9", "Cntrlty10")
-
-dfLewis$GRMS <- sjstats::mean_n(dfLewis[, GRMS_vars], 0.8)
-```
-
-```
-## Registered S3 methods overwritten by 'broom':
-##   method            from  
-##   tidy.glht         jtools
-##   tidy.summary.glht jtools
-```
-
-```r
-dfLewis$Engmt <- sjstats::mean_n(dfLewis[, Eng_vars], 0.8)
-dfLewis$DisEngmt <- sjstats::mean_n(dfLewis[, dEng_vars], 0.8)
-dfLewis$MntlHlth <- sjstats::mean_n(dfLewis[, MntlHlth_vars], 0.8)
-dfLewis$Centrality <- sjstats::mean_n(dfLewis[, Cntrlty_vars], 0.8)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfLewis$GRMS <-
-# sjstats::mean_n(dfLewis[, ..GRMS_vars], 0.80)
+``` r
+dfLewis$GRMS <- datawizard::row_means(dfLewis, select = c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8", "Ob9", "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1", "St2", "St3", "St4", "St5", "An1", "An2", "An3"), min_valid = .80)
+dfLewis$Engmt <- datawizard::row_means(dfLewis, select = c("Eng1", "Eng2"), min_valid = .80)
+dfLewis$DisEngmt <- datawizard::row_means(dfLewis, select = c("dEng1", "dEng2"), min_valid = .80)
+dfLewis$MntlHlth <- datawizard::row_means(dfLewis, select = c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6"), min_valid = .80)
+dfLewis$Centrality <- datawizard::row_means(dfLewis, select = c("Cntrlty1", "Cntrlty2", "Cntrlty3", "Cntrlty4", "Cntrlty5", "Cntrlty6", "Cntrlty7", "Cntrlty8", "Cntrlty9", "Cntrlty10"), min_valid = .80)
 ```
 
 Now that we have scored our data, let's trim the variables to just those we need.
 
-```r
+``` r
 Lewis_df <- dplyr::select(dfLewis, GRMS, Centrality, DisEngmt, MntlHlth)
 ```
 
 Let's check a table of means, standard deviations, and correlations to see if they align with the published article.
 
 
-```r
-Lewis_table <- apaTables::apa.cor.table(Lewis_df, table.number = 1, show.sig.stars = TRUE,
-    landscape = TRUE, filename = "Lewis_Corr.doc")
+``` r
+Lewis_table <- apaTables::apa.cor.table(Lewis_df, table.number = 1, show.sig.stars=TRUE, landscape=TRUE, filename="Lewis_Corr.doc")
 print(Lewis_table)
 ```
 
@@ -456,8 +362,22 @@ print(Lewis_table)
 
 ### Quick peek at the data
 
-```r
+``` r
 library(psych)
+```
+
+```
+## 
+## Attaching package: 'psych'
+```
+
+```
+## The following objects are masked from 'package:ggplot2':
+## 
+##     %+%, alpha
+```
+
+``` r
 psych::describe(Lewis_df)
 ```
 
@@ -466,7 +386,7 @@ psych::describe(Lewis_df)
 ## GRMS          1 231 2.56 0.72   2.56    2.56 0.77 0.32 4.24  3.92 -0.08
 ## Centrality    2 231 3.94 0.76   3.90    3.92 0.74 1.90 6.00  4.10  0.25
 ## DisEngmt      3 231 2.48 0.52   2.50    2.47 0.74 1.00 4.00  3.00  0.11
-## MntlHlth      4 231 3.16 0.81   3.17    3.16 0.74 1.17 5.50  4.33  0.05
+## MntlHlth      4 231 3.16 0.81   3.17    3.15 0.74 1.17 5.50  4.33  0.05
 ##            kurtosis   se
 ## GRMS          -0.14 0.05
 ## Centrality    -0.08 0.05
@@ -518,105 +438,52 @@ Let's specify this simple moderation model with base R's *lm()* function.  Let's
 Since we are just working to understand our moderations, we can run them with "regular old" ordinary least squares.  
 
 
-```r
-# library(jtools) #the summ function creates a terrific regression
-# table library(interactions) library(ggplot2)
+``` r
+#library(jtools) #the summ function creates a terrific regression table
+#library(interactions)
+#library(ggplot2)
 
-Mod_a_path <- lm(DisEngmt ~ GRMS * Centrality, data = Lewis_df)
+Mod_a_path <- lm(DisEngmt~GRMS*Centrality, data=Lewis_df)
 jtools::summ(Mod_a_path, digits = 3)
 ```
 
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Observations </td>
-   <td style="text-align:right;"> 231 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Dependent variable </td>
-   <td style="text-align:right;"> DisEngmt </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Type </td>
-   <td style="text-align:right;"> OLS linear regression </td>
-  </tr>
-</tbody>
-</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> F(3,227) </td>
-   <td style="text-align:right;"> 31.245 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> R² </td>
-   <td style="text-align:right;"> 0.292 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Adj. R² </td>
-   <td style="text-align:right;"> 0.283 </td>
-  </tr>
-</tbody>
-</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> Est. </th>
-   <th style="text-align:right;"> S.E. </th>
-   <th style="text-align:right;"> t val. </th>
-   <th style="text-align:right;"> p </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> (Intercept) </td>
-   <td style="text-align:right;"> 1.107 </td>
-   <td style="text-align:right;"> 0.510 </td>
-   <td style="text-align:right;"> 2.169 </td>
-   <td style="text-align:right;"> 0.031 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> GRMS </td>
-   <td style="text-align:right;"> 0.623 </td>
-   <td style="text-align:right;"> 0.193 </td>
-   <td style="text-align:right;"> 3.220 </td>
-   <td style="text-align:right;"> 0.001 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Centrality </td>
-   <td style="text-align:right;"> 0.093 </td>
-   <td style="text-align:right;"> 0.132 </td>
-   <td style="text-align:right;"> 0.703 </td>
-   <td style="text-align:right;"> 0.483 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> GRMS:Centrality </td>
-   <td style="text-align:right;"> -0.058 </td>
-   <td style="text-align:right;"> 0.049 </td>
-   <td style="text-align:right;"> -1.179 </td>
-   <td style="text-align:right;"> 0.240 </td>
-  </tr>
-</tbody>
-<tfoot><tr><td style="padding: 0; " colspan="100%">
-<sup></sup> Standard errors: OLS</td></tr></tfoot>
-</table>
+```
+## MODEL INFO:
+## Observations: 231
+## Dependent Variable: DisEngmt
+## Type: OLS linear regression 
+## 
+## MODEL FIT:
+## F(3,227) = 31.245, p = 0.000
+## R² = 0.292
+## Adj. R² = 0.283 
+## 
+## Standard errors: OLS
+## -------------------------------------------------------
+##                           Est.    S.E.   t val.       p
+## --------------------- -------- ------- -------- -------
+## (Intercept)              1.107   0.510    2.169   0.031
+## GRMS                     0.623   0.193    3.220   0.001
+## Centrality               0.093   0.132    0.703   0.483
+## GRMS:Centrality         -0.058   0.049   -1.179   0.240
+## -------------------------------------------------------
+```
  
 Looking at these results we can see that the predictors account for about 29% of variance in disengagement coping. Only the independent variable (X), GRMS is a significant predictor.  Neither the moderator (GRIcntlty, [Y])), nor its interaction with GRMS (GRMS:GRIcntlty, [XW]) are significant.
  
 It's always helpful to graph the relationship.  The *interaction_plot()* function from the package, *interactions* can make helpful illustrations.  In the case of interactions/moderations, I like to run them "both ways" to see which makes more sense.
 
 
-```r
-interactions::interact_plot(Mod_a_path, pred = GRMS, modx = Centrality) +
-    ylim(1, 4)
+``` r
+interactions::interact_plot(Mod_a_path, pred = GRMS, modx = Centrality) + ylim (1,4)
 ```
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-13-1.png)<!-- -->
 The figure with GRIcntrlty as the moderator, shows a very similar prediction of disengagement coping from gendered racial microaggressions across all three levels of gendered racial identity centrality.
 
 
-```r
-interactions::interact_plot(Mod_a_path, pred = Centrality, modx = GRMS) +
-    ylim(1, 4)
+``` r
+interactions::interact_plot(Mod_a_path, pred = Centrality, modx = GRMS) +ylim(1,4)
 ```
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-14-1.png)<!-- -->
@@ -628,7 +495,7 @@ Next, let's probe the interaction with simple slopes.  Probing the interaction i
 The Johnson-Neyman is a *floodlight* approach and provides an indication of the places in the distribution of W (moderator) that X has an effect on Y that is different than zero. The *analysis of simple slopes* approach is thought of as a *spotlight* approach because probes the distribution at specific values (often the *M* +/- 1*SD*).  
 
 
-```r
+``` r
 interactions::sim_slopes(Mod_a_path, pred = GRMS, modx = Centrality)
 ```
 
@@ -661,9 +528,8 @@ interactions::sim_slopes(Mod_a_path, pred = GRMS, modx = Centrality)
 ##   0.35   0.06     6.03   0.00
 ```
 
-```r
-# sim_slopes(Mod_a_path, pred=GRIcntlty, modx = GRMS) #sometimes I
-# like to look at it in reverse -- like in the plots
+``` r
+#sim_slopes(Mod_a_path, pred=GRIcntlty, modx = GRMS) #sometimes I like to look at it in reverse -- like in the plots
 ```
 The Johnson-Neyman suggests that between the GRIcntlty values of -6.39 and 6.37, the relationship between GRMS is statistically significant. We see the same result in the pick-a-point approach where at the GRIcntlty values of 3.18, 3.94, and 4.69, GRMS has a statistically significant effect on disengagement coping. Is this a contradiction to the non-significant interaction effect?
 
@@ -692,100 +558,46 @@ $$Y=b_{0}+b_{1}X+b_{2}W+b_{3}XW+e_{Y}$$
 
 
 
-```r
-Mod_c_path <- lm(MntlHlth ~ GRMS * Centrality, data = Lewis_df)
+``` r
+Mod_c_path <- lm(MntlHlth~GRMS*Centrality, data=Lewis_df)
 jtools::summ(Mod_c_path, digits = 3)
 ```
 
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Observations </td>
-   <td style="text-align:right;"> 231 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Dependent variable </td>
-   <td style="text-align:right;"> MntlHlth </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Type </td>
-   <td style="text-align:right;"> OLS linear regression </td>
-  </tr>
-</tbody>
-</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> F(3,227) </td>
-   <td style="text-align:right;"> 37.386 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> R² </td>
-   <td style="text-align:right;"> 0.331 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Adj. R² </td>
-   <td style="text-align:right;"> 0.322 </td>
-  </tr>
-</tbody>
-</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> Est. </th>
-   <th style="text-align:right;"> S.E. </th>
-   <th style="text-align:right;"> t val. </th>
-   <th style="text-align:right;"> p </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> (Intercept) </td>
-   <td style="text-align:right;"> 6.138 </td>
-   <td style="text-align:right;"> 0.767 </td>
-   <td style="text-align:right;"> 8.007 </td>
-   <td style="text-align:right;"> 0.000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> GRMS </td>
-   <td style="text-align:right;"> -1.248 </td>
-   <td style="text-align:right;"> 0.290 </td>
-   <td style="text-align:right;"> -4.299 </td>
-   <td style="text-align:right;"> 0.000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Centrality </td>
-   <td style="text-align:right;"> -0.351 </td>
-   <td style="text-align:right;"> 0.199 </td>
-   <td style="text-align:right;"> -1.764 </td>
-   <td style="text-align:right;"> 0.079 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> GRMS:Centrality </td>
-   <td style="text-align:right;"> 0.157 </td>
-   <td style="text-align:right;"> 0.073 </td>
-   <td style="text-align:right;"> 2.132 </td>
-   <td style="text-align:right;"> 0.034 </td>
-  </tr>
-</tbody>
-<tfoot><tr><td style="padding: 0; " colspan="100%">
-<sup></sup> Standard errors: OLS</td></tr></tfoot>
-</table>
+```
+## MODEL INFO:
+## Observations: 231
+## Dependent Variable: MntlHlth
+## Type: OLS linear regression 
+## 
+## MODEL FIT:
+## F(3,227) = 37.396, p = 0.000
+## R² = 0.331
+## Adj. R² = 0.322 
+## 
+## Standard errors: OLS
+## -------------------------------------------------------
+##                           Est.    S.E.   t val.       p
+## --------------------- -------- ------- -------- -------
+## (Intercept)              6.140   0.767    8.006   0.000
+## GRMS                    -1.249   0.291   -4.298   0.000
+## Centrality              -0.351   0.199   -1.765   0.079
+## GRMS:Centrality          0.157   0.073    2.130   0.034
+## -------------------------------------------------------
+```
  
 In this model that is, overall, statistically significant, we account for about 33% of variance in the DV. Looking at these results we can see that there is a statistically significant main effect of GRMS on mental health as well as statistically significant GRMS:Centrality interaction effect.
  
 Let's look at the plots.
 
 
-```r
-interactions::interact_plot(Mod_c_path, pred = GRMS, modx = Centrality) +
-    ylim(1, 6)
+``` r
+interactions::interact_plot(Mod_c_path, pred = GRMS, modx = Centrality) + ylim(1,6)
 ```
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-17-1.png)<!-- -->
 
-```r
-# interactions::interact_plot(Mod_c_path, pred = GRIcntlty, modx =
-# GRMS + ylim(1,6))
+``` r
+#interactions::interact_plot(Mod_c_path, pred = GRIcntlty, modx = GRMS + ylim(1,6))
 ```
 The figure with GRIcntrlty as the moderator, shows fanning out when mental health is high and GRMS is low.
  
@@ -795,14 +607,14 @@ Next, let's probe the interaction with simple slopes.  Probing the interaction i
 The Johnson-Neyman is a *floodlight* approach and provides an indication of the places in the distribution of W (moderator) that X has an effect on Y that is different than zero. The *analysis of simple slopes* or *spotlight* approach, probes the distribution at specific values (often the *M* +/- 1*SD*).  
 
 
-```r
+``` r
 interactions::sim_slopes(Mod_c_path, pred = GRMS, modx = Centrality)
 ```
 
 ```
 ## JOHNSON-NEYMAN INTERVAL 
 ## 
-## When Centrality is OUTSIDE the interval [5.92, 58.37], the slope of GRMS is
+## When Centrality is OUTSIDE the interval [5.92, 58.74], the slope of GRMS is
 ## p < .05.
 ## 
 ## Note: The range of observed values of Centrality is [1.90, 6.00]
@@ -819,18 +631,17 @@ interactions::sim_slopes(Mod_c_path, pred = GRMS, modx = Centrality)
 ## 
 ##    Est.   S.E.   t val.      p
 ## ------- ------ -------- ------
-##   -0.63   0.06   -10.01   0.00
+##   -0.63   0.06   -10.02   0.00
 ## 
 ## Slope of GRMS when Centrality = 4.693668 (+ 1 SD): 
 ## 
 ##    Est.   S.E.   t val.      p
 ## ------- ------ -------- ------
-##   -0.51   0.09    -5.85   0.00
+##   -0.51   0.09    -5.86   0.00
 ```
 
-```r
-# sim_slopes(Mod_c_path, pred=GRIcntlty, modx = GRMS) #sometimes I
-# like to look at it in reverse -- like in the plots
+``` r
+#sim_slopes(Mod_c_path, pred=GRIcntlty, modx = GRMS) #sometimes I like to look at it in reverse -- like in the plots
 ```
 The Johnson-Neyman suggests that between the Centrality values of 5.92 and 58.37], the relationship between GRMS is and mental health statistically significant. We see the same result in the pick-a-point approach where at the Centrality values of 3.19, 3.94, and 4.69, GRMS has a statistically significant effect on mental health. Is this a contradiction to the non-significant interaction effect?
 
@@ -859,10 +670,28 @@ $$Y = i_{Y}+c'X+ bM+e_{Y}$$
 To conduct this analysis, I am using the guidelines in the [chapter on simple mediation](#SimpleMed).  We are switching to the *lavaan* package.
 
 
-```r
+``` r
 library(lavaan)
+```
 
-LMedModel <- "
+```
+## This is lavaan 0.6-18
+## lavaan is FREE software! Please report any bugs.
+```
+
+```
+## 
+## Attaching package: 'lavaan'
+```
+
+```
+## The following object is masked from 'package:psych':
+## 
+##     cor2cov
+```
+
+``` r
+LMedModel <- '
           MntlHlth ~ b*DisEngmt + c_p*GRMS 
           DisEngmt ~a*GRMS
           
@@ -873,17 +702,16 @@ LMedModel <- "
           indirect :=  a*b
           direct  := c_p
           total_c  := c_p + (a*b)
-          "
-set.seed(230925)  #required for reproducible results because lavaan introduces randomness into the calculations
-LMed_fit <- lavaan::sem(LMedModel, data = Lewis_df, se = "bootstrap", missing = "fiml")
-LMed_Sum <- lavaan::summary(LMed_fit, standardized = T, rsq = T, ci = TRUE)
-LMed_ParEsts <- lavaan::parameterEstimates(LMed_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+          '
+set.seed(230925) #required for reproducible results because lavaan introduces randomness into the calculations
+LMed_fit <- lavaan::sem(LMedModel, data = Lewis_df, se="bootstrap", missing = 'fiml')
+LMed_Sum <-  lavaan::summary(LMed_fit, standardized=T, rsq=T, ci=TRUE)
+LMed_ParEsts<- lavaan::parameterEstimates(LMed_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 LMed_Sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 1 iteration
+## lavaan 0.6-18 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -906,28 +734,28 @@ LMed_Sum
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   MntlHlth ~                                                            
-##     DisEngmt   (b)   -0.381    0.089   -4.262    0.000   -0.547   -0.206
-##     GRMS     (c_p)   -0.483    0.066   -7.271    0.000   -0.607   -0.354
+##     DisEngmt   (b)   -0.381    0.090   -4.253    0.000   -0.547   -0.206
+##     GRMS     (c_p)   -0.484    0.067   -7.276    0.000   -0.608   -0.354
 ##   DisEngmt ~                                                            
 ##     GRMS       (a)    0.386    0.038   10.096    0.000    0.301    0.456
 ##    Std.lv  Std.all
 ##                   
 ##    -0.381   -0.247
-##    -0.483   -0.430
+##    -0.484   -0.430
 ##                   
 ##     0.386    0.531
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##    .DsEngmt (DsE.)    1.490    0.100   14.935    0.000    1.307    1.709
-##    .MntlHlt (MnH.)    5.342    0.195   27.390    0.000    4.953    5.721
+##    .MntlHlt (MnH.)    5.342    0.195   27.382    0.000    4.953    5.722
 ##    Std.lv  Std.all
 ##     1.490    2.845
-##     5.342    6.604
+##     5.342    6.601
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .MntlHlth          0.420    0.040   10.544    0.000    0.343    0.496
+##    .MntlHlth          0.420    0.040   10.550    0.000    0.343    0.496
 ##    .DisEngmt          0.197    0.016   11.967    0.000    0.163    0.229
 ##    Std.lv  Std.all
 ##     0.420    0.641
@@ -940,46 +768,46 @@ LMed_Sum
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect         -0.147    0.039   -3.824    0.000   -0.226   -0.075
-##     direct           -0.483    0.067   -7.268    0.000   -0.607   -0.354
-##     total_c          -0.631    0.058  -10.789    0.000   -0.742   -0.513
+##     indirect         -0.147    0.039   -3.816    0.000   -0.226   -0.075
+##     direct           -0.484    0.067   -7.272    0.000   -0.608   -0.354
+##     total_c          -0.631    0.058  -10.794    0.000   -0.742   -0.513
 ##    Std.lv  Std.all
 ##    -0.147   -0.131
-##    -0.483   -0.430
+##    -0.484   -0.430
 ##    -0.631   -0.561
 ```
 
-```r
+``` r
 LMed_ParEsts
 ```
 
 ```
 ##         lhs op       rhs         label    est    se       z pvalue ci.lower
-## 1  MntlHlth  ~  DisEngmt             b -0.381 0.089  -4.262      0   -0.547
-## 2  MntlHlth  ~      GRMS           c_p -0.483 0.066  -7.271      0   -0.606
+## 1  MntlHlth  ~  DisEngmt             b -0.381 0.090  -4.253      0   -0.547
+## 2  MntlHlth  ~      GRMS           c_p -0.484 0.067  -7.276      0   -0.607
 ## 3  DisEngmt  ~      GRMS             a  0.386 0.038  10.096      0    0.311
 ## 4  DisEngmt ~1           DisEngmt.mean  1.490 0.100  14.935      0    1.297
-## 5  MntlHlth ~1           MntlHlth.mean  5.342 0.195  27.390      0    4.900
-## 6  MntlHlth ~~  MntlHlth                0.420 0.040  10.544      0    0.352
+## 5  MntlHlth ~1           MntlHlth.mean  5.342 0.195  27.382      0    4.902
+## 6  MntlHlth ~~  MntlHlth                0.420 0.040  10.550      0    0.353
 ## 7  DisEngmt ~~  DisEngmt                0.197 0.016  11.967      0    0.166
 ## 8      GRMS ~~      GRMS                0.518 0.000      NA     NA    0.518
 ## 9      GRMS ~1                          2.557 0.000      NA     NA    2.557
-## 10 indirect :=       a*b      indirect -0.147 0.039  -3.824      0   -0.234
-## 11   direct :=       c_p        direct -0.483 0.067  -7.268      0   -0.606
-## 12  total_c := c_p+(a*b)       total_c -0.631 0.058 -10.789      0   -0.739
+## 10 indirect :=       a*b      indirect -0.147 0.039  -3.816      0   -0.234
+## 11   direct :=       c_p        direct -0.484 0.067  -7.272      0   -0.607
+## 12  total_c := c_p+(a*b)       total_c -0.631 0.058 -10.794      0   -0.740
 ##    ci.upper std.lv std.all std.nox
 ## 1    -0.206 -0.381  -0.247  -0.247
-## 2    -0.347 -0.483  -0.430  -0.597
+## 2    -0.348 -0.484  -0.430  -0.598
 ## 3     0.465  0.386   0.531   0.738
 ## 4     1.698  1.490   2.845   2.845
-## 5     5.699  5.342   6.604   6.604
-## 6     0.513  0.420   0.641   0.641
+## 5     5.701  5.342   6.601   6.601
+## 6     0.514  0.420   0.641   0.641
 ## 7     0.234  0.197   0.718   0.718
 ## 8     0.518  0.518   1.000   0.518
 ## 9     2.557  2.557   3.552   2.557
 ## 10   -0.079 -0.147  -0.131  -0.182
-## 11   -0.347 -0.483  -0.430  -0.597
-## 12   -0.505 -0.631  -0.561  -0.780
+## 11   -0.348 -0.484  -0.430  -0.598
+## 12   -0.506 -0.631  -0.561  -0.780
 ```
 
 **In this simple mediation we learn***:
@@ -994,8 +822,8 @@ LMed_ParEsts
 Recall how the bootstrapped, bias-corrected confidence intervals can be different?  It's always good to check.  In this case, CI95s and the $p$ values are congruent.
 
 
-```r
-# only worked when I used the library to turn on all these pkgs
+``` r
+#only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
 library(ggplot2)
@@ -1023,18 +851,7 @@ library(tidySEM)
 ##   predict.MxModel OpenMx
 ```
 
-```
-## 
-## Attaching package: 'tidySEM'
-```
-
-```
-## The following object is masked from 'package:jtools':
-## 
-##     get_data
-```
-
-```r
+``` r
 tidySEM::graph_sem(model = LMed_fit)
 ```
 
@@ -1042,22 +859,22 @@ tidySEM::graph_sem(model = LMed_fit)
 We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
 
 
-```r
+``` r
 tidySEM::get_layout(LMed_fit)
 ```
 
 ```
-##      [,1]       [,2]      
-## [1,] NA         "GRMS"    
-## [2,] "MntlHlth" "DisEngmt"
+##      [,1]       [,2]       [,3]  
+## [1,] "MntlHlth" NA         NA    
+## [2,] NA         "DisEngmt" "GRMS"
 ## attr(,"class")
 ## [1] "layout_matrix" "matrix"        "array"
 ```
 We can write code to remap them
 
-```r
-Lmedmap <- tidySEM::get_layout("", "DisEngmt", "", "GRMS", "", "MntlHlth",
-    rows = 2)
+``` r
+Lmedmap <- tidySEM::get_layout("", "DisEngmt", "",
+                               "GRMS", "", "MntlHlth",  rows=2)
 Lmedmap
 ```
 
@@ -1070,9 +887,8 @@ Lmedmap
 ```
 We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
 
-```r
-tidySEM::graph_sem(LMed_fit, layout = Lmedmap, rect_width = 1.25, rect_height = 1.25,
-    spacing_x = 2, spacing_y = 3, text_size = 4.5)
+``` r
+tidySEM::graph_sem(LMed_fit, layout=Lmedmap,  rect_width = 1.25, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-23-1.png)<!-- -->
@@ -1120,7 +936,7 @@ In the code below
     
 
 
-```r
+``` r
 Combined <- '
     #equations
     DisEngmt ~ a1*GRMS + a2*Centrality + a3*GRMS:Centrality
@@ -1152,26 +968,13 @@ Combined <- '
  '
 set.seed(230925) #required for reproducible results because lavaan introduces randomness into the calculations
 Combined_fit <- lavaan::sem(Combined, data = Lewis_df, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
-```
-
-```
-## Warning in lav_partable_vnames(FLAT, "ov.x", warn = TRUE): lavaan WARNING:
-##     model syntax contains variance/covariance/intercept formulas
-##     involving (an) exogenous variable(s): [Centrality]; These
-##     variables will now be treated as random introducing additional
-##     free parameters. If you wish to treat those variables as fixed,
-##     remove these formulas from the model syntax. Otherwise, consider
-##     adding the fixed.x = FALSE option.
-```
-
-```r
 cFITsum <- lavaan::summary(Combined_fit, standardized = TRUE, rsq=T, ci=TRUE)    
 cParamEsts <- lavaan::parameterEstimates(Combined_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 cFITsum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 20 iterations
+## lavaan 0.6-18 ended normally after 20 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1199,10 +1002,10 @@ cFITsum
 ##     Cntrlty   (a2)    0.093    0.137    0.680    0.497   -0.215    0.335
 ##     GRMS:Cn   (a3)   -0.058    0.050   -1.142    0.253   -0.147    0.055
 ##   MntlHlth ~                                                            
-##     GRMS    (c_p1)   -1.023    0.299   -3.417    0.001   -1.572   -0.389
-##     Cntrlty (c_p2)   -0.317    0.190   -1.671    0.095   -0.669    0.070
-##     GRMS:Cn (c_p3)    0.136    0.074    1.841    0.066   -0.017    0.274
-##     DsEngmt    (b)   -0.362    0.091   -3.965    0.000   -0.530   -0.176
+##     GRMS    (c_p1)   -1.023    0.299   -3.418    0.001   -1.574   -0.389
+##     Cntrlty (c_p2)   -0.317    0.190   -1.673    0.094   -0.669    0.069
+##     GRMS:Cn (c_p3)    0.136    0.074    1.841    0.066   -0.016    0.274
+##     DsEngmt    (b)   -0.362    0.091   -3.957    0.000   -0.530   -0.176
 ##    Std.lv  Std.all
 ##                   
 ##     0.623    0.846
@@ -1211,28 +1014,28 @@ cFITsum
 ##                   
 ##    -1.023   -0.846
 ##    -0.317   -0.275
-##     0.136    0.593
+##     0.136    0.592
 ##    -0.362   -0.220
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##    .DsEngmt (DsE.)    1.107    0.521    2.126    0.034    0.276    2.325
-##    .MntlHlt (MnH.)    6.539    0.714    9.155    0.000    4.946    7.863
+##    .MntlHlt (MnH.)    6.540    0.714    9.161    0.000    4.950    7.863
 ##     Cntrlty (Cnt.)    3.938    0.049   79.569    0.000    3.836    4.035
 ##    Std.lv  Std.all
 ##     1.107    2.090
-##     6.539    7.515
+##     6.540    7.513
 ##     3.938    5.223
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##     Cntrlty (Cnt.)    0.568    0.054   10.608    0.000    0.464    0.675
 ##    .DsEngmt           0.194    0.016   12.001    0.000    0.160    0.224
-##    .MntlHlt           0.412    0.040   10.379    0.000    0.333    0.482
+##    .MntlHlt           0.413    0.040   10.385    0.000    0.334    0.483
 ##    Std.lv  Std.all
 ##     0.568    1.000
 ##     0.194    0.692
-##     0.412    0.545
+##     0.413    0.545
 ## 
 ## R-Square:
 ##                    Estimate
@@ -1242,23 +1045,23 @@ cFITsum
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##     imm               0.021    0.020    1.064    0.287   -0.022    0.060
-##     indirect.SDblw   -0.159    0.045   -3.574    0.000   -0.247   -0.075
-##     indirect.mean    -0.143    0.040   -3.600    0.000   -0.219   -0.064
-##     indirect.SDabv   -0.128    0.040   -3.163    0.002   -0.209   -0.050
-##     direct.SDbelow   -0.591    0.089   -6.661    0.000   -0.750   -0.404
-##     direct.Smean     -0.488    0.067   -7.251    0.000   -0.613   -0.356
-##     direct.SDabove   -0.386    0.085   -4.521    0.000   -0.546   -0.216
+##     indirect.SDblw   -0.159    0.045   -3.567    0.000   -0.247   -0.075
+##     indirect.mean    -0.143    0.040   -3.594    0.000   -0.219   -0.064
+##     indirect.SDabv   -0.127    0.040   -3.159    0.002   -0.209   -0.050
+##     direct.SDbelow   -0.591    0.089   -6.663    0.000   -0.751   -0.405
+##     direct.Smean     -0.489    0.067   -7.253    0.000   -0.614   -0.356
+##     direct.SDabove   -0.387    0.085   -4.524    0.000   -0.547   -0.217
 ##    Std.lv  Std.all
 ##     0.021    0.091
-##    -0.159    0.199
-##    -0.143    0.290
-##    -0.128    0.381
-##    -0.591    1.657
-##    -0.488    2.249
-##    -0.386    2.842
+##    -0.159    0.198
+##    -0.143    0.289
+##    -0.127    0.380
+##    -0.591    1.656
+##    -0.489    2.248
+##    -0.387    2.841
 ```
 
-```r
+``` r
 cParamEsts
 ```
 
@@ -1293,38 +1096,38 @@ cParamEsts
 ## 1                a1  0.623 0.194  3.212  0.001    0.159    0.937  0.623   0.846
 ## 2                a2  0.093 0.137  0.680  0.497   -0.244    0.317  0.093   0.133
 ## 3                a3 -0.058 0.050 -1.142  0.253   -0.143    0.060 -0.058  -0.414
-## 4              c_p1 -1.023 0.299 -3.417  0.001   -1.601   -0.420 -1.023  -0.846
-## 5              c_p2 -0.317 0.190 -1.671  0.095   -0.669    0.070 -0.317  -0.275
-## 6              c_p3  0.136 0.074  1.841  0.066   -0.009    0.281  0.136   0.593
-## 7                 b -0.362 0.091 -3.965  0.000   -0.527   -0.171 -0.362  -0.220
+## 4              c_p1 -1.023 0.299 -3.418  0.001   -1.605   -0.421 -1.023  -0.846
+## 5              c_p2 -0.317 0.190 -1.673  0.094   -0.669    0.070 -0.317  -0.275
+## 6              c_p3  0.136 0.074  1.841  0.066   -0.009    0.282  0.136   0.592
+## 7                 b -0.362 0.091 -3.957  0.000   -0.526   -0.171 -0.362  -0.220
 ## 8     DisEngmt.mean  1.107 0.521  2.126  0.034    0.328    2.410  1.107   2.090
-## 9     MntlHlth.mean  6.539 0.714  9.155  0.000    4.983    7.866  6.539   7.515
-## 10  Centrality.mean  3.938 0.049 79.569  0.000    3.832    4.035  3.938   5.223
+## 9     MntlHlth.mean  6.540 0.714  9.161  0.000    5.012    7.868  6.540   7.513
+## 10  Centrality.mean  3.938 0.049 79.569  0.000    3.835    4.035  3.938   5.223
 ## 11   Centrality.var  0.568 0.054 10.608  0.000    0.469    0.682  0.568   1.000
 ## 12                   0.194 0.016 12.001  0.000    0.166    0.235  0.194   0.692
-## 13                   0.412 0.040 10.379  0.000    0.345    0.510  0.412   0.545
+## 13                   0.413 0.040 10.385  0.000    0.346    0.511  0.413   0.545
 ## 14                   0.518 0.000     NA     NA    0.518    0.518  0.518   1.000
 ## 15                   2.334 0.000     NA     NA    2.334    2.334  2.334   0.853
 ## 16                  14.446 0.000     NA     NA   14.446   14.446 14.446   1.000
 ## 17                   2.557 0.000     NA     NA    2.557    2.557  2.557   3.552
 ## 18                  10.199 0.000     NA     NA   10.199   10.199 10.199   2.683
 ## 19              imm  0.021 0.020  1.064  0.287   -0.017    0.063  0.021   0.091
-## 20 indirect.SDbelow -0.159 0.045 -3.574  0.000   -0.253   -0.083 -0.159   0.199
-## 21    indirect.mean -0.143 0.040 -3.600  0.000   -0.226   -0.073 -0.143   0.290
-## 22 indirect.SDabove -0.128 0.040 -3.163  0.002   -0.229   -0.061 -0.128   0.381
-## 23   direct.SDbelow -0.591 0.089 -6.661  0.000   -0.754   -0.410 -0.591   1.657
-## 24     direct.Smean -0.488 0.067 -7.251  0.000   -0.613   -0.355 -0.488   2.249
-## 25   direct.SDabove -0.386 0.085 -4.521  0.000   -0.549   -0.218 -0.386   2.842
+## 20 indirect.SDbelow -0.159 0.045 -3.567  0.000   -0.253   -0.083 -0.159   0.198
+## 21    indirect.mean -0.143 0.040 -3.594  0.000   -0.226   -0.073 -0.143   0.289
+## 22 indirect.SDabove -0.127 0.040 -3.159  0.002   -0.229   -0.061 -0.127   0.380
+## 23   direct.SDbelow -0.591 0.089 -6.663  0.000   -0.754   -0.410 -0.591   1.656
+## 24     direct.Smean -0.489 0.067 -7.253  0.000   -0.613   -0.355 -0.489   2.248
+## 25   direct.SDabove -0.387 0.085 -4.524  0.000   -0.549   -0.218 -0.387   2.841
 ##    std.nox
 ## 1    1.176
 ## 2    0.127
 ## 3   -0.109
-## 4   -1.175
+## 4   -1.176
 ## 5   -0.262
 ## 6    0.156
 ## 7   -0.220
 ## 8    2.090
-## 9    7.515
+## 9    7.513
 ## 10   5.223
 ## 11   1.000
 ## 12   0.692
@@ -1340,13 +1143,13 @@ cParamEsts
 ## 22  -0.110
 ## 23  -0.517
 ## 24  -0.361
-## 25  -0.205
+## 25  -0.206
 ```
 
 
 
-```r
-# only worked when I used the library to turn on all these pkgs
+``` r
+#only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
 library(ggplot2)
@@ -1358,22 +1161,24 @@ tidySEM::graph_sem(model = Combined_fit)
 We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
 
 
-```r
+``` r
 tidySEM::get_layout(Combined_fit)
 ```
 
 ```
-##      [,1]              [,2]         [,3]      
-## [1,] NA                "Centrality" "GRMS"    
-## [2,] "GRMS:Centrality" "MntlHlth"   "DisEngmt"
+##      [,1]              [,2]         [,3]       [,4]      
+## [1,] NA                NA           "GRMS"     "MntlHlth"
+## [2,] "GRMS:Centrality" "Centrality" "DisEngmt" NA        
 ## attr(,"class")
 ## [1] "layout_matrix" "matrix"        "array"
 ```
 We can write code to remap them
 
-```r
-comb_map <- tidySEM::get_layout("", "DisEngmt", "", "GRMS", "", "MntlHlth",
-    "Centrality", "", "", "", "GRMS:Centrality", "", rows = 4)
+``` r
+comb_map <- tidySEM::get_layout("", "DisEngmt", "",
+                               "GRMS", "", "MntlHlth", 
+                               "Centrality", "","",
+                               "", "GRMS:Centrality","", rows=4)
 comb_map
 ```
 
@@ -1388,9 +1193,8 @@ comb_map
 ```
 We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
 
-```r
-tidySEM::graph_sem(Combined_fit, layout = comb_map, rect_width = 1.25,
-    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
+``` r
+tidySEM::graph_sem(Combined_fit, layout=comb_map,  rect_width = 1.25, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
 ```
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-28-1.png)<!-- -->
@@ -1398,8 +1202,8 @@ tidySEM::graph_sem(Combined_fit, layout = comb_map, rect_width = 1.25,
 
 
 
-```r
-write.csv(cParamEsts, file = "Combined_fit.csv")  #optional to write it to a .csv file
+``` r
+write.csv(cParamEsts, file="Combined_fit.csv") #optional to write it to a .csv file
 ```
 
 
@@ -1518,16 +1322,14 @@ Results suggested a negative effect of gendered racial microaggressions on menta
 
 
 
-```r
-interactions::interact_plot(Mod_c_path, pred = GRMS, modx = Centrality) +
-    ylim(1, 6)
+``` r
+interactions::interact_plot(Mod_c_path, pred = GRMS, modx = Centrality) + ylim(1,6)
 ```
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-30-1.png)<!-- -->
 
-```r
-# interactions::interact_plot(Mod_c_path, pred = GRIcntlty, modx =
-# GRMS + ylim(1,6))
+``` r
+#interactions::interact_plot(Mod_c_path, pred = GRIcntlty, modx = GRMS + ylim(1,6))
 ```
 ## STAY TUNED
 
@@ -1615,44 +1417,39 @@ My analysis will evaluated a moderated mediation. Specifically, I predict that t
 ### Import the data and format the variables in the model  {-}
 
 
-```r
+``` r
 raw <- readRDS("ReC.rds")
 ```
 
 The approach we are taking to moderated mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
 
-```r
-raw <- (dplyr::filter(raw, Course == "Multivariate"))
+``` r
+raw <-(dplyr::filter(raw, Course == "Multivariate"))
 ```
 
 I need to score the SRPed, TradPed, and Valued variables
 
 
-```r
-TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
-    "ClearOrganization", "ClearPresentation")
-raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], 0.75)
+``` r
+raw$TradPed <- datawizard::row_means(raw, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 
-Valued_vars <- c("ValObjectives", "IncrUnderstanding", "IncrInterest")
-raw$Valued <- sjstats::mean_n(raw[, ..Valued_vars], 0.75)
+raw$Valued <- datawizard::row_means(raw, select = c('ValObjectives', 'IncrUnderstanding','IncrInterest'), min_valid = .75)
 
-SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
-    "DEIintegration")
-raw$SRPed <- sjstats::mean_n(raw[, ..SRPed_vars], 0.75)
+raw$SRPed <- datawizard::row_means(raw, select = c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration'), min_valid = .75)
 ```
 
 
 I will create a babydf.
 
 
-```r
+``` r
 babydf <- dplyr::select(raw, Centering, TradPed, SRPed, Valued)
 ```
 
 Let's check the structure of the variables:
 
 
-```r
+``` r
 str(babydf)
 ```
 
@@ -1661,13 +1458,13 @@ str(babydf)
 ##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
 ##  $ TradPed  : num  3.8 5 4.8 4 4.2 3 5 4.6 4 4.8 ...
 ##  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
-##  $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+##  $ Valued   : num  4.33 5 4.67 3.33 4 ...
 ##  - attr(*, ".internal.selfref")=<externalptr>
 ```
 In later analyses, it will be important that Centering is a dummy-coded numerical variable:
 
 
-```r
+``` r
 babydf$CENTERING <- as.numeric(babydf$Centering)
 babydf$CENTERING <- (babydf$CENTERING - 1)
 str(babydf)
@@ -1678,7 +1475,7 @@ str(babydf)
 ##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
 ##  $ TradPed  : num  3.8 5 4.8 4 4.2 3 5 4.6 4 4.8 ...
 ##  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
-##  $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+##  $ Valued   : num  4.33 5 4.67 3.33 4 ...
 ##  $ CENTERING: num  1 1 1 1 1 1 1 1 1 1 ...
 ##  - attr(*, ".internal.selfref")=<externalptr>
 ```
@@ -1686,7 +1483,7 @@ str(babydf)
 Quick peek at relations between variables:
 
 
-```r
+``` r
 psych::pairs.panels(babydf)
 ```
 
@@ -1705,10 +1502,10 @@ W = traditional pedagogy
 Let's specify this simple moderation model with base R's *lm()* function.  
 
 
-```r
-mod_a_path <- lm(SRPed ~ Centering * TradPed, data = babydf)
-# the base R output if you prefer this view
-summary(mod_a_path)
+``` r
+mod_a_path <- lm(SRPed~Centering*TradPed, data=babydf)
+#the base R output if you prefer this view
+summary(mod_a_path) 
 ```
 
 ```
@@ -1718,21 +1515,21 @@ summary(mod_a_path)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.30064 -0.24549  0.07396  0.15007  1.21341 
+## -1.30064 -0.24529  0.07396  0.15025  1.21363 
 ## 
 ## Coefficients:
 ##                     Estimate Std. Error t value         Pr(>|t|)    
-## (Intercept)          1.89621    0.30253   6.268 0.00000001948738 ***
-## CenteringRe          1.15285    0.73720   1.564            0.122    
-## TradPed              0.59074    0.07064   8.362 0.00000000000204 ***
-## CenteringRe:TradPed -0.21535    0.16486  -1.306            0.195    
+## (Intercept)          1.89592    0.30247   6.268 0.00000001947448 ***
+## CenteringRe          1.15314    0.73707   1.564            0.122    
+## TradPed              0.59077    0.07063   8.364 0.00000000000202 ***
+## CenteringRe:TradPed -0.21537    0.16483  -1.307            0.195    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.399 on 77 degrees of freedom
+## Residual standard error: 0.3989 on 77 degrees of freedom
 ##   (3 observations deleted due to missingness)
-## Multiple R-squared:  0.5413,	Adjusted R-squared:  0.5235 
-## F-statistic: 30.29 on 3 and 77 DF,  p-value: 0.0000000000004875
+## Multiple R-squared:  0.5415,	Adjusted R-squared:  0.5236 
+## F-statistic: 30.31 on 3 and 77 DF,  p-value: 0.0000000000004815
 ```
 
 We'll use the *jtools* package so we get that great summ function and *interactions* for the awesome plot.
@@ -1740,102 +1537,49 @@ We'll use the *jtools* package so we get that great summ function and *interacti
 Since we are just working to understand our moderations, we can run them with "regular old" ordinary least squares.  
 
 
-```r
-# library(jtools) #the summ function creates a terrific regression
-# table library(interactions)
+``` r
+#library(jtools) #the summ function creates a terrific regression table
+#library(interactions)
 library(ggplot2)
 
 jtools::summ(mod_a_path, digits = 3)
 ```
 
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Observations </td>
-   <td style="text-align:right;"> 81 (3 missing obs. deleted) </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Dependent variable </td>
-   <td style="text-align:right;"> SRPed </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Type </td>
-   <td style="text-align:right;"> OLS linear regression </td>
-  </tr>
-</tbody>
-</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> F(3,77) </td>
-   <td style="text-align:right;"> 30.294 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> R² </td>
-   <td style="text-align:right;"> 0.541 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Adj. R² </td>
-   <td style="text-align:right;"> 0.523 </td>
-  </tr>
-</tbody>
-</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> Est. </th>
-   <th style="text-align:right;"> S.E. </th>
-   <th style="text-align:right;"> t val. </th>
-   <th style="text-align:right;"> p </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> (Intercept) </td>
-   <td style="text-align:right;"> 1.896 </td>
-   <td style="text-align:right;"> 0.303 </td>
-   <td style="text-align:right;"> 6.268 </td>
-   <td style="text-align:right;"> 0.000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> CenteringRe </td>
-   <td style="text-align:right;"> 1.153 </td>
-   <td style="text-align:right;"> 0.737 </td>
-   <td style="text-align:right;"> 1.564 </td>
-   <td style="text-align:right;"> 0.122 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> TradPed </td>
-   <td style="text-align:right;"> 0.591 </td>
-   <td style="text-align:right;"> 0.071 </td>
-   <td style="text-align:right;"> 8.362 </td>
-   <td style="text-align:right;"> 0.000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> CenteringRe:TradPed </td>
-   <td style="text-align:right;"> -0.215 </td>
-   <td style="text-align:right;"> 0.165 </td>
-   <td style="text-align:right;"> -1.306 </td>
-   <td style="text-align:right;"> 0.195 </td>
-  </tr>
-</tbody>
-<tfoot><tr><td style="padding: 0; " colspan="100%">
-<sup></sup> Standard errors: OLS</td></tr></tfoot>
-</table>
+```
+## MODEL INFO:
+## Observations: 81 (3 missing obs. deleted)
+## Dependent Variable: SRPed
+## Type: OLS linear regression 
+## 
+## MODEL FIT:
+## F(3,77) = 30.312, p = 0.000
+## R² = 0.541
+## Adj. R² = 0.524 
+## 
+## Standard errors: OLS
+## -----------------------------------------------------------
+##                               Est.    S.E.   t val.       p
+## ------------------------- -------- ------- -------- -------
+## (Intercept)                  1.896   0.302    6.268   0.000
+## CenteringRe                  1.153   0.737    1.564   0.122
+## TradPed                      0.591   0.071    8.364   0.000
+## CenteringRe:TradPed         -0.215   0.165   -1.307   0.195
+## -----------------------------------------------------------
+```
 
 Looking at these results we can see that the predictors account for about 54% of variance in perceived value to the student. Only the moderator (TradPed, W), traditional pedagogy is a significant predictor.  Neither the independent variable (Centering, X), nor its interaction with Centering (Centering:TradPed, XW) are significant.
  
 It's always helpful to graph the relationship.  The *interaction_plot()* function from the package, *interactions* can make helpful illustrations.  In the case of interactions/moderations, I like to run them "both ways" to see which makes more sense.
 
 
-```r
-interactions::interact_plot(mod_a_path, pred = TradPed, modx = Centering) +
-    ylim(1, 5)
+``` r
+interactions::interact_plot(mod_a_path, pred = TradPed, modx = Centering) + ylim (1,5)
 ```
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-74-1.png)<!-- -->
 
 
-```r
+``` r
 interactions::sim_slopes(mod_a_path, pred = TradPed, modx = Centering)
 ```
 
@@ -1859,9 +1603,8 @@ interactions::sim_slopes(mod_a_path, pred = TradPed, modx = Centering)
 ##   0.59   0.07     8.36   0.00
 ```
 
-```r
-# sim_slopes(Mod_a_path, pred=GRIcntlty, modx = GRMS) #sometimes I
-# like to look at it in reverse -- like in the plots
+``` r
+#sim_slopes(Mod_a_path, pred=GRIcntlty, modx = GRMS) #sometimes I like to look at it in reverse -- like in the plots
 ```
 Consistent with the non-signicant interation effect but the significant main effect, there was a statistically significant effect of traditional pedagogy on socially responsive pedagogy for both pre-centered and re-centered stages.
 
@@ -1877,10 +1620,10 @@ M = socially responsive pedagogy
 
 *Note*. I switched to using the CENTERING (all caps) variable because it is 0/1, numeric (better for lavaan).
 
-```r
+``` r
 library(lavaan)
 
-medmodel <- "
+medmodel <- '
           Valued ~ b*SRPed + c_p*CENTERING 
           SRPed ~a*CENTERING
           
@@ -1891,19 +1634,16 @@ medmodel <- "
           indirect :=  a*b
           direct  := c_p
           total_c  := c_p + (a*b)
-          "
-set.seed(230925)  #required for reproducible results because lavaan introduces randomness into the calculations
-medmodel_fit <- lavaan::sem(medmodel, data = babydf, se = "bootstrap",
-    missing = "fiml")
-medmodel_Sum <- lavaan::summary(medmodel_fit, standardized = T, rsq = T,
-    ci = TRUE)
-medmodel_ParEsts <- lavaan::parameterEstimates(medmodel_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+          '
+set.seed(230925) #required for reproducible results because lavaan introduces randomness into the calculations
+medmodel_fit <- lavaan::sem(medmodel, data = babydf, se="bootstrap", missing = 'fiml')
+medmodel_Sum <-  lavaan::summary(medmodel_fit, standardized=T, rsq=T, ci=TRUE)
+medmodel_ParEsts<- lavaan::parameterEstimates(medmodel_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 medmodel_Sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 25 iterations
+## lavaan 0.6-18 ended normally after 26 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1926,31 +1666,31 @@ medmodel_Sum
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   Valued ~                                                              
-##     SRPed      (b)    0.728    0.124    5.877    0.000    0.455    0.933
-##     CENTERIN (c_p)    0.004    0.124    0.032    0.974   -0.225    0.257
+##     SRPed      (b)    0.728    0.124    5.873    0.000    0.456    0.933
+##     CENTERIN (c_p)    0.004    0.124    0.028    0.977   -0.225    0.255
 ##   SRPed ~                                                               
-##     CENTERIN   (a)    0.367    0.114    3.225    0.001    0.148    0.601
+##     CENTERIN   (a)    0.367    0.114    3.227    0.001    0.148    0.601
 ##    Std.lv  Std.all
 ##                   
-##     0.728    0.608
-##     0.004    0.003
+##     0.728    0.609
+##     0.004    0.002
 ##                   
 ##     0.367    0.307
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##     CENTERI (CENT)    0.369    0.054    6.872    0.000    0.274    0.476
-##    .Valued  (Vld.)    0.935    0.548    1.707    0.088    0.018    2.136
-##    .SRPed             4.371    0.086   50.597    0.000    4.187    4.527
+##    .Valued  (Vld.)    0.933    0.548    1.702    0.089    0.011    2.132
+##    .SRPed             4.371    0.086   50.605    0.000    4.187    4.527
 ##    Std.lv  Std.all
 ##     0.369    0.765
-##     0.935    1.355
+##     0.933    1.353
 ##     4.371    7.580
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .Valued            0.299    0.055    5.453    0.000    0.186    0.408
-##    .SRPed             0.301    0.058    5.157    0.000    0.196    0.413
+##    .Valued            0.299    0.055    5.462    0.000    0.186    0.408
+##    .SRPed             0.301    0.058    5.168    0.000    0.196    0.413
 ##     CENTERING         0.233    0.014   16.390    0.000    0.199    0.249
 ##    Std.lv  Std.all
 ##     0.299    0.629
@@ -1964,53 +1704,53 @@ medmodel_Sum
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect          0.267    0.100    2.665    0.008    0.095    0.488
-##     direct            0.004    0.124    0.032    0.974   -0.225    0.257
-##     total_c           0.271    0.144    1.886    0.059   -0.014    0.551
+##     indirect          0.267    0.100    2.665    0.008    0.096    0.489
+##     direct            0.004    0.124    0.028    0.977   -0.225    0.255
+##     total_c           0.271    0.144    1.884    0.060   -0.014    0.550
 ##    Std.lv  Std.all
 ##     0.267    0.187
-##     0.004    0.003
-##     0.271    0.190
+##     0.004    0.002
+##     0.271    0.189
 ```
 
-```r
+``` r
 medmodel_ParEsts
 ```
 
 ```
 ##          lhs op       rhs          label   est    se      z pvalue ci.lower
-## 1     Valued  ~     SRPed              b 0.728 0.124  5.877  0.000    0.464
-## 2     Valued  ~ CENTERING            c_p 0.004 0.124  0.032  0.974   -0.225
-## 3      SRPed  ~ CENTERING              a 0.367 0.114  3.225  0.001    0.131
+## 1     Valued  ~     SRPed              b 0.728 0.124  5.873  0.000    0.465
+## 2     Valued  ~ CENTERING            c_p 0.004 0.124  0.028  0.977   -0.225
+## 3      SRPed  ~ CENTERING              a 0.367 0.114  3.227  0.001    0.133
 ## 4  CENTERING ~1           CENTERING.mean 0.369 0.054  6.872  0.000    0.262
-## 5     Valued ~1              Valued.mean 0.935 0.548  1.707  0.088   -0.040
-## 6     Valued ~~    Valued                0.299 0.055  5.453  0.000    0.213
-## 7      SRPed ~~     SRPed                0.301 0.058  5.157  0.000    0.205
-## 8  CENTERING ~~ CENTERING                0.233 0.014 16.390  0.000    0.199
-## 9      SRPed ~1                          4.371 0.086 50.597  0.000    4.189
+## 5     Valued ~1              Valued.mean 0.933 0.548  1.702  0.089   -0.044
+## 6     Valued ~~    Valued                0.299 0.055  5.462  0.000    0.213
+## 7      SRPed ~~     SRPed                0.301 0.058  5.168  0.000    0.205
+## 8  CENTERING ~~ CENTERING                0.233 0.014 16.390  0.000    0.188
+## 9      SRPed ~1                          4.371 0.086 50.605  0.000    4.189
 ## 10  indirect :=       a*b       indirect 0.267 0.100  2.665  0.008    0.109
-## 11    direct :=       c_p         direct 0.004 0.124  0.032  0.974   -0.225
-## 12   total_c := c_p+(a*b)        total_c 0.271 0.144  1.886  0.059   -0.025
-##    ci.upper std.lv std.all std.nox
-## 1     0.939  0.728   0.608   0.608
-## 2     0.250  0.004   0.003   0.003
-## 3     0.587  0.367   0.307   0.307
-## 4     0.476  0.369   0.765   0.765
-## 5     2.084  0.935   1.355   1.355
-## 6     0.454  0.299   0.629   0.629
-## 7     0.424  0.301   0.906   0.906
-## 8     0.249  0.233   1.000   1.000
-## 9     4.528  4.371   7.580   7.580
-## 10    0.528  0.267   0.187   0.187
-## 11    0.250  0.004   0.003   0.003
-## 12    0.546  0.271   0.190   0.190
+## 11    direct :=       c_p         direct 0.004 0.124  0.028  0.977   -0.225
+## 12   total_c := c_p+(a*b)        total_c 0.271 0.144  1.884  0.060   -0.024
+##    ci.upper std.lv std.all
+## 1     0.938  0.728   0.609
+## 2     0.248  0.004   0.002
+## 3     0.587  0.367   0.307
+## 4     0.476  0.369   0.765
+## 5     2.085  0.933   1.353
+## 6     0.453  0.299   0.629
+## 7     0.424  0.301   0.906
+## 8     0.249  0.233   1.000
+## 9     4.528  4.371   7.580
+## 10    0.528  0.267   0.187
+## 11    0.248  0.004   0.002
+## 12    0.546  0.271   0.189
 ```
 Our model accounts for 9% of the variance in socially responsive pedagogy and 37% of the variance in perceived value to the student. The *a* path (Centering --> SRPed), *b* path (SRPed --> Valued), and indirect effect are all statistically significant.
 
 
 
-```r
-# only worked when I used the library to turn on all these pkgs
+``` r
+#only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
 library(ggplot2)
@@ -2023,22 +1763,22 @@ tidySEM::graph_sem(model = medmodel_fit)
 We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
 
 
-```r
+``` r
 tidySEM::get_layout(medmodel_fit)
 ```
 
 ```
 ##      [,1]        [,2]    
-## [1,] "CENTERING" NA      
-## [2,] "SRPed"     "Valued"
+## [1,] "CENTERING" "Valued"
+## [2,] "SRPed"     NA      
 ## attr(,"class")
 ## [1] "layout_matrix" "matrix"        "array"
 ```
 We can write code to remap them
 
-```r
-medmap <- tidySEM::get_layout("", "SRPed", "", "CENTERING", "", "Valued",
-    rows = 2)
+``` r
+medmap <- tidySEM::get_layout("", "SRPed", "",
+                               "CENTERING", "", "Valued",  rows=2)
 medmap
 ```
 
@@ -2051,18 +1791,17 @@ medmap
 ```
 We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
 
-```r
-tidySEM::graph_sem(medmodel_fit, layout = medmap, rect_width = 1.25, rect_height = 1.25,
-    spacing_x = 2, spacing_y = 3, text_size = 4.5)
+``` r
+tidySEM::graph_sem(medmodel_fit, layout=medmap,  rect_width = 1.25, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-80-1.png)<!-- -->
 ### Specify and run the entire lavaan model {-}
 
 
-```r
+``` r
 set.seed(230925)
-ModMedOnA <- "
+ModMedOnA <- '
     #equations
     SRPed ~ a1*CENTERING + a2*TradPed + a3*CENTERING:TradPed
     Valued ~ c_p*CENTERING + b*SRPed
@@ -2085,37 +1824,25 @@ ModMedOnA <- "
     indirect.mean := a1*b + imm*(TradPed.mean)
     indirect.SDabove := a1*b + imm*(TradPed.mean + sqrt(TradPed.var))
 
- "
-set.seed(230925)  #required for reproducible results because lavaan introduces randomness into the calculations
-ModMedOnA_fit <- lavaan::sem(ModMedOnA, data = babydf, se = "bootstrap",
-    missing = "fiml", bootstrap = 1000)
+ '
+set.seed(230925) #required for reproducible results because lavaan introduces randomness into the calculations
+ModMedOnA_fit <- lavaan::sem(ModMedOnA, data =babydf, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
 ```
 
 ```
-## Warning in lav_data_full(data = data, group = group, cluster = cluster, : lavaan WARNING: 1 cases were deleted due to missing values in 
-## 		  exogenous variable(s), while fixed.x = TRUE.
+## Warning: lavaan->lav_data_full():  
+##    1 cases were deleted due to missing values in exogenous variable(s), while 
+##    fixed.x = TRUE.
 ```
 
-```
-## Warning in lav_partable_vnames(FLAT, "ov.x", warn = TRUE): lavaan WARNING:
-##     model syntax contains variance/covariance/intercept formulas
-##     involving (an) exogenous variable(s): [TradPed]; These variables
-##     will now be treated as random introducing additional free
-##     parameters. If you wish to treat those variables as fixed, remove
-##     these formulas from the model syntax. Otherwise, consider adding
-##     the fixed.x = FALSE option.
-```
-
-```r
-ModMedOnAsum <- lavaan::summary(ModMedOnA_fit, standardized = TRUE, rsq = T,
-    ci = TRUE)
-ModMedOnAParamEsts <- lavaan::parameterEstimates(ModMedOnA_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+``` r
+ModMedOnAsum <- lavaan::summary(ModMedOnA_fit, standardized = TRUE, rsq=T, ci=TRUE)    
+ModMedOnAParamEsts <- lavaan::parameterEstimates(ModMedOnA_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 ModMedOnAsum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 36 iterations
+## lavaan 0.6-18 ended normally after 33 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2127,7 +1854,7 @@ ModMedOnAsum
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                60.195
+##   Test statistic                                60.132
 ##   Degrees of freedom                                 4
 ##   P-value (Chi-square)                           0.000
 ## 
@@ -2140,36 +1867,36 @@ ModMedOnAsum
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   SRPed ~                                                               
-##     CENTERIN  (a1)    1.184    0.915    1.295    0.195   -1.022    2.719
-##     TradPed   (a2)    0.597    0.095    6.304    0.000    0.451    0.819
-##     CENTERIN  (a3)   -0.222    0.194   -1.143    0.253   -0.543    0.246
+##     CENTERIN  (a1)    1.185    0.915    1.295    0.195   -1.023    2.720
+##     TradPed   (a2)    0.597    0.095    6.307    0.000    0.451    0.820
+##     CENTERIN  (a3)   -0.222    0.194   -1.144    0.253   -0.543    0.246
 ##   Valued ~                                                              
-##     CENTERIN (c_p)   -0.011    0.122   -0.094    0.925   -0.234    0.243
-##     SRPed      (b)    0.737    0.119    6.189    0.000    0.481    0.939
+##     CENTERIN (c_p)   -0.012    0.122   -0.098    0.922   -0.233    0.242
+##     SRPed      (b)    0.738    0.119    6.183    0.000    0.480    0.940
 ##    Std.lv  Std.all
 ##                   
-##     1.184    0.965
+##     1.185    0.966
 ##     0.597    0.728
 ##    -0.222   -0.819
 ##                   
-##    -0.011   -0.008
-##     0.737    0.625
+##    -0.012   -0.008
+##     0.738    0.625
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .SRPed   (SRP.)    1.865    0.433    4.308    0.000    0.826    2.538
-##    .Valued  (Vld.)    0.900    0.527    1.708    0.088   -0.011    2.024
+##    .SRPed   (SRP.)    1.864    0.433    4.309    0.000    0.827    2.536
+##    .Valued  (Vld.)    0.899    0.528    1.703    0.089   -0.013    2.021
 ##     TradPed (TrP.)    4.292    0.078   55.116    0.000    4.130    4.443
 ##    Std.lv  Std.all
-##     1.865    3.164
-##     0.900    1.294
+##     1.864    3.164
+##     0.899    1.292
 ##     4.292    5.977
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##     TradPed (TrP.)    0.516    0.142    3.627    0.000    0.263    0.839
-##    .SRPed             0.151    0.029    5.119    0.000    0.089    0.206
-##    .Valued            0.296    0.054    5.489    0.000    0.182    0.399
+##    .SRPed             0.151    0.029    5.117    0.000    0.089    0.206
+##    .Valued            0.296    0.054    5.497    0.000    0.181    0.399
 ##    Std.lv  Std.all
 ##     0.516    1.000
 ##     0.151    0.434
@@ -2183,17 +1910,17 @@ ModMedOnAsum
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##     imm              -0.164    0.144   -1.136    0.256   -0.416    0.185
-##     indirect.SDblw    0.288    0.177    1.625    0.104   -0.107    0.602
-##     indirect.mean     0.171    0.085    2.002    0.045    0.000    0.337
-##     indirect.SDabv    0.053    0.073    0.730    0.465   -0.093    0.190
+##     indirect.SDblw    0.289    0.177    1.626    0.104   -0.107    0.602
+##     indirect.mean     0.171    0.085    2.003    0.045    0.000    0.338
+##     indirect.SDabv    0.053    0.073    0.732    0.464   -0.093    0.190
 ##    Std.lv  Std.all
 ##    -0.164   -0.512
-##     0.288   -1.944
-##     0.171   -2.456
-##     0.053   -2.967
+##     0.289   -1.945
+##     0.171   -2.457
+##     0.053   -2.969
 ```
 
-```r
+``` r
 ModMedOnAParamEsts
 ```
 
@@ -2220,34 +1947,34 @@ ModMedOnAParamEsts
 ## 19     indirect.mean :=                   a1*b+imm*(TradPed.mean)
 ## 20  indirect.SDabove := a1*b+imm*(TradPed.mean+sqrt(TradPed.var))
 ##               label    est    se      z pvalue ci.lower ci.upper std.lv std.all
-## 1                a1  1.184 0.915  1.295  0.195   -1.175    2.630  1.184   0.965
-## 2                a2  0.597 0.095  6.304  0.000    0.448    0.806  0.597   0.728
-## 3                a3 -0.222 0.194 -1.143  0.253   -0.523    0.287 -0.222  -0.819
-## 4               c_p -0.011 0.122 -0.094  0.925   -0.236    0.237 -0.011  -0.008
-## 5                 b  0.737 0.119  6.189  0.000    0.487    0.946  0.737   0.625
-## 6        SRPed.mean  1.865 0.433  4.308  0.000    0.894    2.551  1.865   3.164
-## 7       Valued.mean  0.900 0.527  1.708  0.088   -0.027    1.985  0.900   1.294
+## 1                a1  1.185 0.915  1.295  0.195   -1.175    2.629  1.185   0.966
+## 2                a2  0.597 0.095  6.307  0.000    0.449    0.807  0.597   0.728
+## 3                a3 -0.222 0.194 -1.144  0.253   -0.523    0.287 -0.222  -0.819
+## 4               c_p -0.012 0.122 -0.098  0.922   -0.236    0.236 -0.012  -0.008
+## 5                 b  0.738 0.119  6.183  0.000    0.486    0.946  0.738   0.625
+## 6        SRPed.mean  1.864 0.433  4.309  0.000    0.892    2.550  1.864   3.164
+## 7       Valued.mean  0.899 0.528  1.703  0.089   -0.032    1.989  0.899   1.292
 ## 8      TradPed.mean  4.292 0.078 55.116  0.000    4.129    4.434  4.292   5.977
 ## 9       TradPed.var  0.516 0.142  3.627  0.000    0.272    0.850  0.516   1.000
-## 10                   0.151 0.029  5.119  0.000    0.103    0.219  0.151   0.434
-## 11                   0.296 0.054  5.489  0.000    0.203    0.425  0.296   0.611
+## 10                   0.151 0.029  5.117  0.000    0.103    0.219  0.151   0.434
+## 11                   0.296 0.054  5.497  0.000    0.203    0.424  0.296   0.611
 ## 12                   0.231 0.000     NA     NA    0.231    0.231  0.231   1.000
 ## 13                   1.036 0.000     NA     NA    1.036    1.036  1.036   0.991
 ## 14                   4.733 0.000     NA     NA    4.733    4.733  4.733   1.000
 ## 15                   0.361 0.000     NA     NA    0.361    0.361  0.361   0.752
 ## 16                   1.622 0.000     NA     NA    1.622    1.622  1.622   0.745
-## 17              imm -0.164 0.144 -1.136  0.256   -0.411    0.196 -0.164  -0.512
-## 18 indirect.SDbelow  0.288 0.177  1.625  0.104   -0.096    0.631  0.288  -1.944
-## 19    indirect.mean  0.171 0.085  2.002  0.045    0.013    0.361  0.171  -2.456
-## 20 indirect.SDabove  0.053 0.073  0.730  0.465   -0.100    0.184  0.053  -2.967
+## 17              imm -0.164 0.144 -1.136  0.256   -0.410    0.197 -0.164  -0.512
+## 18 indirect.SDbelow  0.289 0.177  1.626  0.104   -0.095    0.635  0.289  -1.945
+## 19    indirect.mean  0.171 0.085  2.003  0.045    0.013    0.361  0.171  -2.457
+## 20 indirect.SDabove  0.053 0.073  0.732  0.464   -0.100    0.184  0.053  -2.969
 ##    std.nox
 ## 1    2.010
 ## 2    0.487
 ## 3   -0.377
-## 4   -0.016
+## 4   -0.017
 ## 5    0.625
 ## 6    3.164
-## 7    1.294
+## 7    1.292
 ## 8    5.977
 ## 9    1.000
 ## 10   0.434
@@ -2258,15 +1985,15 @@ ModMedOnAParamEsts
 ## 15   0.361
 ## 16   1.622
 ## 17  -0.235
-## 18   0.084
+## 18   0.085
 ## 19  -0.151
 ## 20  -0.386
 ```
 ### Use tidySEM to create a figure {-}
 
 
-```r
-# only worked when I used the library to turn on all these pkgs
+``` r
+#only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
 library(ggplot2)
@@ -2279,23 +2006,25 @@ tidySEM::graph_sem(model = ModMedOnA_fit)
 We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
 
 
-```r
+``` r
 tidySEM::get_layout(ModMedOnA_fit)
 ```
 
 ```
-##      [,1]     [,2]                [,3]        [,4]     
-## [1,] NA       "CENTERING:TradPed" NA          NA       
-## [2,] NA       NA                  NA          NA       
-## [3,] "Valued" "SRPed"             "CENTERING" "TradPed"
+##      [,1]                [,2]     [,3]        [,4]     
+## [1,] NA                  NA       NA          "TradPed"
+## [2,] NA                  "Valued" "CENTERING" NA       
+## [3,] "CENTERING:TradPed" NA       "SRPed"     NA       
 ## attr(,"class")
 ## [1] "layout_matrix" "matrix"        "array"
 ```
 We can write code to remap them
 
-```r
-comb_map <- tidySEM::get_layout("", "SRPed", "", "CENTERING", "", "Valued",
-    "TradPed", "", "", "", "CENTERING:TradPed", "", rows = 4)
+``` r
+comb_map <- tidySEM::get_layout("", "SRPed", "",
+                               "CENTERING", "", "Valued", 
+                               "TradPed", "","",
+                               "", "CENTERING:TradPed","", rows=4)
 comb_map
 ```
 
@@ -2312,9 +2041,8 @@ comb_map
 
 We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
 
-```r
-tidySEM::graph_sem(ModMedOnA_fit, layout = comb_map, rect_width = 1.5,
-    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
+``` r
+tidySEM::graph_sem(ModMedOnA_fit, layout=comb_map,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
 ```
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-85-1.png)<!-- -->
@@ -2325,8 +2053,8 @@ tidySEM::graph_sem(ModMedOnA_fit, layout = comb_map, rect_width = 1.5,
 Exporting the results to a .csv file will help us create a journal-ready table, outside of the R environment.
 
 
-```r
-write.csv(ModMedOnAParamEsts, file = "ModMedOnAParamEsts.csv")  #optional to write it to a .csv file
+``` r
+write.csv (ModMedOnAParamEsts, file="ModMedOnAParamEsts.csv") #optional to write it to a .csv file
 ```
 
 **Table 1 ** 
@@ -2389,9 +2117,8 @@ Regarding the presence of a moderated mediation, results were mixed. On the one 
 
 
 
-```r
-interactions::interact_plot(mod_a_path, pred = TradPed, modx = Centering) +
-    ylim(1, 5)
+``` r
+interactions::interact_plot(mod_a_path, pred = TradPed, modx = Centering) + ylim (1,5)
 ```
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-87-1.png)<!-- -->
@@ -2421,44 +2148,39 @@ My analysis will evaluated a moderated mediation. Specifically, I predict that t
 ### Import the data and format the variables in the model {-}
 
 
-```r
+``` r
 raw <- readRDS("ReC.rds")
 ```
 
 The approach we are taking to moderated mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
 
-```r
-raw <- (dplyr::filter(raw, Course == "Multivariate"))
+``` r
+raw <-(dplyr::filter(raw, Course == "Multivariate"))
 ```
 
 I need to score the SRPed, TradPed, and Valued variables
 
 
-```r
-TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
-    "ClearOrganization", "ClearPresentation")
-raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], 0.75)
+``` r
+raw$TradPed <- datawizard::row_means(raw, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 
-Valued_vars <- c("ValObjectives", "IncrUnderstanding", "IncrInterest")
-raw$Valued <- sjstats::mean_n(raw[, ..Valued_vars], 0.75)
+raw$Valued <- datawizard::row_means(raw, select = c('ValObjectives', 'IncrUnderstanding','IncrInterest'), min_valid = .75)
 
-SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
-    "DEIintegration")
-raw$SRPed <- sjstats::mean_n(raw[, ..SRPed_vars], 0.75)
+raw$SRPed <- datawizard::row_means(raw, select = c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration'), min_valid = .75)
 ```
 
 
 I will create a babydf.
 
 
-```r
+``` r
 babydf <- dplyr::select(raw, Centering, TradPed, SRPed, Valued)
 ```
 
 Let's check the structure of the variables:
 
 
-```r
+``` r
 str(babydf)
 ```
 
@@ -2467,13 +2189,13 @@ str(babydf)
 ##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
 ##  $ TradPed  : num  3.8 5 4.8 4 4.2 3 5 4.6 4 4.8 ...
 ##  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
-##  $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+##  $ Valued   : num  4.33 5 4.67 3.33 4 ...
 ##  - attr(*, ".internal.selfref")=<externalptr>
 ```
 In later analyses, it will be important that Centering is a dummy-coded numerical variable:
 
 
-```r
+``` r
 babydf$CENTERING <- as.numeric(babydf$Centering)
 babydf$CENTERING <- (babydf$CENTERING - 1)
 str(babydf)
@@ -2484,7 +2206,7 @@ str(babydf)
 ##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
 ##  $ TradPed  : num  3.8 5 4.8 4 4.2 3 5 4.6 4 4.8 ...
 ##  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
-##  $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+##  $ Valued   : num  4.33 5 4.67 3.33 4 ...
 ##  $ CENTERING: num  1 1 1 1 1 1 1 1 1 1 ...
 ##  - attr(*, ".internal.selfref")=<externalptr>
 ```
@@ -2492,7 +2214,7 @@ str(babydf)
 Quick peek at relations between variables:
 
 
-```r
+``` r
 psych::pairs.panels(babydf)
 ```
 
@@ -2511,10 +2233,10 @@ W = traditional pedagogy
 Let's specify this simple moderation model with base R's *lm()* function.  
 
 
-```r
-Mod_b_path <- lm(Valued ~ SRPed * TradPed, data = babydf)
-# the base R output if you prefer this view
-summary(Mod_b_path)
+``` r
+Mod_b_path <- lm(Valued~SRPed*TradPed, data=babydf)
+#the base R output if you prefer this view
+summary(Mod_b_path) 
 ```
 
 ```
@@ -2524,19 +2246,19 @@ summary(Mod_b_path)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.06146 -0.26683  0.08376  0.19957  0.94852 
+## -1.05860 -0.26678  0.08381  0.19994  0.94865 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept)    1.97179    1.29638   1.521    0.132
-## SRPed         -0.19009    0.33922  -0.560    0.577
-## TradPed        0.35774    0.32949   1.086    0.281
-## SRPed:TradPed  0.07962    0.07850   1.014    0.314
+## (Intercept)    1.96508    1.29829   1.514    0.134
+## SRPed         -0.18801    0.33973  -0.553    0.582
+## TradPed        0.35892    0.32985   1.088    0.280
+## SRPed:TradPed  0.07922    0.07860   1.008    0.317
 ## 
-## Residual standard error: 0.4393 on 77 degrees of freedom
+## Residual standard error: 0.4394 on 77 degrees of freedom
 ##   (3 observations deleted due to missingness)
-## Multiple R-squared:  0.6114,	Adjusted R-squared:  0.5963 
-## F-statistic: 40.39 on 3 and 77 DF,  p-value: 0.0000000000000008713
+## Multiple R-squared:  0.6112,	Adjusted R-squared:  0.5961 
+## F-statistic: 40.35 on 3 and 77 DF,  p-value: 0.0000000000000008891
 ```
 
 We'll use the *jtools* package so we get that great summ function and *interactions* for the awesome plot.
@@ -2544,96 +2266,43 @@ We'll use the *jtools* package so we get that great summ function and *interacti
 Since we are just working to understand our moderation, we can run them with "regular old" ordinary least squares.  
 
 
-```r
-# library(jtools) #the summ function creates a terrific regression
-# table library(interactions)
+``` r
+#library(jtools) #the summ function creates a terrific regression table
+#library(interactions)
 library(ggplot2)
 
 jtools::summ(Mod_b_path, digits = 3)
 ```
 
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Observations </td>
-   <td style="text-align:right;"> 81 (3 missing obs. deleted) </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Dependent variable </td>
-   <td style="text-align:right;"> Valued </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Type </td>
-   <td style="text-align:right;"> OLS linear regression </td>
-  </tr>
-</tbody>
-</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> F(3,77) </td>
-   <td style="text-align:right;"> 40.389 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> R² </td>
-   <td style="text-align:right;"> 0.611 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Adj. R² </td>
-   <td style="text-align:right;"> 0.596 </td>
-  </tr>
-</tbody>
-</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> Est. </th>
-   <th style="text-align:right;"> S.E. </th>
-   <th style="text-align:right;"> t val. </th>
-   <th style="text-align:right;"> p </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> (Intercept) </td>
-   <td style="text-align:right;"> 1.972 </td>
-   <td style="text-align:right;"> 1.296 </td>
-   <td style="text-align:right;"> 1.521 </td>
-   <td style="text-align:right;"> 0.132 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> SRPed </td>
-   <td style="text-align:right;"> -0.190 </td>
-   <td style="text-align:right;"> 0.339 </td>
-   <td style="text-align:right;"> -0.560 </td>
-   <td style="text-align:right;"> 0.577 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> TradPed </td>
-   <td style="text-align:right;"> 0.358 </td>
-   <td style="text-align:right;"> 0.329 </td>
-   <td style="text-align:right;"> 1.086 </td>
-   <td style="text-align:right;"> 0.281 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> SRPed:TradPed </td>
-   <td style="text-align:right;"> 0.080 </td>
-   <td style="text-align:right;"> 0.078 </td>
-   <td style="text-align:right;"> 1.014 </td>
-   <td style="text-align:right;"> 0.314 </td>
-  </tr>
-</tbody>
-<tfoot><tr><td style="padding: 0; " colspan="100%">
-<sup></sup> Standard errors: OLS</td></tr></tfoot>
-</table>
+```
+## MODEL INFO:
+## Observations: 81 (3 missing obs. deleted)
+## Dependent Variable: Valued
+## Type: OLS linear regression 
+## 
+## MODEL FIT:
+## F(3,77) = 40.354, p = 0.000
+## R² = 0.611
+## Adj. R² = 0.596 
+## 
+## Standard errors: OLS
+## -----------------------------------------------------
+##                         Est.    S.E.   t val.       p
+## ------------------- -------- ------- -------- -------
+## (Intercept)            1.965   1.298    1.514   0.134
+## SRPed                 -0.188   0.340   -0.553   0.582
+## TradPed                0.359   0.330    1.088   0.280
+## SRPed:TradPed          0.079   0.079    1.008   0.317
+## -----------------------------------------------------
+```
 
 Looking at these results we can see that the predictors account for about 61% of variance in disengagement coping. Only the moderator (W), traditional pedagogy is a significant predictor.  Neither the independent variable (Centering, [X])), nor its interaction with Centering (Centering:TradPed, [XW]) are significant.
  
 It's always helpful to graph the relationship.  The *interaction_plot()* function from the package, *interactions* can make helpful illustrations. This plot represents the model we specified with each of the variables in their respective roles.
 
 
-```r
-interactions::interact_plot(Mod_b_path, pred = SRPed, modx = TradPed) +
-    ylim(1, 5)
+``` r
+interactions::interact_plot(Mod_b_path, pred = SRPed, modx = TradPed) + ylim (1,5)
 ```
 
 ```
@@ -2649,7 +2318,7 @@ Consistent with the non-significant interaction effect, there is no evidence of 
 
 
 
-```r
+``` r
 interactions::sim_slopes(Mod_b_path, pred = SRPed, modx = TradPed)
 ```
 
@@ -2675,7 +2344,7 @@ interactions::sim_slopes(Mod_b_path, pred = SRPed, modx = TradPed)
 ## 
 ##   Est.   S.E.   t val.      p
 ## ------ ------ -------- ------
-##   0.15   0.12     1.25   0.22
+##   0.15   0.12     1.25   0.21
 ## 
 ## Slope of SRPed when TradPed = 5.023516 (+ 1 SD): 
 ## 
@@ -2684,9 +2353,8 @@ interactions::sim_slopes(Mod_b_path, pred = SRPed, modx = TradPed)
 ##   0.21   0.14     1.46   0.15
 ```
 
-```r
-# interactions::sim_slopes(Mod_b_path, pred=TradPed, modx = SRPed)
-# #sometimes I like to look at it in reverse -- like in the plots
+``` r
+#interactions::sim_slopes(Mod_b_path, pred=TradPed, modx = SRPed) #sometimes I like to look at it in reverse -- like in the plots
 ```
 Consistent with both the non-significant interaction term and the the non-significant main effect of socially responsive pedagogy, there was not statistically significant effect of socially responsive pedagogy on perceived value to the student at the traditional values of the mean (4.31) and $\pm1SD$ (3.60, 5.02) of the moderator, traditional pedagogy.
 
@@ -2701,10 +2369,10 @@ M = socially responsive pedagogy
 
 *Note*. I switched to using the CENTERING (all caps) variable because it is 0/1, numeric (better for lavaan).
 
-```r
+``` r
 library(lavaan)
 
-medmodel <- "
+medmodel <- '
           Valued ~ b*SRPed + c_p*CENTERING 
           SRPed ~a*CENTERING
           
@@ -2715,19 +2383,16 @@ medmodel <- "
           indirect :=  a*b
           direct  := c_p
           total_c  := c_p + (a*b)
-          "
-set.seed(230925)  #required for reproducible results because lavaan introduces randomness into the calculations
-medmodel_fit <- lavaan::sem(medmodel, data = babydf, se = "bootstrap",
-    missing = "fiml")
-medmodel_Sum <- lavaan::summary(medmodel_fit, standardized = T, rsq = T,
-    ci = TRUE)
-medmodel_ParEsts <- lavaan::parameterEstimates(medmodel_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+          '
+set.seed(230925) #required for reproducible results because lavaan introduces randomness into the calculations
+medmodel_fit <- lavaan::sem(medmodel, data = babydf, se="bootstrap", missing = 'fiml')
+medmodel_Sum <-  lavaan::summary(medmodel_fit, standardized=T, rsq=T, ci=TRUE)
+medmodel_ParEsts<- lavaan::parameterEstimates(medmodel_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 medmodel_Sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 25 iterations
+## lavaan 0.6-18 ended normally after 26 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2750,31 +2415,31 @@ medmodel_Sum
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   Valued ~                                                              
-##     SRPed      (b)    0.728    0.124    5.877    0.000    0.455    0.933
-##     CENTERIN (c_p)    0.004    0.124    0.032    0.974   -0.225    0.257
+##     SRPed      (b)    0.728    0.124    5.873    0.000    0.456    0.933
+##     CENTERIN (c_p)    0.004    0.124    0.028    0.977   -0.225    0.255
 ##   SRPed ~                                                               
-##     CENTERIN   (a)    0.367    0.114    3.225    0.001    0.148    0.601
+##     CENTERIN   (a)    0.367    0.114    3.227    0.001    0.148    0.601
 ##    Std.lv  Std.all
 ##                   
-##     0.728    0.608
-##     0.004    0.003
+##     0.728    0.609
+##     0.004    0.002
 ##                   
 ##     0.367    0.307
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##     CENTERI (CENT)    0.369    0.054    6.872    0.000    0.274    0.476
-##    .Valued  (Vld.)    0.935    0.548    1.707    0.088    0.018    2.136
-##    .SRPed             4.371    0.086   50.597    0.000    4.187    4.527
+##    .Valued  (Vld.)    0.933    0.548    1.702    0.089    0.011    2.132
+##    .SRPed             4.371    0.086   50.605    0.000    4.187    4.527
 ##    Std.lv  Std.all
 ##     0.369    0.765
-##     0.935    1.355
+##     0.933    1.353
 ##     4.371    7.580
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .Valued            0.299    0.055    5.453    0.000    0.186    0.408
-##    .SRPed             0.301    0.058    5.157    0.000    0.196    0.413
+##    .Valued            0.299    0.055    5.462    0.000    0.186    0.408
+##    .SRPed             0.301    0.058    5.168    0.000    0.196    0.413
 ##     CENTERING         0.233    0.014   16.390    0.000    0.199    0.249
 ##    Std.lv  Std.all
 ##     0.299    0.629
@@ -2788,51 +2453,51 @@ medmodel_Sum
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect          0.267    0.100    2.665    0.008    0.095    0.488
-##     direct            0.004    0.124    0.032    0.974   -0.225    0.257
-##     total_c           0.271    0.144    1.886    0.059   -0.014    0.551
+##     indirect          0.267    0.100    2.665    0.008    0.096    0.489
+##     direct            0.004    0.124    0.028    0.977   -0.225    0.255
+##     total_c           0.271    0.144    1.884    0.060   -0.014    0.550
 ##    Std.lv  Std.all
 ##     0.267    0.187
-##     0.004    0.003
-##     0.271    0.190
+##     0.004    0.002
+##     0.271    0.189
 ```
 
-```r
+``` r
 medmodel_ParEsts
 ```
 
 ```
 ##          lhs op       rhs          label   est    se      z pvalue ci.lower
-## 1     Valued  ~     SRPed              b 0.728 0.124  5.877  0.000    0.464
-## 2     Valued  ~ CENTERING            c_p 0.004 0.124  0.032  0.974   -0.225
-## 3      SRPed  ~ CENTERING              a 0.367 0.114  3.225  0.001    0.131
+## 1     Valued  ~     SRPed              b 0.728 0.124  5.873  0.000    0.465
+## 2     Valued  ~ CENTERING            c_p 0.004 0.124  0.028  0.977   -0.225
+## 3      SRPed  ~ CENTERING              a 0.367 0.114  3.227  0.001    0.133
 ## 4  CENTERING ~1           CENTERING.mean 0.369 0.054  6.872  0.000    0.262
-## 5     Valued ~1              Valued.mean 0.935 0.548  1.707  0.088   -0.040
-## 6     Valued ~~    Valued                0.299 0.055  5.453  0.000    0.213
-## 7      SRPed ~~     SRPed                0.301 0.058  5.157  0.000    0.205
-## 8  CENTERING ~~ CENTERING                0.233 0.014 16.390  0.000    0.199
-## 9      SRPed ~1                          4.371 0.086 50.597  0.000    4.189
+## 5     Valued ~1              Valued.mean 0.933 0.548  1.702  0.089   -0.044
+## 6     Valued ~~    Valued                0.299 0.055  5.462  0.000    0.213
+## 7      SRPed ~~     SRPed                0.301 0.058  5.168  0.000    0.205
+## 8  CENTERING ~~ CENTERING                0.233 0.014 16.390  0.000    0.188
+## 9      SRPed ~1                          4.371 0.086 50.605  0.000    4.189
 ## 10  indirect :=       a*b       indirect 0.267 0.100  2.665  0.008    0.109
-## 11    direct :=       c_p         direct 0.004 0.124  0.032  0.974   -0.225
-## 12   total_c := c_p+(a*b)        total_c 0.271 0.144  1.886  0.059   -0.025
-##    ci.upper std.lv std.all std.nox
-## 1     0.939  0.728   0.608   0.608
-## 2     0.250  0.004   0.003   0.003
-## 3     0.587  0.367   0.307   0.307
-## 4     0.476  0.369   0.765   0.765
-## 5     2.084  0.935   1.355   1.355
-## 6     0.454  0.299   0.629   0.629
-## 7     0.424  0.301   0.906   0.906
-## 8     0.249  0.233   1.000   1.000
-## 9     4.528  4.371   7.580   7.580
-## 10    0.528  0.267   0.187   0.187
-## 11    0.250  0.004   0.003   0.003
-## 12    0.546  0.271   0.190   0.190
+## 11    direct :=       c_p         direct 0.004 0.124  0.028  0.977   -0.225
+## 12   total_c := c_p+(a*b)        total_c 0.271 0.144  1.884  0.060   -0.024
+##    ci.upper std.lv std.all
+## 1     0.938  0.728   0.609
+## 2     0.248  0.004   0.002
+## 3     0.587  0.367   0.307
+## 4     0.476  0.369   0.765
+## 5     2.085  0.933   1.353
+## 6     0.453  0.299   0.629
+## 7     0.424  0.301   0.906
+## 8     0.249  0.233   1.000
+## 9     4.528  4.371   7.580
+## 10    0.528  0.267   0.187
+## 11    0.248  0.004   0.002
+## 12    0.546  0.271   0.189
 ```
 
 
-```r
-# only worked when I used the library to turn on all these pkgs
+``` r
+#only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
 library(ggplot2)
@@ -2845,22 +2510,22 @@ tidySEM::graph_sem(model = medmodel_fit)
 We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
 
 
-```r
+``` r
 tidySEM::get_layout(medmodel_fit)
 ```
 
 ```
 ##      [,1]        [,2]    
-## [1,] "CENTERING" NA      
-## [2,] "SRPed"     "Valued"
+## [1,] "CENTERING" "Valued"
+## [2,] "SRPed"     NA      
 ## attr(,"class")
 ## [1] "layout_matrix" "matrix"        "array"
 ```
 We can write code to remap them
 
-```r
-medmap <- tidySEM::get_layout("", "SRPed", "", "CENTERING", "", "Valued",
-    rows = 2)
+``` r
+medmap <- tidySEM::get_layout("", "SRPed", "",
+                               "CENTERING", "", "Valued",  rows=2)
 medmap
 ```
 
@@ -2873,18 +2538,17 @@ medmap
 ```
 We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
 
-```r
-tidySEM::graph_sem(medmodel_fit, layout = medmap, rect_width = 1.25, rect_height = 1.25,
-    spacing_x = 2, spacing_y = 3, text_size = 4.5)
+``` r
+tidySEM::graph_sem(medmodel_fit, layout=medmap,  rect_width = 1.25, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-127-1.png)<!-- -->
 ### Specify and run the entire lavaan model {-}
 
 
-```r
+``` r
 set.seed(230925)
-ModMedOnB <- "
+ModMedOnB <- '
     #equations
     SRPed ~ a*CENTERING
     Valued ~ cp*CENTERING + b1*SRPed + b2*TradPed + b3*SRPed:TradPed
@@ -2907,32 +2571,16 @@ ModMedOnB <- "
     indirect.mean := a*b1 + imm*(TradPed.mean)
     indirect.SDabove := a*b1 + imm*(TradPed.mean + sqrt(TradPed.var))
 
- "
-set.seed(230925)  #required for reproducible results because lavaan introduces randomness into the calculations
-ModMedOnB_fit <- lavaan::sem(ModMedOnB, data = babydf, se = "bootstrap",
-    missing = "fiml", bootstrap = 1000)
-```
-
-```
-## Warning in lav_partable_vnames(FLAT, "ov.x", warn = TRUE): lavaan WARNING:
-##     model syntax contains variance/covariance/intercept formulas
-##     involving (an) exogenous variable(s): [TradPed]; These variables
-##     will now be treated as random introducing additional free
-##     parameters. If you wish to treat those variables as fixed, remove
-##     these formulas from the model syntax. Otherwise, consider adding
-##     the fixed.x = FALSE option.
-```
-
-```r
-ModMedOnBsum <- lavaan::summary(ModMedOnB_fit, standardized = TRUE, rsq = T,
-    ci = TRUE)
-ModMedOnBParamEsts <- lavaan::parameterEstimates(ModMedOnB_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+ '
+set.seed(230925) #required for reproducible results because lavaan introduces randomness into the calculations
+ModMedOnB_fit <- lavaan::sem(ModMedOnB, data =babydf, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
+ModMedOnBsum <- lavaan::summary(ModMedOnB_fit, standardized = TRUE, rsq=T, ci=TRUE)    
+ModMedOnBParamEsts <- lavaan::parameterEstimates(ModMedOnB_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 ModMedOnBsum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 29 iterations
+## lavaan 0.6-18 ended normally after 29 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2943,7 +2591,7 @@ ModMedOnBsum
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                               390.225
+##   Test statistic                               390.407
 ##   Degrees of freedom                                 5
 ##   P-value (Chi-square)                           0.000
 ## 
@@ -2956,44 +2604,44 @@ ModMedOnBsum
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   SRPed ~                                                               
-##     CENTERING  (a)    0.352    0.114    3.077    0.002    0.133    0.590
+##     CENTERING  (a)    0.352    0.114    3.079    0.002    0.133    0.590
 ##   Valued ~                                                              
-##     CENTERING (cp)    0.019    0.108    0.174    0.862   -0.195    0.225
-##     SRPed     (b1)    0.060    0.528    0.114    0.909   -1.726    0.436
-##     TradPed   (b2)    0.633    0.497    1.274    0.203   -0.894    0.977
-##     SRPd:TrdP (b3)    0.014    0.113    0.126    0.900   -0.032    0.396
+##     CENTERING (cp)    0.019    0.108    0.171    0.864   -0.196    0.225
+##     SRPed     (b1)    0.061    0.527    0.116    0.908   -1.722    0.437
+##     TradPed   (b2)    0.633    0.496    1.275    0.202   -0.894    0.978
+##     SRPd:TrdP (b3)    0.014    0.113    0.125    0.900   -0.032    0.396
 ##    Std.lv  Std.all
 ##                   
 ##     0.352    0.296
 ##                   
 ##     0.019    0.014
-##     0.060    0.055
+##     0.061    0.056
 ##     0.633    0.723
-##     0.014    0.110
+##     0.014    0.109
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .SRPed   (SRP.)    4.382    0.087   50.609    0.000    4.196    4.537
-##    .Valued  (Vld.)    0.939    2.160    0.435    0.664   -0.148    8.017
-##     TradPed (TrP.)    4.296    0.076   56.560    0.000    4.142    4.434
-##     SRPd:TP          19.741    0.524   37.679    0.000   18.697   20.707
+##    .SRPed   (SRP.)    4.382    0.087   50.615    0.000    4.196    4.537
+##    .Valued  (Vld.)    0.936    2.157    0.434    0.664   -0.152    8.008
+##     TradPed (TrP.)    4.296    0.076   56.558    0.000    4.142    4.434
+##     SRPd:TP          19.741    0.524   37.675    0.000   18.699   20.707
 ##    Std.lv  Std.all
 ##     4.382    7.627
-##     0.939    1.497
+##     0.936    1.493
 ##     4.296    5.993
 ##    19.741    4.104
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##     TradPed (TrP.)    0.514    0.140    3.681    0.000    0.272    0.803
-##    .SRPed             0.301    0.059    5.110    0.000    0.195    0.416
-##    .Valued            0.181    0.029    6.327    0.000    0.111    0.223
-##     SRPd:TP          23.133    4.269    5.419    0.000   15.303   32.150
+##    .SRPed             0.301    0.059    5.120    0.000    0.195    0.416
+##    .Valued            0.181    0.029    6.336    0.000    0.111    0.222
+##     SRPd:TP          23.137    4.268    5.421    0.000   15.314   32.149
 ##    Std.lv  Std.all
 ##     0.514    1.000
 ##     0.301    0.912
 ##     0.181    0.461
-##    23.133    1.000
+##    23.137    1.000
 ## 
 ## R-Square:
 ##                    Estimate
@@ -3002,18 +2650,18 @@ ModMedOnBsum
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     imm               0.005    0.040    0.125    0.901   -0.012    0.145
-##     indirect.SDblw    0.039    0.066    0.593    0.553   -0.122    0.151
-##     indirect.mean     0.043    0.055    0.784    0.433   -0.074    0.156
-##     indirect.SDabv    0.046    0.057    0.809    0.418   -0.065    0.165
+##     imm               0.005    0.040    0.124    0.902   -0.012    0.145
+##     indirect.SDblw    0.039    0.066    0.598    0.550   -0.122    0.152
+##     indirect.mean     0.043    0.055    0.788    0.431   -0.073    0.156
+##     indirect.SDabv    0.047    0.057    0.812    0.417   -0.065    0.166
 ##    Std.lv  Std.all
 ##     0.005    0.032
-##     0.039    0.178
-##     0.043    0.210
-##     0.046    0.243
+##     0.039    0.177
+##     0.043    0.209
+##     0.047    0.241
 ```
 
-```r
+``` r
 ModMedOnBParamEsts
 ```
 
@@ -3039,33 +2687,33 @@ ModMedOnBParamEsts
 ## 18    indirect.mean :=                   a*b1+imm*(TradPed.mean)
 ## 19 indirect.SDabove := a*b1+imm*(TradPed.mean+sqrt(TradPed.var))
 ##               label    est    se      z pvalue ci.lower ci.upper std.lv std.all
-## 1                 a  0.352 0.114  3.077  0.002    0.117    0.573  0.352   0.296
-## 2                cp  0.019 0.108  0.174  0.862   -0.201    0.223  0.019   0.014
-## 3                b1  0.060 0.528  0.114  0.909   -1.264    0.564  0.060   0.055
-## 4                b2  0.633 0.497  1.274  0.203   -0.889    0.982  0.633   0.723
-## 5                b3  0.014 0.113  0.126  0.900   -0.032    0.396  0.014   0.110
-## 6        SRPed.mean  4.382 0.087 50.609  0.000    4.191    4.537  4.382   7.627
-## 7       Valued.mean  0.939 2.160  0.435  0.664   -0.117    8.165  0.939   1.497
-## 8      TradPed.mean  4.296 0.076 56.560  0.000    4.137    4.431  4.296   5.993
+## 1                 a  0.352 0.114  3.079  0.002    0.118    0.574  0.352   0.296
+## 2                cp  0.019 0.108  0.171  0.864   -0.198    0.223  0.019   0.014
+## 3                b1  0.061 0.527  0.116  0.908   -1.248    0.567  0.061   0.056
+## 4                b2  0.633 0.496  1.275  0.202   -0.887    0.983  0.633   0.723
+## 5                b3  0.014 0.113  0.125  0.900   -0.032    0.396  0.014   0.109
+## 6        SRPed.mean  4.382 0.087 50.615  0.000    4.191    4.536  4.382   7.627
+## 7       Valued.mean  0.936 2.157  0.434  0.664   -0.126    8.155  0.936   1.493
+## 8      TradPed.mean  4.296 0.076 56.558  0.000    4.137    4.431  4.296   5.993
 ## 9       TradPed.var  0.514 0.140  3.681  0.000    0.275    0.811  0.514   1.000
-## 10                   0.301 0.059  5.110  0.000    0.205    0.430  0.301   0.912
-## 11                   0.181 0.029  6.327  0.000    0.141    0.281  0.181   0.461
-## 12                  23.133 4.269  5.419  0.000   15.792   33.016 23.133   1.000
+## 10                   0.301 0.059  5.120  0.000    0.205    0.429  0.301   0.912
+## 11                   0.181 0.029  6.336  0.000    0.141    0.282  0.181   0.461
+## 12                  23.137 4.268  5.421  0.000   15.798   33.018 23.137   1.000
 ## 13                   0.233 0.000     NA     NA    0.233    0.233  0.233   1.000
-## 14                  19.741 0.524 37.679  0.000   18.724   20.761 19.741   4.104
+## 14                  19.741 0.524 37.675  0.000   18.725   20.761 19.741   4.104
 ## 15                   0.369 0.000     NA     NA    0.369    0.369  0.369   0.765
-## 16              imm  0.005 0.040  0.125  0.901   -0.011    0.147  0.005   0.032
-## 17 indirect.SDbelow  0.039 0.066  0.593  0.553   -0.056    0.197  0.039   0.178
-## 18    indirect.mean  0.043 0.055  0.784  0.433   -0.046    0.179  0.043   0.210
-## 19 indirect.SDabove  0.046 0.057  0.809  0.418   -0.063    0.167  0.046   0.243
+## 16              imm  0.005 0.040  0.124  0.902   -0.011    0.146  0.005   0.032
+## 17 indirect.SDbelow  0.039 0.066  0.598  0.550   -0.054    0.198  0.039   0.177
+## 18    indirect.mean  0.043 0.055  0.788  0.431   -0.046    0.180  0.043   0.209
+## 19 indirect.SDabove  0.047 0.057  0.812  0.417   -0.063    0.168  0.047   0.241
 ##    std.nox
 ## 1    0.613
 ## 2    0.030
-## 3    0.055
+## 3    0.056
 ## 4    0.487
-## 5    0.110
+## 5    0.109
 ## 6    7.627
-## 7    1.497
+## 7    1.493
 ## 8    5.993
 ## 9    1.000
 ## 10   0.912
@@ -3075,16 +2723,16 @@ ModMedOnBParamEsts
 ## 14   4.104
 ## 15   0.369
 ## 16   0.067
-## 17   0.369
-## 18   0.436
-## 19   0.503
+## 17   0.367
+## 18   0.434
+## 19   0.500
 ```
 
 ### Use tidySEM to create a figure {-}
 
 
-```r
-# only worked when I used the library to turn on all these pkgs
+``` r
+#only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
 library(ggplot2)
@@ -3097,7 +2745,7 @@ tidySEM::graph_sem(model = ModMedOnB_fit)
 We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
 
 
-```r
+``` r
 tidySEM::get_layout(ModMedOnB_fit)
 ```
 
@@ -3110,9 +2758,9 @@ tidySEM::get_layout(ModMedOnB_fit)
 ```
 We can write code to remap them
 
-```r
+``` r
 comb_map <- tidySEM::get_layout("", "SRPed", "TradPed", "SRPed:TradPed",
-    "CENTERING", "", "Valued", "", rows = 2)
+                               "CENTERING", "", "Valued", "", rows=2)
 comb_map
 ```
 
@@ -3127,9 +2775,8 @@ comb_map
 
 We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
 
-```r
-tidySEM::graph_sem(ModMedOnB_fit, layout = comb_map, rect_width = 1.25,
-    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
+``` r
+tidySEM::graph_sem(ModMedOnB_fit, layout=comb_map,  rect_width = 1.25, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 3.5)
 ```
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-132-1.png)<!-- -->
@@ -3140,8 +2787,8 @@ tidySEM::graph_sem(ModMedOnB_fit, layout = comb_map, rect_width = 1.25,
 Exporting the results to a .csv file will help us create a journal-ready table, outside of the R environment.
 
 
-```r
-write.csv(ModMedOnBParamEsts, file = "ModMedOnBParamEsts.csv")  #optional to write it to a .csv file
+``` r
+write.csv (ModMedOnBParamEsts, file="ModMedOnBParamEsts.csv") #optional to write it to a .csv file
 ```
 
 **Table 1 ** 
@@ -3203,9 +2850,8 @@ Although the model accounted for 9% of variance in socially responsive pedagogy 
 
 
 
-```r
-interactions::interact_plot(Mod_b_path, pred = SRPed, modx = TradPed) +
-    ylim(1, 5)
+``` r
+interactions::interact_plot(Mod_b_path, pred = SRPed, modx = TradPed) + ylim(1,5)
 ```
 
 ```
@@ -3214,9 +2860,8 @@ interactions::interact_plot(Mod_b_path, pred = SRPed, modx = TradPed) +
 
 ![](08-CPA_files/figure-docx/unnamed-chunk-134-1.png)<!-- -->
 
-```r
-# interactions::interact_plot(Mod_c_path, pred = TradPed, modx =
-# SRPed + ylim(1,5))
+``` r
+#interactions::interact_plot(Mod_c_path, pred = TradPed, modx = SRPed + ylim(1,5))
 ```
 
 

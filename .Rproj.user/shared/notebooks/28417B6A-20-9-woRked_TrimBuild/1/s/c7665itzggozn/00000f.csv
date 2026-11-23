@@ -1,0 +1,7 @@
+"0","babydf$p1S <- datawizard::row_means(babydf, select = c('InclusvClassrm','EquitableEval'), min_valid = .5)"
+"0",""
+"0","#Here I create the second and third parcels from the individual items by duplicating and naming them"
+"0",""
+"0","babydf$p2S <- babydf$MultPerspectives"
+"0","babydf$p3S <- babydf$DEIintegration"
+"0",""

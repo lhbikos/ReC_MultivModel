@@ -5,7 +5,7 @@
 [Screencasted Lecture Link](https://youtube.com/playlist?list=PLtz5cFLQl4KNx6E2pCxMBNpZiiGMGFK-R&si=4yO_n5rUq3udJPdV) 
  
 
-```r
+``` r
 options(scipen=999)#eliminates scientific notation
 ```
 
@@ -53,17 +53,16 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
+``` r
 #removing hashtags will check to see if the package is installed and if not, will install it
 #if(!require(lme4)){install.packages("lme4")}
 #if(!require(nlme)){install.packages("nlme")}
-#if(!require(sjstats)){install.packages("sjstats")}
 #if(!require(tidyverse)){install.packages("tidyverse")}
 #if(!require(psych)){install.packages("psych")}
 #if(!require(lmerTest)){install.packages("lmerTest")}
 #if(!require(robumeta)){install.packages("robumeta")}
-#if(!require(sjstats)){install.packages("sjstats")}
 #if(!require(PerformanceAnalytics)){install.packages("PerformanceAnalytics")}
+#if(!require(glmmTMB)){install.packages("glmmTMB")}
 ```
 
 ## Multilevel Modeling:  Nested within Groups
@@ -171,77 +170,70 @@ Simulating the data gives us some information about the nature of MLM.  You can 
 
 Further down in the code, we feed R the regression equation.
 
-```r
+``` r
 library(tidyverse)
 ```
 
 ```
 ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
-```r
+``` r
 set.seed(200407)
 n_church = 15
 n_mbrs = 15
-b0 = 3.43  #intercept for ATSS
-b1 = 0.14  #b weight for L1 var gender
-b2 = 0  #b weight or L1 var age
-b3 = 0.02  #b weight for L1 var education
-b4 = 0.1  #b weight for the L1 variable religious attendance
-b5 = -0.89  #b weight for the L2 variable, racial homogeneity
-(Gender = runif(n_church * n_mbrs, -1.09, 1.67))  #calc L1 gender
-(Age = runif(n_church * n_mbrs, 6.44, 93.93))  #calc L1 age
-(Education = runif(n_church * n_mbrs, 0, 8.46))  #calc L1 education
-(Attendance = runif(n_church * n_mbrs, 5.11, 10.39))  #calc L1 attendance by grabbing  its M +/- 3SD
-(Homogeneity = rep(runif(n_church, 0.37, 1.45), each = n_mbrs))  #calc L2 homogeneity by grabbing  its M +/- 3SD
-mu = 3.39
-sds = 0.64  #this is the SD of the DV
-sd = 1  #this is the observation-level random effect variance that we set at 1
+b0 = 3.43 #intercept for ATSS
+b1 = .14 #b weight for L1 var gender
+b2 = .00 #b weight or L1 var age
+b3 = .02 #b weight for L1 var education
+b4 = .10 #b weight for the L1 variable religious attendance
+b5 = -.89 #b weight for the L2 variable, racial homogeneity
+( Gender = runif(n_church*n_mbrs, -1.09, 1.67)) #calc L1 gender
+( Age = runif(n_church*n_mbrs, 6.44, 93.93)) #calc L1 age
+( Education = runif(n_church*n_mbrs, 0, 8.46)) #calc L1 education
+( Attendance = runif(n_church*n_mbrs,5.11, 10.39)) #calc L1 attendance by grabbing  its M +/- 3SD
+( Homogeneity = rep (runif(n_church, .37, 1.45), each = n_mbrs)) #calc L2 homogeneity by grabbing  its M +/- 3SD
+mu = 3.39 
+sds = .64 #this is the SD of the DV
+sd = 1 #this is the observation-level random effect variance that we set at 1
 
-(church = rep(LETTERS[1:n_church], each = n_mbrs))
-# ( mbrs = numbers[1:(n_church*n_mbrs)] )
-(churcheff = rnorm(n_church, 0, sds))
-(churcheff = rep(churcheff, each = n_mbrs))
-(mbrseff = rnorm(n_church * n_mbrs, 0, sd))
-(ATSS = b0 + b1 * Gender + b2 * Age + b3 * Education + b4 * Attendance +
-    b5 * Homogeneity + churcheff + mbrseff)
-(dat = data.frame(church, churcheff, mbrseff, Gender, Age, Education, Attendance,
-    Homogeneity, ATSS))
+( church = rep(LETTERS[1:n_church], each = n_mbrs) )
+#( mbrs = numbers[1:(n_church*n_mbrs)] )
+( churcheff = rnorm(n_church, 0, sds) )
+( churcheff = rep(churcheff, each = n_mbrs) )
+( mbrseff = rnorm(n_church*n_mbrs, 0, sd) )
+( ATSS = b0 + b1*Gender + b2*Age + b3*Education + b4*Attendance + b5*Homogeneity + churcheff + mbrseff)
+( dat = data.frame(church, churcheff, mbrseff, Gender, Age, Education, Attendance, Homogeneity, ATSS) )
 
 
-dat <- dat %>%
-    dplyr::mutate(ID = row_number())
-# moving the ID number to the first column; requires
-dat <- dat %>%
-    dplyr::select(ID, everything())
+dat <- dat %>% dplyr::mutate(ID = row_number())
+#moving the ID number to the first column; requires 
+dat <- dat%>%dplyr::select(ID, everything())
 
-Lefevor2020 <- dat %>%
-    select(ID, church, Gender, Age, Education, Attendance, Homogeneity,
-        ATSS)
-# rounded gender into dichotomous variable
+Lefevor2020 <- dat%>%
+  select(ID, church, Gender, Age, Education, Attendance, Homogeneity, ATSS)
+#rounded gender into dichotomous variable
 Lefevor2020$Female0 <- round(Lefevor2020$Gender, 0)
 Lefevor2020$Female0 <- as.integer(Lefevor2020$Gender)
-Lefevor2020$Female0 <- plyr::mapvalues(Lefevor2020$Female0, from = c(-1,
-    0, 1), to = c(0, 0, 1))
+Lefevor2020$Female0 <- plyr::mapvalues(Lefevor2020$Female0, from = c(-1, 0, 1), to = c(0, 0, 1))
 
-# ( dat$ATSS = with(dat, mu + churcheff + mbrseff ) )
+#( dat$ATSS = with(dat, mu + churcheff + mbrseff ) )
 ```
 Below is script that will allow you to export and reimport the dataset we just simulated. This may come in handy if you wish to start from the simulated data (and not wait for the simulation each time) and/or if you would like to use the dataset for further practice.
 
 
-```r
-write.table(Lefevor2020, file = "Lefevor2020.csv", sep = ",", col.names = TRUE,
-    row.names = FALSE)
-Lefevor2020 <- read.csv("Lefevor2020.csv", head = TRUE, sep = ",")
+``` r
+write.table(Lefevor2020, file="Lefevor2020.csv", sep=",", col.names=TRUE, row.names=FALSE)
+Lefevor2020 <- read.csv ("Lefevor2020.csv", head = TRUE, sep = ",")
 ```
 
 Because we are simulating data, we have the benefit of no missingness and relatively normal distributions. Because of these reasons we will skip the formal data preparation stage.  We will, though, take a look at our characteristics and bivariate relations of our three variables of interest.
@@ -261,9 +253,8 @@ Because I cover strategies for evaluating these assumptions in the [Data Dx](htt
 We should, though take a look at the relations between the variables in our model in their *natural* form.  In this case *natural* refers to their scored, ready-to-be-analyzed (but not further centered).
 
 
-```r
-psych::pairs.panels(Lefevor2020[c("ATSS", "Attendance", "Homogeneity")],
-    stars = TRUE)
+``` r
+psych::pairs.panels(Lefevor2020[c("ATSS", "Attendance", "Homogeneity")], stars = TRUE)
 ```
 
 ![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-6-1.png)<!-- -->
@@ -277,7 +268,7 @@ What do we observe in this preliminary, zero-ordered relationship?
 We can learn more by examining descriptive statistics.
 
 
-```r
+``` r
 psych::describe(Lefevor2020[c("ATSS", "Attendance", "Homogeneity")])
 ```
 
@@ -296,9 +287,9 @@ These descriptives allow us a glimpse of the means and standard deviations of ou
 
 The *misty* package has some tools specific for preliminary statistics associated with multilevel models.
 
-```r
+``` r
 misty::multilevel.descript(Lefevor2020[, c("ATSS", "Attendance", "Homogeneity")],
-    cluster = Lefevor2020$church)
+               cluster = Lefevor2020$church)
 ```
 
 ```
@@ -330,10 +321,9 @@ From this table of descriptives we learn that we have 225 congregants who were a
 
 A multilevel correlation matrix can be useful in helping us understand the correlations of our level 1 variables. Today, this is not converging so I have hashtagged it out.
 
-```r
+``` r
 corrmatrix <- misty::multilevel.cor(Lefevor2020[, c("ATSS", "Attendance")],
-    cluster = Lefevor2020$church, split = FALSE, output = TRUE, write = "MLMcorr.xlsx",
-    print = c("cor", "p"), digits = 3, missing = "listwise")
+               cluster = Lefevor2020$church, split=FALSE, output = TRUE, write = "MLMcorr.xlsx", print = c("cor", "p"), digits = 3, missing = "listwise")
 ```
 
 ```
@@ -344,7 +334,7 @@ corrmatrix <- misty::multilevel.cor(Lefevor2020[, c("ATSS", "Attendance")],
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                             
-##   lavaan 0.6.17                             
+##   lavaan 0.6-18                             
 ##                                             
 ##    Estimator                        ML      
 ##    Standard Errors        Conventional      
@@ -370,14 +360,14 @@ corrmatrix <- misty::multilevel.cor(Lefevor2020[, c("ATSS", "Attendance")],
 ##        Lower triangular: Within-Group, Upper triangular: Between-Group
 ```
 
-```r
+``` r
 corrmatrix
 ```
 
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                             
-##   lavaan 0.6.17                             
+##   lavaan 0.6-18                             
 ##                                             
 ##    Estimator                        ML      
 ##    Standard Errors        Conventional      
@@ -421,7 +411,7 @@ In our tiny model from the Lefevor et al. [-@lefevor_homonegativity_2020] vignet
 * Racial homogeneity is only entered as an L2 variable. It was collected at the individual level via self-identification of race and calculated to represent the proportion of Black individuals in the church. 
 
 
-```r
+``` r
 head(Lefevor2020[c("church", "ATSS", "Attendance", "Homogeneity")], n = 30L)
 ```
 
@@ -514,17 +504,14 @@ Following the Lefevor and colleagues' [-@lefevor_homonegativity_2020] example, w
 Similarly, *robumeta*'s *group.mean* function will aggregate variables at the group's mean.  
 
 
-```r
-Lefevor2020$AttendL1 <- as.numeric(robumeta::group.center(Lefevor2020$Attendance,
-    Lefevor2020$church))  #centered within context (group mean centering)
-Lefevor2020$AttendL2 <- as.numeric(robumeta::group.mean(Lefevor2020$Attendance,
-    Lefevor2020$church))  #aggregated at group mean
+``` r
+Lefevor2020$AttendL1 <- as.numeric(robumeta::group.center(Lefevor2020$Attendance, Lefevor2020$church))#centered within context (group mean centering)
+Lefevor2020$AttendL2 <- as.numeric(robumeta::group.mean(Lefevor2020$Attendance, Lefevor2020$church))#aggregated at group mean
 ```
 
 
-```r
-head(Lefevor2020[c("church", "ATSS", "Attendance", "AttendL1", "AttendL2",
-    "Homogeneity")], n = 30L)
+``` r
+head(Lefevor2020[c("church", "ATSS", "Attendance", "AttendL1", "AttendL2", "Homogeneity")], n = 30L)
 ```
 
 ```
@@ -573,9 +560,8 @@ If we look again at the first two churches, we can see the
 
 We can also see the effects of centering in our descriptives.
 
-```r
-psych::describe(Lefevor2020[c("ATSS", "Attendance", "AttendL1", "AttendL2",
-    "Homogeneity")])
+``` r
+psych::describe(Lefevor2020[c("ATSS", "Attendance", "AttendL1", "AttendL2", "Homogeneity")])
 ```
 
 ```
@@ -597,9 +583,8 @@ Note that the mean for the ATTSL1 and AttendL1 variables are now zero, while the
 Looking at the descriptives for each church also helps clarify what we have done.
 
 
-```r
-psych::describeBy(ATSS + Attendance + AttendL1 + AttendL2 + Homogeneity ~
-    church, data = Lefevor2020)
+``` r
+psych::describeBy(ATSS + Attendance + AttendL1 + AttendL2 + Homogeneity ~ church, data = Lefevor2020)
 ```
 
 ```
@@ -820,11 +805,10 @@ Tables are produced for each church's data. Again, because of group-mean centeri
 Looking at the correlations between all forms of these variables can further help clarify why the *compositional effects* approach is useful.
 
 
-```r
-# Multilevel level correlation matrix
-apaTables::apa.cor.table(Lefevor2020[c("ATSS", "Attendance", "AttendL1",
-    "AttendL2", "Homogeneity")], show.conf.interval = FALSE, landscape = TRUE,
-    table.number = 1, filename = "ML_CorMatrix.doc")
+``` r
+#Multilevel level correlation matrix
+apaTables::apa.cor.table(Lefevor2020[c(
+"ATSS", "Attendance", "AttendL1", "AttendL2", "Homogeneity")], show.conf.interval = FALSE, landscape = TRUE, table.number = 1, filename="ML_CorMatrix.doc")
 ```
 
 ```
@@ -886,7 +870,7 @@ As you can see in the script below, we are specifying its intercept (~1).  The "
 There are two packages (*lme4*, *nlme*) that are primarily used for MLM. Because of its integration with *sjPlot::tab_model()* for amazing tables and *sjPlot::plot-Model* for interaction graphs (both of which can be used for APA style journal articles), I will teach with *lme4*.
 
 
-```r
+``` r
 Empty <- lme4::lmer(ATSS ~ 1 + (1 | church), REML = FALSE, data = Lefevor2020)
 summary(Empty)
 ```
@@ -914,11 +898,8 @@ summary(Empty)
 ## (Intercept)   3.3214     0.1511   21.98
 ```
 
-```r
-sjPlot::tab_model(Empty, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
-    show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
-    use.viewer = TRUE, dv.labels = c("Empty"), string.est = "est", string.se = "se",
-    string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
+``` r
+sjPlot::tab_model(Empty,  p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
 ```
 
 ```
@@ -986,18 +967,17 @@ sjPlot::tab_model(Empty, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 
 The unconditional cell means model is equivalent to a one-factor random effects ANOVA of attitudes toward same-sex sexuality as the sole factor; the 15 churches become the 15 levels of the churches factor.
 
 With the *plot_model()* function in *sjPlot*, we can plot the random effects.  For this intercept-only model, we see the mean and range of the ATSS variable
 
-```r
-sjPlot::plot_model(Empty, type = "re")
+``` r
+sjPlot::plot_model (Empty, type="re")
 ```
 
 ![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-17-1.png)<!-- -->
@@ -1013,8 +993,8 @@ $\tau _{00}$ is between-church variance; the scatter of each church's data aroun
 The *intraclass correlation coefficient* (ICC) describes the proportion of variance that lies *between* churches. It is the essential piece of data that we need from this model.  Because the total variation in *Y* is just the sum of the within- and between- church variance components, we could have calculated this value from $\sigma^{2}$ and $\tau _{00}$.  Yet, it is handy that the *lmer()* function does it or us.
 
 
-```r
-0.27/(1.13 + 0.27)
+``` r
+.27/(1.13+.27)
 ```
 
 ```
@@ -1023,7 +1003,7 @@ The *intraclass correlation coefficient* (ICC) describes the proportion of varia
 The ICC value of 0.19 means that 19% of the total variation in attitudes toward same-sex sexuality is attributable to differences between churches. The balance -- 
 
 
-```r
+``` r
 1.00 - .19
 ```
 
@@ -1052,9 +1032,9 @@ We update our script by:
 * Adding "Level1" (in the list of models) and "Adding Level 1" (to the list of dependent variable labels) in the *sjPlot::tab_model*
 
 
-```r
+``` r
 # MODEL 2
-Level1 <- lme4::lmer(ATSS ~ AttendL1 + (1 | church), REML = FALSE, data = Lefevor2020)
+Level1 <- lme4::lmer(ATSS ~ AttendL1 + (1 | church), REML=FALSE, data = Lefevor2020)
 summary(Level1)
 ```
 
@@ -1086,12 +1066,8 @@ summary(Level1)
 ## AttendL1 0.000
 ```
 
-```r
-sjPlot::tab_model(Empty, Level1, p.style = "numeric", show.ci = FALSE,
-    show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
-    show.se = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Adding Level1"),
-    string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se",
-    string.p = "p", show.std = TRUE)
+``` r
+sjPlot::tab_model(Empty, Level1, p.style = "numeric", show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, show.se = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Adding Level1"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
 ```
 
 ```
@@ -1193,10 +1169,9 @@ sjPlot::tab_model(Empty, Level1, p.style = "numeric", show.ci = FALSE,
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 
 Looking at the Viewer we can look a the models side by side.  We observe:
@@ -1219,7 +1194,7 @@ ed.
 The difference in deviance statistics can be formally evaluated with a chi-square test. The new value is subtracted from the older value. If the difference is greater than the test critical value associated with the change in degrees of freedom, then the model with the lower deviance value is statistically significantly improved.  
 
 
-```r
+``` r
 devM2 <- anova(Empty, Level1)
 devM2
 ```
@@ -1239,15 +1214,15 @@ Our deviance values differed by 4.20 units and this was statistically significan
 
 Plots can help us further understand what is happening.  The "pred" (predicted values) type of plot from *sjPlot* echoes statistically significant, positive, fixed effect result of individual church attendance (relative to their church attendance) on ATSS (homonegativity).
 
-```r
-sjPlot::plot_model(Level1, type = "pred", terms = c("AttendL1"))
+``` r
+sjPlot::plot_model (Level1, type="pred", terms= c("AttendL1"))
 ```
 
 ![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-22-1.png)<!-- -->
 MLM is a little different than other statistics in that our evaluation of the statistical assumptions continues through the evaluative process. The diagnostic plots (type = "diag") provide a check of the model assumptions. Each of the plots provides some guidance of how to interpret them to see if we have violated the assumptions. In the QQ plots, the points generally track along the lines. In the non-normality of residuals, our distribution approximates the superimposed normal curve. In the homoscedasticity plot, the points are scattered above/blow the line in a reasonably equal amounts with random spread. 
 
-```r
-sjPlot::plot_model(Empty, type = "diag")
+``` r
+sjPlot::plot_model (Empty, type="diag")
 ```
 
 ```
@@ -1305,10 +1280,9 @@ Although Lefevor and colleagues [-@lefevor_homonegativity_2020] included more L1
 #### Model 3:  Adding the L2 predictors
 
 
-```r
+``` r
 # MODEL 3
-Level2 <- lme4::lmer(ATSS ~ AttendL1 + AttendL2 + Homogeneity + (1 | church),
-    REML = FALSE, data = Lefevor2020)
+Level2 <- lme4::lmer(ATSS ~ AttendL1 + AttendL2 + Homogeneity + (1 | church), REML=FALSE, data = Lefevor2020)
 summary(Level2)
 ```
 
@@ -1344,12 +1318,8 @@ summary(Level2)
 ## Homogeneity  0.147  0.000 -0.317
 ```
 
-```r
-sjPlot::tab_model(Empty, Level1, Level2, p.style = "numeric", show.ci = FALSE,
-    show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
-    show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Adding Level1",
-        "Adding Level2"), string.est = "est", string.se = "se", string.std = "Beta",
-    string.std_se = "std se", string.p = "p", show.std = TRUE)
+``` r
+sjPlot::tab_model(Empty, Level1, Level2, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Adding Level1", "Adding Level2"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
 ```
 
 ```
@@ -1513,10 +1483,9 @@ sjPlot::tab_model(Empty, Level1, Level2, p.style = "numeric", show.ci = FALSE,
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 
 Again, looking at the Viewer we can look at the three models side by side.  We observe:
@@ -1535,8 +1504,8 @@ Again, looking at the Viewer we can look at the three models side by side.  We o
  * Deviance statistics can be formally compared with the *anova* function from base R. 
 
 
-```r
-devM3 <- anova(Empty, Level1, Level2)
+``` r
+devM3 <- anova(Empty, Level1, Level2) 
 devM3
 ```
 
@@ -1564,21 +1533,21 @@ Let's look at plots. With three predictors, we can examine each of their relatio
 sjPlot::plot_model (Level1, type="pred", terms= c("AttendL1"))
 
 
-```r
-sjPlot::plot_model(Level2, type = "pred", terms = c("Homogeneity"))
+``` r
+sjPlot::plot_model (Level2, type="pred", terms = c("Homogeneity"))
 ```
 
 ![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-26-1.png)<!-- -->
 
 
-```r
+``` r
 sjPlot::plot_model (Level2, type="pred", terms = c("AttendL1"))
 ```
 
 ![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-27-1.png)<!-- -->
 
 
-```r
+``` r
 sjPlot::plot_model (Level2, type="pred", terms = c("AttendL2"))
 ```
 
@@ -1587,17 +1556,16 @@ sjPlot::plot_model (Level2, type="pred", terms = c("AttendL2"))
 
 Because the next phase of model building will include cross-level interactions, let's display this mode by examining the relationship between individual attendance and homonegativity, chunked into clusters that let us also examine the influene of church-level attendance and racial homogeneity.  This is not a formal test of an interaction; however, I don't sense that there will be interacting effects.
 
-```r
-sjPlot::plot_model(Level2, type = "pred", terms = c("AttendL1", "Homogeneity",
-    "AttendL2"))
+``` r
+sjPlot::plot_model (Level2, type="pred",terms=c("AttendL1", "Homogeneity", "AttendL2"))
 ```
 
 ![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-29-1.png)<!-- -->
 
 Our diagnostic plots continue to support our modeling. In the QQ plots, the points generally track along the lines. In the non-normality of residuals, our distribution approximates the superimposed normal curve. In the homoscedasticity plot, the points are scattered above/blow the line in a reasonably equal amounts with random spread.
 
-```r
-sjPlot::plot_model(Empty, type = "diag")
+``` r
+sjPlot::plot_model (Empty, type="diag")
 ```
 
 ```
@@ -1650,10 +1618,9 @@ We add the interaction term by placing an asterisk between the two variables. Th
 In multilevel modeling, we have the opportunity to cross the levels (individual, group) when we specify interactions. In this model, we include an interaction between individual attendance and racial homogeneity of the church.
 
 
-```r
+``` r
 # MODEL 4
-CrossLevelInt <- lme4::lmer(ATSS ~ AttendL2 + AttendL1 * Homogeneity +
-    (1 | church), REML = FALSE, data = Lefevor2020)
+CrossLevelInt <- lme4::lmer(ATSS ~ AttendL2 + AttendL1*Homogeneity +(1 | church), REML=FALSE, data = Lefevor2020)
 summary(CrossLevelInt)
 ```
 
@@ -1691,13 +1658,8 @@ summary(CrossLevelInt)
 ## AttndL1:Hmg  0.000  0.000 -0.976  0.000
 ```
 
-```r
-sjPlot::tab_model(Empty, Level1, Level2, CrossLevelInt, p.style = "numeric",
-    show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.se = TRUE,
-    show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty",
-        "Adding Level 1", "Adding Level 2", "Adding CrossLevel Interaction"),
-    string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se",
-    string.p = "p", show.std = TRUE, file = "TabMod_Table.doc")
+``` r
+sjPlot::tab_model(Empty, Level1, Level2, CrossLevelInt, p.style = "numeric", show.ci = FALSE, show.df = FALSE, show.re.var = TRUE, show.se = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Adding Level 1", "Adding Level 2", "Adding CrossLevel Interaction"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE, file = "TabMod_Table.doc")
 ```
 
 ```
@@ -1926,10 +1888,9 @@ sjPlot::tab_model(Empty, Level1, Level2, CrossLevelInt, p.style = "numeric",
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 Again, looking at the Viewer we can look at the four models side by side.  We observe:
 
@@ -1940,7 +1901,7 @@ Again, looking at the Viewer we can look at the four models side by side.  We ob
  * Examining the formal comparison of CrossLevelint to Level2 suggests no statistically significant difference ($\chi_{2}(1) = 0.838$).
 
 
-```r
+``` r
 devM4 <- anova(Empty, Level1, Level2, CrossLevelInt)
 devM4
 ```
@@ -1963,24 +1924,22 @@ devM4
  
 Not surprisingly, our resultant models are consistent with the "peek" we took at an interaction term after Level2
 
-```r
-sjPlot::plot_model(CrossLevelInt, type = "pred", terms = c("AttendL1",
-    "Homogeneity", "AttendL2"), mdrt.values = "meansd")
+``` r
+sjPlot::plot_model (CrossLevelInt, type="pred",terms=c("AttendL1", "Homogeneity", "AttendL2"), mdrt.values = "meansd")
 ```
 
 ![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-33-1.png)<!-- -->
 Another way to view this is to request the "int" (interaction) model type.
 
-```r
-sjPlot::plot_model(CrossLevelInt, type = "int", terms = c("AttendL1", "AttendL2",
-    "Homogeneity"), mdrt.values = "meansd")
+``` r
+sjPlot::plot_model (CrossLevelInt, type="int", terms=c("AttendL1", "AttendL2", "Homogeneity"), mdrt.values = "meansd")
 ```
 
 ![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-34-1.png)<!-- -->
 Even though the addition of the interaction term did not improve our model, it does not look like it harmed it. These diagnostics remain consistent with those we saw before.
 
-```r
-sjPlot::plot_model(CrossLevelInt, type = "diag")
+``` r
+sjPlot::plot_model (CrossLevelInt, type="diag")
 ```
 
 ```
@@ -2241,38 +2200,29 @@ An image of the design may be useful in understanding what we are doing:
 ###  Import the data and format the variables in the model. {-}
 
 
-```r
+``` r
 raw <- readRDS("ReC.rds")
 ```
 
 Because students could complete up to three course evaluations across ANOVA, psychometrics, and multivariate -- ideally I should select ONE of the courses. However, when I did this, the sample size became so small that my multilevel correlations would not converge. For the purpose of demonstration, I will use the entire dataset. Please know that even though we are using multilevel modeling, we are not controlling for the repeated measures dependency in the dataset. We'll do that in the next lesson!
 
 
-```r
-# raw <-(dplyr::filter(raw, Course == 'ANOVA'))
+``` r
+#raw <-(dplyr::filter(raw, Course == "ANOVA"))
 ```
 
 Scoring the variables. 
 
-```r
-TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
-    "ClearOrganization", "ClearPresentation")
-raw$TradPed <- sjstats::mean_n(raw[, TradPed_vars], 0.75)
+``` r
+raw$TradPed <- datawizard::row_means(raw, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 
-SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
-    "DEIintegration")
-raw$SRPed <- sjstats::mean_n(raw[, SRPed_vars], 0.75)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. raw$TradPed <- sjstats::mean_n(raw[,
-# ..TradPed_vars], .75))
+raw$SRPed <- datawizard::row_means(raw, select = c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration'), min_valid = .75)
 ```
 
 I will create a babydf to include only the variables in the analysis.
 
 
-```r
+``` r
 babydf <- dplyr::select(raw, CourseID, Centering, StatsPkg, TradPed, SRPed)
 ```
 
@@ -2281,7 +2231,7 @@ babydf <- dplyr::select(raw, CourseID, Centering, StatsPkg, TradPed, SRPed)
 Using the multilevel descriptives and correlations function in *misty* requires dummy coding (i.e., 0,1) of my dichotomous variables.
 
 
-```r
+``` r
 babydf$CEN <- as.numeric(babydf$Centering)
 babydf$CEN <- (babydf$CEN - 1)
 str(babydf)
@@ -2299,7 +2249,7 @@ str(babydf)
 ```
 
 
-```r
+``` r
 babydf$SPkg <- as.numeric(babydf$StatsPkg)
 babydf$SPkg <- (babydf$SPkg - 1)
 str(babydf)
@@ -2318,9 +2268,9 @@ str(babydf)
 ```
 Below is script for obtaining multilevel descriptive statistics.
 
-```r
+``` r
 misty::multilevel.descript(babydf[, c("CEN", "SPkg", "TradPed", "SRPed")],
-    cluster = babydf$CourseID)
+               cluster = babydf$CourseID)
 ```
 
 ```
@@ -2341,12 +2291,12 @@ misty::multilevel.descript(babydf[, c("CEN", "SPkg", "TradPed", "SRPed")],
 ##                                                  
 ##    Mean                  0.40 0.80    4.26   4.53
 ##    Variance Between      0.25 0.17    0.08   0.01
-##    ICC(1)                            0.137  0.034
+##    ICC(1)                            0.137  0.035
 ##    ICC(2)                            0.663  0.307
 ##                                                  
 ##   Design effect                       2.54   1.38
 ##   Design effect sqrt                  1.59   1.17
-##   Effective sample size             120.76 217.03
+##   Effective sample size             120.76 216.94
 ```
 Results of these are reported either in the Method or preliminary analyses (we'll have to see which).  Essentially we say something like:
 
@@ -2354,16 +2304,15 @@ Results of these are reported either in the Method or preliminary analyses (we'l
 
 Unfortunately, the dummy coded variables caused my multilevel correlation matrix to fail to converge. Thus, it only includes the continuously scaled variables.
 
-```r
-corrmatrix <- misty::multilevel.cor(babydf[, c("TradPed", "SRPed")], cluster = babydf$CourseID,
-    split = FALSE, output = TRUE, write = "MLMcorr.xlsx", print = c("cor",
-        "p"), digits = 3, missing = "listwise")
+``` r
+corrmatrix <- misty::multilevel.cor(babydf[, c("TradPed", "SRPed")],
+               cluster = babydf$CourseID, split=FALSE, output = TRUE, write = "MLMcorr.xlsx", print = c("cor", "p"), digits = 3, missing = "listwise")
 ```
 
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                                  
-##   lavaan 0.6.17                                  
+##   lavaan 0.6-18                                  
 ##                                                  
 ##    Estimator                             ML      
 ##    Standard Errors             Conventional      
@@ -2389,14 +2338,14 @@ corrmatrix <- misty::multilevel.cor(babydf[, c("TradPed", "SRPed")], cluster = b
 ##        Lower triangular: Within-Group, Upper triangular: Between-Group
 ```
 
-```r
+``` r
 corrmatrix
 ```
 
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                                  
-##   lavaan 0.6.17                                  
+##   lavaan 0.6-18                                  
 ##                                                  
 ##    Estimator                             ML      
 ##    Standard Errors             Conventional      
@@ -2428,9 +2377,9 @@ corrmatrix
 Below is the code for creating the level 1 and level 2 versions of the level 1 predictor, traditional pedagogy. This results in three versions of this variable in our dataset: natural/raw, centered within the classroom (where the mean = 0), and the classroom mean.
 
 
-```r
-babydf$TrP_L1 <- as.numeric(robumeta::group.center(babydf$TradPed, babydf$CourseID))  #centered within context (group mean centering)
-babydf$TrP_L2 <- as.numeric(robumeta::group.mean(babydf$TradPed, babydf$CourseID))  #aggregated at group mean
+``` r
+babydf$TrP_L1 <- as.numeric(robumeta::group.center(babydf$TradPed, babydf$CourseID))#centered within context (group mean centering)
+babydf$TrP_L2 <- as.numeric(robumeta::group.mean(babydf$TradPed, babydf$CourseID))#aggregated at group mean
 ```
 
 If we look at the dataframe, we can see that TrPL1 centers the mean of traditional pedagogy within each classroom. That is, the student whose traditional pedagogy evaluation is at the mean within that particular classroom has a score of zero. The TrPL2 variable provides the classroom mean for all students in that classroom.
@@ -2440,13 +2389,10 @@ If we look at the dataframe, we can see that TrPL1 centers the mean of tradition
 
 Our first is the empty model where the DV and clustering variable are the only ones in the script.
 
-```r
+``` r
 empty <- lme4::lmer(SRPed ~ 1 + (1 | CourseID), babydf, REML = FALSE)
 
-sjPlot::tab_model(empty, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
-    show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
-    use.viewer = TRUE, dv.labels = c("Empty"), string.est = "est", string.se = "se",
-    string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
+sjPlot::tab_model(empty, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
 ```
 
 ```
@@ -2505,11 +2451,11 @@ sjPlot::tab_model(empty, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">Deviance</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">524.483</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">524.444</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">AIC</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">535.074</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">535.035</td>
 </tr>
 
 </table>
@@ -2519,14 +2465,10 @@ Here we see that across all students in all classes, the mean socially responsiv
 ###  Model 2:  Add L1 predictors {-}
 
 
-```r
-Level1 <- lme4::lmer(SRPed ~ TrP_L1 + (1 | CourseID), babydf, REML = FALSE)
+``` r
+Level1 <- lme4::lmer(SRPed ~ TrP_L1 +  (1 | CourseID), babydf, REML = FALSE)
 
-sjPlot::tab_model(empty, Level1, p.style = "numeric", show.ci = FALSE,
-    show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
-    show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Level1"),
-    string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se",
-    string.p = "p", show.std = TRUE)
+sjPlot::tab_model(empty, Level1, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Level1"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
 ```
 
 ```
@@ -2613,17 +2555,17 @@ sjPlot::tab_model(empty, Level1, p.style = "numeric", show.ci = FALSE,
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">Marginal R<sup>2</sup> / Conditional R<sup>2</sup></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">0.000 / 0.030</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">0.471 / 0.545</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">0.472 / 0.545</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">Deviance</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">524.483</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">317.190</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">524.444</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">317.109</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">AIC</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">535.074</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">334.712</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">535.035</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">334.632</td>
 </tr>
 
 </table>
@@ -2635,15 +2577,10 @@ Further, our deviance and AIC values are lower for the Level 1 model and the mar
 ###  Model 3: Add L2 predictors {-} 
 
 
-```r
-Level2 <- lme4::lmer(SRPed ~ TrP_L1 + TrP_L2 + StatsPkg + Centering + (1 |
-    CourseID), babydf, REML = FALSE)
+``` r
+Level2 <- lme4::lmer(SRPed ~ TrP_L1 + TrP_L2 + StatsPkg + Centering +(1 | CourseID), babydf, REML = FALSE)
 
-sjPlot::tab_model(empty, Level1, Level2, p.style = "numeric", show.ci = FALSE,
-    show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
-    show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Level1",
-        "Level2"), string.est = "est", string.se = "se", string.std = "Beta",
-    string.std_se = "std se", string.p = "p", show.std = TRUE)
+sjPlot::tab_model(empty, Level1, Level2, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Level1", "Level2"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
 ```
 
 ```
@@ -2768,7 +2705,7 @@ sjPlot::tab_model(empty, Level1, Level2, p.style = "numeric", show.ci = FALSE,
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">0.06</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  4">0.11</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  5">0.10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  6">0.281</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  6">0.280</td>
 </tr>
 <tr>
 <td colspan="16" style="font-weight:bold; text-align:left; padding-top:.8em;">Random Effects</td>
@@ -2807,20 +2744,20 @@ sjPlot::tab_model(empty, Level1, Level2, p.style = "numeric", show.ci = FALSE,
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">Marginal R<sup>2</sup> / Conditional R<sup>2</sup></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">0.000 / 0.030</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">0.471 / 0.545</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">0.472 / 0.545</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">0.529 / 0.531</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">Deviance</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">524.483</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">317.190</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">300.656</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">524.444</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">317.109</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">300.554</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">AIC</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">535.074</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">334.712</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">336.103</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">535.035</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">334.632</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">336.005</td>
 </tr>
 
 </table>
@@ -2830,15 +2767,10 @@ Here we learn that there are both statistically significant L1 and L2 effects of
 ###  Model 4: Add a cross-level interaction {-}  
 
 
-```r
-CrossLevel <- lme4::lmer(SRPed ~ TrP_L1 * StatsPkg + TrP_L1 * Centering +
-    TrP_L2 * StatsPkg + TrP_L2 * Centering + (1 | CourseID), babydf, REML = FALSE)
+``` r
+CrossLevel <- lme4::lmer(SRPed ~ TrP_L1*StatsPkg + TrP_L1*Centering + TrP_L2*StatsPkg + TrP_L2*Centering + (1 | CourseID), babydf, REML = FALSE)
 
-sjPlot::tab_model(empty, Level1, Level2, CrossLevel, p.style = "numeric",
-    show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE,
-    show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty",
-        "Level1", "Level2", "CrossLevel"), string.est = "est", string.se = "se",
-    string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
+sjPlot::tab_model(empty, Level1, Level2, CrossLevel, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Empty", "Level1", "Level2", "CrossLevel"), string.est = "est", string.se = "se", string.std = "Beta", string.std_se = "std se", string.p = "p", show.std = TRUE)
 ```
 
 ```
@@ -2905,7 +2837,7 @@ sjPlot::tab_model(empty, Level1, Level2, CrossLevel, p.style = "numeric",
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  8">1.46</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  9">&#45;0.41</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">0.19</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">0.773</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">0.772</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2"><strong>0.028</strong></td>
 </tr>
 <tr>
@@ -2978,7 +2910,7 @@ sjPlot::tab_model(empty, Level1, Level2, CrossLevel, p.style = "numeric",
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  9">0.42</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">0.20</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">0.159</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2"><strong>0.041</strong></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2"><strong>0.042</strong></td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Centering [Re]</td>
@@ -2996,13 +2928,13 @@ sjPlot::tab_model(empty, Level1, Level2, CrossLevel, p.style = "numeric",
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">0.06</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  4">0.11</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  5">0.10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  6">0.281</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  6">0.280</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  7">0.36</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  8">0.72</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  9">0.10</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">0.10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">0.619</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">0.322</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">0.617</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">0.321</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">TrP L1 × StatsPkg [R]</td>
@@ -3073,8 +3005,8 @@ sjPlot::tab_model(empty, Level1, Level2, CrossLevel, p.style = "numeric",
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  8">0.34</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  9">&#45;0.27</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">0.20</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">0.184</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">0.184</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">0.185</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">0.185</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Centering [Re] × TrP L2</td>
@@ -3097,8 +3029,8 @@ sjPlot::tab_model(empty, Level1, Level2, CrossLevel, p.style = "numeric",
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  8">0.17</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  9">&#45;0.04</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">0.10</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">0.686</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">0.686</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">0.684</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">0.684</td>
 </tr>
 <tr>
 <td colspan="22" style="font-weight:bold; text-align:left; padding-top:.8em;">Random Effects</td>
@@ -3142,23 +3074,23 @@ sjPlot::tab_model(empty, Level1, Level2, CrossLevel, p.style = "numeric",
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">Marginal R<sup>2</sup> / Conditional R<sup>2</sup></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">0.000 / 0.030</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">0.471 / 0.545</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">0.472 / 0.545</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">0.529 / 0.531</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">0.547 / 0.548</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">0.547 / 0.549</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">Deviance</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">524.483</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">317.190</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">300.656</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">288.729</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">524.444</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">317.109</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">300.554</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">288.608</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">AIC</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">535.074</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">334.712</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">336.103</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">340.652</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">535.035</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">334.632</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="5">336.005</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">340.538</td>
 </tr>
 
 </table>
@@ -3178,9 +3110,8 @@ See section in APA style write-up.
 ###  Create a figure to represent the result {-}
 
 
-```r
-sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), show.data = TRUE,
-    terms = c("TrP_L1", "StatsPkg"))
+``` r
+sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), show.data = TRUE, terms =c("TrP_L1", "StatsPkg"))
 ```
 
 ```
@@ -3207,9 +3138,8 @@ Earlier we learned that the SRPed mean was 4.53 on a 5.0 scale. In this data wit
 What happens if we include a representation of the L2 (classroom average) of traditional pedagogy?
 
 
-```r
-sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), terms = c("TrP_L1",
-    "StatsPkg", "TrP_L2"))
+``` r
+sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), terms =c("TrP_L1", "StatsPkg", "TrP_L2"))
 ```
 
 ```
@@ -3228,9 +3158,8 @@ Above the facets represent the $M \pm1SD$ of the classroom averages of tradition
 The effect of centering was non-significant. Here are the plots:
 
 
-```r
-sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), show.data = TRUE,
-    terms = c("TrP_L1", "Centering"))
+``` r
+sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), show.data = TRUE, terms =c("TrP_L1", "Centering"))
 ```
 
 ```
@@ -3251,9 +3180,8 @@ sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), show.data = TR
 ![](12-MLMwiGroups_files/figure-docx/unnamed-chunk-90-1.png)<!-- -->
 
 
-```r
-sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), terms = c("TrP_L1",
-    "Centering", "TrP_L2"))
+``` r
+sjPlot::plot_model(CrossLevel, type = "pred", axis.lim = c(1, 5), terms =c("TrP_L1", "Centering", "TrP_L2"))
 ```
 
 ```

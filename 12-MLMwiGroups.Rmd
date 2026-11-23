@@ -55,13 +55,12 @@ The script below will (a) check to see if the following packages are installed o
 #removing hashtags will check to see if the package is installed and if not, will install it
 #if(!require(lme4)){install.packages("lme4")}
 #if(!require(nlme)){install.packages("nlme")}
-#if(!require(sjstats)){install.packages("sjstats")}
 #if(!require(tidyverse)){install.packages("tidyverse")}
 #if(!require(psych)){install.packages("psych")}
 #if(!require(lmerTest)){install.packages("lmerTest")}
 #if(!require(robumeta)){install.packages("robumeta")}
-#if(!require(sjstats)){install.packages("sjstats")}
 #if(!require(PerformanceAnalytics)){install.packages("PerformanceAnalytics")}
+#if(!require(glmmTMB)){install.packages("glmmTMB")}
 ```
 
 ## Multilevel Modeling:  Nested within Groups

@@ -57,10 +57,11 @@ The script below will (a) check to see if the following packages are installed o
 <!-- TODO: Build out this section. -->
 ```{r  eval=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #will install the package if not already installed
-if(!require(qualtRics)){install.packages("qualtRics")}
-if(!require(psych)){install.packages("psych")}
-if(!require(dplyr)){install.packages("dplyr")}
-if(!require(mice)){install.packages("mice")}
+#if(!require(qualtRics)){install.packages("qualtRics")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(dplyr)){install.packages("dplyr")}
+#if(!require(mice)){install.packages("mice")}
+#if(!require(datawizard)){install.packages("datawizard")}
 ```
 
 
@@ -418,17 +419,11 @@ mimp_long<- mimp_long %>%
 
 Below is the scoring protocol we used in the AIA protocol for scoring.  Although the protocol below functionally says, "Create a mean score if (65-80)% is non-missing, for the imputed version, it doesn't harm anything to leave this because there is no missing data.
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-#Making the list of variables
-Belonging_vars <- c('Belong_1','Belong_2','Belong_3')
-ResponseBL_vars <- c('rBlst_1', 'Blst_4','Blst_6')
-StigmaBL_vars <- c('Blst_2', 'Blst_3','Blst_5')
-ClimateBL_vars <- c('rBlst_1', 'Blst_4','Blst_6','Blst_2', 'Blst_3','Blst_5' )
-
-#Creating the new variables
-mimp_long$Belonging <- sjstats::mean_n(mimp_long[,Belonging_vars], .65)
-mimp_long$ResponseBL <- sjstats::mean_n(mimp_long[,ResponseBL_vars], .80)
-mimp_long$StigmaBL <- sjstats::mean_n(mimp_long[,StigmaBL_vars], .80)
-mimp_long$ClimateBL <- sjstats::mean_n(mimp_long[,ClimateBL_vars], .80)
+mimp_long$Belonging <- datawizard::row_means(mimp_long, select = c('Belong_1','Belong_2','Belong_3'), min_valid = .65)
+mimp_long$ResponseBL <- datawizard::row_means(mimp_long, select = c('rBlst_1', 'Blst_4','Blst_6'), min_valid = .80)
+mimp_long$StigmaBL <- datawizard::row_means(mimp_long, select = c('Blst_2', 'Blst_3','Blst_5'), min_valid = .80)
+mimp_long$ClimateBL <- datawizard::row_means(mimp_long, select = c('rBlst_1', 'Blst_4','Blst_6','Blst_2', 'Blst_3','Blst_5'), min_valid = .80)
+                                             
 ```
 
 

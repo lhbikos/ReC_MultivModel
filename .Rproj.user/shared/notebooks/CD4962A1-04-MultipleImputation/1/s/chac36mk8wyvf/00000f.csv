@@ -1,0 +1,5 @@
+"0","mimp_long$Belonging <- datawizard::row_means(mimp_long, select = c('Belong_1','Belong_2','Belong_3'), min_valid = .65)"
+"0","mimp_long$ResponseBL <- datawizard::row_means(mimp_long, select = c('rBlst_1', 'Blst_4','Blst_6'), min_valid = .80)"
+"0","mimp_long$StigmaBL <- datawizard::row_means(mimp_long, select = c('Blst_2', 'Blst_3','Blst_5'), min_valid = .80)"
+"0","mimp_long$ClimateBL <- datawizard::row_means(mimp_long, select = c('rBlst_1', 'Blst_4','Blst_6','Blst_2', 'Blst_3','Blst_5'), min_valid = .80)"
+"0","                                             "

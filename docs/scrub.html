@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Scrubbing | ReCentering Psych Stats: Multivariate Modeling</title>
   <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Scrubbing | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2024-03-09" />
+<meta name="date" content="2026-11-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -128,6 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -165,6 +167,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>PREFACE</a>
 <ul>
+<li class="chapter" data-level="0.1" data-path="preface.html"><a href="preface.html#invitation-to-collaboration"><i class="fa fa-check"></i><b>0.1</b> Invitation to Collaboration</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
@@ -787,7 +790,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#model-3-add-l2-predictors"><i class="fa fa-check"></i>Model 3: Add L2 predictors</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#model-4-add-a-cross-level-interaction"><i class="fa fa-check"></i>Model 4: Add a cross-level interaction</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#create-a-tab_model-table-with-the-final-set-of-models"><i class="fa fa-check"></i>Create a tab_model table with the final set of models</a></li>
-<li class="chapter" data-level="12.8.2" data-path="wGroups.html"><a href="wGroups.html#use-arend-schäfers--arend_statistical_2019-power-tables-to-determine-the-power-of-the-l1-l2-and-cross-level-interactions-in-your-model"><i class="fa fa-check"></i><b>12.8.2</b> Use Arend &amp; Schäfer’s <span class="citation">(2019)</span> power tables to determine the power of the L1, L2, and cross-level interactions in your model</a></li>
+<li class="chapter" data-level="12.8.2" data-path="01-Scrubbing.html"><a href="#use-arend-sch%C3%A4fers--arend_statistical_2019-power-tables-to-determine-the-power-of-the-l1-l2-and-cross-level-interactions-in-your-model"><i class="fa fa-check"></i><b>12.8.2</b> Use Arend &amp; Schäfer’s <span class="citation">(2019)</span> power tables to determine the power of the L1, L2, and cross-level interactions in your model</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#create-a-figure-to-represent-the-result"><i class="fa fa-check"></i>Create a figure to represent the result</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#apa-style-writeup-5"><i class="fa fa-check"></i>APA Style writeup</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#explanation-to-grader-5"><i class="fa fa-check"></i>Explanation to grader</a></li>
@@ -1001,9 +1004,9 @@ div.csl-indent {
 <div id="packages" class="section level3 hasAnchor" number="1.1.4">
 <h3><span class="header-section-number">1.1.4</span> Packages<a href="scrub.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="scrub.html#cb1-1" tabindex="-1"></a><span class="co"># will install the package if not already installed</span></span>
-<span id="cb1-2"><a href="scrub.html#cb1-2" tabindex="-1"></a><span class="co"># if(!require(qualtRics)){install.packages(&#39;qualtRics&#39;)}</span></span>
-<span id="cb1-3"><a href="scrub.html#cb1-3" tabindex="-1"></a><span class="co"># if(!require(tidyverse)){install.packages(&#39;tidyverse&#39;)}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="scrub.html#cb1-1" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb1-2"><a href="scrub.html#cb1-2" tabindex="-1"></a><span class="co">#if(!require(qualtRics)){install.packages(&quot;qualtRics&quot;)}</span></span>
+<span id="cb1-3"><a href="scrub.html#cb1-3" tabindex="-1"></a><span class="co">#if(!require(tidyverse)){install.packages(&quot;tidyverse&quot;)}</span></span></code></pre></div>
 </div>
 </div>
 <div id="workflow-for-scrubbing" class="section level2 hasAnchor" number="1.2">
@@ -1063,47 +1066,38 @@ div.csl-indent {
 <p><em>BE CAREFUL WITH THE API TOKEN</em> This is the key to your Qualtrics accounts. If you leave it in an .rmd file that you forward to someone else or upload to a data repository, this key and the base URL gives access to every survey in your account. If you share it, you could be releasing survey data to others that would violate confidentiality promises in an IRB application.</p>
 <p>If you mistakenly give out your API token you can generate a new one within your Qualtrics account and re-protect all its contents.</p>
 <p>You do need to change the API key/token if you want to download data from a different Qualtrics account. If your list of surveys generates the wrong set of surveys, restart R, make sure you have the correct API token and try again.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="scrub.html#cb2-1" tabindex="-1"></a><span class="co"># You only need to run this ONCE to draw from the same Qualtrics</span></span>
-<span id="cb2-2"><a href="scrub.html#cb2-2" tabindex="-1"></a><span class="co"># account. If you change Qualtrics accounts you will need to get a</span></span>
-<span id="cb2-3"><a href="scrub.html#cb2-3" tabindex="-1"></a><span class="co"># different token.</span></span>
-<span id="cb2-4"><a href="scrub.html#cb2-4" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="scrub.html#cb2-5" tabindex="-1"></a><span class="co"># qualtRics::qualtrics_api_credentials(api_key =</span></span>
-<span id="cb2-6"><a href="scrub.html#cb2-6" tabindex="-1"></a><span class="co"># &#39;mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg&#39;, base_url =</span></span>
-<span id="cb2-7"><a href="scrub.html#cb2-7" tabindex="-1"></a><span class="co"># &#39;spupsych.az1.qualtrics.com&#39;, overwrite = TRUE, install = TRUE)</span></span>
-<span id="cb2-8"><a href="scrub.html#cb2-8" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="scrub.html#cb2-9" tabindex="-1"></a><span class="co"># readRenviron(&#39;~/.Renviron&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="scrub.html#cb2-1" tabindex="-1"></a><span class="co">#You only need to run this ONCE to draw from the same Qualtrics account.</span></span>
+<span id="cb2-2"><a href="scrub.html#cb2-2" tabindex="-1"></a><span class="co">#If you change Qualtrics accounts you will need to get a different token. </span></span>
+<span id="cb2-3"><a href="scrub.html#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="scrub.html#cb2-4" tabindex="-1"></a><span class="co">#qualtRics::qualtrics_api_credentials(api_key = &quot;mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg&quot;,</span></span>
+<span id="cb2-5"><a href="scrub.html#cb2-5" tabindex="-1"></a>              <span class="co">#base_url = &quot;spupsych.az1.qualtrics.com&quot;, overwrite = TRUE, install = TRUE)</span></span>
+<span id="cb2-6"><a href="scrub.html#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="scrub.html#cb2-7" tabindex="-1"></a><span class="co">#readRenviron(&quot;~/.Renviron&quot;)</span></span></code></pre></div>
 <p><em>all_surveys()</em> generates a dataframe containing information about all the surveys stored on your Qualtrics account.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="scrub.html#cb3-1" tabindex="-1"></a><span class="co"># surveys &lt;- qualtRics::all_surveys()</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="scrub.html#cb3-1" tabindex="-1"></a><span class="co">#surveys &lt;- qualtRics::all_surveys() </span></span>
 <span id="cb3-2"><a href="scrub.html#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="scrub.html#cb3-3" tabindex="-1"></a><span class="co"># View this as an object (found in the right: Environment).  Get</span></span>
-<span id="cb3-4"><a href="scrub.html#cb3-4" tabindex="-1"></a><span class="co"># survey id # for the next command If this is showing you the WRONG</span></span>
-<span id="cb3-5"><a href="scrub.html#cb3-5" tabindex="-1"></a><span class="co"># list of surveys, you are pulling from the wrong Qualtrics account</span></span>
-<span id="cb3-6"><a href="scrub.html#cb3-6" tabindex="-1"></a><span class="co"># (i.e., maybe this one instead of your own). Go back and change your</span></span>
-<span id="cb3-7"><a href="scrub.html#cb3-7" tabindex="-1"></a><span class="co"># API token (it saves your old one). Changing the API likely requires</span></span>
-<span id="cb3-8"><a href="scrub.html#cb3-8" tabindex="-1"></a><span class="co"># a restart of R.</span></span></code></pre></div>
+<span id="cb3-3"><a href="scrub.html#cb3-3" tabindex="-1"></a><span class="co">#View this as an object (found in the right: Environment).  </span></span>
+<span id="cb3-4"><a href="scrub.html#cb3-4" tabindex="-1"></a><span class="co">#Get survey id # for the next command</span></span>
+<span id="cb3-5"><a href="scrub.html#cb3-5" tabindex="-1"></a><span class="co">#If this is showing you the WRONG list of surveys, you are pulling from the wrong Qualtrics account (i.e., maybe this one instead of your own). Go back and change your API token (it saves your old one). Changing the API likely requires a restart of R.</span></span></code></pre></div>
 <p>To retrieve the survey, use the <em>fetch_survey()</em> function.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="scrub.html#cb4-1" tabindex="-1"></a><span class="co"># obtained with the survey ID</span></span>
-<span id="cb4-2"><a href="scrub.html#cb4-2" tabindex="-1"></a><span class="co">#&#39;surveyID&#39; should be the ID from above</span></span>
-<span id="cb4-3"><a href="scrub.html#cb4-3" tabindex="-1"></a><span class="co">#&#39;verbose&#39; prints messages to the R console</span></span>
-<span id="cb4-4"><a href="scrub.html#cb4-4" tabindex="-1"></a><span class="co">#&#39;label&#39;, when TRUE, imports data as text responses; if FALSE prints the data as numerical responses</span></span>
-<span id="cb4-5"><a href="scrub.html#cb4-5" tabindex="-1"></a><span class="co">#&#39;convert&#39;, when TRUE, attempts to convert certain question types to the &#39;proper&#39; data type in R; because I don&#39;t like guessing, I want to set up my own factors.</span></span>
-<span id="cb4-6"><a href="scrub.html#cb4-6" tabindex="-1"></a><span class="co">#&#39;force_request&#39;, when TRUE, always downloads the survey from the API instead of from a temporary directory (i.e., it always goes to the primary source)</span></span>
-<span id="cb4-7"><a href="scrub.html#cb4-7" tabindex="-1"></a><span class="co"># &#39;import_id&#39;, when TRUE includes the unique Qualtrics-assigned ID;</span></span>
-<span id="cb4-8"><a href="scrub.html#cb4-8" tabindex="-1"></a><span class="co"># since I have provided labels, I want false</span></span>
-<span id="cb4-9"><a href="scrub.html#cb4-9" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="scrub.html#cb4-10" tabindex="-1"></a><span class="co"># QTRX_df &lt;-qualtRics::fetch_survey(surveyID = &#39;SV_b2cClqAlLGQ6nLU&#39;,</span></span>
-<span id="cb4-11"><a href="scrub.html#cb4-11" tabindex="-1"></a><span class="co"># time_zone = NULL, verbose = FALSE, label=FALSE, convert=FALSE,</span></span>
-<span id="cb4-12"><a href="scrub.html#cb4-12" tabindex="-1"></a><span class="co"># force_request = TRUE, import_id = FALSE)</span></span>
-<span id="cb4-13"><a href="scrub.html#cb4-13" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="scrub.html#cb4-14" tabindex="-1"></a><span class="co"># useLocalTime = TRUE,</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="scrub.html#cb4-1" tabindex="-1"></a><span class="co">#obtained with the survey ID </span></span>
+<span id="cb4-2"><a href="scrub.html#cb4-2" tabindex="-1"></a><span class="co">#&quot;surveyID&quot; should be the ID from above</span></span>
+<span id="cb4-3"><a href="scrub.html#cb4-3" tabindex="-1"></a><span class="co">#&quot;verbose&quot; prints messages to the R console</span></span>
+<span id="cb4-4"><a href="scrub.html#cb4-4" tabindex="-1"></a><span class="co">#&quot;label&quot;, when TRUE, imports data as text responses; if FALSE prints the data as numerical responses</span></span>
+<span id="cb4-5"><a href="scrub.html#cb4-5" tabindex="-1"></a><span class="co">#&quot;convert&quot;, when TRUE, attempts to convert certain question types to the &quot;proper&quot; data type in R; because I don&#39;t like guessing, I want to set up my own factors.</span></span>
+<span id="cb4-6"><a href="scrub.html#cb4-6" tabindex="-1"></a><span class="co">#&quot;force_request&quot;, when TRUE, always downloads the survey from the API instead of from a temporary directory (i.e., it always goes to the primary source)</span></span>
+<span id="cb4-7"><a href="scrub.html#cb4-7" tabindex="-1"></a><span class="co"># &quot;import_id&quot;, when TRUE includes the unique Qualtrics-assigned ID; since I have provided labels, I want false</span></span>
+<span id="cb4-8"><a href="scrub.html#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="scrub.html#cb4-9" tabindex="-1"></a><span class="co">#QTRX_df &lt;-qualtRics::fetch_survey(surveyID = &quot;SV_b2cClqAlLGQ6nLU&quot;, time_zone = NULL, verbose = FALSE, label=FALSE, convert=FALSE, force_request = TRUE, import_id = FALSE)</span></span>
+<span id="cb4-10"><a href="scrub.html#cb4-10" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="scrub.html#cb4-11" tabindex="-1"></a><span class="co">#useLocalTime = TRUE,</span></span></code></pre></div>
 <p><em>It is possible to import Qualtrics data that has been downloaded from Qualtrics as a .csv. I demo this in the Bonus Reel at the end of this lesson.</em></p>
 <p>In prior versions of this chapter I allowed the chapter to automatically update with “all the new data” each time the OER was re-rendered/built. Because I think this caused confusion, I have decided to save the data in both .csv and .rds versions, then clear my environment, upload the .rds (my personal favorite format) version, and demonstrate the scrubbing techniques with that data. If you continue with data you just downloaded from Qualtrics, you will get different answers than are in the lesson. While I think that continuing with the most current data set is a viable option for a practice problem, it could be confusing. Rather, follow one of the two options below to upload .csv or .rds versions of the data I used in the lesson.</p>
 <div id="option-1.-upload-an-.rds-file" class="section level4 hasAnchor" number="1.4.1.1">
 <h4><span class="header-section-number">1.4.1.1</span> Option 1. Upload an .rds file<a href="scrub.html#option-1.-upload-an-.rds-file" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Because .rds files will retain any formatting information we provide about variables, I like using them. The downside is that you cannot simply open and view them outside of the R environment. Here is the code I used to produce the .rds version of the file. If you want to obtain the same results as I report in the chapter, do NOT run it again.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="scrub.html#cb5-1" tabindex="-1"></a><span class="co"># to save the df as an .rds (think &#39;R object&#39;) file on your computer;</span></span>
-<span id="cb5-2"><a href="scrub.html#cb5-2" tabindex="-1"></a><span class="co"># it should save in the same file as the .rmd file you are working</span></span>
-<span id="cb5-3"><a href="scrub.html#cb5-3" tabindex="-1"></a><span class="co"># with saveRDS(QTRX_df, &#39;QTRX_df230902.rds&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="scrub.html#cb5-1" tabindex="-1"></a><span class="co">#to save the df as an .rds (think &quot;R object&quot;) file on your computer; it should save in the same file as the .rmd file you are working with</span></span>
+<span id="cb5-2"><a href="scrub.html#cb5-2" tabindex="-1"></a><span class="co">#saveRDS(QTRX_df, &quot;QTRX_df230902.rds&quot;)</span></span></code></pre></div>
 <p>Rather, head to the <a href="https://github.com/lhbikos/ReC_MultivModel">MultivModel GitHub</a> site and download the <em>QTRX_df230902b.rds</em> file. Place it in the same folder as the .rmd you are using and run the code below. And actually, I further re-named the file that you will retrieve so that it won’t be over-written.*</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="scrub.html#cb6-1" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;QTRX_df230902b.rds&quot;</span>)</span></code></pre></div>
 <p>Occasionally, I have had a student for whom the .rds files don’t seem to work. Uploading a .csv file is an option.</p>
@@ -1111,11 +1105,11 @@ div.csl-indent {
 <div id="option-2.-upload-a-.csv-file" class="section level4 hasAnchor" number="1.4.1.2">
 <h4><span class="header-section-number">1.4.1.2</span> Option 2. Upload a .csv file<a href="scrub.html#option-2.-upload-a-.csv-file" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Simply for your information, here is the code I used to produce the .csv version of the file. If you want to obtain the same results as I report in the chapter, do NOT run it again.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="scrub.html#cb7-1" tabindex="-1"></a><span class="co"># write the simulated data as a .csv write.table(QTRX_df,</span></span>
-<span id="cb7-2"><a href="scrub.html#cb7-2" tabindex="-1"></a><span class="co"># file=&#39;QTRX_df230902.csv&#39;, sep=&#39;,&#39;, col.names=TRUE, row.names=FALSE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="scrub.html#cb7-1" tabindex="-1"></a><span class="co">#write the simulated data as a .csv</span></span>
+<span id="cb7-2"><a href="scrub.html#cb7-2" tabindex="-1"></a><span class="co">#write.table(QTRX_df, file=&quot;QTRX_df230902.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span></code></pre></div>
 <p>Rather, head to the <a href="https://github.com/lhbikos/ReC_MultivModel">MultivModel GitHub</a> site and download the <em>QTRX_df230902b.csv</em> file. Place it in the same folder as the .rmd you are using and run the code below. <em>And actually, I further re-named the file that you will retrieve so that it won’t be over-written.</em></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="scrub.html#cb8-1" tabindex="-1"></a><span class="co"># bring back the simulated dat from a .csv file QTRX_df &lt;-</span></span>
-<span id="cb8-2"><a href="scrub.html#cb8-2" tabindex="-1"></a><span class="co"># read.csv(&#39;QTRX_df230902b.csv&#39;, header = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="scrub.html#cb8-1" tabindex="-1"></a><span class="co">#bring back the simulated dat from a .csv file</span></span>
+<span id="cb8-2"><a href="scrub.html#cb8-2" tabindex="-1"></a><span class="co">#QTRX_df &lt;- read.csv(&quot;QTRX_df230902b.csv&quot;, header = TRUE)</span></span></code></pre></div>
 <p>You need not do both. That is, either download-and-import either the .rds or .csv file.</p>
 </div>
 </div>
@@ -1188,17 +1182,16 @@ div.csl-indent {
 </div>
 <p>We can either update the existing df (by using the same object), or creating a new df from the old. Either works. In my early years, I tended to create lots of new objects. As I have gained confidence in myself and in R, I’m inclined to update the existing df. Why? Because unless you write the object as an outfile (using the same name for the object as for the filename – which I do not recommend), the object used in R does not change the source of the dat. Therefore, it is easy to correct early code and it keeps the global environment less cluttered.</p>
 <p>In this particular survey, the majority of respondents will take the survey because they clicked an <em>anonymous</em> link provided by Qualtrics. Another Qualtrics distribution method is e-mail. At the time of this writing, we have not recruited by e-mail, but it is is possible we could do so in the future. What we should not include, though, are <em>previews</em>. These are the times when the researcher is self-piloting the survey to look for errors and to troubleshoot.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="scrub.html#cb9-1" tabindex="-1"></a><span class="co"># the filter command is used when we are making inclusion/exclusion</span></span>
-<span id="cb9-2"><a href="scrub.html#cb9-2" tabindex="-1"></a><span class="co"># decisions about rows != means do not include cases with &#39;preview&#39;</span></span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="scrub.html#cb9-1" tabindex="-1"></a><span class="co"># the filter command is used when we are making inclusion/exclusion decisions about rows</span></span>
+<span id="cb9-2"><a href="scrub.html#cb9-2" tabindex="-1"></a><span class="co"># != means do not include cases with &quot;preview&quot;</span></span>
 <span id="cb9-3"><a href="scrub.html#cb9-3" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="scrub.html#cb9-4" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(QTRX_df, DistributionChannel <span class="sc">!=</span> <span class="st">&quot;preview&quot;</span>)</span>
 <span id="cb9-5"><a href="scrub.html#cb9-5" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="scrub.html#cb9-6" tabindex="-1"></a><span class="co"># FYI, another way that doesn&#39;t use tidyverse, but gets the same</span></span>
-<span id="cb9-7"><a href="scrub.html#cb9-7" tabindex="-1"></a><span class="co"># result QTRX_df &lt;- QTRX_df[!QTRX_df$DistributionChannel ==</span></span>
-<span id="cb9-8"><a href="scrub.html#cb9-8" tabindex="-1"></a><span class="co"># &#39;preview&#39;,]</span></span></code></pre></div>
+<span id="cb9-6"><a href="scrub.html#cb9-6" tabindex="-1"></a><span class="co">#FYI, another way that doesn&#39;t use tidyverse, but gets the same result</span></span>
+<span id="cb9-7"><a href="scrub.html#cb9-7" tabindex="-1"></a><span class="co">#QTRX_df &lt;- QTRX_df[!QTRX_df$DistributionChannel == &quot;preview&quot;,]</span></span></code></pre></div>
 <p>APA Style, and in particular the Journal Article Reporting Standards (JARS) for quantitative research specify that we should report the frequency or percentages of missing data. We would start our counting <em>after</em> eliminating the previews.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="scrub.html#cb10-1" tabindex="-1"></a><span class="co"># I created an object that lists how many rows/cases remain.  I used</span></span>
-<span id="cb10-2"><a href="scrub.html#cb10-2" tabindex="-1"></a><span class="co"># inline text below to update the text with the new number</span></span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="scrub.html#cb10-1" tabindex="-1"></a><span class="co"># I created an object that lists how many rows/cases remain.</span></span>
+<span id="cb10-2"><a href="scrub.html#cb10-2" tabindex="-1"></a><span class="co"># I used inline text below to update the text with the new number</span></span>
 <span id="cb10-3"><a href="scrub.html#cb10-3" tabindex="-1"></a><span class="fu">nrow</span>(QTRX_df)</span></code></pre></div>
 <pre><code>[1] 107</code></pre>
 <p>CAPTURING RESULTS FOR WRITING IT UP:</p>
@@ -1208,8 +1201,8 @@ div.csl-indent {
 </blockquote>
 </blockquote>
 <p>Next let’s filter in only those who consented to take the survey. Because Qualtrics discontinued the survey for everyone who did not consent, we do not have to worry that their data is unintentionally included, but it can be useful to mention the number of non-consenters in the summary of missing data.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="scrub.html#cb12-1" tabindex="-1"></a><span class="co"># == are used</span></span>
-<span id="cb12-2"><a href="scrub.html#cb12-2" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(QTRX_df, Consent <span class="sc">==</span> <span class="dv">1</span>)</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="scrub.html#cb12-1" tabindex="-1"></a><span class="co"># == are used </span></span>
+<span id="cb12-2"><a href="scrub.html#cb12-2" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span>dplyr<span class="sc">::</span><span class="fu">filter</span>(QTRX_df, Consent <span class="sc">==</span> <span class="dv">1</span>)</span>
 <span id="cb12-3"><a href="scrub.html#cb12-3" tabindex="-1"></a><span class="fu">nrow</span>(QTRX_df)</span></code></pre></div>
 <pre><code>[1] 83</code></pre>
 <p>CAPTURING RESULTS FOR WRITING IT UP:</p>
@@ -1234,31 +1227,26 @@ div.csl-indent {
 <p>Even though we renamed the variables in Qualtrics, the loop-and-merge variables were auto-renamed such that they each started with a number. I cannot see how to rename these from inside Qualtrics. A potential problem is that, in R, when variable names start with numbers, they need to be surrounded with single quotation marks. I find it easier to rename them now. I used “i” to start the variable name to represent “instructor.”</p>
 <p>The form of the <em>rename()</em> function is this:
 df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="scrub.html#cb16-1" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(QTRX_df, <span class="at">iRace1 =</span> <span class="st">&quot;1_iRace&quot;</span>, <span class="at">iRace2 =</span> <span class="st">&quot;2_iRace&quot;</span>,</span>
-<span id="cb16-2"><a href="scrub.html#cb16-2" tabindex="-1"></a>    <span class="at">iRace3 =</span> <span class="st">&quot;3_iRace&quot;</span>, <span class="at">iRace4 =</span> <span class="st">&quot;4_iRace&quot;</span>, <span class="at">iRace5 =</span> <span class="st">&quot;5_iRace&quot;</span>, <span class="at">iRace6 =</span> <span class="st">&quot;6_iRace&quot;</span>,</span>
-<span id="cb16-3"><a href="scrub.html#cb16-3" tabindex="-1"></a>    <span class="at">iRace7 =</span> <span class="st">&quot;7_iRace&quot;</span>, <span class="at">iRace8 =</span> <span class="st">&quot;8_iRace&quot;</span>, <span class="at">iRace9 =</span> <span class="st">&quot;9_iRace&quot;</span>, <span class="at">iRace10 =</span> <span class="st">&quot;10_iRace&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="scrub.html#cb16-1" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(QTRX_df, <span class="at">iRace1 =</span> <span class="st">&#39;1_iRace&#39;</span>, <span class="at">iRace2 =</span> <span class="st">&#39;2_iRace&#39;</span>, <span class="at">iRace3 =</span> <span class="st">&#39;3_iRace&#39;</span>, <span class="at">iRace4 =</span> <span class="st">&#39;4_iRace&#39;</span>, <span class="at">iRace5 =</span> <span class="st">&#39;5_iRace&#39;</span>, <span class="at">iRace6 =</span> <span class="st">&#39;6_iRace&#39;</span>, <span class="at">iRace7 =</span> <span class="st">&#39;7_iRace&#39;</span>, <span class="at">iRace8 =</span> <span class="st">&#39;8_iRace&#39;</span>, <span class="at">iRace9 =</span> <span class="st">&#39;9_iRace&#39;</span>, <span class="at">iRace10 =</span> <span class="st">&#39;10_iRace&#39;</span>)</span></code></pre></div>
 <p>Also in Qualtrics, it was not possible to rename the variable (formatted with sliders) that asked respondents to estimate the proportion of classmates in each race-based category. Using the codebook, we can do this now. I will use “cm” to precede each variable name to represent “classmates.”</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="scrub.html#cb17-1" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(QTRX_df, <span class="at">cmBiMulti =</span> Race_10, <span class="at">cmBlack =</span> Race_1,</span>
-<span id="cb17-2"><a href="scrub.html#cb17-2" tabindex="-1"></a>    <span class="at">cmNBPoC =</span> Race_7, <span class="at">cmWhite =</span> Race_8, <span class="at">cmUnsure =</span> Race_2)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="scrub.html#cb17-1" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(QTRX_df, <span class="at">cmBiMulti =</span> Race_10, <span class="at">cmBlack =</span> Race_1, <span class="at">cmNBPoC =</span> Race_7, <span class="at">cmWhite =</span> Race_8, <span class="at">cmUnsure =</span> Race_2)</span></code></pre></div>
 <p>Let’s also create an ID variable (different from the lengthy Qualtrics-issued ID) and then move it to the front of the distribution.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="scrub.html#cb18-1" tabindex="-1"></a><span class="co"># Opening the tidyverse so that I can use pipes</span></span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="scrub.html#cb18-1" tabindex="-1"></a><span class="co">#Opening the tidyverse so that I can use pipes</span></span>
 <span id="cb18-2"><a href="scrub.html#cb18-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="scrub.html#cb20-1" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> QTRX_df <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="scrub.html#cb20-2" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>())</span>
-<span id="cb20-3"><a href="scrub.html#cb20-3" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="scrub.html#cb20-4" tabindex="-1"></a><span class="co"># moving the ID number to the first column; requires</span></span>
-<span id="cb20-5"><a href="scrub.html#cb20-5" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> QTRX_df <span class="sc">%&gt;%</span></span>
-<span id="cb20-6"><a href="scrub.html#cb20-6" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(ID, <span class="fu">everything</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="scrub.html#cb20-1" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> QTRX_df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>())</span>
+<span id="cb20-2"><a href="scrub.html#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="scrub.html#cb20-3" tabindex="-1"></a><span class="co">#moving the ID number to the first column; requires </span></span>
+<span id="cb20-4"><a href="scrub.html#cb20-4" tabindex="-1"></a>QTRX_df <span class="ot">&lt;-</span> QTRX_df<span class="sc">%&gt;%</span>dplyr<span class="sc">::</span><span class="fu">select</span>(ID, <span class="fu">everything</span>())</span></code></pre></div>
 </div>
 <div id="downsizing-the-dataframe" class="section level3 hasAnchor" number="1.5.4">
 <h3><span class="header-section-number">1.5.4</span> Downsizing the Dataframe<a href="scrub.html#downsizing-the-dataframe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1266,24 +1254,18 @@ df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
 <p>This particular survey did not collect demographic information, so that will not be used. The model that I will demonstrate in this research vignette examines the the respondent’s perceived campus climate for students who are Black, predicted by the the respondent’s own campus belonging, and also the <em>structural diversity</em> <span class="citation">(<a href="#ref-lewis_black_2019">K. R. Lewis &amp; Shah, 2019</a>)</span> proportions of Black students in the classroom and BIPOC (Black, Indigenous, and people of color) instructional staff.</p>
 <p><em>I would like to assess the model by having the instructional staff variable to be the %Black instructional staff. At the time that this lecture is being prepared, there is not sufficient Black representation in the staff to model this.</em></p>
 <p>The <em>select()</em> function can let us list the variables we want to retain.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="scrub.html#cb21-1" tabindex="-1"></a><span class="co"># You can use the &#39;:&#39; to include all variables from the first to last</span></span>
-<span id="cb21-2"><a href="scrub.html#cb21-2" tabindex="-1"></a><span class="co"># variable in any sequence; I could have written this more</span></span>
-<span id="cb21-3"><a href="scrub.html#cb21-3" tabindex="-1"></a><span class="co"># efficiently.  I just like to &#39;see&#39; my scales and clusters of</span></span>
-<span id="cb21-4"><a href="scrub.html#cb21-4" tabindex="-1"></a><span class="co"># variables.</span></span>
-<span id="cb21-5"><a href="scrub.html#cb21-5" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="scrub.html#cb21-6" tabindex="-1"></a>Model_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(QTRX_df, ID, iRace1, iRace2, iRace3, iRace4,</span>
-<span id="cb21-7"><a href="scrub.html#cb21-7" tabindex="-1"></a>    iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack,</span>
-<span id="cb21-8"><a href="scrub.html#cb21-8" tabindex="-1"></a>    cmNBPoC, cmWhite, cmUnsure, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6))</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="scrub.html#cb21-1" tabindex="-1"></a><span class="co">#You can use the &quot;:&quot; to include all variables from the first to last variable in any sequence; I could have written this more efficiently.  I just like to &quot;see&quot; my scales and clusters of variables.</span></span>
+<span id="cb21-2"><a href="scrub.html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="scrub.html#cb21-3" tabindex="-1"></a>Model_df <span class="ot">&lt;-</span>(dplyr<span class="sc">::</span><span class="fu">select</span> (QTRX_df, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1<span class="sc">:</span>Belong_3, Blst_1<span class="sc">:</span>Blst_6))</span></code></pre></div>
 <p>It can be helpful to save outfile of progress as we go along. Here I save this raw file. I will demonstrate how to save both .rds and .csv files.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="scrub.html#cb22-1" tabindex="-1"></a><span class="co"># to save the df as an .rds (think &#39;R object&#39;) file on your computer;</span></span>
-<span id="cb22-2"><a href="scrub.html#cb22-2" tabindex="-1"></a><span class="co"># it should save in the same file as the .rmd file you are working</span></span>
-<span id="cb22-3"><a href="scrub.html#cb22-3" tabindex="-1"></a><span class="co"># with saveRDS(Model_df, &#39;BlackStntsModel230902.rds&#39;) code to import</span></span>
-<span id="cb22-4"><a href="scrub.html#cb22-4" tabindex="-1"></a><span class="co"># that model we just saved Model_df &lt;-</span></span>
-<span id="cb22-5"><a href="scrub.html#cb22-5" tabindex="-1"></a><span class="co"># readRDS(&#39;BlackStntsModel230902.rds&#39;)</span></span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="scrub.html#cb23-1" tabindex="-1"></a><span class="co"># write the simulated data as a .csv write.table(Model_df,</span></span>
-<span id="cb23-2"><a href="scrub.html#cb23-2" tabindex="-1"></a><span class="co"># file=&#39;BlackStntsModel230902.csv&#39;, sep=&#39;,&#39;, col.names=TRUE,</span></span>
-<span id="cb23-3"><a href="scrub.html#cb23-3" tabindex="-1"></a><span class="co"># row.names=FALSE) bring back the simulated data from a .csv file</span></span>
-<span id="cb23-4"><a href="scrub.html#cb23-4" tabindex="-1"></a><span class="co"># Model_df &lt;- read.csv(&#39;BlackStntsModel230902.csv&#39;, header = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="scrub.html#cb22-1" tabindex="-1"></a><span class="co">#to save the df as an .rds (think &quot;R object&quot;) file on your computer; it should save in the same file as the .rmd file you are working with</span></span>
+<span id="cb22-2"><a href="scrub.html#cb22-2" tabindex="-1"></a><span class="co">#saveRDS(Model_df, &quot;BlackStntsModel230902.rds&quot;)</span></span>
+<span id="cb22-3"><a href="scrub.html#cb22-3" tabindex="-1"></a><span class="co">#code to import that model we just saved</span></span>
+<span id="cb22-4"><a href="scrub.html#cb22-4" tabindex="-1"></a><span class="co">#Model_df &lt;- readRDS(&quot;BlackStntsModel230902.rds&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="scrub.html#cb23-1" tabindex="-1"></a><span class="co">#write the simulated data as a .csv</span></span>
+<span id="cb23-2"><a href="scrub.html#cb23-2" tabindex="-1"></a><span class="co">#write.table(Model_df, file=&quot;BlackStntsModel230902.csv&quot;, sep=&quot;,&quot;, col.names=TRUE, row.names=FALSE)</span></span>
+<span id="cb23-3"><a href="scrub.html#cb23-3" tabindex="-1"></a><span class="co">#bring back the simulated data from a .csv file</span></span>
+<span id="cb23-4"><a href="scrub.html#cb23-4" tabindex="-1"></a><span class="co">#Model_df &lt;- read.csv(&quot;BlackStntsModel230902.csv&quot;, header = TRUE)</span></span></code></pre></div>
 </div>
 </div>
 <div id="toward-the-apa-style-write-up" class="section level2 hasAnchor" number="1.6">
@@ -1336,54 +1318,54 @@ df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
 <col width="16%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th align="left">Assignment Component</th>
 <th align="center">Points Possible</th>
 <th align="center">Points Earned</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left">1. Specify a research model that includes three predictor variables (continuously or categorically scaled) and one dependent (continuously scaled) variable</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">2. Import data</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">3. Include only those who consented<span class="math inline">\(^*\)</span></td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">4. Apply exclusionary criteria <span class="math inline">\(^*\)</span></td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">5. Rename variables to be sensible and systematic <span class="math inline">\(^*\)</span></td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">6. Downsize the dataframe to the variables of interest</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">7. Provide an APA style write-up of these preliminary steps</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">8. Explanation to grader</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><strong>Totals</strong></td>
 <td align="center">40</td>
 <td align="center">_____</td>
@@ -1407,8 +1389,7 @@ df_named &lt;- rename(df_raw, NewName1 = OldName1)</p>
 <p>I think that it is critical that to save this file in the same folder as the .rmd file that you will use with the data.</p>
 <p>R is sensitive to characters used filenames As downloaded, my Qualtrics .csv file had a long name with spaces and symbols that are not allowed. Therore, I gave it a simple, sensible, filename, “ReC_Download210319.csv”. An idiosyncracy of mine is to datestamp filenames. I use two-digit representations of the year, month, and date so that if the letters preceding the date are the same, the files would alphabetize automatically.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="scrub.html#cb24-1" tabindex="-1"></a><span class="fu">library</span>(qualtRics)</span>
-<span id="cb24-2"><a href="scrub.html#cb24-2" tabindex="-1"></a>QTRX_csv <span class="ot">&lt;-</span> <span class="fu">read_survey</span>(<span class="st">&quot;ReC_Download210319.csv&quot;</span>, <span class="at">strip_html =</span> <span class="cn">TRUE</span>, <span class="at">import_id =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb24-3"><a href="scrub.html#cb24-3" tabindex="-1"></a>    <span class="at">time_zone =</span> <span class="cn">NULL</span>, <span class="at">legacy =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<span id="cb24-2"><a href="scrub.html#cb24-2" tabindex="-1"></a>QTRX_csv <span class="ot">&lt;-</span> <span class="fu">read_survey</span>(<span class="st">&quot;ReC_Download210319.csv&quot;</span>, <span class="at">strip_html =</span> <span class="cn">TRUE</span>, <span class="at">import_id =</span> <span class="cn">FALSE</span>, <span class="at">time_zone=</span><span class="cn">NULL</span>, <span class="at">legacy =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -1442,7 +1423,7 @@ cols(
 </div>
 </div>
 <h3>REFERENCES<a href="REFS.html#REFS" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-adames_fallacy_2021" class="csl-entry">
 Adames, H. Y., Chavez-Dueñas, N. Y., &amp; Jernigan, M. M. (2021). The fallacy of a raceless <span>Latinidad</span>: <span>Action</span> guidelines for centering <span>Blackness</span> in <span>Latinx</span> psychology. <em>Journal of Latinx Psychology</em>, <em>9</em>(1), 26–44. <a href="https://doi.org/10.1037/lat0000179">https://doi.org/10.1037/lat0000179</a>
 </div>

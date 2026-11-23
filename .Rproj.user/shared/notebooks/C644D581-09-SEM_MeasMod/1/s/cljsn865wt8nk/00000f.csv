@@ -1,0 +1,3 @@
+"0","write.csv(init_msmt_fitstats, file = ""init_msmt_fitstats.csv"")"
+"0","write.csv(init_msmt_pEsts, file = ""init_msmt_pEsts.csv"")"
+"0","write.csv(init_msmt_LVcorr, file = ""init_msmt_LVcorr.csv"")"

@@ -1,0 +1,3 @@
+"0","raw$Valued <- datawizard::row_means(raw, select = c('ValObjectives', 'IncrUnderstanding','IncrInterest'), min_valid = .75)"
+"0",""
+"0","raw$SRPed <- datawizard::row_means(raw, select = c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration'), min_valid = .75)"

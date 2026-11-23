@@ -1,0 +1,2 @@
+"0","Lefevor2020$AttendL1 <- as.numeric(robumeta::group.center(Lefevor2020$Attendance, Lefevor2020$church))#centered within context (group mean centering)"
+"0","Lefevor2020$AttendL2 <- as.numeric(robumeta::group.mean(Lefevor2020$Attendance, Lefevor2020$church))#aggregated at group mean"

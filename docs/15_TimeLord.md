@@ -45,19 +45,18 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# will install the package if not already installed
-# if(!require(lme4)){install.packages('lme4')}
-# if(!require(sjStats)){install.packages('sjStats')}
-# if(!require(sjPlot)){install.packages('sjPlot')}
-# if(!require(formattable)){install.packages('formattable')}
-# if(!require(tidyverse)){install.packages('tidyverse')}
-# if(!require(robumeta)){install.packages('robumeta')}
-# if(!require(scales)){install.packages('scales')}
-# if(!require(psych)){install.packages('psych')}
-# if(!require(data.table)){install.packages('data.table')}
-# if(!require(ggplot2)){install.packages('ggplot2')}
-# if(!require(lubridate)){install.packages('lubridate')}
+``` r
+#will install the package if not already installed
+#if(!require(lme4)){install.packages("lme4")}
+#if(!require(sjPlot)){install.packages("sjPlot")}
+#if(!require(formattable)){install.packages("formattable")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(robumeta)){install.packages("robumeta")}
+#if(!require(scales)){install.packages("scales")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(data.table)){install.packages("data.table")}
+#if(!require(ggplot2)){install.packages("ggplot2")}
+#if(!require(lubridate)){install.packages("lubridate")}
 ```
 
 ## Exploring Variants of Time and Balance
@@ -91,150 +90,136 @@ Let's take a look at the variables in the study
 This simulation is very similar (but not identical) to the simulation used in the MLM longitudinal exploration and model building chapters.  The primary difference is that when I created the SessionT variable, I did not require the values to be integers. Instead, the number of sessions could be fractional as they still ranged from 0 to 19. The session variable becomes our key in creating a variable representing *calendrical time*.
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
 ```
 ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
-```r
+``` r
 set.seed(200513)
 n_client = 12825
 n_session = 5
-b0 = 2.03  #intercept for anxiety
-b1 = -0.22  #b weight for L1 session
-b2 = 0.13  #b weight for L2 sexual identity
-b3 = -0.03  #b weight for L2 Rel1 (D-R vs ND-R & ND-U)
-b4 = 0.01  #b weight for the L2 Rel2 (ND-R vs ND-U)
-# the values used below are the +/- 3SD they produce continuous
-# variables which later need to be transformed to categorical ones;
-# admittedly this introduces a great deal of error/noise into the
-# simulation the article didn't include a correlation matrix or M/SDs
-# so this was a clunky process
-(Session = runif(n_client * n_session, -3.61, 3.18))  #calc L1 Session, values are the +/3 3SD
-(SexualIdentity = runif(n_client * Session, -6.66, 6.92))  #calc L2 Sexual Identity, values are the +/3 3SD
-(Religion1 = runif(n_client * Session, -3.43, 3.37))  #calc L2 Religion1, values are the +/3 3SD
-(Religion2 = rep(runif(n_session, -3.38, 3.41), each = n_session))  #calc L2 Religion2, values are the +/3 3SD
-mu = 1.76  #intercept of empty model 
-sds = 2.264  #this is the SD of the DV
-sd = 1  #this is the observation-level random effect variance that we set at 1
+b0 = 2.03 #intercept for anxiety
+b1 = -.22 #b weight for L1 session
+b2 = .13 #b weight for L2 sexual identity
+b3 =  -.03 #b weight for L2 Rel1 (D-R vs ND-R & ND-U)
+b4 = .01 #b weight for the L2 Rel2 (ND-R vs ND-U)
+#the values used below are the +/- 3SD they produce continuous variables which later need to be transformed to categorical ones; admittedly this introduces a great deal of error/noise into the simulation
+#the article didn't include a correlation matrix or M/SDs so this was a clunky process 
+( Session = runif(n_client*n_session, -3.61, 3.18)) #calc L1 Session, values are the +/3 3SD
+( SexualIdentity = runif(n_client*Session, -6.66, 6.92)) #calc L2 Sexual Identity, values are the +/3 3SD
+( Religion1 = runif(n_client*Session, -3.43, 3.37)) #calc L2 Religion1, values are the +/3 3SD
+( Religion2 = rep (runif(n_session, -3.38, 3.41), each = n_session)) #calc L2 Religion2, values are the +/3 3SD
+mu = 1.76 #intercept of empty model 
+sds = 2.264 #this is the SD of the DV
+sd = 1 #this is the observation-level random effect variance that we set at 1
 
-# ( church = rep(LETTERS[1:n_church], each = n_mbrs) ) #this worked
-# in the prior
-(client = rep(LETTERS[1:n_client], each = n_session))
-# ( session = numbers[1:(n_client*n_session)] )
-(clienteff = rnorm(n_client, 0, sds))
-(clienteff = rep(clienteff, each = n_session))
-(sessioneff = rnorm(n_client * n_session, 0, sd))
-(Anxiety = b0 + b1 * Session + b2 * SexualIdentity + b3 * Religion1 + b4 *
-    Religion2 + clienteff + sessioneff)
-(dat = data.frame(client, clienteff, sessioneff, Session, SexualIdentity,
-    Religion1, Religion2, Anxiety))
+#( church = rep(LETTERS[1:n_church], each = n_mbrs) ) #this worked in the prior
+( client = rep(LETTERS[1:n_client], each = n_session) )
+#( session = numbers[1:(n_client*n_session)] )
+( clienteff = rnorm(n_client, 0, sds) )
+( clienteff = rep(clienteff, each = n_session) )
+( sessioneff = rnorm(n_client*n_session, 0, sd) )
+( Anxiety = b0 + b1*Session + b2*SexualIdentity + b3*Religion1 + b4*Religion2 + clienteff + sessioneff)
+( dat = data.frame(client, clienteff, sessioneff, Session, SexualIdentity, Religion1, Religion2, Anxiety) )
 
-dat <- dat %>%
-    dplyr::mutate(ID = row_number())
-# moving the ID number to the first column; requires
-dat <- dat %>%
-    dplyr::select(ID, everything())
+dat <- dat %>% dplyr::mutate(ID = row_number())
+#moving the ID number to the first column; requires 
+dat <- dat%>% dplyr::select(ID, everything())
 
-Lefevor2017 <- dat %>%
-    select(ID, client, Session, SexualIdentity, Religion1, Religion2, Anxiety)
+Lefevor2017 <- dat%>%
+  select(ID, client, Session, SexualIdentity, Religion1, Religion2, Anxiety)
 
 Lefevor2017$ClientID <- rep(c(1:12825), each = 5)
-# rounded Sexual Identity into dichotomous variable 85% were
-# heterosexual,
+#rounded Sexual Identity into dichotomous variable
+#85% were heterosexual, 
 
-# The following variables should be L2, but were simulated as if they
-# were L1
-Lefevor2017$Rel1 <- as.numeric(robumeta::group.mean(Lefevor2017$Religion1,
-    Lefevor2017$ClientID))  #aggregated at group mean
-Lefevor2017$Rel2 <- as.numeric(robumeta::group.mean(Lefevor2017$Religion2,
-    Lefevor2017$ClientID))  #aggregated at group mean
-Lefevor2017$SxID <- as.numeric(robumeta::group.mean(Lefevor2017$SexualIdentity,
-    Lefevor2017$ClientID))  #aggregated at group mean
+#The following variables should be L2, but were simulated as if they were L1
+Lefevor2017$Rel1 <- as.numeric(robumeta::group.mean(Lefevor2017$Religion1,Lefevor2017$ClientID))#aggregated at group mean
+Lefevor2017$Rel2 <- as.numeric(robumeta::group.mean(Lefevor2017$Religion2,Lefevor2017$ClientID))#aggregated at group mean
+Lefevor2017$SxID <- as.numeric(robumeta::group.mean(Lefevor2017$SexualIdentity,Lefevor2017$ClientID))#aggregated at group mean
 
-# Rel2 has contrast codes for dominant religion (DR, 0), nondominant
-# religious (NDR, 1) and nondominant unspecified (NDU, -1) Strategy
-# is to figure out the raw score associated with the percentile rank
-# of -1 and 0, to set the breakpoints for the coding NDU coded as -1
-# 19.2+13.5+9.6 NDU has bottom 42.3 percent
+#Rel2 has contrast codes for dominant religion (DR, 0), nondominant religious (NDR, 1) and nondominant unspecified (NDU, -1)
+#Strategy is to figure out the raw score associated with the percentile rank of  -1 and 0, to set the breakpoints for the coding
+#NDU coded as -1
+#19.2+13.5+9.6
+#NDU has bottom 42.3 percent
 
-# DR coded as 0, so quantile cut will be 42.3 + 52.7 = 95th 33.4 +
-# 19.3 52.7% of sample (according to article) was DR must look up
-# percentile ranks for 5% and 57.5%
+#DR coded as 0, so quantile cut will be 42.3 + 52.7 = 95th
+#33.4 + 19.3
+#52.7% of sample (according to article) was DR
+#must look up percentile ranks for 5% and 57.5%
 
-# NDR 2.3+1+1+.7 NDR has 5% of sample 42.3+52.7
-# quantile(Lefevor2017$Religion2, probs = c(.423, .95)) effects
-# coding the second Religion variable so that NDU = -1, DR = 0, NDR =
-# 1
-Lefevor2017$Rel2L2 <- ifelse(Lefevor2017$Religion2 <= -3.0877087, -1, ifelse(Lefevor2017$Religion2 >=
-    -3.0877087 & Lefevor2017$Religion2 <= 0.9299491, 0, 1))
+#NDR
+#2.3+1+1+.7
+#NDR has 5% of sample
+#42.3+52.7
+#quantile(Lefevor2017$Religion2, probs = c(.423, .95))
+#effects coding the second Religion variable so that NDU = -1, DR = 0, NDR = 1
+Lefevor2017$Rel2L2 <- ifelse(Lefevor2017$Religion2 <= -3.0877087, -1, 
+                             ifelse(Lefevor2017$Religion2 >= -3.0877087 & Lefevor2017$Religion2 <= 0.9299491, 0,1))
 
-# checking work Rel2L2_table <- table(Lefevor2017$Rel2L2)
-# prop.table(Rel2L2_table) Lefevor2017 %>% count(Rel2L2)
+#checking work
+#Rel2L2_table <- table(Lefevor2017$Rel2L2)
+#prop.table(Rel2L2_table)
+#Lefevor2017 %>%
+#count(Rel2L2)
 
-# creating the first religion variable where DR is 2 and NDR and NDU
-# are both -1
-Lefevor2017$Rel1L2 <- plyr::mapvalues(Lefevor2017$Rel2L2, from = c(-1,
-    0, 1), to = c(-1, 2, -1))
-Lefevor2017$DRel0 <- plyr::mapvalues(Lefevor2017$Rel2L2, from = c(-1, 0,
-    1), to = c(1, 0, 1))
+#creating the first religion variable where DR is 2 and NDR and NDU are both -1
+Lefevor2017$Rel1L2 <- plyr::mapvalues(Lefevor2017$Rel2L2, from = c(-1, 0, 1), to = c(-1, 2, -1))
+Lefevor2017$DRel0 <- plyr::mapvalues(Lefevor2017$Rel2L2, from = c(-1, 0, 1), to = c(1, 0, 1))
 
-# checking to make sure that 52.7% are coded 2 (DR) Rel1L2_table <-
-# table(Lefevor2017$Rel1L2) prop.table(Rel1L2_table)
+#checking to make sure that 52.7% are coded 2 (DR)
+#Rel1L2_table <- table(Lefevor2017$Rel1L2)
+#prop.table(Rel1L2_table)
 
-# heterosexual is -1 LGBTQIA+ is 1 quantile(Lefevor2017$SxID, probs =
-# c(.85))
-Lefevor2017$SexID <- ifelse(Lefevor2017$SxID <= 1.203468, -1, 1)
-Lefevor2017$Het0 <- plyr::mapvalues(Lefevor2017$SexID, from = c(-1, 1),
-    to = c(0, 1))
-# SexID_table <- table(Lefevor2017$SexID) prop.table(SexID_table)
+#heterosexual is -1
+#LGBTQIA+ is 1
+#quantile(Lefevor2017$SxID, probs = c(.85))
+Lefevor2017$SexID <- ifelse(Lefevor2017$SxID <= 1.203468, -1,1)
+Lefevor2017$Het0 <- plyr::mapvalues(Lefevor2017$SexID, from = c(-1,1), to = c(0,1))
+#SexID_table <- table(Lefevor2017$SexID)
+#prop.table(SexID_table)
 
-# creating a variable representing the session number for each
-# client, in the article up to 20 sessions were allowed.
-# install.packages('scales')
+#creating a variable representing the session number for each client, in the article up to 20 sessions were allowed. 
+#install.packages("scales")
 
-# Right from the beginning I centered this so that 0 would represent
-# intake Lefevor2017$Session0 <-
-# as.integer(scales::rescale(Lefevor2017$Session, to = c(0, 19)))
-Lefevor2017$SessionT <- scales::rescale(Lefevor2017$Session, to = c(0,
-    19))
+#Right from the beginning I centered this so that 0 would represent intake
+#Lefevor2017$Session0 <- as.integer(scales::rescale(Lefevor2017$Session, to = c(0, 19)))
+Lefevor2017$SessionT <- scales::rescale(Lefevor2017$Session, to = c(0, 19))
 
-# creating session waves (1 thru 5) by rank ordering within each
-# person's variable the continuous variable Session that was created
-# in the original simulation
+#creating session waves (1 thru 5) by rank ordering within each person's variable the continuous variable Session that was created in the original simulation
 
-LefevorTIME <- Lefevor2017 %>%
-    dplyr::group_by(ClientID) %>%
-    dplyr::mutate(Index = rank(Session))
+LefevorTIME <- Lefevor2017%>%
+  dplyr::group_by(ClientID) %>%
+  dplyr::mutate(Index = rank(Session))
 
-# selecting the simulated variables
-LefevorTIME_sim <- LefevorTIME %>%
-    dplyr::select(ClientID, Index, SessionT, Anxiety, DRel0, Het0)
+#selecting the simulated variables
+LefevorTIME_sim <- LefevorTIME%>%
+  dplyr::select(ClientID, Index, SessionT, Anxiety, DRel0, Het0)
 
-# rearranging variables so that IDs are together
-LefevorTIME_sim <- LefevorTIME_sim %>%
-    dplyr::select(ClientID, Index, SessionT, Anxiety, DRel0, Het0)
-# resorting data so that each person is together
+#rearranging variables so that IDs are together
+LefevorTIME_sim <- LefevorTIME_sim%>%
+  dplyr::select(ClientID, Index, SessionT, Anxiety, DRel0, Het0)
+#resorting data so that each person is together
 LefevorTIME_sim <- dplyr::arrange(LefevorTIME_sim, ClientID, Index)
 
-# In the transition from long-to-wide, it seems like you can only do
-# one L1 variable at a time When there are multiple L1 and L2 vars,
-# put all L2 vars on left of tilde The wave/index function should
-# come next; this should be finite (like integers of 1,2,3,4) with a
-# maximum Put the name of the SINGLE L1 variable in the concatonated
-# list
+#In the transition from long-to-wide, it seems like you can only do one L1 variable at a time
+#When there are multiple L1 and L2 vars, put all L2 vars on left of tilde
+#The wave/index function should come next; this should be finite (like integers of 1,2,3,4) with a maximum
+#Put the name of the SINGLE L1 variable in the concatonated list
 library(data.table)
 ```
 
@@ -256,25 +241,20 @@ library(data.table)
 ##     transpose
 ```
 
-```r
-LfvrTWp1 <- reshape2::dcast(LefevorTIME_sim, ClientID + DRel0 + Het0 ~
-    Index, value.var = c("Index"))
-# rename the anxiety variable
-LfvrTWp1 <- rename(LfvrTWp1, Index1 = "1", Index2 = "2", Index3 = "3",
-    Index4 = "4", Index5 = "5")
-LfvrTWp2 <- reshape2::dcast(LefevorTIME_sim, ClientID ~ Index, value.var = c("Anxiety"))
-# rename the anxiety variable
-LfvrTWp2 <- rename(LfvrTWp2, Anx1 = "1", Anx2 = "2", Anx3 = "3", Anx4 = "4",
-    Anx5 = "5")
-# For remaining L1 variable, do them one at a time -- key them from
-# the person-level ID and the wave/index.
-LfvrTWp3 <- reshape2::dcast(LefevorTIME_sim, ClientID ~ Index, value.var = c("SessionT"))
-LfvrTWp3 <- dplyr::rename(LfvrTWp3, Sess1 = "1", Sess2 = "2", Sess3 = "3",
-    Sess4 = "4", Sess5 = "5")
-# Next, join the dataframes by the person-level ID Only two can be
-# joined at a time
+``` r
+LfvrTWp1<-reshape2::dcast(LefevorTIME_sim, ClientID + DRel0 + Het0 ~ Index, value.var = c("Index"))
+#rename the anxiety variable
+LfvrTWp1<-  rename(LfvrTWp1, Index1 = "1", Index2 = "2", Index3 = "3", Index4 = "4", Index5 = "5")
+LfvrTWp2<-reshape2::dcast(LefevorTIME_sim, ClientID ~ Index, value.var = c("Anxiety"))
+#rename the anxiety variable
+LfvrTWp2<-  rename(LfvrTWp2, Anx1 = "1", Anx2 = "2", Anx3 = "3", Anx4 = "4", Anx5 = "5")
+#For remaining L1 variable, do them one at a time -- key them from the person-level ID and the wave/index.
+LfvrTWp3<-reshape2::dcast(LefevorTIME_sim, ClientID ~ Index, value.var = c("SessionT"))
+LfvrTWp3<-  dplyr::rename(LfvrTWp3, Sess1 = "1", Sess2 = "2", Sess3 = "3", Sess4 = "4", Sess5 = "5")
+#Next, join the dataframes by the person-level ID
+#Only two can be joined at a time
 LfvrTWide <- dplyr::full_join(LfvrTWp1, LfvrTWp2, by = c("ClientID"))
-LfvrTWide <- dplyr::full_join(LfvrTWide, LfvrTWp3, by = c("ClientID"))
+LfvrTWide <- dplyr::full_join(LfvrTWide, LfvrTWp3,  by = c("ClientID"))
 ```
 
 To increase the portability of the OER, this lesson uses simulated data. Here is script for exporting/downloading the long and wide forms of the data as a .csv files to your local computer and then importing/uploading it again. I find that saving the .csv file (data) in the same place as the .rmd file(s) is essential for R to connect the two.
@@ -282,25 +262,19 @@ To increase the portability of the OER, this lesson uses simulated data. Here is
 Once you write the document to your file, you only need to run the piece of script that reads it back in.
 
 
-```r
-# Once you simulate the data, the 'write.table' script saves it --
-# ideally to the folder where your .rmd file is located
-# write.table(LefevorTIME_sim , file='LefevorTLong.csv', sep=',',
-# col.names=TRUE, row.names=FALSE) If you have used the above code,
-# you can clear your environment, then simply run this line of code
-# to bring the data back in TIMElong <- read.csv ('LefevorTLong.csv',
-# head = TRUE, sep = ',')
+``` r
+#Once you simulate the data, the "write.table" script saves it -- ideally to the folder where your .rmd file is located
+#write.table(LefevorTIME_sim , file="LefevorTLong.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#If you have used the above code, you can clear your environment, then simply run this line of code to bring the data back in
+#TIMElong <- read.csv ("LefevorTLong.csv", head = TRUE, sep = ",")
 ```
 
 
-```r
-# Once you simulate the data, the 'write.table' script saves it --
-# ideally to the folder where your .rmd file is located
-write.table(LfvrTWide, file = "LefevorTWide.csv", sep = ",", col.names = TRUE,
-    row.names = FALSE)
-# If you have used the above code, you can clear your environment,
-# then simply run this line of code to bring the data back in
-# TIMEwide <- read.csv ('LefevorTWide.csv', head = TRUE, sep = ',')
+``` r
+#Once you simulate the data, the "write.table" script saves it -- ideally to the folder where your .rmd file is located
+write.table(LfvrTWide, file="LefevorTWide.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#If you have used the above code, you can clear your environment, then simply run this line of code to bring the data back in
+#TIMEwide <- read.csv ("LefevorTWide.csv", head = TRUE, sep = ",")
 ```
 
 ## More Simulation -- Appointment Dates
@@ -310,8 +284,8 @@ Lefevor et al. [@lefevor_religious_2017] treated sessions as a dosage marker and
 If you simulated the data and saved it locally, you should be able to bring it into the R Environment as a file. 
 
 
-```r
-TIMEwide <- read.csv("LefevorTWide.csv", head = TRUE, sep = ",")
+``` r
+TIMEwide <- read.csv ("LefevorTWide.csv", head = TRUE, sep = ",")
 head(TIMEwide)
 ```
 
@@ -338,14 +312,14 @@ First I must create the Intake date. In this particular simulation, this is simp
 
 In the script below, I am creating the variable "Intake."  I have assigned all the clients the same intake date (May 28, 2021).  I need to tell R that the format is "year/month/date."  The *ymd()* function does that for me.
 
-```r
+``` r
 TIMEwide$Intake <- lubridate::ymd("2021-05-28")
 ```
 
 We can confirm that our Intake variable is a date by checking the structure.
 
 
-```r
+``` r
 str(TIMEwide$Intake)
 ```
 
@@ -354,13 +328,13 @@ str(TIMEwide$Intake)
 ```
 In the next step of the data simulation I need to create Weeks# variables that have a date.  The date must consistently increase from Week1 through Week5. I am going to make the assumption that the simulated values for the Sess# variables (recall, they are fractional values that range from 0 to 19) are a reasonable estimate of *weekly* time.  Therefore, I can add it to the Intake date to create new dates for each of the five observations for each client. 
 
-```r
-TIMEwide <- TIMEwide %>%
-    dplyr::mutate(Weeks1 = Intake + lubridate::dweeks(Sess1)) %>%
-    dplyr::mutate(Weeks2 = Intake + lubridate::dweeks(Sess2)) %>%
-    dplyr::mutate(Weeks3 = Intake + lubridate::dweeks(Sess3)) %>%
-    dplyr::mutate(Weeks4 = Intake + lubridate::dweeks(Sess4)) %>%
-    dplyr::mutate(Weeks5 = Intake + lubridate::dweeks(Sess5))
+``` r
+TIMEwide <- TIMEwide%>%
+  dplyr::mutate (Weeks1 = Intake + lubridate::dweeks(Sess1))%>%
+  dplyr::mutate (Weeks2 = Intake + lubridate::dweeks(Sess2))%>%
+  dplyr::mutate (Weeks3 = Intake + lubridate::dweeks(Sess3))%>%
+  dplyr::mutate (Weeks4 = Intake + lubridate::dweeks(Sess4))%>%
+  dplyr::mutate (Weeks5 = Intake + lubridate::dweeks(Sess5))
 
 head(TIMEwide)
 ```
@@ -399,7 +373,7 @@ head(TIMEwide)
 Let's peek at the structure of one of the Weeks# variables.
 
 
-```r
+``` r
 str(TIMEwide$Weeks1)
 ```
 
@@ -421,14 +395,14 @@ First, I need to create the *time intervals* from which I will extract the durat
 Calculating intervals of time requires using the %--% operator.  This results in a data column that lists the two dates being compared. In our example we want to count time forward by listing the Intake variable before the %--% and the Appointment variable.
 
 
-```r
-library(lubridate)  #neeeded to use the %--% command
+``` r
+library(lubridate) #neeeded to use the %--% command
 TIMEwide <- TIMEwide %>%
-    dplyr::mutate(TimeInterval1 = Weeks1 %--% Weeks1) %>%
-    dplyr::mutate(TimeInterval2 = Weeks1 %--% Weeks2) %>%
-    dplyr::mutate(TimeInterval3 = Weeks1 %--% Weeks3) %>%
-    dplyr::mutate(TimeInterval4 = Weeks1 %--% Weeks4) %>%
-    dplyr::mutate(TimeInterval5 = Weeks1 %--% Weeks5)
+  dplyr::mutate(TimeInterval1 = Weeks1 %--% Weeks1)%>%
+  dplyr::mutate(TimeInterval2 = Weeks1 %--% Weeks2)%>%
+  dplyr::mutate(TimeInterval3 = Weeks1 %--% Weeks3)%>%
+  dplyr::mutate(TimeInterval4 = Weeks1 %--% Weeks4)%>%
+  dplyr::mutate(TimeInterval5 = Weeks1 %--% Weeks5)
 
 head(TIMEwide)
 ```
@@ -502,13 +476,13 @@ head(TIMEwide)
 Don't let the result of this script scare you! In the second step, we convert the TimeInterval# variable to weeks. The "d" in the "dweeks" function tells R that we are calculating a duration.  The "x=1" indicates that we are counting 1 week at a time.  If we wanted to create 2-week intervals, we simply write, "x = 2".
 
 
-```r
+``` r
 TIMEwide <- TIMEwide %>%
-    dplyr::mutate(Wks1 = as.duration(TimeInterval1)/dweeks(x = 1)) %>%
-    dplyr::mutate(Wks2 = as.duration(TimeInterval2)/dweeks(x = 1)) %>%
-    dplyr::mutate(Wks3 = as.duration(TimeInterval3)/dweeks(x = 1)) %>%
-    dplyr::mutate(Wks4 = as.duration(TimeInterval4)/dweeks(x = 1)) %>%
-    dplyr::mutate(Wks5 = as.duration(TimeInterval5)/dweeks(x = 1))
+  dplyr::mutate(Wks1 = as.duration(TimeInterval1)/dweeks(x=1))%>%
+  dplyr::mutate(Wks2 = as.duration(TimeInterval2)/dweeks(x=1))%>%
+  dplyr::mutate(Wks3 = as.duration(TimeInterval3)/dweeks(x=1))%>%
+  dplyr::mutate(Wks4 = as.duration(TimeInterval4)/dweeks(x=1))%>%
+  dplyr::mutate(Wks5 = as.duration(TimeInterval5)/dweeks(x=1))
 
 head(TIMEwide)
 ```
@@ -587,7 +561,7 @@ head(TIMEwide)
 ```
 Let's check the structure of one of the Wks# variables.
 
-```r
+``` r
 str(TIMEwide$Wks1)
 ```
 
@@ -596,7 +570,7 @@ str(TIMEwide$Wks1)
 ```
 Let's also take a look at the descriptives
 
-```r
+``` r
 psych::describe(TIMEwide[c("Wks1", "Wks2", "Wks3", "Wks4", "Wks5")])
 ```
 
@@ -623,37 +597,34 @@ This simulation isn't perfect in that the CCAPS administrations were not always 
 Now that our date math is finished, we can restructure the data from wide to long. We have created a number of variables related to time. Regarding the time variables will only need the Index (created automatically) and the Wks# variables.  Of course we will want our L1 (Anx#) and L2 (ClientID, DRel0, Het0) variables.
 
 
-```r
+``` r
 library(data.table)
-TIMElong <- (data.table::melt(setDT(TIMEwide), id.vars = c("ClientID",
-    "DRel0", "Het0"), measure.vars = list(c("Anx1", "Anx2", "Anx3", "Anx4",
-    "Anx5"), c("Wks1", "Wks2", "Wks3", "Wks4", "Wks5"))))
-# This process does not preserve the variable names, so we need to
-# rename them
-TIMElong <- rename(TIMElong <- rename(TIMElong, Index = variable, Anxiety = "value1",
-    Weeks = "value2"))
+TIMElong <- (data.table::melt(setDT(TIMEwide), id.vars = c("ClientID", "DRel0", "Het0"), measure.vars =list(c("Anx1", "Anx2", "Anx3", "Anx4", "Anx5"),  c("Wks1", "Wks2", "Wks3", "Wks4", "Wks5") )))
+#This process  does not preserve the variable names, so we need to rename them
+TIMElong<- rename(TIMElong<-  rename(TIMElong, Index = variable, Anxiety = "value1", Weeks = "value2"))
 
-# rearanging variables so that IDs are together
-TIMElong <- TIMElong %>%
-    select(ClientID, Index, Weeks, Anxiety, DRel0, Het0)
-# resorting data so that each person is together
+#rearanging variables so that IDs are together
+TIMElong <- TIMElong%>%
+  select(ClientID, Index, Weeks, Anxiety, DRel0, Het0)
+#resorting data so that each person is together
 TIMElong <- arrange(TIMElong, ClientID, Index)
 
 head(TIMElong)
 ```
 
 ```
-##    ClientID Index     Weeks  Anxiety DRel0 Het0
-## 1:        1     1  0.000000 3.707621     0    0
-## 2:        1     2  7.486114 3.579850     0    0
-## 3:        1     3  8.354523 3.874312     0    0
-## 4:        1     4 13.089225 3.799490     0    0
-## 5:        1     5 15.830892 1.556770     0    0
-## 6:        2     1  0.000000 3.493704     1    0
+##    ClientID  Index     Weeks  Anxiety DRel0  Het0
+##       <int> <fctr>     <num>    <num> <int> <int>
+## 1:        1      1  0.000000 3.707621     0     0
+## 2:        1      2  7.486114 3.579850     0     0
+## 3:        1      3  8.354523 3.874312     0     0
+## 4:        1      4 13.089225 3.799490     0     0
+## 5:        1      5 15.830892 1.556770     0     0
+## 6:        2      1  0.000000 3.493704     1     0
 ```
 
 
-```r
+``` r
 str(TIMElong)
 ```
 
@@ -676,9 +647,9 @@ In the prior lessons I noted that a strength of MLM is that data can be unbalanc
 Here, I update the simulation by randomly deleting 5000 rows. With this *big data* circumstance, this still leaves us a number of cases! **Note: this is for demonstration only. You would never, intentionally, delete cases without a compelling reason!**  
 
 
-```r
+``` r
 set.seed(210529)
-TIMElong <- TIMElong[-sample(1:nrow(TIMElong), 5000), ]
+TIMElong <- TIMElong[-sample(1:nrow(TIMElong), 5000),]
 ```
 
 ### Abbreviated OLS Style Exploration
@@ -688,24 +659,23 @@ A more thorough preliminary investigation of the data occurs in a [prior lesson]
 We start by creating a random sample. Here is script allowing us to sample entire cases (i.e., the individual client with all their appointment data).
 
 
-```r
-rndm30time <- subset(TIMElong, ClientID %in% sample(unique(TIMElong$ClientID),
-    30))
+``` r
+rndm30time <- subset(TIMElong, ClientID %in% sample(unique(TIMElong$ClientID), 30))
 ```
 
 In these first two plots we look at anxiety as a function of the time-unstructured, weeks, data. Compared to the graphs in the chapter where the data was balanced (each person had 5 observations), it is apparent that not everyone has the same number of observations.
 
 
-```r
-ggplot(data = rndm30time, aes(x = Weeks, y = Anxiety)) + geom_point() +
-    geom_line() + facet_wrap(~ClientID)
+``` r
+ggplot(data = rndm30time, aes(x = Weeks, y = Anxiety)) + geom_point() + geom_line() +
+    facet_wrap(~ClientID)
 ```
 
 ![](15_TimeLord_files/figure-docx/unnamed-chunk-20-1.png)<!-- -->
 
 In the lesson on [longitudinal exploration](MLMexplore) we created individual regression equations and superimposed them on the raw data. This second plot does not print the individual regression equations for us, but calculates them behind the scenes and creates the individual plots. Similar to the plots with nonparametric smoothing, we notice the difference in numbers of observations per cases.  The straight line, though, does seem to be an appropriate functional form.
 
-```r
+``` r
 ggplot(data = rndm30time, aes(x = Weeks, y = Anxiety)) + geom_point() +
     stat_smooth(method = "lm", se = FALSE) + facet_wrap(~ClientID)
 ```
@@ -732,8 +702,8 @@ We follow the same model building approach as in the [basic longitudinal model](
 
 We start with the unconditional means model. In this model, we are seeking the grand mean. By identifying the nesting/grouping variable (ClientID) we also understand the proportions of between- and within- subjects variance.
 
-```r
-M1a <- lme4::lmer(Anxiety ~ 1 + (1 | ClientID), TIMElong, REML = FALSE)
+``` r
+M1a <- lme4::lmer(Anxiety ~1 +(1 | ClientID), TIMElong, REML = FALSE)
 summary(M1a)
 ```
 
@@ -760,10 +730,8 @@ summary(M1a)
 ## (Intercept)  2.07580    0.02056     101
 ```
 
-```r
-sjPlot::tab_model(M1a, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
-    show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
-    use.viewer = TRUE, dv.labels = c("Mod1"))
+``` r
+sjPlot::tab_model(M1a, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1"))
 ```
 
 ```
@@ -827,10 +795,9 @@ sjPlot::tab_model(M1a, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 
 We learn that the mean anxiety score is 2.08 across all individuals and all times. A primary purpose of the unconditional means model is to obtain and interpret the ICC. Between-persons variance is 78%; within-persons variance is its inverse (22%).
@@ -838,13 +805,12 @@ We learn that the mean anxiety score is 2.08 across all individuals and all time
 Although I would normally run the diagnostic plots after each model, in this lesson I am only displaying them after the first model (as a quick check to make sure there is nothing catastrophically wrong) and after the last model.
 
 
-```r
-# If the code below does not run, install the package glmmTMB from
-# its source with the following code Remove the hashtag to install,
-# then replace it to avoide re-re-installing the package
-# install.packages('glmmTMB', type='source')
+``` r
+#If the code below does not run, install the package glmmTMB from its source with the following code
+#Remove the hashtag to install, then replace it to avoide re-re-installing the package
+#install.packages("glmmTMB", type="source")
 
-sjPlot::plot_model(M1a, type = "diag")
+sjPlot::plot_model (M1a, type="diag")
 ```
 
 ```
@@ -895,17 +861,17 @@ The second model is introduces time (this time our Weeks variable) into the L1 s
 **For comparison**, this was our prior model; we can see how the model building occurs.
 M1a <- lme4::lmer(Anxiety ~1 +(1 | ClientID), TIMElong, REML = FALSE)
 
-```r
-# with lme4 package
-M2a <- lme4::lmer(Anxiety ~ Weeks + (Weeks | ClientID), TIMElong, REML = FALSE)
+``` r
+#with lme4 package
+M2a <- lme4::lmer(Anxiety ~ Weeks +(Weeks | ClientID), TIMElong, REML = FALSE)
 ```
 
 ```
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
-summary(M2a)
+``` r
+summary(M2a )
 ```
 
 ```
@@ -922,9 +888,9 @@ summary(M2a)
 ## 
 ## Random effects:
 ##  Groups   Name        Variance    Std.Dev. Corr 
-##  ClientID (Intercept) 5.175071253 2.274878      
+##  ClientID (Intercept) 5.175071263 2.274878      
 ##           Weeks       0.000001625 0.001275 -1.00
-##  Residual             1.260961495 1.122925      
+##  Residual             1.260961493 1.122925      
 ## Number of obs: 59125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:
@@ -939,10 +905,8 @@ summary(M2a)
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
-sjPlot::tab_model(M1a, M2a, p.style = "numeric", show.ci = FALSE, show.se = TRUE,
-    show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE,
-    use.viewer = TRUE, dv.labels = c("Mod1", "Mod2"))
+``` r
+sjPlot::tab_model(M1a, M2a, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2"))
 ```
 
 ```
@@ -1045,15 +1009,14 @@ sjPlot::tab_model(M1a, M2a, p.style = "numeric", show.ci = FALSE, show.se = TRUE
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 A plot of predicted values illustrates the decrease in anxiety as sessions continue.
 
-```r
-sjPlot::plot_model(M2a, type = "pred", terms = c("Weeks"))
+``` r
+sjPlot::plot_model (M2a, type="pred", terms=c("Weeks"))
 ```
 
 ![](15_TimeLord_files/figure-docx/unnamed-chunk-25-1.png)<!-- -->
@@ -1073,7 +1036,7 @@ $$Pseudo R_{\varepsilon }^{2} = \frac{\sigma^{2}(unconditional. means. model) - 
 We calculate it manually:
 
 
-```r
+``` r
 (1.45 - 1.26)/1.45
 ```
 
@@ -1095,17 +1058,16 @@ We will add sexual identity into the model. Because the only other predictor is 
 M1a <- lme4::lmer(Anxiety ~1 +(1 | ClientID), TIMElong, REML = FALSE)
 M2a <- lme4::lmer(Anxiety ~ Weeks +(Weeks | ClientID), TIMElong, REML = FALSE)
 
-```r
-# with lme4 package
-M3a <- lme4::lmer(Anxiety ~ Weeks * Het0 + (Weeks | ClientID), TIMElong,
-    REML = FALSE)
+``` r
+#with lme4 package
+M3a <- lme4::lmer(Anxiety ~ Weeks*Het0 +(Weeks | ClientID), TIMElong, REML = FALSE)
 ```
 
 ```
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
+``` r
 summary(M3a)
 ```
 
@@ -1123,9 +1085,9 @@ summary(M3a)
 ## 
 ## Random effects:
 ##  Groups   Name        Variance    Std.Dev. Corr 
-##  ClientID (Intercept) 5.158483221 2.271229      
+##  ClientID (Intercept) 5.158483214 2.271229      
 ##           Weeks       0.000001621 0.001273 -1.00
-##  Residual             1.260967447 1.122928      
+##  Residual             1.260967448 1.122928      
 ## Number of obs: 59125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:
@@ -1144,10 +1106,8 @@ summary(M3a)
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
-sjPlot::tab_model(M1a, M2a, M3a, p.style = "numeric", show.ci = FALSE,
-    show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
-    show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3"))
+``` r
+sjPlot::tab_model(M1a, M2a,M3a, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3"))
 ```
 
 ```
@@ -1296,13 +1256,12 @@ sjPlot::tab_model(M1a, M2a, M3a, p.style = "numeric", show.ci = FALSE,
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 
-```r
+``` r
 sjPlot::plot_model (M3a, type="int", terms = c("Weeks", "Het0 [0,1]"))
 ```
 
@@ -1324,7 +1283,7 @@ $\tau _{00}$ decreased from 5.18 (M2a) to 5.164 (M3a). We can apply the proporti
 $$Pseudo R_{\zeta }^{2} = \frac{\tau _{00} (unconditional. growth. model) - \tau _{00}(subsequent. model)}{\tau _{00}(unconditional. growth. model)}$$
 
 
-```r
+``` r
 (5.18-5.16)/5.18
 ```
 
@@ -1346,17 +1305,16 @@ M1a <- lme4::lmer(Anxiety ~1 +(1 | ClientID), TIMElong, REML = FALSE)
 M2a <- lme4::lmer(Anxiety ~ Weeks +(Weeks | ClientID), TIMElong, REML = FALSE)
 M3a <- lme4::lmer(Anxiety ~ Weeks*Het0 +(Weeks | ClientID), TIMElong, REML = FALSE)
 
-```r
-# with lme4 package
-M4a <- lme4::lmer(Anxiety ~ Weeks * Het0 + Weeks * DRel0 + Het0 * DRel0 +
-    (Weeks | ClientID), TIMElong, REML = FALSE, control = lme4::lmerControl(optimizer = "bobyqa"))
+``` r
+#with lme4 package
+M4a <- lme4::lmer(Anxiety ~ Weeks*Het0 + Weeks*DRel0 + Het0*DRel0 + (Weeks | ClientID), TIMElong, REML = FALSE, control = lme4::lmerControl(optimizer= "bobyqa"))
 ```
 
 ```
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
+``` r
 summary(M4a)
 ```
 
@@ -1376,20 +1334,20 @@ summary(M4a)
 ## 
 ## Random effects:
 ##  Groups   Name        Variance    Std.Dev. Corr 
-##  ClientID (Intercept) 5.158443793 2.271221      
+##  ClientID (Intercept) 5.158485592 2.271230      
 ##           Weeks       0.000001633 0.001278 -1.00
-##  Residual             1.260911383 1.122903      
+##  Residual             1.260909126 1.122902      
 ## Number of obs: 59125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:
 ##               Estimate Std. Error t value
-## (Intercept)  2.4710295  0.0397362  62.186
+## (Intercept)  2.4710295  0.0397363  62.186
 ## Weeks       -0.0761545  0.0016017 -47.547
-## Het0         0.3088905  0.0734210   4.207
-## DRel0        0.0329141  0.0509669   0.646
+## Het0         0.3088904  0.0734212   4.207
+## DRel0        0.0329141  0.0509671   0.646
 ## Weeks:Het0   0.0002992  0.0021045   0.142
 ## Weeks:DRel0 -0.0029014  0.0019256  -1.507
-## Het0:DRel0  -0.0425439  0.0933013  -0.456
+## Het0:DRel0  -0.0425439  0.0933016  -0.456
 ## 
 ## Correlation of Fixed Effects:
 ##             (Intr) Weeks  Het0   DRel0  Wks:H0 Wk:DR0
@@ -1403,11 +1361,8 @@ summary(M4a)
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
-sjPlot::tab_model(M1a, M2a, M3a, M4a, p.style = "numeric", show.ci = FALSE,
-    show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
-    show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3",
-        "Mod4"))
+``` r
+sjPlot::tab_model(M1a, M2a, M3a, M4a, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3", "Mod4"))
 ```
 
 ```
@@ -1629,10 +1584,9 @@ sjPlot::tab_model(M1a, M2a, M3a, M4a, p.style = "numeric", show.ci = FALSE,
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 We observe that none of the additional terms were statistically significant. Further, none of the variance components changed. Additionally, the output suggested convergence problems.  Let's trim.
 
@@ -1645,17 +1599,16 @@ M4a <- lme4::lmer(Anxiety ~ Weeks*Het0 + Weeks*DRel0 + Het0*DRel0 + (Weeks | Cli
 
 If we strictly trim all no-significant effects, we retain Weeks and sexual identity. We do not specify any interactions. 
 
-```r
-# with lme4 package
-M5a <- lme4::lmer(Anxiety ~ Weeks + Het0 + (Weeks | ClientID), TIMElong,
-    REML = FALSE, control = lme4::lmerControl(optimizer = "bobyqa"))
+``` r
+#with lme4 package
+M5a <- lme4::lmer(Anxiety ~ Weeks + Het0 + (Weeks | ClientID), TIMElong, REML = FALSE, control = lme4::lmerControl(optimizer= "bobyqa"))
 ```
 
 ```
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
+``` r
 summary(M5a)
 ```
 
@@ -1674,9 +1627,9 @@ summary(M5a)
 ## 
 ## Random effects:
 ##  Groups   Name        Variance    Std.Dev. Corr 
-##  ClientID (Intercept) 5.158470566 2.271227      
+##  ClientID (Intercept) 5.158474616 2.271228      
 ##           Weeks       0.000001628 0.001276 -1.00
-##  Residual             1.260973480 1.122931      
+##  Residual             1.260973178 1.122931      
 ## Number of obs: 59125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:
@@ -1693,11 +1646,8 @@ summary(M5a)
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
-sjPlot::tab_model(M1a, M2a, M3a, M4a, M5a, p.style = "numeric", show.ci = FALSE,
-    show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
-    show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3",
-        "Mod4", "Mod5"))
+``` r
+sjPlot::tab_model(M1a, M2a, M3a, M4a, M5a, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1", "Mod2", "Mod3", "Mod4", "Mod5"))
 ```
 
 ```
@@ -1956,13 +1906,12 @@ sjPlot::tab_model(M1a, M2a, M3a, M4a, M5a, p.style = "numeric", show.ci = FALSE,
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 
-```r
+``` r
 sjPlot::plot_model (M5a, type="diag")
 ```
 
@@ -2009,8 +1958,8 @@ sjPlot::plot_model (M5a, type="diag")
 Because of the significant trimming (of non-significant interaction effects), our plot resemble those we have observed throughout the model building process. For this final model we cannot use the *type = "int"* because it requires an interaction term and we did not have one.
 
 
-```r
-sjPlot::plot_model(M5a, type = "pred", terms = c("Weeks", "Het0"))
+``` r
+sjPlot::plot_model (M5a, type="pred",terms=c("Weeks", "Het0"))
 ```
 
 ![](15_TimeLord_files/figure-docx/unnamed-chunk-34-1.png)<!-- -->
@@ -2018,7 +1967,7 @@ sjPlot::plot_model(M5a, type = "pred", terms = c("Weeks", "Het0"))
 Our results are consistent with what we expected when we trimmed.  That is, Anxiety for heterosexual clients at Week1 is 2.48; for LGBQQ clients it is 2.78. For all clients, anxiety decreases, on average, .08 per week. 
 
 
-```r
+``` r
 2.49 + .29
 ```
 
@@ -2033,7 +1982,7 @@ So what would happen if we used the Index variable -- representing the five, seq
 First, let's format Index as numeric.
 
 
-```r
+``` r
 library(dplyr) 
 TIMElong <- TIMElong %>%
     mutate(
@@ -3690,7 +3639,7 @@ as.numeric(as.character(TIMElong$Index))
 ```
 
 
-```r
+``` r
 str(TIMElong$Index)
 ```
 
@@ -3701,10 +3650,10 @@ str(TIMElong$Index)
 Next, the abbreviated preliminary exploration. As you will see, the unbalanced design has prevented them from running properly. While MLM can accomodate unbalanced designs, it can cause difficulties here and there.  I will be looking for an alternate way to produce these graphs that can accommodate missing data more effectively.
 
 
-```r
+``` r
 library(ggplot2)
-ggplot(data = rndm30time, aes(x = Index, y = Anxiety)) + geom_point() +
-    geom_line() + facet_wrap(~ClientID)
+ggplot(data = rndm30time, aes(x = Index, y = Anxiety)) + geom_point() + geom_line() +
+    facet_wrap(~ClientID)
 ```
 
 ```
@@ -3772,7 +3721,7 @@ ggplot(data = rndm30time, aes(x = Index, y = Anxiety)) + geom_point() +
 
 ![](15_TimeLord_files/figure-docx/unnamed-chunk-38-1.png)<!-- -->
 
-```r
+``` r
 ggplot(data = rndm30time, aes(x = Index, y = Anxiety)) + geom_point() +
     stat_smooth(method = "lm", se = FALSE) + facet_wrap(~ClientID)
 ```
@@ -3785,45 +3734,41 @@ ggplot(data = rndm30time, aes(x = Index, y = Anxiety)) + geom_point() +
 
 I will run all of the models in one chunk and produce the *tab_model* table.
 
-```r
-# with lme4 package
-M1i <- lme4::lmer(Anxiety ~ 1 + (1 | ClientID), TIMElong, REML = FALSE)
-M2i <- lme4::lmer(Anxiety ~ Index + (Index | ClientID), TIMElong, REML = FALSE,
-    control = lme4::lmerControl(check.nobs.vs.nRE = "ignore"))
+``` r
+#with lme4 package
+M1i <- lme4::lmer(Anxiety ~1 +(1 | ClientID), TIMElong, REML = FALSE)
+M2i <- lme4::lmer(Anxiety ~ Index + (Index | ClientID), TIMElong, REML = FALSE, control=lme4::lmerControl(check.nobs.vs.nRE="ignore"))
 ```
 
 ```
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
-M3i <- lme4::lmer(Anxiety ~ Index * Het0 + (Index | ClientID), TIMElong,
-    REML = FALSE, control = lme4::lmerControl(optimizer = "bobyqa"))
+``` r
+M3i <- lme4::lmer(Anxiety ~ Index*Het0 +(Index | ClientID), TIMElong, REML = FALSE, control = lme4::lmerControl(optimizer= "bobyqa"))
 ```
 
 ```
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
-M4i <- lme4::lmer(Anxiety ~ Index * Het0 + Index * DRel0 + Het0 * DRel0 +
-    (Index | ClientID), TIMElong, REML = FALSE, control = lme4::lmerControl(optimizer = "bobyqa"))
+``` r
+M4i <- lme4::lmer(Anxiety ~ Index*Het0 + Index*DRel0 + Het0*DRel0 + (Index | ClientID), TIMElong, REML = FALSE, control = lme4::lmerControl(optimizer= "bobyqa"))
 ```
 
 ```
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
-M5i <- lme4::lmer(Anxiety ~ Index + Het0 + (Index | ClientID), TIMElong,
-    REML = FALSE, control = lme4::lmerControl(optimizer = "bobyqa"))
+``` r
+M5i <- lme4::lmer(Anxiety ~ Index + Het0 + (Index | ClientID), TIMElong, REML = FALSE, control = lme4::lmerControl(optimizer= "bobyqa"))
 ```
 
 ```
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
+``` r
 summary(M5a)
 ```
 
@@ -3842,9 +3787,9 @@ summary(M5a)
 ## 
 ## Random effects:
 ##  Groups   Name        Variance    Std.Dev. Corr 
-##  ClientID (Intercept) 5.158470566 2.271227      
+##  ClientID (Intercept) 5.158474616 2.271228      
 ##           Weeks       0.000001628 0.001276 -1.00
-##  Residual             1.260973480 1.122931      
+##  Residual             1.260973178 1.122931      
 ## Number of obs: 59125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:
@@ -3861,11 +3806,8 @@ summary(M5a)
 ## boundary (singular) fit: see help('isSingular')
 ```
 
-```r
-sjPlot::tab_model(M1i, M2i, M3i, M4i, M5i, p.style = "numeric", show.ci = FALSE,
-    show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE,
-    show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1i", "Mod2i",
-        "Mod3i", "Mod4i", "Mod5i"))
+``` r
+sjPlot::tab_model(M1i, M2i, M3i, M4i, M5i, p.style = "numeric", show.ci = FALSE, show.se = TRUE, show.df = FALSE, show.re.var = TRUE, show.aic = TRUE, show.dev = TRUE, use.viewer = TRUE, dv.labels = c("Mod1i", "Mod2i", "Mod3i", "Mod4i", "Mod5i"))
 ```
 
 ```
@@ -4124,15 +4066,14 @@ sjPlot::tab_model(M1i, M2i, M3i, M4i, M5i, p.style = "numeric", show.ci = FALSE,
 
 </table>
 
-```r
-# can swap this statement with the 'file = 'TabMod_Table'' to get
-# Viewer output or the outfile that you can open in Word file =
-# 'TabMod_Table.doc'
+``` r
+#can swap this statement with the "file = "TabMod_Table"" to get Viewer output or the outfile that you can open in Word
+#file = "TabMod_Table.doc"
 ```
 
 
-```r
-sjPlot::plot_model(M5i, type = "pred", terms = c("Index", "Het0"))
+``` r
+sjPlot::plot_model (M5i, type="pred",terms=c("Index", "Het0"))
 ```
 
 ![](15_TimeLord_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
@@ -4236,8 +4177,8 @@ Correspondingly, it is important to let lubridate know that the format is year/m
 Below, hashtagged out, is code I have used to format the Qualtrics datestamp.  Unless you have changed it for your own surveys, Qualtrics data is collected in Mountain time.  Therefore, I have indicated the US/Mountain timezone.
 
 
-```r
-# df$DateVariable <- ymd_hms(df$DateVariable, tz = 'US/Mountain')
+``` r
+#df$DateVariable <- ymd_hms(df$DateVariable, tz = "US/Mountain")
 ```
 
 
@@ -4246,8 +4187,8 @@ Below, hashtagged out, is code I have used to format the Qualtrics datestamp.  U
 As noted in the prior question, "tz" is the function used to indicate the time zone.  A complete list of timezones can be found with the *OlsonNames()* function. I have hashtagged it out because it is quite a length list!
 
 
-```r
-# OlsonNames()
+``` r
+#OlsonNames()
 ```
 
 

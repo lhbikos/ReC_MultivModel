@@ -1,0 +1,8 @@
+"0",""
+"0","babydf$p1T <- datawizard::row_means(babydf, select = c('ClearPresentation','EffectiveAnswers'), min_valid = .5)"
+"0","babydf$p2T <- datawizard::row_means(babydf, select = c('Feedback','ClearOrganization'), min_valid = .5)"
+"0",""
+"0","#for consistency, I will create a third parcel from the ClearResponsibilities variable by duplicating and renaming it"
+"0",""
+"0","babydf$p3T <- babydf$ClearResponsibilities"
+"0",""

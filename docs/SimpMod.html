@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Simple Moderation in OLS and MLE | ReCentering Psych Stats: Multivariate Modeling</title>
   <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Simple Moderation in OLS and MLE | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2024-03-09" />
+<meta name="date" content="2026-11-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -128,6 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -165,6 +167,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>PREFACE</a>
 <ul>
+<li class="chapter" data-level="0.1" data-path="preface.html"><a href="preface.html#invitation-to-collaboration"><i class="fa fa-check"></i><b>0.1</b> Invitation to Collaboration</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
@@ -787,7 +790,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#model-3-add-l2-predictors"><i class="fa fa-check"></i>Model 3: Add L2 predictors</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#model-4-add-a-cross-level-interaction"><i class="fa fa-check"></i>Model 4: Add a cross-level interaction</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#create-a-tab_model-table-with-the-final-set-of-models"><i class="fa fa-check"></i>Create a tab_model table with the final set of models</a></li>
-<li class="chapter" data-level="12.8.2" data-path="wGroups.html"><a href="wGroups.html#use-arend-schäfers--arend_statistical_2019-power-tables-to-determine-the-power-of-the-l1-l2-and-cross-level-interactions-in-your-model"><i class="fa fa-check"></i><b>12.8.2</b> Use Arend &amp; Schäfer’s <span class="citation">(2019)</span> power tables to determine the power of the L1, L2, and cross-level interactions in your model</a></li>
+<li class="chapter" data-level="12.8.2" data-path="07-SimpleMod.html"><a href="#use-arend-sch%C3%A4fers--arend_statistical_2019-power-tables-to-determine-the-power-of-the-l1-l2-and-cross-level-interactions-in-your-model"><i class="fa fa-check"></i><b>12.8.2</b> Use Arend &amp; Schäfer’s <span class="citation">(2019)</span> power tables to determine the power of the L1, L2, and cross-level interactions in your model</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#create-a-figure-to-represent-the-result"><i class="fa fa-check"></i>Create a figure to represent the result</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#apa-style-writeup-5"><i class="fa fa-check"></i>APA Style writeup</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#explanation-to-grader-5"><i class="fa fa-check"></i>Explanation to grader</a></li>
@@ -1019,31 +1022,16 @@ div.csl-indent {
 <div id="packages-6" class="section level3 hasAnchor" number="7.1.4">
 <h3><span class="header-section-number">7.1.4</span> Packages<a href="SimpMod.html#packages-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="SimpMod.html#cb373-1" tabindex="-1"></a><span class="co"># will install the package if not already installed</span></span>
-<span id="cb373-2"><a href="SimpMod.html#cb373-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(apaTables)) {</span>
-<span id="cb373-3"><a href="SimpMod.html#cb373-3" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;apaTables&quot;</span>)</span>
-<span id="cb373-4"><a href="SimpMod.html#cb373-4" tabindex="-1"></a>}</span>
-<span id="cb373-5"><a href="SimpMod.html#cb373-5" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(lavaan)) {</span>
-<span id="cb373-6"><a href="SimpMod.html#cb373-6" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;lavaan&quot;</span>)</span>
-<span id="cb373-7"><a href="SimpMod.html#cb373-7" tabindex="-1"></a>}</span>
-<span id="cb373-8"><a href="SimpMod.html#cb373-8" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(tidyverse)) {</span>
-<span id="cb373-9"><a href="SimpMod.html#cb373-9" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb373-10"><a href="SimpMod.html#cb373-10" tabindex="-1"></a>}</span>
-<span id="cb373-11"><a href="SimpMod.html#cb373-11" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(psych)) {</span>
-<span id="cb373-12"><a href="SimpMod.html#cb373-12" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;psych&quot;</span>)</span>
-<span id="cb373-13"><a href="SimpMod.html#cb373-13" tabindex="-1"></a>}</span>
-<span id="cb373-14"><a href="SimpMod.html#cb373-14" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(jtools)) {</span>
-<span id="cb373-15"><a href="SimpMod.html#cb373-15" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;jtools&quot;</span>)</span>
-<span id="cb373-16"><a href="SimpMod.html#cb373-16" tabindex="-1"></a>}</span>
-<span id="cb373-17"><a href="SimpMod.html#cb373-17" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(broom)) {</span>
-<span id="cb373-18"><a href="SimpMod.html#cb373-18" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;broom&quot;</span>)</span>
-<span id="cb373-19"><a href="SimpMod.html#cb373-19" tabindex="-1"></a>}</span>
-<span id="cb373-20"><a href="SimpMod.html#cb373-20" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(interactions)) {</span>
-<span id="cb373-21"><a href="SimpMod.html#cb373-21" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;interactions&quot;</span>)</span>
-<span id="cb373-22"><a href="SimpMod.html#cb373-22" tabindex="-1"></a>}</span>
-<span id="cb373-23"><a href="SimpMod.html#cb373-23" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(tidySEM)) {</span>
-<span id="cb373-24"><a href="SimpMod.html#cb373-24" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;tidySEM&quot;</span>)</span>
-<span id="cb373-25"><a href="SimpMod.html#cb373-25" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="SimpMod.html#cb382-1" tabindex="-1"></a><span class="co">#will install the package if not already installed</span></span>
+<span id="cb382-2"><a href="SimpMod.html#cb382-2" tabindex="-1"></a><span class="co">#if(!require(apaTables)){install.packages(&quot;apaTables&quot;)}</span></span>
+<span id="cb382-3"><a href="SimpMod.html#cb382-3" tabindex="-1"></a><span class="co">#if(!require(lavaan)){install.packages(&quot;lavaan&quot;)}</span></span>
+<span id="cb382-4"><a href="SimpMod.html#cb382-4" tabindex="-1"></a><span class="co">#if(!require(tidyverse)){install.packages(&quot;tidyverse&quot;)}</span></span>
+<span id="cb382-5"><a href="SimpMod.html#cb382-5" tabindex="-1"></a><span class="co">#if(!require(psych)){install.packages(&quot;psych&quot;)}</span></span>
+<span id="cb382-6"><a href="SimpMod.html#cb382-6" tabindex="-1"></a><span class="co">#if(!require(jtools)){install.packages(&quot;jtools&quot;)}</span></span>
+<span id="cb382-7"><a href="SimpMod.html#cb382-7" tabindex="-1"></a><span class="co">#if(!require(broom)){install.packages(&quot;broom&quot;)}</span></span>
+<span id="cb382-8"><a href="SimpMod.html#cb382-8" tabindex="-1"></a><span class="co">#if(!require(interactions)){install.packages(&quot;interactions&quot;)}</span></span>
+<span id="cb382-9"><a href="SimpMod.html#cb382-9" tabindex="-1"></a><span class="co">#if(!require(tidySEM)){install.packages(&quot;tidySEM&quot;)}</span></span>
+<span id="cb382-10"><a href="SimpMod.html#cb382-10" tabindex="-1"></a><span class="co">#if(!require(datawizard)){install.packages(&quot;datawizard&quot;)}</span></span></code></pre></div>
 </div>
 </div>
 <div id="on-modeling-introductory-comments-on-the-simultaneously-invisible-and-paradigm-shifting-transition-we-are-making" class="section level2 hasAnchor" number="7.2">
@@ -1057,7 +1045,7 @@ div.csl-indent {
 <col width="100%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th align="left">Contributions of the Fisherian and Neyman-Pearson Approaches to NHST <span class="citation">(<a href="#ref-rodgers_epistemology_2010">Rodgers, 2010</a>)</span></th>
 </tr>
 </thead>
@@ -1070,7 +1058,7 @@ div.csl-indent {
 <col width="49%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="center"><strong>Fisher</strong></td>
 <td align="center"><strong>Neyman-Pearson</strong></td>
 </tr>
@@ -1082,19 +1070,19 @@ div.csl-indent {
 <col width="49%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left">Developed NHST to answer scientific questions and evaluate theory.</td>
 <td align="left">Sought to draw conclusions in applied settings such as quality control.</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">Took an incremental approach to hypothesis testing that involved replication and (potentially) self-correcting; as such viewed <em>replication</em> as a critical element.</td>
 <td align="left">Placed emphasis on the importance of each individual decision.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">Never used the terms, “alternative hypothesis” or “alpha level.” Rather, Fisher used the distribution of the null model to examine “whether the data look weird or not.”</td>
 <td align="left">Designed their approach to detect an “alternative hypothesis.”</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">Gave us the null hypothesis and <em>p</em> value.</td>
 <td align="left">Gave us the alternative hypothesis, alpha level, and power.</td>
 </tr>
@@ -1209,7 +1197,7 @@ div.csl-indent {
 <col width="100%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th align="left">Comparing OLS and MLE <span class="citation">(<a href="#ref-cohen_applied_2003">J. Cohen et al., 2003</a>; <a href="#ref-myung_tutorial_2003">Myung, 2003</a>)</span></th>
 </tr>
 </thead>
@@ -1223,7 +1211,7 @@ div.csl-indent {
 <col width="41%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="center"><strong>Criterion</strong></td>
 <td align="center"><strong>Ordinary Least Squares (OSL)</strong></td>
 <td align="center"><strong>Maximum Likelihood Estimation (MLE)</strong></td>
@@ -1237,22 +1225,22 @@ div.csl-indent {
 <col width="41%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="center">Parameter values chosen to…</td>
 <td align="center">minimize the distance between the predictions from regression line and the observations; considered to be those that are <em>most accurate</em></td>
 <td align="center">be those that are <em>most likely</em> to have produced the data</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="center">Parameter values are obtained by</td>
 <td align="center">equations that are known and linear (you can find them in the “back of the book”)</td>
 <td align="center">a non-linear optimization algorithm</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="center">Preferred when…</td>
 <td align="center">sample size is small</td>
 <td align="center">sample size is large, for complex models, non-linear models, and when OLS and MLE results differ</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="center">In R…</td>
 <td align="center">the <em>lm()</em> function in base R</td>
 <td align="center"><em>lavaan</em> and other packages*; specifying the FIML option allows for missing data (without imputation)</td>
@@ -1269,7 +1257,7 @@ div.csl-indent {
 <div id="introducing-the-lavaan-package" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Introducing the <em>lavaan</em> package<a href="SimpMod.html#introducing-the-lavaan-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the regression classes (as well as in research designs that are cross-sectional, non-linear, and can be parsimoniously and adequately measured with OLS regression) we typically use the base R function, <em>lm()</em> (“linear model”) which relies on an OLS algorithm. You can learn about it with this simple code:</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="SimpMod.html#cb374-1" tabindex="-1"></a><span class="co">#?lm</span></span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="SimpMod.html#cb383-1" tabindex="-1"></a><span class="co">#?lm</span></span></code></pre></div>
 <p>Rosseel’s <span class="citation">(<a href="#ref-rosseel_lavaan_2020">2020</a>)</span> <em>lavaan</em> package was developed for SEM, but is readily adaptable to most multiple regression models. Which do we use and when?</p>
 <ul>
 <li>For relatively simple models that involve only predictors, covariates, and moderators, <em>lm()</em> is adequate.</li>
@@ -1281,7 +1269,7 @@ div.csl-indent {
 <h3><span class="header-section-number">7.4.1</span> The FIML magic for which we have been waiting<a href="SimpMod.html#the-fiml-magic-for-which-we-have-been-waiting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are different types of maximum likelihood. In this chapter we’ll utilize <em>full information maximum likelihood</em> (FIML). FIML is one of the most practical missing data estimation approaches around and is especially used in SEM and CFA. When data are thought to be MAR (missing at random) or MCAR (missing completely at random), it has been shown to produce unbiased parameter estimates and standard errors.</p>
 <p>The FIML approach works by estimating a likelihood function for each individual based on the variables that are present so that all available data are used. Model fit is calculated from (or informed by) the fit functions for all individual cases. Hence, “FIML” is <em>full information</em> maximum likelihood.</p>
-<p>When I am able to use <em>lavaan</em>, my approach is to use Parent’s AIA (available information analysis, -<span class="citation">Parent (<a href="#ref-parent_handling_2013">2013</a>)</span>) approach to scoring data, then specify a FIML approach (i.e., adding <em>missing = ‘fiml’</em>) in my lavaan code. Even though the text-book examples we work have complete data, I will try to include this code so that it will be readily available for you, should you use the as templates for your own data.</p>
+<p>When I am able to use <em>lavaan</em>, my approach is to use Parent’s AIA (available information analysis, <span class="citation">(<a href="#ref-parent_handling_2013">2013</a>)</span>) approach to scoring data, then specify a FIML approach (i.e., adding <em>missing = ‘fiml’</em>) in my lavaan code. Even though the text-book examples we work have complete data, I will try to include this code so that it will be readily available for you, should you use the as templates for your own data.</p>
 <p>In this portion of the ReCentering Psych Stats series we are headed toward more complex models that include both mediation and moderation. Hayes <span class="citation">(<a href="#ref-hayes_introduction_2018">Hayes, 2018</a>)</span> would call this “conditional process analysis.” Others would simply refer to it as “path analysis.” Although all these terms are sometimes overlapping, <em>path analysis</em> is a distinction from <em>structural equation modeling</em> (SEM) where latent variables are composed of the observed variables. Let’s take a look at some of the nuances of the whole SEM world and how it relates to PROCESS.</p>
 <p><strong>SEM</strong> is broad term (that could include CFA and path analysis) but is mostly reserved for models with some type of latent variable (i.e., some might exclude path analysis from its definitions). SEM typically uses some form of MLE (not ordinary least squares).</p>
 <p><em>Latent variables</em> (circles in the model, below) are those that are “created” in the analytic process but will never appear as a column in your dataset. It may be easiest to think of a latent variable as a scale score – where you sum (or average) the indicator item values to get the score (except we don’t do that). Rather, the LV is “indicated” by variance the indicator/observed/manifest variables share with each other.</p>
@@ -1334,142 +1322,126 @@ div.csl-indent {
 <div id="data-simulation-3" class="section level4 hasAnchor" number="7.6.1.1">
 <h4><span class="header-section-number">7.6.1.1</span> Data Simulation<a href="SimpMod.html#data-simulation-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <em>lavaan::simulateData</em> function was used. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures <span class="citation">(<a href="#ref-nadal_racial_2011">Nadal, 2011</a>; <a href="#ref-veit_structure_1983">Veit &amp; Ware, 1983</a>)</span>. For all others we specified a factor loading of 0.80. We then approximated the <em>measurement model</em> by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette <span class="citation">(<a href="#ref-lewis_applying_2017">J. A. Lewis et al., 2017</a>)</span>. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="SimpMod.html#cb375-1" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
-<span id="cb375-2"><a href="SimpMod.html#cb375-2" tabindex="-1"></a></span>
-<span id="cb375-3"><a href="SimpMod.html#cb375-3" tabindex="-1"></a>Lewis_generating_model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb375-4"><a href="SimpMod.html#cb375-4" tabindex="-1"></a><span class="st">        #measurement model</span></span>
-<span id="cb375-5"><a href="SimpMod.html#cb375-5" tabindex="-1"></a><span class="st">        GRMS  =~ .69*Ob1 + .69*Ob2 + .60*Ob3 + .59*Ob4 + .55*Ob5 + .55*Ob6 + .54*Ob7 + .50*Ob8 + .41*Ob9 + .41*Ob10 + .93*Ma1 + .81*Ma2 + .69*Ma3 + .67*Ma4 + .61*Ma5 + .58*Ma6 + .54*Ma7 + .59*St1 + .55*St2 + .54*St3 + .54*St4 + .51*St5 + .70*An1 + .69*An2 + .68*An3</span></span>
-<span id="cb375-6"><a href="SimpMod.html#cb375-6" tabindex="-1"></a><span class="st">        MntlHlth  =~ .8*MH1 + .8*MH2 + .8*MH3 + .8*MH4 + .8*MH5 + .8*MH6</span></span>
-<span id="cb375-7"><a href="SimpMod.html#cb375-7" tabindex="-1"></a><span class="st">        PhysHlth  =~ .8*PhH1 + .8*PhH2 + .8*PhH3 + .8*PhH4 + .8*PhH5 + .8*PhH6</span></span>
-<span id="cb375-8"><a href="SimpMod.html#cb375-8" tabindex="-1"></a><span class="st">        Spirituality  =~ .8*Spirit1 + .8*Spirit2</span></span>
-<span id="cb375-9"><a href="SimpMod.html#cb375-9" tabindex="-1"></a><span class="st">        SocSupport  =~ .8*SocS1 + .8*SocS2</span></span>
-<span id="cb375-10"><a href="SimpMod.html#cb375-10" tabindex="-1"></a><span class="st">        Engagement  =~ .8*Eng1 + .8*Eng2</span></span>
-<span id="cb375-11"><a href="SimpMod.html#cb375-11" tabindex="-1"></a><span class="st">        Disengagement  =~  .8*dEng1 + .8*dEng2</span></span>
-<span id="cb375-12"><a href="SimpMod.html#cb375-12" tabindex="-1"></a><span class="st">        GRIC  =~ .8*Cntrlty1 + .8*Cntrlty2 + .8*Cntrlty3 + .8*Cntrlty4 + .8*Cntrlty5 + .8*Cntrlty6 + .8*Cntrlty7 + .8*Cntrlty8 + .8*Cntrlty9 + .8*Cntrlty10</span></span>
-<span id="cb375-13"><a href="SimpMod.html#cb375-13" tabindex="-1"></a><span class="st">   </span></span>
-<span id="cb375-14"><a href="SimpMod.html#cb375-14" tabindex="-1"></a><span class="st">        #Means</span></span>
-<span id="cb375-15"><a href="SimpMod.html#cb375-15" tabindex="-1"></a><span class="st">         GRMS ~ 1.99*1</span></span>
-<span id="cb375-16"><a href="SimpMod.html#cb375-16" tabindex="-1"></a><span class="st">         Spirituality ~2.82*1</span></span>
-<span id="cb375-17"><a href="SimpMod.html#cb375-17" tabindex="-1"></a><span class="st">         SocSupport ~ 2.48*1</span></span>
-<span id="cb375-18"><a href="SimpMod.html#cb375-18" tabindex="-1"></a><span class="st">         Engagement ~ 2.32*1</span></span>
-<span id="cb375-19"><a href="SimpMod.html#cb375-19" tabindex="-1"></a><span class="st">         Disengagement ~ 1.75*1</span></span>
-<span id="cb375-20"><a href="SimpMod.html#cb375-20" tabindex="-1"></a><span class="st">         GRIC ~ 5.71*1</span></span>
-<span id="cb375-21"><a href="SimpMod.html#cb375-21" tabindex="-1"></a><span class="st">         MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation</span></span>
-<span id="cb375-22"><a href="SimpMod.html#cb375-22" tabindex="-1"></a><span class="st">         PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation</span></span>
-<span id="cb375-23"><a href="SimpMod.html#cb375-23" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb375-24"><a href="SimpMod.html#cb375-24" tabindex="-1"></a><span class="st">        #Correlations </span></span>
-<span id="cb375-25"><a href="SimpMod.html#cb375-25" tabindex="-1"></a><span class="st">         GRMS ~ 0.20*Spirituality</span></span>
-<span id="cb375-26"><a href="SimpMod.html#cb375-26" tabindex="-1"></a><span class="st">         GRMS ~ 0.28*SocSupport</span></span>
-<span id="cb375-27"><a href="SimpMod.html#cb375-27" tabindex="-1"></a><span class="st">         GRMS ~ 0.30*Engagement</span></span>
-<span id="cb375-28"><a href="SimpMod.html#cb375-28" tabindex="-1"></a><span class="st">         GRMS ~ 0.41*Disengagement</span></span>
-<span id="cb375-29"><a href="SimpMod.html#cb375-29" tabindex="-1"></a><span class="st">         GRMS ~ 0.19*GRIC</span></span>
-<span id="cb375-30"><a href="SimpMod.html#cb375-30" tabindex="-1"></a><span class="st">         GRMS ~ -0.32*MntlHlth</span></span>
-<span id="cb375-31"><a href="SimpMod.html#cb375-31" tabindex="-1"></a><span class="st">         GRMS ~ -0.18*PhysHlth</span></span>
-<span id="cb375-32"><a href="SimpMod.html#cb375-32" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb375-33"><a href="SimpMod.html#cb375-33" tabindex="-1"></a><span class="st">         Spirituality ~ 0.49*SocSupport</span></span>
-<span id="cb375-34"><a href="SimpMod.html#cb375-34" tabindex="-1"></a><span class="st">         Spirituality ~ 0.57*Engagement</span></span>
-<span id="cb375-35"><a href="SimpMod.html#cb375-35" tabindex="-1"></a><span class="st">         Spirituality ~ 0.22*Disengagement</span></span>
-<span id="cb375-36"><a href="SimpMod.html#cb375-36" tabindex="-1"></a><span class="st">         Spirituality ~ 0.12*GRIC</span></span>
-<span id="cb375-37"><a href="SimpMod.html#cb375-37" tabindex="-1"></a><span class="st">         Spirituality ~ -0.06*MntlHlth</span></span>
-<span id="cb375-38"><a href="SimpMod.html#cb375-38" tabindex="-1"></a><span class="st">         Spirituality ~ -0.13*PhysHlth</span></span>
-<span id="cb375-39"><a href="SimpMod.html#cb375-39" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb375-40"><a href="SimpMod.html#cb375-40" tabindex="-1"></a><span class="st">         SocSupport ~ 0.46*Engagement</span></span>
-<span id="cb375-41"><a href="SimpMod.html#cb375-41" tabindex="-1"></a><span class="st">         SocSupport ~ 0.26*Disengagement</span></span>
-<span id="cb375-42"><a href="SimpMod.html#cb375-42" tabindex="-1"></a><span class="st">         SocSupport ~ 0.38*GRIC</span></span>
-<span id="cb375-43"><a href="SimpMod.html#cb375-43" tabindex="-1"></a><span class="st">         SocSupport ~ -0.18*MntlHlth</span></span>
-<span id="cb375-44"><a href="SimpMod.html#cb375-44" tabindex="-1"></a><span class="st">         SocSupport ~ -0.08*PhysHlth</span></span>
-<span id="cb375-45"><a href="SimpMod.html#cb375-45" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb375-46"><a href="SimpMod.html#cb375-46" tabindex="-1"></a><span class="st">         Engagement ~ 0.37*Disengagement</span></span>
-<span id="cb375-47"><a href="SimpMod.html#cb375-47" tabindex="-1"></a><span class="st">         Engagement ~ 0.08*GRIC</span></span>
-<span id="cb375-48"><a href="SimpMod.html#cb375-48" tabindex="-1"></a><span class="st">         Engagement ~ -0.14*MntlHlth</span></span>
-<span id="cb375-49"><a href="SimpMod.html#cb375-49" tabindex="-1"></a><span class="st">         Engagement ~ -0.06*PhysHlth</span></span>
-<span id="cb375-50"><a href="SimpMod.html#cb375-50" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb375-51"><a href="SimpMod.html#cb375-51" tabindex="-1"></a><span class="st">         Disengagement ~ 0.05*GRIC</span></span>
-<span id="cb375-52"><a href="SimpMod.html#cb375-52" tabindex="-1"></a><span class="st">         Disengagement ~ -0.54*MntlHlth</span></span>
-<span id="cb375-53"><a href="SimpMod.html#cb375-53" tabindex="-1"></a><span class="st">         Disengagement ~ -0.28*PhysHlth</span></span>
-<span id="cb375-54"><a href="SimpMod.html#cb375-54" tabindex="-1"></a><span class="st">         </span></span>
-<span id="cb375-55"><a href="SimpMod.html#cb375-55" tabindex="-1"></a><span class="st">         GRIC ~ -0.10*MntlHlth</span></span>
-<span id="cb375-56"><a href="SimpMod.html#cb375-56" tabindex="-1"></a><span class="st">         GRIC ~ 0.14*PhysHlth</span></span>
-<span id="cb375-57"><a href="SimpMod.html#cb375-57" tabindex="-1"></a><span class="st">     </span></span>
-<span id="cb375-58"><a href="SimpMod.html#cb375-58" tabindex="-1"></a><span class="st">         MntlHlth ~ 0.47*PhysHlth         </span></span>
-<span id="cb375-59"><a href="SimpMod.html#cb375-59" tabindex="-1"></a><span class="st">        &#39;</span></span>
-<span id="cb375-60"><a href="SimpMod.html#cb375-60" tabindex="-1"></a></span>
-<span id="cb375-61"><a href="SimpMod.html#cb375-61" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230925</span>)</span>
-<span id="cb375-62"><a href="SimpMod.html#cb375-62" tabindex="-1"></a>dfLewis <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">simulateData</span>(<span class="at">model =</span> Lewis_generating_model,</span>
-<span id="cb375-63"><a href="SimpMod.html#cb375-63" tabindex="-1"></a>                              <span class="at">model.type =</span> <span class="st">&quot;sem&quot;</span>,</span>
-<span id="cb375-64"><a href="SimpMod.html#cb375-64" tabindex="-1"></a>                              <span class="at">meanstructure =</span> T,</span>
-<span id="cb375-65"><a href="SimpMod.html#cb375-65" tabindex="-1"></a>                              <span class="at">sample.nobs=</span><span class="dv">231</span>,</span>
-<span id="cb375-66"><a href="SimpMod.html#cb375-66" tabindex="-1"></a>                              <span class="at">standardized=</span><span class="cn">FALSE</span>)</span>
-<span id="cb375-67"><a href="SimpMod.html#cb375-67" tabindex="-1"></a></span>
-<span id="cb375-68"><a href="SimpMod.html#cb375-68" tabindex="-1"></a><span class="co">#used to retrieve column indices used in the rescaling script below</span></span>
-<span id="cb375-69"><a href="SimpMod.html#cb375-69" tabindex="-1"></a><span class="co">#col_index &lt;- as.data.frame(colnames(dfLewis))</span></span>
-<span id="cb375-70"><a href="SimpMod.html#cb375-70" tabindex="-1"></a></span>
-<span id="cb375-71"><a href="SimpMod.html#cb375-71" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dfLewis)){  <span class="co"># for loop to go through each column of the dataframe </span></span>
-<span id="cb375-72"><a href="SimpMod.html#cb375-72" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">25</span>){   <span class="co"># apply only to GRMS variables</span></span>
-<span id="cb375-73"><a href="SimpMod.html#cb375-73" tabindex="-1"></a>    dfLewis[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfLewis[,i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>))</span>
-<span id="cb375-74"><a href="SimpMod.html#cb375-74" tabindex="-1"></a>  }</span>
-<span id="cb375-75"><a href="SimpMod.html#cb375-75" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">26</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">37</span>){   <span class="co"># apply only to mental and physical health variables </span></span>
-<span id="cb375-76"><a href="SimpMod.html#cb375-76" tabindex="-1"></a>    dfLewis[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfLewis[,i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>))</span>
-<span id="cb375-77"><a href="SimpMod.html#cb375-77" tabindex="-1"></a>  }</span>
-<span id="cb375-78"><a href="SimpMod.html#cb375-78" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">38</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">45</span>){   <span class="co"># apply only to coping variables</span></span>
-<span id="cb375-79"><a href="SimpMod.html#cb375-79" tabindex="-1"></a>    dfLewis[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfLewis[,i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>))</span>
-<span id="cb375-80"><a href="SimpMod.html#cb375-80" tabindex="-1"></a>  }</span>
-<span id="cb375-81"><a href="SimpMod.html#cb375-81" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">46</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">55</span>){   <span class="co"># apply only to GRIC variables</span></span>
-<span id="cb375-82"><a href="SimpMod.html#cb375-82" tabindex="-1"></a>    dfLewis[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfLewis[,i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
-<span id="cb375-83"><a href="SimpMod.html#cb375-83" tabindex="-1"></a>  }</span>
-<span id="cb375-84"><a href="SimpMod.html#cb375-84" tabindex="-1"></a>}</span>
-<span id="cb375-85"><a href="SimpMod.html#cb375-85" tabindex="-1"></a></span>
-<span id="cb375-86"><a href="SimpMod.html#cb375-86" tabindex="-1"></a><span class="co">#rounding to integers so that the data resembles that which was collected</span></span>
-<span id="cb375-87"><a href="SimpMod.html#cb375-87" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb375-88"><a href="SimpMod.html#cb375-88" tabindex="-1"></a>dfLewis <span class="ot">&lt;-</span> dfLewis <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">0</span>) </span>
-<span id="cb375-89"><a href="SimpMod.html#cb375-89" tabindex="-1"></a></span>
-<span id="cb375-90"><a href="SimpMod.html#cb375-90" tabindex="-1"></a><span class="co">#quick check of my work</span></span>
-<span id="cb375-91"><a href="SimpMod.html#cb375-91" tabindex="-1"></a><span class="co">#psych::describe(dfLewis) </span></span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="SimpMod.html#cb384-1" tabindex="-1"></a><span class="co">#Entering the intercorrelations, means, and standard deviations from the journal article</span></span>
+<span id="cb384-2"><a href="SimpMod.html#cb384-2" tabindex="-1"></a></span>
+<span id="cb384-3"><a href="SimpMod.html#cb384-3" tabindex="-1"></a>Lewis_generating_model <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb384-4"><a href="SimpMod.html#cb384-4" tabindex="-1"></a><span class="st">        #measurement model</span></span>
+<span id="cb384-5"><a href="SimpMod.html#cb384-5" tabindex="-1"></a><span class="st">        GRMS  =~ .69*Ob1 + .69*Ob2 + .60*Ob3 + .59*Ob4 + .55*Ob5 + .55*Ob6 + .54*Ob7 + .50*Ob8 + .41*Ob9 + .41*Ob10 + .93*Ma1 + .81*Ma2 + .69*Ma3 + .67*Ma4 + .61*Ma5 + .58*Ma6 + .54*Ma7 + .59*St1 + .55*St2 + .54*St3 + .54*St4 + .51*St5 + .70*An1 + .69*An2 + .68*An3</span></span>
+<span id="cb384-6"><a href="SimpMod.html#cb384-6" tabindex="-1"></a><span class="st">        MntlHlth  =~ .8*MH1 + .8*MH2 + .8*MH3 + .8*MH4 + .8*MH5 + .8*MH6</span></span>
+<span id="cb384-7"><a href="SimpMod.html#cb384-7" tabindex="-1"></a><span class="st">        PhysHlth  =~ .8*PhH1 + .8*PhH2 + .8*PhH3 + .8*PhH4 + .8*PhH5 + .8*PhH6</span></span>
+<span id="cb384-8"><a href="SimpMod.html#cb384-8" tabindex="-1"></a><span class="st">        Spirituality  =~ .8*Spirit1 + .8*Spirit2</span></span>
+<span id="cb384-9"><a href="SimpMod.html#cb384-9" tabindex="-1"></a><span class="st">        SocSupport  =~ .8*SocS1 + .8*SocS2</span></span>
+<span id="cb384-10"><a href="SimpMod.html#cb384-10" tabindex="-1"></a><span class="st">        Engagement  =~ .8*Eng1 + .8*Eng2</span></span>
+<span id="cb384-11"><a href="SimpMod.html#cb384-11" tabindex="-1"></a><span class="st">        Disengagement  =~  .8*dEng1 + .8*dEng2</span></span>
+<span id="cb384-12"><a href="SimpMod.html#cb384-12" tabindex="-1"></a><span class="st">        GRIC  =~ .8*Cntrlty1 + .8*Cntrlty2 + .8*Cntrlty3 + .8*Cntrlty4 + .8*Cntrlty5 + .8*Cntrlty6 + .8*Cntrlty7 + .8*Cntrlty8 + .8*Cntrlty9 + .8*Cntrlty10</span></span>
+<span id="cb384-13"><a href="SimpMod.html#cb384-13" tabindex="-1"></a><span class="st">   </span></span>
+<span id="cb384-14"><a href="SimpMod.html#cb384-14" tabindex="-1"></a><span class="st">        #Means</span></span>
+<span id="cb384-15"><a href="SimpMod.html#cb384-15" tabindex="-1"></a><span class="st">         GRMS ~ 1.99*1</span></span>
+<span id="cb384-16"><a href="SimpMod.html#cb384-16" tabindex="-1"></a><span class="st">         Spirituality ~2.82*1</span></span>
+<span id="cb384-17"><a href="SimpMod.html#cb384-17" tabindex="-1"></a><span class="st">         SocSupport ~ 2.48*1</span></span>
+<span id="cb384-18"><a href="SimpMod.html#cb384-18" tabindex="-1"></a><span class="st">         Engagement ~ 2.32*1</span></span>
+<span id="cb384-19"><a href="SimpMod.html#cb384-19" tabindex="-1"></a><span class="st">         Disengagement ~ 1.75*1</span></span>
+<span id="cb384-20"><a href="SimpMod.html#cb384-20" tabindex="-1"></a><span class="st">         GRIC ~ 5.71*1</span></span>
+<span id="cb384-21"><a href="SimpMod.html#cb384-21" tabindex="-1"></a><span class="st">         MntlHlth ~3.56*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation</span></span>
+<span id="cb384-22"><a href="SimpMod.html#cb384-22" tabindex="-1"></a><span class="st">         PhysHlth ~ 3.51*1 #Lewis et al used sums instead of means, I recast as means to facilitate simulation</span></span>
+<span id="cb384-23"><a href="SimpMod.html#cb384-23" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb384-24"><a href="SimpMod.html#cb384-24" tabindex="-1"></a><span class="st">        #Correlations </span></span>
+<span id="cb384-25"><a href="SimpMod.html#cb384-25" tabindex="-1"></a><span class="st">         GRMS ~ 0.20*Spirituality</span></span>
+<span id="cb384-26"><a href="SimpMod.html#cb384-26" tabindex="-1"></a><span class="st">         GRMS ~ 0.28*SocSupport</span></span>
+<span id="cb384-27"><a href="SimpMod.html#cb384-27" tabindex="-1"></a><span class="st">         GRMS ~ 0.30*Engagement</span></span>
+<span id="cb384-28"><a href="SimpMod.html#cb384-28" tabindex="-1"></a><span class="st">         GRMS ~ 0.41*Disengagement</span></span>
+<span id="cb384-29"><a href="SimpMod.html#cb384-29" tabindex="-1"></a><span class="st">         GRMS ~ 0.19*GRIC</span></span>
+<span id="cb384-30"><a href="SimpMod.html#cb384-30" tabindex="-1"></a><span class="st">         GRMS ~ -0.32*MntlHlth</span></span>
+<span id="cb384-31"><a href="SimpMod.html#cb384-31" tabindex="-1"></a><span class="st">         GRMS ~ -0.18*PhysHlth</span></span>
+<span id="cb384-32"><a href="SimpMod.html#cb384-32" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb384-33"><a href="SimpMod.html#cb384-33" tabindex="-1"></a><span class="st">         Spirituality ~ 0.49*SocSupport</span></span>
+<span id="cb384-34"><a href="SimpMod.html#cb384-34" tabindex="-1"></a><span class="st">         Spirituality ~ 0.57*Engagement</span></span>
+<span id="cb384-35"><a href="SimpMod.html#cb384-35" tabindex="-1"></a><span class="st">         Spirituality ~ 0.22*Disengagement</span></span>
+<span id="cb384-36"><a href="SimpMod.html#cb384-36" tabindex="-1"></a><span class="st">         Spirituality ~ 0.12*GRIC</span></span>
+<span id="cb384-37"><a href="SimpMod.html#cb384-37" tabindex="-1"></a><span class="st">         Spirituality ~ -0.06*MntlHlth</span></span>
+<span id="cb384-38"><a href="SimpMod.html#cb384-38" tabindex="-1"></a><span class="st">         Spirituality ~ -0.13*PhysHlth</span></span>
+<span id="cb384-39"><a href="SimpMod.html#cb384-39" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb384-40"><a href="SimpMod.html#cb384-40" tabindex="-1"></a><span class="st">         SocSupport ~ 0.46*Engagement</span></span>
+<span id="cb384-41"><a href="SimpMod.html#cb384-41" tabindex="-1"></a><span class="st">         SocSupport ~ 0.26*Disengagement</span></span>
+<span id="cb384-42"><a href="SimpMod.html#cb384-42" tabindex="-1"></a><span class="st">         SocSupport ~ 0.38*GRIC</span></span>
+<span id="cb384-43"><a href="SimpMod.html#cb384-43" tabindex="-1"></a><span class="st">         SocSupport ~ -0.18*MntlHlth</span></span>
+<span id="cb384-44"><a href="SimpMod.html#cb384-44" tabindex="-1"></a><span class="st">         SocSupport ~ -0.08*PhysHlth</span></span>
+<span id="cb384-45"><a href="SimpMod.html#cb384-45" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb384-46"><a href="SimpMod.html#cb384-46" tabindex="-1"></a><span class="st">         Engagement ~ 0.37*Disengagement</span></span>
+<span id="cb384-47"><a href="SimpMod.html#cb384-47" tabindex="-1"></a><span class="st">         Engagement ~ 0.08*GRIC</span></span>
+<span id="cb384-48"><a href="SimpMod.html#cb384-48" tabindex="-1"></a><span class="st">         Engagement ~ -0.14*MntlHlth</span></span>
+<span id="cb384-49"><a href="SimpMod.html#cb384-49" tabindex="-1"></a><span class="st">         Engagement ~ -0.06*PhysHlth</span></span>
+<span id="cb384-50"><a href="SimpMod.html#cb384-50" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb384-51"><a href="SimpMod.html#cb384-51" tabindex="-1"></a><span class="st">         Disengagement ~ 0.05*GRIC</span></span>
+<span id="cb384-52"><a href="SimpMod.html#cb384-52" tabindex="-1"></a><span class="st">         Disengagement ~ -0.54*MntlHlth</span></span>
+<span id="cb384-53"><a href="SimpMod.html#cb384-53" tabindex="-1"></a><span class="st">         Disengagement ~ -0.28*PhysHlth</span></span>
+<span id="cb384-54"><a href="SimpMod.html#cb384-54" tabindex="-1"></a><span class="st">         </span></span>
+<span id="cb384-55"><a href="SimpMod.html#cb384-55" tabindex="-1"></a><span class="st">         GRIC ~ -0.10*MntlHlth</span></span>
+<span id="cb384-56"><a href="SimpMod.html#cb384-56" tabindex="-1"></a><span class="st">         GRIC ~ 0.14*PhysHlth</span></span>
+<span id="cb384-57"><a href="SimpMod.html#cb384-57" tabindex="-1"></a><span class="st">     </span></span>
+<span id="cb384-58"><a href="SimpMod.html#cb384-58" tabindex="-1"></a><span class="st">         MntlHlth ~ 0.47*PhysHlth         </span></span>
+<span id="cb384-59"><a href="SimpMod.html#cb384-59" tabindex="-1"></a><span class="st">        &#39;</span></span>
+<span id="cb384-60"><a href="SimpMod.html#cb384-60" tabindex="-1"></a></span>
+<span id="cb384-61"><a href="SimpMod.html#cb384-61" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230925</span>)</span>
+<span id="cb384-62"><a href="SimpMod.html#cb384-62" tabindex="-1"></a>dfLewis <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">simulateData</span>(<span class="at">model =</span> Lewis_generating_model,</span>
+<span id="cb384-63"><a href="SimpMod.html#cb384-63" tabindex="-1"></a>                              <span class="at">model.type =</span> <span class="st">&quot;sem&quot;</span>,</span>
+<span id="cb384-64"><a href="SimpMod.html#cb384-64" tabindex="-1"></a>                              <span class="at">meanstructure =</span> T,</span>
+<span id="cb384-65"><a href="SimpMod.html#cb384-65" tabindex="-1"></a>                              <span class="at">sample.nobs=</span><span class="dv">231</span>,</span>
+<span id="cb384-66"><a href="SimpMod.html#cb384-66" tabindex="-1"></a>                              <span class="at">standardized=</span><span class="cn">FALSE</span>)</span>
+<span id="cb384-67"><a href="SimpMod.html#cb384-67" tabindex="-1"></a></span>
+<span id="cb384-68"><a href="SimpMod.html#cb384-68" tabindex="-1"></a><span class="co">#used to retrieve column indices used in the rescaling script below</span></span>
+<span id="cb384-69"><a href="SimpMod.html#cb384-69" tabindex="-1"></a><span class="co">#col_index &lt;- as.data.frame(colnames(dfLewis))</span></span>
+<span id="cb384-70"><a href="SimpMod.html#cb384-70" tabindex="-1"></a></span>
+<span id="cb384-71"><a href="SimpMod.html#cb384-71" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dfLewis)){  <span class="co"># for loop to go through each column of the dataframe </span></span>
+<span id="cb384-72"><a href="SimpMod.html#cb384-72" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">25</span>){   <span class="co"># apply only to GRMS variables</span></span>
+<span id="cb384-73"><a href="SimpMod.html#cb384-73" tabindex="-1"></a>    dfLewis[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfLewis[,i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>))</span>
+<span id="cb384-74"><a href="SimpMod.html#cb384-74" tabindex="-1"></a>  }</span>
+<span id="cb384-75"><a href="SimpMod.html#cb384-75" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">26</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">37</span>){   <span class="co"># apply only to mental and physical health variables </span></span>
+<span id="cb384-76"><a href="SimpMod.html#cb384-76" tabindex="-1"></a>    dfLewis[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfLewis[,i], <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>))</span>
+<span id="cb384-77"><a href="SimpMod.html#cb384-77" tabindex="-1"></a>  }</span>
+<span id="cb384-78"><a href="SimpMod.html#cb384-78" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">38</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">45</span>){   <span class="co"># apply only to coping variables</span></span>
+<span id="cb384-79"><a href="SimpMod.html#cb384-79" tabindex="-1"></a>    dfLewis[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfLewis[,i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>))</span>
+<span id="cb384-80"><a href="SimpMod.html#cb384-80" tabindex="-1"></a>  }</span>
+<span id="cb384-81"><a href="SimpMod.html#cb384-81" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">46</span> <span class="sc">&amp;</span> i <span class="sc">&lt;=</span> <span class="dv">55</span>){   <span class="co"># apply only to GRIC variables</span></span>
+<span id="cb384-82"><a href="SimpMod.html#cb384-82" tabindex="-1"></a>    dfLewis[,i] <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">rescale</span>(dfLewis[,i], <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
+<span id="cb384-83"><a href="SimpMod.html#cb384-83" tabindex="-1"></a>  }</span>
+<span id="cb384-84"><a href="SimpMod.html#cb384-84" tabindex="-1"></a>}</span>
+<span id="cb384-85"><a href="SimpMod.html#cb384-85" tabindex="-1"></a></span>
+<span id="cb384-86"><a href="SimpMod.html#cb384-86" tabindex="-1"></a><span class="co">#rounding to integers so that the data resembles that which was collected</span></span>
+<span id="cb384-87"><a href="SimpMod.html#cb384-87" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb384-88"><a href="SimpMod.html#cb384-88" tabindex="-1"></a>dfLewis <span class="ot">&lt;-</span> dfLewis <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">0</span>) </span>
+<span id="cb384-89"><a href="SimpMod.html#cb384-89" tabindex="-1"></a></span>
+<span id="cb384-90"><a href="SimpMod.html#cb384-90" tabindex="-1"></a><span class="co">#quick check of my work</span></span>
+<span id="cb384-91"><a href="SimpMod.html#cb384-91" tabindex="-1"></a><span class="co">#psych::describe(dfLewis) </span></span></code></pre></div>
 <p>The script below allows you to store the simulated data as a file on your computer. This is optional – the entire lesson can be worked with the simulated data.</p>
 <p>If you prefer the .rds format, use this script (remove the hashtags). The .rds format has the advantage of preserving any formatting of variables. A disadvantage is that you cannot open these files outside of the R environment.</p>
 <p>Script to save the data to your computer as an .rds file.</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="SimpMod.html#cb376-1" tabindex="-1"></a><span class="co"># saveRDS(dfLewis, &#39;dfLewis.rds&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="SimpMod.html#cb385-1" tabindex="-1"></a><span class="co">#saveRDS(dfLewis, &#39;dfLewis.rds&#39;)  </span></span></code></pre></div>
 <p>Once saved, you could clean your environment and bring the data back in from its .csv format.</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="SimpMod.html#cb377-1" tabindex="-1"></a><span class="co"># dfLewis&lt;- readRDS(&#39;dfLewis.rds&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="SimpMod.html#cb386-1" tabindex="-1"></a><span class="co">#dfLewis&lt;- readRDS(&#39;dfLewis.rds&#39;)</span></span></code></pre></div>
 <p>If you prefer the .csv format (think “Excel lite”) use this script (remove the hashtags). An advantage of the .csv format is that you can open the data outside of the R environment. A disadvantage is that it may not retain any formatting of variables</p>
 <p>Script to save the data to your computer as a .csv file.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="SimpMod.html#cb378-1" tabindex="-1"></a><span class="co"># write.table(dfLewis, file = &#39;dfLewis.csv&#39;, sep = &#39;,&#39;,</span></span>
-<span id="cb378-2"><a href="SimpMod.html#cb378-2" tabindex="-1"></a><span class="co"># col.names=TRUE, row.names=FALSE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="SimpMod.html#cb387-1" tabindex="-1"></a><span class="co">#write.table(dfLewis, file = &#39;dfLewis.csv&#39;, sep = &#39;,&#39;, col.names=TRUE, row.names=FALSE) </span></span></code></pre></div>
 <p>Once saved, you could clean your environment and bring the data back in from its .csv format.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="SimpMod.html#cb379-1" tabindex="-1"></a><span class="co"># dfLewis&lt;- read.csv (&#39;dfLewis.csv&#39;, header = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="SimpMod.html#cb388-1" tabindex="-1"></a><span class="co">#dfLewis&lt;- read.csv (&#39;dfLewis.csv&#39;, header = TRUE)</span></span></code></pre></div>
 </div>
 </div>
 <div id="scrubbing-scoring-and-data-diagnostics-2" class="section level3 hasAnchor" number="7.6.2">
 <h3><span class="header-section-number">7.6.2</span> Scrubbing, Scoring, and Data Diagnostics<a href="SimpMod.html#scrubbing-scoring-and-data-diagnostics-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Because the focus of this lesson is on moderation, we have used simulated data (which serves to avoid problems like missingness and non-normal distributions). If this were real, raw, data, it would be important to <a href="https://lhbikos.github.io/ReC_MultivModel/scrub.html">scrub</a>, <a href="https://lhbikos.github.io/ReC_MultivModel/score.html">score</a>, and conduct <a href="https://lhbikos.github.io/ReC_MultivModel/DataDx.html">data diagnostics</a> to evaluate the suitability of the data for the proposes anlayses.</p>
 <p>Because we are working with item level data we do need to score the scales used in the researcher’s model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.</p>
-<p>As described in the <a href="https://lhbikos.github.io/ReC_MultivModel/score.html">Scoring</a> chapter, we calculate mean scores of these variables by first creating concatenated lists of variable names. Next we apply the <em>sjstats::mean_n</em> function to obtain mean scores when a given percentage (we’ll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.</p>
+<p>As described in the <a href="https://lhbikos.github.io/ReC_MultivModel/score.html">Scoring</a> chapter, we the <em>datawizard::row_means()</em> function to obtain mean scores when a given percentage (we’ll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.</p>
 <p>Note that I am only scoring the variables used in the models demonstrated in this lesson. The remaining variables are available as practice options.</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="SimpMod.html#cb380-1" tabindex="-1"></a>GRMS_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Ob1&quot;</span>, <span class="st">&quot;Ob2&quot;</span>, <span class="st">&quot;Ob3&quot;</span>, <span class="st">&quot;Ob4&quot;</span>, <span class="st">&quot;Ob5&quot;</span>, <span class="st">&quot;Ob6&quot;</span>, <span class="st">&quot;Ob7&quot;</span>, <span class="st">&quot;Ob8&quot;</span>,</span>
-<span id="cb380-2"><a href="SimpMod.html#cb380-2" tabindex="-1"></a>    <span class="st">&quot;Ob9&quot;</span>, <span class="st">&quot;Ob10&quot;</span>, <span class="st">&quot;Ma1&quot;</span>, <span class="st">&quot;Ma2&quot;</span>, <span class="st">&quot;Ma3&quot;</span>, <span class="st">&quot;Ma4&quot;</span>, <span class="st">&quot;Ma5&quot;</span>, <span class="st">&quot;Ma6&quot;</span>, <span class="st">&quot;Ma7&quot;</span>, <span class="st">&quot;St1&quot;</span>,</span>
-<span id="cb380-3"><a href="SimpMod.html#cb380-3" tabindex="-1"></a>    <span class="st">&quot;St2&quot;</span>, <span class="st">&quot;St3&quot;</span>, <span class="st">&quot;St4&quot;</span>, <span class="st">&quot;St5&quot;</span>, <span class="st">&quot;An1&quot;</span>, <span class="st">&quot;An2&quot;</span>, <span class="st">&quot;An3&quot;</span>)</span>
-<span id="cb380-4"><a href="SimpMod.html#cb380-4" tabindex="-1"></a>Eng_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Eng1&quot;</span>, <span class="st">&quot;Eng2&quot;</span>)</span>
-<span id="cb380-5"><a href="SimpMod.html#cb380-5" tabindex="-1"></a>dEng_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;dEng1&quot;</span>, <span class="st">&quot;dEng2&quot;</span>)</span>
-<span id="cb380-6"><a href="SimpMod.html#cb380-6" tabindex="-1"></a>MntlHlth_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MH1&quot;</span>, <span class="st">&quot;MH2&quot;</span>, <span class="st">&quot;MH3&quot;</span>, <span class="st">&quot;MH4&quot;</span>, <span class="st">&quot;MH5&quot;</span>, <span class="st">&quot;MH6&quot;</span>)</span>
-<span id="cb380-7"><a href="SimpMod.html#cb380-7" tabindex="-1"></a>Cntrlty_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Cntrlty1&quot;</span>, <span class="st">&quot;Cntrlty2&quot;</span>, <span class="st">&quot;Cntrlty3&quot;</span>, <span class="st">&quot;Cntrlty4&quot;</span>, <span class="st">&quot;Cntrlty5&quot;</span>,</span>
-<span id="cb380-8"><a href="SimpMod.html#cb380-8" tabindex="-1"></a>    <span class="st">&quot;Cntrlty6&quot;</span>, <span class="st">&quot;Cntrlty7&quot;</span>, <span class="st">&quot;Cntrlty8&quot;</span>, <span class="st">&quot;Cntrlty9&quot;</span>, <span class="st">&quot;Cntrlty10&quot;</span>)</span>
-<span id="cb380-9"><a href="SimpMod.html#cb380-9" tabindex="-1"></a></span>
-<span id="cb380-10"><a href="SimpMod.html#cb380-10" tabindex="-1"></a>dfLewis<span class="sc">$</span>GRMS <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(dfLewis[, GRMS_vars], <span class="fl">0.8</span>)</span>
-<span id="cb380-11"><a href="SimpMod.html#cb380-11" tabindex="-1"></a>dfLewis<span class="sc">$</span>Engmt <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(dfLewis[, Eng_vars], <span class="fl">0.8</span>)</span>
-<span id="cb380-12"><a href="SimpMod.html#cb380-12" tabindex="-1"></a>dfLewis<span class="sc">$</span>DisEngmt <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(dfLewis[, dEng_vars], <span class="fl">0.8</span>)</span>
-<span id="cb380-13"><a href="SimpMod.html#cb380-13" tabindex="-1"></a>dfLewis<span class="sc">$</span>MntlHlth <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(dfLewis[, MntlHlth_vars], <span class="fl">0.8</span>)</span>
-<span id="cb380-14"><a href="SimpMod.html#cb380-14" tabindex="-1"></a>dfLewis<span class="sc">$</span>Centrality <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(dfLewis[, Cntrlty_vars], <span class="fl">0.8</span>)</span>
-<span id="cb380-15"><a href="SimpMod.html#cb380-15" tabindex="-1"></a></span>
-<span id="cb380-16"><a href="SimpMod.html#cb380-16" tabindex="-1"></a><span class="co"># If the scoring code above does not work for you, try the format</span></span>
-<span id="cb380-17"><a href="SimpMod.html#cb380-17" tabindex="-1"></a><span class="co"># below which involves inserting to periods in front of the variable</span></span>
-<span id="cb380-18"><a href="SimpMod.html#cb380-18" tabindex="-1"></a><span class="co"># list. One example is provided. dfLewis$GRMS &lt;-</span></span>
-<span id="cb380-19"><a href="SimpMod.html#cb380-19" tabindex="-1"></a><span class="co"># sjstats::mean_n(dfLewis[, ..GRMS_vars], 0.80)</span></span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="SimpMod.html#cb389-1" tabindex="-1"></a>dfLewis<span class="sc">$</span>GRMS <span class="ot">&lt;-</span> datawizard<span class="sc">::</span><span class="fu">row_means</span>(dfLewis, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;Ob1&quot;</span>, <span class="st">&quot;Ob2&quot;</span>, <span class="st">&quot;Ob3&quot;</span>, <span class="st">&quot;Ob4&quot;</span>, <span class="st">&quot;Ob5&quot;</span>, <span class="st">&quot;Ob6&quot;</span>, <span class="st">&quot;Ob7&quot;</span>, <span class="st">&quot;Ob8&quot;</span>, <span class="st">&quot;Ob9&quot;</span>, <span class="st">&quot;Ob10&quot;</span>, <span class="st">&quot;Ma1&quot;</span>, <span class="st">&quot;Ma2&quot;</span>, <span class="st">&quot;Ma3&quot;</span>, <span class="st">&quot;Ma4&quot;</span>, <span class="st">&quot;Ma5&quot;</span>, <span class="st">&quot;Ma6&quot;</span>, <span class="st">&quot;Ma7&quot;</span>, <span class="st">&quot;St1&quot;</span>, <span class="st">&quot;St2&quot;</span>, <span class="st">&quot;St3&quot;</span>, <span class="st">&quot;St4&quot;</span>, <span class="st">&quot;St5&quot;</span>, <span class="st">&quot;An1&quot;</span>, <span class="st">&quot;An2&quot;</span>, <span class="st">&quot;An3&quot;</span>), <span class="at">min_valid =</span> .<span class="dv">80</span>)</span>
+<span id="cb389-2"><a href="SimpMod.html#cb389-2" tabindex="-1"></a>dfLewis<span class="sc">$</span>Engmt <span class="ot">&lt;-</span> datawizard<span class="sc">::</span><span class="fu">row_means</span>(dfLewis, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;Eng1&quot;</span>, <span class="st">&quot;Eng2&quot;</span>), <span class="at">min_valid =</span> .<span class="dv">80</span>)</span>
+<span id="cb389-3"><a href="SimpMod.html#cb389-3" tabindex="-1"></a>dfLewis<span class="sc">$</span>DisEngmt <span class="ot">&lt;-</span> datawizard<span class="sc">::</span><span class="fu">row_means</span>(dfLewis, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;dEng1&quot;</span>, <span class="st">&quot;dEng2&quot;</span>), <span class="at">min_valid =</span> .<span class="dv">80</span>)</span>
+<span id="cb389-4"><a href="SimpMod.html#cb389-4" tabindex="-1"></a>dfLewis<span class="sc">$</span>MntlHlth <span class="ot">&lt;-</span> datawizard<span class="sc">::</span><span class="fu">row_means</span>(dfLewis, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;MH1&quot;</span>, <span class="st">&quot;MH2&quot;</span>, <span class="st">&quot;MH3&quot;</span>, <span class="st">&quot;MH4&quot;</span>, <span class="st">&quot;MH5&quot;</span>, <span class="st">&quot;MH6&quot;</span>), <span class="at">min_valid =</span> .<span class="dv">80</span>)</span>
+<span id="cb389-5"><a href="SimpMod.html#cb389-5" tabindex="-1"></a>dfLewis<span class="sc">$</span>Centrality <span class="ot">&lt;-</span> datawizard<span class="sc">::</span><span class="fu">row_means</span>(dfLewis, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;Cntrlty1&quot;</span>, <span class="st">&quot;Cntrlty2&quot;</span>, <span class="st">&quot;Cntrlty3&quot;</span>, <span class="st">&quot;Cntrlty4&quot;</span>, <span class="st">&quot;Cntrlty5&quot;</span>, <span class="st">&quot;Cntrlty6&quot;</span>, <span class="st">&quot;Cntrlty7&quot;</span>, <span class="st">&quot;Cntrlty8&quot;</span>, <span class="st">&quot;Cntrlty9&quot;</span>, <span class="st">&quot;Cntrlty10&quot;</span>), <span class="at">min_valid =</span> .<span class="dv">80</span>)</span></code></pre></div>
 <p>Now that we have scored our data, let’s trim the variables to just those we need.</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="SimpMod.html#cb381-1" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(dfLewis, GRMS, Centrality, MntlHlth)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="SimpMod.html#cb390-1" tabindex="-1"></a>Lewis_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(dfLewis, GRMS, Centrality, MntlHlth)</span></code></pre></div>
 <p>Let’s check a table of means, standard deviations, and correlations to see if they align with the published article.</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="SimpMod.html#cb382-1" tabindex="-1"></a>Lewis_table <span class="ot">&lt;-</span> apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(Lewis_df, <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.sig.stars =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb382-2"><a href="SimpMod.html#cb382-2" tabindex="-1"></a>    <span class="at">landscape =</span> <span class="cn">TRUE</span>, <span class="at">filename =</span> <span class="st">&quot;Lewis_Corr.doc&quot;</span>)</span>
-<span id="cb382-3"><a href="SimpMod.html#cb382-3" tabindex="-1"></a><span class="fu">print</span>(Lewis_table)</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="SimpMod.html#cb391-1" tabindex="-1"></a>Lewis_table <span class="ot">&lt;-</span> apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(Lewis_df, <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.sig.stars=</span><span class="cn">TRUE</span>, <span class="at">landscape=</span><span class="cn">TRUE</span>, <span class="at">filename=</span><span class="st">&quot;Lewis_Corr.doc&quot;</span>)</span>
+<span id="cb391-2"><a href="SimpMod.html#cb391-2" tabindex="-1"></a><span class="fu">print</span>(Lewis_table)</span></code></pre></div>
 <pre><code>
 
 Table 1 
@@ -1494,8 +1466,8 @@ that could have caused the sample correlation (Cumming, 2014).
  * indicates p &lt; .05. ** indicates p &lt; .01.
  </code></pre>
 <p>The <em>psych::pairs.panels</em> function provides another view.</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="SimpMod.html#cb384-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb384-2"><a href="SimpMod.html#cb384-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(Lewis_df)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="SimpMod.html#cb393-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb393-2"><a href="SimpMod.html#cb393-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(Lewis_df)</span></code></pre></div>
 <p><img src="07-SimpleMod_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>While they are not exact, they approximate the magnitude and patterns in the correlation matrix in the article <span class="citation">(<a href="#ref-lewis_applying_2017">J. A. Lewis et al., 2017</a>)</span>.</p>
 <p>The Lewis et al. <span class="citation">(<a href="#ref-lewis_applying_2017">2017</a>)</span> article included a moderated mediation. Within this larger model were two moderated paths. As we work up to analyzing that moderated mediation, we will work a simple moderation predicting mental health from gendered racial microaggressions, moderated by gendered racial identity centrality.</p>
@@ -1517,183 +1489,48 @@ that could have caused the sample correlation (Cumming, 2014).
 <h3><span class="header-section-number">7.7.1</span> OLS with <em>lm()</em><a href="SimpMod.html#ols-with-lm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this demonstration we will use the <em>lm()</em> function in base R to evaluate gendered racial identity centrality (Centrality) as a moderator to the relationship between gendered racial microaggressions (GRMS) on mental health (MntlHlth). Ordinary least squares is the estimator used in <em>lm()</em>. We will probe the moderating effect with both pick-a-point and Johnson-Neyman approaches.</p>
 <p>Let’s specify this simple moderation model with base R’s <em>lm()</em> function. We’ll use the <em>jtools::summ</em> function to produce a journal-friendly table and <em>interactions::interaction_plot</em> for information rich figures.</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="SimpMod.html#cb385-1" tabindex="-1"></a>LewisSimpMod <span class="ot">&lt;-</span> <span class="fu">lm</span>(MntlHlth <span class="sc">~</span> GRMS <span class="sc">*</span> Centrality, <span class="at">data =</span> Lewis_df)</span>
-<span id="cb385-2"><a href="SimpMod.html#cb385-2" tabindex="-1"></a><span class="co"># the base R output if you prefer this view summary(LewisSimpMod)</span></span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="SimpMod.html#cb394-1" tabindex="-1"></a>LewisSimpMod <span class="ot">&lt;-</span> <span class="fu">lm</span>(MntlHlth<span class="sc">~</span>GRMS<span class="sc">*</span>Centrality, <span class="at">data=</span>Lewis_df)</span>
+<span id="cb394-2"><a href="SimpMod.html#cb394-2" tabindex="-1"></a><span class="co">#the base R output if you prefer this view</span></span>
+<span id="cb394-3"><a href="SimpMod.html#cb394-3" tabindex="-1"></a><span class="co">#summary(LewisSimpMod) </span></span></code></pre></div>
 <p><strong>Table 3</strong></p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="SimpMod.html#cb386-1" tabindex="-1"></a>LewisSimpMod_summ <span class="ot">&lt;-</span> jtools<span class="sc">::</span><span class="fu">summ</span>(LewisSimpMod, <span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb386-2"><a href="SimpMod.html#cb386-2" tabindex="-1"></a>LewisSimpMod_summ</span></code></pre></div>
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Observations
-</td>
-<td style="text-align:right;">
-231
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Dependent variable
-</td>
-<td style="text-align:right;">
-MntlHlth
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Type
-</td>
-<td style="text-align:right;">
-OLS linear regression
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-F(3,227)
-</td>
-<td style="text-align:right;">
-37.386
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-R²
-</td>
-<td style="text-align:right;">
-0.331
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Adj. R²
-</td>
-<td style="text-align:right;">
-0.322
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-Est.
-</th>
-<th style="text-align:right;">
-S.E.
-</th>
-<th style="text-align:right;">
-t val.
-</th>
-<th style="text-align:right;">
-p
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-(Intercept)
-</td>
-<td style="text-align:right;">
-6.138
-</td>
-<td style="text-align:right;">
-0.767
-</td>
-<td style="text-align:right;">
-8.007
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-GRMS
-</td>
-<td style="text-align:right;">
--1.248
-</td>
-<td style="text-align:right;">
-0.290
-</td>
-<td style="text-align:right;">
--4.299
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Centrality
-</td>
-<td style="text-align:right;">
--0.351
-</td>
-<td style="text-align:right;">
-0.199
-</td>
-<td style="text-align:right;">
--1.764
-</td>
-<td style="text-align:right;">
-0.079
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-GRMS:Centrality
-</td>
-<td style="text-align:right;">
-0.157
-</td>
-<td style="text-align:right;">
-0.073
-</td>
-<td style="text-align:right;">
-2.132
-</td>
-<td style="text-align:right;">
-0.034
-</td>
-</tr>
-</tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<sup></sup> Standard errors: OLS
-</td>
-</tr>
-</tfoot>
-</table>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="SimpMod.html#cb395-1" tabindex="-1"></a>LewisSimpMod_summ <span class="ot">&lt;-</span> jtools<span class="sc">::</span><span class="fu">summ</span>(LewisSimpMod, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb395-2"><a href="SimpMod.html#cb395-2" tabindex="-1"></a>LewisSimpMod_summ</span></code></pre></div>
+<pre><code>MODEL INFO:
+Observations: 231
+Dependent Variable: MntlHlth
+Type: OLS linear regression 
+
+MODEL FIT:
+F(3,227) = 37.396, p = 0.000
+R² = 0.331
+Adj. R² = 0.322 
+
+Standard errors: OLS
+-------------------------------------------------------
+                          Est.    S.E.   t val.       p
+--------------------- -------- ------- -------- -------
+(Intercept)              6.140   0.767    8.006   0.000
+GRMS                    -1.249   0.291   -4.298   0.000
+Centrality              -0.351   0.199   -1.765   0.079
+GRMS:Centrality          0.157   0.073    2.130   0.034
+-------------------------------------------------------</code></pre>
 <p>The following code can export the OLS regression results into a .csv. This can be opened with Excel for use in table-making. Note that this makes use of the <em>broom</em> package.</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="SimpMod.html#cb387-1" tabindex="-1"></a>LewSimpModOLS <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(broom<span class="sc">::</span><span class="fu">tidy</span>(LewisSimpMod))</span>
-<span id="cb387-2"><a href="SimpMod.html#cb387-2" tabindex="-1"></a><span class="fu">write.csv</span>(LewSimpModOLS, <span class="st">&quot;LewSimpModOLS.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="SimpMod.html#cb397-1" tabindex="-1"></a>LewSimpModOLS <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(broom<span class="sc">::</span><span class="fu">tidy</span>(LewisSimpMod))</span>
+<span id="cb397-2"><a href="SimpMod.html#cb397-2" tabindex="-1"></a><span class="fu">write.csv</span>(LewSimpModOLS, <span class="st">&quot;LewSimpModOLS.csv&quot;</span>)</span></code></pre></div>
 <p>Looking at these results we can see that the predictors account for about 33% of variance in anxiety. Further, there is a statistically significant interaction of GRMS and Centrality on MntlHlth The <em>interaction_plot()</em> function from the package, <em>interactions</em> can illustrate these effects. In the case of interactions/moderations, I like to run them “both ways” to see which makes more sense.</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="SimpMod.html#cb388-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">interact_plot</span>(LewisSimpMod, <span class="at">pred =</span> GRMS, <span class="at">modx =</span> Centrality) <span class="sc">+</span></span>
-<span id="cb388-2"><a href="SimpMod.html#cb388-2" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="SimpMod.html#cb398-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">interact_plot</span>(LewisSimpMod, <span class="at">pred =</span> GRMS, <span class="at">modx =</span> Centrality) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span></code></pre></div>
 <p><img src="07-SimpleMod_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="SimpMod.html#cb389-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">interact_plot</span>(LewisSimpMod, <span class="at">pred =</span> Centrality, <span class="at">modx =</span> GRMS) <span class="sc">+</span></span>
-<span id="cb389-2"><a href="SimpMod.html#cb389-2" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="SimpMod.html#cb399-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">interact_plot</span>(LewisSimpMod, <span class="at">pred =</span> Centrality, <span class="at">modx =</span> GRMS) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span></code></pre></div>
 <p><img src="07-SimpleMod_files/figure-html/unnamed-chunk-20-2.png" width="672" /></p>
 <p>The first figure (where Centrality is the moderator) illustrates that the slope representing the effect of gendered racial microaggressions on mental health is steepest for those with the lowest levels of gendered racial identity centrality. In fact, those with the lowest levels of gendered racial identity centrality have the highest mental health (when gendered racial microaggressions are low) and the lowest mental health (when gendered racial microaggressions are high). In contrast, the slope is less steep for those with the highest levels of gendered racial identity centrality.</p>
 <p>The second figure represents the same data, but positions gendered racial microaggressions as the moderator. Here we really see the effect of gendered racial micoaggresions as both a main effect (i.e., alone, it had a statistically significant effect on mental health) and as it interacts with gendered racial identity centrality. Those who experience the lowest levels of gendered racial microaggressions have the highest levels of mental health and there <em>appears to be</em> (we’ll need to check the simple slopes to be certain) a negative slope such that mental health scores are lower as centrality scores increase. In contrast, those reporting the highest levels of microaggresions have the highest mental health scores. However, there is a positive slope such that mental health scores increase (again we’ll need to check the simple slopes to see if this is a statistically significant increase) with centrality.</p>
 <p>Next, let’s probe the interaction with simple slopes. With these additional inferential tests we can see where in the distribution of the moderator, X has an effect on Y that is different from zero (and where it does not). There are two common approaches.</p>
 <p>The Johnson-Neyman is a <em>floodlight</em> approach and provides an indication of the places in the distribution of W (moderator) that X has an effect on Y that is different than zero. The <em>analysis of simple slopes</em> or a <em>spotlight</em> approach, probes the distribution at specific values (often the <em>M</em> +/- 1<em>SD</em>).</p>
 <p>This first analysis corresponds with the first plot, where centrality is the moderator.</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="SimpMod.html#cb390-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">sim_slopes</span>(LewisSimpMod, <span class="at">pred =</span> GRMS, <span class="at">modx =</span> Centrality)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="SimpMod.html#cb400-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">sim_slopes</span>(LewisSimpMod, <span class="at">pred =</span> GRMS, <span class="at">modx =</span> Centrality)</span></code></pre></div>
 <pre><code>JOHNSON-NEYMAN INTERVAL 
 
-When Centrality is OUTSIDE the interval [5.92, 58.37], the slope of GRMS is
+When Centrality is OUTSIDE the interval [5.92, 58.74], the slope of GRMS is
 p &lt; .05.
 
 Note: The range of observed values of Centrality is [1.90, 6.00]
@@ -1710,20 +1547,20 @@ Slope of GRMS when Centrality = 3.938095 (Mean):
 
    Est.   S.E.   t val.      p
 ------- ------ -------- ------
-  -0.63   0.06   -10.01   0.00
+  -0.63   0.06   -10.02   0.00
 
 Slope of GRMS when Centrality = 4.693668 (+ 1 SD): 
 
    Est.   S.E.   t val.      p
 ------- ------ -------- ------
-  -0.51   0.09    -5.85   0.00</code></pre>
+  -0.51   0.09    -5.86   0.00</code></pre>
 <p>The Johnson-Neyman in this case is a bit tricky to interpret. It tells us that the slope representing the effect of GRMS on mental health is statistically significant when the value of centrality is <em>outside</em> the values of 5.92 to 58.37. Curiously, our centrality values ranged from 1 to 6. Thus, in our sample, there would be a statistically significant effect of GRMS on mental health at nearly all levels of centrality.</p>
 <p>I find the simple slopes analysis to be easier to read. Here, we are presented the regression coefficient representing the effect of GRMS on mental health at three levels of centrality (i.e., mean and +/1 1SD). With all <em>p</em> values less than 0.05, GRMS has a statistically significant effect on mental health irrespective of the level of gendered racial identity centrality.</p>
 <p>If we switch the roles of the independent and moderator values, we can see the same data, differently.</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="SimpMod.html#cb392-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">sim_slopes</span>(LewisSimpMod, <span class="at">pred =</span> Centrality, <span class="at">modx =</span> GRMS)</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="SimpMod.html#cb402-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">sim_slopes</span>(LewisSimpMod, <span class="at">pred=</span>Centrality, <span class="at">modx =</span> GRMS) </span></code></pre></div>
 <pre><code>JOHNSON-NEYMAN INTERVAL 
 
-When GRMS is OUTSIDE the interval [-2.70, 3.17], the slope of Centrality is
+When GRMS is OUTSIDE the interval [-2.70, 3.18], the slope of Centrality is
 p &lt; .05.
 
 Note: The range of observed values of GRMS is [0.32, 4.24]
@@ -1734,13 +1571,13 @@ Slope of Centrality when GRMS = 1.835658 (- 1 SD):
 
    Est.   S.E.   t val.      p
 ------- ------ -------- ------
-  -0.06   0.08    -0.78   0.44
+  -0.06   0.08    -0.78   0.43
 
 Slope of Centrality when GRMS = 2.557056 (Mean): 
 
   Est.   S.E.   t val.      p
 ------ ------ -------- ------
-  0.05   0.06     0.83   0.41
+  0.05   0.06     0.82   0.41
 
 Slope of Centrality when GRMS = 3.278455 (+ 1 SD): 
 
@@ -1784,37 +1621,27 @@ A multiple regression analysis was conducted to predict mental health from gende
 <li>the <em>summary()</em> and <em>parameterEstimates()</em> functions get us the desired output</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="SimpMod.html#cb394-1" tabindex="-1"></a>LewisSimpModMLE <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
-<span id="cb394-2"><a href="SimpMod.html#cb394-2" tabindex="-1"></a><span class="st">    MntlHlth ~ b1*GRMS + b2*Centrality + b3*GRMS:Centrality</span></span>
-<span id="cb394-3"><a href="SimpMod.html#cb394-3" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb394-4"><a href="SimpMod.html#cb394-4" tabindex="-1"></a><span class="st">    #intercept (constant) of MntlHlth</span></span>
-<span id="cb394-5"><a href="SimpMod.html#cb394-5" tabindex="-1"></a><span class="st">    MntlHlth ~ MntlHlth.mean*1</span></span>
-<span id="cb394-6"><a href="SimpMod.html#cb394-6" tabindex="-1"></a><span class="st">    #mean of W (Centrality, in this case) for use in simple slopes</span></span>
-<span id="cb394-7"><a href="SimpMod.html#cb394-7" tabindex="-1"></a><span class="st">    Centrality ~ Centrality.mean*1</span></span>
-<span id="cb394-8"><a href="SimpMod.html#cb394-8" tabindex="-1"></a><span class="st">    #variance of W (Centrality, in this case) for use in simple slopes</span></span>
-<span id="cb394-9"><a href="SimpMod.html#cb394-9" tabindex="-1"></a><span class="st">    Centrality ~~Centrality.var*Centrality</span></span>
-<span id="cb394-10"><a href="SimpMod.html#cb394-10" tabindex="-1"></a></span>
-<span id="cb394-11"><a href="SimpMod.html#cb394-11" tabindex="-1"></a><span class="st">    #simple slopes</span></span>
-<span id="cb394-12"><a href="SimpMod.html#cb394-12" tabindex="-1"></a><span class="st">    SD.below := b1 + b3*(Centrality.mean - sqrt(Centrality.var))</span></span>
-<span id="cb394-13"><a href="SimpMod.html#cb394-13" tabindex="-1"></a><span class="st">    mean := b1 + b3*(Centrality.mean)</span></span>
-<span id="cb394-14"><a href="SimpMod.html#cb394-14" tabindex="-1"></a><span class="st">    SD.above := b1 + b3*(Centrality.mean + sqrt(Centrality.var))</span></span>
-<span id="cb394-15"><a href="SimpMod.html#cb394-15" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb394-16"><a href="SimpMod.html#cb394-16" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230925</span>)  <span class="co">#needed for reproducibility especially when asking for bootstrapped confidence intervals</span></span>
-<span id="cb394-17"><a href="SimpMod.html#cb394-17" tabindex="-1"></a>LewMLEfit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(LewisSimpModMLE, <span class="at">data =</span> Lewis_df, <span class="at">missing =</span> <span class="st">&quot;fiml&quot;</span>,</span>
-<span id="cb394-18"><a href="SimpMod.html#cb394-18" tabindex="-1"></a>    <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span></code></pre></div>
-<pre><code>Warning in lav_partable_vnames(FLAT, &quot;ov.x&quot;, warn = TRUE): lavaan WARNING:
-    model syntax contains variance/covariance/intercept formulas
-    involving (an) exogenous variable(s): [Centrality]; These
-    variables will now be treated as random introducing additional
-    free parameters. If you wish to treat those variables as fixed,
-    remove these formulas from the model syntax. Otherwise, consider
-    adding the fixed.x = FALSE option.</code></pre>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="SimpMod.html#cb396-1" tabindex="-1"></a>LewisMLEsummary <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(LewMLEfit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">fit =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb396-2"><a href="SimpMod.html#cb396-2" tabindex="-1"></a>    <span class="at">ci =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb396-3"><a href="SimpMod.html#cb396-3" tabindex="-1"></a>LewisMLEParamEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(LewMLEfit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
-<span id="cb396-4"><a href="SimpMod.html#cb396-4" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb396-5"><a href="SimpMod.html#cb396-5" tabindex="-1"></a>LewisMLEsummary</span></code></pre></div>
-<pre><code>lavaan 0.6.17 ended normally after 14 iterations
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="SimpMod.html#cb404-1" tabindex="-1"></a>LewisSimpModMLE <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb404-2"><a href="SimpMod.html#cb404-2" tabindex="-1"></a><span class="st">    MntlHlth ~ b1*GRMS + b2*Centrality + b3*GRMS:Centrality</span></span>
+<span id="cb404-3"><a href="SimpMod.html#cb404-3" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb404-4"><a href="SimpMod.html#cb404-4" tabindex="-1"></a><span class="st">    #intercept (constant) of MntlHlth</span></span>
+<span id="cb404-5"><a href="SimpMod.html#cb404-5" tabindex="-1"></a><span class="st">    MntlHlth ~ MntlHlth.mean*1</span></span>
+<span id="cb404-6"><a href="SimpMod.html#cb404-6" tabindex="-1"></a><span class="st">    #mean of W (Centrality, in this case) for use in simple slopes</span></span>
+<span id="cb404-7"><a href="SimpMod.html#cb404-7" tabindex="-1"></a><span class="st">    Centrality ~ Centrality.mean*1</span></span>
+<span id="cb404-8"><a href="SimpMod.html#cb404-8" tabindex="-1"></a><span class="st">    #variance of W (Centrality, in this case) for use in simple slopes</span></span>
+<span id="cb404-9"><a href="SimpMod.html#cb404-9" tabindex="-1"></a><span class="st">    Centrality ~~Centrality.var*Centrality</span></span>
+<span id="cb404-10"><a href="SimpMod.html#cb404-10" tabindex="-1"></a></span>
+<span id="cb404-11"><a href="SimpMod.html#cb404-11" tabindex="-1"></a><span class="st">    #simple slopes</span></span>
+<span id="cb404-12"><a href="SimpMod.html#cb404-12" tabindex="-1"></a><span class="st">    SD.below := b1 + b3*(Centrality.mean - sqrt(Centrality.var))</span></span>
+<span id="cb404-13"><a href="SimpMod.html#cb404-13" tabindex="-1"></a><span class="st">    mean := b1 + b3*(Centrality.mean)</span></span>
+<span id="cb404-14"><a href="SimpMod.html#cb404-14" tabindex="-1"></a><span class="st">    SD.above := b1 + b3*(Centrality.mean + sqrt(Centrality.var))</span></span>
+<span id="cb404-15"><a href="SimpMod.html#cb404-15" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb404-16"><a href="SimpMod.html#cb404-16" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">230925</span>)<span class="co">#needed for reproducibility especially when asking for bootstrapped confidence intervals</span></span>
+<span id="cb404-17"><a href="SimpMod.html#cb404-17" tabindex="-1"></a>LewMLEfit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(LewisSimpModMLE, <span class="at">data =</span> Lewis_df,  <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span>
+<span id="cb404-18"><a href="SimpMod.html#cb404-18" tabindex="-1"></a>LewisMLEsummary <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(LewMLEfit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span>
+<span id="cb404-19"><a href="SimpMod.html#cb404-19" tabindex="-1"></a>LewisMLEParamEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(LewMLEfit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb404-20"><a href="SimpMod.html#cb404-20" tabindex="-1"></a>LewisMLEsummary</span></code></pre></div>
+<pre><code>lavaan 0.6-18 ended normally after 13 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -1831,7 +1658,7 @@ Model Test User Model:
 
 Model Test Baseline Model:
 
-  Test statistic                               659.975
+  Test statistic                               659.997
   Degrees of freedom                                 5
   P-value                                        0.000
 
@@ -1845,12 +1672,12 @@ User Model versus Baseline Model:
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)               -494.947
-  Loglikelihood unrestricted model (H1)       -211.334
+  Loglikelihood user model (H0)               -495.064
+  Loglikelihood unrestricted model (H1)       -211.451
                                                       
-  Akaike (AIC)                                1003.894
-  Bayesian (BIC)                              1027.991
-  Sample-size adjusted Bayesian (SABIC)       1005.805
+  Akaike (AIC)                                1004.127
+  Bayesian (BIC)                              1028.224
+  Sample-size adjusted Bayesian (SABIC)       1006.038
 
 Root Mean Square Error of Approximation:
 
@@ -1879,41 +1706,41 @@ Parameter Estimates:
 Regressions:
                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
   MntlHlth ~                                                            
-    GRMS      (b1)   -1.248    0.308   -4.052    0.000   -1.820   -0.550
-    Centralty (b2)   -0.351    0.205   -1.712    0.087   -0.713    0.097
-    GRMS:Cntr (b3)    0.157    0.079    1.984    0.047   -0.016    0.304
+    GRMS      (b1)   -1.249    0.308   -4.054    0.000   -1.821   -0.549
+    Centralty (b2)   -0.351    0.205   -1.715    0.086   -0.714    0.098
+    GRMS:Cntr (b3)    0.157    0.079    1.984    0.047   -0.015    0.304
    Std.lv  Std.all
                   
-   -1.248   -1.033
+   -1.249   -1.032
    -0.351   -0.304
-    0.157    0.684
+    0.157    0.683
 
 Intercepts:
                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-   .MntlHlt (MnH.)    6.138    0.783    7.840    0.000    4.285    7.481
+   .MntlHlt (MnH.)    6.140    0.782    7.848    0.000    4.288    7.485
     Cntrlty (Cnt.)    3.938    0.049   79.569    0.000    3.836    4.035
    Std.lv  Std.all
-    6.138    7.054
+    6.140    7.053
     3.938    5.223
 
 Variances:
                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
     Cntrlty (Cnt.)    0.568    0.054   10.608    0.000    0.464    0.675
-   .MntlHlt           0.438    0.040   10.834    0.000    0.357    0.510
+   .MntlHlt           0.438    0.040   10.836    0.000    0.357    0.511
    Std.lv  Std.all
     0.568    1.000
     0.438    0.578
 
 Defined Parameters:
                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-    SD.below         -0.750    0.078   -9.605    0.000   -0.884   -0.570
-    mean             -0.632    0.059  -10.760    0.000   -0.742   -0.511
-    SD.above         -0.514    0.088   -5.812    0.000   -0.688   -0.341
+    SD.below         -0.750    0.078   -9.608    0.000   -0.884   -0.571
+    mean             -0.632    0.059  -10.761    0.000   -0.742   -0.512
+    SD.above         -0.514    0.088   -5.815    0.000   -0.689   -0.341
    Std.lv  Std.all
-   -0.750    1.855
-   -0.632    2.539
-   -0.514    3.223</code></pre>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="SimpMod.html#cb398-1" tabindex="-1"></a>LewisMLEParamEsts</span></code></pre></div>
+   -0.750    1.854
+   -0.632    2.538
+   -0.514    3.221</code></pre>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="SimpMod.html#cb406-1" tabindex="-1"></a>LewisMLEParamEsts</span></code></pre></div>
 <pre><code>               lhs op                                          rhs
 1         MntlHlth  ~                                         GRMS
 2         MntlHlth  ~                                   Centrality
@@ -1931,26 +1758,26 @@ Defined Parameters:
 14            mean :=                      b1+b3*(Centrality.mean)
 15        SD.above := b1+b3*(Centrality.mean+sqrt(Centrality.var))
              label    est    se       z pvalue ci.lower ci.upper std.lv std.all
-1               b1 -1.248 0.308  -4.052  0.000   -1.822   -0.550 -1.248  -1.033
-2               b2 -0.351 0.205  -1.712  0.087   -0.706    0.118 -0.351  -0.304
-3               b3  0.157 0.079   1.984  0.047   -0.013    0.305  0.157   0.684
-4    MntlHlth.mean  6.138 0.783   7.840  0.000    4.191    7.438  6.138   7.054
+1               b1 -1.249 0.308  -4.054  0.000   -1.814   -0.549 -1.249  -1.032
+2               b2 -0.351 0.205  -1.715  0.086   -0.707    0.117 -0.351  -0.304
+3               b3  0.157 0.079   1.984  0.047   -0.013    0.305  0.157   0.683
+4    MntlHlth.mean  6.140 0.782   7.848  0.000    4.195    7.441  6.140   7.053
 5  Centrality.mean  3.938 0.049  79.569  0.000    3.834    4.035  3.938   5.223
 6   Centrality.var  0.568 0.054  10.608  0.000    0.469    0.682  0.568   1.000
-7                   0.438 0.040  10.834  0.000    0.372    0.536  0.438   0.578
+7                   0.438 0.040  10.836  0.000    0.372    0.536  0.438   0.578
 8                   0.518 0.000      NA     NA    0.518    0.518  0.518   1.000
 9                   2.334 0.000      NA     NA    2.334    2.334  2.334   0.853
 10                 14.446 0.000      NA     NA   14.446   14.446 14.446   1.000
 11                  2.557 0.000      NA     NA    2.557    2.557  2.557   3.552
 12                 10.199 0.000      NA     NA   10.199   10.199 10.199   2.683
-13        SD.below -0.750 0.078  -9.605  0.000   -0.887   -0.574 -0.750   1.855
-14            mean -0.632 0.059 -10.760  0.000   -0.742   -0.513 -0.632   2.539
-15        SD.above -0.514 0.088  -5.812  0.000   -0.688   -0.341 -0.514   3.223
+13        SD.below -0.750 0.078  -9.608  0.000   -0.889   -0.575 -0.750   1.854
+14            mean -0.632 0.059 -10.761  0.000   -0.743   -0.513 -0.632   2.538
+15        SD.above -0.514 0.088  -5.815  0.000   -0.689   -0.341 -0.514   3.221
    std.nox
-1   -1.435
+1   -1.434
 2   -0.290
 3    0.180
-4    7.054
+4    7.053
 5    5.223
 6    1.000
 7    0.578
@@ -1962,16 +1789,14 @@ Defined Parameters:
 13  -0.675
 14  -0.495
 15  -0.315</code></pre>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="SimpMod.html#cb400-1" tabindex="-1"></a><span class="co"># adding rsquare=TRUE or rsq=T to both summary and parameterEstimates</span></span>
-<span id="cb400-2"><a href="SimpMod.html#cb400-2" tabindex="-1"></a><span class="co"># resulted in an error related to missing values in row names; could</span></span>
-<span id="cb400-3"><a href="SimpMod.html#cb400-3" tabindex="-1"></a><span class="co"># not find a solution</span></span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="SimpMod.html#cb408-1" tabindex="-1"></a><span class="co">#adding rsquare=TRUE or rsq=T to both summary and parameterEstimates resulted in an error related to missing values in row names; could not find a solution</span></span></code></pre></div>
 <p>For reasons unknown to me, I haven’t been able to use the commands to produce r-square values without receiving errors. Fortunately, there is a workaround and we can call for the r-square results directly.</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="SimpMod.html#cb401-1" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">lavInspect</span>(LewMLEfit, <span class="st">&quot;rsquare&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="SimpMod.html#cb409-1" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">lavInspect</span>(LewMLEfit, <span class="st">&quot;rsquare&quot;</span>)</span></code></pre></div>
 <pre><code>MntlHlth 
    0.422 </code></pre>
 <p>Our model accounts for 42% of the variance in mental health.</p>
 <p>To create a table outside of R, you can export these results as a .csv file (which can be opened in Excel).</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="SimpMod.html#cb403-1" tabindex="-1"></a><span class="fu">write.csv</span>(LewisMLEParamEsts, <span class="at">file =</span> <span class="st">&quot;LewisMLEParamEsts.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="SimpMod.html#cb411-1" tabindex="-1"></a><span class="fu">write.csv</span>(LewisMLEParamEsts, <span class="at">file =</span> <span class="st">&quot;LewisMLEParamEsts.csv&quot;</span>)</span></code></pre></div>
 <p>Recall, this was our formula:</p>
 <p>Here is the formulaic rendering:
 <span class="math display">\[Y = i_{Y}+ b_{1}X+ b_{2}W + b_{3}XW +e_{Y}\]</span></p>
@@ -1979,18 +1804,18 @@ Defined Parameters:
 <span class="math display">\[\hat{Y} = 6.138 + (-1.248)X + (-0.351)W + 1.57XW\]</span>
 While the <em>p</em> values will wiggle around, it is reassuring that the regression weights are consistent across the OLS and MLE results. It is typical for the MLE <em>p</em> values to be less significant. This is, in part, due to the large sample size nature of this approach to data analysis.</p>
 <p>We can use our <em>lavaan</em> output to create a figure that is typical of path and structural equation modeling analyses. We start by feeding the <em>tidySEM::graph_model</em> function the fit object. The function will make it’s best guess for a figure. Typically, we will update it.</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="SimpMod.html#cb404-1" tabindex="-1"></a><span class="co"># only worked when I used the library to turn on all these pkgs</span></span>
-<span id="cb404-2"><a href="SimpMod.html#cb404-2" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span></code></pre></div>
-<pre><code>This is lavaan 0.6-17
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="SimpMod.html#cb412-1" tabindex="-1"></a><span class="co">#only worked when I used the library to turn on all these pkgs</span></span>
+<span id="cb412-2"><a href="SimpMod.html#cb412-2" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span></code></pre></div>
+<pre><code>This is lavaan 0.6-18
 lavaan is FREE software! Please report any bugs.</code></pre>
 <pre><code>
 Attaching package: &#39;lavaan&#39;</code></pre>
 <pre><code>The following object is masked from &#39;package:psych&#39;:
 
     cor2cov</code></pre>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="SimpMod.html#cb408-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb408-2"><a href="SimpMod.html#cb408-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb408-3"><a href="SimpMod.html#cb408-3" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="SimpMod.html#cb416-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb416-2"><a href="SimpMod.html#cb416-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb416-3"><a href="SimpMod.html#cb416-3" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span></code></pre></div>
 <pre><code>Loading required package: OpenMx</code></pre>
 <pre><code>
 Attaching package: &#39;OpenMx&#39;</code></pre>
@@ -2000,19 +1825,21 @@ Attaching package: &#39;OpenMx&#39;</code></pre>
 <pre><code>Registered S3 method overwritten by &#39;tidySEM&#39;:
   method          from  
   predict.MxModel OpenMx</code></pre>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="SimpMod.html#cb413-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> LewMLEfit)</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="SimpMod.html#cb421-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> LewMLEfit)</span></code></pre></div>
 <p><img src="07-SimpleMod_files/figure-html/unnamed-chunk-26-1.png" width="672" />
 We can use the <em>tidySEM::get_layout</em> function to understand how our model is being mapped.</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="SimpMod.html#cb414-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(LewMLEfit)</span></code></pre></div>
-<pre><code>     [,1]              [,2]   [,3]        
-[1,] &quot;GRMS:Centrality&quot; NA     &quot;Centrality&quot;
-[2,] &quot;MntlHlth&quot;        &quot;GRMS&quot; NA          
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="SimpMod.html#cb422-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(LewMLEfit)</span></code></pre></div>
+<pre><code>     [,1]              [,2]       [,3]        
+[1,] NA                NA         &quot;Centrality&quot;
+[2,] NA                &quot;GRMS&quot;     NA          
+[3,] &quot;GRMS:Centrality&quot; &quot;MntlHlth&quot; NA          
 attr(,&quot;class&quot;)
 [1] &quot;layout_matrix&quot; &quot;matrix&quot;        &quot;array&quot;        </code></pre>
 <p>We can write code to remap them</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="SimpMod.html#cb416-1" tabindex="-1"></a>mod_map <span class="ot">&lt;-</span> tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(<span class="st">&quot;GRMS&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;Centrality&quot;</span>, <span class="st">&quot;MntlHlth&quot;</span>, <span class="st">&quot;GRMS:Centrality&quot;</span>,</span>
-<span id="cb416-2"><a href="SimpMod.html#cb416-2" tabindex="-1"></a>    <span class="st">&quot;&quot;</span>, <span class="at">rows =</span> <span class="dv">3</span>)</span>
-<span id="cb416-3"><a href="SimpMod.html#cb416-3" tabindex="-1"></a>mod_map</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="SimpMod.html#cb424-1" tabindex="-1"></a>mod_map <span class="ot">&lt;-</span> tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(<span class="st">&quot;GRMS&quot;</span>, <span class="st">&quot;&quot;</span>, </span>
+<span id="cb424-2"><a href="SimpMod.html#cb424-2" tabindex="-1"></a>                               <span class="st">&quot;Centrality&quot;</span>, <span class="st">&quot;MntlHlth&quot;</span>, </span>
+<span id="cb424-3"><a href="SimpMod.html#cb424-3" tabindex="-1"></a>                               <span class="st">&quot;GRMS:Centrality&quot;</span>, <span class="st">&quot;&quot;</span>,<span class="at">rows=</span><span class="dv">3</span>)</span>
+<span id="cb424-4"><a href="SimpMod.html#cb424-4" tabindex="-1"></a>mod_map</span></code></pre></div>
 <pre><code>     [,1]              [,2]      
 [1,] &quot;GRMS&quot;            &quot;&quot;        
 [2,] &quot;Centrality&quot;      &quot;MntlHlth&quot;
@@ -2020,8 +1847,7 @@ attr(,&quot;class&quot;)
 attr(,&quot;class&quot;)
 [1] &quot;layout_matrix&quot; &quot;matrix&quot;        &quot;array&quot;        </code></pre>
 <p>We can update the <em>tidySEM::graph_sem</em> function with our new model to produce something that will better convey our analyses and its results.</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="SimpMod.html#cb418-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(LewMLEfit, <span class="at">layout =</span> mod_map, <span class="at">rect_width =</span> <span class="fl">1.25</span>, <span class="at">rect_height =</span> <span class="fl">1.25</span>,</span>
-<span id="cb418-2"><a href="SimpMod.html#cb418-2" tabindex="-1"></a>    <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">4.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="SimpMod.html#cb426-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(LewMLEfit, <span class="at">layout=</span>mod_map,  <span class="at">rect_width =</span> <span class="fl">1.25</span>, <span class="at">rect_height =</span> <span class="fl">1.25</span>, <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">4.5</span>)</span></code></pre></div>
 <p><img src="07-SimpleMod_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>If I had just run this with lavaan, I would want to plot the interaction and would do so with the OLS methods I demonstrated above.</p>
 </div>
@@ -2035,7 +1861,7 @@ attr(,&quot;class&quot;)
 <col width="100%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th align="left">A Comparison of OLS and MLE Regression Results</th>
 </tr>
 </thead>
@@ -2049,7 +1875,7 @@ attr(,&quot;class&quot;)
 <col width="38%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="center"></td>
 <td align="center">OLS with the <em>lm()</em> in base R</td>
 <td align="center">MLE with <em>lavaan</em></td>
@@ -2067,7 +1893,7 @@ attr(,&quot;class&quot;)
 <col width="12%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left"></td>
 <td align="center"><span class="math inline">\(B\)</span></td>
 <td align="center"><span class="math inline">\(SE\)</span></td>
@@ -2076,7 +1902,7 @@ attr(,&quot;class&quot;)
 <td align="center"><span class="math inline">\(SE\)</span></td>
 <td align="center"><span class="math inline">\(p\)</span></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">MntlHlth (Intercept)</td>
 <td align="center">6.138</td>
 <td align="center">0.767</td>
@@ -2085,7 +1911,7 @@ attr(,&quot;class&quot;)
 <td align="center">0.783</td>
 <td align="center">&lt;0.001</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">GRMS (X)</td>
 <td align="center">-1.248</td>
 <td align="center">0.290</td>
@@ -2094,7 +1920,7 @@ attr(,&quot;class&quot;)
 <td align="center">0.308</td>
 <td align="center">&lt;0.001</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">Centrality (W)</td>
 <td align="center">-0.351</td>
 <td align="center">0.199</td>
@@ -2103,7 +1929,7 @@ attr(,&quot;class&quot;)
 <td align="center">0.205</td>
 <td align="center">0.087</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">GRMS:GRIC (XY)</td>
 <td align="center">0.157</td>
 <td align="center">0.073</td>
@@ -2121,12 +1947,12 @@ attr(,&quot;class&quot;)
 <col width="38%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left"></td>
 <td align="left"><span class="math inline">\(R^2\)</span></td>
 <td align="center"><span class="math inline">\(R^2\)</span></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"></td>
 <td align="left">0.331</td>
 <td align="center">0.422</td>
@@ -2147,7 +1973,7 @@ attr(,&quot;class&quot;)
 <li>Address limitations and concerns</li>
 </ul>
 <p><strong>Primary Analyses</strong>
-A multiple regression analysis was conducted to predict anxiety from racial and ethnic microaggressions and attitudes toward help-seeking. Results supported a model with a statistically significant interaction effect that accounted for 42% of the variance. Probing the interaction effect with a simple slopes analysis indicated that the relationship between gendered racial microaggressions and mental health was significant throughout the centrality distribution (i.e., <span class="math inline">\(M \pm 1SD\)</span>). Results are listed in Table 2. The effect of the significant interaction can be seen in Figure 1 where the slope of the gendered racial microaggresions and mental health relationship is sharpest for those with the lowest levels of gendered racial identity centrality.</p>
+A multiple regression analysis was conducted to predict anxiety from racial and ethnic microaggressions and attitudes toward help-seeking. Results supported a model with a statistically significant interaction effect that accounted for 42% of the variance. Probing the interaction effect with a simple slopes analysis indicated that the relationship between gendered racial microaggressions and mental health was significant throughout the centrality distribution (i.e., <span class="math inline">\(M \pm  1SD\)</span>). Results are listed in Table 2. The effect of the significant interaction can be seen in Figure 1 where the slope of the gendered racial microaggresions and mental health relationship is sharpest for those with the lowest levels of gendered racial identity centrality.</p>
 </div>
 </div>
 <div id="stay-tuned-2" class="section level2 hasAnchor" number="7.8">
@@ -2198,79 +2024,79 @@ A multiple regression analysis was conducted to predict anxiety from racial and 
 <col width="11%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th align="left">Assignment Component</th>
 <th align="center"></th>
 <th align="center"></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left">1. Assign each variable to the X, Y, and W roles</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">2. Import the data and format the variables in the model</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">3. Specify and run the OLS (i.e., <em>lm()</em>) model</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">4. Probe the interaction with the simple slopes and Johnson-Neyman approaches</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">5. Create an interaction figure</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">6. Create a table (a package-produced table is fine)</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">7. Create an APA style write-up of the results</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">8. Repeat the analysis in <em>lavaan</em> (specify the model to include probing the interaction)</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">9. Create a model figure</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">10. Create a table</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">11. Note similarities and differences in the OLS results</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">12. Represent your work in an APA-style write-up</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">13. Explanation to grader</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><strong>Totals</strong></td>
 <td align="center">65</td>
 <td align="center">_____</td>
@@ -2286,39 +2112,50 @@ A multiple regression analysis was conducted to predict anxiety from racial and 
 <div class="figcaption">Image of a filmstrip</div>
 </div>
 <p>Below is template for a simple moderation conducted with the OLS approach using the base R function, <em>lm()</em></p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="SimpMod.html#cb419-1" tabindex="-1"></a><span class="fu">library</span>(jtools)  <span class="co">#the summ function creates a terrific regression table</span></span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="SimpMod.html#cb427-1" tabindex="-1"></a><span class="fu">library</span>(jtools) <span class="co">#the summ function creates a terrific regression table</span></span></code></pre></div>
 <pre><code>
 Attaching package: &#39;jtools&#39;</code></pre>
 <pre><code>The following object is masked from &#39;package:tidySEM&#39;:
 
     get_data</code></pre>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="SimpMod.html#cb422-1" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
-<span id="cb422-2"><a href="SimpMod.html#cb422-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb422-3"><a href="SimpMod.html#cb422-3" tabindex="-1"></a></span>
-<span id="cb422-4"><a href="SimpMod.html#cb422-4" tabindex="-1"></a><span class="co"># The regression OLSmodel &lt;- lm(Y~X*W, data=my_df) summary(OLSmodel)</span></span>
-<span id="cb422-5"><a href="SimpMod.html#cb422-5" tabindex="-1"></a></span>
-<span id="cb422-6"><a href="SimpMod.html#cb422-6" tabindex="-1"></a><span class="co"># Cool Table summ(OLSmodel, digits = 3)</span></span>
-<span id="cb422-7"><a href="SimpMod.html#cb422-7" tabindex="-1"></a></span>
-<span id="cb422-8"><a href="SimpMod.html#cb422-8" tabindex="-1"></a><span class="co"># Probe Simple Slopes sim_slopes(OLSmodel, pred = X, modx = W)</span></span>
-<span id="cb422-9"><a href="SimpMod.html#cb422-9" tabindex="-1"></a></span>
-<span id="cb422-10"><a href="SimpMod.html#cb422-10" tabindex="-1"></a><span class="co"># Figures interact_plot(OLSmodel, pred = W, modx = X)</span></span>
-<span id="cb422-11"><a href="SimpMod.html#cb422-11" tabindex="-1"></a><span class="co"># interact_plot(OLSmodel, pred = X, modx = W)</span></span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="SimpMod.html#cb430-1" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
+<span id="cb430-2"><a href="SimpMod.html#cb430-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb430-3"><a href="SimpMod.html#cb430-3" tabindex="-1"></a></span>
+<span id="cb430-4"><a href="SimpMod.html#cb430-4" tabindex="-1"></a><span class="co">#The regression</span></span>
+<span id="cb430-5"><a href="SimpMod.html#cb430-5" tabindex="-1"></a><span class="co">#OLSmodel &lt;- lm(Y~X*W, data=my_df)</span></span>
+<span id="cb430-6"><a href="SimpMod.html#cb430-6" tabindex="-1"></a><span class="co">#summary(OLSmodel)</span></span>
+<span id="cb430-7"><a href="SimpMod.html#cb430-7" tabindex="-1"></a></span>
+<span id="cb430-8"><a href="SimpMod.html#cb430-8" tabindex="-1"></a><span class="co">#Cool Table</span></span>
+<span id="cb430-9"><a href="SimpMod.html#cb430-9" tabindex="-1"></a><span class="co">#summ(OLSmodel, digits = 3)</span></span>
+<span id="cb430-10"><a href="SimpMod.html#cb430-10" tabindex="-1"></a></span>
+<span id="cb430-11"><a href="SimpMod.html#cb430-11" tabindex="-1"></a><span class="co">#Probe Simple Slopes</span></span>
+<span id="cb430-12"><a href="SimpMod.html#cb430-12" tabindex="-1"></a><span class="co">#sim_slopes(OLSmodel, pred = X, modx = W)</span></span>
+<span id="cb430-13"><a href="SimpMod.html#cb430-13" tabindex="-1"></a></span>
+<span id="cb430-14"><a href="SimpMod.html#cb430-14" tabindex="-1"></a><span class="co">#Figures</span></span>
+<span id="cb430-15"><a href="SimpMod.html#cb430-15" tabindex="-1"></a><span class="co">#interact_plot(OLSmodel, pred = W, modx = X)</span></span>
+<span id="cb430-16"><a href="SimpMod.html#cb430-16" tabindex="-1"></a><span class="co">#interact_plot(OLSmodel, pred = X, modx = W)</span></span></code></pre></div>
 <p>Below is a template for a simple moderation conducted with the MLE approach using the package, <em>lavaan</em>.</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="SimpMod.html#cb423-1" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb423-2"><a href="SimpMod.html#cb423-2" tabindex="-1"></a><span class="co"># set.seed(210501)#needed for reproducibility because lavaan</span></span>
-<span id="cb423-3"><a href="SimpMod.html#cb423-3" tabindex="-1"></a><span class="co"># introduces randomness in the calculations MLEmodel &lt;- &#39; Y ~ b1*X +</span></span>
-<span id="cb423-4"><a href="SimpMod.html#cb423-4" tabindex="-1"></a><span class="co"># b2*W + b3*X:W intercept (constant) of Y Y ~ Y.mean*1 mean of W for</span></span>
-<span id="cb423-5"><a href="SimpMod.html#cb423-5" tabindex="-1"></a><span class="co"># use in simple slopes W ~ W.mean*1 variance of W for use in simple</span></span>
-<span id="cb423-6"><a href="SimpMod.html#cb423-6" tabindex="-1"></a><span class="co"># slopes W ~~ W .var*W</span></span>
-<span id="cb423-7"><a href="SimpMod.html#cb423-7" tabindex="-1"></a></span>
-<span id="cb423-8"><a href="SimpMod.html#cb423-8" tabindex="-1"></a><span class="co"># simple slopes SD.below := b1 + b3*(W.mean - sqrt(W.var)) mean := b1</span></span>
-<span id="cb423-9"><a href="SimpMod.html#cb423-9" tabindex="-1"></a><span class="co"># + b3*(W.mean) SD.above := b1 + b3*(W.mean + sqrt(W.var))</span></span>
-<span id="cb423-10"><a href="SimpMod.html#cb423-10" tabindex="-1"></a><span class="co">#&#39;</span></span>
-<span id="cb423-11"><a href="SimpMod.html#cb423-11" tabindex="-1"></a><span class="co"># MLEmod_fit &lt;- sem(MLEmodel, data = my_df, missing = &#39;fiml&#39;, se =</span></span>
-<span id="cb423-12"><a href="SimpMod.html#cb423-12" tabindex="-1"></a><span class="co"># &#39;bootstrap&#39;, bootstrap = 1000) MLEmod_fit_summary &lt;-</span></span>
-<span id="cb423-13"><a href="SimpMod.html#cb423-13" tabindex="-1"></a><span class="co"># summary(MLEmod_fit, standardized = TRUE, rsq=T, ci=TRUE)</span></span>
-<span id="cb423-14"><a href="SimpMod.html#cb423-14" tabindex="-1"></a><span class="co"># MLEmodParamEsts &lt;- parameterEstimates(MLEmod_fit, boot.ci.type =</span></span>
-<span id="cb423-15"><a href="SimpMod.html#cb423-15" tabindex="-1"></a><span class="co"># &#39;bca.simple&#39;, standardized=TRUE) MLEmod_fit_summary MLEmodParamEsts</span></span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="SimpMod.html#cb431-1" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb431-2"><a href="SimpMod.html#cb431-2" tabindex="-1"></a><span class="co">#set.seed(210501)#needed for reproducibility because lavaan introduces randomness in the calculations</span></span>
+<span id="cb431-3"><a href="SimpMod.html#cb431-3" tabindex="-1"></a><span class="co">#MLEmodel &lt;- &#39;</span></span>
+<span id="cb431-4"><a href="SimpMod.html#cb431-4" tabindex="-1"></a>    <span class="co">#Y ~ b1*X + b2*W + b3*X:W</span></span>
+<span id="cb431-5"><a href="SimpMod.html#cb431-5" tabindex="-1"></a>    <span class="co">#intercept (constant) of Y</span></span>
+<span id="cb431-6"><a href="SimpMod.html#cb431-6" tabindex="-1"></a>    <span class="co">#Y ~ Y.mean*1</span></span>
+<span id="cb431-7"><a href="SimpMod.html#cb431-7" tabindex="-1"></a>    <span class="co">#mean of W  for use in simple slopes</span></span>
+<span id="cb431-8"><a href="SimpMod.html#cb431-8" tabindex="-1"></a>    <span class="co">#W ~ W.mean*1</span></span>
+<span id="cb431-9"><a href="SimpMod.html#cb431-9" tabindex="-1"></a>    <span class="co">#variance of W for use in simple slopes</span></span>
+<span id="cb431-10"><a href="SimpMod.html#cb431-10" tabindex="-1"></a>    <span class="co">#W ~~ W .var*W</span></span>
+<span id="cb431-11"><a href="SimpMod.html#cb431-11" tabindex="-1"></a></span>
+<span id="cb431-12"><a href="SimpMod.html#cb431-12" tabindex="-1"></a>    <span class="co">#simple slopes</span></span>
+<span id="cb431-13"><a href="SimpMod.html#cb431-13" tabindex="-1"></a>    <span class="co">#SD.below := b1 + b3*(W.mean - sqrt(W.var))</span></span>
+<span id="cb431-14"><a href="SimpMod.html#cb431-14" tabindex="-1"></a>    <span class="co">#mean := b1 + b3*(W.mean)</span></span>
+<span id="cb431-15"><a href="SimpMod.html#cb431-15" tabindex="-1"></a>    <span class="co">#SD.above := b1 + b3*(W.mean + sqrt(W.var))</span></span>
+<span id="cb431-16"><a href="SimpMod.html#cb431-16" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb431-17"><a href="SimpMod.html#cb431-17" tabindex="-1"></a><span class="co">#MLEmod_fit &lt;- sem(MLEmodel, data = my_df, missing = &#39;fiml&#39;, se = &quot;bootstrap&quot;, bootstrap = 1000)</span></span>
+<span id="cb431-18"><a href="SimpMod.html#cb431-18" tabindex="-1"></a><span class="co">#MLEmod_fit_summary &lt;- summary(MLEmod_fit, standardized = TRUE, rsq=T, ci=TRUE)    </span></span>
+<span id="cb431-19"><a href="SimpMod.html#cb431-19" tabindex="-1"></a><span class="co">#MLEmodParamEsts &lt;- parameterEstimates(MLEmod_fit, boot.ci.type = &quot;bca.simple&quot;, standardized=TRUE)</span></span>
+<span id="cb431-20"><a href="SimpMod.html#cb431-20" tabindex="-1"></a><span class="co">#MLEmod_fit_summary</span></span>
+<span id="cb431-21"><a href="SimpMod.html#cb431-21" tabindex="-1"></a><span class="co">#MLEmodParamEsts</span></span></code></pre></div>
 </div>
 <div id="homeworked-example-4" class="section level2 hasAnchor" number="7.12">
 <h2><span class="header-section-number">7.12</span> Homeworked Example<a href="SimpMod.html#homeworked-example-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -2344,63 +2181,60 @@ Attaching package: &#39;jtools&#39;</code></pre>
 </div>
 <div id="import-the-data-and-format-the-variables-in-the-model-2" class="section level3 unnumbered hasAnchor">
 <h3>Import the data and format the variables in the model<a href="SimpMod.html#import-the-data-and-format-the-variables-in-the-model-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="SimpMod.html#cb424-1" tabindex="-1"></a>raw <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="SimpMod.html#cb432-1" tabindex="-1"></a>raw <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;ReC.rds&quot;</span>)</span></code></pre></div>
 <p>The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="SimpMod.html#cb425-1" tabindex="-1"></a>raw <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">filter</span>(raw, Course <span class="sc">==</span> <span class="st">&quot;Multivariate&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="SimpMod.html#cb433-1" tabindex="-1"></a>raw <span class="ot">&lt;-</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(raw, Course <span class="sc">==</span> <span class="st">&quot;Multivariate&quot;</span>))</span></code></pre></div>
 <p>I need to score the SRPed and Valued variables</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="SimpMod.html#cb426-1" tabindex="-1"></a>Valued_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ValObjectives&quot;</span>, <span class="st">&quot;IncrUnderstanding&quot;</span>, <span class="st">&quot;IncrInterest&quot;</span>)</span>
-<span id="cb426-2"><a href="SimpMod.html#cb426-2" tabindex="-1"></a>raw<span class="sc">$</span>Valued <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(raw[, ..Valued_vars], <span class="fl">0.75</span>)</span>
-<span id="cb426-3"><a href="SimpMod.html#cb426-3" tabindex="-1"></a></span>
-<span id="cb426-4"><a href="SimpMod.html#cb426-4" tabindex="-1"></a>SRPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;InclusvClassrm&quot;</span>, <span class="st">&quot;EquitableEval&quot;</span>, <span class="st">&quot;MultPerspectives&quot;</span>,</span>
-<span id="cb426-5"><a href="SimpMod.html#cb426-5" tabindex="-1"></a>    <span class="st">&quot;DEIintegration&quot;</span>)</span>
-<span id="cb426-6"><a href="SimpMod.html#cb426-6" tabindex="-1"></a>raw<span class="sc">$</span>SRPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(raw[, ..SRPed_vars], <span class="fl">0.75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="SimpMod.html#cb434-1" tabindex="-1"></a>raw<span class="sc">$</span>Valued <span class="ot">&lt;-</span> datawizard<span class="sc">::</span><span class="fu">row_means</span>(raw, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&#39;ValObjectives&#39;</span>, <span class="st">&#39;IncrUnderstanding&#39;</span>,<span class="st">&#39;IncrInterest&#39;</span>), <span class="at">min_valid =</span> .<span class="dv">75</span>)</span>
+<span id="cb434-2"><a href="SimpMod.html#cb434-2" tabindex="-1"></a></span>
+<span id="cb434-3"><a href="SimpMod.html#cb434-3" tabindex="-1"></a>raw<span class="sc">$</span>SRPed <span class="ot">&lt;-</span> datawizard<span class="sc">::</span><span class="fu">row_means</span>(raw, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&#39;InclusvClassrm&#39;</span>,<span class="st">&#39;EquitableEval&#39;</span>, <span class="st">&#39;MultPerspectives&#39;</span>, <span class="st">&#39;DEIintegration&#39;</span>), <span class="at">min_valid =</span> .<span class="dv">75</span>)</span></code></pre></div>
 <p>I will create a babydf.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="SimpMod.html#cb427-1" tabindex="-1"></a>babydf <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(raw, Centering, Valued, SRPed)</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="SimpMod.html#cb435-1" tabindex="-1"></a>babydf <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(raw, Centering, Valued, SRPed)</span></code></pre></div>
 <p>Let’s check the structure of the variables:</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="SimpMod.html#cb428-1" tabindex="-1"></a><span class="fu">str</span>(babydf)</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="SimpMod.html#cb436-1" tabindex="-1"></a><span class="fu">str</span>(babydf)</span></code></pre></div>
 <pre><code>Classes &#39;data.table&#39; and &#39;data.frame&#39;:  84 obs. of  3 variables:
  $ Centering: Factor w/ 2 levels &quot;Pre&quot;,&quot;Re&quot;: 2 2 2 2 2 2 2 2 2 2 ...
- $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+ $ Valued   : num  4.33 5 4.67 3.33 4 ...
  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt; </code></pre>
 <p>Quick peek at relations between variables:</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="SimpMod.html#cb430-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(babydf)</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="SimpMod.html#cb438-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(babydf)</span></code></pre></div>
 <p><img src="07-SimpleMod_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
 </div>
 <div id="specify-and-run-the-olslm-model" class="section level3 unnumbered hasAnchor">
 <h3>Specify and run the OLS/<em>lm()</em> model<a href="SimpMod.html#specify-and-run-the-olslm-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="SimpMod.html#cb431-1" tabindex="-1"></a>ReC_SimpMod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Valued <span class="sc">~</span> Centering <span class="sc">*</span> SRPed, <span class="at">data =</span> babydf)</span>
-<span id="cb431-2"><a href="SimpMod.html#cb431-2" tabindex="-1"></a><span class="co"># the base R output if you prefer this view</span></span>
-<span id="cb431-3"><a href="SimpMod.html#cb431-3" tabindex="-1"></a><span class="fu">summary</span>(ReC_SimpMod)</span></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="SimpMod.html#cb439-1" tabindex="-1"></a>ReC_SimpMod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Valued<span class="sc">~</span>Centering<span class="sc">*</span>SRPed, <span class="at">data=</span>babydf)</span>
+<span id="cb439-2"><a href="SimpMod.html#cb439-2" tabindex="-1"></a><span class="co">#the base R output if you prefer this view</span></span>
+<span id="cb439-3"><a href="SimpMod.html#cb439-3" tabindex="-1"></a><span class="fu">summary</span>(ReC_SimpMod) </span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = Valued ~ Centering * SRPed, data = babydf)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--1.7173 -0.3092  0.1286  0.4027  1.1286 
+-1.7140 -0.3033  0.1287  0.4029  1.1287 
 
 Coefficients:
                   Estimate Std. Error t value    Pr(&gt;|t|)    
-(Intercept)         1.0567     0.5631   1.876      0.0644 .  
-CenteringRe        -0.5703     1.3183  -0.433      0.6665    
-SRPed               0.7037     0.1272   5.530 0.000000422 ***
-CenteringRe:SRPed   0.1185     0.2813   0.421      0.6748    
+(Intercept)         1.0551     0.5631   1.874      0.0648 .  
+CenteringRe        -0.5704     1.3181  -0.433      0.6664    
+SRPed               0.7041     0.1272   5.534 0.000000416 ***
+CenteringRe:SRPed   0.1184     0.2813   0.421      0.6749    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.5606 on 77 degrees of freedom
+Residual standard error: 0.5605 on 77 degrees of freedom
   (3 observations deleted due to missingness)
-Multiple R-squared:  0.3674,    Adjusted R-squared:  0.3427 
-F-statistic:  14.9 on 3 and 77 DF,  p-value: 0.00000009678</code></pre>
+Multiple R-squared:  0.3676,    Adjusted R-squared:  0.343 
+F-statistic: 14.92 on 3 and 77 DF,  p-value: 0.0000000954</code></pre>
 <p>Although there is a statistically significant main effect for socially responsive pedagogy, all other effects (including the moderation effect) is non-significant. If this were “real research” we might stop, but let’s continue.</p>
 <p>The following code can export the OLS regression results into a .csv. This can be opened with Excel for use in table-making. Note that this makes use of the <em>broom</em> package.</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="SimpMod.html#cb433-1" tabindex="-1"></a>ReC_SimpModOLS <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(broom<span class="sc">::</span><span class="fu">tidy</span>(ReC_SimpMod))</span>
-<span id="cb433-2"><a href="SimpMod.html#cb433-2" tabindex="-1"></a><span class="fu">write.csv</span>(ReC_SimpModOLS, <span class="st">&quot;ReC_SimpModOLS.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="SimpMod.html#cb441-1" tabindex="-1"></a>ReC_SimpModOLS <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(broom<span class="sc">::</span><span class="fu">tidy</span>(ReC_SimpMod))</span>
+<span id="cb441-2"><a href="SimpMod.html#cb441-2" tabindex="-1"></a><span class="fu">write.csv</span>(ReC_SimpModOLS, <span class="st">&quot;ReC_SimpModOLS.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="probe-the-interaction-with-the-simple-slopes-and-johnson-neyman-approaches" class="section level3 unnumbered hasAnchor">
 <h3>Probe the interaction with the simple slopes and Johnson-Neyman approaches<a href="SimpMod.html#probe-the-interaction-with-the-simple-slopes-and-johnson-neyman-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="SimpMod.html#cb434-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">sim_slopes</span>(ReC_SimpMod, <span class="at">pred =</span> SRPed, <span class="at">modx =</span> Centering)</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="SimpMod.html#cb442-1" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">sim_slopes</span>(ReC_SimpMod, <span class="at">pred =</span> SRPed, <span class="at">modx =</span> Centering)</span></code></pre></div>
 <pre><code>Warning: Johnson-Neyman intervals are not available for factor moderators.</code></pre>
 <pre><code>SIMPLE SLOPES ANALYSIS 
 
@@ -2419,172 +2253,35 @@ Slope of SRPed when Centering = Pre:
 </div>
 <div id="create-an-interaction-figure" class="section level3 unnumbered hasAnchor">
 <h3>Create an interaction figure<a href="SimpMod.html#create-an-interaction-figure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="SimpMod.html#cb437-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb437-2"><a href="SimpMod.html#cb437-2" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">interact_plot</span>(ReC_SimpMod, <span class="at">pred =</span> SRPed, <span class="at">modx =</span> Centering) <span class="sc">+</span></span>
-<span id="cb437-3"><a href="SimpMod.html#cb437-3" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="dv">1</span>, <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="SimpMod.html#cb445-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb445-2"><a href="SimpMod.html#cb445-2" tabindex="-1"></a>interactions<span class="sc">::</span><span class="fu">interact_plot</span>(ReC_SimpMod, <span class="at">pred =</span> SRPed, <span class="at">modx =</span> Centering) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">1</span>, <span class="dv">5</span>)</span></code></pre></div>
 <p><img src="07-SimpleMod_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="SimpMod.html#cb438-1" tabindex="-1"></a><span class="co"># the following code will not run because for this function, the x</span></span>
-<span id="cb438-2"><a href="SimpMod.html#cb438-2" tabindex="-1"></a><span class="co"># variable cannot be a factor</span></span>
-<span id="cb438-3"><a href="SimpMod.html#cb438-3" tabindex="-1"></a><span class="co"># interactions::interact_plot(ReC_SimpMod, pred = Centering, modx =</span></span>
-<span id="cb438-4"><a href="SimpMod.html#cb438-4" tabindex="-1"></a><span class="co"># SRPed)</span></span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="SimpMod.html#cb446-1" tabindex="-1"></a><span class="co">#the following code will not run because for this function, the x variable cannot be a factor</span></span>
+<span id="cb446-2"><a href="SimpMod.html#cb446-2" tabindex="-1"></a><span class="co">#interactions::interact_plot(ReC_SimpMod, pred = Centering, modx = SRPed)</span></span></code></pre></div>
 </div>
 <div id="create-a-table-a-package-produced-table-is-fine" class="section level3 unnumbered hasAnchor">
 <h3>Create a table (a package-produced table is fine)<a href="SimpMod.html#create-a-table-a-package-produced-table-is-fine" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="SimpMod.html#cb439-1" tabindex="-1"></a>ReC_SimpMod_summ <span class="ot">&lt;-</span> jtools<span class="sc">::</span><span class="fu">summ</span>(ReC_SimpMod, <span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb439-2"><a href="SimpMod.html#cb439-2" tabindex="-1"></a>ReC_SimpMod_summ</span></code></pre></div>
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Observations
-</td>
-<td style="text-align:right;">
-81 (3 missing obs. deleted)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Dependent variable
-</td>
-<td style="text-align:right;">
-Valued
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Type
-</td>
-<td style="text-align:right;">
-OLS linear regression
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-F(3,77)
-</td>
-<td style="text-align:right;">
-14.904
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-R²
-</td>
-<td style="text-align:right;">
-0.367
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Adj. R²
-</td>
-<td style="text-align:right;">
-0.343
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-Est.
-</th>
-<th style="text-align:right;">
-S.E.
-</th>
-<th style="text-align:right;">
-t val.
-</th>
-<th style="text-align:right;">
-p
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-(Intercept)
-</td>
-<td style="text-align:right;">
-1.057
-</td>
-<td style="text-align:right;">
-0.563
-</td>
-<td style="text-align:right;">
-1.876
-</td>
-<td style="text-align:right;">
-0.064
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-CenteringRe
-</td>
-<td style="text-align:right;">
--0.570
-</td>
-<td style="text-align:right;">
-1.318
-</td>
-<td style="text-align:right;">
--0.433
-</td>
-<td style="text-align:right;">
-0.667
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-SRPed
-</td>
-<td style="text-align:right;">
-0.704
-</td>
-<td style="text-align:right;">
-0.127
-</td>
-<td style="text-align:right;">
-5.530
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-CenteringRe:SRPed
-</td>
-<td style="text-align:right;">
-0.118
-</td>
-<td style="text-align:right;">
-0.281
-</td>
-<td style="text-align:right;">
-0.421
-</td>
-<td style="text-align:right;">
-0.675
-</td>
-</tr>
-</tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<sup></sup> Standard errors: OLS
-</td>
-</tr>
-</tfoot>
-</table>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="SimpMod.html#cb447-1" tabindex="-1"></a>ReC_SimpMod_summ <span class="ot">&lt;-</span> jtools<span class="sc">::</span><span class="fu">summ</span>(ReC_SimpMod, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb447-2"><a href="SimpMod.html#cb447-2" tabindex="-1"></a>ReC_SimpMod_summ</span></code></pre></div>
+<pre><code>MODEL INFO:
+Observations: 81 (3 missing obs. deleted)
+Dependent Variable: Valued
+Type: OLS linear regression 
+
+MODEL FIT:
+F(3,77) = 14.919, p = 0.000
+R² = 0.368
+Adj. R² = 0.343 
+
+Standard errors: OLS
+---------------------------------------------------------
+                            Est.    S.E.   t val.       p
+----------------------- -------- ------- -------- -------
+(Intercept)                1.055   0.563    1.874   0.065
+CenteringRe               -0.570   1.318   -0.433   0.666
+SRPed                      0.704   0.127    5.534   0.000
+CenteringRe:SRPed          0.118   0.281    0.421   0.675
+---------------------------------------------------------</code></pre>
 </div>
 <div id="create-an-apa-style-write-up-of-the-results" class="section level3 unnumbered hasAnchor">
 <h3>Create an APA style write-up of the results<a href="SimpMod.html#create-an-apa-style-write-up-of-the-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -2592,53 +2289,44 @@ CenteringRe:SRPed
 </div>
 <div id="repeat-the-analysis-in-lavaan-specify-the-model-to-include-probing-the-interaction" class="section level3 unnumbered hasAnchor">
 <h3>Repeat the analysis in <em>lavaan</em> (specify the model to include probing the interaction)<a href="SimpMod.html#repeat-the-analysis-in-lavaan-specify-the-model-to-include-probing-the-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="SimpMod.html#cb440-1" tabindex="-1"></a><span class="fu">str</span>(babydf)</span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="SimpMod.html#cb449-1" tabindex="-1"></a><span class="fu">str</span>(babydf)</span></code></pre></div>
 <pre><code>Classes &#39;data.table&#39; and &#39;data.frame&#39;:  84 obs. of  3 variables:
  $ Centering: Factor w/ 2 levels &quot;Pre&quot;,&quot;Re&quot;: 2 2 2 2 2 2 2 2 2 2 ...
- $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+ $ Valued   : num  4.33 5 4.67 3.33 4 ...
  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt; </code></pre>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="SimpMod.html#cb442-1" tabindex="-1"></a>babydf<span class="sc">$</span>CENTERING <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(babydf<span class="sc">$</span>Centering)</span>
-<span id="cb442-2"><a href="SimpMod.html#cb442-2" tabindex="-1"></a>babydf<span class="sc">$</span>CENTERING <span class="ot">&lt;-</span> (babydf<span class="sc">$</span>CENTERING <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb442-3"><a href="SimpMod.html#cb442-3" tabindex="-1"></a><span class="fu">str</span>(babydf)</span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="SimpMod.html#cb451-1" tabindex="-1"></a>babydf<span class="sc">$</span>CENTERING <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(babydf<span class="sc">$</span>Centering)</span>
+<span id="cb451-2"><a href="SimpMod.html#cb451-2" tabindex="-1"></a>babydf<span class="sc">$</span>CENTERING <span class="ot">&lt;-</span> (babydf<span class="sc">$</span>CENTERING <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb451-3"><a href="SimpMod.html#cb451-3" tabindex="-1"></a><span class="fu">str</span>(babydf)</span></code></pre></div>
 <pre><code>Classes &#39;data.table&#39; and &#39;data.frame&#39;:  84 obs. of  4 variables:
  $ Centering: Factor w/ 2 levels &quot;Pre&quot;,&quot;Re&quot;: 2 2 2 2 2 2 2 2 2 2 ...
- $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+ $ Valued   : num  4.33 5 4.67 3.33 4 ...
  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
  $ CENTERING: num  1 1 1 1 1 1 1 1 1 1 ...
  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt; </code></pre>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="SimpMod.html#cb444-1" tabindex="-1"></a>ReC_SimpMod_MLE <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
-<span id="cb444-2"><a href="SimpMod.html#cb444-2" tabindex="-1"></a><span class="st">    Valued ~ b1*CENTERING + b2*SRPed + b3*CENTERING:SRPed</span></span>
-<span id="cb444-3"><a href="SimpMod.html#cb444-3" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb444-4"><a href="SimpMod.html#cb444-4" tabindex="-1"></a><span class="st">    #intercept (constant) of Valued</span></span>
-<span id="cb444-5"><a href="SimpMod.html#cb444-5" tabindex="-1"></a><span class="st">    Valued ~ Valued.mean*1</span></span>
-<span id="cb444-6"><a href="SimpMod.html#cb444-6" tabindex="-1"></a><span class="st">    #mean of W (SRPed, in this case) for use in simple slopes</span></span>
-<span id="cb444-7"><a href="SimpMod.html#cb444-7" tabindex="-1"></a><span class="st">    SRPed ~ SRPed.mean*1</span></span>
-<span id="cb444-8"><a href="SimpMod.html#cb444-8" tabindex="-1"></a><span class="st">    #variance of W (SRPed, in this case) for use in simple slopes</span></span>
-<span id="cb444-9"><a href="SimpMod.html#cb444-9" tabindex="-1"></a><span class="st">    SRPed ~~SRPed.var*SRPed</span></span>
-<span id="cb444-10"><a href="SimpMod.html#cb444-10" tabindex="-1"></a></span>
-<span id="cb444-11"><a href="SimpMod.html#cb444-11" tabindex="-1"></a><span class="st">    #simple slopes evaluating effect of SCRPed on Valued at each of the levels of centering</span></span>
-<span id="cb444-12"><a href="SimpMod.html#cb444-12" tabindex="-1"></a><span class="st">    Pre := b2 + b3*(0)</span></span>
-<span id="cb444-13"><a href="SimpMod.html#cb444-13" tabindex="-1"></a><span class="st">    Re := b2 + b3*(1)</span></span>
-<span id="cb444-14"><a href="SimpMod.html#cb444-14" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb444-15"><a href="SimpMod.html#cb444-15" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">231002</span>)  <span class="co">#needed for reproducibility because lavaan introduces randomness in calculations</span></span>
-<span id="cb444-16"><a href="SimpMod.html#cb444-16" tabindex="-1"></a>ReCMLEfit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(ReC_SimpMod_MLE, <span class="at">data =</span> babydf, <span class="at">missing =</span> <span class="st">&quot;fiml&quot;</span>,</span>
-<span id="cb444-17"><a href="SimpMod.html#cb444-17" tabindex="-1"></a>    <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span></code></pre></div>
-<pre><code>Warning in lav_data_full(data = data, group = group, cluster = cluster, : lavaan WARNING: 3 cases were deleted due to missing values in 
-          exogenous variable(s), while fixed.x = TRUE.</code></pre>
-<pre><code>Warning in lav_partable_vnames(FLAT, &quot;ov.x&quot;, warn = TRUE): lavaan WARNING:
-    model syntax contains variance/covariance/intercept formulas
-    involving (an) exogenous variable(s): [SRPed]; These variables
-    will now be treated as random introducing additional free
-    parameters. If you wish to treat those variables as fixed, remove
-    these formulas from the model syntax. Otherwise, consider adding
-    the fixed.x = FALSE option.</code></pre>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="SimpMod.html#cb447-1" tabindex="-1"></a>ReCMLEsummary <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(ReCMLEfit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">fit =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb447-2"><a href="SimpMod.html#cb447-2" tabindex="-1"></a>    <span class="at">ci =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb447-3"><a href="SimpMod.html#cb447-3" tabindex="-1"></a>ReCMLEParamEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(ReCMLEfit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>,</span>
-<span id="cb447-4"><a href="SimpMod.html#cb447-4" tabindex="-1"></a>    <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb447-5"><a href="SimpMod.html#cb447-5" tabindex="-1"></a>ReCMLEsummary</span></code></pre></div>
-<pre><code>lavaan 0.6.17 ended normally after 12 iterations
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="SimpMod.html#cb453-1" tabindex="-1"></a>ReC_SimpMod_MLE <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb453-2"><a href="SimpMod.html#cb453-2" tabindex="-1"></a><span class="st">    Valued ~ b1*CENTERING + b2*SRPed + b3*CENTERING:SRPed</span></span>
+<span id="cb453-3"><a href="SimpMod.html#cb453-3" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb453-4"><a href="SimpMod.html#cb453-4" tabindex="-1"></a><span class="st">    #intercept (constant) of Valued</span></span>
+<span id="cb453-5"><a href="SimpMod.html#cb453-5" tabindex="-1"></a><span class="st">    Valued ~ Valued.mean*1</span></span>
+<span id="cb453-6"><a href="SimpMod.html#cb453-6" tabindex="-1"></a><span class="st">    #mean of W (SRPed, in this case) for use in simple slopes</span></span>
+<span id="cb453-7"><a href="SimpMod.html#cb453-7" tabindex="-1"></a><span class="st">    SRPed ~ SRPed.mean*1</span></span>
+<span id="cb453-8"><a href="SimpMod.html#cb453-8" tabindex="-1"></a><span class="st">    #variance of W (SRPed, in this case) for use in simple slopes</span></span>
+<span id="cb453-9"><a href="SimpMod.html#cb453-9" tabindex="-1"></a><span class="st">    SRPed ~~SRPed.var*SRPed</span></span>
+<span id="cb453-10"><a href="SimpMod.html#cb453-10" tabindex="-1"></a></span>
+<span id="cb453-11"><a href="SimpMod.html#cb453-11" tabindex="-1"></a><span class="st">    #simple slopes evaluating effect of SCRPed on Valued at each of the levels of centering</span></span>
+<span id="cb453-12"><a href="SimpMod.html#cb453-12" tabindex="-1"></a><span class="st">    Pre := b2 + b3*(0)</span></span>
+<span id="cb453-13"><a href="SimpMod.html#cb453-13" tabindex="-1"></a><span class="st">    Re := b2 + b3*(1)</span></span>
+<span id="cb453-14"><a href="SimpMod.html#cb453-14" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb453-15"><a href="SimpMod.html#cb453-15" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">231002</span>)<span class="co">#needed for reproducibility because lavaan introduces randomness in calculations</span></span>
+<span id="cb453-16"><a href="SimpMod.html#cb453-16" tabindex="-1"></a>ReCMLEfit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(ReC_SimpMod_MLE, <span class="at">data =</span> babydf,  <span class="at">missing =</span> <span class="st">&#39;fiml&#39;</span>, <span class="at">se =</span> <span class="st">&quot;bootstrap&quot;</span>, <span class="at">bootstrap =</span> <span class="dv">1000</span>)</span></code></pre></div>
+<pre><code>Warning: lavaan-&gt;lav_data_full():  
+   3 cases were deleted due to missing values in exogenous variable(s), while 
+   fixed.x = TRUE.</code></pre>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="SimpMod.html#cb455-1" tabindex="-1"></a>ReCMLEsummary <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">summary</span>(ReCMLEfit, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">fit=</span><span class="cn">TRUE</span>, <span class="at">ci=</span><span class="cn">TRUE</span>)    </span>
+<span id="cb455-2"><a href="SimpMod.html#cb455-2" tabindex="-1"></a>ReCMLEParamEsts <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">parameterEstimates</span>(ReCMLEfit, <span class="at">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>, <span class="at">standardized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb455-3"><a href="SimpMod.html#cb455-3" tabindex="-1"></a>ReCMLEsummary</span></code></pre></div>
+<pre><code>lavaan 0.6-18 ended normally after 14 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -2650,32 +2338,32 @@ CenteringRe:SRPed
 
 Model Test User Model:
                                                       
-  Test statistic                                25.909
+  Test statistic                                25.921
   Degrees of freedom                                 2
   P-value (Chi-square)                           0.000
 
 Model Test Baseline Model:
 
-  Test statistic                                62.994
+  Test statistic                                63.037
   Degrees of freedom                                 5
   P-value                                        0.000
 
 User Model versus Baseline Model:
 
   Comparative Fit Index (CFI)                    0.588
-  Tucker-Lewis Index (TLI)                      -0.031
+  Tucker-Lewis Index (TLI)                      -0.030
                                                       
   Robust Comparative Fit Index (CFI)             0.588
-  Robust Tucker-Lewis Index (TLI)               -0.031
+  Robust Tucker-Lewis Index (TLI)               -0.030
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)               -136.024
-  Loglikelihood unrestricted model (H1)       -123.069
+  Loglikelihood user model (H0)               -136.009
+  Loglikelihood unrestricted model (H1)       -123.049
                                                       
-  Akaike (AIC)                                 286.048
-  Bayesian (BIC)                               302.809
-  Sample-size adjusted Bayesian (SABIC)        280.733
+  Akaike (AIC)                                 286.018
+  Bayesian (BIC)                               302.779
+  Sample-size adjusted Bayesian (SABIC)        280.703
 
 Root Mean Square Error of Approximation:
 
@@ -2704,9 +2392,9 @@ Parameter Estimates:
 Regressions:
                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
   Valued ~                                                              
-    CENTERING (b1)   -0.570    1.138   -0.501    0.616   -2.882    1.692
-    SRPed     (b2)    0.704    0.152    4.634    0.000    0.356    0.953
-    CENTERING (b3)    0.118    0.250    0.474    0.635   -0.373    0.643
+    CENTERING (b1)   -0.570    1.138   -0.501    0.616   -2.891    1.690
+    SRPed     (b2)    0.704    0.152    4.631    0.000    0.357    0.954
+    CENTERING (b3)    0.118    0.250    0.474    0.636   -0.371    0.644
    Std.lv  Std.all
                   
    -0.570   -0.405
@@ -2715,87 +2403,86 @@ Regressions:
 
 Intercepts:
                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-   .Valued  (Vld.)    1.057    0.675    1.564    0.118   -0.025    2.594
-    SRPed   (SRP.)    4.512    0.061   74.224    0.000    4.389    4.635
+   .Valued  (Vld.)    1.055    0.676    1.560    0.119   -0.028    2.594
+    SRPed   (SRP.)    4.512    0.061   74.217    0.000    4.389    4.635
    Std.lv  Std.all
-    1.057    1.553
+    1.055    1.550
     4.512    7.856
 
 Variances:
                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-    SRPed   (SRP.)    0.330    0.060    5.500    0.000    0.214    0.453
-   .Valued            0.299    0.055    5.428    0.000    0.182    0.391
+    SRPed   (SRP.)    0.330    0.060    5.511    0.000    0.214    0.453
+   .Valued            0.299    0.055    5.437    0.000    0.182    0.390
    Std.lv  Std.all
     0.330    1.000
     0.299    0.645
 
 Defined Parameters:
                    Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-    Pre               0.704    0.152    4.632    0.000    0.356    0.953
-    Re                0.822    0.199    4.124    0.000    0.368    1.182
+    Pre               0.704    0.152    4.629    0.000    0.357    0.954
+    Re                0.822    0.199    4.128    0.000    0.369    1.182
    Std.lv  Std.all
     0.704    0.594
     0.822    0.994</code></pre>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="SimpMod.html#cb449-1" tabindex="-1"></a>ReCMLEParamEsts</span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="SimpMod.html#cb457-1" tabindex="-1"></a>ReCMLEParamEsts</span></code></pre></div>
 <pre><code>               lhs op             rhs       label    est    se      z pvalue
 1           Valued  ~       CENTERING          b1 -0.570 1.138 -0.501  0.616
-2           Valued  ~           SRPed          b2  0.704 0.152  4.634  0.000
-3           Valued  ~ CENTERING:SRPed          b3  0.118 0.250  0.474  0.635
-4           Valued ~1                 Valued.mean  1.057 0.675  1.564  0.118
-5            SRPed ~1                  SRPed.mean  4.512 0.061 74.224  0.000
-6            SRPed ~~           SRPed   SRPed.var  0.330 0.060  5.500  0.000
-7           Valued ~~          Valued              0.299 0.055  5.428  0.000
+2           Valued  ~           SRPed          b2  0.704 0.152  4.631  0.000
+3           Valued  ~ CENTERING:SRPed          b3  0.118 0.250  0.474  0.636
+4           Valued ~1                 Valued.mean  1.055 0.676  1.560  0.119
+5            SRPed ~1                  SRPed.mean  4.512 0.061 74.217  0.000
+6            SRPed ~~           SRPed   SRPed.var  0.330 0.060  5.511  0.000
+7           Valued ~~          Valued              0.299 0.055  5.437  0.000
 8        CENTERING ~~       CENTERING              0.233 0.000     NA     NA
 9        CENTERING ~~ CENTERING:SRPed              1.104 0.000     NA     NA
 10 CENTERING:SRPed ~~ CENTERING:SRPed              5.286 0.000     NA     NA
 11       CENTERING ~1                              0.370 0.000     NA     NA
 12 CENTERING:SRPed ~1                              1.753 0.000     NA     NA
-13             Pre :=       b2+b3*(0)         Pre  0.704 0.152  4.632  0.000
-14              Re :=       b2+b3*(1)          Re  0.822 0.199  4.124  0.000
+13             Pre :=       b2+b3*(0)         Pre  0.704 0.152  4.629  0.000
+14              Re :=       b2+b3*(1)          Re  0.822 0.199  4.128  0.000
    ci.lower ci.upper std.lv std.all std.nox
-1    -2.760    1.778 -0.570  -0.405  -0.838
-2     0.390    0.974  0.704   0.594   0.499
-3    -0.415    0.589  0.118   0.400   0.174
-4    -0.153    2.465  1.057   1.553   1.553
+1    -2.780    1.759 -0.570  -0.405  -0.838
+2     0.389    0.975  0.704   0.594   0.500
+3    -0.414    0.588  0.118   0.400   0.174
+4    -0.157    2.476  1.055   1.550   1.550
 5     4.373    4.620  4.512   7.856   7.856
-6     0.229    0.470  0.330   1.000   1.000
-7     0.205    0.423  0.299   0.645   0.645
+6     0.229    0.469  0.330   1.000   1.000
+7     0.205    0.422  0.299   0.645   0.645
 8     0.233    0.233  0.233   1.000   0.233
 9     1.104    1.104  1.104   0.994   1.104
 10    5.286    5.286  5.286   1.000   5.286
 11    0.370    0.370  0.370   0.767   0.370
 12    1.753    1.753  1.753   0.762   1.753
-13    0.390    0.974  0.704   0.594   0.499
-14    0.336    1.156  0.822   0.994   0.674</code></pre>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="SimpMod.html#cb451-1" tabindex="-1"></a><span class="co"># adding rsquare=TRUE or rsq=T to both summary and parameterEstimates</span></span>
-<span id="cb451-2"><a href="SimpMod.html#cb451-2" tabindex="-1"></a><span class="co"># resulted in an error related to missing values in row names; could</span></span>
-<span id="cb451-3"><a href="SimpMod.html#cb451-3" tabindex="-1"></a><span class="co"># not find a solution</span></span></code></pre></div>
+13    0.389    0.975  0.704   0.594   0.500
+14    0.339    1.167  0.822   0.994   0.674</code></pre>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="SimpMod.html#cb459-1" tabindex="-1"></a><span class="co">#adding rsquare=TRUE or rsq=T to both summary and parameterEstimates resulted in an error related to missing values in row names; could not find a solution</span></span></code></pre></div>
 <p>For reasons unknown to me, I haven’t been able to use the commands to produce r-square values without receiving errors. Fortunately, there is a workaround and we can call for the r-square results directly.</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="SimpMod.html#cb452-1" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">lavInspect</span>(ReCMLEfit, <span class="st">&quot;rsquare&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="SimpMod.html#cb460-1" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">lavInspect</span>(ReCMLEfit, <span class="st">&quot;rsquare&quot;</span>)</span></code></pre></div>
 <pre><code>Valued 
  0.355 </code></pre>
 <p>Our model accounts for 36% of the variance in value to the student.</p>
 <p>To create a table outside of R, I can export these results as a .csv file (which can be opened in Excel).</p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="SimpMod.html#cb454-1" tabindex="-1"></a><span class="fu">write.csv</span>(ReCMLEParamEsts, <span class="at">file =</span> <span class="st">&quot;ReCMLEParamEsts.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="SimpMod.html#cb462-1" tabindex="-1"></a><span class="fu">write.csv</span>(ReCMLEParamEsts, <span class="at">file =</span> <span class="st">&quot;ReCMLEParamEsts.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="create-a-model-figure" class="section level3 unnumbered hasAnchor">
 <h3>Create a model figure<a href="SimpMod.html#create-a-model-figure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="SimpMod.html#cb455-1" tabindex="-1"></a><span class="co">#only worked when I used the library to turn on all these pkgs</span></span>
-<span id="cb455-2"><a href="SimpMod.html#cb455-2" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb455-3"><a href="SimpMod.html#cb455-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb455-4"><a href="SimpMod.html#cb455-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb455-5"><a href="SimpMod.html#cb455-5" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
-<span id="cb455-6"><a href="SimpMod.html#cb455-6" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> ReCMLEfit)</span></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="SimpMod.html#cb463-1" tabindex="-1"></a><span class="co">#only worked when I used the library to turn on all these pkgs</span></span>
+<span id="cb463-2"><a href="SimpMod.html#cb463-2" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb463-3"><a href="SimpMod.html#cb463-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb463-4"><a href="SimpMod.html#cb463-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb463-5"><a href="SimpMod.html#cb463-5" tabindex="-1"></a><span class="fu">library</span>(tidySEM)</span>
+<span id="cb463-6"><a href="SimpMod.html#cb463-6" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(<span class="at">model =</span> ReCMLEfit)</span></code></pre></div>
 <p><img src="07-SimpleMod_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="SimpMod.html#cb456-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(ReCMLEfit)</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="SimpMod.html#cb464-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(ReCMLEfit)</span></code></pre></div>
 <pre><code>     [,1]              [,2]        [,3]   
-[1,] NA                &quot;CENTERING&quot; NA     
-[2,] &quot;CENTERING:SRPed&quot; &quot;Valued&quot;    &quot;SRPed&quot;
+[1,] &quot;CENTERING:SRPed&quot; NA          NA     
+[2,] &quot;Valued&quot;          &quot;CENTERING&quot; &quot;SRPed&quot;
 attr(,&quot;class&quot;)
 [1] &quot;layout_matrix&quot; &quot;matrix&quot;        &quot;array&quot;        </code></pre>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="SimpMod.html#cb458-1" tabindex="-1"></a>ReCmod_map <span class="ot">&lt;-</span> tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(<span class="st">&quot;CENTERING&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;SRPed&quot;</span>, <span class="st">&quot;Valued&quot;</span>, <span class="st">&quot;CENTERING:SRPed&quot;</span>,</span>
-<span id="cb458-2"><a href="SimpMod.html#cb458-2" tabindex="-1"></a>    <span class="st">&quot;&quot;</span>, <span class="at">rows =</span> <span class="dv">3</span>)</span>
-<span id="cb458-3"><a href="SimpMod.html#cb458-3" tabindex="-1"></a>ReCmod_map</span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="SimpMod.html#cb466-1" tabindex="-1"></a>ReCmod_map <span class="ot">&lt;-</span> tidySEM<span class="sc">::</span><span class="fu">get_layout</span>(<span class="st">&quot;CENTERING&quot;</span>, <span class="st">&quot;&quot;</span>, </span>
+<span id="cb466-2"><a href="SimpMod.html#cb466-2" tabindex="-1"></a>                               <span class="st">&quot;SRPed&quot;</span>, <span class="st">&quot;Valued&quot;</span>, </span>
+<span id="cb466-3"><a href="SimpMod.html#cb466-3" tabindex="-1"></a>                               <span class="st">&quot;CENTERING:SRPed&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="at">rows=</span><span class="dv">3</span>)</span>
+<span id="cb466-4"><a href="SimpMod.html#cb466-4" tabindex="-1"></a>ReCmod_map</span></code></pre></div>
 <pre><code>     [,1]              [,2]    
 [1,] &quot;CENTERING&quot;       &quot;&quot;      
 [2,] &quot;SRPed&quot;           &quot;Valued&quot;
@@ -2803,8 +2490,7 @@ attr(,&quot;class&quot;)
 attr(,&quot;class&quot;)
 [1] &quot;layout_matrix&quot; &quot;matrix&quot;        &quot;array&quot;        </code></pre>
 <p>We can update the <em>tidySEM::graph_sem</em> function with our new model to produce something that will better convey our analyses and its results.</p>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="SimpMod.html#cb460-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(ReCMLEfit, <span class="at">layout =</span> ReCmod_map, <span class="at">rect_width =</span> <span class="fl">1.25</span>, <span class="at">rect_height =</span> <span class="fl">1.25</span>,</span>
-<span id="cb460-2"><a href="SimpMod.html#cb460-2" tabindex="-1"></a>    <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">4.25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="SimpMod.html#cb468-1" tabindex="-1"></a>tidySEM<span class="sc">::</span><span class="fu">graph_sem</span>(ReCMLEfit, <span class="at">layout=</span>ReCmod_map,  <span class="at">rect_width =</span> <span class="fl">1.25</span>, <span class="at">rect_height =</span> <span class="fl">1.25</span>, <span class="at">spacing_x =</span> <span class="dv">2</span>, <span class="at">spacing_y =</span> <span class="dv">3</span>, <span class="at">text_size =</span> <span class="fl">4.25</span>)</span></code></pre></div>
 <p><img src="07-SimpleMod_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 </div>
 <div id="create-a-table" class="section level3 unnumbered hasAnchor">
@@ -2816,7 +2502,7 @@ attr(,&quot;class&quot;)
 <col width="100%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th align="left">A Comparison of OLS and MLE Regression Results for the ReCentering Analysis</th>
 </tr>
 </thead>
@@ -2830,7 +2516,7 @@ attr(,&quot;class&quot;)
 <col width="38%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="center"></td>
 <td align="center">OLS with the <em>lm()</em> in base R</td>
 <td align="center">MLE with <em>lavaan</em></td>
@@ -2848,7 +2534,7 @@ attr(,&quot;class&quot;)
 <col width="12%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left"></td>
 <td align="center"><span class="math inline">\(B\)</span></td>
 <td align="center"><span class="math inline">\(SE\)</span></td>
@@ -2857,7 +2543,7 @@ attr(,&quot;class&quot;)
 <td align="center"><span class="math inline">\(SE\)</span></td>
 <td align="center"><span class="math inline">\(p\)</span></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">Valued (Intercept)</td>
 <td align="center">1.057</td>
 <td align="center">0.563</td>
@@ -2866,7 +2552,7 @@ attr(,&quot;class&quot;)
 <td align="center">0.675</td>
 <td align="center">0.118</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">Centering (X)</td>
 <td align="center">-0.570</td>
 <td align="center">1.318</td>
@@ -2875,7 +2561,7 @@ attr(,&quot;class&quot;)
 <td align="center">1.138</td>
 <td align="center">0.616</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">SRPed (W)</td>
 <td align="center">0.704</td>
 <td align="center">0.127</td>
@@ -2884,7 +2570,7 @@ attr(,&quot;class&quot;)
 <td align="center">0.152</td>
 <td align="center">&lt;0.001</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">Centering:SRPed(XY)</td>
 <td align="center">0.118</td>
 <td align="center">0.281</td>
@@ -2893,7 +2579,7 @@ attr(,&quot;class&quot;)
 <td align="center">0.250</td>
 <td align="center">0.635</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"></td>
 <td align="center"></td>
 <td align="center"></td>
@@ -2911,12 +2597,12 @@ attr(,&quot;class&quot;)
 <col width="38%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left"></td>
 <td align="left"><span class="math inline">\(R^2\)</span></td>
 <td align="center"><span class="math inline">\(R^2\)</span></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"></td>
 <td align="left">0.367</td>
 <td align="center">0.355</td>
@@ -2943,7 +2629,7 @@ attr(,&quot;class&quot;)
 </div>
 </div>
 <h3>REFERENCES<a href="REFS.html#REFS" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-carver_you_1997" class="csl-entry">
 Carver, C. S. (1997). You want to measure coping but your protocol’s too long: <span>Consider</span> the <span>Brief</span> <span>COPE</span>. <em>International Journal of Behavioral Medicine</em>, <em>4</em>(1), 92–100. <a href="https://doi.org/10.1207/s15327558ijbm0401_6">https://doi.org/10.1207/s15327558ijbm0401_6</a>
 </div>

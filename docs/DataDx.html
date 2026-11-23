@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Data Dx | ReCentering Psych Stats: Multivariate Modeling</title>
   <meta name="description" content="“Multivariate Modeling” is a mini-volume in the ReCentering Psych Stats series. The first portion of the book includes lessons on scrubbing and scoring data, data diagnostics (including managing missingness), and multiple imputation. The second portion of the book introduces conditional process analysis, using the R package lavaan. Lessons include simple mediation, complex mediation, simple moderation, and moderated mediation." />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Data Dx | ReCentering Psych Stats: Multivariate Modeling" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2024-03-09" />
+<meta name="date" content="2026-11-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -128,6 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -165,6 +167,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BOOK COVER</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>PREFACE</a>
 <ul>
+<li class="chapter" data-level="0.1" data-path="preface.html"><a href="preface.html#invitation-to-collaboration"><i class="fa fa-check"></i><b>0.1</b> Invitation to Collaboration</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#copyright-with-open-access"><i class="fa fa-check"></i>Copyright with Open Access</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>ACKNOWLEDGEMENTS</a></li>
@@ -787,7 +790,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#model-3-add-l2-predictors"><i class="fa fa-check"></i>Model 3: Add L2 predictors</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#model-4-add-a-cross-level-interaction"><i class="fa fa-check"></i>Model 4: Add a cross-level interaction</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#create-a-tab_model-table-with-the-final-set-of-models"><i class="fa fa-check"></i>Create a tab_model table with the final set of models</a></li>
-<li class="chapter" data-level="12.8.2" data-path="wGroups.html"><a href="wGroups.html#use-arend-schäfers--arend_statistical_2019-power-tables-to-determine-the-power-of-the-l1-l2-and-cross-level-interactions-in-your-model"><i class="fa fa-check"></i><b>12.8.2</b> Use Arend &amp; Schäfer’s <span class="citation">(2019)</span> power tables to determine the power of the L1, L2, and cross-level interactions in your model</a></li>
+<li class="chapter" data-level="12.8.2" data-path="03-DataDx.html"><a href="#use-arend-sch%C3%A4fers--arend_statistical_2019-power-tables-to-determine-the-power-of-the-l1-l2-and-cross-level-interactions-in-your-model"><i class="fa fa-check"></i><b>12.8.2</b> Use Arend &amp; Schäfer’s <span class="citation">(2019)</span> power tables to determine the power of the L1, L2, and cross-level interactions in your model</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#create-a-figure-to-represent-the-result"><i class="fa fa-check"></i>Create a figure to represent the result</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#apa-style-writeup-5"><i class="fa fa-check"></i>APA Style writeup</a></li>
 <li class="chapter" data-level="" data-path="wGroups.html"><a href="wGroups.html#explanation-to-grader-5"><i class="fa fa-check"></i>Explanation to grader</a></li>
@@ -1003,9 +1006,9 @@ div.csl-indent {
 <div id="packages-2" class="section level3 hasAnchor" number="3.1.4">
 <h3><span class="header-section-number">3.1.4</span> Packages<a href="DataDx.html#packages-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="DataDx.html#cb67-1" tabindex="-1"></a><span class="co"># if(!require(tidyverse)){install.packages(&#39;tidyverse&#39;)} #this</span></span>
-<span id="cb67-2"><a href="DataDx.html#cb67-2" tabindex="-1"></a><span class="co"># includes dplyr if(!require(psych)){install.packages(&#39;psych&#39;)}</span></span>
-<span id="cb67-3"><a href="DataDx.html#cb67-3" tabindex="-1"></a><span class="co"># if(!require(apaTables)){install.packages(&#39;apaTables&#39;)}</span></span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="DataDx.html#cb67-1" tabindex="-1"></a><span class="co">#if(!require(tidyverse)){install.packages(&quot;tidyverse&quot;)} #this includes dplyr</span></span>
+<span id="cb67-2"><a href="DataDx.html#cb67-2" tabindex="-1"></a><span class="co">#if(!require(psych)){install.packages(&quot;psych&quot;)}</span></span>
+<span id="cb67-3"><a href="DataDx.html#cb67-3" tabindex="-1"></a><span class="co">#if(!require(apaTables)){install.packages(&quot;apaTables&quot;)}</span></span></code></pre></div>
 </div>
 </div>
 <div id="workflow-for-preliminary-data-diagnostics" class="section level2 hasAnchor" number="3.2">
@@ -1014,7 +1017,7 @@ div.csl-indent {
 <ul>
 <li>imported our raw data from Qualtrics,</li>
 <li>scrubbed the data by applying our inclusion and exclusion criteria, and</li>
-<li>used Parent’s available information approach [AIA; -<span class="citation">Parent (<a href="#ref-parent_handling_2013">2013</a>)</span>] for determining the acceptable amount of missingness for each scale, and</li>
+<li>used Parent’s available information approach [AIA; <span class="citation">(<a href="#ref-parent_handling_2013">2013</a>)</span>] for determining the acceptable amount of missingness for each scale, and</li>
 <li>prepared variables and scored them.</li>
 </ul>
 <p>We are now ready to engage in data diagnostics for the statistical model we will test.</p>
@@ -1057,9 +1060,9 @@ div.csl-indent {
 <p>We need item level data to compute an alpha coefficient. The easiest way to get an alpha coefficient is to feed the <em>alpha()</em> function (<em>psych</em> package) a concatonated list of items (with any items already reverse-scored). There should be no extra items. In the <a href="score.html#score">scoring chapter</a> we already reverse-coded the single item in the campus climate scale, so we are ready to calculate alphas.</p>
 <p>The df from which I am pulling data was created and written as an outfile in the <a href="score.html#score">scoring chapter</a>. You may also download the file from the <a href="https://github.com/lhbikos/ReC_MultivModel">Github site</a> that hosts the chapter. Be sure to place the file in the same folder as the .rmd file. This particular df has item-level data. I am working with the .rds file. In case this is problematic for you, I have also provided code to import a .csv version of the file.</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="DataDx.html#cb68-1" tabindex="-1"></a>item_scores_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;BlStItmsScrs230902.rds&quot;</span>)</span>
-<span id="cb68-2"><a href="DataDx.html#cb68-2" tabindex="-1"></a><span class="co"># item_scores_df &lt;- read.csv(&#39;BlStItmsScrs230902.csv&#39;, header = TRUE)</span></span></code></pre></div>
+<span id="cb68-2"><a href="DataDx.html#cb68-2" tabindex="-1"></a><span class="co">#item_scores_df &lt;- read.csv(&quot;BlStItmsScrs230902.csv&quot;, header = TRUE)</span></span></code></pre></div>
 <p>Within the <em>psych::alpha</em> function we can retrieve alpha coefficients for the specific variables of interest by imbedding a concatonated list. A priori, we are planning to use the campus climate scale as a total score. However, we’ll go ahead and also calculate alpha coefficients for the subscales because (a) it’s good practice and (b) if the alpha is low, a <em>reason</em> might show up in one of the subscales.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="DataDx.html#cb69-1" tabindex="-1"></a><span class="co"># alpha for the belonging scale</span></span>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="DataDx.html#cb69-1" tabindex="-1"></a><span class="co">#alpha for the belonging scale</span></span>
 <span id="cb69-2"><a href="DataDx.html#cb69-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;Belong_1&quot;</span>, <span class="st">&quot;Belong_2&quot;</span>, <span class="st">&quot;Belong_3&quot;</span>)])</span></code></pre></div>
 <pre><code>
 Reliability analysis   
@@ -1096,9 +1099,8 @@ Belong_3 0.05 0.19 0.19 0.23 0.20 0.09 0.05 0.03</code></pre>
 <p>Cronbach’s alpha for the belonging scale was 0.95.</p>
 </blockquote>
 </blockquote>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="DataDx.html#cb71-1" tabindex="-1"></a><span class="co"># alpha for the campus climate for Black students scale</span></span>
-<span id="cb71-2"><a href="DataDx.html#cb71-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;rBlst_1&quot;</span>, <span class="st">&quot;Blst_2&quot;</span>, <span class="st">&quot;Blst_3&quot;</span>, <span class="st">&quot;Blst_4&quot;</span>,</span>
-<span id="cb71-3"><a href="DataDx.html#cb71-3" tabindex="-1"></a>    <span class="st">&quot;Blst_5&quot;</span>, <span class="st">&quot;Blst_6&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="DataDx.html#cb71-1" tabindex="-1"></a><span class="co">#alpha for the campus climate for Black students scale</span></span>
+<span id="cb71-2"><a href="DataDx.html#cb71-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;rBlst_1&quot;</span>, <span class="st">&quot;Blst_2&quot;</span>, <span class="st">&quot;Blst_3&quot;</span>, <span class="st">&quot;Blst_4&quot;</span>, <span class="st">&quot;Blst_5&quot;</span>, <span class="st">&quot;Blst_6&quot;</span>)])</span></code></pre></div>
 <pre><code>
 Reliability analysis   
 Call: psych::alpha(x = item_scores_df[c(&quot;rBlst_1&quot;, &quot;Blst_2&quot;, &quot;Blst_3&quot;, 
@@ -1144,9 +1146,8 @@ Blst_6  0.38 0.35 0.11 0.08 0.06 0.02 0.00 0.05</code></pre>
 </blockquote>
 </blockquote>
 <p>Since this value is <span class="math inline">\(\geq\)</span> .80, it is within the realm of acceptability. Let’s go ahead, though, and examine its subscales.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="DataDx.html#cb73-1" tabindex="-1"></a><span class="co"># alpha for the stigma scale of the campus climate for Black students</span></span>
-<span id="cb73-2"><a href="DataDx.html#cb73-2" tabindex="-1"></a><span class="co"># scale</span></span>
-<span id="cb73-3"><a href="DataDx.html#cb73-3" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;Blst_3&quot;</span>, <span class="st">&quot;Blst_2&quot;</span>, <span class="st">&quot;Blst_5&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="DataDx.html#cb73-1" tabindex="-1"></a><span class="co">#alpha for the stigma scale of the campus climate for Black students scale</span></span>
+<span id="cb73-2"><a href="DataDx.html#cb73-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;Blst_3&quot;</span>, <span class="st">&quot;Blst_2&quot;</span>, <span class="st">&quot;Blst_5&quot;</span>)])</span></code></pre></div>
 <pre><code>
 Reliability analysis   
 Call: psych::alpha(x = item_scores_df[c(&quot;Blst_3&quot;, &quot;Blst_2&quot;, &quot;Blst_5&quot;)])
@@ -1181,9 +1182,8 @@ Blst_5 0.46 0.30 0.05 0.14 0.05 0.00 0.00 0.05</code></pre>
 <p>Cronbach’s alpha for the campus climate stigma subscale was 0.73.</p>
 </blockquote>
 </blockquote>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="DataDx.html#cb75-1" tabindex="-1"></a><span class="co"># alpha for the campus responsiveness scale of the campus climate for</span></span>
-<span id="cb75-2"><a href="DataDx.html#cb75-2" tabindex="-1"></a><span class="co"># Black students scale</span></span>
-<span id="cb75-3"><a href="DataDx.html#cb75-3" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;rBlst_1&quot;</span>, <span class="st">&quot;Blst_4&quot;</span>, <span class="st">&quot;Blst_6&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="DataDx.html#cb75-1" tabindex="-1"></a><span class="co">#alpha for the campus responsiveness scale of the campus climate for Black students scale</span></span>
+<span id="cb75-2"><a href="DataDx.html#cb75-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;rBlst_1&quot;</span>, <span class="st">&quot;Blst_4&quot;</span>, <span class="st">&quot;Blst_6&quot;</span>)])</span></code></pre></div>
 <pre><code>
 Reliability analysis   
 Call: psych::alpha(x = item_scores_df[c(&quot;rBlst_1&quot;, &quot;Blst_4&quot;, &quot;Blst_6&quot;)])
@@ -1263,10 +1263,10 @@ Blst_6  0.38 0.35 0.11 0.08 0.06 0.02 0.00 0.05</code></pre>
  $ rBlst_1   : num  3 2 NA 6 2 3 3 3 3 5 ...
   ..- attr(*, &quot;label&quot;)= Named chr &quot;Each item below asks you to rate elements of campus climate for your \&quot;academic department/program.\&quot;  If you d&quot;| __truncated__
   .. ..- attr(*, &quot;names&quot;)= chr &quot;Blst_1&quot;
- $ Belonging : num  6.33 4.67 NA 3.33 4 5.33 5.67 7 6 3 ...
- $ ResponseBL: num  2.33 1.67 2 3.33 1.33 2.33 3.67 3 2.33 3.67 ...
- $ StigmaBL  : num  3.33 4 3.5 2 1 1 4 3.67 1.67 3.33 ...
- $ ClimateBL : num  2.83 2.83 NA 2.67 1.17 1.67 3.83 3.33 2 3.5 ...
+ $ Belonging : num  6.33 4.67 NA 3.33 4 ...
+ $ ResponseBL: num  2.33 1.67 2 3.33 1.33 ...
+ $ StigmaBL  : num  3.33 4 3.5 2 1 ...
+ $ ClimateBL : num  2.83 2.83 NA 2.67 1.17 ...
  - attr(*, &quot;column_map&quot;)=Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:  182 obs. of  7 variables:
   ..$ qname      : chr [1:182] &quot;StartDate&quot; &quot;EndDate&quot; &quot;Status&quot; &quot;Progress&quot; ...
   ..$ description: chr [1:182] &quot;Start Date&quot; &quot;End Date&quot; &quot;Response Type&quot; &quot;Progress&quot; ...
@@ -1276,19 +1276,15 @@ Blst_6  0.38 0.35 0.11 0.08 0.06 0.02 0.00 0.05</code></pre>
   ..$ timeZone   : chr [1:182] &quot;America/Los_Angeles&quot; &quot;America/Los_Angeles&quot; NA NA ...
   ..$ choiceId   : chr [1:182] NA NA NA NA ...</code></pre>
 <p>The difference between “int” (integer) and “num” (numerical) is that integers are limited to whole numbers. For the statistics used in this lesson, both are acceptable formats for the variables.</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="DataDx.html#cb79-1" tabindex="-1"></a><span class="co"># the script may look a little complicated; I could have simply</span></span>
-<span id="cb79-2"><a href="DataDx.html#cb79-2" tabindex="-1"></a><span class="co"># written: describe(item_scores_df) because I only wanted only a few</span></span>
-<span id="cb79-3"><a href="DataDx.html#cb79-3" tabindex="-1"></a><span class="co"># variables, I provided them in a concatenated: list [c(&#39;iBIPOC_pr&#39;,</span></span>
-<span id="cb79-4"><a href="DataDx.html#cb79-4" tabindex="-1"></a><span class="co"># &#39;cmBlack&#39;, &#39;Belonging&#39;, &#39;ClimateBL&#39;)] I used type =1 so that we can</span></span>
-<span id="cb79-5"><a href="DataDx.html#cb79-5" tabindex="-1"></a><span class="co"># interpret skew and kurtosis along Kline&#39;s recommendations I created</span></span>
-<span id="cb79-6"><a href="DataDx.html#cb79-6" tabindex="-1"></a><span class="co"># an object from the descriptive results, this can be used to export</span></span>
-<span id="cb79-7"><a href="DataDx.html#cb79-7" tabindex="-1"></a><span class="co"># the results for easier table making or manipulation outside of R</span></span>
-<span id="cb79-8"><a href="DataDx.html#cb79-8" tabindex="-1"></a></span>
-<span id="cb79-9"><a href="DataDx.html#cb79-9" tabindex="-1"></a>descriptives <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describe</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>,</span>
-<span id="cb79-10"><a href="DataDx.html#cb79-10" tabindex="-1"></a>    <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)], <span class="at">type =</span> <span class="dv">1</span>)</span>
-<span id="cb79-11"><a href="DataDx.html#cb79-11" tabindex="-1"></a><span class="co"># When we capture results in an object, we need to write it below so</span></span>
-<span id="cb79-12"><a href="DataDx.html#cb79-12" tabindex="-1"></a><span class="co"># the results will display</span></span>
-<span id="cb79-13"><a href="DataDx.html#cb79-13" tabindex="-1"></a>descriptives</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="DataDx.html#cb79-1" tabindex="-1"></a><span class="co">#the script may look a little complicated; I could have simply written:</span></span>
+<span id="cb79-2"><a href="DataDx.html#cb79-2" tabindex="-1"></a><span class="co">#describe(item_scores_df) </span></span>
+<span id="cb79-3"><a href="DataDx.html#cb79-3" tabindex="-1"></a><span class="co">#because I only wanted only a few variables, I provided them in a concatenated: list [c(&quot;iBIPOC_pr&quot;, &quot;cmBlack&quot;, &quot;Belonging&quot;, &quot;ClimateBL&quot;)]</span></span>
+<span id="cb79-4"><a href="DataDx.html#cb79-4" tabindex="-1"></a><span class="co">#I used type =1 so that we can interpret skew and kurtosis along Kline&#39;s recommendations</span></span>
+<span id="cb79-5"><a href="DataDx.html#cb79-5" tabindex="-1"></a><span class="co">#I created an object from the descriptive results, this can be used to export the results for easier table making or manipulation outside of R</span></span>
+<span id="cb79-6"><a href="DataDx.html#cb79-6" tabindex="-1"></a></span>
+<span id="cb79-7"><a href="DataDx.html#cb79-7" tabindex="-1"></a>descriptives <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describe</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)], <span class="at">type =</span> <span class="dv">1</span>)</span>
+<span id="cb79-8"><a href="DataDx.html#cb79-8" tabindex="-1"></a><span class="co">#When we capture results in an object, we need to write it below so the results will display</span></span>
+<span id="cb79-9"><a href="DataDx.html#cb79-9" tabindex="-1"></a>descriptives</span></code></pre></div>
 <pre><code>          vars  n mean   sd median trimmed  mad min   max range skew kurtosis
 iBIPOC_pr    1 64 0.35 0.39   0.25    0.32 0.37   0  1.00  1.00 0.64    -1.05
 cmBlack      2 66 8.20 8.02   5.50    7.24 8.15   0 30.00 30.00 0.95     0.05
@@ -1299,15 +1295,13 @@ iBIPOC_pr 0.05
 cmBlack   0.99
 Belonging 0.18
 ClimateBL 0.14</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="DataDx.html#cb81-1" tabindex="-1"></a><span class="co"># this can be useful if you wish to manually format the data for an</span></span>
-<span id="cb81-2"><a href="DataDx.html#cb81-2" tabindex="-1"></a><span class="co"># APA style table</span></span>
-<span id="cb81-3"><a href="DataDx.html#cb81-3" tabindex="-1"></a><span class="fu">write.csv</span>(descriptives, <span class="at">file =</span> <span class="st">&quot;DataDx_descripts.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="DataDx.html#cb81-1" tabindex="-1"></a><span class="co">#this can be useful if you wish to manually format the data for an APA style table</span></span>
+<span id="cb81-2"><a href="DataDx.html#cb81-2" tabindex="-1"></a><span class="fu">write.csv</span> (descriptives, <span class="at">file=</span><span class="st">&quot;DataDx_descripts.csv&quot;</span>) </span></code></pre></div>
 <p>Skew and kurtosis are one way to evaluate whether or not data are normally distributed. When we use the “type=1” argument, the skew and kurtosis indices in the <em>psych</em> package can be interpreted according to Kline’s <span class="citation">(<a href="#ref-kline_data_2016">2016a</a>)</span> guidelines. Regarding skew, values greater than the absolute value of 3.0 are generally considered “severely skewed.” Regarding kurtosis, “severely kurtotic” is argued to be anywhere greater 8 to 20. Kline recommended using a conservative threshold of the absolute value of 10. The skew and kurtosis values for our variables fall well below these thesholds.</p>
 <p>We can also apply the Shapiro-Wilk test of normality to each of our variables. When the <span class="math inline">\(p\)</span> value is &lt; .05, the variable’s distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="DataDx.html#cb82-1" tabindex="-1"></a><span class="co"># The shapiro-test is in base R; it&#39;s specification is simple:</span></span>
-<span id="cb82-2"><a href="DataDx.html#cb82-2" tabindex="-1"></a><span class="co"># shapiro.test(df$variable) I added the object (and had to list it</span></span>
-<span id="cb82-3"><a href="DataDx.html#cb82-3" tabindex="-1"></a><span class="co"># below) so I can use the inline text function</span></span>
-<span id="cb82-4"><a href="DataDx.html#cb82-4" tabindex="-1"></a><span class="fu">shapiro.test</span>(item_scores_df<span class="sc">$</span>cmBlack)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="DataDx.html#cb82-1" tabindex="-1"></a><span class="co">#The shapiro-test is in base R; it&#39;s specification is simple:  shapiro.test(df$variable)</span></span>
+<span id="cb82-2"><a href="DataDx.html#cb82-2" tabindex="-1"></a><span class="co">#I added the object (and had to list it below) so I can use the inline text function</span></span>
+<span id="cb82-3"><a href="DataDx.html#cb82-3" tabindex="-1"></a><span class="fu">shapiro.test</span>(item_scores_df<span class="sc">$</span>cmBlack)</span></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
@@ -1324,13 +1318,13 @@ W = 0.78725, p-value = 0.00000003181</code></pre>
     Shapiro-Wilk normality test
 
 data:  item_scores_df$Belonging
-W = 0.97262, p-value = 0.1654</code></pre>
+W = 0.97276, p-value = 0.1681</code></pre>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="DataDx.html#cb88-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(item_scores_df<span class="sc">$</span>ClimateBL)</span></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  item_scores_df$ClimateBL
-W = 0.95102, p-value = 0.01613</code></pre>
+W = 0.95116, p-value = 0.01637</code></pre>
 </div>
 <div id="pairs-panels" class="section level3 hasAnchor" number="3.5.2">
 <h3><span class="header-section-number">3.5.2</span> Pairs Panels<a href="DataDx.html#pairs-panels" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1343,8 +1337,7 @@ W = 0.95102, p-value = 0.01613</code></pre>
 </li>
 <li>The upper half of is the correlation coefficient between the two variables.</li>
 </ul>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="DataDx.html#cb90-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>,</span>
-<span id="cb90-2"><a href="DataDx.html#cb90-2" tabindex="-1"></a>    <span class="st">&quot;ClimateBL&quot;</span>)], <span class="at">stars =</span> <span class="cn">TRUE</span>, <span class="at">lm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="DataDx.html#cb90-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)], <span class="at">stars =</span> <span class="cn">TRUE</span>, <span class="at">lm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="03-DataDx_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>The histograms displayed in the diagonal graph for us what we learned from the Shapiro Wilk’s test of normality. We can clearly see the non-normal distribution in the iBIPOC_pr and cmBlack variables.</p>
 <p>CUMULATIVE CAPTURE FOR THE APA STYLE WRITE-UP:</p>
@@ -1362,23 +1355,19 @@ W = 0.95102, p-value = 0.01613</code></pre>
 <p>The <em>outlier()</em> function from the <em>psych</em> package tells us how far each datapoint is from the multivariate centroid of the data. That is, find the squared Mahalanobis distance for each data point and compare it to the expected values of <span class="math inline">\(\chi^2\)</span>. The <em>outlier()</em> protocol also produces a Q-Q (quantile-quantile) plot with the <em>n</em> most extreme data points labeled.</p>
 <p>The code below appends the Mahalanobis values to the dataframe. It is easy, then, to identify, sort, and examine the most extreme values (relative to the rest of the data in their case/row) to make decisions about their retention or adjustment.</p>
 <p>Numeric variables are required in the of the calculation of the Mahalanobis.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="DataDx.html#cb91-1" tabindex="-1"></a>item_scores_df<span class="sc">$</span>Mahal <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">outlier</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>,</span>
-<span id="cb91-2"><a href="DataDx.html#cb91-2" tabindex="-1"></a>    <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="DataDx.html#cb91-1" tabindex="-1"></a>item_scores_df<span class="sc">$</span>Mahal <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">outlier</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)]) </span></code></pre></div>
 <p><img src="03-DataDx_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Q-Q plots take your sample data, sort it in ascending order, and then plot them versus quantiles (the number varies; you can see it on the X axis) calculated from a theoretical distribution. The number of quantiles is selected to match the size of your sample data. While Normal Q-Q Plots are the ones most often used in practice due to so many statistical methods assuming normality, Q-Q Plots can actually be created for any distribution. To the degree that the plotted line stays on the straight line (representing the theoretical normal distribution), the data is multivariate normally distributed.</p>
 <p>It is possible, then to analyze the Mahalanobis distance values.</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="DataDx.html#cb92-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(item_scores_df<span class="sc">$</span>Mahal)</span></code></pre></div>
 <pre><code>   vars  n mean   sd median trimmed  mad min   max range skew kurtosis   se
-X1    1 66 3.81 2.24   3.68    3.62 2.36 0.2 11.25 11.05 0.86     0.82 0.28</code></pre>
+X1    1 66 3.81 2.24   3.69    3.62 2.36 0.2 11.24 11.04 0.86     0.81 0.28</code></pre>
 <p>Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median. In fact, we can have these noted in a column in the dataframe.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="DataDx.html#cb94-1" tabindex="-1"></a><span class="co"># creates a variable indicating TRUE or FALSE if an item is an</span></span>
-<span id="cb94-2"><a href="DataDx.html#cb94-2" tabindex="-1"></a><span class="co"># outlier</span></span>
-<span id="cb94-3"><a href="DataDx.html#cb94-3" tabindex="-1"></a>item_scores_df<span class="sc">$</span>MOutlier <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">if_else</span>(item_scores_df<span class="sc">$</span>Mahal <span class="sc">&gt;</span> (<span class="fu">median</span>(item_scores_df<span class="sc">$</span>Mahal) <span class="sc">+</span></span>
-<span id="cb94-4"><a href="DataDx.html#cb94-4" tabindex="-1"></a>    (<span class="dv">3</span> <span class="sc">*</span> <span class="fu">sd</span>(item_scores_df<span class="sc">$</span>Mahal))), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb94-5"><a href="DataDx.html#cb94-5" tabindex="-1"></a></span>
-<span id="cb94-6"><a href="DataDx.html#cb94-6" tabindex="-1"></a><span class="co"># shows us the first 6 rows of the data so we can see the new</span></span>
-<span id="cb94-7"><a href="DataDx.html#cb94-7" tabindex="-1"></a><span class="co"># variables (Mahal, MOutlier)</span></span>
-<span id="cb94-8"><a href="DataDx.html#cb94-8" tabindex="-1"></a><span class="fu">head</span>(item_scores_df)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="DataDx.html#cb94-1" tabindex="-1"></a><span class="co">#creates a variable indicating TRUE or FALSE if an item is an outlier</span></span>
+<span id="cb94-2"><a href="DataDx.html#cb94-2" tabindex="-1"></a>item_scores_df<span class="sc">$</span>MOutlier <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">if_else</span>(item_scores_df<span class="sc">$</span>Mahal <span class="sc">&gt;</span> (<span class="fu">median</span>(item_scores_df<span class="sc">$</span>Mahal) <span class="sc">+</span> (<span class="dv">3</span><span class="sc">*</span><span class="fu">sd</span>(item_scores_df<span class="sc">$</span>Mahal))), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb94-3"><a href="DataDx.html#cb94-3" tabindex="-1"></a></span>
+<span id="cb94-4"><a href="DataDx.html#cb94-4" tabindex="-1"></a><span class="co">#shows us the first 6 rows of the data so we can see the new variables (Mahal, MOutlier)</span></span>
+<span id="cb94-5"><a href="DataDx.html#cb94-5" tabindex="-1"></a><span class="fu">head</span>(item_scores_df)</span></code></pre></div>
 <pre><code># A tibble: 6 × 19
      ID iBIPOC_pr cmBlack Belong_1 Belong_2 Belong_3 Blst_1 Blst_2 Blst_3 Blst_4
   &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -1393,21 +1382,21 @@ X1    1 66 3.81 2.24   3.68    3.62 2.36 0.2 11.25 11.05 0.86     0.82 0.28</cod
 #   Mahal &lt;dbl&gt;, MOutlier &lt;lgl&gt;</code></pre>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="DataDx.html#cb96-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="DataDx.html#cb98-1" tabindex="-1"></a><span class="co"># counts frequency TRUE and FALSE indicating outlier or not</span></span>
-<span id="cb98-2"><a href="DataDx.html#cb98-2" tabindex="-1"></a>OutlierCount <span class="ot">&lt;-</span> item_scores_df <span class="sc">%&gt;%</span></span>
-<span id="cb98-3"><a href="DataDx.html#cb98-3" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">count</span>(MOutlier)</span>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="DataDx.html#cb98-1" tabindex="-1"></a><span class="co">#counts frequency TRUE and FALSE indicating outlier or not</span></span>
+<span id="cb98-2"><a href="DataDx.html#cb98-2" tabindex="-1"></a>OutlierCount<span class="ot">&lt;-</span> item_scores_df<span class="sc">%&gt;%</span></span>
+<span id="cb98-3"><a href="DataDx.html#cb98-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(MOutlier)</span>
 <span id="cb98-4"><a href="DataDx.html#cb98-4" tabindex="-1"></a></span>
-<span id="cb98-5"><a href="DataDx.html#cb98-5" tabindex="-1"></a><span class="co"># calculating how many outliers a slightly different way</span></span>
-<span id="cb98-6"><a href="DataDx.html#cb98-6" tabindex="-1"></a><span class="fu">nrow</span>(item_scores_df) <span class="sc">-</span> OutlierCount</span></code></pre></div>
+<span id="cb98-5"><a href="DataDx.html#cb98-5" tabindex="-1"></a><span class="co">#calculating how many outliers a slightly different way</span></span>
+<span id="cb98-6"><a href="DataDx.html#cb98-6" tabindex="-1"></a><span class="fu">nrow</span>(item_scores_df) <span class="sc">-</span> OutlierCount </span></code></pre></div>
 <pre><code>  MOutlier  n
 1       66  1
 2       65 65</code></pre>
@@ -1482,21 +1471,21 @@ lm(formula = ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--1.86732 -0.80535  0.02355  0.70459  3.02003 
+-1.86782 -0.80330  0.02019  0.70792  3.01691 
 
 Coefficients:
             Estimate Std. Error t value     Pr(&gt;|t|)    
-(Intercept)  2.90791    0.46653   6.233 0.0000000674 ***
-Belonging   -0.01742    0.09643  -0.181        0.857    
-cmBlack     -0.01918    0.01717  -1.117        0.269    
-iBIPOC_pr   -0.64125    0.35701  -1.796        0.078 .  
+(Intercept)  2.90881    0.46645   6.236 0.0000000667 ***
+Belonging   -0.01757    0.09642  -0.182       0.8561    
+cmBlack     -0.01921    0.01717  -1.118       0.2682    
+iBIPOC_pr   -0.64176    0.35702  -1.798       0.0777 .  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 Residual standard error: 1.066 on 55 degrees of freedom
   (7 observations deleted due to missingness)
-Multiple R-squared:  0.08212,   Adjusted R-squared:  0.03206 
-F-statistic:  1.64 on 3 and 55 DF,  p-value: 0.1906</code></pre>
+Multiple R-squared:  0.08228,   Adjusted R-squared:  0.03222 
+F-statistic: 1.644 on 3 and 55 DF,  p-value: 0.1899</code></pre>
 <div id="results-1" class="section level3 hasAnchor" number="3.9.1">
 <h3><span class="header-section-number">3.9.1</span> Results<a href="DataDx.html#results-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
@@ -1504,8 +1493,7 @@ F-statistic:  1.64 on 3 and 55 DF,  p-value: 0.1906</code></pre>
 <p>Results of a multiple regression predicting the respondents’ perceptions of campus climate for Black students indicated that neither contributions of the respondents’ personal belonging (<span class="math inline">\(B = -0.017, p = -.857\)</span>), the proportion of BIPOC instructional staff (<span class="math inline">\(B-0.641, p = 0.078), nor the proportion of Black classmates (\)</span>B$ = -0.019, p = 0.269 ) led to statistically significant changes in perceptions of campus climate for Black students. The model accounted for only 8% of the variance and was not statistically significant (<span class="math inline">\(p = 0.191\)</span>). Means, standard deviations, and correlations among variables are presented in Table 1; results of the regression model are presented in Table 2.</p>
 </blockquote>
 </blockquote>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="DataDx.html#cb102-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>,</span>
-<span id="cb102-2"><a href="DataDx.html#cb102-2" tabindex="-1"></a>    <span class="st">&quot;ClimateBL&quot;</span>)], <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.sig.stars =</span> <span class="cn">TRUE</span>, <span class="at">filename =</span> <span class="st">&quot;Table1_M_SDs_r_DataDx.doc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="DataDx.html#cb102-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(item_scores_df[<span class="fu">c</span>(<span class="st">&quot;iBIPOC_pr&quot;</span>, <span class="st">&quot;cmBlack&quot;</span>, <span class="st">&quot;Belonging&quot;</span>, <span class="st">&quot;ClimateBL&quot;</span>)], <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.sig.stars =</span> <span class="cn">TRUE</span>, <span class="at">filename =</span> <span class="st">&quot;Table1_M_SDs_r_DataDx.doc&quot;</span>)</span></code></pre></div>
 <pre><code>
 
 Table 1 
@@ -1522,7 +1510,7 @@ Means, standard deviations, and correlations with confidence intervals
   3. Belonging 4.03 1.47 .01         -.13                   
                          [-.24, .26] [-.36, .12]            
                                                             
-  4. ClimateBL 2.48 1.09 -.25        -.17        -.04       
+  4. ClimateBL 2.48 1.09 -.25        -.18        -.04       
                          [-.47, .01] [-.41, .08] [-.29, .22]
                                                             
 
@@ -1543,7 +1531,7 @@ Regression results using ClimateBL as the criterion
 
    Predictor      b      b_95%_CI  beta   beta_95%_CI sr2  sr2_95%_CI    r
  (Intercept) 2.91**  [1.97, 3.84]                                         
-   Belonging  -0.02 [-0.21, 0.18] -0.02 [-0.28, 0.24] .00 [-.01, .01] -.00
+   Belonging  -0.02 [-0.21, 0.18] -0.02 [-0.28, 0.24] .00 [-.01, .01] -.01
      cmBlack  -0.02 [-0.05, 0.02] -0.15 [-0.41, 0.12] .02 [-.05, .09] -.17
    iBIPOC_pr  -0.64 [-1.36, 0.07] -0.23 [-0.49, 0.03] .05 [-.06, .16] -.25
                                                                           
@@ -1590,44 +1578,44 @@ Square brackets are used to enclose the lower and upper limits of a confidence i
 <col width="11%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th align="left">Assignment Component</th>
 <th align="center"></th>
 <th align="center"></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left">1. Calculate alpha coefficients for scales/subscales.</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">2. Evaluate univariate normality (skew, kurtosis, Shapiro-Wilks).</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">3. Evaluate multivariate normality (Mahalanobis test)</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">4. Represent your work in an APA-style write-up (added to the writeup in the previous chapter)</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">5. Conduct a quick analysis (e.g., regression, ANOVA) including at least three predictor variables</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">6. Explanation to grader</td>
 <td align="center">5</td>
 <td align="center">_____</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><strong>Totals</strong></td>
 <td align="center">30</td>
 <td align="center">_____</td>
@@ -1669,14 +1657,14 @@ Square brackets are used to enclose the lower and upper limits of a confidence i
 <div id="include-only-those-who-consented" class="section level4 unnumbered hasAnchor">
 <h4>Include only those who consented<a href="DataDx.html#include-only-those-who-consented" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Because this data is publicly posted on the Open Science Framework, it was necessary for me to already exclude those individuals. This data was unique in that students could freely write some version of “Opt out.” My original code included a handful of versions, but here was the basic form:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="DataDx.html#cb108-1" tabindex="-1"></a><span class="co"># testing to see if my code worked raw &lt;- dplyr::filter (raw,</span></span>
-<span id="cb108-2"><a href="DataDx.html#cb108-2" tabindex="-1"></a><span class="co"># SPFC.Decolonize.Opt.Out != &#39;Okay&#39;)</span></span>
-<span id="cb108-3"><a href="DataDx.html#cb108-3" tabindex="-1"></a>raw <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(raw, SPFC.Decolonize.Opt.Out <span class="sc">!=</span> <span class="st">&quot;Opt Out&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="DataDx.html#cb108-1" tabindex="-1"></a><span class="co">#testing to see if my code worked</span></span>
+<span id="cb108-2"><a href="DataDx.html#cb108-2" tabindex="-1"></a><span class="co">#raw &lt;- dplyr::filter (raw, SPFC.Decolonize.Opt.Out != &quot;Okay&quot;)</span></span>
+<span id="cb108-3"><a href="DataDx.html#cb108-3" tabindex="-1"></a>raw <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span> (raw, SPFC.Decolonize.Opt.Out <span class="sc">!=</span> <span class="st">&quot;Opt Out&quot;</span>)</span></code></pre></div>
 </div>
 <div id="apply-exclusionary-criteria" class="section level4 unnumbered hasAnchor">
 <h4>Apply exclusionary criteria<a href="DataDx.html#apply-exclusionary-criteria" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>I want to exclude students’ responses for the ANOVA and psychometrics courses.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="DataDx.html#cb109-1" tabindex="-1"></a>raw <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">filter</span>(raw, Course <span class="sc">==</span> <span class="st">&quot;Multivariate&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="DataDx.html#cb109-1" tabindex="-1"></a>raw <span class="ot">&lt;-</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(raw, Course <span class="sc">==</span> <span class="st">&quot;Multivariate&quot;</span>))</span></code></pre></div>
 <p>At this point, these my only inclusion/exclusion criteria. I can determine how many students (who consented) completed any portion of the survey.</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="DataDx.html#cb110-1" tabindex="-1"></a><span class="fu">nrow</span>(raw)</span></code></pre></div>
 <pre><code>[1] 84</code></pre>
@@ -1684,7 +1672,7 @@ Square brackets are used to enclose the lower and upper limits of a confidence i
 <div id="rename-variables-to-be-sensible-and-systematic" class="section level4 unnumbered hasAnchor">
 <h4>Rename variables to be sensible and systematic<a href="DataDx.html#rename-variables-to-be-sensible-and-systematic" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Because this dataset is already on the OSF, the variables are sensibly named. However, I don’t like “SPFC.Decolonize.Opt.Out”. I will change it to simply “OptOut.”</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="DataDx.html#cb112-1" tabindex="-1"></a>raw <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(raw, <span class="at">OptOut =</span> <span class="st">&quot;SPFC.Decolonize.Opt.Out&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="DataDx.html#cb112-1" tabindex="-1"></a>raw <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(raw, <span class="at">OptOut =</span> <span class="st">&#39;SPFC.Decolonize.Opt.Out&#39;</span>)</span></code></pre></div>
 <p>It would have made more sense to do this before I used this variable in the calculations.</p>
 </div>
 <div id="downsize-the-dataframe-to-the-variables-of-interest" class="section level4 unnumbered hasAnchor">
@@ -1697,9 +1685,7 @@ Square brackets are used to enclose the lower and upper limits of a confidence i
 <li>Items included in the traditional pedagogy scale: ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation</li>
 <li>Items included in the socially responsive pedagogy scale: InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration</li>
 </ul>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="DataDx.html#cb113-1" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span> (dplyr<span class="sc">::</span><span class="fu">select</span>(raw, deID, StatsPkg, Centering, ClearResponsibilities,</span>
-<span id="cb113-2"><a href="DataDx.html#cb113-2" tabindex="-1"></a>    EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm,</span>
-<span id="cb113-3"><a href="DataDx.html#cb113-3" tabindex="-1"></a>    EquitableEval, MultPerspectives, DEIintegration))</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="DataDx.html#cb113-1" tabindex="-1"></a>scrub_df <span class="ot">&lt;-</span>(dplyr<span class="sc">::</span><span class="fu">select</span> (raw, deID, StatsPkg, Centering,ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration))</span></code></pre></div>
 </div>
 <div id="provide-an-apa-style-write-up-of-these-preliminary-steps" class="section level4 unnumbered hasAnchor">
 <h4>Provide an APA style write-up of these preliminary steps<a href="DataDx.html#provide-an-apa-style-write-up-of-these-preliminary-steps" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1778,18 +1764,18 @@ X1    1 84 2.38 6.17      0    0.94   0   0 36.36 36.36 3.29    12.33 0.67</code
 </blockquote>
 </blockquote>
 <p>To analyze missingness at the item level, we need a df that has only the variables of interest. That is, variables like <em>ID</em> and the <em>prop_miss</em> and <em>nmiss</em> variables we created will interfere with an accurate assessment of missingness. I will update our df to eliminate these.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="DataDx.html#cb124-1" tabindex="-1"></a><span class="co"># further update to exclude the n_miss and prop_miss variables</span></span>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="DataDx.html#cb124-1" tabindex="-1"></a><span class="co">#further update to exclude the n_miss and prop_miss variables</span></span>
 <span id="cb124-2"><a href="DataDx.html#cb124-2" tabindex="-1"></a>ItemMiss_df <span class="ot">&lt;-</span> scrub_df <span class="sc">%&gt;%</span></span>
-<span id="cb124-3"><a href="DataDx.html#cb124-3" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(deID, nmiss, prop_miss))</span></code></pre></div>
+<span id="cb124-3"><a href="DataDx.html#cb124-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span> (<span class="sc">-</span><span class="fu">c</span>(deID, nmiss, prop_miss))</span></code></pre></div>
 <p>Missing data analysis commonly looks at proportions by:</p>
 <ul>
 <li>the entire df</li>
 <li>rows/cases/people</li>
 </ul>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="DataDx.html#cb125-1" tabindex="-1"></a><span class="co"># what proportion of cells missing across entire dataset</span></span>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="DataDx.html#cb125-1" tabindex="-1"></a><span class="co">#what proportion of cells missing across entire dataset</span></span>
 <span id="cb125-2"><a href="DataDx.html#cb125-2" tabindex="-1"></a>formattable<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">is.na</span>(ItemMiss_df)))</span></code></pre></div>
 <pre><code>[1] 2.38%</code></pre>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="DataDx.html#cb127-1" tabindex="-1"></a><span class="co"># what proportion of cases (rows) are complete (nonmissing)</span></span>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="DataDx.html#cb127-1" tabindex="-1"></a><span class="co">#what proportion of cases (rows) are complete (nonmissing)</span></span>
 <span id="cb127-2"><a href="DataDx.html#cb127-2" tabindex="-1"></a>formattable<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">complete.cases</span>(ItemMiss_df)))</span></code></pre></div>
 <pre><code>[1] 82.14%</code></pre>
 <p>CUMULATIVE CAPTURE FOR WRITING IT UP:</p>
@@ -1806,52 +1792,32 @@ X1    1 84 2.38 6.17      0    0.94   0   0 36.36 36.36 3.29    12.33 0.67</code
 <div id="score-any-scalessubscales" class="section level4 unnumbered hasAnchor">
 <h4>Score any scales/subscales<a href="DataDx.html#score-any-scalessubscales" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Traditional pedagogy is a predictor variable that needs to be created by calculating the mean if at least 75% of the items are non-missing. None of the items need to be reverse-scored. I will return to working with the <em>scrub_df</em> data.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="DataDx.html#cb130-1" tabindex="-1"></a><span class="co"># this seems to work when I build the book, but not in &#39;working the</span></span>
-<span id="cb130-2"><a href="DataDx.html#cb130-2" tabindex="-1"></a><span class="co"># problem&#39; TradPed_vars &lt;- c(&#39;ClearResponsibilities&#39;,</span></span>
-<span id="cb130-3"><a href="DataDx.html#cb130-3" tabindex="-1"></a><span class="co"># &#39;EffectiveAnswers&#39;,&#39;Feedback&#39;,</span></span>
-<span id="cb130-4"><a href="DataDx.html#cb130-4" tabindex="-1"></a><span class="co"># &#39;ClearOrganization&#39;,&#39;ClearPresentation&#39;) scrub_df$TradPed &lt;-</span></span>
-<span id="cb130-5"><a href="DataDx.html#cb130-5" tabindex="-1"></a><span class="co"># sjstats::mean_n(scrub_df[, TradPed_vars], .75)</span></span>
-<span id="cb130-6"><a href="DataDx.html#cb130-6" tabindex="-1"></a></span>
-<span id="cb130-7"><a href="DataDx.html#cb130-7" tabindex="-1"></a><span class="co"># this seems to work when I &#39;work the problem&#39; (but not when I build</span></span>
-<span id="cb130-8"><a href="DataDx.html#cb130-8" tabindex="-1"></a><span class="co"># the book) the difference is the two dots before the last SRPed_vars</span></span>
-<span id="cb130-9"><a href="DataDx.html#cb130-9" tabindex="-1"></a>TradPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ClearResponsibilities&quot;</span>, <span class="st">&quot;EffectiveAnswers&quot;</span>, <span class="st">&quot;Feedback&quot;</span>,</span>
-<span id="cb130-10"><a href="DataDx.html#cb130-10" tabindex="-1"></a>    <span class="st">&quot;ClearOrganization&quot;</span>, <span class="st">&quot;ClearPresentation&quot;</span>)</span>
-<span id="cb130-11"><a href="DataDx.html#cb130-11" tabindex="-1"></a>scrub_df<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(scrub_df[, TradPed_vars], <span class="fl">0.75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="DataDx.html#cb130-1" tabindex="-1"></a>scrub_df<span class="sc">$</span>TradPed <span class="ot">&lt;-</span> datawizard<span class="sc">::</span><span class="fu">row_means</span>(scrub_df, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&#39;ClearResponsibilities&#39;</span>, <span class="st">&#39;EffectiveAnswers&#39;</span>,<span class="st">&#39;Feedback&#39;</span>, <span class="st">&#39;ClearOrganization&#39;</span>,<span class="st">&#39;ClearPresentation&#39;</span>), <span class="at">min_valid =</span> .<span class="dv">75</span>)</span></code></pre></div>
 <p>The dependent variable is socially responsive pedagogy. It needs to be created by calculating the mean if at least 75% of the items are non-missing. None of the items need to be reverse-scored.</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="DataDx.html#cb131-1" tabindex="-1"></a><span class="co"># this seems to work when I build the book, but not in &#39;working the</span></span>
-<span id="cb131-2"><a href="DataDx.html#cb131-2" tabindex="-1"></a><span class="co"># problem&#39; SRPed_vars &lt;- c(&#39;InclusvClassrm&#39;,&#39;EquitableEval&#39;,</span></span>
-<span id="cb131-3"><a href="DataDx.html#cb131-3" tabindex="-1"></a><span class="co"># &#39;MultPerspectives&#39;, &#39;DEIintegration&#39;) scrub_df$SRPed &lt;-</span></span>
-<span id="cb131-4"><a href="DataDx.html#cb131-4" tabindex="-1"></a><span class="co"># sjstats::mean_n(scrub_df[, SRPed_vars], .75)</span></span>
-<span id="cb131-5"><a href="DataDx.html#cb131-5" tabindex="-1"></a></span>
-<span id="cb131-6"><a href="DataDx.html#cb131-6" tabindex="-1"></a><span class="co"># this seems to work when I &#39;work the problem&#39; (but not when I build</span></span>
-<span id="cb131-7"><a href="DataDx.html#cb131-7" tabindex="-1"></a><span class="co"># the book) the difference is the two dots before the last SRPed_vars</span></span>
-<span id="cb131-8"><a href="DataDx.html#cb131-8" tabindex="-1"></a>SRPed_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;InclusvClassrm&quot;</span>, <span class="st">&quot;EquitableEval&quot;</span>, <span class="st">&quot;MultPerspectives&quot;</span>,</span>
-<span id="cb131-9"><a href="DataDx.html#cb131-9" tabindex="-1"></a>    <span class="st">&quot;DEIintegration&quot;</span>)</span>
-<span id="cb131-10"><a href="DataDx.html#cb131-10" tabindex="-1"></a>scrub_df<span class="sc">$</span>SRPed <span class="ot">&lt;-</span> sjstats<span class="sc">::</span><span class="fu">mean_n</span>(scrub_df[, SRPed_vars], <span class="fl">0.75</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="DataDx.html#cb131-1" tabindex="-1"></a>scrub_df<span class="sc">$</span>SRPed <span class="ot">&lt;-</span> datawizard<span class="sc">::</span><span class="fu">row_means</span>(scrub_df, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&#39;InclusvClassrm&#39;</span>,<span class="st">&#39;EquitableEval&#39;</span>, <span class="st">&#39;MultPerspectives&#39;</span>, <span class="st">&#39;DEIintegration&#39;</span>), <span class="at">min_valid =</span> .<span class="dv">75</span>)</span></code></pre></div>
 </div>
 <div id="evaluate-and-interpret-scale-level-missingness" class="section level4 unnumbered hasAnchor">
 <h4>Evaluate and interpret scale-level missingness<a href="DataDx.html#evaluate-and-interpret-scale-level-missingness" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To evaluate scale level missingness, let’s create a df with the focal variables.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="DataDx.html#cb132-1" tabindex="-1"></a>scored <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(scrub_df, StatsPkg, Centering, TradPed, SRPed)</span>
-<span id="cb132-2"><a href="DataDx.html#cb132-2" tabindex="-1"></a>ScoredCaseMiss <span class="ot">&lt;-</span> <span class="fu">nrow</span>(scored)  <span class="co">#I produced this object for the sole purpose of feeding the number of cases into the inline text, below</span></span>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="DataDx.html#cb132-1" tabindex="-1"></a>scored <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span> (scrub_df, StatsPkg, Centering, TradPed, SRPed)</span>
+<span id="cb132-2"><a href="DataDx.html#cb132-2" tabindex="-1"></a>ScoredCaseMiss <span class="ot">&lt;-</span> <span class="fu">nrow</span>(scored) <span class="co">#I produced this object for the sole purpose of feeding the number of cases into the inline text, below</span></span>
 <span id="cb132-3"><a href="DataDx.html#cb132-3" tabindex="-1"></a>ScoredCaseMiss</span></code></pre></div>
 <pre><code>[1] 84</code></pre>
 <p>Before we start our formal analysis of missingness at the scale level, let’s continue to scrub by eliminating cases that will have too much missingness. In the script below we create a variable that counts the number of missing variables and then creates a proportion by dividing it by the number of total variables.</p>
 <p>Using the <em>describe()</em> function from the <em>psych</em> package, we can investigate this variable.</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="DataDx.html#cb134-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb134-2"><a href="DataDx.html#cb134-2" tabindex="-1"></a><span class="co"># Create a variable (n_miss) that counts the number missing</span></span>
-<span id="cb134-3"><a href="DataDx.html#cb134-3" tabindex="-1"></a>scored<span class="sc">$</span>n_miss <span class="ot">&lt;-</span> scored <span class="sc">%&gt;%</span></span>
-<span id="cb134-4"><a href="DataDx.html#cb134-4" tabindex="-1"></a>    is.na <span class="sc">%&gt;%</span></span>
-<span id="cb134-5"><a href="DataDx.html#cb134-5" tabindex="-1"></a>    rowSums</span>
+<span id="cb134-2"><a href="DataDx.html#cb134-2" tabindex="-1"></a><span class="co">#Create a variable (n_miss) that counts the number missing</span></span>
+<span id="cb134-3"><a href="DataDx.html#cb134-3" tabindex="-1"></a>scored<span class="sc">$</span>n_miss <span class="ot">&lt;-</span> scored<span class="sc">%&gt;%</span></span>
+<span id="cb134-4"><a href="DataDx.html#cb134-4" tabindex="-1"></a> is.na <span class="sc">%&gt;%</span> </span>
+<span id="cb134-5"><a href="DataDx.html#cb134-5" tabindex="-1"></a>rowSums</span>
 <span id="cb134-6"><a href="DataDx.html#cb134-6" tabindex="-1"></a></span>
-<span id="cb134-7"><a href="DataDx.html#cb134-7" tabindex="-1"></a><span class="co"># Create a proportion missing by dividing n_miss by the total number</span></span>
-<span id="cb134-8"><a href="DataDx.html#cb134-8" tabindex="-1"></a><span class="co"># of variables (6) Pipe to sort in order of descending frequency to</span></span>
-<span id="cb134-9"><a href="DataDx.html#cb134-9" tabindex="-1"></a><span class="co"># get a sense of the missingness</span></span>
-<span id="cb134-10"><a href="DataDx.html#cb134-10" tabindex="-1"></a>scored <span class="ot">&lt;-</span> scored <span class="sc">%&gt;%</span></span>
-<span id="cb134-11"><a href="DataDx.html#cb134-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prop_miss =</span> (n_miss<span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb134-12"><a href="DataDx.html#cb134-12" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n_miss))</span>
-<span id="cb134-13"><a href="DataDx.html#cb134-13" tabindex="-1"></a></span>
-<span id="cb134-14"><a href="DataDx.html#cb134-14" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(scored<span class="sc">$</span>prop_miss)</span></code></pre></div>
+<span id="cb134-7"><a href="DataDx.html#cb134-7" tabindex="-1"></a><span class="co">#Create a proportion missing by dividing n_miss by the total number of variables (6)</span></span>
+<span id="cb134-8"><a href="DataDx.html#cb134-8" tabindex="-1"></a><span class="co">#Pipe to sort in order of descending frequency to get a sense of the missingness</span></span>
+<span id="cb134-9"><a href="DataDx.html#cb134-9" tabindex="-1"></a>scored<span class="ot">&lt;-</span> scored<span class="sc">%&gt;%</span></span>
+<span id="cb134-10"><a href="DataDx.html#cb134-10" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">prop_miss =</span> (n_miss<span class="sc">/</span><span class="dv">6</span>)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb134-11"><a href="DataDx.html#cb134-11" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_miss))</span>
+<span id="cb134-12"><a href="DataDx.html#cb134-12" tabindex="-1"></a></span>
+<span id="cb134-13"><a href="DataDx.html#cb134-13" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(scored<span class="sc">$</span>prop_miss)</span></code></pre></div>
 <pre><code>   vars  n mean   sd median trimmed mad min   max range skew kurtosis   se
 X1    1 84 0.79 4.41      0       0   0   0 33.33 33.33 5.89    36.31 0.48</code></pre>
 <p>CUMULATIVE CAPTURE FOR WRITING IT UP:</p>
@@ -1866,15 +1832,14 @@ X1    1 84 0.79 4.41      0       0   0   0 33.33 33.33 5.89    36.31 0.48</code
 </blockquote>
 </blockquote>
 <p>We need to decide what is our retention threshhold. Twenty percent seems to be a general rule of thumb. Let’s delete all cases with missingness at 20% or greater.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="DataDx.html#cb136-1" tabindex="-1"></a><span class="co"># update df to have only those with at least 20% of complete data</span></span>
-<span id="cb136-2"><a href="DataDx.html#cb136-2" tabindex="-1"></a><span class="co"># (this is an arbitrary decision)</span></span>
-<span id="cb136-3"><a href="DataDx.html#cb136-3" tabindex="-1"></a>scored <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(scored, prop_miss <span class="sc">&lt;=</span> <span class="dv">20</span>)</span>
-<span id="cb136-4"><a href="DataDx.html#cb136-4" tabindex="-1"></a></span>
-<span id="cb136-5"><a href="DataDx.html#cb136-5" tabindex="-1"></a><span class="co"># the variable selection just lops off the proportion missing</span></span>
-<span id="cb136-6"><a href="DataDx.html#cb136-6" tabindex="-1"></a>scored <span class="ot">&lt;-</span> (<span class="fu">select</span>(scored, StatsPkg<span class="sc">:</span>SRPed))</span>
-<span id="cb136-7"><a href="DataDx.html#cb136-7" tabindex="-1"></a></span>
-<span id="cb136-8"><a href="DataDx.html#cb136-8" tabindex="-1"></a><span class="co"># this produces the number of cases retained</span></span>
-<span id="cb136-9"><a href="DataDx.html#cb136-9" tabindex="-1"></a><span class="fu">nrow</span>(scored)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="DataDx.html#cb136-1" tabindex="-1"></a><span class="co">#update df to have only those with at least 20% of complete data (this is an arbitrary decision)</span></span>
+<span id="cb136-2"><a href="DataDx.html#cb136-2" tabindex="-1"></a>scored <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(scored, prop_miss <span class="sc">&lt;=</span> <span class="dv">20</span>) </span>
+<span id="cb136-3"><a href="DataDx.html#cb136-3" tabindex="-1"></a></span>
+<span id="cb136-4"><a href="DataDx.html#cb136-4" tabindex="-1"></a><span class="co">#the variable selection just lops off the proportion missing</span></span>
+<span id="cb136-5"><a href="DataDx.html#cb136-5" tabindex="-1"></a>scored <span class="ot">&lt;-</span>(<span class="fu">select</span> (scored, StatsPkg<span class="sc">:</span>SRPed)) </span>
+<span id="cb136-6"><a href="DataDx.html#cb136-6" tabindex="-1"></a></span>
+<span id="cb136-7"><a href="DataDx.html#cb136-7" tabindex="-1"></a><span class="co">#this produces the number of cases retained</span></span>
+<span id="cb136-8"><a href="DataDx.html#cb136-8" tabindex="-1"></a><span class="fu">nrow</span>(scored)</span></code></pre></div>
 <pre><code>[1] 83</code></pre>
 <p>CUMULATIVE CAPTURE FOR WRITING IT UP:</p>
 <blockquote>
@@ -1892,11 +1857,11 @@ X1    1 84 0.79 4.41      0       0   0   0 33.33 33.33 5.89    36.31 0.48</code
 <li>individual cells across the scored dataset, and</li>
 <li>rows/cases with nonmissing data</li>
 </ul>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="DataDx.html#cb138-1" tabindex="-1"></a><span class="co"># percent missing across df</span></span>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="DataDx.html#cb138-1" tabindex="-1"></a><span class="co">#percent missing across df</span></span>
 <span id="cb138-2"><a href="DataDx.html#cb138-2" tabindex="-1"></a>formattable<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">is.na</span>(scored)))</span></code></pre></div>
 <pre><code>[1] 0.60%</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="DataDx.html#cb140-1" tabindex="-1"></a><span class="co"># percent of rows with nonmissing data</span></span>
-<span id="cb140-2"><a href="DataDx.html#cb140-2" tabindex="-1"></a>formattable<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">complete.cases</span>(scored)))</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="DataDx.html#cb140-1" tabindex="-1"></a><span class="co">#percent of rows with nonmissing data</span></span>
+<span id="cb140-2"><a href="DataDx.html#cb140-2" tabindex="-1"></a>formattable<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">mean</span>(<span class="fu">complete.cases</span>(scored))) </span></code></pre></div>
 <pre><code>[1] 97.59%</code></pre>
 <p>CUMULATIVE CAPTURE FOR WRITING IT UP:</p>
 <blockquote>
@@ -1912,7 +1877,7 @@ X1    1 84 0.79 4.41      0       0   0   0 33.33 33.33 5.89    36.31 0.48</code
 <p>Let’s look again at missing patterns and mechanisms.</p>
 <p>Returning to the <em>mice</em> package, we can use the <em>md.pattern()</em> function to examine a matrix with the number of columns 1 in which each row corresponds to a missing data pattern (0 = observed, 0 = missing). The rows and columns are sorted in increasing amounts of missing information. The last column and row contain row and column counts, respectively.</p>
 <p>The corresponding figure shows non-missing data in blue; missing data in red.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="DataDx.html#cb142-1" tabindex="-1"></a>mice_ScaleLvl <span class="ot">&lt;-</span> mice<span class="sc">::</span><span class="fu">md.pattern</span>(scored, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">rotate.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="DataDx.html#cb142-1" tabindex="-1"></a>mice_ScaleLvl <span class="ot">&lt;-</span> mice<span class="sc">::</span><span class="fu">md.pattern</span>(scored, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">rotate.names=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="03-DataDx_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="DataDx.html#cb143-1" tabindex="-1"></a>mice_ScaleLvl</span></code></pre></div>
 <pre><code>   StatsPkg Centering TradPed SRPed  
@@ -1945,9 +1910,8 @@ X1    1 84 0.79 4.41      0       0   0   0 33.33 33.33 5.89    36.31 0.48</code
 <div id="calculate-alpha-coefficients-for-scalessubscales" class="section level4 unnumbered hasAnchor">
 <h4>Calculate alpha coefficients for scales/subscales<a href="DataDx.html#calculate-alpha-coefficients-for-scalessubscales" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To calculate the alpha coefficients, we need item-level data. We will return to <em>scrub_df</em> that contains the item-level data.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="DataDx.html#cb145-1" tabindex="-1"></a><span class="co"># alpha for the traditional pedagogy scale</span></span>
-<span id="cb145-2"><a href="DataDx.html#cb145-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(scrub_df[<span class="fu">c</span>(<span class="st">&quot;ClearResponsibilities&quot;</span>, <span class="st">&quot;EffectiveAnswers&quot;</span>, <span class="st">&quot;Feedback&quot;</span>,</span>
-<span id="cb145-3"><a href="DataDx.html#cb145-3" tabindex="-1"></a>    <span class="st">&quot;ClearOrganization&quot;</span>, <span class="st">&quot;ClearPresentation&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="DataDx.html#cb145-1" tabindex="-1"></a><span class="co">#alpha for the traditional pedagogy scale</span></span>
+<span id="cb145-2"><a href="DataDx.html#cb145-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(scrub_df[<span class="fu">c</span>(<span class="st">&quot;ClearResponsibilities&quot;</span>, <span class="st">&quot;EffectiveAnswers&quot;</span>,<span class="st">&quot;Feedback&quot;</span>, <span class="st">&quot;ClearOrganization&quot;</span>,<span class="st">&quot;ClearPresentation&quot;</span>)])</span></code></pre></div>
 <pre><code>
 Reliability analysis   
 Call: psych::alpha(x = scrub_df[c(&quot;ClearResponsibilities&quot;, &quot;EffectiveAnswers&quot;, 
@@ -1995,9 +1959,8 @@ ClearPresentation     0.01 0.06 0.04 0.46 0.43 0.00</code></pre>
 <p>Cronbach’s alpha for the traditional pedagogy scale was 0.88.</p>
 </blockquote>
 </blockquote>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="DataDx.html#cb147-1" tabindex="-1"></a><span class="co"># alpha for the traditional pedagogy scale</span></span>
-<span id="cb147-2"><a href="DataDx.html#cb147-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(scrub_df[<span class="fu">c</span>(<span class="st">&quot;InclusvClassrm&quot;</span>, <span class="st">&quot;EquitableEval&quot;</span>, <span class="st">&quot;DEIintegration&quot;</span>,</span>
-<span id="cb147-3"><a href="DataDx.html#cb147-3" tabindex="-1"></a>    <span class="st">&quot;DEIintegration&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="DataDx.html#cb147-1" tabindex="-1"></a><span class="co">#alpha for the traditional pedagogy scale</span></span>
+<span id="cb147-2"><a href="DataDx.html#cb147-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(scrub_df[<span class="fu">c</span>(<span class="st">&quot;InclusvClassrm&quot;</span>, <span class="st">&quot;EquitableEval&quot;</span>, <span class="st">&quot;DEIintegration&quot;</span>, <span class="st">&quot;DEIintegration&quot;</span>)])</span></code></pre></div>
 <pre><code>Warning in cor.smooth(r): Matrix was not positive definite, smoothing was done</code></pre>
 <pre><code>In smc, smcs &lt; 0 were set to .0
 In smc, smcs &lt; 0 were set to .0
@@ -2051,12 +2014,12 @@ DEIintegration.1 0.00 0.19 0.17 0.64 0.17</code></pre>
 <div id="evaluate-univariate-normality-skew-kurtosis-shapiro-wilks" class="section level4 unnumbered hasAnchor">
 <h4>Evaluate univariate normality (skew, kurtosis, Shapiro-Wilks)<a href="DataDx.html#evaluate-univariate-normality-skew-kurtosis-shapiro-wilks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can inspect univariate normality by examining the skew and kurtosis values of the continuously scored variables.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="DataDx.html#cb151-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(scored, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="DataDx.html#cb151-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(scored, <span class="at">type=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>           vars  n mean   sd median trimmed  mad  min max range  skew kurtosis
 StatsPkg*     1 83 1.73 0.44   2.00    1.79 0.00 1.00   2  1.00 -1.06    -0.87
 Centering*    2 83 1.36 0.48   1.00    1.33 0.00 1.00   2  1.00  0.58    -1.67
 TradPed       3 83 4.29 0.72   4.40    4.40 0.59 1.20   5  3.80 -1.75     4.49
-SRPed         4 81 4.51 0.58   4.75    4.60 0.37 2.33   5  2.67 -1.19     1.30
+SRPed         4 81 4.51 0.58   4.75    4.60 0.37 2.33   5  2.67 -1.19     1.29
              se
 StatsPkg*  0.05
 Centering* 0.05
@@ -2069,10 +2032,9 @@ SRPed      0.06</code></pre>
 </blockquote>
 </blockquote>
 <p>Still at the univariate level, we can apply the Shapiro-Wilk test of normality to each of our continuously scaled variables. When the <span class="math inline">\(p\)</span> value is &lt; .05, the variable’s distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="DataDx.html#cb153-1" tabindex="-1"></a><span class="co"># The shapiro-test is in base R; it&#39;s specification is simple:</span></span>
-<span id="cb153-2"><a href="DataDx.html#cb153-2" tabindex="-1"></a><span class="co"># shapiro.test(df$variable) I added the object (and had to list it</span></span>
-<span id="cb153-3"><a href="DataDx.html#cb153-3" tabindex="-1"></a><span class="co"># below) so I can use the inline text function</span></span>
-<span id="cb153-4"><a href="DataDx.html#cb153-4" tabindex="-1"></a><span class="fu">shapiro.test</span>(scored<span class="sc">$</span>TradPed)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="DataDx.html#cb153-1" tabindex="-1"></a><span class="co">#The shapiro-test is in base R; it&#39;s specification is simple:  shapiro.test(df$variable)</span></span>
+<span id="cb153-2"><a href="DataDx.html#cb153-2" tabindex="-1"></a><span class="co">#I added the object (and had to list it below) so I can use the inline text function</span></span>
+<span id="cb153-3"><a href="DataDx.html#cb153-3" tabindex="-1"></a><span class="fu">shapiro.test</span>(scored<span class="sc">$</span>TradPed)</span></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
@@ -2083,7 +2045,7 @@ W = 0.83046, p-value = 0.0000000245</code></pre>
     Shapiro-Wilk normality test
 
 data:  scored$SRPed
-W = 0.81782, p-value = 0.0000000134</code></pre>
+W = 0.81803, p-value = 0.0000000136</code></pre>
 <p>Both variable differ from a normal distribution in a statistically significant way.</p>
 <ul>
 <li>For the traditional pedagogy variable, <span class="math inline">\(W = 0.830, p &lt; 0.001\)</span></li>
@@ -2103,42 +2065,39 @@ W = 0.81782, p-value = 0.0000000134</code></pre>
 <h4>Evaluate multivarite normality (Mahalanobis test)<a href="DataDx.html#evaluate-multivarite-normality-mahalanobis-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In more complex models, multivariate normality is probably a more useful analysis. Although I am teaching this evaluation in advance of the formal analysis, as demonstrated in many of <a href="https://lhbikos.github.io/ReCenterPsychStats/analysis-of-variance.html">ReCentering Psych Stats ANOVA chapters</a>, this can also be assessed by examining the distribution of residuals after the analysis is complete.</p>
 <p>Multivariate normality can be assessed with the continuously scaled variables. The code below includes the only two continuously scaled variables. The code simultaneously (a) appends the df with a Mahalanobis value and (b) creates a QQ plot. Dots that stray from the line are the scores that are contributing to multivariate non-normality.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="DataDx.html#cb158-1" tabindex="-1"></a>scored<span class="sc">$</span>Mahal <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">outlier</span>(scored[<span class="fu">c</span>(<span class="st">&quot;TradPed&quot;</span>, <span class="st">&quot;SRPed&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="DataDx.html#cb158-1" tabindex="-1"></a>scored<span class="sc">$</span>Mahal <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">outlier</span>(scored[<span class="fu">c</span>(<span class="st">&quot;TradPed&quot;</span>, <span class="st">&quot;SRPed&quot;</span>)]) </span></code></pre></div>
 <p><img src="03-DataDx_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 <p>We can analyze the distributional characteristics of the Mahalanobis values with <em>psych::describe</em>.
 It is possible, then to analyze the Mahalanobis distance values.</p>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="DataDx.html#cb159-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(scored<span class="sc">$</span>Mahal)</span></code></pre></div>
 <pre><code>   vars  n mean   sd median trimmed  mad  min   max range skew kurtosis   se
-X1    1 83 1.97 3.12   1.01    1.27 0.42 0.03 19.61 19.58 3.75    15.87 0.34</code></pre>
+X1    1 83 1.97 3.12   1.01    1.27 0.42 0.03 19.61 19.58 3.75    15.86 0.34</code></pre>
 <p>Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median. In fact, we can have these noted in a column in the dataframe.</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="DataDx.html#cb161-1" tabindex="-1"></a><span class="co"># creates a variable indicating TRUE or FALSE if an item is an</span></span>
-<span id="cb161-2"><a href="DataDx.html#cb161-2" tabindex="-1"></a><span class="co"># outlier</span></span>
-<span id="cb161-3"><a href="DataDx.html#cb161-3" tabindex="-1"></a>scored<span class="sc">$</span>MOutlier <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">if_else</span>(scored<span class="sc">$</span>Mahal <span class="sc">&gt;</span> (<span class="fu">median</span>(scored<span class="sc">$</span>Mahal) <span class="sc">+</span></span>
-<span id="cb161-4"><a href="DataDx.html#cb161-4" tabindex="-1"></a>    (<span class="dv">3</span> <span class="sc">*</span> <span class="fu">sd</span>(scored<span class="sc">$</span>Mahal))), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb161-5"><a href="DataDx.html#cb161-5" tabindex="-1"></a></span>
-<span id="cb161-6"><a href="DataDx.html#cb161-6" tabindex="-1"></a><span class="co"># shows us the first 6 rows of the data so we can see the new</span></span>
-<span id="cb161-7"><a href="DataDx.html#cb161-7" tabindex="-1"></a><span class="co"># variables (Mahal, MOutlier)</span></span>
-<span id="cb161-8"><a href="DataDx.html#cb161-8" tabindex="-1"></a><span class="fu">head</span>(scored)</span></code></pre></div>
-<pre><code>  StatsPkg Centering TradPed SRPed     Mahal MOutlier
-1     SPSS       Pre     4.2    NA 0.0319020    FALSE
-2        R       Pre     2.8    NA 8.3615550    FALSE
-3        R        Re     3.8   4.5 0.8702516    FALSE
-4        R        Re     5.0   5.0 1.0087776    FALSE
-5        R        Re     4.8   5.0 0.7363631    FALSE
-6        R        Re     4.0   5.0 2.6509906    FALSE</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="DataDx.html#cb161-1" tabindex="-1"></a><span class="co">#creates a variable indicating TRUE or FALSE if an item is an outlier</span></span>
+<span id="cb161-2"><a href="DataDx.html#cb161-2" tabindex="-1"></a>scored<span class="sc">$</span>MOutlier <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">if_else</span>(scored<span class="sc">$</span>Mahal <span class="sc">&gt;</span> (<span class="fu">median</span>(scored<span class="sc">$</span>Mahal) <span class="sc">+</span> (<span class="dv">3</span><span class="sc">*</span><span class="fu">sd</span>(scored<span class="sc">$</span>Mahal))), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb161-3"><a href="DataDx.html#cb161-3" tabindex="-1"></a></span>
+<span id="cb161-4"><a href="DataDx.html#cb161-4" tabindex="-1"></a><span class="co">#shows us the first 6 rows of the data so we can see the new variables (Mahal, MOutlier)</span></span>
+<span id="cb161-5"><a href="DataDx.html#cb161-5" tabindex="-1"></a><span class="fu">head</span>(scored)</span></code></pre></div>
+<pre><code>  StatsPkg Centering TradPed SRPed      Mahal MOutlier
+1     SPSS       Pre     4.2    NA 0.03190775    FALSE
+2        R       Pre     2.8    NA 8.36306301    FALSE
+3        R        Re     3.8   4.5 0.87078541    FALSE
+4        R        Re     5.0   5.0 1.00888797    FALSE
+5        R        Re     4.8   5.0 0.73665806    FALSE
+6        R        Re     4.0   5.0 2.65256574    FALSE</code></pre>
 <div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="DataDx.html#cb163-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb163-2"><a href="DataDx.html#cb163-2" tabindex="-1"></a><span class="co"># counts frequency TRUE and FALSE indicating outlier or not</span></span>
-<span id="cb163-3"><a href="DataDx.html#cb163-3" tabindex="-1"></a>OutlierCount <span class="ot">&lt;-</span> scored <span class="sc">%&gt;%</span></span>
-<span id="cb163-4"><a href="DataDx.html#cb163-4" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">count</span>(MOutlier)</span>
+<span id="cb163-2"><a href="DataDx.html#cb163-2" tabindex="-1"></a><span class="co">#counts frequency TRUE and FALSE indicating outlier or not</span></span>
+<span id="cb163-3"><a href="DataDx.html#cb163-3" tabindex="-1"></a>OutlierCount<span class="ot">&lt;-</span> scored<span class="sc">%&gt;%</span></span>
+<span id="cb163-4"><a href="DataDx.html#cb163-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(MOutlier)</span>
 <span id="cb163-5"><a href="DataDx.html#cb163-5" tabindex="-1"></a></span>
-<span id="cb163-6"><a href="DataDx.html#cb163-6" tabindex="-1"></a><span class="co"># calculating how many outliers a slightly different way</span></span>
-<span id="cb163-7"><a href="DataDx.html#cb163-7" tabindex="-1"></a><span class="fu">nrow</span>(scored) <span class="sc">-</span> OutlierCount</span></code></pre></div>
+<span id="cb163-6"><a href="DataDx.html#cb163-6" tabindex="-1"></a><span class="co">#calculating how many outliers a slightly different way</span></span>
+<span id="cb163-7"><a href="DataDx.html#cb163-7" tabindex="-1"></a><span class="fu">nrow</span>(scored) <span class="sc">-</span> OutlierCount </span></code></pre></div>
 <pre><code>  MOutlier  n
 1       83  2
 2       82 81</code></pre>
 <p>When we identify outliers we often ask if we should delete them or transform the data. A general rule of thumb is to look for “jumps” in the Mahalanobis distance values. If they are progressing steadily and there is no “jump,” researchers will often retain the outliers.</p>
 <p>In this case, I do see a jump. When I sort the df on Mahal values, the jump from 9.37 to 16.56 is much different than the more gradual increase in values that precedes it. Therefore, I think I will delete cases with Mahalanobis values greater than 10 (a number I “just picked”).</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="DataDx.html#cb165-1" tabindex="-1"></a>scored <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(scored, Mahal <span class="sc">&lt;</span> <span class="st">&quot;10&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="DataDx.html#cb165-1" tabindex="-1"></a>scored <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span> (scored, Mahal <span class="sc">&lt;</span> <span class="st">&quot;10&quot;</span>)</span></code></pre></div>
 <blockquote>
 <blockquote>
 <p>We evaluated multivariate normality with the Mahalanobis distance test. Specifically, we used the <em>psych::outlier()</em> function and included both continuous variables in the calculation. Our visual inspection of the Q-Q plot suggested that the plotted line strayed from the straight line as the quantiles increased. Additionally, we appended the Mahalanobis distance scores as a variable to the data. Analyzing this variable, we found that 2 cases exceed three standard deviations beyond the median. Because there was a substantial “jump” between the non-outliers and these two variables we chose to delete them.</p>
@@ -2188,21 +2147,21 @@ lm(formula = SRPed ~ StatsPkg + Centering + TradPed, data = scored)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.56099 -0.14406  0.01551  0.10594  0.46498 
+-0.56099 -0.14406  0.01536  0.10594  0.46374 
 
 Coefficients:
-            Estimate Std. Error t value          Pr(&gt;|t|)    
-(Intercept)  1.46330    0.34441   4.249 0.000077464849487 ***
-StatsPkgR    0.13251    0.08056   1.645             0.105    
-CenteringRe  0.05666    0.07423   0.763             0.448    
-TradPed      0.68663    0.07365   9.323 0.000000000000332 ***
+            Estimate Std. Error t value         Pr(&gt;|t|)    
+(Intercept)  1.46266    0.34415   4.250 0.00007709624097 ***
+StatsPkgR    0.13203    0.08049   1.640            0.106    
+CenteringRe  0.05696    0.07417   0.768            0.446    
+TradPed      0.68681    0.07359   9.333 0.00000000000032 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.2433 on 59 degrees of freedom
+Residual standard error: 0.2431 on 59 degrees of freedom
   (1 observation deleted due to missingness)
-Multiple R-squared:  0.6167,    Adjusted R-squared:  0.5972 
-F-statistic: 31.64 on 3 and 59 DF,  p-value: 0.000000000002547</code></pre>
+Multiple R-squared:  0.6172,    Adjusted R-squared:  0.5978 
+F-statistic: 31.71 on 3 and 59 DF,  p-value: 0.000000000002451</code></pre>
 </div>
 </div>
 <div id="results-2" class="section level3 hasAnchor" number="3.11.4">
@@ -2212,8 +2171,7 @@ F-statistic: 31.64 on 3 and 59 DF,  p-value: 0.000000000002547</code></pre>
 <p>Results of a multiple regression predicting the socially responsive course evaluation ratings indicated that neither the transition from SPSS to R (<span class="math inline">\(B = 0.133, p = 0.105\)</span>) nor the transition to an explicitly recentered curriculum (<span class="math inline">\(B = 0.057, p = 0.448) led to statistically significant diferences. In contrast, traditional pedagogy had a strong, positive effect on evaluations of socially responsive pedagogy (\)</span>B = 0.686, p &lt; 0.001). The model accounted for 62% of the variance and was statistically significant (<span class="math inline">\(p , 0.001\)</span>). Means, standard deviations, and correlations among variables are presented in Table 1; results of the regression model are presented in Table 2.</p>
 </blockquote>
 </blockquote>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="DataDx.html#cb168-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(scored[<span class="fu">c</span>(<span class="st">&quot;SRPed&quot;</span>, <span class="st">&quot;StatsPkg&quot;</span>, <span class="st">&quot;Centering&quot;</span>, <span class="st">&quot;TradPed&quot;</span>)],</span>
-<span id="cb168-2"><a href="DataDx.html#cb168-2" tabindex="-1"></a>    <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.sig.stars =</span> <span class="cn">TRUE</span>, <span class="at">filename =</span> <span class="st">&quot;Table1__DataDx_HW.doc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="DataDx.html#cb168-1" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(scored[<span class="fu">c</span>(<span class="st">&quot;SRPed&quot;</span>, <span class="st">&quot;StatsPkg&quot;</span>, <span class="st">&quot;Centering&quot;</span>, <span class="st">&quot;TradPed&quot;</span>)], <span class="at">table.number =</span> <span class="dv">1</span>, <span class="at">show.sig.stars =</span> <span class="cn">TRUE</span>, <span class="at">filename =</span> <span class="st">&quot;Table1__DataDx_HW.doc&quot;</span>)</span></code></pre></div>
 <pre><code>
 
 Table 1 
@@ -2246,9 +2204,9 @@ Regression results using SRPed as the criterion
  (Intercept) 1.46**  [0.77, 2.15]                                
    StatsPkgR   0.13 [-0.03, 0.29] .02 [-.02, .06]                
  CenteringRe   0.06 [-0.09, 0.21] .00 [-.02, .02]                
-     TradPed 0.69**  [0.54, 0.83] .56  [.40, .73]                
+     TradPed 0.69**  [0.54, 0.83] .57  [.40, .73]                
                                                       R2 = .617**
-                                                  95% CI[.43,.70]
+                                                  95% CI[.44,.71]
                                                                  
 
 Note. A significant b-weight indicates the semi-partial correlation is also significant.
@@ -2262,7 +2220,7 @@ Square brackets are used to enclose the lower and upper limits of a confidence i
 </div>
 </div>
 <h3>REFERENCES<a href="REFS.html#REFS" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-bollen_perceived_1990" class="csl-entry">
 Bollen, K. A., &amp; Hoyle, R. H. (1990). Perceived cohesion: <span>A</span> conceptual and empirical examination. <em>Social Forces</em>, <em>69</em>(2), 479–504. <a href="https://doi.org/10.2307/2579670">https://doi.org/10.2307/2579670</a>
 </div>

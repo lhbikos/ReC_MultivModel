@@ -1,0 +1,3 @@
+"0","dfLewis$p1MH <- datawizard::row_means(dfLewis, select = c('MH5','MH6'), min_valid = .75)"
+"0","dfLewis$p2MH <- datawizard::row_means(dfLewis, select = c('MH1','MH3'), min_valid = .75)"
+"0","dfLewis$p3MH <- datawizard::row_means(dfLewis, select = c('MH4','MH2'), min_valid = .75)"

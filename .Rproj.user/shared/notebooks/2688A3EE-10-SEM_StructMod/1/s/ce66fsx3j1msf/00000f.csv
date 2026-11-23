@@ -1,0 +1,3 @@
+"0","dfKim$p1CMI <- datawizard::row_means(dfKim, select = c('cmi45', 'cmi32', 'cmi11',	'cmi33', 'cmi22', 'cmi12', 'cmi26', 'cmi25', 'cmi44', 'cmi13', 'cmi31', 'cmi34', 'cmi37', 'cmi43', 'cmi24', 'cmi9'), min_valid = .80)"
+"0","dfKim$p2CMI <- datawizard::row_means(dfKim, select = c('cmi39', 'cmi15', 'cmi7', 'cmi38', 'cmi18', 'cmi40', 'cmi47', 'cmi27', 'cmi1', 'cmi14', 'cmi42', 'cmi8', 'cmi19', 'cmi20', 'cmi5', 'cmi16'), min_valid = .80)"
+"0","dfKim$p3CMI <- datawizard::row_means(dfKim, select = c('cmi41', 'cmi2', 'cmi4', 'cmi30', 'cmi46', 'cmi6', 'cmi17', 'cmi23', 'cmi10', 'cmi3', 'cmi29', 'cmi28', 'cmi21', 'cmi35', 'cmi36'), min_valid = .80)"

@@ -1,0 +1,5 @@
+"0","#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot"
+"0","#You can change them as the last thing"
+"0","m1_msmt <- semptools::layout_matrix(REM = c(2,1),"
+"0","                                  CMI = c(1,2),"
+"0","                                  PWB = c(2,3))"

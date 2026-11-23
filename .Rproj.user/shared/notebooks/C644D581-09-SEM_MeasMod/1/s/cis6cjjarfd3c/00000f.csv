@@ -1,0 +1,3 @@
+"0","dfKim$p1PWB <- datawizard::row_means(dfKim, select = c('pwb7','pwb11', 'pwb4', 'pwb8'), min_valid = .80)"
+"0","dfKim$p2PWB <- datawizard::row_means(dfKim, select = c('pwb9','pwb2', 'pwb10', 'pwb2'), min_valid = .80)"
+"0","dfKim$p3PWB <- datawizard::row_means(dfKim, select = c('pwb1','pwb3', 'pwb5'), min_valid = .80)"

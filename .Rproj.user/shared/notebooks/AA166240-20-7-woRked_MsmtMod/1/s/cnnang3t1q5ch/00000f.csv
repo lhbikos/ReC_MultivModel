@@ -1,5 +1,6 @@
-"0","str(babydf)
-"
+"0","babydf$CENTERING <- as.numeric(babydf$Centering)"
+"0","babydf$CENTERING <- (babydf$CENTERING - 1)"
+"0","str(babydf)"
 "1","Classes"
 "1"," "
 "1","‘data.table’"

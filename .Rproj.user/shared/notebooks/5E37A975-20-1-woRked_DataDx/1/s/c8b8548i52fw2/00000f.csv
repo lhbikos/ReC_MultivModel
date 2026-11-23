@@ -1,0 +1,14 @@
+"0","#alpha for the traditional pedagogy scale"
+"0","psych::alpha(scrub_df[c(""ClearResponsibilities"", ""EffectiveAnswers"",""Feedback"", ""ClearOrganization"",""ClearPresentation"")])"
+"1","
+Reliability analysis "
+"1"," "
+"1"," 
+"
+"1","Call: "
+"1","psych::alpha(x = scrub_df[c(""ClearResponsibilities"", ""EffectiveAnswers"", 
+"
+"1","    ""Feedback"", ""ClearOrganization"", ""ClearPresentation"")])
+"
+"1","
+ "

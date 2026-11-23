@@ -35,11 +35,9 @@ raw <-(dplyr::filter(raw, Course == "Multivariate"))
 I need to score the SRPed and Valued variables
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-Valued_vars <- c('ValObjectives', 'IncrUnderstanding','IncrInterest')  
-raw$Valued <- sjstats::mean_n(raw[, ..Valued_vars], .75)
+raw$Valued <- datawizard::row_means(raw, select = c('ValObjectives', 'IncrUnderstanding','IncrInterest'), min_valid = .75)
 
-SRPed_vars <- c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration')  
-raw$SRPed <- sjstats::mean_n(raw[,..SRPed_vars], .75)
+raw$SRPed <- datawizard::row_means(raw, select = c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration'), min_valid = .75)
 ```
 
 

@@ -47,10 +47,10 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
 
-```r
-# if(!require(tidyverse)){install.packages('tidyverse')} #this
-# includes dplyr if(!require(psych)){install.packages('psych')}
-# if(!require(apaTables)){install.packages('apaTables')}
+``` r
+#if(!require(tidyverse)){install.packages("tidyverse")} #this includes dplyr
+#if(!require(psych)){install.packages("psych")}
+#if(!require(apaTables)){install.packages("apaTables")}
 ```
 
 
@@ -104,16 +104,16 @@ We need item level data to compute an alpha coefficient. The easiest way to get 
 The df from which I am pulling data was created and written as an outfile in the [scoring chapter](#score). You may also download the file from the [Github site](https://github.com/lhbikos/ReC_MultivModel) that hosts the chapter. Be sure to place the file in the same folder as the .rmd file. This particular df has item-level data. I am working with the .rds file. In case this is problematic for you, I have also provided code to import a .csv version of the file. 
 
 
-```r
+``` r
 item_scores_df <- readRDS("BlStItmsScrs230902.rds")
-# item_scores_df <- read.csv('BlStItmsScrs230902.csv', header = TRUE)
+#item_scores_df <- read.csv("BlStItmsScrs230902.csv", header = TRUE)
 ```
 
 Within the *psych::alpha* function we can retrieve alpha coefficients for the specific variables of interest by imbedding a concatonated list. A priori, we are planning to use the campus climate scale as a total score. However, we'll go ahead and also calculate alpha coefficients for the subscales because (a) it's good practice and (b) if the alpha is low, a *reason* might show up in one of the subscales.
 
 
-```r
-# alpha for the belonging scale
+``` r
+#alpha for the belonging scale
 psych::alpha(item_scores_df[c("Belong_1", "Belong_2", "Belong_3")])
 ```
 
@@ -153,10 +153,9 @@ For each scale I will capture a statement for the APA style write-up. Because th
 >>Cronbach's alpha for the belonging scale was 0.95.
 
 
-```r
-# alpha for the campus climate for Black students scale
-psych::alpha(item_scores_df[c("rBlst_1", "Blst_2", "Blst_3", "Blst_4",
-    "Blst_5", "Blst_6")])
+``` r
+#alpha for the campus climate for Black students scale
+psych::alpha(item_scores_df[c("rBlst_1", "Blst_2", "Blst_3", "Blst_4", "Blst_5", "Blst_6")])
 ```
 
 ```
@@ -205,9 +204,8 @@ Blst_6  0.38 0.35 0.11 0.08 0.06 0.02 0.00 0.05
 Since this value is $\geq$ .80, it is within the realm of acceptability. Let's go ahead, though, and examine its subscales.
 
 
-```r
-# alpha for the stigma scale of the campus climate for Black students
-# scale
+``` r
+#alpha for the stigma scale of the campus climate for Black students scale
 psych::alpha(item_scores_df[c("Blst_3", "Blst_2", "Blst_5")])
 ```
 
@@ -245,9 +243,8 @@ Blst_5 0.46 0.30 0.05 0.14 0.05 0.00 0.00 0.05
 >>Cronbach's alpha for the campus climate stigma subscale was 0.73. 
 
 
-```r
-# alpha for the campus responsiveness scale of the campus climate for
-# Black students scale
+``` r
+#alpha for the campus responsiveness scale of the campus climate for Black students scale
 psych::alpha(item_scores_df[c("rBlst_1", "Blst_4", "Blst_6")])
 ```
 
@@ -295,7 +292,7 @@ We can continue to work from the df we uploaded at the beginning of the chapter 
 
 The *str()* function let's us look at the variable format/measurement level of each variable. 
 
-```r
+``` r
 str(item_scores_df)
 ```
 
@@ -336,10 +333,10 @@ Classes 'tbl_df', 'tbl' and 'data.frame':	66 obs. of  17 variables:
  $ rBlst_1   : num  3 2 NA 6 2 3 3 3 3 5 ...
   ..- attr(*, "label")= Named chr "Each item below asks you to rate elements of campus climate for your \"academic department/program.\"  If you d"| __truncated__
   .. ..- attr(*, "names")= chr "Blst_1"
- $ Belonging : num  6.33 4.67 NA 3.33 4 5.33 5.67 7 6 3 ...
- $ ResponseBL: num  2.33 1.67 2 3.33 1.33 2.33 3.67 3 2.33 3.67 ...
- $ StigmaBL  : num  3.33 4 3.5 2 1 1 4 3.67 1.67 3.33 ...
- $ ClimateBL : num  2.83 2.83 NA 2.67 1.17 1.67 3.83 3.33 2 3.5 ...
+ $ Belonging : num  6.33 4.67 NA 3.33 4 ...
+ $ ResponseBL: num  2.33 1.67 2 3.33 1.33 ...
+ $ StigmaBL  : num  3.33 4 3.5 2 1 ...
+ $ ClimateBL : num  2.83 2.83 NA 2.67 1.17 ...
  - attr(*, "column_map")=Classes 'tbl_df', 'tbl' and 'data.frame':	182 obs. of  7 variables:
   ..$ qname      : chr [1:182] "StartDate" "EndDate" "Status" "Progress" ...
   ..$ description: chr [1:182] "Start Date" "End Date" "Response Type" "Progress" ...
@@ -352,19 +349,15 @@ Classes 'tbl_df', 'tbl' and 'data.frame':	66 obs. of  17 variables:
 The difference between "int" (integer) and "num" (numerical) is that integers are limited to whole numbers. For the statistics used in this lesson, both are acceptable formats for the variables.
 
 
-```r
-# the script may look a little complicated; I could have simply
-# written: describe(item_scores_df) because I only wanted only a few
-# variables, I provided them in a concatenated: list [c('iBIPOC_pr',
-# 'cmBlack', 'Belonging', 'ClimateBL')] I used type =1 so that we can
-# interpret skew and kurtosis along Kline's recommendations I created
-# an object from the descriptive results, this can be used to export
-# the results for easier table making or manipulation outside of R
+``` r
+#the script may look a little complicated; I could have simply written:
+#describe(item_scores_df) 
+#because I only wanted only a few variables, I provided them in a concatenated: list [c("iBIPOC_pr", "cmBlack", "Belonging", "ClimateBL")]
+#I used type =1 so that we can interpret skew and kurtosis along Kline's recommendations
+#I created an object from the descriptive results, this can be used to export the results for easier table making or manipulation outside of R
 
-descriptives <- psych::describe(item_scores_df[c("iBIPOC_pr", "cmBlack",
-    "Belonging", "ClimateBL")], type = 1)
-# When we capture results in an object, we need to write it below so
-# the results will display
+descriptives <- psych::describe(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging", "ClimateBL")], type = 1)
+#When we capture results in an object, we need to write it below so the results will display
 descriptives
 ```
 
@@ -381,10 +374,9 @@ Belonging 0.18
 ClimateBL 0.14
 ```
 
-```r
-# this can be useful if you wish to manually format the data for an
-# APA style table
-write.csv(descriptives, file = "DataDx_descripts.csv")
+``` r
+#this can be useful if you wish to manually format the data for an APA style table
+write.csv (descriptives, file="DataDx_descripts.csv") 
 ```
 
 Skew and kurtosis are one way to evaluate whether or not data are normally distributed. When we use the "type=1" argument, the skew and kurtosis indices in the *psych* package can be interpreted according to Kline's [-@kline_data_2016] guidelines. Regarding skew, values greater than the absolute value of 3.0 are generally considered "severely skewed." Regarding kurtosis, "severely kurtotic" is argued to be anywhere greater 8 to 20. Kline recommended using a conservative threshold of the absolute value of 10. The skew and kurtosis values for our variables fall well below these thesholds.
@@ -392,10 +384,9 @@ Skew and kurtosis are one way to evaluate whether or not data are normally distr
 We can also apply the Shapiro-Wilk test of normality to each of our variables. When the $p$ value is < .05, the variable's distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.
 
 
-```r
-# The shapiro-test is in base R; it's specification is simple:
-# shapiro.test(df$variable) I added the object (and had to list it
-# below) so I can use the inline text function
+``` r
+#The shapiro-test is in base R; it's specification is simple:  shapiro.test(df$variable)
+#I added the object (and had to list it below) so I can use the inline text function
 shapiro.test(item_scores_df$cmBlack)
 ```
 
@@ -407,7 +398,7 @@ data:  item_scores_df$cmBlack
 W = 0.87796, p-value = 0.000009899
 ```
 
-```r
+``` r
 shapiro.test(item_scores_df$iBIPOC_pr)
 ```
 
@@ -419,7 +410,7 @@ data:  item_scores_df$iBIPOC_pr
 W = 0.78725, p-value = 0.00000003181
 ```
 
-```r
+``` r
 shapiro.test(item_scores_df$Belonging)
 ```
 
@@ -428,10 +419,10 @@ shapiro.test(item_scores_df$Belonging)
 	Shapiro-Wilk normality test
 
 data:  item_scores_df$Belonging
-W = 0.97262, p-value = 0.1654
+W = 0.97276, p-value = 0.1681
 ```
 
-```r
+``` r
 shapiro.test(item_scores_df$ClimateBL)
 ```
 
@@ -440,7 +431,7 @@ shapiro.test(item_scores_df$ClimateBL)
 	Shapiro-Wilk normality test
 
 data:  item_scores_df$ClimateBL
-W = 0.95102, p-value = 0.01613
+W = 0.95116, p-value = 0.01637
 ```
 
 ### Pairs Panels
@@ -454,9 +445,8 @@ The *pairs.panels()* function from the *psych* package is useful for showing the
 * The upper half of is the correlation coefficient between the two variables.
 
 
-```r
-psych::pairs.panels(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging",
-    "ClimateBL")], stars = TRUE, lm = TRUE)
+``` r
+psych::pairs.panels(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging", "ClimateBL")], stars = TRUE, lm = TRUE)
 ```
 
 ![](03-DataDx_files/figure-docx/unnamed-chunk-11-1.png)<!-- -->
@@ -481,9 +471,8 @@ The code below appends the Mahalanobis values to the dataframe.  It is easy, the
 Numeric variables are required in the of the calculation of the Mahalanobis.
 
 
-```r
-item_scores_df$Mahal <- psych::outlier(item_scores_df[c("iBIPOC_pr", "cmBlack",
-    "Belonging", "ClimateBL")])
+``` r
+item_scores_df$Mahal <- psych::outlier(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging", "ClimateBL")]) 
 ```
 
 ![](03-DataDx_files/figure-docx/unnamed-chunk-12-1.png)<!-- -->
@@ -493,26 +482,23 @@ Q-Q plots take your sample data, sort it in ascending order, and then plot them 
 It is possible, then to analyze the Mahalanobis distance values.
 
 
-```r
+``` r
 psych::describe(item_scores_df$Mahal)
 ```
 
 ```
    vars  n mean   sd median trimmed  mad min   max range skew kurtosis   se
-X1    1 66 3.81 2.24   3.68    3.62 2.36 0.2 11.25 11.05 0.86     0.82 0.28
+X1    1 66 3.81 2.24   3.69    3.62 2.36 0.2 11.24 11.04 0.86     0.81 0.28
 ```
 
 Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median.  In fact, we can have these noted in a column in the dataframe.
 
 
-```r
-# creates a variable indicating TRUE or FALSE if an item is an
-# outlier
-item_scores_df$MOutlier <- dplyr::if_else(item_scores_df$Mahal > (median(item_scores_df$Mahal) +
-    (3 * sd(item_scores_df$Mahal))), TRUE, FALSE)
+``` r
+#creates a variable indicating TRUE or FALSE if an item is an outlier
+item_scores_df$MOutlier <- dplyr::if_else(item_scores_df$Mahal > (median(item_scores_df$Mahal) + (3*sd(item_scores_df$Mahal))), TRUE, FALSE)
 
-# shows us the first 6 rows of the data so we can see the new
-# variables (Mahal, MOutlier)
+#shows us the first 6 rows of the data so we can see the new variables (Mahal, MOutlier)
 head(item_scores_df)
 ```
 
@@ -532,30 +518,30 @@ head(item_scores_df)
 ```
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
 ```
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
-```r
-# counts frequency TRUE and FALSE indicating outlier or not
-OutlierCount <- item_scores_df %>%
-    dplyr::count(MOutlier)
+``` r
+#counts frequency TRUE and FALSE indicating outlier or not
+OutlierCount<- item_scores_df%>%
+  dplyr::count(MOutlier)
 
-# calculating how many outliers a slightly different way
-nrow(item_scores_df) - OutlierCount
+#calculating how many outliers a slightly different way
+nrow(item_scores_df) - OutlierCount 
 ```
 
 ```
@@ -606,7 +592,7 @@ With some confidence that our scrubbed-and-scored variables are appropriate for 
 ![An image of the statistical model for which we are preparing data.](images/Ch04/BlStuRegression.jpg)
 
 
-```r
+``` r
 Climate_fit <- lm(ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)
 summary(Climate_fit)
 ```
@@ -618,30 +604,29 @@ lm(formula = ClimateBL ~ Belonging + cmBlack + iBIPOC_pr, data = item_scores_df)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--1.86732 -0.80535  0.02355  0.70459  3.02003 
+-1.86782 -0.80330  0.02019  0.70792  3.01691 
 
 Coefficients:
             Estimate Std. Error t value     Pr(>|t|)    
-(Intercept)  2.90791    0.46653   6.233 0.0000000674 ***
-Belonging   -0.01742    0.09643  -0.181        0.857    
-cmBlack     -0.01918    0.01717  -1.117        0.269    
-iBIPOC_pr   -0.64125    0.35701  -1.796        0.078 .  
+(Intercept)  2.90881    0.46645   6.236 0.0000000667 ***
+Belonging   -0.01757    0.09642  -0.182       0.8561    
+cmBlack     -0.01921    0.01717  -1.118       0.2682    
+iBIPOC_pr   -0.64176    0.35702  -1.798       0.0777 .  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1.066 on 55 degrees of freedom
   (7 observations deleted due to missingness)
-Multiple R-squared:  0.08212,	Adjusted R-squared:  0.03206 
-F-statistic:  1.64 on 3 and 55 DF,  p-value: 0.1906
+Multiple R-squared:  0.08228,	Adjusted R-squared:  0.03222 
+F-statistic: 1.644 on 3 and 55 DF,  p-value: 0.1899
 ```
 ### Results
 
 >>Results of a multiple regression predicting the respondents' perceptions of campus climate for Black students indicated that neither contributions of the respondents' personal belonging ($B = -0.017, p = -.857$), the proportion of BIPOC instructional staff ($B-0.641, p = 0.078), nor the proportion of Black classmates ($B$ = -0.019, p = 0.269 ) led to statistically significant changes in perceptions of campus climate for Black students. The model accounted for only 8% of the variance and was not statistically significant ($p = 0.191$). Means, standard deviations, and correlations among variables are presented in Table 1; results of the regression model are presented in Table 2.
 
 
-```r
-apaTables::apa.cor.table(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging",
-    "ClimateBL")], table.number = 1, show.sig.stars = TRUE, filename = "Table1_M_SDs_r_DataDx.doc")
+``` r
+apaTables::apa.cor.table(item_scores_df[c("iBIPOC_pr", "cmBlack", "Belonging", "ClimateBL")], table.number = 1, show.sig.stars = TRUE, filename = "Table1_M_SDs_r_DataDx.doc")
 ```
 
 ```
@@ -661,7 +646,7 @@ Means, standard deviations, and correlations with confidence intervals
   3. Belonging 4.03 1.47 .01         -.13                   
                          [-.24, .26] [-.36, .12]            
                                                             
-  4. ClimateBL 2.48 1.09 -.25        -.17        -.04       
+  4. ClimateBL 2.48 1.09 -.25        -.18        -.04       
                          [-.47, .01] [-.41, .08] [-.29, .22]
                                                             
 
@@ -674,7 +659,7 @@ that could have caused the sample correlation (Cumming, 2014).
 ```
 
 
-```r
+``` r
 library(apaTables)
 apaTables::apa.reg.table(Climate_fit, table.number = 2, filename = "Climate_table.doc")
 ```
@@ -689,7 +674,7 @@ Regression results using ClimateBL as the criterion
 
    Predictor      b      b_95%_CI  beta   beta_95%_CI sr2  sr2_95%_CI    r
  (Intercept) 2.91**  [1.97, 3.84]                                         
-   Belonging  -0.02 [-0.21, 0.18] -0.02 [-0.28, 0.24] .00 [-.01, .01] -.00
+   Belonging  -0.02 [-0.21, 0.18] -0.02 [-0.28, 0.24] .00 [-.01, .01] -.01
      cmBlack  -0.02 [-0.05, 0.02] -0.15 [-0.41, 0.12] .02 [-.05, .09] -.17
    iBIPOC_pr  -0.64 [-1.36, 0.07] -0.23 [-0.49, 0.03] .05 [-.06, .16] -.25
                                                                           
@@ -778,7 +763,7 @@ Because this data is nested within the person (i.e., students can contribute up 
 #### Import data {-}
 
 
-```r
+``` r
 raw <- readRDS("ReC.rds")
 nrow(raw)
 ```
@@ -792,10 +777,10 @@ nrow(raw)
 Because this data is publicly posted on the Open Science Framework, it was necessary for me to already exclude those individuals. This data was unique in that students could freely write some version of "Opt out." My original code included a handful of versions, but here was the basic form:
 
 
-```r
-# testing to see if my code worked raw <- dplyr::filter (raw,
-# SPFC.Decolonize.Opt.Out != 'Okay')
-raw <- dplyr::filter(raw, SPFC.Decolonize.Opt.Out != "Opt Out")
+``` r
+#testing to see if my code worked
+#raw <- dplyr::filter (raw, SPFC.Decolonize.Opt.Out != "Okay")
+raw <- dplyr::filter (raw, SPFC.Decolonize.Opt.Out != "Opt Out")
 ```
 
 
@@ -804,13 +789,13 @@ raw <- dplyr::filter(raw, SPFC.Decolonize.Opt.Out != "Opt Out")
 I want to exclude students' responses for the ANOVA and psychometrics courses.
 
 
-```r
-raw <- (dplyr::filter(raw, Course == "Multivariate"))
+``` r
+raw <-(dplyr::filter(raw, Course == "Multivariate"))
 ```
 At this point, these my only inclusion/exclusion criteria. I can determine how many students (who consented) completed any portion of the survey.
 
 
-```r
+``` r
 nrow(raw)
 ```
 
@@ -823,8 +808,8 @@ nrow(raw)
 Because this dataset is already on the OSF, the variables are sensibly named. However, I don't like "SPFC.Decolonize.Opt.Out". I will change it to simply "OptOut."
 
 
-```r
-raw <- dplyr::rename(raw, OptOut = "SPFC.Decolonize.Opt.Out")
+``` r
+raw <- dplyr::rename(raw, OptOut = 'SPFC.Decolonize.Opt.Out')
 ```
 
 It would have made more sense to do this before I used this variable in the calculations. 
@@ -840,10 +825,8 @@ I will need to include:
 * Items included in the socially responsive pedagogy scale: InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration 
 
 
-```r
-scrub_df <- (dplyr::select(raw, deID, StatsPkg, Centering, ClearResponsibilities,
-    EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm,
-    EquitableEval, MultPerspectives, DEIintegration))
+``` r
+scrub_df <-(dplyr::select (raw, deID, StatsPkg, Centering,ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration))
 ```
 
 #### Provide an APA style write-up of these preliminary steps {-} 
@@ -859,7 +842,7 @@ StatsPkg is a dichotomous variable. It should be structured as a factor with two
 Because I am using the .rds form of the data from the OSF, this variable retains the former structure I assigned to it. If I needed to write the code, I would do this:
 
 
-```r
+``` r
 scrub_df$StatsPkg <- factor(scrub_df$StatsPkg, levels = c("SPSS", "R"))
 str(scrub_df$StatsPkg)
 ```
@@ -875,7 +858,7 @@ Similarly, Centering is a dichotomous variable. It should be structured as a fac
 Because I am using the .rds form of the data from the OSF, this variable retains the former structure I assigned to it. If I needed to write the code, I would do this:
 
 
-```r
+``` r
 scrub_df$Centering <- factor(scrub_df$Centering, levels = c("Pre", "Re"))
 str(scrub_df$Centering)
 ```
@@ -891,7 +874,7 @@ The third predictor variable is traditional pedagogy. The dependent variable is 
 
 
 
-```r
+``` r
 str(scrub_df)
 ```
 
@@ -921,7 +904,7 @@ I will create a "proportion missing" variable.
 In this chunk I first calculate the number of missing (nmiss)
 
 
-```r
+``` r
 library(tidyverse)#needed because the script has pipes
 
 #Calculating number and proportion of item-level missingness
@@ -935,7 +918,7 @@ scrub_df<- scrub_df%>%
 ```
 We can grab the descriptives for the *prop_miss* variable to begin to understand our data.  I will create an object from it so I can use it with inline
 
-```r
+``` r
 psych::describe(scrub_df$prop_miss)
 ```
 
@@ -946,7 +929,7 @@ X1    1 84 2.38 6.17      0    0.94   0   0 36.36 36.36 3.29    12.33 0.67
 Because I want to use the AIA approach to scoring, I'm not willing to filter out any cases yet. If I wanted to eliminate cases with egregious missing (i.e., like 90%), here is the code I would use:
 
 
-```r
+``` r
 scrub_df <- dplyr::filter(scrub_df, prop_miss <= 90)  #update df to have only those with at least 90% of complete data
 ```
 
@@ -958,10 +941,10 @@ CUMULATIVE CAPTURE FOR WRITING IT UP:
 To analyze missingness at the item level, we need a df that has only the variables of interest.  That is, variables like *ID* and the *prop_miss* and *nmiss* variables we created will interfere with an accurate assessment of missingness. I will update our df to eliminate these.  
 
 
-```r
-# further update to exclude the n_miss and prop_miss variables
+``` r
+#further update to exclude the n_miss and prop_miss variables
 ItemMiss_df <- scrub_df %>%
-    dplyr::select(-c(deID, nmiss, prop_miss))
+  dplyr::select (-c(deID, nmiss, prop_miss))
 ```
 
 Missing data analysis commonly looks at proportions by:
@@ -970,8 +953,8 @@ Missing data analysis commonly looks at proportions by:
 * rows/cases/people
 
 
-```r
-# what proportion of cells missing across entire dataset
+``` r
+#what proportion of cells missing across entire dataset
 formattable::percent(mean(is.na(ItemMiss_df)))
 ```
 
@@ -979,8 +962,8 @@ formattable::percent(mean(is.na(ItemMiss_df)))
 [1] 2.38%
 ```
 
-```r
-# what proportion of cases (rows) are complete (nonmissing)
+``` r
+#what proportion of cases (rows) are complete (nonmissing)
 formattable::percent(mean(complete.cases(ItemMiss_df)))
 ```
 
@@ -996,7 +979,7 @@ We can further explore patterns of missingness with *mice.md.pattern*.
 
 
 
-```r
+``` r
 mice::md.pattern(ItemMiss_df, plot = TRUE, rotate.names = TRUE)
 ```
 
@@ -1008,42 +991,26 @@ Comparing this to Enders' [-@enders_applied_2010] [prototypical patterns of miss
 
 Traditional pedagogy is a predictor variable that needs to be created by calculating the mean if at least 75% of the items are non-missing. None of the items need to be reverse-scored. I will return to working with the *scrub_df* data.
 
-```r
-# this seems to work when I build the book, but not in 'working the
-# problem' TradPed_vars <- c('ClearResponsibilities',
-# 'EffectiveAnswers','Feedback',
-# 'ClearOrganization','ClearPresentation') scrub_df$TradPed <-
-# sjstats::mean_n(scrub_df[, TradPed_vars], .75)
-
-# this seems to work when I 'work the problem' (but not when I build
-# the book) the difference is the two dots before the last SRPed_vars
-TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
-    "ClearOrganization", "ClearPresentation")
-scrub_df$TradPed <- sjstats::mean_n(scrub_df[, TradPed_vars], 0.75)
+``` r
+scrub_df$TradPed <- datawizard::row_means(scrub_df, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 ```
 
 The dependent variable is socially responsive pedagogy. It needs to be created by calculating the mean if at least 75% of the items are non-missing. None of the items need to be reverse-scored.
 
-```r
-# this seems to work when I build the book, but not in 'working the
-# problem' SRPed_vars <- c('InclusvClassrm','EquitableEval',
-# 'MultPerspectives', 'DEIintegration') scrub_df$SRPed <-
-# sjstats::mean_n(scrub_df[, SRPed_vars], .75)
 
-# this seems to work when I 'work the problem' (but not when I build
-# the book) the difference is the two dots before the last SRPed_vars
-SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
-    "DEIintegration")
-scrub_df$SRPed <- sjstats::mean_n(scrub_df[, SRPed_vars], 0.75)
+``` r
+scrub_df$SRPed <- datawizard::row_means(scrub_df, select = c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration'), min_valid = .75)
 ```
+
+
 #### Evaluate and interpret scale-level missingness {-} 
 
 To evaluate scale level missingness, let's create a df with the focal variables.
 
 
-```r
-scored <- dplyr::select(scrub_df, StatsPkg, Centering, TradPed, SRPed)
-ScoredCaseMiss <- nrow(scored)  #I produced this object for the sole purpose of feeding the number of cases into the inline text, below
+``` r
+scored <- dplyr::select (scrub_df, StatsPkg, Centering, TradPed, SRPed)
+ScoredCaseMiss <- nrow(scored) #I produced this object for the sole purpose of feeding the number of cases into the inline text, below
 ScoredCaseMiss
 ```
 
@@ -1056,19 +1023,18 @@ Before we start our formal analysis of missingness at the scale level, let's con
 Using the *describe()* function from the *psych* package, we can investigate this variable.
 
 
-```r
+``` r
 library(tidyverse)
-# Create a variable (n_miss) that counts the number missing
-scored$n_miss <- scored %>%
-    is.na %>%
-    rowSums
+#Create a variable (n_miss) that counts the number missing
+scored$n_miss <- scored%>%
+ is.na %>% 
+rowSums
 
-# Create a proportion missing by dividing n_miss by the total number
-# of variables (6) Pipe to sort in order of descending frequency to
-# get a sense of the missingness
-scored <- scored %>%
-    mutate(prop_miss = (n_miss/6) * 100) %>%
-    arrange(desc(n_miss))
+#Create a proportion missing by dividing n_miss by the total number of variables (6)
+#Pipe to sort in order of descending frequency to get a sense of the missingness
+scored<- scored%>%
+mutate(prop_miss = (n_miss/6)*100)%>%
+  arrange(desc(n_miss))
 
 psych::describe(scored$prop_miss)
 ```
@@ -1086,15 +1052,14 @@ CUMULATIVE CAPTURE FOR WRITING IT UP:
 We need to decide what is our retention threshhold. Twenty percent seems to be a general rule of thumb.  Let's delete all cases with missingness at 20% or greater.
 
 
-```r
-# update df to have only those with at least 20% of complete data
-# (this is an arbitrary decision)
-scored <- dplyr::filter(scored, prop_miss <= 20)
+``` r
+#update df to have only those with at least 20% of complete data (this is an arbitrary decision)
+scored <- dplyr::filter(scored, prop_miss <= 20) 
 
-# the variable selection just lops off the proportion missing
-scored <- (select(scored, StatsPkg:SRPed))
+#the variable selection just lops off the proportion missing
+scored <-(select (scored, StatsPkg:SRPed)) 
 
-# this produces the number of cases retained
+#this produces the number of cases retained
 nrow(scored)
 ```
 
@@ -1114,8 +1079,8 @@ Now, at the scale level, we look at missingness as the proportion of
 * rows/cases with nonmissing data
 
 
-```r
-# percent missing across df
+``` r
+#percent missing across df
 formattable::percent(mean(is.na(scored)))
 ```
 
@@ -1123,9 +1088,9 @@ formattable::percent(mean(is.na(scored)))
 [1] 0.60%
 ```
 
-```r
-# percent of rows with nonmissing data
-formattable::percent(mean(complete.cases(scored)))
+``` r
+#percent of rows with nonmissing data
+formattable::percent(mean(complete.cases(scored))) 
 ```
 
 ```
@@ -1145,13 +1110,13 @@ Returning to the *mice* package, we can use the *md.pattern()* function to exami
 The corresponding figure shows non-missing data in blue; missing data in red.
 
 
-```r
-mice_ScaleLvl <- mice::md.pattern(scored, plot = TRUE, rotate.names = TRUE)
+``` r
+mice_ScaleLvl <- mice::md.pattern(scored, plot = TRUE, rotate.names=TRUE)
 ```
 
 ![](03-DataDx_files/figure-docx/unnamed-chunk-61-1.png)<!-- -->
 
-```r
+``` r
 mice_ScaleLvl
 ```
 
@@ -1179,10 +1144,9 @@ There are *2* rows of data because there are only *2* patterns of missingness. T
 To calculate the alpha coefficients, we need item-level data. We will return to *scrub_df* that contains the item-level data.
 
 
-```r
-# alpha for the traditional pedagogy scale
-psych::alpha(scrub_df[c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
-    "ClearOrganization", "ClearPresentation")])
+``` r
+#alpha for the traditional pedagogy scale
+psych::alpha(scrub_df[c("ClearResponsibilities", "EffectiveAnswers","Feedback", "ClearOrganization","ClearPresentation")])
 ```
 
 ```
@@ -1233,10 +1197,9 @@ ClearPresentation     0.01 0.06 0.04 0.46 0.43 0.00
 
 
 
-```r
-# alpha for the traditional pedagogy scale
-psych::alpha(scrub_df[c("InclusvClassrm", "EquitableEval", "DEIintegration",
-    "DEIintegration")])
+``` r
+#alpha for the traditional pedagogy scale
+psych::alpha(scrub_df[c("InclusvClassrm", "EquitableEval", "DEIintegration", "DEIintegration")])
 ```
 
 ```
@@ -1301,8 +1264,8 @@ Both of these are above the recommended value of 0.80.
 We can inspect univariate normality by examining the skew and kurtosis values of the continuously scored variables.
 
 
-```r
-psych::describe(scored, type = 1)
+``` r
+psych::describe(scored, type=1)
 ```
 
 ```
@@ -1310,7 +1273,7 @@ psych::describe(scored, type = 1)
 StatsPkg*     1 83 1.73 0.44   2.00    1.79 0.00 1.00   2  1.00 -1.06    -0.87
 Centering*    2 83 1.36 0.48   1.00    1.33 0.00 1.00   2  1.00  0.58    -1.67
 TradPed       3 83 4.29 0.72   4.40    4.40 0.59 1.20   5  3.80 -1.75     4.49
-SRPed         4 81 4.51 0.58   4.75    4.60 0.37 2.33   5  2.67 -1.19     1.30
+SRPed         4 81 4.51 0.58   4.75    4.60 0.37 2.33   5  2.67 -1.19     1.29
              se
 StatsPkg*  0.05
 Centering* 0.05
@@ -1325,10 +1288,9 @@ When we use the "type=1" argument, the skew and kurtosis indices in the *psych* 
 Still at the univariate level, we can apply the Shapiro-Wilk test of normality to each of our continuously scaled variables. When the $p$ value is < .05, the variable's distribution is deviates from a normal distribution to a degree that is statistically significant. Below, the plotting of the histogram with a normal curve superimposed shows how the distribution approximates one that is normal.
 
 
-```r
-# The shapiro-test is in base R; it's specification is simple:
-# shapiro.test(df$variable) I added the object (and had to list it
-# below) so I can use the inline text function
+``` r
+#The shapiro-test is in base R; it's specification is simple:  shapiro.test(df$variable)
+#I added the object (and had to list it below) so I can use the inline text function
 shapiro.test(scored$TradPed)
 ```
 
@@ -1340,7 +1302,7 @@ data:  scored$TradPed
 W = 0.83046, p-value = 0.0000000245
 ```
 
-```r
+``` r
 shapiro.test(scored$SRPed)
 ```
 
@@ -1349,7 +1311,7 @@ shapiro.test(scored$SRPed)
 	Shapiro-Wilk normality test
 
 data:  scored$SRPed
-W = 0.81782, p-value = 0.0000000134
+W = 0.81803, p-value = 0.0000000136
 ```
 
 Both variable differ from a normal distribution in a statistically significant way.
@@ -1360,7 +1322,7 @@ Both variable differ from a normal distribution in a statistically significant w
 Obtaining a quick *psych::pairs.panel* can provide a quick glimpse of the distribution.
 
 
-```r
+``` r
 psych::pairs.panels(scored, stars = TRUE, lm = TRUE)
 ```
 
@@ -1376,8 +1338,8 @@ In more complex models, multivariate normality is probably a more useful analysi
 
 Multivariate normality can be assessed with the continuously scaled variables. The code below includes the only two continuously scaled variables.  The code simultaneously (a) appends the df with a Mahalanobis value and (b) creates a QQ plot. Dots that stray from the line are the scores that are contributing to multivariate non-normality.
 
-```r
-scored$Mahal <- psych::outlier(scored[c("TradPed", "SRPed")])
+``` r
+scored$Mahal <- psych::outlier(scored[c("TradPed", "SRPed")]) 
 ```
 
 ![](03-DataDx_files/figure-docx/unnamed-chunk-67-1.png)<!-- -->
@@ -1386,48 +1348,45 @@ We can analyze the distributional characteristics of the Mahalanobis values with
 It is possible, then to analyze the Mahalanobis distance values.
 
 
-```r
+``` r
 psych::describe(scored$Mahal)
 ```
 
 ```
    vars  n mean   sd median trimmed  mad  min   max range skew kurtosis   se
-X1    1 83 1.97 3.12   1.01    1.27 0.42 0.03 19.61 19.58 3.75    15.87 0.34
+X1    1 83 1.97 3.12   1.01    1.27 0.42 0.03 19.61 19.58 3.75    15.86 0.34
 ```
 Using this information we can determine cases that have a Mahalanobis distance values that exceeds three standard deviations around the median.  In fact, we can have these noted in a column in the dataframe.
 
 
-```r
-# creates a variable indicating TRUE or FALSE if an item is an
-# outlier
-scored$MOutlier <- dplyr::if_else(scored$Mahal > (median(scored$Mahal) +
-    (3 * sd(scored$Mahal))), TRUE, FALSE)
+``` r
+#creates a variable indicating TRUE or FALSE if an item is an outlier
+scored$MOutlier <- dplyr::if_else(scored$Mahal > (median(scored$Mahal) + (3*sd(scored$Mahal))), TRUE, FALSE)
 
-# shows us the first 6 rows of the data so we can see the new
-# variables (Mahal, MOutlier)
+#shows us the first 6 rows of the data so we can see the new variables (Mahal, MOutlier)
 head(scored)
 ```
 
 ```
-  StatsPkg Centering TradPed SRPed     Mahal MOutlier
-1     SPSS       Pre     4.2    NA 0.0319020    FALSE
-2        R       Pre     2.8    NA 8.3615550    FALSE
-3        R        Re     3.8   4.5 0.8702516    FALSE
-4        R        Re     5.0   5.0 1.0087776    FALSE
-5        R        Re     4.8   5.0 0.7363631    FALSE
-6        R        Re     4.0   5.0 2.6509906    FALSE
+  StatsPkg Centering TradPed SRPed      Mahal MOutlier
+1     SPSS       Pre     4.2    NA 0.03190775    FALSE
+2        R       Pre     2.8    NA 8.36306301    FALSE
+3        R        Re     3.8   4.5 0.87078541    FALSE
+4        R        Re     5.0   5.0 1.00888797    FALSE
+5        R        Re     4.8   5.0 0.73665806    FALSE
+6        R        Re     4.0   5.0 2.65256574    FALSE
 ```
 
 
 
-```r
+``` r
 library(tidyverse)
-# counts frequency TRUE and FALSE indicating outlier or not
-OutlierCount <- scored %>%
-    dplyr::count(MOutlier)
+#counts frequency TRUE and FALSE indicating outlier or not
+OutlierCount<- scored%>%
+  dplyr::count(MOutlier)
 
-# calculating how many outliers a slightly different way
-nrow(scored) - OutlierCount
+#calculating how many outliers a slightly different way
+nrow(scored) - OutlierCount 
 ```
 
 ```
@@ -1440,8 +1399,8 @@ When we identify outliers we often ask if we should delete them or transform the
 In this case, I do see a jump. When I sort the df on Mahal values, the jump from 9.37 to 16.56 is much different than the more gradual increase in values that precedes it. Therefore, I think I will delete cases with Mahalanobis values greater than 10 (a number I "just picked").
 
 
-```r
-scored <- dplyr::filter(scored, Mahal < "10")
+``` r
+scored <- dplyr::filter (scored, Mahal < "10")
 ```
 
 
@@ -1464,7 +1423,7 @@ scored <- dplyr::filter(scored, Mahal < "10")
 #### Conduct a quick analysis (e.g., regression, ANOVA) including at least three variables {-} 
 
 
-```r
+``` r
 SRPed_fit <- lm(SRPed ~ StatsPkg + Centering + TradPed, data = scored)
 summary(SRPed_fit)
 ```
@@ -1476,30 +1435,29 @@ lm(formula = SRPed ~ StatsPkg + Centering + TradPed, data = scored)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.56099 -0.14406  0.01551  0.10594  0.46498 
+-0.56099 -0.14406  0.01536  0.10594  0.46374 
 
 Coefficients:
-            Estimate Std. Error t value          Pr(>|t|)    
-(Intercept)  1.46330    0.34441   4.249 0.000077464849487 ***
-StatsPkgR    0.13251    0.08056   1.645             0.105    
-CenteringRe  0.05666    0.07423   0.763             0.448    
-TradPed      0.68663    0.07365   9.323 0.000000000000332 ***
+            Estimate Std. Error t value         Pr(>|t|)    
+(Intercept)  1.46266    0.34415   4.250 0.00007709624097 ***
+StatsPkgR    0.13203    0.08049   1.640            0.106    
+CenteringRe  0.05696    0.07417   0.768            0.446    
+TradPed      0.68681    0.07359   9.333 0.00000000000032 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.2433 on 59 degrees of freedom
+Residual standard error: 0.2431 on 59 degrees of freedom
   (1 observation deleted due to missingness)
-Multiple R-squared:  0.6167,	Adjusted R-squared:  0.5972 
-F-statistic: 31.64 on 3 and 59 DF,  p-value: 0.000000000002547
+Multiple R-squared:  0.6172,	Adjusted R-squared:  0.5978 
+F-statistic: 31.71 on 3 and 59 DF,  p-value: 0.000000000002451
 ```
 ### Results
 
 >>Results of a multiple regression predicting the socially responsive course evaluation ratings indicated that neither the transition from SPSS to R ($B = 0.133, p = 0.105$) nor the transition to an explicitly recentered curriculum ($B = 0.057, p = 0.448) led to statistically significant diferences. In contrast, traditional pedagogy had a strong, positive effect on evaluations of socially responsive pedagogy ($B = 0.686, p < 0.001). The model accounted for 62% of the variance and was statistically significant ($p , 0.001$). Means, standard deviations, and correlations among variables are presented in Table 1; results of the regression model are presented in Table 2.
 
 
-```r
-apaTables::apa.cor.table(scored[c("SRPed", "StatsPkg", "Centering", "TradPed")],
-    table.number = 1, show.sig.stars = TRUE, filename = "Table1__DataDx_HW.doc")
+``` r
+apaTables::apa.cor.table(scored[c("SRPed", "StatsPkg", "Centering", "TradPed")], table.number = 1, show.sig.stars = TRUE, filename = "Table1__DataDx_HW.doc")
 ```
 
 ```
@@ -1526,7 +1484,7 @@ that could have caused the sample correlation (Cumming, 2014).
 ```
 
 
-```r
+``` r
 apaTables::apa.reg.table(SRPed_fit, table.number = 2, filename = "SRPed_table.doc")
 ```
 
@@ -1542,9 +1500,9 @@ Regression results using SRPed as the criterion
  (Intercept) 1.46**  [0.77, 2.15]                                
    StatsPkgR   0.13 [-0.03, 0.29] .02 [-.02, .06]                
  CenteringRe   0.06 [-0.09, 0.21] .00 [-.02, .02]                
-     TradPed 0.69**  [0.54, 0.83] .56  [.40, .73]                
+     TradPed 0.69**  [0.54, 0.83] .57  [.40, .73]                
                                                       R2 = .617**
-                                                  95% CI[.43,.70]
+                                                  95% CI[.44,.71]
                                                                  
 
 Note. A significant b-weight indicates the semi-partial correlation is also significant.

@@ -1,0 +1,6 @@
+"0","dfKim$IntRel <- datawizard::row_means(dfKim, select = c('cmi1', 'cmi2', 'cmi3', 'cmi4', 'cmi5', 'cmi6', 'cmi7', 'cmi8', 'cmi9', 'cmi10', 'cmi11', 'cmi12'), min_valid = .80)"
+"0","dfKim$EdTrain <- datawizard::row_means(dfKim, select = c('cmi13', 'cmi14', 'cmi15', 'cmi16', 'cmi17', 'cmi18', 'cmi19', 'cmi20', 'cmi21', 'cmi22', 'cmi23', 'cmi24'), min_valid = .80)"
+"0","dfKim$BusWrk <- datawizard::row_means(dfKim, select = c('cmi25', 'cmi26', 'cmi27', 'cmi28', 'cmi29', 'cmi30', 'cmi31', 'cmi32', 'cmi33', 'cmi34', 'cmi35', 'cmi36'), min_valid = .80)"
+"0","dfKim$PolLaw <- datawizard::row_means(dfKim, select = c('cmi37', 'cmi38', 'cmi39', 'cmi40', 'cmi41', 'cmi42', 'cmi43', 'cmi44', 'cmi45', 'cmi46', 'cmi47'), min_valid = .80)"
+"0",""
+"0",""

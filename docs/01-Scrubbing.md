@@ -50,10 +50,10 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
 
-```r
-# will install the package if not already installed
-# if(!require(qualtRics)){install.packages('qualtRics')}
-# if(!require(tidyverse)){install.packages('tidyverse')}
+``` r
+#will install the package if not already installed
+#if(!require(qualtRics)){install.packages("qualtRics")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
 ```
 
 ## Workflow for Scrubbing
@@ -112,50 +112,42 @@ If you mistakenly give out your API token you can generate a new one within your
 You do need to change the API key/token if you want to download data from a different Qualtrics account.  If your list of surveys generates the wrong set of surveys, restart R, make sure you have the correct API token and try again.
 
 
-```r
-# You only need to run this ONCE to draw from the same Qualtrics
-# account. If you change Qualtrics accounts you will need to get a
-# different token.
+``` r
+#You only need to run this ONCE to draw from the same Qualtrics account.
+#If you change Qualtrics accounts you will need to get a different token. 
 
-# qualtRics::qualtrics_api_credentials(api_key =
-# 'mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg', base_url =
-# 'spupsych.az1.qualtrics.com', overwrite = TRUE, install = TRUE)
+#qualtRics::qualtrics_api_credentials(api_key = "mUgPMySYkiWpMFkwHale1QE5HNmh5LRUaA8d9PDg",
+              #base_url = "spupsych.az1.qualtrics.com", overwrite = TRUE, install = TRUE)
 
-# readRenviron('~/.Renviron')
+#readRenviron("~/.Renviron")
 ```
 
 *all_surveys()* generates a dataframe containing information about all the surveys stored on your Qualtrics account.
 
 
-```r
-# surveys <- qualtRics::all_surveys()
+``` r
+#surveys <- qualtRics::all_surveys() 
 
-# View this as an object (found in the right: Environment).  Get
-# survey id # for the next command If this is showing you the WRONG
-# list of surveys, you are pulling from the wrong Qualtrics account
-# (i.e., maybe this one instead of your own). Go back and change your
-# API token (it saves your old one). Changing the API likely requires
-# a restart of R.
+#View this as an object (found in the right: Environment).  
+#Get survey id # for the next command
+#If this is showing you the WRONG list of surveys, you are pulling from the wrong Qualtrics account (i.e., maybe this one instead of your own). Go back and change your API token (it saves your old one). Changing the API likely requires a restart of R.
 ```
 
 To retrieve the survey, use the *fetch_survey()* function.  
 
 
-```r
-# obtained with the survey ID
-#'surveyID' should be the ID from above
-#'verbose' prints messages to the R console
-#'label', when TRUE, imports data as text responses; if FALSE prints the data as numerical responses
-#'convert', when TRUE, attempts to convert certain question types to the 'proper' data type in R; because I don't like guessing, I want to set up my own factors.
-#'force_request', when TRUE, always downloads the survey from the API instead of from a temporary directory (i.e., it always goes to the primary source)
-# 'import_id', when TRUE includes the unique Qualtrics-assigned ID;
-# since I have provided labels, I want false
+``` r
+#obtained with the survey ID 
+#"surveyID" should be the ID from above
+#"verbose" prints messages to the R console
+#"label", when TRUE, imports data as text responses; if FALSE prints the data as numerical responses
+#"convert", when TRUE, attempts to convert certain question types to the "proper" data type in R; because I don't like guessing, I want to set up my own factors.
+#"force_request", when TRUE, always downloads the survey from the API instead of from a temporary directory (i.e., it always goes to the primary source)
+# "import_id", when TRUE includes the unique Qualtrics-assigned ID; since I have provided labels, I want false
 
-# QTRX_df <-qualtRics::fetch_survey(surveyID = 'SV_b2cClqAlLGQ6nLU',
-# time_zone = NULL, verbose = FALSE, label=FALSE, convert=FALSE,
-# force_request = TRUE, import_id = FALSE)
+#QTRX_df <-qualtRics::fetch_survey(surveyID = "SV_b2cClqAlLGQ6nLU", time_zone = NULL, verbose = FALSE, label=FALSE, convert=FALSE, force_request = TRUE, import_id = FALSE)
 
-# useLocalTime = TRUE,
+#useLocalTime = TRUE,
 ```
 
 *It is possible to import Qualtrics data that has been downloaded from Qualtrics as a .csv.  I demo this in the Bonus Reel at the end of this lesson.*
@@ -166,15 +158,14 @@ In prior versions of this chapter I allowed the chapter to automatically update 
 
 Because .rds files will retain any formatting information we provide about variables, I like using them. The downside is that you cannot simply open and view them outside of the R environment. Here is the code I used to produce the .rds version of the file. If you want to obtain the same results as I report in the chapter, do NOT run it again. 
 
-```r
-# to save the df as an .rds (think 'R object') file on your computer;
-# it should save in the same file as the .rmd file you are working
-# with saveRDS(QTRX_df, 'QTRX_df230902.rds')
+``` r
+#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
+#saveRDS(QTRX_df, "QTRX_df230902.rds")
 ```
 
 Rather, head to the [MultivModel GitHub](https://github.com/lhbikos/ReC_MultivModel) site  and download the *QTRX_df230902b.rds* file. Place it in the same folder as the .rmd you are using and run the code below. And actually, I further re-named the file that you will retrieve so that it won't be over-written.*
 
-```r
+``` r
 QTRX_df <- readRDS("QTRX_df230902b.rds")
 ```
 
@@ -184,16 +175,16 @@ Occasionally, I have had a student for whom the .rds files don't seem to work. U
 
 Simply for your information, here is the code I used to produce the .csv version of the file. If you want to obtain the same results as I report in the chapter, do NOT run it again. 
 
-```r
-# write the simulated data as a .csv write.table(QTRX_df,
-# file='QTRX_df230902.csv', sep=',', col.names=TRUE, row.names=FALSE)
+``` r
+#write the simulated data as a .csv
+#write.table(QTRX_df, file="QTRX_df230902.csv", sep=",", col.names=TRUE, row.names=FALSE)
 ```
 
 Rather, head to the [MultivModel GitHub](https://github.com/lhbikos/ReC_MultivModel) site  and download the *QTRX_df230902b.csv* file. Place it in the same folder as the .rmd you are using and run the code below. *And actually, I further re-named the file that you will retrieve so that it won't be over-written.*
 
-```r
-# bring back the simulated dat from a .csv file QTRX_df <-
-# read.csv('QTRX_df230902b.csv', header = TRUE)
+``` r
+#bring back the simulated dat from a .csv file
+#QTRX_df <- read.csv("QTRX_df230902b.csv", header = TRUE)
 ```
 
 You need not do both. That is, either download-and-import either the .rds or .csv file.
@@ -277,23 +268,22 @@ We can either update the existing df (by using the same object), or creating a n
 In this particular survey, the majority of respondents will take the survey because they clicked an *anonymous* link provided by Qualtrics.  Another Qualtrics distribution method is e-mail.  At the time of this writing, we have not recruited by e-mail, but it is is possible we could do so in the future.  What we should not include, though, are *previews*.  These are the times when the researcher is self-piloting the survey to look for errors and to troubleshoot. 
 
 
-```r
-# the filter command is used when we are making inclusion/exclusion
-# decisions about rows != means do not include cases with 'preview'
+``` r
+# the filter command is used when we are making inclusion/exclusion decisions about rows
+# != means do not include cases with "preview"
 
 QTRX_df <- dplyr::filter(QTRX_df, DistributionChannel != "preview")
 
-# FYI, another way that doesn't use tidyverse, but gets the same
-# result QTRX_df <- QTRX_df[!QTRX_df$DistributionChannel ==
-# 'preview',]
+#FYI, another way that doesn't use tidyverse, but gets the same result
+#QTRX_df <- QTRX_df[!QTRX_df$DistributionChannel == "preview",]
 ```
 
 APA Style, and in particular the Journal Article Reporting Standards (JARS) for quantitative research specify that we should report the frequency or percentages of missing data.  We would start our counting *after* eliminating the previews.  
 
 
-```r
-# I created an object that lists how many rows/cases remain.  I used
-# inline text below to update the text with the new number
+``` r
+# I created an object that lists how many rows/cases remain.
+# I used inline text below to update the text with the new number
 nrow(QTRX_df)
 ```
 
@@ -308,9 +298,9 @@ CAPTURING RESULTS FOR WRITING IT UP:
 Next let's filter in only those who consented to take the survey.  Because Qualtrics discontinued the survey for everyone who did not consent, we do not have to worry that their data is unintentionally included, but it can be useful to mention the number of non-consenters in the summary of missing data.
 
 
-```r
-# == are used
-QTRX_df <- dplyr::filter(QTRX_df, Consent == 1)
+``` r
+# == are used 
+QTRX_df <-dplyr::filter(QTRX_df, Consent == 1)
 nrow(QTRX_df)
 ```
 
@@ -323,7 +313,7 @@ CAPTURING RESULTS FOR WRITING IT UP:
 
 In this particular study, the categories used to collect informtaion about race/ethnicity were U.S.-centric.  Thus, they were only shown if the respondent indicated that the course being rated was taught by an institution in the U.S. Therefore, an an additional inclusion criteria for this specific research model should be that the course was taught in the U.S.
 
-```r
+``` r
 QTRX_df <-dplyr::filter(QTRX_df, USinst == 0)
 nrow(QTRX_df)
 ```
@@ -344,46 +334,41 @@ The form of the *rename()* function is this:
 df_named <- rename(df_raw, NewName1 = OldName1)
 
 
-```r
-QTRX_df <- dplyr::rename(QTRX_df, iRace1 = "1_iRace", iRace2 = "2_iRace",
-    iRace3 = "3_iRace", iRace4 = "4_iRace", iRace5 = "5_iRace", iRace6 = "6_iRace",
-    iRace7 = "7_iRace", iRace8 = "8_iRace", iRace9 = "9_iRace", iRace10 = "10_iRace")
+``` r
+QTRX_df <- dplyr::rename(QTRX_df, iRace1 = '1_iRace', iRace2 = '2_iRace', iRace3 = '3_iRace', iRace4 = '4_iRace', iRace5 = '5_iRace', iRace6 = '6_iRace', iRace7 = '7_iRace', iRace8 = '8_iRace', iRace9 = '9_iRace', iRace10 = '10_iRace')
 ```
 
 Also in Qualtrics, it was not possible to rename the variable (formatted with sliders) that asked respondents to estimate the proportion of classmates in each race-based category.  Using the codebook, we can do this now.  I will use "cm" to precede each variable name to represent "classmates."
 
-```r
-QTRX_df <- dplyr::rename(QTRX_df, cmBiMulti = Race_10, cmBlack = Race_1,
-    cmNBPoC = Race_7, cmWhite = Race_8, cmUnsure = Race_2)
+``` r
+QTRX_df <- dplyr::rename(QTRX_df, cmBiMulti = Race_10, cmBlack = Race_1, cmNBPoC = Race_7, cmWhite = Race_8, cmUnsure = Race_2)
 ```
 
 Let's also create an ID variable (different from the lengthy Qualtrics-issued ID) and then move it to the front of the distribution.
 
-```r
-# Opening the tidyverse so that I can use pipes
+``` r
+#Opening the tidyverse so that I can use pipes
 library(tidyverse)
 ```
 
 ```
 ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
-```r
-QTRX_df <- QTRX_df %>%
-    dplyr::mutate(ID = row_number())
+``` r
+QTRX_df <- QTRX_df %>% dplyr::mutate(ID = row_number())
 
-# moving the ID number to the first column; requires
-QTRX_df <- QTRX_df %>%
-    dplyr::select(ID, everything())
+#moving the ID number to the first column; requires 
+QTRX_df <- QTRX_df%>%dplyr::select(ID, everything())
 ```
 
 ### Downsizing the Dataframe
@@ -397,34 +382,28 @@ This particular survey did not collect demographic information, so that will not
 The *select()* function can let us list the variables we want to retain.
 
 
-```r
-# You can use the ':' to include all variables from the first to last
-# variable in any sequence; I could have written this more
-# efficiently.  I just like to 'see' my scales and clusters of
-# variables.
+``` r
+#You can use the ":" to include all variables from the first to last variable in any sequence; I could have written this more efficiently.  I just like to "see" my scales and clusters of variables.
 
-Model_df <- (dplyr::select(QTRX_df, ID, iRace1, iRace2, iRace3, iRace4,
-    iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack,
-    cmNBPoC, cmWhite, cmUnsure, Belong_1:Belong_3, Blst_1:Blst_6))
+Model_df <-(dplyr::select (QTRX_df, ID, iRace1, iRace2, iRace3, iRace4, iRace5, iRace6, iRace7, iRace8, iRace9, iRace10, cmBiMulti, cmBlack, cmNBPoC, cmWhite, cmUnsure, Belong_1:Belong_3, Blst_1:Blst_6))
 ```
 
 It can be helpful to save outfile of progress as we go along.  Here I save this raw file. I will demonstrate how to save both .rds and .csv files.  
 
 
-```r
-# to save the df as an .rds (think 'R object') file on your computer;
-# it should save in the same file as the .rmd file you are working
-# with saveRDS(Model_df, 'BlackStntsModel230902.rds') code to import
-# that model we just saved Model_df <-
-# readRDS('BlackStntsModel230902.rds')
+``` r
+#to save the df as an .rds (think "R object") file on your computer; it should save in the same file as the .rmd file you are working with
+#saveRDS(Model_df, "BlackStntsModel230902.rds")
+#code to import that model we just saved
+#Model_df <- readRDS("BlackStntsModel230902.rds")
 ```
 
 
-```r
-# write the simulated data as a .csv write.table(Model_df,
-# file='BlackStntsModel230902.csv', sep=',', col.names=TRUE,
-# row.names=FALSE) bring back the simulated data from a .csv file
-# Model_df <- read.csv('BlackStntsModel230902.csv', header = TRUE)
+``` r
+#write the simulated data as a .csv
+#write.table(Model_df, file="BlackStntsModel230902.csv", sep=",", col.names=TRUE, row.names=FALSE)
+#bring back the simulated data from a .csv file
+#Model_df <- read.csv("BlackStntsModel230902.csv", header = TRUE)
 ```
 
 
@@ -499,10 +478,9 @@ I think that it is critical that to save this file in the same folder as the .rm
 R is sensitive to characters used filenames  As downloaded, my Qualtrics .csv file had a long name with spaces and symbols that are not allowed.  Therore, I gave it a simple, sensible, filename, "ReC_Download210319.csv".  An idiosyncracy of mine is to datestamp filenames. I use two-digit representations of the year, month, and date so that if the letters preceding the date are the same, the files would alphabetize automatically.
 
 
-```r
+``` r
 library(qualtRics)
-QTRX_csv <- read_survey("ReC_Download210319.csv", strip_html = TRUE, import_id = FALSE,
-    time_zone = NULL, legacy = FALSE)
+QTRX_csv <- read_survey("ReC_Download210319.csv", strip_html = TRUE, import_id = FALSE, time_zone=NULL, legacy = FALSE)
 ```
 
 ```

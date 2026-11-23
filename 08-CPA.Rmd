@@ -59,11 +59,12 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #will install the package if not already installed
-if(!require(lavaan)){install.packages("lavaan")}
-if(!require(semPlot)){install.packages("semPlot")}
-if(!require(tidyverse)){install.packages("tidyverse")}
-if(!require(psych)){install.packages("psych")}
-if(!require(jtools)){install.packages("jtools")}
+#if(!require(lavaan)){install.packages("lavaan")}
+#if(!require(semPlot)){install.packages("semPlot")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(jtools)){install.packages("jtools")}
+#if(!require(datawizard)){install.packages("datawizard")}
 ```
 
 ## Conditional Process Analysis
@@ -299,25 +300,17 @@ Because the focus of this lesson is on moderation, we have used simulated data (
 
 Because we are working with item level data we do need to score the scales used in the researcher's model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.
 
-As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we  calculate mean scores of these variables by first creating concatenated lists of variable names. Next we apply the *sjstats::mean_n* function to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
+
+As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we the *datawizard::row_means()* function to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
 
 Note that I am only scoring the variables used in the models demonstrated in this lesson. The variables that are simulated but not scored could be used for the practice suggestions.
 
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-GRMS_vars <- c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8", "Ob9", "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1", "St2", "St3", "St4", "St5", "An1", "An2", "An3")
-Eng_vars <- c("Eng1", "Eng2")
-dEng_vars <- c("dEng1", "dEng2")
-MntlHlth_vars <- c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6")
-Cntrlty_vars <- c("Cntrlty1", "Cntrlty2", "Cntrlty3", "Cntrlty4", "Cntrlty5", "Cntrlty6", "Cntrlty7", "Cntrlty8", "Cntrlty9", "Cntrlty10")
-
-dfLewis$GRMS <- sjstats::mean_n(dfLewis[, GRMS_vars], 0.80)
-dfLewis$Engmt <- sjstats::mean_n(dfLewis[, Eng_vars], 0.80)
-dfLewis$DisEngmt <- sjstats::mean_n(dfLewis[, dEng_vars], 0.80)
-dfLewis$MntlHlth <- sjstats::mean_n(dfLewis[, MntlHlth_vars], 0.80)
-dfLewis$Centrality <- sjstats::mean_n(dfLewis[, Cntrlty_vars], 0.80)
-
-#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
-#dfLewis$GRMS <- sjstats::mean_n(dfLewis[, ..GRMS_vars], 0.80)
+dfLewis$GRMS <- datawizard::row_means(dfLewis, select = c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8", "Ob9", "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1", "St2", "St3", "St4", "St5", "An1", "An2", "An3"), min_valid = .80)
+dfLewis$Engmt <- datawizard::row_means(dfLewis, select = c("Eng1", "Eng2"), min_valid = .80)
+dfLewis$DisEngmt <- datawizard::row_means(dfLewis, select = c("dEng1", "dEng2"), min_valid = .80)
+dfLewis$MntlHlth <- datawizard::row_means(dfLewis, select = c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6"), min_valid = .80)
+dfLewis$Centrality <- datawizard::row_means(dfLewis, select = c("Cntrlty1", "Cntrlty2", "Cntrlty3", "Cntrlty4", "Cntrlty5", "Cntrlty6", "Cntrlty7", "Cntrlty8", "Cntrlty9", "Cntrlty10"), min_valid = .80)
 ```
 
 Now that we have scored our data, let's trim the variables to just those we need.

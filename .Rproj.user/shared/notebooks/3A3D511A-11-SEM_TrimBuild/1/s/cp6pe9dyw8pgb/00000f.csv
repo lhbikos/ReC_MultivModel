@@ -1,0 +1,2 @@
+"0","#Code to plot the theoretical model (in case you don't want to print the results on the graph):"
+"0","plot1_theoretical <- semPlot::semPaths(struct_fit1, sizeMan = 3, node.width = 1, edge.label.cex = .75, style = ""lisrel"", mar = c(2,2,2,2), structural = FALSE, curve=FALSE, intercepts=FALSE)"

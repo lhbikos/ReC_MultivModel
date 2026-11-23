@@ -1,5 +1,5 @@
 
-```r
+``` r
 options(scipen=999)#eliminates scientific notation
 ```
 
@@ -68,15 +68,13 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# will install the package if not already installed
-# if(!require(robumeta)){install.packages('robumeta')}
-# if(!require(tidyverse)){install.packages('tidyverse')}
-# if(!require(psych)){install.packages('psych')}
-# if(!require(lme4)){install.packages('lme4')}
-# if(!require(nlme)){install.packages('nlme')}
-# if(!require(sjstats)){install.packages('sjstats')}
-# if(!require(scales)){install.packages('scales')}
+``` r
+#will install the package if not already installed
+#if(!require(robumeta)){install.packages("robumeta")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(lme4)){install.packages("lme4")}
+#if(!require(scales)){install.packages("scales")}
 ```
 
 ## Change-Over-Time Analytics
@@ -192,39 +190,33 @@ Let's take a look at the variables in the study
 ```
 
 
-```r
+``` r
 set.seed(200513)
 n_client = 12825
 n_session = 5
-b0 = 2.03  #intercept for anxiety
-b1 = -0.22  #b weight for L1 session
-b2 = 0.13  #b weight for L2 sexual identity
-b3 = -0.03  #b weight for L2 Rel1 (D-R vs ND-R & ND-U)
-b4 = 0.01  #b weight for the L2 Rel2 (ND-R vs ND-U)
-# the values used below are the +/- 3SD they produce continuous
-# variables which later need to be transformed to categorical ones;
-# admittedly this introduces a great deal of error/noise into the
-# simulation the article didn't include a correlation matrix or M/SDs
-# so this was a clunky process
-(Session = runif(n_client * n_session, -3.61, 3.18))  #calc L1 Session, values are the +/3 3SD
-(SexualIdentity = runif(n_client * Session, -6.66, 6.92))  #calc L2 Sexual Identity, values are the +/3 3SD
-(Religion1 = runif(n_client * Session, -3.43, 3.37))  #calc L2 Religion1, values are the +/3 3SD
-(Religion2 = rep(runif(n_session, -3.38, 3.41), each = n_session))  #calc L2 Religion2, values are the +/3 3SD
-mu = 1.76  #intercept of empty model 
-sds = 2.264  #this is the SD of the DV
-sd = 1  #this is the observation-level random effect variance that we set at 1
+b0 = 2.03 #intercept for anxiety
+b1 = -.22 #b weight for L1 session
+b2 = .13 #b weight for L2 sexual identity
+b3 =  -.03 #b weight for L2 Rel1 (D-R vs ND-R & ND-U)
+b4 = .01 #b weight for the L2 Rel2 (ND-R vs ND-U)
+#the values used below are the +/- 3SD they produce continuous variables which later need to be transformed to categorical ones; admittedly this introduces a great deal of error/noise into the simulation
+#the article didn't include a correlation matrix or M/SDs so this was a clunky process 
+( Session = runif(n_client*n_session, -3.61, 3.18)) #calc L1 Session, values are the +/3 3SD
+( SexualIdentity = runif(n_client*Session, -6.66, 6.92)) #calc L2 Sexual Identity, values are the +/3 3SD
+( Religion1 = runif(n_client*Session, -3.43, 3.37)) #calc L2 Religion1, values are the +/3 3SD
+( Religion2 = rep (runif(n_session, -3.38, 3.41), each = n_session)) #calc L2 Religion2, values are the +/3 3SD
+mu = 1.76 #intercept of empty model 
+sds = 2.264 #this is the SD of the DV
+sd = 1 #this is the observation-level random effect variance that we set at 1
 
-# ( church = rep(LETTERS[1:n_church], each = n_mbrs) ) #this worked
-# in the prior
-(client = rep(LETTERS[1:n_client], each = n_session))
-# ( session = numbers[1:(n_client*n_session)] )
-(clienteff = rnorm(n_client, 0, sds))
-(clienteff = rep(clienteff, each = n_session))
-(sessioneff = rnorm(n_client * n_session, 0, sd))
-(Anxiety = b0 + b1 * Session + b2 * SexualIdentity + b3 * Religion1 + b4 *
-    Religion2 + clienteff + sessioneff)
-(dat = data.frame(client, clienteff, sessioneff, Session, SexualIdentity,
-    Religion1, Religion2, Anxiety))
+#( church = rep(LETTERS[1:n_church], each = n_mbrs) ) #this worked in the prior
+( client = rep(LETTERS[1:n_client], each = n_session) )
+#( session = numbers[1:(n_client*n_session)] )
+( clienteff = rnorm(n_client, 0, sds) )
+( clienteff = rep(clienteff, each = n_session) )
+( sessioneff = rnorm(n_client*n_session, 0, sd) )
+( Anxiety = b0 + b1*Session + b2*SexualIdentity + b3*Religion1 + b4*Religion2 + clienteff + sessioneff)
+( dat = data.frame(client, clienteff, sessioneff, Session, SexualIdentity, Religion1, Religion2, Anxiety) )
 
 library(dplyr)
 ```
@@ -246,91 +238,86 @@ library(dplyr)
 ##     intersect, setdiff, setequal, union
 ```
 
-```r
-dat <- dat %>%
-    mutate(ID = row_number())
-# moving the ID number to the first column; requires
-dat <- dat %>%
-    select(ID, everything())
+``` r
+dat <- dat %>% mutate(ID = row_number())
+#moving the ID number to the first column; requires 
+dat <- dat%>%select(ID, everything())
 
-Lefevor2017 <- dat %>%
-    select(ID, client, Session, SexualIdentity, Religion1, Religion2, Anxiety)
+Lefevor2017 <- dat%>%
+  select(ID, client, Session, SexualIdentity, Religion1, Religion2, Anxiety)
 
 Lefevor2017$ClientID <- rep(c(1:12825), each = 5)
-# rounded Sexual Identity into dichotomous variable 85% were
-# heterosexual,
+#rounded Sexual Identity into dichotomous variable
+#85% were heterosexual, 
 
 library(robumeta)
-# The following variables should be L2, but were simulated as if they
-# were L1
-Lefevor2017$Rel1 <- as.numeric(group.mean(Lefevor2017$Religion1, Lefevor2017$ClientID))  #aggregated at group mean
-Lefevor2017$Rel2 <- as.numeric(group.mean(Lefevor2017$Religion2, Lefevor2017$ClientID))  #aggregated at group mean
-Lefevor2017$SxID <- as.numeric(group.mean(Lefevor2017$SexualIdentity, Lefevor2017$ClientID))  #aggregated at group mean
+#The following variables should be L2, but were simulated as if they were L1
+Lefevor2017$Rel1 <- as.numeric(group.mean(Lefevor2017$Religion1,Lefevor2017$ClientID))#aggregated at group mean
+Lefevor2017$Rel2 <- as.numeric(group.mean(Lefevor2017$Religion2,Lefevor2017$ClientID))#aggregated at group mean
+Lefevor2017$SxID <- as.numeric(group.mean(Lefevor2017$SexualIdentity,Lefevor2017$ClientID))#aggregated at group mean
 
-# Rel2 has contrast codes for dominant religion (DR, 0), nondominant
-# religious (NDR, 1) and nondominant unspecified (NDU, -1) Strategy
-# is to figure out the raw score associated with the percentile rank
-# of -1 and 0, to set the breakpoints for the coding NDU coded as -1
-# 19.2+13.5+9.6 NDU has bottom 42.3 percent
+#Rel2 has contrast codes for dominant religion (DR, 0), nondominant religious (NDR, 1) and nondominant unspecified (NDU, -1)
+#Strategy is to figure out the raw score associated with the percentile rank of  -1 and 0, to set the breakpoints for the coding
+#NDU coded as -1
+#19.2+13.5+9.6
+#NDU has bottom 42.3 percent
 
-# DR coded as 0, so quantile cut will be 42.3 + 52.7 = 95th 33.4 +
-# 19.3 52.7% of sample (according to article) was DR must look up
-# percentile ranks for 5% and 57.5%
+#DR coded as 0, so quantile cut will be 42.3 + 52.7 = 95th
+#33.4 + 19.3
+#52.7% of sample (according to article) was DR
+#must look up percentile ranks for 5% and 57.5%
 
-# NDR 2.3+1+1+.7 NDR has 5% of sample 42.3+52.7
-# quantile(Lefevor2017$Religion2, probs = c(.423, .95)) effects
-# coding the second Religion variable so that NDU = -1, DR = 0, NDR =
-# 1
-Lefevor2017$Rel2L2 <- ifelse(Lefevor2017$Religion2 <= -3.0877087, -1, ifelse(Lefevor2017$Religion2 >=
-    -3.0877087 & Lefevor2017$Religion2 <= 0.9299491, 0, 1))
+#NDR
+#2.3+1+1+.7
+#NDR has 5% of sample
+#42.3+52.7
+#quantile(Lefevor2017$Religion2, probs = c(.423, .95))
+#effects coding the second Religion variable so that NDU = -1, DR = 0, NDR = 1
+Lefevor2017$Rel2L2 <- ifelse(Lefevor2017$Religion2 <= -3.0877087, -1, 
+                             ifelse(Lefevor2017$Religion2 >= -3.0877087 & Lefevor2017$Religion2 <= 0.9299491, 0,1))
 
-# checking work Rel2L2_table <- table(Lefevor2017$Rel2L2)
-# prop.table(Rel2L2_table) Lefevor2017 %>% count(Rel2L2)
+#checking work
+#Rel2L2_table <- table(Lefevor2017$Rel2L2)
+#prop.table(Rel2L2_table)
+#Lefevor2017 %>%
+#count(Rel2L2)
 
-# creating the first religion variable where DR is 2 and NDR and NDU
-# are both -1
-Lefevor2017$Rel1L2 <- plyr::mapvalues(Lefevor2017$Rel2L2, from = c(-1,
-    0, 1), to = c(-1, 2, -1))
-Lefevor2017$DRel0 <- plyr::mapvalues(Lefevor2017$Rel2L2, from = c(-1, 0,
-    1), to = c(1, 0, 1))
+#creating the first religion variable where DR is 2 and NDR and NDU are both -1
+Lefevor2017$Rel1L2 <- plyr::mapvalues(Lefevor2017$Rel2L2, from = c(-1, 0, 1), to = c(-1, 2, -1))
+Lefevor2017$DRel0 <- plyr::mapvalues(Lefevor2017$Rel2L2, from = c(-1, 0, 1), to = c(1, 0, 1))
 
-# checking to make sure that 52.7% are coded 2 (DR) Rel1L2_table <-
-# table(Lefevor2017$Rel1L2) prop.table(Rel1L2_table)
+#checking to make sure that 52.7% are coded 2 (DR)
+#Rel1L2_table <- table(Lefevor2017$Rel1L2)
+#prop.table(Rel1L2_table)
 
-# heterosexual is -1 LGBTQIA+ is 1 quantile(Lefevor2017$SxID, probs =
-# c(.85))
-Lefevor2017$SexID <- ifelse(Lefevor2017$SxID <= 1.203468, -1, 1)
-Lefevor2017$Het0 <- plyr::mapvalues(Lefevor2017$SexID, from = c(-1, 1),
-    to = c(0, 1))
-# SexID_table <- table(Lefevor2017$SexID) prop.table(SexID_table)
+#heterosexual is -1
+#LGBTQIA+ is 1
+#quantile(Lefevor2017$SxID, probs = c(.85))
+Lefevor2017$SexID <- ifelse(Lefevor2017$SxID <= 1.203468, -1,1)
+Lefevor2017$Het0 <- plyr::mapvalues(Lefevor2017$SexID, from = c(-1,1), to = c(0,1))
+#SexID_table <- table(Lefevor2017$SexID)
+#prop.table(SexID_table)
 
-# creating a variable representing the session number for each
-# client, in the article up to 20 sessions were allowed.
-# install.packages('scales')
+#creating a variable representing the session number for each client, in the article up to 20 sessions were allowed. 
+#install.packages("scales")
 library(scales)
-# Right from the beginning I centered this so that 0 would represent
-# intake
-Lefevor2017$Session0 <- as.integer(scales::rescale(Lefevor2017$Session,
-    to = c(0, 19)))
+#Right from the beginning I centered this so that 0 would represent intake
+Lefevor2017$Session0 <- as.integer(scales::rescale(Lefevor2017$Session, to = c(0, 19)))
 
-# creating session waves (1 thru 5) by rank ordering within each
-# person's variable the continuous variable Session that was created
-# in the original simulation
+#creating session waves (1 thru 5) by rank ordering within each person's variable the continuous variable Session that was created in the original simulation
 library(dplyr)
-Lefevor2017 <- Lefevor2017 %>%
-    dplyr::group_by(ClientID) %>%
-    mutate(Index = rank(Session))
+Lefevor2017 <- Lefevor2017%>%
+  dplyr::group_by(ClientID) %>%
+  mutate(Index = rank(Session))
 
-# selecting the simulated variables
-Lefevor2017_sim <- Lefevor2017 %>%
-    select(ClientID, Index, Session0, Anxiety, DRel0, Het0)
+#selecting the simulated variables
+Lefevor2017_sim <- Lefevor2017%>%
+  select(ClientID, Index, Session0, Anxiety, DRel0, Het0)
 
-# In the transition from long-to-wide, it seems like you can only do
-# one L1 variable at a time When there are multiple L1 and L2 vars,
-# put all L2 vars on left of tilde The wave/index function should
-# come next; this should be finite (like integers of 1,2,3,4) with a
-# maximum Put the name of the SINGLE L1 variable in the concatonated
-# list
+#In the transition from long-to-wide, it seems like you can only do one L1 variable at a time
+#When there are multiple L1 and L2 vars, put all L2 vars on left of tilde
+#The wave/index function should come next; this should be finite (like integers of 1,2,3,4) with a maximum
+#Put the name of the SINGLE L1 variable in the concatonated list
 library(data.table)
 ```
 
@@ -345,35 +332,29 @@ library(data.table)
 ##     between, first, last
 ```
 
-```r
-LfvrWp1 <- reshape2::dcast(Lefevor2017_sim, ClientID + DRel0 + Het0 ~ Index,
-    value.var = c("Index"))
-# rename the anxiety variable
-LfvrWp1 <- rename(LfvrWp1, Index1 = "1", Index2 = "2", Index3 = "3", Index4 = "4",
-    Index5 = "5")
-LfvrWp2 <- reshape2::dcast(Lefevor2017_sim, ClientID ~ Index, value.var = c("Anxiety"))
-# rename the anxiety variable
-LfvrWp2 <- rename(LfvrWp2, Anx1 = "1", Anx2 = "2", Anx3 = "3", Anx4 = "4",
-    Anx5 = "5")
-# For remaining L1 variable, do them one at a time -- key them from
-# the person-level ID and the wave/index.
-LfvrWp3 <- reshape2::dcast(Lefevor2017_sim, ClientID ~ Index, value.var = c("Session0"))
-LfvrWp3 <- rename(LfvrWp3, Sess1 = "1", Sess2 = "2", Sess3 = "3", Sess4 = "4",
-    Sess5 = "5")
-# Next, join the dataframes by the person-level ID Only two can be
-# joined at a time
+``` r
+LfvrWp1<-reshape2::dcast(Lefevor2017_sim, ClientID + DRel0 + Het0 ~ Index, value.var = c("Index"))
+#rename the anxiety variable
+LfvrWp1<-  rename(LfvrWp1, Index1 = "1", Index2 = "2", Index3 = "3", Index4 = "4", Index5 = "5")
+LfvrWp2<-reshape2::dcast(Lefevor2017_sim, ClientID ~ Index, value.var = c("Anxiety"))
+#rename the anxiety variable
+LfvrWp2<-  rename(LfvrWp2, Anx1 = "1", Anx2 = "2", Anx3 = "3", Anx4 = "4", Anx5 = "5")
+#For remaining L1 variable, do them one at a time -- key them from the person-level ID and the wave/index.
+LfvrWp3<-reshape2::dcast(Lefevor2017_sim, ClientID ~ Index, value.var = c("Session0"))
+LfvrWp3<-  rename(LfvrWp3, Sess1 = "1", Sess2 = "2", Sess3 = "3", Sess4 = "4", Sess5 = "5")
+#Next, join the dataframes by the person-level ID
+#Only two can be joined at a time
 LfvrWide <- dplyr::full_join(LfvrWp1, LfvrWp2, by = c("ClientID"))
-LfvrWide <- dplyr::full_join(LfvrWide, LfvrWp3, by = c("ClientID"))
+LfvrWide <- dplyr::full_join(LfvrWide, LfvrWp3,  by = c("ClientID"))
 ```
 
 To increase the portability of the OER, this chapter uses simulated data. Here is script for exporting/downloading the data as a .csv file to your local computer and then importing/uploading it again. I find that saving the .csv file (data) in the same place as the .rmd file(s) is essential for R to connect the two.
 
 Because this simulation can take a few minutes, you may wish to do this, even as you work through this chapter, so that resimulations take less time and comuting resources.
 
-```r
-write.table(LfvrWide, file = "LefevorWide.csv", sep = ",", col.names = TRUE,
-    row.names = FALSE)
-LfvrWide <- read.csv("LefevorWide.csv", head = TRUE, sep = ",")
+``` r
+write.table(LfvrWide, file="LefevorWide.csv", sep=",", col.names=TRUE, row.names=FALSE)
+LfvrWide <- read.csv ("LefevorWide.csv", head = TRUE, sep = ",")
 ```
 
 
@@ -396,7 +377,7 @@ There are **disadvantages** to the wide format:
 * It cannot handle the presence of time-varying predictors.
 
 
-```r
+``` r
 library(psych)
 ```
 
@@ -411,8 +392,8 @@ library(psych)
 ##     alpha, rescale
 ```
 
-```r
-round(psych::describe(LfvrWide), 3)
+``` r
+round(psych::describe(LfvrWide),3)
 ```
 
 ```
@@ -463,11 +444,10 @@ The bivariate correlations tell us little about change-over-time for individuals
 Thinking of what it takes to get a positive and strong correlation (e.g., relative rankings must stay stable), we learn that the *rank order* of clients (relative to anxiety) remains relatively stable across occasions, but it does not tell us how each person changes over time nor about the direction of change.  
 
 
-```r
-# Multilevel level correlation matrix
-apaTables::apa.cor.table(LfvrWide[c("DRel0", "Het0", "Anx1", "Anx2", "Anx3",
-    "Anx4", "Anx5")], show.conf.interval = FALSE, landscape = TRUE, table.number = 1,
-    filename = "Lfvr2017_CorMatrix.doc")
+``` r
+#Multilevel level correlation matrix
+apaTables::apa.cor.table(LfvrWide[c(
+"DRel0", "Het0", "Anx1", "Anx2", "Anx3", "Anx4", "Anx5")], show.conf.interval = FALSE, landscape = TRUE, table.number = 1, filename="Lfvr2017_CorMatrix.doc")
 ```
 
 ```
@@ -552,7 +532,7 @@ Let's restructure (shapeshift) our dataset with the technique known as *melting*
 
 Each set of variables being melted in each set being restructured need to be on the same scale.  In this problem, the Anx# and Sess# variables should be on the same scale.
 
-```r
+``` r
 str(LfvrWide)
 ```
 
@@ -580,17 +560,14 @@ str(LfvrWide)
 They are.  Each is *num*eric.
 
 
-```r
-library(data.table)  #the package for melting (better than reshape2 because it can accommodate multiple repeated measures variables)
+``` r
+library(data.table) #the package for melting (better than reshape2 because it can accommodate multiple repeated measures variables)
 
-# add the name of the wide df after 'setDT' id.vars are L2 variables
-# that do not change over time measure.vars are those that change
-# over time; if there is more than one that is time-covarying, add a
-# comma followed by another another concatonated list.
+#add the name of the wide df after "setDT"
+#id.vars are L2 variables that do not change over time
+#measure.vars are those that change over time; if there is more than one that is time-covarying, add a comma followed by another another concatonated list.
 
-LfvrLong <- (data.table::melt(setDT(LfvrWide), id.vars = c("ClientID",
-    "DRel0", "Het0"), measure.vars = list(c("Anx1", "Anx2", "Anx3", "Anx4",
-    "Anx5"), c("Sess1", "Sess2", "Sess3", "Sess4", "Sess5"))))
+LfvrLong <- (data.table::melt(setDT(LfvrWide), id.vars = c("ClientID", "DRel0", "Het0"), measure.vars =list(c("Anx1", "Anx2", "Anx3", "Anx4", "Anx5"), c("Sess1", "Sess2", "Sess3", "Sess4", "Sess5"))))
 ```
 Take a peek at LfvrLong:
 
@@ -600,29 +577,26 @@ Take a peek at LfvrLong:
   - *value* is the value of that measurement for that person
 * We must rename these
 
-```r
-# This process does not preserve the variable names, so we need to
-# rename them
-LfvrLong <- rename(LfvrLong <- rename(LfvrLong <- rename(LfvrLong, Index = variable,
-    Anxiety = "value1", SesNum = "value2")))
+``` r
+#This process  does not preserve the variable names, so we need to rename them
+LfvrLong<-  rename(LfvrLong<-  rename(LfvrLong<-  rename(LfvrLong, Index = variable, Anxiety = "value1", SesNum = "value2")))
 
-# rearranging variables so that IDs are together
-LfvrLong <- LfvrLong %>%
-    select(ClientID, Index, SesNum, Anxiety, DRel0, Het0)
-# resorting data so that each person is together
+#rearranging variables so that IDs are together
+LfvrLong <- LfvrLong%>%
+  select(ClientID, Index, SesNum, Anxiety, DRel0, Het0)
+#resorting data so that each person is together
 LfvrLong <- arrange(LfvrLong, ClientID, Index)
 ```
 It can be helpful to have this written to your local file so you can bring it back in without having to re-prep it.
 
-```r
-write.table(LfvrLong, file = "LfvrLong.csv", sep = ",", col.names = TRUE,
-    row.names = FALSE)
-LfvrLong <- read.csv("LfvrLong.csv", head = TRUE, sep = ",")
+``` r
+write.table(LfvrLong, file="LfvrLong.csv", sep=",", col.names=TRUE, row.names=FALSE)
+LfvrLong <- read.csv ("LfvrLong.csv", head = TRUE, sep = ",")
 ```
 
 Let's peek at the characteristics and descriptives as a result of this restructuring from wide to long.
 
-```r
+``` r
 str(LfvrLong)
 ```
 
@@ -636,8 +610,8 @@ str(LfvrLong)
 ##  $ Het0    : int  0 0 0 0 0 0 0 0 0 0 ...
 ```
 
-```r
-round(psych::describe(LfvrLong), 3)
+``` r
+round(psych::describe(LfvrLong),3)
 ```
 
 ```
@@ -664,9 +638,9 @@ With the long form of data, we can properly examine multilevel descriptives and 
 ### Multilevel Descriptive Statistics and Correlations
 
 
-```r
+``` r
 misty::multilevel.descript(LfvrLong[, c("SesNum", "Anxiety", "DRel0", "Het0")],
-    cluster = LfvrLong$ClientID)
+               cluster = LfvrLong$ClientID)
 ```
 
 ```
@@ -699,10 +673,9 @@ Here we learn that we have 64125 observations provided by 12825 clients. Each cl
 We can also look at multilevel correlations. This program does not like dichotomous variables, so I only included those that are continuous.
 
 
-```r
+``` r
 corrmatrix <- misty::multilevel.cor(LfvrLong[, c("SesNum", "Anxiety")],
-    cluster = LfvrLong$ClientID, split = FALSE, output = TRUE, write = "MLMcorr.xlsx",
-    print = c("cor", "p"), digits = 3, missing = "listwise")
+               cluster = LfvrLong$ClientID, split=FALSE, output = TRUE, write = "MLMcorr.xlsx", print = c("cor", "p"), digits = 3, missing = "listwise")
 ```
 
 ```
@@ -713,7 +686,7 @@ corrmatrix <- misty::multilevel.cor(LfvrLong[, c("SesNum", "Anxiety")],
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                             
-##   lavaan 0.6.17                             
+##   lavaan 0.6-18                             
 ##                                             
 ##    Estimator                        ML      
 ##    Standard Errors        Conventional      
@@ -739,14 +712,14 @@ corrmatrix <- misty::multilevel.cor(LfvrLong[, c("SesNum", "Anxiety")],
 ##        Lower triangular: Within-Group, Upper triangular: Between-Group
 ```
 
-```r
+``` r
 corrmatrix
 ```
 
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                             
-##   lavaan 0.6.17                             
+##   lavaan 0.6-18                             
 ##                                             
 ##    Estimator                        ML      
 ##    Standard Errors        Conventional      
@@ -776,7 +749,7 @@ The lower half of the triangle has the within person multilevel corelation. with
 ### Empirical Growth Plots
 
 
-```r
+``` r
 library(lattice)
 library(ggplot2)
 ```
@@ -788,15 +761,13 @@ With the *lattice* package we are asking for the anxiety scores to be plotted by
 Especially in large datasets it is common to create a smaller subset of data for this inspection. The easiest way I found to do this was to grab a set of 30 from the wide file and then quickly turn it to a long file.
 
 
-```r
+``` r
 set.seed(210515)
-RndmSmpl30 <- LfvrWide[sample(1:nrow(LfvrWide), 30, replace = FALSE), ]
-RndmLong <- (data.table::melt(setDT(RndmSmpl30), id.vars = c("ClientID",
-    "DRel0", "Het0"), measure.vars = list(c("Anx1", "Anx2", "Anx3", "Anx4",
-    "Anx5"), c("Sess1", "Sess2", "Sess3", "Sess4", "Sess5"))))
-RndmLong <- rename(RndmLong <- rename(RndmLong <- rename(RndmLong, Index = variable,
-    Anxiety = "value1", Session0 = "value2")))
-# resorting data so that each person is together
+RndmSmpl30 <- LfvrWide[sample(1:nrow(LfvrWide), 30,
+   replace=FALSE),] 
+RndmLong <- (data.table::melt(setDT(RndmSmpl30), id.vars = c("ClientID", "DRel0", "Het0"), measure.vars =list(c("Anx1", "Anx2", "Anx3", "Anx4", "Anx5"), c("Sess1", "Sess2", "Sess3", "Sess4", "Sess5"))))
+RndmLong<-  rename(RndmLong<-  rename(RndmLong<-  rename(RndmLong, Index = variable, Anxiety = "value1", Session0 = "value2")))
+#resorting data so that each person is together
 RndmLong <- arrange(RndmLong, ClientID, Index)
 ```
 
@@ -821,24 +792,26 @@ To evaluate, focus on elevation, shape, and title.  Where do scores hover at the
 Below I have shown how to plot these with variable, Index variable and then again with the variable, Session.  Recall that Index is a structured form of counting across the 5 client sessions.  In contrast, Session is "time-unstructured" because the intervals are unevenly spaced.  Our Index variable clocks 1 through 5; Session0 starts at 0.0, providing a better "intercept" at the first session. Singer and Willett [-@singer_applied_2003] recommend also  staring at the entire set together as a group.  Notice anything?
 
 
-```r
-xyplot(Anxiety ~ Session0 | ClientID, data = RndmLong, prepanel = function(x,
-    y) prepanel.loess(x, y, family = "gaussian"), xlab = "Session", ylab = "Anxiety",
-    panel = function(x, y) {
-        panel.xyplot(x, y)
-        panel.loess(x, y, family = "gaussian")
-    }, as.table = T)
+``` r
+xyplot(Anxiety~Session0 | ClientID, data=RndmLong,
+  prepanel = function(x, y) prepanel.loess(x, y, family="gaussian"),
+  xlab = "Session", ylab = "Anxiety",
+  panel = function(x, y) {
+  panel.xyplot(x, y)
+  panel.loess(x,y, family="gaussian") },
+   as.table=T)
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-17-1.png)<!-- -->
 
-```r
-xyplot(Anxiety ~ Index | ClientID, data = RndmLong, prepanel = function(x,
-    y) prepanel.loess(x, y, family = "gaussian"), xlab = "Index", ylab = "Anxiety",
-    panel = function(x, y) {
-        panel.xyplot(x, y)
-        panel.loess(x, y, family = "gaussian")
-    }, as.table = T)
+``` r
+xyplot(Anxiety~Index | ClientID, data=RndmLong,
+  prepanel = function(x, y) prepanel.loess(x, y, family="gaussian"),
+  xlab = "Index", ylab = "Anxiety",
+  panel = function(x, y) {
+  panel.xyplot(x, y)
+  panel.loess(x,y, family="gaussian") },
+   as.table=T)
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-17-2.png)<!-- -->
@@ -875,9 +848,9 @@ Let's start with step #1:
 This little script produces individual regression models for each person.
 
 
-```r
-ANX_OLS <- function(RndmLong) {
-    summary(lm(Anxiety ~ Session0, data = RndmLong))
+``` r
+ANX_OLS <- function (RndmLong){
+  summary(lm(Anxiety ~ Session0, data = RndmLong))
 }
 by(RndmLong, RndmLong$ClientID, ANX_OLS)
 ```
@@ -1504,12 +1477,12 @@ Looking at our data, we might observe:
 Next we superimpose each client's fitted OLS trajectory on their empirical growth plot.
 
 
-```r
-xyplot(Anxiety ~ Session0 | ClientID, data = RndmLong, panel = function(x,
-    y) {
+``` r
+xyplot(Anxiety ~ Session0 | ClientID, data=RndmLong,
+  panel = function(x, y){
     panel.xyplot(x, y)
     panel.lmline(x, y)
-}, as.table = T)
+  },  as.table=T)
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-19-1.png)<!-- -->
@@ -1527,9 +1500,9 @@ Singer and Willett [-@singer_applied_2003] can read your minds, "Don't OLS regre
 We can plop all our trajectories in a set of smoothed individual trajectories. This first plot is simply the raw data.  This first plot is just a smoothed (there is a line for each client) plot of the raw/natural metric of the data.
 
 
-```r
-# plot of raw data for every case Session0 provided splotchy data;
-# Index0 gives some indication of change
+``` r
+#plot of raw data for every case
+#Session0 provided splotchy data; Index0 gives some indication of change
 interaction.plot(RndmLong$Index, RndmLong$ClientID, RndmLong$Anxiety)
 ```
 
@@ -1540,18 +1513,17 @@ The next two sets of code plot our fitted trajectories into a single plot.
 
 First, we fit the model.
 
-```r
-# fitting the linear model by ID
-fit <- by(RndmLong, RndmLong$ClientID, function(bydata) fitted.values(lm(Anxiety ~
-    Session0, data = bydata)))
+``` r
+#fitting the linear model by ID
+fit <- by(RndmLong, RndmLong$ClientID, 
+          function(bydata) fitted.values(lm(Anxiety ~ Session0, data=bydata)))
 fit <- unlist(fit)
 ```
 Then make the plot.
 
-```r
-# plotting the linear fit by ID
-interaction.plot(RndmLong$Index, RndmLong$ClientID, fit, xlab = "Sessions",
-    ylab = "Anxiety")
+``` r
+#plotting the linear fit by ID
+interaction.plot(RndmLong$Index, RndmLong$ClientID, fit, xlab="Sessions", ylab="Anxiety")
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-22-1.png)<!-- -->
@@ -1565,10 +1537,10 @@ What do we observe? Clients present with varying levels of anxiety.  On average,
 *Sample variances (SDs) of the estimated intercepts and slopes* quantify the amount of observed interindividual heterogeneity in change.
 
 
-```r
-# obtaining the intercept from the linear model by ClientID
-ints <- by(RndmLong, RndmLong$ClientID, function(data) coefficients(lm(Anxiety ~
-    Session0, data = data))[[1]])
+``` r
+#obtaining the intercept from the linear model by ClientID
+ints <- by(RndmLong, RndmLong$ClientID,
+          function(data) coefficients(lm(Anxiety ~ Session0, data=data))[[1]])
 ints1 <- unlist(ints)
 names(ints1) <- NULL
 mean(ints1)
@@ -1579,7 +1551,7 @@ mean(ints1)
 ```
 
 
-```r
+``` r
 sqrt(var(ints1))
 ```
 
@@ -1592,10 +1564,10 @@ Our calculations tell us that at Session 1, anxiety is 3.23 (*SD* = 2.69).
 The next two values calculate the slope and its variation.
 
 
-```r
-# obtaining the slopes from linear model by id
-slopes <- by(RndmLong, RndmLong$ClientID, function(data) coefficients(lm(Anxiety ~
-    Session0, data = data))[[2]])
+``` r
+#obtaining the slopes from linear model by id
+slopes <- by(RndmLong, RndmLong$ClientID,
+            function(data) coefficients(lm(Anxiety ~ Session0, data=data))[[2]])
 slopes1 <- unlist(slopes)
 names(slopes1) <- NULL
 mean(slopes1)
@@ -1606,7 +1578,7 @@ mean(slopes1)
 ```
 
 
-```r
+``` r
 sqrt(var(slopes1))
 ```
 
@@ -1619,7 +1591,7 @@ Here we learn that the average slope is -0.07 (*SD* = 0.08).  On average, anxiet
 **Sample correlation between the estimated intercepts and slopes** summarizes the association between the fitted initial status and fitted rate of change.  It answers the question, "Are observed initial status and rate of change related?"
 
 
-```r
+``` r
 cor( ints1, slopes1)
 ```
 
@@ -1639,31 +1611,29 @@ Let's start with religious affiliation Is there a difference in intercept (initi
 We start by selecting DR, fitting a regression model, and plotting it.
 
 
-```r
-# fitting the linear model by ID, DR only
-DR <- filter(RndmLong, DRel0 == "0")
-fitmlist <- by(DR, DR$ClientID, function(bydata) fitted.values(lm(Anxiety ~
-    Session0, data = bydata)))
+``` r
+#fitting the linear model by ID, DR only
+DR <- filter(RndmLong, DRel0=="0")
+fitmlist <- by(DR, DR$ClientID, function(bydata) fitted.values(lm(Anxiety ~ Session0, data=bydata)))
 fitDR <- unlist(fitmlist)
 ```
 
 
-```r
-# appending the average for the whole group of DR
-lm.DR <- fitted(lm(Anxiety ~ Session0, data = DR))
+``` r
+#appending the average for the whole group of DR
+lm.DR <- fitted( lm(Anxiety ~ Session0, data=DR) )
 names(lm.DR) <- NULL
 fit.DR2 <- c(fitDR, lm.DR[1:5])
-Sess1.DR <- c(DR$Index, seq(1, 5))  #Note that I used Session0 to create the lm, but plotted by Index0
+Sess1.DR <- c(DR$Index, seq(1,5))#Note that I used Session0 to create the lm, but plotted by Index0
 id.DR <- c(DR$ClientID, rep(30, 5))
 ```
 
 
-```r
-# plotting the linear fit by id, males id.m=111 denotes the average
-# value for males
-interaction.plot(Sess1.DR, id.DR, fit.DR2, ylim = c(-2, 8), xlab = "Sessions",
-    ylab = "Anxiety", lwd = 1)
-title(main = "Dominant Religious")
+``` r
+#plotting the linear fit by id, males
+#id.m=111 denotes the average value for males
+interaction.plot(Sess1.DR, id.DR, fit.DR2, ylim=c(-2, 8), xlab="Sessions", ylab="Anxiety", lwd=1)
+title(main="Dominant Religious")
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-30-1.png)<!-- -->
@@ -1672,31 +1642,29 @@ Trajectories for those from dominantreligions stay flat; a few decline.
 Now for non-dominant religious (including those that are affiliated and unaffiliated).
 
 
-```r
-# fitting the linear model by ID, DR only
-NDR <- filter(RndmLong, DRel0 == "1")
-fitmlist <- by(NDR, NDR$ClientID, function(bydata) fitted.values(lm(Anxiety ~
-    Session0, data = bydata)))
+``` r
+#fitting the linear model by ID, DR only
+NDR <- filter(RndmLong, DRel0=="1")
+fitmlist <- by(NDR, NDR$ClientID, function(bydata) fitted.values(lm(Anxiety ~ Session0, data=bydata)))
 fitNDR <- unlist(fitmlist)
 ```
 
 
-```r
-# appending the average for the whole group of males
-lm.NDR <- fitted(lm(Anxiety ~ Session0, data = NDR))
+``` r
+#appending the average for the whole group of males
+lm.NDR <- fitted( lm(Anxiety ~ Session0, data=NDR) )
 names(lm.NDR) <- NULL
 fit.NDR2 <- c(fitNDR, lm.NDR[1:5])
-Sess1.NDR <- c(NDR$Index, seq(1, 5))  #Note that I used Session0 to create the lm, but plotted by Index0
+Sess1.NDR <- c(NDR$Index, seq(1,5))#Note that I used Session0 to create the lm, but plotted by Index0
 id.NDR <- c(NDR$ClientID, rep(30, 5))
 ```
 
 
-```r
-# plotting the linear fit by id, males id.m=111 denotes the average
-# value for males
-interaction.plot(Sess1.NDR, id.NDR, fit.NDR2, ylim = c(-2, 8), xlab = "Sessions",
-    ylab = "Anxiety", lwd = 1)
-title(main = "Non-Dominant Religious")
+``` r
+#plotting the linear fit by id, males
+#id.m=111 denotes the average value for males
+interaction.plot(Sess1.NDR, id.NDR, fit.NDR2, ylim=c(-2, 8), xlab="Sessions", ylab="Anxiety", lwd=1)
+title(main="Non-Dominant Religious")
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-33-1.png)<!-- -->
@@ -1706,31 +1674,29 @@ It appears that there is more decline in anxiety for those who claim non-dominan
 What about the effects of sexual identity?
 
 
-```r
-# fitting the linear model by ID, HET = 0 only
-HET <- filter(RndmLong, Het0 == "0")
-fitmlist <- by(HET, HET$ClientID, function(bydata) fitted.values(lm(Anxiety ~
-    Session0, data = bydata)))
+``` r
+#fitting the linear model by ID, HET = 0 only
+HET <- filter(RndmLong, Het0=="0")
+fitmlist <- by(HET, HET$ClientID, function(bydata) fitted.values(lm(Anxiety ~ Session0, data=bydata)))
 fitHET <- unlist(fitmlist)
 ```
 
 
-```r
-# appending the average for the whole group of males
-lm.HET <- fitted(lm(Anxiety ~ Session0, data = HET))
+``` r
+#appending the average for the whole group of males
+lm.HET <- fitted( lm(Anxiety ~ Session0, data=HET) )
 names(lm.HET) <- NULL
 fit.HET <- c(fitHET, lm.HET[1:5])
-Sess1.HET <- c(HET$Index, seq(1, 5))  #Note that I used Session0 to create the lm, but plotted by Index0
+Sess1.HET <- c(HET$Index, seq(1,5))#Note that I used Session0 to create the lm, but plotted by Index0
 id.HET <- c(HET$ClientID, rep(30, 5))
 ```
 
 
-```r
-# plotting the linear fit by id, males id.m=111 denotes the average
-# value for males
-interaction.plot(Sess1.HET, id.HET, fit.HET, ylim = c(-2, 8), xlab = "Sessions",
-    ylab = "Anxiety", lwd = 1)
-title(main = "Heterosexual")
+``` r
+#plotting the linear fit by id, males
+#id.m=111 denotes the average value for males
+interaction.plot(Sess1.HET, id.HET, fit.HET, ylim=c(-2, 8), xlab="Sessions", ylab="Anxiety", lwd=1)
+title(main="Heterosexual")
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-36-1.png)<!-- -->
@@ -1738,31 +1704,29 @@ title(main = "Heterosexual")
 Among clients who identify as heterosexual, there is a mixed profile.  Clients start with varying degrees of anxiety and we see it stay the same, increase, and decrease.
 
 
-```r
-# fitting the linear model by ID, DR only
-LGBQQ <- filter(RndmLong, Het0 == "1")
-fitmlist <- by(LGBQQ, LGBQQ$ClientID, function(bydata) fitted.values(lm(Anxiety ~
-    Session0, data = bydata)))
+``` r
+#fitting the linear model by ID, DR only
+LGBQQ <- filter(RndmLong, Het0=="1")
+fitmlist <- by(LGBQQ, LGBQQ$ClientID, function(bydata) fitted.values(lm(Anxiety ~ Session0, data=bydata)))
 fitLGBQQ <- unlist(fitmlist)
 ```
 
 
-```r
-# appending the average for the whole group of males
-lm.LGBQQ <- fitted(lm(Anxiety ~ Session0, data = LGBQQ))
+``` r
+#appending the average for the whole group of males
+lm.LGBQQ <- fitted( lm(Anxiety ~ Session0, data=LGBQQ) )
 names(lm.LGBQQ) <- NULL
 fit.LGBQQ <- c(fitLGBQQ, lm.LGBQQ[1:5])
-Sess1.LGBQQ <- c(LGBQQ$Index, seq(1, 5))  #Note that I used Session0 to create the lm, but plotted by Index0
+Sess1.LGBQQ <- c(LGBQQ$Index, seq(1,5)) #Note that I used Session0 to create the lm, but plotted by Index0
 id.LGBQQ <- c(LGBQQ$ClientID, rep(30, 5))
 ```
 
 
-```r
-# plotting the linear fit by id, males id.m=111 denotes the average
-# value for males
-interaction.plot(Sess1.LGBQQ, id.LGBQQ, fit.LGBQQ, ylim = c(-2, 8), xlab = "Sessions",
-    ylab = "Anxiety", lwd = 1)
-title(main = "LGBQQ")
+``` r
+#plotting the linear fit by id, males
+#id.m=111 denotes the average value for males
+interaction.plot(Sess1.LGBQQ, id.LGBQQ, fit.LGBQQ, ylim=c(-2, 8), xlab="Sessions", ylab="Anxiety", lwd=1)
+title(main="LGBQQ")
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-39-1.png)<!-- -->
@@ -1781,16 +1745,16 @@ Below are two plots (and corresponding correlation coefficients) for religious a
 For these analyses of intercepts, the fitted model that we are using for the plot and correlation keeps the assessment at the Session0 intercept.
 
 
-```r
-# Using the slopes and intercepts from the linear model fitted by id
-# generated for use in table 2.3
-plot(RndmSmpl30$DRel0, ints1, xlab = "Religion", ylab = "Fitted initial status")
+``` r
+#Using the slopes and intercepts from the linear model fitted by id
+#generated for use in table 2.3
+plot(RndmSmpl30$DRel0, ints1, xlab="Religion", ylab="Fitted initial status")
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-40-1.png)<!-- -->
 
 
-```r
+``` r
 cor(RndmSmpl30$DRel0, ints1)
 ```
 
@@ -1803,15 +1767,15 @@ For religion, looking at the dots on 0 and 1 and the correlation, it looks like 
 **Next, is Anxiety at Session 1 different as a function of level of sexual identity?**
 
 
-```r
-plot(RndmSmpl30$Het0, ints1, xlab = "Sexual Identity", ylab = "Fitted initial status")
+``` r
+plot(RndmSmpl30$Het0, ints1, xlab="Sexual Identity", ylab="Fitted initial status")
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-42-1.png)<!-- -->
 The plot of this random sample of data emphasizes that those who identify as LGBQQ are, proportionately, much smaller. Their range of anxiety is more restricted, but higher.
 
 
-```r
+``` r
 cor(RndmSmpl30$Het0, ints1)
 ```
 
@@ -1823,13 +1787,13 @@ Looking at the correlation of intercepts and plot together, wee see that anxiety
 **Next, we look at 2 more plots and correlations for religion and sexual identity regarding slope/rate of change.**
 
 
-```r
-plot(RndmSmpl30$DRel0, slopes1, xlab = "Religion", ylab = "Fitted rate of change")
+``` r
+plot(RndmSmpl30$DRel0, slopes1, xlab="Religion", ylab="Fitted rate of change")
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-44-1.png)<!-- -->
 
-```r
+``` r
 cor(RndmSmpl30$DRel0, slopes1)
 ```
 
@@ -1841,14 +1805,15 @@ The plot is the rate of change or slope. It's maybe a little more difficult to p
 **What about change in anxiety as a function of sexual identity?**
 
 
-```r
-plot(RndmSmpl30$Het0, slopes1, xlab = "Sexual Identity", ylab = "Fitted rate of change")
+``` r
+plot(RndmSmpl30$Het0, slopes1, xlab = "Sexual Identity", ylab =
+  "Fitted rate of change")
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-46-1.png)<!-- -->
 
 
-```r
+``` r
 cor(RndmSmpl30$Het0, slopes1)
 ```
 
@@ -1939,147 +1904,127 @@ One suggestion for practice is to work the second MLM example in the Lefevor et 
 
 
 
-```r
+``` r
 set.seed(200513)
 n_client = 12825
 n_session = 5
-b0 = 1.84  #intercept for depression
-b1 = -0.28  #b weight for L1 session
-b2 = 0.15  #b weight for L2 sexual identity
-b3 = -0.06  #b weight for L2 Rel1 (D-R vs ND-R & ND-U)
-b4 = 0.04  #b weight for the L2 Rel2 (ND-R vs ND-U)
-# the values used below are the +/- 3SD they produce continuous
-# variables which later need to be transformed to categorical ones;
-# admittedly this introduces a great deal of error/noise into the
-# simulation the article didn't include a correlation matrix or M/SDs
-# so this was a clunky process
-(Session = runif(n_client * n_session, -3.67, 3.12))  #calc L1 Session, values are the +/3 3SD
-(SexualIdentity = rep(runif(n_session, -6.64, 6.94), each = n_session))  #calc L2 Sexual Identity, values are the +/3 3SD
-(Religion1 = rep(runif(n_session, -3.46, 3.34), each = n_session))  #calc L2 Religion1, values are the +/3 3SD
-(Religion2 = rep(runif(n_session, -3.44, 3.36), each = n_session))  #calc L2 Religion2, values are the +/3 3SD
-mu = 1.49  #intercept of empty model 
-sds = 2.264  #this is the SD of the DV
-sd = 1  #this is the observation-level random effect variance that we set at 1
+b0 = 1.84 #intercept for depression
+b1 = -.28 #b weight for L1 session
+b2 = .15 #b weight for L2 sexual identity
+b3 =  -.06 #b weight for L2 Rel1 (D-R vs ND-R & ND-U)
+b4 = 0.04 #b weight for the L2 Rel2 (ND-R vs ND-U)
+#the values used below are the +/- 3SD they produce continuous variables which later need to be transformed to categorical ones; admittedly this introduces a great deal of error/noise into the simulation
+#the article didn't include a correlation matrix or M/SDs so this was a clunky process 
+( Session = runif(n_client*n_session, -3.67, 3.12)) #calc L1 Session, values are the +/3 3SD
+( SexualIdentity = rep(runif(n_session, -6.64, 6.94), each = n_session)) #calc L2 Sexual Identity, values are the +/3 3SD
+( Religion1 = rep(runif(n_session, -3.46, 3.34), each = n_session)) #calc L2 Religion1, values are the +/3 3SD
+( Religion2 = rep (runif(n_session, -3.44, 3.36), each = n_session)) #calc L2 Religion2, values are the +/3 3SD
+mu = 1.49 #intercept of empty model 
+sds = 2.264 #this is the SD of the DV
+sd = 1 #this is the observation-level random effect variance that we set at 1
 
-# ( church = rep(LETTERS[1:n_church], each = n_mbrs) ) #this worked
-# in the prior
-(client = rep(LETTERS[1:n_client], each = n_session))
-# ( session = numbers[1:(n_client*n_session)] )
-(clienteff = rnorm(n_client, 0, sds))
-(clienteff = rep(clienteff, each = n_session))
-(sessioneff = rnorm(n_client * n_session, 0, sd))
-(Depression = b0 + b1 * Session + b2 * SexualIdentity + b3 * Religion1 +
-    b4 * Religion2 + clienteff + sessioneff)
-(dat = data.frame(client, clienteff, sessioneff, Session, SexualIdentity,
-    Religion1, Religion2, Depression))
+#( church = rep(LETTERS[1:n_church], each = n_mbrs) ) #this worked in the prior
+( client = rep(LETTERS[1:n_client], each = n_session) )
+#( session = numbers[1:(n_client*n_session)] )
+( clienteff = rnorm(n_client, 0, sds) )
+( clienteff = rep(clienteff, each = n_session) )
+( sessioneff = rnorm(n_client*n_session, 0, sd) )
+( Depression = b0 + b1*Session + b2*SexualIdentity + b3*Religion1 + b4*Religion2 + clienteff + sessioneff)
+( dat = data.frame(client, clienteff, sessioneff, Session, SexualIdentity, Religion1, Religion2, Depression) )
 
 library(dplyr)
-dat <- dat %>%
-    mutate(ID = row_number())
-# moving the ID number to the first column; requires
-dat <- dat %>%
-    select(ID, everything())
+dat <- dat %>% mutate(ID = row_number())
+#moving the ID number to the first column; requires 
+dat <- dat%>%select(ID, everything())
 
-Lefevor2017D <- dat %>%
-    select(ID, client, Session, SexualIdentity, Religion1, Religion2, Depression)
+Lefevor2017D <- dat%>%
+  select(ID, client, Session, SexualIdentity, Religion1, Religion2, Depression)
 
 Lefevor2017D$ClientID <- rep(c(1:12825), each = 5)
-# rounded Sexual Identity into dichotomous variable 85% were
-# heterosexual,
+#rounded Sexual Identity into dichotomous variable
+#85% were heterosexual, 
 
-# Rel2 has contrast codes for dominant religion (DR, 0), nondominant
-# religious (NDR, 1) and nondominant unspecified (NDU, -1) Strategy
-# is to figure out the raw score associated with the percentile rank
-# of -1 and 0, to set the breakpoints for the coding NDU coded as -1
-# 19.2+13.5+9.6 NDU has bottom 42.3 percent
+#Rel2 has contrast codes for dominant religion (DR, 0), nondominant religious (NDR, 1) and nondominant unspecified (NDU, -1)
+#Strategy is to figure out the raw score associated with the percentile rank of  -1 and 0, to set the breakpoints for the coding
+#NDU coded as -1
+#19.2+13.5+9.6
+#NDU has bottom 42.3 percent
 
-# DR coded as 0, so quantile cut will be 42.3 + 52.7 = 95th 33.4 +
-# 19.3 52.7% of sample (according to article) was DR must look up
-# percentile ranks for 5% and 57.5%
+#DR coded as 0, so quantile cut will be 42.3 + 52.7 = 95th
+#33.4 + 19.3
+#52.7% of sample (according to article) was DR
+#must look up percentile ranks for 5% and 57.5%
 
-# NDR 2.3+1+1+.7 NDR has 5% of sample 42.3+52.7
-quantile(Lefevor2017D$Religion2, probs = c(0.423, 0.95))
-# effects coding the second Religion variable so that NDU = -1, DR =
-# 0, NDR = 1
-Lefevor2017D$Rel2L2 <- ifelse(Lefevor2017D$Religion2 <= -0.3304528, -1,
-    ifelse(Lefevor2017D$Religion2 >= -0.3304529 & Lefevor2017D$Religion2 <=
-        2.4446784, 0, 1))
+#NDR
+#2.3+1+1+.7
+#NDR has 5% of sample
+#42.3+52.7
+quantile(Lefevor2017D$Religion2, probs = c(.423, .95))
+#effects coding the second Religion variable so that NDU = -1, DR = 0, NDR = 1
+Lefevor2017D$Rel2L2 <- ifelse(Lefevor2017D$Religion2 <= -0.3304528 , -1, 
+                             ifelse(Lefevor2017D$Religion2 >= -0.3304529 & Lefevor2017D$Religion2 <= 2.4446784, 0,1))
 
-# creating the religion variable where DR is 0 and NDR and NDU are
-# both 1
-Lefevor2017D$DRel0 <- plyr::mapvalues(Lefevor2017D$Rel2L2, from = c(-1,
-    0, 1), to = c(1, 0, 1))
+#creating the  religion variable where DR is 0 and NDR and NDU are both 1
+Lefevor2017D$DRel0 <- plyr::mapvalues(Lefevor2017D$Rel2L2, from = c(-1, 0, 1), to = c(1, 0, 1))
 ```
 
 ```
 ## The following `from` values were not present in `x`: 1
 ```
 
-```r
-# checking DRel0_table <- table(Lefevor2017D$DRel0)
-# prop.table(DRel0_table) heterosexual is -1 LGBQQ is 1
-# quantile(Lefevor2017D$SexualIdentity, probs = c(.85))
-Lefevor2017D$SexID <- ifelse(Lefevor2017D$SexualIdentity <= 5.747946, -1,
-    1)
-Lefevor2017D$Het0 <- plyr::mapvalues(Lefevor2017D$SexID, from = c(-1, 1),
-    to = c(0, 1))
-# Het0_table <- table(Lefevor2017D$Het0) prop.table(Het0_table)#to
-# make sure that 85% are coded 0 for Het
+``` r
+#checking 
+#DRel0_table <- table(Lefevor2017D$DRel0)
+#prop.table(DRel0_table)
+#heterosexual is -1
+#LGBQQ is 1
+#quantile(Lefevor2017D$SexualIdentity, probs = c(.85))
+Lefevor2017D$SexID <- ifelse(Lefevor2017D$SexualIdentity <= 5.747946, -1,1)
+Lefevor2017D$Het0 <- plyr::mapvalues(Lefevor2017D$SexID, from = c(-1,1), to = c(0,1))
+#Het0_table <- table(Lefevor2017D$Het0)
+#prop.table(Het0_table)#to make sure that 85% are coded 0 for Het
 
-# creating a variable representing the session number for each
-# client, in the article up to 20 sessions were allowed.
-# install.packages('scales')
+#creating a variable representing the session number for each client, in the article up to 20 sessions were allowed. 
+#install.packages("scales")
 
-# Right from the beginning I centered this so that 0 would represent
-# intake
-Lefevor2017D$Session0 <- as.integer(scales::rescale(Lefevor2017D$Session,
-    to = c(0, 19)))
+#Right from the beginning I centered this so that 0 would represent intake
+Lefevor2017D$Session0 <- as.integer(scales::rescale(Lefevor2017D$Session, to = c(0, 19)))
 
-# creating session waves (1 thru 5) by rank ordering within each
-# person's variable the continuous variable Session that was created
-# in the original simulation
-Lefevor2017D <- Lefevor2017D %>%
-    dplyr::group_by(ClientID) %>%
-    dplyr::mutate(Index = rank(Session))
+#creating session waves (1 thru 5) by rank ordering within each person's variable the continuous variable Session that was created in the original simulation
+Lefevor2017D <- Lefevor2017D%>%
+  dplyr::group_by(ClientID) %>%
+  dplyr::mutate(Index = rank(Session))
 
-# selecting the simulated variables
-Lefevor2017D_sim <- Lefevor2017D %>%
-    dplyr::select(ClientID, Index, Session0, Depression, DRel0, Het0)
+#selecting the simulated variables
+Lefevor2017D_sim <- Lefevor2017D%>%
+  dplyr::select(ClientID, Index, Session0, Depression, DRel0, Het0)
 
-# In the transition from long-to-wide, it seems like you can only do
-# one L1 variable at a time When there are multiple L1 and L2 vars,
-# put all L2 vars on left of tilde The wave/index function should
-# come next; this should be finite (like integers of 1,2,3,4) with a
-# maximum Put the name of the SINGLE L1 variable in the concatonated
-# list
+#In the transition from long-to-wide, it seems like you can only do one L1 variable at a time
+#When there are multiple L1 and L2 vars, put all L2 vars on left of tilde
+#The wave/index function should come next; this should be finite (like integers of 1,2,3,4) with a maximum
+#Put the name of the SINGLE L1 variable in the concatonated list
 library(data.table)
-DLfvrWp1 <- reshape2::dcast(Lefevor2017D_sim, ClientID + DRel0 + Het0 ~
-    Index, value.var = c("Index"))
-# rename the anxiety variable
-DLfvrWp1 <- rename(DLfvrWp1, Index1 = "1", Index2 = "2", Index3 = "3",
-    Index4 = "4", Index5 = "5")
-DLfvrWp2 <- reshape2::dcast(Lefevor2017D_sim, ClientID ~ Index, value.var = c("Depression"))
-# rename the anxiety variable
-DLfvrWp2 <- rename(DLfvrWp2, Dep1 = "1", Dep2 = "2", Dep3 = "3", Dep4 = "4",
-    Dep5 = "5")
-# For remaining L1 variable, do them one at a time -- key them from
-# the person-level ID and the wave/index.
-DLfvrWp3 <- reshape2::dcast(Lefevor2017D_sim, ClientID ~ Index, value.var = c("Session0"))
-DLfvrWp3 <- rename(DLfvrWp3, Sess1 = "1", Sess2 = "2", Sess3 = "3", Sess4 = "4",
-    Sess5 = "5")
-# Next, join the dataframes by the person-level ID Only two can be
-# joined at a time
+DLfvrWp1<-reshape2::dcast(Lefevor2017D_sim, ClientID + DRel0 + Het0 ~ Index, value.var = c("Index"))
+#rename the anxiety variable
+DLfvrWp1<-  rename(DLfvrWp1, Index1 = "1", Index2 = "2", Index3 = "3", Index4 = "4", Index5 = "5")
+DLfvrWp2<-reshape2::dcast(Lefevor2017D_sim, ClientID ~ Index, value.var = c("Depression"))
+#rename the anxiety variable
+DLfvrWp2<-  rename(DLfvrWp2, Dep1 = "1", Dep2 = "2", Dep3 = "3", Dep4 = "4", Dep5 = "5")
+#For remaining L1 variable, do them one at a time -- key them from the person-level ID and the wave/index.
+DLfvrWp3<-reshape2::dcast(Lefevor2017D_sim, ClientID ~ Index, value.var = c("Session0"))
+DLfvrWp3<-  rename(DLfvrWp3, Sess1 = "1", Sess2 = "2", Sess3 = "3", Sess4 = "4", Sess5 = "5")
+#Next, join the dataframes by the person-level ID
+#Only two can be joined at a time
 DLfvrWide <- dplyr::full_join(DLfvrWp1, DLfvrWp2, by = c("ClientID"))
-DLfvrWide <- dplyr::full_join(DLfvrWide, DLfvrWp3, by = c("ClientID"))
+DLfvrWide <- dplyr::full_join(DLfvrWide, DLfvrWp3,  by = c("ClientID"))
 ```
 
 The parallel dataset with depression as the outcome is called:  DLfvrWide  Here is script to save it as an outfile and then import it back into R.
 
 
-```r
-write.table(DLfvrWide, file = "DLfvrWide.csv", sep = ",", col.names = TRUE,
-    row.names = FALSE)
-DLfvrWide <- read.csv("DLfvrWide.csv", head = TRUE, sep = ",")
+``` r
+write.table(DLfvrWide, file="DLfvrWide.csv", sep=",", col.names=TRUE, row.names=FALSE)
+DLfvrWide <- read.csv ("DLfvrWide.csv", head = TRUE, sep = ",")
 ```
 
 
@@ -2108,31 +2053,22 @@ An image of the design may be useful in understanding what we are doing:
 ###  ###  Import the data and format the variables in the model {-}
 
 
-```r
+``` r
 raw <- readRDS("ReC.rds")
 ```
 
 Scoring the variables. 
 
-```r
-TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
-    "ClearOrganization", "ClearPresentation")
-raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], 0.75)
+``` r
+raw$TradPed <- datawizard::row_means(raw, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 
-SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
-    "DEIintegration")
-raw$SRPed <- sjstats::mean_n(raw[, ..SRPed_vars], 0.75)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. raw$TradPed <- sjstats::mean_n(raw[,
-# ..TradPed_vars], .75))
+raw$SRPed <- datawizard::row_means(raw, select = c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration'), min_valid = .75)
 ```
 
 I will create a babydf to include only the variables in the analysis.
 
 
-```r
+``` r
 longdf <- dplyr::select(raw, deID, Course, Centering, TradPed, SRPed)
 ```
 
@@ -2141,7 +2077,7 @@ longdf <- dplyr::select(raw, deID, Course, Centering, TradPed, SRPed)
 My data is long, so I will make it wide. I first need to give it an Index variable. In this data, students took ANOVA first, multivariate second, and psychometrics third.
 
 
-```r
+``` r
 longdf$Course <- factor(longdf$Course,levels = c("ANOVA", "Multivariate", "Psychometrics"))
 str(longdf$Course)
 ```
@@ -2152,14 +2088,14 @@ str(longdf$Course)
 
 
 
-```r
+``` r
 longdf$Index <- plyr::mapvalues(longdf$Course, from = c('ANOVA', 'Multivariate', 'Psychometrics'), to = c(1, 2, 3))
 ```
 
 It seems like we can only do one L1 variable at a time.
 
 
-```r
+``` r
 library(data.table)
 W1<-reshape2::dcast(longdf, deID + Centering ~ Index, value.var = c("Index"))
 #rename the anxiety variable
@@ -2180,7 +2116,7 @@ widedf <- dplyr::full_join(widedf, W3,  by = c("deID"))
 ### Produce multilevel descriptive statistics and correlation matrix
 
 
-```r
+``` r
 misty::multilevel.descript(longdf[, c("TradPed", "SRPed")], cluster = longdf$deID)
 ```
 
@@ -2207,20 +2143,19 @@ misty::multilevel.descript(longdf[, c("TradPed", "SRPed")], cluster = longdf$deI
 ##                                        
 ##   Design effect             1.65   1.62
 ##   Design effect sqrt        1.29   1.27
-##   Effective sample size   185.64 184.65
+##   Effective sample size   185.64 184.64
 ```
 
 
-```r
-corrmatrix <- misty::multilevel.cor(longdf[, c("TradPed", "SRPed")], cluster = longdf$deID,
-    split = FALSE, output = TRUE, write = "MLMcorr.xlsx", print = c("cor",
-        "p"), digits = 3, missing = "listwise")
+``` r
+corrmatrix <- misty::multilevel.cor(longdf[, c("TradPed", "SRPed")],
+               cluster = longdf$deID, split=FALSE, output = TRUE, write = "MLMcorr.xlsx", print = c("cor", "p"), digits = 3, missing = "listwise")
 ```
 
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                                  
-##   lavaan 0.6.17                                  
+##   lavaan 0.6-18                                  
 ##                                                  
 ##    Estimator                             ML      
 ##    Standard Errors             Conventional      
@@ -2232,7 +2167,7 @@ corrmatrix <- misty::multilevel.cor(longdf[, c("TradPed", "SRPed")], cluster = l
 ## 
 ##            TradPed SRPed
 ##    TradPed         0.836
-##    SRPed     0.561      
+##    SRPed     0.562      
 ## 
 ##  Significance Value (p-value)
 ## 
@@ -2246,14 +2181,14 @@ corrmatrix <- misty::multilevel.cor(longdf[, c("TradPed", "SRPed")], cluster = l
 ##        Lower triangular: Within-Group, Upper triangular: Between-Group
 ```
 
-```r
+``` r
 corrmatrix
 ```
 
 ```
 ##  Within-Group and Between-Group Correlation Matrix
 ##                                                  
-##   lavaan 0.6.17                                  
+##   lavaan 0.6-18                                  
 ##                                                  
 ##    Estimator                             ML      
 ##    Standard Errors             Conventional      
@@ -2265,7 +2200,7 @@ corrmatrix
 ## 
 ##            TradPed SRPed
 ##    TradPed         0.836
-##    SRPed     0.561      
+##    SRPed     0.562      
 ## 
 ##  Significance Value (p-value)
 ## 
@@ -2284,7 +2219,7 @@ corrmatrix
 
 Quick way to obtain a random set from the long file.
 
-```r
+``` r
 str(longdf)
 ```
 
@@ -2301,16 +2236,16 @@ str(longdf)
 The exploratory plots I want to create require at least 3 pieces of data per person, so I will first create a sample of data where each person contributes 3 waves and data is non-missing. Please note -- this is NOT the final set I will analyze. Rather, this will allow me a preview into the data to see if my "occular anlysis" (i.e., "just looking at it") identifies any particular trends.
 
 
-```r
+``` r
 library(tidyverse) #needed for pipes used in chunk
 ```
 
 ```
 ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ lubridate 1.9.2     ✔ tibble    3.2.1
-## ✔ purrr     1.0.1     ✔ tidyr     1.3.0
-## ✔ readr     2.1.4     
+## ✔ lubridate 1.9.3     ✔ tibble    3.2.1
+## ✔ purrr     1.0.2     ✔ tidyr     1.3.1
+## ✔ readr     2.1.5     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ ggplot2::%+%()        masks psych::%+%()
 ## ✖ ggplot2::alpha()      masks psych::alpha(), scales::alpha()
@@ -2336,7 +2271,7 @@ library(tidyverse) #needed for pipes used in chunk
 ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
-```r
+``` r
 rndm30 <-na.omit(longdf)
 
 rndm30 <- rndm30%>%
@@ -2345,7 +2280,7 @@ rndm30 <- rndm30%>%
 ```
 From this complete set of data, I will creat a subsample of 30 sets of data.
 
-```r
+``` r
 #setting the random seed will mean that the same 30 are always pulled (even though the process is otherwise "random")
 set.seed(20231113)
 
@@ -2353,7 +2288,7 @@ rndm30 <- subset(rndm30, deID %in% sample(unique(rndm30$deID), 30))
 ```
 
 
-```r
+``` r
 str(rndm30$Index)
 ```
 
@@ -2361,13 +2296,13 @@ str(rndm30$Index)
 ##  Factor w/ 3 levels "1","2","3": 3 3 3 3 3 3 3 3 3 3 ...
 ```
 
-```r
+``` r
 rndm30$Index <- as.numeric(rndm30$Index)
 ```
 
 
 
-```r
+``` r
 ggplot(data = rndm30, aes(x = Index, y = SRPed)) + geom_point() + geom_line() +
     facet_wrap(~deID)
 ```
@@ -2377,9 +2312,9 @@ ggplot(data = rndm30, aes(x = Index, y = SRPed)) + geom_point() + geom_line() +
 ###  Explore data with a model fitted with a linear growth trajectory  {-}
 
 
-```r
-ggplot(data = rndm30, aes(x = Index, y = SRPed)) + geom_point() + stat_smooth(method = "lm",
-    se = FALSE) + facet_wrap(~deID)
+``` r
+ggplot(data = rndm30, aes(x = Index, y = SRPed)) + geom_point() +
+    stat_smooth(method = "lm", se = FALSE) + facet_wrap(~deID)
 ```
 
 ```
@@ -2392,18 +2327,18 @@ ggplot(data = rndm30, aes(x = Index, y = SRPed)) + geom_point() + stat_smooth(me
 
 
 
-```r
-ggplot(data = rndm30, aes(x = Index, y = SRPed, linetype = Centering)) +
-    geom_point() + geom_line() + facet_wrap(~deID)
+``` r
+ggplot(data = rndm30, aes(x = Index, y = SRPed, linetype = Centering)) + geom_point() + geom_line() +
+    facet_wrap(~deID)
 ```
 
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-118-1.png)<!-- -->
 
 
 
-```r
-ggplot(data = rndm30, aes(x = Index, y = SRPed, linetype = Centering)) +
-    geom_point() + stat_smooth(method = "lm", se = FALSE) + facet_wrap(~deID)
+``` r
+ggplot(data = rndm30, aes(x = Index, y = SRPed, linetype = Centering)) + geom_point() +
+    stat_smooth(method = "lm", se = FALSE) + facet_wrap(~deID) 
 ```
 
 ```
@@ -2413,7 +2348,7 @@ ggplot(data = rndm30, aes(x = Index, y = SRPed, linetype = Centering)) +
 ![](13-MLM_LongExplore_files/figure-docx/unnamed-chunk-119-1.png)<!-- -->
 
 
-```r
+``` r
 ggplot(data = rndm30) + geom_line(aes(x = Index, y = SRPed, color = as.factor(Centering), group = deID))
 ```
 

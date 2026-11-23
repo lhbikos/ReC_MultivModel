@@ -68,32 +68,17 @@ The research vignette for this chapter:
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them. 
 
-```r
-# will install the package if not already installed
-if (!require(apaTables)) {
-    install.packages("apaTables")
-}
-if (!require(lavaan)) {
-    install.packages("lavaan")
-}
-if (!require(tidyverse)) {
-    install.packages("tidyverse")
-}
-if (!require(psych)) {
-    install.packages("psych")
-}
-if (!require(jtools)) {
-    install.packages("jtools")
-}
-if (!require(broom)) {
-    install.packages("broom")
-}
-if (!require(interactions)) {
-    install.packages("interactions")
-}
-if (!require(tidySEM)) {
-    install.packages("tidySEM")
-}
+``` r
+#will install the package if not already installed
+#if(!require(apaTables)){install.packages("apaTables")}
+#if(!require(lavaan)){install.packages("lavaan")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(jtools)){install.packages("jtools")}
+#if(!require(broom)){install.packages("broom")}
+#if(!require(interactions)){install.packages("interactions")}
+#if(!require(tidySEM)){install.packages("tidySEM")}
+#if(!require(datawizard)){install.packages("datawizard")}
 ```
 
 ## On *Modeling*:  Introductory Comments on the simultaneously invisible and paradigm-shifting transition we are making
@@ -238,7 +223,7 @@ Although most regression models can be completed with the *lm()* function in bas
 In the regression classes (as well as in research designs that are cross-sectional, non-linear, and can be parsimoniously and adequately measured with OLS regression) we typically use the base R function, *lm()* ("linear model") which relies on an OLS algorithm. You can learn about it with this simple code:
 
 
-```r
+``` r
 #?lm
 ```
 
@@ -323,7 +308,7 @@ Variables used in the study included:
 The *lavaan::simulateData* function was used. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. For all others we specified a factor loading of 0.80. We then approximated the *measurement model* by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette  [@lewis_applying_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
 
 
-```r
+``` r
 #Entering the intercorrelations, means, and standard deviations from the journal article
 
 Lewis_generating_model <- '
@@ -423,14 +408,14 @@ If you prefer the .rds format, use this script (remove the hashtags). The .rds f
 Script to save the data to your computer as an .rds file.
 
 
-```r
-# saveRDS(dfLewis, 'dfLewis.rds')
+``` r
+#saveRDS(dfLewis, 'dfLewis.rds')  
 ```
 
 Once saved, you could clean your environment and bring the data back in from its .csv format.
 
-```r
-# dfLewis<- readRDS('dfLewis.rds')
+``` r
+#dfLewis<- readRDS('dfLewis.rds')
 ```
 
 If you prefer the .csv format (think "Excel lite") use this script (remove the hashtags). An advantage of the .csv format is that you can open the data outside of the R environment. A disadvantage is that it may not retain any formatting of variables
@@ -438,15 +423,14 @@ If you prefer the .csv format (think "Excel lite") use this script (remove the h
 Script to save the data to your computer as a .csv file.
 
 
-```r
-# write.table(dfLewis, file = 'dfLewis.csv', sep = ',',
-# col.names=TRUE, row.names=FALSE)
+``` r
+#write.table(dfLewis, file = 'dfLewis.csv', sep = ',', col.names=TRUE, row.names=FALSE) 
 ```
 
 Once saved, you could clean your environment and bring the data back in from its .csv format.
 
-```r
-# dfLewis<- read.csv ('dfLewis.csv', header = TRUE)
+``` r
+#dfLewis<- read.csv ('dfLewis.csv', header = TRUE)
 ```
 
 
@@ -456,45 +440,30 @@ Because the focus of this lesson is on moderation, we have used simulated data (
 
 Because we are working with item level data we do need to score the scales used in the researcher's model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.
 
-As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we  calculate mean scores of these variables by first creating concatenated lists of variable names. Next we apply the *sjstats::mean_n* function to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
+As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we the *datawizard::row_means()* function to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
 
 Note that I am only scoring the variables used in the models demonstrated in this lesson. The remaining variables are available as practice options.
 
 
-```r
-GRMS_vars <- c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8",
-    "Ob9", "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1",
-    "St2", "St3", "St4", "St5", "An1", "An2", "An3")
-Eng_vars <- c("Eng1", "Eng2")
-dEng_vars <- c("dEng1", "dEng2")
-MntlHlth_vars <- c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6")
-Cntrlty_vars <- c("Cntrlty1", "Cntrlty2", "Cntrlty3", "Cntrlty4", "Cntrlty5",
-    "Cntrlty6", "Cntrlty7", "Cntrlty8", "Cntrlty9", "Cntrlty10")
-
-dfLewis$GRMS <- sjstats::mean_n(dfLewis[, GRMS_vars], 0.8)
-dfLewis$Engmt <- sjstats::mean_n(dfLewis[, Eng_vars], 0.8)
-dfLewis$DisEngmt <- sjstats::mean_n(dfLewis[, dEng_vars], 0.8)
-dfLewis$MntlHlth <- sjstats::mean_n(dfLewis[, MntlHlth_vars], 0.8)
-dfLewis$Centrality <- sjstats::mean_n(dfLewis[, Cntrlty_vars], 0.8)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfLewis$GRMS <-
-# sjstats::mean_n(dfLewis[, ..GRMS_vars], 0.80)
+``` r
+dfLewis$GRMS <- datawizard::row_means(dfLewis, select = c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8", "Ob9", "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1", "St2", "St3", "St4", "St5", "An1", "An2", "An3"), min_valid = .80)
+dfLewis$Engmt <- datawizard::row_means(dfLewis, select = c("Eng1", "Eng2"), min_valid = .80)
+dfLewis$DisEngmt <- datawizard::row_means(dfLewis, select = c("dEng1", "dEng2"), min_valid = .80)
+dfLewis$MntlHlth <- datawizard::row_means(dfLewis, select = c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6"), min_valid = .80)
+dfLewis$Centrality <- datawizard::row_means(dfLewis, select = c("Cntrlty1", "Cntrlty2", "Cntrlty3", "Cntrlty4", "Cntrlty5", "Cntrlty6", "Cntrlty7", "Cntrlty8", "Cntrlty9", "Cntrlty10"), min_valid = .80)
 ```
 
 Now that we have scored our data, let's trim the variables to just those we need.
 
-```r
+``` r
 Lewis_df <- dplyr::select(dfLewis, GRMS, Centrality, MntlHlth)
 ```
 
 Let's check a table of means, standard deviations, and correlations to see if they align with the published article.
 
 
-```r
-Lewis_table <- apaTables::apa.cor.table(Lewis_df, table.number = 1, show.sig.stars = TRUE,
-    landscape = TRUE, filename = "Lewis_Corr.doc")
+``` r
+Lewis_table <- apaTables::apa.cor.table(Lewis_df, table.number = 1, show.sig.stars=TRUE, landscape=TRUE, filename="Lewis_Corr.doc")
 print(Lewis_table)
 ```
 
@@ -527,7 +496,7 @@ that could have caused the sample correlation (Cumming, 2014).
 The *psych::pairs.panels* function provides another view.
 
 
-```r
+``` r
 library(psych)
 psych::pairs.panels(Lewis_df)
 ```
@@ -556,93 +525,42 @@ In this demonstration we will use the *lm()* function in base R to evaluate gend
 Let's specify this simple moderation model with base R's *lm()* function. We'll use the *jtools::summ* function to produce a journal-friendly table and *interactions::interaction_plot* for information rich figures.
 
 
-```r
-LewisSimpMod <- lm(MntlHlth ~ GRMS * Centrality, data = Lewis_df)
-# the base R output if you prefer this view summary(LewisSimpMod)
+``` r
+LewisSimpMod <- lm(MntlHlth~GRMS*Centrality, data=Lewis_df)
+#the base R output if you prefer this view
+#summary(LewisSimpMod) 
 ```
 **Table 3**
 
-```r
+``` r
 LewisSimpMod_summ <- jtools::summ(LewisSimpMod, digits = 3)
 LewisSimpMod_summ
 ```
 
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Observations </td>
-   <td style="text-align:right;"> 231 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Dependent variable </td>
-   <td style="text-align:right;"> MntlHlth </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Type </td>
-   <td style="text-align:right;"> OLS linear regression </td>
-  </tr>
-</tbody>
-</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> F(3,227) </td>
-   <td style="text-align:right;"> 37.386 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> R² </td>
-   <td style="text-align:right;"> 0.331 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Adj. R² </td>
-   <td style="text-align:right;"> 0.322 </td>
-  </tr>
-</tbody>
-</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> Est. </th>
-   <th style="text-align:right;"> S.E. </th>
-   <th style="text-align:right;"> t val. </th>
-   <th style="text-align:right;"> p </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> (Intercept) </td>
-   <td style="text-align:right;"> 6.138 </td>
-   <td style="text-align:right;"> 0.767 </td>
-   <td style="text-align:right;"> 8.007 </td>
-   <td style="text-align:right;"> 0.000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> GRMS </td>
-   <td style="text-align:right;"> -1.248 </td>
-   <td style="text-align:right;"> 0.290 </td>
-   <td style="text-align:right;"> -4.299 </td>
-   <td style="text-align:right;"> 0.000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Centrality </td>
-   <td style="text-align:right;"> -0.351 </td>
-   <td style="text-align:right;"> 0.199 </td>
-   <td style="text-align:right;"> -1.764 </td>
-   <td style="text-align:right;"> 0.079 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> GRMS:Centrality </td>
-   <td style="text-align:right;"> 0.157 </td>
-   <td style="text-align:right;"> 0.073 </td>
-   <td style="text-align:right;"> 2.132 </td>
-   <td style="text-align:right;"> 0.034 </td>
-  </tr>
-</tbody>
-<tfoot><tr><td style="padding: 0; " colspan="100%">
-<sup></sup> Standard errors: OLS</td></tr></tfoot>
-</table>
+```
+MODEL INFO:
+Observations: 231
+Dependent Variable: MntlHlth
+Type: OLS linear regression 
+
+MODEL FIT:
+F(3,227) = 37.396, p = 0.000
+R² = 0.331
+Adj. R² = 0.322 
+
+Standard errors: OLS
+-------------------------------------------------------
+                          Est.    S.E.   t val.       p
+--------------------- -------- ------- -------- -------
+(Intercept)              6.140   0.767    8.006   0.000
+GRMS                    -1.249   0.291   -4.298   0.000
+Centrality              -0.351   0.199   -1.765   0.079
+GRMS:Centrality          0.157   0.073    2.130   0.034
+-------------------------------------------------------
+```
 The following code can export the OLS regression results into a .csv. This can be opened with Excel for use in table-making. Note that this makes use of the *broom* package.
 
-```r
+``` r
 LewSimpModOLS <- as.data.frame(broom::tidy(LewisSimpMod))
 write.csv(LewSimpModOLS, "LewSimpModOLS.csv")
 ```
@@ -650,16 +568,14 @@ write.csv(LewSimpModOLS, "LewSimpModOLS.csv")
 Looking at these results we can see that the predictors account for about 33% of variance in anxiety. Further, there is a statistically significant interaction of GRMS and Centrality on MntlHlth  The *interaction_plot()* function from the package, *interactions* can illustrate these effects.  In the case of interactions/moderations, I like to run them "both ways" to see which makes more sense.
 
 
-```r
-interactions::interact_plot(LewisSimpMod, pred = GRMS, modx = Centrality) +
-    ylim(1, 6)
+``` r
+interactions::interact_plot(LewisSimpMod, pred = GRMS, modx = Centrality) + ylim(1, 6)
 ```
 
 ![](07-SimpleMod_files/figure-docx/unnamed-chunk-20-1.png)<!-- -->
 
-```r
-interactions::interact_plot(LewisSimpMod, pred = Centrality, modx = GRMS) +
-    ylim(1, 6)
+``` r
+interactions::interact_plot(LewisSimpMod, pred = Centrality, modx = GRMS) + ylim(1, 6)
 ```
 
 ![](07-SimpleMod_files/figure-docx/unnamed-chunk-20-2.png)<!-- -->
@@ -675,14 +591,14 @@ The Johnson-Neyman is a *floodlight* approach and provides an indication of the 
 This first analysis corresponds with the first plot, where centrality is the moderator. 
 
 
-```r
+``` r
 interactions::sim_slopes(LewisSimpMod, pred = GRMS, modx = Centrality)
 ```
 
 ```
 JOHNSON-NEYMAN INTERVAL 
 
-When Centrality is OUTSIDE the interval [5.92, 58.37], the slope of GRMS is
+When Centrality is OUTSIDE the interval [5.92, 58.74], the slope of GRMS is
 p < .05.
 
 Note: The range of observed values of Centrality is [1.90, 6.00]
@@ -699,13 +615,13 @@ Slope of GRMS when Centrality = 3.938095 (Mean):
 
    Est.   S.E.   t val.      p
 ------- ------ -------- ------
-  -0.63   0.06   -10.01   0.00
+  -0.63   0.06   -10.02   0.00
 
 Slope of GRMS when Centrality = 4.693668 (+ 1 SD): 
 
    Est.   S.E.   t val.      p
 ------- ------ -------- ------
-  -0.51   0.09    -5.85   0.00
+  -0.51   0.09    -5.86   0.00
 ```
 The Johnson-Neyman in this case is a bit tricky to interpret. It tells us that the slope representing the effect of GRMS on mental health is statistically significant when the value of centrality is *outside* the values of 5.92 to 58.37. Curiously, our centrality values ranged from 1 to 6. Thus, in our sample, there would be a statistically significant effect of GRMS on mental health at nearly all levels of centrality. 
 
@@ -714,14 +630,14 @@ I find the simple slopes analysis to be easier to read. Here, we are presented t
 If we switch the roles of the independent and moderator values, we can see the same data, differently.
 
 
-```r
-interactions::sim_slopes(LewisSimpMod, pred = Centrality, modx = GRMS)
+``` r
+interactions::sim_slopes(LewisSimpMod, pred=Centrality, modx = GRMS) 
 ```
 
 ```
 JOHNSON-NEYMAN INTERVAL 
 
-When GRMS is OUTSIDE the interval [-2.70, 3.17], the slope of Centrality is
+When GRMS is OUTSIDE the interval [-2.70, 3.18], the slope of Centrality is
 p < .05.
 
 Note: The range of observed values of GRMS is [0.32, 4.24]
@@ -732,13 +648,13 @@ Slope of Centrality when GRMS = 1.835658 (- 1 SD):
 
    Est.   S.E.   t val.      p
 ------- ------ -------- ------
-  -0.06   0.08    -0.78   0.44
+  -0.06   0.08    -0.78   0.43
 
 Slope of Centrality when GRMS = 2.557056 (Mean): 
 
   Est.   S.E.   t val.      p
 ------ ------ -------- ------
-  0.05   0.06     0.83   0.41
+  0.05   0.06     0.82   0.41
 
 Slope of Centrality when GRMS = 3.278455 (+ 1 SD): 
 
@@ -786,8 +702,8 @@ Let's specify this same problem with a path analysis (i.e., using manifest or ob
   
 
 
-```r
-LewisSimpModMLE <- "
+``` r
+LewisSimpModMLE <- '
     MntlHlth ~ b1*GRMS + b2*Centrality + b3*GRMS:Centrality
     
     #intercept (constant) of MntlHlth
@@ -801,32 +717,16 @@ LewisSimpModMLE <- "
     SD.below := b1 + b3*(Centrality.mean - sqrt(Centrality.var))
     mean := b1 + b3*(Centrality.mean)
     SD.above := b1 + b3*(Centrality.mean + sqrt(Centrality.var))
-"
-set.seed(230925)  #needed for reproducibility especially when asking for bootstrapped confidence intervals
-LewMLEfit <- lavaan::sem(LewisSimpModMLE, data = Lewis_df, missing = "fiml",
-    se = "bootstrap", bootstrap = 1000)
-```
-
-```
-Warning in lav_partable_vnames(FLAT, "ov.x", warn = TRUE): lavaan WARNING:
-    model syntax contains variance/covariance/intercept formulas
-    involving (an) exogenous variable(s): [Centrality]; These
-    variables will now be treated as random introducing additional
-    free parameters. If you wish to treat those variables as fixed,
-    remove these formulas from the model syntax. Otherwise, consider
-    adding the fixed.x = FALSE option.
-```
-
-```r
-LewisMLEsummary <- lavaan::summary(LewMLEfit, standardized = TRUE, fit = TRUE,
-    ci = TRUE)
-LewisMLEParamEsts <- lavaan::parameterEstimates(LewMLEfit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+'
+set.seed(230925)#needed for reproducibility especially when asking for bootstrapped confidence intervals
+LewMLEfit <- lavaan::sem(LewisSimpModMLE, data = Lewis_df,  missing = 'fiml', se = "bootstrap", bootstrap = 1000)
+LewisMLEsummary <- lavaan::summary(LewMLEfit, standardized = TRUE, fit=TRUE, ci=TRUE)    
+LewisMLEParamEsts <- lavaan::parameterEstimates(LewMLEfit, boot.ci.type = "bca.simple", standardized=TRUE)
 LewisMLEsummary
 ```
 
 ```
-lavaan 0.6.17 ended normally after 14 iterations
+lavaan 0.6-18 ended normally after 13 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -843,7 +743,7 @@ Model Test User Model:
 
 Model Test Baseline Model:
 
-  Test statistic                               659.975
+  Test statistic                               659.997
   Degrees of freedom                                 5
   P-value                                        0.000
 
@@ -857,12 +757,12 @@ User Model versus Baseline Model:
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)               -494.947
-  Loglikelihood unrestricted model (H1)       -211.334
+  Loglikelihood user model (H0)               -495.064
+  Loglikelihood unrestricted model (H1)       -211.451
                                                       
-  Akaike (AIC)                                1003.894
-  Bayesian (BIC)                              1027.991
-  Sample-size adjusted Bayesian (SABIC)       1005.805
+  Akaike (AIC)                                1004.127
+  Bayesian (BIC)                              1028.224
+  Sample-size adjusted Bayesian (SABIC)       1006.038
 
 Root Mean Square Error of Approximation:
 
@@ -891,43 +791,43 @@ Parameter Estimates:
 Regressions:
                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
   MntlHlth ~                                                            
-    GRMS      (b1)   -1.248    0.308   -4.052    0.000   -1.820   -0.550
-    Centralty (b2)   -0.351    0.205   -1.712    0.087   -0.713    0.097
-    GRMS:Cntr (b3)    0.157    0.079    1.984    0.047   -0.016    0.304
+    GRMS      (b1)   -1.249    0.308   -4.054    0.000   -1.821   -0.549
+    Centralty (b2)   -0.351    0.205   -1.715    0.086   -0.714    0.098
+    GRMS:Cntr (b3)    0.157    0.079    1.984    0.047   -0.015    0.304
    Std.lv  Std.all
                   
-   -1.248   -1.033
+   -1.249   -1.032
    -0.351   -0.304
-    0.157    0.684
+    0.157    0.683
 
 Intercepts:
                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-   .MntlHlt (MnH.)    6.138    0.783    7.840    0.000    4.285    7.481
+   .MntlHlt (MnH.)    6.140    0.782    7.848    0.000    4.288    7.485
     Cntrlty (Cnt.)    3.938    0.049   79.569    0.000    3.836    4.035
    Std.lv  Std.all
-    6.138    7.054
+    6.140    7.053
     3.938    5.223
 
 Variances:
                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
     Cntrlty (Cnt.)    0.568    0.054   10.608    0.000    0.464    0.675
-   .MntlHlt           0.438    0.040   10.834    0.000    0.357    0.510
+   .MntlHlt           0.438    0.040   10.836    0.000    0.357    0.511
    Std.lv  Std.all
     0.568    1.000
     0.438    0.578
 
 Defined Parameters:
                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-    SD.below         -0.750    0.078   -9.605    0.000   -0.884   -0.570
-    mean             -0.632    0.059  -10.760    0.000   -0.742   -0.511
-    SD.above         -0.514    0.088   -5.812    0.000   -0.688   -0.341
+    SD.below         -0.750    0.078   -9.608    0.000   -0.884   -0.571
+    mean             -0.632    0.059  -10.761    0.000   -0.742   -0.512
+    SD.above         -0.514    0.088   -5.815    0.000   -0.689   -0.341
    Std.lv  Std.all
-   -0.750    1.855
-   -0.632    2.539
-   -0.514    3.223
+   -0.750    1.854
+   -0.632    2.538
+   -0.514    3.221
 ```
 
-```r
+``` r
 LewisMLEParamEsts
 ```
 
@@ -949,26 +849,26 @@ LewisMLEParamEsts
 14            mean :=                      b1+b3*(Centrality.mean)
 15        SD.above := b1+b3*(Centrality.mean+sqrt(Centrality.var))
              label    est    se       z pvalue ci.lower ci.upper std.lv std.all
-1               b1 -1.248 0.308  -4.052  0.000   -1.822   -0.550 -1.248  -1.033
-2               b2 -0.351 0.205  -1.712  0.087   -0.706    0.118 -0.351  -0.304
-3               b3  0.157 0.079   1.984  0.047   -0.013    0.305  0.157   0.684
-4    MntlHlth.mean  6.138 0.783   7.840  0.000    4.191    7.438  6.138   7.054
+1               b1 -1.249 0.308  -4.054  0.000   -1.814   -0.549 -1.249  -1.032
+2               b2 -0.351 0.205  -1.715  0.086   -0.707    0.117 -0.351  -0.304
+3               b3  0.157 0.079   1.984  0.047   -0.013    0.305  0.157   0.683
+4    MntlHlth.mean  6.140 0.782   7.848  0.000    4.195    7.441  6.140   7.053
 5  Centrality.mean  3.938 0.049  79.569  0.000    3.834    4.035  3.938   5.223
 6   Centrality.var  0.568 0.054  10.608  0.000    0.469    0.682  0.568   1.000
-7                   0.438 0.040  10.834  0.000    0.372    0.536  0.438   0.578
+7                   0.438 0.040  10.836  0.000    0.372    0.536  0.438   0.578
 8                   0.518 0.000      NA     NA    0.518    0.518  0.518   1.000
 9                   2.334 0.000      NA     NA    2.334    2.334  2.334   0.853
 10                 14.446 0.000      NA     NA   14.446   14.446 14.446   1.000
 11                  2.557 0.000      NA     NA    2.557    2.557  2.557   3.552
 12                 10.199 0.000      NA     NA   10.199   10.199 10.199   2.683
-13        SD.below -0.750 0.078  -9.605  0.000   -0.887   -0.574 -0.750   1.855
-14            mean -0.632 0.059 -10.760  0.000   -0.742   -0.513 -0.632   2.539
-15        SD.above -0.514 0.088  -5.812  0.000   -0.688   -0.341 -0.514   3.223
+13        SD.below -0.750 0.078  -9.608  0.000   -0.889   -0.575 -0.750   1.854
+14            mean -0.632 0.059 -10.761  0.000   -0.743   -0.513 -0.632   2.538
+15        SD.above -0.514 0.088  -5.815  0.000   -0.689   -0.341 -0.514   3.221
    std.nox
-1   -1.435
+1   -1.434
 2   -0.290
 3    0.180
-4    7.054
+4    7.053
 5    5.223
 6    1.000
 7    0.578
@@ -982,14 +882,12 @@ LewisMLEParamEsts
 15  -0.315
 ```
 
-```r
-# adding rsquare=TRUE or rsq=T to both summary and parameterEstimates
-# resulted in an error related to missing values in row names; could
-# not find a solution
+``` r
+#adding rsquare=TRUE or rsq=T to both summary and parameterEstimates resulted in an error related to missing values in row names; could not find a solution
 ```
 For reasons unknown to me, I haven't been able to use the commands to produce r-square values without receiving errors. Fortunately, there is a workaround and we can call for the r-square results directly.
 
-```r
+``` r
 lavaan::lavInspect(LewMLEfit, "rsquare")
 ```
 
@@ -1004,7 +902,7 @@ Our model accounts for 42% of the variance in mental health.
 To create a table outside of R, you can export these results as a .csv file (which can be opened in Excel).
 
 
-```r
+``` r
 write.csv(LewisMLEParamEsts, file = "LewisMLEParamEsts.csv")
 ```
 
@@ -1021,13 +919,13 @@ While the *p* values will wiggle around, it is reassuring that the regression we
 We can use our *lavaan* output to create a figure that is typical of path and structural equation modeling analyses. We start by feeding the *tidySEM::graph_model* function the fit object. The function will make it's best guess for a figure. Typically, we will update it.
 
 
-```r
-# only worked when I used the library to turn on all these pkgs
+``` r
+#only worked when I used the library to turn on all these pkgs
 library(lavaan)
 ```
 
 ```
-This is lavaan 0.6-17
+This is lavaan 0.6-18
 lavaan is FREE software! Please report any bugs.
 ```
 
@@ -1042,7 +940,7 @@ The following object is masked from 'package:psych':
     cor2cov
 ```
 
-```r
+``` r
 library(dplyr)
 library(ggplot2)
 library(tidySEM)
@@ -1069,7 +967,7 @@ Registered S3 method overwritten by 'tidySEM':
   predict.MxModel OpenMx
 ```
 
-```r
+``` r
 tidySEM::graph_sem(model = LewMLEfit)
 ```
 
@@ -1077,22 +975,24 @@ tidySEM::graph_sem(model = LewMLEfit)
 We can use the *tidySEM::get_layout* function to understand how our model is being mapped.
 
 
-```r
+``` r
 tidySEM::get_layout(LewMLEfit)
 ```
 
 ```
-     [,1]              [,2]   [,3]        
-[1,] "GRMS:Centrality" NA     "Centrality"
-[2,] "MntlHlth"        "GRMS" NA          
+     [,1]              [,2]       [,3]        
+[1,] NA                NA         "Centrality"
+[2,] NA                "GRMS"     NA          
+[3,] "GRMS:Centrality" "MntlHlth" NA          
 attr(,"class")
 [1] "layout_matrix" "matrix"        "array"        
 ```
 We can write code to remap them
 
-```r
-mod_map <- tidySEM::get_layout("GRMS", "", "Centrality", "MntlHlth", "GRMS:Centrality",
-    "", rows = 3)
+``` r
+mod_map <- tidySEM::get_layout("GRMS", "", 
+                               "Centrality", "MntlHlth", 
+                               "GRMS:Centrality", "",rows=3)
 mod_map
 ```
 
@@ -1106,9 +1006,8 @@ attr(,"class")
 ```
 We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
 
-```r
-tidySEM::graph_sem(LewMLEfit, layout = mod_map, rect_width = 1.25, rect_height = 1.25,
-    spacing_x = 2, spacing_y = 3, text_size = 4.5)
+``` r
+tidySEM::graph_sem(LewMLEfit, layout=mod_map,  rect_width = 1.25, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
 ![](07-SimpleMod_files/figure-docx/unnamed-chunk-29-1.png)<!-- -->
@@ -1230,8 +1129,8 @@ Regardless of your choic(es) complete all the elements listed in the grading rub
 
 Below is template for a simple moderation conducted with the OLS approach using the base R function, *lm()*
 
-```r
-library(jtools)  #the summ function creates a terrific regression table
+``` r
+library(jtools) #the summ function creates a terrific regression table
 ```
 
 ```
@@ -1245,39 +1144,50 @@ The following object is masked from 'package:tidySEM':
     get_data
 ```
 
-```r
+``` r
 library(interactions)
 library(ggplot2)
 
-# The regression OLSmodel <- lm(Y~X*W, data=my_df) summary(OLSmodel)
+#The regression
+#OLSmodel <- lm(Y~X*W, data=my_df)
+#summary(OLSmodel)
 
-# Cool Table summ(OLSmodel, digits = 3)
+#Cool Table
+#summ(OLSmodel, digits = 3)
 
-# Probe Simple Slopes sim_slopes(OLSmodel, pred = X, modx = W)
+#Probe Simple Slopes
+#sim_slopes(OLSmodel, pred = X, modx = W)
 
-# Figures interact_plot(OLSmodel, pred = W, modx = X)
-# interact_plot(OLSmodel, pred = X, modx = W)
+#Figures
+#interact_plot(OLSmodel, pred = W, modx = X)
+#interact_plot(OLSmodel, pred = X, modx = W)
 ```
 
 Below is a template for a simple moderation conducted with the MLE approach using the package, *lavaan*.
 
 
-```r
+``` r
 library(lavaan)
-# set.seed(210501)#needed for reproducibility because lavaan
-# introduces randomness in the calculations MLEmodel <- ' Y ~ b1*X +
-# b2*W + b3*X:W intercept (constant) of Y Y ~ Y.mean*1 mean of W for
-# use in simple slopes W ~ W.mean*1 variance of W for use in simple
-# slopes W ~~ W .var*W
+#set.seed(210501)#needed for reproducibility because lavaan introduces randomness in the calculations
+#MLEmodel <- '
+    #Y ~ b1*X + b2*W + b3*X:W
+    #intercept (constant) of Y
+    #Y ~ Y.mean*1
+    #mean of W  for use in simple slopes
+    #W ~ W.mean*1
+    #variance of W for use in simple slopes
+    #W ~~ W .var*W
 
-# simple slopes SD.below := b1 + b3*(W.mean - sqrt(W.var)) mean := b1
-# + b3*(W.mean) SD.above := b1 + b3*(W.mean + sqrt(W.var))
+    #simple slopes
+    #SD.below := b1 + b3*(W.mean - sqrt(W.var))
+    #mean := b1 + b3*(W.mean)
+    #SD.above := b1 + b3*(W.mean + sqrt(W.var))
 #'
-# MLEmod_fit <- sem(MLEmodel, data = my_df, missing = 'fiml', se =
-# 'bootstrap', bootstrap = 1000) MLEmod_fit_summary <-
-# summary(MLEmod_fit, standardized = TRUE, rsq=T, ci=TRUE)
-# MLEmodParamEsts <- parameterEstimates(MLEmod_fit, boot.ci.type =
-# 'bca.simple', standardized=TRUE) MLEmod_fit_summary MLEmodParamEsts
+#MLEmod_fit <- sem(MLEmodel, data = my_df, missing = 'fiml', se = "bootstrap", bootstrap = 1000)
+#MLEmod_fit_summary <- summary(MLEmod_fit, standardized = TRUE, rsq=T, ci=TRUE)    
+#MLEmodParamEsts <- parameterEstimates(MLEmod_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+#MLEmod_fit_summary
+#MLEmodParamEsts
 ```
 
 
@@ -1305,54 +1215,51 @@ Is the effect of centering on perceived value to the student moderated by social
 ### Import the data and format the variables in the model  {-}
 
 
-```r
+``` r
 raw <- readRDS("ReC.rds")
 ```
 
 The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
 
-```r
-raw <- (dplyr::filter(raw, Course == "Multivariate"))
+``` r
+raw <-(dplyr::filter(raw, Course == "Multivariate"))
 ```
 
 I need to score the SRPed and Valued variables
 
 
-```r
-Valued_vars <- c("ValObjectives", "IncrUnderstanding", "IncrInterest")
-raw$Valued <- sjstats::mean_n(raw[, ..Valued_vars], 0.75)
+``` r
+raw$Valued <- datawizard::row_means(raw, select = c('ValObjectives', 'IncrUnderstanding','IncrInterest'), min_valid = .75)
 
-SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
-    "DEIintegration")
-raw$SRPed <- sjstats::mean_n(raw[, ..SRPed_vars], 0.75)
+raw$SRPed <- datawizard::row_means(raw, select = c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration'), min_valid = .75)
 ```
 
 
 I will create a babydf.
 
 
-```r
+``` r
 babydf <- dplyr::select(raw, Centering, Valued, SRPed)
 ```
 
 Let's check the structure of the variables:
 
 
-```r
+``` r
 str(babydf)
 ```
 
 ```
 Classes 'data.table' and 'data.frame':	84 obs. of  3 variables:
  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
- $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+ $ Valued   : num  4.33 5 4.67 3.33 4 ...
  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
  - attr(*, ".internal.selfref")=<externalptr> 
 ```
 Quick peek at relations between variables:
 
 
-```r
+``` r
 psych::pairs.panels(babydf)
 ```
 
@@ -1363,10 +1270,10 @@ psych::pairs.panels(babydf)
 ### Specify and run the OLS/*lm()* model {-} 
 
 
-```r
-ReC_SimpMod <- lm(Valued ~ Centering * SRPed, data = babydf)
-# the base R output if you prefer this view
-summary(ReC_SimpMod)
+``` r
+ReC_SimpMod <- lm(Valued~Centering*SRPed, data=babydf)
+#the base R output if you prefer this view
+summary(ReC_SimpMod) 
 ```
 
 ```
@@ -1376,21 +1283,21 @@ lm(formula = Valued ~ Centering * SRPed, data = babydf)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--1.7173 -0.3092  0.1286  0.4027  1.1286 
+-1.7140 -0.3033  0.1287  0.4029  1.1287 
 
 Coefficients:
                   Estimate Std. Error t value    Pr(>|t|)    
-(Intercept)         1.0567     0.5631   1.876      0.0644 .  
-CenteringRe        -0.5703     1.3183  -0.433      0.6665    
-SRPed               0.7037     0.1272   5.530 0.000000422 ***
-CenteringRe:SRPed   0.1185     0.2813   0.421      0.6748    
+(Intercept)         1.0551     0.5631   1.874      0.0648 .  
+CenteringRe        -0.5704     1.3181  -0.433      0.6664    
+SRPed               0.7041     0.1272   5.534 0.000000416 ***
+CenteringRe:SRPed   0.1184     0.2813   0.421      0.6749    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.5606 on 77 degrees of freedom
+Residual standard error: 0.5605 on 77 degrees of freedom
   (3 observations deleted due to missingness)
-Multiple R-squared:  0.3674,	Adjusted R-squared:  0.3427 
-F-statistic:  14.9 on 3 and 77 DF,  p-value: 0.00000009678
+Multiple R-squared:  0.3676,	Adjusted R-squared:  0.343 
+F-statistic: 14.92 on 3 and 77 DF,  p-value: 0.0000000954
 ```
 
 
@@ -1398,7 +1305,7 @@ Although there is a statistically significant main effect for socially responsiv
 
 The following code can export the OLS regression results into a .csv. This can be opened with Excel for use in table-making. Note that this makes use of the *broom* package.
 
-```r
+``` r
 ReC_SimpModOLS <- as.data.frame(broom::tidy(ReC_SimpMod))
 write.csv(ReC_SimpModOLS, "ReC_SimpModOLS.csv")
 ```
@@ -1406,7 +1313,7 @@ write.csv(ReC_SimpModOLS, "ReC_SimpModOLS.csv")
 ### Probe the interaction with the simple slopes and Johnson-Neyman approaches {-}
 
 
-```r
+``` r
 interactions::sim_slopes(ReC_SimpMod, pred = SRPed, modx = Centering)
 ```
 
@@ -1434,101 +1341,46 @@ Consistent with the main effect of socially responsive pedagogy, it has a positi
 ### Create an interaction figure {-}
 
 
-```r
+``` r
 library(ggplot2)
-interactions::interact_plot(ReC_SimpMod, pred = SRPed, modx = Centering) +
-    ylim(1, 5)
+interactions::interact_plot(ReC_SimpMod, pred = SRPed, modx = Centering) + ylim(1, 5)
 ```
 
 ![](07-SimpleMod_files/figure-docx/unnamed-chunk-76-1.png)<!-- -->
 
-```r
-# the following code will not run because for this function, the x
-# variable cannot be a factor
-# interactions::interact_plot(ReC_SimpMod, pred = Centering, modx =
-# SRPed)
+``` r
+#the following code will not run because for this function, the x variable cannot be a factor
+#interactions::interact_plot(ReC_SimpMod, pred = Centering, modx = SRPed)
 ```
 ### Create a table (a package-produced table is fine) {-} 
 
 
-```r
+``` r
 ReC_SimpMod_summ <- jtools::summ(ReC_SimpMod, digits = 3)
 ReC_SimpMod_summ
 ```
 
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Observations </td>
-   <td style="text-align:right;"> 81 (3 missing obs. deleted) </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Dependent variable </td>
-   <td style="text-align:right;"> Valued </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Type </td>
-   <td style="text-align:right;"> OLS linear regression </td>
-  </tr>
-</tbody>
-</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> F(3,77) </td>
-   <td style="text-align:right;"> 14.904 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> R² </td>
-   <td style="text-align:right;"> 0.367 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> Adj. R² </td>
-   <td style="text-align:right;"> 0.343 </td>
-  </tr>
-</tbody>
-</table> <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> Est. </th>
-   <th style="text-align:right;"> S.E. </th>
-   <th style="text-align:right;"> t val. </th>
-   <th style="text-align:right;"> p </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> (Intercept) </td>
-   <td style="text-align:right;"> 1.057 </td>
-   <td style="text-align:right;"> 0.563 </td>
-   <td style="text-align:right;"> 1.876 </td>
-   <td style="text-align:right;"> 0.064 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> CenteringRe </td>
-   <td style="text-align:right;"> -0.570 </td>
-   <td style="text-align:right;"> 1.318 </td>
-   <td style="text-align:right;"> -0.433 </td>
-   <td style="text-align:right;"> 0.667 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> SRPed </td>
-   <td style="text-align:right;"> 0.704 </td>
-   <td style="text-align:right;"> 0.127 </td>
-   <td style="text-align:right;"> 5.530 </td>
-   <td style="text-align:right;"> 0.000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> CenteringRe:SRPed </td>
-   <td style="text-align:right;"> 0.118 </td>
-   <td style="text-align:right;"> 0.281 </td>
-   <td style="text-align:right;"> 0.421 </td>
-   <td style="text-align:right;"> 0.675 </td>
-  </tr>
-</tbody>
-<tfoot><tr><td style="padding: 0; " colspan="100%">
-<sup></sup> Standard errors: OLS</td></tr></tfoot>
-</table>
+```
+MODEL INFO:
+Observations: 81 (3 missing obs. deleted)
+Dependent Variable: Valued
+Type: OLS linear regression 
+
+MODEL FIT:
+F(3,77) = 14.919, p = 0.000
+R² = 0.368
+Adj. R² = 0.343 
+
+Standard errors: OLS
+---------------------------------------------------------
+                            Est.    S.E.   t val.       p
+----------------------- -------- ------- -------- -------
+(Intercept)                1.055   0.563    1.874   0.065
+CenteringRe               -0.570   1.318   -0.433   0.666
+SRPed                      0.704   0.127    5.534   0.000
+CenteringRe:SRPed          0.118   0.281    0.421   0.675
+---------------------------------------------------------
+```
 
 ### Create an APA style write-up of the results {-}  
 
@@ -1537,21 +1389,21 @@ A multiple regression analysis was conducted to predict course value to the stud
 ### Repeat the analysis in *lavaan* (specify the model to include probing the interaction) {-} 
 
 
-```r
+``` r
 str(babydf)
 ```
 
 ```
 Classes 'data.table' and 'data.frame':	84 obs. of  3 variables:
  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
- $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+ $ Valued   : num  4.33 5 4.67 3.33 4 ...
  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
  - attr(*, ".internal.selfref")=<externalptr> 
 ```
 
 
 
-```r
+``` r
 babydf$CENTERING <- as.numeric(babydf$Centering)
 babydf$CENTERING <- (babydf$CENTERING - 1)
 str(babydf)
@@ -1560,7 +1412,7 @@ str(babydf)
 ```
 Classes 'data.table' and 'data.frame':	84 obs. of  4 variables:
  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
- $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+ $ Valued   : num  4.33 5 4.67 3.33 4 ...
  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
  $ CENTERING: num  1 1 1 1 1 1 1 1 1 1 ...
  - attr(*, ".internal.selfref")=<externalptr> 
@@ -1568,8 +1420,8 @@ Classes 'data.table' and 'data.frame':	84 obs. of  4 variables:
 
 
 
-```r
-ReC_SimpMod_MLE <- "
+``` r
+ReC_SimpMod_MLE <- '
     Valued ~ b1*CENTERING + b2*SRPed + b3*CENTERING:SRPed
     
     #intercept (constant) of Valued
@@ -1582,37 +1434,25 @@ ReC_SimpMod_MLE <- "
     #simple slopes evaluating effect of SCRPed on Valued at each of the levels of centering
     Pre := b2 + b3*(0)
     Re := b2 + b3*(1)
-"
-set.seed(231002)  #needed for reproducibility because lavaan introduces randomness in calculations
-ReCMLEfit <- lavaan::sem(ReC_SimpMod_MLE, data = babydf, missing = "fiml",
-    se = "bootstrap", bootstrap = 1000)
+'
+set.seed(231002)#needed for reproducibility because lavaan introduces randomness in calculations
+ReCMLEfit <- lavaan::sem(ReC_SimpMod_MLE, data = babydf,  missing = 'fiml', se = "bootstrap", bootstrap = 1000)
 ```
 
 ```
-Warning in lav_data_full(data = data, group = group, cluster = cluster, : lavaan WARNING: 3 cases were deleted due to missing values in 
-		  exogenous variable(s), while fixed.x = TRUE.
+Warning: lavaan->lav_data_full():  
+   3 cases were deleted due to missing values in exogenous variable(s), while 
+   fixed.x = TRUE.
 ```
 
-```
-Warning in lav_partable_vnames(FLAT, "ov.x", warn = TRUE): lavaan WARNING:
-    model syntax contains variance/covariance/intercept formulas
-    involving (an) exogenous variable(s): [SRPed]; These variables
-    will now be treated as random introducing additional free
-    parameters. If you wish to treat those variables as fixed, remove
-    these formulas from the model syntax. Otherwise, consider adding
-    the fixed.x = FALSE option.
-```
-
-```r
-ReCMLEsummary <- lavaan::summary(ReCMLEfit, standardized = TRUE, fit = TRUE,
-    ci = TRUE)
-ReCMLEParamEsts <- lavaan::parameterEstimates(ReCMLEfit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+``` r
+ReCMLEsummary <- lavaan::summary(ReCMLEfit, standardized = TRUE, fit=TRUE, ci=TRUE)    
+ReCMLEParamEsts <- lavaan::parameterEstimates(ReCMLEfit, boot.ci.type = "bca.simple", standardized=TRUE)
 ReCMLEsummary
 ```
 
 ```
-lavaan 0.6.17 ended normally after 12 iterations
+lavaan 0.6-18 ended normally after 14 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -1624,32 +1464,32 @@ lavaan 0.6.17 ended normally after 12 iterations
 
 Model Test User Model:
                                                       
-  Test statistic                                25.909
+  Test statistic                                25.921
   Degrees of freedom                                 2
   P-value (Chi-square)                           0.000
 
 Model Test Baseline Model:
 
-  Test statistic                                62.994
+  Test statistic                                63.037
   Degrees of freedom                                 5
   P-value                                        0.000
 
 User Model versus Baseline Model:
 
   Comparative Fit Index (CFI)                    0.588
-  Tucker-Lewis Index (TLI)                      -0.031
+  Tucker-Lewis Index (TLI)                      -0.030
                                                       
   Robust Comparative Fit Index (CFI)             0.588
-  Robust Tucker-Lewis Index (TLI)               -0.031
+  Robust Tucker-Lewis Index (TLI)               -0.030
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)               -136.024
-  Loglikelihood unrestricted model (H1)       -123.069
+  Loglikelihood user model (H0)               -136.009
+  Loglikelihood unrestricted model (H1)       -123.049
                                                       
-  Akaike (AIC)                                 286.048
-  Bayesian (BIC)                               302.809
-  Sample-size adjusted Bayesian (SABIC)        280.733
+  Akaike (AIC)                                 286.018
+  Bayesian (BIC)                               302.779
+  Sample-size adjusted Bayesian (SABIC)        280.703
 
 Root Mean Square Error of Approximation:
 
@@ -1678,9 +1518,9 @@ Parameter Estimates:
 Regressions:
                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
   Valued ~                                                              
-    CENTERING (b1)   -0.570    1.138   -0.501    0.616   -2.882    1.692
-    SRPed     (b2)    0.704    0.152    4.634    0.000    0.356    0.953
-    CENTERING (b3)    0.118    0.250    0.474    0.635   -0.373    0.643
+    CENTERING (b1)   -0.570    1.138   -0.501    0.616   -2.891    1.690
+    SRPed     (b2)    0.704    0.152    4.631    0.000    0.357    0.954
+    CENTERING (b3)    0.118    0.250    0.474    0.636   -0.371    0.644
    Std.lv  Std.all
                   
    -0.570   -0.405
@@ -1689,75 +1529,73 @@ Regressions:
 
 Intercepts:
                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-   .Valued  (Vld.)    1.057    0.675    1.564    0.118   -0.025    2.594
-    SRPed   (SRP.)    4.512    0.061   74.224    0.000    4.389    4.635
+   .Valued  (Vld.)    1.055    0.676    1.560    0.119   -0.028    2.594
+    SRPed   (SRP.)    4.512    0.061   74.217    0.000    4.389    4.635
    Std.lv  Std.all
-    1.057    1.553
+    1.055    1.550
     4.512    7.856
 
 Variances:
                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-    SRPed   (SRP.)    0.330    0.060    5.500    0.000    0.214    0.453
-   .Valued            0.299    0.055    5.428    0.000    0.182    0.391
+    SRPed   (SRP.)    0.330    0.060    5.511    0.000    0.214    0.453
+   .Valued            0.299    0.055    5.437    0.000    0.182    0.390
    Std.lv  Std.all
     0.330    1.000
     0.299    0.645
 
 Defined Parameters:
                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-    Pre               0.704    0.152    4.632    0.000    0.356    0.953
-    Re                0.822    0.199    4.124    0.000    0.368    1.182
+    Pre               0.704    0.152    4.629    0.000    0.357    0.954
+    Re                0.822    0.199    4.128    0.000    0.369    1.182
    Std.lv  Std.all
     0.704    0.594
     0.822    0.994
 ```
 
-```r
+``` r
 ReCMLEParamEsts
 ```
 
 ```
                lhs op             rhs       label    est    se      z pvalue
 1           Valued  ~       CENTERING          b1 -0.570 1.138 -0.501  0.616
-2           Valued  ~           SRPed          b2  0.704 0.152  4.634  0.000
-3           Valued  ~ CENTERING:SRPed          b3  0.118 0.250  0.474  0.635
-4           Valued ~1                 Valued.mean  1.057 0.675  1.564  0.118
-5            SRPed ~1                  SRPed.mean  4.512 0.061 74.224  0.000
-6            SRPed ~~           SRPed   SRPed.var  0.330 0.060  5.500  0.000
-7           Valued ~~          Valued              0.299 0.055  5.428  0.000
+2           Valued  ~           SRPed          b2  0.704 0.152  4.631  0.000
+3           Valued  ~ CENTERING:SRPed          b3  0.118 0.250  0.474  0.636
+4           Valued ~1                 Valued.mean  1.055 0.676  1.560  0.119
+5            SRPed ~1                  SRPed.mean  4.512 0.061 74.217  0.000
+6            SRPed ~~           SRPed   SRPed.var  0.330 0.060  5.511  0.000
+7           Valued ~~          Valued              0.299 0.055  5.437  0.000
 8        CENTERING ~~       CENTERING              0.233 0.000     NA     NA
 9        CENTERING ~~ CENTERING:SRPed              1.104 0.000     NA     NA
 10 CENTERING:SRPed ~~ CENTERING:SRPed              5.286 0.000     NA     NA
 11       CENTERING ~1                              0.370 0.000     NA     NA
 12 CENTERING:SRPed ~1                              1.753 0.000     NA     NA
-13             Pre :=       b2+b3*(0)         Pre  0.704 0.152  4.632  0.000
-14              Re :=       b2+b3*(1)          Re  0.822 0.199  4.124  0.000
+13             Pre :=       b2+b3*(0)         Pre  0.704 0.152  4.629  0.000
+14              Re :=       b2+b3*(1)          Re  0.822 0.199  4.128  0.000
    ci.lower ci.upper std.lv std.all std.nox
-1    -2.760    1.778 -0.570  -0.405  -0.838
-2     0.390    0.974  0.704   0.594   0.499
-3    -0.415    0.589  0.118   0.400   0.174
-4    -0.153    2.465  1.057   1.553   1.553
+1    -2.780    1.759 -0.570  -0.405  -0.838
+2     0.389    0.975  0.704   0.594   0.500
+3    -0.414    0.588  0.118   0.400   0.174
+4    -0.157    2.476  1.055   1.550   1.550
 5     4.373    4.620  4.512   7.856   7.856
-6     0.229    0.470  0.330   1.000   1.000
-7     0.205    0.423  0.299   0.645   0.645
+6     0.229    0.469  0.330   1.000   1.000
+7     0.205    0.422  0.299   0.645   0.645
 8     0.233    0.233  0.233   1.000   0.233
 9     1.104    1.104  1.104   0.994   1.104
 10    5.286    5.286  5.286   1.000   5.286
 11    0.370    0.370  0.370   0.767   0.370
 12    1.753    1.753  1.753   0.762   1.753
-13    0.390    0.974  0.704   0.594   0.499
-14    0.336    1.156  0.822   0.994   0.674
+13    0.389    0.975  0.704   0.594   0.500
+14    0.339    1.167  0.822   0.994   0.674
 ```
 
-```r
-# adding rsquare=TRUE or rsq=T to both summary and parameterEstimates
-# resulted in an error related to missing values in row names; could
-# not find a solution
+``` r
+#adding rsquare=TRUE or rsq=T to both summary and parameterEstimates resulted in an error related to missing values in row names; could not find a solution
 ```
 
 For reasons unknown to me, I haven't been able to use the commands to produce r-square values without receiving errors. Fortunately, there is a workaround and we can call for the r-square results directly.
 
-```r
+``` r
 lavaan::lavInspect(ReCMLEfit, "rsquare")
 ```
 
@@ -1770,14 +1608,14 @@ Our model accounts for 36% of the variance in value to the student.
 To create a table outside of R, I can export these results as a .csv file (which can be opened in Excel).
 
 
-```r
+``` r
 write.csv(ReCMLEParamEsts, file = "ReCMLEParamEsts.csv")
 ```
 
 ### Create a model figure {-} 
 
 
-```r
+``` r
 #only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
@@ -1789,21 +1627,22 @@ tidySEM::graph_sem(model = ReCMLEfit)
 ![](07-SimpleMod_files/figure-docx/unnamed-chunk-83-1.png)<!-- -->
 
 
-```r
+``` r
 tidySEM::get_layout(ReCMLEfit)
 ```
 
 ```
      [,1]              [,2]        [,3]   
-[1,] NA                "CENTERING" NA     
-[2,] "CENTERING:SRPed" "Valued"    "SRPed"
+[1,] "CENTERING:SRPed" NA          NA     
+[2,] "Valued"          "CENTERING" "SRPed"
 attr(,"class")
 [1] "layout_matrix" "matrix"        "array"        
 ```
 
-```r
-ReCmod_map <- tidySEM::get_layout("CENTERING", "", "SRPed", "Valued", "CENTERING:SRPed",
-    "", rows = 3)
+``` r
+ReCmod_map <- tidySEM::get_layout("CENTERING", "", 
+                               "SRPed", "Valued", 
+                               "CENTERING:SRPed", "", rows=3)
 ReCmod_map
 ```
 
@@ -1817,9 +1656,8 @@ attr(,"class")
 ```
 We can update the *tidySEM::graph_sem* function with our new model to produce something that will better convey our analyses and its results.
 
-```r
-tidySEM::graph_sem(ReCMLEfit, layout = ReCmod_map, rect_width = 1.25, rect_height = 1.25,
-    spacing_x = 2, spacing_y = 3, text_size = 4.25)
+``` r
+tidySEM::graph_sem(ReCMLEfit, layout=ReCmod_map,  rect_width = 1.25, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.25)
 ```
 
 ![](07-SimpleMod_files/figure-docx/unnamed-chunk-86-1.png)<!-- -->

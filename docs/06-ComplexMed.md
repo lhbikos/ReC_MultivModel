@@ -47,26 +47,15 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
 
-```r
-# will install the package if not already installed
-if (!require(lavaan)) {
-    install.packages("lavaan")
-}
-if (!require(tidyverse)) {
-    install.packages("tidyverse")
-}
-if (!require(dplyr)) {
-    install.packages("dplyr")
-}
-if (!require(psych)) {
-    install.packages("psych")
-}
-if (!require(apaTables)) {
-    install.packages("apaTables")
-}
-if (!require(tidySEM)) {
-    install.packages("tidySEM")
-}
+``` r
+#will install the package if not already installed
+#if(!require(lavaan)){install.packages("lavaan")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(dplyr)){install.packages("dplyr")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(apaTables)){install.packages("apaTables")}
+#if(!require(tidySEM)){install.packages("tidySEM")}
+#if(!require(datawizard)){install.packages("datawizard")}
 ```
 
 ## Complex Mediation
@@ -145,14 +134,13 @@ We can bake our own data by updating the script we used in simple mediation to a
 #### Data Simulation
 
 
-```r
-# Concerned that identical variable names across book chapters may be
-# problematic, I'm adding 'p' in front the 'Data' variable.
+``` r
+# Concerned that identical variable names across book chapters may be problematic, I'm adding "p" in front the "Data" variable.
 set.seed(230925)
 X <- rnorm(100)
-M1 <- 0.5 * X + rnorm(100)
-M2 <- -0.35 * X + rnorm(100)
-Y <- 0.7 * M2 + 0.48 * M1 + rnorm(100)
+M1 <- 0.5*X + rnorm(100)
+M2 <- -0.35*X + rnorm(100)
+Y <- 0.7*M2 + 0.48*M1 + rnorm(100)
 pData <- data.frame(X = X, Y = Y, M1 = M1, M2 = M2)
 ```
 
@@ -175,8 +163,8 @@ Remember...
 
 #### Specifying *lavaan* code
 
-```r
-parallel_med <- "
+``` r
+parallel_med <- '
     Y ~ b1*M1 + b2*M2 + c_p*X
     M1 ~ a1*X
     M2 ~ a2*X
@@ -187,19 +175,16 @@ parallel_med <- "
     total_indirects := indirect1 + indirect2
     total_c    := c_p + (indirect1) + (indirect2)
     direct := c_p
- "
-set.seed(230925)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-parallel_fit <- lavaan::sem(parallel_med, data = pData, se = "bootstrap",
-    missing = "fiml", bootstrap = 1000)
-pfit_sum <- lavaan::summary(parallel_fit, standardized = TRUE, rsq = T,
-    fit = TRUE, ci = TRUE)
-pfit_ParEsts <- lavaan::parameterEstimates(parallel_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+ '
+set.seed(230925) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+parallel_fit <- lavaan::sem(parallel_med, data = pData, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
+pfit_sum <- lavaan::summary(parallel_fit, standardized = TRUE, rsq=T, fit=TRUE, ci=TRUE)    
+pfit_ParEsts <- lavaan::parameterEstimates(parallel_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 pfit_sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 1 iteration
+## lavaan 0.6-18 ended normally after 1 iteration
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -324,7 +309,7 @@ pfit_sum
 ##     0.030    0.025
 ```
 
-```r
+``` r
 pfit_ParEsts
 ```
 
@@ -386,7 +371,7 @@ The method we have specified in *lavaan* produced bias-corrected confidence inte
 To assist in table preparation, it is possible to export the results to a .csv file that can be manipulated in Excel, Microsoft Word, or other program to prepare an APA style table.
 
 
-```r
+``` r
 write.csv(pfit_ParEsts, file = "pfit_ParEsts.csv")
 ```
 
@@ -395,13 +380,54 @@ We can use the package [tidySEM](https://cjvanlissa.github.io/tidySEM/articles/P
 Here's what the base package gets us
 
 
-```r
-# only worked when I used the library to turn on all these pkgs
+``` r
+#only worked when I used the library to turn on all these pkgs
 library(lavaan)
+```
+
+```
+## This is lavaan 0.6-18
+## lavaan is FREE software! Please report any bugs.
+```
+
+``` r
 library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+``` r
 library(ggplot2)
 library(tidySEM)
-tidySEM::graph_sem(model = parallel_fit)
+```
+
+```
+## Loading required package: OpenMx
+```
+
+```
+## Registered S3 method overwritten by 'tidySEM':
+##   method          from  
+##   predict.MxModel OpenMx
+```
+
+``` r
+tidySEM::graph_sem(model=parallel_fit)
 ```
 
 ![](06-ComplexMed_files/figure-docx/unnamed-chunk-6-1.png)<!-- -->
@@ -409,7 +435,7 @@ tidySEM::graph_sem(model = parallel_fit)
 We can create model that communicates more intuitively with a little tinkering. First, let's retrieve the current "map" of the layout.
 
 
-```r
+``` r
 tidySEM::get_layout(parallel_fit)
 ```
 
@@ -423,9 +449,10 @@ tidySEM::get_layout(parallel_fit)
 To create the figure I showed at the beginning of the chapter, we will want three rows and three columns.
 
 
-```r
-parallel_map <- tidySEM::get_layout("", "M1", "", "X", "", "Y", "", "M2",
-    "", rows = 3)
+``` r
+parallel_map <- tidySEM::get_layout("", "M1", "",
+                                   "X", "", "Y", 
+                                   "", "M2", "", rows=3)
 parallel_map
 ```
 
@@ -440,9 +467,8 @@ parallel_map
 We can update our figure by supplying this new map and adjusting the object and text sizes.
 
 
-```r
-tidySEM::graph_sem(parallel_fit, layout = parallel_map, rect_width = 1.5,
-    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+``` r
+tidySEM::graph_sem(parallel_fit, layout=parallel_map,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
 ![](06-ComplexMed_files/figure-docx/unnamed-chunk-9-1.png)<!-- -->
@@ -517,7 +543,7 @@ Variables used in the study included:
 The *lavaan::simulateData* function was used. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. For all others we specified a factor loading of 0.80. We then approximated the *measurement model* by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette  [@lewis_applying_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
 
 
-```r
+``` r
 #Entering the intercorrelations, means, and standard deviations from the journal article
 
 Lewis_generating_model <- '
@@ -617,13 +643,13 @@ If you prefer the .rds format, use this script (remove the hashtags). The .rds f
 Script to save the data to your computer as an .rds file.
 
 
-```r
+``` r
 #saveRDS(dfLewis, 'dfLewis.rds')  
 ```
 
 Once saved, you could clean your environment and bring the data back in from its .csv format.
 
-```r
+``` r
 #dfLewis<- readRDS('dfLewis.rds')
 ```
 
@@ -632,14 +658,13 @@ If you prefer the .csv format (think "Excel lite") use this script (remove the h
 Script to save the data to your computer as a .csv file.
 
 
-```r
-# write.table(dfLewis, file = 'dfLewis.csv', sep = ',',
-# col.names=TRUE, row.names=FALSE)
+``` r
+#write.table(dfLewis, file = 'dfLewis.csv', sep = ',', col.names=TRUE, row.names=FALSE) 
 ```
 
 Once saved, you could clean your environment and bring the data back in from its .csv format.
 
-```r
+``` r
 #dfLewis<- read.csv ('dfLewis.csv', header = TRUE)
 ```
 
@@ -650,42 +675,29 @@ Because the focus of this lesson is on complex mediation, we have used simulated
 
 Because we are working with item level data we do need to score the scales used in the researcher's model. Because we are using simulated data and the authors already reverse coded any such items, we will omit that step.
 
-As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we  calculate mean scores of these variables by first creating concatenated lists of variable names. Next we apply the *sjstats::mean_n* function to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
+As described in the [Scoring](https://lhbikos.github.io/ReC_MultivModel/score.html) chapter, we  can use the *row_means* function from the *datawizard* package to obtain mean scores when a given percentage (we'll specify 80%) of variables are non-missing. Functionally, this would require the two-item variables (e.g., engagement coping and disengagement coping) to have non-missingness. We simulated a set of data that does not have missingness, none-the-less, this specification is useful in real-world settings.
 
 Note that I am only scoring the variables used in the models demonstrated in this lesson. The remaining variables are available as practice options.
 
 
-```r
-GRMS_vars <- c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8",
-    "Ob9", "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1",
-    "St2", "St3", "St4", "St5", "An1", "An2", "An3")
-Eng_vars <- c("Eng1", "Eng2")
-dEng_vars <- c("dEng1", "dEng2")
-MntlHlth_vars <- c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6")
-
-dfLewis$GRMS <- sjstats::mean_n(dfLewis[, GRMS_vars], 0.8)
-dfLewis$Engmt <- sjstats::mean_n(dfLewis[, Eng_vars], 0.8)
-dfLewis$DisEngmt <- sjstats::mean_n(dfLewis[, dEng_vars], 0.8)
-dfLewis$MntlHlth <- sjstats::mean_n(dfLewis[, MntlHlth_vars], 0.8)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfLewis$GRMS <-
-# sjstats::mean_n(dfLewis[, ..GRMS_vars], 0.80)
+``` r
+dfLewis$GRMS <- datawizard::row_means(dfLewis, select = c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8", "Ob9", "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1", "St2", "St3", "St4", "St5", "An1", "An2", "An3"), min_valid = .80)
+dfLewis$Engmt <- datawizard::row_means(dfLewis, select = c("Eng1", "Eng2"), min_valid = .80)
+dfLewis$DisEngmt <- datawizard::row_means(dfLewis, select = c("dEng1", "dEng2"), min_valid = .80)
+dfLewis$MntlHlth <- datawizard::row_means(dfLewis, select = c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6"), min_valid = .80)
 ```
 
 Now that we have scored our data, let's trim the variables to just those we need.
 
-```r
+``` r
 Lewis_df <- dplyr::select(dfLewis, GRMS, Engmt, DisEngmt, MntlHlth)
 ```
 
 Let's check a table of means, standard deviations, and correlations to see if they align with the published article.
 
 
-```r
-Lewis_table <- apaTables::apa.cor.table(Lewis_df, table.number = 1, show.sig.stars = TRUE,
-    landscape = TRUE, filename = "Lewis_Corr.doc")
+``` r
+Lewis_table <- apaTables::apa.cor.table(Lewis_df, table.number = 1, show.sig.stars=TRUE, landscape=TRUE, filename="Lewis_Corr.doc")
 print(Lewis_table)
 ```
 
@@ -729,8 +741,8 @@ Below is the model we will work.  Specifically, we will evaluate whether gendere
 
 We can use the guidelines above to specify our model and then request summaries of the fit indices and parameter estimates.
 
-```r
-parallel_Lewis <- "
+``` r
+parallel_Lewis <- '
     MntlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS
     Engmt ~ a1*GRMS    
     DisEngmt ~ a2*GRMS
@@ -741,14 +753,11 @@ parallel_Lewis <- "
     total_indirects := indirect1 + indirect2
     total_c := c_p + (indirect1) + (indirect2)
     direct := c_p
-"
-set.seed(230925)  #necessary for reproducible results because lavaan introduces randomness into the estimation process
-para_Lewis_fit <- lavaan::sem(parallel_Lewis, data = Lewis_df, se = "bootstrap",
-    bootstrap = 1000, missing = "fiml")  #holds the 'whole' result
-pLewis_sum <- lavaan::summary(para_Lewis_fit, standardized = TRUE, rsq = T,
-    fit = TRUE, ci = TRUE)  #today, we really only need the R-squared from here    
-pLewis_ParEsts <- lavaan::parameterEstimates(para_Lewis_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)  #provides our estimates, se, p values for all the elements we specified
+'
+set.seed(230925)#necessary for reproducible results because lavaan introduces randomness into the estimation process
+para_Lewis_fit <- lavaan::sem(parallel_Lewis, data = Lewis_df, se = "bootstrap", bootstrap = 1000, missing = 'fiml') #holds the "whole" result
+pLewis_sum <- lavaan::summary(para_Lewis_fit , standardized = TRUE, rsq=T, fit=TRUE, ci=TRUE) #today, we really only need the R-squared from here    
+pLewis_ParEsts <- lavaan::parameterEstimates(para_Lewis_fit, boot.ci.type = "bca.simple", standardized=TRUE) #provides our estimates, se, p values for all the elements we specified
 
 pLewis_sum
 pLewis_ParEsts
@@ -759,7 +768,7 @@ pLewis_ParEsts
 To assist in table preparation, it is possible to export the results to a .csv file that can be manipulated in Excel, Microsoft Word, or other program to prepare an APA style table.
 
 
-```r
+``` r
 write.csv(pLewis_ParEsts, file = "pLewis_ParEsts.csv")
 ```
 
@@ -768,13 +777,13 @@ We can use the package [tidySEM](https://cjvanlissa.github.io/tidySEM/articles/P
 Here's what the base package gets us
 
 
-```r
-# only worked when I used the library to turn on all these pkgs
+``` r
+#only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
 library(ggplot2)
 library(tidySEM)
-tidySEM::graph_sem(model = para_Lewis_fit)
+tidySEM::graph_sem(model=para_Lewis_fit)
 ```
 
 ![](06-ComplexMed_files/figure-docx/unnamed-chunk-20-1.png)<!-- -->
@@ -782,7 +791,7 @@ tidySEM::graph_sem(model = para_Lewis_fit)
 We can create model that communicates more intuitively with a little tinkering. First, let's retrieve the current "map" of the layout.
 
 
-```r
+``` r
 tidySEM::get_layout(para_Lewis_fit)
 ```
 
@@ -796,9 +805,10 @@ tidySEM::get_layout(para_Lewis_fit)
 To create the figure I showed at the beginning of the chapter, we will want three rows and three columns.
 
 
-```r
-pLewis_map <- tidySEM::get_layout("", "Engmt", "", "GRMS", "", "MntlHlth",
-    "", "DisEngmt", "", rows = 3)
+``` r
+pLewis_map <- tidySEM::get_layout("", "Engmt", "",
+                                   "GRMS", "", "MntlHlth", 
+                                   "", "DisEngmt", "", rows=3)
 pLewis_map
 ```
 
@@ -813,9 +823,8 @@ pLewis_map
 We can update our figure by supplying this new map and adjusting the object and text sizes.
 
 
-```r
-tidySEM::graph_sem(para_Lewis_fit, layout = pLewis_map, rect_width = 1.5,
-    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+``` r
+tidySEM::graph_sem(para_Lewis_fit, layout=pLewis_map,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
 ![](06-ComplexMed_files/figure-docx/unnamed-chunk-23-1.png)<!-- -->
@@ -959,8 +968,8 @@ If this is our goal (image), how many direct and indirect effects are contained 
 ### Specify the *lavaan* model
 
 
-```r
-serial_Lewis <- "
+``` r
+serial_Lewis <- '
     MntlHlth ~ b1*Engmt + b2*DisEngmt + c_p*GRMS
     Engmt ~ a1*GRMS    
     DisEngmt ~ a2*GRMS
@@ -975,14 +984,11 @@ serial_Lewis <- "
     total_indirects := indirect1 + indirect2 + indirect3
     total_c := c_p + indirect1 + indirect2 + indirect3
     direct := c_p
-"
-set.seed(230925)  #necessary for reproducible results because lavaan introduces randomness into the estimation process
-serial_Lewis_fit <- lavaan::sem(serial_Lewis, data = Lewis_df, se = "bootstrap",
-    missing = "fiml", bootstrap = 1000)
-sLewis_sum <- lavaan::summary(serial_Lewis_fit, standardized = TRUE, rsq = T,
-    fit = TRUE, ci = TRUE)
-sLewis_ParEsts <- lavaan::parameterEstimates(serial_Lewis_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+'
+set.seed(230925)#necessary for reproducible results because lavaan introduces randomness into the estimation process
+serial_Lewis_fit <- lavaan::sem(serial_Lewis, data = Lewis_df, se = "bootstrap", missing = 'fiml', bootstrap = 1000)
+sLewis_sum <- lavaan::summary(serial_Lewis_fit, standardized = TRUE, rsq=T, fit=TRUE, ci=TRUE)    
+sLewis_ParEsts <- lavaan::parameterEstimates(serial_Lewis_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 
 sLewis_sum
 sLewis_ParEsts
@@ -994,7 +1000,7 @@ sLewis_ParEsts
 To assist in table preparation, it is possible to export the results to a .csv file that can be manipulated in Excel, Microsoft Word, or other program to prepare an APA style table.
 
 
-```r
+``` r
 write.csv(sLewis_ParEsts, file = "sLewis_ParEsts.csv")
 ```
 
@@ -1003,13 +1009,13 @@ We can use the package [tidySEM](https://cjvanlissa.github.io/tidySEM/articles/P
 Here's what the base package gets us
 
 
-```r
-# only worked when I used the library to turn on all these pkgs
+``` r
+#only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
 library(ggplot2)
 library(tidySEM)
-tidySEM::graph_sem(model = serial_Lewis_fit)
+tidySEM::graph_sem(model=serial_Lewis_fit)
 ```
 
 ![](06-ComplexMed_files/figure-docx/unnamed-chunk-26-1.png)<!-- -->
@@ -1017,7 +1023,7 @@ tidySEM::graph_sem(model = serial_Lewis_fit)
 We can create model that communicates more intuitively with a little tinkering. First, let's retrieve the current "map" of the layout.
 
 
-```r
+``` r
 tidySEM::get_layout(serial_Lewis_fit)
 ```
 
@@ -1031,9 +1037,10 @@ tidySEM::get_layout(serial_Lewis_fit)
 To create the figure I showed at the beginning of the chapter, we will want three rows and three columns.
 
 
-```r
-sLewis_map <- tidySEM::get_layout("", "Engmt", "", "GRMS", "", "MntlHlth",
-    "", "DisEngmt", "", rows = 3)
+``` r
+sLewis_map <- tidySEM::get_layout("", "Engmt", "",
+                                   "GRMS", "", "MntlHlth", 
+                                   "", "DisEngmt", "", rows=3)
 sLewis_map
 ```
 
@@ -1048,9 +1055,8 @@ sLewis_map
 We can update our figure by supplying this new map and adjusting the object and text sizes.
 
 
-```r
-tidySEM::graph_sem(serial_Lewis_fit, layout = sLewis_map, rect_width = 1.5,
-    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+``` r
+tidySEM::graph_sem(serial_Lewis_fit, layout=sLewis_map,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
 ![](06-ComplexMed_files/figure-docx/unnamed-chunk-29-1.png)<!-- -->
@@ -1226,43 +1232,38 @@ It helps me to make a quick sketch:
 ### Import the data and format the variables in the model  {-}
 
 
-```r
+``` r
 raw <- readRDS("ReC.rds")
 ```
 
 The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
 
-```r
-raw <- (dplyr::filter(raw, Course == "Multivariate"))
+``` r
+raw <-(dplyr::filter(raw, Course == "Multivariate"))
 ```
 
 I need to score the TradPed, SRPed, and Valued variables
 
 
-```r
-TradPed_vars <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback",
-    "ClearOrganization", "ClearPresentation")
-raw$TradPed <- sjstats::mean_n(raw[, ..TradPed_vars], 0.75)
+``` r
+raw$TradPed <- datawizard::row_means(raw, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 
-Valued_vars <- c("ValObjectives", "IncrUnderstanding", "IncrInterest")
-raw$Valued <- sjstats::mean_n(raw[, ..Valued_vars], 0.75)
+raw$Valued <- datawizard::row_means(raw, select = c('ValObjectives', 'IncrUnderstanding','IncrInterest'), min_valid = .75)
 
-SRPed_vars <- c("InclusvClassrm", "EquitableEval", "MultPerspectives",
-    "DEIintegration")
-raw$SRPed <- sjstats::mean_n(raw[, ..SRPed_vars], 0.75)
+raw$SRPed <- datawizard::row_means(raw, select = c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration'), min_valid = .75)
 ```
 
 I will create a babydf.
 
 
-```r
+``` r
 babydf <- dplyr::select(raw, Centering, TradPed, Valued, SRPed)
 ```
 
 Let's check the structure of the variables:
 
 
-```r
+``` r
 str(babydf)
 ```
 
@@ -1270,7 +1271,7 @@ str(babydf)
 ## Classes 'data.table' and 'data.frame':	84 obs. of  4 variables:
 ##  $ Centering: Factor w/ 2 levels "Pre","Re": 2 2 2 2 2 2 2 2 2 2 ...
 ##  $ TradPed  : num  3.8 5 4.8 4 4.2 3 5 4.6 4 4.8 ...
-##  $ Valued   : num  4.33 5 4.67 3.33 4 3.67 5 4 4.67 4.67 ...
+##  $ Valued   : num  4.33 5 4.67 3.33 4 ...
 ##  $ SRPed    : num  4.5 5 5 5 4.75 4.5 5 4.5 5 5 ...
 ##  - attr(*, ".internal.selfref")=<externalptr>
 ```
@@ -1280,8 +1281,8 @@ At this point, these my only inclusion/exclusion criteria. I can determine how m
 ### Specify and run the lavaan model  {-}
 
 
-```r
-ReCpMed <- "
+``` r
+ReCpMed <- '
           Valued ~ b1*TradPed + b2*SRPed + c_p*Centering
           TradPed ~ a1*Centering
           SRPed ~ a2*Centering
@@ -1293,19 +1294,17 @@ ReCpMed <- "
           total_c    := c_p + (indirect1) + (indirect2)
           direct := c_p
 
-          "
+          '
 
-set.seed(230916)  #needed for reproducible results since lavaan includes randomness in its estimates
-ReCpMedfit <- lavaan::sem(ReCpMed, data = babydf, se = "bootstrap", missing = "fiml")
-ReCpMedsummary <- lavaan::summary(ReCpMedfit, standardized = T, rsq = T,
-    fit = TRUE, ci = TRUE)
-ReC_pMedParamEsts <- lavaan::parameterEstimates(ReCpMedfit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916)#needed for reproducible results since lavaan includes randomness in its estimates
+ReCpMedfit <- lavaan::sem(ReCpMed, data = babydf, se="bootstrap", missing= 'fiml')
+ReCpMedsummary <- lavaan::summary(ReCpMedfit, standardized=T, rsq=T, fit=TRUE, ci=TRUE)
+ReC_pMedParamEsts <- lavaan::parameterEstimates(ReCpMedfit, boot.ci.type = "bca.simple", standardized=TRUE)
 ReCpMedsummary
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 23 iterations
+## lavaan 0.6-18 ended normally after 23 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1316,32 +1315,32 @@ ReCpMedsummary
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                54.059
+##   Test statistic                                54.076
 ##   Degrees of freedom                                 1
 ##   P-value (Chi-square)                           0.000
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                               145.642
+##   Test statistic                               145.634
 ##   Degrees of freedom                                 6
 ##   P-value                                        0.000
 ## 
 ## User Model versus Baseline Model:
 ## 
 ##   Comparative Fit Index (CFI)                    0.620
-##   Tucker-Lewis Index (TLI)                      -1.280
+##   Tucker-Lewis Index (TLI)                      -1.281
 ##                                                       
 ##   Robust Comparative Fit Index (CFI)             0.613
-##   Robust Tucker-Lewis Index (TLI)               -1.323
+##   Robust Tucker-Lewis Index (TLI)               -1.324
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)               -202.536
-##   Loglikelihood unrestricted model (H1)       -175.506
+##   Loglikelihood user model (H0)               -202.545
+##   Loglikelihood unrestricted model (H1)       -175.507
 ##                                                       
-##   Akaike (AIC)                                 427.071
-##   Bayesian (BIC)                               453.810
-##   Sample-size adjusted Bayesian (SABIC)        419.110
+##   Akaike (AIC)                                 427.091
+##   Bayesian (BIC)                               453.830
+##   Sample-size adjusted Bayesian (SABIC)        419.130
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
@@ -1370,18 +1369,18 @@ ReCpMedsummary
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
 ##   Valued ~                                                              
-##     TradPed   (b1)    0.686    0.131    5.217    0.000    0.451    0.955
-##     SRPed     (b2)    0.119    0.146    0.816    0.414   -0.193    0.400
-##     Centerng (c_p)    0.015    0.103    0.143    0.886   -0.182    0.230
+##     TradPed   (b1)    0.685    0.131    5.217    0.000    0.451    0.954
+##     SRPed     (b2)    0.120    0.146    0.820    0.412   -0.192    0.400
+##     Centerng (c_p)    0.014    0.103    0.140    0.889   -0.182    0.229
 ##   TradPed ~                                                             
-##     Centerng  (a1)    0.312    0.137    2.283    0.022    0.047    0.582
+##     Centerng  (a1)    0.312    0.137    2.282    0.022    0.047    0.582
 ##   SRPed ~                                                               
-##     Centerng  (a2)    0.353    0.113    3.124    0.002    0.130    0.569
+##     Centerng  (a2)    0.353    0.113    3.126    0.002    0.130    0.569
 ##    Std.lv  Std.all
 ##                   
-##     0.686    0.747
-##     0.119    0.104
-##     0.015    0.011
+##     0.685    0.746
+##     0.120    0.105
+##     0.014    0.011
 ##                   
 ##     0.312    0.210
 ##                   
@@ -1389,19 +1388,19 @@ ReCpMedsummary
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .Valued            0.710    0.469    1.514    0.130   -0.177    1.664
+##    .Valued            0.709    0.469    1.511    0.131   -0.175    1.669
 ##    .TradPed           3.870    0.231   16.773    0.000    3.419    4.291
-##    .SRPed             4.029    0.186   21.617    0.000    3.675    4.396
+##    .SRPed             4.028    0.186   21.618    0.000    3.674    4.396
 ##    Std.lv  Std.all
-##     0.710    1.077
-##     3.870    5.396
-##     4.029    7.013
+##     0.709    1.077
+##     3.870    5.397
+##     4.028    7.012
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##    .Valued            0.181    0.027    6.658    0.000    0.118    0.224
+##    .Valued            0.181    0.027    6.669    0.000    0.118    0.224
 ##    .TradPed           0.492    0.128    3.837    0.000    0.259    0.733
-##    .SRPed             0.301    0.060    5.007    0.000    0.193    0.425
+##    .SRPed             0.301    0.060    5.017    0.000    0.193    0.424
 ##    Std.lv  Std.all
 ##     0.181    0.418
 ##     0.492    0.956
@@ -1415,86 +1414,86 @@ ReCpMedsummary
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|) ci.lower ci.upper
-##     indirect1         0.214    0.105    2.045    0.041    0.032    0.442
-##     indirect2         0.042    0.053    0.790    0.429   -0.080    0.148
-##     contrast          0.172    0.125    1.373    0.170   -0.024    0.469
-##     total_indircts    0.256    0.109    2.346    0.019    0.051    0.469
-##     total_c           0.271    0.142    1.914    0.056    0.003    0.576
-##     direct            0.015    0.103    0.143    0.887   -0.182    0.230
+##     indirect1         0.214    0.105    2.044    0.041    0.031    0.442
+##     indirect2         0.042    0.053    0.794    0.427   -0.080    0.148
+##     contrast          0.172    0.125    1.371    0.170   -0.024    0.468
+##     total_indircts    0.256    0.109    2.346    0.019    0.051    0.470
+##     total_c           0.271    0.142    1.912    0.056    0.003    0.575
+##     direct            0.014    0.103    0.140    0.889   -0.182    0.229
 ##    Std.lv  Std.all
 ##     0.214    0.157
 ##     0.042    0.031
 ##     0.172    0.126
 ##     0.256    0.188
-##     0.271    0.199
-##     0.015    0.011
+##     0.271    0.198
+##     0.014    0.011
 ```
 
-```r
+``` r
 ReC_pMedParamEsts
 ```
 
 ```
 ##                lhs op                         rhs           label   est    se
-## 1           Valued  ~                     TradPed              b1 0.686 0.131
-## 2           Valued  ~                       SRPed              b2 0.119 0.146
-## 3           Valued  ~                   Centering             c_p 0.015 0.103
+## 1           Valued  ~                     TradPed              b1 0.685 0.131
+## 2           Valued  ~                       SRPed              b2 0.120 0.146
+## 3           Valued  ~                   Centering             c_p 0.014 0.103
 ## 4          TradPed  ~                   Centering              a1 0.312 0.137
 ## 5            SRPed  ~                   Centering              a2 0.353 0.113
 ## 6           Valued ~~                      Valued                 0.181 0.027
 ## 7          TradPed ~~                     TradPed                 0.492 0.128
 ## 8            SRPed ~~                       SRPed                 0.301 0.060
 ## 9        Centering ~~                   Centering                 0.233 0.000
-## 10          Valued ~1                                             0.710 0.469
+## 10          Valued ~1                                             0.709 0.469
 ## 11         TradPed ~1                                             3.870 0.231
-## 12           SRPed ~1                                             4.029 0.186
+## 12           SRPed ~1                                             4.028 0.186
 ## 13       Centering ~1                                             1.369 0.000
 ## 14       indirect1 :=                       a1*b1       indirect1 0.214 0.105
 ## 15       indirect2 :=                       a2*b2       indirect2 0.042 0.053
 ## 16        contrast :=         indirect1-indirect2        contrast 0.172 0.125
 ## 17 total_indirects :=         indirect1+indirect2 total_indirects 0.256 0.109
 ## 18         total_c := c_p+(indirect1)+(indirect2)         total_c 0.271 0.142
-## 19          direct :=                         c_p          direct 0.015 0.103
+## 19          direct :=                         c_p          direct 0.014 0.103
 ##         z pvalue ci.lower ci.upper std.lv std.all std.nox
-## 1   5.217  0.000    0.415    0.918  0.686   0.747   0.747
-## 2   0.816  0.414   -0.161    0.434  0.119   0.104   0.104
-## 3   0.143  0.886   -0.194    0.207  0.015   0.011   0.022
-## 4   2.283  0.022    0.047    0.582  0.312   0.210   0.435
-## 5   3.124  0.002    0.134    0.571  0.353   0.296   0.614
-## 6   6.658  0.000    0.143    0.268  0.181   0.418   0.418
+## 1   5.217  0.000    0.413    0.917  0.685   0.746   0.746
+## 2   0.820  0.412   -0.160    0.434  0.120   0.105   0.105
+## 3   0.140  0.889   -0.195    0.206  0.014   0.011   0.022
+## 4   2.282  0.022    0.047    0.582  0.312   0.210   0.435
+## 5   3.126  0.002    0.134    0.571  0.353   0.296   0.614
+## 6   6.669  0.000    0.144    0.268  0.181   0.418   0.418
 ## 7   3.837  0.000    0.279    0.813  0.492   0.956   0.956
-## 8   5.007  0.000    0.204    0.454  0.301   0.912   0.912
+## 8   5.017  0.000    0.204    0.452  0.301   0.912   0.912
 ## 9      NA     NA    0.233    0.233  0.233   1.000   0.233
-## 10  1.514  0.130   -0.109    1.770  0.710   1.077   1.077
-## 11 16.773  0.000    3.383    4.286  3.870   5.396   5.396
-## 12 21.617  0.000    3.666    4.382  4.029   7.013   7.013
+## 10  1.511  0.131   -0.110    1.771  0.709   1.077   1.077
+## 11 16.773  0.000    3.383    4.286  3.870   5.397   5.397
+## 12 21.618  0.000    3.665    4.382  4.028   7.012   7.012
 ## 13     NA     NA    1.369    1.369  1.369   2.837   1.369
-## 14  2.045  0.041    0.034    0.451  0.214   0.157   0.325
-## 15  0.790  0.429   -0.044    0.174  0.042   0.031   0.064
-## 16  1.373  0.170   -0.026    0.456  0.172   0.126   0.261
+## 14  2.044  0.041    0.034    0.451  0.214   0.157   0.325
+## 15  0.794  0.427   -0.044    0.174  0.042   0.031   0.064
+## 16  1.371  0.170   -0.027    0.454  0.172   0.126   0.260
 ## 17  2.346  0.019    0.053    0.472  0.256   0.188   0.389
-## 18  1.914  0.056    0.003    0.577  0.271   0.199   0.411
-## 19  0.143  0.887   -0.194    0.207  0.015   0.011   0.022
+## 18  1.912  0.056    0.003    0.576  0.271   0.198   0.411
+## 19  0.140  0.889   -0.195    0.206  0.014   0.011   0.022
 ```
 
 ### Use tidySEM to create a figure that represents your results {-}
 
 
 
-```r
-# only worked when I used the library to turn on all these pkgs
+``` r
+#only worked when I used the library to turn on all these pkgs
 library(lavaan)
 library(dplyr)
 library(ggplot2)
 library(tidySEM)
-tidySEM::graph_sem(model = ReCpMedfit)
+tidySEM::graph_sem(model=ReCpMedfit)
 ```
 
 ![](06-ComplexMed_files/figure-docx/unnamed-chunk-68-1.png)<!-- -->
 
 
 
-```r
+``` r
 tidySEM::get_layout(ReCpMedfit)
 ```
 
@@ -1508,9 +1507,10 @@ tidySEM::get_layout(ReCpMedfit)
 To create the figure I showed at the beginning of the chapter, we will want three rows and three columns.
 
 
-```r
-ReCpMed_map <- tidySEM::get_layout("", "TradPed", "", "Centering", "",
-    "Valued", "", "SRPed", "", rows = 3)
+``` r
+ReCpMed_map <- tidySEM::get_layout("", "TradPed", "",
+                                   "Centering", "", "Valued", 
+                                   "", "SRPed", "", rows=3)
 ReCpMed_map
 ```
 
@@ -1523,9 +1523,8 @@ ReCpMed_map
 ## [1] "layout_matrix" "matrix"        "array"
 ```
 
-```r
-tidySEM::graph_sem(ReCpMedfit, layout = ReCpMed_map, rect_width = 1.5,
-    rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
+``` r
+tidySEM::graph_sem(ReCpMedfit, layout=ReCpMed_map,  rect_width = 1.5, rect_height = 1.25, spacing_x = 2, spacing_y = 3, text_size = 4.5)
 ```
 
 ![](06-ComplexMed_files/figure-docx/unnamed-chunk-71-1.png)<!-- -->
@@ -1537,7 +1536,7 @@ tidySEM::graph_sem(ReCpMedfit, layout = ReCpMed_map, rect_width = 1.5,
 I will write my results to a .csv file.
 
 
-```r
+``` r
 write.csv(ReC_pMedParamEsts, file = "ReC_pMedParamEsts.csv")
 ```
 

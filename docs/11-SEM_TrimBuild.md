@@ -48,13 +48,14 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# will install the package if not already installed
-# if(!require(lavaan)){install.packages('lavaan')}
-# if(!require(semPlot)){install.packages('semPlot')}
-# if(!require(tidyverse)){install.packages('tidyverse')}
-# if(!require(psych)){install.packages('psych')}
-# if(!require(jtools)){install.packages('jtools')}
+``` r
+#will install the package if not already installed
+#if(!require(lavaan)){install.packages("lavaan")}
+#if(!require(semPlot)){install.packages("semPlot")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(jtools)){install.packages("jtools")}
+#if(!require(datawizard)){install.packages("datawizard")}
 ```
 
 ## Respecifying Structural Models
@@ -171,7 +172,7 @@ Specifically, we will specify a parallel mediation model where two dependent var
 The *lavaan::simulateData* function was used. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. For all others we specified a factor loading of 0.80. We then approximated the *measurement model* by specifying the correlations between the latent variable. We sourced these from the correlation matrix from the research vignette  [@lewis_applying_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
 
 
-```r
+``` r
 #Entering the intercorrelations, means, and standard deviations from the journal article
 
 
@@ -272,14 +273,14 @@ If you prefer the .rds format, use this script (remove the hashtags). The .rds f
 Script to save the data to your computer as an .rds file.
 
 
-```r
-# saveRDS(dfLewis, 'dfLewis.rds')
+``` r
+#saveRDS(dfLewis, 'dfLewis.rds')  
 ```
 
 Once saved, you could clean your environment and bring the data back in from its .csv format.
 
-```r
-# dfLewis<- readRDS('dfLewis.rds')
+``` r
+#dfLewis<- readRDS('dfLewis.rds')
 ```
 
 If you prefer the .csv format (think "Excel lite") use this script (remove the hashtags). An advantage of the .csv format is that you can open the data outside of the R environment. A disadvantage is that it may not retain any formatting of variables
@@ -287,15 +288,14 @@ If you prefer the .csv format (think "Excel lite") use this script (remove the h
 Script to save the data to your computer as a .csv file.
 
 
-```r
-# write.table(dfLewis, file = 'dfLewis.csv', sep = ',',
-# col.names=TRUE, row.names=FALSE)
+``` r
+#write.table(dfLewis, file = 'dfLewis.csv', sep = ',', col.names=TRUE, row.names=FALSE) 
 ```
 
 Once saved, you could clean your environment and bring the data back in from its .csv format.
 
-```r
-# dfLewis<- read.csv ('dfLewis.csv', header = TRUE)
+``` r
+#dfLewis<- read.csv ('dfLewis.csv', header = TRUE)
 ```
 
 ## Scrubbing, Scoring, and Data Diagnostics
@@ -344,13 +344,12 @@ For more information on establishing measurement models please visit the lesson 
 ![An image of the measurement model that we are specifying ](images/IntroSEM/Lewis_msmt_mod.png) 
 To proceed with this approach, I first need to create parcels for the GRMS, MH, and PhH scales. This code randomly assigns the GRMS items to three parcels.
 
-```r
+``` r
 set.seed(230916)
-items <- c("Ob1", "Ob2", "Ob3", "Ob4", "Ob5", "Ob6", "Ob7", "Ob8", "Ob9",
-    "Ob10", "Ma1", "Ma2", "Ma3", "Ma4", "Ma5", "Ma6", "Ma7", "St1", "St2",
-    "St3", "St4", "St5", "An1", "An2")
-parcels <- c("GRMS_p1", "GRMS_p_2", "GRMS_p3")
-data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
+items <- c('Ob1', 'Ob2', 'Ob3', 'Ob4', 'Ob5', 'Ob6', 'Ob7', 'Ob8', 'Ob9', 'Ob10', 'Ma1', 'Ma2', 'Ma3', 'Ma4', 'Ma5', 'Ma6', 'Ma7', 'St1', 'St2', 'St3', 'St4', 'St5', 'An1', 'An2')
+parcels <- c("GRMS_p1", "GRMS_p_2","GRMS_p3")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
 ```
 
 ```
@@ -383,28 +382,20 @@ data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
 
 We can now create the parcels using the same scoring procedure as we did for the REMS and CMI instruments.
 
-```r
-GRMS_p1_vars <- c("Ma3", "Ma7", "Ma1", "Ob1", "St2", "Ob8", "An2", "Ma4")
-GRMS_p2_vars <- c("Ob7", "Ma5", "An1", "St3", "Ob5", "Ma6", "Ma2", "St1")
-GRMS_p3_vars <- c("Ob9", "Ob2", "Ob4", "Ob6", "Ob10", "St5", "Ob3", "St4")
-
-dfLewis$p1GRMS <- sjstats::mean_n(dfLewis[, GRMS_p1_vars], 0.75)
-dfLewis$p2GRMS <- sjstats::mean_n(dfLewis[, GRMS_p2_vars], 0.75)
-dfLewis$p3GRMS <- sjstats::mean_n(dfLewis[, GRMS_p3_vars], 0.75)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfLewis$p3PWB <-
-# sjstats::mean_n(dfLewis[, ..PWB_p3_vars], .75)
+``` r
+dfLewis$p1GRMS <- datawizard::row_means(dfLewis, select = c('Ma3','Ma7', 'Ma1', 'Ob1', 'St2', 'Ob8', 'An2', 'Ma4'), min_valid = .75)
+dfLewis$p2GRMS <- datawizard::row_means(dfLewis, select = c('Ob7','Ma5', 'An1', 'St3', 'Ob5', 'Ma6', 'Ma2', 'St1'), min_valid = .75)
+dfLewis$p3GRMS <- datawizard::row_means(dfLewis, select = c('Ob9','Ob2', 'Ob4', 'Ob6', 'Ob10', 'St5', 'Ob3', 'St4'), min_valid = .75)
 ```
 
 This code randomly assigns the mental health items to three parcels.
 
-```r
+``` r
 set.seed(230916)
-items <- c("MH1", "MH2", "MH3", "MH4", "MH5", "MH6")
-parcels <- c("MH_p1", "MH_p2", "MH_p3")
-data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
+items <- c('MH1', 'MH2', 'MH3', 'MH4', 'MH5', 'MH6')
+parcels <- c("MH_p1", "MH_p2","MH_p3")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
 ```
 
 ```
@@ -419,28 +410,20 @@ data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
 
 This code provides means for each of the three REMS parcels.
 
-```r
-MH_p1_vars <- c("MH5", "MH6")
-MH_p2_vars <- c("MH1", "MH3")
-MH_p3_vars <- c("MH4", "MH2")
-
-dfLewis$p1MH <- sjstats::mean_n(dfLewis[, MH_p1_vars], 0.75)
-dfLewis$p2MH <- sjstats::mean_n(dfLewis[, MH_p2_vars], 0.75)
-dfLewis$p3MH <- sjstats::mean_n(dfLewis[, MH_p3_vars], 0.75)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfLewis$p3REMS <-
-# sjstats::mean_n(dfLewis[, ..REMS_p3_vars], .80)
+``` r
+dfLewis$p1MH <- datawizard::row_means(dfLewis, select = c('MH5','MH6'), min_valid = .75)
+dfLewis$p2MH <- datawizard::row_means(dfLewis, select = c('MH1','MH3'), min_valid = .75)
+dfLewis$p3MH <- datawizard::row_means(dfLewis, select = c('MH4','MH2'), min_valid = .75)
 ```
 
 This code randomly assigns the physical health items to three parcels.
 
-```r
+``` r
 set.seed(230916)
-items <- c("PhH1", "PhH2", "PhH3", "PhH4", "PhH5", "PhH6")
-parcels <- c("PhH_p1", "PhH_p2", "PhH_p3")
-data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
+items <- c('PhH1', 'PhH2', 'PhH3', 'PhH4', 'PhH5', 'PhH6')
+parcels <- c("PhH_p1", "PhH_p2","PhH_p3")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
 ```
 
 ```
@@ -455,25 +438,16 @@ data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
 
 This code provides means for each of the three REMS parcels.
 
-```r
-PhH_p1_vars <- c("PhH5", "PhH6")
-PhH_p2_vars <- c("PhH1", "PhH3")
-PhH_p3_vars <- c("PhH4", "PhH2")
-
-dfLewis$p1PhH <- sjstats::mean_n(dfLewis[, PhH_p1_vars], 0.75)
-dfLewis$p2PhH <- sjstats::mean_n(dfLewis[, PhH_p2_vars], 0.75)
-dfLewis$p3PhH <- sjstats::mean_n(dfLewis[, PhH_p3_vars], 0.75)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfLewis$p3REMS <-
-# sjstats::mean_n(dfLewis[, ..REMS_p3_vars], .80)
+``` r
+dfLewis$p1PhH <- datawizard::row_means(dfLewis, select = c('PhH5','PhH6'), min_valid = .75)
+dfLewis$p2PhH <- datawizard::row_means(dfLewis, select = c('PhH1','PhH3'), min_valid = .75)
+dfLewis$p3PhH <- datawizard::row_means(dfLewis, select = c('PhH4','PhH2'), min_valid = .75)
 ```
 
 
 Below is code for specifying the measurement model. Each of the latent variables/factors (REMS, CMI, PWB) is identified by three parcels. Each of the latent variables is allowed to covary with the others.
 
-```r
+``` r
 msmt_mod <- "
         ##measurement model
          GRMS =~ p1GRMS + p2GRMS + p3GRMS
@@ -513,13 +487,12 @@ msmt_mod <- "
 set.seed(230916)
 msmt_fit <- lavaan::cfa(msmt_mod, data = dfLewis, missing = "fiml")
 msmt_fit_sum <- lavaan::summary(msmt_fit, fit.measures = TRUE, standardized = TRUE)
-msmt_fit_pEsts <- lavaan::parameterEstimates(msmt_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+msmt_fit_pEsts <- lavaan::parameterEstimates(msmt_fit, boot.ci.type = "bca.simple", standardized=TRUE)
 msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 106 iterations
+## lavaan 0.6-18 ended normally after 86 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -530,13 +503,13 @@ msmt_fit_sum
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                94.122
+##   Test statistic                                94.116
 ##   Degrees of freedom                               102
 ##   P-value (Chi-square)                           0.698
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                              2104.157
+##   Test statistic                              2103.901
 ##   Degrees of freedom                               136
 ##   P-value                                        0.000
 ## 
@@ -550,12 +523,12 @@ msmt_fit_sum
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)              -3376.747
-##   Loglikelihood unrestricted model (H1)      -3329.686
+##   Loglikelihood user model (H0)              -3377.119
+##   Loglikelihood unrestricted model (H1)      -3330.061
 ##                                                       
-##   Akaike (AIC)                                6889.494
-##   Bayesian (BIC)                              7123.579
-##   Sample-size adjusted Bayesian (SABIC)       6908.057
+##   Akaike (AIC)                                6890.238
+##   Bayesian (BIC)                              7124.322
+##   Sample-size adjusted Bayesian (SABIC)       6908.801
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
@@ -585,19 +558,19 @@ msmt_fit_sum
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   GRMS =~                                                               
 ##     p1GRMS            1.000                               0.726    0.956
-##     p2GRMS            1.014    0.030   34.037    0.000    0.736    0.961
-##     p3GRMS            0.904    0.030   30.069    0.000    0.656    0.934
+##     p2GRMS            1.013    0.030   34.040    0.000    0.736    0.961
+##     p3GRMS            0.904    0.030   30.049    0.000    0.656    0.934
 ##   MH =~                                                                 
 ##     p1MH              1.000                               0.624    0.765
 ##     p2MH              1.237    0.128    9.696    0.000    0.773    0.728
-##     p3MH              1.241    0.112   11.044    0.000    0.775    0.776
+##     p3MH              1.241    0.112   11.043    0.000    0.775    0.776
 ##   PhH =~                                                                
-##     p1PhH             1.000                               0.600    0.662
-##     p2PhH             0.997    0.125    7.959    0.000    0.598    0.714
-##     p3PhH             1.060    0.139    7.643    0.000    0.636    0.727
+##     p1PhH             1.000                               0.600    0.661
+##     p2PhH             0.997    0.125    7.960    0.000    0.598    0.714
+##     p3PhH             1.060    0.139    7.644    0.000    0.636    0.727
 ##   Spr =~                                                                
 ##     Spirit1   (v1)    1.000                               0.488    0.730
-##     Spirit2   (v1)    1.000                               0.488    0.762
+##     Spirit2   (v1)    1.000                               0.488    0.763
 ##   SSp =~                                                                
 ##     SocS1     (v2)    1.000                               0.425    0.704
 ##     SocS2     (v2)    1.000                               0.425    0.654
@@ -611,12 +584,12 @@ msmt_fit_sum
 ## Covariances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   GRMS ~~                                                               
-##     MH               -0.290    0.042   -6.868    0.000   -0.639   -0.639
-##     PhH              -0.185    0.039   -4.698    0.000   -0.425   -0.425
-##     Spr               0.289    0.034    8.445    0.000    0.815    0.815
-##     SSp               0.212    0.030    7.160    0.000    0.689    0.689
-##     Eng               0.204    0.029    7.054    0.000    0.689    0.689
-##     dEng              0.202    0.029    7.008    0.000    0.680    0.680
+##     MH               -0.290    0.042   -6.867    0.000   -0.639   -0.639
+##     PhH              -0.185    0.039   -4.700    0.000   -0.425   -0.425
+##     Spr               0.289    0.034    8.446    0.000    0.815    0.815
+##     SSp               0.212    0.030    7.161    0.000    0.689    0.689
+##     Eng               0.205    0.029    7.054    0.000    0.689    0.689
+##     dEng              0.202    0.029    7.011    0.000    0.680    0.680
 ##   MH ~~                                                                 
 ##     PhH               0.200    0.040    5.041    0.000    0.533    0.533
 ##     Spr              -0.155    0.030   -5.177    0.000   -0.507   -0.507
@@ -629,7 +602,7 @@ msmt_fit_sum
 ##     Eng              -0.052    0.025   -2.111    0.035   -0.212   -0.212
 ##     dEng             -0.101    0.026   -3.830    0.000   -0.411   -0.411
 ##   Spr ~~                                                                
-##     SSp               0.153    0.023    6.739    0.000    0.738    0.738
+##     SSp               0.153    0.023    6.738    0.000    0.738    0.738
 ##     Eng               0.140    0.022    6.409    0.000    0.704    0.704
 ##     dEng              0.129    0.022    5.998    0.000    0.646    0.646
 ##   SSp ~~                                                                
@@ -640,44 +613,44 @@ msmt_fit_sum
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1GRMS            2.592    0.050   51.897    0.000    2.592    3.415
-##    .p2GRMS            2.545    0.050   50.567    0.000    2.545    3.327
-##    .p3GRMS            2.579    0.046   55.829    0.000    2.579    3.673
+##    .p1GRMS            2.592    0.050   51.873    0.000    2.592    3.413
+##    .p2GRMS            2.545    0.050   50.562    0.000    2.545    3.327
+##    .p3GRMS            2.579    0.046   55.790    0.000    2.579    3.671
 ##    .p1MH              3.582    0.054   66.695    0.000    3.582    4.388
 ##    .p2MH              2.866    0.070   41.068    0.000    2.866    2.702
 ##    .p3MH              3.035    0.066   46.200    0.000    3.035    3.040
 ##    .p1PhH             3.128    0.060   52.418    0.000    3.128    3.449
 ##    .p2PhH             2.652    0.055   48.093    0.000    2.652    3.164
 ##    .p3PhH             3.067    0.058   53.298    0.000    3.067    3.507
-##    .Spirit1           2.511    0.044   57.110    0.000    2.511    3.758
-##    .Spirit2           2.437    0.042   57.882    0.000    2.437    3.808
-##    .SocS1             2.550    0.040   64.254    0.000    2.550    4.228
-##    .SocS2             2.758    0.043   64.576    0.000    2.758    4.249
-##    .Eng1              2.437    0.044   55.427    0.000    2.437    3.647
-##    .Eng2              2.515    0.038   65.479    0.000    2.515    4.308
-##    .dEng1             2.502    0.039   63.518    0.000    2.502    4.179
-##    .dEng2             2.455    0.041   59.357    0.000    2.455    3.905
+##    .Spirit1           2.511    0.044   57.107    0.000    2.511    3.757
+##    .Spirit2           2.437    0.042   57.885    0.000    2.437    3.809
+##    .SocS1             2.550    0.040   64.251    0.000    2.550    4.227
+##    .SocS2             2.758    0.043   64.579    0.000    2.758    4.249
+##    .Eng1              2.437    0.044   55.426    0.000    2.437    3.647
+##    .Eng2              2.515    0.038   65.480    0.000    2.515    4.308
+##    .dEng1             2.502    0.039   63.517    0.000    2.502    4.179
+##    .dEng2             2.455    0.041   59.358    0.000    2.455    3.905
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1GRMS            0.050    0.008    6.600    0.000    0.050    0.086
-##    .p2GRMS            0.044    0.007    6.015    0.000    0.044    0.076
-##    .p3GRMS            0.063    0.008    8.289    0.000    0.063    0.128
-##    .p1MH              0.277    0.037    7.437    0.000    0.277    0.415
-##    .p2MH              0.528    0.067    7.935    0.000    0.528    0.469
-##    .p3MH              0.396    0.055    7.225    0.000    0.396    0.397
-##    .p1PhH             0.463    0.058    7.996    0.000    0.463    0.562
-##    .p2PhH             0.344    0.049    7.098    0.000    0.344    0.490
-##    .p3PhH             0.360    0.054    6.723    0.000    0.360    0.471
-##    .Spirit1           0.208    0.026    8.152    0.000    0.208    0.467
-##    .Spirit2           0.171    0.023    7.433    0.000    0.171    0.419
+##    .p1GRMS            0.050    0.008    6.591    0.000    0.050    0.086
+##    .p2GRMS            0.044    0.007    6.012    0.000    0.044    0.076
+##    .p3GRMS            0.063    0.008    8.295    0.000    0.063    0.128
+##    .p1MH              0.276    0.037    7.435    0.000    0.276    0.415
+##    .p2MH              0.528    0.067    7.933    0.000    0.528    0.469
+##    .p3MH              0.396    0.055    7.226    0.000    0.396    0.398
+##    .p1PhH             0.463    0.058    7.997    0.000    0.463    0.562
+##    .p2PhH             0.344    0.049    7.097    0.000    0.344    0.490
+##    .p3PhH             0.360    0.054    6.724    0.000    0.360    0.471
+##    .Spirit1           0.208    0.026    8.153    0.000    0.208    0.467
+##    .Spirit2           0.171    0.023    7.432    0.000    0.171    0.419
 ##    .SocS1             0.183    0.025    7.225    0.000    0.183    0.504
-##    .SocS2             0.241    0.029    8.235    0.000    0.241    0.572
+##    .SocS2             0.241    0.029    8.234    0.000    0.241    0.572
 ##    .Eng1              0.279    0.032    8.627    0.000    0.279    0.625
 ##    .Eng2              0.173    0.025    6.893    0.000    0.173    0.509
-##    .dEng1             0.191    0.025    7.482    0.000    0.191    0.532
-##    .dEng2             0.227    0.028    8.127    0.000    0.227    0.575
-##     GRMS              0.527    0.054    9.796    0.000    1.000    1.000
+##    .dEng1             0.191    0.025    7.483    0.000    0.191    0.532
+##    .dEng2             0.227    0.028    8.128    0.000    0.227    0.575
+##     GRMS              0.527    0.054    9.797    0.000    1.000    1.000
 ##     MH                0.390    0.062    6.241    0.000    1.000    1.000
 ##     PhH               0.360    0.074    4.854    0.000    1.000    1.000
 ##     Spr               0.238    0.032    7.412    0.000    1.000    1.000
@@ -686,9 +659,8 @@ msmt_fit_sum
 ##     dEng              0.168    0.027    6.208    0.000    1.000    1.000
 ```
 
-```r
-# msmt_fit_pEsts #although creating the object is useful to export as
-# a .csv I didn't ask it to print into the book
+``` r
+#msmt_fit_pEsts #although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 
 The factor loadings were all strong, statistically significant, and properly valenced. Further, global fit statistics were within acceptable thresholds ($\chi^2(102) = 94.122, p = 0.698, CFI = 1.000, RMSEA = 0.000, 90CI[0.000,	 0.028], SRMR =  0.034$).
@@ -696,22 +668,19 @@ The factor loadings were all strong, statistically significant, and properly val
 The figure below is an illustration of our measurement model with its results. It also conveys that each latent variable is indicated by three parcels and all of the latent variables are allowed to covary.
 
 
-```r
-semPlot::semPaths(msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5,
-    node.width = 1, edge.label.cex = 0.75, style = "lisrel", mar = c(5,
-        5, 5, 5))
+``` r
+semPlot::semPaths(msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
 ![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-15-1.png)<!-- -->
 
-```r
-# semPlot::semPaths(msmt_fit) #ignore -- used to create a no-results
-# figure earlier in the chapter
+``` r
+#semPlot::semPaths(msmt_fit) #ignore -- used to create a no-results figure earlier in the chapter
 ```
 Below is script that will export the global fit indices (via *tidySEM::table_fit*) and the parameter estimates (e.g., factor loadings, structural regression weights, and parameters we requested such as the indirect effect) to .csv files that you can manipulate outside of R.  
 
-```r
-# global fit indices
+``` r
+#global fit indices
 msmt_fitstats <- tidySEM::table_fit(msmt_fit)
 ```
 
@@ -721,9 +690,9 @@ msmt_fitstats <- tidySEM::table_fit(msmt_fit)
 ##   predict.MxModel OpenMx
 ```
 
-```r
+``` r
 write.csv(msmt_fitstats, file = "msmt_fitstats.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(msmt_fit_pEsts, file = "msmt_pEsts.csv")
 ```
 
@@ -787,7 +756,7 @@ In order to be evaluated, structural models need to be *just identifed* ($df_M =
 **Knowns**: $\frac{k(k+1)}{2}$ where *k* is the number of *constructs* (humoR:  konstructs?)in the model.  In our case, we have seven constructs. Deploying the formula below, we learn that we have 21 knowns. 
 
 
-```r
+``` r
 (7*(7+1))/2
 ```
 
@@ -816,13 +785,13 @@ Specifying our structural model in *lavaan* includes script for the measurement 
 In the model specification below, there are more elements to note. I have chosen to specify the dependent variables with all of the variables that predict them in a single line of code. In the script below I wrote:
 
 
-```r
+``` r
 MH ~ c_p1*GRMS + b1*Spr + b2*SSp + b3*Eng + b4*dEng 
 ```
 
 It is equally acceptable to list them specify them from fewer predictors at a time. For example, I could have written 
 
-```r
+``` r
 MH ~ c_p1*GRMS 
 MH ~ b1*Spr
 MH ~ b2*SSp
@@ -839,7 +808,7 @@ In the *lavaan::summary* function, we will want to retrieve the global fit indic
 In the *lavaan::parameterEstimates* we can obtain *lavaan*'s version of bias-corrected bootstrapped confidence intervals (they aren't quite the same) by including *boot.ci.type = "bca.simple"*.
 
 
-```r
+``` r
 struct_mod1 <- "
         ##measurement model
          GRMS =~ p1GRMS + p2GRMS + p3GRMS
@@ -880,17 +849,15 @@ struct_mod1 <- "
          total.MH  := c_p1 + (a1*b1) + (a2*b2) + (a3*b3) + (a4*b4)
          total.PhH  := c_p2 + (a1*b5) + (a1*b6) + (a1*b7) + (a1*b8)
           "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-struct_fit1 <- lavaan::sem(struct_mod1, data = dfLewis, missing = "fiml")
-struct_summary1 <- lavaan::summary(struct_fit1, fit.measures = TRUE, standardized = TRUE,
-    rsq = TRUE)
-struct_pEsts1 <- lavaan::parameterEstimates(struct_fit1, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+struct_fit1 <- lavaan::sem(struct_mod1, data = dfLewis, missing= 'fiml')
+struct_summary1 <- lavaan::summary(struct_fit1, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+struct_pEsts1 <- lavaan::parameterEstimates(struct_fit1, boot.ci.type = "bca.simple", standardized=TRUE)
 struct_summary1
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 117 iterations
+## lavaan 0.6-18 ended normally after 82 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -901,13 +868,13 @@ struct_summary1
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                               120.324
+##   Test statistic                               120.287
 ##   Degrees of freedom                               109
 ##   P-value (Chi-square)                           0.216
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                              2104.157
+##   Test statistic                              2103.901
 ##   Degrees of freedom                               136
 ##   P-value                                        0.000
 ## 
@@ -921,25 +888,25 @@ struct_summary1
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)              -3389.848
-##   Loglikelihood unrestricted model (H1)      -3329.686
+##   Loglikelihood user model (H0)              -3390.204
+##   Loglikelihood unrestricted model (H1)      -3330.061
 ##                                                       
-##   Akaike (AIC)                                6901.696
-##   Bayesian (BIC)                              7111.683
-##   Sample-size adjusted Bayesian (SABIC)       6918.348
+##   Akaike (AIC)                                6902.409
+##   Bayesian (BIC)                              7112.396
+##   Sample-size adjusted Bayesian (SABIC)       6919.061
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
 ##   RMSEA                                          0.021
 ##   90 Percent confidence interval - lower         0.000
 ##   90 Percent confidence interval - upper         0.041
-##   P-value H_0: RMSEA <= 0.050                    0.995
+##   P-value H_0: RMSEA <= 0.050                    0.996
 ##   P-value H_0: RMSEA >= 0.080                    0.000
 ##                                                       
 ##   Robust RMSEA                                   0.021
 ##   90 Percent confidence interval - lower         0.000
 ##   90 Percent confidence interval - upper         0.041
-##   P-value H_0: Robust RMSEA <= 0.050             0.995
+##   P-value H_0: Robust RMSEA <= 0.050             0.996
 ##   P-value H_0: Robust RMSEA >= 0.080             0.000
 ## 
 ## Standardized Root Mean Square Residual:
@@ -956,14 +923,14 @@ struct_summary1
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   GRMS =~                                                               
 ##     p1GRMS            1.000                               0.725    0.955
-##     p2GRMS            1.015    0.030   34.097    0.000    0.736    0.962
-##     p3GRMS            0.903    0.030   29.818    0.000    0.655    0.932
+##     p2GRMS            1.014    0.030   34.100    0.000    0.736    0.962
+##     p3GRMS            0.903    0.030   29.794    0.000    0.655    0.932
 ##   MH =~                                                                 
 ##     p1MH              1.000                               0.628    0.769
-##     p2MH              1.218    0.126    9.663    0.000    0.765    0.721
-##     p3MH              1.246    0.113   11.045    0.000    0.783    0.783
+##     p2MH              1.218    0.126    9.662    0.000    0.765    0.721
+##     p3MH              1.245    0.113   11.044    0.000    0.782    0.783
 ##   PhH =~                                                                
-##     p1PhH             1.000                               0.604    0.666
+##     p1PhH             1.000                               0.604    0.665
 ##     p2PhH             1.007    0.128    7.878    0.000    0.608    0.725
 ##     p3PhH             1.036    0.135    7.664    0.000    0.625    0.715
 ##   Spr =~                                                                
@@ -982,25 +949,25 @@ struct_summary1
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   Eng ~                                                                 
-##     GRMS      (a1)    0.392    0.041    9.506    0.000    0.701    0.701
+##     GRMS      (a1)    0.392    0.041    9.505    0.000    0.701    0.701
 ##   Spr ~                                                                 
-##     GRMS      (a2)    0.554    0.040   13.869    0.000    0.824    0.824
+##     GRMS      (a2)    0.554    0.040   13.873    0.000    0.824    0.824
 ##   SSp ~                                                                 
-##     GRMS      (a3)    0.406    0.042    9.684    0.000    0.694    0.694
+##     GRMS      (a3)    0.406    0.042    9.687    0.000    0.694    0.694
 ##   dEng ~                                                                
-##     GRMS      (a4)    0.386    0.041    9.400    0.000    0.707    0.707
+##     GRMS      (a4)    0.386    0.041    9.408    0.000    0.708    0.708
 ##   MH ~                                                                  
-##     GRMS    (c_p1)   -0.445    0.205   -2.178    0.029   -0.514   -0.514
-##     Eng       (b1)    0.355    0.223    1.594    0.111    0.229    0.229
+##     GRMS    (c_p1)   -0.445    0.205   -2.172    0.030   -0.513   -0.513
+##     Eng       (b1)    0.354    0.223    1.592    0.111    0.229    0.229
 ##     Spr       (b2)    0.155    0.219    0.705    0.481    0.120    0.120
-##     SSp       (b3)   -0.012    0.187   -0.062    0.950   -0.008   -0.008
-##     dEng      (b4)   -0.850    0.303   -2.801    0.005   -0.536   -0.536
+##     SSp       (b3)   -0.012    0.187   -0.063    0.950   -0.008   -0.008
+##     dEng      (b4)   -0.851    0.304   -2.798    0.005   -0.536   -0.536
 ##   PhH ~                                                                 
-##     GRMS    (c_p2)   -0.369    0.224   -1.650    0.099   -0.444   -0.444
+##     GRMS    (c_p2)   -0.370    0.224   -1.651    0.099   -0.444   -0.444
 ##     Eng       (b5)    0.330    0.250    1.322    0.186    0.222    0.222
-##     Spr       (b6)    0.215    0.254    0.845    0.398    0.174    0.174
-##     SSp       (b7)    0.016    0.215    0.076    0.939    0.012    0.012
-##     dEng      (b8)   -0.624    0.295   -2.115    0.034   -0.409   -0.409
+##     Spr       (b6)    0.216    0.255    0.847    0.397    0.174    0.174
+##     SSp       (b7)    0.017    0.215    0.078    0.938    0.012    0.012
+##     dEng      (b8)   -0.624    0.295   -2.111    0.035   -0.409   -0.409
 ## 
 ## Covariances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -1009,50 +976,50 @@ struct_summary1
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1GRMS            2.592    0.050   51.897    0.000    2.592    3.415
-##    .p2GRMS            2.545    0.050   50.567    0.000    2.545    3.327
-##    .p3GRMS            2.579    0.046   55.829    0.000    2.579    3.673
+##    .p1GRMS            2.592    0.050   51.873    0.000    2.592    3.413
+##    .p2GRMS            2.545    0.050   50.562    0.000    2.545    3.327
+##    .p3GRMS            2.579    0.046   55.791    0.000    2.579    3.671
 ##    .p1MH              3.582    0.054   66.615    0.000    3.582    4.383
-##    .p2MH              2.866    0.070   41.024    0.000    2.866    2.699
+##    .p2MH              2.866    0.070   41.025    0.000    2.866    2.699
 ##    .p3MH              3.035    0.066   46.142    0.000    3.035    3.036
 ##    .p1PhH             3.128    0.060   52.388    0.000    3.128    3.447
 ##    .p2PhH             2.652    0.055   48.061    0.000    2.652    3.162
 ##    .p3PhH             3.067    0.058   53.263    0.000    3.067    3.504
-##    .Spirit1           2.511    0.044   56.810    0.000    2.511    3.738
-##    .Spirit2           2.437    0.042   58.200    0.000    2.437    3.829
-##    .SocS1             2.550    0.040   64.175    0.000    2.550    4.222
-##    .SocS2             2.758    0.043   64.662    0.000    2.758    4.254
+##    .Spirit1           2.511    0.044   56.806    0.000    2.511    3.738
+##    .Spirit2           2.437    0.042   58.204    0.000    2.437    3.830
+##    .SocS1             2.550    0.040   64.172    0.000    2.550    4.222
+##    .SocS2             2.758    0.043   64.665    0.000    2.758    4.255
 ##    .Eng1              2.437    0.044   55.380    0.000    2.437    3.644
-##    .Eng2              2.515    0.038   65.524    0.000    2.515    4.311
-##    .dEng1             2.502    0.040   63.179    0.000    2.502    4.157
-##    .dEng2             2.455    0.041   59.610    0.000    2.455    3.922
+##    .Eng2              2.515    0.038   65.525    0.000    2.515    4.311
+##    .dEng1             2.502    0.040   63.178    0.000    2.502    4.157
+##    .dEng2             2.455    0.041   59.611    0.000    2.455    3.922
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1GRMS            0.050    0.007    6.754    0.000    0.050    0.087
-##    .p2GRMS            0.044    0.007    6.098    0.000    0.044    0.075
-##    .p3GRMS            0.064    0.008    8.400    0.000    0.064    0.131
-##    .p1MH              0.273    0.037    7.381    0.000    0.273    0.409
-##    .p2MH              0.542    0.067    8.057    0.000    0.542    0.480
-##    .p3MH              0.387    0.055    7.082    0.000    0.387    0.387
-##    .p1PhH             0.459    0.058    7.914    0.000    0.459    0.557
-##    .p2PhH             0.334    0.049    6.817    0.000    0.334    0.474
-##    .p3PhH             0.375    0.054    6.994    0.000    0.375    0.489
-##    .Spirit1           0.214    0.026    8.135    0.000    0.214    0.473
-##    .Spirit2           0.167    0.023    7.223    0.000    0.167    0.413
-##    .SocS1             0.184    0.026    7.155    0.000    0.184    0.506
+##    .p1GRMS            0.050    0.007    6.747    0.000    0.050    0.087
+##    .p2GRMS            0.044    0.007    6.093    0.000    0.044    0.075
+##    .p3GRMS            0.065    0.008    8.405    0.000    0.065    0.131
+##    .p1MH              0.273    0.037    7.379    0.000    0.273    0.409
+##    .p2MH              0.542    0.067    8.056    0.000    0.542    0.480
+##    .p3MH              0.387    0.055    7.083    0.000    0.387    0.387
+##    .p1PhH             0.459    0.058    7.915    0.000    0.459    0.557
+##    .p2PhH             0.333    0.049    6.816    0.000    0.333    0.474
+##    .p3PhH             0.375    0.054    6.995    0.000    0.375    0.489
+##    .Spirit1           0.214    0.026    8.137    0.000    0.214    0.473
+##    .Spirit2           0.167    0.023    7.222    0.000    0.167    0.413
+##    .SocS1             0.184    0.026    7.156    0.000    0.184    0.506
 ##    .SocS2             0.240    0.029    8.140    0.000    0.240    0.571
 ##    .Eng1              0.282    0.033    8.558    0.000    0.282    0.631
 ##    .Eng2              0.175    0.026    6.694    0.000    0.175    0.515
-##    .dEng1             0.205    0.029    7.114    0.000    0.205    0.567
-##    .dEng2             0.235    0.030    7.701    0.000    0.235    0.599
+##    .dEng1             0.205    0.029    7.113    0.000    0.205    0.567
+##    .dEng2             0.235    0.030    7.700    0.000    0.235    0.599
 ##     GRMS              0.526    0.054    9.787    0.000    1.000    1.000
-##    .MH                0.164    0.042    3.930    0.000    0.416    0.416
+##    .MH                0.164    0.042    3.930    0.000    0.417    0.417
 ##    .PhH               0.255    0.058    4.403    0.000    0.700    0.700
-##    .Spr               0.076    0.019    4.051    0.000    0.321    0.321
-##    .SSp               0.094    0.021    4.413    0.000    0.519    0.519
-##    .Eng               0.084    0.022    3.808    0.000    0.509    0.509
-##    .dEng              0.078    0.024    3.330    0.001    0.500    0.500
+##    .Spr               0.076    0.019    4.049    0.000    0.321    0.321
+##    .SSp               0.093    0.021    4.412    0.000    0.519    0.519
+##    .Eng               0.084    0.022    3.809    0.000    0.509    0.509
+##    .dEng              0.078    0.024    3.326    0.001    0.499    0.499
 ## 
 ## R-Square:
 ##                    Estimate
@@ -1073,41 +1040,40 @@ struct_summary1
 ##     Eng2              0.485
 ##     dEng1             0.433
 ##     dEng2             0.401
-##     MH                0.584
+##     MH                0.583
 ##     PhH               0.300
 ##     Spr               0.679
 ##     SSp               0.481
 ##     Eng               0.491
-##     dEng              0.500
+##     dEng              0.501
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##     indirect.EngMH    0.139    0.089    1.564    0.118    0.161    0.161
-##     indirect.SprMH    0.086    0.122    0.703    0.482    0.099    0.099
-##     indirect.SSpMH   -0.005    0.076   -0.062    0.950   -0.005   -0.005
-##     indirct.dEngMH   -0.328    0.123   -2.680    0.007   -0.379   -0.379
-##     indirct.EngPhH    0.130    0.099    1.305    0.192    0.156    0.156
-##     indirct.SprPhH    0.119    0.141    0.842    0.400    0.143    0.143
-##     indirct.SSpPhH    0.007    0.087    0.076    0.939    0.008    0.008
-##     indrct.dEngPhH   -0.241    0.117   -2.059    0.039   -0.289   -0.289
-##     direct.MH        -0.445    0.205   -2.178    0.029   -0.514   -0.514
-##     direct.PhH       -0.369    0.224   -1.650    0.099   -0.444   -0.444
-##     total.MH         -0.554    0.062   -8.932    0.000   -0.639   -0.639
+##     indirect.EngMH    0.139    0.089    1.562    0.118    0.160    0.160
+##     indirect.SprMH    0.086    0.122    0.702    0.482    0.099    0.099
+##     indirect.SSpMH   -0.005    0.076   -0.063    0.950   -0.006   -0.006
+##     indirct.dEngMH   -0.329    0.123   -2.676    0.007   -0.379   -0.379
+##     indirct.EngPhH    0.129    0.099    1.305    0.192    0.156    0.156
+##     indirct.SprPhH    0.119    0.142    0.844    0.399    0.143    0.143
+##     indirct.SSpPhH    0.007    0.087    0.078    0.938    0.008    0.008
+##     indrct.dEngPhH   -0.241    0.117   -2.056    0.040   -0.290   -0.290
+##     direct.MH        -0.445    0.205   -2.172    0.030   -0.513   -0.513
+##     direct.PhH       -0.370    0.224   -1.651    0.099   -0.444   -0.444
+##     total.MH         -0.553    0.062   -8.931    0.000   -0.639   -0.639
 ##     total.PhH        -0.394    0.083   -4.768    0.000   -0.445   -0.445
 ```
 
-```r
-# struct_pEsts #although creating the object is useful to export as a
-# .csv I didn't ask it to print into the book
+``` r
+#struct_pEsts #although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 
 Below is script that will export the global fit indices (via *tidySEM::table_fit*) and the parameter estimates (e.g., factor loadings, structural regression weights, and parameters we requested such as the indirect effect) to .csv files that you can manipulate outside of R.  
 
-```r
-# global fit indices
+``` r
+#global fit indices
 struct_fitstats <- tidySEM::table_fit(struct_fit1)
 write.csv(struct_fitstats, file = "struct_fitstats.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(struct_pEsts1, file = "struct_pEsts1.csv")
 ```
 
@@ -1116,10 +1082,8 @@ write.csv(struct_pEsts1, file = "struct_pEsts1.csv")
 Plotting the results can be useful in checking our work and, if correct, understanding the relations between the variables.  The *semPlot::semPaths* function will produce an initial guess at what we might like that can be further tweaked.
 
 
-```r
-plot_struct1 <- semPlot::semPaths(struct_fit1, what = "col", whatLabels = "stand",
-    sizeMan = 3, node.width = 1, edge.label.cex = 0.75, style = "lisrel",
-    mar = c(2, 2, 2, 2), structural = FALSE, curve = FALSE, intercepts = FALSE)
+``` r
+plot_struct1 <- semPlot::semPaths(struct_fit1, what = "col", whatLabels = "stand", sizeMan = 3, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(2,2,2,2), structural = FALSE, curve=FALSE, intercepts=FALSE)
 ```
 
 ![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-22-1.png)<!-- -->
@@ -1137,63 +1101,100 @@ Although the code below may look daunting, I find it to be a fairly straightforw
 
 We place these values along with the names of our latent variables in to the *semptools::layout_matrix* function.
 
-```r
-# IMPORTANT: Must use the node names (take directly from the SemPlot)
-# assigned by SemPlot You can change them as the last thing
-m1_msmt <- semptools::layout_matrix(GRM = c(4, 1), Eng = c(1, 2), Spr = c(2,
-    2), SSp = c(6, 2), dEn = c(7, 2), MH = c(3, 3), PhH = c(5, 3))
+``` r
+#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
+#You can change them as the last thing
+m1_msmt <- semptools::layout_matrix(GRM = c(4,1),
+                                  Eng = c(1,2),
+                                  Spr = c(2,2),
+                                  SSp = c(6,2),
+                                  dEn = c(7,2),
+                                  MH = c(3,3),
+                                  PhH = c(5,3))
 ```
 
 Next we provide instruction on the direction (up, down, left, right) we want the indicator/observed variables to face. We identify the direction by the location of each of our latent variables. For example, in the code below we want the indicators for the REM variable (2,1) to face left.
 
-```r
-# tell where you want the indicators to face
-m1_point_to <- semptools::layout_matrix(left = c(4, 1), up = c(1, 2), down = c(2,
-    2), up = c(6, 2), down = c(7, 2), right = c(3, 3), right = c(5, 3))
+``` r
+#tell where you want the indicators to face
+m1_point_to <- semptools::layout_matrix (left = c(4,1),
+                                      up = c(1,2),
+                                      down = c(2,2),
+                                       up = c(6,2),
+                                       down = c(7,2),
+                                      right = c(3,3),
+                                      right = c(5,3))
 ```
 
 The next two sets of code work together to specify the order of the observed variables for each factor. in the top set of code the variable names indicate the order in which they will appear (i.e., p1R, p2R, p3R). In the second set of code, the listing the variable name three times (i.e., REM, REM, REM) serves as a placeholder for each of the indicators.
 
 It is critical to note that we need to use the abbreviated variable names assigned by *semTools::semPaths* and not necessarily the names that are in the dataframe.
 
-```r
-# the next two codes -- indicator_order and indicator_factor are
-# paired together, they specify the order of observed variables for
-# each factor
-m1_indicator_order <- c("p1G", "p2G", "p3G", "p1M", "p2M", "p3M", "p1P",
-    "p2P", "p3P", "Sp1", "Sp2", "SS1", "SS2", "En1", "En2", "dE1", "dE2")
+``` r
+#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
+m1_indicator_order <- c("p1G", "p2G", "p3G",
+                     "p1M", "p2M", "p3M",
+                     "p1P", "p2P", "p3P",
+                     "Sp1", "Sp2",
+                     "SS1", "SS2",
+                     "En1", "En2",
+                     "dE1", "dE2")
 
-m1_indicator_factor <- c("GRM", "GRM", "GRM", "MH", "MH", "MH", "PhH",
-    "PhH", "PhH", "Spr", "Spr", "SSp", "SSp", "Eng", "Eng", "dEn", "dEn")
+m1_indicator_factor <- c("GRM", "GRM", "GRM",
+                      "MH", "MH", "MH",
+                      "PhH", "PhH", "PhH",
+                      "Spr", "Spr",
+                      "SSp", "SSp",
+                      "Eng", "Eng",
+                      "dEn", "dEn")
 ```
 
 
 The next two sets of codes provide some guidance about how far away the indicator (square/rectangular) variables should be away from the latent (oval/circular) variables. Subsequently, the next set of values indicate how far away each of the indicator (square/rectangular) variables should be spread apart.
 
-```r
-# next set of code pushes the indicator variables away from the
-# factor
-m1_indicator_push <- c(GRM = 0.5, MH = 1, PhH = 1, Spr = 2, SSp = 1.5,
-    Eng = 1.5, dEn = 2)
+``` r
+#next set of code pushes the indicator variables away from the factor
+m1_indicator_push <- c(GRM = .5, 
+                    MH = 1,
+                    PhH = 1, 
+                    Spr = 2,
+                    SSp = 1.5,
+                    Eng = 1.5,
+                    dEn = 2)
 
-# spreading the boxes away from each other
-m1_indicator_spread <- c(GRM = 0.5, MH = 2.5, PhH = 2.5, Spr = 1, SSp = 1,
-    Eng = 1, dEn = 1)
+#spreading the boxes away from each other
+m1_indicator_spread <- c(GRM = .5, 
+                    MH = 2.5,
+                    PhH = 2.5, 
+                    Spr = 1,
+                    SSp = 1,
+                    Eng = 1,
+                    dEn = 1)
 ```
 
 Finally, we can feed all of the objects that whole these instructions into the *semptools::sem_set_layout* function. If desired, we can use the *semptools::change_node_label* function to rename the latent variables. Again, make sure to use the variable names that *semPlot::semPaths* has assigned.
 
-```r
-plot1 <- semptools::set_sem_layout(plot_struct1, indicator_order = m1_indicator_order,
-    indicator_factor = m1_indicator_factor, factor_layout = m1_msmt, factor_point_to = m1_point_to,
-    indicator_push = m1_indicator_push, indicator_spread = m1_indicator_spread)
+``` r
+plot1 <- semptools::set_sem_layout(plot_struct1,
+                                indicator_order = m1_indicator_order,
+                                indicator_factor = m1_indicator_factor,
+                                factor_layout = m1_msmt,
+                                factor_point_to = m1_point_to,
+                                indicator_push = m1_indicator_push,
+                                indicator_spread = m1_indicator_spread)
 
-# changing node labels
-plot1 <- semptools::change_node_label(plot1, c(GRM = "GRMS", MH = "mHealth",
-    PhH = "phHealth", Eng = "Engmt", dEn = "dEngmt", Spr = "Spirit", SSp = "SocSup"),
-    label.cex = 1.1)
+#changing node labels
+plot1 <- semptools::change_node_label(plot1,
+                                   c(GRM = "GRMS",
+                                     MH = "mHealth",
+                                     PhH = "phHealth",
+                                     Eng = "Engmt",
+                                     dEn = "dEngmt",
+                                     Spr = "Spirit",
+                                     SSp = "SocSup"),
+                                   label.cex = 1.1)
 
-# adding stars to indicate significant paths
+#adding stars to indicate significant paths
 plot1 <- semptools::mark_sig(plot1, struct_fit1)
 
 plot(plot1)
@@ -1205,20 +1206,21 @@ plot(plot1)
 It can be useful to have a representation of the model without the results. This set of code produces those results. It does so by including only the name of the fitted object into the *semPlot::semPaths* function. Then it uses all the objects we just created as instructions for the figure's appearance.
 
 
-```r
-# Code to plot the theoretical model (in case you don't want to print
-# the results on the graph):
-plot1_theoretical <- semPlot::semPaths(struct_fit1, sizeMan = 3, node.width = 1,
-    edge.label.cex = 0.75, style = "lisrel", mar = c(2, 2, 2, 2), structural = FALSE,
-    curve = FALSE, intercepts = FALSE)
+``` r
+#Code to plot the theoretical model (in case you don't want to print the results on the graph):
+plot1_theoretical <- semPlot::semPaths(struct_fit1, sizeMan = 3, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(2,2,2,2), structural = FALSE, curve=FALSE, intercepts=FALSE)
 ```
 
 ![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-28-1.png)<!-- -->
 
-```r
-plot1_theoretical <- semptools::set_sem_layout(plot1_theoretical, indicator_order = m1_indicator_order,
-    indicator_factor = m1_indicator_factor, factor_layout = m1_msmt, factor_point_to = m1_point_to,
-    indicator_push = m1_indicator_push, indicator_spread = m1_indicator_spread)
+``` r
+plot1_theoretical <- semptools::set_sem_layout(plot1_theoretical,
+                                indicator_order = m1_indicator_order,
+                                indicator_factor = m1_indicator_factor,
+                                factor_layout = m1_msmt,
+                                factor_point_to = m1_point_to,
+                                indicator_push = m1_indicator_push,
+                                indicator_spread = m1_indicator_spread)
 plot(plot1_theoretical)
 ```
 
@@ -1291,40 +1293,40 @@ Recall that in model building we start with a more parsimonious model and consid
 When inspecting the results, we will look for the parameters with the highest values (that are clearly above 4.0) that would be theoretically defensible. Be aware that this procedure may "suggest" many nonsensible relations.
 
 
-```r
-lavaan::modindices(struct_fit1, sort = TRUE, minimum.value = 4)
+``` r
+lavaan::modindices(struct_fit1, sort=TRUE, minimum.value=4)
 ```
 
 ```
 ##         lhs op     rhs     mi    epc sepc.lv sepc.all sepc.nox
-## 125     PhH =~    p2MH 12.407  0.432   0.261    0.246    0.246
-## 264    p2MH ~~   dEng2  8.859 -0.087  -0.087   -0.243   -0.243
-## 362     SSp  ~     Spr  8.339  0.468   0.537    0.537    0.537
-## 345     Spr ~~     SSp  8.339  0.036   0.422    0.422    0.422
-## 357     Spr  ~     SSp  8.339  0.381   0.332    0.332    0.332
-## 159     SSp =~ Spirit1  8.328  0.304   0.129    0.192    0.192
-## 184    dEng =~    p2MH  7.683 -0.944  -0.374   -0.352   -0.352
-## 303 Spirit1 ~~ Spirit2  7.539  2.239   2.239   11.841   11.841
-## 325    Eng1 ~~    Eng2  7.538  0.635   0.635    2.853    2.853
-## 372     PhH  ~      MH  7.538  0.453   0.471    0.471    0.471
-## 330   dEng1 ~~   dEng2  7.538  0.140   0.140    0.639    0.639
-## 32       MH ~~     PhH  7.538  0.074   0.363    0.363    0.363
-## 371      MH  ~     PhH  7.538  0.292   0.280    0.280    0.280
-## 133     PhH =~   dEng1  7.349  0.210   0.127    0.210    0.210
-## 196  p1GRMS ~~  p3GRMS  7.107  0.022   0.022    0.384    0.384
-## 245    p1MH ~~ Spirit1  6.205 -0.052  -0.052   -0.215   -0.215
-## 119      MH =~   dEng1  6.170  0.186   0.117    0.194    0.194
-## 241    p1MH ~~    p3MH  5.439  0.110   0.110    0.337    0.337
-## 137     Spr =~  p3GRMS  5.237 -0.238  -0.116   -0.165   -0.165
-## 185    dEng =~    p3MH  5.180  0.758   0.300    0.301    0.301
-## 232  p3GRMS ~~ Spirit1  5.110 -0.022  -0.022   -0.188   -0.188
-## 221  p2GRMS ~~   SocS2  5.098  0.022   0.022    0.213    0.213
-## 351     Eng  ~     Spr  4.830  0.351   0.421    0.421    0.421
-## 346     Spr ~~     Eng  4.830  0.027   0.334    0.334    0.334
-## 356     Spr  ~     Eng  4.830  0.318   0.265    0.265    0.265
-## 304 Spirit1 ~~   SocS1  4.473  0.036   0.036    0.183    0.183
-## 16     dEng =~   dEng1  4.197 -0.290  -0.115   -0.191   -0.191
+## 125     PhH =~    p2MH 12.408  0.432   0.261    0.246    0.246
+## 264    p2MH ~~   dEng2  8.855 -0.087  -0.087   -0.243   -0.243
+## 357     Spr  ~     SSp  8.317  0.381   0.332    0.332    0.332
+## 345     Spr ~~     SSp  8.317  0.036   0.422    0.422    0.422
+## 362     SSp  ~     Spr  8.317  0.467   0.537    0.537    0.537
+## 159     SSp =~ Spirit1  8.308  0.304   0.129    0.192    0.192
+## 184    dEng =~    p2MH  7.677 -0.943  -0.374   -0.352   -0.352
+## 303 Spirit1 ~~ Spirit2  7.543  2.234   2.234   11.817   11.817
+## 330   dEng1 ~~   dEng2  7.543  0.140   0.140    0.639    0.639
+## 371      MH  ~     PhH  7.543  0.292   0.281    0.281    0.281
+## 32       MH ~~     PhH  7.543  0.074   0.364    0.364    0.364
+## 372     PhH  ~      MH  7.543  0.453   0.471    0.471    0.471
+## 325    Eng1 ~~    Eng2  7.543  0.637   0.637    2.859    2.859
+## 133     PhH =~   dEng1  7.348  0.210   0.127    0.210    0.210
+## 196  p1GRMS ~~  p3GRMS  7.286  0.022   0.022    0.389    0.389
+## 245    p1MH ~~ Spirit1  6.203 -0.052  -0.052   -0.215   -0.215
+## 119      MH =~   dEng1  6.169  0.186   0.117    0.194    0.194
+## 241    p1MH ~~    p3MH  5.450  0.110   0.110    0.337    0.337
+## 137     Spr =~  p3GRMS  5.206 -0.238  -0.116   -0.165   -0.165
+## 185    dEng =~    p3MH  5.176  0.758   0.300    0.300    0.300
+## 221  p2GRMS ~~   SocS2  5.131  0.022   0.022    0.214    0.214
+## 232  p3GRMS ~~ Spirit1  5.106 -0.022  -0.022   -0.188   -0.188
+## 351     Eng  ~     Spr  4.827  0.351   0.421    0.421    0.421
+## 356     Spr  ~     Eng  4.827  0.318   0.265    0.265    0.265
+## 346     Spr ~~     Eng  4.827  0.027   0.334    0.334    0.334
+## 304 Spirit1 ~~   SocS1  4.478  0.036   0.036    0.183    0.183
 ## 17     dEng =~   dEng2  4.197  0.290   0.115    0.183    0.183
+## 16     dEng =~   dEng1  4.197 -0.290  -0.115   -0.191   -0.191
 ```
 Because we used the command, "sort=TRUE" the modification indices (in the "mi" column) are presented from highest to lowest. Having familiarity with *lavaan* syntax can be useful in deciphering what is being suggested.
 
@@ -1339,7 +1341,7 @@ I am intrigued by this suggested relation between spiritual coping and social su
 ![An image illustrating the most sensible path suggested by the modification indices](images/IntroSEM/ModBuild.png) 
 
 
-```r
+``` r
 struct_mod2 <- "
        ##measurement model
          GRMS =~ p1GRMS + p2GRMS + p3GRMS
@@ -1387,17 +1389,15 @@ struct_mod2 <- "
          total.PhH  := c_p2 + (a1*b5) + (a1*b6) + (a1*b7) + (a1*b8) + (a2*d1*b7)
 
           "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-struct_fit2 <- lavaan::sem(struct_mod2, data = dfLewis, missing = "fiml")
-struct_summary2 <- lavaan::summary(struct_fit2, fit.measures = TRUE, standardized = TRUE,
-    rsq = TRUE)
-struct_pEsts2 <- lavaan::parameterEstimates(struct_fit2, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+struct_fit2 <- lavaan::sem(struct_mod2, data = dfLewis, missing= 'fiml')
+struct_summary2 <- lavaan::summary(struct_fit2, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+struct_pEsts2 <- lavaan::parameterEstimates(struct_fit2, boot.ci.type = "bca.simple", standardized=TRUE)
 struct_summary2
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 121 iterations
+## lavaan 0.6-18 ended normally after 87 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1408,13 +1408,13 @@ struct_summary2
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                               111.657
+##   Test statistic                               111.642
 ##   Degrees of freedom                               108
-##   P-value (Chi-square)                           0.385
+##   P-value (Chi-square)                           0.386
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                              2104.157
+##   Test statistic                              2103.901
 ##   Degrees of freedom                               136
 ##   P-value                                        0.000
 ## 
@@ -1428,12 +1428,12 @@ struct_summary2
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)              -3385.514
-##   Loglikelihood unrestricted model (H1)      -3329.686
+##   Loglikelihood user model (H0)              -3385.882
+##   Loglikelihood unrestricted model (H1)      -3330.061
 ##                                                       
-##   Akaike (AIC)                                6895.029
-##   Bayesian (BIC)                              7108.458
-##   Sample-size adjusted Bayesian (SABIC)       6911.954
+##   Akaike (AIC)                                6895.764
+##   Bayesian (BIC)                              7109.194
+##   Sample-size adjusted Bayesian (SABIC)       6912.689
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
@@ -1462,13 +1462,13 @@ struct_summary2
 ## Latent Variables:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   GRMS =~                                                               
-##     p1GRMS            1.000                               0.725    0.955
-##     p2GRMS            1.014    0.030   34.076    0.000    0.736    0.962
-##     p3GRMS            0.903    0.030   29.918    0.000    0.655    0.933
+##     p1GRMS            1.000                               0.726    0.956
+##     p2GRMS            1.014    0.030   34.080    0.000    0.736    0.962
+##     p3GRMS            0.903    0.030   29.896    0.000    0.655    0.933
 ##   MH =~                                                                 
-##     p1MH              1.000                               0.628    0.769
-##     p2MH              1.217    0.126    9.664    0.000    0.765    0.721
-##     p3MH              1.245    0.113   11.045    0.000    0.783    0.783
+##     p1MH              1.000                               0.629    0.769
+##     p2MH              1.217    0.126    9.663    0.000    0.765    0.721
+##     p3MH              1.245    0.113   11.045    0.000    0.782    0.783
 ##   PhH =~                                                                
 ##     p1PhH             1.000                               0.604    0.666
 ##     p2PhH             1.006    0.128    7.878    0.000    0.608    0.725
@@ -1489,27 +1489,27 @@ struct_summary2
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   Eng ~                                                                 
-##     GRMS      (a1)    0.392    0.041    9.498    0.000    0.700    0.700
+##     GRMS      (a1)    0.392    0.041    9.497    0.000    0.700    0.700
 ##   Spr ~                                                                 
-##     GRMS      (a2)    0.552    0.040   13.784    0.000    0.822    0.822
+##     GRMS      (a2)    0.552    0.040   13.788    0.000    0.822    0.822
 ##   SSp ~                                                                 
-##     GRMS      (a3)    0.138    0.109    1.266    0.205    0.236    0.236
+##     GRMS      (a3)    0.139    0.109    1.268    0.205    0.237    0.237
 ##   dEng ~                                                                
-##     GRMS      (a4)    0.386    0.041    9.400    0.000    0.707    0.707
+##     GRMS      (a4)    0.386    0.041    9.407    0.000    0.708    0.708
 ##   MH ~                                                                  
-##     GRMS    (c_p1)   -0.431    0.193   -2.236    0.025   -0.498   -0.498
-##     Eng       (b1)    0.351    0.222    1.579    0.114    0.227    0.227
+##     GRMS    (c_p1)   -0.431    0.193   -2.229    0.026   -0.497   -0.497
+##     Eng       (b1)    0.351    0.222    1.577    0.115    0.227    0.227
 ##     Spr       (b2)    0.185    0.277    0.668    0.504    0.144    0.144
 ##     SSp       (b3)   -0.082    0.237   -0.347    0.729   -0.055   -0.055
-##     dEng      (b4)   -0.852    0.303   -2.815    0.005   -0.537   -0.537
+##     dEng      (b4)   -0.853    0.303   -2.811    0.005   -0.537   -0.537
 ##   PhH ~                                                                 
-##     GRMS    (c_p2)   -0.354    0.210   -1.690    0.091   -0.425   -0.425
+##     GRMS    (c_p2)   -0.354    0.210   -1.690    0.091   -0.426   -0.426
 ##     Eng       (b5)    0.325    0.249    1.303    0.192    0.219    0.219
-##     Spr       (b6)    0.257    0.322    0.797    0.425    0.207    0.207
-##     SSp       (b7)   -0.071    0.273   -0.259    0.795   -0.050   -0.050
-##     dEng      (b8)   -0.626    0.294   -2.129    0.033   -0.411   -0.411
+##     Spr       (b6)    0.257    0.322    0.798    0.425    0.207    0.207
+##     SSp       (b7)   -0.070    0.273   -0.258    0.796   -0.049   -0.049
+##     dEng      (b8)   -0.626    0.294   -2.125    0.034   -0.410   -0.410
 ##   SSp ~                                                                 
-##     Spr       (d1)    0.477    0.180    2.646    0.008    0.548    0.548
+##     Spr       (d1)    0.477    0.180    2.643    0.008    0.547    0.547
 ## 
 ## Covariances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -1518,56 +1518,56 @@ struct_summary2
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1GRMS            2.592    0.050   51.897    0.000    2.592    3.415
-##    .p2GRMS            2.545    0.050   50.567    0.000    2.545    3.327
-##    .p3GRMS            2.579    0.046   55.829    0.000    2.579    3.673
+##    .p1GRMS            2.592    0.050   51.873    0.000    2.592    3.413
+##    .p2GRMS            2.545    0.050   50.562    0.000    2.545    3.327
+##    .p3GRMS            2.579    0.046   55.791    0.000    2.579    3.671
 ##    .p1MH              3.582    0.054   66.611    0.000    3.582    4.383
 ##    .p2MH              2.866    0.070   41.023    0.000    2.866    2.699
 ##    .p3MH              3.035    0.066   46.140    0.000    3.035    3.036
 ##    .p1PhH             3.128    0.060   52.384    0.000    3.128    3.447
 ##    .p2PhH             2.652    0.055   48.056    0.000    2.652    3.162
 ##    .p3PhH             3.067    0.058   53.258    0.000    3.067    3.504
-##    .Spirit1           2.511    0.044   57.292    0.000    2.511    3.770
-##    .Spirit2           2.437    0.042   57.677    0.000    2.437    3.795
-##    .SocS1             2.550    0.040   64.289    0.000    2.550    4.230
-##    .SocS2             2.758    0.043   64.537    0.000    2.758    4.246
-##    .Eng1              2.437    0.044   55.375    0.000    2.437    3.643
-##    .Eng2              2.515    0.038   65.530    0.000    2.515    4.312
-##    .dEng1             2.502    0.040   63.177    0.000    2.502    4.157
+##    .Spirit1           2.511    0.044   57.288    0.000    2.511    3.769
+##    .Spirit2           2.437    0.042   57.681    0.000    2.437    3.795
+##    .SocS1             2.550    0.040   64.288    0.000    2.550    4.230
+##    .SocS2             2.758    0.043   64.539    0.000    2.758    4.246
+##    .Eng1              2.437    0.044   55.374    0.000    2.437    3.643
+##    .Eng2              2.515    0.038   65.531    0.000    2.515    4.312
+##    .dEng1             2.502    0.040   63.176    0.000    2.502    4.157
 ##    .dEng2             2.455    0.041   59.612    0.000    2.455    3.922
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1GRMS            0.050    0.007    6.695    0.000    0.050    0.087
-##    .p2GRMS            0.044    0.007    6.058    0.000    0.044    0.075
-##    .p3GRMS            0.064    0.008    8.355    0.000    0.064    0.129
-##    .p1MH              0.273    0.037    7.377    0.000    0.273    0.409
-##    .p2MH              0.542    0.067    8.062    0.000    0.542    0.481
-##    .p3MH              0.387    0.055    7.083    0.000    0.387    0.387
-##    .p1PhH             0.459    0.058    7.914    0.000    0.459    0.557
-##    .p2PhH             0.334    0.049    6.824    0.000    0.334    0.475
-##    .p3PhH             0.375    0.054    6.984    0.000    0.375    0.489
-##    .Spirit1           0.206    0.026    8.020    0.000    0.206    0.465
-##    .Spirit2           0.175    0.024    7.399    0.000    0.175    0.424
-##    .SocS1             0.183    0.025    7.198    0.000    0.183    0.504
+##    .p1GRMS            0.050    0.008    6.687    0.000    0.050    0.087
+##    .p2GRMS            0.044    0.007    6.053    0.000    0.044    0.075
+##    .p3GRMS            0.064    0.008    8.361    0.000    0.064    0.130
+##    .p1MH              0.273    0.037    7.376    0.000    0.273    0.409
+##    .p2MH              0.542    0.067    8.061    0.000    0.542    0.481
+##    .p3MH              0.387    0.055    7.085    0.000    0.387    0.387
+##    .p1PhH             0.459    0.058    7.915    0.000    0.459    0.557
+##    .p2PhH             0.334    0.049    6.822    0.000    0.334    0.475
+##    .p3PhH             0.375    0.054    6.985    0.000    0.375    0.489
+##    .Spirit1           0.206    0.026    8.022    0.000    0.206    0.465
+##    .Spirit2           0.175    0.024    7.398    0.000    0.175    0.424
+##    .SocS1             0.183    0.025    7.199    0.000    0.183    0.504
 ##    .SocS2             0.241    0.029    8.222    0.000    0.241    0.573
 ##    .Eng1              0.282    0.033    8.560    0.000    0.282    0.631
 ##    .Eng2              0.175    0.026    6.694    0.000    0.175    0.515
-##    .dEng1             0.205    0.029    7.123    0.000    0.205    0.567
-##    .dEng2             0.235    0.030    7.705    0.000    0.235    0.599
-##     GRMS              0.526    0.054    9.790    0.000    1.000    1.000
+##    .dEng1             0.205    0.029    7.121    0.000    0.205    0.567
+##    .dEng2             0.235    0.030    7.704    0.000    0.235    0.599
+##     GRMS              0.527    0.054    9.791    0.000    1.000    1.000
 ##    .MH                0.164    0.042    3.926    0.000    0.416    0.416
 ##    .PhH               0.255    0.058    4.392    0.000    0.698    0.698
-##    .Spr               0.077    0.019    4.044    0.000    0.324    0.324
-##    .SSp               0.078    0.022    3.576    0.000    0.431    0.431
-##    .Eng               0.084    0.022    3.819    0.000    0.510    0.510
-##    .dEng              0.078    0.024    3.333    0.001    0.500    0.500
+##    .Spr               0.077    0.019    4.042    0.000    0.324    0.324
+##    .SSp               0.078    0.022    3.577    0.000    0.431    0.431
+##    .Eng               0.084    0.022    3.820    0.000    0.510    0.510
+##    .dEng              0.078    0.024    3.329    0.001    0.499    0.499
 ## 
 ## R-Square:
 ##                    Estimate
 ##     p1GRMS            0.913
 ##     p2GRMS            0.925
-##     p3GRMS            0.871
+##     p3GRMS            0.870
 ##     p1MH              0.591
 ##     p2MH              0.519
 ##     p3MH              0.613
@@ -1587,29 +1587,28 @@ struct_summary2
 ##     Spr               0.676
 ##     SSp               0.569
 ##     Eng               0.490
-##     dEng              0.500
+##     dEng              0.501
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##     indirect.EngMH    0.138    0.089    1.549    0.121    0.159    0.159
-##     indirect.SprMH    0.102    0.154    0.667    0.505    0.118    0.118
+##     indirect.EngMH    0.137    0.089    1.547    0.122    0.159    0.159
+##     indirect.SprMH    0.102    0.154    0.666    0.505    0.118    0.118
 ##     indirect.SSpMH   -0.011    0.032   -0.350    0.726   -0.013   -0.013
-##     indirct.dEngMH   -0.329    0.122   -2.691    0.007   -0.380   -0.380
+##     indirct.dEngMH   -0.329    0.123   -2.688    0.007   -0.380   -0.380
 ##     indirct.EngPhH    0.127    0.099    1.287    0.198    0.153    0.153
-##     indirct.SprPhH    0.142    0.178    0.794    0.427    0.170    0.170
-##     indirct.SSpPhH   -0.010    0.037   -0.264    0.792   -0.012   -0.012
-##     indrct.dEngPhH   -0.242    0.117   -2.072    0.038   -0.290   -0.290
+##     indirct.SprPhH    0.142    0.178    0.796    0.426    0.171    0.171
+##     indirct.SSpPhH   -0.010    0.037   -0.262    0.793   -0.012   -0.012
+##     indrct.dEngPhH   -0.242    0.117   -2.069    0.039   -0.290   -0.290
 ##     serial.MH        -0.022    0.064   -0.336    0.737   -0.025   -0.025
-##     serial.PH        -0.019    0.074   -0.253    0.800   -0.022   -0.022
-##     direct.MH        -0.431    0.193   -2.236    0.025   -0.498   -0.498
-##     direct.PhH       -0.354    0.210   -1.690    0.091   -0.425   -0.425
-##     total.MH         -0.554    0.062   -8.934    0.000   -0.639   -0.639
-##     total.PhH        -0.418    0.134   -3.120    0.002   -0.472   -0.472
+##     serial.PH        -0.019    0.073   -0.252    0.801   -0.022   -0.022
+##     direct.MH        -0.431    0.193   -2.229    0.026   -0.497   -0.497
+##     direct.PhH       -0.354    0.210   -1.690    0.091   -0.426   -0.426
+##     total.MH         -0.553    0.062   -8.933    0.000   -0.639   -0.639
+##     total.PhH        -0.418    0.134   -3.121    0.002   -0.472   -0.472
 ```
 
-```r
-# struct_pEsts2 #although creating the object is useful to export as
-# a .csv I didn't ask it to print into the book
+``` r
+#struct_pEsts2 #although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 
 Creating a figure will help us with the conceptual understanding of what we've just done (and will also help us check our work).
@@ -1617,27 +1616,35 @@ Creating a figure will help us with the conceptual understanding of what we've j
 Let's first create a fresh plot from se
 
 
-```r
-plot_struct2 <- semPlot::semPaths(struct_fit2, what = "col", whatLabels = "stand",
-    sizeMan = 3, node.width = 1, edge.label.cex = 0.75, style = "lisrel",
-    mar = c(2, 2, 2, 2), structural = FALSE, curve = FALSE, intercepts = FALSE)
+``` r
+plot_struct2 <- semPlot::semPaths(struct_fit2, what = "col", whatLabels = "stand", sizeMan = 3, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(2,2,2,2), structural = FALSE, curve=FALSE, intercepts=FALSE)
 ```
 
 ![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-31-1.png)<!-- -->
 Because we haven't added or deleted variables (only 1 path) and we want them to stay in the same location with the same orientation of paths and covariances, we should be able to recycle some of the diagram code we created earlier
 
 
-```r
-plot2 <- semptools::set_sem_layout(plot_struct2, indicator_order = m1_indicator_order,
-    indicator_factor = m1_indicator_factor, factor_layout = m1_msmt, factor_point_to = m1_point_to,
-    indicator_push = m1_indicator_push, indicator_spread = m1_indicator_spread)
+``` r
+plot2 <- semptools::set_sem_layout(plot_struct2,
+                                indicator_order = m1_indicator_order,
+                                indicator_factor = m1_indicator_factor,
+                                factor_layout = m1_msmt,
+                                factor_point_to = m1_point_to,
+                                indicator_push = m1_indicator_push,
+                                indicator_spread = m1_indicator_spread)
 
-# changing node labels
-plot2 <- semptools::change_node_label(plot2, c(GRM = "GRMS", MH = "mHealth",
-    PhH = "phHealth", Eng = "Engmt", dEn = "dEngmt", Spr = "Spirit", SSp = "SocSup"),
-    label.cex = 1.1)
+#changing node labels
+plot2 <- semptools::change_node_label(plot2,
+                                   c(GRM = "GRMS",
+                                     MH = "mHealth",
+                                     PhH = "phHealth",
+                                     Eng = "Engmt",
+                                     dEn = "dEngmt",
+                                     Spr = "Spirit",
+                                     SSp = "SocSup"),
+                                   label.cex = 1.1)
 
-# adding stars to indicate significant paths
+#adding stars to indicate significant paths
 plot2 <- semptools::mark_sig(plot2, struct_fit2)
 
 plot(plot2)
@@ -1650,7 +1657,7 @@ As predicted by the modification indices (and our knowledge that a model with fe
 We can formally compare these with the *lavaan::lavTestLRT()* function.
 
 
-```r
+``` r
 lavaan::lavTestLRT(struct_fit1, struct_fit2)
 ```
 
@@ -1659,8 +1666,8 @@ lavaan::lavTestLRT(struct_fit1, struct_fit2)
 ## Chi-Squared Difference Test
 ## 
 ##              Df    AIC    BIC  Chisq Chisq diff   RMSEA Df diff Pr(>Chisq)   
-## struct_fit2 108 6895.0 7108.5 111.66                                         
-## struct_fit1 109 6901.7 7111.7 120.32      8.667 0.18218       1    0.00324 **
+## struct_fit2 108 6895.8 7109.2 111.64                                         
+## struct_fit1 109 6902.4 7112.4 120.29     8.6448 0.18192       1    0.00328 **
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -1687,7 +1694,7 @@ The inclusion of indirect effects in our model makes it a little tricky to know 
 It is a best practice to trim paths one at a time and then re-check the results. Why? Because the constraint may free up a little power and statistical significance for a regression path may turn on elsewhere.  Because this is a book chapter and constraining each non-significant effect one-at-a-time would (a) take forever and (b) make this chapter absolutely unwieldy, I will first delete the *b* paths associated with social support at the same time. So that I can keep track of what I'm doing in my code, I will hashtag them out. The elimination of these will also result in the elimination of the associated indirect effect; I will hashtag those out, also.
 
 
-```r
+``` r
 struct_mod3 <- "
  ##measurement model
          GRMS =~ p1GRMS + p2GRMS + p3GRMS
@@ -1727,17 +1734,15 @@ struct_mod3 <- "
          total.PhH  := c_p2 + (a1*b5) + (a1*b6) + (a1*b8) #trimmed + (a1*b7) 
 
           "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-struct_fit3 <- lavaan::sem(struct_mod3, data = dfLewis, missing = "fiml")
-struct_summary3 <- lavaan::summary(struct_fit3, fit.measures = TRUE, standardized = TRUE,
-    rsq = TRUE)
-struct_pEsts3 <- lavaan::parameterEstimates(struct_fit3, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+struct_fit3 <- lavaan::sem(struct_mod3, data = dfLewis, missing= 'fiml')
+struct_summary3 <- lavaan::summary(struct_fit3, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+struct_pEsts3 <- lavaan::parameterEstimates(struct_fit3, boot.ci.type = "bca.simple", standardized=TRUE)
 struct_summary3
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 113 iterations
+## lavaan 0.6-18 ended normally after 81 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1748,13 +1753,13 @@ struct_summary3
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                               120.319
+##   Test statistic                               120.281
 ##   Degrees of freedom                               109
-##   P-value (Chi-square)                           0.216
+##   P-value (Chi-square)                           0.217
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                              2104.157
+##   Test statistic                              2103.901
 ##   Degrees of freedom                               136
 ##   P-value                                        0.000
 ## 
@@ -1768,25 +1773,25 @@ struct_summary3
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)              -3389.845
-##   Loglikelihood unrestricted model (H1)      -3329.686
+##   Loglikelihood user model (H0)              -3390.202
+##   Loglikelihood unrestricted model (H1)      -3330.061
 ##                                                       
-##   Akaike (AIC)                                6901.691
-##   Bayesian (BIC)                              7111.678
-##   Sample-size adjusted Bayesian (SABIC)       6918.343
+##   Akaike (AIC)                                6902.403
+##   Bayesian (BIC)                              7112.391
+##   Sample-size adjusted Bayesian (SABIC)       6919.056
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
 ##   RMSEA                                          0.021
 ##   90 Percent confidence interval - lower         0.000
 ##   90 Percent confidence interval - upper         0.041
-##   P-value H_0: RMSEA <= 0.050                    0.995
+##   P-value H_0: RMSEA <= 0.050                    0.996
 ##   P-value H_0: RMSEA >= 0.080                    0.000
 ##                                                       
 ##   Robust RMSEA                                   0.021
 ##   90 Percent confidence interval - lower         0.000
 ##   90 Percent confidence interval - upper         0.041
-##   P-value H_0: Robust RMSEA <= 0.050             0.995
+##   P-value H_0: Robust RMSEA <= 0.050             0.996
 ##   P-value H_0: Robust RMSEA >= 0.080             0.000
 ## 
 ## Standardized Root Mean Square Residual:
@@ -1803,16 +1808,16 @@ struct_summary3
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   GRMS =~                                                               
 ##     p1GRMS            1.000                               0.725    0.955
-##     p2GRMS            1.015    0.030   34.097    0.000    0.736    0.962
-##     p3GRMS            0.903    0.030   29.818    0.000    0.655    0.932
+##     p2GRMS            1.014    0.030   34.100    0.000    0.736    0.962
+##     p3GRMS            0.903    0.030   29.795    0.000    0.655    0.932
 ##   MH =~                                                                 
 ##     p1MH              1.000                               0.628    0.769
-##     p2MH              1.218    0.126    9.662    0.000    0.765    0.721
-##     p3MH              1.245    0.113   11.045    0.000    0.783    0.783
+##     p2MH              1.218    0.126    9.661    0.000    0.765    0.721
+##     p3MH              1.245    0.113   11.045    0.000    0.782    0.783
 ##   PhH =~                                                                
-##     p1PhH             1.000                               0.604    0.666
+##     p1PhH             1.000                               0.604    0.665
 ##     p2PhH             1.007    0.128    7.878    0.000    0.608    0.725
-##     p3PhH             1.035    0.135    7.664    0.000    0.625    0.714
+##     p3PhH             1.035    0.135    7.665    0.000    0.625    0.714
 ##   Spr =~                                                                
 ##     Spirit1   (v1)    1.000                               0.488    0.726
 ##     Spirit2   (v1)    1.000                               0.488    0.766
@@ -1829,78 +1834,78 @@ struct_summary3
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   Eng ~                                                                 
-##     GRMS      (a1)    0.392    0.041    9.506    0.000    0.701    0.701
+##     GRMS      (a1)    0.392    0.041    9.505    0.000    0.701    0.701
 ##   Spr ~                                                                 
-##     GRMS      (a2)    0.554    0.040   13.869    0.000    0.824    0.824
+##     GRMS      (a2)    0.554    0.040   13.873    0.000    0.824    0.824
 ##   SSp ~                                                                 
-##     GRMS      (a3)    0.406    0.042    9.685    0.000    0.694    0.694
+##     GRMS      (a3)    0.406    0.042    9.687    0.000    0.694    0.694
 ##   dEng ~                                                                
-##     GRMS      (a4)    0.386    0.041    9.400    0.000    0.707    0.707
+##     GRMS      (a4)    0.386    0.041    9.407    0.000    0.708    0.708
 ##   MH ~                                                                  
-##     GRMS    (c_p1)   -0.450    0.193   -2.336    0.019   -0.520   -0.520
-##     Eng       (b1)    0.355    0.222    1.594    0.111    0.229    0.229
-##     Spr       (b2)    0.156    0.218    0.712    0.476    0.121    0.121
-##     dEng      (b4)   -0.850    0.303   -2.807    0.005   -0.536   -0.536
+##     GRMS    (c_p1)   -0.450    0.193   -2.330    0.020   -0.519   -0.519
+##     Eng       (b1)    0.354    0.222    1.592    0.111    0.229    0.229
+##     Spr       (b2)    0.156    0.219    0.712    0.477    0.121    0.121
+##     dEng      (b4)   -0.851    0.303   -2.804    0.005   -0.536   -0.536
 ##   PhH ~                                                                 
-##     GRMS    (c_p2)   -0.363    0.209   -1.735    0.083   -0.435   -0.435
+##     GRMS    (c_p2)   -0.363    0.209   -1.735    0.083   -0.436   -0.436
 ##     Eng       (b5)    0.330    0.249    1.325    0.185    0.222    0.222
-##     Spr       (b6)    0.214    0.253    0.845    0.398    0.173    0.173
-##     dEng      (b8)   -0.623    0.295   -2.115    0.034   -0.409   -0.409
+##     Spr       (b6)    0.215    0.254    0.846    0.397    0.173    0.173
+##     dEng      (b8)   -0.623    0.295   -2.111    0.035   -0.409   -0.409
 ## 
 ## Covariances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##  .MH ~~                                                                 
 ##    .PhH               0.000                               0.000    0.000
-##    .SSp              -0.002    0.017   -0.094    0.925   -0.013   -0.013
+##    .SSp              -0.002    0.017   -0.095    0.924   -0.013   -0.013
 ##  .PhH ~~                                                                
-##    .SSp               0.002    0.019    0.104    0.917    0.013    0.013
+##    .SSp               0.002    0.019    0.106    0.915    0.013    0.013
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1GRMS            2.592    0.050   51.897    0.000    2.592    3.415
-##    .p2GRMS            2.545    0.050   50.567    0.000    2.545    3.327
-##    .p3GRMS            2.579    0.046   55.829    0.000    2.579    3.673
+##    .p1GRMS            2.592    0.050   51.873    0.000    2.592    3.413
+##    .p2GRMS            2.545    0.050   50.562    0.000    2.545    3.327
+##    .p3GRMS            2.579    0.046   55.791    0.000    2.579    3.671
 ##    .p1MH              3.582    0.054   66.613    0.000    3.582    4.383
 ##    .p2MH              2.866    0.070   41.024    0.000    2.866    2.699
 ##    .p3MH              3.035    0.066   46.141    0.000    3.035    3.036
 ##    .p1PhH             3.128    0.060   52.389    0.000    3.128    3.447
 ##    .p2PhH             2.652    0.055   48.062    0.000    2.652    3.162
-##    .p3PhH             3.067    0.058   53.264    0.000    3.067    3.504
-##    .Spirit1           2.511    0.044   56.810    0.000    2.511    3.738
-##    .Spirit2           2.437    0.042   58.201    0.000    2.437    3.829
-##    .SocS1             2.550    0.040   64.171    0.000    2.550    4.222
-##    .SocS2             2.758    0.043   64.666    0.000    2.758    4.255
-##    .Eng1              2.437    0.044   55.380    0.000    2.437    3.644
-##    .Eng2              2.515    0.038   65.524    0.000    2.515    4.311
+##    .p3PhH             3.067    0.058   53.264    0.000    3.067    3.505
+##    .Spirit1           2.511    0.044   56.806    0.000    2.511    3.738
+##    .Spirit2           2.437    0.042   58.205    0.000    2.437    3.830
+##    .SocS1             2.550    0.040   64.168    0.000    2.550    4.222
+##    .SocS2             2.758    0.043   64.669    0.000    2.758    4.255
+##    .Eng1              2.437    0.044   55.379    0.000    2.437    3.644
+##    .Eng2              2.515    0.038   65.525    0.000    2.515    4.311
 ##    .dEng1             2.502    0.040   63.179    0.000    2.502    4.157
 ##    .dEng2             2.455    0.041   59.610    0.000    2.455    3.922
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1GRMS            0.050    0.007    6.754    0.000    0.050    0.087
-##    .p2GRMS            0.044    0.007    6.098    0.000    0.044    0.075
-##    .p3GRMS            0.064    0.008    8.400    0.000    0.064    0.131
-##    .p1MH              0.273    0.037    7.378    0.000    0.273    0.409
-##    .p2MH              0.542    0.067    8.059    0.000    0.542    0.481
-##    .p3MH              0.387    0.055    7.083    0.000    0.387    0.387
-##    .p1PhH             0.459    0.058    7.915    0.000    0.459    0.557
-##    .p2PhH             0.333    0.049    6.816    0.000    0.333    0.474
-##    .p3PhH             0.375    0.054    6.997    0.000    0.375    0.490
-##    .Spirit1           0.214    0.026    8.135    0.000    0.214    0.473
-##    .Spirit2           0.167    0.023    7.223    0.000    0.167    0.413
-##    .SocS1             0.184    0.026    7.154    0.000    0.184    0.506
-##    .SocS2             0.240    0.029    8.139    0.000    0.240    0.571
+##    .p1GRMS            0.050    0.007    6.747    0.000    0.050    0.087
+##    .p2GRMS            0.044    0.007    6.093    0.000    0.044    0.075
+##    .p3GRMS            0.065    0.008    8.406    0.000    0.065    0.131
+##    .p1MH              0.273    0.037    7.376    0.000    0.273    0.409
+##    .p2MH              0.542    0.067    8.057    0.000    0.542    0.481
+##    .p3MH              0.387    0.055    7.084    0.000    0.387    0.387
+##    .p1PhH             0.459    0.058    7.916    0.000    0.459    0.557
+##    .p2PhH             0.333    0.049    6.814    0.000    0.333    0.474
+##    .p3PhH             0.375    0.054    6.998    0.000    0.375    0.490
+##    .Spirit1           0.214    0.026    8.137    0.000    0.214    0.473
+##    .Spirit2           0.167    0.023    7.222    0.000    0.167    0.413
+##    .SocS1             0.185    0.026    7.155    0.000    0.185    0.506
+##    .SocS2             0.240    0.029    8.138    0.000    0.240    0.571
 ##    .Eng1              0.282    0.033    8.558    0.000    0.282    0.631
-##    .Eng2              0.175    0.026    6.695    0.000    0.175    0.515
-##    .dEng1             0.205    0.029    7.116    0.000    0.205    0.567
-##    .dEng2             0.235    0.030    7.702    0.000    0.235    0.599
+##    .Eng2              0.175    0.026    6.694    0.000    0.175    0.515
+##    .dEng1             0.205    0.029    7.115    0.000    0.205    0.567
+##    .dEng2             0.235    0.030    7.701    0.000    0.235    0.599
 ##     GRMS              0.526    0.054    9.787    0.000    1.000    1.000
-##    .MH                0.164    0.042    3.929    0.000    0.416    0.416
+##    .MH                0.165    0.042    3.929    0.000    0.417    0.417
 ##    .PhH               0.255    0.058    4.403    0.000    0.700    0.700
-##    .Spr               0.076    0.019    4.051    0.000    0.321    0.321
-##    .SSp               0.094    0.021    4.414    0.000    0.519    0.519
+##    .Spr               0.076    0.019    4.049    0.000    0.321    0.321
+##    .SSp               0.093    0.021    4.412    0.000    0.519    0.519
 ##    .Eng               0.084    0.022    3.809    0.000    0.509    0.509
-##    .dEng              0.078    0.024    3.332    0.001    0.500    0.500
+##    .dEng              0.078    0.024    3.328    0.001    0.499    0.499
 ## 
 ## R-Square:
 ##                    Estimate
@@ -1921,30 +1926,29 @@ struct_summary3
 ##     Eng2              0.485
 ##     dEng1             0.433
 ##     dEng2             0.401
-##     MH                0.584
+##     MH                0.583
 ##     PhH               0.300
 ##     Spr               0.679
 ##     SSp               0.481
 ##     Eng               0.491
-##     dEng              0.500
+##     dEng              0.501
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##     indirect.EngMH    0.139    0.089    1.564    0.118    0.161    0.161
+##     indirect.EngMH    0.139    0.089    1.562    0.118    0.160    0.160
 ##     indirect.SprMH    0.086    0.121    0.710    0.478    0.099    0.099
-##     indirct.dEngMH   -0.329    0.122   -2.685    0.007   -0.379   -0.379
+##     indirct.dEngMH   -0.329    0.123   -2.682    0.007   -0.380   -0.380
 ##     indirct.EngPhH    0.130    0.099    1.307    0.191    0.156    0.156
-##     indirct.SprPhH    0.119    0.141    0.842    0.400    0.142    0.142
-##     indrct.dEngPhH   -0.241    0.117   -2.060    0.039   -0.289   -0.289
-##     direct.MH        -0.450    0.193   -2.336    0.019   -0.520   -0.520
-##     direct.PhH       -0.363    0.209   -1.735    0.083   -0.435   -0.435
-##     total.MH         -0.554    0.062   -8.932    0.000   -0.639   -0.639
-##     total.PhH        -0.394    0.083   -4.752    0.000   -0.445   -0.445
+##     indirct.SprPhH    0.119    0.141    0.843    0.399    0.143    0.143
+##     indrct.dEngPhH   -0.241    0.117   -2.057    0.040   -0.289   -0.289
+##     direct.MH        -0.450    0.193   -2.330    0.020   -0.519   -0.519
+##     direct.PhH       -0.363    0.209   -1.735    0.083   -0.436   -0.436
+##     total.MH         -0.553    0.062   -8.931    0.000   -0.639   -0.639
+##     total.PhH        -0.393    0.083   -4.751    0.000   -0.445   -0.445
 ```
 
-```r
-# struct_pEsts3 #although creating the object is useful to export as
-# a .csv I didn't ask it to print into the book
+``` r
+#struct_pEsts3 #although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 
 Creating a figure will help us with the conceptual understanding of what we've just done (and will also help us check our work).
@@ -1952,27 +1956,35 @@ Creating a figure will help us with the conceptual understanding of what we've j
 Let's first create a fresh plot from se
 
 
-```r
-plot_struct3 <- semPlot::semPaths(struct_fit3, what = "col", whatLabels = "stand",
-    sizeMan = 3, node.width = 1, edge.label.cex = 0.75, style = "lisrel",
-    mar = c(2, 2, 2, 2), structural = FALSE, curve = FALSE, intercepts = FALSE)
+``` r
+plot_struct3 <- semPlot::semPaths(struct_fit3, what = "col", whatLabels = "stand", sizeMan = 3, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(2,2,2,2), structural = FALSE, curve=FALSE, intercepts=FALSE)
 ```
 
 ![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-35-1.png)<!-- -->
 Because we haven't added or deleted variables (only 1 path) and we want them to stay in the same location with the same orientation of paths and covariances, we should be able to recycle some of the diagram code we created earlier
 
 
-```r
-plot3 <- semptools::set_sem_layout(plot_struct3, indicator_order = m1_indicator_order,
-    indicator_factor = m1_indicator_factor, factor_layout = m1_msmt, factor_point_to = m1_point_to,
-    indicator_push = m1_indicator_push, indicator_spread = m1_indicator_spread)
+``` r
+plot3 <- semptools::set_sem_layout(plot_struct3,
+                                indicator_order = m1_indicator_order,
+                                indicator_factor = m1_indicator_factor,
+                                factor_layout = m1_msmt,
+                                factor_point_to = m1_point_to,
+                                indicator_push = m1_indicator_push,
+                                indicator_spread = m1_indicator_spread)
 
-# changing node labels
-plot3 <- semptools::change_node_label(plot3, c(GRM = "GRMS", MH = "mHealth",
-    PhH = "phHealth", Eng = "Engmt", dEn = "dEngmt", Spr = "Spirit", SSp = "SocSup"),
-    label.cex = 1.1)
+#changing node labels
+plot3 <- semptools::change_node_label(plot3,
+                                   c(GRM = "GRMS",
+                                     MH = "mHealth",
+                                     PhH = "phHealth",
+                                     Eng = "Engmt",
+                                     dEn = "dEngmt",
+                                     Spr = "Spirit",
+                                     SSp = "SocSup"),
+                                   label.cex = 1.1)
 
-# adding stars to indicate significant paths
+#adding stars to indicate significant paths
 plot3 <- semptools::mark_sig(plot3, struct_fit3)
 
 plot(plot3)
@@ -1986,21 +1998,20 @@ Curiously, even though we deleted two paths, our degrees of freedom was the same
 We can formally test differences in the two models with the *lavaan:lavTestLRT()* function.
 
 
-```r
+``` r
 lavaan::lavTestLRT(struct_fit1, struct_fit3)
 ```
 
 ```
-## Warning in lavaan::lavTestLRT(struct_fit1, struct_fit3): lavaan WARNING:
-##     Some restricted models fit better than less restricted models;
-##     either these models are not nested, or the less restricted model
-##     failed to reach a global optimum. Smallest difference =
-##     -0.00500996567915024
+## Warning: lavaan->lavTestLRT():  
+##    Some restricted models fit better than less restricted models; either 
+##    these models are not nested, or the less restricted model failed to reach 
+##    a global optimum.Smallest difference = -0.0051663634663015.
 ```
 
 ```
-## Warning in lavaan::lavTestLRT(struct_fit1, struct_fit3): lavaan WARNING: some
-## models have the same degrees of freedom
+## Warning: lavaan->lavTestLRT():  
+##    some models have the same degrees of freedom
 ```
 
 ```
@@ -2008,8 +2019,8 @@ lavaan::lavTestLRT(struct_fit1, struct_fit3)
 ## Chi-Squared Difference Test
 ## 
 ##              Df    AIC    BIC  Chisq Chisq diff RMSEA Df diff Pr(>Chisq)
-## struct_fit1 109 6901.7 7111.7 120.32                                    
-## struct_fit3 109 6901.7 7111.7 120.32   -0.00501     0       0
+## struct_fit1 109 6902.4 7112.4 120.29                                    
+## struct_fit3 109 6902.4 7112.4 120.28 -0.0051664     0       0
 ```
 As shown, this df = 0 test indicated that the models are not statistically significantly different form each other.
 
@@ -2020,7 +2031,7 @@ When researchers engage in model trimming, their (typical) hope is that the mode
 In the description of the Lewis et al. [-@lewis_applying_2017], I noted that the researchers conducted eight simple mediations instead of two parallel mediations (for mental and physical health, respectively), or as we have done -- a complex SEM modeling all four mediators with both dependent variables. Given the small regression weights and very non-significant *p* values for spirituality and social support, I'm curious what would happen if we respecified the model, retaining only disengagement and engagement variables. This level of respecification would render our model as *non-nested* so our comparison would be limited to the AIC/BIC (lower values indicate better fit) and the global fit indices, themselves (without formal comparison).
 
 
-```r
+``` r
 struct_mod4 <- "
         ##measurement model
          GRMS =~ p1GRMS + p2GRMS + p3GRMS
@@ -2060,17 +2071,15 @@ struct_mod4 <- "
          total.PhH  := c_p2 + (a1*b5) + (a1*b8) #trimmed + (a1*b6) + (a1*b7) 
 
           "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-struct_fit4 <- lavaan::sem(struct_mod4, data = dfLewis, missing = "fiml")
-struct_summary4 <- lavaan::summary(struct_fit4, fit.measures = TRUE, standardized = TRUE,
-    rsq = TRUE)
-struct_pEsts4 <- lavaan::parameterEstimates(struct_fit4, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+struct_fit4 <- lavaan::sem(struct_mod4, data = dfLewis, missing= 'fiml')
+struct_summary4 <- lavaan::summary(struct_fit4, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+struct_pEsts4<- lavaan::parameterEstimates(struct_fit4, boot.ci.type = "bca.simple", standardized=TRUE)
 struct_summary4
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 64 iterations
+## lavaan 0.6-18 ended normally after 64 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2081,13 +2090,13 @@ struct_summary4
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                59.999
+##   Test statistic                                59.937
 ##   Degrees of freedom                                59
-##   P-value (Chi-square)                           0.439
+##   P-value (Chi-square)                           0.441
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                              1675.582
+##   Test statistic                              1675.190
 ##   Degrees of freedom                                78
 ##   P-value                                        0.000
 ## 
@@ -2101,25 +2110,25 @@ struct_summary4
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)              -2675.295
-##   Loglikelihood unrestricted model (H1)      -2645.296
+##   Loglikelihood user model (H0)              -2675.707
+##   Loglikelihood unrestricted model (H1)      -2645.739
 ##                                                       
-##   Akaike (AIC)                                5440.591
-##   Bayesian (BIC)                              5595.500
-##   Sample-size adjusted Bayesian (SABIC)       5452.875
+##   Akaike (AIC)                                5441.415
+##   Bayesian (BIC)                              5596.323
+##   Sample-size adjusted Bayesian (SABIC)       5453.699
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
-##   RMSEA                                          0.009
+##   RMSEA                                          0.008
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.042
-##   P-value H_0: RMSEA <= 0.050                    0.989
+##   90 Percent confidence interval - upper         0.041
+##   P-value H_0: RMSEA <= 0.050                    0.990
 ##   P-value H_0: RMSEA >= 0.080                    0.000
 ##                                                       
-##   Robust RMSEA                                   0.009
+##   Robust RMSEA                                   0.008
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.042
-##   P-value H_0: Robust RMSEA <= 0.050             0.989
+##   90 Percent confidence interval - upper         0.041
+##   P-value H_0: Robust RMSEA <= 0.050             0.990
 ##   P-value H_0: Robust RMSEA >= 0.080             0.000
 ## 
 ## Standardized Root Mean Square Residual:
@@ -2136,12 +2145,12 @@ struct_summary4
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   GRMS =~                                                               
 ##     p1GRMS            1.000                               0.726    0.956
-##     p2GRMS            1.011    0.030   33.674    0.000    0.734    0.959
-##     p3GRMS            0.906    0.030   30.368    0.000    0.658    0.936
+##     p2GRMS            1.010    0.030   33.679    0.000    0.734    0.959
+##     p3GRMS            0.906    0.030   30.352    0.000    0.658    0.936
 ##   MH =~                                                                 
 ##     p1MH              1.000                               0.628    0.768
-##     p2MH              1.219    0.126    9.704    0.000    0.766    0.721
-##     p3MH              1.245    0.112   11.078    0.000    0.782    0.782
+##     p2MH              1.219    0.126    9.703    0.000    0.766    0.721
+##     p3MH              1.245    0.112   11.077    0.000    0.782    0.782
 ##   PhH =~                                                                
 ##     p1PhH             1.000                               0.603    0.665
 ##     p2PhH             1.008    0.128    7.879    0.000    0.608    0.725
@@ -2156,17 +2165,17 @@ struct_summary4
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   Eng ~                                                                 
-##     GRMS      (a1)    0.389    0.041    9.419    0.000    0.697    0.697
+##     GRMS      (a1)    0.389    0.041    9.418    0.000    0.697    0.697
 ##   dEng ~                                                                
-##     GRMS      (a4)    0.385    0.041    9.351    0.000    0.705    0.705
+##     GRMS      (a4)    0.385    0.041    9.358    0.000    0.705    0.705
 ##   MH ~                                                                  
-##     GRMS    (c_p1)   -0.374    0.161   -2.319    0.020   -0.432   -0.432
-##     Eng       (b1)    0.373    0.220    1.692    0.091    0.241    0.241
-##     dEng      (b4)   -0.841    0.302   -2.784    0.005   -0.531   -0.531
+##     GRMS    (c_p1)   -0.373    0.161   -2.312    0.021   -0.431   -0.431
+##     Eng       (b1)    0.372    0.220    1.690    0.091    0.240    0.240
+##     dEng      (b4)   -0.842    0.303   -2.780    0.005   -0.531   -0.531
 ##   PhH ~                                                                 
-##     GRMS    (c_p2)   -0.259    0.168   -1.541    0.123   -0.312   -0.312
+##     GRMS    (c_p2)   -0.259    0.168   -1.540    0.124   -0.312   -0.312
 ##     Eng       (b5)    0.360    0.247    1.456    0.146    0.242    0.242
-##     dEng      (b8)   -0.611    0.294   -2.083    0.037   -0.401   -0.401
+##     dEng      (b8)   -0.611    0.294   -2.079    0.038   -0.401   -0.401
 ## 
 ## Covariances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
@@ -2175,40 +2184,40 @@ struct_summary4
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1GRMS            2.592    0.050   51.897    0.000    2.592    3.415
-##    .p2GRMS            2.545    0.050   50.567    0.000    2.545    3.327
-##    .p3GRMS            2.579    0.046   55.829    0.000    2.579    3.673
+##    .p1GRMS            2.592    0.050   51.873    0.000    2.592    3.413
+##    .p2GRMS            2.545    0.050   50.562    0.000    2.545    3.327
+##    .p3GRMS            2.579    0.046   55.791    0.000    2.579    3.671
 ##    .p1MH              3.582    0.054   66.626    0.000    3.582    4.384
-##    .p2MH              2.866    0.070   41.030    0.000    2.866    2.700
+##    .p2MH              2.866    0.070   41.031    0.000    2.866    2.700
 ##    .p3MH              3.035    0.066   46.150    0.000    3.035    3.036
 ##    .p1PhH             3.128    0.060   52.387    0.000    3.128    3.447
 ##    .p2PhH             2.652    0.055   48.059    0.000    2.652    3.162
 ##    .p3PhH             3.067    0.058   53.261    0.000    3.067    3.504
-##    .Eng1              2.437    0.044   55.381    0.000    2.437    3.644
-##    .Eng2              2.515    0.038   65.523    0.000    2.515    4.311
-##    .dEng1             2.502    0.040   63.148    0.000    2.502    4.155
-##    .dEng2             2.455    0.041   59.634    0.000    2.455    3.924
+##    .Eng1              2.437    0.044   55.380    0.000    2.437    3.644
+##    .Eng2              2.515    0.038   65.524    0.000    2.515    4.311
+##    .dEng1             2.502    0.040   63.147    0.000    2.502    4.155
+##    .dEng2             2.455    0.041   59.635    0.000    2.455    3.924
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1GRMS            0.049    0.008    6.508    0.000    0.049    0.085
-##    .p2GRMS            0.047    0.008    6.191    0.000    0.047    0.080
-##    .p3GRMS            0.061    0.008    8.075    0.000    0.061    0.123
-##    .p1MH              0.273    0.037    7.431    0.000    0.273    0.410
-##    .p2MH              0.541    0.067    8.067    0.000    0.541    0.480
-##    .p3MH              0.388    0.055    7.098    0.000    0.388    0.388
-##    .p1PhH             0.459    0.058    7.923    0.000    0.459    0.558
-##    .p2PhH             0.333    0.049    6.821    0.000    0.333    0.474
-##    .p3PhH             0.374    0.054    6.993    0.000    0.374    0.489
+##    .p1GRMS            0.049    0.008    6.493    0.000    0.049    0.085
+##    .p2GRMS            0.047    0.008    6.192    0.000    0.047    0.080
+##    .p3GRMS            0.061    0.008    8.084    0.000    0.061    0.123
+##    .p1MH              0.273    0.037    7.430    0.000    0.273    0.410
+##    .p2MH              0.541    0.067    8.066    0.000    0.541    0.480
+##    .p3MH              0.388    0.055    7.099    0.000    0.388    0.388
+##    .p1PhH             0.459    0.058    7.924    0.000    0.459    0.558
+##    .p2PhH             0.333    0.049    6.820    0.000    0.333    0.474
+##    .p3PhH             0.374    0.054    6.994    0.000    0.374    0.489
 ##    .Eng1              0.283    0.033    8.541    0.000    0.283    0.632
-##    .Eng2              0.176    0.026    6.668    0.000    0.176    0.517
-##    .dEng1             0.206    0.029    7.085    0.000    0.206    0.567
-##    .dEng2             0.234    0.031    7.671    0.000    0.234    0.599
-##     GRMS              0.527    0.054    9.803    0.000    1.000    1.000
+##    .Eng2              0.176    0.026    6.667    0.000    0.176    0.517
+##    .dEng1             0.206    0.029    7.084    0.000    0.206    0.567
+##    .dEng2             0.234    0.031    7.670    0.000    0.234    0.599
+##     GRMS              0.528    0.054    9.805    0.000    1.000    1.000
 ##    .MH                0.166    0.042    3.957    0.000    0.421    0.421
 ##    .PhH               0.257    0.058    4.414    0.000    0.707    0.707
-##    .Eng               0.085    0.022    3.798    0.000    0.515    0.515
-##    .dEng              0.079    0.024    3.326    0.001    0.503    0.503
+##    .Eng               0.085    0.022    3.799    0.000    0.515    0.515
+##    .dEng              0.079    0.024    3.321    0.001    0.502    0.502
 ## 
 ## R-Square:
 ##                    Estimate
@@ -2228,33 +2237,30 @@ struct_summary4
 ##     MH                0.579
 ##     PhH               0.293
 ##     Eng               0.485
-##     dEng              0.497
+##     dEng              0.498
 ## 
 ## Defined Parameters:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##     indirect.EngMH    0.145    0.088    1.656    0.098    0.168    0.168
-##     indirct.dEngMH   -0.324    0.122   -2.662    0.008   -0.374   -0.374
+##     indirect.EngMH    0.145    0.088    1.654    0.098    0.168    0.168
+##     indirct.dEngMH   -0.324    0.122   -2.659    0.008   -0.375   -0.375
 ##     indirct.EngPhH    0.140    0.098    1.433    0.152    0.169    0.169
-##     indrct.dEngPhH   -0.235    0.116   -2.029    0.043   -0.283   -0.283
-##     direct.MH        -0.374    0.161   -2.319    0.020   -0.432   -0.432
-##     direct.PhH       -0.259    0.168   -1.541    0.123   -0.312   -0.312
-##     total.MH         -0.552    0.062   -8.930    0.000   -0.638   -0.638
+##     indrct.dEngPhH   -0.235    0.116   -2.026    0.043   -0.283   -0.283
+##     direct.MH        -0.373    0.161   -2.312    0.021   -0.431   -0.431
+##     direct.PhH       -0.259    0.168   -1.540    0.124   -0.312   -0.312
+##     total.MH         -0.552    0.062   -8.929    0.000   -0.638   -0.638
 ##     total.PhH        -0.357    0.071   -5.054    0.000   -0.423   -0.423
 ```
 
-```r
-# struct_pEsts4 #although creating the object is useful to export as
-# a .csv I didn't ask it to print into the book
+``` r
+#struct_pEsts4 #although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 
 Creating a figure to represent our analysis will require us to tweak the full set of code.
 
 
 
-```r
-plot_struct4 <- semPlot::semPaths(struct_fit4, what = "col", whatLabels = "stand",
-    sizeMan = 3, node.width = 1, edge.label.cex = 0.75, style = "lisrel",
-    mar = c(2, 2, 2, 2), structural = FALSE, curve = FALSE, intercepts = FALSE)
+``` r
+plot_struct4 <- semPlot::semPaths(struct_fit4, what = "col", whatLabels = "stand", sizeMan = 3, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(2,2,2,2), structural = FALSE, curve=FALSE, intercepts=FALSE)
 ```
 
 ![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-39-1.png)<!-- -->
@@ -2273,42 +2279,67 @@ Although the code below may look daunting, I find it to be a fairly straightforw
 
 We place these values along with the names of our latent variables in to the *semptools::layout_matrix* function.
 
-```r
-# IMPORTANT: Must use the node names (take directly from the SemPlot)
-# assigned by SemPlot You can change them as the last thing
-m4_msmt <- semptools::layout_matrix(GRM = c(3, 1), Eng = c(1, 2), dEn = c(5,
-    2), MH = c(2, 3), PhH = c(4, 3))
+``` r
+#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
+#You can change them as the last thing
+m4_msmt <- semptools::layout_matrix(GRM = c(3,1),
+                                  Eng = c(1,2),
+                                  dEn = c(5,2),
+                                  MH = c(2,3),
+                                  PhH = c(4,3))
 
-# tell where you want the indicators to face
-m4_point_to <- semptools::layout_matrix(left = c(3, 1), up = c(1, 2), down = c(5,
-    2), right = c(2, 3), right = c(4, 3))
+#tell where you want the indicators to face
+m4_point_to <- semptools::layout_matrix (left = c(3,1),
+                                      up = c(1,2),
+                                      down = c(5,2),
+                                       right = c(2,3),
+                                       right = c(4,3))
 
-# the next two codes -- indicator_order and indicator_factor are
-# paired together, they specify the order of observed variables for
-# each factor
-m4_indicator_order <- c("p1G", "p2G", "p3G", "p1M", "p2M", "p3M", "p1P",
-    "p2P", "p3P", "En1", "En2", "dE1", "dE2")
+#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
+m4_indicator_order <- c("p1G", "p2G", "p3G",
+                     "p1M", "p2M", "p3M",
+                     "p1P", "p2P", "p3P",
+                     "En1", "En2",
+                     "dE1", "dE2")
 
-m4_indicator_factor <- c("GRM", "GRM", "GRM", "MH", "MH", "MH", "PhH",
-    "PhH", "PhH", "Eng", "Eng", "dEn", "dEn")
+m4_indicator_factor <- c("GRM", "GRM", "GRM",
+                      "MH", "MH", "MH",
+                      "PhH", "PhH", "PhH",
+                      "Eng", "Eng",
+                      "dEn", "dEn")
 
-# next set of code pushes the indicator variables away from the
-# factor
-m4_indicator_push <- c(GRM = 0.5, MH = 1, PhH = 1, Eng = 1.5, dEn = 2)
+#next set of code pushes the indicator variables away from the factor
+m4_indicator_push <- c(GRM = .5, 
+                    MH = 1,
+                    PhH = 1,
+                    Eng = 1.5,
+                    dEn = 2)
 
-# spreading the boxes away from each other
-m4_indicator_spread <- c(GRM = 0.5, MH = 1, PhH = 1, Eng = 1, dEn = 1)
+#spreading the boxes away from each other
+m4_indicator_spread <- c(GRM = .5, 
+                    MH = 1,
+                    PhH = 1, 
+                    Eng = 1,
+                    dEn = 1)
 
-plot4 <- semptools::set_sem_layout(plot_struct4, indicator_order = m4_indicator_order,
-    indicator_factor = m4_indicator_factor, factor_layout = m4_msmt, factor_point_to = m4_point_to,
-    indicator_push = m4_indicator_push, indicator_spread = m4_indicator_spread)
+plot4 <- semptools::set_sem_layout(plot_struct4,
+                                indicator_order = m4_indicator_order,
+                                indicator_factor = m4_indicator_factor,
+                                factor_layout = m4_msmt,
+                                factor_point_to = m4_point_to,
+                                indicator_push = m4_indicator_push,
+                                indicator_spread = m4_indicator_spread)
 
-# changing node labels -- throwing an error and I'm not sure why, it
-# worked above plot4 <- semptools::change_node_label(plot4, c(GRM =
-# 'GRMS', MH = 'mHealth', PhH = 'phHealth', Eng = 'Engmt', dEn =
-# 'dEngmt', label.cex = 1.1))
+#changing node labels -- throwing an error and I'm not sure why, it worked above
+#plot4 <- semptools::change_node_label(plot4,
+                                   #c(GRM = "GRMS",
+                                     #MH = "mHealth",
+                                    # PhH = "phHealth",
+                                     #Eng = "Engmt",
+                                     #dEn = "dEngmt",
+                                     #label.cex = 1.1))
 
-# adding stars to indicate significant paths
+#adding stars to indicate significant paths
 plot4 <- semptools::mark_sig(plot4, struct_fit4)
 
 plot(plot4)
@@ -2321,13 +2352,13 @@ Our global fit indices were strong, $\chi^2(59) = 59.999, p = 0.439, CFI = 0.999
 If we formally compare the results, we can only use the AIC and BIC with lower values indicating better fit.
 
 
-```r
+``` r
 lavaan::lavTestLRT(struct_fit1, struct_fit4)
 ```
 
 ```
-## Warning in lavaan::lavTestLRT(struct_fit1, struct_fit4): lavaan WARNING: some
-## models are based on a different set of observed variables
+## Warning: lavaan->lavTestLRT():  
+##    some models are based on a different set of observed variables
 ```
 
 ```
@@ -2335,8 +2366,8 @@ lavaan::lavTestLRT(struct_fit1, struct_fit4)
 ## Chi-Squared Difference Test
 ## 
 ##              Df    AIC    BIC   Chisq Chisq diff    RMSEA Df diff Pr(>Chisq)
-## struct_fit4  59 5440.6 5595.5  59.999                                       
-## struct_fit1 109 6901.7 7111.7 120.324     60.324 0.029898      50     0.1504
+## struct_fit4  59 5441.4 5596.3  59.937                                       
+## struct_fit1 109 6902.4 7112.4 120.287     60.349 0.029934      50     0.1499
 ```
 Remember -- ignore the chi-square difference test. These are non-nested models. The AIC and BIC favor our trimmed model. 
 
@@ -2438,29 +2469,27 @@ It helps me to make a quick sketch:
 
 
 
-```r
+``` r
 raw <- readRDS("ReC.rds")
 ```
 
 The approach we are taking to complex mediation does not allow dependency in the data. Therefore, we will include only those who took the multivariate class (i.e., excluding responses for the ANOVA and psychometrics courses).
 
-```r
-raw <- (dplyr::filter(raw, Course == "Multivariate"))
+``` r
+raw <-(dplyr::filter(raw, Course == "Multivariate"))
 ```
 
 Although this dataset is overall small, I will go ahead and make a babydf with the item-level variables.
 
 
-```r
-babydf <- dplyr::select(raw, Centering, ClearResponsibilities, EffectiveAnswers,
-    Feedback, ClearOrganization, ClearPresentation, ValObjectives, IncrUnderstanding,
-    IncrInterest, InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration)
+``` r
+babydf <- dplyr::select(raw, Centering, ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, ValObjectives, IncrUnderstanding, IncrInterest, InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration)
 ```
 
 Let's check the structure of the variables:
 
 
-```r
+``` r
 str(babydf)
 ```
 
@@ -2486,7 +2515,7 @@ All of the item-level variables are integers (i.e., numerical). This is fine.
 The centering variable will need to be dummy coded as 0/1:
 
 
-```r
+``` r
 babydf$CEN <- as.numeric(babydf$Centering)
 babydf$CEN <- (babydf$CEN - 1)
 str(babydf)
@@ -2517,12 +2546,12 @@ As noted in the [homeworked example](https://lhbikos.github.io/ReC_MultivModel/M
 
 Here I assign the TradPed items to the 3 parcels.
 
-```r
+``` r
 set.seed(230916)
-items <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback", "ClearOrganization",
-    "ClearPresentation")
-parcels <- c("p1_TR", "p2_TR", "p3_TR")
-data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
+items <- c('ClearResponsibilities', 'EffectiveAnswers', 'Feedback', 'ClearOrganization', 'ClearPresentation')
+parcels <- c("p1_TR", "p2_TR","p3_TR")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
 ```
 
 ```
@@ -2538,32 +2567,24 @@ I can now create the parcels using the traditional scoring procedure. Given that
 As a variable, *ClearResponsibilities* will stand alone (i.e., the scoring mechanism won't work on a single variable). Therefore, I will 
 
 
-```r
-TRp1_vars <- c("ClearPresentation", "EffectiveAnswers")
-TRp2_vars <- c("Feedback", "ClearOrganization")
+``` r
+babydf$p1T <- datawizard::row_means(babydf, select = c('ClearPresentation','EffectiveAnswers'), min_valid = .5)
+babydf$p2T <- datawizard::row_means(babydf, select = c('Feedback','ClearOrganization'), min_valid = .5)
 
-babydf$p1T <- sjstats::mean_n(babydf[, ..TRp1_vars], 0.5)
-babydf$p2T <- sjstats::mean_n(babydf[, ..TRp2_vars], 0.5)
-
-# for consistency, I will create a third parcel from the
-# ClearResponsibilities variable by duplicating and renaming it
+#for consistency, I will create a third parcel from the ClearResponsibilities variable by duplicating and renaming it
 
 babydf$p3T <- babydf$ClearResponsibilities
-
-# If the scoring code above does not work for you, try the format
-# below which involves removing the periods in front of the variable
-# list. One example is provided. babydf$p2T <-
-# sjstats::mean_n(babydf[, TRp1_vars], .5)
 ```
 
 Here I assign the socially responsive pedagogy items to three parcels.
 
 
-```r
+``` r
 set.seed(230916)
-items <- c("InclusvClassrm", "EquitableEval", "MultPerspectives", "DEIintegration")
-parcels <- c("p1_SR", "p2_SR", "p3_SR")
-data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
+items <- c('InclusvClassrm', 'EquitableEval', 'MultPerspectives', 'DEIintegration')
+parcels <- c("p1_SR", "p2_SR","p3_SR")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
 ```
 
 ```
@@ -2576,26 +2597,18 @@ data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
 
 Only parcel one needs to be scored; the remaining are the single items.
 
-```r
-SRp1_vars <- c("InclusvClassrm", "EquitableEval")
+``` r
+babydf$p1S <- datawizard::row_means(babydf, select = c('InclusvClassrm','EquitableEval'), min_valid = .5)
 
-babydf$p1S <- sjstats::mean_n(babydf[, ..SRp1_vars], 0.5)
-
-# Here I create the second and third parcels from the individual
-# items by duplicating and naming them
+#Here I create the second and third parcels from the individual items by duplicating and naming them
 
 babydf$p2S <- babydf$MultPerspectives
 babydf$p3S <- babydf$DEIintegration
-
-# If the scoring code above does not work for you, try the format
-# below which involves removing the periods in front of the variable
-# list. One example is provided. babydf$p1S <-
-# sjstats::mean_n(babydf[, SRp1_vars], .5)
 ```
 
 I will create "parcels" for the three valued items by naming and duplicating.
 
-```r
+``` r
 babydf$p1V <- babydf$ValObjectives
 babydf$p2V <- babydf$IncrUnderstanding
 babydf$p3V <- babydf$IncrInterest
@@ -2603,7 +2616,7 @@ babydf$p3V <- babydf$IncrInterest
 
 
 
-```r
+``` r
 msmt_mod <- "
         ##measurement model
          CTR =~ CEN #this is a single item indicator, I had to add code below to set the variance
@@ -2634,7 +2647,7 @@ msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 82 iterations
+## lavaan 0.6-18 ended normally after 82 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2757,21 +2770,18 @@ msmt_fit_sum
 ##     Val               0.124    0.046    2.700    0.007    1.000    1.000
 ```
 
-```r
-msmt_fit_pEsts <- lavaan::parameterEstimates(msmt_fit, boot.ci.type = "bca.simple",
-    standardized = TRUE)
-# msmt_fit_pEsts #To reduce redundancy in the book, I did not print
-# the parameter estimates. Their object is used in exporting a .csv
-# file.
+``` r
+msmt_fit_pEsts <- lavaan::parameterEstimates(msmt_fit, boot.ci.type = "bca.simple", standardized=TRUE)
+#msmt_fit_pEsts #To reduce redundancy in the book, I did not print the parameter estimates. Their object is used in exporting a .csv file.
 ```
 
 Below is script that will export the global fit indices (via *tidySEM::table_fit*) and the parameter estimates (e.g., factor loadings, structural regression weights, and parameters we requested such as the indirect effect) to .csv files that you can manipulate outside of R.  
 
-```r
-# global fit indices
+``` r
+#global fit indices
 msmt_globalfit <- tidySEM::table_fit(msmt_fit)
 write.csv(msmt_globalfit, file = "msmt_globalfit.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(msmt_fit_pEsts, file = "msmt_fit_pEsts.csv")
 ```
 
@@ -2813,10 +2823,8 @@ Table 1
 Although it likely would not appear in an article (no space), here is a figure of my measurement model. We can use it to clarify our conceptual understanding of what we specified and check our work.
 
 
-```r
-semPlot::semPaths(msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5,
-    node.width = 1, edge.label.cex = 0.75, style = "lisrel", mar = c(2,
-        2, 2, 2))
+``` r
+semPlot::semPaths(msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(2,2,2,2))
 ```
 
 ![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-98-1.png)<!-- -->
@@ -2837,7 +2845,7 @@ For the purpose of this exercise, the structural model should be over-identified
 **Knowns::: $\frac{k(k+1)}{2}$ where *k* is the number of *constructs* 
 
 
-```r
+``` r
 (4*(4+1))/2
 ```
 
@@ -2857,7 +2865,7 @@ With 10 knowns and 9 unknowns, we have 1 degree of freedom in the structural por
 
 
 
-```r
+``` r
 ReC_struct_mod1 <- "
         #measurement model
          CTR =~ CEN #this is a single item indicator, I had to add code below to set the variance
@@ -2881,18 +2889,15 @@ ReC_struct_mod1 <- "
           direct := c_p
          
           "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-ReC_struct_fit1 <- lavaan::sem(ReC_struct_mod1, data = babydf, missing = "fiml",
-    fixed.x = FALSE)
-ReC_struct_summary1 <- lavaan::summary(ReC_struct_fit1, fit.measures = TRUE,
-    standardized = TRUE, rsq = TRUE)
-ReC_struct_pEsts1 <- lavaan::parameterEstimates(ReC_struct_fit1, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+ReC_struct_fit1 <- lavaan::sem(ReC_struct_mod1, data = babydf, missing= 'fiml', fixed.x=FALSE) 
+ReC_struct_summary1 <- lavaan::summary(ReC_struct_fit1, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+ReC_struct_pEsts1 <- lavaan::parameterEstimates(ReC_struct_fit1, boot.ci.type = "bca.simple", standardized=TRUE)
 ReC_struct_summary1
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 72 iterations
+## lavaan 0.6-18 ended normally after 72 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3043,28 +3048,25 @@ ReC_struct_summary1
 ##     direct           -0.029    0.053   -0.543    0.587   -0.042   -0.042
 ```
 
-```r
-# ReC_struct_pEsts1 #although creating the object is useful to export
-# as a .csv I didn't ask it to print into the book
+``` r
+#ReC_struct_pEsts1 #although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 $(\chi^2(31) = 105.390, p < 0.001, CFI = 0.856, RMSEA = 0.169, 90CI[0.134, 0.205], SRMR =  0.226)$.
 
 Below is script that will export the global fit indices (via *tidySEM::table_fit*) and the parameter estimates (e.g., factor loadings, structural regression weights, and parameters we requested such as the indirect effect) to .csv files that you can manipulate outside of R.  
 
-```r
-# global fit indices
+``` r
+#global fit indices
 ReC_globalfit1 <- tidySEM::table_fit(ReC_struct_fit1)
 write.csv(ReC_globalfit1, file = "ReC_globalfit1.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(ReC_struct_pEsts1, file = "ReC_struct_pEsts1.csv")
 ```
 
 Let's work up a figure
 
-```r
-plot_ReC_struct1 <- semPlot::semPaths(ReC_struct_fit1, what = "col", whatLabels = "stand",
-    sizeMan = 3, node.width = 1, edge.label.cex = 0.75, style = "lisrel",
-    mar = c(2, 2, 2, 2), structural = FALSE, curve = FALSE, intercepts = FALSE)
+``` r
+plot_ReC_struct1 <- semPlot::semPaths(ReC_struct_fit1, what = "col", whatLabels = "stand", sizeMan = 3, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(2,2,2,2), structural = FALSE, curve=FALSE, intercepts=FALSE)
 ```
 
 ![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-102-1.png)<!-- -->
@@ -3079,62 +3081,81 @@ plot_ReC_struct1 <- semPlot::semPaths(ReC_struct_fit1, what = "col", whatLabels 
 
 We place these values along with the names of our latent variables in to the *semptools::layout_matrix* function.
 
-```r
-# IMPORTANT: Must use the node names (take directly from the SemPlot)
-# assigned by SemPlot You can change them as the last thing
-m1_msmt <- semptools::layout_matrix(CTR = c(2, 1), TrP = c(1, 2), SRP = c(3,
-    2), Val = c(2, 3))
+``` r
+#IMPORTANT:  Must use the node names (take directly from the SemPlot) assigned by SemPlot
+#You can change them as the last thing
+m1_msmt <- semptools::layout_matrix(CTR = c(2,1),
+                                  TrP = c(1,2),
+                                  SRP = c(3,2),
+                                  Val = c(2,3))
 ```
 
 Next we provide instruction on the direction (up, down, left, right) we want the indicator/observed variables to face. We identify the direction by the location of each of our latent variables. For example, in the code below we want the indicators for the REM variable (2,1) to face left.
 
-```r
-# tell where you want the indicators to face
-m1_point_to <- semptools::layout_matrix(left = c(2, 1), up = c(1, 2), down = c(3,
-    2), right = c(2, 3))
+``` r
+#tell where you want the indicators to face
+m1_point_to <- semptools::layout_matrix (left = c(2,1),
+                                      up = c(1,2),
+                                      down = c(3,2),
+                                       right = c(2,3))
 ```
 
 The next two sets of code work together to specify the order of the observed variables for each factor. in the top set of code the variable names indicate the order in which they will appear (i.e., p1R, p2R, p3R). In the second set of code, the listing the variable name three times (i.e., REM, REM, REM) serves as a placeholder for each of the indicators.
 
 It is critical to note that we need to use the abbreviated variable names assigned by *semTools::semPaths* and not necessarily the names that are in the dataframe.
 
-```r
-# the next two codes -- indicator_order and indicator_factor are
-# paired together, they specify the order of observed variables for
-# each factor
-m1_indicator_order <- c("CEN", "p1T", "p2T", "p3T", "p1S", "p2S", "p3S",
-    "p1V", "p2V", "p3V")
+``` r
+#the next two codes -- indicator_order and indicator_factor are paired together, they specify the order of observed variables for each factor
+m1_indicator_order <- c("CEN",
+                     "p1T", "p2T", "p3T",
+                     "p1S", "p2S", "p3S",
+                     "p1V", "p2V", "p3V")
 
-m1_indicator_factor <- c("CTR", "TrP", "TrP", "TrP", "SRP", "SRP", "SRP",
-    "Val", "Val", "Val")
+m1_indicator_factor <- c("CTR",
+                      "TrP", "TrP", "TrP",
+                      "SRP", "SRP", "SRP",
+                      "Val", "Val", "Val")
 ```
 
 
 The next two sets of codes provide some guidance about how far away the indicator (square/rectangular) variables should be away from the latent (oval/circular) variables. Subsequently, the next set of values indicate how far away each of the indicator (square/rectangular) variables should be spread apart.
 
-```r
-# next set of code pushes the indicator variables away from the
-# factor
-m1_indicator_push <- c(CTR = 1, TrP = 1, SRP = 1, Val = 1)
+``` r
+#next set of code pushes the indicator variables away from the factor
+m1_indicator_push <- c(CTR = 1, 
+                    TrP = 1,
+                    SRP = 1, 
+                    Val = 1)
 
 
-# spreading the boxes away from each other
-m1_indicator_spread <- c(CTR = 0.5, TrP = 2.5, SRP = 2.5, Val = 1)
+#spreading the boxes away from each other
+m1_indicator_spread <- c(CTR = .5, 
+                    TrP = 2.5,
+                    SRP = 2.5, 
+                    Val = 1)
 ```
 
 Finally, we can feed all of the objects that whole these instructions into the *semptools::sem_set_layout* function. If desired, we can use the *semptools::change_node_label* function to rename the latent variables. Again, make sure to use the variable names that *semPlot::semPaths* has assigned.
 
 
-```r
-plot1 <- semptools::set_sem_layout(plot_ReC_struct1, indicator_order = m1_indicator_order,
-    indicator_factor = m1_indicator_factor, factor_layout = m1_msmt, factor_point_to = m1_point_to,
-    indicator_push = m1_indicator_push, indicator_spread = m1_indicator_spread)
+``` r
+plot1 <- semptools::set_sem_layout(plot_ReC_struct1,
+                                indicator_order = m1_indicator_order,
+                                indicator_factor = m1_indicator_factor,
+                                factor_layout = m1_msmt,
+                                factor_point_to = m1_point_to,
+                                indicator_push = m1_indicator_push,
+                                indicator_spread = m1_indicator_spread)
 
-# changing node labels plot1 <- semptools::change_node_label(plot1,
-# c(CTR = 'CTRing', TrP = 'TradPed', SRP = 'SRPed', Val = 'Valued'),
-# label.cex = 1.1)
+#changing node labels
+#plot1 <- semptools::change_node_label(plot1,
+                                   #c(CTR = "CTRing",
+                                     #TrP = "TradPed",
+                                     #SRP = "SRPed",
+                                     #Val = "Valued"),
+                                   #label.cex = 1.1)
 
-# adding stars to indicate significant paths
+#adding stars to indicate significant paths
 plot1 <- semptools::mark_sig(plot1, ReC_struct_fit1)
 
 plot(plot1)
@@ -3177,8 +3198,8 @@ If we table the results, here's what we have:
 Normally, we would use the *lavaan::modindices()* function to retrieve the modification indices. Unfortunately, it is not working and I cannot understand why. This error does not make sense to me. I wonder if this error and the inability to plot the result is related to the dichotomous predictor variable? Who knows. If anyone discovers a solution, please let me know!
 
 
-```r
-lavaan::modindices(ReC_struct_fit1, sort = TRUE, minimum.value = 4)
+``` r
+lavaan::modindices(ReC_struct_fit1, sort=TRUE, minimum.value=4)
 ```
 
 I planned this problem knowing that the the only logical path would be to add a path from traditional pedagogy to socially responsive pedagogy, turning this into a serial mediation. Let's do that!
@@ -3191,7 +3212,7 @@ Before even conducting the statistic, adding this path will make the structural 
 
 
 
-```r
+``` r
 ReC_struct_mod2 <- "
         #measurement model
          CTR =~ CEN #this is a single item indicator, I had to add code below to set the variance
@@ -3219,17 +3240,15 @@ ReC_struct_mod2 <- "
           direct := c_p
          
           "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-ReC_struct_fit2 <- lavaan::sem(ReC_struct_mod2, data = babydf, missing = "fiml")
-ReC_struct_summary2 <- lavaan::summary(ReC_struct_fit2, fit.measures = TRUE,
-    standardized = TRUE, rsq = TRUE)
-ReC_struct_pEsts2 <- lavaan::parameterEstimates(ReC_struct_fit2, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+ReC_struct_fit2 <- lavaan::sem(ReC_struct_mod2, data = babydf, missing= 'fiml')
+ReC_struct_summary2 <- lavaan::summary(ReC_struct_fit2, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+ReC_struct_pEsts2 <- lavaan::parameterEstimates(ReC_struct_fit2, boot.ci.type = "bca.simple", standardized=TRUE)
 ReC_struct_summary2
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 75 iterations
+## lavaan 0.6-18 ended normally after 75 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3384,16 +3403,15 @@ ReC_struct_summary2
 ##     direct           -0.007    0.053   -0.128    0.898   -0.009   -0.009
 ```
 
-```r
-# ReC_struct_pEsts1 #although creating the object is useful to export
-# as a .csv I didn't ask it to print into the book
+``` r
+#ReC_struct_pEsts1 #although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 
-```r
-# global fit indices
+``` r
+#global fit indices
 ReC_globalfit2 <- tidySEM::table_fit(ReC_struct_fit2)
 write.csv(ReC_globalfit2, file = "ReC_globalfit2.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(ReC_struct_pEsts2, file = "ReC_struct_pEsts2.csv")
 ```
 
@@ -3402,7 +3420,7 @@ Here is the global fit indices:  $(\chi^2(30) = 51.639, p = 0.004, CFI = 0.958, 
 We can compare the difference between the originally hypothsized fit and this fit.
 
 
-```r
+``` r
 lavaan::lavTestLRT(ReC_struct_fit1, ReC_struct_fit2)
 ```
 
@@ -3423,10 +3441,8 @@ Given that these models are nested (i.e., same variables, same sample, only the 
 are non-significant. Thus, I would favor retaining the originally hypothesized model.
 
 
-```r
-plot_struct2 <- semPlot::semPaths(ReC_struct_fit2, what = "col", whatLabels = "stand",
-    sizeMan = 3, node.width = 1, edge.label.cex = 0.75, style = "lisrel",
-    mar = c(2, 2, 2, 2), structural = FALSE, curve = FALSE, intercepts = FALSE)
+``` r
+plot_struct2 <- semPlot::semPaths(ReC_struct_fit2, what = "col", whatLabels = "stand", sizeMan = 3, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(2,2,2,2), structural = FALSE, curve=FALSE, intercepts=FALSE)
 ```
 
 ![](11-SEM_TrimBuild_files/figure-docx/unnamed-chunk-112-1.png)<!-- -->
@@ -3438,7 +3454,7 @@ Given my rejection of the model that resulted from adding the serial mediation, 
 This is tricky, the "most-nonsignificant" path is the direct path from centering to perceived value $(B = 0.029, p = 0.587)$. That path, however, is involved in the indirect effects (and I would sue like the indirect effect through traditional pedagogy $[B = 0.140, p = 0.061, 95CI(-0.007, 0.287)]$ to pass into statistical significance).The next most non-significant path is $b_2$, from socially responsive pedagogy to perceived value $(B = 0.087, p = 0.275))$. Let's trim it.
 
 
-```r
+``` r
 ReC_struct_mod3 <- "
         #measurement model
          CTR =~ CEN #this is a single item indicator, I had to add code below to set the variance
@@ -3462,18 +3478,15 @@ ReC_struct_mod3 <- "
           direct := c_p
          
           "
-set.seed(230916)  #needed for reproducibility especially when specifying bootstrapped confidence intervals
-ReC_struct_fit3 <- lavaan::sem(ReC_struct_mod3, data = babydf, missing = "fiml",
-    fixed.x = FALSE)
-ReC_struct_summary3 <- lavaan::summary(ReC_struct_fit3, fit.measures = TRUE,
-    standardized = TRUE, rsq = TRUE)
-ReC_struct_pEsts3 <- lavaan::parameterEstimates(ReC_struct_fit3, boot.ci.type = "bca.simple",
-    standardized = TRUE)
+set.seed(230916) #needed for reproducibility especially when specifying bootstrapped confidence intervals
+ReC_struct_fit3 <- lavaan::sem(ReC_struct_mod3, data = babydf, missing= 'fiml', fixed.x=FALSE) 
+ReC_struct_summary3 <- lavaan::summary(ReC_struct_fit3, fit.measures=TRUE, standardized=TRUE, rsq = TRUE)
+ReC_struct_pEsts3 <- lavaan::parameterEstimates(ReC_struct_fit3, boot.ci.type = "bca.simple", standardized=TRUE)
 ReC_struct_summary3
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 71 iterations
+## lavaan 0.6-18 ended normally after 71 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -3622,18 +3635,17 @@ ReC_struct_summary3
 ##     direct           -0.002    0.053   -0.037    0.970   -0.003   -0.003
 ```
 
-```r
-# ReC_struct_pEsts1 #although creating the object is useful to export
-# as a .csv I didn't ask it to print into the book
+``` r
+#ReC_struct_pEsts1 #although creating the object is useful to export as a .csv I didn't ask it to print into the book
 ```
 Exporting results to .csv files:
 
 
-```r
-# global fit indices
+``` r
+#global fit indices
 ReC_globalfit3 <- tidySEM::table_fit(ReC_struct_fit3)
 write.csv(ReC_globalfit3, file = "ReC_globalfit3.csv")
-# the code below writes the parameter estimates into a .csv file
+#the code below writes the parameter estimates into a .csv file
 write.csv(ReC_struct_pEsts3, file = "ReC_struct_pEsts3.csv")
 ```
 
@@ -3646,13 +3658,13 @@ Curiously, the global fit indices are identical to the originally hypothesized m
 None-the-less, I can formally compare the two tests: (\Delta\chi^2(1) = 53.751, p < 0.001$
 
 
-```r
+``` r
 lavaan::lavTestLRT(ReC_struct_fit1, ReC_struct_fit3)
 ```
 
 ```
-## Warning in lavaan::lavTestLRT(ReC_struct_fit1, ReC_struct_fit3): lavaan
-## WARNING: some models have the same degrees of freedom
+## Warning: lavaan->lavTestLRT():  
+##    some models have the same degrees of freedom
 ```
 
 ```

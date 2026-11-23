@@ -1,0 +1,3 @@
+"0","dfKim$p1REMS <- datawizard::row_means(dfKim, select = c('mWork44','Exot20', 'SClass8', 'Exot43', 'mInv4', 'SClass31', 'SClass40', 'mWork16', 'Exot45', 'SClass2', 'Exot3', 'mEnv24', 'Exot35', 'mInv7', 'Exot13'), min_valid = .80)"
+"0","dfKim$p2REMS <- datawizard::row_means(dfKim, select = c('mEnv41','SClass11', 'Inf5', 'mEnv19', 'mInv39', 'Inf22', 'mEnv18', 'mInv30', 'Inf32', 'SClass34', 'Exot29', 'mInv27', 'mInv10', 'mWork1', 'mWork15'), min_valid = .80)"
+"0","dfKim$p3REMS <- datawizard::row_means(dfKim, select = c('mWork25','Inf38', 'Inf17', 'Exot23', 'mInv33',  'mEnv28', 'Inf36', 'mInv14', 'mEnv37', 'Inf21', 'mEnv12', 'Exot42', 'SClass6', 'Inf9', 'mInv26'), min_valid = .80)"

@@ -61,6 +61,7 @@ The script below will (a) check to see if the following packages are installed o
 #if(!require(tidyverse)){install.packages("tidyverse")}
 #if(!require(psych)){install.packages("psych")}
 #if(!require(jtools)){install.packages("jtools")}
+#if(!require(datawizard)){install.packages("datawizard")}
 ```
 
 ## Evaluating Structural Models
@@ -294,16 +295,9 @@ data.frame(items = sample(items),
 ```
 We can now create the parcels using the same scoring procedure as we did for the REMS and CMI instruments.
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-PWB_p1_vars <- c('pwb7','pwb11', 'pwb4', 'pwb8')
-PWB_p2_vars <- c('pwb9','pwb2', 'pwb10', 'pwb2')
-PWB_p3_vars <- c('pwb1','pwb3', 'pwb5')
-
-dfKim$p1PWB <- sjstats::mean_n(dfKim[, PWB_p1_vars], .75)
-dfKim$p2PWB <- sjstats::mean_n(dfKim[, PWB_p2_vars], .75)
-dfKim$p3PWB <- sjstats::mean_n(dfKim[, PWB_p3_vars], .75)
-
-#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
-#dfKim$p3PWB <- sjstats::mean_n(dfKim[, ..PWB_p3_vars], .75)
+dfKim$p1PWB <- datawizard::row_means(dfKim, select = c('pwb7','pwb11', 'pwb4', 'pwb8'), min_valid = .80)
+dfKim$p2PWB <- datawizard::row_means(dfKim, select = c('pwb9','pwb2', 'pwb10', 'pwb2'), min_valid = .80)
+dfKim$p3PWB <- datawizard::row_means(dfKim, select = c('pwb1','pwb3', 'pwb5'), min_valid = .80)
 ```
 
 This code randomly assigns the REMS items to three parcels.
@@ -317,16 +311,9 @@ data.frame(items = sample(items),
 
 This code provides means for each of the three REMS parcels.
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-REMS_p1_vars <- c('mWork44','Exot20', 'SClass8', 'Exot43', 'mInv4', 'SClass31', 'SClass40', 'mWork16', 'Exot45', 'SClass2', 'Exot3', 'mEnv24', 'Exot35', 'mInv7', 'Exot13')
-REMS_p2_vars <- c('mEnv41','SClass11', 'Inf5', 'mEnv19', 'mInv39', 'Inf22', 'mEnv18', 'mInv30', 'Inf32', 'SClass34', 'Exot29', 'mInv27', 'mInv10', 'mWork1', 'mWork15')
-REMS_p3_vars <- c('mWork25','Inf38', 'Inf17', 'Exot23', 'mInv33',  'mEnv28', 'Inf36', 'mInv14', 'mEnv37', 'Inf21', 'mEnv12', 'Exot42', 'SClass6', 'Inf9', 'mInv26')
-
-dfKim$p1REMS <- sjstats::mean_n(dfKim[, REMS_p1_vars], .80)
-dfKim$p2REMS <- sjstats::mean_n(dfKim[, REMS_p2_vars], .80)
-dfKim$p3REMS <- sjstats::mean_n(dfKim[, REMS_p3_vars], .80)
-
-#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
-#dfKim$p3REMS <- sjstats::mean_n(dfKim[, ..REMS_p3_vars], .80)
+dfKim$p1REMS <- datawizard::row_means(dfKim, select = c('mWork44','Exot20', 'SClass8', 'Exot43', 'mInv4', 'SClass31', 'SClass40', 'mWork16', 'Exot45', 'SClass2', 'Exot3', 'mEnv24', 'Exot35', 'mInv7', 'Exot13'), min_valid = .80)
+dfKim$p2REMS <- datawizard::row_means(dfKim, select = c('mEnv41','SClass11', 'Inf5', 'mEnv19', 'mInv39', 'Inf22', 'mEnv18', 'mInv30', 'Inf32', 'SClass34', 'Exot29', 'mInv27', 'mInv10', 'mWork1', 'mWork15'), min_valid = .80)
+dfKim$p3REMS <- datawizard::row_means(dfKim, select = c('mWork25','Inf38', 'Inf17', 'Exot23', 'mInv33',  'mEnv28', 'Inf36', 'mInv14', 'mEnv37', 'Inf21', 'mEnv12', 'Exot42', 'SClass6', 'Inf9', 'mInv26'), min_valid = .80)
 ```
 
 We can repeat the process for the CMI. First, we assign the 47 CMI items to the three parcels.
@@ -340,16 +327,9 @@ data.frame(items = sample(items),
 ```
 This code provides means for each of the three CMI parcels.
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-CMI_p1_vars <- c('cmi45', 'cmi32', 'cmi11',	'cmi33', 'cmi22', 'cmi12', 'cmi26', 'cmi25', 'cmi44', 'cmi13', 'cmi31', 'cmi34', 'cmi37', 'cmi43', 'cmi24', 'cmi9')
-CMI_p2_vars <- c('cmi39', 'cmi15', 'cmi7', 'cmi38', 'cmi18', 'cmi40', 'cmi47', 'cmi27', 'cmi1', 'cmi14', 'cmi42', 'cmi8', 'cmi19', 'cmi20', 'cmi5', 'cmi16')
-CMI_p3_vars <- c('cmi41', 'cmi2', 'cmi4', 'cmi30', 'cmi46', 'cmi6', 'cmi17', 'cmi23', 'cmi10', 'cmi3', 'cmi29', 'cmi28', 'cmi21', 'cmi35', 'cmi36')
-
-dfKim$p1CMI <- sjstats::mean_n(dfKim[, CMI_p1_vars], .80)
-dfKim$p2CMI <- sjstats::mean_n(dfKim[, CMI_p2_vars], .80)
-dfKim$p3CMI <- sjstats::mean_n(dfKim[, CMI_p3_vars], .80)
-
-#If the scoring code above does not work for you, try the format below which involves inserting to periods in front of the variable list. One example is provided.
-#dfKim$p3CMI <- sjstats::mean_n(dfKim[, ..CMI_p3_vars], .80)
+dfKim$p1CMI <- datawizard::row_means(dfKim, select = c('cmi45', 'cmi32', 'cmi11',	'cmi33', 'cmi22', 'cmi12', 'cmi26', 'cmi25', 'cmi44', 'cmi13', 'cmi31', 'cmi34', 'cmi37', 'cmi43', 'cmi24', 'cmi9'), min_valid = .80)
+dfKim$p2CMI <- datawizard::row_means(dfKim, select = c('cmi39', 'cmi15', 'cmi7', 'cmi38', 'cmi18', 'cmi40', 'cmi47', 'cmi27', 'cmi1', 'cmi14', 'cmi42', 'cmi8', 'cmi19', 'cmi20', 'cmi5', 'cmi16'), min_valid = .80)
+dfKim$p3CMI <- datawizard::row_means(dfKim, select = c('cmi41', 'cmi2', 'cmi4', 'cmi30', 'cmi46', 'cmi6', 'cmi17', 'cmi23', 'cmi10', 'cmi3', 'cmi29', 'cmi28', 'cmi21', 'cmi35', 'cmi36'), min_valid = .80)
 ```
 
 Below is code for specifying the measurement model. Each of the latent variables/factors (REMS, CMI, PWB) is identified by three parcels. Each of the latent variables is allowed to covary with the others.

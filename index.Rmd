@@ -30,12 +30,14 @@ This open education resource is available in the following formats, all availabl
 
 All materials used in creating this OER are available at its [GitHub repo](https://github.com/lhbikos/ReC_MultivModel).
 
+To additional volumes in the ReCentering Psych Stats series include its [base volume](https://open.umn.edu/opentextbooks/textbooks/1482) (an introduction to inferential statistics and Analysis of Variance) and [Psychometrics.](https://lhbikos.github.io/ReC_Psychometrics/).
+
 
 # PREFACE {-}
 
-**If you are viewing this document, you should know that this is a book-in-progress.  Early drafts are released for the purpose teaching my classes and gaining formative feedback from a host of stakeholders. The document was last updated on `r format (Sys.Date(), '%d %b %Y')`**.  Emerging volumes on other statistics are posted on the [ReCentering Psych Stats](https://lhbikos.github.io/BikosRVT/ReCenter.html) page at my research team's website. 
+**If you are viewing this document, you should know that it is perpetually-in-progress. Early drafts are released for the purpose teaching classes and gaining formative feedback from a host of stakeholders. Although 2024 is considered the publication date, updates are occasionally made. The document was last updated on `r format (Sys.Date(), '%d %b %Y')`**.  Throughout the OER are sceencasted lectures. When updating the book, the text is updated first and lectures are updated as time is available. If there is a discrepancy, the test will be the most current. Finally, R and R packages are dynamic. It is quite possible that a package will change and the script presented in this OER is no longer functional. Please leave feedback on the [GitHub repo](https://github.com/lhbikos/ReC_MultivModel/tree/main) or send an email to recenterpsychstats@gmail.com.
 
-[Screencasted Lecture Link](https://spu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c932455e-ef06-444a-bdca-acf7012d759a)
+[Screencasted Lecture Link](https://youtu.be/yy0z85Wla7o)
 
 To *center* a variable in regression means to set its value at zero and interpret all other values in relation to this reference point. Regarding race and gender, researchers often center male and White at zero. Further, it is typical that research vignettes in statistics textbooks are similarly seated in a White, Western (frequently U.S.), heteronormative, framework. The purpose of this project is to create a set of open educational resources (OER) appropriate for doctoral and post-doctoral training that contribute to a socially responsive pedagogy -- that is, it contributes to justice, equity, diversity, and inclusion. 
 
@@ -52,6 +54,8 @@ In this OER, research vignettes will be from recently published articles where:
 
 In training for multicultural competence, the saying, "A fish doesn't know that it's wet" is often used to convey the notion that we are often unaware of our own cultural characteristics. In recent months and years, there has been an increased awakening to the institutional and systemic racism that our systems are perpetuating. Queuing from the water metaphor, I am hopeful that a text that is recentered in the ways I have described can contribute to *changing the water* in higher education and in the profession of psychology.
 
+## Invitation to Collaboration
+As of this writing my (Lynette Bikos) career has taken me away from the teaching statistics, psychometrics, and research methods. Across the three volumes of ReCentering Psych Stats, there were chapters that I regret not writing. If this approach to teaching statistics is appealing to you and you would like to contribute, please contact me directly.
 
 ## Copyright with Open Access {-}
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>

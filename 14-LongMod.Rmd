@@ -50,7 +50,6 @@ The script below will (a) check to see if the following packages are installed o
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
 #will install the package if not already installed
 #if(!require(lme4)){install.packages("lme4")}
-#if(!require(sjStats)){install.packages("sjStats")}
 #if(!require(sjPlot)){install.packages("sjPlot")}
 #if(!require(formattable)){install.packages("formattable")}
 #if(!require(tidyverse)){install.packages("tidyverse")}

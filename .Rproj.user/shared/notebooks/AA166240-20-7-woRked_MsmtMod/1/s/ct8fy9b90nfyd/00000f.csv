@@ -1,0 +1,3 @@
+"0","babydf$p1_TR <- datawizard::row_means(babydf, select = c('ClearPresentation','EffectiveAnswers'), min_valid = .75)"
+"0","babydf$p2_TR <- datawizard::row_means(babydf, select = c('Feedback','ClearOrganization'), min_valid = .75)"
+"0",""

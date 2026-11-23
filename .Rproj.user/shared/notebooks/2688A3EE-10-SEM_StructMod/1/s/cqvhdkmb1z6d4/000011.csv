@@ -1,0 +1,8 @@
+"0","p4_theoretical <- semptools::set_sem_layout(p4_theoretical,"
+"0","                                indicator_order = m4_indicator_order,"
+"0","                                indicator_factor = m4_indicator_factor,"
+"0","                                factor_layout = m4_msmt,"
+"0","                                factor_point_to = m4_point_to,"
+"0","                                indicator_push = m4_indicator_push,"
+"0","                                indicator_spread = m4_indicator_spread)"
+"0","plot(p4_theoretical)"

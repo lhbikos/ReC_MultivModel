@@ -1,0 +1,2 @@
+"0","babydf$TrP_L1 <- as.numeric(robumeta::group.center(babydf$TradPed, babydf$CourseID))#centered within context (group mean centering)"
+"0","babydf$TrP_L2 <- as.numeric(robumeta::group.mean(babydf$TradPed, babydf$CourseID))#aggregated at group mean"

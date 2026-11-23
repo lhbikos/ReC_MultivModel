@@ -1,0 +1,8 @@
+"0","#creating a count of BIPOC faculty identified by each respondent"
+"0","mimp_df$count.BIPOC <- apply(mimp_df[c(""iRace1"", ""iRace2"", ""iRace3"", ""iRace4"", ""iRace5"", ""iRace6"", ""iRace7"", ""iRace8"", ""iRace9"", ""iRace10"")], 1, function(x) sum(x %in% c(""Black"", ""nBpoc"", ""BiMulti"")))"
+"0",""
+"0","#creating a count of all instructional  faculty identified by each respondent"
+"0","mimp_df$count.nMiss <- apply(mimp_df[c(""iRace1"", ""iRace2"", ""iRace3"", ""iRace4"", ""iRace5"", ""iRace6"", ""iRace7"", ""iRace8"", ""iRace9"", ""iRace10"")], 1, function(x) sum(!is.na(x)))"
+"0",""
+"0","#calculating the proportion of BIPOC faculty with the counts above"
+"0","mimp_df$iBIPOC_pr = mimp_df$count.BIPOC/mimp_df$count.nMiss"

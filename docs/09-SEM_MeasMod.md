@@ -59,13 +59,14 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them. You may wish to remove the hashtags and run this chunk if this is the first time you are conducting analyses such as these.
 
-```r
-# will install the package if not already installed
-# if(!require(lavaan)){install.packages('lavaan')}
-# if(!require(semPlot)){install.packages('semPlot')}
-# if(!require(tidyverse)){install.packages('tidyverse')}
-# if(!require(psych)){install.packages('psych')}
-# if(!require(jtools)){install.packages('jtools')}
+``` r
+#will install the package if not already installed
+#if(!require(lavaan)){install.packages("lavaan")}
+#if(!require(semPlot)){install.packages("semPlot")}
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(jtools)){install.packages("jtools")}
+#if(!require(datawizard)){install.packages("datawizard")}
 ```
 
 ## Introduction to Structural Equation Modeling (SEM)
@@ -207,7 +208,7 @@ For the lessons on measurement and structural models, we will evaluate a simple 
 We used the *lavaan::simulateData* function for the simulation. If you have taken psychometrics, you may recognize the code as one that creates latent variables form item-level data. In trying to be as authentic as possible, we retrieved factor loadings from psychometrically oriented articles that evaluated the measures [@nadal_racial_2011; @veit_structure_1983]. For all others we specified a factor loading of 0.80. We then approximated the *measurement model* by specifying the correlations between all of the latent variable. We sourced these from the correlation matrix from the research vignette [@kim_racial_2017]. The process created data with multiple decimals and values that exceeded the boundaries of the variables. For example, in all scales there were negative values. Therefore, the final element of the simulation was a linear transformation that rescaled the variables back to the range described in the journal article and rounding the values to integer (i.e., with no decimal places).
 
 
-```r
+``` r
 #Entering the intercorrelations, means, and standard deviations from the journal article
 Kim_generating_model <- '
         #measurement model
@@ -298,13 +299,13 @@ If you prefer the .rds format, use this script (remove the hashtags). The .rds f
 Script to save the data to your computer as an .rds file.
 
 
-```r
+``` r
 #saveRDS(dfKim, 'dfKim.rds')  
 ```
 
 Once saved, you could clean your environment and bring the data back in from its .csv format.
 
-```r
+``` r
 #dfKim<- readRDS('dfKim.rds')
 ```
 
@@ -313,14 +314,13 @@ If you prefer the .csv format (think "Excel lite") use this script (remove the h
 Script to save the data to your computer as a .csv file.
 
 
-```r
-# write.table(dfKim, file = 'dfKim.csv', sep = ',', col.names=TRUE,
-# row.names=FALSE)
+``` r
+#write.table(dfKim, file = 'dfKim.csv', sep = ',', col.names=TRUE, row.names=FALSE) 
 ```
 
 Once saved, you could clean your environment and bring the data back in from its .csv format.
 
-```r
+``` r
 # dfKim<- read.csv ('dfKim.csv', header = TRUE)
 ```
 
@@ -359,7 +359,7 @@ A complete lavaan model is a combination of these formula types, enclosed betwee
 
 
 
-```r
+``` r
 init_msmt_mod <- "
         ##measurement model
          REMS =~ Inf32 + Inf38 + Inf21 + Inf17 + Inf9 + Inf36 + Inf5 + Inf22 + SClass6 + SClass31 + SClass8 + SClass40 + SClass2 + SClass34 + SClass11 + mInv27 + mInv30 + mInv39 + mInv7 + mInv26 + mInv33 + mInv4 + mInv14 + mInv10 + Exot3 + Exot29 + Exot45 + Exot35 + Exot42 + Exot23 + Exot13 + Exot20 + Exot43 + mEnv37 + mEnv24 + mEnv19 + mEnv28 + mEnv18 + mEnv41 + mEnv12 + mWork25 + mWork15 + mWork1 + mWork16 + mWork44
@@ -377,15 +377,13 @@ init_msmt_mod <- "
 
 set.seed(230916)
 init_msmt_fit <- lavaan::cfa(init_msmt_mod, data = dfKim)
-# you can add missing = 'fiml' to the code; I deleted it because it
-# was really slowing down the run
-init_msmt_fit_sum <- lavaan::summary(init_msmt_fit, fit.measures = TRUE,
-    standardized = TRUE)
+#you can add missing = "fiml" to the code; I deleted it because it was really slowing down the run
+init_msmt_fit_sum <- lavaan::summary(init_msmt_fit, fit.measures = TRUE, standardized = TRUE)
 init_msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 118 iterations
+## lavaan 0.6-18 ended normally after 118 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -671,7 +669,7 @@ If you wish to export the results for creation of tables, *tidySEM* has a number
 The *tidySEM::table_fit* function will display all of the global fit indices.
 
 
-```r
+``` r
 init_msmt_fitstats <- tidySEM::table_fit(init_msmt_fit)
 ```
 
@@ -681,7 +679,7 @@ init_msmt_fitstats <- tidySEM::table_fit(init_msmt_fit)
 ##   predict.MxModel OpenMx
 ```
 
-```r
+``` r
 init_msmt_fitstats
 ```
 
@@ -708,8 +706,8 @@ init_msmt_fitstats
 
 The *tidySEM::table_results* function produces all of the factor loadings, covariances, and variances, 
 
-```r
-init_msmt_pEsts <- tidySEM::table_results(init_msmt_fit, digits = 3, columns = NULL)
+``` r
+init_msmt_pEsts <- tidySEM::table_results(init_msmt_fit, digits=3, columns = NULL)
 init_msmt_pEsts
 ```
 
@@ -1144,8 +1142,8 @@ init_msmt_pEsts
 
 The *tidySEM::table_cors* function will return a correlation matrix of the latent variables.
 
-```r
-init_msmt_LVcorr <- tidySEM::table_cors(init_msmt_fit, digits = 3)
+``` r
+init_msmt_LVcorr <- tidySEM::table_cors(init_msmt_fit, digits=3)
 init_msmt_LVcorr
 ```
 
@@ -1158,7 +1156,7 @@ init_msmt_LVcorr
 
 The *write.csv* function can export each of these objects to .csv files.
 
-```r
+``` r
 write.csv(init_msmt_fitstats, file = "init_msmt_fitstats.csv")
 write.csv(init_msmt_pEsts, file = "init_msmt_pEsts.csv")
 write.csv(init_msmt_LVcorr, file = "init_msmt_LVcorr.csv")
@@ -1169,10 +1167,8 @@ Before we interpret the output, let's also create a figure. This will help us co
 This is not our structural prediction. Rather this is the pre-prediction. The fit of our structural model will, very likely be worse than this fit. 
 
 
-```r
-semPlot::semPaths(init_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5,
-    node.width = 1, edge.label.cex = 0.75, style = "lisrel", mar = c(5,
-        5, 5, 5))
+``` r
+semPlot::semPaths(init_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
 ![](09-SEM_MeasMod_files/figure-docx/unnamed-chunk-13-1.png)<!-- -->
@@ -1349,53 +1345,23 @@ The 45 items of the REMS are divided between six subscales; thus, parceling by s
 
 
 
-```r
-Inf_vars <- c("Inf32", "Inf38", "Inf21", "Inf17", "Inf9", "Inf36", "Inf5",
-    "Inf22")
-SClass_vars <- c("SClass8", "SClass40", "SClass2", "SClass34", "SClass11")
-mInv_vars <- c("mInv27", "mInv39", "mInv7", "mInv26", "mInv33", "mInv4",
-    "mInv14", "mInv10")
-Exot_vars <- c("Exot3", "Exot29", "Exot45", "Exot35", "Exot42", "Exot23",
-    "Exot13", "Exot20", "Exot43")
-mEnv_vars <- c("mEnv37", "mEnv24", "mEnv19", "mEnv28", "mEnv18", "mEnv41",
-    "mEnv12")
-mWork_vars <- c("mWork25", "mWork15", "mWork1", "mWork16", "mWork44")
-
-dfKim$Inf_P <- sjstats::mean_n(dfKim[, Inf_vars], 0.8)
-dfKim$SClass_P <- sjstats::mean_n(dfKim[, SClass_vars], 0.8)
-dfKim$mInv_P <- sjstats::mean_n(dfKim[, mInv_vars], 0.8)
-dfKim$Exot_P <- sjstats::mean_n(dfKim[, Exot_vars], 0.8)
-dfKim$mEnv_P <- sjstats::mean_n(dfKim[, mEnv_vars], 0.8)
-dfKim$mWork_P <- sjstats::mean_n(dfKim[, mWork_vars], 0.8)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfKim$mWork_P <-
-# sjstats::mean_n(dfKim[,.. mWork_vars], .80)
+``` r
+dfKim$Inf_P <- datawizard::row_means(dfKim, select = c('Inf32', 'Inf38', 'Inf21', 'Inf17', 'Inf9', 'Inf36', 'Inf5', 'Inf22'), min_valid = .80)
+dfKim$SClass_P <- datawizard::row_means(dfKim, select = c('SClass8', 'SClass40', 'SClass2',  'SClass34',  'SClass11'), min_valid = .80)
+dfKim$mInv_P <- datawizard::row_means(dfKim, select = c('mInv27', 'mInv39', 'mInv7', 'mInv26', 'mInv33', 'mInv4', 'mInv14', 'mInv10'), min_valid = .80)
+dfKim$Exot_P <- datawizard::row_means(dfKim, select = c('Exot3', 'Exot29', 'Exot45', 'Exot35', 'Exot42', 'Exot23', 'Exot13', 'Exot20', 'Exot43'), min_valid = .80)
+dfKim$mEnv_P <- datawizard::row_means(dfKim, select = c('mEnv37', 'mEnv24', 'mEnv19', 'mEnv28', 'mEnv18', 'mEnv41', 'mEnv12'), min_valid = .80)
+dfKim$mWork_P <- datawizard::row_means(dfKim, select = c('mWork25', 'mWork15', 'mWork1', 'mWork16', 'mWork44'), min_valid = .80)
 ```
 
 We learn from Kim et al's description [@kim_racial_2017] that the CMI has four factors. Because I could not retrieve an article with original psychometrics, I was not able to provide factor correlations and my variable names do not reflect scale membership. Let's pretend that the items are in order of the scales. i will assign 12 items each to the first three scales and 11 items to the fourth scale.
 
 
-```r
-IntRel_vars <- c("cmi1", "cmi2", "cmi3", "cmi4", "cmi5", "cmi6", "cmi7",
-    "cmi8", "cmi9", "cmi10", "cmi11", "cmi12")
-EdTrain_vars <- c("cmi13", "cmi14", "cmi15", "cmi16", "cmi17", "cmi18",
-    "cmi19", "cmi20", "cmi21", "cmi22", "cmi23", "cmi24")
-BusWrk_vars <- c("cmi25", "cmi26", "cmi27", "cmi28", "cmi29", "cmi30",
-    "cmi31", "cmi32", "cmi33", "cmi34", "cmi35", "cmi36")
-PolLaw_vars <- c("cmi37", "cmi38", "cmi39", "cmi40", "cmi41", "cmi42",
-    "cmi43", "cmi44", "cmi45", "cmi46", "cmi47")
-
-dfKim$IntRel <- sjstats::mean_n(dfKim[, IntRel_vars], 0.8)
-dfKim$EdTrain <- sjstats::mean_n(dfKim[, EdTrain_vars], 0.8)
-dfKim$BusWrk <- sjstats::mean_n(dfKim[, BusWrk_vars], 0.8)
-dfKim$PolLaw <- sjstats::mean_n(dfKim[, PolLaw_vars], 0.8)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfKim$PolLaw <-
-# sjstats::mean_n(dfKim[, ..PolLaw_vars], .80)
+``` r
+dfKim$IntRel <- datawizard::row_means(dfKim, select = c('cmi1', 'cmi2', 'cmi3', 'cmi4', 'cmi5', 'cmi6', 'cmi7', 'cmi8', 'cmi9', 'cmi10', 'cmi11', 'cmi12'), min_valid = .80)
+dfKim$EdTrain <- datawizard::row_means(dfKim, select = c('cmi13', 'cmi14', 'cmi15', 'cmi16', 'cmi17', 'cmi18', 'cmi19', 'cmi20', 'cmi21', 'cmi22', 'cmi23', 'cmi24'), min_valid = .80)
+dfKim$BusWrk <- datawizard::row_means(dfKim, select = c('cmi25', 'cmi26', 'cmi27', 'cmi28', 'cmi29', 'cmi30', 'cmi31', 'cmi32', 'cmi33', 'cmi34', 'cmi35', 'cmi36'), min_valid = .80)
+dfKim$PolLaw <- datawizard::row_means(dfKim, select = c('cmi37', 'cmi38', 'cmi39', 'cmi40', 'cmi41', 'cmi42', 'cmi43', 'cmi44', 'cmi45', 'cmi46', 'cmi47'), min_valid = .80)
 ```
 
 The description of the MHI only indicates that there are items on the PWB scale (and not that there are further subscales). This gives us some choice about how to divide the items. I would likely be inclined to randomly divide them across three scales.
@@ -1403,12 +1369,12 @@ The description of the MHI only indicates that there are items on the PWB scale 
 The following code will provide random assignments.
 
 
-```r
+``` r
 set.seed(230916)
-items <- c("pwb1", "pwb2", "pwb3", "pwb4", "pwb5", "pwb6", "pwb7", "pwb8",
-    "pwb9", "pwb10", "pwb11")
-parcels <- c("PWB_p1", "PWB_p_2", "PWB_p3")
-data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
+items <- c('pwb1', 'pwb2', 'pwb3', 'pwb4', 'pwb5', 'pwb6', 'pwb7', 'pwb8', 'pwb9', 'pwb10', 'pwb11')
+parcels <- c("PWB_p1", "PWB_p_2","PWB_p3")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
 ```
 
 ```
@@ -1428,19 +1394,10 @@ data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
 We can now create the parcels using the same scoring procedure as we did for the REMS and CMI instruments.
 
 
-```r
-PWB_p1_vars <- c("pwb7", "pwb11", "pwb4", "pwb8")
-PWB_p2_vars <- c("pwb9", "pwb2", "pwb10", "pwb2")
-PWB_p3_vars <- c("pwb1", "pwb3", "pwb5")
-
-dfKim$p1PWB <- sjstats::mean_n(dfKim[, PWB_p1_vars], 0.75)
-dfKim$p2PWB <- sjstats::mean_n(dfKim[, PWB_p2_vars], 0.75)
-dfKim$p3PWB <- sjstats::mean_n(dfKim[, PWB_p3_vars], 0.75)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfKim$p3PWB <-
-# sjstats::mean_n(dfKim[, ..PWB_p3_vars], .75)
+``` r
+dfKim$p1PWB <- datawizard::row_means(dfKim, select = c('pwb7','pwb11', 'pwb4', 'pwb8'), min_valid = .80)
+dfKim$p2PWB <- datawizard::row_means(dfKim, select = c('pwb9','pwb2', 'pwb10', 'pwb2'), min_valid = .80)
+dfKim$p3PWB <- datawizard::row_means(dfKim, select = c('pwb1','pwb3', 'pwb5'), min_valid = .80)
 ```
 
 Before we continue to respecifying the measurement model, let me point out that a downside of using subscales as parcels is that it Little et al's [-@little_why_2013] recommendation is that each latent variable be represented with a just-identified (i.e., 3-parcel) solution. Like our circumstance where the REMS has six subscales and the CMI has four, it is frequently the case where measures have differing numbers of solutions. When there are more than three parcels, the fit of the measurement model is likely to be worse than if there were three parcels per latent variable.
@@ -1450,7 +1407,7 @@ Before we continue to respecifying the measurement model, let me point out that 
 Let's respecify our measurement model with parcels created from subscale means.
 
 
-```r
+``` r
 subsc_msmt_mod <- "
         ##measurement model
          REMS =~ Inf_P + SClass_P + mInv_P + Exot_P + mEnv_P + mWork_P
@@ -1467,16 +1424,14 @@ subsc_msmt_mod <- "
         "
 
 set.seed(230916)
-subsc_msmt_fit <- lavaan::cfa(subsc_msmt_mod, data = dfKim, missing = "fiml")
-# , missing = 'fiml' #deleted this from the above code because it
-# seemed to be slowing it down
-subsc_msmt_fit_sum <- lavaan::summary(subsc_msmt_fit, fit.measures = TRUE,
-    standardized = TRUE)
+subsc_msmt_fit <- lavaan::cfa(subsc_msmt_mod, data = dfKim, missing="fiml")
+#, missing = "fiml" #deleted this from the above code because it seemed to be slowing it down
+subsc_msmt_fit_sum <- lavaan::summary(subsc_msmt_fit, fit.measures = TRUE, standardized = TRUE)
 subsc_msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 127 iterations
+## lavaan 0.6-18 ended normally after 133 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1487,50 +1442,50 @@ subsc_msmt_fit_sum
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                71.488
+##   Test statistic                                72.993
 ##   Degrees of freedom                                62
-##   P-value (Chi-square)                           0.192
+##   P-value (Chi-square)                           0.160
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                              2095.199
+##   Test statistic                              2094.575
 ##   Degrees of freedom                                78
 ##   P-value                                        0.000
 ## 
 ## User Model versus Baseline Model:
 ## 
 ##   Comparative Fit Index (CFI)                    0.995
-##   Tucker-Lewis Index (TLI)                       0.994
+##   Tucker-Lewis Index (TLI)                       0.993
 ##                                                       
 ##   Robust Comparative Fit Index (CFI)             0.995
-##   Robust Tucker-Lewis Index (TLI)                0.994
+##   Robust Tucker-Lewis Index (TLI)                0.993
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)               -379.365
-##   Loglikelihood unrestricted model (H1)       -343.621
+##   Loglikelihood user model (H0)               -374.157
+##   Loglikelihood unrestricted model (H1)       -337.660
 ##                                                       
-##   Akaike (AIC)                                 842.731
-##   Bayesian (BIC)                               970.825
-##   Sample-size adjusted Bayesian (SABIC)        837.881
+##   Akaike (AIC)                                 832.314
+##   Bayesian (BIC)                               960.408
+##   Sample-size adjusted Bayesian (SABIC)        827.465
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
-##   RMSEA                                          0.031
+##   RMSEA                                          0.034
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.060
-##   P-value H_0: RMSEA <= 0.050                    0.839
+##   90 Percent confidence interval - upper         0.061
+##   P-value H_0: RMSEA <= 0.050                    0.810
 ##   P-value H_0: RMSEA >= 0.080                    0.001
 ##                                                       
-##   Robust RMSEA                                   0.031
+##   Robust RMSEA                                   0.034
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.060
-##   P-value H_0: Robust RMSEA <= 0.050             0.839
+##   90 Percent confidence interval - upper         0.061
+##   P-value H_0: Robust RMSEA <= 0.050             0.810
 ##   P-value H_0: Robust RMSEA >= 0.080             0.001
 ## 
 ## Standardized Root Mean Square Residual:
 ## 
-##   SRMR                                           0.024
+##   SRMR                                           0.025
 ## 
 ## Parameter Estimates:
 ## 
@@ -1542,63 +1497,63 @@ subsc_msmt_fit_sum
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   REMS =~                                                               
 ##     Inf_P             1.000                               0.275    0.884
-##     SClass_P          0.980    0.062   15.722    0.000    0.270    0.873
-##     mInv_P            0.993    0.063   15.852    0.000    0.273    0.878
-##     Exot_P            0.986    0.058   17.018    0.000    0.271    0.907
-##     mEnv_P            1.073    0.063   17.131    0.000    0.295    0.903
-##     mWork_P           1.066    0.069   15.337    0.000    0.293    0.864
+##     SClass_P          0.982    0.062   15.754    0.000    0.270    0.873
+##     mInv_P            0.991    0.062   15.875    0.000    0.272    0.877
+##     Exot_P            0.983    0.058   17.028    0.000    0.270    0.907
+##     mEnv_P            1.076    0.063   17.164    0.000    0.295    0.904
+##     mWork_P           1.067    0.070   15.345    0.000    0.293    0.863
 ##   CMI =~                                                                
 ##     IntRel            1.000                               0.760    0.948
-##     EdTrain           0.972    0.040   24.289    0.000    0.739    0.939
-##     BusWrk            0.974    0.040   24.475    0.000    0.740    0.939
-##     PolLaw            1.056    0.040   26.144    0.000    0.802    0.953
+##     EdTrain           0.972    0.040   24.297    0.000    0.739    0.939
+##     BusWrk            0.974    0.040   24.489    0.000    0.740    0.939
+##     PolLaw            1.056    0.040   26.141    0.000    0.803    0.953
 ##   PWB =~                                                                
-##     p1PWB             1.000                               0.305    0.634
-##     p2PWB             1.610    0.229    7.044    0.000    0.492    0.802
-##     p3PWB             1.373    0.206    6.654    0.000    0.419    0.708
+##     p1PWB             1.000                               0.304    0.631
+##     p2PWB             1.557    0.225    6.923    0.000    0.473    0.795
+##     p3PWB             1.384    0.209    6.606    0.000    0.420    0.710
 ## 
 ## Covariances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   REMS ~~                                                               
-##     CMI               0.126    0.021    6.024    0.000    0.604    0.604
-##     PWB              -0.047    0.010   -4.615    0.000   -0.554   -0.554
+##     CMI               0.126    0.021    6.027    0.000    0.604    0.604
+##     PWB              -0.045    0.010   -4.533    0.000   -0.545   -0.545
 ##   CMI ~~                                                                
-##     PWB              -0.130    0.027   -4.753    0.000   -0.560   -0.560
+##     PWB              -0.131    0.027   -4.790    0.000   -0.569   -0.569
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .Inf_P             0.502    0.025   20.145    0.000    0.502    1.613
+##    .Inf_P             0.502    0.025   20.205    0.000    0.502    1.618
 ##    .SClass_P          0.485    0.025   19.596    0.000    0.485    1.569
-##    .mInv_P            0.523    0.025   21.003    0.000    0.523    1.682
-##    .Exot_P            0.508    0.024   21.218    0.000    0.508    1.699
-##    .mEnv_P            0.504    0.026   19.255    0.000    0.504    1.542
+##    .mInv_P            0.523    0.025   21.080    0.000    0.523    1.688
+##    .Exot_P            0.508    0.024   21.303    0.000    0.508    1.706
+##    .mEnv_P            0.504    0.026   19.243    0.000    0.504    1.541
 ##    .mWork_P           0.462    0.027   16.985    0.000    0.462    1.360
-##    .IntRel            4.030    0.064   62.745    0.000    4.030    5.024
-##    .EdTrain           3.824    0.063   60.645    0.000    3.824    4.855
-##    .BusWrk            3.907    0.063   61.872    0.000    3.907    4.954
-##    .PolLaw            4.003    0.067   59.382    0.000    4.003    4.754
+##    .IntRel            4.030    0.064   62.736    0.000    4.030    5.023
+##    .EdTrain           3.824    0.063   60.653    0.000    3.824    4.856
+##    .BusWrk            3.907    0.063   61.880    0.000    3.907    4.954
+##    .PolLaw            4.003    0.067   59.346    0.000    4.003    4.751
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
-##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
-##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
+##    .p2PWB             3.171    0.048   66.568    0.000    3.171    5.330
+##    .p3PWB             3.141    0.047   66.268    0.000    3.141    5.306
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .Inf_P             0.021    0.003    7.367    0.000    0.021    0.219
-##    .SClass_P          0.023    0.003    7.567    0.000    0.023    0.238
+##    .Inf_P             0.021    0.003    7.357    0.000    0.021    0.218
+##    .SClass_P          0.023    0.003    7.562    0.000    0.023    0.238
 ##    .mInv_P            0.022    0.003    7.505    0.000    0.022    0.230
-##    .Exot_P            0.016    0.002    6.921    0.000    0.016    0.177
-##    .mEnv_P            0.020    0.003    7.002    0.000    0.020    0.184
-##    .mWork_P           0.029    0.004    7.651    0.000    0.029    0.254
-##    .IntRel            0.066    0.010    6.438    0.000    0.066    0.102
+##    .Exot_P            0.016    0.002    6.931    0.000    0.016    0.178
+##    .mEnv_P            0.020    0.003    7.001    0.000    0.020    0.184
+##    .mWork_P           0.029    0.004    7.656    0.000    0.029    0.255
+##    .IntRel            0.066    0.010    6.445    0.000    0.066    0.102
 ##    .EdTrain           0.074    0.011    6.821    0.000    0.074    0.119
-##    .BusWrk            0.074    0.011    6.790    0.000    0.074    0.118
-##    .PolLaw            0.065    0.011    6.126    0.000    0.065    0.092
-##    .p1PWB             0.139    0.019    7.313    0.000    0.139    0.598
-##    .p2PWB             0.134    0.029    4.615    0.000    0.134    0.357
-##    .p3PWB             0.175    0.028    6.316    0.000    0.175    0.498
-##     REMS              0.076    0.011    6.991    0.000    1.000    1.000
+##    .BusWrk            0.073    0.011    6.787    0.000    0.073    0.118
+##    .PolLaw            0.065    0.011    6.129    0.000    0.065    0.092
+##    .p1PWB             0.140    0.019    7.306    0.000    0.140    0.602
+##    .p2PWB             0.130    0.028    4.705    0.000    0.130    0.369
+##    .p3PWB             0.174    0.028    6.239    0.000    0.174    0.496
+##     REMS              0.075    0.011    7.000    0.000    1.000    1.000
 ##     CMI               0.578    0.073    7.935    0.000    1.000    1.000
-##     PWB               0.093    0.024    3.957    0.000    1.000    1.000
+##     PWB               0.092    0.024    3.918    0.000    1.000    1.000
 ```
 
 As we look at the results we can easily see the benefits to the model. The factor loadings are strong, significant, and all scoring in the correct (positive) direction. The fit indices are much improved. Let's take a look according to the criteria we are using:
@@ -1619,17 +1574,12 @@ The measurement model created by parcels that represent subscales of the instrum
 In the prior example, we created three parcels through random assignment for the PWB scale. We can use those same parcels. We repeat those steps for the REMS and CMI scales. This code randomly assigns the 45 REMS items across the three parcels.
 
 
-```r
+``` r
 set.seed(230916)
-items <- c("Inf32", "Inf38", "Inf21", "Inf17", "Inf9", "Inf36", "Inf5",
-    "Inf22", "SClass6", "SClass31", "SClass8", "SClass40", "SClass2", "SClass34",
-    "SClass11", "mInv27", "mInv30", "mInv39", "mInv7", "mInv26", "mInv33",
-    "mInv4", "mInv14", "mInv10", "Exot3", "Exot29", "Exot45", "Exot35",
-    "Exot42", "Exot23", "Exot13", "Exot20", "Exot43", "mEnv37", "mEnv24",
-    "mEnv19", "mEnv28", "mEnv18", "mEnv41", "mEnv12", "mWork25", "mWork15",
-    "mWork1", "mWork16", "mWork44")
-parcels <- c("REMS_p1", "REMS_p2", "REMS_p3")
-data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
+items <- c('Inf32', 'Inf38', 'Inf21', 'Inf17', 'Inf9', 'Inf36', 'Inf5', 'Inf22', 'SClass6', 'SClass31', 'SClass8', 'SClass40', 'SClass2', 'SClass34', 'SClass11', 'mInv27', 'mInv30', 'mInv39', 'mInv7', 'mInv26', 'mInv33', 'mInv4', 'mInv14', 'mInv10', 'Exot3', 'Exot29', 'Exot45', 'Exot35', 'Exot42', 'Exot23', 'Exot13', 'Exot20', 'Exot43', 'mEnv37', 'mEnv24', 'mEnv19', 'mEnv28', 'mEnv18', 'mEnv41', 'mEnv12', 'mWork25', 'mWork15', 'mWork1', 'mWork16', 'mWork44')
+parcels <- c("REMS_p1", "REMS_p2","REMS_p3")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
 ```
 
 ```
@@ -1683,41 +1633,21 @@ data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
 
 This code provides means for each of the three REMS parcels.
 
-```r
-REMS_p1_vars <- c("mWork44", "Exot20", "SClass8", "Exot43", "mInv4", "SClass31",
-    "SClass40", "mWork16", "Exot45", "SClass2", "Exot3", "mEnv24", "Exot35",
-    "mInv7", "Exot13")
-REMS_p2_vars <- c("mEnv41", "SClass11", "Inf5", "mEnv19", "mInv39", "Inf22",
-    "mEnv18", "mInv30", "Inf32", "SClass34", "Exot29", "mInv27", "mInv10",
-    "mWork1", "mWork15")
-REMS_p3_vars <- c("mWork25", "Inf38", "Inf17", "Exot23", "mInv33", "mEnv28",
-    "Inf36", "mInv14", "mEnv37", "Inf21", "mEnv12", "Exot42", "SClass6",
-    "Inf9", "mInv26")
-
-dfKim$p1REMS <- sjstats::mean_n(dfKim[, REMS_p1_vars], 0.8)
-dfKim$p2REMS <- sjstats::mean_n(dfKim[, REMS_p2_vars], 0.8)
-dfKim$p3REMS <- sjstats::mean_n(dfKim[, REMS_p3_vars], 0.8)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfKim$p3REMS <-
-# sjstats::mean_n(dfKim[, ..REMS_p3_vars], .80)
+``` r
+dfKim$p1REMS <- datawizard::row_means(dfKim, select = c('mWork44','Exot20', 'SClass8', 'Exot43', 'mInv4', 'SClass31', 'SClass40', 'mWork16', 'Exot45', 'SClass2', 'Exot3', 'mEnv24', 'Exot35', 'mInv7', 'Exot13'), min_valid = .80)
+dfKim$p2REMS <- datawizard::row_means(dfKim, select = c('mEnv41','SClass11', 'Inf5', 'mEnv19', 'mInv39', 'Inf22', 'mEnv18', 'mInv30', 'Inf32', 'SClass34', 'Exot29', 'mInv27', 'mInv10', 'mWork1', 'mWork15'), min_valid = .80)
+dfKim$p3REMS <- datawizard::row_means(dfKim, select = c('mWork25','Inf38', 'Inf17', 'Exot23', 'mInv33',  'mEnv28', 'Inf36', 'mInv14', 'mEnv37', 'Inf21', 'mEnv12', 'Exot42', 'SClass6', 'Inf9', 'mInv26'), min_valid = .80)
 ```
 
 We can repeat the process for the CMI. First, we assign the 47 CMI items to the three parcels.
 
 
-```r
+``` r
 set.seed(230916)
-items <- c(IntRel_vars <- c("cmi1", "cmi2", "cmi3", "cmi4", "cmi5", "cmi6",
-    "cmi7", "cmi8", "cmi9", "cmi10", "cmi11", "cmi12", "cmi13", "cmi14",
-    "cmi15", "cmi16", "cmi17", "cmi18", "cmi19", "cmi20", "cmi21", "cmi22",
-    "cmi23", "cmi24", "cmi25", "cmi26", "cmi27", "cmi28", "cmi29", "cmi30",
-    "cmi31", "cmi32", "cmi33", "cmi34", "cmi35", "cmi36", "cmi37", "cmi38",
-    "cmi39", "cmi40", "cmi41", "cmi42", "cmi43", "cmi44", "cmi45", "cmi46",
-    "cmi47"))
-parcels <- c("CMI_p1", "CMI_p2", "CMI_p3")
-data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
+items <- c(IntRel_vars <- c('cmi1', 'cmi2', 'cmi3', 'cmi4', 'cmi5', 'cmi6', 'cmi7', 'cmi8', 'cmi9', 'cmi10', 'cmi11', 'cmi12', 'cmi13', 'cmi14', 'cmi15', 'cmi16', 'cmi17', 'cmi18', 'cmi19', 'cmi20', 'cmi21', 'cmi22', 'cmi23', 'cmi24', 'cmi25', 'cmi26', 'cmi27', 'cmi28', 'cmi29', 'cmi30', 'cmi31', 'cmi32', 'cmi33', 'cmi34', 'cmi35', 'cmi36', 'cmi37', 'cmi38', 'cmi39', 'cmi40', 'cmi41', 'cmi42', 'cmi43', 'cmi44', 'cmi45', 'cmi46', 'cmi47'))
+parcels <- c("CMI_p1", "CMI_p2","CMI_p3")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
 ```
 
 ```
@@ -1772,24 +1702,10 @@ data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
 ```
 This code provides means for each of the three CMI parcels.
 
-```r
-CMI_p1_vars <- c("cmi45", "cmi32", "cmi11", "cmi33", "cmi22", "cmi12",
-    "cmi26", "cmi25", "cmi44", "cmi13", "cmi31", "cmi34", "cmi37", "cmi43",
-    "cmi24", "cmi9")
-CMI_p2_vars <- c("cmi39", "cmi15", "cmi7", "cmi38", "cmi18", "cmi40", "cmi47",
-    "cmi27", "cmi1", "cmi14", "cmi42", "cmi8", "cmi19", "cmi20", "cmi5",
-    "cmi16")
-CMI_p3_vars <- c("cmi41", "cmi2", "cmi4", "cmi30", "cmi46", "cmi6", "cmi17",
-    "cmi23", "cmi10", "cmi3", "cmi29", "cmi28", "cmi21", "cmi35", "cmi36")
-
-dfKim$p1CMI <- sjstats::mean_n(dfKim[, CMI_p1_vars], 0.8)
-dfKim$p2CMI <- sjstats::mean_n(dfKim[, CMI_p2_vars], 0.8)
-dfKim$p3CMI <- sjstats::mean_n(dfKim[, CMI_p3_vars], 0.8)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfKim$p3CMI <-
-# sjstats::mean_n(dfKim[, ..CMI_p3_vars], .80)
+``` r
+dfKim$p1CMI <- datawizard::row_means(dfKim, select = c('cmi45', 'cmi32', 'cmi11',	'cmi33', 'cmi22', 'cmi12', 'cmi26', 'cmi25', 'cmi44', 'cmi13', 'cmi31', 'cmi34', 'cmi37', 'cmi43', 'cmi24', 'cmi9'), min_valid = .80)
+dfKim$p2CMI <- datawizard::row_means(dfKim, select = c('cmi39', 'cmi15', 'cmi7', 'cmi38', 'cmi18', 'cmi40', 'cmi47', 'cmi27', 'cmi1', 'cmi14', 'cmi42', 'cmi8', 'cmi19', 'cmi20', 'cmi5', 'cmi16'), min_valid = .80)
+dfKim$p3CMI <- datawizard::row_means(dfKim, select = c('cmi41', 'cmi2', 'cmi4', 'cmi30', 'cmi46', 'cmi6', 'cmi17', 'cmi23', 'cmi10', 'cmi3', 'cmi29', 'cmi28', 'cmi21', 'cmi35', 'cmi36'), min_valid = .80)
 ```
 
 
@@ -1799,7 +1715,7 @@ dfKim$p3CMI <- sjstats::mean_n(dfKim[, CMI_p3_vars], 0.8)
 We can now evaluate the measurement model that is defined by each scale's items that were randomly assigned to three parcels, each.
 
 
-```r
+``` r
 rp3_msmt_mod <- "
         ##measurement model
          REMS =~ p1REMS + p2REMS + p3REMS
@@ -1817,13 +1733,12 @@ rp3_msmt_mod <- "
 
 set.seed(230916)
 rp3_msmt_fit <- lavaan::cfa(rp3_msmt_mod, data = dfKim, missing = "fiml")
-rp3_msmt_fit_sum <- lavaan::summary(rp3_msmt_fit, fit.measures = TRUE,
-    standardized = TRUE)
+rp3_msmt_fit_sum <- lavaan::summary(rp3_msmt_fit, fit.measures = TRUE, standardized = TRUE)
 rp3_msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 106 iterations
+## lavaan 0.6-18 ended normally after 109 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -1834,50 +1749,50 @@ rp3_msmt_fit_sum
 ## 
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                15.965
+##   Test statistic                                18.691
 ##   Degrees of freedom                                24
-##   P-value (Chi-square)                           0.889
+##   P-value (Chi-square)                           0.768
 ## 
 ## Model Test Baseline Model:
 ## 
-##   Test statistic                              1366.804
+##   Test statistic                              1366.485
 ##   Degrees of freedom                                36
 ##   P-value                                        0.000
 ## 
 ## User Model versus Baseline Model:
 ## 
 ##   Comparative Fit Index (CFI)                    1.000
-##   Tucker-Lewis Index (TLI)                       1.009
+##   Tucker-Lewis Index (TLI)                       1.006
 ##                                                       
 ##   Robust Comparative Fit Index (CFI)             1.000
-##   Robust Tucker-Lewis Index (TLI)                1.009
+##   Robust Tucker-Lewis Index (TLI)                1.006
 ## 
 ## Loglikelihood and Information Criteria:
 ## 
-##   Loglikelihood user model (H0)               -368.149
-##   Loglikelihood unrestricted model (H1)       -360.166
+##   Loglikelihood user model (H0)               -365.241
+##   Loglikelihood unrestricted model (H1)       -355.896
 ##                                                       
-##   Akaike (AIC)                                 796.297
-##   Bayesian (BIC)                               887.793
-##   Sample-size adjusted Bayesian (SABIC)        792.834
+##   Akaike (AIC)                                 790.482
+##   Bayesian (BIC)                               881.977
+##   Sample-size adjusted Bayesian (SABIC)        787.018
 ## 
 ## Root Mean Square Error of Approximation:
 ## 
 ##   RMSEA                                          0.000
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.031
-##   P-value H_0: RMSEA <= 0.050                    0.988
-##   P-value H_0: RMSEA >= 0.080                    0.000
+##   90 Percent confidence interval - upper         0.046
+##   P-value H_0: RMSEA <= 0.050                    0.964
+##   P-value H_0: RMSEA >= 0.080                    0.001
 ##                                                       
 ##   Robust RMSEA                                   0.000
 ##   90 Percent confidence interval - lower         0.000
-##   90 Percent confidence interval - upper         0.031
-##   P-value H_0: Robust RMSEA <= 0.050             0.988
-##   P-value H_0: Robust RMSEA >= 0.080             0.000
+##   90 Percent confidence interval - upper         0.046
+##   P-value H_0: Robust RMSEA <= 0.050             0.964
+##   P-value H_0: Robust RMSEA >= 0.080             0.001
 ## 
 ## Standardized Root Mean Square Residual:
 ## 
-##   SRMR                                           0.017
+##   SRMR                                           0.019
 ## 
 ## Parameter Estimates:
 ## 
@@ -1889,51 +1804,51 @@ rp3_msmt_fit_sum
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   REMS =~                                                               
 ##     p1REMS            1.000                               0.271    0.944
-##     p2REMS            1.055    0.044   23.770    0.000    0.286    0.946
-##     p3REMS            1.031    0.046   22.399    0.000    0.280    0.929
+##     p2REMS            1.054    0.044   23.701    0.000    0.286    0.945
+##     p3REMS            1.033    0.046   22.380    0.000    0.280    0.929
 ##   CMI =~                                                                
-##     p1CMI             1.000                               0.773    0.963
-##     p2CMI             1.006    0.035   28.780    0.000    0.778    0.957
-##     p3CMI             0.937    0.034   27.373    0.000    0.724    0.948
+##     p1CMI             1.000                               0.774    0.963
+##     p2CMI             1.006    0.035   28.812    0.000    0.779    0.957
+##     p3CMI             0.936    0.034   27.373    0.000    0.724    0.948
 ##   PWB =~                                                                
-##     p1PWB             1.000                               0.306    0.635
-##     p2PWB             1.606    0.228    7.055    0.000    0.491    0.801
-##     p3PWB             1.372    0.206    6.662    0.000    0.420    0.709
+##     p1PWB             1.000                               0.304    0.632
+##     p2PWB             1.553    0.224    6.934    0.000    0.472    0.794
+##     p3PWB             1.383    0.209    6.615    0.000    0.421    0.710
 ## 
 ## Covariances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
 ##   REMS ~~                                                               
-##     CMI               0.128    0.021    6.199    0.000    0.608    0.608
-##     PWB              -0.047    0.010   -4.712    0.000   -0.562   -0.562
+##     CMI               0.127    0.021    6.192    0.000    0.607    0.607
+##     PWB              -0.046    0.010   -4.632    0.000   -0.553   -0.553
 ##   CMI ~~                                                                
-##     PWB              -0.132    0.028   -4.763    0.000   -0.559   -0.559
+##     PWB              -0.134    0.028   -4.799    0.000   -0.569   -0.569
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1REMS            0.494    0.023   21.448    0.000    0.494    1.717
-##    .p2REMS            0.504    0.024   20.790    0.000    0.504    1.665
-##    .p3REMS            0.522    0.024   21.642    0.000    0.522    1.733
-##    .p1CMI             3.888    0.064   60.479    0.000    3.888    4.842
-##    .p2CMI             3.886    0.065   59.667    0.000    3.886    4.777
-##    .p3CMI             4.051    0.061   66.190    0.000    4.051    5.299
+##    .p1REMS            0.494    0.023   21.435    0.000    0.494    1.716
+##    .p2REMS            0.503    0.024   20.777    0.000    0.503    1.663
+##    .p3REMS            0.522    0.024   21.630    0.000    0.522    1.732
+##    .p1CMI             3.888    0.064   60.468    0.000    3.888    4.841
+##    .p2CMI             3.886    0.065   59.663    0.000    3.886    4.777
+##    .p3CMI             4.051    0.061   66.212    0.000    4.051    5.301
 ##    .p1PWB             3.014    0.039   78.207    0.000    3.014    6.262
-##    .p2PWB             3.207    0.049   65.324    0.000    3.207    5.230
-##    .p3PWB             3.141    0.047   66.276    0.000    3.141    5.306
+##    .p2PWB             3.171    0.048   66.568    0.000    3.171    5.330
+##    .p3PWB             3.141    0.047   66.268    0.000    3.141    5.306
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-##    .p1REMS            0.009    0.002    5.466    0.000    0.009    0.109
-##    .p2REMS            0.010    0.002    5.330    0.000    0.010    0.106
-##    .p3REMS            0.012    0.002    6.278    0.000    0.012    0.137
-##    .p1CMI             0.047    0.009    5.046    0.000    0.047    0.072
-##    .p2CMI             0.056    0.010    5.597    0.000    0.056    0.084
+##    .p1REMS            0.009    0.002    5.467    0.000    0.009    0.110
+##    .p2REMS            0.010    0.002    5.343    0.000    0.010    0.107
+##    .p3REMS            0.012    0.002    6.259    0.000    0.012    0.136
+##    .p1CMI             0.047    0.009    5.054    0.000    0.047    0.072
+##    .p2CMI             0.056    0.010    5.596    0.000    0.056    0.084
 ##    .p3CMI             0.060    0.009    6.292    0.000    0.060    0.102
-##    .p1PWB             0.138    0.019    7.309    0.000    0.138    0.597
-##    .p2PWB             0.135    0.029    4.646    0.000    0.135    0.358
-##    .p3PWB             0.174    0.028    6.320    0.000    0.174    0.498
-##     REMS              0.074    0.009    7.838    0.000    1.000    1.000
+##    .p1PWB             0.139    0.019    7.304    0.000    0.139    0.601
+##    .p2PWB             0.131    0.028    4.737    0.000    0.131    0.370
+##    .p3PWB             0.174    0.028    6.242    0.000    0.174    0.495
+##     REMS              0.074    0.009    7.834    0.000    1.000    1.000
 ##     CMI               0.598    0.073    8.171    0.000    1.000    1.000
-##     PWB               0.093    0.024    3.963    0.000    1.000    1.000
+##     PWB               0.092    0.024    3.924    0.000    1.000    1.000
 ```
 How do the results of the measurement model created by three parcels, created by random assignment of indicators to each, fare?
 
@@ -1952,25 +1867,23 @@ Results of the evaluation of the measurement model can be exported as .csv files
 The *tidySEM::table_fit* function will display all of the global fit indices.
 
 
-```r
-# global fit indices
+``` r
+#global fit indices
 rp3_msmt_fitstats <- tidySEM::table_fit(rp3_msmt_fit)
 write.csv(rp3_msmt_fitstats, file = "rp3_msmt_fitstats.csv")
-# parameter estimates
-rp3_msmt_pEsts <- tidySEM::table_results(rp3_msmt_fit, digits = 3, columns = NULL)
+#parameter estimates
+rp3_msmt_pEsts <- tidySEM::table_results(rp3_msmt_fit, digits=3, columns = NULL)
 write.csv(rp3_msmt_pEsts, file = "rp3_msmt_pEsts.csv")
-# correlations between latent variables
-rp3_msmt_LVcorr <- tidySEM::table_cors(rp3_msmt_fit, digits = 3)
+#correlations between latent variables
+rp3_msmt_LVcorr <- tidySEM::table_cors(rp3_msmt_fit, digits=3)
 write.csv(rp3_msmt_LVcorr, file = "rp3_msmt_LVcorr.csv")
 ```
 
 
 The diagramming function *semPlot::semPaths* can make a pretty good "guess" at simple models such as these. Given that it is unlikely that there would be room for displaying the measurement model in a journal article, there is generally no need to tinker with it too much.
 
-```r
-semPlot::semPaths(rp3_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5,
-    node.width = 1, edge.label.cex = 0.75, style = "lisrel", mar = c(5,
-        5, 5, 5))
+``` r
+semPlot::semPaths(rp3_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
 ![](09-SEM_MeasMod_files/figure-docx/unnamed-chunk-25-1.png)<!-- -->
@@ -2039,7 +1952,7 @@ There will be times when we have fewer than three indicators per latent variable
 For two-indicator latent variables, Little et al. [-@little_statistical_2002] recommended placing an equality constraint on the two loadings associated with the construct because this would locate the construct at the true intersection of the two selected indicators.  Procedurally this is fairly straightforward. We simply affix the same label to both items. Recall that in factor definitions, labels are assigned with the asterisk.
 
 
-```r
+``` r
 #TwoItemFactor =~ v1*Item1 + v1*Item2
 ```
   
@@ -2048,7 +1961,7 @@ In the case of the one-indicator construct, Little et al. [-@little_statistical_
 This would be accomplished by two lines of code. The first occurs in the latent variable definitions. The second specifies the error variance of the single observed variable to be 0.00.
 
 
-```r
+``` r
 # OneItemFactor =~ OneItem
 # OneItem ~~ 0*OneItem
 ```
@@ -2125,7 +2038,7 @@ I am hypothesizing that the evaluation of social responsive pedagogy is predicte
 ### Import the data and format the variables in the model {-}
 
 
-```r
+``` r
 raw <- readRDS("ReC.rds")
 ```
 
@@ -2138,16 +2051,14 @@ Centering is 1 item -- it's a factor with two levels pre, re.
 I can create a babydf with just those items.
 
 
-```r
-babydf <- dplyr::select(raw, Centering, ClearResponsibilities, EffectiveAnswers,
-    Feedback, ClearOrganization, ClearPresentation, InclusvClassrm, EquitableEval,
-    MultPerspectives, DEIintegration)
+``` r
+babydf <- dplyr::select(raw, Centering, ClearResponsibilities, EffectiveAnswers, Feedback, ClearOrganization, ClearPresentation, InclusvClassrm, EquitableEval, MultPerspectives, DEIintegration)
 ```
 
 Let's check the structure of the variables:
 
 
-```r
+``` r
 str(babydf)
 ```
 
@@ -2168,7 +2079,7 @@ str(babydf)
 The centering variable will need to be dummy coded as 0/1:
 
 
-```r
+``` r
 babydf$CENTERING <- as.numeric(babydf$Centering)
 babydf$CENTERING <- (babydf$CENTERING - 1)
 str(babydf)
@@ -2195,7 +2106,7 @@ str(babydf)
 
 
 
-```r
+``` r
 init_msmt_mod <- "
         ##measurement model
          CTR =~ CENTERING #this is a single item indicator, I had to add code below to set the variance
@@ -2215,13 +2126,12 @@ init_msmt_mod <- "
 
 set.seed(230916)
 init_msmt_fit <- lavaan::cfa(init_msmt_mod, data = babydf, missing = "fiml")
-init_msmt_fit_sum <- lavaan::summary(init_msmt_fit, fit.measures = TRUE,
-    standardized = TRUE)
+init_msmt_fit_sum <- lavaan::summary(init_msmt_fit, fit.measures = TRUE, standardized = TRUE)
 init_msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 63 iterations
+## lavaan 0.6-18 ended normally after 63 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2352,10 +2262,8 @@ Criteria                                            | Our Results               
 Results were mixed. Here is the fit string:  $\chi^2(33)= 178.307, p < 0.001, CFI =  0.911, RMSEA = 0.119, 90CI[0.102, 0.137], SRMR = 0.060$
 
 
-```r
-semPlot::semPaths(init_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5,
-    node.width = 1, edge.label.cex = 0.75, style = "lisrel", mar = c(5,
-        5, 5, 5))
+``` r
+semPlot::semPaths(init_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
 ![](09-SEM_MeasMod_files/figure-docx/unnamed-chunk-64-1.png)<!-- -->
@@ -2364,15 +2272,15 @@ Results of the evaluation of the measurement model can be exported as .csv files
 The *tidySEM::table_fit* function will display all of the global fit indices.
 
 
-```r
-# global fit indices
+``` r
+#global fit indices
 init_msmt_fitstats <- tidySEM::table_fit(init_msmt_fit)
 write.csv(init_msmt_fitstats, file = "init_msmt_fitstats.csv")
-# parameter estimates
-init_msmt_pEsts <- tidySEM::table_results(init_msmt_fit, digits = 3, columns = NULL)
+#parameter estimates
+init_msmt_pEsts <- tidySEM::table_results(init_msmt_fit, digits=3, columns = NULL)
 write.csv(init_msmt_pEsts, file = "init_msmt_pEsts.csv")
-# correlations between latent variables
-init_msmt_LVcorr <- tidySEM::table_cors(init_msmt_fit, digits = 3)
+#correlations between latent variables
+init_msmt_LVcorr <- tidySEM::table_cors(init_msmt_fit, digits=3)
 write.csv(init_msmt_LVcorr, file = "init_msmt_LVcorr.csv")
 ```
 
@@ -2388,12 +2296,12 @@ Each dataset has its unique challenges. This one has relatively few items per sc
 
 Here I assign the TradPed items to the 3 parcels.
 
-```r
+``` r
 set.seed(230916)
-items <- c("ClearResponsibilities", "EffectiveAnswers", "Feedback", "ClearOrganization",
-    "ClearPresentation")
-parcels <- c("p1_TR", "p2_TR", "p3_TR")
-data.frame(items = sample(items), parcel = rep(parcels, length = length(items)))
+items <- c('ClearResponsibilities', 'EffectiveAnswers', 'Feedback', 'ClearOrganization', 'ClearPresentation')
+parcels <- c("p1_TR", "p2_TR","p3_TR")
+data.frame(items = sample(items),
+           parcel = rep(parcels, length = length(items)))  
 ```
 
 ```
@@ -2409,21 +2317,13 @@ I can now create the parcels using the traditional scoring procedure. I want bot
 As a variable, *ClearResponsibilities* will stand alone (i.e., the scoring mechanism won't work on a single variable).
 
 
-```r
-TRp1_vars <- c("ClearPresentation", "EffectiveAnswers")
-TRp2_vars <- c("Feedback", "ClearOrganization")
-
-babydf$p1_TR <- sjstats::mean_n(babydf[, ..TRp1_vars], 0.75)
-babydf$p2_TR <- sjstats::mean_n(babydf[, ..TRp2_vars], 0.75)
-
-# If the scoring code above does not work for you, try the format
-# below which involves removing the periods in front of the variable
-# list. One example is provided. babydf$p3_TR <-
-# sjstats::mean_n(babydf[, TRp3_vars], .75)
+``` r
+babydf$p1_TR <- datawizard::row_means(babydf, select = c('ClearPresentation','EffectiveAnswers'), min_valid = .75)
+babydf$p2_TR <- datawizard::row_means(babydf, select = c('Feedback','ClearOrganization'), min_valid = .75)
 ```
 
 
-```r
+``` r
 parc_msmt_mod <- "
         ##measurement model
          CTR =~ CENTERING #this is a single item indicator, I had to add code below to set the variance
@@ -2443,13 +2343,12 @@ parc_msmt_mod <- "
 
 set.seed(230916)
 parc_msmt_fit <- lavaan::cfa(parc_msmt_mod, data = babydf, missing = "fiml")
-parc_msmt_fit_sum <- lavaan::summary(parc_msmt_fit, fit.measures = TRUE,
-    standardized = TRUE)
+parc_msmt_fit_sum <- lavaan::summary(parc_msmt_fit, fit.measures = TRUE, standardized = TRUE)
 parc_msmt_fit_sum
 ```
 
 ```
-## lavaan 0.6.17 ended normally after 59 iterations
+## lavaan 0.6-18 ended normally after 59 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -2576,23 +2475,21 @@ Results were mixed and somewhat worse than the initial model that included all i
 
 
 
-```r
-semPlot::semPaths(parc_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5,
-    node.width = 1, edge.label.cex = 0.75, style = "lisrel", mar = c(5,
-        5, 5, 5))
+``` r
+semPlot::semPaths(parc_msmt_fit, what = "col", whatLabels = "stand", sizeMan = 5, node.width = 1, edge.label.cex = .75, style = "lisrel", mar = c(5,5,5,5))
 ```
 
 ![](09-SEM_MeasMod_files/figure-docx/unnamed-chunk-69-1.png)<!-- -->
 
-```r
-# global fit indices
+``` r
+#global fit indices
 parc_msmt_fitstats <- tidySEM::table_fit(parc_msmt_fit)
 write.csv(parc_msmt_fitstats, file = "parc_msmt_fitstats.csv")
-# parameter estimates
-parc_msmt_pEsts <- tidySEM::table_results(parc_msmt_fit, digits = 3, columns = NULL)
+#parameter estimates
+parc_msmt_pEsts <- tidySEM::table_results(parc_msmt_fit, digits=3, columns = NULL)
 write.csv(parc_msmt_pEsts, file = "parc_msmt_pEsts.csv")
-# correlations between latent variables
-parc_msmt_LVcorr <- tidySEM::table_cors(parc_msmt_fit, digits = 3)
+#correlations between latent variables
+parc_msmt_LVcorr <- tidySEM::table_cors(parc_msmt_fit, digits=3)
 write.csv(parc_msmt_LVcorr, file = "parc_msmt_LVcorr.csv")
 ```
 ### Make notes about similarities and differences in the all-items and parceled approaches {-} 

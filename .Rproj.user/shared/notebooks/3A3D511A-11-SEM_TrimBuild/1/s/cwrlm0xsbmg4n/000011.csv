@@ -1,0 +1,4 @@
+"0",""
+"0","dfLewis$p1GRMS <- datawizard::row_means(dfLewis, select = c('Ma3','Ma7', 'Ma1', 'Ob1', 'St2', 'Ob8', 'An2', 'Ma4'), min_valid = .75)"
+"0","dfLewis$p2GRMS <- datawizard::row_means(dfLewis, select = c('Ob7','Ma5', 'An1', 'St3', 'Ob5', 'Ma6', 'Ma2', 'St1'), min_valid = .75)"
+"0","dfLewis$p3GRMS <- datawizard::row_means(dfLewis, select = c('Ob9','Ob2', 'Ob4', 'Ob6', 'Ob10', 'St5', 'Ob3', 'St4'), min_valid = .75)"

@@ -45,12 +45,12 @@ In preparing this chapter, I drew heavily from the following resource(s). Other 
 
 The packages used in this lesson are embedded in this code. When the hashtags are removed, the script below will (a) check to see if the following packages are installed on your computer and, if not (b) install them.
 
-```r
-# if(!require(tidyverse)){install.packages('tidyverse')}
-# if(!require(psych)){install.packages('psych')}
-# if(!require(mice)){install.packages('mice')}
-# if(!require(sjstats)){install.packages('sjstats')}
-# if(!require(formattable)){install.packages('formattable')}
+``` r
+#if(!require(tidyverse)){install.packages("tidyverse")}
+#if(!require(psych)){install.packages("psych")}
+#if(!require(mice)){install.packages("mice")}
+#if(!require(formattable)){install.packages("formattable")}
+#if(!require(datawizard)){install.packages("datawizard")}
 ```
 
 
@@ -168,7 +168,7 @@ Parent's [-@parent_handling_2013] recommendations:
 * Scale scores should be first calculated as a *mean* (average) not a sum. Why?
    - Calculating a "sum" from available data will result in automatically lower scores in cases where there is missingness.
    - If a sum is required (i.e., because you want to interpret some clinical level of something), calculate the mean first, do the analyses, then transform the results back into the whole-scale equivalent (multiply the mean by the number of items) for any interpretation.
-   - For R script, do not write the script ([item1 + item2 + item3]/3) because this will return an empty entry for participants missing data (same problem as if you were to use sum).  There are several functions for properly computing a mean; I will demo the *mean_n()* function from *sjstats* package because it allows us to simultaneously specify the tolerance level (next item).
+   - For R script, do not write the script ([item1 + item2 + item3]/3) because this will return an empty entry for participants missing data (same problem as if you were to use sum).  There are several functions for properly computing a mean; I will demo the *row_means* function from *datawizard* package because it allows us to simultaneously specify the tolerance level (next item).
 * Determine your *tolerance* for missingness (20% seems to be common, although you could also look for guidance in the test manual/article). Then
   - Run a "percent missingness" check on the level of analysis (i.e., total score, scale, or subscale) you are using. If you are using a total scale score, then check to see what percent is missing across all the items in the whole scale.  In contrast, if you are looking at subscales, run the percent missing at that level.
   - Parent [-@parent_handling_2013] advised that the tolerance levels should be made mindfully.  A four-item scale with one item missing, won't meet the 80% threshold, so it may make sense to set a 75% threshold for this scale.
@@ -192,9 +192,8 @@ Presuming that you are working along with me in an .rmd file and have placed tha
 I use *different* names for the object/df in my R environment than I use for the filename that holds the data on my computer.  Why?  I don't want to accidentally overwrite this precious "source" of data.
 
 
-```r
-# scrub_df <- read.csv ('BlackStntsModel230902.csv', head = TRUE, sep
-# = ',')
+``` r
+#scrub_df <- read.csv ("BlackStntsModel230902.csv", head = TRUE, sep = ",")
 scrub_df <- readRDS("BlackStntsModel230902.rds")
 str(scrub_df)
 ```
@@ -301,7 +300,7 @@ Let's think about how the variables in our model should be measured:
 To summarize, the Campus Climate and Belonging scales are traditional in the sense that they have items that we sum. The variable representing proportion of classmates who are Black is a single item. The variable representing the proportion of instructional staff who are BIPOC must be calculated in a manner that takes into consideration the there may be multiple instructors. The survey allowed a respondent to name up to 10 instructors.
 
 
-```r
+``` r
 str(scrub_df$iRace1)
 ```
 
@@ -317,50 +316,60 @@ Qualtrics imports many of the categorical variables as numbers.  R often reads t
 One way to avoid this is to use the code below to identify the levels and the labels.  When they are in order, they align and don't "skip" numbers. To quadruple check our work, we will recode into a new variable "tRace#" for "teacher" Race.
 
 
-```r
-scrub_df$tRace1 = factor(scrub_df$iRace1, levels = c(0, 1, 2, 3, 4), labels = c("Black",
-    "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace2 = factor(scrub_df$iRace2, levels = c(0, 1, 2, 3, 4), labels = c("Black",
-    "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace3 = factor(scrub_df$iRace3, levels = c(0, 1, 2, 3, 4), labels = c("Black",
-    "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace4 = factor(scrub_df$iRace4, levels = c(0, 1, 2, 3, 4), labels = c("Black",
-    "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace5 = factor(scrub_df$iRace5, levels = c(0, 1, 2, 3, 4), labels = c("Black",
-    "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace6 = factor(scrub_df$iRace6, levels = c(0, 1, 2, 3, 4), labels = c("Black",
-    "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace7 = factor(scrub_df$iRace7, levels = c(0, 1, 2, 3, 4), labels = c("Black",
-    "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace8 = factor(scrub_df$iRace8, levels = c(0, 1, 2, 3, 4), labels = c("Black",
-    "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace9 = factor(scrub_df$iRace9, levels = c(0, 1, 2, 3, 4), labels = c("Black",
-    "nBpoc", "BiMulti", "White", "NotNotice"))
-scrub_df$tRace10 = factor(scrub_df$iRace10, levels = c(0, 1, 2, 3, 4),
-    labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
+``` r
+scrub_df$tRace1 = factor(scrub_df$iRace1,
+                        levels = c(0,1,2,3,4),
+                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace2 = factor(scrub_df$iRace2,
+                        levels = c(0,1,2,3,4),
+                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace3 = factor(scrub_df$iRace3,
+                        levels = c(0,1,2,3,4),
+                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace4 = factor(scrub_df$iRace4,
+                        levels = c(0,1,2,3,4),
+                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace5 = factor(scrub_df$iRace5,
+                        levels = c(0,1,2,3,4),
+                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace6 = factor(scrub_df$iRace6,
+                        levels = c(0,1,2,3,4),
+                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace7 = factor(scrub_df$iRace7,
+                        levels = c(0,1,2,3,4),
+                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace8 = factor(scrub_df$iRace8,
+                        levels = c(0,1,2,3,4),
+                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace9 = factor(scrub_df$iRace9,
+                        levels = c(0,1,2,3,4),
+                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
+scrub_df$tRace10 = factor(scrub_df$iRace10,
+                        levels = c(0,1,2,3,4),
+                        labels = c("Black", "nBpoc", "BiMulti", "White", "NotNotice"))
 ```
 
 Let's check the structure to see if they are factors.
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
 ```
 ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
-```r
+``` r
 glimpse(scrub_df)
 ```
 
@@ -410,23 +419,19 @@ Calculating the proportion of the BIPOC instructional staff could likely be acco
   * summing across the tRace1 through tRace10 variables,
   * assigning a count of "1" each time the factor value was Black, nBpoc, or BiMulti
 
-```r
-scrub_df$count.BIPOC <- apply(scrub_df[c("tRace1", "tRace2", "tRace3",
-    "tRace4", "tRace5", "tRace6", "tRace7", "tRace8", "tRace9", "tRace10")],
-    1, function(x) sum(x %in% c("Black", "nBpoc", "BiMulti")))
+``` r
+scrub_df$count.BIPOC <- apply(scrub_df[c("tRace1", "tRace2", "tRace3", "tRace4", "tRace5", "tRace6", "tRace7", "tRace8", "tRace9", "tRace10")], 1, function(x) sum(x %in% c("Black", "nBpoc", "BiMulti")))
 ```
 
 Next, I created a variable that counted the number of non-missing values across the tRace1 through tRace10 variables.
 
-```r
-scrub_df$count.nMiss <- apply(scrub_df[c("tRace1", "tRace2", "tRace3",
-    "tRace4", "tRace5", "tRace6", "tRace7", "tRace8", "tRace9", "tRace10")],
-    1, function(x) sum(!is.na(x)))
+``` r
+scrub_df$count.nMiss <- apply(scrub_df[c("tRace1", "tRace2", "tRace3", "tRace4", "tRace5", "tRace6", "tRace7", "tRace8", "tRace9", "tRace10")], 1, function(x) sum(!is.na(x)))
 ```
 
 Now to calculate the proportion of BIPOC instructional faculty for each case.
 
-```r
+``` r
 scrub_df$iBIPOC_pr = scrub_df$count.BIPOC/scrub_df$count.nMiss
 ```
 
@@ -440,9 +445,8 @@ In understanding missingness across the dataset, I think it is important to anal
 Because we just created a host of new variables in creating the *prop_BIPOC* variable, let's downsize the df so that the calculations are sensible.
 
 
-```r
-scrub_df <- (select(scrub_df, ID, iBIPOC_pr, cmBlack, Belong_1:Belong_3,
-    Blst_1:Blst_6))
+``` r
+scrub_df <-(select (scrub_df, ID, iBIPOC_pr, cmBlack, Belong_1:Belong_3, Blst_1:Blst_6))
 ```
 
 With a couple of calculations, we create a proportion of item-level missingness.
@@ -450,7 +454,7 @@ With a couple of calculations, we create a proportion of item-level missingness.
 In this chunk I first calculate the number of missing (nmiss)
 
 
-```r
+``` r
 library(tidyverse)
 #Calculating number and proportion of item-level missingness
 scrub_df$nmiss <- scrub_df%>%
@@ -466,7 +470,7 @@ scrub_df<- scrub_df%>%
 
 We can grab the descriptives for the *prop_miss* variable to begin to understand our data.  I will create an object from it so I can use it with inline
 
-```r
+``` r
 psych::describe(scrub_df$prop_miss)
 ```
 
@@ -482,17 +486,17 @@ CUMULATIVE CAPTURE FOR WRITING IT UP:
 At the time that I am lecturing this, we do have some rather egregious missingness. At this point I will write code to eliminate cases with $\geq$ 90%.
 
 
-```r
+``` r
 scrub_df <- dplyr::filter(scrub_df, prop_miss <= 90)  #update df to have only those with at least 90% of complete data
 ```
 
 To analyze missingness at this level, we need a df that has only the variables of interest.  That is, variables like *ID* and the *prop_miss* and *nmiss* variables we created will interfere with an accurate assessment of missingness. I will update our df to eliminate these.  
 
 
-```r
-# further update to exclude the n_miss and prop_miss variables
+``` r
+#further update to exclude the n_miss and prop_miss variables
 scrub_df <- scrub_df %>%
-    dplyr::select(-c(ID, nmiss, prop_miss))
+  dplyr::select (-c(ID, nmiss, prop_miss))
 ```
 
 Missing data analysis commonly looks at proportions by:
@@ -501,8 +505,8 @@ Missing data analysis commonly looks at proportions by:
 * rows/cases/people
 
 
-```r
-# what proportion of cells missing across entire dataset
+``` r
+#what proportion of cells missing across entire dataset
 formattable::percent(mean(is.na(scrub_df)))
 ```
 
@@ -510,8 +514,8 @@ formattable::percent(mean(is.na(scrub_df)))
 ## [1] 3.86%
 ```
 
-```r
-# what proportion of cases (rows) are complete (nonmissing)
+``` r
+#what proportion of cases (rows) are complete (nonmissing)
 formattable::percent(mean(complete.cases(scrub_df)))
 ```
 
@@ -535,10 +539,10 @@ Rows and columns are sorted in increasing amounts of missing information.
 The last column and row contain row and column counts, respectively.  
 
 
-```r
+``` r
 mice_out <- mice::md.pattern(scrub_df, plot = TRUE, rotate.names = TRUE)
 mice_out
-write.csv(mice_out, file = "mice_out.csv")  #optional to write it to a .csv file
+write.csv (mice_out, file="mice_out.csv") #optional to write it to a .csv file
 ```
 
 The table lets us examine each missing pattern and see which variable(s) is/are missing. The output is in the form of a table that indicates the frequency of each pattern of missingness.  Because I haven't (yet) figured out how to pipe objects from this table into the chapter, this text may differ from the patterns in the current data frame.
@@ -568,9 +572,9 @@ To rescore:
 * The reversal is an *equation* where you subtract the value in the item from the range/scaling + 1.  For the our three items we subtract each item's value from 8.
 
 
-```r
-scrub_df <- scrub_df %>%
-    dplyr::mutate(rBlst_1 = 8 - Blst_1)  #if you had multiple items, you could add a pipe (%>%) at the end of the line and add more until the last one
+``` r
+scrub_df<- scrub_df %>%
+  dplyr::mutate(rBlst_1 = 8 - Blst_1) #if you had multiple items, you could add a pipe (%>%) at the end of the line and add more until the last one
 ```
 
 Per Parent [-@parent_handling_2013] we will analyze missingness for each scale, separately.  
@@ -580,50 +584,35 @@ Per Parent [-@parent_handling_2013] we will analyze missingness for each scale, 
   - on the 3 item scale, I will allow one item to be missing (65%)
 * After calculating the scale scores, we will return to analyzing the missingness, looking at the whole df
 
-The *mean_n()* function of *sjstats* package has allows you to specify how many items (whole number) or what percentage of items should be present in order to get the mean. First, though, we should identify the variables (properly formatted, if rescoring was needed) that should be included in the calculation of each scale and subscale.
+The *row_means()* function of the *datawizrd* package has allows you to specify how many items (whole number) or what percentage of items should be present in order to get the mean. 
 
 In our case, the scale assessing belonging [@bollen_perceived_1990; @hurtado_effects_1997] involves three items with no reversals. Our campus climate scale was adapted from Szymanski et al.'s LGBTQ College Campus Climate Scale [@szymanski_perceptions_2020]. While it has not been psychometrically evaluated for the purpose for which I am using it, I will follow the scoring structure in the journal article that introduces the measure. Specifically, the factor structure permits a total scale score and two subscales representing the college response and stigma.
 
 
-```r
-# Making the list of variables
-Belonging_vars <- c("Belong_1", "Belong_2", "Belong_3")
-ResponseBL_vars <- c("rBlst_1", "Blst_4", "Blst_6")
-StigmaBL_vars <- c("Blst_2", "Blst_3", "Blst_5")
-ClimateBL_vars <- c("rBlst_1", "Blst_4", "Blst_6", "Blst_2", "Blst_3",
-    "Blst_5")
-
-# Creating the new variables
-scrub_df$Belonging <- sjstats::mean_n(scrub_df[, Belonging_vars], 0.65)
-scrub_df$ResponseBL <- sjstats::mean_n(scrub_df[, ResponseBL_vars], 0.8)
-scrub_df$StigmaBL <- sjstats::mean_n(scrub_df[, StigmaBL_vars], 0.8)
-scrub_df$ClimateBL <- sjstats::mean_n(scrub_df[, ClimateBL_vars], 0.8)
-
-# If the scoring code above does not work for you, try the format
-# below which involves inserting to periods in front of the variable
-# list. One example is provided. dfLewis$Belonging <-
-# sjstats::mean_n(dfLewis[, ..Belonging_vars], 0.80)
+``` r
+#Creating the new variables
+scrub_df$Belonging <- datawizard::row_means(scrub_df, select = c('Belong_1','Belong_2','Belong_3'), min_valid = .65)
+scrub_df$ResponseBL <- datawizard::row_means(scrub_df, select = c('rBlst_1', 'Blst_4','Blst_6'), min_valid = .80)
+scrub_df$StigmaBL <- datawizard::row_means(scrub_df, select = c('Blst_2', 'Blst_3','Blst_5'), min_valid = .80)
+scrub_df$ClimateBL <- datawizard::row_means(scrub_df, select = c('rBlst_1', 'Blst_4','Blst_6','Blst_2', 'Blst_3','Blst_5'), min_valid = .80)
 ```
 
 Later it will be helpful to have a df with the item and scale-level variables.  It will also be helpful if there is an ID for each case.
 
 
-```r
-scrub_df <- scrub_df %>%
-    dplyr::mutate(ID = row_number())
+``` r
+scrub_df <- scrub_df %>% dplyr::mutate(ID = row_number())
 
-# moving the ID number to the first column; requires
-scrub_df <- scrub_df %>%
-    dplyr::select(ID, everything())
+#moving the ID number to the first column; requires 
+scrub_df <- scrub_df%>%dplyr::select(ID, everything())
 ```
 
 
 Let's save our *scrub_df* data for this and write it as an outfile. I will save it in both .rds and .csv formats so that you can use either one.
 
 
-```r
-write.table(scrub_df, file = "BlStItmsScrs230902.csv", sep = ",", col.names = TRUE,
-    row.names = FALSE)
+``` r
+write.table(scrub_df, file="BlStItmsScrs230902.csv", sep=",", col.names=TRUE, row.names=FALSE)
 saveRDS(scrub_df, "BlStItmsScrs230902.rds")
 ```
 
@@ -637,10 +626,9 @@ Let's return to analyzing the missingness, this time including the *scale level*
 First let's get the df down to the variables we want to retain:
 
 
-```r
-scored <- dplyr::select(scrub_df, iBIPOC_pr, cmBlack, Belonging, ResponseBL,
-    StigmaBL, ClimateBL)
-ScoredCaseMiss <- nrow(scored)  #I produced this object for the sole purpose of feeding the number of cases into the inline text, below
+``` r
+scored <-dplyr::select(scrub_df, iBIPOC_pr, cmBlack, Belonging, ResponseBL, StigmaBL, ClimateBL)
+ScoredCaseMiss <- nrow(scored) #I produced this object for the sole purpose of feeding the number of cases into the inline text, below
 ScoredCaseMiss
 ```
 
@@ -656,19 +644,18 @@ Before we start our formal analysis of missingness at the scale level, let's con
 Using the *describe()* function from the *psych* package, we can investigate this variable.
 
 
-```r
-# Create a variable (n_miss) that counts the number missing
-scored$n_miss <- scored %>%
-    dplyr::select(iBIPOC_pr:ClimateBL) %>%
-    is.na %>%
-    rowSums
+``` r
+#Create a variable (n_miss) that counts the number missing
+scored$n_miss <- scored%>%
+  dplyr::select(iBIPOC_pr:ClimateBL) %>% 
+is.na %>% 
+rowSums
 
-# Create a proportion missing by dividing n_miss by the total number
-# of variables (6) Pipe to sort in order of descending frequency to
-# get a sense of the missingness
-scored <- scored %>%
-    dplyr::mutate(prop_miss = (n_miss/6) * 100) %>%
-    arrange(desc(n_miss))
+#Create a proportion missing by dividing n_miss by the total number of variables (6)
+#Pipe to sort in order of descending frequency to get a sense of the missingness
+scored<- scored%>%
+ dplyr::mutate(prop_miss = (n_miss/6)*100)%>%
+  arrange(desc(n_miss))
 
 psych::describe(scored$prop_miss)
 ```
@@ -686,15 +673,14 @@ CUMULATIVE CAPTURE FOR WRITING IT UP:
 We need to decide what is our retention threshhold. Twenty percent seems to be a general rule of thumb.  Let's delete all cases with missingness at 20% or greater.
 
 
-```r
-# update df to have only those with at least 20% of complete data
-# (this is an arbitrary decision)
-scored <- dplyr::filter(scored, prop_miss <= 20)
+``` r
+#update df to have only those with at least 20% of complete data (this is an arbitrary decision)
+scored <- dplyr::filter(scored, prop_miss <= 20) 
 
-# the variable selection just lops off the proportion missing
-scored <- (select(scored, iBIPOC_pr:ClimateBL))
+#the variable selection just lops off the proportion missing
+scored <-(select (scored, iBIPOC_pr:ClimateBL)) 
 
-# this produces the number of cases retained
+#this produces the number of cases retained
 nrow(scored)
 ```
 
@@ -720,8 +706,8 @@ Again, we look at missingness as the proportion of
 * rows/cases with nonmissing data
 
 
-```r
-# percent missing across df
+``` r
+#percent missing across df
 formattable::percent(mean(is.na(scored)))
 ```
 
@@ -729,9 +715,9 @@ formattable::percent(mean(is.na(scored)))
 ## [1] 0.55%
 ```
 
-```r
-# percent of rows with nonmissing data
-formattable::percent(mean(complete.cases(scored)))
+``` r
+#percent of rows with nonmissing data
+formattable::percent(mean(complete.cases(scored))) 
 ```
 
 ```
@@ -752,13 +738,13 @@ Let's look again at missing patterns and mechanisms.
 Returning to the *mice* package, we can use the *md.pattern()* function to examine a matrix with the number of columns + 1 in which each row corresponds to a missing data pattern (1 = observed, 0 = missing). The rows and columns are sorted in increasing amounts of missing information. The last column and row contain row and column counts, respectively.
 
 
-```r
-mice_ScaleLvl <- mice::md.pattern(scored, plot = TRUE, rotate.names = TRUE)
+``` r
+mice_ScaleLvl <- mice::md.pattern(scored, plot = TRUE, rotate.names=TRUE)
 ```
 
 ![](02-Scoring_files/figure-docx/unnamed-chunk-26-1.png)<!-- -->
 
-```r
+``` r
 mice_ScaleLvl
 ```
 

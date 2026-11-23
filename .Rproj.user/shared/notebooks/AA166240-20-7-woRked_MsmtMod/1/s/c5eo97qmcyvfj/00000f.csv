@@ -1,0 +1,5 @@
+"0","set.seed(230916)"
+"0","items <- c('ClearResponsibilities', 'EffectiveAnswers', 'Feedback', 'ClearOrganization', 'ClearPresentation')"
+"0","parcels <- c(""p1_TR"", ""p2_TR"",""p3_TR"")"
+"0","data.frame(items = sample(items),"
+"0","           parcel = rep(parcels, length = length(items)))  "

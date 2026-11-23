@@ -200,27 +200,16 @@ Comparing this to Enders' [-@enders_applied_2010] [prototypical patterns of miss
 
 Traditional pedagogy is a predictor variable that needs to be created by calculating the mean if at least 75% of the items are non-missing. None of the items need to be reverse-scored. I will return to working with the *scrub_df* data.
 ```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-#this seems to work when I build the book, but not in "working the problem"
-#TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')  
-#scrub_df$TradPed <- sjstats::mean_n(scrub_df[, TradPed_vars], .75)
-
-#this seems to work when I "work the problem" (but not when I build the book)
-#the difference is the two dots before the last SRPed_vars
-TradPed_vars <- c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation')  
-scrub_df$TradPed <- sjstats::mean_n(scrub_df[, TradPed_vars], .75)
+scrub_df$TradPed <- datawizard::row_means(scrub_df, select = c('ClearResponsibilities', 'EffectiveAnswers','Feedback', 'ClearOrganization','ClearPresentation'), min_valid = .75)
 ```
 
 The dependent variable is socially responsive pedagogy. It needs to be created by calculating the mean if at least 75% of the items are non-missing. None of the items need to be reverse-scored.
-```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
-#this seems to work when I build the book, but not in "working the problem"
-#SRPed_vars <- c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration')  
-#scrub_df$SRPed <- sjstats::mean_n(scrub_df[, SRPed_vars], .75)
 
-#this seems to work when I "work the problem" (but not when I build the book)
-#the difference is the two dots before the last SRPed_vars
-SRPed_vars <- c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration')  
-scrub_df$SRPed <- sjstats::mean_n(scrub_df[, SRPed_vars], .75)
+```{r tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+scrub_df$SRPed <- datawizard::row_means(scrub_df, select = c('InclusvClassrm','EquitableEval', 'MultPerspectives', 'DEIintegration'), min_valid = .75)
 ```
+
+
 #### Evaluate and interpret scale-level missingness {-} 
 
 To evaluate scale level missingness, let's create a df with the focal variables.
