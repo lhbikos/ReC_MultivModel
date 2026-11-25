@@ -888,9 +888,9 @@ summary(M2a )
 ## 
 ## Random effects:
 ##  Groups   Name        Variance    Std.Dev. Corr 
-##  ClientID (Intercept) 5.175071263 2.274878      
+##  ClientID (Intercept) 5.175071253 2.274878      
 ##           Weeks       0.000001625 0.001275 -1.00
-##  Residual             1.260961493 1.122925      
+##  Residual             1.260961495 1.122925      
 ## Number of obs: 59125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:
@@ -1085,9 +1085,9 @@ summary(M3a)
 ## 
 ## Random effects:
 ##  Groups   Name        Variance    Std.Dev. Corr 
-##  ClientID (Intercept) 5.158483214 2.271229      
+##  ClientID (Intercept) 5.158483221 2.271229      
 ##           Weeks       0.000001621 0.001273 -1.00
-##  Residual             1.260967448 1.122928      
+##  Residual             1.260967447 1.122928      
 ## Number of obs: 59125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:
@@ -1334,20 +1334,20 @@ summary(M4a)
 ## 
 ## Random effects:
 ##  Groups   Name        Variance    Std.Dev. Corr 
-##  ClientID (Intercept) 5.158485592 2.271230      
+##  ClientID (Intercept) 5.158443793 2.271221      
 ##           Weeks       0.000001633 0.001278 -1.00
-##  Residual             1.260909126 1.122902      
+##  Residual             1.260911383 1.122903      
 ## Number of obs: 59125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:
 ##               Estimate Std. Error t value
-## (Intercept)  2.4710295  0.0397363  62.186
+## (Intercept)  2.4710295  0.0397362  62.186
 ## Weeks       -0.0761545  0.0016017 -47.547
-## Het0         0.3088904  0.0734212   4.207
-## DRel0        0.0329141  0.0509671   0.646
+## Het0         0.3088905  0.0734210   4.207
+## DRel0        0.0329141  0.0509669   0.646
 ## Weeks:Het0   0.0002992  0.0021045   0.142
 ## Weeks:DRel0 -0.0029014  0.0019256  -1.507
-## Het0:DRel0  -0.0425439  0.0933016  -0.456
+## Het0:DRel0  -0.0425439  0.0933013  -0.456
 ## 
 ## Correlation of Fixed Effects:
 ##             (Intr) Weeks  Het0   DRel0  Wks:H0 Wk:DR0
@@ -1627,9 +1627,9 @@ summary(M5a)
 ## 
 ## Random effects:
 ##  Groups   Name        Variance    Std.Dev. Corr 
-##  ClientID (Intercept) 5.158474616 2.271228      
+##  ClientID (Intercept) 5.158470566 2.271227      
 ##           Weeks       0.000001628 0.001276 -1.00
-##  Residual             1.260973178 1.122931      
+##  Residual             1.260973480 1.122931      
 ## Number of obs: 59125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:
@@ -3787,9 +3787,9 @@ summary(M5a)
 ## 
 ## Random effects:
 ##  Groups   Name        Variance    Std.Dev. Corr 
-##  ClientID (Intercept) 5.158474616 2.271228      
+##  ClientID (Intercept) 5.158470566 2.271227      
 ##           Weeks       0.000001628 0.001276 -1.00
-##  Residual             1.260973178 1.122931      
+##  Residual             1.260973480 1.122931      
 ## Number of obs: 59125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:

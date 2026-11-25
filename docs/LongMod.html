@@ -23,7 +23,7 @@
 <meta name="author" content="Lynette H. Bikos, PhD, ABPP" />
 
 
-<meta name="date" content="2026-11-23" />
+<meta name="date" content="2026-11-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1516,7 +1516,7 @@ Mod1a &lt;- lmer(Anxiety ~1 +(1 | ClientID), LfvrLong, REML = FALSE)</p>
 ## 
 ## Random effects:
 ##  Groups   Name        Variance    Std.Dev. Corr 
-##  ClientID (Intercept) 5.181154032 2.27621       
+##  ClientID (Intercept) 5.181154023 2.27621       
 ##           SesNum      0.000001932 0.00139  -1.00
 ##  Residual             1.259247013 1.12216       
 ## Number of obs: 64125, groups:  ClientID, 12825
@@ -1835,7 +1835,7 @@ Mod1a &lt;- lmer(Anxiety ~1 +(1 | ClientID), LfvrLong, REML = FALSE)
 Mod2a &lt;- lmer(Anxiety ~ SesNum +(SesNum | ClientID), LfvrLong, REML = FALSE)</p>
 <div class="sourceCode" id="cb1152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1152-1"><a href="LongMod.html#cb1152-1" tabindex="-1"></a>Mod3a <span class="ot">&lt;-</span> lme4<span class="sc">::</span><span class="fu">lmer</span>(Anxiety <span class="sc">~</span> SesNum<span class="sc">*</span>Het0 <span class="sc">+</span>(SesNum <span class="sc">|</span> ClientID), LfvrLong, <span class="at">REML =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control$checkConv, :
-## Model failed to converge with max|grad| = 0.0965961 (tol = 0.002, component 1)</code></pre>
+## Model failed to converge with max|grad| = 0.0355667 (tol = 0.002, component 1)</code></pre>
 <pre><code>## Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control$checkConv, : Model is nearly unidentifiable: very large eigenvalue
 ##  - Rescale variables?</code></pre>
 <div class="sourceCode" id="cb1155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1155-1"><a href="LongMod.html#cb1155-1" tabindex="-1"></a><span class="fu">summary</span>(Mod3a)</span></code></pre></div>
@@ -1848,20 +1848,20 @@ Mod2a &lt;- lmer(Anxiety ~ SesNum +(SesNum | ClientID), LfvrLong, REML = FALSE)<
 ## 
 ## Scaled residuals: 
 ##     Min      1Q  Median      3Q     Max 
-## -3.8708 -0.6073 -0.0034  0.6135  3.5665 
+## -3.8707 -0.6073 -0.0033  0.6135  3.5664 
 ## 
 ## Random effects:
 ##  Groups   Name        Variance    Std.Dev. Corr 
-##  ClientID (Intercept) 5.165055819 2.272676      
-##           SesNum      0.000002316 0.001522 -0.93
-##  Residual             1.259215629 1.122148      
+##  ClientID (Intercept) 5.165055539 2.272676      
+##           SesNum      0.000002437 0.001561 -0.91
+##  Residual             1.259220839 1.122150      
 ## Number of obs: 64125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:
 ##              Estimate Std. Error t value
 ## (Intercept)  2.700371   0.025993 103.888
-## SesNum      -0.078559   0.001058 -74.285
-## Het0         0.281411   0.049260   5.713
+## SesNum      -0.078559   0.001058 -74.284
+## Het0         0.281412   0.049260   5.713
 ## SesNum:Het0  0.001143   0.002002   0.571
 ## 
 ## Correlation of Fixed Effects:
@@ -1870,7 +1870,7 @@ Mod2a &lt;- lmer(Anxiety ~ SesNum +(SesNum | ClientID), LfvrLong, REML = FALSE)<
 ## Het0        -0.528  0.199       
 ## SesNum:Het0  0.200 -0.528 -0.379
 ## optimizer (nloptwrap) convergence code: 0 (OK)
-## Model failed to converge with max|grad| = 0.0965961 (tol = 0.002, component 1)
+## Model failed to converge with max|grad| = 0.0355667 (tol = 0.002, component 1)
 ## Model is nearly unidentifiable: very large eigenvalue
 ##  - Rescale variables?</code></pre>
 <div class="sourceCode" id="cb1157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1157-1"><a href="LongMod.html#cb1157-1" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(Mod1a, Mod2a,Mod3a, <span class="at">p.style =</span> <span class="st">&quot;numeric&quot;</span>, <span class="at">show.ci =</span> <span class="cn">FALSE</span>, <span class="at">show.se =</span> <span class="cn">TRUE</span>, <span class="at">show.df =</span> <span class="cn">FALSE</span>, <span class="at">show.re.var =</span> <span class="cn">TRUE</span>, <span class="at">show.aic =</span> <span class="cn">TRUE</span>, <span class="at">show.dev =</span> <span class="cn">TRUE</span>, <span class="at">use.viewer =</span> <span class="cn">TRUE</span>, <span class="at">dv.labels =</span> <span class="fu">c</span>(<span class="st">&quot;Mod1&quot;</span>, <span class="st">&quot;Mod2&quot;</span>, <span class="st">&quot;Mod3&quot;</span>))</span></code></pre></div>
@@ -2096,7 +2096,7 @@ Random Effects
 -1.00 <sub>ClientID</sub>
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
--0.93 <sub>ClientID</sub>
+-0.91 <sub>ClientID</sub>
 </td>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
@@ -2249,9 +2249,9 @@ Mod3a &lt;- lmer(Anxiety ~ SesNum*Het0 +(SesNum | ClientID), LfvrLong, REML = FA
 ## 
 ## Random effects:
 ##  Groups   Name        Variance   Std.Dev. Corr 
-##  ClientID (Intercept) 5.16504901 2.272674      
+##  ClientID (Intercept) 5.16506288 2.272677      
 ##           SesNum      0.00000201 0.001418 -1.00
-##  Residual             1.25918762 1.122135      
+##  Residual             1.25918683 1.122135      
 ## Number of obs: 64125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:
@@ -2652,7 +2652,7 @@ Random Effects
 -1.00 <sub>ClientID</sub>
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
--0.93 <sub>ClientID</sub>
+-0.91 <sub>ClientID</sub>
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
 -1.00 <sub>ClientID</sub>
@@ -2833,16 +2833,16 @@ Mod4a &lt;- lmer(Anxiety ~ SesNum</em>Het0 + SesNum<em>DRel0 + Het0</em>DRel0 + 
 ## 
 ## Random effects:
 ##  Groups   Name        Variance   Std.Dev. Corr 
-##  ClientID (Intercept) 5.16509086 2.272684      
+##  ClientID (Intercept) 5.16509523 2.272685      
 ##           SesNum      0.00000201 0.001418 -1.00
-##  Residual             1.25924471 1.122161      
+##  Residual             1.25924462 1.122161      
 ## Number of obs: 64125, groups:  ClientID, 12825
 ## 
 ## Fixed effects:
 ##               Estimate Std. Error t value
 ## (Intercept)  2.6974082  0.0254699 105.906
 ## SesNum      -0.0782400  0.0008979 -87.136
-## Het0         0.2920586  0.0455930   6.406
+## Het0         0.2920587  0.0455930   6.406
 ## 
 ## Correlation of Fixed Effects:
 ##        (Intr) SesNum
@@ -3302,7 +3302,7 @@ Random Effects
 -1.00 <sub>ClientID</sub>
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
--0.93 <sub>ClientID</sub>
+-0.91 <sub>ClientID</sub>
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
 -1.00 <sub>ClientID</sub>
@@ -3514,8 +3514,8 @@ Because of the significant trimming (of non-significant interaction effects), ou
 ## Mod1a    3 243113 243141 -121554   243107                                   
 ## Mod2a    6 236029 236083 -118009   236017 7090.4634  3 &lt; 0.00000000000000022
 ## Mod5a    7 235990 236054 -117988   235976   40.9677  1       0.0000000001548
-## Mod3a    8 235992 236064 -117988   235976    0.3254  1                0.5684
-## Mod4a   11 235996 236095 -117987   235974    2.1375  3                0.5444
+## Mod3a    8 235992 236064 -117988   235976    0.3253  1                0.5685
+## Mod4a   11 235996 236095 -117987   235974    2.1376  3                0.5443
 ##          
 ## Mod1a    
 ## Mod2a ***

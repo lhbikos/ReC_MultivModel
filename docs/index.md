@@ -1,7 +1,7 @@
 --- 
 title: "ReCentering Psych Stats: Multivariate Modeling"
 author: "Lynette H. Bikos, PhD, ABPP"
-date: "23 Nov 2026" 
+date: "24 Nov 2026" 
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: STATSnMETH.bib #This is my own bibtex file from my Zotero account. If this file is not in the project folder there will be an error and the book will not build.
@@ -35,7 +35,7 @@ To additional volumes in the ReCentering Psych Stats series include its [base vo
 
 # PREFACE {-}
 
-**If you are viewing this document, you should know that it is perpetually-in-progress. Early drafts are released for the purpose teaching classes and gaining formative feedback from a host of stakeholders. Although 2024 is considered the publication date, updates are occasionally made. The document was last updated on 23 Nov 2026**.  Throughout the OER are sceencasted lectures. When updating the book, the text is updated first and lectures are updated as time is available. If there is a discrepancy, the test will be the most current. Finally, R and R packages are dynamic. It is quite possible that a package will change and the script presented in this OER is no longer functional. Please leave feedback on the [GitHub repo](https://github.com/lhbikos/ReC_MultivModel/tree/main) or send an email to recenterpsychstats@gmail.com.
+**If you are viewing this document, you should know that it is perpetually-in-progress. Early drafts are released for the purpose teaching classes and gaining formative feedback from a host of stakeholders. Although 2024 is considered the publication date, updates are occasionally made. The document was last updated on 24 Nov 2026**.  Throughout the OER are sceencasted lectures. When updating the book, the text is updated first and lectures are updated as time is available. If there is a discrepancy, the test will be the most current. Finally, R and R packages are dynamic. It is quite possible that a package will change and the script presented in this OER is no longer functional. Please leave feedback on the [GitHub repo](https://github.com/lhbikos/ReC_MultivModel/tree/main) or send an email to recenterpsychstats@gmail.com.
 
 [Screencasted Lecture Link](https://youtu.be/yy0z85Wla7o)
 
@@ -58,6 +58,11 @@ In training for multicultural competence, the saying, "A fish doesn't know that 
 As of this writing my (Lynette Bikos) career has taken me away from the teaching statistics, psychometrics, and research methods. Across the three volumes of ReCentering Psych Stats, there were chapters that I regret not writing. If this approach to teaching statistics is appealing to you and you would like to contribute, please contact me directly.
 
 ## Copyright with Open Access {-}
+
+Copyright © 2026 by Lynette Bikos Seattle Pacific University Library, Seattle, WA. 
+
+ISBN numbers: 979-8-9909046-0-6 (digital online); 979-8-9868768-9-4 (Print PDF); 979-8-9868768-8-7 (Ebook-online);
+
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
 
 This book is published under a a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. This means that this book can be reused, remixed, retained, revised and redistributed (including commercially) as long as appropriate credit is given to the authors. If you remix, or modify the original version of this open textbook, you must redistribute all versions of this open textbook under the same license - CC BY-SA.
